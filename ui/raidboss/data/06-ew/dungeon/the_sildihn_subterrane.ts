@@ -1,6 +1,6 @@
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -125,7 +125,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The Silt Pump will be sealed off.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       // May be overwritten by Runaway Sludge below.
@@ -157,7 +157,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The Settling Basin will be sealed off.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       // May be overwritten by Suddenly Sewage below.

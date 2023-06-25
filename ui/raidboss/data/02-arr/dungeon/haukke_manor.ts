@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -54,7 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The void lamps have begun emitting an eerie glow',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),

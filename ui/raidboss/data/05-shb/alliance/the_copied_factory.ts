@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The wall-mounted right arm begins to move.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),
@@ -148,7 +148,7 @@ const triggerSet: TriggerSet<Data> = {
 
       netRegex: {
         line: 'The wall-mounted flamethrowers activate\..*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       alertText: (_data, _matches, output) => output.text!(),
@@ -169,7 +169,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       durationSeconds: 6,
@@ -181,7 +181,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       delaySeconds: 8,
@@ -202,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       delaySeconds: 10,
@@ -236,7 +236,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'You hear frenzied movement from machines beneath.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       durationSeconds: 10,
@@ -258,7 +258,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The conveyer belts whirr to life!.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),
@@ -278,7 +278,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Flammable oil is leaking from the floor.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       durationSeconds: 3,
@@ -300,7 +300,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Flammable oil is leaking from the floor.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       delaySeconds: 6,

@@ -1,5 +1,5 @@
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -29,7 +29,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Landmines have been scattered.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       alertText: (_data, _matches, output) => output.text!(),

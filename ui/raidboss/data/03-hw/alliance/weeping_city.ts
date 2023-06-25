@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -86,7 +86,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The Queen\'s Room will be sealed off.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       run: (data) => data.arachneStarted = true,
@@ -96,7 +96,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The Gloriole will be sealed off.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       run: (data) => {
@@ -109,7 +109,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'The Tomb Of The Nullstone will be sealed off.*?',
-        code: gameLogCodes.message,
+        code: Util.gameLogCodes.message,
         capture: false,
       },
       run: (data) => {

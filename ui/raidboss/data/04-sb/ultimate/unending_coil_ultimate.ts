@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -463,7 +462,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'From on high I descend, the hallowed moon to call.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 6,
@@ -485,7 +484,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'From on high I descend, the iron path to walk.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 6,
@@ -507,7 +506,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Take fire, O hallowed moon.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 6,
@@ -529,7 +528,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Blazing path, lead me to iron rule.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),
@@ -550,7 +549,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'O hallowed moon, take fire and scorch my foes.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),
@@ -571,7 +570,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'O hallowed moon, shine you the iron path.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text!(),
@@ -592,7 +591,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       delaySeconds: 4,
@@ -616,7 +615,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       delaySeconds: 4,
@@ -640,7 +639,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'From on high I descend, the moon and stars to bring.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 9,
@@ -662,7 +661,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'From hallowed moon I descend, a rain of stars to bring.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 9,
@@ -684,7 +683,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'From hallowed moon I bare iron, in my descent to wield.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 9,
@@ -727,7 +726,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Unbending iron, take fire and descend.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 9,
@@ -749,7 +748,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: 'Unbending iron, descend with fiery edge.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       durationSeconds: 9,

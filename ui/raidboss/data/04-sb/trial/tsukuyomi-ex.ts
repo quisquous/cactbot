@@ -1,7 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
-import { gameLogCodes } from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -163,7 +163,7 @@ const triggerSet: TriggerSet<Data> = {
       // then this could push unexpectedly earlier (or paired with buster).
       netRegex: {
         line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       response: Responses.aoe(),

@@ -1,5 +1,5 @@
-import NetRegexes, { gameLogCodes } from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -92,13 +92,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Seal',
       type: 'GameLog',
-      netRegex: { line: '.* will be sealed off.*?', code: gameLogCodes.message, capture: false },
+      netRegex: {
+        line: '.* will be sealed off.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
       type: 'GameLog',
-      netRegex: { line: '.*is no longer sealed.*?', code: gameLogCodes.message, capture: false },
+      netRegex: {
+        line: '.*is no longer sealed.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       run: (data) => {
         delete data.side;
         delete data.mythcall;
@@ -252,7 +260,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: '[^:]*:Munderg, turn flesh to ash.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       condition: (data) => data.side === 'east',
@@ -282,7 +290,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GameLog',
       netRegex: {
         line: '[^:]*:Munderg, turn blood to ice.*?',
-        code: gameLogCodes.dialog,
+        code: Util.gameLogCodes.dialog,
         capture: false,
       },
       condition: (data) => data.side === 'east',
