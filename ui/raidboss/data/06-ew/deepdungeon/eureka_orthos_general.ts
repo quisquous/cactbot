@@ -42,6 +42,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mimic spawned!',
           de: 'Mimik ist erschienen!',
+          ja: 'ミミック！',
           cn: '已生成 拟态怪!',
           ko: '미믹 등장!',
         },
@@ -101,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
         duplicate: {
           en: '${protomander} duplicate',
           de: 'Doppelter ${protomander}',
+          ja: 'もっています: ${protomander}',
           cn: '${protomander} 重复',
           ko: '${protomander} 중복',
         },
@@ -292,6 +294,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pylon of Passage activated',
           de: 'Translokator aktiviert',
+          ja: '転移が出来ます',
         },
       },
     },
