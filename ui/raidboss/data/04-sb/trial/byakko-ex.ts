@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -193,10 +193,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ByaEx Tiger Add',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
