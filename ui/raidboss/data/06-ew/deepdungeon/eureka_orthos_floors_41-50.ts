@@ -35,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           de: 'Raus oder unterbreche ${name}',
+          ja: '沈黙: ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
         },
@@ -69,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
+          ja: '${name}の視線から隠れる',
           ko: '${name}의 시야 밖으로 숨기',
         },
       },
