@@ -143,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out first => stack w/ ${player}',
           de: 'Zuerst Raus => Sammeln mit ${player}',
           fr: 'Extérieur d\'abord => package avec ${player}',
-          ja: '外へ => あたまわり ($player)',
+          ja: '外へ => あたまわり (${player})',
           cn: '远离 => 与 ${player} 分摊',
           ko: '밖으로 => ${player} 쉐어',
         },

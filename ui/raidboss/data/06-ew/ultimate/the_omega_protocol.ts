@@ -974,7 +974,7 @@ const triggerSet: TriggerSet<Data> = {
           sameDebuffPartner: {
             en: '(same debuff as ${player})',
             de: '(selber Debuff wie ${player})',
-            ja: '(${player1}と同じデバフ)',
+            ja: '(${player}と同じデバフ)',
             cn: '(与 ${player} 相同 debuff)',
             ko: '(${player}와 같은 디버프)',
           },
