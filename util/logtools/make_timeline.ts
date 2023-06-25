@@ -98,6 +98,8 @@ const ignoredCombatants = PetData['en'].concat([
   'Mol Youth',
   'Hien',
   'Lyse',
+  'Arenvald',
+  'Raubahn',
 ]);
 
 const timelineParse = new LogUtilArgParse();
