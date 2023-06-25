@@ -1,6 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
 import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -50,8 +51,9 @@ const triggerSet: TriggerSet<Data> = {
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
       id: 'Bardam63 Dead Bardam',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: NetRegexes.gameLog({
         line: 'Voiceless Muse will be sealed off.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
       }),
       run: (data) => data.deadBardam = true,
