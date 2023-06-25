@@ -23,6 +23,7 @@ Options.Triggers.push({
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           de: 'Raus oder unterbreche ${name}',
+          ja: '沈黙: ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
         },
@@ -199,11 +200,13 @@ Options.Triggers.push({
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ja: '氷へ',
           ko: '얼음 맞기',
         },
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ja: '炎へ',
           ko: '불 맞기',
         },
       },
@@ -224,11 +227,13 @@ Options.Triggers.push({
         ice: {
           en: 'Get hit by Ice',
           de: 'Lass dich von Eis treffen',
+          ja: '氷へ',
           ko: '얼음 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
           de: 'Vermeide Linien-AoEs',
+          ja: '剣AOE回避',
           ko: '칼 피하기',
         },
       },
@@ -249,11 +254,13 @@ Options.Triggers.push({
         fire: {
           en: 'Get hit by Fire',
           de: 'Lass dich von Feuer treffen',
+          ja: '炎へ',
           ko: '불 맞기',
         },
         avoid: {
           en: 'Avoid line AoEs',
           de: 'Vermeide Linien-AoEs',
+          ja: '剣AOE回避',
           ko: '칼 피하기',
         },
       },

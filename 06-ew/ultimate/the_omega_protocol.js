@@ -46,11 +46,13 @@ const nearDistantOutputStrings = {
   near: {
     en: 'Near World',
     de: 'Hallo Welt: Nah',
+    ja: 'ニア',
     cn: '近处世界',
   },
   distant: {
     en: 'Distant World',
     de: 'Hallo Welt: Fern',
+    ja: 'ファー',
     cn: '远处世界',
   },
 };
@@ -93,6 +95,7 @@ Options.Triggers.push({
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
         de: 'Renn: Omega Stab Schwert Ausweich-Richtung',
+        ja: 'オメガの杖の回避方向',
         cn: '欧米茄运动会杖剑躲避方向',
       },
       type: 'select',
@@ -147,6 +150,7 @@ Options.Triggers.push({
         text: {
           en: 'Tank Autos',
           de: 'Tank Autos',
+          ja: 'タンクへのオートアタック',
           cn: '坦克平A',
           ko: '탱커 평타',
         },
@@ -162,6 +166,7 @@ Options.Triggers.push({
         text: {
           en: 'Protean',
           de: 'Himmelsrichtungen',
+          ja: '基本散会',
           cn: '八方分散',
           ko: '기본 산개',
         },
@@ -281,6 +286,7 @@ Options.Triggers.push({
         text: {
           en: '${num} (with ${player})',
           de: '${num} (mit ${player})',
+          ja: '${num} (${player})',
           cn: '${num} (与 ${player})',
           ko: '${num} (+ ${player})',
         },
@@ -303,18 +309,21 @@ Options.Triggers.push({
           tower: {
             en: 'Tower 1',
             de: 'Turm 1',
+            ja: '塔1',
             cn: '塔 1',
             ko: '기둥 1',
           },
           tether: {
             en: 'Tether 1',
             de: 'Verbindung 1',
+            ja: '線1',
             cn: '线 1',
             ko: '선 1',
           },
           numNoMechanic: {
             en: '1',
             de: '1',
+            ja: '1',
             cn: '1',
             ko: '1',
           },
@@ -348,18 +357,21 @@ Options.Triggers.push({
           tower: {
             en: 'Tower ${num}',
             de: 'Turm ${num}',
+            ja: '塔 ${num}',
             cn: '塔 ${num}',
             ko: '기둥 ${num}',
           },
           tether: {
             en: 'Tether ${num}',
             de: 'Verbindung ${num}',
+            ja: '線 ${num}',
             cn: '线 ${num}',
             ko: '선 ${num}',
           },
           numNoMechanic: {
             en: '${num}',
             de: '${num}',
+            ja: '${num}',
             cn: '${num}',
             ko: '${num}',
           },
@@ -389,12 +401,14 @@ Options.Triggers.push({
           lineStack: {
             en: '1',
             de: '1',
+            ja: '1',
             cn: '1',
             ko: '1',
           },
           spread: {
             en: '1 Out (on YOU)',
             de: '1 Raus (auf Dir)',
+            ja: '1 外へ',
             cn: '1 出 (点名)',
             ko: '밖으로 1',
           },
@@ -418,12 +432,14 @@ Options.Triggers.push({
           lineStack: {
             en: '${num}',
             de: '${num}',
+            ja: '${num}',
             cn: '${num}',
             ko: '${num}',
           },
           spread: {
             en: '${num} Out (on YOU)',
             de: '${num} Raus (auf Dir)',
+            ja: '${num} 外へ',
             cn: '${num} 出 (点名)',
             ko: '밖으로 ${num}',
           },
@@ -453,6 +469,7 @@ Options.Triggers.push({
         tankCleaves: {
           en: 'Tank Cleaves',
           de: 'Tank Cleaves',
+          ja: 'タンク前方攻撃',
           cn: '坦克顺劈',
           ko: '광역 탱버',
         },
@@ -472,6 +489,7 @@ Options.Triggers.push({
         laserOnYou: {
           en: 'Laser on YOU',
           de: 'Laser auf DIR',
+          ja: '自分のレーザー',
           cn: '激光点名',
           ko: '레이저 대상자',
         },
@@ -564,24 +582,28 @@ Options.Triggers.push({
         blizzardBladework: {
           en: 'Out Out',
           de: 'Raus Raus',
+          ja: '外 外',
           cn: '远离男女',
           ko: '밖 밖',
         },
         superliminalStrength: {
           en: 'In In on M',
           de: 'Rein Rein auf M',
+          ja: '内 内(男)',
           cn: '靠近男人',
           ko: '안 안 M',
         },
         superliminalBladework: {
           en: 'Under F',
           de: 'Unter W',
+          ja: '女の下',
           cn: '靠近女人',
           ko: 'F 밑',
         },
         blizzardStrength: {
           en: 'M Sides',
           de: 'Seitlich von M',
+          ja: '男の横',
           cn: '男人两侧',
           ko: 'M 양옆',
         },
@@ -624,6 +646,7 @@ Options.Triggers.push({
         midGlitch: {
           en: 'Mid',
           de: 'Mittel',
+          ja: 'ミドル',
           cn: '中',
           ko: '가까이',
         },
@@ -636,24 +659,28 @@ Options.Triggers.push({
         circle: {
           en: '${glitch} Circle (with ${player})',
           de: '${glitch} Kreis (mit ${player})',
+          ja: '${glitch} 円 (${player})',
           cn: '${glitch} 圆圈 (与 ${player})',
           ko: '${glitch} 동그라미 (+ ${player})',
         },
         triangle: {
           en: '${glitch} Triangle (with ${player})',
           de: '${glitch} Dreieck (mit ${player})',
+          ja: '${glitch} 三角 (${player})',
           cn: '${glitch} 三角 (与 ${player})',
           ko: '${glitch} 삼각 (+ ${player})',
         },
         square: {
           en: '${glitch} Square (with ${player})',
           de: '${glitch} Viereck (mit ${player})',
+          ja: '${glitch} 四角 (${player})',
           cn: '${glitch} 四角 (与 ${player})',
           ko: '${glitch} 사각 (+ ${player})',
         },
         cross: {
           en: '${glitch} Cross (with ${player})',
           de: '${glitch} Kreuz (mit ${player})',
+          ja: '${glitch} バツ (${player})',
           cn: '${glitch} X (与 ${player})',
           ko: '${glitch} X (+ ${player})',
         },
@@ -686,6 +713,7 @@ Options.Triggers.push({
         text: {
           en: 'Eye ${dir}',
           de: 'Auge ${dir}',
+          ja: '目 ${dir}',
           cn: '眼 ${dir}',
           ko: '눈 ${dir}',
         },
@@ -710,12 +738,14 @@ Options.Triggers.push({
           midGlitch: {
             en: 'Mid',
             de: 'Mittel',
+            ja: 'ミドル',
             cn: '中',
             ko: '가까이',
           },
           remoteGlitch: {
             en: 'Far',
             de: 'Fern',
+            ja: 'ファー',
             cn: '远',
             ko: '멀리',
           },
@@ -832,18 +862,21 @@ Options.Triggers.push({
           stack: {
             en: 'Stack (w/ ${player1} or ${player2})',
             de: 'Sammeln (mit ${player1} oder ${player2})',
+            ja: 'あたまわり (${player1}, ${player2})',
             cn: '分摊 (与 ${player1} 或 ${player2})',
             ko: '쉐어 (+ ${player1}, ${player2})',
           },
           unmarkedStack: {
             en: 'Unmarked Stack (w/ ${player1} or ${player2})',
             de: 'Nicht markiertes Sammeln (mit ${player1} oder ${player2})',
+            ja: '無職のあたまわり (${player1}, ${player2})',
             cn: '无点名分摊 (与 ${player1} 或 ${player2})',
             ko: '무징 쉐어 (+ ${player1}, ${player2})',
           },
           sameDebuffPartner: {
             en: '(same debuff as ${player})',
             de: '(selber Debuff wie ${player})',
+            ja: '(${player}と同じデバフ)',
             cn: '(与 ${player} 相同 debuff)',
             ko: '(${player}와 같은 디버프)',
           },
@@ -951,18 +984,21 @@ Options.Triggers.push({
         red: {
           en: 'Red is Defamation',
           de: 'Rot hat Ehrenstrafe',
+          ja: '赤',
           cn: '红毒大圈',
           ko: '빨강 광역',
         },
         blue: {
           en: 'Blue is Defamation',
           de: 'Blau hat Ehrenstrafe',
+          ja: '青',
           cn: '蓝毒大圈',
           ko: '파랑 광역',
         },
         unknown: {
           en: '??? is Defamation',
           de: '??? Ehrenstrafe',
+          ja: '???',
           cn: '???大圈',
           ko: '??? 광역',
         },
@@ -985,24 +1021,28 @@ Options.Triggers.push({
         colorTower: {
           en: '${color} Tower Stack',
           de: '${color} Turm versammeln',
+          ja: '${color}塔',
           cn: '${color} 塔分摊',
           ko: '${color} 장판 쉐어',
         },
         colorTowerDefamation: {
           en: '${color} Tower Defamation',
           de: '${color} Turm Ehrenstrafe',
+          ja: '${color}塔',
           cn: '${color} 塔大圈',
           ko: '${color} 장판 광역',
         },
         red: {
           en: 'Red',
           de: 'Rot',
+          ja: '赤',
           cn: '红',
           ko: '빨강',
         },
         blue: {
           en: 'Blue',
           de: 'Blau',
+          ja: '青',
           cn: '蓝',
           ko: '파랑',
         },
@@ -1035,12 +1075,14 @@ Options.Triggers.push({
           passRot: {
             en: 'Pass Rot',
             de: 'Bug weitergeben',
+            ja: '受け渡し',
             cn: '不接毒',
             ko: '디버프 건네기',
           },
           getRot: {
             en: 'Get Rot',
             de: 'Bug nehmen',
+            ja: 'デバフもらう',
             cn: '接毒',
             ko: '디버프 받기',
           },
@@ -1082,30 +1124,35 @@ Options.Triggers.push({
         farTether: {
           en: 'Stack by ${color} Tower',
           de: 'Beim ${color}en Turm versammeln',
+          ja: '${color}の間でペア',
           cn: '在 ${color} 塔分摊',
           ko: '${color} 장판 사이에서 쉐어',
         },
         nearTether: {
           en: 'Outside ${color} Towers',
           de: 'Auserhalb vom ${color}en Turm',
+          ja: '${color}の外へ',
           cn: '站 ${color} 塔外',
           ko: '${color} 장판 바깥쪽으로',
         },
         finalTowerNear: {
           en: 'Between ${color} Towers',
           de: 'Zwischen den ${color}en Türmen',
+          ja: '${color}の間へ',
           cn: '站 ${color} 塔之间',
           ko: '${color} 장판 사이로',
         },
         red: {
           en: 'Red',
           de: 'Rot',
+          ja: '赤',
           cn: '红',
           ko: '빨강',
         },
         blue: {
           en: 'Blue',
           de: 'Blau',
+          ja: '青',
           cn: '蓝',
           ko: '파랑',
         },
@@ -1144,6 +1191,7 @@ Options.Triggers.push({
         breakTether: {
           en: 'Break Tether',
           de: 'Verbindung brechen',
+          ja: '線切る',
           cn: '扯断连线',
           ko: '선 끊기',
         },
@@ -1198,6 +1246,7 @@ Options.Triggers.push({
         text: {
           en: 'East Monitors',
           de: 'Östliche Bildschirme',
+          ja: '検知左',
           cn: '左 (西) 小电视',
           ko: '오른쪽 모니터',
         },
@@ -1212,6 +1261,7 @@ Options.Triggers.push({
         text: {
           en: 'West Monitors',
           de: 'Westliche Bildschirme',
+          ja: '検知右',
           cn: '右 (东) 小电视',
           ko: '왼쪽 모니터',
         },
@@ -1232,12 +1282,14 @@ Options.Triggers.push({
           monitorOnYou: {
             en: 'Monitor (w/${player1}, ${player2})',
             de: 'Bildschirm (w/${player1}, ${player2})',
+            ja: '検知 (${player1}, ${player2})',
             cn: '小电视点名 (与 ${player1}, ${player2})',
             ko: '모니터 (+ ${player1}, ${player2})',
           },
           unmarked: {
             en: 'Unmarked',
             de: 'Unmarkiert',
+            ja: '無職',
             cn: '无点名',
             ko: '무징',
           },
@@ -1273,12 +1325,14 @@ Options.Triggers.push({
           stacks: {
             en: 'Stacks (${player1}, ${player2})',
             de: 'Sammeln (${player1}, ${player2})',
+            ja: 'あたまわり (${player1}, ${player2})',
             cn: '分摊 (${player1}, ${player2})',
             ko: '쉐어징 (${player1}, ${player2})',
           },
           stackOnYou: {
             en: 'Stack on You (w/${player})',
             de: 'Auf DIR sammeln (w/${player})',
+            ja: '自分にマーカー (${player})',
             cn: '分摊点名 (与 ${player})',
             ko: '쉐어징 대상자 (+ ${player})',
           },
@@ -1318,12 +1372,14 @@ Options.Triggers.push({
         farTether: {
           en: 'Blue Tether',
           de: 'Blaue Verbindung',
+          ja: '青線',
           cn: '蓝线',
           ko: '파란색 선',
         },
         nearTether: {
           en: 'Green Tether',
           de: 'Grüne Verbindung',
+          ja: '緑線',
           cn: '绿线',
           ko: '초록색 선',
         },
@@ -1346,12 +1402,14 @@ Options.Triggers.push({
         awayFromEye: {
           en: 'Away from Eye',
           de: 'Weg vom Auge',
+          ja: '目から離れる',
           cn: '远离眼睛',
           ko: '눈에서 멀리 떨어지기',
         },
         towardsEye: {
           en: 'Towards Eye',
           de: 'Geh zu dem Auge',
+          ja: '目に近づく',
           cn: '靠近眼睛',
           ko: '눈 쪽으로',
         },
@@ -1385,6 +1443,7 @@ Options.Triggers.push({
             // Probably near baits, but you never know.
             en: 'Unmarked Blue',
             de: 'Blau ohne Debuff',
+            ja: 'デバフなしの青線',
             cn: '无点名蓝',
             ko: '디버프 없는 파란색 선',
           },
@@ -1464,6 +1523,7 @@ Options.Triggers.push({
         mLocation: {
           en: '${dir} M',
           de: '${dir} M',
+          ja: '${dir} 男',
           cn: '${dir} 男人',
           ko: '${dir} M',
         },
@@ -1484,6 +1544,7 @@ Options.Triggers.push({
           noDebuff: {
             en: '(no debuff)',
             de: '(kein Debuff)',
+            ja: '(デバフなし)',
             cn: '(无 Debuff)',
             ko: '(디버프 없음)',
           },
@@ -1530,12 +1591,14 @@ Options.Triggers.push({
         superliminalSteel: {
           en: 'Follow Laser, Move In',
           de: 'Laser folgen, rein gehen',
+          ja: 'レーザー方面の中へ',
           cn: '跟随激光，穿进辣翅',
           ko: '레이저 따라서 안으로',
         },
         optimizedBlizzard: {
           en: 'Wait First',
           de: 'Zuerst warten',
+          ja: 'まってから移動',
           cn: '先等十字',
           ko: '기다렸다가 이동',
         },
@@ -1582,6 +1645,7 @@ Options.Triggers.push({
         baitTethers: {
           en: 'Bait Tethers',
           de: 'Verbindung ködern',
+          ja: '線取り',
           cn: '接线',
           ko: '선 가져가기',
         },
@@ -1652,30 +1716,35 @@ Options.Triggers.push({
         legsSword: {
           en: 'Close ${northSouth} or ${eastWest}',
           de: 'Nahe ${northSouth} oder ${eastWest}',
+          ja: '内 ${northSouth}/${eastWest}',
           cn: '靠近 ${northSouth} 或 ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         legsShield: {
           en: 'Close ${northSouth} or ${eastWest}',
           de: 'Nahe ${northSouth} oder ${eastWest}',
+          ja: '内 ${northSouth}/${eastWest}',
           cn: '靠近 ${northSouth} 或 ${eastWest}',
           ko: '${northSouth}/${eastWest} 가까이',
         },
         staffShield: {
           en: 'In ${northSouth} or ${eastWest}',
           de: 'Rein ${northSouth} oder ${eastWest}',
+          ja: '外 ${northSouth}/${eastWest}',
           cn: '进 ${northSouth} 或 ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
         staffSwordFar: {
           en: 'Far ${northSouth} or ${eastWest}',
           de: 'Entfernt von ${northSouth} oder ${eastWest}',
+          ja: '遠 ${northSouth}/${eastWest}',
           cn: '远 ${northSouth} 或 ${eastWest}',
           ko: '${northSouth}/${eastWest} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${northSouth} or ${eastWest}',
           de: 'Mittig ${northSouth} oder ${eastWest}',
+          ja: '外 ${northSouth}/${eastWest}',
           cn: '中 ${northSouth} 或 ${eastWest}',
           ko: '${northSouth}/${eastWest} 중간',
         },
@@ -1798,18 +1867,21 @@ Options.Triggers.push({
         safeSpots: {
           en: '${first} => ${rotate} => ${second}',
           de: '${first} => ${rotate} => ${second}',
+          ja: '${first} => ${rotate} => ${second}',
           cn: '${first} => ${rotate} => ${second}',
           ko: '${first} => ${rotate} => ${second}',
         },
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ja: '右',
           cn: '右',
           ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ja: '左',
           cn: '左',
           ko: '왼쪽',
         },
@@ -1817,30 +1889,35 @@ Options.Triggers.push({
         legsSword: {
           en: 'Close ${dir}',
           de: 'Nahe ${dir}',
+          ja: '内 ${dir}',
           cn: '靠近 ${dir}',
           ko: '${dir} 가까이',
         },
         legsShield: {
           en: 'Close ${dir}',
           de: 'Nahe ${dir}',
+          ja: '内 ${dir}',
           cn: '靠近 ${dir}',
           ko: '${dir} 가까이',
         },
         staffShield: {
           en: 'Mid ${dir}',
           de: 'Mittig ${dir}',
+          ja: '外 ${dir}',
           cn: '中 ${dir}',
           ko: '${dir} 중간',
         },
         staffSwordFar: {
           en: 'Far ${dir}',
           de: 'Entfernt von ${dir}',
+          ja: '遠 ${dir}',
           cn: '远 ${dir}',
           ko: '${dir} 멀리',
         },
         staffSwordMid: {
           en: 'Mid ${dir}',
           de: 'Mittig ${dir}',
+          ja: '外 ${dir}',
           cn: '中 ${dir}',
           ko: '${dir} 중간',
         },
@@ -1919,42 +1996,49 @@ Options.Triggers.push({
         rotateRight: {
           en: 'Right',
           de: 'Rechts',
+          ja: '右',
           cn: '右',
           ko: '오른쪽',
         },
         rotateLeft: {
           en: 'Left',
           de: 'Links',
+          ja: '左',
           cn: '左',
           ko: '왼쪽',
         },
         legsSword: {
           en: '${rotate} => Close ${dir}',
           de: '${rotate} => Nahe ${dir}',
+          ja: '${rotate} => 内 ${dir}',
           cn: '${rotate} => 靠近 ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         legsShield: {
           en: '${rotate} => Close ${dir}',
           de: '${rotate} => Nahe ${dir}',
+          ja: '${rotate} => 内 ${dir}',
           cn: '${rotate} => 靠近 ${dir}',
           ko: '${rotate} => ${dir} 가까이',
         },
         staffShield: {
           en: '${rotate} => Mid ${dir}',
           de: '${rotate} => Mittig ${dir}',
+          ja: '${rotate} => 外 ${dir}',
           cn: '${rotate} => 中 ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
         staffSwordFar: {
           en: '${rotate} => Far ${dir}',
           de: '${rotate} => Entfernt ${dir}',
+          ja: '${rotate} => 遠 ${dir}',
           cn: '${rotate} => 远 ${dir}',
           ko: '${rotate} => ${dir} 멀리',
         },
         staffSwordMid: {
           en: '${rotate} => Mid ${dir}',
           de: '${rotate} => Mittig ${dir}',
+          ja: '${rotate} => 外 ${dir}',
           cn: '${rotate} => 中 ${dir}',
           ko: '${rotate} => ${dir} 중간',
         },
@@ -2020,12 +2104,14 @@ Options.Triggers.push({
         inFirst: {
           en: 'In First',
           de: 'Zuerst rein',
+          ja: '内側から',
           cn: '先进',
           ko: '안 먼저',
         },
         outFirst: {
           en: 'Out First',
           de: 'Zuerst raus',
+          ja: '外側から',
           cn: '先出',
           ko: '밖 먼저',
         },
@@ -2046,12 +2132,14 @@ Options.Triggers.push({
         inWait2: {
           en: 'In => Wait 2',
           de: 'Rein => Warte 2',
+          ja: '内 => 待機 2',
           cn: '进 => 等 2',
           ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
           de: 'Raus => Warte 2',
+          ja: '外 => 待機 2',
           cn: '出 => 等 2',
           ko: '밖 => 대기 2번',
         },
@@ -2100,12 +2188,14 @@ Options.Triggers.push({
         inWait2: {
           en: 'In => Wait 2',
           de: 'Rein => Warte 2',
+          ja: '内 => 待機 2',
           cn: '进 => 等 2',
           ko: '안 => 대기 2번',
         },
         outWait2: {
           en: 'Out => Wait 2',
           de: 'Raus => Warte 2',
+          ja: '外 => 待機 2',
           cn: '出 => 等 2',
           ko: '밖 => 대기 2번',
         },
@@ -2113,6 +2203,7 @@ Options.Triggers.push({
         SidesOut: {
           en: 'Sides + Out',
           de: 'Seien + Raus',
+          ja: '横 + 外へ',
           cn: '两侧 + 出',
           ko: '옆 + 밖으로',
         },
@@ -2134,12 +2225,14 @@ Options.Triggers.push({
         cosmoDiveTank: {
           en: 'Tanks Near (party far)',
           de: 'Tanks nahe (Gruppe entfernt)',
+          ja: 'タンク内側 (パーティー離れる)',
           cn: '坦克靠近 (人群远离)',
           ko: '탱커 가까이 (본대 멀리)',
         },
         cosmoDiveParty: {
           en: 'Party Far (tanks near)',
           de: 'Gruppe entfernt (Tanks nahe)',
+          ja: 'パーティー離れる (タンク内側)',
           cn: '人群远离 (坦克靠近)',
           ko: '본대 멀리 (탱커 가까이)',
         },
@@ -2154,6 +2247,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait Middle',
           de: 'Mitte ködern',
+          ja: '真ん中',
           cn: '中间诱导',
           ko: '중앙에 장판 유도',
         },
@@ -2276,6 +2370,7 @@ Options.Triggers.push({
         directions: {
           en: '${start} => ${rotation}',
           de: '${start} => ${rotation}',
+          ja: '${start} => ${rotation}',
           cn: '${start} => ${rotation}',
           ko: '${start} => ${rotation}',
         },
@@ -2314,6 +2409,7 @@ Options.Triggers.push({
         text: {
           en: 'Line Charge',
           de: 'Linien Ansturm',
+          ja: '直線あたまわり',
           cn: '直线分摊',
           ko: '직선 쉐어',
         },
@@ -2328,6 +2424,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait Middle',
           de: 'Mitte ködern',
+          ja: '真ん中',
           cn: '中间诱导',
           ko: '중앙에 장판 유도',
         },

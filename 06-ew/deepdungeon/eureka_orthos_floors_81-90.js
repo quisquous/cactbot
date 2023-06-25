@@ -3,16 +3,19 @@ const interceptionOutputStrings = {
   egg: {
     en: 'egg',
     de: 'Ei',
+    ja: 'たまご',
     ko: '알',
   },
   cube: {
     en: 'cubes',
     de: 'Würfel',
+    ja: '四角',
     ko: '큐브',
   },
   ball: {
     en: 'ball',
     de: 'Ball',
+    ja: '円',
     ko: '공',
   },
 };
@@ -305,6 +308,7 @@ Options.Triggers.push({
         between: {
           en: '${safe}, between eggs',
           de: '${safe}, zwichen den Eiern',
+          ja: '${safe}, たまごの間',
           ko: '${safe}, 알 사이',
         },
         safe: {
