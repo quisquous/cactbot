@@ -406,12 +406,14 @@ export default {
   front: {
     en: 'Front',
     fr: 'Devant',
+    ja: '前',
     cn: '前',
     ko: '앞',
   },
   back: {
     en: 'Back',
     fr: 'Derrière',
+    ja: '後ろ',
     cn: '后',
     ko: '뒤',
   },
