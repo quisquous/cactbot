@@ -105,6 +105,8 @@ const ignoredCombatants = PetData['en'].concat([
   'Doman Shaman',
   'Yugiri',
   'Doman Liberator',
+  'Arenvald',
+  'Raubahn',
 ]);
 
 const timelineParse = new LogUtilArgParse();
