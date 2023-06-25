@@ -43,10 +43,11 @@ Options.Triggers.push({
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The void lamps have begun emitting an eerie glow',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

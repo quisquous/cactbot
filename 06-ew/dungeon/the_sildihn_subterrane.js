@@ -93,7 +93,11 @@ Options.Triggers.push({
     {
       id: 'Sildihn Geryon Seal Left Mechs',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The Silt Pump will be sealed off.*?', capture: false }),
+      netRegex: {
+        line: 'The Silt Pump will be sealed off.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       // May be overwritten by Runaway Sludge below.
       run: (data) => data.catapultMechs = leftDoorYesPump,
     },
@@ -121,10 +125,11 @@ Options.Triggers.push({
     {
       id: 'Sildihn Geryon Seal Right Mechs',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The Settling Basin will be sealed off.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       // May be overwritten by Suddenly Sewage below.
       run: (data) => data.catapultMechs = rightDoorNoCeruleum,
     },

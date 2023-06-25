@@ -17,7 +17,11 @@ Options.Triggers.push({
     {
       id: 'T8 Landmine Start',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
+      netRegex: {
+        line: 'Landmines have been scattered.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text(),
       run: (data) => data.landmines = {},
       outputStrings: {

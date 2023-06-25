@@ -218,7 +218,7 @@ Options.Triggers.push({
       id: 'Test Lang',
       type: 'GameLog',
       // In game: /echo cactbot lang
-      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegex: { line: 'cactbot lang.*?', code: Util.gameLogCodes.echo, capture: false },
       infoText: (data, _matches, output) => output.text({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -234,7 +234,7 @@ Options.Triggers.push({
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      netRegex: { line: 'cactbot test response.*?', code: Util.gameLogCodes.echo, capture: false },
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -254,7 +254,7 @@ Options.Triggers.push({
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegex: { line: 'cactbot test watch.*?', code: Util.gameLogCodes.echo, capture: false },
       promise: (data) =>
         Util.watchCombatant({
           names: [
@@ -296,7 +296,7 @@ Options.Triggers.push({
     {
       id: 'Test Config',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      netRegex: { line: 'cactbot test config.*?', code: Util.gameLogCodes.echo, capture: false },
       alertText: (data, _matches, output) => {
         return output.text({ value: data.triggerSetConfig.testTriggerOutput.toString() });
       },
@@ -312,7 +312,11 @@ Options.Triggers.push({
     {
       id: 'Test Combatant Cast Enable',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      netRegex: {
+        line: 'cactbot test combatant cast.*?',
+        code: Util.gameLogCodes.echo,
+        capture: false,
+      },
       run: (data) => {
         data.watchingForCast = true;
       },

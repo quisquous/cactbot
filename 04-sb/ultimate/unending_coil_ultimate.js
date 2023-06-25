@@ -395,10 +395,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From on high I descend, the hallowed moon to call.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -416,10 +417,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From on high I descend, the iron path to walk.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -437,7 +439,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Take fire, O hallowed moon.*?', capture: false }),
+      netRegex: {
+        line: 'Take fire, O hallowed moon.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -455,10 +461,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'Blazing path, lead me to iron rule.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -475,10 +482,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'O hallowed moon, take fire and scorch my foes.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -495,10 +503,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'O hallowed moon, shine you the iron path.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -515,10 +524,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -538,10 +548,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -561,10 +572,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From on high I descend, the moon and stars to bring.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -582,10 +594,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From hallowed moon I descend, a rain of stars to bring.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -603,10 +616,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From hallowed moon I bare iron, in my descent to wield.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -624,10 +638,10 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'From hallowed moon I descend, upon burning earth to tread.*?',
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -645,10 +659,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'Unbending iron, take fire and descend.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -666,10 +681,11 @@ Options.Triggers.push({
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: 'Unbending iron, descend with fiery edge.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {

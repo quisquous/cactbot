@@ -180,10 +180,11 @@ Options.Triggers.push({
     {
       id: 'ByaEx Tiger Add',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
