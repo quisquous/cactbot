@@ -135,6 +135,7 @@ export class Timeline {
 
   protected activeSyncs: Sync[];
   private activeEvents: Event[];
+  private activeLastForceJumpSync?: Sync;
 
   public ignores: { [ignoreId: string]: boolean };
   public events: Event[];
@@ -232,6 +233,9 @@ export class Timeline {
   }
 
   protected SyncTo(fightNow: number, currentTime: number, _sync?: Sync): void {
+    // If we ever sync somewhere else, then remove any active overhanging windows from force jumps.
+    this.activeLastForceJumpSync = undefined;
+
     // This records the actual time which aligns with "0" in the timeline.
     const newTimebase = new Date(currentTime - fightNow * 1000).valueOf();
     // Skip syncs that are too close.  Many syncs happen on abilities that
@@ -272,6 +276,16 @@ export class Timeline {
       const syncEnd = this.syncEnds[i];
       if (syncEnd && syncEnd.start <= fightNow)
         this.activeSyncs.push(syncEnd);
+    }
+
+    if (
+      this.activeLastForceJumpSync !== undefined &&
+      this.activeLastForceJumpSync.start <= fightNow &&
+      this.activeLastForceJumpSync.end > fightNow
+    ) {
+      this.activeSyncs.push(this.activeLastForceJumpSync);
+    } else {
+      this.activeLastForceJumpSync = undefined;
     }
   }
 
@@ -525,6 +539,10 @@ export class Timeline {
       }
     }
 
+    const forceEnd = this.activeLastForceJumpSync?.end;
+    if (forceEnd !== undefined && forceEnd < nextSyncEnding)
+      nextSyncEnding = forceEnd;
+
     const nextTime = Math.min(
       nextEventStarting,
       nextEventEnding,
@@ -561,6 +579,18 @@ export class Timeline {
         throw new UnreachableCode();
       const offset = fightNow - jumpSource;
       this.SyncTo(jumpDest, currentTime - offset);
+
+      // Handle "overhanging" windows on unconditional jumps, by rewriting:
+      //   old: 500.0 sync /something/ window 20,10 jump 300
+      //   new: 300.0 sync /something window 0,10 jump 300
+      this.activeLastForceJumpSync = {
+        ...unconditionalJump,
+        time: jumpDest,
+        start: jumpDest,
+        end: unconditionalJump.end - unconditionalJump.time + jumpDest,
+        jumpType: 'normal',
+      };
+
       this._OnUpdateTimer(currentTime);
       return;
     }

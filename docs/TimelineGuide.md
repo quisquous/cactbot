@@ -123,6 +123,9 @@ it will behave exactly like a normal `jump`.
 If the time passes this line,
 then it will jump as if it had synced exactly on time.
 This is not handled specially in `test_timeline`, which expects the sync to be correct.
+If the `window` extends past the `forcejump` time,
+this "overhang window" will still be respected even after force jumping
+until the next sync or jump occurs.
 
 ### Commands
 
@@ -274,7 +277,7 @@ Here's an example of using cactbot's tools to make a timeline file for Cape West
 This is pretty straightforward and only requires one person to test, so is a good first example.
 
 Note that the Cape Westwind trial was removed in Patch 6.1,
-and the timeline has since been removed from cactbot.  
+and the timeline has since been removed from cactbot.
 However, you can view the original timeline [here](https://github.com/quisquous/cactbot/blob/aa38bdf8f2551a504e1d3f595cd266d3baa193f2/ui/raidboss/data/02-arr/trial/cape_westwind.txt).
 
 ### Run the fight a few times
@@ -913,7 +916,7 @@ the timeline should start when combat begins,
 and should reset on a wipe or when the player is out of combat.
 
 However, in dungeons for example, the player is often in combat
-with mobs before the timeline should begin for the first boss encounter.  
+with mobs before the timeline should begin for the first boss encounter.
 For that matter, there are also several boss encounters in each dungeon.
 In those situations, we need discrete timelines for each boss encounter,
 and each boss's timeline should start only once that boss encounter begins.
