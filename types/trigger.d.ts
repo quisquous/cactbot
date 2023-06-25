@@ -115,7 +115,7 @@ export type BaseTrigger<
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
   type: Type;
-  netRegex: NetParams[Type] | CactbotBaseRegExp<Type>;
+  netRegex: NetParams[Type];
   disabled?: boolean;
   condition?: TriggerField<Data, NetMatches[Type], boolean | undefined>;
   preRun?: TriggerField<Data, NetMatches[Type], void>;
@@ -208,7 +208,15 @@ export type TriggerSet<Data extends RaidbossData = RaidbossData> =
 // Less strict type for user triggers + built-in triggers, including deprecated fields.
 export type LooseTimelineTrigger = Partial<TimelineTrigger<RaidbossData>>;
 
-export type LooseTrigger = Partial<BaseNetTrigger<RaidbossData, 'None'> & PartialRegexTrigger>;
+export type LooseTrigger = Partial<
+  & Omit<BaseNetTrigger<RaidbossData, 'None'>, 'netRegex'>
+  & PartialRegexTrigger
+  & {
+    // Built-in cactbot netRegex only supports the `NetParams` variety of specification,
+    // but for backwards compatibility, also handle anybody still using `NetRegexes.foo()`.
+    netRegex: NetParams['None'] | CactbotBaseRegExp<'None'>;
+  }
+>;
 
 export type LooseTriggerSet =
   & Omit<Partial<TriggerSet>, 'triggers' | 'timelineTriggers'>
