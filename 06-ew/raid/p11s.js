@@ -90,6 +90,7 @@ Options.Triggers.push({
         text: {
           en: 'Healer Stacks',
           de: 'Heiler Gruppen',
+          fr: 'Groupes sur les heals',
           cn: '双奶分摊',
           ko: '힐러 그룹 쉐어',
         },
@@ -122,6 +123,7 @@ Options.Triggers.push({
         text: {
           en: 'Partners',
           de: 'Partner',
+          fr: 'Partenaires',
           cn: '两人分摊',
           ko: '파트너',
         },
@@ -155,6 +157,7 @@ Options.Triggers.push({
         text: {
           en: 'Out + Healer Stacks',
           de: 'Raus + Heiler Gruppen',
+          fr: 'Extérieur + Package sur les heals',
           cn: '场外 + 双奶分摊',
           ko: '밖으로 + 힐러 그룹 쉐어',
         },
@@ -171,19 +174,21 @@ Options.Triggers.push({
           upheldOnYou: {
             en: 'You In (party out) => In + Partners',
             de: 'Du rein (Gruppe raus) => Rein + Partner',
+            fr: 'Vous à l\'intérieur (groupe à l\'extérieur) => Intérieur + Partenaires',
             cn: '引导月环 => 场中 + 两人分摊',
             ko: '안으로 (본대 밖) => 안으로 + 파트너',
           },
           upheldOnPlayer: {
             en: 'Party Out (${player} in)=> In + Partners',
             de: 'Gruppe raus (${player} rein)=> Rein + Partner',
+            fr: 'Groupe à l\'extérieur (${player} intérieur) => Intérieur + Partenaires',
             cn: '场外 （${player} 引导） => 场中 + 两人分摊',
             ko: '본대 밖으로 (${player} 안) => 안으로 + 파트너',
           },
           upheldNotOnYou: {
             en: 'Party Out => In + Partners',
             de: 'Party Raus => Rein + Partner',
-            fr: 'Extérieur => Intérieur + Partenaire',
+            fr: 'Groupe à l\'extérieur => Intérieur + Partenaires',
             cn: '场外 => 场中 + 两人分摊',
             ko: '본대 밖으로 => 안으로 + 파트너',
           },
@@ -208,6 +213,7 @@ Options.Triggers.push({
         text: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          fr: 'Intérieur + Partenaires',
           cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
@@ -227,12 +233,14 @@ Options.Triggers.push({
           tankTether: {
             en: 'Away from Party',
             de: 'Weg von der Gruppe',
+            fr: 'Éloignez-vous du groupe',
             cn: '远离放月环',
             ko: '본대와 멀어지기',
           },
           partyStackPlayerOut: {
             en: 'Party Stack (${player} out)',
             de: 'Mit der Gruppe sammeln (${player} raus)',
+            fr: 'Package en groupe (${player} à l\'extérieur)',
             cn: '集合 （${player} 放月环）',
             ko: '쉐어 (${player} 밖)',
           },
@@ -240,6 +248,7 @@ Options.Triggers.push({
           partyStack: {
             en: 'Party Stack',
             de: 'In der Gruppe sammeln',
+            fr: 'Package en groupe',
             cn: '分摊',
             ko: '쉐어',
           },
@@ -266,6 +275,7 @@ Options.Triggers.push({
         text: {
           en: 'Get in Donut',
           de: 'Geh in den Donut',
+          fr: 'Intérieur du donut',
           cn: '进入月环',
           ko: '도넛 안으로',
         },
@@ -307,7 +317,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides => In + Partners',
           de: 'Seiten => Rein + Partner',
-          fr: 'Côtés => Intérieur + Partenaire',
+          fr: 'Côtés => Intérieur + Partenaires',
           cn: '两侧 => 两人分摊 + 场内',
           ko: '양 옆 => 안으로 + 파트너',
         },
@@ -330,12 +340,14 @@ Options.Triggers.push({
         light: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
+          fr: 'Package sur les heals + Extérieur',
           cn: '双奶分摊 + 场外',
           ko: '힐러 그룹 쉐어 + 밖으로',
         },
         dark: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          fr: 'Intérieur + Partenaires',
           cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
@@ -400,6 +412,7 @@ Options.Triggers.push({
         text: {
           en: 'Healer Stacks + Out',
           de: 'Heiler Gruppen + Raus',
+          fr: 'Package sur les heals + Extérieur',
           cn: '双奶分摊 + 场外',
           ko: '힐러 그룹 쉐어 + 밖으로',
         },
@@ -432,6 +445,7 @@ Options.Triggers.push({
         text: {
           en: 'In + Partners',
           de: 'Rein + Partner',
+          fr: 'Intérieur + Partenaires',
           cn: '场中 + 两人分摊',
           ko: '안으로 + 파트너',
         },
@@ -493,7 +507,7 @@ Options.Triggers.push({
         text: {
           en: 'Rotate to Light Orbs',
           de: 'Rotiere zu den licht Orbs',
-          fr: 'Tournez ves les orbes de lumière',
+          fr: 'Tournez vers les orbes de lumière',
           cn: '光球侧安全',
           ko: '빛 구슬 쪽으로',
         },

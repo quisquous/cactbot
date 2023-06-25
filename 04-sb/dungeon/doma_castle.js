@@ -2,6 +2,15 @@ Options.Triggers.push({
   id: 'DomaCastle',
   zoneId: ZoneId.DomaCastle,
   timelineFile: 'doma_castle.txt',
+  timelineTriggers: [
+    {
+      id: 'Doma Castle Magitek Rearguard Cermet Pile',
+      // untelegraphed, instant tank cleave
+      regex: /Cermet Pile/,
+      beforeSeconds: 4,
+      response: Responses.tankCleave(),
+    },
+  ],
   triggers: [
     {
       id: 'Doma Castle Magitek Hexadrone 2-Tonze Magitek Missile',
@@ -65,6 +74,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'Hexadrohnen-Modul',
         'Hypertuned Grynewaht': 'hyperisiert(?:e|er|es|en) Grynewaht',
@@ -95,6 +105,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'module d\'hexadrone',
         'Hypertuned Grynewaht': 'Grynewaht hyper-renforcé',
@@ -153,6 +164,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '魔导六轮装甲浮游炮',
         'Hypertuned Grynewaht': '强化格林瓦特',
@@ -183,6 +195,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '헥사롤러 비트',
         'Hypertuned Grynewaht': '강화된 그륀바트',

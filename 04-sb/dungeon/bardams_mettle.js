@@ -5,17 +5,22 @@ Options.Triggers.push({
   timelineTriggers: [
     {
       id: 'Bardam\'s Mettle Feathercut',
+      // untelegraphed, instant tank cleave
       regex: /Feathercut/,
       beforeSeconds: 4,
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
     {
       id: 'Bardam\'s Mettle Rush',
       type: 'Tether',
-      netRegex: { id: '0039' },
+      // 0039 = pink, un-stretched tether
+      // 0001 = purple, stretched tether
+      // capture both in case we start already stretched
+      netRegex: { id: ['0039', '0001'], source: 'Garula' },
       condition: Conditions.targetIsYou(),
+      suppressSeconds: 15,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -29,20 +34,21 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Bardam\'s Mettle War Cry',
-      type: 'StartsUsing',
-      netRegex: { id: '1EFA', source: 'Garula', capture: false },
+      id: 'Bardam\'s Mettle War Cry + Earthquake',
+      // War Cry (1EFA, small raidwide, triggers adds) and Earthquake (1EFB, medium raidwide w/ 2s stun)
+      // are instant and used after Rush (1EF9, charge on tethered player)
+      type: 'Ability',
+      netRegex: { id: '1EF9', source: 'Garula', capture: false },
       response: Responses.aoe(),
     },
     {
       // Both Bardam and Yol use the 0017 head marker.
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
+      // trigger off Yol's first auto in case of chat lines being turned off
       id: 'Bardam\'s Mettle Dead Bardam',
-      type: 'GameLog',
-      netRegex: NetRegexes.message({
-        line: 'Voiceless Muse will be sealed off.*?',
-        capture: false,
-      }),
+      type: 'Ability',
+      netRegex: { id: '367', source: 'Yol', capture: false },
+      suppressSeconds: 99999,
       run: (data) => data.deadBardam = true,
     },
     {
@@ -121,7 +127,7 @@ Options.Triggers.push({
       id: 'Bardam\'s Mettle Eye Of The Fierce',
       type: 'StartsUsing',
       netRegex: { id: '1F0D', source: 'Yol', capture: false },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'Bardam\'s Mettle Wingbeat You',

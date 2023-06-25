@@ -13,7 +13,7 @@ hideall "--sync--"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 1.0 "--sync--" sync / 03:[^:]*:Hemitheos:00:5A:0{4}:00::12383:/ window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
 11.1 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/ window 20,20
-21.2 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+21.2 "Paradeigma 1" sync / 1[56]:[^:]*:Athena:82ED:/
 24.3 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
 36.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8):/
 36.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
@@ -21,7 +21,7 @@ hideall "--sync--"
 41.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
 41.9 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC):/
 
-57.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+57.3 "Paradeigma 2" sync / 1[56]:[^:]*:Athena:82ED:/
 65.0 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
 74.8 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/
 75.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
@@ -52,7 +52,7 @@ hideall "--sync--"
 172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
 178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
 190.0 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
-195.3 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+195.3 "Paradeigma 3" sync / 1[56]:[^:]*:Athena:82ED:/
 202.4 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
 212.5 "Shock" sync / 1[56]:[^:]*:Athena:8312:/
 213.6 "Sample" sync / 1[56]:[^:]*:Athena:82E0:/
@@ -95,7 +95,7 @@ hideall "--sync--"
 387.9 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
 395.1 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
 402.5 "Superchain Theory IIB" sync / 1[56]:[^:]*:Athena:86FB:/
-408.6 "Paradeigma" sync / 1[56]:[^:]*:Athena:82ED:/
+408.6 "Paradeigma 4" sync / 1[56]:[^:]*:Athena:82ED:/
 415.6 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
 418.6 "Parthenos" sync / 1[56]:[^:]*:Athena:8303:/
 422.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
