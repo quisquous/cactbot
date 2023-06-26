@@ -2618,15 +2618,15 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         fire: {
-          en: 'Fire on YOU (${team})',
+          en: 'Fire on YOU (${team})', // FIX-ME
           ja: '自分に炎 (${team})',
         },
         wind: {
-          en: 'Wind on YOU (${team})',
+          en: 'Wind on YOU (${team})', // FIX-ME
           ja: '自分に風 (${team})',
         },
         wind1st: {
-          en: 'First wind on YOU',
+          en: 'First wind on YOU', // FIX-ME
           ja: '自分に初風',
         },
       },
@@ -2645,7 +2645,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'First fire on YOU!',
+          en: 'First fire on YOU!', // FIX-ME
           ja: '自分に初炎!',
         },
       },
@@ -2663,7 +2663,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Wind on YOU',
+          en: 'Wind on YOU', // FIX-ME
           ja: '自分に風、散会',
         },
       },
@@ -2680,7 +2680,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.caloric2Fire = matches.target,
       outputStrings: {
         text: {
-          en: 'Puddle on YOU',
+          en: 'Puddle on YOU', // FIX-ME
           ja: '足元に炎のゆか',
         },
       },
@@ -2696,7 +2696,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Pass to next!',
+          en: 'Pass to next!', // FIX-ME
           ja: '次に移る！',
         },
       },
@@ -2708,12 +2708,12 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Exaflare + Big AoE!',
-          de: 'Exaflare + Große AoE!',
-          fr: 'ExaBrasier + Grosse AoE!',
+          en: 'Exaflare + Big AoE!', // FIX-ME
+          de: 'Exaflare + Große AoE!', // FIX-ME
+          fr: 'ExaBrasier + Grosse AoE!', // FIX-ME
           ja: 'エクサフレア + 全体攻撃',
-          cn: '地火 + 大AoE伤害！',
-          ko: '엑사플레어 + 전체 공격!',
+          cn: '地火 + 大AoE伤害！', // FIX-ME
+          ko: '엑사플레어 + 전체 공격!', // FIX-ME
         },
       },
     },
