@@ -2725,7 +2725,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 2,
       response: Responses.spread('alarm'),
     },
-    // ///////////////////////////////////////
   ],
   timelineReplace: [
     {
