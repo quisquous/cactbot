@@ -538,5 +538,22 @@ Options.Triggers.push({
         'Verdant Plume': '浓绿之羽',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gymnasiou Acheloios': '김나시온 아켈로오스',
+        'Gymnasiou Leon': '김나시온 사자',
+        'Gymnasiou Mandragoras': '김나시온 만드라고라',
+        'Gymnasiou Meganereis': '김나시온 거대 네레이스',
+        'Gymnasiou Satyros': '김나시온 사티로스',
+        'Gymnasiou Sphinx': '김나시온 스핑크스',
+        'Gymnasiou Tigris': '김나시온 호랑이',
+        'Gymnasiou Triton': '김나시온 트리톤',
+        'Lampas Chrysine': '람파스 크뤼시네',
+        'Lyssa Chrysine': '뤼사 크뤼시네',
+        'Narkissos': '나르키소스',
+        'Verdant Plume': '진녹색 깃털',
+      },
+    },
   ],
 });
