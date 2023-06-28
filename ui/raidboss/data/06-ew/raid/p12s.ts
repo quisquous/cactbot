@@ -451,9 +451,6 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       alertText: (_data, matches, output) => {
         const x = Math.round(parseFloat(matches.x));
-        if (x === undefined)
-          return output.avoid!();
-
         let safeLanes;
         if (x < 90)
           safeLanes = 'insideWestOutsideEast';
@@ -461,9 +458,6 @@ const triggerSet: TriggerSet<Data> = {
           safeLanes = 'insideEastOutsideWest';
         else
           safeLanes = x < 100 ? 'insideEastOutsideWest' : 'insideWestOutsideEast';
-
-        if (safeLanes === undefined)
-          return output.avoid!();
         return output[safeLanes]!();
       },
       outputStrings: {
@@ -478,12 +472,6 @@ const triggerSet: TriggerSet<Data> = {
           ja: '西の外側 / 東の内側',
           cn: '内东 / 外西',
           ko: '동쪽 안 / 서쪽 바깥',
-        },
-        avoid: {
-          en: 'Avoid Line Cleaves',
-          ja: '直線回避',
-          cn: '远离场边激光',
-          ko: '직선 장판 피하기',
         },
       },
     },
