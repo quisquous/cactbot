@@ -298,6 +298,7 @@ Options.Triggers.push({
         clones: {
           en: 'Clones ${dir}',
           ja: '${dir}',
+          cn: '${dir}',
           ko: '분신 ${dir}',
         },
         north: Outputs.north,
@@ -1083,6 +1084,7 @@ Options.Triggers.push({
         baitCleave: {
           en: 'Bait line cleave',
           ja: '外からのレーザー誘導',
+          cn: '引导射线',
           ko: '레이저 유도',
         },
       },
@@ -1746,6 +1748,7 @@ Options.Triggers.push({
         combined: {
           en: '${move} => ${engrave}',
           ja: '${move} => ${engrave}',
+          cn: '${move} => ${engrave}',
           ko: '${move} => ${engrave}',
         },
         inThenOut: Outputs.inThenOut,
@@ -1975,31 +1978,37 @@ Options.Triggers.push({
         nothing: {
           en: 'Nothing (w/${player})',
           ja: '無職: 2番目の上の塔 (${player})',
+          cn: '闲人: 踩第2轮塔 (${player})',
           ko: '디버프 없음 (+ ${player})',
         },
         one: {
           en: 'One (w/${player})',
           ja: '因子1: 1番目の塔 (${player})',
+          cn: '单因子: 踩第1轮塔 (${player})',
           ko: '1번 (+ ${player})',
         },
         shortLight: {
           en: 'Short Light (get first dark)',
           ja: '早: 1番目のやみ塔',
+          cn: '白1: 踩第1轮黑塔',
           ko: '짧은 빛 (첫 어둠 대상)',
         },
         longLight: {
           en: 'Long Light (get second dark)',
           ja: '遅: 2番目の下のやみ塔',
+          cn: '白2: 踩第2轮黑塔',
           ko: '긴 빛 (두번째 어둠 대상)',
         },
         shortDark: {
           en: 'Short Dark (get first light)',
           ja: '早: 1番目のひかり塔',
+          cn: '黑1: 踩第1轮白塔',
           ko: '짧은 어둠 (첫 빛 대상)',
         },
         longDark: {
           en: 'Long Dark (get second light)',
           ja: '遅: 2番目の下のひかり塔',
+          cn: '黑2: 踩第2轮白塔',
           ko: '긴 어둠 (두번째 빛 대상)',
         },
         unknown: Outputs.unknown,
@@ -2053,6 +2062,7 @@ Options.Triggers.push({
         slimeTethers: {
           en: 'Get Slime Tethers',
           ja: 'スライムの線取り',
+          cn: '接线',
           ko: '슬라임 선 가져가기',
         },
       },
@@ -2076,21 +2086,25 @@ Options.Triggers.push({
           lightTower: {
             en: 'Light Tower',
             ja: 'ひかり塔',
+            cn: '踩白塔',
             ko: '빛 기둥',
           },
           darkTower: {
             en: 'Dark Tower',
             ja: 'やみ塔',
+            cn: '踩黑塔',
             ko: '어둠 기둥',
           },
           lightTowerSwitch: {
             en: 'Light Tower (switch)',
             ja: 'やみ -> ひかり塔',
+            cn: '踩白塔 (换色)',
             ko: '빛 기둥 (교체)',
           },
           darkTowerSwitch: {
             en: 'Dark Tower (switch)',
             ja: 'ひかり -> やみ塔',
+            cn: '踩黑塔 (换色)',
             ko: '어둠 기둥 (교체)',
           },
         };
