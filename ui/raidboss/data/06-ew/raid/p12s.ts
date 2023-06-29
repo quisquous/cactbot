@@ -2655,7 +2655,7 @@ const triggerSet: TriggerSet<Data> = {
         fireOn: {
           en: 'First fire: ${player}', //  FIX ME
           ja: '初炎: ${player}',
-        }
+        },
       },
     },
     {
@@ -2689,7 +2689,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           puddle1st: {
             en: 'First Puddle on YOU! Pass to next!', // FIX-ME
-            ja: '自分に1番目の炎！次に移る！'
+            ja: '自分に1番目の炎！次に移る！',
           },
         };
 
@@ -2736,7 +2736,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         final: {
           en: 'Drop the last puddle!', // FIX-ME
-          ja: 'ラスト！空き空間に捨てる！'
+          ja: 'ラスト！空き空間に捨てる！',
         },
       },
     },
