@@ -2634,25 +2634,27 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Caloric Theory 2 Fire Beacon',
       type: 'HeadMarker',
       netRegex: {},
-      alarmText: (data, matches, output) => {
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          fireOnMe: {
+            // TODO: is "first marker" ambiguous with "first person to pass fire"
+            // This is meant to be "person without wind who gets an extra stack".
+            en: 'Fire Marker',
+            ja: '自分に初炎!', // FIXME
+          },
+          fireOn: {
+            en: 'Fire on ${player}',
+            ja: '初炎: ${player}',
+          },
+        };
+
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.caloric2InitialFire)
           return;
         if (data.me === matches.target)
-          return output.fireOnMe!();
-        return output.fireOn!({ player: data.ShortName(matches.target) });
-      },
-      outputStrings: {
-        fireOnMe: {
-          // TODO: is "first marker" ambiguous with "first person to pass fire"
-          // This is meant to be "person without wind who gets an extra stack".
-          en: 'Fire Marker',
-          ja: '自分に初炎!', // FIXME
-        },
-        fireOn: {
-          en: 'Fire on ${player}',
-          ja: '初炎: ${player}',
-        },
+          return { alarmText: output.fireOnMe!() };
+        return { infoText: output.fireOn!({ player: data.ShortName(matches.target) }) };
       },
     },
     {
