@@ -1231,6 +1231,7 @@ Options.Triggers.push({
       condition: (data, matches) =>
         data.engravementCounter === 3 && data.me === matches.target &&
         data.engravement3TowerPlayers.includes(data.me),
+      durationSeconds: 6,
       alertText: (data, matches, output) => {
         let towerColor = output.unknown();
         if (data.engravement3TowerType !== undefined)
