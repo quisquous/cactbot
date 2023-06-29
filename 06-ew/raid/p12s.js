@@ -787,40 +787,41 @@ Options.Triggers.push({
           const tempColor = data.engravement1TetherPlayers[combatantId.toString(16).toUpperCase()];
           const color = tempColor === 'light' ? 'dark' : 'light';
           if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
-            if (x < 80 && y < 100) { // x = 75 && y = 97
+            if (x < 80 && y < 100) { // WNW: x = 75 && y = 97
               data.engravement1BeamsPosMap.set('NE', color);
-            } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            } else if (x < 100 && y < 80) { // NNW: x = 97 && y = 75
               data.engravement1BeamsPosMap.set('SW', color);
-            } else if (x > 100 && y < 80) { // x = 103 && y = 75
+            } else if (x > 100 && y < 80) { // NNE: x = 103 && y = 75
               data.engravement1BeamsPosMap.set('SE', color);
-            } else if (x > 120 && y < 100) { // x = 125 && y = 97
+            } else if (x > 120 && y < 100) { // ENE: x = 125 && y = 97
               data.engravement1BeamsPosMap.set('NW', color);
-            } else if (x > 120 && y > 100) { // x = 125 && y = 103
+            } else if (x > 120 && y > 100) { // ESE: x = 125 && y = 103
               data.engravement1BeamsPosMap.set('SW', color);
-            } else if (x > 100 && y > 120) { // x = 103 && y = 125
+            } else if (x > 100 && y > 120) { // SSE: x = 103 && y = 125
               data.engravement1BeamsPosMap.set('NE', color);
-            } else if (x < 100 && y > 120) { // x = 97 && y = 125
+            } else if (x < 100 && y > 120) { // SSW: x = 97 && y = 125
               data.engravement1BeamsPosMap.set('NW', color);
-            } else if (x < 80 && y > 100) { // x = 75 && y = 103
+            } else if (x < 80 && y > 100) { // WSW: x = 75 && y = 103
               data.engravement1BeamsPosMap.set('SE', color);
             }
           } else if (data.triggerSetConfig.engravement1DropTower === 'clockwise') {
-            if (x < 80 && y < 100) { // x = 75 && y = 97
+            // Tether stretches across and tower is clockwise; e.g. N add stretches S, and tower is SW.
+            if (x < 80 && y < 100) { // WNW: x = 75 && y = 97
               data.engravement1BeamsPosMap.set('SE', color);
-            } else if (x < 100 && y < 80) { // x = 97 && y = 75
+            } else if (x < 100 && y < 80) { // NNW: x = 97 && y = 75
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 100 && y < 80) { // NNE: x = 103 && y = 75
+              data.engravement1BeamsPosMap.set('SW', color);
+            } else if (x > 120 && y < 100) { // ENE: x = 125 && y = 97
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x > 120 && y > 100) { // ESE: x = 125 && y = 103
+              data.engravement1BeamsPosMap.set('NW', color);
+            } else if (x > 100 && y > 120) { // SSE: x = 103 && y = 125
+              data.engravement1BeamsPosMap.set('NE', color);
+            } else if (x < 100 && y > 120) { // SSW: x = 97 && y = 125
+              data.engravement1BeamsPosMap.set('NE', color);
+            } else if (x < 80 && y > 100) { // WSW: x = 75 && y = 103
               data.engravement1BeamsPosMap.set('SE', color);
-            } else if (x > 100 && y < 80) { // x = 103 && y = 75
-              data.engravement1BeamsPosMap.set('SW', color);
-            } else if (x > 120 && y < 100) { // x = 125 && y = 97
-              data.engravement1BeamsPosMap.set('SW', color);
-            } else if (x > 120 && y > 100) { // x = 125 && y = 103
-              data.engravement1BeamsPosMap.set('NW', color);
-            } else if (x > 100 && y > 120) { // x = 103 && y = 125
-              data.engravement1BeamsPosMap.set('NW', color);
-            } else if (x < 100 && y > 120) { // x = 97 && y = 125
-              data.engravement1BeamsPosMap.set('NE', color);
-            } else if (x < 80 && y > 100) { // x = 75 && y = 103
-              data.engravement1BeamsPosMap.set('NE', color);
             }
           }
         }
