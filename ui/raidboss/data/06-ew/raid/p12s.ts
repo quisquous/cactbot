@@ -2319,6 +2319,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Ultima Blow Tether',
       type: 'Tether',
       netRegex: { id: '0001', capture: false },
+      condition: (data) => data.phase === 'gaiaochos' && data.gaiaochosCounter === 2,
       delaySeconds: 0.5,
       suppressSeconds: 5,
       response: (data, _matches, output) => {
