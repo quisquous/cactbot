@@ -248,6 +248,7 @@ export interface Data extends RaidbossData {
   caloric1Buff: { [name: string]: CaloricMarker };
   caloric1Mine?: CaloricMarker;
   caloric2Fire?: string;
+  caloric2Count: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -317,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
       caloricCounter: 0,
       caloric1First: [],
       caloric1Buff: {},
+      caloric2Count: 0,
     };
   },
   triggers: [
@@ -2315,7 +2317,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blockPartner: {
           en: 'Block tether for partner', // FIX-ME
-          ja: '相棒への線をブロック',
+          ja: '相棒の前でビームを受ける',
         },
       },
     },
@@ -2368,7 +2370,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Break tether! (w/ ${partner})',
-          ja: '線切 (${partner})',
+          ja: '線切る (${partner})',
         },
       },
     },
@@ -2641,13 +2643,19 @@ const triggerSet: TriggerSet<Data> = {
           return;
         data.caloric2Fire = matches.target;
         if (data.me === matches.target)
-          return output.text!();
+          return output.fireOnMe!();
+        return output.fireOn!({ player: data.ShortName(matches.target) });
       },
+      run: (data) => data.caloric2Count = 0,
       outputStrings: {
-        text: {
+        fireOnMe: {
           en: 'First fire on YOU!', // FIX-ME
           ja: '自分に初炎!',
         },
+        fireOn: {
+          en: 'First fire: ${player}', //  FIX ME
+          ja: '初炎: ${player}',
+        }
       },
     },
     {
@@ -2672,18 +2680,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Caloric Theory 2 Fire Puddle',
       type: 'GainsEffect',
       netRegex: { effectId: ['E08'] },
-      durationSeconds: 3,
-      infoText: (data, matches, output) => {
-        if (matches.target === data.me && data.caloric2Fire !== data.me)
-          return output.text!();
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          puddle: {
+            en: '#${num} Puddle on YOU', // FIX-ME
+            ja: '自分に${num}番目の炎',
+          },
+          puddle1st: {
+            en: 'First Puddle on YOU! Pass to next!', // FIX-ME
+            ja: '自分に1番目の炎！次に移る！'
+          },
+        };
+
+        if (data.caloric2Fire !== matches.target)
+          data.caloric2Count++;
+        if (matches.target === data.me && data.caloric2Fire !== data.me) {
+          if (data.caloric2Count === 1)
+            return { alertText: output.puddle1st!() };
+          return { infoText: output.puddle!({ num: data.caloric2Count }) };
+        }
       },
       run: (data, matches) => data.caloric2Fire = matches.target,
-      outputStrings: {
-        text: {
-          en: 'Puddle on YOU', // FIX-ME
-          ja: '足元に炎のゆか',
-        },
-      },
     },
     {
       id: 'P12S Caloric Theory 2 Move',
@@ -2691,13 +2709,34 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '833C', source: 'Pallas Athena', capture: false },
       condition: (data) => data.caloricCounter === 2,
       alertText: (data, _matches, output) => {
-        if (data.me === data.caloric2Fire)
-          return output.text!();
+        if (data.me === data.caloric2Fire) {
+          if (data.caloric2Count === 7) {
+            // Depends on strategy. Drop puddle on empty area
+            return output.pass7th!();
+          }
+          if (data.caloric2Count === 8) {
+            // No one has fire debuff but last puddle appears
+            return output.final!();
+          }
+          return output.pass!();
+        }
+      },
+      run: (data) => {
+        if (data.caloric2Count === 7)
+          data.caloric2Count++;
       },
       outputStrings: {
-        text: {
+        pass: {
           en: 'Pass to next!', // FIX-ME
           ja: '次に移る！',
+        },
+        pass7th: {
+          en: 'Drop puddle!', // FIX-ME
+          ja: '空き空間に捨てる！',
+        },
+        final: {
+          en: 'Drop the last puddle!', // FIX-ME
+          ja: 'ラスト！空き空間に捨てる！'
         },
       },
     },
