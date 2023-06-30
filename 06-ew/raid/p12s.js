@@ -198,6 +198,7 @@ Options.Triggers.push({
       wingCalls: [],
       superchainCollect: [],
       whiteFlameCounter: 0,
+      sampleTiles: [],
       pangenesisRole: {},
       pangenesisTowerCount: 0,
       gaiaochosCounter: 0,
@@ -323,31 +324,21 @@ Options.Triggers.push({
     },
     // In Ray 1 (Paradeigma2), two adds always spawn north in pairs with PosX of [85, 105] or [95, 115].
     // Each cleaves 1/4th of the arena. So given one PosX, we can determine the inside/outside safe lanes.
-    // TODO: In Ray 2 (SC IIB), the adds have the same cleave width but spawn at [87, 103] or [97, 113].
-    // So "inside east", e.g., is a bit inaccurate.  Because of mech timing, there also isn't time to cross
-    // the arena.  So realistically, this should be combined with SC IIB triggers to indicate whether
-    //  the player needs to move inside or outside to avoid the cleave that will intersect the 2nd orb.
-    // For now, though, display a reminder to avoid the cleaves.
     {
-      id: 'P12S Ray of Light',
+      id: 'P12S Ray of Light 1',
       type: 'StartsUsing',
       netRegex: { id: '82EE', source: 'Anthropos' },
+      condition: (data) => data.paradeigmaCounter === 2,
       suppressSeconds: 1,
-      alertText: (data, matches, output) => {
+      alertText: (_data, matches, output) => {
         const x = Math.round(parseFloat(matches.x));
-        if (x === undefined)
-          return output.avoid();
         let safeLanes;
-        if (data.paradeigmaCounter === 2) {
-          if (x < 90)
-            safeLanes = 'insideWestOutsideEast';
-          else if (x > 110)
-            safeLanes = 'insideEastOutsideWest';
-          else
-            safeLanes = x < 100 ? 'insideEastOutsideWest' : 'insideWestOutsideEast';
-        }
-        if (safeLanes === undefined)
-          return output.avoid(); // will fire during Ray 2 (SC IIB)
+        if (x < 90)
+          safeLanes = 'insideWestOutsideEast';
+        else if (x > 110)
+          safeLanes = 'insideEastOutsideWest';
+        else
+          safeLanes = x < 100 ? 'insideEastOutsideWest' : 'insideWestOutsideEast';
         return output[safeLanes]();
       },
       outputStrings: {
@@ -362,12 +353,6 @@ Options.Triggers.push({
           ja: '西の外側 / 東の内側',
           cn: '内东 / 外西',
           ko: '동쪽 안 / 서쪽 바깥',
-        },
-        avoid: {
-          en: 'Avoid Line Cleaves',
-          ja: '直線回避',
-          cn: '远离场边激光',
-          ko: '직선 장판 피하기',
         },
       },
     },
@@ -1874,14 +1859,281 @@ Options.Triggers.push({
         data.superchain2aSecondMech = isSecondMechProtean ? 'protean' : 'partners';
       },
     },
-    // TODO: Combine with future SC IIB trigger?  Happens immediately after 1st orb (donut)
-    // and before 2nd orb (protean/partners). Also, rather than calling "sides", it should probably
-    // call the specific side where the 2nd orb is.
     {
-      id: 'P12S Parthenos',
+      id: 'P12S Superchain Theory IIb First Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain2b' && data.superchainCollect.length === 4,
+      alertText: (data, _matches, output) => {
+        // Sort ascending. collect: [dest1, dest2, out/sphere, in/donut]
+        const collect = data.superchainCollect.slice(0, 4).sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+        const donut = collect[3];
+        if (donut === undefined)
+          return;
+        // For the first mechanic, two destination orbs span at [100,95] and [100,105]
+        // Each has a short tether to either an 'in' or 'out' orb on the same N/S half of the area.
+        // We therefore only need to know whether the 'in' orb is N or S to identify the safe spot.
+        if (parseFloat(donut.y) > 100) {
+          data.superchain2bFirstDir = 'south';
+          return output.south();
+        }
+        data.superchain2bFirstDir = 'north';
+        return output.north();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        south: Outputs.south,
+      },
+    },
+    {
+      id: 'P12S Superchain Theory IIb Second Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain2b' && data.superchainCollect.length === 8,
+      delaySeconds: 4.5,
+      durationSeconds: 8,
+      alertText: (data, _matches, output) => {
+        // Sort ascending. collect: [dest1, dest2, out, partnerProtean]
+        const collect = data.superchainCollect.slice(4, 8).sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+        const partnerProtean = collect[3];
+        if (partnerProtean === undefined)
+          return;
+        let mechanicStr;
+        if (partnerProtean.npcBaseId === superchainNpcBaseIdMap.protean) {
+          mechanicStr = output.protean();
+          data.superchain2bSecondMech = 'protean';
+        } else {
+          mechanicStr = output.partners();
+          data.superchain2bSecondMech = 'partners';
+        }
+        // For the second mechanic, the two destination orbs spawn at [92,100] and [108,100]
+        // One is tethered to a sphere (out) orb, and the other to a partner or protean orb.
+        // The partner/protean orb is always on the same E/W half as the destination orb it is tethered to.
+        // We therefore only need to know whether the partnerProteam orb is E or W to identify the safe spot.
+        const x = parseFloat(partnerProtean.x);
+        data.superchain2bSecondDir = x > 100 ? 'east' : 'west';
+        let dirStr;
+        if (x > 100) {
+          data.superchain2bSecondDir = 'east';
+          dirStr = data.superchain2bFirstDir === 'south' ? 'eastFromSouth' : 'eastFromNorth';
+        } else {
+          data.superchain2bSecondDir = 'west';
+          dirStr = data.superchain2bFirstDir === 'south' ? 'westFromSouth' : 'westFromNorth';
+        }
+        return output.combined({ dir: output[dirStr](), mechanic: mechanicStr });
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir} (Side) => ${mechanic} After',
+        },
+        east: Outputs.east,
+        west: Outputs.west,
+        eastFromSouth: {
+          en: 'Right/East',
+        },
+        eastFromNorth: {
+          en: 'Left/East',
+        },
+        westFromSouth: {
+          en: 'Left/West',
+        },
+        westFromNorth: {
+          en: 'Right/West',
+        },
+        protean: {
+          en: 'Protean',
+        },
+        partners: {
+          en: 'Partners',
+        },
+      },
+    },
+    {
+      id: 'P12S Superchain Theory IIb Second Mechanic + Ray of Light 2',
       type: 'StartsUsing',
-      netRegex: { id: '8303', source: 'Athena', capture: false },
-      response: Responses.goSides(),
+      netRegex: { id: '82EE', source: 'Anthropos' },
+      condition: (data) => data.paradeigmaCounter === 4,
+      suppressSeconds: 1,
+      alertText: (data, matches, output) => {
+        if (data.superchain2bSecondMech === undefined)
+          return output.avoid();
+        const mechanicStr = output[data.superchain2bSecondMech]();
+        const x = Math.round(parseFloat(matches.x));
+        if (data.superchain2bSecondDir === undefined || x === undefined)
+          return output.combined({ mechanic: mechanicStr, dir: output.avoid() });
+        let safeLane = output.avoid(); // default if unable to determine safe lane
+        // In Ray 2 (SC IIB), the adds spawn with PosX of [87, 103] or [97, 113].
+        // Because of mech timing, there is only realistically time to move either inside or outside
+        // (relative to the orb) to avoid the cleave.
+        if (x < 92)
+          safeLane = data.superchain2bSecondDir === 'east' ? output.outside() : output.inside();
+        else if (x > 108)
+          safeLane = data.superchain2bSecondDir === 'east' ? output.inside() : output.outside();
+        else if (x > 100)
+          safeLane = data.superchain2bSecondDir === 'east' ? output.outside() : output.inside();
+        else
+          safeLane = data.superchain2bSecondDir === 'east' ? output.inside() : output.outside();
+        return output.combined({ mechanic: mechanicStr, dir: safeLane });
+      },
+      outputStrings: {
+        combined: {
+          en: '${mechanic} => ${dir}',
+        },
+        protean: {
+          en: 'Protean',
+        },
+        partners: {
+          en: 'Partners',
+        },
+        inside: {
+          en: 'Inside (avoid clones)',
+        },
+        outside: {
+          en: 'Outside (avoid clones)',
+        },
+        avoid: {
+          en: 'Avoid Line Cleaves',
+          ja: '直線回避',
+          cn: '远离场边激光',
+          ko: '직선 장판 피하기',
+        },
+      },
+    },
+    {
+      id: 'P12S Superchain Theory IIb Third Mechanic',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: superchainNpcNameId, npcBaseId: superchainNpcBaseIds, capture: false },
+      condition: (data) => data.phase === 'superchain2b' && data.superchainCollect.length === 13,
+      delaySeconds: 13.6,
+      durationSeconds: 6,
+      alertText: (data, _matches, output) => {
+        // Sort ascending. collect: [dest1, dest2, out, out, partnerProtean]
+        const collect = data.superchainCollect.slice(8, 13).sort((a, b) =>
+          parseInt(a.npcBaseId) - parseInt(b.npcBaseId)
+        );
+        const partnerProtean = collect[4];
+        if (partnerProtean === undefined)
+          return;
+        // For the third mechanic, the three destination orbs spawn at [100,90] and [100,110]
+        // Both are tethered to a sphere (out) orb, and one is tethered to a partner/protean orb.
+        // The partner/protean orb is always on opposite N/S half as the destination orb it is tethered to.
+        // We therefore only need to know whether the partnerProteam orb is N or S to identify the safe spot.
+        const mechanicStr = partnerProtean.npcBaseId === superchainNpcBaseIdMap.protean
+          ? output.protean()
+          : output.partners();
+        const dirStr = parseFloat(partnerProtean.y) > 100 ? output.north() : output.south();
+        return output.combined({ dir: dirStr, mechanic: mechanicStr });
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir} => Out + ${mechanic}',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+        protean: {
+          en: 'Protean',
+        },
+        partners: {
+          en: 'Partners',
+        },
+      },
+    },
+    {
+      id: 'P12S Sample Collect',
+      type: 'Tether',
+      netRegex: { id: '00E8', target: 'Athena' },
+      condition: (data) => data.phase === 'superchain2b',
+      run: (data, matches) => data.sampleTiles.push(matches),
+    },
+    {
+      id: 'P12S Sample Safe Tile',
+      type: 'Tether',
+      netRegex: { id: '00E8', target: 'Athena', capture: false },
+      condition: (data) => data.phase === 'superchain2b' && data.sampleTiles.length === 7,
+      delaySeconds: 1,
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = data.sampleTiles.map((tile) => parseInt(tile.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length !== 7)
+          return output.default();
+        // platform 'combatants' can be at x:[90,110], y:[85,95,105,115]
+        let safeTiles = [
+          'outsideNW',
+          'outsideNE',
+          'insideNW',
+          'insideNE',
+          'insideSW',
+          'insideSE',
+          'outsideSW',
+          'outsideSE',
+        ];
+        data.combatantData.forEach((tile) => {
+          if (tile.PosX !== undefined && tile.PosY !== undefined) {
+            let unsafeTile;
+            if (tile.PosX < centerX) { // west
+              if (tile.PosY < 90)
+                unsafeTile = 'outsideNW';
+              else if (tile.PosY > 110)
+                unsafeTile = 'outsideSW';
+              else
+                unsafeTile = tile.PosY < centerY ? 'insideNW' : 'insideSW';
+            } else { // east
+              if (tile.PosY < 90)
+                unsafeTile = 'outsideNE';
+              else if (tile.PosY > 110)
+                unsafeTile = 'outsideSE';
+              else
+                unsafeTile = tile.PosY < centerY ? 'insideNE' : 'insideSE';
+            }
+            safeTiles = safeTiles.filter((tile) => tile !== unsafeTile);
+          }
+        });
+        if (safeTiles.length !== 1)
+          return output.default();
+        const safeTile = safeTiles[0];
+        if (safeTile === undefined)
+          return output.default();
+        return output[safeTile]();
+      },
+      outputStrings: {
+        outsideNW: {
+          en: 'Outside NW',
+        },
+        outsideNE: {
+          en: 'Outside NE',
+        },
+        insideNW: {
+          en: 'Inside NW',
+        },
+        insideNE: {
+          en: 'Inside NE',
+        },
+        insideSW: {
+          en: 'Inside SW',
+        },
+        insideSE: {
+          en: 'Inside SE',
+        },
+        outsideSW: {
+          en: 'Outside SW',
+        },
+        outsideSE: {
+          en: 'Outside SE',
+        },
+        default: {
+          en: 'Find safe tile',
+        },
+      },
     },
     // --------------------- Phase 2 ------------------------
     {
