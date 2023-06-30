@@ -4,16 +4,15 @@
 # Note: sadly there's nothing in the logs about towers and so
 # there's no way to really include them here.
 
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
+
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Phase 1: introduction to towers
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839::The central bow will be sealed off/ window 10,10
-3.5 "--sync--" sync / 1[56]:[^:]*:The Avatar:7C[01]:/ window 3.5,0
 6.1 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/ window 7,10
 26.0 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
 27.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/

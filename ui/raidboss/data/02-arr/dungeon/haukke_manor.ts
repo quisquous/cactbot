@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -52,10 +52,11 @@ const triggerSet: TriggerSet<Data> = {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The void lamps have begun emitting an eerie glow',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

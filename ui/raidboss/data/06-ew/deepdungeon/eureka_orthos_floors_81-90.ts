@@ -26,16 +26,19 @@ const interceptionOutputStrings: { [label: string]: LocaleText } = {
   egg: {
     en: 'egg',
     de: 'Ei',
+    ja: 'たまご',
     ko: '알',
   },
   cube: {
     en: 'cubes',
     de: 'Würfel',
+    ja: '四角',
     ko: '큐브',
   },
   ball: {
     en: 'ball',
     de: 'Ball',
+    ja: '円', // 〇
     ko: '공',
   },
 } as const;
@@ -339,6 +342,7 @@ const triggerSet: TriggerSet<Data> = {
         between: {
           en: '${safe}, between eggs',
           de: '${safe}, zwichen den Eiern',
+          ja: '${safe}, たまごの間',
           ko: '${safe}, 알 사이',
         },
         safe: {

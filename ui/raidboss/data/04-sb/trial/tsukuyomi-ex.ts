@@ -1,7 +1,7 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -161,10 +161,11 @@ const triggerSet: TriggerSet<Data> = {
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      netRegex: NetRegexes.dialog({
+      netRegex: {
         line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?',
+        code: Util.gameLogCodes.dialog,
         capture: false,
-      }),
+      },
       response: Responses.aoe(),
     },
     {

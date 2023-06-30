@@ -107,13 +107,13 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 ```javascript
 {
   id: 'id string',
-  // Note: netRegex only, see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
   type: 'StartsUsing',
   disabled: false,
-  // Note: use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
-  netRegex: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name' }),
+  // Note: see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
+  // Note: `netRegex: NetRegexes({ id: 'some-id', source: 'some-name' })` is still supported for backwards compatibility.
+  netRegex: { id: 'some-id', source: 'some-name' },
   // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
-  regex: /trigger-regex-for-act-log-lines/,
+  regex: Regexes.ability({ id: 'some-id', source: 'some-name' }),
   condition: function(data, matches, output) { return true if it should run },
   preRun: function(data, matches, output) { do stuff.. },
   delaySeconds: 0,
