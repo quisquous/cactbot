@@ -123,6 +123,80 @@ const limitCutMap = {
 const limitCutIds = Object.keys(limitCutMap);
 const wingIds = Object.values(wings);
 const superchainNpcBaseIds = Object.values(superchainNpcBaseIdMap);
+const conceptPairMap = {
+  [headmarkers.playstationCircle]: 'circle',
+  [headmarkers.playstationTriangle]: 'triangle',
+  [headmarkers.playstationSquare]: 'square',
+  [headmarkers.playstationCross]: 'cross',
+};
+const conceptDebuffIds = {
+  DE8: 'alpha',
+  DE9: 'beta',
+};
+const conceptDebuffToColor = {
+  alpha: 'red',
+  beta: 'yellow',
+};
+const npcBaseIdToConceptColor = {
+  16183: 'red',
+  16184: 'blue',
+  16185: 'yellow',
+};
+const conceptDebuffEffectIds = Object.keys(conceptDebuffIds);
+const conceptNpcBaseIds = Object.keys(npcBaseIdToConceptColor);
+const conceptPairIds = Object.keys(conceptPairMap);
+// The below functions assign a numerical value to all (shapes) and intercept points:
+// xy: 88       96       104       112
+// 84  (0)--5--(10)--15--(20)--25--(30)
+//      |        |         |         |
+//      1       11        21        31
+//      |        |         |         |
+// 92  (2)--7--(12)--17--(22)--27--(32)
+//      |        |         |         |
+//      3       13        23        33
+//      |        |         |         |
+// 100 (4)--9--(14)--19--(24)--29--(34)
+const conceptLocationMap = {
+  north: [0, 10, 20, 30],
+  middle: [2, 12, 22, 32],
+  south: [4, 14, 24, 34],
+};
+const getConceptLocation = (concept) => {
+  const x = parseFloat(concept.x);
+  const y = parseFloat(concept.y);
+  let row;
+  if (y < 88)
+    row = 'north';
+  else
+    row = y > 96 ? 'south' : 'middle';
+  let col;
+  if (x < 92)
+    col = 0;
+  else if (x > 108)
+    col = 3;
+  else
+    col = x > 100 ? 2 : 1;
+  return conceptLocationMap[row][col];
+};
+const getConceptMap = (startLoc) => {
+  // takes a concept location and returns an array containing pairs of [adjacentLocation, interceptLocation]
+  const conceptMap = [];
+  const expectedLocs = [
+    ...conceptLocationMap.north,
+    ...conceptLocationMap.middle,
+    ...conceptLocationMap.south,
+  ];
+  const [n, e, s, w] = [startLoc - 2, startLoc + 10, startLoc + 2, startLoc - 10];
+  if (expectedLocs.includes(n))
+    conceptMap.push([n, n + 1]);
+  if (expectedLocs.includes(e))
+    conceptMap.push([e, e - 5]);
+  if (expectedLocs.includes(s))
+    conceptMap.push([s, s - 1]);
+  if (expectedLocs.includes(w))
+    conceptMap.push([w, w + 5]);
+  return conceptMap;
+};
 const pangenesisEffects = {
   stableSystem: 'E22',
   unstableFactor: 'E09',
@@ -177,6 +251,21 @@ Options.Triggers.push({
       },
       default: 'tower',
     },
+    {
+      id: 'classicalConceptsPairOrder',
+      name: {
+        en: 'Classical Concepts: Pairs Order (Left->Right)',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'X□○Δ (BPOG)': 'xsct',
+          '○XΔ□ (Lines)': 'cxts',
+          '○Δ□X (Rocketship)': 'ctsx',
+        },
+      },
+      default: 'xsct',
+    },
   ],
   timelineFile: 'p12s.txt',
   initData: () => {
@@ -199,6 +288,7 @@ Options.Triggers.push({
       superchainCollect: [],
       whiteFlameCounter: 0,
       sampleTiles: [],
+      conceptData: {},
       pangenesisRole: {},
       pangenesisTowerCount: 0,
       gaiaochosCounter: 0,
@@ -250,7 +340,7 @@ Options.Triggers.push({
             data.gaiaochosCounter++;
             break;
           case '8331':
-            data.phase = 'classical';
+            data.phase = data.classicalCounter === 0 ? 'classical1' : 'classical2';
             data.classicalCounter++;
             break;
           case '8338':
@@ -2185,6 +2275,320 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'P12S Classical Concepts Headmarker',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const id = getHeadmarkerId(data, matches);
+        if (!conceptPairIds.includes(id))
+          return;
+        const pair = conceptPairMap[id];
+        if (pair === undefined)
+          return;
+        data.conceptPair = pair;
+      },
+    },
+    {
+      id: 'P12S Classical Concepts Debuff',
+      type: 'GainsEffect',
+      netRegex: { effectId: conceptDebuffEffectIds },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => data.conceptDebuff = conceptDebuffIds[matches.effectId],
+    },
+    {
+      id: 'P12S Classical Concepts Shape Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcBaseId: conceptNpcBaseIds },
+      run: (data, matches) => {
+        const location = getConceptLocation(matches);
+        const color = npcBaseIdToConceptColor[parseInt(matches.npcBaseId)];
+        if (location !== undefined && color !== undefined)
+          data.conceptData[location] = color;
+      },
+    },
+    {
+      id: 'P12S Classical Concepts',
+      type: 'StartsUsing',
+      // 8331 = The Classical Concepts (6.7s cast)
+      // 8336 = Panta Rhei (9.7s cast during classical2 that inverts shapes)
+      netRegex: { id: ['8331', '8336'], source: 'Pallas Athena' },
+      delaySeconds: (_data, matches) => {
+        if (matches.id === '8331')
+          // for Classical Concepts, 6.7 cast time + 1.5 for debuff/headmarker data (some variability)
+          return 8.2;
+        return 0; // for Panta Rhei, fire immediately once cast starts
+      },
+      durationSeconds: (data, matches) => {
+        if (data.phase === 'classical1')
+          return 12; // keep active until shapes tether
+        if (matches.id === '8331')
+          return 7; // for classical2 initial, display initially to allow player to find (stand in) initial position
+        return 9.7; // for Panta Rhei, display until shape inversion completes
+      },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          classic1: {
+            en: '${column}, ${row} => ${intercept}',
+          },
+          classic2initial: {
+            en: 'Initial: ${column}, ${row} => ${intercept}',
+          },
+          classic2actual: {
+            en: 'Actual: ${column}, ${row} => ${intercept}',
+          },
+          outsideWest: {
+            en: 'Outside West',
+          },
+          insideWest: {
+            en: 'Inside West',
+          },
+          insideEast: {
+            en: 'Inside East',
+          },
+          outsideEast: {
+            en: 'Outside East',
+          },
+          northRow: {
+            en: 'North Blue',
+          },
+          middleRow: {
+            en: 'Middle Blue',
+          },
+          southRow: {
+            en: 'South Blue',
+          },
+          leanNorth: {
+            en: 'Lean North',
+          },
+          leanEast: {
+            en: 'Lean East',
+          },
+          leanSouth: {
+            en: 'Lean South',
+          },
+          leanWest: {
+            en: 'Lean West',
+          },
+        };
+        if (
+          Object.keys(data.conceptData).length !== 12 ||
+          data.conceptDebuff === undefined ||
+          data.conceptPair === undefined
+        )
+          return;
+        let myColumn;
+        let myRow;
+        let myInterceptOutput;
+        if (matches.id === '8331') {
+          // for classic1 and classic2, find the (initial) position for the player to intercept
+          const columnOrderFromConfig = {
+            xsct: ['cross', 'square', 'circle', 'triangle'],
+            cxts: ['circle', 'cross', 'triangle', 'square'],
+            ctsx: ['circle', 'triangle', 'square', 'cross'],
+          };
+          const columnOrder =
+            columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
+          if (columnOrder?.length !== 4)
+            return;
+          myColumn = columnOrder.indexOf(data.conceptPair);
+          const myColumnLocations = [
+            conceptLocationMap.north[myColumn],
+            conceptLocationMap.middle[myColumn],
+            conceptLocationMap.south[myColumn],
+          ];
+          const [north, middle, south] = myColumnLocations;
+          if (north === undefined || middle === undefined || south === undefined)
+            return;
+          let myColumnBlueLocation;
+          if (data.conceptData[north] === 'blue')
+            myColumnBlueLocation = north;
+          else
+            myColumnBlueLocation = data.conceptData[middle] === 'blue' ? middle : south;
+          myRow = myColumnLocations.indexOf(myColumnBlueLocation);
+          const conceptMap = getConceptMap(myColumnBlueLocation);
+          const myShapeColor = conceptDebuffToColor[data.conceptDebuff];
+          const possibleLocations = [];
+          const possibleIntercepts = [];
+          conceptMap.forEach((adjacentPair) => {
+            const [location, intercept] = adjacentPair;
+            if (location !== undefined && intercept !== undefined) {
+              const adjacentColor = data.conceptData[location];
+              if (adjacentColor === myShapeColor) {
+                possibleLocations.push(location);
+                possibleIntercepts.push(intercept);
+              }
+            }
+          });
+          let myIntercept; // don't set this initially in case there's something wrong with possibleLocations
+          if (possibleLocations.length === 1) {
+            // only one possible adjacent shape to intercept; we're done
+            myIntercept = possibleIntercepts[0];
+          } else if (possibleLocations.length === 2) {
+            // two adjacent shapes that match player's debuff (does happen)
+            // the one that is NOT adjacent to a different blue is the correct shape.
+            // NOTE: There is a theoretical arrangement where both possibles are adjacent to another blue,
+            // but this has never been observed in-game, and it generates two valid solution sets.
+            // Since there is no single solution, we should not generate an output for it.
+            const possible1 = possibleLocations[0];
+            myIntercept = possibleIntercepts[0];
+            if (possible1 === undefined)
+              return;
+            const possible1AdjacentsMap = getConceptMap(possible1);
+            for (const [possibleAdjacentLocation] of possible1AdjacentsMap) {
+              if (possibleAdjacentLocation === undefined)
+                continue;
+              const possibleAdjacentColor = data.conceptData[possibleAdjacentLocation];
+              if (
+                possibleAdjacentColor === 'blue' &&
+                possibleAdjacentLocation !== myColumnBlueLocation
+              ) {
+                // there's an adjacent blue (not the one the player is responsible for), so possibleLocations[0] is eliminated
+                myIntercept = possibleIntercepts[1];
+                break;
+              }
+            }
+          }
+          if (myIntercept === undefined)
+            return;
+          const interceptDelta = myIntercept - myColumnBlueLocation;
+          if (interceptDelta === -1)
+            myInterceptOutput = 'leanNorth';
+          else if (interceptDelta === 5)
+            myInterceptOutput = 'leanEast';
+          else if (interceptDelta === 1)
+            myInterceptOutput = 'leanSouth';
+          // else: interceptDelta === -5
+          else
+            myInterceptOutput = 'leanWest';
+          if (data.phase === 'classical2') {
+            data.classical2InitialColumn = myColumn;
+            data.classical2InitialRow = myRow;
+            data.classical2Intercept = myInterceptOutput;
+          }
+        } else {
+          // for Panta Rhei, get myColumn, myRow, and myInterceptOutput from data{} and invert them
+          if (data.classical2InitialColumn !== undefined)
+            myColumn = 3 - data.classical2InitialColumn;
+          if (data.classical2InitialRow !== undefined)
+            myRow = 2 - data.classical2InitialRow;
+          if (data.classical2Intercept !== undefined) {
+            const interceptOutputInvertMap = {
+              leanNorth: 'leanSouth',
+              leanSouth: 'leanNorth',
+              leanEast: 'leanEast',
+              leanWest: 'leanWest',
+            };
+            myInterceptOutput = interceptOutputInvertMap[data.classical2Intercept];
+          }
+        }
+        if (myColumn === undefined || myRow === undefined || myInterceptOutput === undefined)
+          return;
+        const columnOutput = ['outsideWest', 'insideWest', 'insideEast', 'outsideEast'][myColumn];
+        const rowOutput = ['northRow', 'middleRow', 'southRow'][myRow];
+        if (columnOutput === undefined || rowOutput === undefined)
+          return;
+        let outputStr;
+        if (data.phase === 'classical1') {
+          outputStr = output.classic1({
+            column: output[columnOutput](),
+            row: output[rowOutput](),
+            intercept: output[myInterceptOutput](),
+          });
+          return { alertText: outputStr };
+        }
+        if (matches.id === '8331') { // classic2 initial
+          outputStr = output.classic2initial({
+            column: output[columnOutput](),
+            row: output[rowOutput](),
+            intercept: output[myInterceptOutput](),
+          });
+          return { infoText: outputStr };
+        }
+        outputStr = output.classic2actual({
+          column: output[columnOutput](),
+          row: output[rowOutput](),
+          intercept: output[myInterceptOutput](),
+        });
+        return { alertText: outputStr };
+      },
+      run: (data) => {
+        if (data.phase === 'classical1') {
+          delete data.conceptPair;
+          data.conceptData = {};
+        }
+      },
+    },
+    {
+      id: 'P12S Palladian Ray 1 Initial',
+      type: 'LosesEffect',
+      netRegex: { effectId: 'E04' },
+      condition: (data, matches) => data.me === matches.target && data.phase === 'classical1',
+      // shapes use 8333 (Implode) at t+5.6s, and 8324 (Palladian Ray cleaves) snapshots at t+8.9s
+      durationSeconds: 8,
+      alertText: (data, _matches, output) => {
+        if (data.conceptDebuff === undefined)
+          return output.default();
+        return data.conceptDebuff === 'alpha'
+          ? output.baitAlphaDebuff()
+          : output.baitBetaDebuff();
+      },
+      run: (data) => delete data.conceptDebuff,
+      outputStrings: {
+        baitAlphaDebuff: {
+          en: 'Avoid Shapes => Bait Proteans (Alpha)',
+        },
+        baitBetaDebuff: {
+          en: 'Avoid Shapes => Bait Proteans (Beta)',
+        },
+        default: {
+          en: 'Bait Proteans',
+        },
+      },
+    },
+    {
+      id: 'P12S Palladian Ray 2 Initial',
+      type: 'Tether',
+      netRegex: { id: '0001', source: ['Concept of Fire', 'Concept of Earth'] },
+      condition: (data, matches) => data.me === matches.target && data.phase === 'classical2',
+      alertText: (data, _matches, output) => {
+        if (data.conceptDebuff === undefined)
+          return output.default();
+        return data.conceptDebuff === 'alpha'
+          ? output.baitAlphaDebuff()
+          : output.baitBetaDebuff();
+      },
+      outputStrings: {
+        baitAlphaDebuff: {
+          en: 'Bait Proteans (Alpha)',
+        },
+        baitBetaDebuff: {
+          en: 'Bait Proteans (Beta)',
+        },
+        default: {
+          en: 'Bait Proteans',
+        },
+      },
+    },
+    {
+      id: 'P12S Palladian Ray Followup',
+      type: 'Ability',
+      netRegex: { id: '8323', source: 'Pallas Athena', capture: false },
+      delaySeconds: 2.5,
+      alertText: (data, _matches, output) => {
+        if (data.phase === 'classical2')
+          return output.moveAvoid();
+        return output.move();
+      },
+      outputStrings: {
+        moveAvoid: {
+          en: 'Move! (avoid shapes)',
+        },
+        move: Outputs.moveAway,
+      },
+    },
+    {
       id: 'P12S Pangenesis Collect',
       type: 'GainsEffect',
       netRegex: { effectId: pangenesisEffectIds },
@@ -2483,98 +2887,6 @@ Options.Triggers.push({
           ja: '線切る (${partner})',
         },
       },
-    },
-    {
-      id: 'P12S The Classical Concepts PS marker',
-      type: 'HeadMarker',
-      netRegex: {},
-      run: (data, matches) => {
-        const id = getHeadmarkerId(data, matches);
-        const psMarkerMap = {
-          [headmarkers.playstationCircle]: 'circle',
-          [headmarkers.playstationTriangle]: 'triangle',
-          [headmarkers.playstationSquare]: 'square',
-          [headmarkers.playstationCross]: 'cross',
-        };
-        const marker = psMarkerMap[id];
-        if (marker !== undefined)
-          data.classicalMarker[matches.target] = marker;
-      },
-    },
-    {
-      id: 'P12S The Classical Concepts Alpha Beta',
-      type: 'GainsEffect',
-      netRegex: { effectId: ['DE8', 'DE9'] },
-      run: (data, matches) => {
-        data.classicalAlphaBeta[matches.target] = matches.effectId === 'DE8' ? 'alpha' : 'beta';
-      },
-    },
-    {
-      id: 'P12S The Classical Concepts',
-      type: 'Ability',
-      netRegex: { id: '8331', source: 'Pallas Athena', capture: false },
-      delaySeconds: 2,
-      durationSeconds: (data) => data.classicalCounter === 1 ? 9 : 16,
-      suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
-        const marker = data.classicalMarker[data.me];
-        const tether = data.classicalAlphaBeta[data.me];
-        if (marker === undefined || tether === undefined)
-          return;
-        return output.text({ marker: output[marker](), shape: output[tether]() });
-      },
-      outputStrings: {
-        text: {
-          en: '${marker} (block ${shape})',
-          ja: '${marker} + ${shape}', // FIXME
-        },
-        circle: {
-          en: 'Circle',
-          de: 'Kreis',
-          fr: 'Cercle',
-          ja: 'まる',
-          cn: '圆圈',
-          ko: '동그라미',
-        },
-        triangle: {
-          en: 'Triangle',
-          de: 'Dreieck',
-          fr: 'Triangle',
-          ja: 'さんかく',
-          cn: '三角',
-          ko: '삼각',
-        },
-        square: {
-          en: 'Square',
-          de: 'Viereck',
-          fr: 'Carré',
-          ja: 'しかく',
-          cn: '方块',
-          ko: '사각',
-        },
-        cross: {
-          en: 'X',
-          de: 'X',
-          fr: 'Croix',
-          ja: 'バツ',
-          cn: 'X',
-          ko: 'X',
-        },
-        alpha: {
-          // Deliberately say "pyramid" here to differentiate from "triangle" marker.
-          en: 'pyramid',
-        },
-        beta: {
-          en: 'cube',
-        },
-      },
-    },
-    {
-      id: 'P12S The Classical Concepts Move',
-      type: 'Ability',
-      netRegex: { id: '8323', source: 'Pallas Athena', capture: false },
-      delaySeconds: 2.5,
-      response: Responses.moveAway(),
     },
     {
       id: 'P12S Caloric Theory 1 Beacon Collect',
