@@ -15,9 +15,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: gaiochos group up for chains
 // TODO: delay the second horizontal/vertical call until after break chains (or combine!)
 // TODO: summon darkness tether break locations for gaiaochos 1 and 2
-// TODO: bait protean calls for classical 1 and 2
 
-// TODO: add triggerset ui for playstation order + classical location
 // TODO: detect(?!) hex strat for caloric2 and tell people who to go to??
 
 type Phase =
@@ -2731,9 +2729,72 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         if (data.phase === 'classical1') {
           delete data.conceptPair;
-          delete data.conceptDebuff;
           data.conceptData = {};
         }
+      },
+    },
+    {
+      id: 'P12S Palladian Ray 1 Initial',
+      type: 'LosesEffect',
+      netRegex: { effectId: 'E04' }, // Shackled Together
+      condition: (data, matches) => data.me === matches.target && data.phase === 'classical1',
+      // shapes use 8333 (Implode) at t+5.6s, and 8324 (Palladian Ray cleaves) snapshots at t+8.9s
+      durationSeconds: 8,
+      alertText: (data, _matches, output) => {
+        if (data.conceptDebuff === undefined)
+          return output.default!();
+        return data.conceptDebuff === 'alpha' ? output.baitAlphaDebuff!() : output.baitBetaDebuff!();
+      },
+      run: (data) => delete data.conceptDebuff,
+      outputStrings: {
+        baitAlphaDebuff: {
+          en: 'Avoid Shapes => Bait Proteans (Alpha)',
+        },
+        baitBetaDebuff: {
+          en: 'Avoid Shapes => Bait Proteans (Beta)',
+        },
+        default: {
+          en: 'Bait Proteans'
+        },
+      },
+    },
+    {
+      id: 'P12S Palladian Ray 2 Initial',
+      type: 'Tether',
+      netRegex: { id: '0001', source: ['Concept of Fire', 'Concept of Earth'] },
+      condition: (data, matches) => data.me === matches.target && data.phase === 'classical2',
+      alertText: (data, _matches, output) => {
+        if (data.conceptDebuff === undefined)
+          return output.default!();
+        return data.conceptDebuff === 'alpha' ? output.baitAlphaDebuff!() : output.baitBetaDebuff!();
+      },
+      outputStrings: {
+        baitAlphaDebuff: {
+          en: 'Bait Proteans (Alpha)',
+        },
+        baitBetaDebuff: {
+          en: 'Bait Proteans (Beta)',
+        },
+        default: {
+          en: 'Bait Proteans'
+        },
+      }
+    },
+    {
+      id: 'P12S Palladian Ray Followup',
+      type: 'Ability',
+      netRegex: { id: '8323', source: 'Pallas Athena', capture: false },
+      delaySeconds: 2.5,
+      alertText: (data, _matches, output) => {
+        if (data.phase === 'classical2')
+          return output.moveAvoid!();
+        return output.move!();
+      },
+      outputStrings: {
+        moveAvoid: {
+          en: 'Move! (avoid shapes)'
+        },
+        move: Outputs.moveAway,
       },
     },
     {
