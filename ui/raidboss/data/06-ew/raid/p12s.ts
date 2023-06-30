@@ -2556,9 +2556,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           northRow: Outputs.north,
           southRow: Outputs.south,
-          middleRow: {
-            en: 'Middle',
-          },
+          middleRow: Outputs.middle,
           leanNorth: {
             en: 'Lean North',
           },
