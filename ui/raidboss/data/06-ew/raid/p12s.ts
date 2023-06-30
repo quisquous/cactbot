@@ -2532,13 +2532,13 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           classic1: {
-            en: '${column}, ${row} Blue => ${intercept}',
+            en: '${column}, ${row} => ${intercept}',
           },
           classic2initial: {
-            en: 'Initial: ${column}, ${row} Blue => ${intercept}',
+            en: 'Initial: ${column}, ${row} => ${intercept}',
           },
           classic2actual: {
-            en: 'Actual: ${column}, ${row} Blue => ${intercept}',
+            en: 'Actual: ${column}, ${row} => ${intercept}',
           },
           outsideWest: {
             en: 'Outside West',
@@ -2552,9 +2552,15 @@ const triggerSet: TriggerSet<Data> = {
           outsideEast: {
             en: 'Outside East',
           },
-          northRow: Outputs.north,
-          southRow: Outputs.south,
-          middleRow: Outputs.middle,
+          northRow: {
+            en: 'North Blue',
+          },
+          middleRow: {
+            en: 'Middle Blue',
+          },
+          southRow: {
+            en: 'South Blue',
+          },
           leanNorth: {
             en: 'Lean North',
           },
@@ -2625,7 +2631,7 @@ const triggerSet: TriggerSet<Data> = {
             }
           });
 
-          let myIntercept;
+          let myIntercept; // don't set this initially in case there's something wrong with possibleLocations
           if (possibleLocations.length === 1) {
             // only one possible adjacent shape to intercept; we're done
             myIntercept = possibleIntercepts[0];
@@ -2636,28 +2642,25 @@ const triggerSet: TriggerSet<Data> = {
             // but this has never been observed in-game, and it generates two valid solution sets.
             // Since there is no single solution, we should not generate an output for it.
             const possible1 = possibleLocations[0];
-            if (possible1 !== undefined) {
-              const possible1AdjacentsMap = getConceptMap(possible1);
-              for (let x = 0; x < possible1AdjacentsMap.length; x++) {
-                const [possibleAdjacentLocation] = possible1AdjacentsMap[x] ?? [];
-                if (possibleAdjacentLocation === undefined)
-                  continue;
-                const possibleAdjacentColor = data.conceptData[possibleAdjacentLocation];
-                if (
-                  possibleAdjacentColor === 'blue' &&
-                  possibleAdjacentLocation !== myColumnBlueLocation
-                ) {
-                  // there's an adjacent blue (not the one the player is responsible for), so possibleLocations[0] is eliminated
-                  myIntercept = possibleIntercepts[1];
-                  break;
-                }
-                if (x === possible1AdjacentsMap.length - 1) {
-                  // last iteration & none of the adjacent shapes to possibleLocations[0] is a blue, so it's our spot
-                  myIntercept = possibleIntercepts[0];
-                }
+            myIntercept = possibleIntercepts[0];
+            if (possible1 === undefined)
+              return;
+            const possible1AdjacentsMap = getConceptMap(possible1);
+            for (const [possibleAdjacentLocation] of possible1AdjacentsMap) {
+              if (possibleAdjacentLocation === undefined)
+                continue;
+              const possibleAdjacentColor = data.conceptData[possibleAdjacentLocation];
+              if (
+                possibleAdjacentColor === 'blue' &&
+                possibleAdjacentLocation !== myColumnBlueLocation
+              ) {
+                // there's an adjacent blue (not the one the player is responsible for), so possibleLocations[0] is eliminated
+                myIntercept = possibleIntercepts[1];
+                break;
               }
             }
           }
+
           if (myIntercept === undefined)
             return;
 
@@ -2668,8 +2671,7 @@ const triggerSet: TriggerSet<Data> = {
             myInterceptOutput = 'leanEast';
           else if (interceptDelta === 1)
             myInterceptOutput = 'leanSouth';
-          // interceptDelta === -5
-          else
+          else // interceptDelta === -5
             myInterceptOutput = 'leanWest';
 
           if (data.phase === 'classical2') {
@@ -2743,7 +2745,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.conceptDebuff === undefined)
           return output.default!();
-        return data.conceptDebuff === 'alpha' ? output.baitAlphaDebuff!() : output.baitBetaDebuff!();
+        return data.conceptDebuff === 'alpha'
+          ? output.baitAlphaDebuff!()
+          : output.baitBetaDebuff!();
       },
       run: (data) => delete data.conceptDebuff,
       outputStrings: {
@@ -2754,7 +2758,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid Shapes => Bait Proteans (Beta)',
         },
         default: {
-          en: 'Bait Proteans'
+          en: 'Bait Proteans',
         },
       },
     },
@@ -2766,7 +2770,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.conceptDebuff === undefined)
           return output.default!();
-        return data.conceptDebuff === 'alpha' ? output.baitAlphaDebuff!() : output.baitBetaDebuff!();
+        return data.conceptDebuff === 'alpha'
+          ? output.baitAlphaDebuff!()
+          : output.baitBetaDebuff!();
       },
       outputStrings: {
         baitAlphaDebuff: {
@@ -2776,9 +2782,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait Proteans (Beta)',
         },
         default: {
-          en: 'Bait Proteans'
+          en: 'Bait Proteans',
         },
-      }
+      },
     },
     {
       id: 'P12S Palladian Ray Followup',
@@ -2792,7 +2798,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         moveAvoid: {
-          en: 'Move! (avoid shapes)'
+          en: 'Move! (avoid shapes)',
         },
         move: Outputs.moveAway,
       },
