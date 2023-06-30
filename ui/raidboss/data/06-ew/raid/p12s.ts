@@ -2671,7 +2671,8 @@ const triggerSet: TriggerSet<Data> = {
             myInterceptOutput = 'leanEast';
           else if (interceptDelta === 1)
             myInterceptOutput = 'leanSouth';
-          else // interceptDelta === -5
+          // else: interceptDelta === -5
+          else
             myInterceptOutput = 'leanWest';
 
           if (data.phase === 'classical2') {
