@@ -194,83 +194,6 @@ const conceptPairMap: { [id: string]: ConceptPair } = {
   [headmarkers.playstationCross]: 'cross',
 } as const;
 
-const conceptDebuffIds: { [effectId: string]: ConceptDebuff } = {
-  DE8: 'alpha',
-  DE9: 'beta',
-} as const;
-
-const conceptDebuffToColor: Record<ConceptDebuff, ConceptColor> = {
-  alpha: 'red',
-  beta: 'yellow',
-} as const;
-
-const npcBaseIdToConceptColor: { [npcId: number]: ConceptColor } = {
-  16183: 'red',
-  16184: 'blue',
-  16185: 'yellow',
-} as const;
-
-const conceptDebuffEffectIds: readonly string[] = Object.keys(conceptDebuffIds);
-const conceptNpcBaseIds: readonly string[] = Object.keys(npcBaseIdToConceptColor);
-const conceptPairIds: readonly string[] = Object.keys(conceptPairMap);
-
-// The below functions assign a numerical value to all (shapes) and intercept points:
-// xy: 88       96       104       112
-// 84  (0)--5--(10)--15--(20)--25--(30)
-//      |        |         |         |
-//      1       11        21        31
-//      |        |         |         |
-// 92  (2)--7--(12)--17--(22)--27--(32)
-//      |        |         |         |
-//      3       13        23        33
-//      |        |         |         |
-// 100 (4)--9--(14)--19--(24)--29--(34)
-
-const conceptLocationMap: Record<ConceptRow, number[]> = {
-  north: [0, 10, 20, 30],
-  middle: [2, 12, 22, 32],
-  south: [4, 14, 24, 34],
-};
-
-const getConceptLocation = (concept: NetMatches['AddedCombatant']): number => {
-  const x = parseFloat(concept.x);
-  const y = parseFloat(concept.y);
-
-  let row: ConceptRow;
-  if (y < 88)
-    row = 'north';
-  else
-    row = y > 96 ? 'south' : 'middle';
-  let col: number;
-  if (x < 92)
-    col = 0;
-  else if (x > 108)
-    col = 3;
-  else
-    col = x > 100 ? 2 : 1;
-  return conceptLocationMap[row][col]!;
-};
-
-const getConceptMap = (startLoc: number): number[][] => {
-  // takes a concept location and returns an array containing pairs of [adjacentLocation, interceptLocation]
-  const conceptMap: number[][] = [];
-  const expectedLocs = [
-    ...conceptLocationMap.north,
-    ...conceptLocationMap.middle,
-    ...conceptLocationMap.south,
-  ];
-  const [n, e, s, w] = [startLoc - 2, startLoc + 10, startLoc + 2, startLoc - 10];
-  if (expectedLocs.includes(n))
-    conceptMap.push([n, n + 1]);
-  if (expectedLocs.includes(e))
-    conceptMap.push([e, e - 5]);
-  if (expectedLocs.includes(s))
-    conceptMap.push([s, s - 1]);
-  if (expectedLocs.includes(w))
-    conceptMap.push([w, w + 5]);
-  return conceptMap;
-};
-
 const pangenesisEffects = {
   stableSystem: 'E22',
   unstableFactor: 'E09',
@@ -333,12 +256,6 @@ export interface Data extends RaidbossData {
   superchain2bSecondMech?: 'protean' | 'partners';
   superchain2bSecondDir?: 'east' | 'west';
   sampleTiles: NetMatches['Tether'][];
-  conceptPair?: ConceptPair;
-  conceptDebuff?: ConceptDebuff;
-  conceptData: { [location: number]: ConceptColor };
-  classical2InitialColumn?: number;
-  classical2InitialRow?: number;
-  classical2Intercept?: InterceptOutput;
   pangenesisDebuffsCalled?: boolean;
   pangenesisRole: { [name: string]: PangenesisRole };
   pangenesisTowerCount: number;
