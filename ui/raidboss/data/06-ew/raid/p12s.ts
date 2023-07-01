@@ -12,7 +12,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: add phase dash calls?? (maybe this is overkill)
 
 // TODO: crush helm tankbusters??? (+esuna calls for non-invulning tanks??)
-// TODO: delay the second horizontal/vertical call until after break chains (or combine!)
 // TODO: detect(?!) hex strat for caloric2 and tell people who to go to??
 
 type Phase =
