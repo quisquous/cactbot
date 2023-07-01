@@ -2,7 +2,7 @@ import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
-import { Directions } from '../../../../../resources/util';
+import { DirectionOutput8, Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
@@ -12,10 +12,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: add phase dash calls?? (maybe this is overkill)
 
 // TODO: crush helm tankbusters??? (+esuna calls for non-invulning tanks??)
-// TODO: gaiochos group up for chains
 // TODO: delay the second horizontal/vertical call until after break chains (or combine!)
-// TODO: summon darkness tether break locations for gaiaochos 1 and 2
-
 // TODO: detect(?!) hex strat for caloric2 and tell people who to go to??
 
 type Phase =
@@ -23,10 +20,11 @@ type Phase =
   | 'palladion'
   | 'superchain2a'
   | 'superchain2b'
-  | 'gaiaochos'
+  | 'gaiaochos1'
   | 'classical1'
   | 'caloric'
-  | 'classical2';
+  | 'classical2'
+  | 'gaiaochos2';
 
 const centerX = 100;
 const centerY = 100;
@@ -331,6 +329,7 @@ export interface Data extends RaidbossData {
   superchain2bSecondMech?: 'protean' | 'partners';
   superchain2bSecondDir?: 'east' | 'west';
   sampleTiles: NetMatches['Tether'][];
+  darknessClones: NetMatches['StartsUsing'][];
   conceptPair?: ConceptPair;
   conceptDebuff?: ConceptDebuff;
   conceptData: { [location: number]: ConceptColor };
@@ -351,7 +350,9 @@ export interface Data extends RaidbossData {
   caloric1Mine?: CaloricMarker;
   caloric2Fire?: string;
   caloric2PassCount: number;
-  gaiochosTetherCollect: string[];
+  gaiaochosTetherCollect: string[];
+  seenSecondTethers: boolean;
+  geocentrism2OutputStr?: string;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -428,6 +429,7 @@ const triggerSet: TriggerSet<Data> = {
       superchainCollect: [],
       whiteFlameCounter: 0,
       sampleTiles: [],
+      darknessClones: [],
       conceptData: {},
       pangenesisRole: {},
       pangenesisTowerCount: 0,
@@ -439,7 +441,8 @@ const triggerSet: TriggerSet<Data> = {
       caloric1First: [],
       caloric1Buff: {},
       caloric2PassCount: 0,
-      gaiochosTetherCollect: [],
+      gaiaochosTetherCollect: [],
+      seenSecondTethers: false,
     };
   },
   triggers: [
@@ -477,7 +480,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         switch (matches.id) {
           case '8326':
-            data.phase = 'gaiaochos';
+            data.phase = data.gaiaochosCounter === 0 ? 'gaiaochos1' : 'gaiaochos2';
             data.gaiaochosCounter++;
             break;
           case '8331':
@@ -2432,7 +2435,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Geocentrism Vertical',
       type: 'StartsUsing',
       netRegex: { id: '8329', source: 'Pallas Athena', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        if (data.phase === 'gaiaochos1')
+          return output.text!();
+        data.geocentrism2OutputStr = output.text!();
+        return;
+      },
       outputStrings: {
         text: {
           en: 'Vertical',
@@ -2448,7 +2456,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Geocentrism Circle',
       type: 'StartsUsing',
       netRegex: { id: '832A', source: 'Pallas Athena', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        if (data.phase === 'gaiaochos1')
+          return output.text!();
+        data.geocentrism2OutputStr = output.text!();
+        return;
+      },
       outputStrings: {
         text: {
           en: 'Inny Spinny',
@@ -2464,7 +2477,12 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Geocentrism Horizontal',
       type: 'StartsUsing',
       netRegex: { id: '832B', source: 'Pallas Athena', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        if (data.phase === 'gaiaochos1')
+          return output.text!();
+        data.geocentrism2OutputStr = output.text!();
+        return;
+      },
       outputStrings: {
         text: {
           en: 'Horizontal',
@@ -3021,17 +3039,148 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P12S Summon Darkness Preposition',
+      type: 'StartsUsing',
+      netRegex: { id: '832F', source: 'Pallas Athena', capture: false },
+      condition: (data) => data.seenSecondTethers === false,
+      alertText: (_data, _matches, output) => output.stackForTethers!(),
+      outputStrings: {
+        stackForTethers: {
+          en: 'Stack for Tethers',
+        },
+      },
+    },
+    {
+      id: 'P12S Ultima Ray 1',
+      type: 'StartsUsing',
+      netRegex: { id: '8330', source: 'Hemitheos' },
+      // don't display after geocentrism2 / before ultima blow
+      condition: (data) => data.geocentrism2OutputStr === undefined,
+      infoText: (data, matches, output) => {
+        data.darknessClones.push(matches);
+        if (data.darknessClones.length !== 3)
+          return;
+
+        // during 'UAV' phase, the center of the circular arena is [100, 90]
+        const uavCenterX = 100;
+        const uavCenterY = 90;
+
+        const unsafeMap: Partial<Record<DirectionOutput8, DirectionOutput8>> = {
+          dirN: 'dirS',
+          dirNE: 'dirSW',
+          dirE: 'dirW',
+          dirSE: 'dirNW',
+          dirS: 'dirN',
+          dirSW: 'dirNE',
+          dirW: 'dirE',
+          dirNW: 'dirSE',
+        };
+        let safeDirs = Object.keys(unsafeMap) as DirectionOutput8[];
+        data.darknessClones.forEach((clone) => {
+          const x = parseFloat(clone.x);
+          const y = parseFloat(clone.y);
+          const cloneDir = Directions.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+          const pairedDir = unsafeMap[cloneDir];
+          safeDirs = safeDirs.filter((dir) => dir !== cloneDir && dir !== pairedDir);
+        });
+        if (safeDirs.length !== 2)
+          return;
+        const [dir1, dir2] = safeDirs;
+        if (dir1 === undefined || dir2 === undefined)
+          return;
+        return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir1} / ${dir2} Safe',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
+      id: 'P12S Ultima Ray 2',
+      type: 'StartsUsing',
+      netRegex: { id: '8330', source: 'Hemitheos' },
+      condition: (data) => data.phase === 'gaiaochos2',
+      infoText: (_data, matches, output) => {
+        // during 'UAV' phase, the center of the circular arena is [100, 90]
+        const uavCenterX = 100;
+        const uavCenterY = 90;
+
+        const safeMap: Partial<Record<DirectionOutput8, DirectionOutput8[]>> = {
+          // for each dir, identify the two dirs 90 degrees away
+          dirN: ['dirW', 'dirE'],
+          dirNE: ['dirNW', 'dirSE'],
+          dirE: ['dirN', 'dirS'],
+          dirSE: ['dirNE', 'dirSW'],
+          dirS: ['dirW', 'dirE'],
+          dirSW: ['dirNW', 'dirSE'],
+          dirW: ['dirN', 'dirS'],
+          dirNW: ['dirNE', 'dirSW'],
+        };
+
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
+        const cloneDir = Directions.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+        const [dir1, dir2] = safeMap[cloneDir] ?? [];
+        if (dir1 === undefined || dir2 === undefined)
+          return;
+        return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir1} / ${dir2} Safe',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
+      id: 'P12S Gaiaochos',
+      type: 'StartsUsing',
+      netRegex: { id: '8326', source: 'Pallas Athena', capture: false },
+      response: Responses.bigAoe('alert'),
+    },
+    {
+      id: 'P12S Gaiaochos Tether',
+      type: 'Tether',
+      netRegex: { id: '0009' },
+      condition: (data) => data.phase === 'gaiaochos1' || data.phase === 'gaiaochos2',
+      durationSeconds: (data) => data.phase === 'gaiaochos2' ? 6 : 4,
+      alertText: (data, matches, output) => {
+        if (matches.source !== data.me && matches.target !== data.me)
+          return;
+        const partner = matches.source === data.me ? matches.target : matches.source;
+        if (data.phase === 'gaiaochos1')
+          return output.uav1!({ partner: data.ShortName(partner) });
+        data.seenSecondTethers = true;
+        return output.uav2!({
+          partner: data.ShortName(partner),
+          geocentrism: data.geocentrism2OutputStr ?? output.unknown!(),
+        });
+      },
+      outputStrings: {
+        uav1: {
+          en: 'Break tether (w/ ${partner})',
+          ja: '線切る (${partner})',
+        },
+        uav2: {
+          en: 'Break tether (w/ ${partner}) => ${geocentrism}',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'P12S Ultima Blow Tether Collect',
       type: 'Tether',
       netRegex: { id: '0001' },
-      condition: (data) => data.phase === 'gaiaochos' && data.gaiaochosCounter === 2,
-      run: (data, matches) => data.gaiochosTetherCollect.push(matches.target),
+      condition: (data) => data.phase === 'gaiaochos2',
+      run: (data, matches) => data.gaiaochosTetherCollect.push(matches.target),
     },
     {
       id: 'P12S Ultima Blow Tether',
       type: 'Tether',
       netRegex: { id: '0001', capture: false },
-      condition: (data) => data.phase === 'gaiaochos' && data.gaiaochosCounter === 2,
+      condition: (data) => data.phase === 'gaiaochos2',
       delaySeconds: 0.5,
       suppressSeconds: 5,
       response: (data, _matches, output) => {
@@ -3046,12 +3195,12 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        if (data.gaiochosTetherCollect.includes(data.me))
+        if (data.gaiaochosTetherCollect.includes(data.me))
           return { infoText: output.stretchTether!() };
         return { alertText: output.blockPartner!() };
       },
       // If people die, it's not always on the opposite role, so just re-collect.
-      run: (data) => data.gaiochosTetherCollect = [],
+      run: (data) => data.gaiaochosTetherCollect = [],
     },
     {
       id: 'P12S Ultima',
@@ -3087,29 +3236,6 @@ const triggerSet: TriggerSet<Data> = {
         if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
           return { alertText: output.tankBusterCleaves!() };
         return { infoText: output.avoidTankCleaves!() };
-      },
-    },
-    {
-      id: 'P12S Gaiaochos',
-      type: 'StartsUsing',
-      netRegex: { id: '8326', source: 'Pallas Athena', capture: false },
-      response: Responses.bigAoe('alert'),
-    },
-    {
-      id: 'P12S Gaiaochos tether',
-      type: 'Tether',
-      netRegex: { id: '0009' },
-      alertText: (data, matches, output) => {
-        if (matches.source !== data.me && matches.target !== data.me)
-          return;
-        const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text!({ partner: data.ShortName(partner) });
-      },
-      outputStrings: {
-        text: {
-          en: 'Break tether! (w/ ${partner})',
-          ja: '線切る (${partner})',
-        },
       },
     },
     {
