@@ -6,11 +6,12 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# Can use InCombat line to start timeline since the multiple phases do not
-# change the player's InCombat status.
+# Use autos/unique syncs instead of InCombat lines to start timelines for each phase
+# as timeline resets out of combat.
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0 "Start"
+0.5 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1A:/ window 1,0.5
 8.4 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5554:/ window 10,5
 13.4 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:5554:/
 
