@@ -3336,7 +3336,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Wind Spread',
           ja: '自分に風、散会',
-          cn: '风点名 散开',
+          cn: '风点名散开',
         },
       },
     },
