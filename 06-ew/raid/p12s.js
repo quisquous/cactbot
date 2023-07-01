@@ -2477,8 +2477,8 @@ Options.Triggers.push({
             const interceptOutputInvertMap = {
               leanNorth: 'leanSouth',
               leanSouth: 'leanNorth',
-              leanEast: 'leanEast',
-              leanWest: 'leanWest',
+              leanEast: 'leanWest',
+              leanWest: 'leanEast',
             };
             myInterceptOutput = interceptOutputInvertMap[data.classical2Intercept];
           }
