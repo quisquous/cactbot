@@ -3054,8 +3054,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Ultima Ray 1',
       type: 'StartsUsing',
       netRegex: { id: '8330', source: 'Hemitheos' },
-      // don't display after geocentrism2 / before ultima blow
-      condition: (data) => data.geocentrism2OutputStr === undefined,
+      condition: (data) => data.phase === 'gaiaochos1',
       infoText: (data, matches, output) => {
         data.darknessClones.push(matches);
         if (data.darknessClones.length !== 3)
