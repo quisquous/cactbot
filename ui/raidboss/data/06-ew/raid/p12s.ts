@@ -3042,7 +3042,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '832F', source: 'Pallas Athena', capture: false },
       condition: (data) => data.seenSecondTethers === false,
-      alertText: (_data, _matches, output) => output.stackForTethers!(),
+      infoText: (_data, _matches, output) => output.stackForTethers!(),
       outputStrings: {
         stackForTethers: {
           en: 'Stack for Tethers',
@@ -3072,8 +3072,8 @@ const triggerSet: TriggerSet<Data> = {
           dirSW: 'dirNE',
           dirW: 'dirE',
           dirNW: 'dirSE',
-        };
-        let safeDirs = Object.keys(unsafeMap) as DirectionOutput8[];
+        } as const;
+        let safeDirs = Object.keys(unsafeMap);
         data.darknessClones.forEach((clone) => {
           const x = parseFloat(clone.x);
           const y = parseFloat(clone.y);
@@ -3083,7 +3083,7 @@ const triggerSet: TriggerSet<Data> = {
         });
         if (safeDirs.length !== 2)
           return;
-        const [dir1, dir2] = safeDirs;
+        const [dir1, dir2] = safeDirs.sort();
         if (dir1 === undefined || dir2 === undefined)
           return;
         return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
@@ -3105,7 +3105,7 @@ const triggerSet: TriggerSet<Data> = {
         const uavCenterX = 100;
         const uavCenterY = 90;
 
-        const safeMap: Partial<Record<DirectionOutput8, DirectionOutput8[]>> = {
+        const safeMap: Readonly<Partial<Record<DirectionOutput8, readonly DirectionOutput8[]>>> = {
           // for each dir, identify the two dirs 90 degrees away
           dirN: ['dirW', 'dirE'],
           dirNE: ['dirNW', 'dirSE'],
