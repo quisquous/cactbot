@@ -2215,26 +2215,33 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combined: {
           en: '${dir} (Side) => ${mechanic} After',
+          cn: '去 ${dir}(侧) => 稍后 ${mechanic}',
         },
         east: Outputs.east,
         west: Outputs.west,
         eastFromSouth: {
           en: 'Right/East',
+          cn: '右/东',
         },
         eastFromNorth: {
           en: 'Left/East',
+          cn: '左/东',
         },
         westFromSouth: {
           en: 'Left/West',
+          cn: '左/西',
         },
         westFromNorth: {
           en: 'Right/West',
+          cn: '右/西',
         },
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
       },
     },
@@ -2272,23 +2279,28 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combined: {
           en: '${mechanic} => ${dir}',
+          cn: '${mechanic} => ${dir}',
         },
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
         inside: {
           en: 'Inside (avoid clones)',
+          cn: '内侧 (躲避场边激光)',
         },
         outside: {
           en: 'Outside (avoid clones)',
+          cn: '外侧 (躲避场边激光)',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
           ja: '直線回避',
-          cn: '远离场边激光',
+          cn: '躲避场边激光',
           ko: '직선 장판 피하기',
         },
       },
@@ -2323,14 +2335,17 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combined: {
           en: '${dir} => Out + ${mechanic}',
+          cn: '${dir} => 远离 + ${mechanic}',
         },
         north: Outputs.north,
         south: Outputs.south,
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
       },
     },
@@ -2400,30 +2415,39 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outsideNW: {
           en: 'Outside NW',
+          cn: '外侧 左上(西北)',
         },
         outsideNE: {
           en: 'Outside NE',
+          cn: '外侧 右上(东北)',
         },
         insideNW: {
           en: 'Inside NW',
+          cn: '内侧 左上(西北)',
         },
         insideNE: {
           en: 'Inside NE',
+          cn: '内侧 右上(东北)',
         },
         insideSW: {
           en: 'Inside SW',
+          cn: '内侧 左下(西南)',
         },
         insideSE: {
           en: 'Inside SE',
+          cn: '内侧 右下(东南)',
         },
         outsideSW: {
           en: 'Outside SW',
+          cn: '外侧 左下(西南)',
         },
         outsideSE: {
           en: 'Outside SE',
+          cn: '外侧 右下(东南)',
         },
         default: {
           en: 'Find safe tile',
+          cn: '找安全地板',
         },
       },
     },
@@ -2754,12 +2778,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitAlphaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Alpha)',
+          cn: '远离方块 => 引导射线 (α)',
         },
         baitBetaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Beta)',
+          cn: '远离方块 => 引导射线 (β)',
         },
         default: {
           en: 'Bait Proteans',
+          cn: '引导射线',
         },
       },
     },
@@ -2778,12 +2805,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitAlphaDebuff: {
           en: 'Bait Proteans (Alpha)',
+          cn: '引导射线 (α)',
         },
         baitBetaDebuff: {
           en: 'Bait Proteans (Beta)',
+          cn: '引导射线 (β)',
         },
         default: {
           en: 'Bait Proteans',
+          cn: '引导射线',
         },
       },
     },
@@ -2800,6 +2830,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         moveAvoid: {
           en: 'Move! (avoid shapes)',
+          cn: '快躲开! (远离方块)',
         },
         move: Outputs.moveAway,
       },
@@ -3040,9 +3071,11 @@ const triggerSet: TriggerSet<Data> = {
           blockPartner: {
             en: 'Block tether',
             ja: '相棒の前でビームを受ける',
+            cn: '挡枪',
           },
           stretchTether: {
             en: 'Stretch tether',
+            cn: '拉线',
           },
         };
 
@@ -3109,6 +3142,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Break tether! (w/ ${partner})',
           ja: '線切る (${partner})',
+          cn: '拉断连线 (和 ${partner})',
         },
       },
     },
@@ -3145,6 +3179,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Initial Fire (w/ ${partner})',
           ja: '自分に初炎 (${partner})', // FIXME
+          cn: '火标记点名 (和 ${partner})',
         },
       },
     },
@@ -3170,6 +3205,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Fire again',
           ja: '再び炎！無職とあたまわり',
+          cn: '二次火标记点名',
         },
       },
     },
@@ -3190,10 +3226,12 @@ const triggerSet: TriggerSet<Data> = {
         none: {
           en: 'Stack with Fire',
           ja: '無職！炎とあたまわり', // FIXME
+          cn: '与火标记分摊',
         },
         wind: {
           en: 'Spread Wind',
           ja: '風！ 散会',
+          cn: '风点名散开',
         },
       },
     },
@@ -3211,14 +3249,17 @@ const triggerSet: TriggerSet<Data> = {
           fire: {
             en: 'Fire (w/${team})',
             ja: '自分に炎 (${team})',
+            cn: '火标记点名 (和 ${team})',
           },
           wind: {
             en: 'Wind (w/${team})',
             ja: '自分に風 (${team})',
+            cn: '风标记点名 (和 ${team})',
           },
           windBeacon: {
             en: 'Initial Wind',
             ja: '自分に初風', // FIXME
+            cn: '风标记点名',
           },
         };
 
@@ -3263,10 +3304,12 @@ const triggerSet: TriggerSet<Data> = {
             // This is meant to be "person without wind who gets an extra stack".
             en: 'Fire Marker',
             ja: '自分に初炎!', // FIXME
+            cn: '火标记点名',
           },
           fireOn: {
             en: 'Fire on ${player}',
             ja: '初炎: ${player}',
+            cn: '火标记点 ${player}',
           },
         };
 
@@ -3293,6 +3336,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Wind Spread',
           ja: '自分に風、散会',
+          cn: '风点名 散开',
         },
       },
     },
@@ -3308,6 +3352,7 @@ const triggerSet: TriggerSet<Data> = {
           passFire: {
             en: 'Pass Fire',
             ja: '次に移る！',
+            cn: '传火!',
           },
           moveAway: Outputs.moveAway,
         };
@@ -3352,7 +3397,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Exaflare + Große AoE!', // FIXME
           fr: 'ExaBrasier + Grosse AoE!', // FIXME
           ja: 'エクサフレア + 全体攻撃',
-          cn: '地火 + 大AoE伤害！', // FIXME
+          cn: '地火 + 大AoE伤害!',
           ko: '엑사플레어 + 전체 공격!', // FIXME
         },
       },
