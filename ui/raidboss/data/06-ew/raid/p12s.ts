@@ -2690,8 +2690,8 @@ const triggerSet: TriggerSet<Data> = {
             const interceptOutputInvertMap: Record<InterceptOutput, InterceptOutput> = {
               leanNorth: 'leanSouth',
               leanSouth: 'leanNorth',
-              leanEast: 'leanEast',
-              leanWest: 'leanWest',
+              leanEast: 'leanWest',
+              leanWest: 'leanEast',
             };
             myInterceptOutput = interceptOutputInvertMap[data.classical2Intercept];
           }
