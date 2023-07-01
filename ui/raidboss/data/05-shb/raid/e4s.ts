@@ -544,6 +544,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Titan(?! )': 'タイタン',
