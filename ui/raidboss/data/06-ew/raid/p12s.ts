@@ -2557,15 +2557,15 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           classic1: {
             en: '${column}, ${row} => ${intercept}',
-            cn: '${column}, ${row} => ${intercept}'
+            cn: '${column}, ${row} => ${intercept}',
           },
           classic2initial: {
             en: 'Initial: ${column}, ${row} => ${intercept}',
-            cn: '先去 ${column}, ${row} => ${intercept}'
+            cn: '先去 ${column}, ${row} => ${intercept}',
           },
           classic2actual: {
             en: 'Actual: ${column}, ${row} => ${intercept}',
-            cn: '去 ${column}, ${row} => ${intercept}'
+            cn: '去 ${column}, ${row} => ${intercept}',
           },
           outsideWest: {
             en: 'Outside West',
