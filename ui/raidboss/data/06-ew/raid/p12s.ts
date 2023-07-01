@@ -3205,6 +3205,7 @@ const triggerSet: TriggerSet<Data> = {
         uav1: {
           en: 'Break tether (w/ ${partner})',
           ja: '線切る (${partner})',
+          cn: '拉断连线 (和 ${partner})',
         },
         uav2: {
           en: 'Break tether (w/ ${partner}) => ${geocentrism}',
