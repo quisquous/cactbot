@@ -2557,45 +2557,59 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           classic1: {
             en: '${column}, ${row} => ${intercept}',
+            cn: '${column}, ${row} => ${intercept}'
           },
           classic2initial: {
             en: 'Initial: ${column}, ${row} => ${intercept}',
+            cn: '先去 ${column}, ${row} => ${intercept}'
           },
           classic2actual: {
             en: 'Actual: ${column}, ${row} => ${intercept}',
+            cn: '去 ${column}, ${row} => ${intercept}'
           },
           outsideWest: {
             en: 'Outside West',
+            cn: '第1列 (左西 外侧)',
           },
           insideWest: {
             en: 'Inside West',
+            cn: '第2列 (左西 内侧)',
           },
           insideEast: {
             en: 'Inside East',
+            cn: '第3列 (右东 内侧)',
           },
           outsideEast: {
             en: 'Outside East',
+            cn: '第4列 (右东 外侧)',
           },
           northRow: {
             en: 'North Blue',
+            cn: '第1个蓝方块',
           },
           middleRow: {
             en: 'Middle Blue',
+            cn: '第2个蓝方块',
           },
           southRow: {
             en: 'South Blue',
+            cn: '第3个蓝方块',
           },
           leanNorth: {
             en: 'Lean North',
+            cn: '靠上(北)',
           },
           leanEast: {
             en: 'Lean East',
+            cn: '靠右(东)',
           },
           leanSouth: {
             en: 'Lean South',
+            cn: '靠下(南)',
           },
           leanWest: {
             en: 'Lean West',
+            cn: '靠左(西)',
           },
         };
 
