@@ -417,8 +417,8 @@ const triggerSet: TriggerSet<Data> = {
       options: {
         en: {
           'Call Required Swaps Only': 'agnostic',
-          '0+2 (Conga Line/HRT)': 'not',
-          '1+2 (Yuki)': 'one',
+          '0+2 (HRT)': 'not',
+          '1+2 (Yuki/Rinon)': 'one',
         },
       },
       default: 'agnostic',
