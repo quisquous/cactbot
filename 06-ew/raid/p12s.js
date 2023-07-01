@@ -2019,26 +2019,33 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir} (Side) => ${mechanic} After',
+          cn: '去 ${dir}(侧) => 稍后 ${mechanic}',
         },
         east: Outputs.east,
         west: Outputs.west,
         eastFromSouth: {
           en: 'Right/East',
+          cn: '右/东',
         },
         eastFromNorth: {
           en: 'Left/East',
+          cn: '左/东',
         },
         westFromSouth: {
           en: 'Left/West',
+          cn: '左/西',
         },
         westFromNorth: {
           en: 'Right/West',
+          cn: '右/西',
         },
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
       },
     },
@@ -2072,23 +2079,28 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${mechanic} => ${dir}',
+          cn: '${mechanic} => ${dir}',
         },
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
         inside: {
           en: 'Inside (avoid clones)',
+          cn: '内侧 (躲避场边激光)',
         },
         outside: {
           en: 'Outside (avoid clones)',
+          cn: '外侧 (躲避场边激光)',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
           ja: '直線回避',
-          cn: '远离场边激光',
+          cn: '躲避场边激光',
           ko: '직선 장판 피하기',
         },
       },
@@ -2121,14 +2133,17 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir} => Out + ${mechanic}',
+          cn: '${dir} => 远离 + ${mechanic}',
         },
         north: Outputs.north,
         south: Outputs.south,
         protean: {
           en: 'Protean',
+          cn: '八方分散',
         },
         partners: {
           en: 'Partners',
+          cn: '两人分摊',
         },
       },
     },
@@ -2198,30 +2213,39 @@ Options.Triggers.push({
       outputStrings: {
         outsideNW: {
           en: 'Outside NW',
+          cn: '外侧 左上(西北)',
         },
         outsideNE: {
           en: 'Outside NE',
+          cn: '外侧 右上(东北)',
         },
         insideNW: {
           en: 'Inside NW',
+          cn: '内侧 左上(西北)',
         },
         insideNE: {
           en: 'Inside NE',
+          cn: '内侧 右上(东北)',
         },
         insideSW: {
           en: 'Inside SW',
+          cn: '内侧 左下(西南)',
         },
         insideSE: {
           en: 'Inside SE',
+          cn: '内侧 右下(东南)',
         },
         outsideSW: {
           en: 'Outside SW',
+          cn: '外侧 左下(西南)',
         },
         outsideSE: {
           en: 'Outside SE',
+          cn: '外侧 右下(东南)',
         },
         default: {
           en: 'Find safe tile',
+          cn: '找安全地板',
         },
       },
     },
@@ -2331,45 +2355,59 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           classic1: {
             en: '${column}, ${row} => ${intercept}',
+            cn: '${column}, ${row} => ${intercept}',
           },
           classic2initial: {
             en: 'Initial: ${column}, ${row} => ${intercept}',
+            cn: '先去 ${column}, ${row} => ${intercept}',
           },
           classic2actual: {
             en: 'Actual: ${column}, ${row} => ${intercept}',
+            cn: '去 ${column}, ${row} => ${intercept}',
           },
           outsideWest: {
             en: 'Outside West',
+            cn: '第1列 (左西 外侧)',
           },
           insideWest: {
             en: 'Inside West',
+            cn: '第2列 (左西 内侧)',
           },
           insideEast: {
             en: 'Inside East',
+            cn: '第3列 (右东 内侧)',
           },
           outsideEast: {
             en: 'Outside East',
+            cn: '第4列 (右东 外侧)',
           },
           northRow: {
             en: 'North Blue',
+            cn: '第1个蓝方块',
           },
           middleRow: {
             en: 'Middle Blue',
+            cn: '第2个蓝方块',
           },
           southRow: {
             en: 'South Blue',
+            cn: '第3个蓝方块',
           },
           leanNorth: {
             en: 'Lean North',
+            cn: '靠上(北)',
           },
           leanEast: {
             en: 'Lean East',
+            cn: '靠右(东)',
           },
           leanSouth: {
             en: 'Lean South',
+            cn: '靠下(南)',
           },
           leanWest: {
             en: 'Lean West',
+            cn: '靠左(西)',
           },
         };
         if (
@@ -2538,12 +2576,15 @@ Options.Triggers.push({
       outputStrings: {
         baitAlphaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Alpha)',
+          cn: '远离方块 => 引导射线 (α)',
         },
         baitBetaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Beta)',
+          cn: '远离方块 => 引导射线 (β)',
         },
         default: {
           en: 'Bait Proteans',
+          cn: '引导射线',
         },
       },
     },
@@ -2562,12 +2603,15 @@ Options.Triggers.push({
       outputStrings: {
         baitAlphaDebuff: {
           en: 'Bait Proteans (Alpha)',
+          cn: '引导射线 (α)',
         },
         baitBetaDebuff: {
           en: 'Bait Proteans (Beta)',
+          cn: '引导射线 (β)',
         },
         default: {
           en: 'Bait Proteans',
+          cn: '引导射线',
         },
       },
     },
@@ -2584,6 +2628,7 @@ Options.Triggers.push({
       outputStrings: {
         moveAvoid: {
           en: 'Move! (avoid shapes)',
+          cn: '快躲开! (远离方块)',
         },
         move: Outputs.moveAway,
       },
@@ -2818,9 +2863,11 @@ Options.Triggers.push({
           blockPartner: {
             en: 'Block tether',
             ja: '相棒の前でビームを受ける',
+            cn: '挡枪',
           },
           stretchTether: {
             en: 'Stretch tether',
+            cn: '拉线',
           },
         };
         if (data.gaiochosTetherCollect.includes(data.me))
@@ -2885,6 +2932,7 @@ Options.Triggers.push({
         text: {
           en: 'Break tether! (w/ ${partner})',
           ja: '線切る (${partner})',
+          cn: '拉断连线 (和 ${partner})',
         },
       },
     },
@@ -2920,7 +2968,8 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Initial Fire (w/ ${partner})',
-          ja: '自分に初炎 (${partner})', // FIXME
+          ja: '自分に初炎 (${partner})',
+          cn: '火标记点名 (和 ${partner})',
         },
       },
     },
@@ -2946,6 +2995,7 @@ Options.Triggers.push({
         text: {
           en: 'Fire again',
           ja: '再び炎！無職とあたまわり',
+          cn: '二次火标记点名',
         },
       },
     },
@@ -2965,11 +3015,13 @@ Options.Triggers.push({
       outputStrings: {
         none: {
           en: 'Stack with Fire',
-          ja: '無職！炎とあたまわり', // FIXME
+          ja: '無職！炎とあたまわり',
+          cn: '与火标记分摊',
         },
         wind: {
           en: 'Spread Wind',
           ja: '風！ 散会',
+          cn: '风点名散开',
         },
       },
     },
@@ -2987,14 +3039,17 @@ Options.Triggers.push({
           fire: {
             en: 'Fire (w/${team})',
             ja: '自分に炎 (${team})',
+            cn: '火标记点名 (和 ${team})',
           },
           wind: {
             en: 'Wind (w/${team})',
             ja: '自分に風 (${team})',
+            cn: '风标记点名 (和 ${team})',
           },
           windBeacon: {
             en: 'Initial Wind',
-            ja: '自分に初風', // FIXME
+            ja: '自分に初風',
+            cn: '风标记点名',
           },
         };
         const myBuff = data.caloric1Buff[data.me];
@@ -3034,11 +3089,13 @@ Options.Triggers.push({
             // TODO: is "first marker" ambiguous with "first person to pass fire"
             // This is meant to be "person without wind who gets an extra stack".
             en: 'Fire Marker',
-            ja: '自分に初炎!', // FIXME
+            ja: '自分に初炎!',
+            cn: '火标记点名',
           },
           fireOn: {
             en: 'Fire on ${player}',
             ja: '初炎: ${player}',
+            cn: '火标记点 ${player}',
           },
         };
         const id = getHeadmarkerId(data, matches);
@@ -3064,6 +3121,7 @@ Options.Triggers.push({
         text: {
           en: 'Wind Spread',
           ja: '自分に風、散会',
+          cn: '风点名散开',
         },
       },
     },
@@ -3079,6 +3137,7 @@ Options.Triggers.push({
           passFire: {
             en: 'Pass Fire',
             ja: '次に移る！',
+            cn: '传火!',
           },
           moveAway: Outputs.moveAway,
         };
@@ -3118,7 +3177,7 @@ Options.Triggers.push({
           de: 'Exaflare + Große AoE!',
           fr: 'ExaBrasier + Grosse AoE!',
           ja: 'エクサフレア + 全体攻撃',
-          cn: '地火 + 大AoE伤害！',
+          cn: '地火 + 大AoE伤害!',
           ko: '엑사플레어 + 전체 공격!', // FIXME
         },
       },
