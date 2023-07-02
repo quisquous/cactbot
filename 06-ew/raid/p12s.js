@@ -266,6 +266,21 @@ Options.Triggers.push({
       },
       default: 'xsct',
     },
+    {
+      id: 'pangenesisFirstTower',
+      name: {
+        en: 'Pangenesis: First Towers',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Call Required Swaps Only': 'agnostic',
+          '0+2 (HRT)': 'not',
+          '1+2 (Yuki/Rinon)': 'one',
+        },
+      },
+      default: 'agnostic',
+    },
   ],
   timelineFile: 'p12s.txt',
   initData: () => {
@@ -332,7 +347,7 @@ Options.Triggers.push({
     {
       id: 'P12S Phase Tracker 3',
       type: 'StartsUsing',
-      netRegex: { id: ['8326', '8331', '8338'], source: 'Pallas Athena' },
+      netRegex: { id: ['8326', '8331', '8338', '833F'], source: 'Pallas Athena' },
       run: (data, matches) => {
         switch (matches.id) {
           case '8326':
@@ -346,6 +361,9 @@ Options.Triggers.push({
           case '8338':
             data.phase = 'caloric';
             data.caloricCounter++;
+            break;
+          case '833F':
+            data.phase = 'pangenesis';
             break;
         }
       },
@@ -1359,7 +1377,13 @@ Options.Triggers.push({
       id: 'P12S Engravement 3 Soak Tower/Bait Adds',
       type: 'GainsEffect',
       netRegex: { effectId: engravementTiltIds },
-      condition: (data, matches) => data.engravementCounter === 3 && data.me === matches.target,
+      condition: (data, matches) => {
+        if (!data.isDoorBoss)
+          return false;
+        if (data.engravementCounter === 3 && data.me === matches.target)
+          return true;
+        return false;
+      },
       suppressSeconds: 15,
       alertText: (data, matches, output) => {
         // lightTower/darkTower support players receive lightTilt/darkTilt once dropping their tower
@@ -2637,7 +2661,7 @@ Options.Triggers.push({
       id: 'P12S Pangenesis Collect',
       type: 'GainsEffect',
       netRegex: { effectId: pangenesisEffectIds },
-      condition: (data) => !data.pangenesisDebuffsCalled && !data.isDoorBoss,
+      condition: (data) => !data.pangenesisDebuffsCalled && data.phase === 'pangenesis',
       run: (data, matches) => {
         const id = matches.effectId;
         if (id === pangenesisEffects.darkTilt) {
@@ -2665,30 +2689,48 @@ Options.Triggers.push({
       delaySeconds: 0.5,
       durationSeconds: (data) => {
         // There's ~13 seconds until the first tower and ~18 until the second tower.
-        // Some strats have 'not' take the first tower or the second tower,
-        // so to avoid noisy alerts only extend duration for the long tilts.
+        // Based on the strat chosen in the triggerset config, to avoid noisy alerts,
+        // only extend duration for the long tilts and other players not taking the first towers.
         const myRole = data.pangenesisRole[data.me];
-        return myRole === 'longDark' || myRole === 'longLight' ? 17 : 12;
+        if (myRole === undefined)
+          return;
+        const strat = data.triggerSetConfig.pangenesisFirstTower;
+        const longerDuration = ['longDark', 'longLight'];
+        if (strat === 'one')
+          longerDuration.push('not');
+        else if (strat === 'not')
+          longerDuration.push('one');
+        return longerDuration.includes(myRole) ? 17 : 12;
       },
       suppressSeconds: 999999,
       alertText: (data, _matches, output) => {
+        const strat = data.triggerSetConfig.pangenesisFirstTower;
         const myRole = data.pangenesisRole[data.me];
         if (myRole === undefined)
           return;
         if (myRole === 'shortLight')
           return output.shortLight();
         if (myRole === 'longLight')
-          return output.longLight();
+          return strat === 'not' ? output.longLightMerge() : output.longLight();
         if (myRole === 'shortDark')
           return output.shortDark();
         if (myRole === 'longDark')
-          return output.longDark();
+          return strat === 'not' ? output.longDarkMerge() : output.longDark();
         const myBuddy = Object.keys(data.pangenesisRole).find((x) => {
           return data.pangenesisRole[x] === myRole && x !== data.me;
         });
         const player = myBuddy === undefined ? output.unknown() : data.ShortName(myBuddy);
-        if (myRole === 'not')
+        if (myRole === 'not') {
+          if (strat === 'not')
+            return output.nothingWithTower({ player: player, tower: output.firstTower() });
+          else if (strat === 'one')
+            return output.nothingWithTower({ player: player, tower: output.secondTower() });
           return output.nothing({ player: player });
+        }
+        if (strat === 'not')
+          return output.oneWithTower({ player: player, tower: output.secondTowerMerge() });
+        else if (strat === 'one')
+          return output.oneWithTower({ player: player, tower: output.firstTower() });
         return output.one({ player: player });
       },
       run: (data) => data.pangenesisDebuffsCalled = true,
@@ -2699,11 +2741,17 @@ Options.Triggers.push({
           cn: '闲人: 踩第2轮塔 (${player})',
           ko: '디버프 없음 (+ ${player})',
         },
+        nothingWithTower: {
+          en: 'Nothing (w/${player}) - ${tower}',
+        },
         one: {
           en: 'One (w/${player})',
           ja: '因子1: 1番目の塔 (${player})',
           cn: '单因子: 踩第1轮塔 (${player})',
           ko: '1번 (+ ${player})',
+        },
+        oneWithTower: {
+          en: 'One (w/${player}) - ${tower}',
         },
         shortLight: {
           en: 'Short Light (get first dark)',
@@ -2717,6 +2765,9 @@ Options.Triggers.push({
           cn: '白2: 踩第2轮黑塔',
           ko: '긴 빛 (두번째 어둠 대상)',
         },
+        longLightMerge: {
+          en: 'Long Light (get second dark - merge first)',
+        },
         shortDark: {
           en: 'Short Dark (get first light)',
           ja: '早: 1番目のひかり塔',
@@ -2729,6 +2780,18 @@ Options.Triggers.push({
           cn: '黑2: 踩第2轮白塔',
           ko: '긴 어둠 (두번째 빛 대상)',
         },
+        longDarkMerge: {
+          en: 'Long Dark (get second light - merge first)',
+        },
+        firstTower: {
+          en: 'First Tower',
+        },
+        secondTower: {
+          en: 'Second Tower',
+        },
+        secondTowerMerge: {
+          en: 'Second Tower (Merge first)',
+        },
         unknown: Outputs.unknown,
       },
     },
@@ -2736,7 +2799,7 @@ Options.Triggers.push({
       id: 'P12S Pangenesis Tilt Gain',
       type: 'GainsEffect',
       netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
-      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      condition: (data, matches) => matches.target === data.me && data.phase === 'pangenesis',
       run: (data, matches) => {
         const color = matches.effectId === pangenesisEffects.lightTilt ? 'light' : 'dark';
         data.pangenesisCurrentColor = color;
@@ -2746,7 +2809,7 @@ Options.Triggers.push({
       id: 'P12S Pangenesis Tilt Lose',
       type: 'LosesEffect',
       netRegex: { effectId: [pangenesisEffects.lightTilt, pangenesisEffects.darkTilt] },
-      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      condition: (data, matches) => matches.target === data.me && data.phase === 'pangenesis',
       run: (data) => data.pangenesisCurrentColor = undefined,
     },
     {
@@ -2754,7 +2817,7 @@ Options.Triggers.push({
       type: 'Ability',
       // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
       netRegex: { id: ['8343', '8344'] },
-      condition: (data, matches) => matches.target === data.me && !data.isDoorBoss,
+      condition: (data, matches) => matches.target === data.me && data.phase === 'pangenesis',
       run: (data, matches) => {
         const color = matches.id === '8343' ? 'light' : 'dark';
         data.lastPangenesisTowerColor = color;
@@ -2766,7 +2829,7 @@ Options.Triggers.push({
       // 8343 = Umbral Advent (light tower), 8344 = Astral Advent (dark tower)
       // There's always 1-2 of each, so just watch one.
       netRegex: { id: '8343', capture: false },
-      condition: (data) => !data.isDoorBoss,
+      condition: (data) => data.phase === 'pangenesis',
       preRun: (data) => data.pangenesisTowerCount++,
       suppressSeconds: 3,
       alarmText: (data, _matches, output) => {
@@ -2790,7 +2853,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: pangenesisEffects.lightTilt, capture: false },
       condition: (data) => {
-        if (data.isDoorBoss)
+        if (data.phase !== 'pangenesis')
           return false;
         return data.lastPangenesisTowerColor !== undefined && data.pangenesisTowerCount !== 3;
       },
@@ -2826,21 +2889,43 @@ Options.Triggers.push({
             ko: '어둠 기둥 (교체)',
           },
         };
-        let tower;
-        if (data.pangenesisCurrentColor === 'light')
-          tower = 'dark';
-        else if (data.pangenesisCurrentColor === 'dark')
-          tower = 'light';
-        else
-          tower = data.lastPangenesisTowerColor;
-        if (tower === undefined)
+        const strat = data.triggerSetConfig.pangenesisFirstTower;
+        const myRole = data.pangenesisRole[data.me];
+        if (myRole === undefined)
           return;
-        const isSameTower = tower === data.lastPangenesisTowerColor;
-        if (isSameTower)
-          return { infoText: tower === 'light' ? output.lightTower() : output.darkTower() };
-        if (tower === 'light')
-          return { alertText: output.lightTowerSwitch() };
-        return { alertText: output.darkTowerSwitch() };
+        const switchOutput = data.lastPangenesisTowerColor === 'light'
+          ? 'darkTowerSwitch'
+          : 'lightTowerSwitch';
+        const stayOutput = data.lastPangenesisTowerColor === 'light' ? 'lightTower' : 'darkTower';
+        // 2nd towers
+        if (data.pangenesisTowerCount === 1) {
+          if (strat === 'not') {
+            // in the 0+2 strat, 2nd tower responsibilities are fixed based on 1st tower soaks.
+            // the shortLight, shortDark, and both 'not' players always take the northern (opposite color) towers.
+            // the longLight, longDark, and both 'one' players soak the southern (same color) towers - per their still-active Pangenesis Initial call
+            const swapRoles = ['not', 'shortLight', 'shortDark'];
+            if (swapRoles.includes(myRole))
+              return { infoText: output[switchOutput]() }; // infoText because, although a switch, it's 100% anticipated and should be treated as a reminder
+            return;
+          } else if (strat === 'one') {
+            // in the 1+2 strat, 2nd tower responsibilities are flexible based on debuffs applied by the 1st tower
+            // the 'not' players take the northern towers and the longLight and longDark players taken the southern towers
+            // for the 'one' and shortDark/shortLight players, whomever receives a same-color debuff from the first tower goes north (swaps), the other goes south
+            const swapRoles = ['one', 'shortLight', 'shortDark'];
+            if (data.pangenesisCurrentColor === data.lastPangenesisTowerColor)
+              return { alertText: output[switchOutput]() };
+            else if (swapRoles.includes(myRole))
+              return { infoText: output[stayOutput]() };
+          } else if (data.pangenesisCurrentColor === data.lastPangenesisTowerColor)
+            return { alertText: output[switchOutput]() }; // if no strat, only call a swap for players who must swap or deadge
+          return;
+        }
+        // 3rd towers
+        // in both the 0+2 and 1+2 strats, only the players whose debuff is incompatible with the next tower will swap; all others stay
+        if (data.pangenesisCurrentColor === data.lastPangenesisTowerColor)
+          return { alertText: output[switchOutput]() };
+        if (strat === 'not' || strat === 'one')
+          return { infoText: output[stayOutput]() };
       },
     },
     {
