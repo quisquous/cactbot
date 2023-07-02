@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 #~~~~~~~~~~~~~~~~#
 # SPECTRAL THIEF #
 #~~~~~~~~~~~~~~~~#
@@ -54,7 +52,7 @@ hideall "--sync--"
 # -ii 4F51 4F62 4F64 53B5 53B6 53B7 53B8 53B9 53BA
 
 1000.0 "Start" sync / 00:0839::The Summer Ballroom will be sealed off/ window 1000,5
-1012.8 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/ window 12.8,5
+1012.8 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/ window 1012.8,5
 1020.0 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
 1030.2 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/ window 30,30
 1046.7 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
@@ -98,7 +96,7 @@ hideall "--sync--"
 # -ic "Steelarm Cerigg" "Giott The Aleforged" "Lue-Reeq Of The Gilded Bow" "Granson Of The Mournful Blade"
 
 2000.0 "Start" sync / 00:0839::The Illuminated Plaza will be sealed off/ window 2000,5
-2012.0 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 12,5
+2012.0 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 2012,5
 2024.4 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
 2036.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
 2041.0 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/

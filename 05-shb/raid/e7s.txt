@@ -9,11 +9,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
-4.0 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D59:/ window 5,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 13.0 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/ window 13,20
 25.2 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
 27.8 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/

@@ -6,10 +6,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Phase 1
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 6.0 "--sync--" sync / 14:[^:]*:The Diamond Weapon:5FA7:/ window 10,10
 11.0 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
 40.3 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9B:/

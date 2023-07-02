@@ -3,9 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Cladoselache, Doliodus
 # -p 3E04:110.5 3E07:302
 # helpful log regex: ( 22:.*(Cladoselache|Doliodus)| 14:[^:]*:(Cladoselache|Doliodus)| 1[56]:........:(Cladoselache|Doliodus):(?!368:)|sealed| 19:(Cladoselache|Doliodus) was defeated)
@@ -14,8 +11,7 @@ hideall "--sync--"
 # This is maybe like +/- 1-2 seconds?
 
 100.0 "--sync--" sync / 00:0839::Ichthyology will be sealed off/ window 100,0
-103.0 "--sync--" sync / 1[56]:[^:]*:Cladoselache:368:/ window 103,0
-110.5 "Protolithic Puncture" sync / 1[56]:[^:]*:Cladoselache:3E04:/
+110.5 "Protolithic Puncture" sync / 1[56]:[^:]*:Cladoselache:3E04:/ window 111,8
 119.5 "Tidal Guillotine" sync / 1[56]:[^:]*:Cladoselache:3E08:/
 128.7 "--2x targetable--" sync / 22:........:Doliodus:........:Doliodus:01/
 129.7 "--1x targetable--" sync / 22:........:Cladoselache:........:Cladoselache:00/

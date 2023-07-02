@@ -4,14 +4,11 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # ic "Stormcloud" -ii 4B8F 4B93 4B97 4B99 4B9A 4BA1 4BA2
 
 # Opening block
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-0.5 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BA2:/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 13.6 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 15,15
 20.9 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
 26.8 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/ window 30,30

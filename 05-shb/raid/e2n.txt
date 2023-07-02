@@ -6,11 +6,8 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "Spell-In-Waiting"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync / 1[56]:[^:]*:Voidwalker:3E4C:/ window 1,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 10.7 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E3B:/ window 11,5
 27.7 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E3C:/
 46.7 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E4D:/

@@ -3,9 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Greater Armadillo
 # -ii 3CEA 3CE8 -p 3CE5:115
 100.0 "--sync--" sync / 00:0839::Terminus will be sealed off/ window 100,0
@@ -46,7 +43,7 @@ hideall "--sync--"
 ### Amphibious Talos
 # -ii 3CF0 -p 3CEB:515.5
 500.0 "--sync--" sync / 00:0839::Malikah's Gift will be sealed off/ window 500,0
-515.5 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+515.5 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/ window 515.5,10
 527.1 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
 531.3 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
 534.1 "High Pressure" sync / 1[56]:[^:]*:Amphibious Talos:3CEC:/

@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 #~~~~~~~~~#
 # AMHULUK #
 #~~~~~~~~~#
@@ -52,7 +50,7 @@ hideall "--sync--"
 # -ii 5B56 5B50
 
 2000.0 "Start" sync / 00:0839::Sunseat will be sealed off/ window 2000,5
-2010.0 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/
+2010.0 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/ window 2010,10
 2015.0 "Upburst x4" # sync / 1[56]:[^:]*:Lunar Nail:605B:/
 2021.6 "Big Burst x4" # sync / 1[56]:[^:]*:Lunar Nail:5B48:/
 2029.2 "Perigean Breath" sync / 1[56]:[^:]*:Lunar Bahamut:5B59:/ window 30,10

@@ -2,14 +2,11 @@
 # Eden's Gate: Sepulture
 # -p 40F7:13 -ii 413D 40EF 41B4 40FC 40FB 40ED 40F0 43E6 40EB 40FE 4101 4103 40F1 40FD
 
-
 hideall "--Reset--"
 hideall "--sync--"
 hideall "Earthen Armor"
 hideall "Earthen Gauntlets"
 hideall "Earthen Wheels"
-
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 # Phase chart
 # 1->2->3->
@@ -19,9 +16,8 @@ hideall "Earthen Wheels"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.0 "--sync--" sync / 1[56]:[^:]*:Titan:413D:/ window 2,0
-13.0 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+13.0 "Voice Of The Land" sync / 1[56]:[^:]*:Titan:40F7:/ window 13,8
 21.3 "Evil Earth" sync / 1[56]:[^:]*:Titan:40EE:/
 30.5 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:40EA:/
 41.6 "Stonecrusher" sync / 1[56]:[^:]*:Titan:40F9:/ window 30,30

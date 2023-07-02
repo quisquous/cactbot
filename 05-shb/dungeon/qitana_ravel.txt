@@ -3,9 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Lozatl
 # -p 3C89:113.7
 100.0 "--sync--" sync / 00:0839::The Divine Threshold will be sealed off/ window 100,0

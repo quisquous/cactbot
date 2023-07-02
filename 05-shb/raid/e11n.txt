@@ -4,13 +4,10 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # -ii 366 4B18 4B19 4B1B
 
 # Opening Block. Introduces Fire/Lightning in a random order.
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.2 "--sync--" sync / 1[56]:[^:]*:Fatebreaker:366:/ window 1.2,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 11.0 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 11,5
 21.8 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:562[CE]:/
 23.5 "Blastburn/Burnout" # sync / 1[56]:[^:]*:Fatebreaker:562[DF]:/
