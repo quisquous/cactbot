@@ -3150,7 +3150,7 @@ const triggerSet: TriggerSet<Data> = {
         const uavCenterX = 100;
         const uavCenterY = 90;
 
-        const safeMap: Readonly<Partial<Record<DirectionOutput8, readonly DirectionOutput8[]>>> = {
+        const safeMap: Record<DirectionOutput8, readonly DirectionOutput8[]> = {
           // for each dir, identify the two dirs 90 degrees away
           dirN: ['dirW', 'dirE'],
           dirNE: ['dirNW', 'dirSE'],
@@ -3160,12 +3160,13 @@ const triggerSet: TriggerSet<Data> = {
           dirSW: ['dirNW', 'dirSE'],
           dirW: ['dirN', 'dirS'],
           dirNW: ['dirNE', 'dirSW'],
-        };
+          unknown: [],
+        } as const;
 
         const x = parseFloat(matches.x);
         const y = parseFloat(matches.y);
         const cloneDir = Directions.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
-        const [dir1, dir2] = safeMap[cloneDir] ?? [];
+        const [dir1, dir2] = safeMap[cloneDir];
         if (dir1 === undefined || dir2 === undefined)
           return;
         return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
