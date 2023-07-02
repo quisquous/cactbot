@@ -2885,11 +2885,11 @@ const triggerSet: TriggerSet<Data> = {
         if (myRole === 'shortLight')
           return output.shortLight!();
         if (myRole === 'longLight')
-          return output.longLight!();
+          return strat === 'not' ? output.longLightMerge!() : output.longLight!();
         if (myRole === 'shortDark')
           return output.shortDark!();
         if (myRole === 'longDark')
-          return output.longDark!();
+          return strat === 'not' ? output.longDarkMerge!() : output.longDark!();
 
         const myBuddy = Object.keys(data.pangenesisRole).find((x) => {
           return data.pangenesisRole[x] === myRole && x !== data.me;
@@ -2903,7 +2903,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.nothing!({ player: player });
         }
         if (strat === 'not')
-          return output.oneWithTower!({ player: player, tower: output.secondTower!() });
+          return output.oneWithTower!({ player: player, tower: output.secondTowerMerge!() });
         else if (strat === 'one')
           return output.oneWithTower!({ player: player, tower: output.firstTower!() });
         return output.one!({ player: player });
@@ -2940,6 +2940,9 @@ const triggerSet: TriggerSet<Data> = {
           cn: '白2: 踩第2轮黑塔',
           ko: '긴 빛 (두번째 어둠 대상)',
         },
+        longLightMerge: {
+          en: 'Long Light (get second dark - merge first)',
+        },
         shortDark: {
           en: 'Short Dark (get first light)',
           ja: '早: 1番目のひかり塔',
@@ -2952,11 +2955,17 @@ const triggerSet: TriggerSet<Data> = {
           cn: '黑2: 踩第2轮白塔',
           ko: '긴 어둠 (두번째 빛 대상)',
         },
+        longDarkMerge: {
+          en: 'Long Dark (get second light - merge first)',
+        },
         firstTower: {
           en: 'First Tower',
         },
         secondTower: {
           en: 'Second Tower',
+        },
+        secondTowerMerge: {
+          en: 'Second Tower (Merge first)',
         },
         unknown: Outputs.unknown,
       },
