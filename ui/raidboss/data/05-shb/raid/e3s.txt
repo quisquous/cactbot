@@ -5,12 +5,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync / 1[56]:[^:]*:Leviathan:42D9:/ window 1,0
-12.8 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+12.8 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FDC:/ window 13,10
 23.9 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FE0:/
 43.3 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FEF:/
 46.1 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FF2:/
