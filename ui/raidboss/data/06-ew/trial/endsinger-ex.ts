@@ -79,12 +79,15 @@ export const orbOutputStrings: OutputStrings = {
   w: Outputs.dirW,
   knockback: {
     en: '${dir} Knockback',
+    ko: '${dir} 넉백',
   },
   knockbackWithHead: {
     en: '${dir1} Knockback -> ${dir2}',
+    ko: '${dir1} 넉백 -> ${dir2}',
   },
   aoeWithHead: {
     en: 'Go ${dir1} (lean ${dir2})',
+    ko: '${dir1}쪽으로 (살짝 ${dir2}쪽으로)',
   },
 };
 
@@ -334,12 +337,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         sides: {
           en: 'Out (Sides)',
+          ko: '밖으로 (양 옆)',
         },
         sidesWithTower: {
           en: 'Tower + Outside',
+          ko: '기둥 + 양 옆',
         },
         sidesWithStacks: {
           en: 'Outside + Healer Groups',
+          ko: '양 옆 + 힐러 그룹',
         },
       },
     },
@@ -360,12 +366,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         middle: {
           en: 'Inside (Middle)',
+          ko: '안으로 (가운데)',
         },
         middleWithTower: {
           en: 'Tower + Inside',
+          ko: '기둥 + 안으로',
         },
         middleWithStacks: {
           en: 'Inside + Healer Groups',
+          ko: '안으로 + 힐러 그룹',
         },
       },
     },
@@ -416,6 +425,7 @@ const triggerSet: TriggerSet<Data> = {
         ...orbOutputStrings,
         temp: {
           en: '${text}',
+          ko: '${text}',
         },
       },
     },
