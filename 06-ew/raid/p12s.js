@@ -255,6 +255,7 @@ Options.Triggers.push({
       id: 'classicalConceptsPairOrder',
       name: {
         en: 'Classical Concepts: Pairs Order (Left->Right)',
+        ko: 'Classical Concepts: 도형 순서 (왼 -> 오)',
       },
       type: 'select',
       options: {
@@ -263,6 +264,11 @@ Options.Triggers.push({
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
         },
+        ko: {
+          'X□○Δ (파보빨초)': 'xsct',
+          '○XΔ□ (1234)': 'cxts',
+          '○Δ□X (동세네엑)': 'ctsx',
+        },
       },
       default: 'xsct',
     },
@@ -270,12 +276,18 @@ Options.Triggers.push({
       id: 'pangenesisFirstTower',
       name: {
         en: 'Pangenesis: First Towers',
+        ko: 'Pangenesis: 첫번째 기둥',
       },
       type: 'select',
       options: {
         en: {
           'Call Required Swaps Only': 'agnostic',
           '0+2 (HRT)': 'not',
+          '1+2 (Yuki/Rinon)': 'one',
+        },
+        ko: {
+          '교체가 필요할 때만 알림': 'agnostic',
+          '0+2 (빠른 융합)': 'not',
           '1+2 (Yuki/Rinon)': 'one',
         },
       },
@@ -2046,32 +2058,39 @@ Options.Triggers.push({
         combined: {
           en: '${dir} (Side) => ${mechanic} After',
           cn: '去 ${dir}(侧) => 稍后 ${mechanic}',
+          ko: '${dir} (옆) => ${mechanic}',
         },
         east: Outputs.east,
         west: Outputs.west,
         eastFromSouth: {
           en: 'Right/East',
           cn: '右/东',
+          ko: '오른쪽/동쪽',
         },
         eastFromNorth: {
           en: 'Left/East',
           cn: '左/东',
+          ko: '왼쪽/동쪽',
         },
         westFromSouth: {
           en: 'Left/West',
           cn: '左/西',
+          ko: '왼쪽/서쪽',
         },
         westFromNorth: {
           en: 'Right/West',
           cn: '右/西',
+          ko: '오른쪽/서쪽',
         },
         protean: {
           en: 'Protean',
           cn: '八方分散',
+          ko: '8방향 산개',
         },
         partners: {
           en: 'Partners',
           cn: '两人分摊',
+          ko: '파트너',
         },
       },
     },
@@ -2106,22 +2125,27 @@ Options.Triggers.push({
         combined: {
           en: '${mechanic} => ${dir}',
           cn: '${mechanic} => ${dir}',
+          ko: '${mechanic} => ${dir}',
         },
         protean: {
           en: 'Protean',
           cn: '八方分散',
+          ko: '8방향 산개',
         },
         partners: {
           en: 'Partners',
           cn: '两人分摊',
+          ko: '파트너',
         },
         inside: {
           en: 'Inside (avoid clones)',
           cn: '内侧 (躲避场边激光)',
+          ko: '안쪽 (분신 피하기)',
         },
         outside: {
           en: 'Outside (avoid clones)',
           cn: '外侧 (躲避场边激光)',
+          ko: '바깥쪽 (분신 피하기)',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
@@ -2160,16 +2184,19 @@ Options.Triggers.push({
         combined: {
           en: '${dir} => Out + ${mechanic}',
           cn: '${dir} => 远离 + ${mechanic}',
+          ko: '${dir} => 밖으로 + ${mechanic}',
         },
         north: Outputs.north,
         south: Outputs.south,
         protean: {
           en: 'Protean',
           cn: '八方分散',
+          ko: '8방향 산개',
         },
         partners: {
           en: 'Partners',
           cn: '两人分摊',
+          ko: '파트너',
         },
       },
     },
@@ -2240,38 +2267,47 @@ Options.Triggers.push({
         outsideNW: {
           en: 'Outside NW',
           cn: '外侧 左上(西北)',
+          ko: '북서 바깥',
         },
         outsideNE: {
           en: 'Outside NE',
           cn: '外侧 右上(东北)',
+          ko: '북동 바깥',
         },
         insideNW: {
           en: 'Inside NW',
           cn: '内侧 左上(西北)',
+          ko: '북서 안',
         },
         insideNE: {
           en: 'Inside NE',
           cn: '内侧 右上(东北)',
+          ko: '북동 안',
         },
         insideSW: {
           en: 'Inside SW',
           cn: '内侧 左下(西南)',
+          ko: '남서 안',
         },
         insideSE: {
           en: 'Inside SE',
           cn: '内侧 右下(东南)',
+          ko: '남동 안',
         },
         outsideSW: {
           en: 'Outside SW',
           cn: '外侧 左下(西南)',
+          ko: '남서 바깥',
         },
         outsideSE: {
           en: 'Outside SE',
           cn: '外侧 右下(东南)',
+          ko: '남동 바깥',
         },
         default: {
           en: 'Find safe tile',
           cn: '找安全地板',
+          ko: '안전한 타일 찾기',
         },
       },
     },
@@ -2397,58 +2433,72 @@ Options.Triggers.push({
           classic1: {
             en: '${column}, ${row} => ${intercept}',
             cn: '${column}, ${row} => ${intercept}',
+            ko: '${column}, ${row} => ${intercept}',
           },
           classic2initial: {
             en: 'Initial: ${column}, ${row} => ${intercept}',
             cn: '先去 ${column}, ${row} => ${intercept}',
+            ko: '시작: ${column}, ${row} => ${intercept}',
           },
           classic2actual: {
             en: 'Actual: ${column}, ${row} => ${intercept}',
             cn: '去 ${column}, ${row} => ${intercept}',
+            ko: '실제: ${column}, ${row} => ${intercept}',
           },
           outsideWest: {
             en: 'Outside West',
             cn: '第1列 (左西 外侧)',
+            ko: '1열 (서쪽 바깥)',
           },
           insideWest: {
             en: 'Inside West',
             cn: '第2列 (左西 内侧)',
+            ko: '2열 (서쪽 안)',
           },
           insideEast: {
             en: 'Inside East',
             cn: '第3列 (右东 内侧)',
+            ko: '3열 (동쪽 안)',
           },
           outsideEast: {
             en: 'Outside East',
             cn: '第4列 (右东 外侧)',
+            ko: '4열 (동쪽 바깥)',
           },
           northRow: {
             en: 'North Blue',
             cn: '第1个蓝方块',
+            ko: '위쪽 파란색',
           },
           middleRow: {
             en: 'Middle Blue',
             cn: '第2个蓝方块',
+            ko: '가운데 파란색',
           },
           southRow: {
             en: 'South Blue',
             cn: '第3个蓝方块',
+            ko: '아래쪽 파란색',
           },
           leanNorth: {
             en: 'Lean North',
             cn: '靠上(北)',
+            ko: '위쪽',
           },
           leanEast: {
             en: 'Lean East',
             cn: '靠右(东)',
+            ko: '오른쪽',
           },
           leanSouth: {
             en: 'Lean South',
             cn: '靠下(南)',
+            ko: '아래쪽',
           },
           leanWest: {
             en: 'Lean West',
             cn: '靠左(西)',
+            ko: '왼쪽',
           },
         };
         if (
@@ -2618,14 +2668,17 @@ Options.Triggers.push({
         baitAlphaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Alpha)',
           cn: '远离方块 => 引导射线 (α)',
+          ko: '도형 피하기 => 장판 유도 (알파)',
         },
         baitBetaDebuff: {
           en: 'Avoid Shapes => Bait Proteans (Beta)',
           cn: '远离方块 => 引导射线 (β)',
+          ko: '도형 피하기 => 장판 유도 (베타)',
         },
         default: {
           en: 'Bait Proteans',
           cn: '引导射线',
+          ko: '장판 유도',
         },
       },
     },
@@ -2645,14 +2698,17 @@ Options.Triggers.push({
         baitAlphaDebuff: {
           en: 'Bait Proteans (Alpha)',
           cn: '引导射线 (α)',
+          ko: '장판 유도 (알파)',
         },
         baitBetaDebuff: {
           en: 'Bait Proteans (Beta)',
           cn: '引导射线 (β)',
+          ko: '장판 유도 (베타)',
         },
         default: {
           en: 'Bait Proteans',
           cn: '引导射线',
+          ko: '장판 유도',
         },
       },
     },
@@ -2670,6 +2726,7 @@ Options.Triggers.push({
         moveAvoid: {
           en: 'Move! (avoid shapes)',
           cn: '快躲开! (远离方块)',
+          ko: '이동! (도형 피하기)',
         },
         move: Outputs.moveAway,
       },
@@ -2760,6 +2817,7 @@ Options.Triggers.push({
         },
         nothingWithTower: {
           en: 'Nothing (w/${player}) - ${tower}',
+          ko: '디버프 없음 (+ ${player}) - ${tower}',
         },
         one: {
           en: 'One (w/${player})',
@@ -2769,6 +2827,7 @@ Options.Triggers.push({
         },
         oneWithTower: {
           en: 'One (w/${player}) - ${tower}',
+          ko: '1번 (+ ${player}) - ${tower}',
         },
         shortLight: {
           en: 'Short Light (get first dark)',
@@ -2784,6 +2843,7 @@ Options.Triggers.push({
         },
         longLightMerge: {
           en: 'Long Light (get second dark - merge first)',
+          ko: '긴 빛 (두번째 어둠 대상 - 융합 먼저)',
         },
         shortDark: {
           en: 'Short Dark (get first light)',
@@ -2799,15 +2859,19 @@ Options.Triggers.push({
         },
         longDarkMerge: {
           en: 'Long Dark (get second light - merge first)',
+          ko: '긴 어둠 (두번째 빛 대상 - 융합 먼저)',
         },
         firstTower: {
           en: 'First Tower',
+          ko: '첫번째 기둥',
         },
         secondTower: {
           en: 'Second Tower',
+          ko: '두번째 기둥',
         },
         secondTowerMerge: {
           en: 'Second Tower (Merge first)',
+          ko: '두번째 기둥 (융합 먼저)',
         },
         unknown: Outputs.unknown,
       },
@@ -2954,6 +3018,7 @@ Options.Triggers.push({
       outputStrings: {
         stackForTethers: {
           en: 'Stack for Tethers',
+          ko: '선 생기기 전에 모이기',
         },
       },
     },
@@ -2997,6 +3062,7 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir1} / ${dir2} Safe',
+          ko: '${dir1} / ${dir2} 안전',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -3033,6 +3099,7 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir1} / ${dir2} Safe',
+          ko: '${dir1} / ${dir2} 안전',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -3066,9 +3133,11 @@ Options.Triggers.push({
           en: 'Break tether (w/ ${partner})',
           ja: '線切る (${partner})',
           cn: '拉断连线 (和 ${partner})',
+          ko: '선 끊기 (+ ${partner})',
         },
         uav2: {
           en: 'Break tether (w/ ${partner}) => ${geocentrism}',
+          ko: '선 끊기 (+ ${partner}) => ${geocentrism}',
         },
         unknown: Outputs.unknown,
       },
@@ -3094,10 +3163,12 @@ Options.Triggers.push({
             en: 'Block tether',
             ja: '相棒の前でビームを受ける',
             cn: '挡枪',
+            ko: '선 대상자 앞에 서기',
           },
           stretchTether: {
             en: 'Stretch tether',
             cn: '拉线',
+            ko: '선 늘리기',
           },
         };
         if (data.gaiaochosTetherCollect.includes(data.me))
@@ -3176,6 +3247,7 @@ Options.Triggers.push({
           en: 'Initial Fire (w/ ${partner})',
           ja: '自分に初炎 (${partner})',
           cn: '火标记点名 (和 ${partner})',
+          ko: '첫 불 대상자 (+ ${partner})',
         },
       },
     },
@@ -3202,6 +3274,7 @@ Options.Triggers.push({
           en: 'Fire again',
           ja: '再び炎！無職とあたまわり',
           cn: '二次火标记点名',
+          ko: '두번째 불',
         },
       },
     },
@@ -3223,11 +3296,13 @@ Options.Triggers.push({
           en: 'Stack with Fire',
           ja: '無職！炎とあたまわり',
           cn: '与火标记分摊',
+          ko: '불 쉐어',
         },
         wind: {
           en: 'Spread Wind',
           ja: '風！ 散会',
           cn: '风点名散开',
+          ko: '바람 산개',
         },
       },
     },
@@ -3246,16 +3321,19 @@ Options.Triggers.push({
             en: 'Fire (w/${team})',
             ja: '自分に炎 (${team})',
             cn: '火标记点名 (和 ${team})',
+            ko: '불 (+ ${team})',
           },
           wind: {
             en: 'Wind (w/${team})',
             ja: '自分に風 (${team})',
             cn: '风标记点名 (和 ${team})',
+            ko: '바람 (+ ${team})',
           },
           windBeacon: {
             en: 'Initial Wind',
             ja: '自分に初風',
             cn: '风标记点名',
+            ko: '첫 바람 대상자',
           },
         };
         const myBuff = data.caloric1Buff[data.me];
@@ -3297,11 +3375,13 @@ Options.Triggers.push({
             en: 'Fire Marker',
             ja: '自分に初炎!',
             cn: '火标记点名',
+            ko: '불 대상자',
           },
           fireOn: {
             en: 'Fire on ${player}',
             ja: '初炎: ${player}',
             cn: '火标记点 ${player}',
+            ko: '불: ${player}',
           },
         };
         const id = getHeadmarkerId(data, matches);
@@ -3328,6 +3408,7 @@ Options.Triggers.push({
           en: 'Wind Spread',
           ja: '自分に風、散会',
           cn: '风点名散开',
+          ko: '바람 산개',
         },
       },
     },
@@ -3344,6 +3425,7 @@ Options.Triggers.push({
             en: 'Pass Fire',
             ja: '次に移る！',
             cn: '传火!',
+            ko: '불 건네기',
           },
           moveAway: Outputs.moveAway,
         };
@@ -3384,7 +3466,7 @@ Options.Triggers.push({
           fr: 'ExaBrasier + Grosse AoE!',
           ja: 'エクサフレア + 全体攻撃',
           cn: '地火 + 大AoE伤害!',
-          ko: '엑사플레어 + 전체 공격!', // FIXME
+          ko: '엑사플레어 + 전체 공격!',
         },
       },
     },
