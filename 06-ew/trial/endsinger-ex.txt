@@ -28,15 +28,15 @@ hideall "--sync--"
 111.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
 122.3 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
-132.6 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-139.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+132.6 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+139.1 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
 145.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
 
 # 5Head 1
 154.6 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
-165.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
-174.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
-183.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+165.7 "Diairesis 1" sync / 1[56]:[^:]*:The Endsinger:7006:/
+174.8 "Diairesis 2" sync / 1[56]:[^:]*:The Endsinger:7006:/
+183.9 "Diairesis 3" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 192.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
 205.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
 205.2 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
@@ -59,10 +59,10 @@ hideall "--sync--"
 
 # 6 Head Dodges 1
 313.6 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
-321.8 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701B:/
-332.3 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
-341.4 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
-350.5 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+321.8 "Endsong 1" sync / 1[56]:[^:]*:The Endsinger:701B:/
+332.3 "Endsong 2" sync / 1[56]:[^:]*:The Endsinger:701C:/
+341.4 "Endsong 3" sync / 1[56]:[^:]*:The Endsinger:701C:/
+350.5 "Endsong 4" sync / 1[56]:[^:]*:The Endsinger:701C:/
 354.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
 363.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
 373.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
@@ -74,10 +74,10 @@ hideall "--sync--"
 420.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 
 # Four Planets 1
-421.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-427.6 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-431.2 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-437.7 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+421.1 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+427.6 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+431.2 "Star Collision 3" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+437.7 "Star Collision 4" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
 
 # Towers 2
 446.5 "Tower Explosion" #sync / 1[56]:[^:]*:The Endsinger:702A:/
@@ -88,9 +88,9 @@ hideall "--sync--"
 
 # 5Head 2
 480.5 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
-491.6 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
-500.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:7006:/
-509.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
+491.6 "Diairesis 1" sync / 1[56]:[^:]*:The Endsinger:7006:/
+500.7 "Diairesis 2" sync / 1[56]:[^:]*:The Endsinger:7006:/
+509.9 "Diairesis 3" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
 518.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
 531.1 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
 531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
@@ -98,21 +98,22 @@ hideall "--sync--"
 
 # 6 Head Dodges 2
 550.4 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
-558.6 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701B:/
-569.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
-578.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
-587.1 "Endsong" sync / 1[56]:[^:]*:The Endsinger:701C:/
+558.6 "Endsong 1" sync / 1[56]:[^:]*:The Endsinger:701B:/
+569.1 "Endsong 2" sync / 1[56]:[^:]*:The Endsinger:701C:/
+578.1 "Endsong 3" sync / 1[56]:[^:]*:The Endsinger:701C:/
+587.1 "Endsong 4" sync / 1[56]:[^:]*:The Endsinger:701C:/
 590.7 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
 599.8 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
 613.0 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 623.1 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
 
 # Four Planets 2
-623.3 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-629.8 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-633.4 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-639.9 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+623.3 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+629.8 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+633.4 "Star Collision 3" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+639.9 "Star Collision 4" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
 647.2 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
 661.4 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:7031:/
+
 683.7 "--untargetable--"
 688.7 "Ultimate Fate (enrage)" sync / 1[56]:[^:]*:The Endsinger:7032:/
