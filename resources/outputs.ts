@@ -100,10 +100,11 @@ export default {
     fr: 'Tankbuster cleaves',
     ja: 'MT・ST同時範囲攻撃',
     cn: '双T扇形死刑',
-    ko: '광역 탱버',
+    ko: '동시 광역 탱버',
   },
   tankBusterCleavesOnYou: {
     en: 'Tank Cleaves on YOU',
+    ko: '광역 탱버 대상자',
   },
   avoidTankCleave: {
     en: 'Avoid tank cleave',
