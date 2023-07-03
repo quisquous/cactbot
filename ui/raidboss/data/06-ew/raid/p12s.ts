@@ -429,7 +429,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         ko: {
           '교체가 필요할 때만 알림': 'agnostic',
-          '0+2 (힐러원딜탱커)': 'not',
+          '0+2 (빠른 융합)': 'not',
           '1+2 (Yuki/Rinon)': 'one',
         },
       },
