@@ -75,6 +75,7 @@ Options.Triggers.push({
       dualityBuster: [],
       levinOrbs: {},
       limitCutDash: 0,
+      limitCut1Count: 0,
     };
   },
   triggers: [
@@ -367,23 +368,51 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'P9S Limit Cut Player Number',
+      id: 'P9S Limit Cut 1 Player Number',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
-        return data.me === matches.target &&
+        return !data.seenChimericSuccession &&
           limitCutMarkers.includes(getHeadmarkerId(data, matches));
       },
       preRun: (data, matches) => {
-        const correctedMatch = getHeadmarkerId(data, matches);
-        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+        data.limitCut1Count++;
+        if (data.me === matches.target) {
+          const correctedMatch = getHeadmarkerId(data, matches);
+          data.limitCutNumber = limitCutNumberMap[correctedMatch];
+        }
       },
-      durationSeconds: (data) => data.seenChimericSuccession ? 20 : 30,
-      infoText: (data, _matches, output) => {
-        return output.text({ num: data.limitCutNumber ?? output.unknown() });
+      durationSeconds: 30,
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return;
+        const expectedLimitCutNumbers = [2, 4, 6, 8];
+        if (
+          data.limitCutNumber === undefined ||
+          !expectedLimitCutNumbers.includes(data.limitCutNumber)
+        )
+          return;
+        return output[data.limitCutNumber]();
+      },
+      tts: (data, matches, output) => {
+        if (data.me !== matches.target || data.limitCutNumber === undefined)
+          return;
+        return output.tts({ num: data.limitCutNumber });
       },
       outputStrings: {
-        text: {
+        2: {
+          en: '2: First dash, third tower',
+        },
+        4: {
+          en: '4: Second dash, last tower',
+        },
+        6: {
+          en: '6: First tower, third dash',
+        },
+        8: {
+          en: '8: Second tower, last dash',
+        },
+        tts: {
           en: '${num}',
           de: '${num}',
           fr: '${num}',
@@ -391,7 +420,58 @@ Options.Triggers.push({
           cn: '${num}',
           ko: '${num}',
         },
-        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P9S Limit Cut 1 Early Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.limitCut1Count === 4 && !data.seenChimericSuccession &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      infoText: (data, _matches, output) => {
+        if (data.limitCutNumber !== undefined)
+          return;
+        return output.defamationLater();
+      },
+      outputStrings: {
+        defamationLater: {
+          en: 'Defamation on you (later)',
+        },
+      },
+    },
+    {
+      id: 'P9S Chimeric Limit Cut Player Number',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.seenChimericSuccession && data.me === matches.target &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      preRun: (data, matches) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+      },
+      durationSeconds: 20,
+      infoText: (data, _matches, output) => {
+        const expectedLimitCutNumbers = [1, 2, 3, 4];
+        if (
+          data.limitCutNumber === undefined ||
+          !expectedLimitCutNumbers.includes(data.limitCutNumber)
+        )
+          return;
+        return output.number({ num: data.limitCutNumber });
+      },
+      outputStrings: {
+        number: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
       },
     },
     {
@@ -412,7 +492,7 @@ Options.Triggers.push({
         // 6 seconds ahead of time
         return time - 6;
       },
-      alertText: (_data, _matches, output) => output.defamation(),
+      alarmText: (_data, _matches, output) => output.defamation(),
       outputStrings: {
         defamation: {
           en: 'Defamation on YOU',
@@ -510,7 +590,7 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'P9S Defamation',
+      id: 'P9S Limit Cut 1 Defamation',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
