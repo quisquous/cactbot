@@ -631,7 +631,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P9S Limit Cut Defamation',
+      id: 'P9S Limit Cut 1 Defamation',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
