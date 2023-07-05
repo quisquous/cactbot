@@ -3384,6 +3384,8 @@ Options.Triggers.push({
             ko: '불: ${player}',
           },
         };
+        if (data.decOffset === undefined)
+          return;
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.caloric2InitialFire)
           return;
