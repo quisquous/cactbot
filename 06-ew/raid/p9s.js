@@ -783,6 +783,12 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'P9S Beastly Fury',
+      type: 'StartsUsing',
+      netRegex: { id: '8186', source: 'Kokytos', capture: false },
+      response: Responses.aoe(),
+    },
   ],
   timelineReplace: [
     {
