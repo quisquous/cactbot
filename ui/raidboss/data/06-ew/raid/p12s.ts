@@ -3618,6 +3618,8 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
+        if (data.decOffset === undefined)
+          return;
         const id = getHeadmarkerId(data, matches);
         if (id !== headmarkers.caloric2InitialFire)
           return;
