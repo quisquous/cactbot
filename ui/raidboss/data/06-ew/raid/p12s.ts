@@ -294,7 +294,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower';
-    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx';
+    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs';
     pangenesisFirstTower: 'agnostic' | 'not' | 'one';
   };
   decOffset?: number;
@@ -405,6 +405,7 @@ const triggerSet: TriggerSet<Data> = {
           'X□○Δ (BPOG)': 'xsct',
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
+          '○ΔX□ (Rainbow)': 'ctxs',
         },
         ko: {
           'X□○Δ (파보빨초)': 'xsct',
@@ -2723,6 +2724,7 @@ const triggerSet: TriggerSet<Data> = {
             xsct: ['cross', 'square', 'circle', 'triangle'],
             cxts: ['circle', 'cross', 'triangle', 'square'],
             ctsx: ['circle', 'triangle', 'square', 'cross'],
+            ctxs: ['circle', 'triangle', 'cross', 'square'],
           };
           const columnOrder =
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
