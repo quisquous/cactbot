@@ -4,7 +4,7 @@ import inquirer from 'inquirer';
 import { isLang, languages } from '../resources/languages';
 import { UnreachableCode } from '../resources/not_reached';
 
-import { findMissingTranslations } from './find_missing_translations';
+import { ErrorFuncType, findMissingTranslations } from './find_missing_translations';
 
 import { ActionChoiceType } from '.';
 
@@ -22,6 +22,16 @@ class FindMissingTranslationsNamespace extends Namespace
 type FindMissingTranslationsInquirerType = {
   [name in keyof FindMissingTranslationsNamespaceInterface]:
     FindMissingTranslationsNamespaceInterface[name];
+};
+
+const printErrorFunc: ErrorFuncType = (file, line, type, _locale, message) => {
+  let str = file;
+  if (line)
+    str += `:${line}`;
+  str += ` [${type}]`;
+  if (message)
+    str += ` ${message}`;
+  console.log(str);
 };
 
 const findMissingTranslationsFunc = (args: Namespace): Promise<void> => {
@@ -51,7 +61,7 @@ const findMissingTranslationsFunc = (args: Namespace): Promise<void> => {
       const filter = answers.filter ?? args.filter;
       const locale = answers.locale ?? args.locale;
       if (typeof filter === 'string' && typeof locale === 'string' && isLang(locale))
-        return findMissingTranslations(filter, locale);
+        return findMissingTranslations(filter, [locale], printErrorFunc);
     });
 };
 
