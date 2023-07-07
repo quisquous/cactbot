@@ -2621,7 +2621,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['8331', '8336'], source: 'Pallas Athena' },
       delaySeconds: (_data, matches) => {
         if (matches.id === '8331')
-          // for Classical Concepts, 6.7 cast time + 1.8 for debuff/headmarker data (some variability)
+          // for Classical Concepts, 6.7 cast time + 1.8 for shape/debuff/headmarker data (some variability)
           return 8.5;
         return 0; // for Panta Rhei, fire immediately once cast starts
       },
