@@ -2,7 +2,7 @@ import { ArgumentParser, Namespace } from 'argparse';
 import inquirer from 'inquirer';
 import inquirerFuzzyPath, { FuzzyPathQuestionOptions } from 'inquirer-fuzzy-path';
 
-import { registerFindMissingTranslations } from './find_missing_translations';
+import { registerFindMissingTranslations } from './find_missing_translations_action';
 import { registerGenerateDataFiles } from './generate_data_files';
 import { registerTranslateTimeline } from './translate_timeline';
 
