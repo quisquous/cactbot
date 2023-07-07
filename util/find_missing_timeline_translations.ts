@@ -11,16 +11,11 @@ import {
 } from '../ui/raidboss/common_replacement';
 import { TimelineParser, TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
+import { ErrorFuncType } from './find_missing_translations';
+
 // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
 // See details in that function for more information.
 NetRegexes.setFlagTranslationsNeeded(true);
-
-type ErrorFuncType = (
-  file: string,
-  line: number | undefined,
-  label: string | undefined,
-  message: string,
-) => void;
 
 export const findMissing = async (
   triggersFile: string,
@@ -57,7 +52,7 @@ export const findMissing = async (
     break;
   }
 
-  findMissingTimeline(timelineFile, triggersFile, triggerSet, timeline, trans, errorFunc);
+  findMissingTimeline(timelineFile, triggersFile, triggerSet, timeline, trans, locale, errorFunc);
 };
 
 const findMissingTimeline = (
@@ -66,6 +61,7 @@ const findMissingTimeline = (
   triggerSet: LooseTriggerSet,
   timeline: TimelineParser,
   trans: TimelineReplacement,
+  locale: Lang,
   errorFunc: ErrorFuncType,
 ) => {
   // Don't bother translating timelines that are old.
@@ -107,7 +103,13 @@ const findMissingTimeline = (
       }
 
       if (key in testCase.replace) {
-        errorFunc(triggersFile, undefined, undefined, `duplicated common translation of '${key}`);
+        errorFunc(
+          triggersFile,
+          undefined,
+          'other',
+          locale,
+          `duplicated common translation of '${key}`,
+        );
         continue;
       }
 
@@ -124,7 +126,15 @@ const findMissingTimeline = (
     return false;
   };
 
-  const output: { [key: string]: [string, number | undefined, 'sync' | 'text', string] } = {};
+  const output: {
+    [key: string]: [
+      string,
+      number | undefined,
+      'sync' | 'text',
+      Lang,
+      string,
+    ];
+  } = {};
 
   for (const testCase of testCases) {
     for (const item of testCase.items) {
@@ -141,7 +151,13 @@ const findMissingTimeline = (
         // Because we handle syncs separately from texts, in order to
         // sort them all properly together, create a key to be used with sort().
         const sortKey = String(item.line).padStart(8, '0') + testCase.label;
-        output[sortKey] = [timelineFile, item.line, testCase.label, `"${item.text}"`];
+        output[sortKey] = [
+          timelineFile,
+          item.line,
+          testCase.label,
+          locale,
+          `"${item.text}"`,
+        ];
       }
     }
   }
@@ -154,5 +170,11 @@ const findMissingTimeline = (
   }
 
   if (keys.length === 0 && trans.missingTranslations)
-    errorFunc(triggersFile, undefined, undefined, `missingTranslations set true when not needed`);
+    errorFunc(
+      triggersFile,
+      undefined,
+      'other',
+      locale,
+      `missingTranslations set true when not needed`,
+    );
 };

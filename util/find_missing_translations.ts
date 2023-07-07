@@ -8,6 +8,16 @@ import { isLang, Lang } from '../resources/languages';
 import { walkDirSync } from './file_utils';
 import { findMissing } from './find_missing_timeline_translations';
 
+export type MissingTranslationErrorType = 'sync' | 'text' | 'code' | 'other';
+
+export type ErrorFuncType = (
+  file: string,
+  line: number | undefined,
+  type: MissingTranslationErrorType,
+  lang: Lang | Lang[],
+  message: string,
+) => void;
+
 // Directory names to ignore when looking for JavaScript files.
 const ignoreDirs = [
   '.git',
@@ -33,7 +43,7 @@ const nonZoneregexLocales = new Set<Lang>([...allLocales].filter((locale) => {
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
 // Return a list of all javascript filenames found under basePath()
-const findAllJavascriptFiles = (filter: string): string[] => {
+const findAllJavascriptFiles = (filter?: string): string[] => {
   const arr: string[] = [];
   walkDirSync(basePath(), (filepath) => {
     if (ignoreDirs.some((str) => filepath.includes(str)))
@@ -53,7 +63,7 @@ const findAllJavascriptFiles = (filter: string): string[] => {
 
 // Print missing translations in |file| for |locales|
 // TODO: this should just leverage eval
-const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
+const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: ErrorFuncType) => {
   const locales = new Set(inputLocales);
 
   const lineCounter = ((i = 0) => () => i++)();
@@ -117,12 +127,8 @@ const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
         if (openStr === 'zoneRegex: {')
           nonZoneregexLocales.forEach((lang: Lang) => missingKeys.delete(lang));
 
-        if (missingKeys.size > 0) {
-          let err = `${file}:${lineNumber} "${openStr}"`;
-          if (locales.size > 1)
-            err += ` ${[...missingKeys].join(',')}`;
-          console.log(err);
-        }
+        if (missingKeys.size > 0)
+          func(file, lineNumber, 'code', Array.from(missingKeys), openStr);
       }
       openMatch = undefined;
       return;
@@ -146,23 +152,20 @@ const parseJavascriptFile = (file: string, inputLocales: Lang[]) => {
   });
 };
 
-export const findMissingTranslations = async (filter: string, locale: Lang): Promise<void> => {
+export const findMissingTranslations = async (
+  filter: string | undefined,
+  locales: readonly Lang[],
+  func: ErrorFuncType,
+): Promise<void> => {
   const files = findAllJavascriptFiles(filter);
   for (const file of files) {
-    await findMissing(
-      file,
-      locale,
-      (file: string, line: number | undefined, label: string | undefined, message: string) => {
-        let str = file;
-        if (line)
-          str += `:${line}`;
-        if (label !== undefined)
-          str += ` ${label}`;
-        if (message)
-          str += ` ${message}`;
-        console.log(str);
-      },
-    );
-    parseJavascriptFile(file, [locale]);
+    for (const locale of locales) {
+      await findMissing(
+        file,
+        locale,
+        func,
+      );
+    }
+    parseJavascriptFile(file, locales, func);
   }
 };
