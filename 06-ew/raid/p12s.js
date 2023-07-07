@@ -263,6 +263,7 @@ Options.Triggers.push({
           'X□○Δ (BPOG)': 'xsct',
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
+          '○ΔX□ (Rainbow)': 'ctxs',
         },
         ko: {
           'X□○Δ (파보빨초)': 'xsct',
@@ -2516,6 +2517,7 @@ Options.Triggers.push({
             xsct: ['cross', 'square', 'circle', 'triangle'],
             cxts: ['circle', 'cross', 'triangle', 'square'],
             ctsx: ['circle', 'triangle', 'square', 'cross'],
+            ctxs: ['circle', 'triangle', 'cross', 'square'],
           };
           const columnOrder =
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
