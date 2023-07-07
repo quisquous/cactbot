@@ -481,7 +481,9 @@ class UserConfig {
       if (typeof savedConfig === 'object' && !Array.isArray(savedConfig)) {
         if (opt.id in savedConfig) {
           const newValue = savedConfig[opt.id];
-          if (newValue !== undefined) {
+          // Empty strings are always treated as default values.
+          // This means that the user has entered something and then cleared it.
+          if (newValue !== undefined && newValue !== '') {
             value = newValue;
             isDefault = false;
           }
