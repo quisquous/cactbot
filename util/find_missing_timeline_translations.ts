@@ -36,20 +36,38 @@ export const findMissing = async (
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath)).default as LooseTriggerSet;
   const translations = triggerSet.timelineReplace;
-  if (!translations)
-    return;
 
   let trans: TimelineReplacement = {
     replaceSync: {},
     replaceText: {},
     locale: locale,
   };
+  let transBlockFound = false;
 
-  for (const transBlock of translations) {
+  for (const transBlock of translations ?? []) {
     if (!transBlock.locale || transBlock.locale !== locale)
       continue;
     trans = transBlock;
+    transBlockFound = true;
     break;
+  }
+
+  if (translations === undefined) {
+    errorFunc(
+      triggersFile,
+      undefined,
+      'other',
+      locale,
+      `missing timelineReplace section`,
+    );
+  } else if (!transBlockFound) {
+    errorFunc(
+      triggersFile,
+      undefined,
+      'other',
+      locale,
+      `missing locale entry in timelineReplace section`,
+    );
   }
 
   findMissingTimeline(timelineFile, triggersFile, triggerSet, timeline, trans, locale, errorFunc);
