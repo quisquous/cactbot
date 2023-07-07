@@ -76,6 +76,9 @@ export default (
           from: 'ui/*/skins/**/*',
           noErrorOnMissing: true,
         },
+        {
+          from: 'util/coverage/missing_translations*.html',
+        },
       ],
     }),
   ];

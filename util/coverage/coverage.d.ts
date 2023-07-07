@@ -38,3 +38,10 @@ export type CoverageTotals = {
   byContentType: { [contentType: string]: CoverageTotalEntry };
   overall: CoverageTotalEntry;
 };
+
+export type TranslationTotals = {
+  [lang in Exclude<Lang, 'en'>]: {
+    files: number;
+    errors: number;
+  };
+};
