@@ -1,8 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import contentList from '../resources/content_list';
 import ContentType from '../resources/content_type';
+import { Lang, languages } from '../resources/languages';
 import ZoneId from '../resources/zone_id';
 import ZoneInfo from '../resources/zone_info';
 import { LooseOopsyTriggerSet } from '../types/oopsy';
@@ -10,6 +12,7 @@ import { LooseTriggerSet } from '../types/trigger';
 import { oopsyTriggerSetFields } from '../ui/oopsyraidsy/oopsy_fields';
 
 import { Coverage, CoverageEntry, CoverageTotals } from './coverage/coverage.d';
+import { findMissingTranslations, MissingTranslationErrorType } from './find_missing_translations';
 import findManifestFiles from './manifest';
 
 // Paths are relative to current file.
@@ -18,6 +21,17 @@ import findManifestFiles from './manifest';
 const raidbossManifest = '../ui/raidboss/data/raidboss_manifest.txt';
 const oopsyManifest = '../ui/oopsyraidsy/data/oopsy_manifest.txt';
 const outputFileName = 'coverage/coverage_report.ts';
+
+const missingOutputFileNames = {
+  de: 'coverage/missing_translations_de.html',
+  fr: 'coverage/missing_translations_fr.html',
+  ja: 'coverage/missing_translations_ja.html',
+  cn: 'coverage/missing_translations_cn.html',
+  ko: 'coverage/missing_translations_ko.html',
+};
+
+const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const baseUrl = 'https://github.com/quisquous/cactbot/blob/main/';
 
 const emptyCoverage = (): CoverageEntry => {
   return {
@@ -287,7 +301,71 @@ const writeCoverageReport = (
   writer.write(str);
 };
 
+type MissingTranslations = {
+  file: string;
+  line?: number;
+  type: MissingTranslationErrorType;
+  message: string;
+};
+
+type MissingTranslationsDict = {
+  [lang in Lang]?: MissingTranslations[];
+};
+
+const processMissingTranslations = async (): Promise<MissingTranslationsDict> => {
+  const missing: MissingTranslationsDict = {};
+
+  await findMissingTranslations(undefined, languages, (file, line, type, langOrLangs, message) => {
+    const langs = Array.isArray(langOrLangs) ? langOrLangs : [langOrLangs];
+    for (const lang of langs) {
+      const entry = missing[lang] ??= [];
+      entry.push({
+        file,
+        line,
+        type,
+        message,
+      });
+    }
+  });
+
+  return missing;
+};
+
+const writeMissingTranslations = (missing: MissingTranslations[], outputFileName: string) => {
+  const flags = 'w';
+  const writer = fs.createWriteStream(outputFileName, { flags: flags });
+  writer.on('error', (err) => {
+    console.error(err);
+    process.exit(-1);
+  });
+
+  const basePathCached = basePath();
+
+  for (const trans of missing) {
+    const relPath = path.relative(basePathCached, trans.file);
+    const relPathForwardSlashes = relPath.replaceAll('\\', '/');
+
+    const lineHash = trans.line === undefined ? '' : `#L${trans.line}`;
+    const lineText = trans.line === undefined ? '' : `:${trans.line}`;
+    const url = `${baseUrl}/${relPathForwardSlashes}${lineHash}`;
+    const link = `<a href="${url}">${relPathForwardSlashes}${lineText}</a>`;
+    writer.write(`<div>${link} [${trans.type}] ${trans.message}</div>\n`);
+  }
+};
+
 (async () => {
+  // Do this prior to chdir which conflicts with find_missing_timeline_translations.ts.
+  // FIXME: make that script more robust to cwd.
+  const missingTranslations = await processMissingTranslations();
+  for (const lang of languages) {
+    if (lang === 'en')
+      continue;
+    const missing = missingTranslations[lang];
+    if (missing === undefined)
+      continue;
+    writeMissingTranslations(missing, missingOutputFileNames[lang]);
+  }
+
   const currentPathAndFile = process.argv?.[1] ?? '';
   const currentFileName = path.basename(currentPathAndFile);
   process.chdir(path.dirname(currentPathAndFile));
