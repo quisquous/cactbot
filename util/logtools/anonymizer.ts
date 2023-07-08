@@ -44,7 +44,7 @@ export default class Anonymizer {
       return line;
 
     // Always replace the hash.
-    if (splitLine[splitLine.length - 1]?.length === 16)
+    if (splitLine[splitLine.length - 1]?.trimEnd().length === 16)
       splitLine[splitLine.length - 1] = this.fakeHash;
     else
       notifier.warn(`missing hash ${splitLine.length}`, splitLine);
