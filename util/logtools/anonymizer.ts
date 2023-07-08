@@ -220,7 +220,7 @@ export default class Anonymizer {
       if (emptyIds.includes(field))
         return;
       if (playerIds.includes(field)) {
-        notifier.warn(`uncaught player id ${field}, idx: ${idx}`, splitLine);
+        notifier.error(`uncaught player id ${field}, idx: ${idx}`, splitLine);
         success = false;
       }
     });

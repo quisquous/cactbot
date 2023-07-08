@@ -170,12 +170,30 @@ class PageState {
     public table: HTMLElement,
     public exportButton: HTMLButtonElement,
     public anonInput: HTMLInputElement,
+    public errorDiv: HTMLElement,
   ) {}
 }
 
 class WebNotifier implements Notifier {
-  public warn(_reason: string, _splitLine?: string[]): void {/* noop */}
-  public error(_reason: string, _splitLine?: string[]): void {/* noop */}
+  constructor(private errorDiv: HTMLElement) {}
+
+  private errorFunc(severity: 'warn' | 'error', reason: string, splitLine?: string[]) {
+    const splitStr = splitLine === undefined ? '' : `:${splitLine.join('|')}`;
+    const outputStr = `${severity}: ${reason}${splitStr}`;
+
+    const div = document.createElement('div');
+    div.innerHTML = outputStr;
+    div.classList.add(severity);
+    this.errorDiv.appendChild(div);
+  }
+
+  public warn(reason: string, splitLine?: string[]): void {
+    this.errorFunc('warn', reason, splitLine);
+  }
+
+  public error(reason: string, splitLine?: string[]): void {
+    this.errorFunc('error', reason, splitLine);
+  }
 }
 
 const doExport = (state: PageState): void => {
@@ -192,7 +210,7 @@ const doExport = (state: PageState): void => {
 
   let firstTime = true;
   const output: string[] = [];
-  const notifier = new WebNotifier();
+  const notifier = new WebNotifier(state.errorDiv);
   const anonymizer = new Anonymizer();
 
   const anonymizeLogs = state.anonInput.checked;
@@ -222,6 +240,12 @@ const doExport = (state: PageState): void => {
     }
   }
 
+  if (anonymizeLogs) {
+    anonymizer.validateIds(notifier);
+    for (const line of output)
+      anonymizer.validateLine(line, notifier);
+  }
+
   // TODO: could be smarter here if they all had the same zone or something.
   let filename = 'split.log';
   if (selected.length === 1) {
@@ -249,6 +273,7 @@ const onLoaded = () => {
   const exportOptions = getElement('export-options');
   const exportButton = getElement('export') as HTMLButtonElement;
   const anonCheckbox = getElement('anon') as HTMLInputElement;
+  const errorDiv = getElement('errors');
 
   const fileDropText: LocaleText = pageText.fileDropText;
   fileDrop.innerText = fileDropText[lang] ?? fileDropText['en'];
@@ -262,6 +287,7 @@ const onLoaded = () => {
     table,
     exportButton,
     anonCheckbox,
+    errorDiv,
   );
   fileDrop.addEventListener('drop', (e) => {
     exportOptions.classList.remove('hide');
