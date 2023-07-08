@@ -58,7 +58,14 @@ const triggerSet: TriggerSet<Data> = {
       id: 'EO 71-80 Orthos Gulo Gulo the Killing Paw',
       type: 'StartsUsing',
       netRegex: { id: '81A9', source: 'Orthos Gulo Gulo', capture: false },
-      response: Responses.getBehind(),
+      durationSeconds: 5,
+      alertText: (_data, _matches, output) => output.getBehind!(),
+      outputStrings: {
+        getBehind: {
+          // Telegraphed Killing Paw swipe (81A9) followed by untelegraphed Savage Swipe (7F8E).
+          en: 'Get Behind (Stay Behind)',
+        },
+      },
     },
     {
       id: 'EO 71-80 Orthos Skatene Chirp',
@@ -105,6 +112,22 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'スタンまたは視線から隠れる: ${name}',
           ko: '기절 또는 ${name}의 시야 밖으로 숨기',
         },
+        breakLOS: {
+          en: 'Break line-of-sight to ${name}',
+          de: 'Unterbreche Sichtlinie zu ${name}',
+          ja: '${name}の視線から隠れる',
+          ko: '${name}의 시야 밖으로 숨기',
+        },
+      },
+    },
+    {
+      id: 'EO 71-80 Orthos Sasquatch Ripe Banana',
+      type: 'StartsUsing',
+      // Sasquatch casts Ripe Banana (81AB) for 2s, then ~3s later casts Chest Thump (7FA8) for 0.1s.
+      // These can be hard to spot, so this gives a ~5s warning to hide even if you can't see it.
+      netRegex: { id: '81AB', source: 'Orthos Sasquatch' },
+      alertText: (_data, matches, output) => output.breakLOS!({ name: matches.source }),
+      outputStrings: {
         breakLOS: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
@@ -225,6 +248,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'Orthos-Vogel',
         'Orthos Coeurl': 'Orthos-Coeurl',
@@ -241,6 +265,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'oiseau d\'Eurêka Orthos',
         'Orthos Coeurl': 'coeurl Orthos',
@@ -257,6 +282,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'バード・オブ・オルト',
         'Orthos Coeurl': 'オルト・クァール',
