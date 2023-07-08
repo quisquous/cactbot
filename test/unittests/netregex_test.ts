@@ -53,9 +53,9 @@ describe('netregex tests', () => {
   });
   it('networkDoT', () => {
     const lines = [
-      '24|2022-07-07T21:59:30.6210000-07:00|105C4F8B|Tini Poutini|DoT|3C0|9920|32134|63300|10000|10000|||90.44|87.60|0.00|-3.07|549a72f2e53a9dea',
-      '24|2022-07-07T21:45:54.1840000-07:00|4000F643|King Thordan|DoT|0|1597|7328307|7439000|10000|10000|||99.78|104.81|0.00|2.95|875689e722298558',
-      '24|2022-07-07T21:45:54.7190000-07:00|10595B8B|Baked Potato|HoT|0|1560|56391|56391|9500|10000|||99.73|108.37|0.00|3.14|9849e336f9aeec29',
+      '24|2022-07-07T21:59:30.6210000-07:00|105C4F8B|Tini Poutini|DoT|3C0|9920|32134|63300|10000|10000|||90.44|87.60|0.00|-3.07|4000F123|Shikigami of the Pyre|5|7328307|7439000|10000|10000|||99.78|104.81|0.00|2.95|549a72f2e53a9dea',
+      '24|2023-07-05T20:05:54.6070000-07:00|10FF0006|French Fry|HoT|0|2824|91002|91002|10000|10000|||97.46|101.98|0.00|3.13|10FF0007|Mimite Mite|0|81541|81541|9600|10000|||100.04|110.55|0.00|-3.08|1ea68a0cb73843c7bb51808eeb8e80f8',
+      '24|2023-07-05T20:05:55.9400000-07:00|4001AAAF|Pandæmonium|DoT|0|1D1B|43502881|43656896|10000|10000|||100.00|65.00|0.00|0.00|10FF0003|Papas Fritas|FFFFFFFF|77094|77094|9200|10000|||100.16|99.85|0.00|-2.84|5b77b8e553b0ee5797caa1ab87b5a910',
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.networkDoT(params), lines);
 
@@ -71,6 +71,17 @@ describe('netregex tests', () => {
     assert.equal(matches?.y, '87.60');
     assert.equal(matches?.z, '0.00');
     assert.equal(matches?.heading, '-3.07');
+    assert.equal(matches?.sourceId, '4000F123');
+    assert.equal(matches?.source, 'Shikigami of the Pyre');
+    assert.equal(matches?.damageType, '5');
+    assert.equal(matches?.sourceCurrentHp, '7328307');
+    assert.equal(matches?.sourceMaxHp, '7439000');
+    assert.equal(matches?.sourceCurrentMp, '10000');
+    assert.equal(matches?.sourceMaxMp, '10000');
+    assert.equal(matches?.sourceX, '99.78');
+    assert.equal(matches?.sourceY, '104.81');
+    assert.equal(matches?.sourceZ, '0.00');
+    assert.equal(matches?.sourceHeading, '2.95');
   });
   it('headMarker', () => {
     const lines = [
