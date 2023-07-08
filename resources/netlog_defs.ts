@@ -1075,6 +1075,9 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstOptionalField: 5,
+    // TODO: fix this data structure and anonymizer to be able to handle repeatingFields.
+    // At the very least, Name and PCTargetID need to be anonymized as well.
+    firstUnknownField: 4,
     playerIds: {
       3: null,
     },
