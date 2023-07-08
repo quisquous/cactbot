@@ -37,13 +37,13 @@ Options.Triggers.push({
     {
       id: 'EO 21-30 Tiamat Clone Dark Wyrmwing',
       type: 'StartsUsing',
-      netRegex: { id: '7C65', source: 'Tiamat Clone', capture: false },
+      netRegex: { id: '7C65', source: 'Tiamat\'s Clone', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'EO 21-30 Tiamat Clone Dark Wyrmtail',
       type: 'StartsUsing',
-      netRegex: { id: '7C63', source: 'Tiamat Clone', capture: false },
+      netRegex: { id: '7C63', source: 'Tiamat\'s Clone', capture: false },
       response: Responses.goSides(),
     },
     {
@@ -73,7 +73,7 @@ Options.Triggers.push({
         'Orthos Brobinyak': 'Orthos-Brobinyak',
         'Orthos Vanara': 'Orthos-Vanara',
         'Orthoshelled Dragon': 'Orthos-Panzerdrache',
-        'Tiamat Clone': 'Tiamat-Klon',
+        'Tiamat\'s Clone': 'Tiamat-Klon',
       },
     },
     {
@@ -84,7 +84,7 @@ Options.Triggers.push({
         'Orthos Brobinyak': 'brobinyak Orthos',
         'Orthos Vanara': 'vanara Orthos',
         'Orthoshelled Dragon': 'dragon Orthos à carapace',
-        'Tiamat Clone': 'clone de Tiamat',
+        'Tiamat\'s Clone': 'clone de Tiamat',
       },
     },
     {
@@ -95,7 +95,7 @@ Options.Triggers.push({
         'Orthos Brobinyak': 'オルト・ブロビニャク',
         'Orthos Vanara': 'オルト・ヴァナラ',
         'Orthoshelled Dragon': 'オルト・カラペスドラゴン',
-        'Tiamat Clone': 'ティアマット・クローン',
+        'Tiamat\'s Clone': 'ティアマット・クローン',
       },
     },
   ],

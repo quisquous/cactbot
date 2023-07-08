@@ -68,7 +68,7 @@ Options.Triggers.push({
     {
       id: 'EO 31-40 Twintania Clone Twister',
       type: 'StartsUsing',
-      netRegex: { id: '7AEC', source: 'Twintania Clone' },
+      netRegex: { id: '7AEC', source: 'Twintania\'s Clone' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -85,7 +85,7 @@ Options.Triggers.push({
     {
       id: 'EO 31-40 Twintania Clone Twisting Dive Divebomb',
       type: 'StartsUsing',
-      netRegex: { id: '7AEF', source: 'Twintania Clone', capture: false },
+      netRegex: { id: '7AEF', source: 'Twintania\'s Clone', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -101,7 +101,7 @@ Options.Triggers.push({
     {
       id: 'EO 31-40 Twintania Clone Twisting Dive Twisters',
       type: 'Ability',
-      netRegex: { id: '7AEF', source: 'Twintania Clone', capture: false },
+      netRegex: { id: '7AEF', source: 'Twintania\'s Clone', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -117,7 +117,7 @@ Options.Triggers.push({
     {
       id: 'EO 31-40 Twintania Clone Turbine',
       type: 'StartsUsing',
-      netRegex: { id: '7AEB', source: 'Twintania Clone', capture: false },
+      netRegex: { id: '7AEB', source: 'Twintania\'s Clone', capture: false },
       response: Responses.knockback(),
     },
   ],
@@ -132,7 +132,7 @@ Options.Triggers.push({
         'Orthospider': 'Orthos-Spinne',
         'Orthotaur': 'Orthotaurus',
         'Phantom Orthoray': 'Orthos-Phantomschimmer',
-        'Twintania Clone': 'Twintania-Klon',
+        'Twintania\'s Clone': 'Twintania-Klon',
       },
     },
     {
@@ -145,7 +145,7 @@ Options.Triggers.push({
         'Orthospider': 'araignée Orthos',
         'Orthotaur': 'minotaure Orthos',
         'Phantom Orthoray': 'rayon fantomatique Orthos',
-        'Twintania Clone': 'clone de Gémellia',
+        'Twintania\'s Clone': 'clone de Gémellia',
       },
     },
     {
@@ -158,7 +158,7 @@ Options.Triggers.push({
         'Orthospider': 'オルト・スパイダー',
         'Orthotaur': 'オルト・ミノタウロス',
         'Phantom Orthoray': 'オルト・ファントムレイ',
-        'Twintania Clone': 'ツインタニア・クローン',
+        'Twintania\'s Clone': 'ツインタニア・クローン',
       },
     },
   ],
