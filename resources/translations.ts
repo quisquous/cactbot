@@ -284,7 +284,7 @@ export const translateRegexBuildParam = <T extends TriggerTypes>(
 };
 
 export const translateRegexBuildParamAnon = (
-  anonParams: AnonNetRegexParams,
+  anonParams: Readonly<AnonNetRegexParams>,
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): {
@@ -294,7 +294,10 @@ export const translateRegexBuildParamAnon = (
 } => {
   let missingFields: string[] | undefined = undefined;
   let wasTranslated = true;
-  const params: AnonNetRegexParams = {};
+
+  // TODO: it's probably ok that this isn't a deep copy because we don't
+  // modify string[] directly, but it probably should be anyway.
+  const params: AnonNetRegexParams = { ...anonParams };
 
   for (const key of keysThatRequireTranslation) {
     const value = anonParams[key];
