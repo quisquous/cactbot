@@ -710,22 +710,22 @@ Here's a p9s example again, slightly modified.
     },
 ```
 
-Let's say we're trying to translate `Kokyto's Echo`.
+Let's say we're trying to translate `Kokytos's Echo`.
 Both of these entries match,
 so there's two orders that these two translations could apply.
-We can replace `Koktytos` and then `Kokyto's Echo` or vice versa.
+We can replace `Koktytos` and then `Kokytos's Echo` or vice versa.
 
-If we apply `Kokyto's Echo` first, then `Kokyto's Echo` becomes `spectre de Cocyte`,
+If we apply `Kokytos's Echo` first, then `Kokytos's Echo` becomes `spectre de Cocyte`,
 and then the `Kokytos` translation no longer applies. This is a correct translation.
-However, if we apply `Kokytos` first, then `Kokyto's Echo` becomes `Cocyte's Echo`,
-and then the `Kokyto's Echo` translation no longer applies, but this is wrong!
+However, if we apply `Kokytos` first, then `Kokytos's Echo` becomes `Cocyte's Echo`,
+and then the `Kokytos's Echo` translation no longer applies, but this is wrong!
 
 You can see here that applying these translations in different orders produces different results,
 which is why there's a pre-collision test error.
 
 The way to fix this is to use regular expression
 "negative lookahead" `(?!text)` or "negative lookbehind" `(?<text)`
-to say that it only matches things that are not preceeded or following
+to say that an entry only matches strings that are not preceeded or following
 a particular piece of text.
 See [this link](https://www.regular-expressions.info/lookaround.html) for more details.
 
@@ -742,7 +742,7 @@ In this case, there is no pre-translation collision.
 #### Post-translation Collision
 
 A post-translation collision is one where after one translation entry has been applied,
-then another (possibly the same) translation entry can suddenly apply to the new translated text that will translate it differently.
+then another (possibly the same) translation entry can suddenly apply to the new translated text.
 This is another ordering dependency that we want to avoid.
 This is generally more rare,
 because it often means that a non-English translation matches an English word
