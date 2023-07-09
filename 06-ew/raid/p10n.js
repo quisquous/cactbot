@@ -185,9 +185,8 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         '\\(marked\\)': '(Markiert)',
@@ -210,9 +209,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         'Cannonspawn': 'Croissance de canon',
@@ -232,9 +230,8 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'パンデモニウム',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'パンデモニウム',
       },
       'replaceText': {
         'Cannonspawn': 'キャノンスポーン',
