@@ -602,8 +602,8 @@ Options.Triggers.push({
       'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': 'arkan(?:e|er|es|en) Körper',
-        'Pand\\\\u00e6moniac Pillar': 'pand\\u00e6monisch(?:e|er|es|en) Turm',
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand\u00e6moniac Pillar': 'pand\u00e6monisch(?:e|er|es|en) Turm',
+        'Pand\u00e6monium': 'Pand\u00e6monium',
       },
       'replaceText': {
         '\\(cast\\)': '(Wirken)',
@@ -639,8 +639,8 @@ Options.Triggers.push({
       'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': 'sphère arcanique',
-        'Pand\\\\u00e6moniac Pillar': 'pilier pand\\u00e6moniaque',
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand\u00e6moniac Pillar': 'pilier pand\u00e6moniaque',
+        'Pand\u00e6monium': 'Pand\u00e6monium',
       },
       'replaceText': {
         'Bury': 'Impact',
@@ -672,8 +672,8 @@ Options.Triggers.push({
       'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': '立体魔法陣',
-        'Pand\\\\u00e6moniac Pillar': '万魔殿の塔',
-        'Pand\\\\u00e6monium': 'パンデモニウム',
+        'Pand\u00e6moniac Pillar': '万魔殿の塔',
+        'Pand\u00e6monium': 'パンデモニウム',
       },
       'replaceText': {
         'Bury': '衝撃',
