@@ -105,6 +105,7 @@ export default {
   tankBusterCleavesOnYou: {
     en: 'Tank Cleaves on YOU',
     fr: 'Tank cleaves sur VOUS',
+    cn: '坦克顺劈点名',
     ko: '광역 탱버 대상자',
   },
   avoidTankCleave: {
