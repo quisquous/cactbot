@@ -221,6 +221,7 @@ const zoneGridHeaders = {
   },
   translated: {
     en: 'Translated',
+    cn: '已翻译',
   },
 } as const;
 
@@ -276,15 +277,19 @@ const miscStrings = {
 const translationGridHeaders = {
   language: {
     en: 'Translations',
+    cn: '翻译',
   },
   coverage: {
     en: 'Coverage',
+    cn: '覆盖率',
   },
   errors: {
     en: 'Errors',
+    cn: '错误',
   },
   url: {
     en: 'Link to Missing Translation List',
+    cn: '缺失翻译表链接',
   },
 } as const;
 
