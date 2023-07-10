@@ -176,6 +176,7 @@ const PlayPullSound = (monster: Monster, options: RadarOptions) => {
     const pullText: LocaleText = {
       en: `${monster.name} pulled`,
       de: `${monster.name} gepullt`,
+      fr: `${monster.name} a été attaqué`,
       cn: `${monster.name} 已开怪`,
       ko: `${monster.name} 풀링됨`,
     };

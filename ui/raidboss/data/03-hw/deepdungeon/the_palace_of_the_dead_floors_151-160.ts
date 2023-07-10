@@ -45,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stop attacking ${target}',
           de: 'Stoppe Angriffe auf ${target}',
+          fr: 'N\'attaquez plus ${target}',
           cn: '停止攻击 ${target}',
           ko: '${target} 공격 중지',
         },
@@ -62,6 +63,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback into Safe Spot',
           de: 'Rückstoß zur sicheren Stelle',
+          fr: 'Faites-vous pousser dans une zone sûre',
           cn: '击退到安全区',
           ko: '안전지대로 넉백되기',
         },
