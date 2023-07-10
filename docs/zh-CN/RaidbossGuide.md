@@ -248,7 +248,7 @@ infoText: (data, matches, output) => {
 },
 ```
 
-但是在 `response` 属性里使用 `outputStrings` 会稍微有些不同。这种情况下不能在触发器上设置 `outputStrings` 这个值，而是应该让 `response` 返回一个函数，并调用 `output.responseOutputStrings {};`。其中 `{}` 的部分就是上面提到的 `outputStrings` 对象。这看起来非常怪异，但是可以让 response 能够使用 outputStrings 的同时可以正常返回，并保证 [resources/responses.ts](../resources/responses.ts) 更加耦合。
+但是在 `response` 属性里使用 `outputStrings` 会稍微有些不同。这种情况下不能在触发器上设置 `outputStrings` 这个值，而是应该让 `response` 返回一个函数，并调用 `output.responseOutputStrings {};`。其中 `{}` 的部分就是上面提到的 `outputStrings` 对象。这看起来非常怪异，但是可以让 response 能够使用 outputStrings 的同时可以正常返回，并保证 [resources/responses.ts](../../resources/responses.ts) 更加耦合。
 
 例子：
 
