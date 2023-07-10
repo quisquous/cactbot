@@ -214,7 +214,7 @@ const findMissingTimeline = (
       errorFunc(...value);
   }
 
-  return keys.length === 0;
+  return keys.length !== 0;
 };
 
 const findMissingTriggers = (
