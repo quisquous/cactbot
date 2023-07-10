@@ -60,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
           ja: '${name}の視線から隠れる',
-          cn: '避开 ${name} 的视线',
+          cn: '利用掩体卡 ${name} 的视线',
           ko: '${name}의 시야 밖으로 숨기',
         },
       },
