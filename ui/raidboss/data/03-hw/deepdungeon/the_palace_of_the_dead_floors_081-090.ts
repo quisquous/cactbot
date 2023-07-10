@@ -47,6 +47,7 @@ const triggerSet: TriggerSet<Data> = {
         pushToBoss: {
           en: 'Push ${name} into boss',
           de: 'Stoß ${name} in den Boss',
+          fr: 'Poussez ${name} sur le boss',
           cn: '将 ${name} 推至BOSS',
           ko: '보스쪽으로 ${name} 밀기',
         },

@@ -33,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en: 'Output for "/echo cactbot test config"',
         de: 'Ausgabe für "/echo cactbot test config"',
+        fr: 'Sortie pour "/echo cactbot test config"',
         cn: '输出 "/echo cactbot测试配置"',
         ko: '"/echo cactbot 설정 테스트" 출력값',
       },
@@ -322,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Config Value: ${value}',
           de: 'Einstellungswert: ${value}',
+          fr: 'Valeur de configuration : ${value}',
           cn: '配置值: ${value}',
           ko: '설정값: ${value}',
         },
@@ -354,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
           de: 'ID ${id} wirkt Zauber ID ${spellId}',
+          fr: 'ID ${id} incante le sort ID ${spellId}',
           cn: 'ID ${id} 正在施法 ID ${spellId}',
           ko: 'ID ${id}: 스킬 ID ${spellId}를 시전하는 중',
         },
@@ -393,11 +396,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
-      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
         'cactbot test watch': 'cactbot test d\'observation',
+        'cactbot test config': 'test de configuration de cactbot',
+        'cactbot test combatant cast': 'test d\'incantation d\'un combatant',
         'You bid farewell to the striking dummy':
           'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy':
