@@ -31,5 +31,11 @@ Options.Triggers.push({
         'Orthos Sawtooth': 'オルト・ソウトゥース',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Orthos Sawtooth': '正统锯齿花',
+      },
+    },
   ],
 });

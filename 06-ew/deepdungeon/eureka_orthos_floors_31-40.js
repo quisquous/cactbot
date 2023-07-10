@@ -161,5 +161,18 @@ Options.Triggers.push({
         'Twintania\'s Clone': 'ツインタニア・クローン',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Orthochimera': '正统奇美拉',
+        'Orthoempuse': '正统疫虫',
+        'Orthonaga': '正统那迦',
+        'Orthos Mirrorknight': '正统镜骑士',
+        'Orthospider': '正统蜘蛛',
+        'Orthotaur': '正统弥诺陶洛斯',
+        'Phantom Orthoray': '正统幻影光',
+        'Twintania\'s Clone': '双塔尼亚复制体',
+      },
+    },
   ],
 });

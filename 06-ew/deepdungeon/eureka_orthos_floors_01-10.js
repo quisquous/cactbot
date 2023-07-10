@@ -58,5 +58,14 @@ Options.Triggers.push({
         'Orthos Grenade': 'オルト・グレネード',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gancanagh': '蜜言妖',
+        'Orthos Behemoth': '正统贝希摩斯',
+        'Orthos Fachan': '正统幽鬼之眼',
+        'Orthos Grenade': '正统榴弹怪',
+      },
+    },
   ],
 });

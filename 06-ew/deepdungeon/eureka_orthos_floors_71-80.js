@@ -49,6 +49,7 @@ Options.Triggers.push({
         getBehind: {
           // Telegraphed Killing Paw swipe (81A9) followed by untelegraphed Savage Swipe (7F8E).
           en: 'Get Behind (Stay Behind)',
+          cn: '去背后 (待在背后)',
         },
       },
     },
@@ -95,12 +96,14 @@ Options.Triggers.push({
           en: 'Stun or Break line-of-sight to ${name}',
           de: 'Unterbrechen oder unterbreche die Sichtlinie zu ${name}',
           ja: 'スタンまたは視線から隠れる: ${name}',
+          cn: '眩晕或利用掩体卡 ${name} 的视线',
           ko: '기절 또는 ${name}의 시야 밖으로 숨기',
         },
         breakLOS: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
           ja: '${name}の視線から隠れる',
+          cn: '利用掩体卡 ${name} 的视线',
           ko: '${name}의 시야 밖으로 숨기',
         },
       },
@@ -117,6 +120,7 @@ Options.Triggers.push({
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
           ja: '${name}の視線から隠れる',
+          cn: '利用掩体卡 ${name} 的视线',
           ko: '${name}의 시야 밖으로 숨기',
         },
       },
@@ -216,12 +220,14 @@ Options.Triggers.push({
           en: 'Get pushed into safe spot',
           de: 'Rückstoß in den sicheren Bereich',
           ja: '安置へノックバック',
+          cn: '被击退到安全区',
           ko: '안전지대로 밀려나기',
         },
         pull: {
           en: 'Get pulled into safe spot',
           de: 'Werde in den sicheren Bereich gezogen',
           ja: '安置へ引っ張られる',
+          cn: '被吸引到安全区',
           ko: '안전지대로 당겨지기',
         },
       },
@@ -230,7 +236,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'Orthos-Vogel',
         'Orthos Coeurl': 'Orthos-Coeurl',
@@ -238,6 +243,7 @@ Options.Triggers.push({
         'Orthos Gulo Gulo': 'Orthos-Gulo Gulo',
         'Orthos Kargas': 'Orthos-Kargas',
         'Orthos Primelephas': 'Orthos-Primelephas',
+        'Orthos Sasquatch': 'Orthos-Sasquatch',
         'Orthos Skatene': 'Orthos-Skatene',
         'Orthos Thunderbeast': 'Orthos-Donnerbestie',
         'Orthos Toco Toco': 'Orthos-Tokotoko',
@@ -247,7 +253,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'oiseau d\'Eurêka Orthos',
         'Orthos Coeurl': 'coeurl Orthos',
@@ -255,6 +260,7 @@ Options.Triggers.push({
         'Orthos Gulo Gulo': 'gulo gulo Orthos',
         'Orthos Kargas': 'kargas Orthos',
         'Orthos Primelephas': 'primelephas Orthos',
+        'Orthos Sasquatch': 'sasquatch Orthos',
         'Orthos Skatene': 'skate\'ne Orthos',
         'Orthos Thunderbeast': 'bête de foudre Orthos',
         'Orthos Toco Toco': 'toco toco Orthos',
@@ -264,7 +270,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bird of Orthos': 'バード・オブ・オルト',
         'Orthos Coeurl': 'オルト・クァール',
@@ -272,11 +277,29 @@ Options.Triggers.push({
         'Orthos Gulo Gulo': 'オルト・グログロ',
         'Orthos Kargas': 'オルト・カルガス',
         'Orthos Primelephas': 'オルト・プリメレファス',
+        'Orthos Sasquatch': 'オルト・サスカッチ',
         'Orthos Skatene': 'オルト・スカネテ',
         'Orthos Thunderbeast': 'オルト・サンダービースト',
         'Orthos Toco Toco': 'オルト・トコトコ',
         'Proto-Kaliya': 'プロトカーリア',
         'Weapons Drone': '砲撃ドローン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Bird of Orthos': '正统妖鸟',
+        'Orthos Coeurl': '正统长须豹',
+        'Orthos Flamebeast': '正统焰兽',
+        'Orthos Gulo Gulo': '正统狼獾',
+        'Orthos Kargas': '正统卡尔加斯',
+        'Orthos Primelephas': '正统曙象',
+        'Orthos Sasquatch': '正统大脚巨猿',
+        'Orthos Skatene': '正统斯卡尼特',
+        'Orthos Thunderbeast': '正统雷兽',
+        'Orthos Toco Toco': '正统巨嘴鸟',
+        'Proto-Kaliya': '原型卡利亚',
+        'Weapons Drone': '炮击无人机',
       },
     },
   ],

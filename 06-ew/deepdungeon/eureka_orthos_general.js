@@ -15,6 +15,7 @@ Options.Triggers.push({
   zoneLabel: {
     en: 'Eureka Orthos (All Floors)',
     de: 'Eureka Orthos (Alle Ebenen)',
+    cn: '正统优雷卡 (全楼层)',
   },
   triggers: [
     // ---------------- Mimics ----------------
@@ -102,18 +103,21 @@ Options.Triggers.push({
           de: 'Trägheit',
           fr: 'ralentissement',
           ja: 'スロウガ',
+          cn: '缓速',
         },
         storms: {
           en: 'Storms',
           de: 'Schwäche',
           fr: 'Charybde',
           ja: 'ミールストーム',
+          cn: '大漩涡',
         },
         dread: {
           en: 'Dread',
           de: 'Macht',
           fr: 'cuirassé Dreadnaught',
           ja: 'ドレッドノート化',
+          cn: '恐慌装甲化',
         },
         safety: {
           en: 'Safety',
@@ -285,6 +289,7 @@ Options.Triggers.push({
           en: 'Pylon of Passage activated',
           de: 'Translokator aktiviert',
           ja: '転移が出来ます',
+          cn: '传送装置已启动',
         },
       },
     },
@@ -337,6 +342,14 @@ Options.Triggers.push({
         'Lamia Queen': 'ラミアクィーン',
         'Meracydian Clone': 'メラシディアン・クローン',
         'Mimic': 'ミミック',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Lamia Queen': '拉米亚女王',
+        'Meracydian Clone': '美拉西迪亚复制体',
+        'Mimic': '拟态怪',
       },
     },
   ],

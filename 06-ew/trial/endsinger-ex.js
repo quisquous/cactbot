@@ -36,14 +36,17 @@ const orbOutputStrings = {
   w: Outputs.dirW,
   knockback: {
     en: '${dir} Knockback',
+    cn: '${dir} 击退',
     ko: '${dir} 넉백',
   },
   knockbackWithHead: {
     en: '${dir1} Knockback -> ${dir2}',
+    cn: '${dir1} 击退 -> ${dir2}',
     ko: '${dir1} 넉백 -> ${dir2}',
   },
   aoeWithHead: {
     en: 'Go ${dir1} (lean ${dir2})',
+    cn: '去${dir1} (偏${dir2})',
     ko: '${dir1}쪽으로 (살짝 ${dir2}쪽으로)',
   },
 };
@@ -252,14 +255,17 @@ Options.Triggers.push({
       outputStrings: {
         sides: {
           en: 'Out (Sides)',
+          cn: '去外面 (两边)',
           ko: '밖으로 (양 옆)',
         },
         sidesWithTower: {
           en: 'Tower + Outside',
+          cn: '踩塔 + 去外面',
           ko: '기둥 + 양 옆',
         },
         sidesWithStacks: {
           en: 'Outside + Healer Groups',
+          cn: '去外面 + 治疗分组分摊',
           ko: '양 옆 + 힐러 그룹',
         },
       },
@@ -281,14 +287,17 @@ Options.Triggers.push({
       outputStrings: {
         middle: {
           en: 'Inside (Middle)',
+          cn: '去里面 (中间)',
           ko: '안으로 (가운데)',
         },
         middleWithTower: {
           en: 'Tower + Inside',
+          cn: '踩塔 + 去里面',
           ko: '기둥 + 안으로',
         },
         middleWithStacks: {
           en: 'Inside + Healer Groups',
+          cn: '去里面 + 治疗分组分摊',
           ko: '안으로 + 힐러 그룹',
         },
       },
@@ -338,6 +347,7 @@ Options.Triggers.push({
         ...orbOutputStrings,
         temp: {
           en: '${text}',
+          cn: '${text}',
           ko: '${text}',
         },
       },
