@@ -447,7 +447,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         4: {
           en: '4: Second dash, last tower',
-          cn: '4麻 3火4塔',
+          cn: '4麻 2火4塔',
         },
         6: {
           en: '6: First tower, third dash',
