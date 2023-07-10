@@ -218,7 +218,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer .9': 'Grand condensateur GC-9',
         'Hydrate Core': 'noyau d\'hydrate',
@@ -226,6 +225,7 @@ Options.Triggers.push({
         'Living Liquid': 'liquide vivant',
       },
       'replaceText': {
+        '--Liquid Limb spawns--': '--Apparition du membre liquide--',
         'Cascade': 'Cascade',
         'Drainage': 'Drainage',
         'Fluid Strike': 'Frappe fluide',

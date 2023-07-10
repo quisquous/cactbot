@@ -35,6 +35,7 @@ Options.Triggers.push({
         tailScrewOn: {
           en: 'Tail Screw on ${player}',
           de: 'Schweifschraube auf ${player}',
+          fr: 'Coup de queue sur ${player}',
           cn: '螺旋尾点${player}',
           ko: '${player} 꼬리 후려치기',
         },

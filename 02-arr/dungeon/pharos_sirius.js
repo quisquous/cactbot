@@ -24,6 +24,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread: Stacks Explode Soon',
           de: 'Verteilen: Kristallstacks explodieren bald',
+          fr: 'Écartez-vous : les cristaux vont exploser',
           cn: '散开: 即将爆炸',
           ko: '산개: 곧 크리스탈 폭발',
         },

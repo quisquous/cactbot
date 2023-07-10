@@ -18,6 +18,7 @@ Options.Triggers.push({
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           de: 'Raus oder unterbreche ${name}',
+          fr: 'Éloignez-vous de ou interrompez ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
         },
@@ -38,6 +39,7 @@ Options.Triggers.push({
         interruptOrUnder: {
           en: 'Get Under or interrupt ${name}',
           de: 'Unter oder unterbreche ${name}',
+          fr: 'Allez dessous ou interrompez ${name}',
           cn: '去脚下或打断 ${name}',
           ko: '밑으로 또는 ${name} 시전 끊기',
         },
@@ -75,6 +77,7 @@ Options.Triggers.push({
         pushToBoss: {
           en: 'Push ${name} into boss',
           de: 'Stoß ${name} in den Boss',
+          fr: 'Poussez ${name} sur le boss',
           cn: '将 ${name} 推至BOSS',
           ko: '보스쪽으로 ${name} 밀기',
         },

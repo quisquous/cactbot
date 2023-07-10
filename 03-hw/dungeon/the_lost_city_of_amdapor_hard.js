@@ -136,12 +136,14 @@ Options.Triggers.push({
           pop: {
             en: 'Pop stone orb',
             de: 'Nimm Stein Orb',
+            fr: 'Prenez l\'orbe en pierre',
             cn: '踩石圈',
             ko: '스톤 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid stone orb',
             de: 'Vermeide Stein Orb',
+            fr: 'Évitez l\'orbe de pierre',
             cn: '躲避石圈',
             ko: '스톤 구슬 피하기',
           },
@@ -161,12 +163,14 @@ Options.Triggers.push({
           pop: {
             en: 'Pop aero orb',
             de: 'Nimm Wind Orb',
+            fr: 'Prenez l\'orbe de vent',
             cn: '踩风圈',
             ko: '에어로 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid aero orb',
             de: 'Vermeide Wind Orb',
+            fr: 'Évitez l\'orbe de vent',
             cn: '躲避风圈',
             ko: '에어로 구슬 피하기',
           },
@@ -185,6 +189,7 @@ Options.Triggers.push({
         text: {
           en: 'Pop holy orb',
           de: 'Nimm Sanctus Orb',
+          fr: 'Prenez l\'orbe de lumière',
           cn: '踩神圣圈',
           ko: '홀리 구슬 잡기',
         },
@@ -282,7 +287,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': 'Achamoth',
         'Dark Wings': 'Ailes sombres',
@@ -297,6 +301,7 @@ Options.Triggers.push({
         'light sprite': 'élémentaire de lumière',
       },
       'replaceText': {
+        '--adds--': '--Adds--',
         'Ancient Aero': 'Vent ancien',
         'Ancient Holy': 'Miracle ancien',
         'Ancient Libra': 'Acuité ancienne',
