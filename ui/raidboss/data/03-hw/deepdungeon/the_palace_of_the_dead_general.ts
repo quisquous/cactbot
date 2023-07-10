@@ -293,7 +293,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Cairn of Passage activated',
           de: 'Wegleuchte aktiviert',
-          fr: 'La pierre de téléportation s\'est activée'
+          fr: 'La pierre de téléportation s\'est activée',
           cn: '转移石冢已启动',
           ko: '전송 석탑 활성화',
         },

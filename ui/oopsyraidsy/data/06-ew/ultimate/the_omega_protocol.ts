@@ -230,7 +230,7 @@ const playerDescription: { [key in HelloEffect]: LocaleText } = {
   stack: {
     en: ' (as stack)',
     de: ' (als Sammeln)',
-    fr: ' (en tant que package),
+    fr: ' (en tant que package)',
     cn: ' (分摊)',
     ko: ' (쉐어)',
   },
