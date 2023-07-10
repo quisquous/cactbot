@@ -563,9 +563,11 @@ export class Timeline {
 
   public _OnUpdateTimer(currentTime: number): void {
     console.assert(this.timebase, '_OnTimerUpdate called while stopped');
-    // TODO: we should round this to avoid fightNow=10.003 style things
-    // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
-    const fightNow = (currentTime - this.timebase) / 1000;
+    // Round to ~30ms precision to avoid micro changes of fightNow from 10 to 10.003.
+    // Also round *up*, as these timers are always scheduled for the next event
+    // and it doesn't make sense to schedule something for 0.8s out and then
+    // round down to 0.799s and need another timer to have that text complete.
+    const fightNow = Math.ceil(32 * (currentTime - this.timebase) / 1000) / 32;
 
     // Unlike other jumps which happen "immediately", an unconditional jump may have happened
     // in the past (+/- some timer variation).  Should we just consider that the update
