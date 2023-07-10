@@ -443,15 +443,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         2: {
           en: '2: First dash, third tower',
+          cn: '2麻 1火3塔',
         },
         4: {
           en: '4: Second dash, last tower',
+          cn: '4麻 3火4塔',
         },
         6: {
           en: '6: First tower, third dash',
+          cn: '6麻 1塔3火',
         },
         8: {
           en: '8: Second tower, last dash',
+          cn: '8麻 2塔4火',
         },
         tts: {
           en: '${num}',
@@ -479,6 +483,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         defamationLater: {
           en: 'Defamation on you (later)',
+          cn: '大圈点名 (稍后放置)',
         },
       },
     },
