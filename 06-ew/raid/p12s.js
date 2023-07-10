@@ -2819,6 +2819,7 @@ Options.Triggers.push({
         },
         nothingWithTower: {
           en: 'Nothing (w/${player}) - ${tower}',
+          cn: '闲人 (和 ${player}) - ${tower}',
           ko: '디버프 없음 (+ ${player}) - ${tower}',
         },
         one: {
@@ -2829,6 +2830,7 @@ Options.Triggers.push({
         },
         oneWithTower: {
           en: 'One (w/${player}) - ${tower}',
+          cn: '单因子 (和 ${player}) - ${tower}',
           ko: '1번 (+ ${player}) - ${tower}',
         },
         shortLight: {
@@ -2845,6 +2847,7 @@ Options.Triggers.push({
         },
         longLightMerge: {
           en: 'Long Light (get second dark - merge first)',
+          cn: '白2 (踩第2轮黑塔 - 先合成)',
           ko: '긴 빛 (두번째 어둠 대상 - 융합 먼저)',
         },
         shortDark: {
@@ -2861,18 +2864,22 @@ Options.Triggers.push({
         },
         longDarkMerge: {
           en: 'Long Dark (get second light - merge first)',
+          cn: '黑2 (踩第2轮白塔 - 先合成)',
           ko: '긴 어둠 (두번째 빛 대상 - 융합 먼저)',
         },
         firstTower: {
           en: 'First Tower',
+          cn: '第一轮塔',
           ko: '첫번째 기둥',
         },
         secondTower: {
           en: 'Second Tower',
+          cn: '第二轮塔',
           ko: '두번째 기둥',
         },
         secondTowerMerge: {
           en: 'Second Tower (Merge first)',
+          cn: '第二轮塔 (先合成)',
           ko: '두번째 기둥 (융합 먼저)',
         },
         unknown: Outputs.unknown,
@@ -3020,6 +3027,7 @@ Options.Triggers.push({
       outputStrings: {
         stackForTethers: {
           en: 'Stack for Tethers',
+          cn: '集合等待连线出现',
           ko: '선 생기기 전에 모이기',
         },
       },
@@ -3064,6 +3072,7 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir1} / ${dir2} Safe',
+          cn: '${dir1} / ${dir2} 安全',
           ko: '${dir1} / ${dir2} 안전',
         },
         ...Directions.outputStrings8Dir,
@@ -3101,6 +3110,7 @@ Options.Triggers.push({
       outputStrings: {
         combined: {
           en: '${dir1} / ${dir2} Safe',
+          cn: '${dir1} / ${dir2} 安全',
           ko: '${dir1} / ${dir2} 안전',
         },
         ...Directions.outputStrings8Dir,
@@ -3139,6 +3149,7 @@ Options.Triggers.push({
         },
         uav2: {
           en: 'Break tether (w/ ${partner}) => ${geocentrism}',
+          cn: '拉断连线 (和 ${partner}) => ${geocentrism}',
           ko: '선 끊기 (+ ${partner}) => ${geocentrism}',
         },
         unknown: Outputs.unknown,
