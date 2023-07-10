@@ -397,6 +397,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
