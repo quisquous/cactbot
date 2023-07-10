@@ -713,7 +713,7 @@ Here's a p9s example again, slightly modified.
 Let's say we're trying to translate `Kokytos's Echo`.
 Both of these entries match,
 so there's two orders that these two translations could apply.
-We can replace `Koktytos` and then `Kokytos's Echo` or vice versa.
+We can replace `Kokytos` and then `Kokytos's Echo` or vice versa.
 
 If we apply `Kokytos's Echo` first, then `Kokytos's Echo` becomes `spectre de Cocyte`,
 and then the `Kokytos` translation no longer applies. This is a correct translation.
@@ -724,13 +724,13 @@ You can see here that applying these translations in different orders produces d
 which is why there's a pre-collision test error.
 
 The way to fix this is to use regular expression
-"negative lookahead" `(?!text)` or "negative lookbehind" `(?<text)`
+"negative lookahead" `(?!text)` or "negative lookbehind" `(?<!text)`
 to say that an entry only matches strings that are not preceeded or following
 a particular piece of text.
 See [this link](https://www.regular-expressions.info/lookaround.html) for more details.
 
 In this case, you can change `'Kokytos'` to `'Kokytos(?!\')'`.
-This regex says "match Kokytos, but not if there is a hyphen afterwards".
+This regex says "match Kokytos, but not if there is an apostrophe afterwards".
 By doing this, there is no longer an ordering dependency.
 
 One side note, is that it is possible to have multiple translations apply to the same text without collision.
@@ -818,7 +818,7 @@ A second example, the p10s key `'Pand\\\\u00e6monium'` has four backslashes.
 This is two sets of string-escaped backslashes, `'\\' + '\\'`.
 When parsed through `new RegExp('Pand\\\\u00e6monium')`,
 this becomes a single regex-escaped backslash, `/Pand\\u00e6monium/`.
-In other words, match `Pand` and then a literal backslash and then `monium`.
+In other words, match `Pand` and then a literal backslash with `u00e6` and then `monium`.
 
 A final example is the awkward case `'724P-Operated Superior Flight Unit \\\\\\(A-Lpha\\\\\\)'`.
 `(` is a special regex character and so if we want to match a literal `\(` in text
