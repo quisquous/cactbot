@@ -11,12 +11,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1: 100->90%
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.0 "--sync--" sync / 1[56]:[^:]*:Titan:368:/ window 2,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 
 5.0 "Rock Buster" sync / 1[56]:[^:]*:Titan:550:/ window 5,50
 11.2 "Landslide" sync / 1[56]:[^:]*:Titan:554:/

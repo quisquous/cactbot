@@ -8,12 +8,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Phase 1
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-0.0 "--sync--" sync / 00:0839::The Right Hand of Bahamut will be sealed off/ window 10,10
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.5 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/ window 10,5
 21.6 "Death Sentence" sync / 1[56]:[^:]*:Twintania:5B2:/ window 22,10
 25.7 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/

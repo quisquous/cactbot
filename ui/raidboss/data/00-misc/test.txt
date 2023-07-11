@@ -28,3 +28,15 @@ hideall "--sync--"
 25 "Super Tankbuster" sync /:test sync:/ window 30,30
 30 "Dummy Stands Still"
 40 "Death"
+
+50 "--sync--" sync /:test sync2:/ window 100,1 forcejump 100
+
+# Loop test!
+102 "Two"
+103 "Three"
+104 "Four"
+106 "Six"
+110 "Ten" #duration 100
+115 "Fifteen"
+118 "Force Jump Three" sync /:test sync3:/ window 10,10 forcejump 103
+120 "Invisible" sync /:test sync4:/ forcejump 1000

@@ -39,3 +39,13 @@ button {
 .hide {
   display: none;
 }
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.warn {
+  font-weight: bold;
+  color: yellow;
+}

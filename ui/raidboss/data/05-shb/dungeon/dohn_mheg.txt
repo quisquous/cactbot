@@ -3,9 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Aenc Thon, Lord of the Lingering Gaze
 # -ii 1EDB 22BD -p 2299:112.2
 100.0 "--sync--" sync / 00:0839::Teag Gye will be sealed off/ window 100,0

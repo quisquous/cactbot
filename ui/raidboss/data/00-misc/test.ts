@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
 import { ConfigValue } from '../../../../resources/user_config';
 import Util from '../../../../resources/util';
@@ -34,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en: 'Output for "/echo cactbot test config"',
         de: 'Ausgabe für "/echo cactbot test config"',
+        fr: 'Sortie pour "/echo cactbot test config"',
         cn: '输出 "/echo cactbot测试配置"',
         ko: '"/echo cactbot 설정 테스트" 출력값',
       },
@@ -237,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Lang',
       type: 'GameLog',
       // In game: /echo cactbot lang
-      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegex: { line: 'cactbot lang.*?', code: Util.gameLogCodes.echo, capture: false },
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -253,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      netRegex: { line: 'cactbot test response.*?', code: Util.gameLogCodes.echo, capture: false },
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegex: { line: 'cactbot test watch.*?', code: Util.gameLogCodes.echo, capture: false },
       promise: (data) =>
         Util.watchCombatant({
           names: [
@@ -315,7 +315,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Config',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      netRegex: { line: 'cactbot test config.*?', code: Util.gameLogCodes.echo, capture: false },
       alertText: (data, _matches, output) => {
         return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
       },
@@ -323,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Config Value: ${value}',
           de: 'Einstellungswert: ${value}',
+          fr: 'Valeur de configuration : ${value}',
           cn: '配置值: ${value}',
           ko: '설정값: ${value}',
         },
@@ -331,7 +332,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast Enable',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      netRegex: {
+        line: 'cactbot test combatant cast.*?',
+        code: Util.gameLogCodes.echo,
+        capture: false,
+      },
       run: (data) => {
         data.watchingForCast = true;
       },
@@ -351,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
           de: 'ID ${id} wirkt Zauber ID ${spellId}',
+          fr: 'ID ${id} incante le sort ID ${spellId}',
           cn: 'ID ${id} 正在施法 ID ${spellId}',
           ko: 'ID ${id}: 스킬 ID ${spellId}를 시전하는 중',
         },
@@ -360,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -395,6 +402,8 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
         'cactbot test watch': 'cactbot test d\'observation',
+        'cactbot test config': 'test de configuration de cactbot',
+        'cactbot test combatant cast': 'test d\'incantation d\'un combatant',
         'You bid farewell to the striking dummy':
           'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy':
@@ -451,6 +460,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',

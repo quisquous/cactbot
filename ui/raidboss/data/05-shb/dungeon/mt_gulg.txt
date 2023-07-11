@@ -6,9 +6,6 @@ hideall "Reformation"
 hideall "Perfect Contrition"
 hideall "Rite Of The Sacrament"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Forgiven Cruelty
 # -p 3CFB:113 -ii 3CFE 3CFD 4301 3CFF
 100.0 "--sync--" sync / 00:0839::The Perished Path will be sealed off/ window 100,0

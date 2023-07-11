@@ -12,11 +12,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.6 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:5B0A:/ window 2,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 11.3 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/ window 12,10
 24.5 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56F[03]:/
 33.3 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:5717:/

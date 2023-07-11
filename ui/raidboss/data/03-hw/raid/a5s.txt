@@ -7,12 +7,9 @@
 hideall "Guzzle"
 hideall "Relaxant"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Hummel and Friends
 1000.0 "--sync--" sync / 00:0839::The Clevering will be sealed off/ window 1000,0
-1001.8 "--sync--" sync / 1[56]:[^:]*:Faust:367:/ window 1002,0.5
-1009.8 "Kaltstrahl x1" sync / 1[56]:[^:]*:Faust:16CC:/
+1009.8 "Kaltstrahl x1" sync / 1[56]:[^:]*:Faust:16CC:/ window 10,5
 1018.9 "Kaltstrahl x2" duration 2.1 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
 #1021.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/
 1032.1 "Kaltstrahl x3" duration 4.2 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
@@ -60,7 +57,6 @@ hideall "Relaxant"
 # This happens so quickly, no need for "Advanced Clevering will be sealed off".
 2000.0 "Start"
 2001.0 "Guzzle" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1598:/ window 2001,30
-
 2005.6 "--big--" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:1599:/
 2009.1 "Gobjab 1" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
 2013.2 "Gobjab 2" sync / 1[56]:[^:]*:Ratfinx Twinkledinks:16A9:/
