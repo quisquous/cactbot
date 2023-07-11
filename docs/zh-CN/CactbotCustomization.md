@@ -288,7 +288,6 @@ Options.PlayerNicks = {
 };
 ```
 
-
 你也可以通过 `Options.TransformTts` 函数全局替换 TTS 的文本，如：
 
 ```javascript
