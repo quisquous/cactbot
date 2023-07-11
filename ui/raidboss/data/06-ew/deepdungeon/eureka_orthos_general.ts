@@ -24,6 +24,7 @@ const triggerSet: TriggerSet<Data> = {
   zoneLabel: {
     en: 'Eureka Orthos (All Floors)',
     de: 'Eureka Orthos (Alle Ebenen)',
+    cn: '正统优雷卡 (全楼层)',
   },
 
   triggers: [
@@ -42,6 +43,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Mimic spawned!',
           de: 'Mimik ist erschienen!',
+          ja: 'ミミック！',
           cn: '已生成 拟态怪!',
           ko: '미믹 등장!',
         },
@@ -101,6 +103,7 @@ const triggerSet: TriggerSet<Data> = {
         duplicate: {
           en: '${protomander} duplicate',
           de: 'Doppelter ${protomander}',
+          ja: 'もっています: ${protomander}',
           cn: '${protomander} 重复',
           ko: '${protomander} 중복',
         },
@@ -110,18 +113,21 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Trägheit',
           fr: 'ralentissement',
           ja: 'スロウガ',
+          cn: '缓速',
         },
         storms: {
           en: 'Storms',
           de: 'Schwäche',
           fr: 'Charybde',
           ja: 'ミールストーム',
+          cn: '大漩涡',
         },
         dread: {
           en: 'Dread',
           de: 'Macht',
           fr: 'cuirassé Dreadnaught',
           ja: 'ドレッドノート化',
+          cn: '恐慌装甲化',
         },
         safety: {
           en: 'Safety',
@@ -292,6 +298,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pylon of Passage activated',
           de: 'Translokator aktiviert',
+          ja: '転移が出来ます',
+          cn: '传送装置已启动',
         },
       },
     },
@@ -344,6 +352,14 @@ const triggerSet: TriggerSet<Data> = {
         'Lamia Queen': 'ラミアクィーン',
         'Meracydian Clone': 'メラシディアン・クローン',
         'Mimic': 'ミミック',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Lamia Queen': '拉米亚女王',
+        'Meracydian Clone': '美拉西迪亚复制体',
+        'Mimic': '拟态怪',
       },
     },
   ],

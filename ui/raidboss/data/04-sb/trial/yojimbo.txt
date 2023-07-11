@@ -24,10 +24,9 @@
 
 hideall "--Reset--"
 hideall "--sync--"
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 6.4 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:3827:/ window 7,7
 14.5 "Inoshikacho" sync / 1[56]:[^:]*:Yojimbo:3829:/ duration 9.2
 23.7 "--sync--" sync / 1[56]:[^:]*:Inoshikacho:382A:/

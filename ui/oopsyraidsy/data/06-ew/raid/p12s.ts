@@ -44,6 +44,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Trinity of Souls 10': '82EA', // middle left second wing (bottom up)
     'P12S Trinity of Souls 11': '82EB', // top right third wing
     'P12S Trinity of Souls 12': '82EC', // top left third wing
+    'P12S Ray of Light': '82EE', // Antropos beam
     'P12S Superchain Burst': '82DB', // "get out" sphere
     'P12S Superchain Coil': '82DC', // "get in" donut
     'P12S Theos\'s Cross': '830A', // cross ground explosion

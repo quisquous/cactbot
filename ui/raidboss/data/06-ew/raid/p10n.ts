@@ -45,13 +45,17 @@ const triggerSet: TriggerSet<Data> = {
         onYou: {
           en: 'Spread (avoid posts)',
           de: 'Verteilen (vermeide Stäbe)',
-          fr: 'Écartez-vous',
+          fr: 'Écartez-vous (évitez les poteaux)',
+          ja: '散会 (柱回避)',
+          cn: '分散（远离柱子）',
           ko: '산개 (기둥 피하기)',
         },
         onOthers: {
           en: 'Avoid marked players',
           de: 'Vermeide markierte Spieler',
           fr: 'Évitez les joueurs marqués',
+          ja: 'ウェブ回避',
+          cn: '远离点名玩家',
           ko: '징 대상자 피하기',
         },
       },
@@ -74,6 +78,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Avoid jails',
           de: 'Gefängnisen vermeiden',
           fr: 'Évitez les pièges',
+          ja: 'ジェイル回避',
+          cn: '远离塔',
           ko: '감옥 벗어나기',
         },
       },
@@ -89,6 +95,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Under jails',
           de: 'Geh unter ein Gefängnis',
           fr: 'Sous les pièges',
+          ja: 'ジェイルの下へ',
+          cn: '站在塔下（或远离）',
           ko: '감옥 아래로',
         },
       },
@@ -134,6 +142,9 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Side platform(s)',
           de: 'Seite-Platform(en)',
+          fr: 'Plateforme(s) latérale(s)',
+          ja: 'サイド島へ',
+          cn: '去侧边平台',
           ko: '옆 플랫폼으로',
         },
       },
@@ -167,12 +178,16 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Soak tower',
           de: 'Türme nehmen',
           fr: 'Prenez une tour',
+          ja: '塔踏み',
+          cn: '踩塔',
           ko: '기둥 들어가기',
         },
         avoid: {
           en: 'Avoid towers',
           de: 'Türme vermeiden',
           fr: 'Évitez les tours',
+          ja: '塔回避',
+          cn: '远离塔',
           ko: '기둥 피하기',
         },
       },
@@ -181,9 +196,8 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         '\\(marked\\)': '(Markiert)',
@@ -206,9 +220,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\\u00e6monium',
       },
       'replaceText': {
         'Cannonspawn': 'Croissance de canon',
@@ -228,9 +241,8 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
-        'Pand\\\\u00e6monium': 'パンデモニウム',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'パンデモニウム',
       },
       'replaceText': {
         'Cannonspawn': 'キャノンスポーン',

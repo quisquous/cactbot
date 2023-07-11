@@ -1057,7 +1057,8 @@ Parsed Log Line Examples:
 ### Line 24 (0x18): NetworkDoT
 
 HoT (heal over time) and DoT (damage over time) amounts.
-These are the aggregated quantities of damage for every hot or dot on that target.
+These are the aggregated quantities of damage for every hot or dot on that target
+from a given source.
 
 The reason why there is such a discrepancy between ACT and fflogs about dots
 is that ff14 does not return the exact tick amounts for every active dot.
@@ -1065,26 +1066,28 @@ Instead, if a boss has 20 dots applied to it,
 then it returns the total tick amount for all of these dots.
 Parsers are left to estimate what the individual dot amounts are.
 
+The `damageType` field is a number id that corresponds to the `AttackType` table.
+
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkDoT&lang=en-US) -->
 
 #### Structure
 
 ```log
 Network Log Line Structure:
-24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]
+24|[timestamp]|[id]|[name]|[which]|[effectId]|[damage]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[sourceId]|[source]|[damageType]|[sourceCurrentHp]|[sourceMaxHp]|[sourceCurrentMp]|[sourceMaxMp]|[?]|[?]|[sourceX]|[sourceY]|[sourceZ]|[sourceHeading]
 
 Parsed Log Line Structure:
-[timestamp] DoTHoT 18:[id]:[name]:[which]:[effectId]:[damage]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]
+[timestamp] DoTHoT 18:[id]:[name]:[which]:[effectId]:[damage]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[sourceId]:[source]:[damageType]:[sourceCurrentHp]:[sourceMaxHp]:[sourceCurrentMp]:[sourceMaxMp]:[?]:[?]:[sourceX]:[sourceY]:[sourceZ]:[sourceHeading]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>24)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<which>[^|]*)\|(?<effectId>[^|]*)\|(?<damage>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
+^(?<type>24)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<which>[^|]*)\|(?<effectId>[^|]*)\|(?<damage>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|(?<sourceId>[^|]*)\|(?<source>[^|]*)\|(?<damageType>[^|]*)\|(?<sourceCurrentHp>[^|]*)\|(?<sourceMaxHp>[^|]*)\|(?<sourceCurrentMp>[^|]*)\|(?<sourceMaxMp>[^|]*)\|(?:[^|]*\|){2}(?<sourceX>[^|]*)\|(?<sourceY>[^|]*)\|(?<sourceZ>[^|]*)\|(?<sourceHeading>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) DoTHoT (?<type>18):(?<id>[^:]*):(?<name>[^:]*):(?<which>[^:]*):(?<effectId>[^:]*):(?<damage>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) DoTHoT (?<type>18):(?<id>[^:]*):(?<name>[^:]*):(?<which>[^:]*):(?<effectId>[^:]*):(?<damage>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*):(?<sourceId>[^:]*):(?<source>[^:]*):(?<damageType>[^:]*):(?<sourceCurrentHp>[^:]*):(?<sourceMaxHp>[^:]*):(?<sourceCurrentMp>[^:]*):(?<sourceMaxMp>[^:]*)(?::[^:]*){2}:(?<sourceX>[^:]*):(?<sourceY>[^:]*):(?<sourceZ>[^:]*):(?<sourceHeading>[^:]*)(?:$|:)
 ```
 
 #### Examples
@@ -2490,20 +2493,20 @@ Each line may contain an arbitrary number of field name / value pairs.
 
 ```log
 Network Log Line Structure:
-261|[timestamp]|[change]|[id]|[key1]|[value1]
+261|[timestamp]|[change]|[id]
 
 Parsed Log Line Structure:
-[timestamp] 261 105:[change]:[id]:[key1]:[value1]
+[timestamp] 261 105:[change]:[id]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>261)\|(?<timestamp>[^|]*)\|(?<change>[^|]*)\|(?<id>[^|]*)\|
+^(?<type>261)\|(?<timestamp>[^|]*)\|(?<change>[^|]*)\|(?<id>[^|]*)\|(?:AggressionStatus\|(?<pairAggressionStatus>[^|]*)\|)?(?:BNpcID\|(?<pairBNpcID>[^|]*)\|)?(?:BNpcNameID\|(?<pairBNpcNameID>[^|]*)\|)?(?:CastBuffID\|(?<pairCastBuffID>[^|]*)\|)?(?:CastDurationCurrent\|(?<pairCastDurationCurrent>[^|]*)\|)?(?:CastDurationMax\|(?<pairCastDurationMax>[^|]*)\|)?(?:CastTargetID\|(?<pairCastTargetID>[^|]*)\|)?(?:CurrentCP\|(?<pairCurrentCP>[^|]*)\|)?(?:CurrentGP\|(?<pairCurrentGP>[^|]*)\|)?(?:CurrentHP\|(?<pairCurrentHP>[^|]*)\|)?(?:CurrentMP\|(?<pairCurrentMP>[^|]*)\|)?(?:CurrentWorldID\|(?<pairCurrentWorldID>[^|]*)\|)?(?:Distance\|(?<pairDistance>[^|]*)\|)?(?:EffectiveDistance\|(?<pairEffectiveDistance>[^|]*)\|)?(?:Heading\|(?<pairHeading>[^|]*)\|)?(?:ID\|(?<pairID>[^|]*)\|)?(?:IsCasting1\|(?<pairIsCasting1>[^|]*)\|)?(?:IsCasting2\|(?<pairIsCasting2>[^|]*)\|)?(?:IsTargetable\|(?<pairIsTargetable>[^|]*)\|)?(?:Job\|(?<pairJob>[^|]*)\|)?(?:Level\|(?<pairLevel>[^|]*)\|)?(?:MaxCP\|(?<pairMaxCP>[^|]*)\|)?(?:MaxGP\|(?<pairMaxGP>[^|]*)\|)?(?:MaxHP\|(?<pairMaxHP>[^|]*)\|)?(?:MaxMP\|(?<pairMaxMP>[^|]*)\|)?(?:ModelStatus\|(?<pairModelStatus>[^|]*)\|)?(?:MonsterType\|(?<pairMonsterType>[^|]*)\|)?(?:Name\|(?<pairName>[^|]*)\|)?(?:NPCTargetID\|(?<pairNPCTargetID>[^|]*)\|)?(?:OwnerID\|(?<pairOwnerID>[^|]*)\|)?(?:PartyType\|(?<pairPartyType>[^|]*)\|)?(?:PCTargetID\|(?<pairPCTargetID>[^|]*)\|)?(?:PosX\|(?<pairPosX>[^|]*)\|)?(?:PosY\|(?<pairPosY>[^|]*)\|)?(?:PosZ\|(?<pairPosZ>[^|]*)\|)?(?:Radius\|(?<pairRadius>[^|]*)\|)?(?:Status\|(?<pairStatus>[^|]*)\|)?(?:TargetID\|(?<pairTargetID>[^|]*)\|)?(?:TransformationId\|(?<pairTransformationId>[^|]*)\|)?(?:Type\|(?<pairType>[^|]*)\|)?(?:WeaponId\|(?<pairWeaponId>[^|]*)\|)?(?:WorldID\|(?<pairWorldID>[^|]*)\|)?(?:WorldName\|(?<pairWorldName>[^|]*)\|)?
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 261 (?<type>105):(?<change>[^:]*):(?<id>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 261 (?<type>105):(?<change>[^:]*):(?<id>[^:]*):(?:AggressionStatus(?:$|:)(?<pairAggressionStatus>[^:]*)(?:$|:))?(?:BNpcID(?:$|:)(?<pairBNpcID>[^:]*)(?:$|:))?(?:BNpcNameID(?:$|:)(?<pairBNpcNameID>[^:]*)(?:$|:))?(?:CastBuffID(?:$|:)(?<pairCastBuffID>[^:]*)(?:$|:))?(?:CastDurationCurrent(?:$|:)(?<pairCastDurationCurrent>[^:]*)(?:$|:))?(?:CastDurationMax(?:$|:)(?<pairCastDurationMax>[^:]*)(?:$|:))?(?:CastTargetID(?:$|:)(?<pairCastTargetID>[^:]*)(?:$|:))?(?:CurrentCP(?:$|:)(?<pairCurrentCP>[^:]*)(?:$|:))?(?:CurrentGP(?:$|:)(?<pairCurrentGP>[^:]*)(?:$|:))?(?:CurrentHP(?:$|:)(?<pairCurrentHP>[^:]*)(?:$|:))?(?:CurrentMP(?:$|:)(?<pairCurrentMP>[^:]*)(?:$|:))?(?:CurrentWorldID(?:$|:)(?<pairCurrentWorldID>[^:]*)(?:$|:))?(?:Distance(?:$|:)(?<pairDistance>[^:]*)(?:$|:))?(?:EffectiveDistance(?:$|:)(?<pairEffectiveDistance>[^:]*)(?:$|:))?(?:Heading(?:$|:)(?<pairHeading>[^:]*)(?:$|:))?(?:ID(?:$|:)(?<pairID>[^:]*)(?:$|:))?(?:IsCasting1(?:$|:)(?<pairIsCasting1>[^:]*)(?:$|:))?(?:IsCasting2(?:$|:)(?<pairIsCasting2>[^:]*)(?:$|:))?(?:IsTargetable(?:$|:)(?<pairIsTargetable>[^:]*)(?:$|:))?(?:Job(?:$|:)(?<pairJob>[^:]*)(?:$|:))?(?:Level(?:$|:)(?<pairLevel>[^:]*)(?:$|:))?(?:MaxCP(?:$|:)(?<pairMaxCP>[^:]*)(?:$|:))?(?:MaxGP(?:$|:)(?<pairMaxGP>[^:]*)(?:$|:))?(?:MaxHP(?:$|:)(?<pairMaxHP>[^:]*)(?:$|:))?(?:MaxMP(?:$|:)(?<pairMaxMP>[^:]*)(?:$|:))?(?:ModelStatus(?:$|:)(?<pairModelStatus>[^:]*)(?:$|:))?(?:MonsterType(?:$|:)(?<pairMonsterType>[^:]*)(?:$|:))?(?:Name(?:$|:)(?<pairName>[^:]*)(?:$|:))?(?:NPCTargetID(?:$|:)(?<pairNPCTargetID>[^:]*)(?:$|:))?(?:OwnerID(?:$|:)(?<pairOwnerID>[^:]*)(?:$|:))?(?:PartyType(?:$|:)(?<pairPartyType>[^:]*)(?:$|:))?(?:PCTargetID(?:$|:)(?<pairPCTargetID>[^:]*)(?:$|:))?(?:PosX(?:$|:)(?<pairPosX>[^:]*)(?:$|:))?(?:PosY(?:$|:)(?<pairPosY>[^:]*)(?:$|:))?(?:PosZ(?:$|:)(?<pairPosZ>[^:]*)(?:$|:))?(?:Radius(?:$|:)(?<pairRadius>[^:]*)(?:$|:))?(?:Status(?:$|:)(?<pairStatus>[^:]*)(?:$|:))?(?:TargetID(?:$|:)(?<pairTargetID>[^:]*)(?:$|:))?(?:TransformationId(?:$|:)(?<pairTransformationId>[^:]*)(?:$|:))?(?:Type(?:$|:)(?<pairType>[^:]*)(?:$|:))?(?:WeaponId(?:$|:)(?<pairWeaponId>[^:]*)(?:$|:))?(?:WorldID(?:$|:)(?<pairWorldID>[^:]*)(?:$|:))?(?:WorldName(?:$|:)(?<pairWorldName>[^:]*)(?:$|:))?(?:$|:)
 ```
 
 #### Examples

@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -124,10 +124,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Right Arm',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The wall-mounted right arm begins to move.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text!(),
       run: (data) => data.alliance = data.alliance ?? 'A',
       outputStrings: {
@@ -144,10 +145,12 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Flamethrowers',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+
+      netRegex: {
         line: 'The wall-mounted flamethrowers activate\..*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.alliance = data.alliance || 'B',
       outputStrings: {
@@ -164,10 +167,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Left Arm 1',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       durationSeconds: 6,
       response: Responses.getOut('info'),
       run: (data) => data.alliance = data.alliance || 'C',
@@ -175,10 +179,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Left Arm 2',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       delaySeconds: 8,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -195,10 +200,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Left Arm 3',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The wall-mounted left arm begins to move.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       delaySeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -228,10 +234,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Electric Floor',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'You hear frenzied movement from machines beneath.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       durationSeconds: 10,
       suppressSeconds: 15,
       infoText: (_data, _matches, output) => output.text!(),
@@ -249,10 +256,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Conveyer Belts',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'The conveyer belts whirr to life!.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -268,10 +276,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Oil 1',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'Flammable oil is leaking from the floor.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       durationSeconds: 3,
       suppressSeconds: 15,
       alertText: (_data, _matches, output) => output.text!(),
@@ -289,10 +298,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Copied Hobbes Oil 2',
       type: 'GameLog',
-      netRegex: NetRegexes.message({
+      netRegex: {
         line: 'Flammable oil is leaking from the floor.*?',
+        code: Util.gameLogCodes.message,
         capture: false,
-      }),
+      },
       delaySeconds: 6,
       durationSeconds: 3,
       suppressSeconds: 15,

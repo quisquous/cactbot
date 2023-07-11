@@ -48,13 +48,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EO 21-30 Tiamat Clone Dark Wyrmwing',
       type: 'StartsUsing',
-      netRegex: { id: '7C65', source: 'Tiamat Clone', capture: false },
+      netRegex: { id: '7C65', source: 'Tiamat\'s Clone', capture: false },
       response: Responses.goMiddle(),
     },
     {
       id: 'EO 21-30 Tiamat Clone Dark Wyrmtail',
       type: 'StartsUsing',
-      netRegex: { id: '7C63', source: 'Tiamat Clone', capture: false },
+      netRegex: { id: '7C63', source: 'Tiamat\'s Clone', capture: false },
       response: Responses.goSides(),
     },
     {
@@ -84,7 +84,7 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Brobinyak': 'Orthos-Brobinyak',
         'Orthos Vanara': 'Orthos-Vanara',
         'Orthoshelled Dragon': 'Orthos-Panzerdrache',
-        'Tiamat Clone': 'Tiamat-Klon',
+        'Tiamat\'s Clone': 'Tiamat-Klon',
       },
     },
     {
@@ -95,7 +95,7 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Brobinyak': 'brobinyak Orthos',
         'Orthos Vanara': 'vanara Orthos',
         'Orthoshelled Dragon': 'dragon Orthos à carapace',
-        'Tiamat Clone': 'clone de Tiamat',
+        'Tiamat\'s Clone': 'clone de Tiamat',
       },
     },
     {
@@ -106,7 +106,18 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Brobinyak': 'オルト・ブロビニャク',
         'Orthos Vanara': 'オルト・ヴァナラ',
         'Orthoshelled Dragon': 'オルト・カラペスドラゴン',
-        'Tiamat Clone': 'ティアマット・クローン',
+        'Tiamat\'s Clone': 'ティアマット・クローン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Lesser Orthos Dragon': '正统小龙',
+        'Orthoknight': '正统骑士',
+        'Orthos Brobinyak': '正统布罗宾雅克',
+        'Orthos Vanara': '正统婆那罗',
+        'Orthoshelled Dragon': '正统龟甲龙',
+        'Tiamat\'s Clone': '提亚马特复制体',
       },
     },
   ],

@@ -4,14 +4,13 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # -ii 4B47 4B1D 5865 585B 586B 5874 5875 5876 587E 587F 5882 5884 5889 588A 588B
 # -ic "Lissom Sculpture" "Beastly Sculpture"
 
+# Can use InCombat line to start timeline since the multiple phases do not
+# change the player's InCombat status.
 
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B1D:/ window 1,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 14.9 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:5872:/ window 14.9,5
 22.1 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5879:/
 25.3 "Initialize Recall" sync / 1[56]:[^:]*:Eden's Promise:5859:/

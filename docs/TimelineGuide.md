@@ -76,6 +76,8 @@ Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" sync /Regex/ (window Number,Number) (jump Number) (duration Number)`
 
+`Number "String" sync /Regex/ (window Number,Number) (forcejump Number) (duration Number)`
+
 The parentheses here indicate optionality and are not literal parentheses.
 
 Number can be an integer, e.g. `34`, or a float, e.g. `84.381`.
@@ -109,6 +111,21 @@ If you jump to time 0, the timeline will stop playback.
 This is usually used for phase pushes and loops.
 There does not need to be a timeline entry for the time you jump to,
 although it is very common to have one.
+
+`forcejump Number` tells the timeline playback that there will always be a jump here
+regardless of whether the sync is encountered.
+This is intended for loops that will always be taken in an encounter.
+When this is used, no "lookahead" loop unrolling is needed,
+and the timeline will use the `forcejump` destination to list events in the future,
+because it knows that it will always jump there.
+If this line syncs prior to time passing it by,
+it will behave exactly like a normal `jump`.
+If the time passes this line,
+then it will jump as if it had synced exactly on time.
+This is not handled specially in `test_timeline`, which expects the sync to be correct.
+If the `window` extends past the `forcejump` time,
+this "overhang window" will still be respected even after force jumping
+until the next sync or jump occurs.
 
 ### Commands
 
@@ -259,6 +276,10 @@ Care is needed to make sure that replacements are not overzealous.
 Here's an example of using cactbot's tools to make a timeline file for Cape Westwind.
 This is pretty straightforward and only requires one person to test, so is a good first example.
 
+Note that the Cape Westwind trial was removed in Patch 6.1,
+and the timeline has since been removed from cactbot.
+However, you can view the original timeline [here](https://github.com/quisquous/cactbot/blob/aa38bdf8f2551a504e1d3f595cd266d3baa193f2/ui/raidboss/data/02-arr/trial/cape_westwind.txt).
+
 ### Run the fight a few times
 
 The first step in making a timeline is generating a few ACT logs.
@@ -309,17 +330,12 @@ export default {
 };
 ```
 
-(3) Update the manifest file.
-
-Update **ui/raidboss/data/raidboss_manifest.txt** with both the name of the
-new triggers file and the new timeline file.
-
-(4) Build cactbot.
+(3) Build cactbot.
 
 Run `npm run build` in the cactbot source directory.
 If you never run `npm install` before, you'll need to do that first.
 
-(5) Reload raidboss
+(4) Reload raidboss
 
 Make sure the raidboss URL is pointed to `dist/ui/raidboss/raidboss.html`.
 If you've changed any of these files, reload your cactbot raidboss
@@ -880,7 +896,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
 
 0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 ```
 
@@ -891,26 +907,98 @@ other people can come back and see what you skipped.
 but the timeline itself will still sync to those lines.
 There can be anything in the text, it is just called `--sync--` for convenience.
 
-It's good practice to have a Reset line to stop the timeline when there's a wipe.
-On fights where the entire zone resets (e.g. all of omegascape, a4s, a8s, a12s, t9, t13),
-`sync / 21:........:4000000F:/` is a good sync to use.
-On fights with zones that seal and unseal, (e.g. a1s,  t1-8)
-you should use the zone sealing message itself to reset.
+### Pre-timeline combat, starts & resets, and multiple zones
 
-Finally, to start a fight, you should always include an Engage! sync for countdowns.
-If the first boss ability is slow to happen, you should also include the first
-auto so that the timeline starts.
+There is no one-size-fits-all approach for starting and resetting timelines.
 
-For instances, on o11s, the first two lines are:
+In single-boss, single-zone content (e.g., most trials),
+the timeline should start when combat begins,
+and should reset on a wipe or when the player is out of combat.
+
+However, in dungeons for example, the player is often in combat
+with mobs before the timeline should begin for the first boss encounter.
+For that matter, there are also several boss encounters in each dungeon.
+In those situations, we need discrete timelines for each boss encounter,
+and each boss's timeline should start only once that boss encounter begins.
+
+There are a number of ways we can handle this.
+
+First, by default, cacbot will reset the timeline to 0
+whenever a player is out of combat.
+This default can be overriden in particular fight's trigger set
+with the following property:
 
 ```bash
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.5 "--sync--" sync /:Omega:368:/ window 3,0
+resetWhenOutOfCombat: false
+```
+
+This property is only used in selective circumstances (e.g. zones like Eureka),
+so we'll approach timeline creation here assuming default behavior.
+
+The first step is determining how the timeline should begin running.
+
+If the timeline should begin when the player first begins combat,
+we can use OverlayPlugin's 0x104 InCombat line
+to detect when the player enters combat:
+
+```bash
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+```
+
+However, if there will be pre-timeline combat (e.g., pre-boss mobs),
+this would incorrectly start combat during the pre-boss phase,
+so we need a different approach.
+
+In these situations, boss encounters (and timelines) are often tied
+to a specific zone within the instance,
+which means we can start the timeline when that zone is sealed off.
+For example:
+
+```bash
+0.0 "--sync--" sync / 00:0839::The Landfast Floe will be sealed off/ window 1,0
+```
+
+For multi-zone instances like dungeons, we can effectively create
+separate timelines for each encounter in the same timeline file
+by using large gaps between the timelines, coupled with large sync windows.
+
+For example, in [Alzadaal's Legacy](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/alzadaals_legacy.txt), we effectively have three separate timelines,
+one for each boss encounter, each spaced 1000 seconds apart.
+Because the timeline resets to 0 each time the player is out of combat,
+we use large sync windows on each zone-seal message to 'jump' the timeline
+to the right place for each encounter:
+
+```bash
+0.0 "--sync--" sync / 00:0839::The Undersea Entrance will be sealed off/ window 0,1
+...
+1000.0 "--sync--" sync / 00:0839::The Threshold Of Bounty will be sealed off/ window 1000,1
+...
+2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
+```
+
+Finally, because cactbot will reset the timeline when the player is out of combat,
+there is no longer a need to include specific reset lines in most timeline files.
+
+However, if a trigger set contains the property to NOT reset the timeline
+when out of combat, there are several options for manualy triggering a reset.
+
+On fights where the entire zone resets (e.g. all of omegascape, a4s, a8s, a12s, t9, t13),
+you can use the ActorControl line that is sent on a wipe:
+
+```bash
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+```
+
+On fights with zones that seal and unseal, (e.g. a1s, t1-8)
+you can use the zone unsealing message itself to reset:
+
+```bash
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 ```
 
 ### Making loops loop
 
-Here's the phase 1 loop, again.
+Back to our Cape Westwind timeline, here's the phase 1 loop, again.
 We're going to edit this so that whenever we get to 52.2 seconds
 it will jump back to 24.4 seconds seamlessly.
 

@@ -9,14 +9,12 @@ hideall "--sync--"
 hideall "Magicked Mark"
 hideall "Brute Force"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 # Overall enrage is 12 minutes, but it doesn't interrupt any rotations.
 # It just starts a "10 seconds to auto-clean" counter,
 # ending with a Final Judgment sword drop.
 
 # ONSLAUGHTER
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.7 "--sync--" sync / 1[56]:[^:]*:Onslaughter:172E:/ window 2.7,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 5.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/ window 5.4,5
 12.6 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:1732:/
 

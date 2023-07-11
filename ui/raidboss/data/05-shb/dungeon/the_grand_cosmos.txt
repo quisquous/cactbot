@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Seeker of Solitude
 # -ii 4768 49A4 476C 476F 4771 4770 -p 4769:111.7
 100.0 "--sync--" sync / 00:0839::The Martial Court will be sealed off/ window 100,0
@@ -39,7 +37,7 @@ hideall "--sync--"
 ### Leannan Sith
 # -ii 4724 471F -p 471B:512
 500.0 "--sync--" sync / 00:0839::The Font of Quintessence will be sealed off/ window 500,0 
-512.0 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
+512.0 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/ window 512,10
 522.3 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
 
 529.9 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/
@@ -81,7 +79,7 @@ hideall "--sync--"
 ### Lugus
 # -ii 475B 4766 475A 475E -p 475D:1026.8
 1000.0 "--sync--" sync / 00:0839::The Chamber of Celestial Song will be sealed off/ window 1000,0
-1015.3 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+1015.3 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/ window 1015.3,10
 1026.8 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
 1030.3 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
 1037.8 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/

@@ -6,18 +6,23 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: handle Two Minds
+// TODO: something for Charybdis??
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  dualityBuster: string[];
   lastDualspellId?: string;
   limitCutNumber?: number;
   combination?: 'front' | 'rear';
   seenChimericSuccession?: boolean;
   levinOrbs: {
-    [combatantId: string]: { [property: string]: number };
+    [combatantId: string]: {
+      order?: number;
+      dir?: number;
+    };
   };
   limitCutDash: number;
+  limitCut1Count: number;
 }
 
 const dualspells = {
@@ -73,6 +78,14 @@ const limitCutPlayerActive: number[][] = [
   [8, 4],
 ];
 
+// Time between headmarker and defamation for Chimeric Succession.
+const chimericLimitCutTime: { [id: number]: number } = {
+  1: 10,
+  2: 13,
+  3: 16,
+  4: 19,
+} as const;
+
 const firstHeadmarker = parseInt(headmarkers.dualityOfDeath, 16);
 
 const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
@@ -95,8 +108,10 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'p9s.txt',
   initData: () => {
     return {
+      dualityBuster: [],
       levinOrbs: {},
       limitCutDash: 0,
+      limitCut1Count: 0,
     };
   },
   triggers: [
@@ -105,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: {},
       condition: (data) => data.decOffset === undefined,
+      suppressSeconds: 99999,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => getHeadmarkerId(data, matches),
     },
@@ -122,21 +138,32 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
+      id: 'P9S Duality of Death Collect',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.dualityOfDeath,
+      run: (data, matches) => data.dualityBuster.push(matches.target),
+    },
+    {
       id: 'P9S Duality of Death',
       type: 'StartsUsing',
       netRegex: { id: '8151', source: 'Kokytos', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
+          tankBusterOnYou: Outputs.tankBusterOnYou,
           tankSwap: Outputs.tankSwap,
           tankBusters: Outputs.tankBusters,
         };
 
-        // TODO: track headmarkers?
-        if (data.role === 'tank')
+        if (data.dualityBuster.includes(data.me)) {
+          if (data.role !== 'tank' && data.job !== 'BLU')
+            return { alarmText: output.tankBusterOnYou!() };
           return { alertText: output.tankSwap!() };
+        }
         return { infoText: output.tankBusters!() };
       },
+      run: (data) => data.dualityBuster = [],
     },
     {
       id: 'P9S Dualspell Fire/Ice',
@@ -150,7 +177,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Partners + Donut',
           de: 'Partner + Donut',
           fr: 'Partenaires + Donut',
+          ja: 'ペア + ドーナツ',
           cn: '双人分摊 + 月环',
+          ko: '파트너 + 도넛',
         },
       },
     },
@@ -166,7 +195,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Protean + Donut',
           de: 'Himmelsrichtungen + Donut',
           fr: 'Positions + Donut',
+          ja: '基本散会 + ドーナツ',
           cn: '八方分散 + 月环',
+          ko: '8방향 산개 + 도넛',
         },
       },
     },
@@ -187,7 +218,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out + Partners',
           de: 'Raus + Partner',
           fr: 'Extérieur + Partenaires',
+          ja: '外側へ + ペア',
           cn: '远离 + 双人分摊',
+          ko: '밖으로 + 파트너',
         },
         out: Outputs.out,
       },
@@ -211,13 +244,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In + Partners',
           de: 'Rein + Partner',
           fr: 'Intérieur + Partenaires',
+          ja: '内側へ + ペア',
           cn: '靠近 + 双人分摊',
+          ko: '안으로 + 파트너',
         },
         thunderIceIn: {
           en: 'In + Protean',
           de: 'Rein + Himmelsrichtungen',
           fr: 'Intérieur + Positions',
+          ja: '内側へ + 基本散会',
           cn: '靠近 + 八方分散',
+          ko: '안으로 + 8방향 산개',
         },
         in: Outputs.in,
       },
@@ -239,7 +276,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out + Protean',
           de: 'Raus + Himmelsrichtungen',
           fr: 'Extérieur + Positions',
+          ja: '外側へ + 基本散会',
           cn: '远离 + 八方分散',
+          ko: '밖으로 + 8방향 산개',
         },
         out: Outputs.out,
       },
@@ -260,7 +299,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Knockback into Wall',
           de: 'Rückstoß in die Wand',
           fr: 'Poussée sur un mur',
+          ja: 'ノックバック',
           cn: '向墙边击退',
+          ko: '벽으로 넉백',
         },
       },
     },
@@ -358,6 +399,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'First Orb ${dir} => ${rotation}',
           de: 'Erster Orb ${dir} => ${rotation}',
           fr: 'Premier orbe ${dir} => ${rotation}',
+          ja: '1回目の玉 ${dir} => ${rotation}',
+          cn: '第一个球 ${dir} => ${rotation}',
+          ko: '첫번째 구슬 ${dir} => ${rotation}',
         },
         clockwise: Outputs.clockwise,
         counterclock: Outputs.counterclockwise,
@@ -365,23 +409,55 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P9S Limit Cut Player Dash Order',
+      id: 'P9S Limit Cut 1 Player Number',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
-        return data.me === matches.target &&
+        return !data.seenChimericSuccession &&
           limitCutMarkers.includes(getHeadmarkerId(data, matches));
       },
       preRun: (data, matches) => {
-        const correctedMatch = getHeadmarkerId(data, matches);
-        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+        data.limitCut1Count++;
+        if (data.me === matches.target) {
+          const correctedMatch = getHeadmarkerId(data, matches);
+          data.limitCutNumber = limitCutNumberMap[correctedMatch];
+        }
       },
-      durationSeconds: (data) => data.seenChimericSuccession ? 20 : 30,
-      infoText: (data, _matches, output) => {
-        return output.text!({ num: data.limitCutNumber ?? output.unknown!() });
+      durationSeconds: 30,
+      infoText: (data, matches, output) => {
+        if (data.me !== matches.target)
+          return;
+        const expectedLimitCutNumbers = [2, 4, 6, 8];
+        if (
+          data.limitCutNumber === undefined ||
+          !expectedLimitCutNumbers.includes(data.limitCutNumber)
+        )
+          return;
+        return output[data.limitCutNumber]!();
+      },
+      tts: (data, matches, output) => {
+        if (data.me !== matches.target || data.limitCutNumber === undefined)
+          return;
+        return output.tts!({ num: data.limitCutNumber });
       },
       outputStrings: {
-        text: {
+        2: {
+          en: '2: First dash, third tower',
+          cn: '2麻 1火3塔',
+        },
+        4: {
+          en: '4: Second dash, last tower',
+          cn: '4麻 2火4塔',
+        },
+        6: {
+          en: '6: First tower, third dash',
+          cn: '6麻 1塔3火',
+        },
+        8: {
+          en: '8: Second tower, last dash',
+          cn: '8麻 2塔4火',
+        },
+        tts: {
           en: '${num}',
           de: '${num}',
           fr: '${num}',
@@ -389,7 +465,89 @@ const triggerSet: TriggerSet<Data> = {
           cn: '${num}',
           ko: '${num}',
         },
-        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'P9S Limit Cut 1 Early Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.limitCut1Count === 4 && !data.seenChimericSuccession &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      infoText: (data, _matches, output) => {
+        if (data.limitCutNumber !== undefined)
+          return;
+        return output.defamationLater!();
+      },
+      outputStrings: {
+        defamationLater: {
+          en: 'Defamation on you (later)',
+          cn: '大圈点名 (稍后放置)',
+        },
+      },
+    },
+    {
+      id: 'P9S Chimeric Limit Cut Player Number',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.seenChimericSuccession && data.me === matches.target &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      preRun: (data, matches) => {
+        const correctedMatch = getHeadmarkerId(data, matches);
+        data.limitCutNumber = limitCutNumberMap[correctedMatch];
+      },
+      durationSeconds: 20,
+      infoText: (data, _matches, output) => {
+        const expectedLimitCutNumbers = [1, 2, 3, 4];
+        if (
+          data.limitCutNumber === undefined ||
+          !expectedLimitCutNumbers.includes(data.limitCutNumber)
+        )
+          return;
+        return output.number!({ num: data.limitCutNumber });
+      },
+      outputStrings: {
+        number: {
+          en: '${num}',
+          de: '${num}',
+          fr: '${num}',
+          ja: '${num}',
+          cn: '${num}',
+          ko: '${num}',
+        },
+      },
+    },
+    {
+      id: 'P9S Chimeric Limit Cut Defamation',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        return data.seenChimericSuccession && data.me === matches.target &&
+          data.limitCutNumber !== undefined &&
+          limitCutMarkers.includes(getHeadmarkerId(data, matches));
+      },
+      delaySeconds: (data) => {
+        if (data.limitCutNumber === undefined)
+          return 0;
+        const time = chimericLimitCutTime[data.limitCutNumber];
+        if (time === undefined)
+          return 0;
+        // 6 seconds ahead of time
+        return time - 6;
+      },
+      alarmText: (_data, _matches, output) => output.defamation!(),
+      outputStrings: {
+        defamation: {
+          en: 'Defamation on YOU',
+          de: 'Ehrenstrafe aud DIR',
+          fr: 'Diffamation sur VOUS',
+          ja: '自分の巨大な爆発',
+          cn: '大圈点名',
+          ko: '광역징 대상자',
+        },
       },
     },
     {
@@ -419,11 +577,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait dash',
           de: 'Sprung ködern',
           fr: 'Encaissez le saut',
+          ja: '突進誘導',
+          cn: '引导BOSS',
+          ko: '돌진 유도',
         },
         soak: {
           en: 'Soak tower',
           de: 'Im Turm stehen',
           fr: 'Prenez votre tour',
+          ja: '塔踏み',
+          cn: '踩塔',
+          ko: '기둥 들어가기',
         },
       },
     },
@@ -438,11 +602,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8180', source: 'Kokytos', capture: false },
       condition: (data) => data.limitCutDash > 0 && data.limitCutDash < 4,
+      delaySeconds: (data) => {
+        // delay 'soak tower' call by 1 second to prevent confusion due to ability timing
+        return limitCutPlayerActive[data.limitCutDash]?.[1] === data.limitCutNumber ? 1 : 0;
+      },
       alertText: (data, _matches, output) => {
-        const activePlayers = limitCutPlayerActive[data.limitCutDash];
-        if (activePlayers === undefined)
-          return;
-        const [dashPlayer, soakPlayer] = activePlayers;
+        const [dashPlayer, soakPlayer] = limitCutPlayerActive[data.limitCutDash] ?? [];
         if (dashPlayer === undefined || soakPlayer === undefined)
           return;
         if (data.limitCutNumber === dashPlayer)
@@ -456,16 +621,22 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bait dash',
           de: 'Sprung ködern',
           fr: 'Encaissez le saut',
+          ja: '突進誘導',
+          cn: '引导BOSS',
+          ko: '돌진 유도',
         },
         soak: {
           en: 'Soak tower',
           de: 'Im Turm stehen',
           fr: 'Prenez votre tour',
+          ja: '塔踏み',
+          cn: '踩塔',
+          ko: '기둥 들어가기',
         },
       },
     },
     {
-      id: 'P9S Defamation',
+      id: 'P9S Limit Cut 1 Defamation',
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => {
@@ -478,9 +649,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Defamation on YOU',
           de: 'Ehrenstrafe aud DIR',
           fr: 'Diffamation sur VOUS',
-          ja: '名誉罰',
+          ja: '自分に巨大な爆発',
           cn: '大圈点名',
-          ko: '명예형: 보스 밑에서 나 홀로!!!',
+          ko: '광역징 대상자',
         },
       },
     },
@@ -501,7 +672,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out => Back',
           de: 'Raus => Hinten',
           fr: 'Extérieur => Derrière',
+          ja: '外側 => 後ろへ',
           cn: '远离 => 去背后',
+          ko: '밖으로 => 뒤로',
         },
       },
     },
@@ -516,7 +689,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In => Back',
           de: 'Rein => Hinten',
           fr: 'Intérieur => Derrière',
+          ja: '内側 => 後ろへ',
           cn: '靠近 => 去背后',
+          ko: '안으로 => 뒤로',
         },
       },
     },
@@ -531,7 +706,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out => Front',
           de: 'Raus => Vorne',
           fr: 'Extérieur => Devant',
+          ja: '外側 => 前へ',
           cn: '远离 => 去面前',
+          ko: '밖으로 => 앞으로',
         },
       },
     },
@@ -546,7 +723,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'In => Front',
           de: 'Rein => Vorne',
           fr: 'Intérieur => Devant',
+          ja: '内側 => 前へ',
           cn: '靠近 => 去面前',
+          ko: '안으로 => 앞으로',
         },
       },
     },
@@ -584,25 +763,33 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Out + Front',
           de: 'Raus + Vorne',
           fr: 'Extérieur + Devant',
+          ja: '外側 + 前へ',
           cn: '远离 => 去面前',
+          ko: '밖으로 + 앞으로',
         },
         outAndBack: {
           en: 'Out + Back',
           de: 'Raus + Hinten',
           fr: 'Extérieur + Derrière',
+          ja: '外側 + 後ろへ',
           cn: '远离 => 去背后',
+          ko: '밖으로 + 뒤로',
         },
         inAndFront: {
           en: 'In + Front',
           de: 'Rein + Vorne',
           fr: 'Intérieur + Devant',
+          ja: '内側 + 前へ',
           cn: '靠近 => 去面前',
+          ko: '안으로 + 앞으로',
         },
         inAndBack: {
           en: 'In + Back',
           de: 'Rein + Hinten',
           fr: 'Intérieur + Derrière',
+          ja: '内側 + 後ろへ',
           cn: '靠近 => 去背后',
+          ko: '안으로 + 뒤로',
         },
       },
     },
@@ -622,6 +809,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Charge => Stay',
           de: 'Sprung => Stehen bleiben',
           fr: 'Saut => Restez',
+          ja: '突進 => 止まれ',
+          cn: '突进 => 停',
+          ko: '돌진 => 가만히',
         },
       },
     },
@@ -635,8 +825,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Charge => Run Through',
           de: 'Sprung => Geh durch den Boss',
           fr: 'Saut => Traversez le boss',
+          ja: '突進 => 移動',
+          cn: '突进 => 穿',
+          ko: '돌진 => 가로지르기',
         },
       },
+    },
+    {
+      id: 'P9S Beastly Fury',
+      type: 'StartsUsing',
+      netRegex: { id: '8186', source: 'Kokytos', capture: false },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [
