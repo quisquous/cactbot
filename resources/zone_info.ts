@@ -1154,6 +1154,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 1～10层',
       'de': 'Eureka Orthos (Ebenen 1-10)',
       'en': 'Eureka Orthos (Floors 1-10)',
       'fr': 'Eurêka Orthos (sous-sols 1-10)',
@@ -1168,6 +1169,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 11～20层',
       'de': 'Eureka Orthos (Ebenen 11-20)',
       'en': 'Eureka Orthos (Floors 11-20)',
       'fr': 'Eurêka Orthos (sous-sols 11-20)',
@@ -1182,6 +1184,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 21～30层',
       'de': 'Eureka Orthos (Ebenen 21-30)',
       'en': 'Eureka Orthos (Floors 21-30)',
       'fr': 'Eurêka Orthos (sous-sols 21-30)',
@@ -1196,6 +1199,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 31～40层',
       'de': 'Eureka Orthos (Ebenen 31-40)',
       'en': 'Eureka Orthos (Floors 31-40)',
       'fr': 'Eurêka Orthos (sous-sols 31-40)',
@@ -1210,6 +1214,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 41～50层',
       'de': 'Eureka Orthos (Ebenen 41-50)',
       'en': 'Eureka Orthos (Floors 41-50)',
       'fr': 'Eurêka Orthos (sous-sols 41-50)',
@@ -1224,6 +1229,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 51～60层',
       'de': 'Eureka Orthos (Ebenen 51-60)',
       'en': 'Eureka Orthos (Floors 51-60)',
       'fr': 'Eurêka Orthos (sous-sols 51-60)',
@@ -1238,6 +1244,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 61～70层',
       'de': 'Eureka Orthos (Ebenen 61-70)',
       'en': 'Eureka Orthos (Floors 61-70)',
       'fr': 'Eurêka Orthos (sous-sols 61-70)',
@@ -1252,6 +1259,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 71～80层',
       'de': 'Eureka Orthos (Ebenen 71-80)',
       'en': 'Eureka Orthos (Floors 71-80)',
       'fr': 'Eurêka Orthos (sous-sols 71-80)',
@@ -1266,6 +1274,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 81～90层',
       'de': 'Eureka Orthos (Ebenen 81-90)',
       'en': 'Eureka Orthos (Floors 81-90)',
       'fr': 'Eurêka Orthos (sous-sols 81-90)',
@@ -1280,6 +1289,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 91～100层',
       'de': 'Eureka Orthos (Ebenen 91-100)',
       'en': 'Eureka Orthos (Floors 91-100)',
       'fr': 'Eurêka Orthos (sous-sols 91-100)',
@@ -1390,6 +1400,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '充满活力的父子',
       'de': 'Väterliche Liebe',
       'en': 'Generational Bonding',
       'fr': 'Tel gentilhomme, tel gentilhomme',
