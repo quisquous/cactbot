@@ -278,26 +278,26 @@ ThirdParty
 
 |职业|功能|
 |:-:|:--:|
-|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士|显示当前的忠义值和赎罪剑层数，监控沥血剑的DoT，监控战逃反应的持续时间和冷却时间，以及监控各种技能的冷却并显示剩余连击时长。|
-|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士|显示兽魂值，并监控剩余的战场风暴的持续时间，以及战嚎和原初的解放的冷却时间，同时显示剩余连击时间。|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士|显示暗血值和暗黑剩余时间，嗜血，血乱和掠影示现的持续时间和冷却时间，并且显示剩余连击时间。|
-|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士|显示无情的持续时间和冷却时间，血壤和烈牙的冷却时间，晶壤数量，并显示剩余连击时间。|
-|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师|显示治疗百合和血百合的数量，距离获得下一朵治疗百合的时间，DoT剩余时间，以及法令和醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|显示以太超流的层数、异想以太量和炽天使剩余时间、DoT剩余时间，并显示以太超流和醒梦的冷却。|
-|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px" /><br> 占星术士|显示已有的印记数量，标注是否应该发当前卡以及应该发给谁，DoT剩余时间，抽卡与醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 贤者|显示蛇胆和蛇刺的数量，距离获得下一个蛇胆的时间，DoT剩余时间，并显示魂灵风息、根素和醒梦的冷却时间|
-|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧|显示斗气档数，身形持续时间，并监控连击效果提高、双掌打buff和破碎拳DoT时间。|
-|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px" /><br> 龙骑士|显示龙血时间和龙眼数，开膛枪buff剩余时间，跳跃的冷却时间，以及猛枪和巨龙视线的持续时间和冷却时间。|
-|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px" /><br> 忍者|显示忍气量，风遁剩余时间，攻其不备持续时间和冷却时间，分身之术和结印的冷却时间，并显示连击剩余时间。|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士|显示剑气量、剑压档数，士风、阵风和彼岸花的剩余时间，燕回返的冷却时间，以及显示连击剩余时间。|
-|<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 钐镰客|显示灵魂量值和魂衣量值，死亡烙印的持续时间，灵魂切割和暴食的冷却时间，神秘环的持续时间和冷却时间，并显示连击剩余时间。|
-|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人|显示当前歌谣及其持续时间，诗心档数，灵魂之声量，直线射击预备监控，DoT持续时间，以及显示你的DoT造成伤害时机的计时条。|
-|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士|显示热量计、电能计、连击计时器，显示钻头、毒菌冲击、空气锚和回转飞锯的冷却时间，野火的冷却时间与持续时间。当野火发动时，将显示你已在野火中打出的GCD数目。|
-|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|显示连击计时器、幻扇量谱、伶俐量谱、标准舞步冷却、技巧舞步和百花争艳的持续时间和冷却时间。|
-|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px" /><br> 黑魔法师|显示DoT剩余时间，火苗和雷云触发的剩余时间，获得下一个通晓的剩余时间，魔力恢复时间点监控，冰火档数以及灵极心档数。|
-|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|显示DoT剩余时间。能量吸收冷却时间，龙神或不死鸟附体冷却时间，以太超流档数，亚灵神召唤的剩余时间以及毁绝预备的档数，以及醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px" /><br> 赤魔法师|显示黑白魔元量，监控赤飞石和赤火焰预备触发，飞刺和六分反击的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px" /><br> 青魔法师|显示防御解除和醒梦的冷却时间，以及苦闷之歌DoT的剩余时间。|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士|显示当前的忠义值和忠义之剑层数，安魂祈祷层数（处于安魂祈祷状态时），连击计时器，并监控战逃反应的持续时间和冷却时间，沥血剑和偿赎剑的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士|显示兽魂值，连击计时器，并监控战场风暴buff的持续时间，以及动乱和原初的解放的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士|显示暗血值、连击计时器、并监控暗黑剩余时间，嗜血，血乱和掠影示现的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士|显示晶壤数量、连击计时器，并监控无情的持续时间和冷却时间，血壤和烈牙的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师|显示治疗百合和血百合的数量，距离获得下一朵治疗百合的时间，并监控DoT剩余时间，以及法令和醒梦的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|显示以太超流的层数、异想以太量和炽天使剩余时间，并监控DoT剩余时间，以太超流和醒梦的冷却。|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px" /><br> 占星术士|显示已有的印记，标注是否应该发当前卡以及应该发给谁，并监控DoT剩余时间，抽卡、小奥秘卡与醒梦的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 贤者|显示蛇胆和蛇刺的数量，距离获得下一个蛇胆的时间，并监控DoT剩余时间，发炎、根素和醒梦的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧|显示斗气档数，身形持续时间，必杀技量谱，并监控连击效果提高、功力buff和破碎拳DoT的剩余时间。|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px" /><br> 龙骑士|显示巨龙怒目档数或红莲龙血剩余时间，天龙眼档数，并监控龙枪buff剩余时间，跳跃的冷却时间，以及猛枪和巨龙视线的持续时间和冷却时间。|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px" /><br> 忍者|显示忍气量，连击计时器，并监控风遁剩余时间，攻其不备持续时间和冷却时间，分身之术和结印的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士|显示剑气量、剑压档数、持有的闪、连击计时器，并监控风花、风月buff和彼岸花的剩余时间，燕回返的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 钐镰客|显示灵魂量值和魂衣量值，夜游魂和虚无魂档数（处于附体状态时）、连击计时器，并监控死亡烙印的持续时间，灵魂切割和暴食的冷却时间，神秘环的持续时间和冷却时间。|
+|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人|显示诗心档数，灵魂之声量，诗心判定计时器，持有的尾声，并监控当前歌谣持续时间，直线射击预备监控，DoT持续时间，九天连箭冷却时间。|
+|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士|显示枪管热度量、电能量、连击计时器，并监控钻头、空气锚和回转飞锯的冷却时间，野火的冷却时间与持续时间。当野火发动时，将显示你已在野火中打出的GCD数目。|
+|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|显示连击计时器、幻扇量谱、伶俐量谱、并监控标准舞步冷却、技巧舞步和百花争艳的持续时间和冷却时间。|
+|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px" /><br> 黑魔法师|显示冰火持续时间，距离获得下一个通晓的时间，魔力恢复计时器，灵极心档数和通晓档数，并监控DoT剩余时间，火苗和雷云触发的剩余时间。|
+|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|显示亚灵神召唤/属性以太剩余时间和以太超流档数、持有的宝石奥秘/属性以太，并监控能量吸收、龙神或不死鸟召唤、醒梦的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px" /><br> 赤魔法师|显示黑白魔元量，魔元集档数，并监控赤飞石和赤火炎预备触发，飞刺和六分反击的冷却时间。|
+|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px" /><br> 青魔法师|监控破防/惊奇光和醒梦的冷却时间，以及苦闷之歌/月下彼岸花DoT的剩余时间。|
 
 </details>
 
