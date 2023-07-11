@@ -343,14 +343,7 @@ Options.Triggers.push({
         const head8Dir = rawHead8Dir % 2 === 0 ? undefined : rawHead8Dir;
         return getStarText(head8Dir, matches, output);
       },
-      outputStrings: {
-        ...orbOutputStrings,
-        temp: {
-          en: '${text}',
-          cn: '${text}',
-          ko: '${text}',
-        },
-      },
+      outputStrings: orbOutputStrings,
     },
     {
       id: 'EndsingerEx Grip of Despair Cast',
