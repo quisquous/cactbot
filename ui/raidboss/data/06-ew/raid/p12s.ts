@@ -330,7 +330,8 @@ export interface Data extends RaidbossData {
   superchain2bSecondMech?: 'protean' | 'partners';
   superchain2bSecondDir?: 'east' | 'west';
   sampleTiles: NetMatches['Tether'][];
-  darknessClones: NetMatches['StartsUsing'][];
+  // Three most recently added clones.
+  darknessClones: NetMatches['AddedCombatant'][];
   conceptPair?: ConceptPair;
   conceptDebuff?: ConceptDebuff;
   conceptData: { [location: number]: ConceptColor };
@@ -3256,15 +3257,34 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'P12S Ultima Ray 1',
-      type: 'StartsUsing',
-      netRegex: { id: '8330', source: 'Hemitheos' },
-      condition: (data) => data.phase === 'gaiaochos1',
-      infoText: (data, matches, output) => {
+      id: 'P12S Darkness Clones Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12383', npcBaseId: '16182' },
+      run: (data, matches) => {
+        // The last 3 (or 1) clones are the laser shooting clone ids.
         data.darknessClones.push(matches);
-        if (data.darknessClones.length !== 3)
+        if (data.darknessClones.length > 3)
+          data.darknessClones.shift();
+      },
+    },
+    {
+      id: 'P12S Ultima Ray 1',
+      type: 'Ability',
+      netRegex: { id: '832F', source: 'Pallas Athena', capture: false },
+      condition: (data) => data.phase === 'gaiaochos1',
+      // ~0.4s between Summon Darkness 832F and positioning changes
+      delaySeconds: 1.5,
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = data.darknessClones.map((m) => parseInt(m.id, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        if (data.combatantData.length !== 3)
           return;
-
         // during 'UAV' phase, the center of the circular arena is [100, 90]
         const uavCenterX = 100;
         const uavCenterY = 90;
@@ -3280,10 +3300,13 @@ const triggerSet: TriggerSet<Data> = {
           dirNW: 'dirSE',
         } as const;
         let safeDirs = Object.keys(unsafeMap);
-        data.darknessClones.forEach((clone) => {
-          const x = parseFloat(clone.x);
-          const y = parseFloat(clone.y);
-          const cloneDir = Directions.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+        data.combatantData.forEach((clone) => {
+          const cloneDir = Directions.xyTo8DirOutput(
+            clone.PosX,
+            clone.PosY,
+            uavCenterX,
+            uavCenterY,
+          );
           const pairedDir = unsafeMap[cloneDir];
           safeDirs = safeDirs.filter((dir) => dir !== cloneDir && dir !== pairedDir);
         });
@@ -3305,10 +3328,29 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'P12S Ultima Ray 2',
-      type: 'StartsUsing',
-      netRegex: { id: '8330', source: 'Hemitheos' },
+      type: 'Ability',
+      netRegex: { id: '832F', source: 'Pallas Athena', capture: false },
       condition: (data) => data.phase === 'gaiaochos2',
-      infoText: (_data, matches, output) => {
+      // ~0.4s between Summon Darkness 832F and positioning changes
+      delaySeconds: 2.0,
+      suppressSeconds: 999999,
+      promise: async (data) => {
+        data.combatantData = [];
+        // Most recently added clone is the correct one.
+        const clone = data.darknessClones.pop();
+        if (clone === undefined)
+          return;
+        const id = parseInt(clone.id, 16);
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [id],
+        })).combatants;
+      },
+      infoText: (data, _matches, output) => {
+        const [clone] = data.combatantData;
+        if (clone === undefined)
+          return;
+
         // during 'UAV' phase, the center of the circular arena is [100, 90]
         const uavCenterX = 100;
         const uavCenterY = 90;
@@ -3326,9 +3368,7 @@ const triggerSet: TriggerSet<Data> = {
           unknown: [],
         } as const;
 
-        const x = parseFloat(matches.x);
-        const y = parseFloat(matches.y);
-        const cloneDir = Directions.xyTo8DirOutput(x, y, uavCenterX, uavCenterY);
+        const cloneDir = Directions.xyTo8DirOutput(clone.PosX, clone.PosY, uavCenterX, uavCenterY);
         const [dir1, dir2] = safeMap[cloneDir];
         if (dir1 === undefined || dir2 === undefined)
           return;
