@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
         'Six': 'Sechs',
         'Ten(?!d)': 'Zehn',
         'Fifteen': 'Fünfzehn',
-        'Force Jump Three': 'Sprungangriff Drei',
+        'Force Jump Three': 'Gewaltsam auf Drei Springen',
         'Invisible': 'Unsichtbar',
       },
     },
