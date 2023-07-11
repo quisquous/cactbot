@@ -276,7 +276,7 @@ ThirdParty
 <details>
 <summary>支持的职业 (点击展开)</summary>
 
-|:职业:|:功能:|
+|职业|功能|
 |:-:|:--:|
 |<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士|显示当前的忠义值和赎罪剑层数，监控沥血剑的DoT，监控战逃反应的持续时间和冷却时间，以及监控各种技能的冷却并显示剩余连击时长。|
 |<img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士|显示兽魂值，并监控剩余的战场风暴的持续时间，以及战嚎和原初的解放的冷却时间，同时显示剩余连击时间。|
