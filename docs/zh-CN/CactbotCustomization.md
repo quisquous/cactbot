@@ -147,9 +147,11 @@ Options.Triggers.push({
       suppressSeconds: 99999,
       // infoText 是绿色的文字。
       infoText: {
+        en: 'Fire OUT',
         cn: '火球，出人群',
       },
       tts: {
+        en: 'out out out out out',
         cn: '出去出去出去！',
       },
       run: function(data) {
@@ -160,7 +162,7 @@ Options.Triggers.push({
 });
 ```
 
-这里仅包含了中文。
+这里仅包含了英文和中文。
 
 ### 例2：使挑衅提示适用于全职业
 
@@ -232,7 +234,9 @@ Options.Triggers.push([
 
 ## Raidboss时间轴自定义
 
-自定义时间轴与[自定义触发器](#overriding-raidboss-triggers)差不多。
+一些自定义操作可以通过 [cactbot 配置界面](#使用cactbot配置界面) 实现。你可以在这个界面隐藏或重命名现有的时间轴条目，也可以添加自定义时间轴条目等。
+
+仅当你需要做的操作超出了配置界面所能提供的范围时才考虑使用本章节的操作，比如完全替换整个时间轴。替换时间轴的操作与 [替换触发器](#替换raidboss触发器) 类似。
 
 自定义时间轴的步骤如下：
 
@@ -281,6 +285,15 @@ Options.PlayerNicks = {
   'The Great\'one', 'Joe', //  =>  这里需要一个反斜杠转义单引号
   'Viewing Cutscene': 'Cut',
   // 等等
+};
+```
+
+
+你也可以通过 `Options.TransformTts` 函数全局替换 TTS 的文本，如：
+
+```javascript
+Options.TransformTts = (text) => {
+  return text.replace('a', 'b');
 };
 ```
 
