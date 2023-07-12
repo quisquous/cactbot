@@ -348,11 +348,9 @@ point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
 This module includes 3 part: resource zone at top middle, raidbuff zone at top right, and tracking zone at bottom.
 
-The resource zone shows HP bars and job-specific resource, along with some special counter for some jobs.
-
-The tracking zone shows job-specfic important buff/debuff duration, cooldowns and proc.
-
-The raidbuff zone shows important raidbuffs duration and coming cooldowns.
+* **resource zone**: HP bars and job-specific resource, along with some special counter for some jobs.
+* **tracking zone**: job-specfic important buff/debuff duration, cooldowns and proc.
+* **raidbuff zone**: important raidbuffs duration and coming cooldowns.
 
 You can change some of the behavior or appearence via the user panel, e.g. only show the raidbuff zone, or enable compact view.
 
