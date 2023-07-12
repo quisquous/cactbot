@@ -356,8 +356,18 @@ You can change some of the behavior or appearence via the user panel, e.g. only 
 
 However, customization of some behavior like cooldown alert thresholds and element order is not availble for now.
 
+In this screenshot, RDM jobs UI is shown as example.
+The ingame UI is shown at top and jobs module is shown at bottom.
+HP & MP bar, White Mana and Black Mana are shown in purple.
+The right yellow is raidbuff icon.
+Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
+
+![jobs screenshot](screenshots/Jobs.png)
+
+#### Features for Each Job
+
 <details>
-<summary>Supported Jobs (Click to expand)</summary>
+<summary>Job Features Table (Click to expand)</summary>
 
 |Job|Feature (left to right, top to bottom)|
 |:-:|-|
@@ -383,14 +393,6 @@ However, customization of some behavior like cooldown alert thresholds and eleme
 |<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|**Resource zone**: none. <br> **Tracking zone**: Off-guard/Peculiar Light cooldown, Song of Torment/Nightbloom/Aetherial Spark DoT duration, Lucid Dreaming cooldown.|
 
 </details>
-
-In this screenshot, RDM jobs UI is shown as example.
-The ingame UI is shown at top and jobs module is shown at bottom.
-HP & MP bar, White Mana and Black Mana are shown in purple.
-The right yellow is raidbuff icon.
-Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
-
-![jobs screenshot](screenshots/Jobs.png)
 
 ### [eureka](ui/eureka) module
 
