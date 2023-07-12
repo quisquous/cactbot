@@ -28,11 +28,11 @@ cactbot提供以下模块：
 
 ![oopsyraidsy屏幕截图](../../screenshots/promo_oopsy.png)
 
-* jobs: 用于buff与触发监控的紧凑型职业量谱
+* jobs: 监控职业资源、重要技能冷却、buff与触发的紧凑型职业量谱
 
 ![赤魔职业屏幕截图](../../screenshots/promo_jobs.png)
 
-* eureka: 优雷卡恶名精英监控地图
+* eureka: 特殊场景探索（优雷卡、博兹雅）监控地图
 
 ![优雷卡屏幕截图](../../screenshots/promo_eureka.png)
 
@@ -56,17 +56,17 @@ cactbot提供以下模块：
 
 您必须为最终幻想14启用 [DirectX 11](http://imgur.com/TjcnjmG)。
 
-如果尚未安装64位版本的 [Advanced Combat Tracker](http://advancedcombattracker.com/)，请安装。
+安装64位版本的 [Advanced Combat Tracker](http://advancedcombattracker.com/)。
 
 ### 安装FFXIV ACT解析插件
 
-如果您刚刚安装了ACT， 那么你会看到一个启动向导。 否则，您需要通过点击 `Options` ， 然后点击 `Show Startup Wizard` 启动启动向导。
+如果您刚刚安装了ACT， 你会看到一个启动向导。 否则，您需要通过点击 `Options` ， 然后点击 `Show Startup Wizard` 打开启动向导。
 
-![开始向导屏幕截图](../../screenshots/ffxiv_plugin_show_startup_wizard.png)
+![启动向导屏幕截图](../../screenshots/ffxiv_plugin_show_startup_wizard.png)
 
-在启动向导中， 选择 `FFXIV Parsing Plugin` ，然后单击 `Download/Enable Plugin` 按钮。 这将下载 `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`， 并在插件列表中启用它。
+在启动向导中， 选择 `FFXIV Parsing Plugin` ，然后单击 `Download/Enable Plugin` 按钮。 这将把解析插件下载到 `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`， 并在插件列表中启用它。
 
-![开始向导下载屏幕截图](../../screenshots/ffxiv_plugin_parsing_plugin.png)
+![启动向导下载屏幕截图](../../screenshots/ffxiv_plugin_parsing_plugin.png)
 
 其他FFXIV插件指南：
 
@@ -81,7 +81,7 @@ cactbot提供以下模块：
 
 单击 `Get Plugins` 可以打开ACT插件安装程序。
 
-选择 `悬浮窗插件` ，然后单击 `Download and Enable`按钮。
+选择 `Overlay Plugin` ，然后单击 `Download and Enable`按钮。
 
 ![悬浮窗插件选择屏幕截图](../../screenshots/get_plugins_overlayplugin.png)
 
@@ -91,7 +91,7 @@ cactbot提供以下模块：
 
 ### 安装cactbot
 
-再次，点开 `Plugins` 标签， 再点开 `Plugin Listing` 标签， 然后选择 `Get Plugins`。
+再次点开 `Plugins` 标签， 再点开 `Plugin Listing` 标签， 然后选择 `Get Plugins`。
 
 选择 `Cactbot` ，然后单击 `Download and Enable` 按钮。
 
@@ -101,7 +101,12 @@ cactbot提供以下模块：
 
 **注意**： 由于ACT和cactbot对于zip格式处理的差异性， 它可能会生成一个形如 `cactbot-0.15.2` 的文件夹， 这里的版本号是根据你下载cactbot时的最早版本决定的。 该文件夹的名称无关紧要，并且很美观。
 
-确认您的插件加载顺序正确。 正确的顺序应该是：FFXIV解析插件，OverlayPlugin，cactbot。 如果您按照上述说明进行操作，顺序应当如下所示：
+### 插件加载顺序
+
+由于cactbot的依赖关系，它需要在FFXIV解析插件和OverlayPlugin之后加载。 正确的顺序应该是：
+- FFXIV解析插件
+- OverlayPlugin，
+- cactbot
 
 ![插件顺序](../../screenshots/get_plugins_complete.png)
 
@@ -131,9 +136,9 @@ cactbot提供以下模块：
 
     ![raidboss插件配置](../../screenshots/overlay_plugin_new_raidboss_locked.png)
 
-1. 如果要测试raidboss插件，请传送到盛夏农庄，然后在聊天框输入 `/ countdown 5` 并回车。
+1. 如果要测试raidboss插件，请传送到盛夏农庄，然后在聊天框输入 `/countdown 5` 并回车。
 
-1. 您可以用同样的方法添加其他cactbot悬浮窗。 步骤是一样的，只是选择了不同的cactbot预设。
+1. 您可以用同样的方法添加其他cactbot悬浮窗。 步骤是一样的，只要选择不同的cactbot预设即可。
 
 ## 从源码构建
 
@@ -148,7 +153,7 @@ cactbot提供以下模块：
 ### 安装依赖：手动方式
 
 1. 请从 <https://github.com/EQAditu/AdvancedCombatTracker/releases/>下载最新的Zip文件。
-1. 将 `Advanced Combat Tracker.exe` 解压到 `cactbot/plugin/ThirdParty/ACT/` 下
+1. 解压 `Advanced Combat Tracker.exe` 到 `cactbot/plugin/ThirdParty/ACT/` 下
 1. 请从 [https://github.com/ravahn/FFXIV_ACT_Plugin/](https://github.com/ravahn/FFXIV_ACT_Plugin/) 下载最新的SDK Zip文件（确保文件名称中包含SDK字样）
 1. 解压 `SDK文件夹` 和 `FFXIV_ACT_Plugin.dll` 到 `cactbot/plugin/ThirdParty/FFXIV_ACT/` 下
 1. 请从 <https://github.com/OverlayPlugin/OverlayPlugin/releases/>下载最新的Zip文件。
@@ -189,7 +194,7 @@ ThirdParty
 ### 构建插件的步骤
 
 1. 在Visual Studio中打开解决方案（已在Visual Studio 2017测试通过）。
-1. 采用“Release”和“ x64”的配置开始构建。
+1. 采用“Release”和“x64”的配置开始构建。
 1. 该插件将构建到 **bin/x64/Release/CactbotOverlay.dll**。
 1. 将构建好的插件添加到ACT。  在ACT-> Plugins -> Plugin Listing 标签页中，单击 `Browse` 按钮，然后导航至构建完成的 **bin/x64/Release/CactbotOverlay.dll** 文件。  然后单击 `Add/Enable Plugin` 按钮。
 
@@ -217,13 +222,13 @@ ThirdParty
 
 此模块提供预知战斗事件的时间轴， 以及文本和音频提示，以帮助提高团队对raid的意识。 这些文字和声音警报一般基于战斗时间轴，或是来自游戏中发生的日志消息。简单地说，这是一个类似于ACT的“自定义触发器”的功能。 该模块被设计为类似于《魔兽世界》的 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 插件的外观和感觉。
 
-[此页面](https://quisquous.github.io/cactbot/util/coverage/coverage.html) 列出了当前cactbot中支持的副本。 我们会持续添加更多支持 (随时欢迎贡献代码！) 尽管目前大部分旧副本仍未支持。
+[此页面](https://quisquous.github.io/cactbot/util/coverage/coverage.html) 列出了当前cactbot中支持的副本。 我们会持续添加更多支持 (随时欢迎贡献代码！) 尽管许多旧副本仍未支持。
 
-战斗时间轴原本是设计为用于 [ACT时间轴](https://github.com/grindingcoil/act_timeline)插件的文件， 具有 [特殊的扩展名](./TimelineGuide.md)， 这里是该插件的 [文档](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)。
+战斗时间轴原本是设计为用于 [ACT时间轴](https://github.com/grindingcoil/act_timeline)插件的文件， 不过增加了一些[扩展语法](./TimelineGuide.md)。这里是原插件的 [文档](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)。
 
-这里有三个等级的警报提示，重要性从低到高分别为： `info(信息)`、 `alert(警告)` 和 `alarm(警报)`。 文本信息只会有这三种等级，等级越高，越重要，则文字会越大，颜色也会越醒目。  如果你更喜欢文本到语音(TTS)，你也可以配置这个提示方式。
+这里有三个等级的警报提示，重要性从低到高分别为： `info(信息)`、 `alert(警告)` 和 `alarm(警报)`。 文本信息只会有这三种等级，等级越高，越重要，则文字会越大，颜色也会越醒目。  如果你更喜欢文本到语音(TTS)，你也可以配置成语音提示。
 
-在[ui/raidboss/data](../../ui/raidboss/data)文件夹下存在定义了文本显示和声音提示的时间轴和触发器等， 时间轴文件拥有 `.txt` 扩展名，而触发器文件则为 `.ts` 扩展名。
+在[ui/raidboss/data](../../ui/raidboss/data)文件夹下存放了定义了文本显示和声音提示的时间轴和触发器等， 时间轴文件拥有 `.txt` 扩展名，而触发器文件则为 `.ts` 扩展名。
 
 在下方的截图中，高亮的是raidboss模块，其中时间轴用红色圆圈圈出， 文本警报用黄色圆圈圈出，可见的是 `警告`等级的文字提示。
 
@@ -255,7 +260,7 @@ ThirdParty
 
 此模块提供错误追踪和死亡报告。  通过 oopsy raidsy 模块可以检查战斗中出了什么问题，以及队友死亡的原因，以减少攻略副本的时间。  在战斗中，仅显示一定数量的错误（以避免混乱），但脱战后可以显示完整的可滚动列表。
 
-当某人死亡时，他/她遭受伤害的最后一个伤害事件会记录在日志中。  例如，当日志显示：":skull: Poutine: Iron Chariot (82173/23703)"，这意味着Poutine最有可能死于Iron Chariot这个技能，造成了82173伤害，且当时他具有23703的血量。  血量值本身并不完美，由于服务器更新周期的存在，或者因为同时存在多个伤害技能，血量值可能有数秒的延迟。
+当某人死亡时，他/她遭受伤害的最后一个伤害事件会记录在日志中。  例如，当日志显示：":skull: Poutine: Iron Chariot (82173/23703)"，这意味着Poutine最有可能死于Iron Chariot这个技能，造成了82173伤害，且当时他具有23703的血量。  血量值由于服务器更新周期的存在可能有数秒的延迟。短时间内被多个伤害技能致死的情况下，具体致死的是哪一个可能不准确。
 
 当错误本身可以避免时，oopsy会将其记录为警告（:warning:）和失败（:no_entry_sign:）消息，并说明出现了什么问题。
 
@@ -269,39 +274,45 @@ ThirdParty
 
 要使用该模块，定位到cactbot下面的 **ui/raidboss/jobs.html** 或使用 `Cactbot Jobs` 预设。
 
-该模块提供了HP和MP条，以及重要团辅技能的图标和计时条等，如太阳神之衡和攻其不备。 该模块同样提供食物增益效果提示，使您可在迷宫或Raid中保持食物增益。 此外，该模块还提供了可视化的倒计时条。
+该模块分为三个部分：悬浮窗顶部中间的资源区、顶部右方的团辅区、以及底部的监控区。
 
-该模块为某些职业提供了较为完整的支持，但是对另外一些职业的支持仍然*非常*不完善。
+资源区显示血条，职业量谱信息，以及各职业可能具有的特色计时器或计数器。
+
+监控区显示职业特色的重要buff和debuff的持续时间、重要技能的冷却时间或持续时间、以及触发buff的存在时间。
+
+团辅区显示重要团辅的持续时间和即将冷却完毕的团辅冷却时间。
+
+通过用户面板设置可以更改部分外观和行为，例如只显示团辅区，以及缩小资源区和监控区之间的空隙等，但许多运行逻辑暂不支持调整。
 
 <details>
 <summary>支持的职业 (点击展开)</summary>
 
-|职业|功能|
+|职业|功能（从左到右，从上到下）|
 |:-:|:--:|
-|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士|显示当前的忠义值和忠义之剑层数，安魂祈祷层数（处于安魂祈祷状态时），连击计时器，并监控战逃反应的持续时间和冷却时间，沥血剑和偿赎剑的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士|显示兽魂值，连击计时器，并监控战场风暴buff的持续时间，以及动乱和原初的解放的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士|显示暗血值、连击计时器、并监控暗黑剩余时间，嗜血，血乱和掠影示现的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士|显示晶壤数量、连击计时器，并监控无情的持续时间和冷却时间，血壤和烈牙的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师|显示治疗百合和血百合的数量，距离获得下一朵治疗百合的时间，并监控DoT剩余时间，以及法令和醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|显示以太超流的层数、异想以太量和炽天使剩余时间，并监控DoT剩余时间，以太超流和醒梦的冷却。|
-|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px" /><br> 占星术士|显示已有的印记，标注是否应该发当前卡以及应该发给谁，并监控DoT剩余时间，抽卡、小奥秘卡与醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 贤者|显示蛇胆和蛇刺的数量，距离获得下一个蛇胆的时间，并监控DoT剩余时间，发炎、根素和醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧|显示斗气档数，身形持续时间，必杀技量谱，并监控连击效果提高、功力buff和破碎拳DoT的剩余时间。|
-|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px" /><br> 龙骑士|显示巨龙怒目档数或红莲龙血剩余时间，天龙眼档数，并监控龙枪buff剩余时间，跳跃的冷却时间，以及猛枪和巨龙视线的持续时间和冷却时间。|
-|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px" /><br> 忍者|显示忍气量，连击计时器，并监控风遁剩余时间，攻其不备持续时间和冷却时间，分身之术和结印的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士|显示剑气量、剑压档数、持有的闪、连击计时器，并监控风花、风月buff和彼岸花的剩余时间，燕回返的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 钐镰客|显示灵魂量值和魂衣量值，夜游魂和虚无魂档数（处于附体状态时）、连击计时器，并监控死亡烙印的持续时间，灵魂切割和暴食的冷却时间，神秘环的持续时间和冷却时间。|
-|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人|显示诗心档数，灵魂之声量，诗心判定计时器，持有的尾声，并监控当前歌谣持续时间，直线射击预备监控，DoT持续时间，九天连箭冷却时间。|
-|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士|显示枪管热度量、电能量、连击计时器，并监控钻头、空气锚和回转飞锯的冷却时间，野火的冷却时间与持续时间。当野火发动时，将显示你已在野火中打出的GCD数目。|
-|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|显示连击计时器、幻扇量谱、伶俐量谱、并监控标准舞步冷却、技巧舞步和百花争艳的持续时间和冷却时间。|
-|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px" /><br> 黑魔法师|显示冰火持续时间，距离获得下一个通晓的时间，魔力恢复计时器，灵极心档数和通晓档数，并监控DoT剩余时间，火苗和雷云触发的剩余时间。|
-|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|显示亚灵神召唤/属性以太剩余时间和以太超流档数、持有的宝石奥秘/属性以太，并监控能量吸收、龙神或不死鸟召唤、醒梦的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px" /><br> 赤魔法师|显示黑白魔元量，魔元集档数，并监控赤飞石和赤火炎预备触发，飞刺和六分反击的冷却时间。|
-|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px" /><br> 青魔法师|监控破防/惊奇光和醒梦的冷却时间，以及苦闷之歌/月下彼岸花DoT的剩余时间。|
+|<img src="../../resources/ffxiv/jobs/pld-large.png" width="30px" /><br> 骑士|资源区：忠义值、忠义之剑层数、连击计时器、安魂祈祷层数（处于安魂祈祷状态时）。监控区：沥血剑冷却时间、战逃反应持续时间和冷却时间、偿赎剑冷却时间。|
+|<img src="../../resources/ffxiv/jobs/war-large.png" width="30px" /><br> 战士|资源区：兽魂值、连击计时器。监控区：战场风暴buff持续时间、动乱和群山隆起冷却时间、原初的解放冷却时间。|
+|<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士|资源区：暗血值、连击计时器。监控区：暗黑持续时间、嗜血冷却时间、血乱冷却时间、掠影示现冷却时间。|
+|<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士|资源区：晶壤数量、连击计时器。监控区：烈牙冷却时间、无情持续时间和冷却时间、血壤冷却时间。|
+|<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师|资源区：治疗百合获得计时器、治疗百合和血百合的数量。监控区：天辉DoT持续时间、法令冷却时间、醒梦冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|资源区：以太超流档数、异想以太量和炽天使持续时间。监控区：蛊毒法DoT持续时间、以太超流冷却、醒梦冷却。|
+|<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px" /><br> 占星术士|资源区：奥秘卡提示器、持有的小奥秘卡、持有的印记。监控区：焚灼DoT持续时间、抽卡冷却时间、小奥秘卡冷却时间、醒梦冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 贤者|资源区：蛇胆获得计时器、蛇胆和蛇刺的数量。监控区：均衡注药DoT持续时间、发炎冷却时间、根素冷却时间、醒梦冷却时间。|
+|<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧|资源区：斗气档数、身形计时器、必杀技量谱。监控区：连击效果提高buff持续时间、功力buff持续时间、破碎拳DoT持续时间。|
+|<img src="../../resources/ffxiv/jobs/drg-large.png" width="30px" /><br> 龙骑士|资源区：巨龙怒目档数或红莲龙血持续时间、天龙眼档数。监控区：跳跃冷却时间、龙枪buff持续时间、猛枪持续时间与冷却时间、巨龙视线持续时间与冷却时间。|
+|<img src="../../resources/ffxiv/jobs/nin-large.png" width="30px" /><br> 忍者|资源区：忍气量、连击计时器。监控区：风遁持续时间、攻其不备持续时间和冷却时间、分身之术冷却时间、结印冷却时间。|
+|<img src="../../resources/ffxiv/jobs/sam-large.png" width="30px" /><br> 武士|资源区：剑气量、剑压档数、连击计时器、持有的闪。监控区：风月buff持续时间、风花buff持续时间、燕回返冷却时间、彼岸花DoT持续时间。|
+|<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 钐镰客|资源区：灵魂量值、魂衣量值、连击计时器、夜游魂和虚无魂档数（处于附体状态时）。监控区：死亡烙印持续时间、灵魂切割和灵魂钐割冷却时间、暴食冷却时间、神秘环持续时间和冷却时间。|
+|<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人|资源区：诗心档数、灵魂之声量、诗心获得计时器、持有的尾声。监控区：风蚀箭和毒咬箭DoT持续时间、当前战歌持续时间、九天连箭冷却时间、直线射击预备触发持续时间。|
+|<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士|资源区：枪管热度量或过热档数、电能量或后式自走人偶持续时间、连击计时器、野火GCD计数器（发动野火时）。监控区：钻头和毒菌冲击冷却时间、空气锚冷却时间、回转飞锯冷却时间、野火持续时间与冷却时间。|
+|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|资源区：幻扇数、伶俐量、连击计时器。监控区：标准舞步冷却、技巧舞步持续时间与冷却时间、百花争艳持续时间与冷却时间。|
+|<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px" /><br> 黑魔法师|资源区：灵极冰与星极火持续时间、通晓获得计时器、魔力恢复计时器、灵极心档数和通晓档数。监控区：火苗触发持续时间、雷系DoT持续时间、雷云触发持续时间。|
+|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|资源区：亚灵神召唤或属性以太持续时间、以太超流档数、持有的宝石奥秘和属性以太。监控区：能量吸收冷却时间、龙神召唤或不死鸟召唤冷却时间、醒梦冷却时间。|
+|<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px" /><br> 赤魔法师|资源区：白魔元与黑魔元量、魔元集档数（如果有）。监控区：赤飞石预备持续时间、赤火炎预备持续时间、飞刺冷却时间、六分反击冷却时间。|
+|<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px" /><br> 青魔法师|资源区：无。监控区：破防和惊奇光冷却时间、苦闷之歌或月下彼岸花或以太火花DoT持续时间、醒梦冷却时间。|
 
 </details>
 
-在此截图中，以赤魔法师的jobs模块为例。 紫色圆圈圈出的是体力条与魔力条，还有赤魔法师的黑/白魔元监控；橙色箭头指向的是一个大大的团辅监控图标。 <del>赤魔近战连击监控功能已被移除，略。</del> 绿色圈出的是触发监控。
+在此截图中，以赤魔法师的jobs模块为例。 上半是游戏内的UI显示、下半是jobs模块的显示。体力条、魔力条、赤魔法师的黑/白魔元信息位于中间的紫色框内，其右侧的黄色框内是团辅监控图标。 底部红色框内的4个方框分别是赤飞石预备持续时间、赤火炎预备持续时间、飞刺冷却时间和六分反击冷却时间。
 
 ![jobs屏幕截图](../../screenshots/Jobs.png)
 
@@ -309,7 +320,7 @@ ThirdParty
 
 要使用该模块，定位到cactbot下面的 **ui/raidboss/eureka.html** 或使用 `Cactbot Eureka` 预设。
 
-该模块会自动追踪NM的出现和死亡。  还会显示特殊天气/夜晚计时器以及粘贴到聊天中的优雷卡追踪器链接。  聊天中的所有坐标信息也都会临时显示在地图上。
+该模块会自动追踪NM或CE的出现和死亡，以及博兹雅地图上的冲突战。  还会显示特殊天气/夜晚计时器以及粘贴到聊天中的优雷卡追踪器链接。  聊天中的所有坐标信息也都会临时显示在地图上。
 
 当前，该模块不会直接读取优雷卡追踪器的信息。  但如果您点击优雷卡追踪器左侧红色的“复制已杀死的NM”按钮来复制当前已死NM的列表，则可以将其粘贴到游戏中，例如`/echo 冷却中的NM: 蝎子 (7m) → 魔界花 (24m) → 独眼 (54m)`，以便该模块从此列表自动同步数据。
 
@@ -383,13 +394,13 @@ cactbot可以与为OverlayPlugin的数据统计功能设计的任何DPS统计悬
 
 您可以在插件->OverlayPlugin.dll->Cactbot找到Cactbot的控制面板。
 
-特别是如果您想使用TTS播报RaidBoss模块的警报，您可以将“默认警报提示信息输出方式”选项修改为“只使用TTS”或“文字显示与TTS”。 您还可以对任意触发器进行特殊设置。
+如果您想使用TTS播报RaidBoss模块的警报，您可以将“默认警报提示信息输出方式”选项修改为“只使用TTS”或“文字显示与TTS”。 您还可以对任意触发器进行特殊设置。
 
 如果您出于某些原因（？？？），不想听到cactbot的准备确认提示音，您也可以在此控制面板中禁用它。 请转到Raidboss -> 通用触发器-> General-> General Ready Check，并将其设置为`禁用`。
 
 此处的选项会存储于 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json` 文件中。 不建议直接编辑该文件，因为它必须是[标准的JSON](https://jsonlint.com/)，如果该文件被错误地修改，ACT可能无法启动。
 
-强烈建议您通过此控制面板而不是用户文件来完成大部分的配置。 `cactbot/user/` 中的文件功能更加强大并且可以覆盖控制面板中的任何配置。 然而，当控制面板没有正确地调整`cactbot/user/`内的文件正在悄悄覆盖的配置时，也会造成困惑。
+强烈建议您通过此控制面板而不是用户文件来完成大部分的配置。 `cactbot/user/` 中的文件功能更加强大并且可以覆盖控制面板中的任何配置。 然而，`cactbot/user/`内的文件可以静默覆盖的控制面板的配置，使行为与控制面板显示不一致而造成困惑。
 
 有关自定义javascript和css文件的更多详细信息，请参见[本文档](CactbotCustomization.md#user-folder-config-overrides)。
 
