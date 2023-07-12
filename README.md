@@ -33,11 +33,11 @@ cactbot provides these modules:
 
 ![oopsy screenshot](screenshots/promo_oopsy.png)
 
-* jobs: condensed gauges with buff and proc tracking
+* jobs: condensed gauges with resource, cooldowns, buffs, and procs tracking
 
 ![rdm jobs screenshot](screenshots/promo_jobs.png)
 
-* eureka: Eureka NM tracking map
+* eureka: Adventuring Forays (Eureka/Bozja) tracking map
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
@@ -346,44 +346,51 @@ You can copy oopsy lines to the clipboard by clicking them.
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module provides health and mana bars, as well as icons and timer bars for big raid buffs such as
-The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a visual pull countdown.
+This module includes 3 part: resource zone at top middle, raidbuff zone at top right, and tracking zone at bottom.
 
-It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
+The resource zone shows HP bars and job-specific resource, along with some special counter for some jobs.
+
+The tracking zone shows job-specfic important buff/debuff duration, cooldowns and proc.
+
+The raidbuff zone shows important raidbuffs duration and coming cooldowns.
+
+You can change some of the behavior or appearence via the user panel, e.g. only show the raidbuff zone, or enable compact view.
+
+However, customization of some behavior like cooldown alert thresholds and element order is not availble for now.
 
 <details>
 <summary>Supported Jobs (Click to expand)</summary>
 
-|Job|Feature|
+|Job|Feature (left to right, top to bottom)|
 |:-:|:-:|
-|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Shows Oath amount, and atonement stacks, DoT remaining time, Fight or Flight duration/cooldown, Expiacion cooldown and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Shows Beast amount, Surging Tempest duration, Upheaval and Inner Release cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, BloodWeapon and Delirium and LivingShadow duration/cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration/cooldown, Bloodfest and Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Shows Heal and Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|Shows Astrosigns amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/sge-large.png" width="30px"/><br> Sage|Shows Addersgall and Addersting stacks, time to next Addersgall, DoTs remaining time, and shows Phlegma and Rhizomata and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Shows chakra count and form time, and tracks monk buffs and debuffs.|
-|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood and eye amount, remaining Disembowel time, jump cooldown, and Lance Charge and Dragon Sight duration/cooldown.|
-|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration/cooldown, Bunshin and Mudras cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Fugetsu and Fuka and Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> Reaper|Shows Soul Gauge, Shroud Gauge, Death's Design duration, Soul Slice and Gluttony cooldown, Arcane Circle duration/cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
-|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, combo timer, Drill/Bioblaster and Air Anchor and Chain Saw cooldown, Wild Fire cooldown/duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
-|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows combo timer, Feather gauge, Esprit gauge, Standard Step cooldown, Technical Step and Flourish cooldown/duration.|
-|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|Shows DoTs remaining time, Firestarter and Thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
-|<img src="./resources/ffxiv/jobs/smn-large.png" width="30px"/><br> Summoner|Shows Demi-Summoning time, Aetherflow stack, Attunement stacks, Energy Drain cooldown, Trance cooldown, and Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|Shows white/black mana, tracks procs for Verstone and Verfire, and Fleche and Contre Sixte cooldown.|
-|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|Shows cooldown of offguard, lucid dreaming, and Song Of Torment DoT remaining time.|
+|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Resource zone: Oath Gauge, Sword Oath stack, combo timer, Requiescat stacks (if under Requiescat). Tracking zone: Goring Blade cooldown, Fight or Flight duration&cooldown, Expiacion cooldown.|
+|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Resource zone: Beast Gauge, combo timer. Tracking zone: Surging Tempest buff duration, Upheaval/Orogeny cooldown, Inner Release cooldown.|
+|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Resource zone: Blood Gauge, combo timer. Tracking zone: Darkside duration, Blood Weapon cooldown, Delirium cooldown, Living Shadow cooldown.|
+|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Resource zone: Cartridge amount, combo timer. Tracking zone: Gnashing Fang cooldown, No Mercy duration&cooldown, Bloodfest cooldown.|
+|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Resource zone: Lily timer, Lily&Blood Lily amount. Tracking zone: Dia/Aero DoT duration, Assize cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Resource zone: Aetherflow stack, Faerie Gauge/Seraph duration. Tracking zone: Bio DoT duration, Aetherflow cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|Resource zone: arcanum helper, held Minor Arcana, held Sign. Tracking zone: Combust DoT duration, Draw cooldown, Minor Arcana cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sge-large.png" width="30px"/><br> Sage|Resource zone: Addersgall timer, Addersgall&Addersting amount. Tracking zone: Eukrasian Dosis DoT duration, Phlegma cooldown, Rhizomata cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Resource zone: chakra stack, form timer, Master's Gauge. Tracking zone: Leaden Fist buff duration, Disciplined Fist buff duration, Demolish DoT duration.|
+|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Resource zone: first brood's gaze stack/Life of the Dragon duration, Firstminds' Focus stack. Tracking zone: Jump cooldown, Power Surge buff duration, Lance Charge duration&cooldown, Dragon Sight duration&cooldown.|
+|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Resource zone: Ninki amount, combo timer. Tracking zone: Huton duration, Trick Attack duration&cooldown, Bunshin cooldown, Mudra cooldown.|
+|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Resource zone: Kenki amount, Meditation stack, combo timer, held Sen. Tracking zone: Fugetsu buff duration, Fuka buff duration, Tsubame-gaeshi cooldown, Higanbana DoT duration.|
+|<img src="./resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> Reaper|Resource zone: Soul amount, Shroud amount, combo timer, Lemure Shroud/Void Shroud stack (under Enshroud). Tracking zone: Death's Design duration, Soul Slice/Soul Scythe cooldown, Gluttony cooldown, Arcane Circle duration&cooldown.|
+|<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Resource zone: Repertoire stack, Soul Voice amount, Repertoire tick timer, held Coda. Tracking zone: Windbite/Venomous Bite DoT duration, Song duration, Empyreal Arrow cooldown, Straight Shot Ready proc duration.|
+|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Resource zone: Heat/Overheated stack, Battery/Automaton Queen duration, combo timer, Wildfire GCD counter (if Wildfire active). Tracking zone: Drill/Bioblaster cooldown, Air Anchor cooldown, Chain Saw cooldown, Wildfire duration&cooldown.|
+|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Resource zone: Fourfold Feather amount, Esprit amount, combo timer. Tracking zone: Standard Step cooldown, Technical Step duration&cooldown, Flourish duration&cooldown.|
+|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|Resource zone: Umbral Ice/Astral Fire duration, Polyglot timer, MP tick timer, Umbral Hearts stack&Polyglot stack. Tracking zone: Firestarter proc duration, Thunder DoT duration, Thundercloud proc duration.|
+|<img src="./resources/ffxiv/jobs/smn-large.png" width="30px"/><br> Summoner|Resource zone: Trance/Attunement duration, Aetherflow stack, Arcanum held and Attunement stored in. Tracking zone: Energy Drain/Energy Siphon cooldown, Summon Bahamut/Phoenix cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|Resource zone: White Mana and Black Mana amount, Mana Stack (if any). Tracking zone: Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown.|
+|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|Resource zone: none. Tracking zone: Off-guard/Peculiar Light cooldown, Song of Torment/Nightbloom/Aetherial Spark DoT duration, Lucid Dreaming cooldown.|
 
 </details>
 
-In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
-as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar.</del> The proc tracking is circled below in green.
+In this screenshot, RDM jobs UI is shown as example.
+The ingame UI is shown at top and jobs module is shown at bottom.
+HP&MP bar, White Mana and Black Mana are shown in purple.
+The right yellow is raidbuff icon.
+Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
 
 ![jobs screenshot](screenshots/Jobs.png)
 

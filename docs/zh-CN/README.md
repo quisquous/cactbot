@@ -104,9 +104,10 @@ cactbot提供以下模块：
 ### 插件加载顺序
 
 由于cactbot的依赖关系，它需要在FFXIV解析插件和OverlayPlugin之后加载。 正确的顺序应该是：
-- FFXIV解析插件
-- OverlayPlugin，
-- cactbot
+
+* FFXIV解析插件
+* OverlayPlugin，
+* cactbot
 
 ![插件顺序](../../screenshots/get_plugins_complete.png)
 
@@ -282,7 +283,9 @@ ThirdParty
 
 团辅区显示重要团辅的持续时间和即将冷却完毕的团辅冷却时间。
 
-通过用户面板设置可以更改部分外观和行为，例如只显示团辅区，以及缩小资源区和监控区之间的空隙等，但许多运行逻辑暂不支持调整。
+通过用户面板设置可以更改部分外观和行为，例如只显示团辅区，以及缩小资源区和监控区之间的空隙等。
+
+但jobs模块的可自定义程度比较低，如冷却提示阈值、各界面元素顺序等暂不支持调整。
 
 <details>
 <summary>支持的职业 (点击展开)</summary>
@@ -294,7 +297,7 @@ ThirdParty
 |<img src="../../resources/ffxiv/jobs/drk-large.png" width="30px" /><br> 暗黑骑士|资源区：暗血值、连击计时器。监控区：暗黑持续时间、嗜血冷却时间、血乱冷却时间、掠影示现冷却时间。|
 |<img src="../../resources/ffxiv/jobs/gnb-large.png" width="30px" /><br> 绝枪战士|资源区：晶壤数量、连击计时器。监控区：烈牙冷却时间、无情持续时间和冷却时间、血壤冷却时间。|
 |<img src="../../resources/ffxiv/jobs/whm-large.png" width="30px" /><br> 白魔法师|资源区：治疗百合获得计时器、治疗百合和血百合的数量。监控区：天辉DoT持续时间、法令冷却时间、醒梦冷却时间。|
-|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|资源区：以太超流档数、异想以太量和炽天使持续时间。监控区：蛊毒法DoT持续时间、以太超流冷却、醒梦冷却。|
+|<img src="../../resources/ffxiv/jobs/sch-large.png" width="30px" /><br> 学者|资源区：以太超流档数、异想以太量和炽天使持续时间。监控区：蛊毒法DoT持续时间、以太超流冷却时间、醒梦冷却时间。|
 |<img src="../../resources/ffxiv/jobs/ast-large.png" width="30px" /><br> 占星术士|资源区：奥秘卡提示器、持有的小奥秘卡、持有的印记。监控区：焚灼DoT持续时间、抽卡冷却时间、小奥秘卡冷却时间、醒梦冷却时间。|
 |<img src="../../resources/ffxiv/jobs/sge-large.png" width="30px"/><br> 贤者|资源区：蛇胆获得计时器、蛇胆和蛇刺的数量。监控区：均衡注药DoT持续时间、发炎冷却时间、根素冷却时间、醒梦冷却时间。|
 |<img src="../../resources/ffxiv/jobs/mnk-large.png" width="30px" /><br> 武僧|资源区：斗气档数、身形计时器、必杀技量谱。监控区：连击效果提高buff持续时间、功力buff持续时间、破碎拳DoT持续时间。|
@@ -304,9 +307,9 @@ ThirdParty
 |<img src="../../resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> 钐镰客|资源区：灵魂量值、魂衣量值、连击计时器、夜游魂和虚无魂档数（处于附体状态时）。监控区：死亡烙印持续时间、灵魂切割和灵魂钐割冷却时间、暴食冷却时间、神秘环持续时间和冷却时间。|
 |<img src="../../resources/ffxiv/jobs/brd-large.png" width="30px" /><br> 吟游诗人|资源区：诗心档数、灵魂之声量、诗心获得计时器、持有的尾声。监控区：风蚀箭和毒咬箭DoT持续时间、当前战歌持续时间、九天连箭冷却时间、直线射击预备触发持续时间。|
 |<img src="../../resources/ffxiv/jobs/mch-large.png" width="30px" /><br> 机工士|资源区：枪管热度量或过热档数、电能量或后式自走人偶持续时间、连击计时器、野火GCD计数器（发动野火时）。监控区：钻头和毒菌冲击冷却时间、空气锚冷却时间、回转飞锯冷却时间、野火持续时间与冷却时间。|
-|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|资源区：幻扇数、伶俐量、连击计时器。监控区：标准舞步冷却、技巧舞步持续时间与冷却时间、百花争艳持续时间与冷却时间。|
+|<img src="../../resources/ffxiv/jobs/dnc-large.png" width="30px" /><br> 舞者|资源区：幻扇数、伶俐量、连击计时器。监控区：标准舞步冷却时间、技巧舞步持续时间与冷却时间、百花争艳持续时间与冷却时间。|
 |<img src="../../resources/ffxiv/jobs/blm-large.png" width="30px" /><br> 黑魔法师|资源区：灵极冰与星极火持续时间、通晓获得计时器、魔力恢复计时器、灵极心档数和通晓档数。监控区：火苗触发持续时间、雷系DoT持续时间、雷云触发持续时间。|
-|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|资源区：亚灵神召唤或属性以太持续时间、以太超流档数、持有的宝石奥秘和属性以太。监控区：能量吸收冷却时间、龙神召唤或不死鸟召唤冷却时间、醒梦冷却时间。|
+|<img src="../../resources/ffxiv/jobs/smn-large.png" width="30px" /><br> 召唤师|资源区：附体或属性以太持续时间、以太超流档数、持有的宝石奥秘和保存在其中的属性以太。监控区：能量吸收和能量抽取冷却时间、龙神召唤或不死鸟召唤冷却时间、醒梦冷却时间。|
 |<img src="../../resources/ffxiv/jobs/rdm-large.png" width="30px" /><br> 赤魔法师|资源区：白魔元与黑魔元量、魔元集档数（如果有）。监控区：赤飞石预备持续时间、赤火炎预备持续时间、飞刺冷却时间、六分反击冷却时间。|
 |<img src="../../resources/ffxiv/jobs/blu-large.png" width="30px" /><br> 青魔法师|资源区：无。监控区：破防和惊奇光冷却时间、苦闷之歌或月下彼岸花或以太火花DoT持续时间、醒梦冷却时间。|
 
