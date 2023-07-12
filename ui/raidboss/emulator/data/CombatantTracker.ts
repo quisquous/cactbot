@@ -98,9 +98,8 @@ export default class CombatantTracker {
   }
 
   addCombatantFromCombatantMemoryLine(line: LineEvent0x105): void {
-    const combatant = this.combatants[line.id] ?? this.initCombatant(line.idHex);
-
-    combatant.pushPartialState(this.firstTimestamp, line.state);
+    if (this.combatants[line.idHex] === undefined)
+      this.initCombatant(line.idHex);
   }
 
   addCombatantFromSourceLine(line: LineEventSource, extractedState: Partial<CombatantState>): void {
