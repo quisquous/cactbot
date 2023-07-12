@@ -219,7 +219,7 @@ ThirdParty
 
 [此页面](https://quisquous.github.io/cactbot/util/coverage/coverage.html) 列出了当前cactbot中支持的副本。 我们会持续添加更多支持 (随时欢迎贡献代码！) 尽管目前大部分旧副本仍未支持。
 
-战斗时间轴原本是设计为用于 [ACT时间轴](https://github.com/grindingcoil/act_timeline)插件的文件， 具有 [特殊的扩展名](./TimelineGuide.md)， 这里是该插件的 [文档](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)。
+战斗时间轴原本是设计为用于 [ACT时间轴](https://github.com/grindingcoil/act_timeline)插件的文件，但在其基础上[添加了一些扩展语法](./TimelineGuide.md)，这里是该插件的 [文档](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)。
 
 这里有三个等级的警报提示，重要性从低到高分别为： `info(信息)`、 `alert(警告)` 和 `alarm(警报)`。 文本信息只会有这三种等级，等级越高，越重要，则文字会越大，颜色也会越醒目。  如果你更喜欢文本到语音(TTS)，你也可以配置这个提示方式。
 
