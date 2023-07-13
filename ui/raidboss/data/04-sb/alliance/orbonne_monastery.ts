@@ -373,7 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Orbonne Cid Cleansing Strike',
       type: 'Ability',
       netRegex: { id: '3751', source: 'The Thunder God', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -599,7 +599,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       type: 'StartsUsing',
       netRegex: { id: '3895', source: 'Ultima, The High Seraph', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

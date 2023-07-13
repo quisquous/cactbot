@@ -298,7 +298,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Weeping City Flare Star Orbs',
       type: 'AddedCombatant',
       netRegex: { npcBaseId: '4889', capture: false },
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Terror Unleashed',
       type: 'Ability',
       netRegex: { source: 'Warrior Of Light', id: '4F09', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -379,6 +379,8 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, _matches, output) => {
         if (data.role === 'tank')
           return output.text!();
+        if (data.job === 'BLU')
+          return output.dback!();
       },
       run: (data) => {
         data.isAddPhase = false;
@@ -392,6 +394,12 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'タンクLB!!',
           cn: '坦克LB！！',
           ko: '탱리밋!!',
+        },
+        dback: {
+          en: 'Diamondback',
+          de: 'Diamantrücken',
+          cn: '超硬化',
+          ko: '초경화',
         },
       },
     },

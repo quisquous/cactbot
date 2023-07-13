@@ -227,7 +227,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LostCityHard Kuribu Regen',
       type: 'StartsUsing',
       netRegex: { id: '15DC', source: 'Kuribu', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -243,7 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LostCityHard Kuribu Cure IV',
       type: 'StartsUsing',
       netRegex: { id: '15DF', source: 'Kuribu', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
