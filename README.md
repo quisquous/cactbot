@@ -346,18 +346,18 @@ You can copy oopsy lines to the clipboard by clicking them.
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module includes 3 part: resource zone at top middle, raidbuff zone at top right, and tracking zone at bottom.
+This module includes 3 parts: a resource zone at top middle, a raidbuff zone at top right, and a tracking zone at bottom.
 
-* **resource zone**: HP bars and job-specific resource, along with some special counter for some jobs.
-* **tracking zone**: job-specfic important buff/debuff duration, cooldowns and proc.
+* **resource zone**: HP bars and job-specific resource, along with some special counters for some jobs.
+* **tracking zone**: job-specific important buff/debuff duration, cooldowns and procs.
 * **raidbuff zone**: important raidbuffs duration and coming cooldowns.
 
-You can change some of the behavior or appearence via the user panel, e.g. only show the raidbuff zone, or enable compact view.
+You can change some of the behavior or appearance via the user panel, e.g. only show the raidbuff zone, or enable compact view.
 
-However, customization of some behavior like cooldown alert thresholds and element order is not availble for now.
+However, customization of some behavior like cooldown alert thresholds and element order is not available for now.
 
-In this screenshot, RDM jobs UI is shown as example.
-The ingame UI is shown at top and jobs module is shown at bottom.
+In this screenshot, the RDM jobs UI is shown as an example.
+The in-game UI is shown at top and the jobs module is shown at bottom.
 HP & MP bar, White Mana and Black Mana are shown in purple.
 The right yellow is raidbuff icon.
 Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
