@@ -332,7 +332,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou!();
 
-        if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
+        if (data.role === 'tank' || data.role === 'healer')
           return output.sharedTankbusterOn!({ player: data.ShortName(matches.target) });
       },
       outputStrings: {

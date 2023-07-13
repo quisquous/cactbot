@@ -1076,12 +1076,7 @@ const triggerSet: TriggerSet<Data> = {
           ko: '멀리 유도하기',
         },
         partyUnder: {
-          en: 'Get Under',
-          de: 'Unter ihn',
-          fr: 'En dessous',
-          ja: 'ボスと貼り付く',
-          cn: '去脚下',
-          ko: '보스 안쪽으로',
+          en: 'Party Under',
         },
       },
     },

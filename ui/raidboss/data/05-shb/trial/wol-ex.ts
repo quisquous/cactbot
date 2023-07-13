@@ -377,10 +377,8 @@ const triggerSet: TriggerSet<Data> = {
       // This is still 1 second before this cast goes off, giving ~7 seconds before LB is needed.
       delaySeconds: 4,
       alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.text!();
-        if (data.job === 'BLU')
-          return output.dback!();
       },
       run: (data) => {
         data.isAddPhase = false;
@@ -394,12 +392,6 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'タンクLB!!',
           cn: '坦克LB！！',
           ko: '탱리밋!!',
-        },
-        dback: {
-          en: 'Diamondback',
-          de: 'Diamantrücken',
-          cn: '超硬化',
-          ko: '초경화',
         },
       },
     },
