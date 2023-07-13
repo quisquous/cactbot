@@ -416,7 +416,7 @@ cactbot 已在当前版本的国际服（英语、德语、法语、日语）、
 
 cactbot 基于 [Apache License, Version 2.0](../../LICENSE) 开放源代码。
 
-FINAL FANTASY 是株式会社史克威尔艾尼克斯控股 (株式会社スクウェア・エニックス・ホールディングス，Square Enix Holdings Co., Ltd.) 的注册商标。
+FINAL FANTASY 是史克威尔艾尼克斯控股公司 (株式会社スクウェア・エニックス・ホールディングス，Square Enix Holdings Co., Ltd.) 的注册商标。
 
 《最终幻想》艺术作品和图标基于[FINALFANTASY®XIV 素材使用许可](https://support.na.square-enix.com/rule.php?id=5382)，以非商业方式二次使用。
 
