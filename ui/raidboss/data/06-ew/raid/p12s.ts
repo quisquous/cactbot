@@ -291,6 +291,10 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+export type LimitCutCombatantState = PluginCombatantState & {
+  order?: number;
+};
+
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower';
@@ -322,6 +326,9 @@ export interface Data extends RaidbossData {
   superchainCollect: NetMatches['AddedCombatant'][];
   superchain1FirstDest?: NetMatches['AddedCombatant'];
   limitCutNumber?: number;
+  lcCombatants: LimitCutCombatantState[];
+  lcCombatantsOffset: number;
+  lcWhiteFlameDelay?: [number, number, number, number];
   whiteFlameCounter: number;
   superchain2aFirstDir?: 'north' | 'south';
   superchain2aSecondDir?: 'north' | 'south';
@@ -456,6 +463,8 @@ const triggerSet: TriggerSet<Data> = {
       wingCollect: [],
       wingCalls: [],
       superchainCollect: [],
+      lcCombatants: [],
+      lcCombatantsOffset: 0,
       whiteFlameCounter: 0,
       sampleTiles: [],
       darknessClones: [],
@@ -1749,13 +1758,122 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'P12S Limit Cut Combatant Tracker',
+      type: 'Ability',
+      netRegex: { id: '82F3', source: 'Athena', capture: false },
+      promise: async (data) => {
+        const actorData = await callOverlayHandler({
+          call: 'getCombatants',
+        });
+
+        if (actorData === null) {
+          console.error(`LC Combatant Tracker: null data`);
+          return;
+        }
+
+        const combatants: LimitCutCombatantState[] = actorData.combatants.filter((combatant) => {
+          const distX = Math.abs(100 - combatant.PosX);
+          const distY = Math.abs(100 - combatant.PosY);
+          const distance = Math.hypot(distX, distY);
+          // Only "Anthropos" (12378) combatants at roughly the correct distance (roughly 9.89y intercard/10y card away from middle)
+          return combatant.BNpcNameID === 12378 && Math.abs(distance - 10) < 0.25;
+        });
+
+        if (combatants.length !== 8) {
+          console.error(`LC Combatant Tracker: expected 8, got ${combatants.length}`);
+          return;
+        }
+
+        data.lcCombatants = combatants;
+      },
+    },
+    {
+      id: 'P12S Limit Cut Line Bait Collector',
+      type: 'CombatantMemory',
+      netRegex: {
+        id: '40[0-9A-F]{6}',
+        pair: [{ key: 'ModelStatus', value: '16384' }],
+        capture: true,
+      },
+      condition: (data, matches) =>
+        data.lcCombatants.length > 0 &&
+        data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16)) !== undefined,
+      infoText: (data, matches, output) => {
+        const combatant = data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16));
+        if (combatant === undefined) {
+          console.error(`LC Line Bait Collector: Could not find combatant for ID ${matches.id}`);
+          return;
+        }
+
+        combatant.order = data.lcCombatantsOffset;
+        ++data.lcCombatantsOffset;
+
+        if (data.lcCombatantsOffset < 8)
+          return;
+
+        // Find the intercardinal adds that jumped, and then sort by order.
+        const orderedJumps = data.lcCombatants
+          .filter((combatant) =>
+            (Directions.xyTo8DirNum(combatant.PosX, combatant.PosY, 100, 100) % 2) === 1
+          ).map((combatant) => combatant.order)
+          .sort((left, right) => (left ?? 0) - (right ?? 0));
+
+        if (orderedJumps.length !== 4) {
+          console.error(
+            `LC Line Bait Collector: Incorrect count of intercardinal adds`,
+            data.lcCombatants,
+          );
+          return;
+        }
+
+        const [o1, o2, o3, o4] = orderedJumps;
+        if (o1 === undefined || o2 === undefined || o3 === undefined || o4 === undefined)
+          return;
+
+        // delay of 1 = immediate, 5 = maximum
+        data.lcWhiteFlameDelay = [o1 + 1, o2 - o1, o3 - o2, o4 - o3];
+        console.log(JSON.stringify(data.lcWhiteFlameDelay));
+
+        data.lcCombatants = [];
+        data.lcCombatantsOffset = 0;
+
+        return output.text!({
+          first: output[o1]!(),
+          second: output[o2]!(),
+          third: output[o3]!(),
+          fourth: output[o4]!(),
+        });
+      },
+      outputStrings: {
+        0: Outputs.num1,
+        1: Outputs.num2,
+        2: Outputs.num3,
+        3: Outputs.num4,
+        4: Outputs.num5,
+        5: Outputs.num6,
+        6: Outputs.num7,
+        7: Outputs.num8,
+        unknown: Outputs.unknown,
+        text: {
+          en: 'Baits on ${first}, ${second}, ${third}, ${fourth}',
+        },
+      },
+    },
+    {
       id: 'P12S Palladion White Flame Initial',
       type: 'StartsUsing',
       // 82F5 = Palladion cast
+      // 8 seconds from Palladion starts casting to first White Flame damage
+      // This is also an 8 second cast.
+      // ~3 seconds after that for every potential White Flame
       netRegex: { id: '82F5', source: 'Athena', capture: false },
       // Don't collide with number callout.
       delaySeconds: 2,
-      durationSeconds: 4,
+      durationSeconds: (data) => {
+        const delay = data.lcWhiteFlameDelay?.[0] ?? 1;
+        // 8 seconds from cast start - 2 second delay already
+        return (8 - 2) + 3 * (delay - 1) - 0.5;
+      },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1776,6 +1894,7 @@ const triggerSet: TriggerSet<Data> = {
             ko: '(5, 7 레이저)',
           },
         };
+        // TODO: use `data.lcWhiteFlameDelay` to say things like "quick" or "delayed" or "very delayed".
         const infoText = output.firstWhiteFlame!();
         if (data.limitCutNumber === 5 || data.limitCutNumber === 7)
           return { alertText: output.baitLaser!(), infoText: infoText };
@@ -1787,6 +1906,11 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '82EF', source: 'Anthropos', capture: false },
       condition: (data) => data.phase === 'palladion',
+      preRun: (data) => data.whiteFlameCounter++,
+      durationSeconds: (data) => {
+        const delay = data.lcWhiteFlameDelay?.[data.whiteFlameCounter] ?? 1;
+        return 3 * delay - 0.5;
+      },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1824,7 +1948,7 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
-        data.whiteFlameCounter++;
+        // TODO: use `data.lcWhiteFlameDelay` to say things like "quick" or "delayed" or "very delayed".
 
         const baitLaser = output.baitLaser!();
 
