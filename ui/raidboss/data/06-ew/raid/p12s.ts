@@ -3712,6 +3712,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P12S Ekpyrosis Cast',
       type: 'StartsUsing',
       netRegex: { id: '831E', source: 'Pallas Athena', capture: false },
+      // This cast happens while people need to plant for the end of Caloric 2,
+      // so delay the call to avoid people jumping the gun.
+      delaySeconds: (data) => data.caloricCounter === 2 ? 3 : 0,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
