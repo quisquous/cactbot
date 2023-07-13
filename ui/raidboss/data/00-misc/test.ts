@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../resources/netregexes';
 import outputs from '../../../../resources/outputs';
 import { ConfigValue } from '../../../../resources/user_config';
 import Util from '../../../../resources/util';
@@ -34,6 +33,7 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en: 'Output for "/echo cactbot test config"',
         de: 'Ausgabe für "/echo cactbot test config"',
+        fr: 'Sortie pour "/echo cactbot test config"',
         cn: '输出 "/echo cactbot测试配置"',
         ko: '"/echo cactbot 설정 테스트" 출력값',
       },
@@ -237,7 +237,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Test Lang',
       type: 'GameLog',
       // In game: /echo cactbot lang
-      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegex: { line: 'cactbot lang.*?', code: Util.gameLogCodes.echo, capture: false },
       infoText: (data, _matches, output) => output.text!({ lang: data.parserLang }),
       outputStrings: {
         text: {
@@ -253,7 +253,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Response',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      netRegex: { line: 'cactbot test response.*?', code: Util.gameLogCodes.echo, capture: false },
       response: (_data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Watch',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test watch.*?', capture: false }),
+      netRegex: { line: 'cactbot test watch.*?', code: Util.gameLogCodes.echo, capture: false },
       promise: (data) =>
         Util.watchCombatant({
           names: [
@@ -315,7 +315,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Config',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test config.*?', capture: false }),
+      netRegex: { line: 'cactbot test config.*?', code: Util.gameLogCodes.echo, capture: false },
       alertText: (data, _matches, output) => {
         return output.text!({ value: data.triggerSetConfig.testTriggerOutput.toString() });
       },
@@ -323,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Config Value: ${value}',
           de: 'Einstellungswert: ${value}',
+          fr: 'Valeur de configuration : ${value}',
           cn: '配置值: ${value}',
           ko: '설정값: ${value}',
         },
@@ -331,7 +332,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast Enable',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test combatant cast.*?', capture: false }),
+      netRegex: {
+        line: 'cactbot test combatant cast.*?',
+        code: Util.gameLogCodes.echo,
+        capture: false,
+      },
       run: (data) => {
         data.watchingForCast = true;
       },
@@ -339,9 +344,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test Combatant Cast',
       type: 'CombatantMemory',
-      netRegex: NetRegexes.combatantMemory({
+      netRegex: {
         pair: [{ key: 'IsCasting1', value: '1' }, { key: 'CastBuffID', value: '.*?' }],
-      }),
+      },
       condition: (data) => data.watchingForCast,
       infoText: (data, matches, output) => {
         data.watchingForCast = false;
@@ -351,6 +356,7 @@ const triggerSet: TriggerSet<Data> = {
         casting: {
           en: 'ID ${id} is casting spell ID ${spellId}',
           de: 'ID ${id} wirkt Zauber ID ${spellId}',
+          fr: 'ID ${id} incante le sort ID ${spellId}',
           cn: 'ID ${id} 正在施法 ID ${spellId}',
           ko: 'ID ${id}: 스킬 ID ${spellId}를 시전하는 중',
         },
@@ -360,7 +366,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -371,6 +376,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot test response': 'cactbot test antwort',
         'cactbot test watch': 'cactbot test beobachten',
         'cactbot test config': 'cactbot test konfig',
+        'cactbot test combatant cast': 'cactbot test gegner wirken',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
@@ -386,15 +392,24 @@ const triggerSet: TriggerSet<Data> = {
         'Super Tankbuster': 'Super Tankbuster',
         'Pentacle Sac': 'Pentacle Sac',
         'Engage': 'Start!',
+        'Two': 'Zwei',
+        '(?<! )Three': 'Drei',
+        'Four': 'Vier',
+        'Six': 'Sechs',
+        'Ten(?!d)': 'Zehn',
+        'Fifteen': 'Fünfzehn',
+        'Force Jump Three': 'Gewaltsam auf Drei Springen',
+        'Invisible': 'Unsichtbar',
       },
     },
     {
       locale: 'fr',
-      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
         'cactbot test watch': 'cactbot test d\'observation',
+        'cactbot test config': 'test de configuration de cactbot',
+        'cactbot test combatant cast': 'test d\'incantation d\'un combatant',
         'You bid farewell to the striking dummy':
           'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy':
@@ -419,11 +434,18 @@ const triggerSet: TriggerSet<Data> = {
         'Long Castbar': 'Longue barre de lancement',
         'Pentacle Sac': 'Pentacle Sac',
         'Super Tankbuster': 'Super Tank buster',
+        'Two': 'Deux',
+        '(?<! )Three': 'Trois',
+        'Four': 'Quatre',
+        'Six': 'Six',
+        'Ten': 'Dix',
+        'Fifteen': 'Quinze',
+        'Force Jump Three': 'Saut forcé à trois',
+        'Invisible': 'Invisible',
       },
     },
     {
       locale: 'ja',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -432,6 +454,8 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot言語',
         'cactbot test response': 'cactbotレスポンステスト',
         'cactbot test watch': 'cactbot探知テスト',
+        'cactbot test config': 'cactbot設定テスト',
+        'cactbot test combatant cast': 'cactbotターゲットキャストテスト',
         'You clap for the striking dummy': '.*は木人に拍手した',
         'You psych yourself up alongside the striking dummy': '.*は木人に活を入れた',
         'You poke the striking dummy': '.*は木人をつついた',
@@ -447,6 +471,14 @@ const triggerSet: TriggerSet<Data> = {
         'Long Castbar': '長い長い詠唱バー',
         'Pentacle Sac': 'ナイサイ',
         'Super Tankbuster': 'スーパータンクバスター',
+        'Two': '二',
+        '(?<! )Three': '三',
+        'Four': '四',
+        'Six': '六',
+        'Ten': '十',
+        'Fifteen': '十五',
+        'Force Jump Three': '三に強制ジャンプ',
+        'Invisible': '見えないはず',
       },
     },
     {
@@ -476,11 +508,18 @@ const triggerSet: TriggerSet<Data> = {
         'Death': '嗝屁',
         'Engage': '战斗开始',
         'Pentacle Sac': '传毒',
+        'Two': '贰',
+        '(?<! )Three': '叁',
+        'Four': '肆',
+        'Six': '陆',
+        'Ten': '拾',
+        'Fifteen': '拾伍',
+        'Force Jump Three': '强制跳转叁',
+        'Invisible': '不可见',
       },
     },
     {
       locale: 'ko',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
@@ -490,6 +529,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot 언어',
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',
+        'cactbot test combatant cast': 'cactbot 스킬 시전 테스트',
         'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
         'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
         'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
@@ -504,6 +544,14 @@ const triggerSet: TriggerSet<Data> = {
         'Super Tankbuster': '초강력 탱크버스터',
         'Pentacle Sac': 'Pentacle Sac',
         'Engage': '시작',
+        'Two': '2',
+        '(?<! )Three': '3',
+        'Four': '4',
+        'Six': '6',
+        'Ten': '10',
+        'Fifteen': '15',
+        'Force Jump Three': '3으로 돌아가기',
+        'Invisible': '타임라인 숨기기',
       },
     },
   ],

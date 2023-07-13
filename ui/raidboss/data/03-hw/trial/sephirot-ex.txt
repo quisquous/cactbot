@@ -7,10 +7,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Sephirot:368:/ window 2.5,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.1 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/ window 7.1,5
 11.2 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
 17.4 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/

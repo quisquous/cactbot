@@ -1,0 +1,196 @@
+hideall "--Reset--"
+hideall "--sync--"
+
+### Magna Roader
+# -p 1F14:9.4
+# -ii 1F17 1F18 2090 1F19 2085
+# -it "Magna Roader"
+
+# initial
+0 "Start" sync / 00:0839::Terrestrial Weaponry will be sealed off/ window 10000,0
+9.4 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/ window 10,10
+16.9 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+22.0 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+29.1 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+
+# Wild Speed Loop (until stunned)
+40.4 "--untargetable--"
+40.4 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+40.5 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+41.5 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+42.5 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+43.5 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+50.6 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+50.7 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+51.7 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+52.7 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+53.7 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+60.8 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+60.9 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+61.9 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+62.9 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+63.9 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+71.0 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+71.1 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+72.1 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+73.1 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+74.1 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+81.2 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 5,30 jump 50.6
+81.3 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+82.3 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+83.3 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+84.3 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+# Post Wild Speed loop -> back into Wild Speed loop
+100.0 "--targetable--"
+105.8 "--sync--" sync / 14:[^:]*:Magna Roader:1F16:/ window 70,10
+108.8 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+112.9 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
+120.4 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+125.5 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+129.7 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
+137.2 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+141.3 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
+148.8 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+154.0 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+
+166.9 "--untargetable--"
+166.9 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 60,60 jump 40.4
+167.0 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+168.0 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+169.0 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+170.0 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+177.1 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
+177.2 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+178.2 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+179.2 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+180.2 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+187.3 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
+187.4 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+188.4 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+189.4 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+190.4 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+
+
+### Number XXIV
+#-p 1F1B:1011.4
+# -ii 2083 1F20 1F24 1F1E 1F1F
+
+# Note: "Towers" here means Fire II (1F1D) / Blizzard II (1F1E) / Thunder II (1F1F)
+1000.0 "Start" sync / 00:0839::Project Aegis will be sealed off/ window 10000,0
+1011.4 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+1019.9 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1030.1 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+
+1033.1 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
+1044.6 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
+1053.7 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1060.8 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+1069.2 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+
+# loop begins
+1082.4 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
+1087.4 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
+1096.6 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1103.8 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+1112.3 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1122.5 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+
+1125.5 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
+1131.6 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
+1140.8 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1148.0 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+
+1161.5 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/ window 20,20 jump 1082.4
+1166.5 "Barrier Shift" #sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
+1175.7 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1182.9 "Stab" #sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+1191.4 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+1201.6 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+
+
+### Inferno
+# -p 1F26:2010.4
+# -ii 1F2B 2088 2089 1F2A 1F28 1F27 2086
+#
+# TODO: if Quick Charge (2127) goes off, the timeline goes a bit wonky until
+# Inferno is fully charged.  Solve this by adding a large jump on Rahu Cut 2.
+# Additionally, there are two opportunities for Quick Charge (yikes).
+# We could theoretically jump to two extra timelines if Quick Charge happens,
+# but that's a lot of work for a dungeon, especially one where it's lucky
+# that you'll ever see Rahu Cut 1.
+#
+# Note: Ketu & Rahu is always a pair of two mechanics, which picks from some combination
+# of Rahu Comet/Rahu Ray + Ketu Wave/Ketu Cutter.  Rahu Comet knocks back (at Rahu >=1)
+# and also its ability happens 1.5 seconds before its accompanying Wave/Cutter.
+# This makes everything hard to time.  For simplicity, we'll just ignore it all.
+# * Rahu Comet (1F2B, 2088, 2089): prox marker, knockback on 2088/2089
+# * Rahu Ray (1F2A): spread marker
+# * Ketu Wave (1F28): 1, 2, or 3 large circles
+# * Ketu Cutter (1F27): 180/360 degree pinwheel
+# * Ketu Cut (2086) / Rahu Cut (2087) is powering up.
+2000.0 "Start" sync / 00:0839::The Assessment Grounds will be sealed off/ window 10000,0
+2010.4 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:1F26:/
+2017.9 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
+2028.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+
+2045.0 "Ketu Cut 1" sync / 1[56]:[^:]*:Inferno:2086:/ window 50,50
+2054.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2062.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
+2069.8 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2079.9 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2087.9 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2096.8 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
+2104.3 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+
+2119.2 "Rahu Cut 1" sync / 1[56]:[^:]*:Inferno:2087:/ window 50,50
+2123.3 "--adds--"
+2128.8 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2136.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2143.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2151.4 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+# 2159 Quick Charge can go off here, which delays Ketu & Rahu by 30s, throws off timeline.
+# Hopefully the large sync on Rahu Cut below will get it sorted again.
+2159.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2167.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2175.6 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2183.1 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+
+2197.9 "Ketu Cut 2" sync / 1[56]:[^:]*:Inferno:2086:/ window 50,50
+2201.8 "--adds--"
+2207.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2215.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2222.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2230.4 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+# 2237.5 Quick Charge?
+2238.5 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2246.5 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2254.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2261.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+
+# Once we get to this Rahu Cut, then it is fully powered.
+2276.8 "Rahu Cut 2" sync / 1[56]:[^:]*:Inferno:2087:/ window 150,150
+2286.4 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2294.0 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+2301.5 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2309.0 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+2317.3 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2325.4 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2333.2 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+
+# loop
+2340.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2351.6 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2359.7 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2367.6 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+
+2375.2 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/ window 20,200 jump 2340.7
+2386.1 "Ketu & Rahu" #sync / 1[56]:[^:]*:Inferno:1F25:/
+2394.2 "Ketu & Rahu" #sync / 1[56]:[^:]*:Inferno:1F25:/
+2402.1 "Rahu Blaster" #sync / 1[56]:[^:]*:Inferno:208F:/

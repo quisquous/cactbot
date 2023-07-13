@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -40,7 +39,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'GolbezEx Terrastorm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '8466', source: 'Golbez', capture: true }),
+      netRegex: { id: '8466', source: 'Golbez', capture: true },
       delaySeconds: 0.5,
       promise: async (data, matches) => {
         const meteorData = await callOverlayHandler({
@@ -155,7 +154,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Partner Stack',
           de: 'Mit Partner sammeln',
           fr: 'Package partenaire',
-          ja: '2人で頭割り',
+          ja: 'ペア',
           cn: '2 人分摊',
           ko: '2인 쉐어',
         },
@@ -171,7 +170,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Role positions',
           de: 'Rollenposition',
           fr: 'Positions par rôle',
-          ja: 'ロール特定位置へ',
+          ja: '4:4あたまわり',
           cn: '去指定位置',
           ko: '직업군별 위치로',
         },
@@ -205,7 +204,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Partner Stack',
           de: 'Mit Partner sammeln',
           fr: 'Package partenaire',
-          ja: '2人で頭割り',
+          ja: 'ペア',
           cn: '2 人分摊',
           ko: '2인 쉐어',
         },

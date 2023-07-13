@@ -8,10 +8,7 @@ import path from 'path';
 
 import { assert } from 'chai';
 
-import NetRegexes, {
-  buildNetRegexForTrigger,
-  keysThatRequireTranslation,
-} from '../../resources/netregexes';
+import NetRegexes, { buildNetRegexForTrigger } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
 import Regexes from '../../resources/regexes';
@@ -20,7 +17,11 @@ import {
   triggerFunctions,
   triggerTextOutputFunctions,
 } from '../../resources/responses';
-import { translateWithReplacements } from '../../resources/translations';
+import {
+  AnonNetRegexParams,
+  translateRegexBuildParamAnon,
+  translateWithReplacements,
+} from '../../resources/translations';
 import { RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -705,37 +706,16 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
           if (trigger.disabled)
             continue;
 
-          const textHasTranslation = (text: string): boolean => {
-            return translateWithReplacements(
-              text,
-              'replaceSync',
-              locale,
-              translations,
-            ).wasTranslated;
-          };
+          const result = translateRegexBuildParamAnon(trigger.netRegex ?? {}, locale, translations);
+          if (result.wasTranslated)
+            continue;
 
-          const checkIfFieldHasTranslation = (field: string | string[], fieldName: string) => {
-            if (typeof field === 'string') {
-              assert.isTrue(
-                textHasTranslation(field),
-                `${id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${field}'`,
-              );
-            } else {
-              for (const s of field) {
-                assert.isTrue(
-                  textHasTranslation(s),
-                  `${id}:locale ${locale}:missing timelineReplace replaceSync for ${fieldName} '${s}'`,
-                );
-              }
-            }
-          };
-
-          for (const key of keysThatRequireTranslation) {
-            type AnonymousParams = { [name: string]: string | string[] | boolean | undefined };
-            const anonTriggerFields: AnonymousParams = trigger.netRegex;
-            const value = anonTriggerFields[key];
-            if (value !== undefined && typeof value !== 'boolean')
-              checkIfFieldHasTranslation(value, key);
+          const anonParams: AnonNetRegexParams = trigger.netRegex;
+          for (const field of result.missingFields ?? []) {
+            const fieldValueStr = JSON.stringify(anonParams[field]);
+            assert.fail(
+              `${id}:locale ${locale}:missing timelineReplace replaceSync for field "${field}" with value ${fieldValueStr}`,
+            );
           }
 
           continue;

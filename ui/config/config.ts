@@ -190,18 +190,21 @@ const kDirectoryToCategory = {
   hunts: {
     en: 'Hunts & FATEs',
     de: 'Hohe Jagd & FATEs',
+    fr: 'Chasse & Aléas',
     cn: '怪物狩猎 & 危命任务',
     ko: '마물 & 돌발',
   },
   map: {
     en: 'Treasure Map',
     de: 'Schatzkarten',
+    fr: 'Cartes au trésor',
     cn: '宝物地图',
     ko: '보물 지도',
   },
   deepdungeon: {
     en: 'Deep Dungeon',
     de: 'Tiefes Gewölbe',
+    fr: 'Donjon sans fond',
     cn: '深层迷宫',
     ko: '딥 던전',
   },

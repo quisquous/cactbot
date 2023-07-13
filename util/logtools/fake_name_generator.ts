@@ -1,12 +1,7 @@
 import { UnreachableCode } from '../../resources/not_reached';
 
-const fakePlayerNames = [
-  'Tini Poutini',
-  'Potato Chippy',
-  'Papas Fritas',
-  'Tater Tot',
-  'Hash Brown',
-  'French Fry',
+const fakePlayerNames: string[] = [
+  // Fixed custom fake names here.
 ];
 
 const randomFromArray = <T>(array: T[]): T => {

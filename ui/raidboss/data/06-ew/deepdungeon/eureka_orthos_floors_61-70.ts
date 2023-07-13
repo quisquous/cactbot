@@ -55,6 +55,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stop attacking ${target}',
           de: 'Stoppe Angriffe auf ${target}',
+          ja: '攻撃禁止: ${target}',
           cn: '停止攻击 ${target}',
           ko: '${target} 공격 중지',
         },
@@ -150,6 +151,18 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Falak': 'オルト・ファラク',
         'Orthos Gowrow': 'オルト・ガウロウ',
         'Orthos Palleon': 'オルト・パレオン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Aeturna': '永恒',
+        'Orthos Basilisk': '正统石蜥蜴',
+        'Orthos Cobra': '正统眼镜蛇',
+        'Orthos Drake': '正统烈阳火蛟',
+        'Orthos Falak': '正统法拉克',
+        'Orthos Gowrow': '正统高牢怪龙',
+        'Orthos Palleon': '正统侏儒避役',
       },
     },
   ],

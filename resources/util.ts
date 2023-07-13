@@ -7,6 +7,7 @@ import { Job, Role } from '../types/job';
 import { NetMatches } from '../types/net_matches';
 import { OutputStrings } from '../types/trigger';
 
+import { gameLogCodes } from './netregexes';
 import Outputs from './outputs';
 import { callOverlayHandler } from './overlay_plugin_api';
 
@@ -301,7 +302,12 @@ const xyTo8DirNum = (x: number, y: number, centerX: number, centerY: number): nu
 
 const hdgTo8DirNum = (heading: number): number => {
   // N = 0, NE = 1, ..., NW = 7
-  return Math.round(4 - 4 * heading / Math.PI) % 8;
+  return (Math.round(4 - 4 * heading / Math.PI) % 8 + 8) % 8;
+};
+
+const hdgTo4DirNum = (heading: number): number => {
+  // N = 0, E = 1, S = 2, W = 3
+  return (Math.round(2 - heading * 2 / Math.PI) % 4 + 4) % 4;
 };
 
 const outputFrom8DirNum = (dirNum: number): DirectionOutput8 => {
@@ -318,6 +324,7 @@ export const Directions = {
   outputStringsIntercardDir: outputStringsIntercardDir,
   xyTo8DirNum: xyTo8DirNum,
   hdgTo8DirNum: hdgTo8DirNum,
+  hdgTo4DirNum: hdgTo4DirNum,
   outputFrom8DirNum: outputFrom8DirNum,
   combatantStatePosTo8Dir: (
     combatant: PluginCombatantState,
@@ -414,6 +421,7 @@ const Util = {
     watchCombatantOverride = watchFunc;
     clearCombatantsOverride = clearFunc;
   },
+  gameLogCodes: gameLogCodes,
 } as const;
 
 export default Util;

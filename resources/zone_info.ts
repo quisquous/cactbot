@@ -1111,6 +1111,7 @@ const data: ZoneInfoType = {
       'en': 'Mount Ordeals',
       'fr': 'Le Mont du Supplice',
       'ja': 'ルビカンテ討滅戦',
+      'ko': '루비칸테 토벌전',
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -1126,6 +1127,7 @@ const data: ZoneInfoType = {
       'en': 'Mount Ordeals (Extreme)',
       'fr': 'Le Mont du Supplice (extrême)',
       'ja': '極ルビカンテ討滅戦',
+      'ko': '극 루비칸테 토벌전',
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -1141,6 +1143,7 @@ const data: ZoneInfoType = {
       'en': 'Lapis Manalis',
       'fr': 'Lapis Manalis',
       'ja': '雪山冥洞 ラピス・マナリス',
+      'ko': '라피스 마날리스',
     },
     'offsetX': -46,
     'offsetY': 570,
@@ -1151,6 +1154,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 1～10层',
       'de': 'Eureka Orthos (Ebenen 1-10)',
       'en': 'Eureka Orthos (Floors 1-10)',
       'fr': 'Eurêka Orthos (sous-sols 1-10)',
@@ -1165,6 +1169,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 11～20层',
       'de': 'Eureka Orthos (Ebenen 11-20)',
       'en': 'Eureka Orthos (Floors 11-20)',
       'fr': 'Eurêka Orthos (sous-sols 11-20)',
@@ -1179,6 +1184,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 21～30层',
       'de': 'Eureka Orthos (Ebenen 21-30)',
       'en': 'Eureka Orthos (Floors 21-30)',
       'fr': 'Eurêka Orthos (sous-sols 21-30)',
@@ -1193,6 +1199,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 31～40层',
       'de': 'Eureka Orthos (Ebenen 31-40)',
       'en': 'Eureka Orthos (Floors 31-40)',
       'fr': 'Eurêka Orthos (sous-sols 31-40)',
@@ -1207,6 +1214,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 41～50层',
       'de': 'Eureka Orthos (Ebenen 41-50)',
       'en': 'Eureka Orthos (Floors 41-50)',
       'fr': 'Eurêka Orthos (sous-sols 41-50)',
@@ -1221,6 +1229,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 51～60层',
       'de': 'Eureka Orthos (Ebenen 51-60)',
       'en': 'Eureka Orthos (Floors 51-60)',
       'fr': 'Eurêka Orthos (sous-sols 51-60)',
@@ -1235,6 +1244,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 61～70层',
       'de': 'Eureka Orthos (Ebenen 61-70)',
       'en': 'Eureka Orthos (Floors 61-70)',
       'fr': 'Eurêka Orthos (sous-sols 61-70)',
@@ -1249,6 +1259,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 71～80层',
       'de': 'Eureka Orthos (Ebenen 71-80)',
       'en': 'Eureka Orthos (Floors 71-80)',
       'fr': 'Eurêka Orthos (sous-sols 71-80)',
@@ -1263,6 +1274,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 81～90层',
       'de': 'Eureka Orthos (Ebenen 81-90)',
       'en': 'Eureka Orthos (Floors 81-90)',
       'fr': 'Eurêka Orthos (sous-sols 81-90)',
@@ -1277,6 +1289,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 91～100层',
       'de': 'Eureka Orthos (Ebenen 91-100)',
       'en': 'Eureka Orthos (Floors 91-100)',
       'fr': 'Eurêka Orthos (sous-sols 91-100)',
@@ -1387,6 +1400,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '充满活力的父子',
       'de': 'Väterliche Liebe',
       'en': 'Generational Bonding',
       'fr': 'Tel gentilhomme, tel gentilhomme',
@@ -1406,6 +1420,7 @@ const data: ZoneInfoType = {
       'en': 'The Clockwork Castletown',
       'fr': 'Le Traquenard oriental',
       'ja': '東方絡繰御殿',
+      'ko': '동방 꼭두각시 어전',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -1421,6 +1436,7 @@ const data: ZoneInfoType = {
       'en': 'Crystalline Conflict (Custom Match - The Clockwork Castletown)',
       'fr': 'Crystalline Conflict (partie personnalisée - Le Traquenard oriental)',
       'ja': 'クリスタルコンフリクト(東方絡繰御殿：カスタムマッチ)',
+      'ko': '크리스탈라인 컨플릭트(동방 꼭두각시 어전: 친선 경기)',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -1436,6 +1452,7 @@ const data: ZoneInfoType = {
       'en': 'Euphrosyne',
       'fr': 'Domaine divin - Euphrosyne',
       'ja': '喜びの神域 エウプロシュネ',
+      'ko': '환희의 신역 에우프로시네',
     },
     'offsetX': 0,
     'offsetY': 480,
@@ -1451,6 +1468,7 @@ const data: ZoneInfoType = {
       'en': 'An Unforeseen Bargain',
       'fr': 'Pour une bouchée de pain',
       'ja': 'パンひとつと引き換えに',
+      'ko': '빵 하나와 바꾸어',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -1496,6 +1514,7 @@ const data: ZoneInfoType = {
       'en': 'The Shifting Gymnasion Agonon',
       'fr': 'Elpis Gymnasion',
       'ja': '宝物庫 エルピス・ギュムナシオン祭殿',
+      'ko': '보물고 엘피스 김나시온 제전',
     },
     'offsetX': -100,
     'offsetY': -100,

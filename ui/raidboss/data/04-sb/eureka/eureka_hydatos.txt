@@ -5,6 +5,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
+# Use zone-unseal & Proto Ozma Reset lines
+# Trigger set contains 'resetWhenOutOfCombat: false'
+
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 0.0 "--Reset--" sync / 04:........:Proto Ozma:/ window 100000 jump 0
 

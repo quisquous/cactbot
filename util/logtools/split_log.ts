@@ -46,7 +46,7 @@ const exclusiveArgs: (keyof SplitLogArgs)[] = [
   'zone_regex',
 ];
 for (const opt of exclusiveArgs) {
-  if (args[opt] !== null)
+  if (args[opt] !== undefined)
     numExclusiveArgs++;
 }
 if (numExclusiveArgs !== 1) {

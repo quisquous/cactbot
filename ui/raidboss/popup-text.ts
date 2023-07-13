@@ -814,7 +814,11 @@ export class PopupText {
               } else {
                 const re = buildNetRegexForTrigger(
                   trigger.type,
-                  translateRegexBuildParam(defaultNetRegex, this.parserLang, set.timelineReplace),
+                  translateRegexBuildParam(
+                    defaultNetRegex,
+                    this.parserLang,
+                    set.timelineReplace,
+                  ).params,
                 );
                 trigger.localNetRegex = Regexes.parse(re);
               }

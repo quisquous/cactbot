@@ -128,6 +128,10 @@ type LocaleLine = { en: string } & Partial<Record<Exclude<Lang, 'en'>, string>>;
 
 type LocaleRegexesObj = Record<keyof typeof localeLines, Record<Lang, RegExp>>;
 
+export type AnonNetRegexParams = {
+  [name: string]: string | readonly string[] | boolean | undefined | unknown[];
+};
+
 class RegexSet {
   regexes?: LocaleRegexesObj;
   netRegexes?: LocaleRegexesObj;
@@ -195,8 +199,9 @@ export const translateWithReplacements = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): { text: string; wasTranslated: boolean } => {
-  if (text === '')
-    return { text: '', wasTranslated: true };
+  // Special cases for empty and "not empty".
+  if (text === '' || text === '[^:]+' || text === '[^|]+')
+    return { text: text, wasTranslated: true };
 
   // All regex replacements are always global.
   const isGlobal = replaceKey === 'replaceSync';
@@ -266,14 +271,34 @@ export const translateText = (
   replacements?: TimelineReplacement[],
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
 
-// Translates timeline or trigger regex params for a given language.
 export const translateRegexBuildParam = <T extends TriggerTypes>(
   params: NetParams[T],
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
-): NetParams[T] => {
-  type AnonymousParams = { [name: string]: string | string[] | boolean | undefined | unknown[] };
-  const anonParams: AnonymousParams = params;
+): {
+  params: NetParams[T];
+  wasTranslated: boolean;
+  missingFields?: string[];
+} => {
+  return translateRegexBuildParamAnon(params, replaceLang, replacements);
+};
+
+export const translateRegexBuildParamAnon = (
+  anonParams: Readonly<AnonNetRegexParams>,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): {
+  params: AnonNetRegexParams;
+  wasTranslated: boolean;
+  missingFields?: string[];
+} => {
+  let missingFields: string[] | undefined = undefined;
+  let wasTranslated = true;
+
+  // TODO: it's probably ok that this isn't a deep copy because we don't
+  // modify string[] directly, but it probably should be anyway.
+  const params: AnonNetRegexParams = { ...anonParams };
+
   for (const key of keysThatRequireTranslation) {
     const value = anonParams[key];
     if (typeof value === 'boolean' || value === undefined)
@@ -285,20 +310,28 @@ export const translateRegexBuildParam = <T extends TriggerTypes>(
     // change.  It might be possible to assign to params[key] if we make
     // timestamp a string | string[]?
     if (typeof value === 'string') {
-      anonParams[key] = translateWithReplacements(
+      const result = translateWithReplacements(
         value,
         'replaceSync',
         replaceLang,
         replacements,
-      ).text;
+      );
+      params[key] = result.text;
+      wasTranslated = wasTranslated && result.wasTranslated;
+      if (!result.wasTranslated)
+        (missingFields ??= []).push(key);
     } else {
-      anonParams[key] = value.map((x) => {
+      params[key] = value.map((x) => {
         if (typeof x !== 'string')
           return x;
-        return translateWithReplacements(x, 'replaceSync', replaceLang, replacements).text;
+        const result = translateWithReplacements(x, 'replaceSync', replaceLang, replacements);
+        wasTranslated = wasTranslated && result.wasTranslated;
+        if (!result.wasTranslated)
+          (missingFields ??= []).push(key);
+        return result.text;
       });
     }
   }
 
-  return params;
+  return { params, wasTranslated, missingFields };
 };

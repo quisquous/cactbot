@@ -19,10 +19,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 # Preliminary phase. No pushes.
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 6.4 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:857F:/ window 6.5,2.5
 10.5 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:857F:/
 16.6 "Flare Star (circles)" sync / 1[56]:[^:]*:Zurvan:8557:/

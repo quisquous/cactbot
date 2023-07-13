@@ -7,14 +7,10 @@ hideall "--sync--"
 # -ii 4BDD 4BE1 4BEB 4BEA 4BE5 4BE9 4BEC 4BD9 4BE7 4E39 4C1D 4C20 4F98
 # -ic "Tumultuous Nexus" "Great Ball Of Fire"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
-0.0 "--sync--" sync /:Engage!/ window 0,1
-
 # Garuda solo
-2.0 "--sync--" sync / 1[56]:[^:]*:Garuda:366:/ window 3,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 13.5 "Ferostorm" # sync / 1[56]:[^:]*:Garuda:4BD[DEF]:/
-20.6 "Superstorm" sync / 1[56]:[^:]*:Garuda:4BD7:/ window 20,30
+20.6 "Superstorm" sync / 1[56]:[^:]*:Garuda:4BD7:/ window 21,30
 31.4 "Air Bump" sync / 1[56]:[^:]*:Garuda:4BD1:/
 36.8 "Thorns" sync / 1[56]:[^:]*:Garuda:4BDA:/
 48.0 "Downburst" sync / 1[56]:[^:]*:Garuda:4BDB:/ window 30,30

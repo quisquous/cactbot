@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -92,13 +92,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Seal',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.* will be sealed off.*?', capture: false }),
+      netRegex: {
+        line: '.* will be sealed off.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      netRegex: {
+        line: '.*is no longer sealed.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       run: (data) => {
         delete data.side;
         delete data.mythcall;
@@ -112,19 +120,22 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA West Side',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      // The two sides are far enough apart that even though you see the autos
+      // from the opposite boss, you don't see the player target (which is blank).
+      // This considers you on the west side if Art autos somebody, and the name isn't blank.
+      netRegex: { id: '3956', source: 'Art', target: '[^:]+', capture: false },
       suppressSeconds: 1000,
       run: (data) => data.side = 'west',
     },
     {
       id: 'BA East Side',
       type: 'Ability',
-      netRegex: NetRegexes.ability({
+      netRegex: {
         id: '3957',
         source: 'Owain',
         target: '[^:]+',
         capture: false,
-      }),
+      },
       suppressSeconds: 1000,
       run: (data) => data.side = 'east',
     },
@@ -247,7 +258,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Fire Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      netRegex: {
+        line: '[^:]*:Munderg, turn flesh to ash.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToIce!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),
@@ -273,7 +288,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'BA Owain Ice Element',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      netRegex: {
+        line: '[^:]*:Munderg, turn blood to ice.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       condition: (data) => data.side === 'east',
       alertText: (_data, _matches, output) => output.getToFire!(),
       infoText: (_data, _matches, output) => output.switchMagia!(),

@@ -35,6 +35,7 @@ const triggerSet: TriggerSet<Data> = {
         interruptOrOut: {
           en: 'Out or interrupt ${name}',
           de: 'Raus oder unterbreche ${name}',
+          ja: '沈黙: ${name}',
           cn: '出去或打断 ${name}',
           ko: '밖으로 또는 ${name} 시전 끊기',
         },
@@ -69,6 +70,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Break line-of-sight to ${name}',
           de: 'Unterbreche Sichtlinie zu ${name}',
+          ja: '${name}の視線から隠れる',
+          cn: '利用掩体卡 ${name} 的视线',
           ko: '${name}의 시야 밖으로 숨기',
         },
       },
@@ -185,6 +188,19 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Hoarhound': 'オルト・ホアハウンド',
         'Orthos Kelpie': 'オルト・ケルピー',
         'Servomechanical Chimera 14X': 'サーヴォ・キマイラ14X',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Cacophony': '嘈杂的噪音',
+        'Orthos Acheron': '正统阿刻戎',
+        'Orthos Bergthurs': '正统山巨魔',
+        'Orthos Gelato': '正统明胶怪',
+        'Orthos Goobbue': '正统古菩猩猩',
+        'Orthos Hoarhound': '正统霜狼',
+        'Orthos Kelpie': '正统凯尔派',
+        'Servomechanical Chimera 14X': '自控化奇美拉14X',
       },
     },
   ],

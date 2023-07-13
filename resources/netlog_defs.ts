@@ -489,9 +489,24 @@ const latestLogDefinitions = {
       y: 14,
       z: 15,
       heading: 16,
+      sourceId: 17,
+      source: 18,
+      // An id number lookup into the AttackType table
+      damageType: 19,
+      sourceCurrentHp: 20,
+      sourceMaxHp: 21,
+      sourceCurrentMp: 22,
+      sourceMaxMp: 23,
+      // sourceCurrentTp: 24,
+      // sourceMaxTp: 25,
+      sourceX: 26,
+      sourceY: 27,
+      sourceZ: 28,
+      sourceHeading: 29,
     },
     playerIds: {
       2: 3,
+      17: 18,
     },
     canAnonymize: true,
     firstOptionalField: undefined,
@@ -838,6 +853,7 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstOptionalField: undefined,
+    lastInclude: true,
   },
   SystemLogMessage: {
     type: '41',
@@ -1074,6 +1090,9 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstOptionalField: 5,
+    // TODO: fix this data structure and anonymizer to be able to handle repeatingFields.
+    // At the very least, Name and PCTargetID need to be anonymized as well.
+    firstUnknownField: 4,
     playerIds: {
       3: null,
     },

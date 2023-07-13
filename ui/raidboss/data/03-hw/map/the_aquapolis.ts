@@ -7,6 +7,7 @@ const aquapolisOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
+    fr: '${name} vient d\'apparaitre !',
     cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },

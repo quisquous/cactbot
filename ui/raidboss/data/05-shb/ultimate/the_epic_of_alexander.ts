@@ -1998,7 +1998,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pas de clone : package ?',
           ja: 'クローン無し: 多分シェア?',
           cn: '没有分身: 或许要集合?',
-          ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
+          ko: '분신 없음: 아마도 오른쪽/함께 맞기?',
         },
         unknown: {
           en: 'No clone: ???',
@@ -2006,7 +2006,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pas de clone : ???',
           ja: 'クローン無し: ???',
           cn: '没有分身: ¿¿¿',
-          ko: '클론 없음: ???',
+          ko: '분신 없음: ???',
         },
         defamation: {
           en: 'Defamation on YOU',
@@ -2014,7 +2014,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Diffamation sur VOUS',
           ja: '名誉罰',
           cn: '大圈点名',
-          ko: '명예형: 보스 밑에서 나 홀로!!!',
+          ko: '명예형: 큰 광역공격',
         },
         solidarity: {
           en: 'Shared Sentence: stack',
@@ -2302,7 +2302,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pas de Clone : peut-être E->S ???',
           ja: 'クローン無し: 多分東から南???',
           cn: '没有分身: 可能紫色 东->南 ???',
-          ko: '클론 없음: 아마도 동→남 ???',
+          ko: '분신 없음: 아마도 동→남 ???',
         },
         purpleBait: {
           en: 'Purple Bait: bait E',

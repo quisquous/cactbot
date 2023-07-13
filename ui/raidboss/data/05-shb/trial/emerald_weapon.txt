@@ -6,7 +6,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+# Use autos/unique syncs instead of InCombat lines to start timelines for each phase
+# as timeline resets out of combat.
 
 ### Phase 1
 0 "Start"

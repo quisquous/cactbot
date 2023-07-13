@@ -1,17 +1,21 @@
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  combatantData: PluginCombatantState[];
   dividingWingsTethers: string[];
   dividingWingsStacks: string[];
   dividingWingsEntangling: string[];
   meltdownSpreads: string[];
   daemonicBondsTime?: number;
+  daemonicBondsCounter: number;
   bondsSecondMechanic?: 'stack' | 'partners' | 'spread';
 }
 
@@ -38,16 +42,39 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+const bondsOffsetSeconds = (data: Data): number => {
+  const fallbackDelay = 5;
+  return {
+    // t=145.8, call right after laser before running out to platforms
+    1: 13,
+    // t=223.9, call after 4th turret goes off
+    2: 5,
+    // t=329.9, call as donut/circle towers go off before ray
+    3: 7,
+    // t=459.3, call as harrowing hell knockback starts
+    4: 9,
+  }[data.daemonicBondsCounter] ?? fallbackDelay;
+};
+
+// Helper function to call out the Daemonic Bonds spread/stack/partner ability.
+const bondsDelaySeconds = (data: Data, matches: NetMatches['GainsEffect']): number => {
+  return parseFloat(matches.duration) - bondsOffsetSeconds(data);
+};
+
+const bondsDurationSeconds = (data: Data): number => Math.max(bondsOffsetSeconds(data) - 3, 3);
+
 const triggerSet: TriggerSet<Data> = {
   id: 'AnabaseiosTheTenthCircleSavage',
   zoneId: ZoneId.AnabaseiosTheTenthCircleSavage,
   timelineFile: 'p10s.txt',
   initData: () => {
     return {
+      combatantData: [],
       dividingWingsTethers: [],
       dividingWingsStacks: [],
       dividingWingsEntangling: [],
       meltdownSpreads: [],
+      daemonicBondsCounter: 0,
     };
   },
   triggers: [
@@ -101,13 +128,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Soak tower',
           de: 'Türme nehmen',
           fr: 'Prenez une tour',
+          ja: '塔踏み',
           cn: '踩塔击飞',
+          ko: '기둥 들어가기',
         },
         avoid: {
           en: 'Avoid towers',
           de: 'Türme vermeiden',
           fr: 'Évitez les tours',
+          ja: '塔回避',
           cn: '远离塔',
+          ko: '기둥 피하기',
         },
       },
     },
@@ -125,18 +156,59 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Dividing Wings Tether',
       type: 'Tether',
       netRegex: { id: '00F2', source: bossNameUnicode },
+      preRun: (data, matches) => data.dividingWingsTethers.push(matches.target),
+      promise: async (data, matches) => {
+        if (data.me === matches.target) {
+          data.combatantData = [];
+          const wingId = parseInt(matches.sourceId, 16);
+          if (wingId === undefined)
+            return;
+          data.combatantData = (await callOverlayHandler({
+            call: 'getCombatants',
+            ids: [wingId],
+          })).combatants;
+        }
+      },
       alarmText: (data, matches, output) => {
-        data.dividingWingsTethers.push(matches.target);
-        if (data.me === matches.target)
-          return output.text!();
+        if (data.me === matches.target) {
+          const x = data.combatantData[0]?.PosX;
+          if (x === undefined)
+            return output.default!();
+          let wingSide;
+          let wingDir;
+          if (x > 100) {
+            wingSide = output.right!();
+            wingDir = output.east!();
+          } else if (x < 100) {
+            wingSide = output.left!();
+            wingDir = output.west!();
+          }
+          if (wingSide !== undefined && wingDir !== undefined)
+            return output.tetherside!({ side: wingSide, dir: wingDir });
+          return output.default!();
+        }
       },
       outputStrings: {
-        text: {
+        tetherside: {
+          en: 'Point ${side}/${dir} Tether Away',
+          de: 'Zeige ${side}/${dir} Verbindung weg',
+          fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
+          ja: '線伸ばし ${side}/${dir}',
+          cn: '向 ${side}/${dir} 外侧引导',
+          ko: '선을 ${side}/${dir}으로',
+        },
+        default: {
           en: 'Point Tether Away',
           de: 'Zeige Verbindung weg',
           fr: 'Orientez le lien à l\'extérieur',
+          ja: '線伸ばし',
           cn: '向外引导',
+          ko: '선을 바깥쪽으로',
         },
+        right: Outputs.right,
+        left: Outputs.left,
+        east: Outputs.east,
+        west: Outputs.west,
       },
     },
     {
@@ -151,7 +223,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Break Tethers',
           de: 'Verbindung brechen',
           fr: 'Cassez les liens',
+          ja: '線切る',
           cn: '截断丝线',
+          ko: '선 끊기',
         },
       },
     },
@@ -192,7 +266,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Stack',
           de: 'Sammeln',
           fr: 'Package',
+          ja: 'あたまわり',
           cn: '分摊连线',
+          ko: '쉐어',
         },
       },
     },
@@ -215,7 +291,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Overlap Webs',
           de: 'Netze überlappen',
           fr: 'Superposez les toiles',
+          ja: 'ウェブ重なる',
           cn: '用网搭桥',
+          ko: '거미줄 겹치기',
         },
       },
     },
@@ -223,13 +301,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Pandaemoniac Pillars',
       type: 'StartsUsing',
       netRegex: { id: '8280', source: bossNameUnicode, capture: false },
-      response: Responses.getTowers('info'),
+      response: Responses.getTowers('alert'),
     },
     {
       id: 'P10S Pandaemoniac Turrets',
       type: 'StartsUsing',
       netRegex: { id: '87AF', source: bossNameUnicode, capture: false },
-      response: Responses.getTowers('info'),
+      response: Responses.getTowers('alert'),
     },
     {
       id: 'P10S Silkspit',
@@ -241,7 +319,9 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread for Webs',
           de: 'Für Netze verteilen',
           fr: 'Écartez-vous pour les toiles',
+          ja: 'ウェブ散会',
           cn: '网分散',
+          ko: '거미줄 산개',
         },
       },
     },
@@ -251,7 +331,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: {},
       condition: (data, matches) => getHeadmarkerId(data, matches) === headmarkers.spread,
-      alertText: (data, matches, output) => {
+      alarmText: (data, matches, output) => {
         data.meltdownSpreads.push(matches.target);
         if (data.me === matches.target)
           return output.spread!();
@@ -264,7 +344,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Pandaemoniac Meltdown Stack',
       type: 'StartsUsing',
       netRegex: { id: '829D', source: bossNameUnicode, capture: false },
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         if (!data.meltdownSpreads.includes(data.me))
           return output.text!();
       },
@@ -274,7 +354,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Line stack',
           de: 'Linien-Stack',
           fr: 'Packez-vous en ligne',
-          ja: 'スタック',
+          ja: '直線あたまわり',
           cn: '直线分摊',
           ko: '직선 쉐어',
         },
@@ -290,6 +370,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         delete data.daemonicBondsTime;
         delete data.bondsSecondMechanic;
+        data.daemonicBondsCounter++;
       },
     },
     {
@@ -303,7 +384,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Dueodaemoniac Bonds Future',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDF' },
-      durationSeconds: 5,
+      durationSeconds: 7,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
@@ -325,13 +406,17 @@ const triggerSet: TriggerSet<Data> = {
           en: '(spread => partners, for later)',
           de: '(Verteilen => Partner, für später)',
           fr: '(Écartez-vous => Partenaires, pour après)',
+          ja: '(散会 => ペア)',
           cn: '(稍后 分散 => 分摊)',
+          ko: '(곧 산개 => 파트너)',
         },
         partnersThenSpread: {
           en: '(partners => spread, for later)',
           de: '(Partner => Verteilen, für später)',
           fr: '(Partenaires => Écartez-vous, pour après)',
+          ja: '(ペア => 散会)',
           cn: '(稍后 分摊 => 分散)',
+          ko: '(곧 파트너 => 산개)',
         },
       },
     },
@@ -339,7 +424,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S TetraDaemoniac Bonds Future',
       type: 'GainsEffect',
       netRegex: { effectId: 'E70' },
-      durationSeconds: 5,
+      durationSeconds: 7,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
@@ -361,13 +446,17 @@ const triggerSet: TriggerSet<Data> = {
           en: '(spread => role stack, for later)',
           de: '(Verteilen => Rollengruppe, für später)',
           fr: '(Écartez-vous => Package par rôle, pour après)',
+          ja: '(散会 => 4:4あたまわり)',
           cn: '(稍后 分散 => 四四分摊)',
+          ko: '(곧 산개 => 직업군별 쉐어)',
         },
         stackThenSpread: {
           en: '(role stack => spread, for later)',
           de: '(Rollengruppe => Verteilen, für später)',
           fr: '(Package par rôle => Écartez-vous, pour après)',
+          ja: '(4:4あたまわり => 散会)',
           cn: '(稍后 四四分摊 => 分散)',
+          ko: '(곧 직업군별 쉐어 => 산개)',
         },
       },
     },
@@ -375,7 +464,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Daemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDE' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
         // If this is undefined, then this is the second mechanic and will be called out elsewhere.
@@ -390,13 +480,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Spread => Role Stack',
           de: 'Verteilen => Rollengruppe',
           fr: 'Écartez-vous => Package par rôle',
+          ja: '散会 => 4:4あたまわり',
           cn: '分散 => 四四分摊',
+          ko: '산개 => 직업군별 쉐어',
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
           de: 'Verteilen => Partner',
           fr: 'Écartez-vous => Partenaires',
+          ja: '散会 => ペア',
           cn: '分散 => 分摊',
+          ko: '산개 => 파트너',
         },
       },
     },
@@ -404,26 +498,22 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S Dueodaemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'DDF' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
-        if (data.bondsSecondMechanic === 'stack')
-          return output.partnersThenStack!();
+        // If this is undefined, then this is the second mechanic and will be called out elsewhere.
         if (data.bondsSecondMechanic === 'spread')
           return output.partnersThenSpread!();
       },
       outputStrings: {
-        partnersThenStack: {
-          en: 'Partners => Role Stack',
-          de: 'Partner => Rollengruppe',
-          fr: 'Partenaires => Package par rôle',
-          cn: '分摊  => 四四分摊',
-        },
         partnersThenSpread: {
           en: 'Partners => Spread',
           de: 'Partner => Verteilen',
           fr: 'Partenaires => Écartez-vous',
+          ja: 'ペア => 散会',
           cn: '分摊 => 分散',
+          ko: '파트너 => 산개',
         },
       },
     },
@@ -431,26 +521,22 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P10S TetraDaemoniac Bonds First',
       type: 'GainsEffect',
       netRegex: { effectId: 'E70' },
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      delaySeconds: bondsDelaySeconds,
+      durationSeconds: bondsDurationSeconds,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
-        if (data.bondsSecondMechanic === 'partners')
-          return output.stackThenPartners!();
+        // If this is undefined, then this is the second mechanic and will be called out elsewhere.
         if (data.bondsSecondMechanic === 'spread')
           return output.stackThenSpread!();
       },
       outputStrings: {
-        stackThenPartners: {
-          en: 'Role Stack => Partners',
-          de: 'Rollengruppe => Partner',
-          fr: 'Package par rôle => Partenaires',
-          cn: '四四分摊 => 分摊',
-        },
         stackThenSpread: {
           en: 'Role Stack => Spread',
           de: 'Rollengruppe => Verteilen',
           fr: 'Package par rôle => Écartez-vous',
+          ja: '4:4あたまわり => 散会',
           cn: '四四分摊 => 分散',
+          ko: '직업군별 쉐어 => 산개',
         },
       },
     },
@@ -478,13 +564,17 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Partners',
           de: 'Partner',
           fr: 'Partenaires',
+          ja: 'ペア',
           cn: '分摊',
+          ko: '파트너',
         },
         stack: {
           en: 'Role Stack',
           de: 'Rollengruppe',
           fr: 'Package par rôle',
+          ja: '4:4あたまわり',
           cn: '四四分摊',
+          ko: '직업군별 쉐어',
         },
       },
     },
@@ -502,6 +592,35 @@ const triggerSet: TriggerSet<Data> = {
         west: Outputs.getLeftAndWest,
       },
     },
+    {
+      id: 'P10S Jade Passage',
+      // Track addition of Arcane Sphere combatants
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12356' },
+      suppressSeconds: 5,
+      infoText: (_data, matches, output) => {
+        const y = parseInt(matches.y);
+        return (Math.floor(y / 2) % 2 === 1) ? output.lines!() : output.boxes!();
+      },
+      outputStrings: {
+        lines: {
+          en: 'On Lines (Avoid Lasers)',
+          de: 'Auf die Linien (vermeide Laser)',
+          fr: 'Sur les lignes (évitez les lasers)',
+          ja: 'レーザー回避(マスの境界の上)',
+          cn: '站在线上（躲避激光）',
+          ko: '경계선 위 (레이저 피하기)',
+        },
+        boxes: {
+          en: 'Inside Boxes (Avoid Lasers)',
+          de: 'In den Boxen (vermeide Laser)',
+          fr: 'Dans les carrés (évitez les lasers)',
+          ja: 'レーザー回避(マスの内側)',
+          cn: '站在盒子里（躲避激光）',
+          ko: '네모칸 안 (레이저 피하기)',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -512,11 +631,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': 'arkan(?:e|er|es|en) Körper',
-        'Pand\\\\u00e6moniac Pillar': 'pand\\u00e6monisch(?:e|er|es|en) Turm',
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)moniac Pillar': 'pand\u00e6monisch(?:e|er|es|en) Turm',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\u00e6monium',
       },
       'replaceText': {
         '\\(cast\\)': '(Wirken)',
@@ -549,11 +667,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': 'sphère arcanique',
-        'Pand\\\\u00e6moniac Pillar': 'pilier pand\\u00e6moniaque',
-        'Pand\\\\u00e6monium': 'Pand\\u00e6monium',
+        'Pand(?:\\\\u00e6|\u00e6)moniac Pillar': 'pilier pand\u00e6moniaque',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'Pand\u00e6monium',
       },
       'replaceText': {
         'Bury': 'Impact',
@@ -582,11 +699,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Sphere': '立体魔法陣',
-        'Pand\\\\u00e6moniac Pillar': '万魔殿の塔',
-        'Pand\\\\u00e6monium': 'パンデモニウム',
+        'Pand(?:\\\\u00e6|\u00e6)moniac Pillar': '万魔殿の塔',
+        'Pand(?:\\\\u00e6|\u00e6)monium': 'パンデモニウム',
       },
       'replaceText': {
         'Bury': '衝撃',
