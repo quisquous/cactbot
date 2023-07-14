@@ -47,7 +47,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'The Vault Altar Candle',
       regex: /Altar Candle/,
       beforeSeconds: 5,
-      condition: (data) => data.role !== 'dps' || data.job === 'BLU',
       response: Responses.tankBuster(),
     },
   ],
