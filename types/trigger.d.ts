@@ -92,6 +92,7 @@ export type TriggerAutoConfig = {
   Output?: Output;
   Duration?: number;
   BeforeSeconds?: number;
+  DelayAdjust?: number;
   OutputStrings?: OutputStrings;
   TextAlertsEnabled?: boolean;
   SoundAlertsEnabled?: boolean;

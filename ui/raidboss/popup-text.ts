@@ -1244,7 +1244,13 @@ export class PopupText {
     const delay = 'delaySeconds' in triggerHelper.trigger
       ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds)
       : 0;
-    if (delay === undefined || delay === null || typeof delay !== 'number' || delay <= 0)
+    if (typeof delay !== 'number')
+      return;
+
+    const adjust = triggerHelper.triggerAutoConfig.DelayAdjust ?? 0;
+    const adjustedDelay = Math.max(delay ?? 0 + adjust, 0);
+
+    if (adjustedDelay <= 0)
       return;
 
     const triggerID = this.currentTriggerID++;
@@ -1256,7 +1262,7 @@ export class PopupText {
         else
           rej(new Error('stopped'));
         delete this.timers[triggerID];
-      }, delay * 1000);
+      }, adjustedDelay * 1000);
     });
   }
 
