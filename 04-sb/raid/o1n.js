@@ -57,7 +57,7 @@ Options.Triggers.push({
       id: 'O1N Charybdis',
       type: 'StartsUsing',
       netRegex: { id: '23DB', source: 'Alte Roite', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       // Alert rather than info, as any further raid damage is lethal if unhealed.
       response: Responses.aoe('alert'),
     },

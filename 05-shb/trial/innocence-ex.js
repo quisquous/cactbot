@@ -170,7 +170,7 @@ Options.Triggers.push({
       id: 'InnoEx Adds',
       type: 'Ability',
       netRegex: { id: '42B0', source: 'Innocence', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

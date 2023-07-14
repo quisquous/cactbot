@@ -183,7 +183,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '17CB', source: 'Forgall', capture: false },
       // Hell Wind sets HP to single digits, so mitigations don't work. Don't notify non-healers.
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       response: Responses.aoe(),
     },
     {
@@ -284,7 +284,7 @@ Options.Triggers.push({
       id: 'Weeping City Flare Star Orbs',
       type: 'AddedCombatant',
       netRegex: { npcBaseId: '4889', capture: false },
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

@@ -37,7 +37,6 @@ Options.Triggers.push({
       id: 'TheVault61 Altar Candle',
       regex: /Altar Candle/,
       beforeSeconds: 5,
-      condition: (data) => data.role !== 'dps',
       response: Responses.tankBuster(),
     },
   ],

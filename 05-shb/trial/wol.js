@@ -7,7 +7,7 @@ Options.Triggers.push({
       id: 'WOL Ultimate Crossover',
       regex: /Ultimate Crossover/,
       beforeSeconds: 8,
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -43,7 +43,7 @@ Options.Triggers.push({
       id: 'WOL Terror Unleashed',
       type: 'Ability',
       netRegex: { source: 'Warrior Of Light', id: '4F27', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {

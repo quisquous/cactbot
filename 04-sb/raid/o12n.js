@@ -52,7 +52,7 @@ Options.Triggers.push({
       id: 'O12N Local Resonance',
       type: 'GainsEffect',
       netRegex: { target: 'Omega', effectId: '67E', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

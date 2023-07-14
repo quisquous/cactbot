@@ -88,7 +88,7 @@ Options.Triggers.push({
           return output.orbTethers();
       },
       infoText: (data, _matches, output) => {
-        if (data.role === 'healer')
+        if (data.role === 'healer' || data.job === 'BLU')
           return output.orbTethers();
       },
       outputStrings: {
@@ -372,7 +372,7 @@ Options.Triggers.push({
       id: 'O9S Accretion',
       type: 'GainsEffect',
       netRegex: { effectId: '644', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
       infoText: (data, _matches, output) => {
         if (data.phaseType !== 'earth')

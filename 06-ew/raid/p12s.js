@@ -1533,7 +1533,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '82FE', source: 'Athena', capture: false },
       alertText: (data, _matches, output) =>
-        data.role === 'tank' ? output.tanksInPartyOut() : output.partyInTanksOut(),
+        data.role === 'tank' ? output.tanksOutPartyIn() : output.partyInTanksOut(),
       outputStrings: {
         partyInTanksOut: {
           en: 'Party In (Tanks Out)',
@@ -1543,7 +1543,7 @@ Options.Triggers.push({
           cn: '小队进 (T出)',
           ko: '본대 안 (탱커 밖)',
         },
-        tanksInPartyOut: {
+        tanksOutPartyIn: {
           en: 'Tanks Out (Party In)',
           de: 'Tanks Raus (Gruppe Rein)',
           fr: 'Tanks à l\'extérieur (Équipe à l\'intérieur',

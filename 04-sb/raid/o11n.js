@@ -8,7 +8,7 @@ Options.Triggers.push({
       id: 'O11N Blaster',
       regex: /Blaster/,
       beforeSeconds: 3,
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

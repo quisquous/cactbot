@@ -95,7 +95,7 @@ Options.Triggers.push({
       alarmText: (data, _matches, output) => {
         if (data.roarCount !== 2)
           return;
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.text();
       },
       outputStrings: {
@@ -185,7 +185,7 @@ Options.Triggers.push({
         code: Util.gameLogCodes.dialog,
         capture: false,
       },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

@@ -184,6 +184,7 @@ Options.Triggers.push({
       id: 'LostCityHard Winged Lion Ancient Holy',
       type: 'Ability',
       netRegex: { id: '15CA', source: 'Winged Lion', capture: false },
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -213,7 +214,7 @@ Options.Triggers.push({
       id: 'LostCityHard Kuribu Regen',
       type: 'StartsUsing',
       netRegex: { id: '15DC', source: 'Kuribu', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -229,7 +230,6 @@ Options.Triggers.push({
       id: 'LostCityHard Kuribu Cure IV',
       type: 'StartsUsing',
       netRegex: { id: '15DF', source: 'Kuribu', capture: false },
-      condition: (data) => data.role === 'tank',
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -240,6 +240,12 @@ Options.Triggers.push({
           ko: '보스 장판 안으로',
         },
       },
+    },
+    {
+      id: 'LostCityHard Kuribu Cure IV Reverse',
+      type: 'StartsUsing',
+      netRegex: { id: '15E0', source: 'Kuribu', capture: false },
+      response: Responses.aoe(),
     },
     {
       id: 'LostCityHard Kuribu Cure III',

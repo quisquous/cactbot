@@ -10,7 +10,7 @@ Options.Triggers.push({
       id: 'HadesEx Comet',
       regex: /Comet 1/,
       beforeSeconds: 5,
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
@@ -224,7 +224,7 @@ Options.Triggers.push({
         target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'],
         capture: false,
       },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       suppressSeconds: 10,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -242,7 +242,7 @@ Options.Triggers.push({
       id: 'HadesEx Spheres',
       type: 'StartsUsing',
       netRegex: { id: '47BD', source: 'Igeyorhm\'s Shade', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (data, _matches, output) => {
         if (!data.sphereCount)
           return;
@@ -336,7 +336,7 @@ Options.Triggers.push({
       id: 'HadesEx Doom',
       type: 'GainsEffect',
       netRegex: { effectId: '6E9', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
@@ -633,10 +633,10 @@ Options.Triggers.push({
       id: 'HadesEx Quadrastrike 2',
       type: 'StartsUsing',
       netRegex: { id: '47F6', source: 'Hades', capture: false },
-      condition: (data) => data.role === 'tank' || data.role === 'healer',
+      condition: (data) => data.role === 'tank' || data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 2,
       alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.getTowers();
       },
       infoText: (data, _matches, output) => {

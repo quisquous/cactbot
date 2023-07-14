@@ -253,7 +253,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '6B59', source: 'The Endsinger', capture: false },
       alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.text();
       },
       outputStrings: {

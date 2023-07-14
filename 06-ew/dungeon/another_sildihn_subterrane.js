@@ -822,7 +822,7 @@ Options.Triggers.push({
       id: 'ASS Hells\' Nebula',
       type: 'StartsUsing',
       netRegex: { id: '796C', source: 'Sil\'dihn Armor', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {

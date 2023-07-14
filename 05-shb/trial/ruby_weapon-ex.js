@@ -233,7 +233,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { source: 'Raven\'s Image', id: '4AFF' },
       condition: (data, matches) => {
-        if (data.role !== 'healer' && data.role !== 'tank')
+        if (data.role === 'dps' && data.job !== 'BLU')
           return false;
         const myColor = data.colors?.[data.me];
         if (myColor && myColor === data.colors?.[matches.target])
@@ -508,7 +508,7 @@ Options.Triggers.push({
       id: 'RubyEx Mark II Magitek Comet Tank',
       type: 'Ability',
       netRegex: { source: 'The Ruby Weapon', id: '4AB6', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       delaySeconds: 11.5,
       alarmText: (_data, _matches, output) => output.text(),
       outputStrings: {
