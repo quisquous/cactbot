@@ -198,6 +198,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LostCityHard Winged Lion Ancient Holy',
       type: 'Ability',
       netRegex: { id: '15CA', source: 'Winged Lion', capture: false },
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -243,7 +244,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'LostCityHard Kuribu Cure IV',
       type: 'StartsUsing',
       netRegex: { id: '15DF', source: 'Kuribu', capture: false },
-      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -254,6 +254,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '보스 장판 안으로',
         },
       },
+    },
+    {
+      id: 'LostCityHard Kuribu Cure IV Reverse',
+      type: 'StartsUsing',
+      netRegex: { id: '15E0', source: 'Kuribu', capture: false },
+      response: Responses.aoe(),
     },
     {
       id: 'LostCityHard Kuribu Cure III',
