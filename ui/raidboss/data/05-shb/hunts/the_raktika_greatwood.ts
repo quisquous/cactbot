@@ -89,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Hunt Ixtab Cryptcall',
       type: 'Ability',
       netRegex: { id: '45B7', source: 'Ixtab', capture: false },
-      condition: (data) => data.inCombat && data.role === 'healer',
+      condition: (data) => data.inCombat && (data.role === 'healer' || data.job === 'BLU'),
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {

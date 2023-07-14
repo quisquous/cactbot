@@ -187,7 +187,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Forgetful Tank Second Frost',
       type: 'StartsUsing',
       netRegex: { source: 'Shiva', id: '4D6[67]', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       delaySeconds: 43,
       suppressSeconds: 80,
       infoText: (data, _matches, output) => {
@@ -592,7 +592,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Banish',
       type: 'StartsUsing',
       netRegex: { source: 'Shiva', id: '4D7E', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -609,7 +609,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E8S Banish Divided',
       type: 'StartsUsing',
       netRegex: { source: 'Shiva', id: '4D7F', capture: false },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
