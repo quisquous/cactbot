@@ -39,6 +39,7 @@ const kOptionKeys = {
   output: 'Output',
   duration: 'Duration',
   beforeSeconds: 'BeforeSeconds',
+  delayAdjust: 'DelayAdjust',
   outputStrings: 'OutputStrings',
   triggerSetConfig: 'TriggerSetConfig',
 } as const;
@@ -180,6 +181,19 @@ const kDetailKeys = {
       ko: '조건',
     },
     cls: 'condition-text',
+    debugOnly: true,
+  },
+  'delayAdjust': {
+    label: {
+      // Note: delay adjusting is both dangerous (delays can be functional in terms of
+      // needing to happen after/before a particular time to collect the state of the world)
+      // as well as confusing (you can adjust some but not many things negatively as
+      // delay can't go below zero). Therefore, this is a developer/debug mode only for
+      // people who know what they're doing.
+      en: 'DEBUG delay adjust (sec)',
+    },
+    cls: 'delay-adjust-text',
+    generatedManually: true,
     debugOnly: true,
   },
   'duration': {
@@ -428,6 +442,15 @@ const validDurationOrUndefined = (valEntry?: SavedConfigEntry) => {
     return undefined;
   const val = parseFloat(valEntry.toString());
   if (!isNaN(val) && val >= 0)
+    return val;
+  return undefined;
+};
+
+const validDelayAdjustOrUndefined = (valEntry?: SavedConfigEntry) => {
+  if (typeof valEntry !== 'string' && typeof valEntry !== 'number')
+    return undefined;
+  const val = parseFloat(valEntry.toString());
+  if (!isNaN(val))
     return val;
   return undefined;
 };
@@ -726,6 +749,35 @@ class RaidbossConfigurator {
           input.value = this.base.getStringOption('raidboss', ['triggers', trigId, optionKey], '');
           const setFunc = () => {
             const val = validDurationOrUndefined(input.value) || '';
+            this.base.setOption('raidboss', ['triggers', trigId, optionKey], val);
+          };
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
+        }
+
+        // Add delay adjust manually, as this isn't a trigger field.
+        if (this.base.developerOptions) {
+          const detailKey = 'delayAdjust';
+          const optionKey = kOptionKeys.delayAdjust;
+
+          const label = document.createElement('div');
+          label.innerText = this.base.translate(kDetailKeys[detailKey].label);
+          label.classList.add('trigger-label');
+          triggerDetails.appendChild(label);
+
+          const div = document.createElement('div');
+          div.classList.add('option-input-container', 'trigger-delay-adjust');
+
+          const input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.step = 'any';
+          input.placeholder = `0`;
+          input.value = this.base.getStringOption('raidboss', ['triggers', trigId, optionKey], '');
+          const setFunc = () => {
+            const val = validDelayAdjustOrUndefined(input.value) || '';
             this.base.setOption('raidboss', ['triggers', trigId, optionKey], val);
           };
           input.onchange = setFunc;
@@ -1525,6 +1577,10 @@ const processPerTriggerAutoConfig = (options: RaidbossOptions, savedConfig: Save
     const beforeSeconds = validDurationOrUndefined(entry[kOptionKeys.beforeSeconds]);
     if (beforeSeconds)
       autoConfig[kOptionKeys.beforeSeconds] = beforeSeconds;
+
+    const delayAdjustSeconds = validDelayAdjustOrUndefined(entry[kOptionKeys.delayAdjust]);
+    if (delayAdjustSeconds)
+      autoConfig[kOptionKeys.delayAdjust] = delayAdjustSeconds;
 
     const outputStrings = entry[kOptionKeys.outputStrings];
     // Validate that the SavedConfigEntry is an an object with string values,
