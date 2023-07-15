@@ -402,18 +402,22 @@ Options.Triggers.push({
       outputStrings: {
         2: {
           en: '2: First dash, third tower',
+          de: '2: 1. Raus, 3. Turm',
           cn: '2麻 1火3塔',
         },
         4: {
           en: '4: Second dash, last tower',
+          de: '4: 2. Raus, 4. Turm',
           cn: '4麻 2火4塔',
         },
         6: {
           en: '6: First tower, third dash',
+          de: '6: 1. Turm, 3. Raus',
           cn: '6麻 1塔3火',
         },
         8: {
           en: '8: Second tower, last dash',
+          de: '8: 2. Turm, 4. Raus',
           cn: '8麻 2塔4火',
         },
         tts: {
@@ -442,6 +446,7 @@ Options.Triggers.push({
       outputStrings: {
         defamationLater: {
           en: 'Defamation on you (later)',
+          de: 'Ehrenstrafe auf dir (später)',
           cn: '大圈点名 (稍后放置)',
         },
       },

@@ -36,16 +36,19 @@ const orbOutputStrings = {
   w: Outputs.dirW,
   knockback: {
     en: '${dir} Knockback',
+    de: '${dir} Rückstoß',
     cn: '${dir} 击退',
     ko: '${dir} 넉백',
   },
   knockbackWithHead: {
     en: '${dir1} Knockback -> ${dir2}',
+    de: '${dir1} Rückstoß -> ${dir2}',
     cn: '${dir1} 击退 -> ${dir2}',
     ko: '${dir1} 넉백 -> ${dir2}',
   },
   aoeWithHead: {
     en: 'Go ${dir1} (lean ${dir2})',
+    de: 'Geh ${dir1} (nach ${dir2} bewegen)',
     cn: '去${dir1} (偏${dir2})',
     ko: '${dir1}쪽으로 (살짝 ${dir2}쪽으로)',
   },
@@ -255,16 +258,19 @@ Options.Triggers.push({
       outputStrings: {
         sides: {
           en: 'Out (Sides)',
+          de: 'Raus (Seiten)',
           cn: '去外面 (两边)',
           ko: '밖으로 (양 옆)',
         },
         sidesWithTower: {
           en: 'Tower + Outside',
+          de: 'Turm + Außerhalb',
           cn: '踩塔 + 去外面',
           ko: '기둥 + 양 옆',
         },
         sidesWithStacks: {
           en: 'Outside + Healer Groups',
+          de: 'Außerhalb + Heiler-Gruppen',
           cn: '去外面 + 治疗分组分摊',
           ko: '양 옆 + 힐러 그룹',
         },
@@ -287,16 +293,19 @@ Options.Triggers.push({
       outputStrings: {
         middle: {
           en: 'Inside (Middle)',
+          de: 'Innen (Mitte)',
           cn: '去里面 (中间)',
           ko: '안으로 (가운데)',
         },
         middleWithTower: {
           en: 'Tower + Inside',
+          de: 'Turm + Innen',
           cn: '踩塔 + 去里面',
           ko: '기둥 + 안으로',
         },
         middleWithStacks: {
           en: 'Inside + Healer Groups',
+          de: 'Innen + Heiler-Gruppen',
           cn: '去里面 + 治疗分组分摊',
           ko: '안으로 + 힐러 그룹',
         },

@@ -228,11 +228,12 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'Bombe',
         'Boomtype Magitek Gobwalker G-VII': 'Gob-Stampfer VII-L',
+        'Frostbite': 'Erfrierung',
         'Padlock': 'Vorhängeschloss',
+        'Pyretic': 'Pyretisch',
         'Quickthinx Allthoughts': 'Denkfix',
         'Shanoa': 'Schwarz(?:e|er|es|en) Katze',
         'Sturm Doll': 'Sturmpuppe',
@@ -265,7 +266,9 @@ Options.Triggers.push({
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
+        'Frostbite': 'Gelure',
         'Padlock': 'cadenas',
+        'Pyretic': 'Chaleur',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
         'Shanoa': 'Chat-noir',
         'Sturm Doll': 'poupée sturm',
