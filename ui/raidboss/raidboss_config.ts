@@ -191,6 +191,7 @@ const kDetailKeys = {
       // delay can't go below zero). Therefore, this is a developer/debug mode only for
       // people who know what they're doing.
       en: 'DEBUG delay adjust (sec)',
+      de: 'DEBUG Verzögerungseinstellung (sec)',
     },
     cls: 'delay-adjust-text',
     generatedManually: true,
