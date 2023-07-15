@@ -823,17 +823,24 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '6A26', source: 'Hesperos', capture: false },
       alertText: (data, _matches, output) =>
-        data.role === 'tank' ? output.tankbustersIn() : output.getOut(),
+        data.role === 'tank' ? output.tanksInPartyOut() : output.partyOutTanksIn(),
       outputStrings: {
-        tankbustersIn: {
-          en: 'In (Tankbusters)',
-          de: 'Rein (Tankbusters)',
-          fr: 'À l\'intérieur (Tank busters)',
-          ja: 'タンク近づく',
-          cn: '靠近 (坦克死刑)',
-          ko: '안쪽으로 (탱버)',
+        partyOutTanksIn: {
+          en: 'Party Out (Tanks In)',
+          de: 'Gruppe Raus (Tanks Rein)',
+          fr: 'Équipe à l\'extérieur (Tanks à l\'intérieur)',
+          ja: 'ボスから離れる (タンクが内側)',
+          cn: '小队出 (T进)',
+          ko: '본대 밖 (탱커 안)',
         },
-        getOut: Outputs.out,
+        tanksInPartyOut: {
+          en: 'Tanks In (Party Out)',
+          de: 'Gruppe Rein (Tanks Raus)',
+          fr: 'Tanks à l\'intérieur (Équipe à l\'extérieur',
+          ja: 'ボスに足元へ (パーティーは離れる)',
+          cn: 'T进 (小队出)',
+          ko: '탱커 안 (본대 밖)',
+        },
       },
     },
     {
@@ -841,17 +848,24 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '6A27', source: 'Hesperos', capture: false },
       alertText: (data, _matches, output) =>
-        data.role === 'tank' ? output.tankbustersOut() : output.getIn(),
+        data.role === 'tank' ? output.tanksOutPartyIn() : output.partyInTanksOut(),
       outputStrings: {
-        tankbustersOut: {
-          en: 'Out (Tankbusters)',
-          de: 'Raus, Tankbuster',
-          fr: 'À l\'extérieur (Tank busters)',
-          ja: 'タンク離れる',
-          cn: '远离 (坦克死刑)',
-          ko: '바깥쪽으로 (탱버)',
+        partyInTanksOut: {
+          en: 'Party In (Tanks Out)',
+          de: 'Gruppe Rein (Tanks Raus)',
+          fr: 'Équipe à l\'intérieur (Tanks à l\'extérieur)',
+          ja: 'ボスの足元へ (タンクは離れる)',
+          cn: '小队进 (T出)',
+          ko: '본대 안 (탱커 밖)',
         },
-        getIn: Outputs.in,
+        tanksOutPartyIn: {
+          en: 'Tanks Out (Party In)',
+          de: 'Tanks Raus (Gruppe Rein)',
+          fr: 'Tanks à l\'extérieur (Équipe à l\'intérieur',
+          ja: 'ボスからはなれる (パーティーが内側)',
+          cn: 'T出 (小队进)',
+          ko: '탱커 밖 (본대 안)',
+        },
       },
     },
     {
