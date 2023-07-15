@@ -449,10 +449,26 @@ const assembleTimelineStrings = (
       phases[ability] = parseFloat(time);
   }
 
+  const encounterAbilityList: { [string: string]: string } = {};
   for (const entry of entries) {
+    if (entry.lineType === 'ability') {
+      // In order to list out all abilities we see in the timeline header,
+      // we store them off during the entry collection process.
+      // Unfortunately, because of the interaction of old type structure and linter requirements,
+      // we have to do a giant block to ensure no undefined values sneak in.
+      const id = entry.abilityId;
+      const name = entry.abilityName;
+      if (id !== undefined && name !== undefined && encounterAbilityList[id] === undefined) {
+        // We want all enemy abilities *except* from the specific NPCs in the curated ignore list.
+        const combatant = entry.combatant;
+        if (combatant !== undefined && !ignoredCombatants.includes(combatant))
+          encounterAbilityList[id] = name;
+      }
+
     // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
-    if (entry.lineType === 'ability' && ignoreTimelineAbilityEntry(entry, args))
+    if (ignoreTimelineAbilityEntry(entry, args))
       continue;
+    }
 
     // Ignore AoE spam
     if (lastEntry.time === entry.time) {
@@ -512,7 +528,55 @@ const assembleTimelineStrings = (
     }
     lastEntry = entry;
   }
-  return assembled;
+  const headerLines = assembleHeaderAbilityStrings(args, encounterAbilityList);
+  return headerLines.concat(assembled);
+};
+
+const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
+  const zoneName = fight.zoneName;
+  const zoneId = fight.zoneId;
+  const headerInfo = [];
+  if (zoneName !== undefined) {
+    const zoneNameLine = `### ${zoneName.toUpperCase()}`;
+    headerInfo.push(zoneNameLine);
+  }
+  if (zoneId !== undefined) {
+    const zoneIdLine = `# ZoneID: ${zoneId}`;
+    headerInfo.push(zoneIdLine);
+  }
+  if (headerInfo.length > 0)
+    headerInfo.push('');
+  return headerInfo;
+};
+
+const assembleHeaderAbilityStrings = (
+  args: ExtendedArgs,
+  encounterAbilityList: { [string: string]: string }
+  ): string[] => {
+    const assembled = [];
+    const sortedIgnore = args.ignore_id?.sort();
+    if (sortedIgnore !== undefined) {
+      const iiLine = `# -ii ${sortedIgnore.join(' ')}\n`;
+      assembled.push(iiLine);
+      assembled.push('# Ignored Abilities');
+      for (const id of sortedIgnore) {
+        const abilityName = encounterAbilityList[id];
+        if (abilityName !== undefined) {
+          const detailedIgnoreLine = `# ${id} ${abilityName}`;
+          assembled.push(detailedIgnoreLine);
+        }
+      }
+    }
+    assembled.push('\n# All Encounter Abilities');
+    for (const id of (Object.keys(encounterAbilityList).sort())) {
+      const abilityName = encounterAbilityList[id];
+      if (abilityName) {
+        const listedLine = `# ${id} ${abilityName}`;
+        assembled.push(listedLine);
+      }
+    }
+    assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
+    return assembled;
 };
 
 const parseTimelineFromFile = async (
@@ -628,7 +692,8 @@ const makeTimeline = async () => {
         console.error('No fight found at specified index');
         process.exit(-2);
       }
-      assembled = await parseTimelineFromFile(args, args.file, fight);
+      const fightHeader = assembleHeaderZoneInfoStrings(fight);
+      assembled = fightHeader.concat(await parseTimelineFromFile(args, args.file, fight));
     }
   }
   if (typeof args.output_file === 'string') {
