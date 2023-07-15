@@ -85,7 +85,7 @@ export const orbOutputStrings: OutputStrings = {
   },
   knockbackWithHead: {
     en: '${dir1} Knockback -> ${dir2}',
-    de: '${dir} Rückstoß -> ${dir2}',
+    de: '${dir1} Rückstoß -> ${dir2}',
     cn: '${dir1} 击退 -> ${dir2}',
     ko: '${dir1} 넉백 -> ${dir2}',
   },
