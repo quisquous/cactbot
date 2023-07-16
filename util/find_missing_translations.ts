@@ -62,11 +62,12 @@ const findAllJavascriptFiles = (filter?: string): string[] => {
 };
 
 // Print missing translations in |file| for |locales|
-// TODO: this should just leverage eval
-const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: ErrorFuncType) => {
+const parseJavascriptFile = async (
+  file: string,
+  inputLocales: readonly Lang[],
+  func: ErrorFuncType,
+) => {
   const locales = new Set(inputLocales);
-
-  const lineCounter = ((i = 0) => () => i++)();
 
   const lineReader = readline.createInterface({
     input: fs.createReadStream(file),
@@ -83,11 +84,13 @@ const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: 
   const fixmeRe = /\/\/ FIX-?ME/;
   const ignoreRe = /cactbot-ignore-missing-translations/;
 
-  lineReader.on('line', (line, idx = lineCounter()) => {
+  for await (const line of lineReader) {
+    lineNumber++;
     // Immediately exit if the file is auto-generated
     if (line.match('// Auto-generated')) {
       lineReader.close();
       lineReader.removeAllListeners();
+      return;
     }
 
     // Any time we encounter what looks like a new object, start over.
@@ -96,18 +99,16 @@ const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: 
     const m = line.match(openObjRe);
     if (m) {
       openMatch = m;
-      // idx is zero-based, but line numbers are not.
-      lineNumber = idx + 1;
       keys = [];
       fixme = [];
       foundIgnore = false;
-      return;
+      continue;
     }
 
     // If we're not inside an object, keep looking for the start of one.
     const openMatchValue = openMatch?.[1];
     if (!openMatch || openMatchValue === undefined)
-      return;
+      continue;
 
     // If this object is ended with the same indentation,
     // then we've probably maybe found the end of this object.
@@ -121,7 +122,7 @@ const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: 
         const openStr = openMatch[2];
 
         if (openStr === undefined)
-          return;
+          continue;
 
         // Only some locales care about zoneRegex, so special case.
         if (openStr === 'zoneRegex: {')
@@ -131,7 +132,7 @@ const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: 
           func(file, lineNumber, 'code', Array.from(missingKeys), openStr);
       }
       openMatch = undefined;
-      return;
+      continue;
     }
 
     if (line.match(ignoreRe))
@@ -149,7 +150,7 @@ const parseJavascriptFile = (file: string, inputLocales: readonly Lang[], func: 
           fixme.push(lang);
       }
     }
-  });
+  }
 };
 
 export const findMissingTranslations = async (
@@ -166,6 +167,6 @@ export const findMissingTranslations = async (
         func,
       );
     }
-    parseJavascriptFile(file, locales, func);
+    await parseJavascriptFile(file, locales, func);
   }
 };
