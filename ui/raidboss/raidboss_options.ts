@@ -7,6 +7,7 @@ import {
   TriggerAutoConfig,
   TriggerField,
   TriggerOutput,
+  TriggerSetAutoConfig,
 } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
@@ -34,6 +35,7 @@ export type TimelineConfig = Partial<{
 }>;
 
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
+export type PerTriggerSetAutoConfig = { [triggerSetId: string]: TriggerSetAutoConfig };
 export type PerTriggerOptions = { [triggerId: string]: PerTriggerOption };
 export type DisabledTriggers = { [triggerId: string]: boolean };
 export type PerZoneTimelineConfig = { [zoneId: number]: TimelineConfig };
@@ -49,6 +51,7 @@ type RaidbossNonConfigOptions = {
   AudioAllowed: boolean;
   DisabledTriggers: DisabledTriggers;
   PerTriggerAutoConfig: PerTriggerAutoConfig;
+  PerTriggerSetAutoConfig: PerTriggerSetAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
   PerZoneTimelineConfig: PerZoneTimelineConfig;
   TriggerSetConfig: TriggerSetConfig;
@@ -74,6 +77,7 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
   DisabledTriggers: {},
 
   PerTriggerAutoConfig: {},
+  PerTriggerSetAutoConfig: {},
   PerTriggerOptions: {},
   PerZoneTimelineConfig: {},
   TriggerSetConfig: {},

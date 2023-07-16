@@ -33,6 +33,7 @@ import {
   TriggerAutoConfig,
   TriggerField,
   TriggerOutput,
+  TriggerSetAutoConfig,
 } from '../../types/trigger';
 
 import AutoplayHelper from './autoplay_helper';
@@ -70,6 +71,7 @@ export type ProcessedTrigger = LooseTrigger & {
   localRegex?: RegExp;
   localNetRegex?: RegExp;
   output?: Output;
+  triggerSetAutoConfig?: Readonly<TriggerSetAutoConfig>;
 };
 
 type ProcessedTimelineTrigger = ProcessedTrigger & {
@@ -729,6 +731,10 @@ export class PopupText {
           console.log('Loading user triggers for zone');
       }
 
+      const triggerSetAutoConfig = set.id !== undefined
+        ? this.options.PerTriggerSetAutoConfig[set.id]
+        : undefined;
+
       const loadThisSet = set.id === undefined ? [] : [set.id];
       for (const id of [...loadThisSet, ...set.loadConfigs ?? []]) {
         // In case a trigger set id changes and somebody wants to refer to
@@ -773,6 +779,11 @@ export class PopupText {
           // load this, but that's ok.
           trigger.filename = setFilename;
           const id = trigger.id ?? `${setFilename} trigger[${index}]`;
+
+          // Store trigger set options with the trigger itself,
+          // as it may get overridden by a trigger with the same
+          // id from a different trigger set.
+          trigger.triggerSetAutoConfig = triggerSetAutoConfig;
 
           this.ProcessTrigger(trigger);
           orderedTriggers.push(trigger);
@@ -867,6 +878,7 @@ export class PopupText {
           // Timeline triggers are never translated.
           this.ProcessTrigger(trigger);
           trigger.isTimelineTrigger = true;
+          trigger.triggerSetAutoConfig = triggerSetAutoConfig;
           orderedTriggers.push(trigger);
         }
       }
@@ -1198,21 +1210,22 @@ export class PopupText {
   // Set defaults for triggerHelper object (anything that won't change based on
   // other trigger functions running)
   _onTriggerInternalHelperDefaults(triggerHelper: TriggerHelper): void {
-    // Load settings from triggerAutoConfig if they're set
-    triggerHelper.textAlertsEnabled = triggerHelper.triggerAutoConfig.TextAlertsEnabled ??
+    // Options priority:
+    // backcompat triggerOptions > trigger autoconfig > trigger set autoconfig > top level option
+    triggerHelper.textAlertsEnabled = triggerHelper.triggerOptions.TextAlert ??
+      triggerHelper.triggerAutoConfig.TextAlertsEnabled ??
+      triggerHelper.trigger.triggerSetAutoConfig?.TextAlertsEnabled ??
       triggerHelper.textAlertsEnabled;
-    triggerHelper.soundAlertsEnabled = triggerHelper.triggerAutoConfig.SoundAlertsEnabled ??
+    triggerHelper.soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert ??
+      triggerHelper.triggerAutoConfig.SoundAlertsEnabled ??
+      triggerHelper.trigger.triggerSetAutoConfig?.SoundAlertsEnabled ??
       triggerHelper.soundAlertsEnabled;
-    triggerHelper.spokenAlertsEnabled = triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ??
+    triggerHelper.spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert ??
+      triggerHelper.triggerAutoConfig.SpokenAlertsEnabled ??
+      triggerHelper.trigger.triggerSetAutoConfig?.SpokenAlertsEnabled ??
       triggerHelper.spokenAlertsEnabled;
 
     // Load settings from triggerOptions if they're set
-    triggerHelper.textAlertsEnabled = triggerHelper.triggerOptions.TextAlert ??
-      triggerHelper.textAlertsEnabled;
-    triggerHelper.soundAlertsEnabled = triggerHelper.triggerOptions.SoundAlert ??
-      triggerHelper.soundAlertsEnabled;
-    triggerHelper.spokenAlertsEnabled = triggerHelper.triggerOptions.SpeechAlert ??
-      triggerHelper.spokenAlertsEnabled;
     triggerHelper.groupSpokenAlertsEnabled = triggerHelper.triggerOptions.GroupSpeechAlert ??
       triggerHelper.groupSpokenAlertsEnabled;
 
