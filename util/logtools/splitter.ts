@@ -12,6 +12,12 @@ export default class Splitter {
   private lastInclude: { [type: string]: string } = {};
   // id -> line
   private addedCombatants: { [id: string]: string } = {};
+  // rsvKey -> line
+  private rsvLines: { [key: string]: string } = {};
+  // log type => field #s that may contain rsv data
+  private rsvLinesReceived = false;
+  private rsvTypeToFieldMap: { [type: string]: number[] } = {};
+  private rsvSubstitutionMap: { [key: string]: string } = {};
 
   // startLine and stopLine are both inclusive.
   constructor(
@@ -20,9 +26,33 @@ export default class Splitter {
     private notifier: Notifier,
     private includeGlobals: boolean,
   ) {
-    // Remap logDefinitions from log type (instead of name) to definition.
-    for (const def of Object.values(logDefinitions))
+    for (const def of Object.values(logDefinitions) as LogDefinition[]) {
+      // Remap logDefinitions from log type (instead of name) to definition.
       this.logTypes[def.type] = def;
+      // Populate rsvTypeToFieldMap
+      const possibleRsvFields = def.possibleRsvFields;
+      if (possibleRsvFields !== undefined)
+        this.rsvTypeToFieldMap[def.type] = Object.values(possibleRsvFields);
+    }
+  }
+
+  decodeRsv(line: string): string {
+    const splitLine = line.split('|');
+    const typeField = splitLine[0];
+    if (typeField === undefined)
+      return line;
+    const fieldsToSubstitute = this.rsvTypeToFieldMap[typeField];
+    if (fieldsToSubstitute === undefined)
+      return line;
+
+    for (const idx of fieldsToSubstitute) {
+      const origValue = splitLine[idx];
+      if (origValue === undefined)
+        continue;
+      if (Object.hasOwn(this.rsvSubstitutionMap, origValue))
+        splitLine[idx] = this.rsvSubstitutionMap[origValue] ?? origValue;
+    }
+    return splitLine.join('|');
   }
 
   process(line: string): string | string[] | undefined {
@@ -32,12 +62,18 @@ export default class Splitter {
     if (line === this.stopLine)
       this.haveStopped = true;
 
+    const splitLine = line.split('|');
+    const typeField = splitLine[0];
+
+    // if this line type has possible RSV keys, decode it first
+    const typesToDecode = Object.keys(this.rsvTypeToFieldMap);
+    if (typeField !== undefined && typesToDecode.includes(typeField))
+      line = this.decodeRsv(line);
+
     // Normal operation; emit lines between start and stop.
     if (this.haveFoundFirstNonIncludeLine)
       return line;
 
-    const splitLine = line.split('|');
-    const typeField = splitLine[0];
     if (typeField === undefined)
       return;
     const type = this.logTypes[typeField];
@@ -52,11 +88,13 @@ export default class Splitter {
     else if (type.lastInclude)
       this.lastInclude[typeField] = line;
 
-    // Combatant special case:
+    // Combatant & rsv special cases:
     if (typeField === '01') {
       // When changing zones, reset all combatants.
       // They will get re-added again.
       this.addedCombatants = {};
+      // rsv lines arrive before zone change, so mark rsv lines as completed
+      this.rsvLinesReceived = true;
     } else if (typeField === '03') {
       const idIdx = 2;
       const combatantId = splitLine[idIdx]?.toUpperCase();
@@ -67,6 +105,22 @@ export default class Splitter {
       const combatantId = splitLine[idIdx]?.toUpperCase();
       if (combatantId !== undefined)
         delete this.addedCombatants[combatantId];
+    } else if (typeField === '262') {
+      // if we receive a 262 line after the 01 line, this means a new zone change is occurring
+      // so reset rsvLines/rsvSubstitutionMap and recollect
+      if (this.rsvLinesReceived) {
+        this.rsvLinesReceived = false;
+        this.rsvLines = {};
+        this.rsvSubstitutionMap = {};
+      }
+      const idIdx = 4;
+      const valueIdx = 5;
+      const rsvId = splitLine[idIdx];
+      const rsvValue = splitLine[valueIdx];
+      if (rsvId !== undefined && rsvValue !== undefined) {
+        this.rsvLines[rsvId] = line;
+        this.rsvSubstitutionMap[rsvId] = rsvValue;
+      }
     }
 
     if (!this.haveStarted && line !== this.startLine)
@@ -80,7 +134,7 @@ export default class Splitter {
     if (type.globalInclude || type.lastInclude)
       return;
 
-    // At this point we've found a real line that's not
+    // At this point we've found a real line that's not an include line
     this.haveFoundFirstNonIncludeLine = true;
 
     let lines = this.globalLines;
@@ -89,13 +143,15 @@ export default class Splitter {
       lines.push(line);
     for (const line of Object.values(this.addedCombatants))
       lines.push(line);
+    for (const line of Object.values(this.rsvLines))
+      lines.push(line);
     lines.push(line);
 
     lines = lines.sort((a, b) => {
-      // Sort by earliest time first, then by earliest log id.
+      // Sort by earliest time first, then by the lowest-numbered type.
       // This makes the log a little bit fake but maybe it's good enough.
-      const aStr = a.slice(3, 36) + a.slice(0, 3);
-      const bStr = b.slice(3, 36) + b.slice(0, 3);
+      const aStr = (a.split('|')[1] ?? '') + (a.split('|')[0] ?? '');
+      const bStr = (b.split('|')[1] ?? '') + (b.split('|')[0] ?? '');
       return aStr.localeCompare(bStr);
     });
 
@@ -103,6 +159,7 @@ export default class Splitter {
     this.globalLines = [];
     this.lastInclude = {};
     this.addedCombatants = {};
+    this.rsvLines = {};
 
     return lines;
   }
@@ -113,7 +170,7 @@ export default class Splitter {
     if (typeof result === 'undefined') {
       return;
     } else if (typeof result === 'string') {
-      callback(line);
+      callback(result);
     } else if (typeof result === 'object') {
       for (const resultLine of result)
         callback(resultLine);
