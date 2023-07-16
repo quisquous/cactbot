@@ -465,9 +465,9 @@ const assembleTimelineStrings = (
           encounterAbilityList[id] = name;
       }
 
-    // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
-    if (ignoreTimelineAbilityEntry(entry, args))
-      continue;
+      // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
+      if (ignoreTimelineAbilityEntry(entry, args))
+        continue;
     }
 
     // Ignore AoE spam
@@ -551,32 +551,32 @@ const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
 
 const assembleHeaderAbilityStrings = (
   args: ExtendedArgs,
-  encounterAbilityList: { [string: string]: string }
-  ): string[] => {
-    const assembled = [];
-    const sortedIgnore = args.ignore_id?.sort();
-    if (sortedIgnore !== undefined) {
-      const iiLine = `# -ii ${sortedIgnore.join(' ')}\n`;
-      assembled.push(iiLine);
-      assembled.push('# Ignored Abilities');
-      for (const id of sortedIgnore) {
-        const abilityName = encounterAbilityList[id];
-        if (abilityName !== undefined) {
-          const detailedIgnoreLine = `# ${id} ${abilityName}`;
-          assembled.push(detailedIgnoreLine);
-        }
-      }
-    }
-    assembled.push('\n# All Encounter Abilities');
-    for (const id of (Object.keys(encounterAbilityList).sort())) {
+  encounterAbilityList: { [string: string]: string },
+): string[] => {
+  const assembled = [];
+  const sortedIgnore = args.ignore_id?.sort();
+  if (sortedIgnore !== undefined) {
+    const iiLine = `# -ii ${sortedIgnore.join(' ')}\n`;
+    assembled.push(iiLine);
+    assembled.push('# Ignored Abilities');
+    for (const id of sortedIgnore) {
       const abilityName = encounterAbilityList[id];
-      if (abilityName) {
-        const listedLine = `# ${id} ${abilityName}`;
-        assembled.push(listedLine);
+      if (abilityName !== undefined) {
+        const detailedIgnoreLine = `# ${id} ${abilityName}`;
+        assembled.push(detailedIgnoreLine);
       }
     }
-    assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
-    return assembled;
+  }
+  assembled.push('\n# All Encounter Abilities');
+  for (const id of (Object.keys(encounterAbilityList).sort())) {
+    const abilityName = encounterAbilityList[id];
+    if (abilityName) {
+      const listedLine = `# ${id} ${abilityName}`;
+      assembled.push(listedLine);
+    }
+  }
+  assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
+  return assembled;
 };
 
 const parseTimelineFromFile = async (
