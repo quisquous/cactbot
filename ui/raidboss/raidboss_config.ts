@@ -570,7 +570,11 @@ class RaidbossConfigurator {
       // and one section per user file.
       const expansion = info.section;
 
-      if (!info.triggers || Object.keys(info.triggers).length === 0)
+      // This isn't perfect, but skip trigger sets that are no-ops.
+      const hasTriggers = Object.keys(info.triggers ?? []).length !== 0;
+      const hasTimeline = info.triggerSet.timeline !== undefined;
+      const hasTriggerSetConfig = (info.triggerSet.config ?? []).length > 0;
+      if (!hasTriggers && !hasTimeline && !hasTriggerSetConfig)
         continue;
 
       let expansionDiv = expansionDivs[expansion];
