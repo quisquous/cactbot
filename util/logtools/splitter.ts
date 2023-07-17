@@ -1,4 +1,4 @@
-import logDefinitions, { LogDefinition } from '../../resources/netlog_defs';
+import logDefinitions, { LogDefinition, LogDefinitionMap } from '../../resources/netlog_defs';
 
 import { Notifier } from './notifier';
 
@@ -26,7 +26,8 @@ export default class Splitter {
     private notifier: Notifier,
     private includeGlobals: boolean,
   ) {
-    for (const def of Object.values(logDefinitions) as LogDefinition[]) {
+    const defs: LogDefinitionMap = logDefinitions;
+    for (const def of Object.values(defs)) {
       // Remap logDefinitions from log type (instead of name) to definition.
       this.logTypes[def.type] = def;
       // Populate rsvTypeToFieldMap
