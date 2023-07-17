@@ -16,7 +16,7 @@ export default class Splitter {
   private rsvLines: { [key: string]: string } = {};
   // log type => field #s that may contain rsv data
   private rsvLinesReceived = false;
-  private rsvTypeToFieldMap: { [type: string]: number[] } = {};
+  private rsvTypeToFieldMap: { [type: string]: readonly number[] } = {};
   private rsvSubstitutionMap: { [key: string]: string } = {};
 
   // startLine and stopLine are both inclusive.
@@ -32,7 +32,7 @@ export default class Splitter {
       // Populate rsvTypeToFieldMap
       const possibleRsvFields = def.possibleRsvFields;
       if (possibleRsvFields !== undefined)
-        this.rsvTypeToFieldMap[def.type] = Object.values(possibleRsvFields);
+        this.rsvTypeToFieldMap[def.type] = possibleRsvFields;
     }
   }
 
@@ -113,6 +113,10 @@ export default class Splitter {
         this.rsvLines = {};
         this.rsvSubstitutionMap = {};
       }
+      // All RSVs are handled identically regardless of namespace (ability, effect, etc.)
+      // At some point, we could separate rsv keys into namespace-specific objects for substitution
+      // But there's virtually no risk of collision right now,
+      // and we also haven't yet determined how to map a 262 line to a particular namespace.
       const idIdx = 4;
       const valueIdx = 5;
       const rsvId = splitLine[idIdx];

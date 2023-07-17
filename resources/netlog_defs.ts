@@ -22,8 +22,8 @@ export type LogDefinition = {
   firstUnknownField?: number;
   // A map of all of the fields, unique field name to field index.
   fields?: { [fieldName: string]: number };
-  // A map of the field(s) that *may* contain RSV keys (for decoding)
-  possibleRsvFields?: { [fieldName: string]: number };
+  // A list of field ids that *may* contain RSV keys (for decoding)
+  possibleRsvFields?: readonly number[];
   subFields?: {
     [fieldName: string]: {
       [fieldValue: string]: {
@@ -344,9 +344,7 @@ const latestLogDefinitions = {
       z: 11,
       heading: 12,
     },
-    possibleRsvFields: {
-      ability: 5,
-    },
+    possibleRsvFields: [5],
     blankFields: [6],
     playerIds: {
       2: 3,
@@ -395,9 +393,7 @@ const latestLogDefinitions = {
       targetIndex: 45,
       targetCount: 46,
     },
-    possibleRsvFields: {
-      ability: 5,
-    },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
       6: 7,
@@ -446,9 +442,7 @@ const latestLogDefinitions = {
       targetIndex: 45,
       targetCount: 46,
     },
-    possibleRsvFields: {
-      ability: 5,
-    },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
       6: 7,
@@ -471,9 +465,7 @@ const latestLogDefinitions = {
       name: 5,
       reason: 6,
     },
-    possibleRsvFields: {
-      name: 5,
-    },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
     },
@@ -564,9 +556,7 @@ const latestLogDefinitions = {
       targetMaxHp: 10,
       sourceMaxHp: 11,
     },
-    possibleRsvFields: {
-      effect: 3,
-    },
+    possibleRsvFields: [3],
     playerIds: {
       5: 6,
       7: 8,
@@ -648,9 +638,7 @@ const latestLogDefinitions = {
       target: 8,
       count: 9,
     },
-    possibleRsvFields: {
-      effect: 3,
-    },
+    possibleRsvFields: [3],
     playerIds: {
       5: 6,
       7: 8,
