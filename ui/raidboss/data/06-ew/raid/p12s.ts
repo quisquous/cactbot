@@ -404,6 +404,7 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en: 'Classical Concepts: Pairs Order (Left->Right)',
         de: 'Elementarschöpfung: Ordnen nach Paaren (Links->Rechts)',
+        cn: '经典概念 索尼顺序（左->右）',
         ko: 'Classical Concepts: 도형 순서 (왼 -> 오)',
       },
       type: 'select',
@@ -420,6 +421,12 @@ const triggerSet: TriggerSet<Data> = {
           '○Δ□X (Raketenschiff)': 'ctsx',
           '○ΔX□ (Regenbogen)': 'ctxs',
         },
+        cn: {
+          'X□○Δ (BPOG)': 'xsct',
+          '○XΔ□ (1234笔画)': 'cxts',
+          '○Δ□X (Rocketship)': 'ctsx',
+          '○ΔX□ (彩虹)': 'ctxs',
+        },
         ko: {
           'X□○Δ (파보빨초)': 'xsct',
           '○XΔ□ (1234)': 'cxts',
@@ -433,6 +440,7 @@ const triggerSet: TriggerSet<Data> = {
       name: {
         en: 'Pangenesis: First Towers',
         de: 'Pangenesis: Erste Türme',
+        cn: '黑白塔',
         ko: 'Pangenesis: 첫번째 기둥',
       },
       type: 'select',
@@ -444,6 +452,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         de: {
           'Nenne nur benötigte Wechsel': 'agnostic',
+          '0+2 (HRT)': 'not',
+          '1+2 (Yuki/Rinon)': 'one',
+        },
+        cn: {
+          '只提示交换颜色': 'agnostic',
           '0+2 (HRT)': 'not',
           '1+2 (Yuki/Rinon)': 'one',
         },
