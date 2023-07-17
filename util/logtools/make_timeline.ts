@@ -37,6 +37,8 @@ type TimelineEntry = {
   lineComment?: string;
 };
 
+type EncounterAbilityList = { [string: string]: string };
+
 class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'file': string | null;
   'force': boolean | null;
@@ -56,6 +58,7 @@ class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'report_id': string | null;
   'report_fight': number | null;
   'key': string | null;
+  'generate_ability_table': string | null;
 }
 
 type ExtendedArgs = Partial<ExtendedArgsRequired>;
@@ -145,6 +148,11 @@ timelineParse.parser.addArgument(['--phase', '-p'], {
 timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   nargs: '+',
   help: 'Set this flag to include "34" log lines when making the timeline',
+});
+
+timelineParse.parser.addArgument(['--generate_ability_table', '-gat'], {
+  nargs: '?',
+  help: 'Set this flag to include a complete/unfiltered ability list after the timeline',
 });
 
 timelineParse.parser.addArgument(
@@ -449,7 +457,7 @@ const assembleTimelineStrings = (
       phases[ability] = parseFloat(time);
   }
 
-  const encounterAbilityList: { [string: string]: string } = {};
+  const encounterAbilityList: EncounterAbilityList = {};
   for (const entry of entries) {
     if (entry.lineType === 'ability') {
       // In order to list out all abilities we see in the timeline header,
@@ -528,8 +536,12 @@ const assembleTimelineStrings = (
     }
     lastEntry = entry;
   }
-  const headerLines = assembleHeaderAbilityStrings(args, encounterAbilityList);
-  return headerLines.concat(assembled);
+  const ignoreLines = assembledIgnoreHeaderStrings(args, encounterAbilityList);
+  const definiteLines = ignoreLines.concat(assembled);
+  // Generate a complete table of abilities if specified
+  if (args.generate_ability_table !== undefined)
+    return definiteLines.concat(assembleAbilityTableStrings(encounterAbilityList));
+  return definiteLines;
 };
 
 const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
@@ -541,7 +553,7 @@ const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
     headerInfo.push(zoneNameLine);
   }
   if (zoneId !== undefined) {
-    const zoneIdLine = `# ZoneID: ${zoneId}`;
+    const zoneIdLine = `# ZoneId: ${zoneId}`;
     headerInfo.push(zoneIdLine);
   }
   if (headerInfo.length > 0)
@@ -549,17 +561,24 @@ const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
   return headerInfo;
 };
 
-const assembleHeaderAbilityStrings = (
+const assembledIgnoreHeaderStrings = (
   args: ExtendedArgs,
-  encounterAbilityList: { [string: string]: string },
+  encounterAbilityList: EncounterAbilityList,
 ): string[] => {
   const assembled = [];
-  const sortedIgnore = args.ignore_id?.sort();
-  if (sortedIgnore !== undefined) {
-    const iiLine = `# -ii ${sortedIgnore.join(' ')}\n`;
+
+  const sortedCombatantIgnore = args.ignore_combatant?.sort();
+  if (sortedCombatantIgnore !== undefined) {
+    const joinedIgnore = sortedCombatantIgnore.map((x) => `"${x}"`).join(' ');
+    assembled.push(`# -ic ${joinedIgnore}`);
+  }
+
+  const sortedAbilityIgnore = args.ignore_id?.sort();
+  if (sortedAbilityIgnore !== undefined) {
+    const iiLine = `# -ii ${sortedAbilityIgnore.join(' ')}\n`;
     assembled.push(iiLine);
     assembled.push('# Ignored Abilities');
-    for (const id of sortedIgnore) {
+    for (const id of sortedAbilityIgnore) {
       const abilityName = encounterAbilityList[id];
       if (abilityName !== undefined) {
         const detailedIgnoreLine = `# ${id} ${abilityName}`;
@@ -567,7 +586,12 @@ const assembleHeaderAbilityStrings = (
       }
     }
   }
-  assembled.push('\n# All Encounter Abilities');
+  assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
+  return assembled;
+};
+
+const assembleAbilityTableStrings = (encounterAbilityList: EncounterAbilityList): string[] => {
+  const assembled: string[] = ['\n# All Encounter Abilities'];
   for (const id of (Object.keys(encounterAbilityList).sort())) {
     const abilityName = encounterAbilityList[id];
     if (abilityName) {
@@ -575,7 +599,6 @@ const assembleHeaderAbilityStrings = (
       assembled.push(listedLine);
     }
   }
-  assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
   return assembled;
 };
 
