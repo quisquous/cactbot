@@ -192,6 +192,7 @@ const kDetailKeys = {
       // people who know what they're doing.
       en: 'DEBUG delay adjust (sec)',
       de: 'DEBUG Verzögerungseinstellung (sec)',
+      ko: '"디버그" 딜레이 조절 (초)',
     },
     cls: 'delay-adjust-text',
     generatedManually: true,
