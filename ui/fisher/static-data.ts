@@ -6330,6 +6330,22 @@ const data: FisherData = {
         'Zingarnelen',
       ],
       '39240': 'Purinos',
+      '39809': 'Gelbtaucher',
+      '39810': [
+        'geläuterte Melancholie',
+        'geläuterten Melancholie',
+        'geläutertes Melancholie',
+        'geläuterter Melancholie',
+        'geläuterte Melancholien',
+        'geläuterten Melancholien',
+        'geläutertes Melancholien',
+        'geläuterter Melancholien',
+      ],
+      '39815': 'Öl-Silberfischchen',
+      '39816': [
+        'Gonzalo-Nacktschnecke',
+        'Gonzalo-Nacktschnecken',
+      ],
       '39879': [
         'Onyx-Messerfisch',
         'Onyx-Messerfische',
@@ -10252,6 +10268,19 @@ const data: FisherData = {
         'phyllinos',
         'phyllinoi',
       ],
+      '39809': 'gold dustfish',
+      '39810': [
+        'forgiven melancholy',
+        'forgiven melancholies',
+      ],
+      '39815': [
+        'oil slick',
+        'oil slicks',
+      ],
+      '39816': [
+        'Gonzalo\'s grace',
+        'Gonzalo\'s graces',
+      ],
       '39879': 'onyx knifefish',
       '39880': [
         'wakeful warden',
@@ -10326,7 +10355,7 @@ const data: FisherData = {
         'impostopus',
         'impostopodes',
       ],
-      '40538': 'jade shrimp',
+      '40538': 'jade mantis shrimp',
       '40539': [
         'Nymeia\'s wheel',
         'Nymeia\'s wheels',
@@ -15048,6 +15077,22 @@ const data: FisherData = {
         'jhingas',
       ],
       '39240': 'phyllinos',
+      '39809': [
+        'poisson doton jaune',
+        'poissons doton jaunes',
+      ],
+      '39810': [
+        'mélancolie pardonnée',
+        'mélancolies pardonnées',
+      ],
+      '39815': [
+        'nappe-d\'huile',
+        'nappes-d\'huile',
+      ],
+      '39816': [
+        'limace Gonzalo',
+        'limaces Gonzalo',
+      ],
       '39879': [
         'poisson-couteau d\'onyx',
         'poissons-couteaux d\'onyx',
@@ -16604,6 +16649,10 @@ const data: FisherData = {
       '38836': 'アンテイア・ダーリア',
       '38935': 'ジンガ',
       '39240': 'ピュッリノス',
+      '39809': 'イエローサブマリナー',
+      '39810': 'フォーギヴン・メランコリー',
+      '39815': 'オイルスリッカー',
+      '39816': 'ゴンザーロスラッグ',
       '39879': 'オニキスナイフフィッシュ',
       '39880': 'トラーナの目付役',
       '39881': 'ドンドルドン',
@@ -16971,7 +17020,7 @@ const data: FisherData = {
       '7949': '하늘유영어',
       '7950': '목도리상어',
       '7951': '에테르충',
-      '8752': '황금붕어 ',
+      '8752': '황금붕어',
       '8753': '영감청새치',
       '8754': '넵토드래곤',
       '8755': '코엘라칸투스',
@@ -20363,6 +20412,7 @@ const data: FisherData = {
       27437,
       28925,
       33239,
+      39810,
     ],
     '3297': [
       27438,
@@ -20378,6 +20428,7 @@ const data: FisherData = {
       27443,
       28190,
       32050,
+      39815,
     ],
     '3299': [
       27438,
@@ -20450,6 +20501,7 @@ const data: FisherData = {
       27464,
       28192,
       33320,
+      39809,
     ],
     '3307': [
       26749,
@@ -20590,6 +20642,7 @@ const data: FisherData = {
       27507,
       27508,
       33326,
+      39816,
     ],
     '3324': [
       27496,
