@@ -1,11 +1,5 @@
-// TODO: ::lesser summons::
-// TODO: Gymnasiou Leon: Roar - large PBAoE
-// TODO: Gymnasiou Leon: Pounce - tankbuster
-// TODO: Gymnasiou Megakantha: all abilities
-// TODO: Gymnasiou Pithekos: all abilities
 // TODO: ::greater summons::
 // TODO: Gymnasiou Acheloios: Volcanic Howl - ???
-// TODO: Gymnasiou Styphnolobion: all abilities
 // TODO: ::elder summons::
 // TODO: ::final summons::
 // TODO: Narkissos: Rock Hard - ???
@@ -82,8 +76,18 @@ Options.Triggers.push({
       netRegex: { id: '8030', source: 'Gymnasiou Leon', capture: false },
       response: Responses.aoe(),
     },
-    // TODO: Gymnasiou Leon: Roar - large PBAoE
-    // TODO: Gymnasiou Leon: Pounce - tankbuster
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Leon Roar',
+      type: 'StartsUsing',
+      netRegex: { id: '7DC9', source: 'Gymnasiou Leon', capture: false },
+      response: Responses.getOut('info'),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Leon Pounce',
+      type: 'StartsUsing',
+      netRegex: { id: '7DC8', source: 'Gymnasiou Leon' },
+      response: Responses.tankBuster(),
+    },
     {
       id: 'Shifting Gymnasion Agonon Gymnasiou Satyros Storm Wing',
       type: 'StartsUsing',
@@ -150,16 +154,55 @@ Options.Triggers.push({
       netRegex: { id: '7DCE', source: 'Gymnasiou Tigris' },
       response: Responses.tankBuster(),
     },
-    // Gymnasiou Megakantha: Odious Atmosphere - persistent front 180 channeled cleave
-    // Gymnasiou Megakantha: Vine Whip - tankbuster
-    // Gymnasiou Megakantha: Sludge Bomb - aoe under random player?
-    // Gymnasiou Megakantha: Odious Air - front cone
-    // Gymnasiou Pithekos: Thundercall - summon adds (Ball of Levin: cast Thunder IV)
-    // Gymnasiou Pithekos:: Ball of Levin: Thunder IV - large PBAoE
-    // Gymnasiou Pithekos: Spark - donut aoe
-    // Gymnasiou Pithekos: Sweeping Gouge - tankbuster
-    // Gymnasiou Pithekos: Lightning Bolt - aoe under random player?
-    // Gymnasiou Pithekos: ??? - headmarker, determines where Ball of Levin will spawn? (bait to edge so Spark and Thunder IV don't overlap?)
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Pithekos Thundercall',
+      type: 'HeadMarker',
+      netRegex: { id: '006F' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Place Marker on Wall',
+        },
+      },
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Pithekos Spark',
+      type: 'StartsUsing',
+      // This happens at the same time as Ball of Levin's Thunder IV (7DD5).
+      // "get in" is probably sufficient is the Thunder IV is far enough away.
+      netRegex: { id: '7DD8', source: 'Gymnasiou Pithekos', capture: false },
+      response: Responses.getIn(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Pithekos Sweeping Gouge',
+      type: 'StartsUsing',
+      netRegex: { id: '7DD3', source: 'Gymnasiou Pithekos' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Megakantha Vine Whip',
+      type: 'StartsUsing',
+      netRegex: { id: '7DDE', source: 'Gymnasiou Megakantha' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Megakantha Odious Atmosphere',
+      type: 'StartsUsing',
+      netRegex: { id: '7DF1', source: 'Gymnasiou Megakantha', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Behind (Stay Behind)',
+        },
+      },
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Megakantha Sludge Bomb',
+      type: 'StartsUsing',
+      netRegex: { id: '7DED', source: 'Gymnasiou Megakantha', capture: false },
+      response: Responses.getBehind('info'),
+    },
     // ---------------- greater summons ----------------
     {
       id: 'Shifting Gymnasion Agonon Gymnasiou Acheloios Tail Swing',
@@ -192,6 +235,9 @@ Options.Triggers.push({
       id: 'Shifting Gymnasion Agonon Gymnasiou Acheloios Quadruple Hammer',
       // rotates counterclockwise after each cleave
       // TODO: same rotation/pattern every time?
+      // FIXME: the correct way to solve this is to stand on the initial safe side
+      // and then rotate opposite direction of rotation 90 degrees each time.
+      // This should probably say "start back left (rotate CCW)" sorta thing.
       type: 'StartsUsing',
       netRegex: { id: '7E18', source: 'Gymnasiou Acheloios', capture: false },
       alertText: (_data, _matches, output) => {
@@ -286,7 +332,7 @@ Options.Triggers.push({
       id: 'Shifting Gymnasion Agonon Gymnasiou Sphinx Frigid Pulse',
       type: 'StartsUsing',
       netRegex: { id: '7E0E', source: 'Gymnasiou Sphinx', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getIn(),
     },
     {
       id: 'Shifting Gymnasion Agonon Gymnasiou Sphinx Feather Rain',
@@ -302,11 +348,31 @@ Options.Triggers.push({
       netRegex: { id: '7E09', source: 'Gymnasiou Sphinx' },
       response: Responses.tankBuster(),
     },
-    // Gymnasiou Styphnolobion: Earth Quaker - PBAoE followed by donut aoe; later does earthshakers simultaneously
-    // Gymnasiou Styphnolobion: Rake - tankbuster
-    // Gymnasiou Styphnolobion: Stone III - aoe under random players?
-    // Gymnasiou Styphnolobion: Earth Shaker - earth shakers on random players
-    // Gymnasiou Styphnolobion: Tiiimbeeer (yes, it has 3 i's and 3 e's) - raidwide
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Styphnolobion Rake',
+      type: 'StartsUsing',
+      netRegex: { id: '7DF5', source: 'Gymnasiou Styphnolobion' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Styphnolobion Tiiimbeeer',
+      type: 'StartsUsing',
+      netRegex: { id: '7DF6', source: 'Gymnasiou Styphnolobion', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Styphnolobion Earth Shaker',
+      type: 'StartsUsing',
+      netRegex: { id: '7DFB', source: 'Gymnasiou Styphnolobion' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.earthshaker(),
+    },
+    {
+      id: 'Shifting Gymnasion Agonon Gymnasiou Styphnolobion Earth Quaker',
+      type: 'StartsUsing',
+      netRegex: { id: '7DF9', source: 'Gymnasiou Styphnolobion', capture: false },
+      response: Responses.getOutThenIn(),
+    },
     // ---------------- elder summons ----------------
     {
       id: 'Shifting Gymnasion Agonon Lyssa Chrysine Heavy Smash',
@@ -472,6 +538,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'Gymnasiou-Acheloios',
         'Gymnasiou Leon': 'Gymnasiou-Leon',
@@ -489,6 +556,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'gymnasiou achéloios',
         'Gymnasiou Leon': 'gymnasiou léon',
@@ -506,6 +574,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'ギュムナシオー・アケローオス',
         'Gymnasiou Leon': 'ギュムナシオー・レオン',
@@ -523,6 +592,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': '育体阿刻罗俄斯',
         'Gymnasiou Leon': '育体雄狮',
@@ -540,6 +610,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': '김나시온 아켈로오스',
         'Gymnasiou Leon': '김나시온 사자',
