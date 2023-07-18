@@ -58,7 +58,7 @@ class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'report_id': string | null;
   'report_fight': number | null;
   'key': string | null;
-  'generate_ability_table': string | null;
+  'list_abilities': string | null;
 }
 
 type ExtendedArgs = Partial<ExtendedArgsRequired>;
@@ -150,7 +150,7 @@ timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   help: 'Set this flag to include "34" log lines when making the timeline',
 });
 
-timelineParse.parser.addArgument(['--generate_ability_table', '-gat'], {
+timelineParse.parser.addArgument(['--list_abilities', '-la'], {
   nargs: '?',
   help: 'Set this flag to include a complete/unfiltered ability list after the timeline',
 });
@@ -536,11 +536,12 @@ const assembleTimelineStrings = (
     }
     lastEntry = entry;
   }
-  const ignoreLines = assembledIgnoreHeaderStrings(args, encounterAbilityList);
+  const ignoreLines = assembledIgnoreHeaderStrings(args);
   const definiteLines = ignoreLines.concat(assembled);
-  // Generate a complete table of abilities if specified
-  if (args.generate_ability_table !== undefined)
-    return definiteLines.concat(assembleAbilityTableStrings(encounterAbilityList));
+  // Generate a complete table of abilities if specified.
+  // Otherwise just return the timeline and basic header info.
+  if (args.list_abilities !== undefined)
+    return definiteLines.concat(assembleAbilityTableStrings(args, encounterAbilityList));
   return definiteLines;
 };
 
@@ -563,21 +564,42 @@ const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
 
 const assembledIgnoreHeaderStrings = (
   args: ExtendedArgs,
-  encounterAbilityList: EncounterAbilityList,
 ): string[] => {
   const assembled = [];
 
   const sortedCombatantIgnore = args.ignore_combatant?.sort();
   if (sortedCombatantIgnore !== undefined) {
+    // A naive sortedCombatantIgnore.join(' ') would be incorrect
+    // if there are combatants with names containing more than one word,
+    // as for instance "Brute Justice".
+    // Single-word combatant names will not be affected by being quote-wrapped.
     const joinedIgnore = sortedCombatantIgnore.map((x) => `"${x}"`).join(' ');
     assembled.push(`# -ic ${joinedIgnore}`);
   }
 
   const sortedAbilityIgnore = args.ignore_id?.sort();
   if (sortedAbilityIgnore !== undefined) {
+    // Compared to combatant names, abilities are always guaranteed to be single "words".
     const iiLine = `# -ii ${sortedAbilityIgnore.join(' ')}\n`;
     assembled.push(iiLine);
-    assembled.push('# Ignored Abilities');
+  }
+  // Here and in the ability ignore block, we pad string ends with newlines, not the starts.
+  // We assume newline padding from the zone Id function, and if it's not present,
+  // the ignore header should be on line 1 of the file.
+  assembled.push('hideall "--Reset--"\nhideall "--sync--"\n');
+  return assembled;
+};
+
+const assembleAbilityTableStrings = (
+  args: ExtendedArgs,
+  encounterAbilityList: EncounterAbilityList,
+): string[] => {
+  // Start with a guaranteed extra newline to space out the timeline from the table.
+  const assembled: string[] = ['\n'];
+  const sortedAbilityIgnore = args.ignore_id?.sort();
+  if (sortedAbilityIgnore !== undefined) {
+    // The ignore header is inside the conditional block to ensure it's not added spuriously.
+    assembled.push('# IGNORED ABILITIES');
     for (const id of sortedAbilityIgnore) {
       const abilityName = encounterAbilityList[id];
       if (abilityName !== undefined) {
@@ -585,13 +607,14 @@ const assembledIgnoreHeaderStrings = (
         assembled.push(detailedIgnoreLine);
       }
     }
+    assembled.push('');
   }
-  assembled.push('\nhideall "--Reset--"\nhideall "--sync--"\n');
-  return assembled;
-};
 
-const assembleAbilityTableStrings = (encounterAbilityList: EncounterAbilityList): string[] => {
-  const assembled: string[] = ['\n# All Encounter Abilities'];
+  // While the user may not always ignore abilities,
+  // we are guaranteed to be listing all abilities if we arrive here.
+  // Add the encounter ability header here outside the block,
+  // since we can safely assume the encounter will have at least one ability.
+  assembled.push('# ALL ENCOUNTER ABILITIES');
   for (const id of (Object.keys(encounterAbilityList).sort())) {
     const abilityName = encounterAbilityList[id];
     if (abilityName) {
