@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === target)
           return output.tankBusterOnYou!();
 
-        if (data.role === 'dps')
+        if (data.role === 'dps' && data.job !== 'BLU')
           return output.avoidTankCleave!();
 
         return output.tankBusterOn!({ player: data.ShortName(target) });

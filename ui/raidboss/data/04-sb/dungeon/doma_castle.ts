@@ -84,7 +84,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'Hexadrohnen-Modul',
         'Hypertuned Grynewaht': 'hyperisiert(?:e|er|es|en) Grynewaht',

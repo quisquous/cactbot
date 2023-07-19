@@ -37,6 +37,8 @@ type TimelineEntry = {
   lineComment?: string;
 };
 
+type EncounterAbilityList = { [string: string]: string };
+
 class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'file': string | null;
   'force': boolean | null;
@@ -56,6 +58,7 @@ class ExtendedArgsRequired extends Namespace implements TimelineArgs {
   'report_id': string | null;
   'report_fight': number | null;
   'key': string | null;
+  'list_abilities': string | null;
 }
 
 type ExtendedArgs = Partial<ExtendedArgsRequired>;
@@ -145,6 +148,11 @@ timelineParse.parser.addArgument(['--phase', '-p'], {
 timelineParse.parser.addArgument(['--include_targetable', '-it'], {
   nargs: '+',
   help: 'Set this flag to include "34" log lines when making the timeline',
+});
+
+timelineParse.parser.addArgument(['--list_abilities', '-la'], {
+  nargs: '?',
+  help: 'Set this flag to include a complete/unfiltered ability list after the timeline',
 });
 
 timelineParse.parser.addArgument(
@@ -449,10 +457,26 @@ const assembleTimelineStrings = (
       phases[ability] = parseFloat(time);
   }
 
+  const encounterAbilityList: EncounterAbilityList = {};
   for (const entry of entries) {
-    // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
-    if (entry.lineType === 'ability' && ignoreTimelineAbilityEntry(entry, args))
-      continue;
+    if (entry.lineType === 'ability') {
+      // In order to list out all abilities we see in the timeline header,
+      // we store them off during the entry collection process.
+      // Unfortunately, because of the interaction of old type structure and linter requirements,
+      // we have to do a giant block to ensure no undefined values sneak in.
+      const id = entry.abilityId;
+      const name = entry.abilityName;
+      if (id !== undefined && name !== undefined && encounterAbilityList[id] === undefined) {
+        // We want all enemy abilities *except* from the specific NPCs in the curated ignore list.
+        const combatant = entry.combatant;
+        if (combatant !== undefined && !ignoredCombatants.includes(combatant))
+          encounterAbilityList[id] = name;
+      }
+
+      // Ignore auto-attacks, NPC allies, and abilities based on user-entered flags.
+      if (ignoreTimelineAbilityEntry(entry, args))
+        continue;
+    }
 
     // Ignore AoE spam
     if (lastEntry.time === entry.time) {
@@ -511,6 +535,92 @@ const assembleTimelineStrings = (
       assembled.push(newEntry);
     }
     lastEntry = entry;
+  }
+  const ignoreLines = assembledIgnoreHeaderStrings(args);
+  const definiteLines = ignoreLines.concat(assembled);
+  // Generate a complete table of abilities if specified.
+  // Otherwise just return the timeline and basic header info.
+  if (args.list_abilities !== undefined)
+    return definiteLines.concat(assembleAbilityTableStrings(args, encounterAbilityList));
+  return definiteLines;
+};
+
+const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
+  const zoneName = fight.zoneName;
+  const zoneId = fight.zoneId;
+  const headerInfo = [];
+  if (zoneName !== undefined) {
+    const zoneNameLine = `### ${zoneName.toUpperCase()}`;
+    headerInfo.push(zoneNameLine);
+  }
+  if (zoneId !== undefined) {
+    const zoneIdLine = `# ZoneId: ${zoneId}`;
+    headerInfo.push(zoneIdLine);
+  }
+  if (headerInfo.length > 0)
+    headerInfo.push('');
+  return headerInfo;
+};
+
+const assembledIgnoreHeaderStrings = (
+  args: ExtendedArgs,
+): string[] => {
+  const assembled = [];
+
+  const sortedCombatantIgnore = args.ignore_combatant?.sort();
+  if (sortedCombatantIgnore !== undefined) {
+    // A naive sortedCombatantIgnore.join(' ') would be incorrect
+    // if there are combatants with names containing more than one word,
+    // as for instance "Brute Justice".
+    // Single-word combatant names will not be affected by being quote-wrapped.
+    const joinedIgnore = sortedCombatantIgnore.map((x) => `"${x}"`).join(' ');
+    assembled.push(`# -ic ${joinedIgnore}`);
+  }
+
+  const sortedAbilityIgnore = args.ignore_id?.sort();
+  if (sortedAbilityIgnore !== undefined) {
+    // Compared to combatant names, abilities are always guaranteed to be single "words".
+    const iiLine = `# -ii ${sortedAbilityIgnore.join(' ')}\n`;
+    assembled.push(iiLine);
+  }
+  // Here and in the ability ignore block, we pad string ends with newlines, not the starts.
+  // We assume newline padding from the zone Id function, and if it's not present,
+  // the ignore header should be on line 1 of the file.
+  assembled.push('hideall "--Reset--"\nhideall "--sync--"\n');
+  return assembled;
+};
+
+const assembleAbilityTableStrings = (
+  args: ExtendedArgs,
+  encounterAbilityList: EncounterAbilityList,
+): string[] => {
+  // Start with a guaranteed extra newline to space out the timeline from the table.
+  const assembled: string[] = ['\n'];
+  const sortedAbilityIgnore = args.ignore_id?.sort();
+  if (sortedAbilityIgnore !== undefined) {
+    // The ignore header is inside the conditional block to ensure it's not added spuriously.
+    assembled.push('# IGNORED ABILITIES');
+    for (const id of sortedAbilityIgnore) {
+      const abilityName = encounterAbilityList[id];
+      if (abilityName !== undefined) {
+        const detailedIgnoreLine = `# ${id} ${abilityName}`;
+        assembled.push(detailedIgnoreLine);
+      }
+    }
+    assembled.push('');
+  }
+
+  // While the user may not always ignore abilities,
+  // we are guaranteed to be listing all abilities if we arrive here.
+  // Add the encounter ability header here outside the block,
+  // since we can safely assume the encounter will have at least one ability.
+  assembled.push('# ALL ENCOUNTER ABILITIES');
+  for (const id of (Object.keys(encounterAbilityList).sort())) {
+    const abilityName = encounterAbilityList[id];
+    if (abilityName) {
+      const listedLine = `# ${id} ${abilityName}`;
+      assembled.push(listedLine);
+    }
   }
   return assembled;
 };
@@ -628,7 +738,8 @@ const makeTimeline = async () => {
         console.error('No fight found at specified index');
         process.exit(-2);
       }
-      assembled = await parseTimelineFromFile(args, args.file, fight);
+      const fightHeader = assembleHeaderZoneInfoStrings(fight);
+      assembled = fightHeader.concat(await parseTimelineFromFile(args, args.file, fight));
     }
   }
   if (typeof args.output_file === 'string') {

@@ -1154,6 +1154,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下1～10层',
       'de': 'Eureka Orthos (Ebenen 1-10)',
       'en': 'Eureka Orthos (Floors 1-10)',
       'fr': 'Eurêka Orthos (sous-sols 1-10)',
@@ -1168,6 +1169,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下11～20层',
       'de': 'Eureka Orthos (Ebenen 11-20)',
       'en': 'Eureka Orthos (Floors 11-20)',
       'fr': 'Eurêka Orthos (sous-sols 11-20)',
@@ -1182,6 +1184,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下21～30层',
       'de': 'Eureka Orthos (Ebenen 21-30)',
       'en': 'Eureka Orthos (Floors 21-30)',
       'fr': 'Eurêka Orthos (sous-sols 21-30)',
@@ -1196,6 +1199,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下31～40层',
       'de': 'Eureka Orthos (Ebenen 31-40)',
       'en': 'Eureka Orthos (Floors 31-40)',
       'fr': 'Eurêka Orthos (sous-sols 31-40)',
@@ -1210,6 +1214,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下41～50层',
       'de': 'Eureka Orthos (Ebenen 41-50)',
       'en': 'Eureka Orthos (Floors 41-50)',
       'fr': 'Eurêka Orthos (sous-sols 41-50)',
@@ -1224,6 +1229,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下51～60层',
       'de': 'Eureka Orthos (Ebenen 51-60)',
       'en': 'Eureka Orthos (Floors 51-60)',
       'fr': 'Eurêka Orthos (sous-sols 51-60)',
@@ -1238,6 +1244,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下61～70层',
       'de': 'Eureka Orthos (Ebenen 61-70)',
       'en': 'Eureka Orthos (Floors 61-70)',
       'fr': 'Eurêka Orthos (sous-sols 61-70)',
@@ -1252,6 +1259,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下71～80层',
       'de': 'Eureka Orthos (Ebenen 71-80)',
       'en': 'Eureka Orthos (Floors 71-80)',
       'fr': 'Eurêka Orthos (sous-sols 71-80)',
@@ -1266,6 +1274,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下81～90层',
       'de': 'Eureka Orthos (Ebenen 81-90)',
       'en': 'Eureka Orthos (Floors 81-90)',
       'fr': 'Eurêka Orthos (sous-sols 81-90)',
@@ -1280,6 +1289,7 @@ const data: ZoneInfoType = {
     'contentType': 21,
     'exVersion': 4,
     'name': {
+      'cn': '正统优雷卡 地下91～100层',
       'de': 'Eureka Orthos (Ebenen 91-100)',
       'en': 'Eureka Orthos (Floors 91-100)',
       'fr': 'Eurêka Orthos (sous-sols 91-100)',
@@ -1390,6 +1400,7 @@ const data: ZoneInfoType = {
     'contentType': 7,
     'exVersion': 4,
     'name': {
+      'cn': '充满活力的父子',
       'de': 'Väterliche Liebe',
       'en': 'Generational Bonding',
       'fr': 'Tel gentilhomme, tel gentilhomme',
@@ -1488,6 +1499,7 @@ const data: ZoneInfoType = {
       'en': 'The Omega Protocol (Ultimate)',
       'fr': 'Le Protocole Oméga (fatal)',
       'ja': '絶オメガ検証戦',
+      'ko': '절 오메가 검증전',
     },
     'offsetX': -100,
     'offsetY': -100,
@@ -1521,6 +1533,20 @@ const data: ZoneInfoType = {
     },
     'offsetX': 368,
     'offsetY': -277,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
+  1137: {
+    'contentType': 30,
+    'exVersion': 4,
+    'name': {
+      'de': 'Der Rokkon',
+      'en': 'Mount Rokkon',
+      'fr': 'Le mont Rokkon - Donjon à embranchements',
+      'ja': 'ヴァリアントダンジョン 六根山',
+    },
+    'offsetX': -145,
+    'offsetY': -820,
     'sizeFactor': 200,
     'weatherRate': 0,
   },
@@ -1743,6 +1769,34 @@ const data: ZoneInfoType = {
     'offsetY': -100,
     'sizeFactor': 400,
     'weatherRate': 145,
+  },
+  1155: {
+    'contentType': 30,
+    'exVersion': 4,
+    'name': {
+      'de': 'Der kuriose Rokkon',
+      'en': 'Another Mount Rokkon',
+      'fr': 'Le mont Rokkon annexe - Donjon alternatif',
+      'ja': 'アナザーダンジョン 異聞六根山',
+    },
+    'offsetX': 0,
+    'offsetY': 40,
+    'sizeFactor': 200,
+    'weatherRate': 74,
+  },
+  1156: {
+    'contentType': 30,
+    'exVersion': 4,
+    'name': {
+      'de': 'Der kuriose Rokkon (episch)',
+      'en': 'Another Mount Rokkon (Savage)',
+      'fr': 'Le mont Rokkon annexe - Donjon alternatif (sadique)',
+      'ja': 'アナザーダンジョン 異聞六根山 零式',
+    },
+    'offsetX': 0,
+    'offsetY': 40,
+    'sizeFactor': 200,
+    'weatherRate': 74,
   },
   1157: {
     'contentType': 4,
