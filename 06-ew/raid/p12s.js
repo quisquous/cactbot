@@ -1588,7 +1588,7 @@ Options.Triggers.push({
         },
         tanksInPartyOut: {
           en: 'Tanks In (Party Out)',
-          de: 'Gruppe Rein (Tanks Raus)',
+          de: 'Tanks Rein (Gruppe Raus)',
           fr: 'Tanks à l\'intérieur (Équipe à l\'extérieur',
           ja: 'ボスに足元へ (パーティーは離れる)',
           cn: 'T进 (小队出)',
