@@ -144,8 +144,12 @@ export default class PartyTracker {
   // returns the job name of the specified party member
   jobName(name: string): Job | undefined {
     const partyIndex = this.partyNames.indexOf(name);
-    if (partyIndex >= 0)
-      return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
+    if (partyIndex < 0)
+      return;
+    const job = this.details[partyIndex]?.job;
+    if (job === undefined)
+      return;
+    return Util.jobEnumToJob(job);
   }
 
   nameFromId(id: string): string | undefined {
