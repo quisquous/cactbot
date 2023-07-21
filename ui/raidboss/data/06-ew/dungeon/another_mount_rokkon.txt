@@ -1,0 +1,55 @@
+### ANOTHER MOUNT ROKKON
+# ZoneId: 483
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~#
+# SHISHIO #
+#~~~~~~~~~#
+
+# -p 841A:1012
+# -ii 86DF
+
+# ALL ENCOUNTER ABILITIES
+# 83F8 Stormcloud Summons cast and self-targeted ability
+# 83F9 Smokeater cast and self-targeted ability for first inhale
+# 83FA Smokeater self-targeted ability for optional second and third inhales
+# 83FB --sync-- Raiun ability on Shishio after being inhaled
+# 83FC Rokujo Revel cast and damage from line charges for first Smokeater
+# 83FD Rokujo Revel cast and damage for remaining 1 line for 2x Smokeater
+# 83FE Rokujo Revel cast and damage for remaining 2 lines for 3x Smokeater
+# 83FF Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
+# 8400 Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
+# 8401 Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
+# 8402 Lightning Bolt cast and self-targeted ability
+# 8403 Lightning Bolt cast and damage for initial cloud circles
+# 8404 Cloud to Cloud cast and damage for 1x Smokeater small lines
+# 8405 Cloud to Cloud cast and damage for 2x Smokeater medium lines
+# 8406 Cloud to Cloud cast and damage for 3x Smokeater large lines
+# 8407 Noble Pursuit cast and damage for initial charge
+# 8408 Noble Pursuit damage for followup changes
+# 8409 Levinburst line damage for going through rings during Noble Pursuit
+# 840A Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
+# 840B Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+# 840C Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+# 840D Reisho damage from Haunting Thrall untelegraphed aoes
+# 840E Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
+# 840F Vermilion Aura damage from taking a tower at the same time as Stygian Aura
+# 8410 Stygian Aura spread marker damage at the same time as Vermillion Aura
+# 8411 Unmitigated Explosion damage from not taking towers
+# 8412 Thunder Vortex cast and damage for untelegraphed donut
+# 8413 Eye of the Thunder Vortex cast and damage for first "out" circle
+# 8414 Eye of the Thunder Vortex damage for second "in" donut
+# 8415 Vortex of the Thunder Eye cast and damage for first "in" donut
+# 8416 Vortex of the Thunder Eye damage for second "out" circle
+# 8417 Unnatural Wail cast and self-targeted ability
+# 8418 Unnatural Ailment damage for Unnatural Wail "spread"
+# 8419 Unnatural Force damage for Unnatural Wail "stack"
+# 841A Enkyo cast and damage for raidwide
+# 841B Splitting Cry cast and damage for tankbuster
+# 841C Slither fast cast and damage for back conal
+# 841D --sync-- repositioning ability
+# 86DF --sync-- auto damage
