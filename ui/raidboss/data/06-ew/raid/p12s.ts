@@ -3929,6 +3929,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(enrage\\)': '(Finalangriff)',
         '\\(proximity\\)': '(Entfernung)',
         '\\(spread\\)': '(Verteilen)',
+        '--tethers--': '--Verbindungen--',
         'Apodialogos': 'Apodialogos',
         'Astral Advance': 'Lichtvordringen',
         'Astral Advent': 'Vorzeit des Lichts',
@@ -4005,6 +4006,7 @@ const triggerSet: TriggerSet<Data> = {
         'Thymou Idea': 'thymou idea',
       },
       'replaceText': {
+        '--tethers--': '--liens--',
         'Apodialogos': 'Apo dialogos',
         'Astral Advance': 'Avancée astrale',
         'Astral Advent': 'Avènement astral',
