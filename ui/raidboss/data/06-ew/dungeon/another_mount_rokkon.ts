@@ -9,12 +9,19 @@ import { Job } from '../../../../../types/job';
 import { NetMatches } from '../../../../../types/net_matches';
 import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
+type OdderTower = {
+  blue?: string;
+  orange?: string;
+};
+
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
   sparksCollect: NetMatches['GainsEffect'][];
   sparksCount: number;
+  reincarnationCollect: [OdderTower, OdderTower, OdderTower, OdderTower];
+  towerCount: number;
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -159,6 +166,71 @@ const stackSpreadResponse = (
   return { alertText: output.spreadThenStack!(), ...stackInfo };
 };
 
+const towerResponse = (
+  data: Data,
+  output: Output,
+): ResponseOutput<Data, NetMatches['None']> => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    tetherThenBlueTower: {
+      en: 'Tether ${num1} => Blue Tower ${num2}',
+    },
+    tetherThenOrangeTower: {
+      en: 'Tether ${num1} => Orange Tower ${num2}',
+    },
+    tether: {
+      en: 'Tether ${num}',
+    },
+    blueTower: {
+      en: 'Blue Tower ${num}',
+    },
+    orangeTower: {
+      en: 'Orange Tower ${num}',
+    },
+    num1: Outputs.num1,
+    num2: Outputs.num2,
+    num3: Outputs.num3,
+    num4: Outputs.num4,
+  };
+
+  // data.towerCount is 0-indexed
+  // towerNum for display is 1-indexed
+  const theseTowers = data.reincarnationCollect[data.towerCount];
+  const towerNum = data.towerCount + 1;
+  data.towerCount++;
+
+  if (theseTowers === undefined)
+    return;
+
+  const numMap: { [towerNum: number]: string } = {
+    1: output.num1!(),
+    2: output.num2!(),
+    3: output.num3!(),
+    4: output.num4!(),
+  } as const;
+
+  const numStr = numMap[towerNum];
+  if (numStr === undefined)
+    return;
+
+  if (data.me === theseTowers.blue)
+    return { alertText: output.blueTower!({ num: numStr }) };
+  if (data.me === theseTowers.orange)
+    return { alertText: output.orangeTower!({ num: numStr }) };
+  const nextTowers = data.reincarnationCollect[towerNum + 1];
+  const nextNumStr = numMap[towerNum + 1];
+  if (towerNum === 4 || nextTowers === undefined || nextNumStr === undefined)
+    return { infoText: output.tether!({ num: numStr }) };
+
+  if (data.me === nextTowers.blue)
+    return { infoText: output.tetherThenBlueTower!({ num1: numStr, num2: nextNumStr }) };
+  if (data.me === nextTowers.orange)
+    return { infoText: output.tetherThenOrangeTower!({ num1: numStr, num2: nextNumStr }) };
+
+  // Just in case...
+  return { infoText: output.tether!({ num: numStr }) };
+};
+
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherMountRokkon',
   zoneId: ZoneId.AnotherMountRokkon,
@@ -170,6 +242,8 @@ const triggerSet: TriggerSet<Data> = {
       wailCount: 0,
       sparksCollect: [],
       sparksCount: 0,
+      reincarnationCollect: [{}, {}, {}, {}],
+      towerCount: 0,
     };
   },
   triggers: [
@@ -526,6 +600,65 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         return stackSpreadResponse(data, output, data.sparksCollect, 'E17', 'E18');
+      },
+    },
+    {
+      id: 'AMR Gorai Torching Torment',
+      type: 'StartsUsing',
+      netRegex: { id: '8532', source: 'Gorai the Uncaged' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'AMR Gorai Rousing Reincarnation Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E10', 'E11', 'E12', 'E13', 'E14'] },
+      run: (data, matches) => {
+        // Odder Incarnation = blue towers
+        // Rodential Rebirth = orange towers
+        // durations: I = 20s, II = 26s, III = 32s, IV = 38s
+        const id = matches.effectId;
+        if (id === 'E11')
+          data.reincarnationCollect[0].blue = matches.target;
+        else if (id === 'E0D')
+          data.reincarnationCollect[0].orange = matches.target;
+        else if (id === 'E12')
+          data.reincarnationCollect[1].blue = matches.target;
+        else if (id === 'E0E')
+          data.reincarnationCollect[1].orange = matches.target;
+        else if (id === 'E13')
+          data.reincarnationCollect[2].blue = matches.target;
+        else if (id === 'E0F')
+          data.reincarnationCollect[2].orange = matches.target;
+        else if (id === 'E14')
+          data.reincarnationCollect[3].blue = matches.target;
+        else if (id === 'E10')
+          data.reincarnationCollect[3].orange = matches.target;
+      },
+    },
+    {
+      id: 'AMR Gorai Rousing Reincarnation First Tower',
+      type: 'StartsUsing',
+      // Malformed Prayer cast
+      netRegex: { id: '8518', source: 'Gorai the Uncaged', capture: false },
+      durationSeconds: 15,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        return towerResponse(data, output);
+      },
+    },
+    {
+      id: 'AMR Gorai Rousing Reincarnation Other Towers',
+      type: 'Ability',
+      // Technically 851F Pointed Purgation protean happens ~0.2s beforehand,
+      // but wait on the tower burst to call things out.
+      // 851B = Burst (blue tower)
+      // 8519 = Burst (orange tower)
+      // 851C = Dramatic Burst (missed tower)
+      netRegex: { id: '851B', source: 'Gorai the Uncaged', capture: false },
+      durationSeconds: 4,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        return towerResponse(data, output);
       },
     },
   ],
