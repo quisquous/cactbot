@@ -3626,6 +3626,23 @@ const triggerSet: TriggerSet<Data> = {
       },
       delaySeconds: 1,
       response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          noBeacon: {
+            en: 'Initial Fire: ${player1}, ${player2}',
+            de: 'Initial Feuer: ${player1}, ${player2}',
+            ja: '自分に初炎: ${player1}, ${player2}', // FIXME
+            cn: '火标记点名: ${player1}, ${player2}',
+            ko: '첫 불 대상자: ${player1}, ${player2}',
+          },
+          beacon: {
+            en: 'Initial Fire (w/ ${partner})',
+            de: 'Initial Feuer (mit ${partner})',
+            ja: '自分に初炎 (${partner})', // FIXME
+            cn: '火标记点名 (和 ${partner})',
+            ko: '첫 불 대상자 (+ ${partner})',
+          },
+        };
         if (data.caloric1First.length !== 2)
           return;
         const index = data.caloric1First.indexOf(data.me);
@@ -3640,22 +3657,6 @@ const triggerSet: TriggerSet<Data> = {
         return {
           alertText: output.beacon!({ partner: data.ShortName(data.caloric1First[partner]) }),
         };
-      },
-      outputStrings: {
-        noBeacon: {
-          en: 'Initial Fire: ${player1}, ${player2}',
-          de: 'Initial Feuer: ${player1}, ${player2}',
-          ja: '自分に初炎: ${player1}, ${player2}', // FIXME
-          cn: '火标记点名: ${player1}, ${player2}',
-          ko: '첫 불 대상자: ${player1}, ${player2}',
-        },
-        beacon: {
-          en: 'Initial Fire (w/ ${partner})',
-          de: 'Initial Feuer (mit ${partner})',
-          ja: '自分に初炎 (${partner})', // FIXME
-          cn: '火标记点名 (和 ${partner})',
-          ko: '첫 불 대상자 (+ ${partner})',
-        },
       },
     },
     {
