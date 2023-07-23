@@ -12,7 +12,7 @@ hideall "--sync--"
 # -ii 838A 8391 8382
 
 1000.0 "--sync--" sync / 00:0839::Last Glimpse will be sealed off/ window 10000,0
-1011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/ window 10000,0
+1011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
 1021.6 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
 1030.7 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
 1035.8 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
