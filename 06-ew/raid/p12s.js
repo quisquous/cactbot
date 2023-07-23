@@ -3401,10 +3401,6 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           noBeacon: {
             en: 'Initial Fire: ${player1}, ${player2}',
-            de: 'Initial Feuer: ${player1}, ${player2}',
-            ja: '自分に初炎: ${player1}, ${player2}',
-            cn: '火标记点名: ${player1}, ${player2}',
-            ko: '첫 불 대상자: ${player1}, ${player2}',
           },
           beacon: {
             en: 'Initial Fire (w/ ${partner})',
