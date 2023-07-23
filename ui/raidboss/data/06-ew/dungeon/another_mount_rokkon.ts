@@ -662,6 +662,17 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      locale: 'en',
+      replaceText: {
+        'Unnatural Ailment/Unnatural Force': 'Unnatural Ailment/Force',
+        'Unnatural Force/Unnatural Ailment': 'Unnatural Force/Ailment',
+        'Eye of the Thunder Vortex/Vortex of the Thunder Eye': 'Thunder Eye/Vortex',
+        'Vortex of the Thunder Eye/Eye of the Thunder Vortex': 'Thunder Vortex/Eye',
+      },
+    },
+  ],
 };
 
 export default triggerSet;

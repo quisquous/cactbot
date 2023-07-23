@@ -27,9 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Shishu Onmitsugashira Juji Shuriken': '8664', // untelegraphed front line
 
     // Shishio
-    'AMR Shishio Rokujo Revel 1': '83FC', // first Smokeater line
-    'AMR Shishio Rokujo Revel 2': '83FD', // second Smokeater line if 2x inhale
-    'AMR Shishio Rokujo Revel 3': '83FE', // second/third Smokeater line if 3x inhale
+    'AMR Shishio Rokujo Revel': '83FE', // Smokeater line
     'AMR Shishio Raiun Leaping Levin 1': '83FF', // Raiun 1x Smokeater small cloud circles
     'AMR Shishio Raiun Leaping Levin 2': '8400', // Raiun 1x Smokeater medium cloud circles
     'AMR Shishio Raiun Leaping Levin 3': '8401', // Raiun 1x Smokeater large cloud circles
