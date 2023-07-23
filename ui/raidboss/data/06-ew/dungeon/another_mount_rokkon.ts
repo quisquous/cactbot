@@ -1,3 +1,4 @@
+import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
 import PartyTracker from '../../../../../resources/party';
 import { Responses } from '../../../../../resources/responses';
@@ -13,6 +14,16 @@ type OdderTower = {
   blue?: string;
   orange?: string;
 };
+
+const headmarkers = {
+  // vfx/lockon/eff/sph_lockon2_num01_s8p.avfx (through sph_lockon2_num04_s8p)
+  limitCut1: '0150',
+  limitCut2: '0151',
+  limitCut3: '0152',
+  limitCut4: '0153',
+} as const;
+
+const limitCutIds: readonly string[] = Object.values(headmarkers);
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -609,6 +620,60 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'AMR Gorai Impure Purgation First Hit',
+      type: 'StartsUsing',
+      netRegex: { id: '852F', source: 'Gorai the Uncaged', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Protean',
+          de: 'Um den Boss verteilen',
+          fr: 'Changement',
+          ja: 'ボスを基準として散開',
+          cn: '和队友分散路径',
+          ko: '산개',
+        },
+      },
+    },
+    {
+      id: 'AMR Gorai Impure Purgation Second Hit',
+      type: 'StartsUsing',
+      netRegex: { id: '8531', source: 'Gorai the Uncaged', capture: false },
+      suppressSeconds: 5,
+      response: Responses.moveAway(),
+    },
+    {
+      id: 'AMR Gorai Humble Hammer',
+      type: 'StartsUsing',
+      netRegex: { id: '8525', source: 'Gorai the Uncaged' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Shrink Lone Orb',
+        },
+      },
+    },
+    {
+      id: 'AMR Gorai Flintlock',
+      type: 'Ability',
+      // Trigger this on Humble Hammer damage
+      netRegex: { id: '8525', source: 'Gorai the Uncaged', capture: false },
+      // This cleaves and should hit the orb and the player.
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'Sammeln in einer Linie',
+          fr: 'Packez-vous en ligne',
+          ja: '頭割り',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
+        },
+      },
+    },
+    {
       id: 'AMR Gorai Rousing Reincarnation Collect',
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E10', 'E11', 'E12', 'E13', 'E14'] },
@@ -661,6 +726,35 @@ const triggerSet: TriggerSet<Data> = {
         return towerResponse(data, output);
       },
     },
+    {
+      id: 'AMR Gorai Fighting Spirits',
+      type: 'StartsUsing',
+      netRegex: { id: '852B', source: 'Gorai the Uncaged', capture: false },
+      // this is also a light aoe but knockback is more important
+      response: Responses.knockback('info'),
+    },
+    {
+      id: 'AMR Gorai Fighting Spirits Limit Cut',
+      type: 'HeadMarker',
+      netRegex: { id: limitCutIds },
+      durationSeconds: 10, // FIXME
+      alertText: (_data, matches, output) => {
+        if (matches.id === headmarkers.limitCut1)
+          return output.num1!();
+        if (matches.id === headmarkers.limitCut1)
+          return output.num2!();
+        if (matches.id === headmarkers.limitCut1)
+          return output.num3!();
+        if (matches.id === headmarkers.limitCut1)
+          return output.num4!();
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -670,6 +764,8 @@ const triggerSet: TriggerSet<Data> = {
         'Unnatural Force/Unnatural Ailment': 'Unnatural Force/Ailment',
         'Eye of the Thunder Vortex/Vortex of the Thunder Eye': 'Thunder Eye/Vortex',
         'Vortex of the Thunder Eye/Eye of the Thunder Vortex': 'Thunder Vortex/Eye',
+        'Greater Ball of Fire/Great Ball of Fire': 'Great/Greater Ball of Fire',
+        'Great Ball of Fire/Greater Ball of Fire': 'Greater/Great Ball of Fire',
       },
     },
   ],

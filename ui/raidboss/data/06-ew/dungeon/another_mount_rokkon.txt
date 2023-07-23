@@ -140,3 +140,106 @@ hideall "--sync--"
 # 841C Slither fast cast and damage for back conal
 # 841D --sync-- repositioning ability
 # 86DF --sync-- auto damage
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# GORAI THE UNCAGED #
+#~~~~~~~~~~~~~~~~~~~#
+
+# -p 8534:2014.3
+# -ii 8502 8504 8535 8504 851D 851E 8513 852F 8525 8257 8522 8533 8528 8519 852A 852D 852B 8527 8523
+
+2000.0 "--sync--" sync / 00:0839::The Trial Of Wisdom will be sealed off/ window 10000,0
+2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8534:/ window 10000,0
+2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
+
+2021.7 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2028.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2033.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2044.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:(8509|850A):/
+2047.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(850E|850F):/
+2047.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(850B|850C):/
+2048.0 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:8505:/
+2055.6 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8530:/
+2057.6 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8531:/
+
+2063.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2068.7 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:8520:/
+2079.6 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:8524:/
+2083.2 "Flintlock" sync / 1[56]:[^:]*:Gorai the Uncaged:8526:/
+2083.6 "Shock" sync / 1[56]:[^:]*:Ball of Levin:8521:/
+2094.5 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:8532:/
+
+2100.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2108.0 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8512:/
+2114.3 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
+2126.3 "Pointed Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:851F:/
+2126.4 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2132.4 "Pointed Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:851F:/
+2132.4 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2138.4 "Pointed Purgation 3" sync / 1[56]:[^:]*:Gorai the Uncaged:851F:/
+2138.4 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2144.4 "Pointed Purgation 4" sync / 1[56]:[^:]*:Gorai the Uncaged:851F:/
+2144.4 "Burst 4" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2155.7 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
+
+2163.1 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2169.2 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2178.5 "Cloud to Ground" sync / 1[56]:[^:]*:Gorai the Uncaged:8529:/ duration 6.3
+2180.5 "Greater Ball of Fire/Great Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(8505|8506):/ window 1,1
+2183.5 "Great Ball of Fire/Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(8506|8505):/ window 1,1
+
+2193.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2202.2 "Fighting Spirits" sync / 1[56]:[^:]*:Gorai the Uncaged:852C:/
+2205.5 "Worldly Pursuit 1" sync / 1[56]:[^:]*:Gorai the Uncaged:850D:/
+2208.6 "Worldly Pursuit 2" sync / 1[56]:[^:]*:Gorai the Uncaged:850D:/
+2211.6 "Worldly Pursuit 3" sync / 1[56]:[^:]*:Gorai the Uncaged:850D:/
+2214.6 "Worldly Pursuit 4" sync / 1[56]:[^:]*:Gorai the Uncaged:850D:/
+# ???
+
+
+# ALL ENCOUNTER ABILITIES
+# 84D3 --sync-- repositioning
+# 8502 --sync-- auto damage
+# 8503 Seal of Scurrying Sparks cast and self-targeted ability
+# 8504 Seal of Scurrying Sparks ability on players that gives Live Brazier/Live Candle debuffs
+# 8505 Greater Ball of Fire pair stack damage from Live Brazier debuff
+# 8506 Great Ball of Fire spread damage from Live Candle debuff
+# 8508 Flame and Sulphur cast and self-targeted summoning rocks and lines
+# 8509 Brazen Ballad cast and self-targeted purple effect that expands everything
+# 850A Brazen Ballad cast and self-targeted blue effect that donutifies everything
+# 850B Fire Spread expanded line damage after Brazen Ballad 8509
+# 850C Fire Spread split line damage after Brazen Ballad 850A
+# 850D Worldly Pursuit cast and damage from cross jumps
+# 850E Falling Rock expanded rock damage after Brazen Ballad 8509
+# 850F Falling Rock donutified rock damage after Brazen Ballad 850A
+# 8512 Rousing Reincarnation cast and self-targeted ability
+# 8513 Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
+# 8518 Malformed Prayer cast and self-targeted ability that starts the looper/tower sequence
+# 8519 Burst orange tower damage
+# 851B Burst blue tower damage
+# 851C Dramatic Burst missed tower damage
+# 851D Pointed Purgation cast and self-targeted ability before first 851F protean cleave
+# 851E Pointed Purgation self-targeted ability before 2/3/4 851F protean cleaves
+# 851F Pointed Purgation damage for protean cleave from tether
+# 8520 Thundercall cast and self-targeted ability that summons Ball of Levin
+# 8521 Shock cast and self-targeted ability by Ball of Levin
+# 8522 Shock small ground circle damage from Ball of Levin hit by Humble Hammer
+# 8523 Shock large ground circle damage from Ball of Levin
+# 8524 Humble Hammer cast and self-targeted ability
+# 8525 Humble Hammer cast and damage headmarker on healer that gives mini debuff
+# 8526 Flintlock self-targeted ability
+# 8527 Flintlock damage for line stack after Humble Hammer
+# 8528 Cloud to Ground cast and self-targeted ability
+# 8529 Cloud to Ground cloud exaflare damage initial hit
+# 852A Cloud to Ground cloud exaflare damage ongoing hits
+# 852B Fighting Spirits cast and self-targeted
+# 852C Fighting Spirits cast and damage for knockback
+# 852D Worldly Pursuit untargeted ability jump before 850D cross cast and damage
+# 852F Impure Purgation cast and self-targeted ability
+# 8530 Impure Purgation initial protean damage
+# 8531 Impure Purgation cast and damage for follow-up protean
+# 8532 Torching Torment cast and ability on tank that give burns debuff
+# 8533 Torching Torment cast and damage on tank for tankbuster
+# 8534 Unenlightenment cast and self-targeted ability
+# 8535 Unenlightenment damage for raidwide bleed

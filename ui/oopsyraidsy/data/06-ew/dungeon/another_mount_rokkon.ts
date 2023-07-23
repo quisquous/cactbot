@@ -8,13 +8,17 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: does Splitting Cry 841B cleave?
 // TODO: taking both Vermilion Aura 840F and Stygian Aura 8410
 // TODO: taking two Unnatural Force 8419 stacks
+// TODO: standing in outside of Shishio arena
+// TODO: better track who didn't take Shishio towers
+// TODO: does Gorai Torching Torment cleave?
+// TODO: who missed Gorai towers or was not hit by protean
 
 export type Data = OopsyData;
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnotherMountRokkon,
   damageWarn: {
-    // Trash
+    // Trash 1
     'AMR Shishu Raiko Disciples of Levin': '8656', // centered circle
     'AMR Shishu Raiko Master of Levin': '8655', // very large donut
     'AMR Shishu Furutsubaki Bloody Carress': '8657', // front conal
@@ -22,9 +26,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Red Shishu Penghou Tornado': '865B', // targeted circle
     'AMR Shishu Yuki Right Swipe': '8685', // 180 right cleave
     'AMR Shishu Yuki Left Swipe': '8686', // 180 left cleave
-    'AMR Shishu Yamabiko': '8687', // sprite line aoe
-    'AMR Shishu Kotengu Blade of the Tengu': '865F', // Leftward/Rightward/Backward Blows
-    'AMR Shishu Onmitsugashira Juji Shuriken': '8664', // untelegraphed front line
 
     // Shishio
     'AMR Shishio Rokujo Revel': '83FE', // Smokeater line
@@ -47,18 +48,43 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Shishio Vortex of the Thunder Eye 1': '8415', // first "in" donut
     'AMR Shishio Vortex of the Thunder Eye 2': '8416', // second "out" circle
     'AMR Shishio Slither': '841C', // back conal
+
+    // Trash 2
+    'AMR Shishu Yamabiko': '8687', // sprite line aoe
+    'AMR Shishu Kotengu Blade of the Tengu': '865F', // Leftward/Rightward/Backward Blows
+    'AMR Shishu Onmitsugashira Juji Shuriken': '8664', // untelegraphed front line
+
+    // Gorai
+    'AMR Gorai Fire Spread Purple': '850B', // line damage after purple Brazen Ballad
+    'AMR Gorai Fire Spread Blue': '850C', // line damage after blue Brazen Ballad
+    'AMR Gorai Falling Rock Purple': '850E', // expanded rock damage after purple Brazen Ballad
+    'AMR Gorai Falling Rock Blue': '850F', // donutified rock damage after purple Brazen Ballad
+    'AMR Gorai Ball of Levin Shock Small': '8522', // small circle from Ball of Levin hit by Humble Hammer
+    'AMR Gorai Ball of Levin Shock Big': '8523', // large circle from Ball of Levin
+    'AMR Gorai Cloud to Ground 1': '8529', // initial cloud exaflare
+    'AMR Gorai Cloud to Ground 2': '852A', // ongoing cloud exaflare
+    'AMR Gorai Impure Purgation Second': '8531', // follow-up protean
   },
   damageFail: {
     'AMR Shishio Unmitigated Explosion': '8411', // not taking towers
   },
+  gainsEffectWarn: {
+    // BF9 = 9999s duration, BFA = 15s duration
+    'AMR Gorai Burns': 'BF9', // standing in outside square of Gorai
+  },
   shareWarn: {
     'AMR Shishu Raiko Barreling Smash': '8653', // line charge
+    'AMR Gorai Pointed Purgation': '851F', // protean tether during towers
+    'AMR Gorai Impure Purgation': '8530', // initial protean for double hit protean
   },
   shareFail: {
     'AMR Shishio Unnatural Ailment': '8418', // spread during Unnatural Wail
+    'AMR Gorai Great Ball of Fire': '8506', // spread damage from Live Candle debuff
   },
   soloFail: {
-    'AMR Shishio Unnatural Force': '8419', // stack during Unnaturl Wail
+    'AMR Shishio Unnatural Force': '8419', // pair stack during Unnatural Wail
+    'AMR Gorai Greater Ball of Fire': '8505', // pair stack from Live Brazier debuff
+    'AMR Gorai Flintlock': '8527', // line share
   },
   triggers: [
     {
