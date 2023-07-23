@@ -120,6 +120,7 @@ hideall "--sync--"
 1027.4 "Palladian Grasp 2" sync / 1[56]:[^:]*:Pallas Athena:831B:/
 1040.8 "Gaiaochos 1" sync / 1[56]:[^:]*:Pallas Athena:8326:/
 1051.9 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1059.0 "--tethers--"
 1063.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
 
 1065.1 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
@@ -191,6 +192,7 @@ hideall "--sync--"
 1425.9 "Gaiaochos 2" sync / 1[56]:[^:]*:Pallas Athena:8326:/
 1437.0 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
 1443.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1448.1 "--tethers--"
 1453.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
 1453.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
 1454.0 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/

@@ -3701,6 +3701,7 @@ Options.Triggers.push({
         '\\(enrage\\)': '(Finalangriff)',
         '\\(proximity\\)': '(Entfernung)',
         '\\(spread\\)': '(Verteilen)',
+        '--tethers--': '--Verbindungen--',
         'Apodialogos': 'Apodialogos',
         'Astral Advance': 'Lichtvordringen',
         'Astral Advent': 'Vorzeit des Lichts',
@@ -3777,6 +3778,7 @@ Options.Triggers.push({
         'Thymou Idea': 'thymou idea',
       },
       'replaceText': {
+        '--tethers--': '--liens--',
         'Apodialogos': 'Apo dialogos',
         'Astral Advance': 'Avancée astrale',
         'Astral Advent': 'Avènement astral',
