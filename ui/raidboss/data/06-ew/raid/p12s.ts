@@ -294,7 +294,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower';
-    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs';
+    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs' | 'shapeAndDebuff';
     pangenesisFirstTower: 'agnostic' | 'not' | 'one';
   };
   decOffset?: number;
@@ -414,6 +414,7 @@ const triggerSet: TriggerSet<Data> = {
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (Rainbow)': 'ctxs',
+          'Just call shape and debuff': 'shapeAndDebuff',
         },
         de: {
           'X□○Δ (BLOG)': 'xsct',
@@ -433,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
           '○Δ□X (동세네엑)': 'ctsx',
         },
       },
-      default: 'xsct',
+      default: 'shapeAndDebuff',
     },
     {
       id: 'pangenesisFirstTower',
@@ -2757,6 +2758,9 @@ const triggerSet: TriggerSet<Data> = {
             cn: '去 ${column}, ${row} => ${intercept}',
             ko: '실제: ${column}, ${row} => ${intercept}',
           },
+          shapeAndDebuff: {
+            en: '${shape}, ${debuff}',
+          },
           outsideWest: {
             en: 'Outside West',
             de: 'Außerhalb Westen',
@@ -2823,6 +2827,24 @@ const triggerSet: TriggerSet<Data> = {
             cn: '靠左(西)',
             ko: '왼쪽',
           },
+          circle: {
+            en: 'Red Circle',
+          },
+          triangle: {
+            en: 'Green Triangle',
+          },
+          square: {
+            en: 'Purple Square',
+          },
+          cross: {
+            en: 'Blue X',
+          },
+          alpha: {
+            en: 'Alpha',
+          },
+          beta: {
+            en: 'Beta',
+          },
         };
 
         if (
@@ -2831,6 +2853,18 @@ const triggerSet: TriggerSet<Data> = {
           data.conceptPair === undefined
         )
           return;
+
+        if (data.triggerSetConfig.classicalConceptsPairOrder === 'shapeAndDebuff') {
+          if (matches.id === '8336') // prevent going off again on Panta Rhei
+            return;
+          const myShape = data.conceptPair;
+          const myDebuff = data.conceptDebuff;
+          const outputStr = output.shapeAndDebuff!({
+            shape: output[myShape]!(),
+            debuff: output[myDebuff]!(),
+          });
+          return { alertText: outputStr };
+        }
 
         let myColumn: number | undefined;
         let myRow: number | undefined;
