@@ -434,7 +434,7 @@ const triggerSet: TriggerSet<Data> = {
           '○Δ□X (동세네엑)': 'ctsx',
         },
       },
-      default: 'xsct',
+      default: 'shapeAndDebuff',
     },
     {
       id: 'pangenesisFirstTower',
