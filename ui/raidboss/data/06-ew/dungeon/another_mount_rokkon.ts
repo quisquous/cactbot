@@ -1,8 +1,9 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import PartyTracker from '../../../../../resources/party';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
@@ -33,6 +34,7 @@ export interface Data extends RaidbossData {
   sparksCount: number;
   reincarnationCollect: [OdderTower, OdderTower, OdderTower, OdderTower];
   towerCount: number;
+  devilishThrallCollect: NetMatches['StartsUsing'][];
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -255,6 +257,7 @@ const triggerSet: TriggerSet<Data> = {
       sparksCount: 0,
       reincarnationCollect: [{}, {}, {}, {}],
       towerCount: 0,
+      devilishThrallCollect: [],
     };
   },
   triggers: [
@@ -469,6 +472,101 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8412', source: 'Shishio', capture: false },
       response: Responses.getUnder(),
+    },
+    {
+      id: 'AMR Shishio Devilish Thrall Collect',
+      type: 'StartsUsing',
+      // 840B = Right Swipe
+      // 840C = Left Swipe
+      netRegex: { id: ['840B', '840C'], source: 'Devilish Thrall' },
+      run: (data, matches) => data.devilishThrallCollect.push(matches),
+    },
+    {
+      id: 'AMR Shishio Devilish Thrall Safe Spot',
+      type: 'StartsUsing',
+      netRegex: { id: ['840B', '840C'], source: 'Devilish Thrall', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      promise: async (data: Data) => {
+        data.combatantData = [];
+
+        const ids = data.devilishThrallCollect.map((x) => parseInt(x.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length !== 4)
+          return;
+        const centerX = 0;
+        const centerY = -100;
+
+        // Intercard thralls:
+        //   x = 0 +/- 10
+        //   y = -100 +/- 10
+        //   heading = intercards (pi/4 + pi/2 * n)
+        // Cardinal thralls:
+        //   x = 0 +/- 12
+        //   y = -100 +/- 12
+        //   heading = cardinals (pi/2 * n)
+
+        // One is a set of four on cardinals, the others a set of 4 on intercards.
+        // There seems to be only one pattern of thralls, rotated.
+        // Two are pointed inward (direct opposite to their position)
+        // and two are pointed outward (perpendicular to their position).
+        // Because of this, no need to check left/right cleave as position and directions tell all.
+        const states = data.combatantData.map((combatant) => {
+          return {
+            dir: Directions.combatantStatePosTo8Dir(combatant, centerX, centerY),
+            heading: Directions.combatantStateHdgTo8Dir(combatant),
+          };
+        });
+        const outwardStates = states.filter((state) => state.dir !== (state.heading + 4) % 8);
+        const [pos1, pos2] = outwardStates.map((x) => x.dir).sort();
+        if (pos1 === undefined || pos2 === undefined || outwardStates.length !== 2)
+          return;
+
+        // The one case where the difference is 6 instead of 2.
+        const averagePos = (pos1 === 0 && pos2 === 6) ? 7 : Math.floor((pos2 + pos1) / 2);
+        return {
+          0: output.north!(),
+          1: output.northeast!(),
+          2: output.east!(),
+          3: output.southeast!(),
+          4: output.south!(),
+          5: output.southwest!(),
+          6: output.west!(),
+          7: output.northwest!(),
+        }[averagePos];
+      },
+      run: (data) => data.devilishThrallCollect = [],
+      outputStrings: {
+        north: {
+          en: 'North Diamond',
+        },
+        east: {
+          en: 'East Diamond',
+        },
+        south: {
+          en: 'South Diamond',
+        },
+        west: {
+          en: 'West Diamond',
+        },
+        northeast: {
+          en: 'Northeast Square',
+        },
+        southeast: {
+          en: 'Southeast Square',
+        },
+        southwest: {
+          en: 'Southwest Square',
+        },
+        northwest: {
+          en: 'Northwest Square',
+        },
+      },
     },
     // ---------------- second trash ----------------
     {
