@@ -462,19 +462,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spreadThenStack: {
           en: '(spread => role stack (${player1}, ${player2}), for later)',
-          de: '(Verteilen => Rollengruppe, für später)', // FIXME
-          fr: '(Écartez-vous => Package par rôle, pour après)', // FIXME
-          ja: '(散会 => 4:4あたまわり)', // FIXME
-          cn: '(稍后 分散 => 四四分摊)', // FIXME
-          ko: '(곧 산개 => 직업군별 쉐어)', // FIXME
+          de: '(Verteilen => Rollengruppe (${player1}, ${player2}), für später)', // FIXME
+          fr: '(Écartez-vous => Package par rôle (${player1}, ${player2}), pour après)', // FIXME
+          ja: '(散会 => 4:4あたまわり (${player1}, ${player2}))', // FIXME
+          cn: '(稍后 分散 => 四四分摊 (${player1}, ${player2}))', // FIXME
+          ko: '(곧 산개 => 직업군별 쉐어 (${player1}, ${player2}))', // FIXME
         },
         stackThenSpread: {
           en: '(role stack (${player1}, ${player2}) => spread, for later)',
-          de: '(Rollengruppe => Verteilen, für später)', // FIXME
-          fr: '(Package par rôle => Écartez-vous, pour après)', // FIXME
-          ja: '(4:4あたまわり => 散会)', // FIXME
-          cn: '(稍后 四四分摊 => 分散)', // FIXME
-          ko: '(곧 직업군별 쉐어 => 산개)', // FIXME
+          de: '(Rollengruppe (${player1}, ${player2}) => Verteilen, für später)', // FIXME
+          fr: '(Package par rôle (${player1}, ${player2}) => Écartez-vous, pour après)', // FIXME
+          ja: '(4:4あたまわり (${player1}, ${player2}) => 散会)', // FIXME
+          cn: '(稍后 四四分摊 (${player1}, ${player2}) => 分散)', // FIXME
+          ko: '(곧 직업군별 쉐어 (${player1}, ${player2}) => 산개)', // FIXME
         },
       },
     },
@@ -499,11 +499,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spreadThenStack: {
           en: 'Spread => Role Stack (${player1}, ${player2})',
-          de: 'Verteilen => Rollengruppe', // FIXME
-          fr: 'Écartez-vous => Package par rôle', // FIXME
-          ja: '散会 => 4:4あたまわり', // FIXME
-          cn: '分散 => 四四分摊', // FIXME
-          ko: '산개 => 직업군별 쉐어', // FIXME
+          de: 'Verteilen => Rollengruppe (${player1}, ${player2})', // FIXME
+          fr: 'Écartez-vous => Package par rôle (${player1}, ${player2})', // FIXME
+          ja: '散会 => 4:4あたまわり (${player1}, ${player2})', // FIXME
+          cn: '分散 => 四四分摊 (${player1}, ${player2})', // FIXME
+          ko: '산개 => 직업군별 쉐어 (${player1}, ${player2})', // FIXME
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
@@ -556,11 +556,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         stackThenSpread: {
           en: 'Role Stack (${player1}, ${player2}) => Spread',
-          de: 'Rollengruppe => Verteilen', // FIXME
-          fr: 'Package par rôle => Écartez-vous', // FIXME
-          ja: '4:4あたまわり => 散会', // FIXME
-          cn: '四四分摊 => 分散', // FIXME
-          ko: '직업군별 쉐어 => 산개', // FIXME
+          de: 'Rollengruppe (${player1}, ${player2}) => Verteilen', // FIXME
+          fr: 'Package par rôle (${player1}, ${player2}) => Écartez-vous', // FIXME
+          ja: '4:4あたまわり (${player1}, ${player2}) => 散会', // FIXME
+          cn: '四四分摊 (${player1}, ${player2}) => 分散', // FIXME
+          ko: '직업군별 쉐어 (${player1}, ${player2}) => 산개', // FIXME
         },
       },
     },
@@ -597,11 +597,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         stack: {
           en: 'Role Stack (${player1}, ${player2})',
-          de: 'Rollengruppe', // FIXME
-          fr: 'Package par rôle', // FIXME
-          ja: '4:4あたまわり', // FIXME
-          cn: '四四分摊', // FIXME
-          ko: '직업군별 쉐어', // FIXME
+          de: 'Rollengruppe (${player1}, ${player2})', // FIXME
+          fr: 'Package par rôle (${player1}, ${player2})', // FIXME
+          ja: '4:4あたまわり (${player1}, ${player2})', // FIXME
+          cn: '四四分摊 (${player1}, ${player2})', // FIXME
+          ko: '직업군별 쉐어 (${player1}, ${player2})', // FIXME
         },
       },
     },
