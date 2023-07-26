@@ -2556,6 +2556,7 @@ Options.Triggers.push({
           },
           shapeAndDebuff: {
             en: '${shape}, ${debuff}',
+            de: '${shape}, ${debuff}',
           },
           outsideWest: {
             en: 'Outside West',
@@ -2625,21 +2626,27 @@ Options.Triggers.push({
           },
           circle: {
             en: 'Red Circle',
+            de: 'Roter Kreis',
           },
           triangle: {
             en: 'Green Triangle',
+            de: 'Grünes Dreieck',
           },
           square: {
             en: 'Purple Square',
+            de: 'Lila Viereck',
           },
           cross: {
             en: 'Blue X',
+            de: 'Blaues X',
           },
           alpha: {
             en: 'Alpha',
+            de: 'Alpha',
           },
           beta: {
             en: 'Beta',
+            de: 'Beta',
           },
         };
         if (
@@ -3434,10 +3441,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           noBeacon: {
             en: 'Initial Fire: ${player1}, ${player2}',
+            de: 'Initiales Feuer: ${player1}, ${player2}',
           },
           beacon: {
             en: 'Initial Fire (w/ ${partner})',
-            de: 'Initial Feuer (mit ${partner})',
+            de: 'Initiales Feuer (mit ${partner})',
             ja: '自分に初炎 (${partner})',
             cn: '火标记点名 (和 ${partner})',
             ko: '첫 불 대상자 (+ ${partner})',

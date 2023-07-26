@@ -163,6 +163,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Place Marker on Wall',
+          de: 'Markierung an der Wand ablegen',
         },
       },
     },
@@ -194,6 +195,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Behind (Stay Behind)',
+          de: 'Geh hinter den Boss (und bleib hinter ihm stehen)',
         },
       },
     },
