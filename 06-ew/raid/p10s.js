@@ -47,6 +47,7 @@ Options.Triggers.push({
       dividingWingsEntangling: [],
       meltdownSpreads: [],
       daemonicBondsCounter: 0,
+      tetradaemonicTarget: [],
     };
   },
   triggers: [
@@ -342,7 +343,16 @@ Options.Triggers.push({
       run: (data) => {
         delete data.daemonicBondsTime;
         delete data.bondsSecondMechanic;
+        data.tetradaemonicTarget = [];
         data.daemonicBondsCounter++;
+      },
+    },
+    {
+      id: 'P10S Tetradaemoniac Bonds Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E70' },
+      run: (data, matches) => {
+        data.tetradaemonicTarget.push(matches.target);
       },
     },
     {
@@ -395,36 +405,43 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: 'E70' },
       durationSeconds: 7,
-      suppressSeconds: 5,
       infoText: (data, matches, output) => {
         if (data.daemonicBondsTime === undefined) {
           console.error(`Daemoniac Bonds: ${matches.effectId} effect before DDE?`);
           return;
         }
+        if (data.tetradaemonicTarget.length !== 2)
+          return;
         const duration = parseFloat(matches.duration);
         if (duration > data.daemonicBondsTime) {
           data.bondsSecondMechanic = 'stack';
-          return output.spreadThenStack();
+          return output.spreadThenStack({
+            player1: data.ShortName(data.tetradaemonicTarget[0]),
+            player2: data.ShortName(data.tetradaemonicTarget[1]),
+          });
         }
         data.bondsSecondMechanic = 'spread';
-        return output.stackThenSpread();
+        return output.stackThenSpread({
+          player1: data.ShortName(data.tetradaemonicTarget[0]),
+          player2: data.ShortName(data.tetradaemonicTarget[1]),
+        });
       },
       outputStrings: {
         spreadThenStack: {
-          en: '(spread => role stack, for later)',
-          de: '(Verteilen => Rollengruppe, für später)',
-          fr: '(Écartez-vous => Package par rôle, pour après)',
-          ja: '(散会 => 4:4あたまわり)',
-          cn: '(稍后 分散 => 四四分摊)',
-          ko: '(곧 산개 => 직업군별 쉐어)',
+          en: '(spread => role stack (${player1}, ${player2}), for later)',
+          de: '(Verteilen => Rollengruppe (${player1}, ${player2}), für später)',
+          fr: '(Écartez-vous => Package par rôle (${player1}, ${player2}), pour après)',
+          ja: '(散会 => 4:4あたまわり (${player1}, ${player2}))',
+          cn: '(稍后 分散 => 四四分摊 (${player1}, ${player2}))',
+          ko: '(곧 산개 => 직업군별 쉐어 (${player1}, ${player2}))', // FIXME
         },
         stackThenSpread: {
-          en: '(role stack => spread, for later)',
-          de: '(Rollengruppe => Verteilen, für später)',
-          fr: '(Package par rôle => Écartez-vous, pour après)',
-          ja: '(4:4あたまわり => 散会)',
-          cn: '(稍后 四四分摊 => 分散)',
-          ko: '(곧 직업군별 쉐어 => 산개)',
+          en: '(role stack (${player1}, ${player2}) => spread, for later)',
+          de: '(Rollengruppe (${player1}, ${player2}) => Verteilen, für später)',
+          fr: '(Package par rôle (${player1}, ${player2}) => Écartez-vous, pour après)',
+          ja: '(4:4あたまわり (${player1}, ${player2}) => 散会)',
+          cn: '(稍后 四四分摊 (${player1}, ${player2}) => 分散)',
+          ko: '(곧 직업군별 쉐어 (${player1}, ${player2}) => 산개)', // FIXME
         },
       },
     },
@@ -439,18 +456,21 @@ Options.Triggers.push({
         // If this is undefined, then this is the second mechanic and will be called out elsewhere.
         // We can't make this a `condition` as this is not known until after some delay.
         if (data.bondsSecondMechanic === 'stack')
-          return output.spreadThenStack();
+          return output.spreadThenStack({
+            player1: data.ShortName(data.tetradaemonicTarget[0]),
+            player2: data.ShortName(data.tetradaemonicTarget[1]),
+          });
         if (data.bondsSecondMechanic === 'partners')
           return output.spreadThenPartners();
       },
       outputStrings: {
         spreadThenStack: {
-          en: 'Spread => Role Stack',
-          de: 'Verteilen => Rollengruppe',
-          fr: 'Écartez-vous => Package par rôle',
-          ja: '散会 => 4:4あたまわり',
-          cn: '分散 => 四四分摊',
-          ko: '산개 => 직업군별 쉐어',
+          en: 'Spread => Role Stack (${player1}, ${player2})',
+          de: 'Verteilen => Rollengruppe (${player1}, ${player2})',
+          fr: 'Écartez-vous => Package par rôle (${player1}, ${player2})',
+          ja: '散会 => 4:4あたまわり (${player1}, ${player2})',
+          cn: '分散 => 四四分摊 (${player1}, ${player2})',
+          ko: '산개 => 직업군별 쉐어 (${player1}, ${player2})', // FIXME
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
@@ -495,16 +515,19 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         // If this is undefined, then this is the second mechanic and will be called out elsewhere.
         if (data.bondsSecondMechanic === 'spread')
-          return output.stackThenSpread();
+          return output.stackThenSpread({
+            player1: data.ShortName(data.tetradaemonicTarget[0]),
+            player2: data.ShortName(data.tetradaemonicTarget[1]),
+          });
       },
       outputStrings: {
         stackThenSpread: {
-          en: 'Role Stack => Spread',
-          de: 'Rollengruppe => Verteilen',
-          fr: 'Package par rôle => Écartez-vous',
-          ja: '4:4あたまわり => 散会',
-          cn: '四四分摊 => 分散',
-          ko: '직업군별 쉐어 => 산개',
+          en: 'Role Stack (${player1}, ${player2}) => Spread',
+          de: 'Rollengruppe (${player1}, ${player2}) => Verteilen',
+          fr: 'Package par rôle (${player1}, ${player2}) => Écartez-vous',
+          ja: '4:4あたまわり (${player1}, ${player2}) => 散会',
+          cn: '四四分摊 (${player1}, ${player2}) => 分散',
+          ko: '직업군별 쉐어 (${player1}, ${player2}) => 산개', // FIXME
         },
       },
     },
@@ -523,7 +546,10 @@ Options.Triggers.push({
         if (data.bondsSecondMechanic === 'partners')
           return output.partners();
         if (data.bondsSecondMechanic === 'stack')
-          return output.stack();
+          return output.stack({
+            player1: data.ShortName(data.tetradaemonicTarget[0]),
+            player2: data.ShortName(data.tetradaemonicTarget[1]),
+          });
       },
       run: (data) => delete data.bondsSecondMechanic,
       outputStrings: {
@@ -537,12 +563,12 @@ Options.Triggers.push({
           ko: '파트너',
         },
         stack: {
-          en: 'Role Stack',
-          de: 'Rollengruppe',
-          fr: 'Package par rôle',
-          ja: '4:4あたまわり',
-          cn: '四四分摊',
-          ko: '직업군별 쉐어',
+          en: 'Role Stack (${player1}, ${player2})',
+          de: 'Rollengruppe (${player1}, ${player2})',
+          fr: 'Package par rôle (${player1}, ${player2})',
+          ja: '4:4あたまわり (${player1}, ${player2})',
+          cn: '四四分摊 (${player1}, ${player2})',
+          ko: '직업군별 쉐어 (${player1}, ${player2})', // FIXME
         },
       },
     },
