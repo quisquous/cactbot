@@ -1352,10 +1352,53 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    // ================ Stage 32 Act 1 ================
+    {
+      id: 'Carnivale S32 A1-2 Goldor Goldor Blizzard III',
+      type: 'StartsUsing',
+      netRegex: { id: '871D', source: 'Goldor' },
+      response: Responses.interrupt(),
+    },
+    {
+      id: 'Carnivale S32 A1-2 Goldor Goldor Aero III',
+      type: 'StartsUsing',
+      netRegex: { id: '869C', source: 'Goldor', capture: false },
+      response: Responses.knockback(),
+    },
+    {
+      id: 'Carnivale S32 A1-2 Goldor Goldor Thunder III',
+      // 10F = Electrocution, can be cleansed
+      type: 'GainsEffect',
+      netRegex: { effectId: '10F', source: 'Goldor' },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse debuff',
+          de: 'Debuff entfernen',
+          cn: '驱散DEBUFF',
+          ko: '디버프 해제',
+        },
+      },
+    },
+    // ---------------- Stage 32 Act 2 ----------------
+    {
+      id: 'Carnivale S32 A2 Gilded Cyclops 24-carat Swing',
+      type: 'StartsUsing',
+      netRegex: { id: '86A3', source: 'Gilded Cyclops', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Carnivale S32 A2 Goldor Goldor Rush',
+      type: 'StartsUsing',
+      netRegex: { id: '86A4', source: 'Goldor', capture: false },
+      response: Responses.knockback(),
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'Apademak',
         'Arena Catoblepas': 'Arena-Catblepus',
@@ -1398,6 +1441,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'Apademak',
         'Arena Catoblepas': 'catoblépas de l\'arène',
@@ -1440,6 +1484,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'アペデマク',
         'Arena Catoblepas': 'アリーナ・カトブレパス',
@@ -1482,6 +1527,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Apademak': '阿帕德马克',
         'Arena Catoblepas': '斗场卡托布莱帕斯',
@@ -1524,6 +1570,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Apademak': '아페데마크',
         'Arena Catoblepas': '투기장 카토블레파스',
