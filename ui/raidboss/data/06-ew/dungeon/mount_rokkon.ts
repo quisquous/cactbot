@@ -363,7 +363,6 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        '': '',
         'Ancient Katana': 'katana ancien',
         'Ashigaru Kyuhei': 'ashigaru kyûhei',
         'Ill-come Tengu': 'tengu du Rokkon',
@@ -418,7 +417,6 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        '': '',
         'Ancient Katana': '古刀',
         'Ashigaru Kyuhei': '足軽弓兵',
         'Ill-come Tengu': '六根天狗',
