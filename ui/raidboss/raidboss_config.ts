@@ -1834,6 +1834,7 @@ const defaultTriggerSetAlertOutput = {
   ...defaultAlertOutput,
   name: {
     en: 'Default trigger set alert output',
+    de: 'Standard trigger-Set Alert Ausgabe',
   },
 } as const;
 
