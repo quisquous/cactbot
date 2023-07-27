@@ -143,18 +143,22 @@ const triggerSet: TriggerSet<Data> = {
         inAndCards: {
           en: 'In + Cardinals',
           de: 'Rein + Kardinal',
+          ko: '안 + 십자방향',
         },
         outAndCards: {
           en: 'Out + Cardinals',
           de: 'Raus + Kardinal',
+          ko: '밖 + 십자방향',
         },
         inAndIntercards: {
           en: 'In + Intercards',
           de: 'Rein + Interkardinal',
+          ko: '안 + 대각선',
         },
         outAndIntercards: {
           en: 'Out + Intercards',
           de: 'Raus + Interkardinal',
+          ko: '밖 + 대각선',
         },
       },
     },
@@ -252,22 +256,27 @@ const triggerSet: TriggerSet<Data> = {
         through: {
           en: 'Run Through',
           de: 'Renn durch',
+          ko: '가로지르기',
         },
         stay: {
           en: 'Stay',
           de: 'Stehen bleiben',
+          ko: '그대로',
         },
         rotateLeft: {
           en: 'Rotate Left',
           de: 'Links rotieren',
+          ko: '왼쪽으로',
         },
         rotateRight: {
           en: 'Rotate Right',
           de: 'Rechts rotieren',
+          ko: '오른쪽으로',
         },
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          ko: '${dir1} => ${dir2}',
         },
       },
     },
@@ -288,6 +297,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(${dir} First)',
           de: '(${dir} Zuerst)',
+          ko: '(${dir} 먼저)',
         },
         back: Outputs.back,
         front: Outputs.front,
@@ -296,6 +306,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          ko: '${dir1} => ${dir2}',
         },
       },
     },

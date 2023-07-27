@@ -432,6 +432,8 @@ const triggerSet: TriggerSet<Data> = {
           'X□○Δ (파보빨초)': 'xsct',
           '○XΔ□ (1234)': 'cxts',
           '○Δ□X (동세네엑)': 'ctsx',
+          '○ΔX□ (무지개)': 'ctxs',
+          '모양과 디버프만 알림': 'shapeAndDebuff',
         },
       },
       default: 'shapeAndDebuff',
@@ -2761,6 +2763,10 @@ const triggerSet: TriggerSet<Data> = {
           shapeAndDebuff: {
             en: '${shape}, ${debuff}',
             de: '${shape}, ${debuff}',
+            fr: '${shape}, ${debuff}',
+            ja: '${shape}, ${debuff}',
+            cn: '${shape}, ${debuff}',
+            ko: '${shape}, ${debuff}',
           },
           outsideWest: {
             en: 'Outside West',
@@ -2831,26 +2837,50 @@ const triggerSet: TriggerSet<Data> = {
           circle: {
             en: 'Red Circle',
             de: 'Roter Kreis',
+            fr: 'Cercle rouge',
+            ja: '赤まる',
+            cn: '红圆圈',
+            ko: '빨강 동그라미',
           },
           triangle: {
             en: 'Green Triangle',
             de: 'Grünes Dreieck',
+            fr: 'Triangle vert',
+            ja: '緑さんかく',
+            cn: '绿三角',
+            ko: '초록 삼각',
           },
           square: {
             en: 'Purple Square',
             de: 'Lila Viereck',
+            fr: 'Carré violet',
+            ja: '紫しかく',
+            cn: '紫方块',
+            ko: '보라 사각',
           },
           cross: {
             en: 'Blue X',
             de: 'Blaues X',
+            fr: 'Croix bleue',
+            ja: '青バツ',
+            cn: '蓝 X',
+            ko: '파랑 X',
           },
           alpha: {
             en: 'Alpha',
             de: 'Alpha',
+            fr: 'Alpha',
+            ja: 'アルファ',
+            cn: '阿尔法',
+            ko: '알파',
           },
           beta: {
             en: 'Beta',
             de: 'Beta',
+            fr: 'Beta',
+            ja: 'ベータ',
+            cn: '贝塔',
+            ko: '베타',
           },
         };
 
@@ -3672,6 +3702,7 @@ const triggerSet: TriggerSet<Data> = {
           noBeacon: {
             en: 'Initial Fire: ${player1}, ${player2}',
             de: 'Initiales Feuer: ${player1}, ${player2}',
+            ko: '첫 불: ${player1}, ${player2}',
           },
           beacon: {
             en: 'Initial Fire (w/ ${partner})',
