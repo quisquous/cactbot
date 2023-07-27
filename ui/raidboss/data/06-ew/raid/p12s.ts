@@ -1798,7 +1798,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) =>
         data.lcCombatants.length > 0 &&
         data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16)) !== undefined,
-      infoText: (data, matches, output) => {
+      run: (data, matches) => {
         const combatant = data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16));
         if (combatant === undefined) {
           console.error(`LC Line Bait Collector: Could not find combatant for ID ${matches.id}`);
@@ -1832,31 +1832,6 @@ const triggerSet: TriggerSet<Data> = {
 
         // delay of 1 = immediate, 5 = maximum
         data.lcWhiteFlameDelay = [o1 + 1, o2 - o1, o3 - o2, o4 - o3];
-        console.log(JSON.stringify(data.lcWhiteFlameDelay));
-
-        data.lcCombatants = [];
-        data.lcCombatantsOffset = 0;
-
-        return output.text!({
-          first: output[o1]!(),
-          second: output[o2]!(),
-          third: output[o3]!(),
-          fourth: output[o4]!(),
-        });
-      },
-      outputStrings: {
-        0: Outputs.num1,
-        1: Outputs.num2,
-        2: Outputs.num3,
-        3: Outputs.num4,
-        4: Outputs.num5,
-        5: Outputs.num6,
-        6: Outputs.num7,
-        7: Outputs.num8,
-        unknown: Outputs.unknown,
-        text: {
-          en: 'Baits on ${first}, ${second}, ${third}, ${fourth}',
-        },
       },
     },
     {
