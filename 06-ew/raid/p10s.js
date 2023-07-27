@@ -433,7 +433,7 @@ Options.Triggers.push({
           fr: '(Écartez-vous => Package par rôle (${player1}, ${player2}), pour après)',
           ja: '(散会 => 4:4あたまわり (${player1}, ${player2}))',
           cn: '(稍后 分散 => 四四分摊 (${player1}, ${player2}))',
-          ko: '(곧 산개 => 직업군별 쉐어 (${player1}, ${player2}))', // FIXME
+          ko: '(곧 산개 => 직업군별 쉐어 (${player1}, ${player2}))',
         },
         stackThenSpread: {
           en: '(role stack (${player1}, ${player2}) => spread, for later)',
@@ -441,7 +441,7 @@ Options.Triggers.push({
           fr: '(Package par rôle (${player1}, ${player2}) => Écartez-vous, pour après)',
           ja: '(4:4あたまわり (${player1}, ${player2}) => 散会)',
           cn: '(稍后 四四分摊 (${player1}, ${player2}) => 分散)',
-          ko: '(곧 직업군별 쉐어 (${player1}, ${player2}) => 산개)', // FIXME
+          ko: '(곧 직업군별 쉐어 (${player1}, ${player2}) => 산개)',
         },
       },
     },
@@ -470,7 +470,7 @@ Options.Triggers.push({
           fr: 'Écartez-vous => Package par rôle (${player1}, ${player2})',
           ja: '散会 => 4:4あたまわり (${player1}, ${player2})',
           cn: '分散 => 四四分摊 (${player1}, ${player2})',
-          ko: '산개 => 직업군별 쉐어 (${player1}, ${player2})', // FIXME
+          ko: '산개 => 직업군별 쉐어 (${player1}, ${player2})',
         },
         spreadThenPartners: {
           en: 'Spread => Partners',
@@ -527,7 +527,7 @@ Options.Triggers.push({
           fr: 'Package par rôle (${player1}, ${player2}) => Écartez-vous',
           ja: '4:4あたまわり (${player1}, ${player2}) => 散会',
           cn: '四四分摊 (${player1}, ${player2}) => 分散',
-          ko: '직업군별 쉐어 (${player1}, ${player2}) => 산개', // FIXME
+          ko: '직업군별 쉐어 (${player1}, ${player2}) => 산개',
         },
       },
     },
@@ -568,7 +568,7 @@ Options.Triggers.push({
           fr: 'Package par rôle (${player1}, ${player2})',
           ja: '4:4あたまわり (${player1}, ${player2})',
           cn: '四四分摊 (${player1}, ${player2})',
-          ko: '직업군별 쉐어 (${player1}, ${player2})', // FIXME
+          ko: '직업군별 쉐어 (${player1}, ${player2})',
         },
       },
     },
