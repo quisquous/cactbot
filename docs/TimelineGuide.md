@@ -614,14 +614,6 @@ at least make a loop that goes 30 seconds ahead.
 
 Here's what a completed version of the first phase loop looks like.
 
-Note that we've used adjusted times rather
-than the original times.
-This is so that when we jump from 52.2 to 24.4 that all of the
-relative times stay the same.  In both cases when `Gate Of Tartarus`
-occurs, there's a `Shield Skewer` in 5.4 seconds after it.
-
-We'll add the jumps in later.
-
 ```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -638,6 +630,15 @@ We'll add the jumps in later.
 74.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:471:/
 ```
+
+Note that we've used adjusted times rather
+than the original times.
+This is so that when we jump from 52.2 to 24.4, all of the relative times stay the same.
+In both cases when `Gate Of Tartarus` occurs,
+there's a `Shield Skewer` 5.4 seconds after it.
+
+We'll add any necessary jumps in later.
+
 
 ### Adding Phases
 
