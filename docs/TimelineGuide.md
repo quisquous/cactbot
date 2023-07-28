@@ -634,7 +634,7 @@ Unfortunately for us, it looks like the boss starts phase 2
 by doing another `Shield Skewer` which it does a lot of in
 phase 1, so it won't be easy to sync to that.
 
-**make_timeline.ts** has an option to move the first usage
+**make_timeline.ts** has an option `-p` to move the first usage
 of an ability to a particular time.
 As cactbot usually has a window of 30 seconds ahead,
 feel free to generously move phases ahead in time.
@@ -642,7 +642,8 @@ feel free to generously move phases ahead in time.
 Let's move phase 2 to start its first ability at time=200.
 Since `Shrapnel Shell` starts 4.3 seconds after that,
 let's adjust the first usage of `Shrapnel Shell`
-(ability id 474) to time=204.3.
+(ability id 474) to time=204.3. The `-p` command takes space-separated abilityId:timeline-time pairs,
+so here we would write it as `-p 474:204.3`.
 
 Here's the new command line we've built up to:
 `ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
@@ -914,17 +915,20 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
 
-0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 ```
+
+Most of this will be automatically added for you by the timline utility,
+but it's good to double-check that all of it is present if relevant.
 
 It's good practice to include the command line you used to generate this so that
 other people can come back and see what you skipped.
 
 `hideall` hides all instances of a line, so that players don't see `--sync--` show up visually,
 but the timeline itself will still sync to those lines.
-There can be anything in the text, it is just called `--sync--` for convenience.
+(Note that `--sync--` is not syntactically special in any way,
+but it's the standard "sync to this invisibly" convention in the repository.)
 
 ### Pre-timeline combat, starts & resets, and multiple zones
 
@@ -964,6 +968,8 @@ to detect when the player enters combat:
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 ```
 
+(`make_timeline` generates this line by default where appropriate.)
+
 However, if there will be pre-timeline combat (e.g., pre-boss mobs),
 this would incorrectly start combat during the pre-boss phase,
 so we need a different approach.
@@ -976,6 +982,8 @@ For example:
 ```bash
 0.0 "--sync--" sync / 00:0839::The Landfast Floe will be sealed off/ window 1,0
 ```
+
+(`make_timeline` generates this by default if the encounter begins with a zone seal.)
 
 For multi-zone instances like dungeons, we can effectively create
 separate timelines for each encounter in the same timeline file
