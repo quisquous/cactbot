@@ -225,7 +225,7 @@ Articles like `The` can be dropped.
 Raids are numbered through the tier,
 e.g. `t1` through `t13` and `a1s` through `a12s`.
 Savage fights should have an `s` suffix
-while normal fights have an 'n' suffix.
+while normal fights have an `n` suffix.
 (However, this does not apply to coil raids.)
 
 Examples:
