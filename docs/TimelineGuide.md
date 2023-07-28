@@ -764,7 +764,7 @@ The current state of our timeline is now:
 
 ### Next phase
 
-From observation, I know that the next phase starts
+From observation, we know that the next phase starts
 at 60% and there's two adds.
 
 From reading the timeline, there's a random
@@ -821,7 +821,7 @@ added back in:
 
 Without recorded video, it's not 100% clear from the logs
 whether the `Shrapnel Shell` is part of phase 3 or phase 4.
-I know from observation that `Magitek Missiles` is the last phase,
+We know from observation that `Magitek Missiles` is the last phase,
 so because the `Shrapnel Shell` breaks the pattern let's assume
 it starts phase 4.
 We'll test this later.
