@@ -199,13 +199,13 @@ If this is not possible, still try to add wide syncs to the beginning of each ph
 (If an ability name is uncomfortably long,
 or if it otherwise makes sense to modify how it's displayed,
 handle that modification in the timeline replacement section of the trigger file.)
-* loops should use `jump` or `forceJump` to return to an earlier point in the timeline,
+* loops should use `jump` or `forcejump` to return to an earlier point in the timeline,
 rather than using a wide window sync at the beginning of the loop.
 * liberally use whitespace and comments to make the timeline readable
 * do not put any triggers, tts, or any other form of alerts in the timeline file itself
 * use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts
 * add a lookahead window of at least 30 seconds *and* 6 abilities for multi-possibility `jump`s that are not simple loops.
-(If it is a simple loop, use `forceJump`.)
+(If it is a simple loop, use `forcejump`.)
 * comment out syncs from any displayed abilities that are within 7 seconds of each other,
 but do not remove them. (This preserves the ability ID for future maintainers.)
 
