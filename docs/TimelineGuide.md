@@ -69,7 +69,7 @@ Everything after that on the current line will be ignored.
 
 ### Entries
 
-Here is some grammar examples of timeline entries.
+Here are some grammar examples of timeline entries.
 Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" (duration Number)`
@@ -167,18 +167,30 @@ which is still excellent.
 These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
-* always add an Engage! entry, but add syncs in case there's no /countdown
 * if the first boss action is an auto-attack, consider adding a sync for
-  the first auto-attack or at least the first "starts using" line
-* include the command line used to generate the timeline in a comment at the top
-* prefer actions for syncs over rp text, but rp text syncs if that's the only option
-* if you do sync a phase with rp text, add a large window sync for an action
-* use original names for ability text as much as possible
-* loops should use `jump` instead of having previous abilities have large windows
+  the first auto-attack, or at least the first "starts using" line.
+  This will help ensure the timeline is synced correctly after entering combat.
+* include any special command line flags used to generate the timeline in a comment at the top.
+(The ignore-combatant and ignore-ability flags
+are automatically added by the timeline utility for your convenience.)
+* prefer actions for syncs over game log lines, but sync to game log lines if that's the only option
+* if you do sync a phase with game log lines,
+add a large window sync for an action after that line for safety.
+* if a boss has multiple phases,
+and one or more of those phases begins with a to-that-point unique ability,
+add a wide sync from the start of the encounter to each phase-opening line.
+If this is not possible, still try to add wide syncs to the beginning of each phase.
+* use original names for ability text as much as possible.
+(If an ability name is uncomfortably long,
+or if it otherwise makes sense to modify how it's displayed,
+handle that modification in the timeline replacement section of the trigger file.)
+* loops should use `jump` or `forceJump` to return to an earlier point in the timeline,
+rather than using a wide window sync at the beginning of the loop.
 * liberally use whitespace and comments to make the timeline readable
-* do not put any triggers or tts or alerts in the timeline file itself
-* use [timeline triggers](#timeline-triggers) for any alerts
-* add at least a 30 second lookahead window for loops
+* do not put any triggers, tts, or any other form of alerts in the timeline file itself
+* use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts
+* add a lookahead window of at least 30 seconds *and* 6 abilities for multi-possibility `jump`s that are not simple loops.
+(If it is a simple loop, use `forceJump`.)
 * comment out syncs from any abilities that are within 7 seconds of each other
 (This preserves the ability ID for future maintainers.)
 
@@ -318,6 +330,8 @@ Create **ui/raidboss/data/02-arr/trial/cape_westwind.js**.
 This can be named whatever you want.
 Timeline files can only be loaded via triggers files,
 so the triggers file is always required.
+
+(Note that these steps are typically already done by repository contributors around patch release.)
 
 An initial triggers file should look like the following:
 
