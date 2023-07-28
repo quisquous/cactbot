@@ -3,12 +3,14 @@
 This is a guide for people who want to write timelines,
 primarily for cactbot.
 
-NOTE: this guide is a good bit out of date:
+NOTE: When this guide was originally written,
+Cape Westwind was a standard 8-player trial.
+This was removed in Endwalker, and that version of the encounter is no longer accessible.
+However, the timeline creation process for it is still valid,
+and it covers nearly all the different situations that can arise during timeline creation.
 
-* test_timeline.ts has different output now
-* Cape Westwind no longer exists
-
-However, it should still give a good idea of the process of making a timeline.
+The example output for `test_timeline` is out of date compared to its modern incarnation,
+but it's close enough to be understandable.
 
 ![import screenshot](images/timelineguide_timeline.png)
 
@@ -78,25 +80,58 @@ Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" sync /Regex/ (window Number,Number) (forcejump Number) (duration Number)`
 
-The parentheses here indicate optionality and are not literal parentheses.
+(The parentheses here indicate optionality and are not literal parentheses.)
 
-Number can be an integer, e.g. `34`, or a float, e.g. `84.381`.
+**Number** can be an integer, e.g. `34`, or a float, e.g. `84.381`.
 
-String is a character string, e.g. `"Liftoff"` or `"Double Attack"`
+**String** is a character string, e.g. `"Liftoff"` or `"Double Attack"`
 
-Regex is a [Javascript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
+**Regex** is a [Javascript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
 
-The ability time and ability name always need to come first, but `window`, `jump`, `duration`, and `sync` do not have to be in any order with respect to each other.
-Stylistically, usually sync is put first.
+The ability time and ability name always need to come first,
+but `duration`, `forcejump`, `jump`, `sync`, and `window`
+do not have to be in any order with respect to each other.
+Stylistically, usually `sync` is put first.
 
-`duration Number` is a time in seconds to show the action.
+**duration** is a time in seconds to display the accompanying action.
 Usually, timeline entries disappear immediately,
 but sometimes an action is ongoing, like 5x Bahamut's Claw in a row.
 You can use `duration` to show the action for that length of time.
 It does not need a sync to do this.
 
-`window Number,Number` is the time frame in which to consider the sync.
-By default, if `window` is not specified, cactbot considers it the
+The syntax for **duration** is `duration Number`,
+as `duration 5.5`.
+
+**forcejump** tells the timeline playback to jump to a particular time
+if the sync is encountered *or* if the line containing the **forcejump**
+is reached without syncing.
+This is intended for loops that will always be taken in an encounter.
+When this is used, no "lookahead" loop unrolling is needed,
+and the timeline will use the **forcejump** destination to list events in the future,
+because it knows that it will always jump there.
+If this line syncs prior to time passing it by,
+it will behave exactly like a normal **jump**.
+If the time passes this line,
+then it will jump as if it had synced exactly on time.
+This is not handled specially in `test_timeline`, which expects the sync to be correct.
+If there is a **window** parameter on the same line,
+and its second value extends past the **forcejump** time,
+this "overhang window" will still be respected even after force jumping
+until the next sync or jump occurs.
+
+The syntax for **forcejump** is `forcejump Number`, as `forcejump 204.2`.
+
+**jump** tells the timeline playback to jump to a particular time
+if and only if the sync is encountered.
+This is usually used for phase pushes and loops that involve multiple blocks.
+The timeline controller does not require a timeline entry at the time you jump to,
+but common practice is to ensure there there is one for readability and sanity-check purposes.
+If you jump to time 0, the timeline will stop playback.
+
+The syntax for **jump** is `jump Number`, as `jump 204.2`.
+
+**window** is the time frame in which to consider the sync.
+By default, if **window** is not specified, cactbot considers it the
 same as specifying `window 2.5,2.5`.  In other words,
 2.5 seconds before the ability time and 2.5 seconds after.
 As an example, for the line `3118.9 "Lancing Bolt" sync /:Raiden:3876:/`,
@@ -105,27 +140,7 @@ then it will resync the timeline playback to 3118.9.
 Often timelines will use very large windows for unique abilities,
 to make sure that timelines sync to the right place even if started mid-fight.
 
-`jump Number` tells the timeline playback to jump to a particular time
-if the sync is encountered.
-If you jump to time 0, the timeline will stop playback.
-This is usually used for phase pushes and loops.
-There does not need to be a timeline entry for the time you jump to,
-although it is very common to have one.
-
-`forcejump Number` tells the timeline playback that there will always be a jump here
-regardless of whether the sync is encountered.
-This is intended for loops that will always be taken in an encounter.
-When this is used, no "lookahead" loop unrolling is needed,
-and the timeline will use the `forcejump` destination to list events in the future,
-because it knows that it will always jump there.
-If this line syncs prior to time passing it by,
-it will behave exactly like a normal `jump`.
-If the time passes this line,
-then it will jump as if it had synced exactly on time.
-This is not handled specially in `test_timeline`, which expects the sync to be correct.
-If the `window` extends past the `forcejump` time,
-this "overhang window" will still be respected even after force jumping
-until the next sync or jump occurs.
+The syntax for **window** is `window Number,Number`, as `window 10,30`.
 
 ### Commands
 
