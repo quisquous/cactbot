@@ -1390,3 +1390,29 @@ Here are some options:
 * get more data, and make a timeline for the most common case
 * leave a comment in the timeline
 * if this is an important ability (e.g. tankbuster) put a question mark on it so players know it's not guaranteed
+
+
+### Handling "Linear" Timelines
+
+While Cape Westwind is a fairly complex example of how timelines can be generated,
+most content in FFXIV that's from patch 4.0 or later will be simpler in several ways.
+Looping blocks will almost always be longer,
+and there will usually be very easy-to-find "bookend" abilities.
+Also, most Extreme and Savage encounters will not have any loops at all,
+but will have a fully linear timeline,
+or several non-repeating blocks in a random order.
+
+A very common structure for normal mode trials and raids is to have
+a long linear set of opening blocks, and then upon "getting to the end",
+a final block will loop until the boss dies or (very rarely)
+a timed enrage will occur.
+
+In all of these cases, it's good practice to put wide opening syncs at the beginning of each new block. This will ensure that even if later phase pushes are found,
+the timeline will probably continue to function seamlessly.
+
+You can see an example in the file **ui/raidboss/data/05-shb/raid/e8n.txt**.
+When this file was first added, party DPS was far too low to skip anything.
+However, with power creep from later expansions,
+it's not at all uncommon to skip ahead a little.
+To fix this, we added new very wide syncs at various points
+to ensure that even if the party pushed phases, the timeline would still continue to run.
