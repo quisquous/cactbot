@@ -206,8 +206,8 @@ rather than using a wide window sync at the beginning of the loop.
 * use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts
 * add a lookahead window of at least 30 seconds *and* 6 abilities for multi-possibility `jump`s that are not simple loops.
 (If it is a simple loop, use `forceJump`.)
-* comment out syncs from any abilities that are within 7 seconds of each other
-(This preserves the ability ID for future maintainers.)
+* comment out syncs from any displayed abilities that are within 7 seconds of each other,
+but do not remove them. (This preserves the ability ID for future maintainers.)
 
 ### Trigger Filenames
 
