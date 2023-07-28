@@ -286,7 +286,7 @@ Options.Triggers.push({
           '○XΔ□ (1234笔画)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (彩虹)': 'ctxs',
-          'Just call shape and debuff': 'shapeAndDebuff', // FIXME
+          '只报形状和debuff': 'shapeAndDebuff',
         },
         ko: {
           'X□○Δ (파보빨초)': 'xsct',
@@ -3556,6 +3556,7 @@ Options.Triggers.push({
           noBeacon: {
             en: 'Initial Fire: ${player1}, ${player2}',
             de: 'Initiales Feuer: ${player1}, ${player2}',
+            cn: '火标记点: ${player1}, ${player2}',
             ko: '첫 불: ${player1}, ${player2}',
           },
           beacon: {

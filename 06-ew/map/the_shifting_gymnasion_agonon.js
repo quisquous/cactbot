@@ -164,6 +164,7 @@ Options.Triggers.push({
         text: {
           en: 'Place Marker on Wall',
           de: 'Markierung an der Wand ablegen',
+          cn: '在场边放置标记',
           ko: '벽에 징 놓기',
         },
       },
