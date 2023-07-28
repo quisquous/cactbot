@@ -1003,8 +1003,8 @@ to the right place for each encounter:
 2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
 ```
 
-Finally, because cactbot will reset the timeline when the player is out of combat,
-there is no longer a need to include specific reset lines in most timeline files.
+Finally, because cactbot automatically resets the timeline when the player is out of combat,
+there is no need to include specific reset lines in most timeline files by default.
 
 However, if a trigger set contains the property to NOT reset the timeline
 when out of combat, there are several options for manualy triggering a reset.
@@ -1046,16 +1046,19 @@ it will jump back to 24.4 seconds seamlessly.
 80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
 ```
 
-On the 52.2 line, add the following `window 10,100 jump 24.4`.
-This means, if you see this ability 10 seconds in the past
-or 100 seconds in the future, jump to t=24.4.
-By default, all syncs are `window 5,5` unless otherwise specified,
+On the 52.2 line, add the following `window 10,0 forcejump 24.4`.
+This means, if you see this anywhere in the past 10 seconds, jump to t=24.4.
+By default, all syncs are `window 2.5,2.5` unless otherwise specified,
 meaning they sync against the ability any time within the last
-5 seconds or 5 seconds in the future.
+2.5 seconds or 2.5 seconds in the future.
 
-The abilities from 57.6 to 80.0 will never be synced against
-because as soon as the ability at 52.2 is seen, we will
-want to jump back.  So, we will remove those syncs.
+The abilities from 57.6 to 80.0 will never be synced against,
+because the `forcejump` command will automatically jump to the noted time,
+regardless of whether or not the sync at its line occurs.
+Because we have verified already that the loop is good,
+we can safely remove the rest of it after `forcejump`.
+The timeline controller will display the loop appropriately
+based on seeing  this command.
 
 Finally, because sometimes log lines get dropped
 or ACT starts mid-combat, it can be good to put large syncs
@@ -1073,16 +1076,10 @@ This leaves us with this final version of the initial loop.
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
-
-# fake loop
-57.6 "Shield Skewer"
-66.2 "Shield Skewer"
-74.6 "Shield Skewer"
-80.0 "Gate Of Tartarus"
+52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
 ```
 
-This is done on all the following loops as well.
+This is repeated for each loop remaining in the timeline.
 
 ### Putting it all together
 
@@ -1112,35 +1109,22 @@ hideall "--sync--"
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
-
-57.6 "Shield Skewer"
-66.2 "Shield Skewer"
-74.6 "Shield Skewer"
-80.0 "Gate Of Tartarus"
-
+52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
 
 ### Phase 2 (80%): firebombs
 199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+
 204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
 208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
 226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 
 234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 204.3
-243.4 "Winds Of Tartarus"
-247.7 "Firebomb"
-
-252.0 "Shield Skewer"
-256.3 "Drill Shot"
-260.6 "Winds Of Tartarus"
-264.9 "Firebomb"
+238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 204.3
 
 
 ### Phase 3 (60%): Adds
@@ -1149,25 +1133,16 @@ hideall "--sync--"
 
 407.7 "Adds"
 408.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+
 413.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,20
 417.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 422.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 426.9 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 431.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
 435.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 440.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 413.2
-454.2 "Winds Of Tartarus"
-458.7 "Firebomb"
-
-463.2 "Shield Skewer"
-467.7 "Drill Shot"
-472.2 "Winds Of Tartarus"
-476.7 "Firebomb"
-
+449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 413.2
 
 ### Phase 4 (40%): magitek missiles
 595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
@@ -1184,18 +1159,12 @@ hideall "--sync--"
 644.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 649.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20,100 jump 610.0
-655.3 "Drill Shot"
-659.6 "Firebomb"
-663.9 "Winds Of Tartarus"
-680.4 "Shrapnel Shell"
-684.9 "Firebomb"
-689.2 "Winds Of Tartarus"
+650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20 forcejump 610.0
 ```
 
 ### Testing Timelines
 
-cactbot has a testing tool called **util/test_timeline.py** that can
+cactbot has a testing tool called **util/logtools/test_timeline.ts** that can
 test a network log file or an fflogs fight against an existing timeline.
 
 The test tool will tell you when a sync in your timeline is not matched against the fight,
