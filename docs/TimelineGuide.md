@@ -639,7 +639,6 @@ there's a `Shield Skewer` 5.4 seconds after it.
 
 We'll add any necessary jumps in later.
 
-
 ### Adding Phases
 
 Now on to the second phase.
@@ -1406,7 +1405,6 @@ Here are some options:
 * get more data, and make a timeline for the most common case
 * leave a comment in the timeline
 * if this is an important ability (e.g. tankbuster) put a question mark on it so players know it's not guaranteed
-
 
 ### Handling "Linear" Timelines
 
