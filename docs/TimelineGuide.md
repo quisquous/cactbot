@@ -474,12 +474,17 @@ ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18
 
 ```bash
 ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -lf
-1. 02:03:44.018 02:16:53.632 Cape Westwind
-2. 18:32:52.981 18:36:14.086 Cape Westwind
-3. 18:42:23.614 18:49:22.934 Cape Westwind
-4. 18:57:09.114 19:10:13.200 Cape Westwind
-5. 19:29:42.265 19:36:22.437 Cape Westwind
-6. 19:40:20.606 19:46:44.342 Cape Westwind
+
+┌───────┬──────────────┬────────────────┬──────────┬─────────────────────────────────────────┬─────────────────────────────────────────┬───────────────┐
+│ Index │  Start Date  │   Start Time   │ Duration │                Zone Name                │             Encounter Name              │   End Type    │
+├───────┼──────────────┼────────────────┼──────────┼─────────────────────────────────────────┼─────────────────────────────────────────┼───────────────┤
+│   1   │  2018-07-02  │  02:03:44.018  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   2   │  2018-07-02  │  18:32:52.981  │    3m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   3   │  2018-07-02  │  18:42:23.614  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   4   │  2018-07-02  │  18:57:09.114  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   5   │  2018-07-02  │  19:29:42.265  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   6   │  2018-07-02  │  19:40:20.606  │    6m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+└───────┴──────────────┴────────────────┴──────────┴─────────────────────────────────────────┴─────────────────────────────────────────┴───────────────┘
 ```
 
 From here, you can then rerun the command with the number of the encounter you want to use,
