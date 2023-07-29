@@ -182,9 +182,12 @@ which is still excellent.
 These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
-* if the first boss action is an auto-attack, consider adding a sync for
-  the first auto-attack, or at least the first "starts using" line.
-  This will help ensure the timeline is synced correctly after entering combat.
+* if there is only one boss in a zone, the timeline should start on entering combat.
+(The timeline utility will usually add the correct line automatically for you.)
+It is generally unnecessary to sync to the first auto-attack
+or otherwise "supplement" starting from combat beginning.
+(In special cases such as raid bosses with checkpoints,
+it may be acceptable to sync an auto for the second part of the encounter.)
 * include any special command line flags used to generate the timeline in a comment at the top.
 (The ignore-combatant and ignore-ability flags
 are automatically added by the timeline utility for your convenience.)
