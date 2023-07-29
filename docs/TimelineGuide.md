@@ -152,20 +152,32 @@ There are a number of other commands for generating alerts based on timeline ent
 These are still supported but are not documented.
 Instead, alerts based on timelines in cactbot should use [timeline triggers](#timeline-triggers).
 
-### Examples
+### Example Timeline Entries
 
 ```bash
+# I am just a comment
+
+# This hides all timeline entries that contain the exact string "--sync--".
+hideall "--sync--"
+
+# These examples are improper, generally speaking. Lines should have syncs,
+# or their syncs should be commented out.
+# Some older timelines will still have entries that look like this though.
 677.0 "Heavensfall Trio"
 1044 "Enrage" # ???
 35.2 "Flare Breath x3" duration 4
-1608.1 "Petrifaction" sync /:Melusine:7B1:/ window 1610,5
-1141.4 "Leg Shot" sync /:Mustadio:3738:/ duration 20
-# I am just a comment
-hideall "--sync--"
 
-28.0 "Damning Edict?" sync /:Chaos:3150:/ window 30,10 jump 2028.0
-524.9 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 jump 444.9
-1032.0 "Control Tower" duration 13.5 sync /:Hashmal, Bringer Of Order starts using Control Tower on Hashmal/ window 20,20 # start of cast -> tower fall
+# These are examples of lines that sync to actions.
+1608.1 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/ window 1610,5
+1141.4 "Leg Shot" sync / 1[56]:[^:]*:Mustadio:3738:/ duration 20
+28.0 "Damning Edict?" sync / 1[56]:[^:]*:Chaos:3150:/ window 30,10 jump 2028.0
+524.9 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31 jump 444.9
+
+# This is an example of syncing to the beginning of a cast.
+1032.0 "Control Tower" sync / 14:[^:]*:Hashmal:25C1:/ window 20,20 duration 13.5 # start of cast -> tower fall
+
+# This is a line that would sync to an action, but the sync has been commented out.
+330.7 "Atma-Linga x2" #sync / 1[56]:[^:]*:Ravana:EA6:/
 ```
 
 ### Testing
