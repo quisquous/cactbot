@@ -3,7 +3,8 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: Moko outside ring wall
-// TODO: standing in path05 baboon wall (also check if murdering baboon affects timeline)
+// TODO: path05 standing in baboon wall (also check if murdering baboon affects timeline)
+// TODO: path09 six fulms under
 
 export type Data = OopsyData;
 
@@ -23,6 +24,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rokkon Shishu Yoko Spinning Slash': '835D', // donut
     'Rokkon Shishu Yoko Rotary Slash': '835E', // circle
     'Rokkon Shishu Chochin Illume': '8352', // front conal
+    'Rokkon Shishu Hoko Tornado': '84CF', // targeted circle
+    'Rokkon Shishu Wanyudo Midnight Mandate': '835F', // targeted circle
+    'Rokkon Shishu Tenaga Ovation': '8360', // line aoe
+    'Rokkon Shishu Jumokko Acorn Bomb': '8362', // targeted circle
+    'Rokkon Shishu Jumokko Backhgand Blow': '8361', // back conal
+    'Rokkon Shishu Kuzuri Savage Swipe': '8363', // front conal
+    'Rokkon Shishu Sai Taisui Sweeping Invocation': '8364', // cross
+    'Rokkon Shishu Raiko Master of Levin': '8365', // donut
+    'Rokkon Shishu Raiko Disciples of Levin': '8366', // centered circle
+    'Rokkon Shishu Daitengu Yama-Kagura': '8367', // line aoe
 
     // Yozakura the Fleeting (all paths)
     'Rokkon Yozakura Art of the Fireblossom': '8368', // circle
@@ -32,8 +43,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rokkon Yozakura Seal of the Rainblossom': '8377', // intercards during Oka Ranman
     'Rokkon Yozakura Seal of the Levinblossom': '8378', // cards during Oka Ranman
 
-    // Yozakura the Fleeting (left path)
+    // Yozakura the Fleeting (left and right paths)
     'Rokkon Yozakura Shadowflight': '8380', // backstab line from clone
+
+    // Yozakura the Fleeting (left path)
     'Rokkon Yozakura Mudrain': '838A', // initial circles on water path
     'Rokkon Yozakura Mud Pie': '838E', // line aoes from mud circles
     'Rokkon Yozakura Icebloom': '838C', // chasing circles in route 1 during Mud Rain
@@ -49,6 +62,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rokkon Yozakura Tatami-gaeshi': '8396', // tatami mat flip
     'Rokkon Yozakura Levinblossom Lance': '839A', // rotating line aoes
     'Rokkon Yozakura Fireblossom Flare': '83A0', // ground circles during Art of the Fluff
+
+    // Yozakura the Fleeting (right path)
+    'Rokkon Yozakura Behind Barbs': '83A2', // standing in the Accursed Seedling root
+    'Rokkon Yozakura Explosion': '83A3', // not killing the Living Gaol in time
+    'Rokkon Yozakura Root Arrangement 1': '83A5', // 4x chasing aoe initial hit
+    'Rokkon Yozakura Root Arrangement 2': '83A6', // 4x chasing aoe ongoing hits
+    'Rokkon Yozakura Cutting Leaves': '83A8', // hitting tornados during Witherwind
 
     // Moko the Restless
     'Rokkon Moko Iai-kasumi-giri Back': '8587', // back-safe 270 cleave
@@ -97,6 +117,33 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rokkon Gorai Worldly Pursuit 1': '84FB', // initial rotating cross damage
     'Rokkon Gorai Worldly Pursuit 2': '84FC', // ongoing rotating cross damage
 
+    // Shishio
+    'Rokkon Shishio Once on Rokujo': '83DD', // 1x Smokeater line
+    'Rokkon Shishio Twice on Rokujo': '87A5', // 2x Smokeater line
+    'Rokkon Shishio Thrice on Rokujo': '87AC', // 3x Smokeater line
+    'Rokkon Shishio Rain Leaping Levin 1': '83DE', // 1x Smokeater small cloud circles
+    'Rokkon Shishio Rain Leaping Levin 2': '83DF', // 2x Smokeater medium cloud circles
+    'Rokkon Shishio Rain Leaping Levin 3': '83E0', // 3x Smokeater large cloud circles
+    'Rokkon Shishio Thunder Onefold': '83E2', // 1x Smokeater initial cloud circles
+    'Rokkon Shishio Thunder Twofold': '87F9', // 2x Smokeater initial cloud circles
+    'Rokkon Shishio Thunder Threefold': '87FB', // 3x Smokeater initial cloud circles
+    'Rokkon Shishio Cloud to Cloud 1': '83E3', // 1x Smokeater small lines
+    'Rokkon Shishio Cloud to Cloud 2': '83E4', // 2x Smokeater medium lines
+    'Rokkon Shishio Cloud to Cloud 3': '83E5', // 3x Smokeater large lines
+    'Rokkon Shishio Noble Pursuit': '83E6', // line aoe
+    'Rokkon Shishio Levinburst': '83E7', // line damage for going through rings during Noble Pursuit
+    'Rokkon Shishio Thunder Vortex': '83F4', // donut
+    'Rokkon Shishio Yoki': '83EB', // ground circles
+    'Rokkon Shishio Yoki-uzu': '83EC', // large circle forcing you into the quicksand
+    'Rokkon Shishio Devilish Thrall Right Swipe': '83F0', // right 180 cleave
+    'Rokkon Shishio Devilish Thrall Left Swipe': '83F1', // left 180 cleave
+    'Rokkon Shishio Haunting Thrlall Reisho 1': '872B', // ghost centered circle
+    'Rokkon Shishio Haunting Thrlall Reisho 2': '872C', // ghost centered circle
+    'Rokkon Shishio Haunting Thrlall Reisho 3': '83F2', // ghost centered circle
+    'Rokkon Shishio Clever Thrall Unsagely Spin': '83ED', // centered circle
+    'Rokkon Shishio Feral Thrall Rush': '83EE', // line
+    'Rokkon Shishio Venomous Thrall Vasoconstrictor': '83EF', // targeted circle
+
     // Enenra
     'Rokkon Enenra Kiseru Clamor 1': '8048', // initial jump that creates Bedrock Uplift earth rings
     'Rokkon Enenra Bedrock Uplift 2': '8049', // earth ring 2
@@ -111,9 +158,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // BFF = 9999 duration, C00 = 15s duration
     'Rokkon Yozakura Sludge': 'BFF', // standing in Mudrain circles
     // C05 = 9999 duration, C06 = 15s duration
-    'Rokkon Bleed': 'C05', // standing outside Yozakura Left, Enenra
+    'Rokkon Bleed': 'C05', // standing outside Yozakura, Enenra
     // BF9 = 9999 duration, BFA = 15s duration
     'Rokkon Burns': 'BF9', // standing outside Gorai
+    // C01 = 9999 duration, C02 = 15s duration
+    'Rokkon Electrocution': 'C01', // standing outside Shishio during lightning
     'Rokkon Yozakura Art of the Fluff Seduced': 'E28', // looking at the doggos
     'Rokkon Gorai Transfiguration': '648', // not standing in a tower
   },

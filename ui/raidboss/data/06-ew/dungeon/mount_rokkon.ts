@@ -1,8 +1,11 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
+import { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -14,6 +17,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 //       she repositions beforehand, so front/back of her is a known safe position.
 // TODO: Moko safe spots for Iron Rain
 // TODO: Gorai path 06 Humble Hammer safe spots for which Ball of Levin hit by Humble Hammer
+// TODO: Shishio Rokujo calls ("go SW, clockwise") kinda thing
 
 const sealMap = {
   '837A': 'fire',
@@ -44,12 +48,14 @@ const mokoVfxMap = {
 type KasumiGiri = typeof mokoVfxMap[keyof typeof mokoVfxMap];
 
 export interface Data extends RaidbossData {
+  combatantData: PluginCombatantState[];
   yozakuraSeal: Seal[];
   yozakuraTatami: string[];
   isDoubleKasumiGiri?: boolean;
   firstKasumiGiri?: KasumiGiri;
   goraiSummon?: NetMatches['StartsUsing'];
   enenraPipeCleanerCollect: string[];
+  devilishThrallCollect: NetMatches['StartsUsing'][];
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -58,9 +64,11 @@ const triggerSet: TriggerSet<Data> = {
   timelineFile: 'mount_rokkon.txt',
   initData: () => {
     return {
+      combatantData: [],
       yozakuraSeal: [],
       yozakuraTatami: [],
       enenraPipeCleanerCollect: [],
+      devilishThrallCollect: [],
     };
   },
   triggers: [
@@ -98,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rokkon Yozakura Drifting Petals',
       type: 'StartsUsing',
-      netRegex: { id: '86F0', source: 'Yozakura the Fleeting', capture: false },
+      netRegex: { id: '8393', source: 'Yozakura the Fleeting', capture: false },
       alertText: (_data, _matches, output) => output.knockback!(),
       outputStrings: {
         knockback: {
@@ -254,6 +262,18 @@ const triggerSet: TriggerSet<Data> = {
         outsideSouth: {
           en: 'Outside South',
           de: 'Südlich außen',
+        },
+      },
+    },
+    {
+      id: 'Rokkon Yozakura Root Arrangement',
+      type: 'HeadMarker',
+      netRegex: { id: '00C5' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: '4x Chasing AOE on YOU',
         },
       },
     },
@@ -496,6 +516,112 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    // --------- Shishio ----------
+    {
+      id: 'Rokkon Shishio Enkyo',
+      type: 'StartsUsing',
+      netRegex: { id: '83F5', source: 'Shishio', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rokkon Shishio Splitting Cry',
+      type: 'StartsUsing',
+      netRegex: { id: '83F6', source: 'Shishio' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Rokkon Shishio Noble Pursuit',
+      type: 'StartsUsing',
+      netRegex: { id: '83E6', source: 'Shishio', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Between Rings + Outside Line',
+        },
+      },
+    },
+    {
+      id: 'Rokkon Shishio Thunder Vortex',
+      type: 'StartsUsing',
+      netRegex: { id: '83F4', source: 'Shishio', capture: false },
+      response: Responses.getUnder(),
+    },
+    {
+      id: 'Rokkon Shishio Devilish Thrall Collect',
+      type: 'StartsUsing',
+      // 83F0 = Right Swipe
+      // 83F1 = Left Swipe
+      netRegex: { id: ['83F0', '83F1'], source: 'Devilish Thrall' },
+      run: (data, matches) => data.devilishThrallCollect.push(matches),
+    },
+    {
+      id: 'Rokkon Shishio Devilish Thrall Safe Spot',
+      type: 'StartsUsing',
+      netRegex: { id: ['83F0', '83F1'], source: 'Devilish Thrall', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      promise: async (data: Data) => {
+        data.combatantData = [];
+
+        const ids = data.devilishThrallCollect.map((x) => parseInt(x.sourceId, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: ids,
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData.length !== 4)
+          return;
+        const centerX = -40;
+        const centerY = -300;
+
+        // Cardinal thralls:
+        //   x = -40 +/- 12
+        //   y = -300 +/- 12
+        //   heading = cardinals (pi/2 * n)
+
+        // Variant Dungeon seems (at least in two pulls) to only have thralls
+        // on cardinals, however handle a potential intercard thralls just in case.
+        // There seems to be only one pattern of thralls, rotated.
+        // Two are pointed inward (direct opposite to their position)
+        // and two are pointed outward (perpendicular to their position).
+        // Because of this, no need to check left/right cleave as position and directions tell all.
+        const states = data.combatantData.map((combatant) => {
+          return {
+            dir: Directions.combatantStatePosTo8Dir(combatant, centerX, centerY),
+            heading: Directions.combatantStateHdgTo8Dir(combatant),
+          };
+        });
+        const outwardStates = states.filter((state) => state.dir !== (state.heading + 4) % 8);
+        const [pos1, pos2] = outwardStates.map((x) => x.dir).sort();
+        if (pos1 === undefined || pos2 === undefined || outwardStates.length !== 2)
+          return;
+
+        // The one case where the difference is 6 instead of 2.
+        const averagePos = (pos1 === 0 && pos2 === 6) ? 7 : Math.floor((pos2 + pos1) / 2);
+        return {
+          0: output.north!(),
+          1: output.northeast!(),
+          2: output.east!(),
+          3: output.southeast!(),
+          4: output.south!(),
+          5: output.southwest!(),
+          6: output.west!(),
+          7: output.northwest!(),
+        }[averagePos];
+      },
+      run: (data) => data.devilishThrallCollect = [],
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        northwest: Outputs.northwest,
+      },
+    },
     // --------- Enenra ----------
     {
       id: 'Rokkon Enenra Flagrant Combustion',
@@ -543,7 +669,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Rokkon Enenra Uplift',
       type: 'Ability',
-      // If hit by snuff, move away from uplift.
+      // If hit by Snuff, move away from uplift.
       netRegex: { id: '8056', source: 'Enenra' },
       condition: Conditions.targetIsYou(),
       response: Responses.moveAway(),
@@ -560,6 +686,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Katana': 'antik(?:e|er|es|en) Katana',
         'Ashigaru Kyuhei': 'Ashigaru Kyuhei',
