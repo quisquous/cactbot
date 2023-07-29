@@ -1398,7 +1398,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'Apademak',
         'Arena Catoblepas': 'Arena-Catblepus',
@@ -1420,8 +1419,10 @@ const triggerSet: TriggerSet<Data> = {
         'Crom Dubh': 'Crom Dubh',
         'Durinn': 'Durinn',
         'Epilogi': 'Epilogi',
+        'Gilded Cyclops': 'gülden(?:e|er|es|en) Zyklop',
         'Gladiatorial Node': 'kämpferisch(?:e|er|es|en) System',
         'Gogo, Master of Mimicry': 'Gogo (?:der|die|das) Mime',
+        'Goldor': 'Goldor',
         'Guimauve': 'Guimauve',
         'Hydnora': 'Hydnora',
         'Kreios': 'Kreios',
@@ -1441,7 +1442,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'Apademak',
         'Arena Catoblepas': 'catoblépas de l\'arène',
@@ -1463,8 +1463,10 @@ const triggerSet: TriggerSet<Data> = {
         'Crom Dubh': 'Crom Dubh',
         'Durinn': 'Durinn',
         'Epilogi': 'Epilogi',
+        'Gilded Cyclops': 'cyclope de Goldor',
         'Gladiatorial Node': 'sphère gladiatrice',
         'Gogo, Master of Mimicry': 'Gogo le mime',
+        'Goldor': 'Goldor',
         'Guimauve': 'Guimauve',
         'Hydnora': 'Hydnora',
         'Kreios': 'Kreios',
@@ -1484,7 +1486,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Apademak': 'アペデマク',
         'Arena Catoblepas': 'アリーナ・カトブレパス',
@@ -1506,8 +1507,10 @@ const triggerSet: TriggerSet<Data> = {
         'Crom Dubh': 'クロムドゥーブ',
         'Durinn': 'ドゥリン',
         'Epilogi': 'エペロギ',
+        'Gilded Cyclops': 'ゴールドル・サイクロプス',
         'Gladiatorial Node': '闘技システム',
         'Gogo, Master of Mimicry': 'ものまね士ゴゴ',
+        'Goldor': 'ゴールドル',
         'Guimauve': 'ギモーヴ',
         'Hydnora': 'ヒドノラ',
         'Kreios': 'クレイオス',
