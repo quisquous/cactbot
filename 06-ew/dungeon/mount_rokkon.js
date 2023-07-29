@@ -1,10 +1,11 @@
 // TODO: find network lines for Yozakura Seal of Riotous Bloom arrows (nothing in network logs)
+// TODO: find network lines for Enenra Out of the Smoke (nothing in network logs)
 // TODO: Yozakura Seasons of the Fleeting
 //       you would need to track 8384 (pinwheel) and 8383 (line) *abilities* (not incorrect casts)
 //       and use their positions and rotations to know whether to say front/back/card/intercard
 //       she repositions beforehand, so front/back of her is a known safe position.
-// TODO: Moko safe spots for Iron Rain?
-// TODO: are Moko Auspice water/fire tied to a path or random?
+// TODO: Moko safe spots for Iron Rain
+// TODO: Gorai path 06 Humble Hammer safe spots for which Ball of Levin hit by Humble Hammer
 const sealMap = {
   '837A': 'fire',
   '837B': 'wind',
@@ -32,6 +33,8 @@ Options.Triggers.push({
   initData: () => {
     return {
       yozakuraSeal: [],
+      yozakuraTatami: [],
+      enenraPipeCleanerCollect: [],
     };
   },
   triggers: [
@@ -149,6 +152,74 @@ Options.Triggers.push({
         // Remove abilities that have happened so we can know the second pair.
         const seal = sealDamageMap[matches.id];
         data.yozakuraSeal = data.yozakuraSeal.filter((x) => x !== seal);
+      },
+    },
+    {
+      id: 'Rokkon Yozakura Art of the Fluff',
+      type: 'StartsUsing',
+      netRegex: { id: '839E', source: 'Shiromaru' },
+      alertText: (_data, matches, output) => {
+        const xPos = parseFloat(matches.x);
+        // center = 737
+        // east = 765
+        // west = 709
+        if (xPos > 737)
+          return output.lookWest();
+        return output.lookEast();
+      },
+      outputStrings: {
+        lookWest: {
+          en: 'Look West',
+        },
+        lookEast: {
+          en: 'Look East',
+        },
+      },
+    },
+    {
+      id: 'Rokkon Yozakura Tatami Collect',
+      type: 'MapEffect',
+      // 00020001 = shake
+      // 00080004 = go back to normal
+      // 80038CA2 = flip
+      netRegex: { flags: '00020001' },
+      run: (data, matches) => data.yozakuraTatami.push(matches.location),
+    },
+    {
+      id: 'Rokkon Yozakura Tatami-gaeshi',
+      type: 'StartsUsing',
+      netRegex: { id: '8395', source: 'Yozakura the Fleeting', capture: false },
+      alertText: (data, _matches, output) => {
+        const map = {
+          '37': 'outsideNorth',
+          '38': 'insideNorth',
+          '39': 'insideSouth',
+          '3A': 'outsideSouth',
+        };
+        for (const location of data.yozakuraTatami)
+          delete map[location];
+        // Call inside before outside.
+        const callOrder = ['38', '39', '37', '3A'];
+        for (const key of callOrder) {
+          const outputKey = map[key];
+          if (outputKey !== undefined)
+            return output[outputKey]();
+        }
+      },
+      run: (data) => data.yozakuraTatami = [],
+      outputStrings: {
+        outsideNorth: {
+          en: 'Outside North',
+        },
+        insideNorth: {
+          en: 'Inside North',
+        },
+        insideSouth: {
+          en: 'Inside South',
+        },
+        outsideSouth: {
+          en: 'Outside South',
+        },
       },
     },
     // --------- Moko the Restless ----------
@@ -286,10 +357,166 @@ Options.Triggers.push({
         },
       },
     },
+    // --------- Gorai the Uncaged ----------
+    {
+      id: 'Rokkon Gorai Unenlightemnment',
+      type: 'StartsUsing',
+      netRegex: { id: '8500', source: 'Gorai the Uncaged', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rokkon Gorai Fighting Spirits',
+      type: 'StartsUsing',
+      netRegex: { id: '84F8', source: 'Gorai the Uncaged', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rokkon Gorai Biwa Breaker',
+      type: 'StartsUsing',
+      netRegex: { id: '84FD', source: 'Gorai the Uncaged', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rokkon Gorai Torching Torment',
+      type: 'StartsUsing',
+      netRegex: { id: '84FE', source: 'Gorai the Uncaged' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Rokkon Gorai Summon Collect',
+      type: 'StartsUsing',
+      // 84D5 = Flickering Flame
+      // 84D6 = Sulphuric Stone
+      // 84D7 = Flame and Sulphur
+      netRegex: { id: ['84D5', '84D6', '84D7'], source: 'Gorai the Uncaged' },
+      run: (data, matches) => data.goraiSummon = matches,
+    },
+    {
+      id: 'Rokkon Gorai Plectrum of Power',
+      type: 'StartsUsing',
+      netRegex: { id: '84D8', source: 'Gorai the Uncaged', capture: false },
+      alertText: (data, _matches, output) => {
+        const id = data.goraiSummon?.id;
+        if (id === '84D5')
+          return output.lines();
+        if (id === '84D6')
+          return output.rocks();
+        if (id === '84D7')
+          return output.both();
+      },
+      run: (data) => delete data.goraiSummon,
+      outputStrings: {
+        lines: {
+          en: 'Avoid Expanding Lines',
+        },
+        rocks: {
+          en: 'Avoid Expanding Rocks',
+        },
+        both: {
+          en: 'Avoid Expanding Rocks/Lines',
+        },
+      },
+    },
+    {
+      id: 'Rokkon Gorai Morphic Melody',
+      type: 'StartsUsing',
+      netRegex: { id: '84D9', source: 'Gorai the Uncaged', capture: false },
+      alertText: (data, _matches, output) => {
+        const id = data.goraiSummon?.id;
+        if (id === '84D5')
+          return output.lines();
+        if (id === '84D6')
+          return output.rocks();
+        if (id === '84D7')
+          return output.both();
+      },
+      run: (data) => delete data.goraiSummon,
+      outputStrings: {
+        lines: Outputs.goIntoMiddle,
+        rocks: {
+          en: 'Stand on Rock',
+        },
+        both: {
+          en: 'Stand on Rock + Line',
+        },
+      },
+    },
+    {
+      id: 'Rokkon Gorai Malformed Prayer',
+      type: 'StartsUsing',
+      netRegex: { id: '84E1', source: 'Gorai the Uncaged', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in All Towers',
+        },
+      },
+    },
+    // --------- Enenra ----------
+    {
+      id: 'Rokkon Enenra Flagrant Combustion',
+      type: 'StartsUsing',
+      netRegex: { id: '8042', source: 'Enenra', capture: false },
+      // Can be used during Smoke and Mirrors clone phase
+      suppressSeconds: 5,
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Rokkon Enenra Smoke Rings',
+      type: 'StartsUsing',
+      netRegex: { id: '8053', source: 'Enenra', capture: false },
+      response: Responses.getOut(),
+    },
+    {
+      id: 'Rokkon Enenra Clearing Smoke',
+      type: 'StartsUsing',
+      netRegex: { id: '8052', source: 'Enenra', capture: false },
+      response: Responses.knockback(),
+    },
+    {
+      id: 'Rokkon Enenra Pipe Cleaner Collect',
+      type: 'Tether',
+      netRegex: { id: '0011' },
+      run: (data, matches) => data.enenraPipeCleanerCollect.push(matches.source),
+    },
+    {
+      id: 'Rokkon Enenra Pipe Cleaner',
+      type: 'StartsUsing',
+      netRegex: { id: '8054', source: 'Enenra', capture: false },
+      condition: (data) => data.enenraPipeCleanerCollect.includes(data.me),
+      alertText: (_data, _matches, output) => output.text(),
+      run: (data) => data.enenraPipeCleanerCollect = [],
+      outputStrings: {
+        text: Outputs.earthshakerOnYou,
+      },
+    },
+    {
+      id: 'Rokkon Enenra Snuff',
+      type: 'StartsUsing',
+      netRegex: { id: '8056', source: 'Enenra' },
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'Rokkon Enenra Uplift',
+      type: 'Ability',
+      // If hit by snuff, move away from uplift.
+      netRegex: { id: '8056', source: 'Enenra' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.moveAway(),
+    },
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Plectrum of Power/Morphic Melody': 'Plectrum/Morphic',
+        'Morphic Melody/Plectrum of Power': 'Morphic/Plectrum',
+        'Clearing Smoke/Smoke Rings': 'Clearing Smoke/Rings',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Katana': 'antik(?:e|er|es|en) Katana',
         'Ashigaru Kyuhei': 'Ashigaru Kyuhei',
