@@ -1836,7 +1836,7 @@ const defaultTriggerSetAlertOutput = {
   name: {
     en: 'Default trigger set alert output',
     de: 'Standard trigger-Set Alert Ausgabe',
-    cn: '默认自定义触发器提示输出模式',
+    cn: '默认触发器集合提示输出模式',
     ko: '기본 트리거 세트 알람 출력 방식',
   },
 } as const;
