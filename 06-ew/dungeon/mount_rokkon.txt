@@ -133,7 +133,7 @@ hideall "--sync--"
 # 83AA Kuge Rantsui cast and damage aoe
 # 8612 --sync-- repositioning
 
-# YOZAKURA ABILITIES (LEFT PATH)
+# YOZAKURA ABILITIES (LEFT AND RIGHT PATH)
 # 837E Bunshin self-targeted cast and ability to summon clone
 # 837F Shadowflight self-targeted cast and ability
 # 8380 Shadowflight clone backstab damage
@@ -145,13 +145,15 @@ hideall "--sync--"
 # 8386 Season of Water 4x lines (front safe)
 # 8387 Season of Lightning intercardinal pinwheel
 # 8388 Season of Earth cardinal pinwheel
+# 8389 Mudrain self-targeted cast and ability
+# 838A Mudrain cast and damage for initial circles
+# 8393 Drifting Petals cast and knockback damage
+
+# YOZAKURA ABILITIES (LEFT PATH)
 # 838F Windblossom Whirl cast and self-targeted
 # 8390 Windblossom Whirl cast and damage for donut
 # 8391 Levinblossom Strike cast and self-targeted
 # 8392 Levinblossom Strike cast and damage for lightning circles
-# 8393 Drifting Petals cast and knockback damage
-# 8389 Mudrain self-targeted cast and ability
-# 838A Mudrain cast and damage for initial circles
 # 838B Icebloom self-targeted cast and ability
 # 838C Icebloom cast and damage for three chasing circles
 # 838D Mud Pie self-targeted cast and ability
@@ -704,6 +706,306 @@ hideall "--sync--"
 # 8500 Unenlightenment cast and self-targeted ability
 # 8501 Unenlightenment raidwide damage
 # 86D1 Biwa Breaker damage from followup raidwides
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Yozakura the Fleeting (right path) #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 83A9:6012
+# -ii 83A2 83A3 83A8 8382 838A
+
+6000.0 "--sync--" sync / 00:0839::Autumn Rivers' End will be sealed off/ window 10000,0
+6012.0 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+# -> no dogu
+6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/ window 30,30 jump 6116.1
+6019.1 "Art of the Fireblossom?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+
+# -> dogu
+6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/ window 30,30 jump 6316.1
+6021.1 "Art of the Windblossom?" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+
+
+# no dogu path
+6116.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/
+6119.1 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+6123.3 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6129.6 "Bunshin" sync / 1[56]:[^:]*:Yozakura the Fleeting:837E:/
+6138.7 "Shadowflight (cast)" sync / 1[56]:[^:]*:Yozakura the Fleeting:837F:/
+6143.6 "Shadowflight" sync / 1[56]:[^:]*:Mirrored Yozakura:8380:/
+
+6150.8 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6155.9 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6160.0 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6060.2 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6062.2 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6169.4 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6172.6 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+6182.6 "Nubuki" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A1:/
+6191.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A4:/
+6194.7 "Root Arrangement 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A5:/
+6195.8 "Root Arrangement 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6196.8 "Root Arrangement 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6197.8 "Root Arrangement 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6206.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A4:/
+6209.7 "Root Arrangement 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A5:/
+6210.8 "Root Arrangement 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6211.8 "Root Arrangement 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6212.8 "Root Arrangement 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+
+6221.7 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+6230.8 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6235.9 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6240.1 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6140.3 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6142.3 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6144.3 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6146.3 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6253.8 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6257.0 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6262.0 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6265.0 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6278.0 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+6286.2 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+6293.3 "Nubuki" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A1:/ window 30,30 forcejump 6182.6
+
+
+# dogu path
+6316.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/
+6321.1 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+6325.3 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+#6329.4 "Season Indicator 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6331.5 "Season Indicator 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6333.6 "Season Indicator 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6335.7 "Season Indicator 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+6336.1 "Seasons of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8381:/
+6337.0 "Season of Element 1" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6339.1 "Season of Element 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6341.2 "Season of Element 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6343.3 "Season of Element 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+
+6351.6 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6356.7 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6360.8 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6361.0 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6363.0 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6370.2 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6373.4 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+6380.4 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6384.5 "Witherwind" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A7:/
+6389.6 "Mudrain" sync / 1[56]:[^:]*:Yozakura the Fleeting:8389:/
+6399.8 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6405.8 "Drifting Petals" sync / 1[56]:[^:]*:Yozakura the Fleeting:8393:/
+6429.9 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+6439.0 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+
+6444.1 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6448.3 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6448.5 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6450.5 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6452.5 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6454.5 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6461.7 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6464.7 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6469.8 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6473.0 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6486.0 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+6494.2 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+6498.3 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6502.4 "Witherwind" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A7:/ window 30,30 forcejump 6384.5
+
+
+# YOZAKURA ABILITIES (RIGHT PATH)
+# 83A1 Nubuki cast and self-targeted to generate Accursed Seedling roots
+# 83A2 Behind Barbs damage from standing in the Accursed Seedling
+# 83A3 Explosion cast and damage from Living Gaol when it captures you
+# 83A4 Root Arrangement cast and self-targeted ability for chasing rock
+# 83A5 Root Arrangement cast and damage for chasing rock hit #1
+# 83A6 Root Arrangement damage for chasing rock hits #2-4
+# 83A7 Witherwind cast and self-targeted tornado summoning
+# 83A8 Cutting Leaves damage for hitting tornados
+
+
+#~~~~~~~~~#
+# Shishio #
+#~~~~~~~~~#
+
+# -p 83F5:7015.7
+# -ii 86DE 83DA 83DE 83DF 83E0 83E3 83E4 83E5 83E2 87F9 87FB 83DB 87A3 87A4 87A6 87AB 83ED 872B 83F2
+
+7000.0 "--sync--" sync / 00:0839::Stone's Silence will be sealed off/ window 10000,0
+7015.7 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+7017.8 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7022.0 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7026.7 "Smokeater" sync / 1[56]:[^:]*:Shishio:83D8:/
+# Note: This always seems to be Once on Rokujo
+7036.8 "Once on Rokujo" sync / 1[56]:[^:]*:Shishio:83DD:/
+7053.4 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+7055.5 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+# Note: this one can be Twice or Thrice on Rokujo
+7059.8 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7064.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7066.6 "Smokeater 2" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7068.5 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7093.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+
+# -> path 08
+7104.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7110.0 "Rush?" sync / 1[56]:[^:]*:Feral Thrall:83EE:/ window 30,30 jump 7210.0
+
+# -> path 09
+7093.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/ window 30,30 jump 7293.9
+7098.9 "Focused Tremor?" #sync / 1[56]:[^:]*:Shishio:83E9:/
+
+# -> path 10
+7097.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/ window 30,30 jump 7397.0
+7105.0 "Left Swipe?" #sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7105.0 "Right Swipe?" #sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+
+# -> path 11
+7099.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/ window 30,30 jump 7599.0
+7103.0 "Reisho?" #sync / 1[56]:[^:]*:Haunting Thrall:872B:/
+
+
+# path 08
+7193.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7204.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7210.0 "Rush" sync / 1[56]:[^:]*:Feral Thrall:83EE:/
+7212.0 "Vasoconstrictor 1" sync / 1[56]:[^:]*:Venomous Thrall:83EF:/
+7217.0 "Vasoconstrictor 2" sync / 1[56]:[^:]*:Venomous Thrall:83EF:/
+7217.0 "--sync--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7223.0 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7230.2 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7240.3 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 09
+7293.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7293.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/
+7298.9 "Focused Tremor" sync / 1[56]:[^:]*:Shishio:83E9:/
+7303.2 "Yoki (cast)" sync / 1[56]:[^:]*:Shishio:83EA:/
+7308.0 "Yoki 1" sync / 1[56]:[^:]*:Shishio:83EB:/
+7312.0 "Yoki 2" sync / 1[56]:[^:]*:Shishio:83EB:/
+7315.3 "--sync--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7324.3 "Yoki-uzu" sync / 1[56]:[^:]*:Shishio:83EC:/
+# -> shared loop
+7334.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 10
+7393.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7397.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/
+7405.0 "Left Swipe 1" sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7405.0 "Right Swipe 1" sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+7415.3 "Left Swipe 2" sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7415.3 "Right Swipe 2" sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+7424.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7434.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 11
+7593.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7599.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/
+7603.0 "Reisho" sync / 1[56]:[^:]*:Haunting Thrall:872B:/
+7611.1 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7617.1 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7624.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7634.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+
+# shared loop
+7634.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+7636.5 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7640.7 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7645.4 "Smokeater" sync / 1[56]:[^:]*:Shishio:83D8:/
+# Note: This always seems to be Onefold the first time around.
+7650.5 "Thunder Onefold" sync / 1[56]:[^:]*:Shishio:83E1:/
+7678.1 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+
+7684.2 "--jump--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7693.5 "Noble Pursuit" sync / 1[56]:[^:]*:Shishio:83E6:/
+7694.4 "Levinburst" sync / 1[56]:[^:]*:Rairin:83E7:/
+7700.4 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7707.5 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+7713.7 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7717.9 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7722.6 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7724.7 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7726.6 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7750.2 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+# this is the start of the loop, as there's an extra delay on the 7713.7 jump
+# the first time through
+7757.4 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7761.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7766.3 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7768.4 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7770.4 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+# Note: this is +/- 2 seconds depending on how many Smokeaters, so no sync
+7773.4 "Thunder Onefold/Thunder Twofold/Thunder Threefold" #sync / 1[56]:[^:]*:Shishio:(83E1|87AD|87FA):/
+7798.8 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+
+7804.9 "--jump--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7814.2 "Noble Pursuit" sync / 1[56]:[^:]*:Shishio:83E6:/
+7815.1 "Levinburst" sync / 1[56]:[^:]*:Rairin:83E7:/
+7821.1 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7828.2 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+7835.4 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7839.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/ window 30,30 forcejump 7717.9
+
+
+# SHISHIO ABILITIES
+# 83D7 Stormcloud Summons cast and self-targeted ability
+# 83D8 Smokeater cast and self-targeted ability for first inhale
+# 83D9 Smokeater self-targeted ability for optional second and third inhales
+# 83DA --sync-- Raiun ability on Shishio after being inhaled
+# 83DB Once on Rokujo cast and self-targeted ability for 1x Smokeater line
+# 83DD Once on Rokujo cast and damage for 1x Smokeater line aoe
+# 83DE Leaping Levin Raiun 1x Smokeater small cloud circles
+# 83DF Leaping Levin Raiun 2x Smokeater medium cloud circles
+# 83E0 Leaping Levin Raiun 3x Smokeater large cloud circles
+# 83E1 Thunder Onefold cast and self-targeted ability
+# 83E2 Thunder Onefold cast and damage for 1x Smokeater initial cloud circles
+# 83E3 Cloud to Cloud cast and damage for 1x Smokeater small lines
+# 83E4 Cloud to Cloud cast and damage for 2x Smokeater medium lines
+# 83E5 Cloud to Cloud cast and damage for 3x Smokeater large lines
+# 83E6 Noble Pursuit cast and damage for line aoe
+# 83E7 Levinburst line damage for going through rings during Noble Pursuit
+# 83E8 Haunting Cry cast and raidwide damage
+# 83E9 Focused Tremor cast and raidwide damage
+# 83EA Yoki cast and self-targeted ability to summon circles
+# 83EB Yoki cast and damage for ground circles
+# 83EC Yoki-uzu cast and damage for "get out (into quicksand)" aoe
+# 83ED Unsagely Spin Clever Thrall centered circle
+# 83EE Rush Feral Thrall line aoe
+# 83EF Vasoconstrictor Venomous Trhall targeted circle
+# 83F0 Right Swipe cast and damage for Devilish Thrall cleave
+# 83F1 Left Swipe cast and damage for Devilish Thrall cleave
+# 83F2 Reisho Haunting Thrall centered circle
+# 83F4 Thunder Vortex cast and damage for donut
+# 83F5 Enkyo cast and damage for raidwide
+# 83F6 Splitting Cry cast and damage for tankbuster
+# 83F7 --sync-- repositioning
+# 86DE --sync-- auto damage
+# 872B Reisho Haunting Thrall centered circle
+# 872C Reisho Haunting Thrall centered circle
+# 87A3 Twice on Rokujo cast and self-targeted ability for 2x Smokeater lines
+# 87A4 Twice on Rokujo self-targeted ability (???)
+# 87A5 Twice on Rokujo cast and damage for 2x Smokeater line aoe
+# 87A6 Thrice on Rokujo cast and self-targeted ability for 3x Smokeater lines
+# 87AB Thrice on Rokujo self-targeted ability (???)
+# 87AC Thrice on Rokujo cast and damage for 3x Smokeater line aoe
+# 87AD Thunder Twofold cast and self-targeted ability
+# 87F9 Thunder Twofold cast and damage for 2x Smokeater initial cloud circles
+# 87FA Thunder Threefold cast and self-targeted ability
+# 87FB Thunder Threefold cast and damage for 3x Smokeater initial cloud circles
 
 
 #~~~~~~~~#
