@@ -125,6 +125,7 @@ export type BaseTrigger<
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
+  label?: Partial<FullLocaleText>;
   type: Type;
   netRegex: NetParams[Type];
   disabled?: boolean;
@@ -145,6 +146,8 @@ type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   tts?: TriggerField<Data, NetMatches[Type], PartialTriggerOutput<Data, NetMatches[Type]>>;
   run?: TriggerField<Data, NetMatches[Type], void>;
   outputStrings?: OutputStrings;
+  // Is EN specified as REQUIRED? I lean towards PARTIAL, feel free to modify.
+  comment?: Partial<LocaleText>;
 };
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T

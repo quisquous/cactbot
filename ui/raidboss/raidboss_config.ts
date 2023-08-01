@@ -556,6 +556,7 @@ class RaidbossConfigurator {
   private base: CactbotConfigurator;
   private alertsLang: Lang;
   private timelineLang: Lang;
+  private displayLanguage: Lang;
 
   constructor(cactbotConfigurator: CactbotConfigurator) {
     this.base = cactbotConfigurator;
@@ -566,6 +567,9 @@ class RaidbossConfigurator {
     this.alertsLang = langOrEn(this.base.getOption('raidboss', 'AlertsLanguage', this.base.lang));
     this.timelineLang = langOrEn(
       this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang),
+    );
+    this.displayLanguage = langOrEn(
+      this.base.getOption('raidboss', 'DisplayLanguage', this.base.lang),
     );
   }
 
@@ -684,11 +688,25 @@ class RaidbossConfigurator {
         if (!hasOutputFunc && !this.base.developerOptions)
           continue;
 
-        // Build the trigger label.
         const triggerDiv = document.createElement('div');
-        triggerDiv.innerHTML = trig.isMissingId ? '(???)' : trigId;
-
         triggerDiv.classList.add('trigger');
+
+        // Build the trigger label.
+        const triggerId = document.createElement('div');
+        triggerId.classList.add('trigger-id');
+        triggerId.innerHTML = trig.isMissingId ? '(???)' : trigId;
+        triggerId.classList.add('trigger-id');
+        triggerDiv.appendChild(triggerId);
+
+        // Build the trigger comment
+        const trigComment = trig.comment?.[this.displayLanguage] ?? trig.comment?.en;
+        if (trigComment) {
+          const triggerComment = document.createElement('div');
+          triggerComment.innerHTML = trigComment;
+          triggerComment.classList.add('trigger-comment');
+          triggerDiv.appendChild(triggerComment);
+        }
+
         triggerOptions.appendChild(triggerDiv);
 
         // Container for the right side ui (select boxes, all of the info).
