@@ -94,6 +94,10 @@ Options.Triggers.push({
   config: [
     {
       id: 'staffSwordDodge',
+      comment: {
+        en:
+          '<a href="https://github.com/quisquous/cactbot/releases/tag/v0.28.19" target="_blank">Read Notes</a>',
+      },
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
         de: 'Renn: Omega Stab Schwert Ausweich-Richtung',
