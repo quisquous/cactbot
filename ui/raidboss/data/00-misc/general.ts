@@ -15,6 +15,10 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'General Provoke',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“挑衅”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '1D6D' },
       condition: (data, matches) => {
@@ -36,6 +40,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Frog Legs',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“蛙腿”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '4783' },
       condition: (data, matches) => {
@@ -70,6 +78,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Shirk',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“退避”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '1D71' },
       condition: (data, matches) => {
@@ -91,6 +103,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Holmgang',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“死斗”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '2B' },
       condition: (data, matches) => {
@@ -112,6 +128,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Hallowed',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“神圣领域”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '1E' },
       condition: (data, matches) => {
@@ -133,6 +153,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Superbolide',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“超火流星”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: '3F18' },
       condition: (data, matches) => {
@@ -154,6 +178,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Living',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员释放“行尸走肉”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'Ability',
       netRegex: { id: 'E36' },
       condition: (data, matches) => {
@@ -175,6 +203,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'General Walking',
+      comment: {
+        en: '',
+        cn: '仅在非自身小队成员获得“死而不僵”且自身为坦克/治疗/青魔法师时触发。',
+      },
       type: 'GainsEffect',
       netRegex: { effectId: '32B' },
       condition: (data, matches) => {
@@ -199,6 +231,10 @@ const triggerSet: TriggerSet<Data> = {
       // the message is sent to this channel; when a ready check is invoked by others, then it
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
+      comment: {
+        en: '',
+        cn: '在队友发起准备确认时，播放D.Va的“Game on”音效(^-^)V',
+      },
       type: 'GameLog',
       netRegex: {
         line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?',

@@ -78,6 +78,7 @@ export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> 
   deathReason?: OopsyTriggerField<Data, NetMatches[Type], OopsyDeathReason>;
   mistake?: OopsyTriggerField<Data, NetMatches[Type], OopsyMistake | OopsyMistake[]>;
   run?: OopsyTriggerField<Data, NetMatches[Type], void>;
+  comment?: LocaleText;
 };
 
 type OopsyTriggerRegex<T extends TriggerTypes> = {
