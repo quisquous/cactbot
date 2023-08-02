@@ -246,15 +246,26 @@ ThirdParty
 
 1. 启动 ACT。
 1. 确保 WS Server 已启动，可以在 Plugins -> OverlayPlugin WSServer-> Stream/Local Overlay 中对此进行配置。
-1. 从 URL 列表中选择 `Cactbot Raidboss (Combined Alerts and Timelines)`。
-1. 编辑网址，将 `raidboss.html` 替换为 `raidemulator.html`。
-1. 将修改后的网址复制并粘贴到 Chrome 中。
-1. 拖放一个 [网络日志](./FAQ-Troubleshooting.md#how-to-find-a-network-log) 文件到该页面中。
+
+如果您正在为cactbot仓库开发触发器，
+您可以通过 `npm run start` 启动本地开发服务器，
+并在Chrome中访问 `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
+如果您正在开发用户自定义触发器，
+您可以在Chrome中访问 `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+
+如果您正在尝试复现一个问题，
+您可以在Chrome中访问 `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html`
+在这种情况下，您不需要运行WS服务器。
+
+成功加载网页后，继续按照以下说明使用模拟器。
+
+1. 拖放一个 [网络日志](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) 文件到该页面中。
 1. 选择区域和战斗记录，然后单击 `Load Encounter`。
 
-如果模拟器无法正常工作，请检查控制台中是否显示了错误日志。该页面在通过 websocket 连接到 ACT 之前，任何按钮都无法工作。
+如果模拟器无法正常工作，请检查控制台中是否显示了错误日志。
 
-![raidboss 模拟器屏幕截图](../../screenshots/raidboss_emulator.png)
+![Raidboss模拟器截图](/screenshots/raidboss_emulator.png)
 
 ### [oopsyraidsy](../../ui/oopsyraidsy) 模块
 
