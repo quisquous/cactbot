@@ -364,7 +364,9 @@ response: (data, matches, output) => {
 ```
 
 **comment**
-An object where keys represent optional strings in various languages. This property is an optional auxiliary attribute used to display text around the trigger item in the cactbot configuration panel. You can use it to explain your trigger, leave some descriptive text, or even include a hyperlink.
+An object where keys represent optional strings in various languages.
+This property is an optional auxiliary attribute used to display text around the trigger item in the cactbot configuration panel.
+You can use it to explain your trigger, leave some descriptive text, or even include a hyperlink.
 
 Example:
 
