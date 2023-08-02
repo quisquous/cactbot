@@ -324,21 +324,6 @@ html {
   min-height: 18px;
 }
 
-.trigger-comment {
-  margin-top: 8px;
-  margin-left: 8px;
-  font-size: 12px;
-  max-width: calc(18em + 8px);
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
-.trigger-comment > * {
-  display: inline-block;
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
 .trigger-outputstring-label {
   display: inline;
   align-self: center;
