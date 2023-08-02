@@ -15,9 +15,6 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'General Provoke',
-      comment: {
-        cn: '仅在非自身小队成员释放“挑衅”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '1D6D' },
       condition: (data, matches) => {
@@ -36,12 +33,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '도발: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“挑衅”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Frog Legs',
-      comment: {
-        cn: '仅在非自身小队成员释放“蛙腿”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '4783' },
       condition: (data, matches) => {
@@ -73,12 +70,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '도발: ${player} (빗나감)',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“蛙腿”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Shirk',
-      comment: {
-        cn: '仅在非自身小队成员释放“退避”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '1D71' },
       condition: (data, matches) => {
@@ -97,12 +94,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '기피: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“退避”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Holmgang',
-      comment: {
-        cn: '仅在非自身小队成员释放“死斗”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '2B' },
       condition: (data, matches) => {
@@ -121,12 +118,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '일대일 결투: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“死斗”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Hallowed',
-      comment: {
-        cn: '仅在非自身小队成员释放“神圣领域”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '1E' },
       condition: (data, matches) => {
@@ -145,12 +142,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '천하무적: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“神圣领域”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Superbolide',
-      comment: {
-        cn: '仅在非自身小队成员释放“超火流星”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: '3F18' },
       condition: (data, matches) => {
@@ -169,12 +166,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '폭발 유성: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“超火流星”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Living',
-      comment: {
-        cn: '仅在非自身小队成员释放“行尸走肉”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'Ability',
       netRegex: { id: 'E36' },
       condition: (data, matches) => {
@@ -193,12 +190,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '산송장: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员释放“行尸走肉”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       id: 'General Walking',
-      comment: {
-        cn: '仅在非自身小队成员获得“死而不僵”且自身为坦克/治疗/青魔法师时触发。',
-      },
       type: 'GainsEffect',
       netRegex: { effectId: '32B' },
       condition: (data, matches) => {
@@ -217,15 +214,15 @@ const triggerSet: TriggerSet<Data> = {
           ko: '움직이는 시체: ${player}',
         },
       },
+      comment: {
+        cn: '仅在非自身小队成员获得“死而不僵”且自身为坦克/治疗/青魔法师时触发。',
+      },
     },
     {
       // 0039 is the system message channel, when the current player commences a ready check,
       // the message is sent to this channel; when a ready check is invoked by others, then it
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
-      comment: {
-        cn: '在队友发起准备确认时，播放D.Va的“Game on”音效(^-^)V',
-      },
       type: 'GameLog',
       netRegex: {
         line: '(?:You have commenced a ready check|\\y{Name} has initiated a ready check).*?',
@@ -234,6 +231,9 @@ const triggerSet: TriggerSet<Data> = {
       },
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.webm',
       soundVolume: 0.6,
+      comment: {
+        cn: '在队友发起准备确认时，播放D.Va的“Game on”音效(^-^)V',
+      },
     },
   ],
   timelineReplace: [
