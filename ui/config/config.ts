@@ -601,14 +601,17 @@ export class CactbotConfigurator {
 
   buildLeftDiv(opt: ConfigEntry): HTMLElement {
     const div = document.createElement('div');
-    // build Name
+
+    // Build Name
     const nameDiv = document.createElement('div');
     nameDiv.innerHTML = this.translate(opt.name);
     nameDiv.classList.add('option-name');
     div.appendChild(nameDiv);
+
+    // Build the trigger comment
     if (opt.comment) {
       const commentDiv = document.createElement('div');
-      commentDiv.innerHTML = this.translate(opt.comment);
+      commentDiv.innerHTML = opt.comment[this.lang] ?? opt.comment?.en ?? '';
       commentDiv.classList.add('comment');
       div.appendChild(commentDiv);
     }

@@ -145,7 +145,7 @@ type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   tts?: TriggerField<Data, NetMatches[Type], PartialTriggerOutput<Data, NetMatches[Type]>>;
   run?: TriggerField<Data, NetMatches[Type], void>;
   outputStrings?: OutputStrings;
-  comment?: LocaleText;
+  comment?: Partial<LocaleText>;
 };
 
 export type NetRegexTrigger<Data extends RaidbossData> = TriggerTypes extends infer T

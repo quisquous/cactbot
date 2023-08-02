@@ -14,7 +14,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       // Trigger id for internally generated early pull warning.
       id: 'General Early Pull',
-      comment: { en: '', cn: '抢开' },
+      comment: { cn: '抢开' },
     },
     {
       id: 'General Food Buff',
@@ -46,7 +46,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           },
         };
       },
-      comment: { en: '', cn: '食物消失' },
+      comment: { cn: '食物消失' },
     },
     {
       id: 'General Well Fed',
@@ -78,7 +78,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           },
         };
       },
-      comment: { en: '', cn: '兔印' },
+      comment: { cn: '兔印' },
     },
   ],
 };

@@ -696,7 +696,7 @@ class RaidbossConfigurator {
 
         // Build the trigger comment
         if (trig.comment) {
-          const trigComment = this.base.translate(trig.comment);
+          const trigComment = trig.comment[this.base.lang] ?? trig.comment?.en ?? '';
           const triggerCommentDiv = document.createElement('div');
           triggerCommentDiv.innerHTML = trigComment;
           triggerCommentDiv.classList.add('comment');

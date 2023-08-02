@@ -78,7 +78,7 @@ export type ConfigEntry = {
     options: BaseOptions,
     isDefault: boolean,
   ) => ConfigValue | void | undefined;
-  comment?: LocaleText;
+  comment?: Partial<LocaleText>;
 };
 
 export interface NamedConfigEntry<NameUnion> extends Omit<ConfigEntry, 'id'> {

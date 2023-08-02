@@ -119,7 +119,7 @@ class OopsyConfigurator {
         // Build the trigger comment
         const comment = info.triggers[id]?.comment;
         if (comment) {
-          const trigComment = this.base.translate(comment);
+          const trigComment = comment[this.base.lang] ?? comment?.en ?? '';
           const triggerComment = document.createElement('div');
           triggerComment.innerHTML = trigComment;
           triggerComment.classList.add('comment');
