@@ -132,6 +132,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
     key1: { en: 'output1 ${value}'},
     key2: { en: 'output2 ${value}'},
   },
+  comment: { en: 'comment text' },
 },
 ```
 
@@ -359,6 +360,17 @@ response: (data, matches, output) => {
   return {
     alarmText: output.text({ words: 'words word words' }),
   };
+},
+```
+
+**comment**
+An object where keys represent optional strings in various languages. This property is an optional auxiliary attribute used to display text around the trigger item in the cactbot configuration panel. You can use it to explain your trigger, leave some descriptive text, or even include a hyperlink.
+
+Example:
+
+```javascript
+comment: {
+  en: `Write your annotation text here. <em>Supports HTML tags</em>`,
 },
 ```
 
