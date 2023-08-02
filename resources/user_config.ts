@@ -58,6 +58,7 @@ export type UserFileCallback = (
 export type ConfigValue = string | number | boolean;
 export type ConfigEntry = {
   id: string;
+  comment?: Partial<LocaleText>;
   name: LocaleText;
   type: 'checkbox' | 'select' | 'float' | 'integer' | 'string' | 'directory' | 'html';
   html?: LocaleText;
@@ -78,7 +79,6 @@ export type ConfigEntry = {
     options: BaseOptions,
     isDefault: boolean,
   ) => ConfigValue | void | undefined;
-  comment?: Partial<LocaleText>;
 };
 
 export interface NamedConfigEntry<NameUnion> extends Omit<ConfigEntry, 'id'> {

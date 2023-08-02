@@ -18,6 +18,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'General Food Buff',
+      comment: { cn: '食物消失' },
       type: 'LosesEffect',
       // Well Fed
       netRegex: NetRegexes.losesEffect({ effectId: '48' }),
@@ -46,7 +47,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
           },
         };
       },
-      comment: { cn: '食物消失' },
     },
     {
       id: 'General Well Fed',
@@ -60,6 +60,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       id: 'General Rabbit Medium',
+      comment: { cn: '兔印' },
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '8E0' }),
       condition: (data, matches) => data.IsPlayerId(matches.sourceId),
@@ -78,7 +79,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
           },
         };
       },
-      comment: { cn: '兔印' },
     },
   ],
 };

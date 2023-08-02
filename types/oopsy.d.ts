@@ -72,13 +72,13 @@ export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMa
 
 export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> = {
   id: string;
+  comment?: Partial<LocaleText>;
   condition?: OopsyTriggerField<Data, NetMatches[Type], boolean>;
   delaySeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
   suppressSeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
   deathReason?: OopsyTriggerField<Data, NetMatches[Type], OopsyDeathReason>;
   mistake?: OopsyTriggerField<Data, NetMatches[Type], OopsyMistake | OopsyMistake[]>;
   run?: OopsyTriggerField<Data, NetMatches[Type], void>;
-  comment?: Partial<LocaleText>;
 };
 
 type OopsyTriggerRegex<T extends TriggerTypes> = {
