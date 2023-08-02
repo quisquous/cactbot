@@ -16,6 +16,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Provoke',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“挑衅”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -40,6 +41,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Frog Legs',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“蛙腿”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -77,6 +79,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Shirk',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“退避”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -101,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Holmgang',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“死斗”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -125,6 +129,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Hallowed',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“神圣领域”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -149,6 +154,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Superbolide',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“超火流星”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -173,6 +179,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Living',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员释放“行尸走肉”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'Ability',
@@ -197,6 +204,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'General Walking',
       comment: {
+        en: '',
         cn: '仅在非自身小队成员获得“死而不僵”且自身为坦克/治疗/青魔法师时触发。',
       },
       type: 'GainsEffect',
@@ -224,6 +232,7 @@ const triggerSet: TriggerSet<Data> = {
       // would be sent to the 0239 channel.  (Sometimes this is also sent to 0139, unknown why?)
       id: 'General Ready Check',
       comment: {
+        en: '',
         cn: '在队友发起准备确认时，播放D.Va的“Game on”音效(^-^)V',
       },
       type: 'GameLog',

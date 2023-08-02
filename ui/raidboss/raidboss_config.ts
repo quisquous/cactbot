@@ -556,7 +556,6 @@ class RaidbossConfigurator {
   private base: CactbotConfigurator;
   private alertsLang: Lang;
   private timelineLang: Lang;
-  private displayLanguage: Lang;
 
   constructor(cactbotConfigurator: CactbotConfigurator) {
     this.base = cactbotConfigurator;
@@ -567,9 +566,6 @@ class RaidbossConfigurator {
     this.alertsLang = langOrEn(this.base.getOption('raidboss', 'AlertsLanguage', this.base.lang));
     this.timelineLang = langOrEn(
       this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang),
-    );
-    this.displayLanguage = langOrEn(
-      this.base.getOption('raidboss', 'DisplayLanguage', this.base.lang),
     );
   }
 
@@ -699,12 +695,12 @@ class RaidbossConfigurator {
         triggerDiv.appendChild(triggerId);
 
         // Build the trigger comment
-        const trigComment = trig.comment?.[this.displayLanguage] ?? trig.comment?.en;
-        if (trigComment) {
-          const triggerComment = document.createElement('div');
-          triggerComment.innerHTML = trigComment;
-          triggerComment.classList.add('trigger-comment');
-          triggerDiv.appendChild(triggerComment);
+        if (trig.comment) {
+          const trigComment = this.base.translate(trig.comment);
+          const triggerCommentDiv = document.createElement('div');
+          triggerCommentDiv.innerHTML = trigComment;
+          triggerCommentDiv.classList.add('comment');
+          triggerDiv.appendChild(triggerCommentDiv);
         }
 
         triggerOptions.appendChild(triggerDiv);

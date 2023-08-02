@@ -200,6 +200,10 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
       default: 'far',
+      comment: {
+        en:
+          '<a href="https://github.com/quisquous/cactbot/releases/tag/v0.28.19" target="_blank">Reading notes</a>',
+      },
     },
   ],
   timelineFile: 'the_omega_protocol.txt',
