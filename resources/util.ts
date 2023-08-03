@@ -5,8 +5,9 @@ import {
 } from '../types/event';
 import { Job, Role } from '../types/job';
 import { NetMatches } from '../types/net_matches';
-import { OutputStrings } from '../types/trigger';
+import { LocaleText, OutputStrings } from '../types/trigger';
 
+import { Lang } from './languages';
 import { gameLogCodes } from './netregexes';
 import Outputs from './outputs';
 import { callOverlayHandler } from './overlay_plugin_api';
@@ -54,6 +55,50 @@ const nameToJobEnum: Record<Job, number> = {
   DNC: 38,
   RPR: 39,
   SGE: 40,
+};
+
+const nameToLocaleText: Record<Job, LocaleText> = {
+  NONE: { en: 'Adventurer', cn: '无' },
+  GLA: { en: 'Gladiator', cn: '剑术师' },
+  PGL: { en: 'Pugilist', cn: '格斗家' },
+  MRD: { en: 'Marauder', cn: '斧术师' },
+  LNC: { en: 'Lancer', cn: '枪术士' },
+  ARC: { en: 'Archer', cn: '弓箭手' },
+  CNJ: { en: 'Conjurer', cn: '幻术师' },
+  THM: { en: 'Thaumaturge', cn: '咒术师' },
+  CRP: { en: 'Carpenter', cn: '刻木匠' },
+  BSM: { en: 'Blacksmith', cn: '段铁匠' },
+  ARM: { en: 'Armorer', cn: '铸甲匠' },
+  GSM: { en: 'Goldsmith', cn: '雕金匠' },
+  LTW: { en: 'Leatherworker', cn: '制革匠' },
+  WVR: { en: 'Weaver', cn: '裁衣匠' },
+  ALC: { en: 'Alchemist', cn: '炼金术师' },
+  CUL: { en: 'Culinarian', cn: '烹调师' },
+  MIN: { en: 'Miner', cn: '采矿工' },
+  BTN: { en: 'Botanist', cn: '园艺工' },
+  FSH: { en: 'Fisher', cn: '捕鱼人' },
+  PLD: { en: 'Paladin', cn: '骑士' },
+  MNK: { en: 'Monk', cn: '武僧' },
+  WAR: { en: 'Warrior', cn: '战士' },
+  DRG: { en: 'Dragoon', cn: '龙骑士' },
+  BRD: { en: 'Bard', cn: '吟游诗人' },
+  WHM: { en: 'White Mage', cn: '白魔法师' },
+  BLM: { en: 'Black Mage', cn: '黑魔法师' },
+  ACN: { en: 'Arcanist', cn: '秘术师' },
+  SMN: { en: 'Summoner', cn: '召唤师' },
+  SCH: { en: 'Scholar', cn: '学者' },
+  ROG: { en: 'Rogue', cn: '双剑师' },
+  NIN: { en: 'Ninja', cn: '忍者' },
+  MCH: { en: 'Machinist', cn: '机工士' },
+  DRK: { en: 'Dark Knight', cn: '暗黑骑士' },
+  AST: { en: 'Astrologian', cn: '占星术士' },
+  SAM: { en: 'Samurai', cn: '武士' },
+  RDM: { en: 'Red Mage', cn: '赤魔法师' },
+  BLU: { en: 'Blue Mage Mage', cn: '青魔法师' },
+  GNB: { en: 'Gunbreaker', cn: '绝枪战士' },
+  DNC: { en: 'Dancer', cn: '舞者' },
+  RPR: { en: 'Reaper', cn: '钐镰客' },
+  SGE: { en: 'Sage', cn: '贤者' },
 };
 
 const allJobs = Object.keys(nameToJobEnum) as Job[];
@@ -386,6 +431,13 @@ const Util = {
   jobEnumToJob: (id: number) => {
     const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
     return job ?? 'NONE';
+  },
+  jobEnumToLocaleText: (id: number, lang: Lang) => {
+    const job = allJobs.find((job: Job) => nameToJobEnum[job] === id);
+    if (job) {
+      return nameToLocaleText?.[job]?.[lang] ?? 'NONE';
+    }
+    return 'NONE';
   },
   jobToJobEnum: (job: Job) => nameToJobEnum[job],
   jobToRole: (job: Job) => {
