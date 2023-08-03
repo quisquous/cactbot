@@ -970,7 +970,23 @@ export class PopupText {
       return nick;
 
     const idx = name.indexOf(' ');
-    return idx < 0 ? name : name.slice(0, idx);
+    const shortName = idx < 0 ? name : name.slice(0, idx);
+
+    if (this.options.PopupTextName2Job) {
+      const data = this.getDataObject();
+      const jobEnum = data.party.details.find((v) => v.name === name)?.job;
+      if (jobEnum) {
+        const jobLocale = Util.jobEnumToLocaleText(jobEnum, this.options.AlertsLanguage ?? 'en');
+        if (jobLocale) {
+          // if have duplicate job in alliance
+          return data.party.details.some((v) => v.name !== name && v.job === jobEnum)
+            ? `${jobLocale}(${shortName})`
+            : jobLocale;
+        }
+      }
+    }
+
+    return shortName;
   }
 
   Reset(): void {

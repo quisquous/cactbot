@@ -2405,6 +2405,15 @@ const templateOptions: OptionsTemplate = {
       type: 'float',
       default: 0.75,
     },
+    {
+      id: 'PopupTextName2Job',
+      name: {
+        en: 'Replace the player name in the output text with the job name.',
+        cn: '将输出文本的玩家名替换为职业名',
+      },
+      type: 'checkbox',
+      default: false,
+    },
   ],
 };
 
