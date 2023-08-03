@@ -1917,14 +1917,7 @@ const triggerSet: TriggerSet<Data> = {
         if (o1 === undefined || o2 === undefined || o3 === undefined || o4 === undefined)
           return;
 
-        // 1 = immediate
-        // 2 = fast
-        // 3 = (normal)
-        // 4 = delayed
-        // 5 = very delayed
         data.lcWhiteFlameDelay = [o1 + 1, o2 - o1, o3 - o2, o4 - o3];
-        console.log(`BAIT: ${JSON.stringify([o1, o2, o3, o4])}`);
-        console.log(`DELAY: ${JSON.stringify(data.lcWhiteFlameDelay)}`);
       },
     },
     {
