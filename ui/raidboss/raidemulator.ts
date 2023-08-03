@@ -138,6 +138,9 @@ const raidEmulatorOnLoad = async () => {
         UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
           // Update options from anything changed via getUserConfigLocation.
           options = { ...defaultOptions };
+          // If DisplayLanguage isn't English, switch to correct lang for emulator display
+          if (options.DisplayLanguage !== 'en')
+            applyTranslation(options.DisplayLanguage);
           querySelectorSafe(document, '.websocketConnected').classList.remove('d-none');
           querySelectorSafe(document, '.websocketDisconnected').classList.add('d-none');
           res();
@@ -158,10 +161,6 @@ const raidEmulatorOnLoad = async () => {
     options.SpokenAlertsEnabled = false;
     options.GroupSpokenAlertsEnabled = false;
   }
-
-  // If DisplayLanguage isn't English, switch to correct lang for emulator display
-  if (options.DisplayLanguage !== 'en')
-    applyTranslation(options.DisplayLanguage);
 
   const emulator = new RaidEmulator(options);
   const progressBar = new ProgressBar(emulator);
