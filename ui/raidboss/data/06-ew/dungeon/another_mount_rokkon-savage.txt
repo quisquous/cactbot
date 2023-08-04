@@ -1,0 +1,215 @@
+### ANOTHER MOUNT ROKKON SAVAGE
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~#
+# SHISHIO #
+#~~~~~~~~~#
+
+1000.0 "--sync--" sync / 00:0839::The Trial Of Benevolence will be sealed off/ window 10000,0
+1007.0 "--sync--" sync / 14:[^:]*:Shishio:8441:/ window 10000,0
+1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
+
+1014.0 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1019.2 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:841F:/
+1023.9 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1026.0 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1028.0 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
+
+1046.4 "--sync--" sync / 14:[^:]*:Shishio:8442:/ window 10,10
+1051.4 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
+1055.5 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
+
+1060.7 "--jump--" sync / 1[56]:[^:]*:Shishio:8444:/
+1071.0 "Noble Pursuit 1" sync / 1[56]:[^:]*:Shishio:842E:/
+1071.9 "Levinburst 1" #sync / 1[56]:[^:]*:Rairin:8430:/
+1072.6 "Noble Pursuit 2" #sync / 1[56]:[^:]*:Shishio:842F:/
+1073.5 "Levinburst 2" #sync / 1[56]:[^:]*:Rairin:8430:/
+1074.2 "Noble Pursuit 3" #sync / 1[56]:[^:]*:Shishio:842F:/
+1075.1 "Levinburst 3" #sync / 1[56]:[^:]*:Rairin:8430:/
+1075.8 "Noble Pursuit 4" #sync / 1[56]:[^:]*:Shishio:842F:/
+1076.7 "Levinburst 4" #sync / 1[56]:[^:]*:Rairin:8430:/
+1082.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
+
+1084.6 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
+1089.6 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1094.7 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:8431:/
+1106.6 "Right Swipe" #sync / 1[56]:[^:]*:Devilish Thrall:8432:/
+1106.6 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8433:/
+1107.5 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1113.5 "Right Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8432:/
+1113.5 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8433:/
+1114.4 "Unnatural Ailment/Unnatural Force 2" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+
+1118.7 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1123.8 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:841F:/
+1128.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1130.5 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1132.5 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
+
+1153.4 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
+1158.4 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1165.7 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
+1166.4 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1169.7 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(843B|843D):/
+1170.4 "Unnatural Ailment/Unnatural Force 2" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1178.8 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
+
+1186.9 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:8431:/
+1192.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1209.0 "Vengeful Souls" sync / 1[56]:[^:]*:Shishio:8435:/
+1209.0 "Stygian Aura" sync / 1[56]:[^:]*:Shishio:8437:/
+1209.0 "Vermilion Aura" sync / 1[56]:[^:]*:Shishio:8436:/
+
+1216.0 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:8439:/
+1223.2 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
+1227.3 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
+
+1232.5 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1237.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:841F:/
+1242.3 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1244.4 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1246.4 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
+
+1263.6 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
+1268.7 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:841F:/
+1273.4 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1275.5 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1277.5 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
+
+1304.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
+1309.1 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1316.4 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
+1317.1 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1320.4 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(843B|843D):/
+1321.0 "Unnatural Ailment/Unnatural Force 2" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1336.1 "Enkyo (ENRAGE)" sync / 1[56]:[^:]*:Shishio:8445:/
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# GORAI THE UNCAGED #
+#~~~~~~~~~~~~~~~~~~~#
+
+2000.0 "--sync--" sync / 00:0839::The Trial Of Wisdom will be sealed off/ window 10000,0
+2009.0 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/  window 10000,0
+2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
+
+2021.7 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2028.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2033.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2044.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:(8509|850A):/
+2047.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(853F|8540):/
+2047.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(853C|853D):/
+2048.0 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:8539:/
+2055.6 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8552:/
+2057.6 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8553:/
+
+2063.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2068.7 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:8520:/
+2079.6 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:8524:/
+2083.2 "Flintlock" sync / 1[56]:[^:]*:Gorai the Uncaged:8526:/
+2083.6 "Shock" sync / 1[56]:[^:]*:Ball of Levin:8521:/
+2094.5 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:8532:/
+
+2100.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2108.0 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8512:/
+2114.3 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
+2126.3 "Pointed Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2126.4 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2132.4 "Pointed Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2132.4 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2138.4 "Pointed Purgation 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2138.4 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2144.4 "Pointed Purgation 4" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2144.4 "Burst 4" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2155.7 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
+
+2163.1 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2169.2 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2178.5 "Cloud to Ground" #sync / 1[56]:[^:]*:Gorai the Uncaged:8529:/ duration 6.3
+2180.5 "Greater Ball of Fire/Great Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(8539|853A):/
+2183.5 "Great Ball of Fire/Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(853A|8539):/
+
+2193.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2202.2 "Fighting Spirits" sync / 1[56]:[^:]*:Gorai the Uncaged:854F:/
+2205.7 "Worldly Pursuit 1" sync / 1[56]:[^:]*:Gorai the Uncaged:853E:/
+2208.9 "Worldly Pursuit 2" sync / 1[56]:[^:]*:Gorai the Uncaged:853E:/
+2212.1 "Worldly Pursuit 3" sync / 1[56]:[^:]*:Gorai the Uncaged:853E:/
+2215.3 "Worldly Pursuit 4" sync / 1[56]:[^:]*:Gorai the Uncaged:853E:/
+2218.5 "Worldly Pursuit 5" sync / 1[56]:[^:]*:Gorai the Uncaged:853E:/
+2232.9 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:8532:/
+2246.4 "Malformed Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8514:/
+2252.8 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
+2265.9 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:8510:/
+2267.9 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2270.4 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2272.4 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2273.2 "Fire Spread" #sync / 1[56]:[^:]*:Gorai the Uncaged:8511:/
+2275.2 "Fire Spread" #sync / 1[56]:[^:]*:Gorai the Uncaged:8511:/
+
+2283.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2289.7 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2295.1 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2306.4 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:(8509|850A):/
+2309.5 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(853F|8540):/
+2309.5 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(853C|853D):/
+# ???
+2325.0 "Unenlightenment (Enrage)"
+
+
+#~~~~~~#
+# MOKO #
+#~~~~~~#
+
+3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,1
+3011.0 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:860C:/ window 10000,1
+3016.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+3035.4 "Triple Kasumi-giri" duration 6 #sync / 1[56]:[^:]*:Moko the Restless:85BC:/
+3055.4 "Triple Kasumi-giri" duration 6 #sync / 1[56]:[^:]*:Moko the Restless:85B0:/
+
+3070.6 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:860D:/
+3082.8 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:8600:/
+3088.4 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:(8599|8601):/
+3095.5 "Invocation of Vengeance" sync / 1[56]:[^:]*:Moko the Restless:85DB:/
+3107.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(85C2|85C6):/
+3111.3 "Explosion" #sync / 1[56]:[^:]*:Moko the Restless:85D3:/
+3111.4 "Vengeful Flame" #sync / 1[56]:[^:]*:Moko the Restless:85DC:/
+3118.3 "Explosion" #sync / 1[56]:[^:]*:Moko the Restless:85D3:/
+3119.4 "Vengeful Pyre" #sync / 1[56]:[^:]*:Moko the Restless:85DD:/
+3127.5 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+
+3138.0 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+3139.1 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+3145.2 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:860A:/
+3154.3 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3154.3 "Far/Near Edge" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
+3154.3 "Accursed Edge" sync / 1[56]:[^:]*:Ancient Katana:8607:/
+3157.0 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3157.0 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3160.0 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:86C4:/
+3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:860A:/
+3174.5 "Far/Near Edge" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
+3174.5 "Accursed Edge" sync / 1[56]:[^:]*:Ancient Katana:8607:/
+3174.5 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3176.8 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3179.8 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:86C6:/
+3179.8 "Shadow Kasumi-giri" #sync / 1[56]:[^:]*:Moko's Shadow:86C4:/
+3187.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+
+3201.7 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:8603:/
+3207.3 "Boundless Azure" #sync / 1[56]:[^:]*:Moko the Restless:859D:/
+3219.0 "Upwell" duration 18 #sync / 1[56]:[^:]*:Moko the Restless:(85D6|85D6):/
+3238.5 "Triple Kasumi-giri" duration 6 #sync / 1[56]:[^:]*:Moko the Restless:85B1:/
+3251.5 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+
+3263.8 "Soldiers of Death" #sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3269.9 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+3285.1 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3285.6 "Iron Rain" #sync / 1[56]:[^:]*:Ashigaru Kyuhei:85CF:/
+3287.6 "Shadow Kasumi-giri" #duration 3 sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3291.6 "Iron Rain" #sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A7:/
+3295.7 "Kenki Release" sync / 1[56]:[^:]*:Moko's Shadow:85CE:/
+# No data from here. Enrage is unknown
