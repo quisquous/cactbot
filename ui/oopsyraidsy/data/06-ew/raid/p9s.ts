@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { GetShareMistakeText } from '../../../oopsy_common';
 
 export type Data = OopsyData;
 
@@ -61,11 +62,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['8152', '8153'] }),
       condition: (data, matches) => !data.IsImmune(matches.targetId),
       mistake: (_data, matches) => {
+        const numTargets = parseInt(matches.targetCount);
         return {
           type: 'fail',
           blame: matches.target,
           reportId: matches.targetId,
-          text: matches.ability,
+          text: GetShareMistakeText(matches.ability, numTargets),
         };
       },
     },
