@@ -102,6 +102,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
       condition: (data, matches) => !data.IsImmune(matches.targetId),
       mistake: (_data, matches) => {
         const numTargets = parseInt(matches.targetCount);
+        if (numTargets === 1 || isNaN(numTargets))
+            return;
         return {
           type: 'warn',
           blame: matches.target,
