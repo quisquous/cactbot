@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
@@ -69,7 +70,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Bleeding': 'B87', // standing in a Palladion puddle
   },
   shareWarn: {
-    'P12S White Flame': '82F0', // add lasers (two closest)
     'P12S Searing Radiance': '82F1', // light tether
     'P12S Shadowsear': '82F2', // dark tether
     'P12S Theos\'s Holy': '8306', // spread damage in Superchain I
@@ -93,6 +93,22 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Superchain Emission': '82DE', // partner 2x stack
     'P12S Pyre Pulse': '833A', // partner 2x stack
   },
+  triggers: [
+    {
+      id: 'P12S White Flame Share',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '82F0' }),
+      condition: (data, matches) => !data.IsImmune(matches.targetId),
+      mistake: (_data, matches) => {
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
