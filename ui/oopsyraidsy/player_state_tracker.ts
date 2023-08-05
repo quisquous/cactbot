@@ -388,6 +388,21 @@ export class PlayerStateTracker {
     delete this.trackedEffectMap[targetId]?.[effectId];
   }
 
+  HasEffect(targetId: string | undefined, effectId: string | string[] | undefined): boolean {
+    if (targetId === undefined || effectId === undefined)
+      return false;
+    if (typeof effectId === 'string') {
+      if (this.trackedEffectMap[targetId]?.[effectId])
+        return true;
+    } else {
+      for (const effect of effectId) {
+        if (this.trackedEffectMap[targetId]?.[effect])
+          return true;
+      }
+    }
+    return false;
+  }
+
   OnDeathReason(timestamp: number, reason: OopsyDeathReason): void {
     const targetId = reason.id;
     if (!targetId || !IsPlayerId(targetId))
