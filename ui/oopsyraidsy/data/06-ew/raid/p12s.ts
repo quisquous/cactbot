@@ -1,6 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { GetShareMistakeText } from '../../../oopsy_common';
 
 // TODO: differentiate whose Searing Radiance 82F1 / Shadowsear 82F2 tether it was
 // TODO: differentiate who had the Astral/Umbral glow tower debuff
@@ -69,7 +71,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Bleeding': 'B87', // standing in a Palladion puddle
   },
   shareWarn: {
-    'P12S White Flame': '82F0', // add lasers (two closest)
     'P12S Searing Radiance': '82F1', // light tether
     'P12S Shadowsear': '82F2', // dark tether
     'P12S Theos\'s Holy': '8306', // spread damage in Superchain I
@@ -93,6 +94,25 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P12S Superchain Emission': '82DE', // partner 2x stack
     'P12S Pyre Pulse': '833A', // partner 2x stack
   },
+  triggers: [
+    {
+      id: 'P12S White Flame Share',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: '82F0' }),
+      condition: (data, matches) => !data.IsImmune(matches.targetId),
+      mistake: (_data, matches) => {
+        const numTargets = parseInt(matches.targetCount);
+        if (numTargets === 1 || isNaN(numTargets))
+          return;
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: GetShareMistakeText(matches.ability, numTargets),
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;

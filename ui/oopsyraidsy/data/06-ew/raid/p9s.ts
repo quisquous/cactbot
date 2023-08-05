@@ -1,6 +1,8 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { GetShareMistakeText } from '../../../oopsy_common';
 
 export type Data = OopsyData;
 
@@ -46,8 +48,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P9S Icemeld 4': '8192', // defamation 4
   },
   shareFail: {
-    'P9S Fire IV': '8152', // mage tankbuster
-    'P9S Aero IV': '8153', // mage tankbuster
     'P9S Firemeld': '8180', // Levinstrike spread damage
   },
   soloFail: {
@@ -55,6 +55,25 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P9S Pile Pyre 2': '8158', // empowered partner stacks
     'P9S Archaic Rockbreaker Partner': '8162', // partner stacks after Shockwave
   },
+  triggers: [
+    {
+      id: 'P9S Fire IV / Aero IV Share',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: ['8152', '8153'] }),
+      condition: (data, matches) => !data.IsImmune(matches.targetId),
+      mistake: (_data, matches) => {
+        const numTargets = parseInt(matches.targetCount);
+        if (numTargets === 1 || isNaN(numTargets))
+          return;
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: GetShareMistakeText(matches.ability, numTargets),
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
