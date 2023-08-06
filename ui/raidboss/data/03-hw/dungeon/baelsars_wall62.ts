@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
         'Magitek Bit': '魔導ビット',
         'Magitek Predator': '魔導プレデター',
         'Magitek Vanguard D-1': '魔導ヴァンガード防衛型',
-        'The Airship Landing': 'ゴールドソーサー・ランディング',
+        'The Airship Landing': '飛空戦艦発着場',
         '(?<! )The Griffin': '鉄面のイルベルド',
         'The Magitek Installation': '魔導兵器格納庫',
         'Via Praetoria': 'ヴィア・プラエトリア',
