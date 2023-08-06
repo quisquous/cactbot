@@ -3168,8 +3168,6 @@ const triggerSet: TriggerSet<Data> = {
         }
         // the initial call is not being suppressed, so call it for classical2
         if (matches.id === '8331') {
-          if (data.triggerSetConfig.classicalConcepts2InitialSuppress)
-            return;
           outputStr = output.classic2initial!({
             column: output[columnOutput]!(),
             row: output[rowOutput]!(),
