@@ -59,11 +59,11 @@ export default class Persistor extends Dexie {
   }
 
   public async loadEncounter(id: number): Promise<Encounter | undefined> {
-    return new Promise<Encounter | undefined>((res) => {
-      void this.transaction('readwrite', [this.encounters, this.encounterSummaries], async () => {
-        res(await this.encounters.get(id));
-      });
+    let enc: Encounter | undefined;
+    await this.transaction('readwrite', [this.encounters, this.encounterSummaries], async () => {
+      enc = await this.encounters.get(id);
     });
+    return enc;
   }
 
   public async persistEncounter(baseEncounter: Encounter): Promise<unknown> {
