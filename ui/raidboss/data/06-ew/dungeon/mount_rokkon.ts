@@ -159,21 +159,25 @@ const triggerSet: TriggerSet<Data> = {
         inAndCards: {
           en: 'In + Cardinals',
           de: 'Rein + Kardinal',
+          cn: '内 + 十字',
           ko: '안 + 십자방향',
         },
         outAndCards: {
           en: 'Out + Cardinals',
           de: 'Raus + Kardinal',
+          cn: '外 + 十字',
           ko: '밖 + 십자방향',
         },
         inAndIntercards: {
           en: 'In + Intercards',
           de: 'Rein + Interkardinal',
+          cn: '内 + 对角',
           ko: '안 + 대각선',
         },
         outAndIntercards: {
           en: 'Out + Intercards',
           de: 'Raus + Interkardinal',
+          cn: '外 + 对角',
           ko: '밖 + 대각선',
         },
       },
@@ -204,10 +208,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lookWest: {
           en: 'Look West',
+          cn: '看西侧',
           de: 'Schau nach Westen',
         },
         lookEast: {
           en: 'Look East',
+          cn: '看东侧',
           de: 'Schau nach Osten',
         },
       },
@@ -249,18 +255,22 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
+          cn: '外北',
           de: 'Nördlich außen',
         },
         insideNorth: {
           en: 'Inside North',
+          cn: '内北',
           de: 'Nördlich innen',
         },
         insideSouth: {
           en: 'Inside South',
+          cn: '内南',
           de: 'Südlich innen',
         },
         outsideSouth: {
           en: 'Outside South',
+          cn: '外南',
           de: 'Südlich außen',
         },
       },
@@ -275,6 +285,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '4x Chasing AOE on YOU',
           de: '4x verfolgende AoE auf DIR',
+          cn: '四连 AOE 点名',
         },
       },
     },
@@ -362,21 +373,25 @@ const triggerSet: TriggerSet<Data> = {
         through: {
           en: 'Run Through',
           de: 'Renn durch',
+          cn: '穿',
           ko: '가로지르기',
         },
         stay: {
           en: 'Stay',
           de: 'Stehen bleiben',
+          cn: '停',
           ko: '그대로',
         },
         rotateLeft: {
           en: 'Rotate Left',
           de: 'Links rotieren',
+          cn: '逆时针旋转',
           ko: '왼쪽으로',
         },
         rotateRight: {
           en: 'Rotate Right',
           de: 'Rechts rotieren',
+          cn: '顺时针旋转',
           ko: '오른쪽으로',
         },
         combo: {
@@ -404,6 +419,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '(${dir} First)',
           de: '(${dir} Zuerst)',
           ko: '(${dir} 먼저)',
+          cn: '(首先${dir})',
         },
         back: Outputs.back,
         front: Outputs.front,
@@ -468,14 +484,17 @@ const triggerSet: TriggerSet<Data> = {
         lines: {
           en: 'Avoid Expanding Lines',
           de: 'Weiche den expandierenden Linien aus',
+          cn: '远离扩张的线',
         },
         rocks: {
           en: 'Avoid Expanding Rocks',
           de: 'Weiche den expandierenden Steinen aus',
+          cn: '远离变大的石头',
         },
         both: {
           en: 'Avoid Expanding Rocks/Lines',
           de: 'Weiche den expandierenden Steinen/Linien aus',
+          cn: '远离扩张的线 + 石头',
         },
       },
     },
@@ -498,10 +517,12 @@ const triggerSet: TriggerSet<Data> = {
         rocks: {
           en: 'Stand on Rock',
           de: 'Steh auf einem Stein',
+          cn: '站在石头上',
         },
         both: {
           en: 'Stand on Rock + Line',
           de: 'Steh auf einem Stein + Linie',
+          cn: '站在石头+线上',
         },
       },
     },
@@ -514,6 +535,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand in All Towers',
           de: 'Steh in allen Türmen',
+          cn: '站在塔里',
         },
       },
     },
@@ -539,6 +561,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Between Rings + Outside Line',
           de: 'Zwischen Ringen + äußere Linie',
+          cn: '内环 + 外线',
         },
       },
     },
