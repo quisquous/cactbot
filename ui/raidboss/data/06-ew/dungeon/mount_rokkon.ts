@@ -208,13 +208,13 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lookWest: {
           en: 'Look West',
-          cn: '看西侧',
           de: 'Schau nach Westen',
+          cn: '看西侧',
         },
         lookEast: {
           en: 'Look East',
-          cn: '看东侧',
           de: 'Schau nach Osten',
+          cn: '看东侧',
         },
       },
     },
@@ -255,23 +255,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outsideNorth: {
           en: 'Outside North',
-          cn: '外北',
           de: 'Nördlich außen',
+          cn: '外北',
         },
         insideNorth: {
           en: 'Inside North',
-          cn: '内北',
           de: 'Nördlich innen',
+          cn: '内北',
         },
         insideSouth: {
           en: 'Inside South',
-          cn: '内南',
           de: 'Südlich innen',
+          cn: '内南',
         },
         outsideSouth: {
           en: 'Outside South',
-          cn: '外南',
           de: 'Südlich außen',
+          cn: '外南',
         },
       },
     },
@@ -397,6 +397,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          cn: '${dir1} => ${dir2}',
           ko: '${dir1} => ${dir2}',
         },
       },
@@ -418,8 +419,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(${dir} First)',
           de: '(${dir} Zuerst)',
-          ko: '(${dir} 먼저)',
           cn: '(首先${dir})',
+          ko: '(${dir} 먼저)',
         },
         back: Outputs.back,
         front: Outputs.front,
@@ -428,6 +429,7 @@ const triggerSet: TriggerSet<Data> = {
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          cn: '${dir1} => ${dir2}',
           ko: '${dir1} => ${dir2}',
         },
       },
