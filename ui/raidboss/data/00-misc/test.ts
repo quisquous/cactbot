@@ -365,7 +365,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test OutputStrings',
       type: 'GameLog',
-      netRegex: NetRegexes.echo({ line: 'cactbot test outputStrings', capture: false }),
+      netRegex: { line: 'cactbot test outputStrings', code: Util.gameLogCodes.echo, capture: false },
       infoText: (data, _matches, output) => {
         // TODO: This doesn't work unless you're in a party, because party tracker is empty.
         // OverlayPlugin should probably always return the current player as being in the party
@@ -421,6 +421,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
