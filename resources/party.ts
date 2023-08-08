@@ -178,18 +178,28 @@ export default class PartyTracker {
     playerNicks: { [name: string]: string },
   ): PartyMemberParamObject | undefined {
     const partyMember = this.details.find((member) => member.name === name);
-    if (!partyMember)
-      return;
-
-    const jobName = Util.jobEnumToJob(partyMember.job);
-    const role = Util.jobToRole(jobName);
-    const ret: PartyMemberParamObject = {
-      id: partyMember.id,
-      job: jobName,
-      role: role,
-      name: name,
-      shortName: Util.shortName(name, playerNicks),
-    };
+    let ret: PartyMemberParamObject;
+    if (!partyMember) {
+      // If we can't find this party member for some reason, use some sort of default
+      ret = {
+        id: '???',
+        job: 'NONE',
+        role: '???',
+        name: name,
+        shortName: Util.shortName(name, playerNicks),
+        toString: () => Util.shortName(name, playerNicks),
+      };
+    } else {
+      const jobName = Util.jobEnumToJob(partyMember.job);
+      const role = Util.jobToRole(jobName);
+      ret = {
+        id: partyMember.id,
+        job: jobName,
+        role: role,
+        name: name,
+        shortName: Util.shortName(name, playerNicks),
+      };
+    }
 
     // Need to assign this afterwards so it can reference `ret`
     ret.toString = () => {
