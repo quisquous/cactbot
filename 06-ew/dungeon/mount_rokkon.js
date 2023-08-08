@@ -128,21 +128,25 @@ Options.Triggers.push({
         inAndCards: {
           en: 'In + Cardinals',
           de: 'Rein + Kardinal',
+          cn: '内 + 十字',
           ko: '안 + 십자방향',
         },
         outAndCards: {
           en: 'Out + Cardinals',
           de: 'Raus + Kardinal',
+          cn: '外 + 十字',
           ko: '밖 + 십자방향',
         },
         inAndIntercards: {
           en: 'In + Intercards',
           de: 'Rein + Interkardinal',
+          cn: '内 + 对角',
           ko: '안 + 대각선',
         },
         outAndIntercards: {
           en: 'Out + Intercards',
           de: 'Raus + Interkardinal',
+          cn: '外 + 对角',
           ko: '밖 + 대각선',
         },
       },
@@ -174,10 +178,12 @@ Options.Triggers.push({
         lookWest: {
           en: 'Look West',
           de: 'Schau nach Westen',
+          cn: '看西侧',
         },
         lookEast: {
           en: 'Look East',
           de: 'Schau nach Osten',
+          cn: '看东侧',
         },
       },
     },
@@ -216,18 +222,22 @@ Options.Triggers.push({
         outsideNorth: {
           en: 'Outside North',
           de: 'Nördlich außen',
+          cn: '外北',
         },
         insideNorth: {
           en: 'Inside North',
           de: 'Nördlich innen',
+          cn: '内北',
         },
         insideSouth: {
           en: 'Inside South',
           de: 'Südlich innen',
+          cn: '内南',
         },
         outsideSouth: {
           en: 'Outside South',
           de: 'Südlich außen',
+          cn: '外南',
         },
       },
     },
@@ -241,6 +251,7 @@ Options.Triggers.push({
         text: {
           en: '4x Chasing AOE on YOU',
           de: '4x verfolgende AoE auf DIR',
+          cn: '四连 AOE 点名',
         },
       },
     },
@@ -325,26 +336,31 @@ Options.Triggers.push({
         through: {
           en: 'Run Through',
           de: 'Renn durch',
+          cn: '穿',
           ko: '가로지르기',
         },
         stay: {
           en: 'Stay',
           de: 'Stehen bleiben',
+          cn: '停',
           ko: '그대로',
         },
         rotateLeft: {
           en: 'Rotate Left',
           de: 'Links rotieren',
+          cn: '逆时针旋转',
           ko: '왼쪽으로',
         },
         rotateRight: {
           en: 'Rotate Right',
           de: 'Rechts rotieren',
+          cn: '顺时针旋转',
           ko: '오른쪽으로',
         },
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          cn: '${dir1} => ${dir2}',
           ko: '${dir1} => ${dir2}',
         },
       },
@@ -366,6 +382,7 @@ Options.Triggers.push({
         text: {
           en: '(${dir} First)',
           de: '(${dir} Zuerst)',
+          cn: '(首先${dir})',
           ko: '(${dir} 먼저)',
         },
         back: Outputs.back,
@@ -375,6 +392,7 @@ Options.Triggers.push({
         combo: {
           en: '${dir1} => ${dir2}',
           de: '${dir1} => ${dir2}',
+          cn: '${dir1} => ${dir2}',
           ko: '${dir1} => ${dir2}',
         },
       },
@@ -431,14 +449,17 @@ Options.Triggers.push({
         lines: {
           en: 'Avoid Expanding Lines',
           de: 'Weiche den expandierenden Linien aus',
+          cn: '远离扩张的线',
         },
         rocks: {
           en: 'Avoid Expanding Rocks',
           de: 'Weiche den expandierenden Steinen aus',
+          cn: '远离变大的石头',
         },
         both: {
           en: 'Avoid Expanding Rocks/Lines',
           de: 'Weiche den expandierenden Steinen/Linien aus',
+          cn: '远离扩张的线 + 石头',
         },
       },
     },
@@ -461,10 +482,12 @@ Options.Triggers.push({
         rocks: {
           en: 'Stand on Rock',
           de: 'Steh auf einem Stein',
+          cn: '站在石头上',
         },
         both: {
           en: 'Stand on Rock + Line',
           de: 'Steh auf einem Stein + Linie',
+          cn: '站在石头+线上',
         },
       },
     },
@@ -477,6 +500,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand in All Towers',
           de: 'Steh in allen Türmen',
+          cn: '站在塔里',
         },
       },
     },
@@ -502,6 +526,7 @@ Options.Triggers.push({
         text: {
           en: 'Between Rings + Outside Line',
           de: 'Zwischen Ringen + äußere Linie',
+          cn: '内环 + 外线',
         },
       },
     },
