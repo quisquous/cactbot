@@ -365,7 +365,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Test OutputStrings',
       type: 'GameLog',
-      netRegex: { line: 'cactbot test outputStrings', code: Util.gameLogCodes.echo, capture: false },
+      netRegex: {
+        line: 'cactbot test outputStrings',
+        code: Util.gameLogCodes.echo,
+        capture: false,
+      },
       infoText: (data, _matches, output) => {
         // TODO: This doesn't work unless you're in a party, because party tracker is empty.
         // OverlayPlugin should probably always return the current player as being in the party
@@ -464,6 +468,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ja',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -539,6 +544,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
