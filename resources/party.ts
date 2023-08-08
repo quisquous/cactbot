@@ -16,7 +16,7 @@ const emptyRoleToPartyNames = () => {
 };
 
 export type BasePartyMemberParamObject = {
-  role: string;
+  role: Role;
   job: Job;
   id: string;
   name: string;
@@ -184,7 +184,7 @@ export default class PartyTracker {
       ret = {
         id: '???',
         job: 'NONE',
-        role: '???',
+        role: 'none',
         name: name,
         shortName: Util.shortName(name, playerNicks),
         toString: () => Util.shortName(name, playerNicks),
