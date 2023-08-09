@@ -375,6 +375,7 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
     // This is the order in which they are run.
     const triggerOrder: (keyof LooseTrigger | keyof LooseTimelineTrigger)[] = [
       'id',
+      'comment',
       'type',
       'disabled',
       'netRegex',

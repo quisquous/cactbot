@@ -243,11 +243,12 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'Bombe',
         'Boomtype Magitek Gobwalker G-VII': 'Gob-Stampfer VII-L',
+        'Frostbite': 'Erfrierung',
         'Padlock': 'Vorhängeschloss',
+        'Pyretic': 'Pyretisch',
         'Quickthinx Allthoughts': 'Denkfix',
         'Shanoa': 'Schwarz(?:e|er|es|en) Katze',
         'Sturm Doll': 'Sturmpuppe',
@@ -280,7 +281,9 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
+        'Frostbite': 'Gelure',
         'Padlock': 'cadenas',
+        'Pyretic': 'Chaleur',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
         'Shanoa': 'Chat-noir',
         'Sturm Doll': 'poupée sturm',

@@ -136,7 +136,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'WOLEx Terror Unleashed',
       type: 'Ability',
       netRegex: { source: 'Warrior Of Light', id: '4F09', capture: false },
-      condition: (data) => data.role === 'healer',
+      condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -377,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
       // This is still 1 second before this cast goes off, giving ~7 seconds before LB is needed.
       delaySeconds: 4,
       alarmText: (data, _matches, output) => {
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.text!();
       },
       run: (data) => {

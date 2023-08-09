@@ -64,21 +64,31 @@ export class LineEvent0x105 extends LineEvent {
     if (stringStateMap.IsTargetable !== undefined)
       this.state.IsTargetable = Boolean(parseInt(stringStateMap.IsTargetable));
 
+    // Base-16 numbers (IDs)
+    if (stringStateMap.BNpcID !== undefined)
+      this.state.BNpcID = parseInt(stringStateMap.BNpcID, 16);
+    if (stringStateMap.BNpcNameID !== undefined)
+      this.state.BNpcNameID = parseInt(stringStateMap.BNpcNameID, 16);
+    if (stringStateMap.NPCTargetID !== undefined)
+      this.state.NPCTargetID = parseInt(stringStateMap.NPCTargetID, 16);
+    if (stringStateMap.PCTargetID !== undefined)
+      this.state.PCTargetID = parseInt(stringStateMap.PCTargetID, 16);
+    if (stringStateMap.OwnerID !== undefined)
+      this.state.OwnerID = parseInt(stringStateMap.OwnerID, 16);
+    if (stringStateMap.TargetID !== undefined)
+      this.state.TargetID = parseInt(stringStateMap.TargetID, 16);
+    if (stringStateMap.CastTargetID !== undefined)
+      this.state.CastTargetID = parseInt(stringStateMap.CastTargetID, 16);
+
     // Numbers
     if (stringStateMap.CurrentWorldID !== undefined)
       this.state.CurrentWorldID = parseFloat(stringStateMap.CurrentWorldID);
     if (stringStateMap.WorldID !== undefined)
       this.state.WorldID = parseFloat(stringStateMap.WorldID);
-    if (stringStateMap.BNpcID !== undefined)
-      this.state.BNpcID = parseFloat(stringStateMap.BNpcID);
-    if (stringStateMap.BNpcNameID !== undefined)
-      this.state.BNpcNameID = parseFloat(stringStateMap.BNpcNameID);
     if (stringStateMap.PartyType !== undefined)
       this.state.PartyType = parseFloat(stringStateMap.PartyType);
     if (stringStateMap.ID !== undefined)
       this.state.ID = parseFloat(stringStateMap.ID);
-    if (stringStateMap.OwnerID !== undefined)
-      this.state.OwnerID = parseFloat(stringStateMap.OwnerID);
     if (stringStateMap.WeaponId !== undefined)
       this.state.WeaponId = parseFloat(stringStateMap.WeaponId);
     if (stringStateMap.Type !== undefined)
@@ -111,12 +121,8 @@ export class LineEvent0x105 extends LineEvent {
       this.state.ModelStatus = parseFloat(stringStateMap.ModelStatus);
     if (stringStateMap.AggressionStatus !== undefined)
       this.state.AggressionStatus = parseFloat(stringStateMap.AggressionStatus);
-    if (stringStateMap.TargetID !== undefined)
-      this.state.TargetID = parseFloat(stringStateMap.TargetID);
     if (stringStateMap.Radius !== undefined)
       this.state.Radius = parseFloat(stringStateMap.Radius);
-    if (stringStateMap.NPCTargetID !== undefined)
-      this.state.NPCTargetID = parseFloat(stringStateMap.NPCTargetID);
     if (stringStateMap.CurrentGP !== undefined)
       this.state.CurrentGP = parseFloat(stringStateMap.CurrentGP);
     if (stringStateMap.MaxGP !== undefined)
@@ -125,16 +131,12 @@ export class LineEvent0x105 extends LineEvent {
       this.state.CurrentCP = parseFloat(stringStateMap.CurrentCP);
     if (stringStateMap.MaxCP !== undefined)
       this.state.MaxCP = parseFloat(stringStateMap.MaxCP);
-    if (stringStateMap.PCTargetID !== undefined)
-      this.state.PCTargetID = parseFloat(stringStateMap.PCTargetID);
     if (stringStateMap.IsCasting1 !== undefined)
       this.state.IsCasting1 = parseFloat(stringStateMap.IsCasting1);
     if (stringStateMap.IsCasting2 !== undefined)
       this.state.IsCasting2 = parseFloat(stringStateMap.IsCasting2);
     if (stringStateMap.CastBuffID !== undefined)
       this.state.CastBuffID = parseFloat(stringStateMap.CastBuffID);
-    if (stringStateMap.CastTargetID !== undefined)
-      this.state.CastTargetID = parseFloat(stringStateMap.CastTargetID);
     if (stringStateMap.CastDurationCurrent !== undefined)
       this.state.CastDurationCurrent = parseFloat(stringStateMap.CastDurationCurrent);
     if (stringStateMap.CastDurationMax !== undefined)

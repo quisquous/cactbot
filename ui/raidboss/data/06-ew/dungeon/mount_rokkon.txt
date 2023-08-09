@@ -1,0 +1,1118 @@
+### MOUNT ROKKON
+# ZoneId: 471
+
+hideall "--Reset--"
+hideall "--sync--"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Yozakura the Fleeting (left path) #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 83A9:1011.6 837E:1365.9 838F:1663.8
+# -ii 838A 8391 8382
+
+1000.0 "--sync--" sync / 00:0839::Last Glimpse will be sealed off/ window 10000,0
+1011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+1021.6 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+1030.7 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+1035.8 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1040.1 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+# TODO: is this always wind?
+#1040.3 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1042.3 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+1049.5 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+1052.7 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+1059.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+
+# -> rain path
+1060.9 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:837E:/ window 50,50 jump 1360.9
+1065.9 "Bunshin?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:837E:/
+
+# -> wind path
+1060.8 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/ window 50,50 jump 1660.8
+1070.1 "Windblossom Whirl?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:8390:/
+
+
+# Rain path
+1359.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1360.9 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:837E:/
+1365.9 "Bunshin" sync / 1[56]:[^:]*:Yozakura the Fleeting:837E:/
+1375.0 "Shadowflight (cast)" sync / 1[56]:[^:]*:Yozakura the Fleeting:837F:/
+1380.0 "Shadowflight" sync / 1[56]:[^:]*:Mirrored Yozakura:8380:/
+1385.2 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+
+1394.3 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+1399.4 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1403.5 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#1103.7 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1105.7 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1107.7 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1109.7 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+1416.9 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+1420.1 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+1425.1 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+1428.1 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+1437.2 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1443.4 "Bunshin" sync / 1[56]:[^:]*:Yozakura the Fleeting:837E:/
+1451.5 "Mudrain" sync / 1[56]:[^:]*:Yozakura the Fleeting:8389:/
+1456.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:838B:/
+1460.9 "Icebloom 1" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838C:/
+1462.9 "Icebloom 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838C:/
+1464.8 "Mud Pie (cast)" sync / 1[56]:[^:]*:Yozakura the Fleeting:838D:/
+1464.9 "Icebloom 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838C:/
+1471.9 "Mud Pie" #sync / 1[56]:[^:]*:Mud Bubble:838E:/
+1472.7 "Shadowflight (cast)" sync / 1[56]:[^:]*:Yozakura the Fleeting:837F:/
+1477.7 "Shadowflight" sync / 1[56]:[^:]*:Mirrored Yozakura:8380:/
+1484.9 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+1493.1 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+1503.3 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/ window 20,20 forcejump 1394.3
+
+
+# Wind path
+1659.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1660.8 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/
+1663.8 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:838F:/
+1670.1 "Windblossom Whirl" sync / 1[56]:[^:]*:Yozakura the Fleeting:8390:/
+1670.1 "Levinblossom Strike" sync / 1[56]:[^:]*:Yozakura the Fleeting:8392:/
+1675.2 "Windblossom Whirl" sync / 1[56]:[^:]*:Yozakura the Fleeting:86F0:/
+1675.2 "Levinblossom Strike" sync / 1[56]:[^:]*:Yozakura the Fleeting:8392:/
+1680.2 "Windblossom Whirl" sync / 1[56]:[^:]*:Yozakura the Fleeting:86F0:/
+1680.2 "Levinblossom Strike" sync / 1[56]:[^:]*:Yozakura the Fleeting:8392:/
+1685.2 "Windblossom Whirl" sync / 1[56]:[^:]*:Yozakura the Fleeting:86F0:/
+1685.2 "Levinblossom Strike" sync / 1[56]:[^:]*:Yozakura the Fleeting:8392:/
+1687.2 "Drifting Petals" sync / 1[56]:[^:]*:Yozakura the Fleeting:8393:/
+1693.3 "Windblossom Whirl" sync / 1[56]:[^:]*:Yozakura the Fleeting:8390:/
+1693.3 "Levinblossom Strike" sync / 1[56]:[^:]*:Yozakura the Fleeting:8392:/
+1696.3 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+1705.4 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+1710.5 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1714.8 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#1713.9 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1715.9 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1717.9 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#1719.9 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+1728.2 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+1731.4 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+1736.4 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+1739.4 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+1748.6 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+#1752.8 "Season Indicator 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#1754.9 "Season Indicator 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#1757.0 "Season Indicator 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#1759.1 "Season Indicator 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+1759.5 "Seasons of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8381:/
+1760.4 "Season of Element 1" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+1762.5 "Season of Element 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+1764.6 "Season of Element 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+1766.7 "Season of Element 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+1776.0 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+1784.2 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+1789.3 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+1790.5 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/
+1793.5 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:838F:/ window 30,30 forcejump 1663.8
+
+# YOZAKURA ABILITIES (ALL PATHS)
+# 1961 attack
+# 8368 Art of the Fireblossom circle cast and damage
+# 8369 Art of the Windblossom donut cast and damage
+# 836E Oka Ranman self-targeted cast and ability for various Seal
+# 8374 Seal of Riotous Bloom self-targeted cast and ability during Oka Ranman
+# 8375 Seal of the Fireblossom circle damage
+# 8376 Seal of the Windblossom donut damage
+# 8377 Seal of the Rainblossom intercard damage
+# 8378 Seal of the Levinblossom card damage
+# 8379 Seal of the Fleeting self-targetd ability
+# 837A Seal of the Fireblossom fire marker
+# 837B Seal of the Windblossom wind marker
+# 837C Seal of the Levinblossom thunder marker
+# 837D Seal of the Rainblossom rain marker
+# 83A9 Glory Neverlasting cast and damage tankbuster
+# 83AA Kuge Rantsui cast and damage aoe
+# 8612 --sync-- repositioning
+
+# YOZAKURA ABILITIES (LEFT AND RIGHT PATH)
+# 837E Bunshin self-targeted cast and ability to summon clone
+# 837F Shadowflight self-targeted cast and ability
+# 8380 Shadowflight clone backstab damage
+# 8381 Seasons of the Fleeting cast and self-targeted ability
+# 8382 Seasons of the Fleeting self-targeted ability used between Seasons
+# 8383 --sync-- line indicator
+# 8384 --sync-- pinwheel indicator
+# 8385 Season of Fire 4x lines (back safe)
+# 8386 Season of Water 4x lines (front safe)
+# 8387 Season of Lightning intercardinal pinwheel
+# 8388 Season of Earth cardinal pinwheel
+# 8389 Mudrain self-targeted cast and ability
+# 838A Mudrain cast and damage for initial circles
+# 8393 Drifting Petals cast and knockback damage
+
+# YOZAKURA ABILITIES (LEFT PATH)
+# 838F Windblossom Whirl cast and self-targeted
+# 8390 Windblossom Whirl cast and damage for donut
+# 8391 Levinblossom Strike cast and self-targeted
+# 8392 Levinblossom Strike cast and damage for lightning circles
+# 838B Icebloom self-targeted cast and ability
+# 838C Icebloom cast and damage for three chasing circles
+# 838D Mud Pie self-targeted cast and ability
+# 838E Mud Pie cast and damage for mud line aoes
+# 86F0 Windblossom Whirl ongoing donut damage for repeated donuts
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# Moko the Restless #
+#~~~~~~~~~~~~~~~~~~~#
+
+# -p 85AD:2011.9
+# -ii 8597 86D2 878A 85A0 859A 859E 871C 85A4 85A7
+
+2000.0 "--sync--" sync / 00:0839::The Hall Of The Unseen will be sealed off/ window 10000,0
+2011.9 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+2022.1 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2028.5 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:8587:/
+2035.6 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[98A]:/
+2048.7 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[98A]:/
+2056.8 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2071.8 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+2074.9 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2083.6 "Spearman's Orders" sync / 1[56]:[^:]*:Moko the Restless:8595:/
+2083.6 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2095.7 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2103.1 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2118.1 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+2124.2 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+2131.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2143.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2147.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2160.2 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2163.8 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+
+# => path 01
+2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A8:/ window 50,50 jump 2269.0
+2172.0 "Untempered Sword?" #sync / 1[56]:[^:]*:Moko the Restless:85A8:/
+
+# => path 02
+2170.5 "--sync--" sync / 14:[^:]*:Moko the Restless:85AB:/ window 50,50 jump 2570.5
+2173.5 "Moonless Night?" #sync / 1[56]:[^:]*:Moko the Restless:85AB:/
+
+# => path 03
+2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A1:/ window 50,50 jump 2869.0
+2172.0 "Tengu-yobi?" #sync / 1[56]:[^:]*:Moko the Restless:85A1:/
+
+# => path 04
+2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A5:/ window 50,50 jump 3169.0
+2172.0 "Spiritspark?" #sync / 1[56]:[^:]*:Moko the Restless:85A5:/
+
+
+# path 01
+2231.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2243.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2247.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2260.2 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2263.8 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+
+2269.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A8:/
+2272.0 "Untempered Sword" sync / 1[56]:[^:]*:Moko the Restless:85A8:/
+2276.0 "Unsheathing 1" sync / 1[56]:[^:]*:Ancient Katana:85A9:/
+2280.0 "Unsheathing 2" sync / 1[56]:[^:]*:Ancient Katana:85A9:/
+2282.2 "Veil Sever 1" sync / 1[56]:[^:]*:Ancient Katana:85AA:/
+2284.1 "Unsheathing 3" sync / 1[56]:[^:]*:Ancient Katana:85A9:/
+2286.3 "Veil Sever 2" sync / 1[56]:[^:]*:Ancient Katana:85AA:/
+2288.2 "Unsheathing 4" sync / 1[56]:[^:]*:Ancient Katana:85A9:/
+2290.4 "Veil Sever 3" sync / 1[56]:[^:]*:Ancient Katana:85AA:/
+2294.4 "Veil Sever 4" sync / 1[56]:[^:]*:Ancient Katana:85AA:/
+
+2298.1 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2304.4 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[789A]:/
+2311.5 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+
+2317.7 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2324.1 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:859C:/
+2329.7 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:859D:/
+2342.4 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+2348.3 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+2356.3 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+2366.7 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2378.8 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2382.4 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2389.5 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+2398.6 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2407.3 "Spearman's Orders" sync / 1[56]:[^:]*:Moko the Restless:8595:/
+2407.3 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2418.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2426.2 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2441.2 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+
+2448.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/ window 30,30 forcejump 2231.4
+
+
+# path 02
+2531.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2543.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2547.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2560.2 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2563.8 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+
+2569.1 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2570.5 "--sync--" sync / 14:[^:]*:Moko the Restless:85AB:/
+2573.5 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85AB:/
+2581.7 "Clearout 1" sync / 1[56]:[^:]*:Oni's Claw:85AC:/
+2590.9 "Clearout 2" sync / 1[56]:[^:]*:Oni's Claw:85AC:/
+
+2595.7 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2601.9 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[789A]:/
+2609.0 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+
+2615.2 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2621.6 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:8598:/
+2627.2 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:8599:/
+2641.9 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+2646.9 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+2651.9 "Explosion 3" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+2652.3 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2664.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2668.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2675.2 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+2684.3 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2693.0 "Spearman's Orders" sync / 1[56]:[^:]*:Moko the Restless:8595:/
+2693.0 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2704.7 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+2712.3 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+2727.3 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+
+2734.5 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/ window 30,30 forcejump 2531.4
+
+
+# path 03
+2831.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2843.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2847.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2860.2 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2863.8 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+
+2869.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A1:/
+2872.0 "Tengu-yobi" sync / 1[56]:[^:]*:Moko the Restless:85A1:/
+2884.0 "Yama-kagura" sync / 1[56]:[^:]*:Ill-come Tengu:85A2:/
+
+2889.1 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2895.4 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[789A]:/
+
+2908.6 "Yama-kagura" sync / 1[56]:[^:]*:Ill-come Tengu:85A2:/
+2910.6 "Ghastly Grasp" sync / 1[56]:[^:]*:Moko the Restless:85A3:/
+2918.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+2924.7 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2931.1 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:859C:/
+2936.7 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:859D:/
+2949.4 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+2955.4 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+2963.4 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:859F:/ duration 10
+
+2973.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+2985.9 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+2989.5 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+2996.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+
+3005.7 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3014.3 "Spearman's Orders" sync / 1[56]:[^:]*:Moko the Restless:8595:/
+3014.3 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+3026.0 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+3033.4 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3048.4 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+
+3055.6 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/ window 30,30 forcejump 2831.4
+
+
+# path 04
+3131.4 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3143.5 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+3147.1 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+3160.2 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+3163.8 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+
+3169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A5:/
+3172.0 "Spiritspark" sync / 1[56]:[^:]*:Moko the Restless:85A5:/
+3177.0 "Spiritflame 1" sync / 1[56]:[^:]*:Moko the Restless:85A6:/
+3182.8 "Spiritflame 2" sync / 1[56]:[^:]*:Moko the Restless:85A6:/
+3188.6 "Spiritflame 3" sync / 1[56]:[^:]*:Moko the Restless:85A6:/
+3194.3 "Spiritflame 4" sync / 1[56]:[^:]*:Moko the Restless:85A6:/
+
+3205.1 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3211.4 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:858[789A]:/
+3218.5 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+
+3224.7 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3230.9 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:8598:/
+3236.5 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:8599:/
+3251.3 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+3256.3 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+3261.3 "Explosion 3" sync / 1[56]:[^:]*:Moko the Restless:859B:/
+
+3261.7 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3273.9 "Double Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:858[BCDE]:/
+3277.5 "Double Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(858F|859[012]):/
+3284.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
+3293.7 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3302.4 "Spearman's Orders" sync / 1[56]:[^:]*:Moko the Restless:8595:/
+3302.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+3314.1 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:8596:/
+3321.7 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3336.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:8594:/
+
+3343.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/ window 30,30 forcejump 3131.4
+
+
+# MOKO ABILITIES
+# 8587 Iai-kasumi-giri cast and damage for back-safe attack
+# 8588 Iai-kasumi-giri cast and damage for front-safe attack
+# 8589 Iai-kasumi-giri cast and damage for left-safe attack
+# 858A Iai-kasumi-giri cast and damage for right-safe attack
+# 858B Double Kasumi-giri long cast and damage for back-safe attack 1
+# 858C Double Kasumi-giri long cast and damage for left-safe attack 1
+# 858D Double Kasumi-giri long cast and damage for front-safe attack 1
+# 858E Double Kasumi-giri long cast and damage for right-safe attack 1
+# 858F Double Kasumi-giri short cast and damage for back-safe attack 2
+# 8590 Double Kasumi-giri short cast and damage for left-safe attack 2
+# 8591 Double Kasumi-giri short cast and damage for front-safe attack 2
+# 8592 Double Kasumi-giri short cast and damage for right-safe attack 2
+# 8593 Soldiers of Death cast and ability before Iron Rain
+# 8594 Iron Rain cast and damage for Soldiers of Death bombardment
+# 8595 Spearman's Orders cast and ability before Spearpoint Push
+# 8596 --sync-- unknown abilty during Spearman's Orders
+# 8597 Spearpoint Push initial damage from Spearman's Orders
+# 8598 Scarlet Auspice cast and circle damage
+# 8599 Boundless Scarlet cast and self-targeted ability
+# 859A Boundless Scarlet cast and damage for initial Z lines
+# 859B Explosion cast and damage from expanding lines
+# 85A2 Yama-kagua cast and knockback damage from Ill-come Tengu adds
+# 85A3 Ghastly Grasp cast and self-targeted
+# 85A4 Ghastly Grasp damage from ground aoes during Tengu pushback
+# 85AB Moonless Night cast and self-targeted summoning of Oni's Claw
+# 85AC Clearout cast and large circle damage from Oni's Claw
+# 895B Explosion cast and damage for exploding fire lines
+# 859C Azure Auspice cast and donut damage before Boundless Azure
+# 859D Boundless Azure cast and self-targeted ability
+# 859E Boundless Azure cast and damage for initial Z lines
+# 859F Upwell cast and initial damage for expanding water lines
+# 85A0 Upwell ongoing damage for expanding water lines
+# 85A1 Tengu-yobi cast and self-targeted summon of Ill-come Tengu
+# 85A2 Yama-kagura cast and damage for knockback lines
+# 85A5 Spiritspark cast and self-targeted ability
+# 85A6 Spiritflame cast and damage for ground circles
+# 85A7 Arm of Purgatory damage for running into summoned heads during Spiritspark
+# 85A8 Untempered Sword cast and ability before Unsheathing / Veil Sever
+# 85A9 Unsheathing cast and damage of initial sword circles
+# 85AA Veil Sever cast and damage of sword lines
+# 85AD Kenki Release cast and raidwide damage
+# 85AF --sync-- repositioning
+# 86D2 Spearpoint Push ongoing damage from Spearman's Orders
+# 871C --sync-- unknown ability during Spearman's Orders
+# 878A --sync-- auto damage
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Yozakura the Fleeting (middle path) #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 83A9:4011.6
+# -ii 8396 8399 839A 839D 839F
+
+4000.0 "--sync--" sync / 00:0839::The Hall Of Temptation will be sealed off/ window 10000,0
+4011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+# -> door
+4016.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8394:/ window 20,20 jump 4116.7
+4019.7 "Tatami Trap?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:8394:/
+
+# -> rope
+4015.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/ window 20,20 jump 4315.7
+4020.7 "Art of the Windblossom?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+
+
+# door
+4116.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8394:/
+4119.7 "Tatami Trap" sync / 1[56]:[^:]*:Yozakura the Fleeting:8394:/
+4129.8 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+4135.9 "Tatami-gaeshi" sync / 1[56]:[^:]*:Yozakura the Fleeting:8395:/
+4146.2 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+
+4155.3 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+4160.4 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4164.5 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#4164.7 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4166.7 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+4173.9 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4176.9 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+4184.0 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4188.2 "Tatami Trap" sync / 1[56]:[^:]*:Yozakura the Fleeting:8394:/
+4195.4 "Levinblossom Lance 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:839[78]:/ duration 5
+4207.7 "Levinblossom Lance 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:839[78]:/ duration 5
+4217.7 "Tatami-gaeshi" sync / 1[56]:[^:]*:Yozakura the Fleeting:8395:/
+
+4224.9 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+4234.0 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+4239.1 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4243.2 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#4243.2 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4245.2 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4247.2 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4249.2 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+4256.8 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4259.9 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+4264.9 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4267.9 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+4280.9 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+4289.1 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+4293.2 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4297.3 "Tatami Trap" sync / 1[56]:[^:]*:Yozakura the Fleeting:8394:/ window 30,30 forcejump 4188.2
+
+
+# rope
+4315.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/
+4320.7 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+4329.8 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+
+4334.9 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4339.1 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#4039.3 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4041.3 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+4348.6 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4351.8 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+4358.8 "--north--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4363.1 "Silent Whistle" sync / 1[56]:[^:]*:Yozakura the Fleeting:839B:/
+4373.2 "Donden-gaeshi" sync / 1[56]:[^:]*:Yozakura the Fleeting:839C:/
+4384.5 "Art of the Fluff" sync / 1[56]:[^:]*:Shiromaru:839E:/
+4386.5 "Fireblossom Flare" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A0:/
+4391.6 "Fireblossom Flare" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A0:/
+4393.5 "Donden-gaeshi" sync / 1[56]:[^:]*:Yozakura the Fleeting:839C:/
+4404.8 "Art of the Fluff" sync / 1[56]:[^:]*:Shiromaru:839E:/
+4406.8 "Fireblossom Flare" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A0:/
+4411.9 "Fireblossom Flare" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A0:/
+4417.8 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+
+4427.0 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+4432.1 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4436.4 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#4436.6 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4438.6 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4440.6 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#4442.6 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+4450.1 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4453.2 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+4458.2 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+4461.4 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+4474.3 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+4482.5 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+4486.6 "--north--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+4490.9 "Silent Whistle" sync / 1[56]:[^:]*:Yozakura the Fleeting:839B:/ window 50,50 jump 4363.1
+
+
+# YOZAKURA ABILITIES (MIDDLE PATH)
+# 8394 Tatami Trap cast and self-targeted ability for floor shaking
+# 8395 Tatami-gaeshi cast and self-targeted ability for floor flipping
+# 8396 Tatami-gaeshi cast and damage for floor flip
+# 8397 Levinblossom Lance cast and self-targeted for blue counterclockwise line aoes
+# 8398 Levinblossom Lance cast and self-targeted for orange clockwise line aoes
+# 8399 Levinblossom Lance cast and self-targeted ability for 839A
+# 839A Levinblossom Lance damage for rotating lance line aoe
+# 839B Silent Whistle cast and self-targeted ability to summon dogs
+# 839C Donden-gaeshi cast and self-targeted ability tethering dogs
+# 839D Art of the Fluff cast and damage for lookaway from Kuromaru/Shibamaru
+# 839E Art of the Fluff cast and damage for lookaway from Shiromaru
+# 839F Fireblossom Flare cast and self-targeted ability to summon ground circles
+# 83A0 Fireblossom Flare cast and damage for ground circle aoes
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# Gorai the Uncaged #
+#~~~~~~~~~~~~~~~~~~~#
+
+# -p 8500:5017.6
+# -it "Shishu White Baboon"
+# -ii 84D4 8501 84EE 84E6 84E5 84E9 84E0 84FF 84F9 84F7 84F4 84F5
+
+5000.0 "--sync--" sync / 00:0839::The Hall Of Becoming will be sealed off/ window 10000,0
+5012.6 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8500:/
+5017.6 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8500:/
+
+5027.1 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:84D5:/
+5037.4 "Plectrum of Power" sync / 1[56]:[^:]*:Gorai the Uncaged:84D8:/
+5040.1 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:84DA:/
+
+5047.3 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:84D5:/
+5057.6 "Morphic Melody" sync / 1[56]:[^:]*:Gorai the Uncaged:84D9:/
+5060.3 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:84DB:/
+
+5072.6 "Sulphuric Stone" sync / 1[56]:[^:]*:Gorai the Uncaged:84D6:/
+5082.9 "Plectrum of Power" sync / 1[56]:[^:]*:Gorai the Uncaged:84D8:/
+5085.6 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:84DD:/
+
+5092.8 "Sulphuric Stone" sync / 1[56]:[^:]*:Gorai the Uncaged:84D6:/
+5103.1 "Morphic Melody" sync / 1[56]:[^:]*:Gorai the Uncaged:84D9:/
+5105.8 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:84DE:/
+
+# This is inconsistent among timelines, so don't sync.
+5111.1 "--middle--" #sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+
+# -> path 05
+5114.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84ED:/ window 30,30 jump 5214.3
+5116.8 "Pure Shock?" #sync / 1[56]:[^:]*:Gorai the Uncaged:84ED:/
+
+# -> path 06
+5112.1 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84F2:/ window 30,30 jump 5312.1
+5115.1 "Thundercall?" sync / 1[56]:[^:]*:Gorai the Uncaged:84F2:/
+
+# -> path 07
+5112.1 "--sync--"  sync / 14:[^:]*:Gorai the Uncaged:84F8:/ window 30,30 jump 5412.1
+5117.1 "Fighting Spirits?" #sync / 1[56]:[^:]*:Gorai the Uncaged:84F8:/
+
+
+# path 05
+5211.1 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5214.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84ED:/
+5216.8 "Pure Shock" sync / 1[56]:[^:]*:Gorai the Uncaged:84ED:/
+5218.5 "--stun--" sync / 1[56]:[^:]*:Gorai the Uncaged:84EF:/
+5220.2 "Wily Wall" sync / 1[56]:[^:]*:Shishu White Baboon:84F0:/
+5222.2 "--targetable--"
+5228.1 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84E7:/
+5230.1 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84E8:/
+5236.1 "Spike of Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:84E4:/
+5245.0 "String Snap 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84EA:/
+5247.0 "String Snap 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84EB:/
+5249.0 "String Snap 3" sync / 1[56]:[^:]*:Gorai the Uncaged:84EC:/
+5252.3 "Self-destruct" sync / 1[56]:[^:]*:Shishu White Baboon:84F1:/
+# -> shared loop
+5260.4 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5267.7 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:84DF:/ window 30,30 forcejump 5567.7
+
+
+# path 06
+5309.8 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5312.1 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84F2:/
+5315.1 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:84F2:/
+5329.0 "Shock" sync / 1[56]:[^:]*:Ball of Levin:84DC:/
+5335.0 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:84F6:/ duration 8.8
+5346.3 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5351.6 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:84F2:/
+5359.5 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:84F6:/ duration 8.8
+5376.5 "Shock" sync / 1[56]:[^:]*:Ball of Levin:84F3:/
+# -> shared loop
+5379.9 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5387.2 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:84DF:/ window 30,30 forcejump 5567.7
+
+
+# path 07
+5409.9 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5412.1 "--sync--"  sync / 14:[^:]*:Gorai the Uncaged:84F8:/
+5417.1 "Fighting Spirits" sync / 1[56]:[^:]*:Gorai the Uncaged:84F8:/
+5426.1 "Worldly Pursuit 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84FB:/
+5429.9 "Worldly Pursuit 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84FC:/
+5433.7 "Worldly Pursuit 3" sync / 1[56]:[^:]*:Gorai the Uncaged:84FC:/
+5437.5 "Worldly Pursuit 4" sync / 1[56]:[^:]*:Gorai the Uncaged:84FC:/
+5441.3 "Worldly Pursuit 5" sync / 1[56]:[^:]*:Gorai the Uncaged:84FC:/
+5447.4 "Biwa Breaker 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84FD:/
+5449.1 "Biwa Breaker 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:86D1:/
+5450.8 "Biwa Breaker 3" #sync / 1[56]:[^:]*:Gorai the Uncaged:86D1:/
+5452.5 "Biwa Breaker 4" #sync / 1[56]:[^:]*:Gorai the Uncaged:86D1:/
+5454.2 "Biwa Breaker 5" #sync / 1[56]:[^:]*:Gorai the Uncaged:86D1:/
+# -> shared loop
+5461.9 "--sync--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5469.1 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:84DF:/ window 30,30 forcejump 5567.7
+
+
+# shared loop
+5560.4 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5567.7 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:84DF:/
+5574.0 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:84E1:/
+5585.0 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84E2:/
+5586.2 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84E7:/
+5588.2 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84E8:/
+5591.0 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84E2:/
+5597.0 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:84E2:/
+5599.1 "Spike of Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:84E4:/
+
+5610.9 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8500:/
+5620.2 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:84D7:/
+5630.5 "Plectrum of Power/Morphic Melody" sync / 1[56]:[^:]*:Gorai the Uncaged:(84D8|84D9):/
+5633.2 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(84DD|84DE):/
+5633.2 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(84DA|84DB):/
+5641.4 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:84D7:/
+5651.7 "Morphic Melody/Plectrum of Power" sync / 1[56]:[^:]*:Gorai the Uncaged:(84D9|84D8):/
+5654.4 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(84DD|84DE):/
+5654.4 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(84DA|84DB):/
+
+5664.5 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:84FE:/
+5676.8 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8500:/
+5687.1 "String Snap 1" sync / 1[56]:[^:]*:Gorai the Uncaged:84EA:/
+5689.1 "String Snap 2" sync / 1[56]:[^:]*:Gorai the Uncaged:84EB:/
+5691.1 "String Snap 3" sync / 1[56]:[^:]*:Gorai the Uncaged:84EC:/
+5697.0 "Spike of Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:84E4:/
+5708.8 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8500:/
+
+5717.2 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+5724.4 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:84DF:/ window 100,100 forcejump 5567.7
+
+
+# GORAI ABILITIES
+# 84D3 --sync-- repositioning ability
+# 84D4 --sync-- auto damage
+# 84D5 Flickering Flame cast and self-targeted summoning blue flames for lines
+# 84D6 Sulphuric Stone cast and self-targeted summoning rocks
+# 84D7 Flame and Sulphur cast and self-targeted summoning rocks and lines
+# 84D8 Plectrum of Power cast and self-targeted purple effect that expands everything
+# 84D9 Morphic Melody cast and self-targeted blue effect that donutifies everything
+# 84DA Fire Spread expanded line damage after Plectrum of Power 84D8
+# 84DB Fire Spread split line damage after Morphic Melody 84D9
+# 84DC Shock Ball of Levin self-targeted ability before 84F5
+# 84DD Falling Rock expanded rock damage after Plectrum of Power 84D8
+# 84DE Falling Rock donutified rock damage after Morphic Melody 84D9
+# 84DF Rousing Reincarnation cast and self-targeted ability
+# 84E0 Rousing Reincarnation ability on player that gives Rodential Rebirth
+# 84E1 Malformed Prayer cast and self-targeted ability that starts the tower sequence
+# 84E2 Burst tower damage
+# 84E3 Dramatic Burst missed tower damage
+# 84E4 Spike of Flame cast and self-targeted ability
+# 84E5 Spike of Flame cast and damage for targeted circle on player
+# 84E6 Impure Purgation cast and self-targeted for 2x pinwheel
+# 84E7 Impure Purgation cast and damage for first pinwheel
+# 84E8 Impure Purgation cast and damage for second pinwheel
+# 84E9 String Snap cast and self-targeted ability
+# 84EA String Snap cast and damage for earth ring 1
+# 84EB String Snap cast and damage for earth ring 2
+# 84EC String Snap cast and damage for earth ring 3
+# 84F8 Fighting Spirits cast and self-targeted ability
+# 84F9 Fighting Spirits and and raidwide damage
+# 84FB Worldly Pursuit cast and damage from initial cross jump
+# 84FC Worldly Pursuit cast and damage from ongoing cross jumps
+# 84FD Biwa Breaker cast and initial damage from multiple raidwides
+# 84ED Pure Shock cast and self-targeted ability for chain to Shishu White Baboon
+# 84EE Pure Shock cast and damage for chain to Shishu White Baboon
+# 84EF --sync-- stun to pull to Shishu White Baboon
+# 84F0 Wily Wall cast and self-targeted Shishu White Baboon ability to create octagon wall
+# 84F1 Self-destruct long cast and damage from Shishu White Baboon
+# 84F2 Thundercall cast and self-targeted Ball of Levin summoning
+# 84F3 Shock Ball of Levin self-targeted ability before 84F4/84F5
+# 84F4 Shock small ground circle damage from Ball of Levin hit by Humble Hammer
+# 84F5 Shock arge ground circle damage from Ball of Levin
+# 84F6 Humble Hammer cast and self-targeted ability
+# 84F7 Humble Hammer ongoing hammer circles that shrink orbs
+# 84FE Torching Torment cast and ability for tankbuster
+# 84FF Torching Torment damage from tankbuster
+# 8500 Unenlightenment cast and self-targeted ability
+# 8501 Unenlightenment raidwide damage
+# 86D1 Biwa Breaker damage from followup raidwides
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Yozakura the Fleeting (right path) #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 83A9:6012
+# -ii 83A2 83A3 83A8 8382 838A
+
+6000.0 "--sync--" sync / 00:0839::Autumn Rivers' End will be sealed off/ window 10000,0
+6012.0 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+# -> no dogu
+6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/ window 30,30 jump 6116.1
+6019.1 "Art of the Fireblossom?" #sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+
+# -> dogu
+6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/ window 30,30 jump 6316.1
+6021.1 "Art of the Windblossom?" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+
+
+# no dogu path
+6116.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/
+6119.1 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+6123.3 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6129.6 "Bunshin" sync / 1[56]:[^:]*:Yozakura the Fleeting:837E:/
+6138.7 "Shadowflight (cast)" sync / 1[56]:[^:]*:Yozakura the Fleeting:837F:/
+6143.6 "Shadowflight" sync / 1[56]:[^:]*:Mirrored Yozakura:8380:/
+
+6150.8 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6155.9 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6160.0 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6060.2 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6062.2 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6169.4 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6172.6 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+6182.6 "Nubuki" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A1:/
+6191.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A4:/
+6194.7 "Root Arrangement 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A5:/
+6195.8 "Root Arrangement 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6196.8 "Root Arrangement 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6197.8 "Root Arrangement 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6206.7 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A4:/
+6209.7 "Root Arrangement 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A5:/
+6210.8 "Root Arrangement 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6211.8 "Root Arrangement 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+6212.8 "Root Arrangement 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:83A6:/
+
+6221.7 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+6230.8 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6235.9 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6240.1 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6140.3 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6142.3 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6144.3 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6146.3 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6253.8 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6257.0 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6262.0 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6265.0 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6278.0 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+6286.2 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+6293.3 "Nubuki" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A1:/ window 30,30 forcejump 6182.6
+
+
+# dogu path
+6316.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/
+6321.1 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
+6325.3 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+#6329.4 "Season Indicator 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6331.5 "Season Indicator 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6333.6 "Season Indicator 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+#6335.7 "Season Indicator 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:838[34]:/
+6336.1 "Seasons of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8381:/
+6337.0 "Season of Element 1" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6339.1 "Season of Element 2" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6341.2 "Season of Element 3" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+6343.3 "Season of Element 4" #sync / 1[56]:[^:]*:Yozakura the Fleeting:838[5678]:/
+
+6351.6 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+6356.7 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6360.8 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6361.0 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6363.0 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6370.2 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6373.4 "Seal of the Blossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+
+6380.4 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6384.5 "Witherwind" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A7:/
+6389.6 "Mudrain" sync / 1[56]:[^:]*:Yozakura the Fleeting:8389:/
+6399.8 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6405.8 "Drifting Petals" sync / 1[56]:[^:]*:Yozakura the Fleeting:8393:/
+6429.9 "Art of the Fireblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8368:/
+6439.0 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
+
+6444.1 "--sync--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6448.3 "Seal of the Fleeting" sync / 1[56]:[^:]*:Yozakura the Fleeting:8379:/
+#6448.5 "Seal Marker 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6450.5 "Seal Marker 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6452.5 "Seal Marker 3" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+#6454.5 "Seal Marker 4" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[ABCD]:/
+6461.7 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6464.7 "Seal of the Blossom 1" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6469.8 "Seal of Riotous Bloom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8374:/
+6473.0 "Seal of the Blossom 2" sync / 1[56]:[^:]*:Yozakura the Fleeting:837[5678]:/
+6486.0 "Kuge Rantsui" sync / 1[56]:[^:]*:Yozakura the Fleeting:83AA:/
+6494.2 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
+
+6498.3 "--middle--" sync / 1[56]:[^:]*:Yozakura the Fleeting:8612:/
+6502.4 "Witherwind" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A7:/ window 30,30 forcejump 6384.5
+
+
+# YOZAKURA ABILITIES (RIGHT PATH)
+# 83A1 Nubuki cast and self-targeted to generate Accursed Seedling roots
+# 83A2 Behind Barbs damage from standing in the Accursed Seedling
+# 83A3 Explosion cast and damage from Living Gaol when it captures you
+# 83A4 Root Arrangement cast and self-targeted ability for chasing rock
+# 83A5 Root Arrangement cast and damage for chasing rock hit #1
+# 83A6 Root Arrangement damage for chasing rock hits #2-4
+# 83A7 Witherwind cast and self-targeted tornado summoning
+# 83A8 Cutting Leaves damage for hitting tornados
+
+
+#~~~~~~~~~#
+# Shishio #
+#~~~~~~~~~#
+
+# -p 83F5:7015.7
+# -ii 86DE 83DA 83DE 83DF 83E0 83E3 83E4 83E5 83E2 87F9 87FB 83DB 87A3 87A4 87A6 87AB 83ED 872B 83F2
+
+7000.0 "--sync--" sync / 00:0839::Stone's Silence will be sealed off/ window 10000,0
+7015.7 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+7017.8 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7022.0 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7026.7 "Smokeater" sync / 1[56]:[^:]*:Shishio:83D8:/
+# Note: This always seems to be Once on Rokujo
+7036.8 "Once on Rokujo" sync / 1[56]:[^:]*:Shishio:83DD:/
+7053.4 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+7055.5 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+# Note: this one can be Twice or Thrice on Rokujo
+7059.8 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7064.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7066.6 "Smokeater 2" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7068.5 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7093.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+
+# -> path 08
+7104.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7110.0 "Rush?" sync / 1[56]:[^:]*:Feral Thrall:83EE:/ window 30,30 jump 7210.0
+
+# -> path 09
+7093.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/ window 30,30 jump 7293.9
+7098.9 "Focused Tremor?" #sync / 1[56]:[^:]*:Shishio:83E9:/
+
+# -> path 10
+7097.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/ window 30,30 jump 7397.0
+7105.0 "Left Swipe?" #sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7105.0 "Right Swipe?" #sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+
+# -> path 11
+7099.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/ window 30,30 jump 7599.0
+7103.0 "Reisho?" #sync / 1[56]:[^:]*:Haunting Thrall:872B:/
+
+
+# path 08
+7193.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7204.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7210.0 "Rush" sync / 1[56]:[^:]*:Feral Thrall:83EE:/
+7212.0 "Vasoconstrictor 1" sync / 1[56]:[^:]*:Venomous Thrall:83EF:/
+7217.0 "Vasoconstrictor 2" sync / 1[56]:[^:]*:Venomous Thrall:83EF:/
+7217.0 "--sync--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7223.0 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7230.2 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7240.3 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 09
+7293.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7293.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/
+7298.9 "Focused Tremor" sync / 1[56]:[^:]*:Shishio:83E9:/
+7303.2 "Yoki (cast)" sync / 1[56]:[^:]*:Shishio:83EA:/
+7308.0 "Yoki 1" sync / 1[56]:[^:]*:Shishio:83EB:/
+7312.0 "Yoki 2" sync / 1[56]:[^:]*:Shishio:83EB:/
+7315.3 "--sync--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7324.3 "Yoki-uzu" sync / 1[56]:[^:]*:Shishio:83EC:/
+# -> shared loop
+7334.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 10
+7393.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7397.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/
+7405.0 "Left Swipe 1" sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7405.0 "Right Swipe 1" sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+7415.3 "Left Swipe 2" sync / 1[56]:[^:]*:Devilish Thrall:83F1:/
+7415.3 "Right Swipe 2" sync / 1[56]:[^:]*:Devilish Thrall:83F0:/
+7424.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7434.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+# path 11
+7593.0 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:83E8:/
+7599.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/
+7603.0 "Reisho" sync / 1[56]:[^:]*:Haunting Thrall:872B:/
+7611.1 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7617.1 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7624.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+# -> shared loop
+7634.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/ window 30,30 forcejump 7634.4
+
+
+# shared loop
+7634.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+7636.5 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7640.7 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7645.4 "Smokeater" sync / 1[56]:[^:]*:Shishio:83D8:/
+# Note: This always seems to be Onefold the first time around.
+7650.5 "Thunder Onefold" sync / 1[56]:[^:]*:Shishio:83E1:/
+7678.1 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+
+7684.2 "--jump--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7693.5 "Noble Pursuit" sync / 1[56]:[^:]*:Shishio:83E6:/
+7694.4 "Levinburst" sync / 1[56]:[^:]*:Rairin:83E7:/
+7700.4 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7707.5 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+7713.7 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7717.9 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7722.6 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7724.7 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7726.6 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7750.2 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+# this is the start of the loop, as there's an extra delay on the 7713.7 jump
+# the first time through
+7757.4 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7761.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
+7766.3 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83D8:/
+7768.4 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+7770.4 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83D9:/
+# Note: this is +/- 2 seconds depending on how many Smokeaters, so no sync
+7773.4 "Thunder Onefold/Thunder Twofold/Thunder Threefold" #sync / 1[56]:[^:]*:Shishio:(83E1|87AD|87FA):/
+7798.8 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:83F6:/
+
+7804.9 "--jump--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7814.2 "Noble Pursuit" sync / 1[56]:[^:]*:Shishio:83E6:/
+7815.1 "Levinburst" sync / 1[56]:[^:]*:Rairin:83E7:/
+7821.1 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:83F4:/
+7828.2 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
+
+7835.4 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
+7839.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/ window 30,30 forcejump 7717.9
+
+
+# SHISHIO ABILITIES
+# 83D7 Stormcloud Summons cast and self-targeted ability
+# 83D8 Smokeater cast and self-targeted ability for first inhale
+# 83D9 Smokeater self-targeted ability for optional second and third inhales
+# 83DA --sync-- Raiun ability on Shishio after being inhaled
+# 83DB Once on Rokujo cast and self-targeted ability for 1x Smokeater line
+# 83DD Once on Rokujo cast and damage for 1x Smokeater line aoe
+# 83DE Leaping Levin Raiun 1x Smokeater small cloud circles
+# 83DF Leaping Levin Raiun 2x Smokeater medium cloud circles
+# 83E0 Leaping Levin Raiun 3x Smokeater large cloud circles
+# 83E1 Thunder Onefold cast and self-targeted ability
+# 83E2 Thunder Onefold cast and damage for 1x Smokeater initial cloud circles
+# 83E3 Cloud to Cloud cast and damage for 1x Smokeater small lines
+# 83E4 Cloud to Cloud cast and damage for 2x Smokeater medium lines
+# 83E5 Cloud to Cloud cast and damage for 3x Smokeater large lines
+# 83E6 Noble Pursuit cast and damage for line aoe
+# 83E7 Levinburst line damage for going through rings during Noble Pursuit
+# 83E8 Haunting Cry cast and raidwide damage
+# 83E9 Focused Tremor cast and raidwide damage
+# 83EA Yoki cast and self-targeted ability to summon circles
+# 83EB Yoki cast and damage for ground circles
+# 83EC Yoki-uzu cast and damage for "get out (into quicksand)" aoe
+# 83ED Unsagely Spin Clever Thrall centered circle
+# 83EE Rush Feral Thrall line aoe
+# 83EF Vasoconstrictor Venomous Trhall targeted circle
+# 83F0 Right Swipe cast and damage for Devilish Thrall cleave
+# 83F1 Left Swipe cast and damage for Devilish Thrall cleave
+# 83F2 Reisho Haunting Thrall centered circle
+# 83F4 Thunder Vortex cast and damage for donut
+# 83F5 Enkyo cast and damage for raidwide
+# 83F6 Splitting Cry cast and damage for tankbuster
+# 83F7 --sync-- repositioning
+# 86DE --sync-- auto damage
+# 872B Reisho Haunting Thrall centered circle
+# 872C Reisho Haunting Thrall centered circle
+# 87A3 Twice on Rokujo cast and self-targeted ability for 2x Smokeater lines
+# 87A4 Twice on Rokujo self-targeted ability (???)
+# 87A5 Twice on Rokujo cast and damage for 2x Smokeater line aoe
+# 87A6 Thrice on Rokujo cast and self-targeted ability for 3x Smokeater lines
+# 87AB Thrice on Rokujo self-targeted ability (???)
+# 87AC Thrice on Rokujo cast and damage for 3x Smokeater line aoe
+# 87AD Thunder Twofold cast and self-targeted ability
+# 87F9 Thunder Twofold cast and damage for 2x Smokeater initial cloud circles
+# 87FA Thunder Threefold cast and self-targeted ability
+# 87FB Thunder Threefold cast and damage for 3x Smokeater initial cloud circles
+
+
+#~~~~~~~~#
+# Enenra #
+#~~~~~~~~#
+
+# Note: you cannot kill a clone during the split phase, it will stop at 1 hp
+# and so the timeline is thankfully stable for that phase.
+
+# TODO: is Clearing Smoke / Smoke Rings random?
+
+# -p 8042:8013
+# -ii 8058 8049 804A 804B 8047
+
+8000.0 "--sync--" sync / 00:0839::The Pond Of Spring Rain will be sealed off/ window 10000,0
+8013.0 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
+8016.1 "--jump--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8029.9 "Out of the Smoke" sync / 1[56]:[^:]*:Enenra:804C:/
+8030.1 "--sync--" sync / 1[56]:[^:]*:Enenra:804E:/
+8034.0 "Into the Fire" sync / 1[56]:[^:]*:Enenra:804D:/
+8043.1 "Kiseru Clamor 1" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+8047.2 "Kiseru Clamor 2" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+
+8049.3 "--jump--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8063.1 "Out of the Smoke" sync / 1[56]:[^:]*:Enenra:804C:/
+8063.3 "--sync--" sync / 1[56]:[^:]*:Enenra:804E:/
+8067.2 "Into the Fire" sync / 1[56]:[^:]*:Enenra:804D:/
+
+8073.4 "--west--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8077.4 "Smoke and Mirrors" sync / 1[56]:[^:]*:Enenra:8043:/
+8077.7 "--sync--" sync / 1[56]:[^:]*:Enenra:8045:/
+8083.4 "Kiseru Clamor x2" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+8087.5 "Kiseru Clamor x2" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+8089.7 "--jump--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8103.5 "Out of the Smoke x2" sync / 1[56]:[^:]*:Enenra:804C:/
+8103.7 "--sync--" sync / 1[56]:[^:]*:Enenra:804E:/
+8107.6 "Into the Fire x2" #sync / 1[56]:[^:]*:Enenra:804D:/
+8111.8 "--sync--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8121.6 "--sync--" sync / 1[56]:[^:]*:Enenra:(8062|8063):/
+8125.0 "Clearing Smoke/Smoke Rings" sync / 1[56]:[^:]*:Enenra:(8052|8053):/
+8130.8 "Smoke Stack" sync / 1[56]:[^:]*:Enenra:8046:/
+
+8136.3 "--sync--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8142.0 "Smoldering Damnation" sync / 1[56]:[^:]*:Enenra:804F:/
+8154.6 "Smoldering 1" #sync / 1[56]:[^:]*:Enenra:8050:/
+8157.2 "Smoldering 2" #sync / 1[56]:[^:]*:Enenra:8050:/
+8159.8 "Smoldering 3" #sync / 1[56]:[^:]*:Enenra:8050:/
+8162.7 "Pipe Cleaner" sync / 1[56]:[^:]*:Enenra:8054:/
+#8162.9 "Pipe Cleaner" sync / 1[56]:[^:]*:Enenra:8055:/
+# TODO: this can tether multiple people and delay the timeline?
+
+8167.8 "--west--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8169.4 "--sync--" sync / 14:[^:]*:Enenra:8043:/ window 10,20
+8171.9 "Smoke and Mirrors" sync / 1[56]:[^:]*:Enenra:8043:/
+8172.2 "--sync--" sync / 1[56]:[^:]*:Enenra:8045:/
+8179.9 "Flagrant Combustion x2" sync / 1[56]:[^:]*:Enenra:8042:/
+8182.9 "--sync--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8188.7 "Smoldering Damnation" sync / 1[56]:[^:]*:Enenra:804F:/
+8195.3 "--sync--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8201.3 "Smoldering 1" #sync / 1[56]:[^:]*:Enenra:8050:/
+8203.9 "Smoldering 2" #sync / 1[56]:[^:]*:Enenra:8050:/
+8205.1 "--sync--" sync / 1[56]:[^:]*:Enenra:(8062|8063):/
+8206.3 "Smoldering 3" #sync / 1[56]:[^:]*:Enenra:8050:/
+8208.5 "Clearing Smoke/Smoke Rings" sync / 1[56]:[^:]*:Enenra:(8052|8053):/
+8214.3 "Smoke Stack" sync / 1[56]:[^:]*:Enenra:8046:/
+
+8222.7 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
+8238.9 "Snuff" sync / 1[56]:[^:]*:Enenra:8056:/
+8243.1 "Uplift" sync / 1[56]:[^:]*:Enenra:8057:/
+8248.0 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
+8258.1 "Kiseru Clamor 1" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+8262.2 "Kiseru Clamor 2" sync / 1[56]:[^:]*:Enenra:8048:/ duration 6
+
+8264.3 "--jump--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8277.9 "Out of the Smoke" sync / 1[56]:[^:]*:Enenra:804C:/
+8278.1 "--sync--" sync / 1[56]:[^:]*:Enenra:804E:/
+8282.0 "Into the Fire" sync / 1[56]:[^:]*:Enenra:804D:/
+8291.1 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
+8300.2 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
+
+8313.4 "--sync--" sync / 1[56]:[^:]*:Enenra:84C2:/
+8317.4 "Smoke and Mirrors" sync / 1[56]:[^:]*:Enenra:8043:/ window 30,30 forcejump 8077.4
+
+
+# ENENRA ABILITIES
+# 1961 attack auto damage
+# 8042 Flagrant Combustion cast and raidwide damage
+# 8043 Smoke and Mirrors cast and self-targeted clone creation
+# 8045 --sync-- ability to create clone
+# 8046 Smoke Stack cast and self-targeted ability for one clone merge
+# 8047 Smoke Stack cast and self-targeted ability for other clone merge
+# 8048 Kiseru Clamor cast and damage for initial jump that creates Bedrock Uplift earth rings
+# 8049 Bedrock Uplift cast and damage for earth ring 2
+# 804A Bedrock Uplift cast and damage for earth ring 3
+# 804B Bedrock Uplift cast and damage for earth ring 4
+# 804C Out of the Smoke long cast and self-targeted prior to Into the Fire
+# 804D Into the Fire cast and self-targeted for 180 cleave
+# 804E --sync-- repositioning during Out of the Smoke
+# 804F Smoldering Damnation cast and self-targeted ability to summon growing circles
+# 8050 Smoldering cast and damage for growing ground circle
+# 8052 Clearing Smoke cast and damage for Clearing Smoke knockback
+# 8053 Smoke Rings cast and damage for "get out" Smoke Rings collision
+# 8054 Pipe Cleaner cast and self-targeted ability for tether line cleave
+# 8055 Pipe Cleaner damage from tether earthshaker-esque line cleave
+# 8056 Snuff cast and tankbuster damage
+# 8057 Uplift cast and followup ground circle to Snuff
+# 8058 Into the Fire cast and damage for 180 cleave
+# 8062 Clearing Smoke cast and self-targeted ability for Clearing Smoke knockback collision
+# 8063 Smoke Rings cast and self-targeted ability for Smoke Rings collision
+# 84C2 --sync-- repositioning

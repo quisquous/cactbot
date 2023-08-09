@@ -268,6 +268,13 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.bigAoe(),
     },
     {
+      id: 'E4S Earthen Fury with Bleed',
+      // applies 5C2 Filthy
+      type: 'StartsUsing',
+      netRegex: { id: '413A', source: 'Titan Maximum', capture: false },
+      response: Responses.bleedAoe(),
+    },
+    {
       id: 'E4S Earthen Fist - Left/Right',
       type: 'StartsUsing',
       netRegex: { id: '412F', source: 'Titan Maximum', capture: false },

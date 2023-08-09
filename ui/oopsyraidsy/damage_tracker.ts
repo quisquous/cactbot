@@ -159,6 +159,13 @@ export class DamageTracker {
       role: this.role,
       party: this.playerStateTracker.partyTracker,
       inCombat: this.inCombat,
+      IsImmune: (targetId?: string) => {
+        // 52 = hallowed, 199 = holmgang, 32A = living, 32B = walking, 72C = bolide
+        const invulnIds = ['52', '199', '32A', '32B', '72C'];
+        if (this.playerStateTracker.HasEffect(targetId, invulnIds))
+          return true;
+        return false;
+      },
       ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),

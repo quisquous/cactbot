@@ -111,6 +111,7 @@ export default {
     key1: { en: 'output1 ${value}'},
     key2: { en: 'output2 ${value}'},
   },
+  comment: { en: 'comment text' },
 },
 ```
 
@@ -258,6 +259,17 @@ response: (data, matches, output) => {
   return {
     alarmText: output.text({ words: 'words word words' }),
   };
+},
+```
+
+**comment**
+对象，键是可选的各个语言的字符串。该属性是一个可选的间接属性，用于在 cactbot 配置面板的触发器项附近展示文字。你可以用他解释你的触发器，或是留下一些说明性的文字，亦或是附上一份超链接。
+
+示例：
+
+```javascript
+comment: {
+  cn: `写下你的注解文本。<em>支持HTML标签</em>`,
 },
 ```
 

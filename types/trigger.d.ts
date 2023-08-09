@@ -88,11 +88,22 @@ export type ResponseField<Data extends RaidbossData, MatchType extends NetAnyMat
   | ResponseFunc<Data, MatchType>
   | ResponseOutput<Data, MatchType>;
 
+// Config UI options that apply to an individual trigger (by id).
 export type TriggerAutoConfig = {
   Output?: Output;
   Duration?: number;
   BeforeSeconds?: number;
+  DelayAdjust?: number;
   OutputStrings?: OutputStrings;
+  TextAlertsEnabled?: boolean;
+  SoundAlertsEnabled?: boolean;
+  SpokenAlertsEnabled?: boolean;
+};
+
+// Config UI options that apply to an entire trigger set.
+// TODO: this doesn't apply to literal timeline alerts (not timeline triggers but
+// ancient timeline code that specifies alerts directly).
+export type TriggerSetAutoConfig = {
   TextAlertsEnabled?: boolean;
   SoundAlertsEnabled?: boolean;
   SpokenAlertsEnabled?: boolean;
@@ -114,6 +125,7 @@ export type BaseTrigger<
 
 type BaseNetTrigger<Data extends RaidbossData, Type extends TriggerTypes> = {
   id: string;
+  comment?: Partial<LocaleText>;
   type: Type;
   netRegex: NetParams[Type];
   disabled?: boolean;

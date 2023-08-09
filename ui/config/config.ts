@@ -627,10 +627,22 @@ export class CactbotConfigurator {
     return groupDiv;
   }
 
-  buildNameDiv(opt: ConfigEntry): HTMLElement {
+  buildLeftDiv(opt: ConfigEntry): HTMLElement {
     const div = document.createElement('div');
-    div.innerHTML = this.translate(opt.name);
-    div.classList.add('option-name');
+
+    // Build Name
+    const nameDiv = document.createElement('div');
+    nameDiv.innerHTML = this.translate(opt.name);
+    nameDiv.classList.add('option-name');
+    div.appendChild(nameDiv);
+
+    // Build the trigger comment
+    if (opt.comment) {
+      const commentDiv = document.createElement('div');
+      commentDiv.innerHTML = opt.comment[this.lang] ?? opt.comment?.en ?? '';
+      commentDiv.classList.add('comment');
+      div.appendChild(commentDiv);
+    }
     return div;
   }
 
@@ -656,7 +668,7 @@ export class CactbotConfigurator {
     input.checked = this.getBooleanOption(group, optIdPath, defaultValue);
     input.onchange = () => this.setOption(group, optIdPath, input.checked);
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -672,7 +684,7 @@ export class CactbotConfigurator {
     if (opt.html)
       div.innerHTML = this.translate(opt.html);
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -707,7 +719,7 @@ export class CactbotConfigurator {
     const optDefault = getOptDefault(opt, options);
     setLabel(this.getStringOption(group, optIdPath, optDefault.toString()));
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
 
     input.onclick = async () => {
@@ -765,7 +777,7 @@ export class CactbotConfigurator {
       }
     }
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -796,7 +808,7 @@ export class CactbotConfigurator {
     input.onchange = setFunc;
     input.oninput = setFunc;
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -824,7 +836,7 @@ export class CactbotConfigurator {
     input.onchange = setFunc;
     input.oninput = setFunc;
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -855,7 +867,7 @@ export class CactbotConfigurator {
     input.onchange = setFunc;
     input.oninput = setFunc;
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 

@@ -108,7 +108,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.roarCount !== 2)
           return;
 
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.text!();
       },
       outputStrings: {
@@ -198,7 +198,7 @@ const triggerSet: TriggerSet<Data> = {
         code: Util.gameLogCodes.dialog,
         capture: false,
       },
-      condition: (data) => data.role === 'tank',
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
