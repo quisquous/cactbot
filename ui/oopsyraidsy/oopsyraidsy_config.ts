@@ -116,6 +116,16 @@ class OopsyConfigurator {
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
+        // Build the trigger comment
+        const comment = info.triggers[id]?.comment;
+        if (comment) {
+          const trigComment = comment[this.base.lang] ?? comment?.en ?? '';
+          const triggerComment = document.createElement('div');
+          triggerComment.innerHTML = trigComment;
+          triggerComment.classList.add('comment');
+          triggerDiv.appendChild(triggerComment);
+        }
+
         // Container for the right side ui (select boxes, all of the info).
         const triggerDetails = document.createElement('div');
         triggerDetails.classList.add('trigger-details');

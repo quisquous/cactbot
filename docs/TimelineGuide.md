@@ -3,12 +3,14 @@
 This is a guide for people who want to write timelines,
 primarily for cactbot.
 
-NOTE: this guide is a good bit out of date:
+NOTE: When this guide was originally written,
+Cape Westwind was a standard 8-player trial.
+This was removed in Endwalker, and that version of the encounter is no longer accessible.
+However, the timeline creation process for it is still valid,
+and it covers nearly all the different situations that can arise during timeline creation.
 
-* test_timeline.ts has different output now
-* Cape Westwind no longer exists
-
-However, it should still give a good idea of the process of making a timeline.
+The example output for `test_timeline` is out of date compared to its modern incarnation,
+but it's close enough to be understandable.
 
 ![import screenshot](images/timelineguide_timeline.png)
 
@@ -69,7 +71,7 @@ Everything after that on the current line will be ignored.
 
 ### Entries
 
-Here is some grammar examples of timeline entries.
+Here are some grammar examples of timeline entries.
 Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" (duration Number)`
@@ -78,25 +80,58 @@ Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" sync /Regex/ (window Number,Number) (forcejump Number) (duration Number)`
 
-The parentheses here indicate optionality and are not literal parentheses.
+(The parentheses here indicate optionality and are not literal parentheses.)
 
-Number can be an integer, e.g. `34`, or a float, e.g. `84.381`.
+**Number** can be an integer, e.g. `34`, or a float, e.g. `84.381`.
 
-String is a character string, e.g. `"Liftoff"` or `"Double Attack"`
+**String** is a character string, e.g. `"Liftoff"` or `"Double Attack"`
 
-Regex is a [Javascript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
+**Regex** is a [Javascript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
 
-The ability time and ability name always need to come first, but `window`, `jump`, `duration`, and `sync` do not have to be in any order with respect to each other.
-Stylistically, usually sync is put first.
+The ability time and ability name always need to come first,
+but `duration`, `forcejump`, `jump`, `sync`, and `window`
+do not have to be in any order with respect to each other.
+Stylistically, usually `sync` is put first.
 
-`duration Number` is a time in seconds to show the action.
+**duration** is a time in seconds to display the accompanying action.
 Usually, timeline entries disappear immediately,
 but sometimes an action is ongoing, like 5x Bahamut's Claw in a row.
 You can use `duration` to show the action for that length of time.
 It does not need a sync to do this.
 
-`window Number,Number` is the time frame in which to consider the sync.
-By default, if `window` is not specified, cactbot considers it the
+The syntax for **duration** is `duration Number`,
+as `duration 5.5`.
+
+**forcejump** tells the timeline playback to jump to a particular time
+if the sync is encountered *or* if the line containing the **forcejump**
+is reached without syncing.
+This is intended for loops that will always be taken in an encounter.
+When this is used, no "lookahead" loop unrolling is needed,
+and the timeline will use the **forcejump** destination to list events in the future,
+because it knows that it will always jump there.
+If this line syncs prior to time passing it by,
+it will behave exactly like a normal **jump**.
+If the time passes this line,
+then it will jump as if it had synced exactly on time.
+This is not handled specially in `test_timeline`, which expects the sync to be correct.
+If there is a **window** parameter on the same line,
+and its second value extends past the **forcejump** time,
+this "overhang window" will still be respected even after force jumping
+until the next sync or jump occurs.
+
+The syntax for **forcejump** is `forcejump Number`, as `forcejump 204.2`.
+
+**jump** tells the timeline playback to jump to a particular time
+if and only if the sync is encountered.
+This is usually used for phase pushes and loops that involve multiple blocks.
+The timeline controller does not require a timeline entry at the time you jump to,
+but common practice is to ensure there there is one for readability and sanity-check purposes.
+If you jump to time 0, the timeline will stop playback.
+
+The syntax for **jump** is `jump Number`, as `jump 204.2`.
+
+**window** is the time frame in which to consider the sync.
+By default, if **window** is not specified, cactbot considers it the
 same as specifying `window 2.5,2.5`.  In other words,
 2.5 seconds before the ability time and 2.5 seconds after.
 As an example, for the line `3118.9 "Lancing Bolt" sync /:Raiden:3876:/`,
@@ -105,27 +140,7 @@ then it will resync the timeline playback to 3118.9.
 Often timelines will use very large windows for unique abilities,
 to make sure that timelines sync to the right place even if started mid-fight.
 
-`jump Number` tells the timeline playback to jump to a particular time
-if the sync is encountered.
-If you jump to time 0, the timeline will stop playback.
-This is usually used for phase pushes and loops.
-There does not need to be a timeline entry for the time you jump to,
-although it is very common to have one.
-
-`forcejump Number` tells the timeline playback that there will always be a jump here
-regardless of whether the sync is encountered.
-This is intended for loops that will always be taken in an encounter.
-When this is used, no "lookahead" loop unrolling is needed,
-and the timeline will use the `forcejump` destination to list events in the future,
-because it knows that it will always jump there.
-If this line syncs prior to time passing it by,
-it will behave exactly like a normal `jump`.
-If the time passes this line,
-then it will jump as if it had synced exactly on time.
-This is not handled specially in `test_timeline`, which expects the sync to be correct.
-If the `window` extends past the `forcejump` time,
-this "overhang window" will still be respected even after force jumping
-until the next sync or jump occurs.
+The syntax for **window** is `window Number,Number`, as `window 10,30`.
 
 ### Commands
 
@@ -137,20 +152,32 @@ There are a number of other commands for generating alerts based on timeline ent
 These are still supported but are not documented.
 Instead, alerts based on timelines in cactbot should use [timeline triggers](#timeline-triggers).
 
-### Examples
+### Example Timeline Entries
 
 ```bash
+# I am just a comment
+
+# This hides all timeline entries that contain the exact string "--sync--".
+hideall "--sync--"
+
+# These examples are improper, generally speaking. Lines should have syncs,
+# or their syncs should be commented out.
+# Some older timelines will still have entries that look like this though.
 677.0 "Heavensfall Trio"
 1044 "Enrage" # ???
 35.2 "Flare Breath x3" duration 4
-1608.1 "Petrifaction" sync /:Melusine:7B1:/ window 1610,5
-1141.4 "Leg Shot" sync /:Mustadio:3738:/ duration 20
-# I am just a comment
-hideall "--sync--"
 
-28.0 "Damning Edict?" sync /:Chaos:3150:/ window 30,10 jump 2028.0
-524.9 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 jump 444.9
-1032.0 "Control Tower" duration 13.5 sync /:Hashmal, Bringer Of Order starts using Control Tower on Hashmal/ window 20,20 # start of cast -> tower fall
+# These are examples of lines that sync to actions.
+1608.1 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/ window 1610,5
+1141.4 "Leg Shot" sync / 1[56]:[^:]*:Mustadio:3738:/ duration 20
+28.0 "Damning Edict?" sync / 1[56]:[^:]*:Chaos:3150:/ window 30,10 jump 2028.0
+524.9 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31 jump 444.9
+
+# This is an example of syncing to the beginning of a cast.
+1032.0 "Control Tower" sync / 14:[^:]*:Hashmal:25C1:/ window 20,20 duration 13.5 # start of cast -> tower fall
+
+# This is a line that would sync to an action, but the sync has been commented out.
+330.7 "Atma-Linga x2" #sync / 1[56]:[^:]*:Ravana:EA6:/
 ```
 
 ### Testing
@@ -167,20 +194,35 @@ which is still excellent.
 These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
-* always add an Engage! entry, but add syncs in case there's no /countdown
-* if the first boss action is an auto-attack, consider adding a sync for
-  the first auto-attack or at least the first "starts using" line
-* include the command line used to generate the timeline in a comment at the top
-* prefer actions for syncs over rp text, but rp text syncs if that's the only option
-* if you do sync a phase with rp text, add a large window sync for an action
-* use original names for ability text as much as possible
-* loops should use `jump` instead of having previous abilities have large windows
+* if there is only one boss in a zone, the timeline should start on entering combat.
+(The timeline utility will usually add the correct line automatically for you.)
+It is generally unnecessary to sync to the first auto-attack
+or otherwise "supplement" starting from combat beginning.
+(In special cases such as raid bosses with checkpoints,
+it may be acceptable to sync an auto for the second part of the encounter.)
+* include any special command line flags used to generate the timeline in a comment at the top.
+(The ignore-combatant and ignore-ability flags
+are automatically added by the timeline utility for your convenience.)
+* prefer actions for syncs over game log lines, but sync to game log lines if that's the only option
+* if you do sync a phase with game log lines,
+add a large window sync for an action after that line for safety.
+* if a boss has multiple phases,
+and one or more of those phases begins with a to-that-point unique ability,
+add a wide sync from the start of the encounter to each phase-opening line.
+If this is not possible, still try to add wide syncs to the beginning of each phase.
+* use original names for ability text as much as possible.
+(If an ability name is uncomfortably long,
+or if it otherwise makes sense to modify how it's displayed,
+handle that modification in the timeline replacement section of the trigger file.)
+* loops should use `jump` or `forcejump` to return to an earlier point in the timeline,
+rather than using a wide window sync at the beginning of the loop.
 * liberally use whitespace and comments to make the timeline readable
-* do not put any triggers or tts or alerts in the timeline file itself
-* use [timeline triggers](#timeline-triggers) for any alerts
-* add at least a 30 second lookahead window for loops
-* comment out syncs from any abilities that are within 7 seconds of each other
-(This preserves the ability ID for future maintainers.)
+* do not put any triggers, tts, or any other form of alerts in the timeline file itself
+* use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts
+* add a lookahead window of at least 30 seconds *and* 6 abilities for multi-possibility `jump`s that are not simple loops.
+(If it is a simple loop, use `forcejump`.)
+* comment out syncs from any displayed abilities that are within 7 seconds of each other,
+but do not remove them. (This preserves the ability ID for future maintainers.)
 
 ### Trigger Filenames
 
@@ -198,7 +240,7 @@ Articles like `The` can be dropped.
 Raids are numbered through the tier,
 e.g. `t1` through `t13` and `a1s` through `a12s`.
 Savage fights should have an `s` suffix
-while normal fights have an 'n' suffix.
+while normal fights have an `n` suffix.
 (However, this does not apply to coil raids.)
 
 Examples:
@@ -318,6 +360,8 @@ Create **ui/raidboss/data/02-arr/trial/cape_westwind.js**.
 This can be named whatever you want.
 Timeline files can only be loaded via triggers files,
 so the triggers file is always required.
+
+(Note that these steps are typically already done by repository contributors around patch release.)
 
 An initial triggers file should look like the following:
 
@@ -460,12 +504,17 @@ ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18
 
 ```bash
 ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -lf
-1. 02:03:44.018 02:16:53.632 Cape Westwind
-2. 18:32:52.981 18:36:14.086 Cape Westwind
-3. 18:42:23.614 18:49:22.934 Cape Westwind
-4. 18:57:09.114 19:10:13.200 Cape Westwind
-5. 19:29:42.265 19:36:22.437 Cape Westwind
-6. 19:40:20.606 19:46:44.342 Cape Westwind
+
+┌───────┬──────────────┬────────────────┬──────────┬─────────────────────────────────────────┬─────────────────────────────────────────┬───────────────┐
+│ Index │  Start Date  │   Start Time   │ Duration │                Zone Name                │             Encounter Name              │   End Type    │
+├───────┼──────────────┼────────────────┼──────────┼─────────────────────────────────────────┼─────────────────────────────────────────┼───────────────┤
+│   1   │  2018-07-02  │  02:03:44.018  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   2   │  2018-07-02  │  18:32:52.981  │    3m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   3   │  2018-07-02  │  18:42:23.614  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   4   │  2018-07-02  │  18:57:09.114  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   5   │  2018-07-02  │  19:29:42.265  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+│   6   │  2018-07-02  │  19:40:20.606  │    6m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
+└───────┴──────────────┴────────────────┴──────────┴─────────────────────────────────────────┴─────────────────────────────────────────┴───────────────┘
 ```
 
 From here, you can then rerun the command with the number of the encounter you want to use,
@@ -580,14 +629,6 @@ at least make a loop that goes 30 seconds ahead.
 
 Here's what a completed version of the first phase loop looks like.
 
-Note that we've used adjusted times rather
-than the original times.
-This is so that when we jump from 52.2 to 24.4 that all of the
-relative times stay the same.  In both cases when `Gate Of Tartarus`
-occurs, there's a `Shield Skewer` in 5.4 seconds after it.
-
-We'll add the jumps in later.
-
 ```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -605,6 +646,14 @@ We'll add the jumps in later.
 80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:471:/
 ```
 
+Note that we've used adjusted times rather
+than the original times.
+This is so that when we jump from 52.2 to 24.4, all of the relative times stay the same.
+In both cases when `Gate Of Tartarus` occurs,
+there's a `Shield Skewer` 5.4 seconds after it.
+
+We'll add any necessary jumps in later.
+
 ### Adding Phases
 
 Now on to the second phase.
@@ -615,7 +664,7 @@ Unfortunately for us, it looks like the boss starts phase 2
 by doing another `Shield Skewer` which it does a lot of in
 phase 1, so it won't be easy to sync to that.
 
-**make_timeline.ts** has an option to move the first usage
+**make_timeline.ts** has an option `-p` to move the first usage
 of an ability to a particular time.
 As cactbot usually has a window of 30 seconds ahead,
 feel free to generously move phases ahead in time.
@@ -623,7 +672,8 @@ feel free to generously move phases ahead in time.
 Let's move phase 2 to start its first ability at time=200.
 Since `Shrapnel Shell` starts 4.3 seconds after that,
 let's adjust the first usage of `Shrapnel Shell`
-(ability id 474) to time=204.3.
+(ability id 474) to time=204.3. The `-p` command takes space-separated abilityId:timeline-time pairs,
+so here we would write it as `-p 474:204.3`.
 
 Here's the new command line we've built up to:
 `ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
@@ -728,7 +778,7 @@ The current state of our timeline is now:
 
 ### Next phase
 
-From observation, I know that the next phase starts
+From observation, we know that the next phase starts
 at 60% and there's two adds.
 
 From reading the timeline, there's a random
@@ -785,7 +835,7 @@ added back in:
 
 Without recorded video, it's not 100% clear from the logs
 whether the `Shrapnel Shell` is part of phase 3 or phase 4.
-I know from observation that `Magitek Missiles` is the last phase,
+We know from observation that `Magitek Missiles` is the last phase,
 so because the `Shrapnel Shell` breaks the pattern let's assume
 it starts phase 4.
 We'll test this later.
@@ -895,17 +945,20 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
 
-0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 ```
+
+Most of this will be automatically added for you by the timline utility,
+but it's good to double-check that all of it is present if relevant.
 
 It's good practice to include the command line you used to generate this so that
 other people can come back and see what you skipped.
 
 `hideall` hides all instances of a line, so that players don't see `--sync--` show up visually,
 but the timeline itself will still sync to those lines.
-There can be anything in the text, it is just called `--sync--` for convenience.
+(Note that `--sync--` is not syntactically special in any way,
+but it's the standard "sync to this invisibly" convention in the repository.)
 
 ### Pre-timeline combat, starts & resets, and multiple zones
 
@@ -945,6 +998,8 @@ to detect when the player enters combat:
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 ```
 
+(`make_timeline` generates this line by default where appropriate.)
+
 However, if there will be pre-timeline combat (e.g., pre-boss mobs),
 this would incorrectly start combat during the pre-boss phase,
 so we need a different approach.
@@ -957,6 +1012,8 @@ For example:
 ```bash
 0.0 "--sync--" sync / 00:0839::The Landfast Floe will be sealed off/ window 1,0
 ```
+
+(`make_timeline` generates this by default if the encounter begins with a zone seal.)
 
 For multi-zone instances like dungeons, we can effectively create
 separate timelines for each encounter in the same timeline file
@@ -976,8 +1033,8 @@ to the right place for each encounter:
 2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
 ```
 
-Finally, because cactbot will reset the timeline when the player is out of combat,
-there is no longer a need to include specific reset lines in most timeline files.
+Finally, because cactbot automatically resets the timeline when the player is out of combat,
+there is no need to include specific reset lines in most timeline files by default.
 
 However, if a trigger set contains the property to NOT reset the timeline
 when out of combat, there are several options for manualy triggering a reset.
@@ -1019,16 +1076,19 @@ it will jump back to 24.4 seconds seamlessly.
 80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
 ```
 
-On the 52.2 line, add the following `window 10,100 jump 24.4`.
-This means, if you see this ability 10 seconds in the past
-or 100 seconds in the future, jump to t=24.4.
-By default, all syncs are `window 5,5` unless otherwise specified,
+On the 52.2 line, add the following `window 10,0 forcejump 24.4`.
+This means, if you see this anywhere in the past 10 seconds, jump to t=24.4.
+By default, all syncs are `window 2.5,2.5` unless otherwise specified,
 meaning they sync against the ability any time within the last
-5 seconds or 5 seconds in the future.
+2.5 seconds or 2.5 seconds in the future.
 
-The abilities from 57.6 to 80.0 will never be synced against
-because as soon as the ability at 52.2 is seen, we will
-want to jump back.  So, we will remove those syncs.
+The abilities from 57.6 to 80.0 will never be synced against,
+because the `forcejump` command will automatically jump to the noted time,
+regardless of whether or not the sync at its line occurs.
+Because we have verified already that the loop is good,
+we can safely remove the rest of it after `forcejump`.
+The timeline controller will display the loop appropriately
+based on seeing  this command.
 
 Finally, because sometimes log lines get dropped
 or ACT starts mid-combat, it can be good to put large syncs
@@ -1046,16 +1106,10 @@ This leaves us with this final version of the initial loop.
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
-
-# fake loop
-57.6 "Shield Skewer"
-66.2 "Shield Skewer"
-74.6 "Shield Skewer"
-80.0 "Gate Of Tartarus"
+52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
 ```
 
-This is done on all the following loops as well.
+This is repeated for each loop remaining in the timeline.
 
 ### Putting it all together
 
@@ -1085,35 +1139,22 @@ hideall "--sync--"
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10,100 jump 24.4
-
-57.6 "Shield Skewer"
-66.2 "Shield Skewer"
-74.6 "Shield Skewer"
-80.0 "Gate Of Tartarus"
-
+52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
 
 ### Phase 2 (80%): firebombs
 199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+
 204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
 208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
 226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 
 234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 204.3
-243.4 "Winds Of Tartarus"
-247.7 "Firebomb"
-
-252.0 "Shield Skewer"
-256.3 "Drill Shot"
-260.6 "Winds Of Tartarus"
-264.9 "Firebomb"
+238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 204.3
 
 
 ### Phase 3 (60%): Adds
@@ -1122,25 +1163,16 @@ hideall "--sync--"
 
 407.7 "Adds"
 408.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+
 413.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,20
 417.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 422.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 426.9 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 431.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
 435.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 440.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
 445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,100 jump 413.2
-454.2 "Winds Of Tartarus"
-458.7 "Firebomb"
-
-463.2 "Shield Skewer"
-467.7 "Drill Shot"
-472.2 "Winds Of Tartarus"
-476.7 "Firebomb"
-
+449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 413.2
 
 ### Phase 4 (40%): magitek missiles
 595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
@@ -1157,18 +1189,12 @@ hideall "--sync--"
 644.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 649.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20,100 jump 610.0
-655.3 "Drill Shot"
-659.6 "Firebomb"
-663.9 "Winds Of Tartarus"
-680.4 "Shrapnel Shell"
-684.9 "Firebomb"
-689.2 "Winds Of Tartarus"
+650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20 forcejump 610.0
 ```
 
 ### Testing Timelines
 
-cactbot has a testing tool called **util/test_timeline.py** that can
+cactbot has a testing tool called **util/logtools/test_timeline.ts** that can
 test a network log file or an fflogs fight against an existing timeline.
 
 The test tool will tell you when a sync in your timeline is not matched against the fight,
@@ -1394,3 +1420,28 @@ Here are some options:
 * get more data, and make a timeline for the most common case
 * leave a comment in the timeline
 * if this is an important ability (e.g. tankbuster) put a question mark on it so players know it's not guaranteed
+
+### Handling "Linear" Timelines
+
+While Cape Westwind is a fairly complex example of how timelines can be generated,
+most content in FFXIV that's from patch 4.0 or later will be simpler in several ways.
+Looping blocks will almost always be longer,
+and there will usually be very easy-to-find "bookend" abilities.
+Also, most Extreme and Savage encounters will not have any loops at all,
+but will have a fully linear timeline,
+or several non-repeating blocks in a random order.
+
+A very common structure for normal mode trials and raids is to have
+a long linear set of opening blocks, and then upon "getting to the end",
+a final block will loop until the boss dies or (very rarely)
+a timed enrage will occur.
+
+In all of these cases, it's good practice to put wide opening syncs at the beginning of each new block. This will ensure that even if later phase pushes are found,
+the timeline will probably continue to function seamlessly.
+
+You can see an example in the file **ui/raidboss/data/05-shb/raid/e8n.txt**.
+When this file was first added, party DPS was far too low to skip anything.
+However, with power creep from later expansions,
+it's not at all uncommon to skip ahead a little.
+To fix this, we added new very wide syncs at various points
+to ensure that even if the party pushed phases, the timeline would still continue to run.

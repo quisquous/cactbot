@@ -199,6 +199,7 @@ const kDetailKeys = {
       // people who know what they're doing.
       en: 'DEBUG delay adjust (sec)',
       de: 'DEBUG Verzögerungseinstellung (sec)',
+      cn: 'DEBUG 延时调整 (秒)',
       ko: '"디버그" 딜레이 조절 (초)',
     },
     cls: 'delay-adjust-text',
@@ -683,11 +684,25 @@ class RaidbossConfigurator {
         if (!hasOutputFunc && !this.base.developerOptions)
           continue;
 
-        // Build the trigger label.
         const triggerDiv = document.createElement('div');
-        triggerDiv.innerHTML = trig.isMissingId ? '(???)' : trigId;
-
         triggerDiv.classList.add('trigger');
+
+        // Build the trigger label.
+        const triggerId = document.createElement('div');
+        triggerId.classList.add('trigger-id');
+        triggerId.innerHTML = trig.isMissingId ? '(???)' : trigId;
+        triggerId.classList.add('trigger-id');
+        triggerDiv.appendChild(triggerId);
+
+        // Build the trigger comment
+        if (trig.comment) {
+          const trigComment = trig.comment[this.base.lang] ?? trig.comment?.en ?? '';
+          const triggerCommentDiv = document.createElement('div');
+          triggerCommentDiv.innerHTML = trigComment;
+          triggerCommentDiv.classList.add('comment');
+          triggerDiv.appendChild(triggerCommentDiv);
+        }
+
         triggerOptions.appendChild(triggerDiv);
 
         // Container for the right side ui (select boxes, all of the info).
@@ -1834,6 +1849,9 @@ const defaultTriggerSetAlertOutput = {
   ...defaultAlertOutput,
   name: {
     en: 'Default trigger set alert output',
+    de: 'Standard trigger-Set Alert Ausgabe',
+    cn: '默认触发器集合提示输出模式',
+    ko: '기본 트리거 세트 알람 출력 방식',
   },
 } as const;
 

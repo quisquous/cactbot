@@ -175,6 +175,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Place Marker on Wall',
+          de: 'Markierung an der Wand ablegen',
+          cn: '在场边放置标记',
+          ko: '벽에 징 놓기',
         },
       },
     },
@@ -206,6 +209,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Behind (Stay Behind)',
+          de: 'Geh hinter den Boss (und bleib hinter ihm stehen)',
+          cn: '去背后 (待在背后)',
+          ko: '뒤로 이동 (뒤에 머물기)',
         },
       },
     },
@@ -550,14 +556,16 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'Gymnasiou-Acheloios',
         'Gymnasiou Leon': 'Gymnasiou-Leon',
         'Gymnasiou Mandragoras': 'Gymnasiou-Mandragora',
+        'Gymnasiou Megakantha': 'Gymnasiou-Megakantha',
         'Gymnasiou Meganereis': 'Gymnasiou-Meganereis',
+        'Gymnasiou Pithekos': 'Gymnasiou-Pithekos',
         'Gymnasiou Satyros': 'Gymnasiou-Satyros',
         'Gymnasiou Sphinx': 'Gymnasiou-Sphinx',
+        'Gymnasiou Styphnolobion': 'Gymnasiou-Styphnolobium',
         'Gymnasiou Tigris': 'Gymnasiou-Tigris',
         'Gymnasiou Triton': 'Gymnasiou-Triton',
         'Lampas Chrysine': 'Lampas Chrysine',
@@ -568,14 +576,16 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'gymnasiou achéloios',
         'Gymnasiou Leon': 'gymnasiou léon',
         'Gymnasiou Mandragoras': 'gymnasiou mandragoras',
+        'Gymnasiou Megakantha': 'gymnasiou mégakantha',
         'Gymnasiou Meganereis': 'gymnasiou méganéréis',
+        'Gymnasiou Pithekos': 'gymnasiou pithékos',
         'Gymnasiou Satyros': 'gymnasiou satyros',
         'Gymnasiou Sphinx': 'gymnasiou sphinx',
+        'Gymnasiou Styphnolobion': 'gymnasiou styphnolobion',
         'Gymnasiou Tigris': 'gymnasiou tigris',
         'Gymnasiou Triton': 'gymnasiou triton',
         'Lampas Chrysine': 'lampas chrysine',
@@ -586,14 +596,16 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': 'ギュムナシオー・アケローオス',
         'Gymnasiou Leon': 'ギュムナシオー・レオン',
         'Gymnasiou Mandragoras': 'ギュムナシオー・マンドラゴラ',
+        'Gymnasiou Megakantha': 'ギュムナシオー・メガアカンサ',
         'Gymnasiou Meganereis': 'ギュムナシオー・メガネレイス',
+        'Gymnasiou Pithekos': 'ギュムナシオー・ピテコス',
         'Gymnasiou Satyros': 'ギュムナシオー・サテュロス',
         'Gymnasiou Sphinx': 'ギュムナシオー・スフィンクス',
+        'Gymnasiou Styphnolobion': 'ギュムナシオー・スティファノロビュウム',
         'Gymnasiou Tigris': 'ギュムナシオー・ティグリス',
         'Gymnasiou Triton': 'ギュムナシオー・トリトン',
         'Lampas Chrysine': 'クリュシネ・ランパス',
@@ -604,14 +616,16 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': '育体阿刻罗俄斯',
         'Gymnasiou Leon': '育体雄狮',
         'Gymnasiou Mandragoras': '育体蔓德拉',
+        'Gymnasiou Megakantha': '育体巨型刺口花',
         'Gymnasiou Meganereis': '育体巨型涅瑞伊斯',
+        'Gymnasiou Pithekos': '育体猿猴',
         'Gymnasiou Satyros': '育体萨提洛斯',
         'Gymnasiou Sphinx': '育体斯芬克斯',
+        'Gymnasiou Styphnolobion': '育体槐龙',
         'Gymnasiou Tigris': '育体猛虎',
         'Gymnasiou Triton': '育体特里同',
         'Lampas Chrysine': '金光拉姆帕斯',
@@ -622,14 +636,16 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Gymnasiou Acheloios': '김나시온 아켈로오스',
         'Gymnasiou Leon': '김나시온 사자',
         'Gymnasiou Mandragoras': '김나시온 만드라고라',
+        'Gymnasiou Megakantha': '김나시온 큰가시풀',
         'Gymnasiou Meganereis': '김나시온 거대 네레이스',
+        'Gymnasiou Pithekos': '김나시온 원숭이',
         'Gymnasiou Satyros': '김나시온 사티로스',
         'Gymnasiou Sphinx': '김나시온 스핑크스',
+        'Gymnasiou Styphnolobion': '김나시온 회화나무',
         'Gymnasiou Tigris': '김나시온 호랑이',
         'Gymnasiou Triton': '김나시온 트리톤',
         'Lampas Chrysine': '람파스 크뤼시네',

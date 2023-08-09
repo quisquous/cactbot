@@ -117,7 +117,7 @@ const writeFile = (
       for (const line of lines)
         anonymizer.validateLine(line, notifier);
 
-      resolve();
+      writer.close(() => resolve());
     });
   });
 };

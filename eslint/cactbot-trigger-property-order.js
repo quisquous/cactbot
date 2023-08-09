@@ -29,6 +29,7 @@ module.exports = {
   create: (context) => {
     const raidbossOrderList = [
       'id',
+      'comment',
       'type',
       'disabled',
       'netRegex',
@@ -57,6 +58,7 @@ module.exports = {
     ];
     const oopsyraidsyOrderList = [
       'id',
+      'comment',
       'netRegex',
       'netRegexDe',
       'netRegexFr',

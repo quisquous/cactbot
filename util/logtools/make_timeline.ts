@@ -536,7 +536,7 @@ const assembleTimelineStrings = (
     }
     lastEntry = entry;
   }
-  const ignoreLines = assembledIgnoreHeaderStrings(args);
+  const ignoreLines = assembleHeaderArgStrings(args);
   const definiteLines = ignoreLines.concat(assembled);
   // Generate a complete table of abilities if specified.
   // Otherwise just return the timeline and basic header info.
@@ -562,10 +562,19 @@ const assembleHeaderZoneInfoStrings = (fight: FightEncInfo): string[] => {
   return headerInfo;
 };
 
-const assembledIgnoreHeaderStrings = (
+const assembleHeaderArgStrings = (
   args: ExtendedArgs,
 ): string[] => {
   const assembled = [];
+  let padHeaderArgs = false;
+
+  const sortedAbilityIgnore = args.ignore_id?.sort();
+  if (sortedAbilityIgnore !== undefined) {
+    // Compared to combatant names, abilities are always guaranteed to be single "words".
+    const iiLine = `# -ii ${sortedAbilityIgnore.join(' ')}`;
+    assembled.push(iiLine);
+    padHeaderArgs = true;
+  }
 
   const sortedCombatantIgnore = args.ignore_combatant?.sort();
   if (sortedCombatantIgnore !== undefined) {
@@ -575,17 +584,31 @@ const assembledIgnoreHeaderStrings = (
     // Single-word combatant names will not be affected by being quote-wrapped.
     const joinedIgnore = sortedCombatantIgnore.map((x) => `"${x}"`).join(' ');
     assembled.push(`# -ic ${joinedIgnore}`);
+    padHeaderArgs = true;
   }
 
-  const sortedAbilityIgnore = args.ignore_id?.sort();
-  if (sortedAbilityIgnore !== undefined) {
-    // Compared to combatant names, abilities are always guaranteed to be single "words".
-    const iiLine = `# -ii ${sortedAbilityIgnore.join(' ')}\n`;
-    assembled.push(iiLine);
+  const knownTargetable = args.include_targetable;
+  if (knownTargetable !== undefined && knownTargetable !== null) {
+    // Assume that the user knows best as far as sorting these args.
+    const joinedTargetable = knownTargetable.map((x) => `"${x}"`).join(' ');
+    assembled.push(`# -it ${joinedTargetable}`);
+    padHeaderArgs = true;
   }
+
+  const phases = args.phase;
+  if (phases !== undefined && phases !== null) {
+    // It's a lot of extra work to sort the phase information for minimal gain.
+    // Assume that the user knows best as far as sorting these args.
+    const phaseLine = `# -p ${phases.join(' ')}`;
+    assembled.push(phaseLine);
+    padHeaderArgs = true;
+  }
+
   // Here and in the ability ignore block, we pad string ends with newlines, not the starts.
   // We assume newline padding from the zone Id function, and if it's not present,
   // the ignore header should be on line 1 of the file.
+  if (padHeaderArgs)
+    assembled.push('');
   assembled.push('hideall "--Reset--"\nhideall "--sync--"\n');
   return assembled;
 };
