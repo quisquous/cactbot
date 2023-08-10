@@ -2669,24 +2669,28 @@ Options.Triggers.push({
         directions: {
           en: '${start} => ${rotation}',
           de: '${start} => ${rotation}',
+          ja: '${start} => ${rotation}',
           cn: '${start} => ${rotation}',
           ko: '${start} => ${rotation}',
         },
         backLeft: {
           en: 'Back left',
           de: 'Hinten links',
+          ja: '左後ろ',
           cn: '左后',
           ko: '뒤 왼쪽',
         },
         backRight: {
           en: 'Back right',
           de: 'Hinten rechts',
+          ja: '右後ろ',
           cn: '右后',
           ko: '뒤 오른쪽',
         },
         front: {
           en: 'Front',
           de: 'Vorne',
+          ja: '前',
           cn: '前',
           ko: '앞',
         },
