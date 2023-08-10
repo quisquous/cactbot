@@ -2834,7 +2834,7 @@ const triggerSet: TriggerSet<Data> = {
         directions: {
           en: '${start} => ${rotation}',
           de: '${start} => ${rotation}',
-          ja: '${start} → ${rotation}',
+          ja: '${start} => ${rotation}',
           cn: '${start} => ${rotation}',
           ko: '${start} => ${rotation}',
         },
