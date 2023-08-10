@@ -26,7 +26,7 @@ Options.Triggers.push({
       id: 'Shatter Big Ice North',
       type: 'GameLog',
       netRegex: {
-        line: 'The icebound tomelith A2 activates and begins to emit heat.*?',
+        line: 'The icebound tomelith A4 activates and begins to emit heat.*?',
         capture: false,
       },
       alertText: (_data, _matches, output) => output.text(),
@@ -64,7 +64,7 @@ Options.Triggers.push({
       id: 'Shatter Big Ice Southwest',
       type: 'GameLog',
       netRegex: {
-        line: 'The icebound tomelith A4 activates and begins to emit heat.*?',
+        line: 'The icebound tomelith A2 activates and begins to emit heat.*?',
         capture: false,
       },
       alertText: (_data, _matches, output) => output.text(),
