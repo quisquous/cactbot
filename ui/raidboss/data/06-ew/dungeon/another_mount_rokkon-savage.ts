@@ -54,6 +54,9 @@ type ShadowGiriInfo = {
 };
 
 export interface Data extends RaidbossData {
+  readonly triggerSetConfig: {
+    adjustSwap: 'mrc' | 'crm';
+  };
   combatantData: PluginCombatantState[];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
@@ -88,7 +91,11 @@ const findPlayerByRole = (role: Role, data: Data): string => {
   const [target] = collect.filter((x) => x !== data.me);
   return target === undefined ? 'unknown' : target;
 };
-const findDpsWithPrior = (prior: boolean, party: PartyTracker): string => {
+const findDpsWithPrior = (
+  prior: boolean,
+  party: PartyTracker,
+  adjust: 'mrc' | 'crm',
+): string => {
   const [target1, target2] = party.dpsNames;
   const [job1, job2] = party.dpsNames.map((x) => party.jobName(x));
   if (target1 === undefined || target2 === undefined || job1 === undefined || job2 === undefined)
@@ -101,14 +108,14 @@ const findDpsWithPrior = (prior: boolean, party: PartyTracker): string => {
     }
     if (Util.isRangedDpsJob(job1)) {
       if (Util.isMeleeDpsJob(job2))
-        return target2;
+        return adjust === 'mrc' ? target2 : target1;
       if (Util.isRangedDpsJob(job2))
         return job1 > job2 ? target1 : target2;
       return target1;
     }
     if (Util.isCasterDpsJob(job1)) {
       if (Util.isMeleeDpsJob(job2) || Util.isRangedDpsJob(job2))
-        return target2;
+        return adjust === 'mrc' ? target2 : target1;
       if (Util.isCasterDpsJob(job2))
         return job1 > job2 ? target1 : target2;
     }
@@ -121,20 +128,25 @@ const findDpsWithPrior = (prior: boolean, party: PartyTracker): string => {
   }
   if (Util.isRangedDpsJob(job1)) {
     if (Util.isMeleeDpsJob(job2))
-      return target1;
+      return adjust === 'mrc' ? target1 : target2;
     if (Util.isRangedDpsJob(job2))
       return job1 > job2 ? target2 : target1;
     return target2;
   }
   if (Util.isCasterDpsJob(job1)) {
     if (Util.isMeleeDpsJob(job2) || Util.isRangedDpsJob(job2))
-      return target1;
+      return adjust === 'mrc' ? target1 : target2;
     if (Util.isCasterDpsJob(job2))
       return job1 > job2 ? target2 : target1;
   }
   return 'unknown';
 };
-const findStackPartner = (data: Data, stack1: string, stack2: string): string | undefined => {
+const findStackPartner = (
+  data: Data,
+  stack1: string,
+  stack2: string,
+  adjust: 'mrc' | 'crm',
+): string | undefined => {
   const stacks = [stack1, stack2];
   const nomarks = data.party.partyNames.filter((x) => !stacks.includes(x));
   if (nomarks.length !== 2 || data.party.partyNames.length !== 4)
@@ -153,19 +165,19 @@ const findStackPartner = (data: Data, stack1: string, stack2: string): string | 
   if (same === undefined)
     return;
 
-  // Find partner. How can I do for BLU?
+  // Find partner. Not support BLU
   if (data.role === 'tank') {
     if (data.party.isHealer(same))
-      return findDpsWithPrior(true, data.party);
+      return findDpsWithPrior(true, data.party, adjust);
     return findPlayerByRole('healer', data);
   } else if (data.role === 'healer') {
     if (data.party.isTank(same))
-      return findDpsWithPrior(false, data.party);
+      return findDpsWithPrior(false, data.party, adjust);
     return findPlayerByRole('tank', data);
   }
   if (data.party.isTank(same) || data.party.isHealer(same))
     return findPlayerByRole('dps', data);
-  const prior = findDpsWithPrior(true, data.party);
+  const prior = findDpsWithPrior(true, data.party, adjust);
   if (prior === data.me)
     return findPlayerByRole('tank', data);
   return findPlayerByRole('healer', data);
@@ -175,6 +187,7 @@ const buildStackPartner = (
   collect: NetMatches['GainsEffect'][],
   stackId: string,
   spreadId: string,
+  adjust: 'mrc' | 'crm',
 ) => {
   const [stack1, stack2] = collect.filter((x) => x.effectId === stackId);
   const spread = collect.find((x) => x.effectId === spreadId);
@@ -183,7 +196,7 @@ const buildStackPartner = (
   const stackTime = parseFloat(stack1.duration);
   const spreadTime = parseFloat(spread.duration);
   data.stackFirst = stackTime < spreadTime;
-  data.partner = findStackPartner(data, stack1.target, stack2.target);
+  data.partner = findStackPartner(data, stack1.target, stack2.target, adjust);
 };
 
 const towerResponse = (
@@ -264,6 +277,32 @@ const towerResponse = (
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherMountRokkonSavage',
   zoneId: ZoneId.AnotherMountRokkonSavage,
+  config: [
+    {
+      id: 'adjustSwap',
+      name: {
+        en: 'Partner swap priority', // FIXME
+        ja: 'ペア調整優先順位',
+        ko: '파트너 페어 조정 우선순위',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Melee -> Range -> Caster': 'mrc',
+          'Caster -> Range -> Melee': 'crm',
+        },
+        ja: {
+          '近接 -> レンジ -> キャスタ': 'mrc',
+          'キャスタ -> レンジ -> 遠隔': 'crm',
+        },
+        ko: {
+          '근접 -> 원격 -> 마법': 'mrc',
+          '마법 -> 원격 -> 근접': 'crm',
+        },
+      },
+      default: 'melee',
+    },
+  ],
   timelineFile: 'another_mount_rokkon-savage.txt',
   initData: () => {
     return {
@@ -390,12 +429,12 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         line1: {
-          en: 'Dodge fast beams',
+          en: 'Dodge fast beams', // FIXME
           ja: '速いビーム回避',
           ko: '빠른 빔 피해요!',
         },
         line2: {
-          en: 'Dodge thick beams',
+          en: 'Dodge thick beams', // FIXME
           ja: '太いビーム回避',
           ko: '굵은 빔 피해요!',
         },
@@ -476,19 +515,25 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       suppressSeconds: 999999,
       alertText: (data, _matches, output) => {
-        buildStackPartner(data, data.wailingCollect, 'DEC', 'DEB');
+        buildStackPartner(
+          data,
+          data.wailingCollect,
+          'DEC',
+          'DEB',
+          data.triggerSetConfig.adjustSwap,
+        );
         return data.stackFirst ? output.stack!() : output.spread!();
       },
       outputStrings: {
         stack: {
           en: 'Stack => Spread',
           ja: 'ペアから => 散会',
-          ko: '뭉쳤다 => 흩어져요',
+          ko: '페어 => 흩어져요',
         },
         spread: {
           en: 'Spread => Stack',
           ja: '散会から => ペア',
-          ko: '흩어졌다 => 뭉쳐요',
+          ko: '흩어졌다 => 페어',
         },
       },
     },
@@ -578,53 +623,53 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         north: {
           en: 'North Diamond',
-          ja: 'A',
-          ko: 'A마름모',
+          ja: '北菱形',
+          ko: '북쪽 마름모',
         },
         east: {
           en: 'East Diamond',
-          ja: 'B',
-          ko: 'B마름모',
+          ja: '東菱形',
+          ko: '동쪽 마름모',
         },
         south: {
           en: 'South Diamond',
-          ja: 'C',
-          ko: 'C마름모',
+          ja: '南菱形',
+          ko: '남쪽 마름모',
         },
         west: {
           en: 'West Diamond',
-          ja: 'D',
-          ko: 'D마름모',
+          ja: '西菱西',
+          ko: '서쪽 마름모',
         },
         northeast: {
           en: 'Northeast Square',
-          ja: '1',
-          ko: '1사각',
+          ja: '北東四角',
+          ko: '북동 사각',
         },
         southeast: {
           en: 'Southeast Square',
-          ja: '2',
-          ko: '2사각',
+          ja: '南東四角',
+          ko: '남동 사각',
         },
         southwest: {
           en: 'Southwest Square',
-          ja: '3',
-          ko: '3사각',
+          ja: '南西四角',
+          ko: '남서 사각',
         },
         northwest: {
           en: 'Northwest Square',
-          ja: '4',
-          ko: '4사각',
+          ja: '北西四角',
+          ko: '북서 사각',
         },
         spread: {
           en: '${position} + Spread (w/${partner})',
-          ja: '${position} 散会(${partner})',
-          ko: '${position} 흩어져요(${partner})',
+          ja: '${position} + 散会(${partner})',
+          ko: '${position} + 흩어져요(${partner})',
         },
         stack: {
           en: '${position} + Stack (w/${partner})',
-          ja: '${position} ペア(${partner})',
-          ko: '${position} 뭉쳐요(${partner})',
+          ja: '${position} + ペア(${partner})',
+          ko: '${position} + 페어(${partner})',
         },
       },
     },
@@ -636,7 +681,13 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['843A', '843C'], source: 'Shishio' },
       durationSeconds: 7,
       alertText: (data, matches, output) => {
-        buildStackPartner(data, data.wailingCollect, 'DEC', 'DEB');
+        buildStackPartner(
+          data,
+          data.wailingCollect,
+          'DEC',
+          'DEB',
+          data.triggerSetConfig.adjustSwap,
+        );
         const isInFirst = matches.id === '843C';
         const inOut = isInFirst ? output.in!() : output.out!();
         const outIn = isInFirst ? output.out!() : output.in!();
@@ -651,12 +702,12 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: '${inOut} Stack (w/${partner}) => ${outIn} Spread',
           ja: '${inOut}ペアから(${partner}) => ${outIn}散会',
-          ko: '${inOut} 뭉쳤다(${partner}) => ${outIn} 흩어져요',
+          ko: '${inOut} 페어(${partner}) => ${outIn} 흩어져요',
         },
         spread: {
           en: '${inOut} Spread => ${outIn} Stack (w/${partner})',
           ja: '${inOut}散会から => ${outIn}ペア(${partner})',
-          ko: '${inOut} 흩어졌다 => ${outIn} 뭉쳐요(${partner})',
+          ko: '${inOut} 흩어졌다 => ${outIn} 페어(${partner})',
         },
       },
     },
@@ -765,7 +816,12 @@ const triggerSet: TriggerSet<Data> = {
         const [stack1, stack2] = data.sparksCollect.filter((x) => x.effectId === 'E17');
         if (stack1 === undefined || stack2 === undefined)
           return;
-        const partner = findStackPartner(data, stack1.target, stack2.target);
+        const partner = findStackPartner(
+          data,
+          stack1.target,
+          stack2.target,
+          data.triggerSetConfig.adjustSwap,
+        );
         if (partner === undefined) {
           if (data.role === 'tank')
             return output.stackHealer!();
@@ -779,22 +835,22 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack (w/${partner})',
           ja: 'ペア(${partner})',
-          ko: '뭉쳐요(${partner})',
+          ko: '페어(${partner})',
         },
         stackTank: {
           en: 'Stack with Tank',
           ja: 'タンクとペア',
-          ko: '탱크랑 뭉쳐요',
+          ko: '탱크랑 페어',
         },
         stackHealer: {
           en: 'Stack with Healer',
           ja: 'ヒーラーとペア',
-          ko: '힐러랑 뭉쳐요',
+          ko: '힐러랑 페어',
         },
         stackDps: {
           en: 'Stack with DPS',
           ja: 'DPSとペア',
-          ko: 'DPS랑 뭉쳐요',
+          ko: 'DPS끼리 페어',
         },
       },
     },
@@ -810,12 +866,12 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         blue: {
-          en: 'Blue: Fake',
+          en: 'Blue: Fake', // FIXME
           ja: '青: 偽',
           ko: '파랑: 가짜',
         },
         red: {
-          en: 'Red: True',
+          en: 'Orange: True', // FIXME
           ja: '赤: 本当',
           ko: '빨강: 진짜',
         },
@@ -829,7 +885,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: (data, _matches, output) => {
-        buildStackPartner(data, data.sparksCollect, 'E17', 'E18');
+        buildStackPartner(data, data.sparksCollect, 'E17', 'E18', data.triggerSetConfig.adjustSwap);
         if (data.stackFirst)
           return output.stack!({ partner: data.ShortName(data.partner) });
         return output.spread!({ partner: data.ShortName(data.partner) });
@@ -838,12 +894,12 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack (w/${partner}) => Spread',
           ja: 'ペアから(${partner}) => 散会',
-          ko: '뭉쳤다(${partner}) => 흩어져요',
+          ko: '페어(${partner}) => 흩어져요',
         },
         spread: {
           en: 'Spread => Stack (w/${partner})',
           ja: '散会から => ペア(${partner})',
-          ko: '흩어졌다 => 뭉쳐요(${partner})',
+          ko: '흩어졌다 => 페어(${partner})',
         },
       },
     },
@@ -871,7 +927,7 @@ const triggerSet: TriggerSet<Data> = {
         explosion: {
           en: '(Spread soon)',
           ja: 'まもなくペアが爆発！',
-          ko: '곧 뭉치기가 터져요!',
+          ko: '곧 페어가 터져요!',
         },
         spread: {
           en: 'Spread',
@@ -900,7 +956,7 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack',
           ja: 'ペア(エクサ回避)',
-          ko: '뭉쳐요! (엑사 피하면서)',
+          ko: '페어(엑사 피하면서)',
         },
       },
     },
@@ -945,7 +1001,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Shrink Lone Orb',
           ja: '隅の雷玉へ',
-          ko: '모서리 번개 구슬 몸통 박치기',
+          ko: '모서리 번개 구슬로',
         },
       },
     },
@@ -1137,33 +1193,33 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         left: {
           en: 'Drop Blue Tower',
-          ja: '異色: 左へ',
-          ko: '다른색: 왼쪽으로',
+          ja: '全部異色: 青設置',
+          ko: '모두 다른색: 파랑 설치',
         },
         right: {
-          en: 'Drop Red Tower',
-          ja: '異色: 右へ',
-          ko: '다른색: 오른쪽으로',
+          en: 'Drop Orange Tower',
+          ja: '全部異色: 赤設置',
+          ko: '모두 다른색: 빨강 설치',
         },
         sameLeft: {
           en: 'Drop Blue Tower: All Red',
-          ja: '同色: 北の左へ',
-          ko: '같은색: 북쪽 왼쪽으로',
+          ja: '同色: 青設置',
+          ko: '같은색: 파랑 설치',
         },
         sameRight: {
-          en: 'Drop Red Tower: All Blue',
-          ja: '同色: 北の右へ',
-          ko: '같은색: 북쪽 오른쪽으로',
+          en: 'Drop Orange Tower: All Blue',
+          ja: '同色: 赤設置',
+          ko: '같은색: 빨강 설치',
         },
         southLeft: {
           en: 'Drop Blue Tower',
-          ja: '異色: 南の左へ',
-          ko: '다른색: 남쪽 왼쪽으로',
+          ja: '異色: 青設置',
+          ko: '다른색: 파랑 설치',
         },
         southRight: {
-          en: 'Drop Red Tower',
-          ja: '異色: 南の右へ',
-          ko: '다른색: 남쪽 오른쪽으로',
+          en: 'Drop Orange Tower',
+          ja: '異色: 赤設置',
+          ko: '다른색: 빨강 설치',
         },
         unknown: Outputs.unknown,
       },
@@ -1228,7 +1284,7 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Stack first',
           ja: 'さっきにペア(壁AOE注意)',
-          ko: '먼저 뭉쳐요 (외곽 조심)',
+          ko: '먼저 페어 (외곽 조심)',
         },
         spread: {
           en: 'Spread first',
@@ -1258,17 +1314,17 @@ const triggerSet: TriggerSet<Data> = {
         tank: {
           en: 'Stack with Healer',
           ja: 'ヒーラーとペア',
-          ko: '힐러랑 뭉쳐요!',
+          ko: '힐러랑 페어!',
         },
         healer: {
           en: 'Stack with Tank',
           ja: 'タンクとペア',
-          ko: '탱크랑 뭉쳐요!',
+          ko: '탱크랑 페어!',
         },
         dps: {
           en: 'Stack with DPS',
           ja: 'DPSとペア',
-          ko: 'DPS끼리 뭉쳐요!',
+          ko: 'DPS끼리 페어!',
         },
       },
     },
@@ -1300,7 +1356,7 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           tether: {
-            en: 'Tethered',
+            en: 'Tether',
             ja: '自分に線！刀の方向確認',
             ko: '내게 줄! 칼 방향 확인!',
           },
@@ -1326,7 +1382,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Inside => Go Sides',
+          en: 'Inside => Sides',
           ja: '中から => 横へ',
           ko: '안으로 => 옆으로',
         },
@@ -1437,12 +1493,12 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           tether: {
-            en: 'Tethered (w/${player})',
+            en: 'Tether (w/${player})',
             ja: '自分に線！(${player}',
             ko: '내게 줄! (${player})',
           },
           tetheronly: {
-            en: 'Tethered',
+            en: 'Tether',
             ja: '自分に線！',
             ko: '내게 줄!',
           },
@@ -1535,23 +1591,23 @@ const triggerSet: TriggerSet<Data> = {
           },
           north: {
             en: 'North',
-            ja: 'A',
-            ko: 'A',
+            ja: '北',
+            ko: '북',
           },
           east: {
             en: 'East',
-            ja: 'B',
-            ko: 'B',
+            ja: '東',
+            ko: '동',
           },
           south: {
             en: 'South',
-            ja: 'C',
-            ko: 'C',
+            ja: '南',
+            ko: '남',
           },
           west: {
             en: 'West',
-            ja: 'D',
-            ko: 'D',
+            ja: '西',
+            ko: '서',
           },
           unknown: Outputs.unknown,
         };
@@ -1661,12 +1717,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '${mesg}',
         },
         left: {
-          en: 'Stand left, ${mesg}',
+          en: 'Stand left, ${mesg}', // FIXME
           ja: '[左] ${mesg}',
           ko: '[왼쪽] ${mesg}',
         },
         right: {
-          en: 'Stand right, ${mesg}',
+          en: 'Stand right, ${mesg}', // FIXME
           ja: '[右] ${mesg}',
           ko: '[오른쪽] ${mesg}',
         },

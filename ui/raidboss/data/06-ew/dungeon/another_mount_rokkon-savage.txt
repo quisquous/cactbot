@@ -157,7 +157,7 @@ hideall "--sync--"
 2309.5 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(853F|8540):/
 2309.5 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(853C|853D):/
 # ???
-2325.0 "Unenlightenment (Enrage)"
+2325.0 "Unenlightenment (ENRAGE)"
 
 
 #~~~~~~#
