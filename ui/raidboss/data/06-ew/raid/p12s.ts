@@ -299,7 +299,7 @@ export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower';
     classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs' | 'shapeAndDebuff';
-    classicalConcepts2InitialSuppress: true | false;
+    classicalConcepts2ActualNoFlip: true | false;
     pangenesisFirstTower: 'agnostic' | 'not' | 'one';
   };
   decOffset?: number;
@@ -449,9 +449,13 @@ const triggerSet: TriggerSet<Data> = {
       default: 'shapeAndDebuff',
     },
     {
-      id: 'classicalConcepts2InitialSuppress',
+      id: 'classicalConcepts2ActualNoFlip',
+      comment: {
+        en:
+          'Suppresses initial output & calls final position immediately in chosen pair order (e.g. no flip).  <a href="https://user-images.githubusercontent.com/67395342/258580930-1659573f-a492-4839-a275-e51449bb85c0.gif" target="_blank">Visual</a>',
+      },
       name: {
-        en: 'Classical Concepts 2: No Initial Alert (Actual Only)',
+        en: 'Classical Concepts 2: Actual only & no inversion',
       },
       type: 'checkbox',
       default: false,
@@ -3030,6 +3034,13 @@ const triggerSet: TriggerSet<Data> = {
           if (columnOrder?.length !== 4)
             return;
 
+          // If classicalConcepts2ActualNoFlip is enabled the left/west assigned pair will handle
+          // the left/west column, as opposed to flipping to pre-position in the right/east column before Panta Rhei.
+          // To accommodate this, and because the shapes spawn in their flipped arrangement,
+          // we just reverse the columnOrder from the config settings when determining initial safe spots.
+          if (data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+            columnOrder.reverse();
+
           myColumn = columnOrder.indexOf(data.conceptPair);
           const myColumnLocations = [
             conceptLocationMap.north[myColumn],
@@ -3116,10 +3127,9 @@ const triggerSet: TriggerSet<Data> = {
 
         if (
           (matches.id === '8336') ||
-          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2InitialSuppress)
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
         ) {
-          // for Panta Rhei, or if we are suppressing the initial call for classical2 and calling the actual immediately
-          // invert myColumn, myRow, and myInterceptOutput
+          // invert myColumn, myRow, and myInterceptOutput to correspond to final/actual positions
           if (data.classical2InitialColumn !== undefined)
             myColumn = 3 - data.classical2InitialColumn;
           if (data.classical2InitialRow !== undefined)
@@ -3152,12 +3162,10 @@ const triggerSet: TriggerSet<Data> = {
           });
           return { alertText: outputStr };
         }
-        // for classical2, call the actual position:
-        // (1) on the classical2 cast, if the initial position is being suppressed (i.e. call the actual immediately), or
-        // (2) on Panta Rhei, if we *didn't* already call the actual because the initial call was suppressed
+        // call the actual position on Panta Rhei or on classical2 cast (depending on classicalConcepts2ActualNoFlip)
         if (
-          (matches.id === '8336' && !data.triggerSetConfig.classicalConcepts2InitialSuppress) ||
-          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2InitialSuppress)
+          (matches.id === '8336' && !data.triggerSetConfig.classicalConcepts2ActualNoFlip) ||
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
         ) {
           outputStr = output.classic2actual!({
             column: output[columnOutput]!(),
@@ -3166,7 +3174,7 @@ const triggerSet: TriggerSet<Data> = {
           });
           return { alertText: outputStr };
         }
-        // the initial call is not being suppressed, so call it for classical2
+        // the initial call is not suppressed by classicalConcepts2ActualNoFlip, so call it for classical2
         if (matches.id === '8331') {
           outputStr = output.classic2initial!({
             column: output[columnOutput]!(),
@@ -3175,7 +3183,7 @@ const triggerSet: TriggerSet<Data> = {
           });
           return { infoText: outputStr };
         }
-        // only case left is Panta Rhei where initial call was suppressed, so now we don't want to call anything
+        // only case left is Panta Rhei where initial call was suppressed by classicalConcepts2ActualNoFlip, so don't call anything
         return;
       },
       run: (data) => {
