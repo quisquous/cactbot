@@ -452,7 +452,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'classicalConcepts2ActualNoFlip',
       comment: {
         en:
-          'Suppresses initial output & calls final position immediately in chosen pair order (e.g. no flip).  <a href="https://user-images.githubusercontent.com/67395342/258580930-1659573f-a492-4839-a275-e51449bb85c0.gif" target="_blank">Visual</a>',
+          'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',
