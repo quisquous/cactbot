@@ -170,9 +170,11 @@ const superchainNpcBaseIds: readonly string[] = Object.values(superchainNpcBaseI
 const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
+    ko: '바로',
   },
   delay2: {
     en: 'soon',
+    ko: '곧',
   },
   delay3: {
     en: 'delayed',
@@ -471,9 +473,12 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
+        ko:
+          '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',
+        ko: 'Classical Concepts 2: 반전 없이 실제 위치만 알림',
       },
       type: 'checkbox',
       default: false,
@@ -1957,7 +1962,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
             cn: '引导激光 (${delay})', // FIXME
-            ko: '레이저 유도 (${delay})', // FIXME
+            ko: '레이저 유도 (${delay})',
           },
           firstWhiteFlame: {
             en: '(5 and 7 ${delay})',
@@ -1965,7 +1970,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '(5 et 7 bait ${delay})', // FIXME
             ja: '(5と7誘導 ${delay})', // FIXME
             cn: '(5 和 7 引导 ${delay})', // FIXME
-            ko: '(5, 7 레이저 ${delay})', // FIXME
+            ko: '(5, 7 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
         };
@@ -2003,7 +2008,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
             cn: '引导激光 (${delay})', // FIXME
-            ko: '레이저 유도 (${delay})', // FIXME
+            ko: '레이저 유도 (${delay})',
           },
           secondWhiteFlame: {
             en: '(6 and 8 ${delay})',
@@ -2011,7 +2016,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '(6 et 8 bait ${delay})', // FIXME
             ja: '(6と8誘導 ${delay})', // FIXME
             cn: '(6 和 8 引导 ${delay})', // FIXME
-            ko: '(6, 8 레이저 ${delay})', // FIXME
+            ko: '(6, 8 레이저 ${delay})',
           },
           thirdWhiteFlame: {
             en: '(1 and 3 ${delay})',
@@ -2019,7 +2024,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '(1 et 3 bait ${delay})', // FIXME
             ja: '(1と3誘導 ${delay})', // FIXME
             cn: '(1 和 3 引导 ${delay})', // FIXME
-            ko: '(1, 3 레이저 ${delay})', // FIXME
+            ko: '(1, 3 레이저 ${delay})',
           },
           fourthWhiteFlame: {
             en: '(2 and 4 ${delay})',
@@ -2027,7 +2032,7 @@ const triggerSet: TriggerSet<Data> = {
             fr: '(2 et 4 bait ${delay})', // FIXME
             ja: '(2と4誘導 ${delay})', // FIXME
             cn: '(2 和 4 引导 ${delay})', // FIXME
-            ko: '(2, 4 레이저 ${delay})', // FIXME
+            ko: '(2, 4 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
         };
