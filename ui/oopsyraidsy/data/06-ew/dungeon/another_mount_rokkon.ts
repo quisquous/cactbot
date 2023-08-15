@@ -53,6 +53,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Shishu Yamabiko': '8687', // sprite line aoe
     'AMR Shishu Kotengu Blade of the Tengu': '865F', // Leftward/Rightward/Backward Blows
     'AMR Shishu Onmitsugashira Juji Shuriken': '8664', // untelegraphed front line
+    'AMR Shishu Onmitsugashira Juji Shuriken Huton': '867D', // untelegraphed fast front line on all players
 
     // Gorai
     'AMR Gorai Fire Spread Purple': '850B', // line damage after purple Brazen Ballad

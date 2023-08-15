@@ -11,6 +11,8 @@ import { Job } from '../../../../../types/job';
 import { NetMatches } from '../../../../../types/net_matches';
 import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Shishu Onmitsugashira Huton 8663 call something for multiple fast shurikens???
+
 type OdderTower = {
   blue?: string;
   orange?: string;
@@ -577,7 +579,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Behind (Stay Behind)',
+          en: 'Sides (Stay Sides)',
         },
       },
     },
