@@ -261,3 +261,119 @@ hideall "--sync--"
 # 8533 Torching Torment cast and damage on tank for tankbuster
 # 8534 Unenlightenment cast and self-targeted ability
 # 8535 Unenlightenment damage for raidwide bleed
+
+
+#~~~~~~~~~~~~~~~~~~~#
+# MOKO THE RESTLESS #
+#~~~~~~~~~~~~~~~~~~~#
+
+# -p 85E0:3016.4
+# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA
+
+3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
+3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10
+3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+
+3035.6 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3038.6 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3041.6 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3055.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+
+3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720|TODO):/
+3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:85E3:/
+
+3077.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3083.3 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:85D1:/
+3088.9 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:8599:/
+3096.0 "Invocation of Vengeance" sync / 1[56]:[^:]*:Moko the Restless:85DB:/
+3108.1 "Fleeting Iai-giri (cast)" sync / 1[56]:[^:]*:Moko the Restless:85C2:/
+3108.3 "--jump--" sync / 1[56]:[^:]*:Moko the Restless:85C3:/
+3110.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(85C4|85C5|TODO):/
+3111.7 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:85D3:/
+3111.8 "Vengeful Flame/Vengeful Pyre" sync / 1[56]:[^:]*:Moko the Restless:(85DC|85DD):/
+3118.6 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:85D3:/
+3119.7 "Vengeful Pyre/Vengeful Flame" sync / 1[56]:[^:]*:Moko the Restless:(85DD|85DC):/
+
+3127.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+
+3134.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3139.0 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+
+3145.1 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85DE:/
+3154.2 "Near Edge/Far Edge 1" sync / 1[56]:[^:]*:Moko the Restless:(85D9|85D8):/
+3154.2 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
+3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
+3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(86C6|TODO):/
+
+3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85DE:/
+3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
+3174.5 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
+3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
+3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
+
+3184.8 "Kenki Release" sync / 1[56]:[^:]*:Moko's Shadow:85CE:/
+3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+
+# TODO: Fleeting Iai-giri right safe
+# TODO: Fleeting Iai-giri front safe
+# TODO: Shadow Kasumi-giri left safe initial
+# TODO: Shadow Kasumi-giri right safe initial
+# TODO: Shadow Kasumi-giri front safe initial
+# TODO: Shadow Kasumi-giri back safe followup
+
+# 8507 --sync-- auto damage
+# 8599 Boundless Scarlet cast and self-targeted ability to summon red lines
+# 85AF --sync-- repositioning
+# 85B0 Triple Kasumi-giri long cast and damage for back red first
+# 85B1 Triple Kasumi-giri long cast and damage for left red first
+# 85B2 Triple Kasumi-giri long cast and damage for front red first
+# 85B3 Triple Kasumi-giri long cast and damage for right red first
+# 85B4 Triple Kasumi-giri short cast and damage for back red followup
+# 85B5 Triple Kasumi-giri short cast and damage for left red followup
+# 85B6 Triple Kasumi-giri short cast and damage for front red followup
+# 85B7 Triple Kasumi-giri short cast and damage for right red followup
+# 85B8 Unbound Spirit damage for red "out" Triple Kasumi-giri marker
+# 85B9 Azure Coil damage for blue "in" Triple Kasumi-giri marker
+# 85BA Triple Kasumi-giri long cast and damage for back blue first
+# 85BB Triple Kasumi-giri long cast and damage for left blue first
+# 85BC Triple Kasumi-giri long cast and damage for front blue first
+# 85BD Triple Kasumi-giri long cast and damage for right blue first
+# 85BE Triple Kasumi-giri short cast and damage for back blue followup
+# 85BF Triple Kasumi-giri short cast and damage for left blue followup
+# 85C0 Triple Kasumi-giri short cast and damage for front blue followup
+# 85C1 Triple Kasumi-giri short cast and damage for right blue followup
+# 85C2 Fleeting Iai-giri cast and self-targeted ability for jumping Iai-giri (all types) from boss
+# 85C3 --sync-- boss jump ability for Fleeting Iai-giri
+# 85C4 Fleeting Iai-giri short cast and damage for back purple Iai-giri
+# 85C5 Fleeting Iai-giri short cast and damage for left purple Iai-giri
+# 85C7 Shadow-twin cast and self-targeted to summon Moko's Shadow clones
+# 85C8 Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
+# 85C9 --sync-- Shadow clone jump ability for Shadow Kasumi-giri
+# 85CA Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
+# 85CE Kenki Release cast and raidwide from Shadow clones
+# 85D1 Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
+# 85D2 Boundless Scarlet cast and damage for initial red lines before they grow
+# 85D3 Explosion cast and damage for growing red lines
+# 85D8 Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
+# 85D9 Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
+# 85DA Accursed Edge damage and bind on players from Far Edge / Near Edge
+# 85DB Invocation of Vengeance cast and self-targeted ability that gives debuffs during Explosions
+# 85DC Vengeful Flame spread damage
+# 85DD Vengeful Pyre stack damage
+# 85DE Moonless Night cast and raidwide damage to summon Oni's Claw
+# 85DF Clearout damage from Oni's Claw large circles hit 3
+# 85E0 Kenki Release cast and raidwide damage from boss
+# 85E3 Lateral Slice cast and tankbuster damage
+# 86C4 Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
+# 86C5 Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
+# 86C6 Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
+# 871F --sync-- unknown self-targeted ability before Lateral Slice
+# 8720 --sync-- unknown self-targeted ability before Lateral Slice
+# 8C21 Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
+# 8C27 Clearout damage from Oni's Claw large circles hit 2

@@ -26,7 +26,104 @@ const headmarkers = {
   limitCut4: '0153',
 } as const;
 
+const mokoVfxMap = {
+  '24C': 'backRed',
+  '24D': 'leftRed',
+  '24E': 'frontRed',
+  '24F': 'rightRed',
+  '250': 'backBlue',
+  '251': 'leftBlue',
+  '252': 'frontBlue',
+  '253': 'rightBlue',
+} as const;
+
+type KasumiGiri = typeof mokoVfxMap[keyof typeof mokoVfxMap];
+
+const shadowVfxMap = {
+  '248': 'back',
+  '249': 'left',
+  '24A': 'front',
+  '24B': 'right',
+} as const;
+
+type ShadowKasumiGiri = typeof shadowVfxMap[keyof typeof shadowVfxMap];
+
 const limitCutIds: readonly string[] = Object.values(headmarkers);
+
+const tripleKasumiFirstOutputStrings = {
+  backRedFirst: {
+    en: 'Back + Out',
+  },
+  leftRedFirst: {
+    en: 'Left + Out',
+  },
+  frontRedFirst: {
+    en: 'Front + Out',
+  },
+  rightRedFirst: {
+    en: 'Right + Out',
+  },
+  backBlueFirst: {
+    en: 'Back + In',
+  },
+  leftBlueFirst: {
+    en: 'Left + In',
+  },
+  frontBlueFirst: {
+    en: 'Front + In',
+  },
+  rightBlueFirst: {
+    en: 'Right + In',
+  },
+} as const;
+
+// It might be more accurate to say "rotate right" here than "right" (implying right flank)
+// but that's very long. This is one of those "you need to know the mechanic" situations.
+const tripleKasumiFollowupOutputStrings = {
+  backRed: {
+    en: 'Stay + Out',
+  },
+  leftRed: {
+    en: 'Left + Out',
+  },
+  frontRed: {
+    en: 'Through + Out',
+  },
+  rightRed: {
+    en: 'Right + Out',
+  },
+  backBlue: {
+    en: 'Stay + In',
+  },
+  leftBlue: {
+    en: 'Left + In',
+  },
+  frontBlue: {
+    en: 'Through + In',
+  },
+  rightBlue: {
+    en: 'Right + In',
+  },
+};
+
+const tripleKasumiAbilityIds = [
+  '85B0', // back red first
+  '85B1', // left red first
+  '85B2', // front red first
+  '85B3', // right red first
+  '85B4', // back red followup
+  '85B5', // left red followup
+  '85B6', // front red followup
+  '85B7', // right red followup
+  '85BA', // back blue first
+  '85BB', // left blue first
+  '85BC', // front blue first
+  '85BD', // right blue first
+  '85BE', // back blue followup
+  '85BF', // left blue followup
+  '85C0', // front blue followup
+  '85C1', // right blue followup
+] as const;
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -37,6 +134,9 @@ export interface Data extends RaidbossData {
   reincarnationCollect: [OdderTower, OdderTower, OdderTower, OdderTower];
   towerCount: number;
   devilishThrallCollect: NetMatches['StartsUsing'][];
+  tripleKasumiCollect: KasumiGiri[];
+  shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
+  shadowKasumiTether: { [shadowId: string]: string };
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -260,6 +360,9 @@ const triggerSet: TriggerSet<Data> = {
       reincarnationCollect: [{}, {}, {}, {}],
       towerCount: 0,
       devilishThrallCollect: [],
+      tripleKasumiCollect: [],
+      shadowKasumiCollect: {},
+      shadowKasumiTether: {},
     };
   },
   triggers: [
@@ -856,6 +959,104 @@ const triggerSet: TriggerSet<Data> = {
         num4: Outputs.num4,
       },
     },
+    // ---------------- Moko the Restless ----------------
+    {
+      id: 'AMR Moko Kenki Release',
+      type: 'StartsUsing',
+      netRegex: { id: '85E0', source: 'Moko the Restless', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'AMR Moko Triple Kasumi-giri Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap) },
+      run: (data, matches) => {
+        const map: { [name: string]: KasumiGiri } = mokoVfxMap;
+        const thisAbility = map[matches.count];
+        if (thisAbility === undefined)
+          return;
+        data.tripleKasumiCollect.push(thisAbility);
+      },
+    },
+    {
+      id: 'AMR Moko Triple Kasumi-giri 1',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
+      condition: (data) => data.tripleKasumiCollect.length === 1,
+      durationSeconds: 10,
+      alertText: (data, _matches, output) => {
+        const [ability] = data.tripleKasumiCollect;
+        if (ability === undefined)
+          return;
+        return output[`${ability}First`]!();
+      },
+      outputStrings: tripleKasumiFirstOutputStrings,
+    },
+    {
+      id: 'AMR Moko Triple Kasumi-giri 2',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
+      condition: (data) => data.tripleKasumiCollect.length === 2,
+      alertText: (data, _matches, output) => {
+        const ability = data.tripleKasumiCollect[1];
+        if (ability === undefined)
+          return;
+        const text = output[ability]!();
+        return output.text!({ text: text });
+      },
+      outputStrings: {
+        text: {
+          en: '(${text})',
+        },
+        ...tripleKasumiFollowupOutputStrings,
+      },
+    },
+    {
+      id: 'AMR Moko Triple Kasumi-giri 3',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
+      condition: (data) => data.tripleKasumiCollect.length === 3,
+      durationSeconds: 13,
+      infoText: (data, _matches, output) => {
+        const [ability1, ability2, ability3] = data.tripleKasumiCollect;
+        if (ability1 === undefined || ability2 === undefined || ability3 === undefined)
+          return;
+        const text1 = output[`${ability1}First`]!();
+        const text2 = output[ability2]!();
+        const text3 = output[ability3]!();
+
+        return output.text!({ text1: text1, text2: text2, text3: text3 });
+      },
+      outputStrings: {
+        text: {
+          en: '${text1} => ${text2} => ${text3}',
+        },
+        ...tripleKasumiFirstOutputStrings,
+        ...tripleKasumiFollowupOutputStrings,
+      },
+    },
+    {
+      id: 'AMR Moko Triple Kasumi-giri Followup',
+      type: 'Ability',
+      netRegex: { id: tripleKasumiAbilityIds, source: 'Moko the Restless', capture: false },
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        // First one has already been called, so ignore it.
+        if (data.tripleKasumiCollect.length === 3)
+          data.tripleKasumiCollect.shift();
+        const ability = data.tripleKasumiCollect.shift();
+        if (ability === undefined)
+          return;
+        return output[ability]!();
+      },
+      outputStrings: tripleKasumiFollowupOutputStrings,
+    },
+    {
+      id: 'AMR Moko Lateral Slice',
+      type: 'StartsUsing',
+      netRegex: { id: '85E3', source: 'Moko the Restless' },
+      response: Responses.tankBuster(),
+    },
   ],
   timelineReplace: [
     {
@@ -867,6 +1068,9 @@ const triggerSet: TriggerSet<Data> = {
         'Vortex of the Thunder Eye/Eye of the Thunder Vortex': 'Thunder Vortex/Eye',
         'Greater Ball of Fire/Great Ball of Fire': 'Great/Greater Ball of Fire',
         'Great Ball of Fire/Greater Ball of Fire': 'Greater/Great Ball of Fire',
+        'Vengeful Flame/Vengeful Pyre': 'Vengeful Flame/Pyre',
+        'Near Edge/Far Edge': 'Near/Far Edge',
+        'Far Edge/Near Edge': 'Far/Near Edge',
       },
     },
   ],
