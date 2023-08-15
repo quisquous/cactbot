@@ -137,6 +137,7 @@ export interface Data extends RaidbossData {
   tripleKasumiCollect: KasumiGiri[];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
+  invocationCollect: NetMatches['GainsEffect'][];
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -363,6 +364,7 @@ const triggerSet: TriggerSet<Data> = {
       tripleKasumiCollect: [],
       shadowKasumiCollect: {},
       shadowKasumiTether: {},
+      invocationCollect: [],
     };
   },
   triggers: [
@@ -1056,6 +1058,25 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '85E3', source: 'Moko the Restless' },
       response: Responses.tankBuster(),
+    },
+    {
+      id: 'AMR Moko Invocation Collect',
+      type: 'GainsEffect',
+      // E1A = Vengeful Flame (spread)
+      // E1B = Vengeful Pyre (stack)
+      netRegex: { effectId: ['E1A', 'E1B'] },
+      run: (data, matches) => data.invocationCollect.push(matches),
+    },
+    {
+      id: 'AMR Moko Invocation of Vengeance',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E1A', 'E1B'], capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 999999,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A');
+      },
     },
   ],
   timelineReplace: [
