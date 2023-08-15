@@ -632,8 +632,8 @@ const triggerSet: TriggerSet<Data> = {
         if (pos1 === undefined || pos2 === undefined || outwardStates.length !== 2)
           return;
 
-        // The one case where the difference is 6 instead of 2.
-        const averagePos = (pos1 === 0 && pos2 === 6) ? 7 : Math.floor((pos2 + pos1) / 2);
+        // 0/6 (average 7) and 1/7 (average 0) are the two cases where the difference is 6 and not 2.
+        const averagePos = Math.floor((pos2 + pos1 + (pos2 - pos1 === 6 ? 8 : 0)) / 2) % 8;
         return {
           0: output.north!(),
           1: output.northeast!(),
