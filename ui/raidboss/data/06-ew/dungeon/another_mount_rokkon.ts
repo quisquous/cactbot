@@ -310,19 +310,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Shishu Fuko Scythe Tail',
       type: 'StartsUsing',
-      netRegex: { id: '865A', source: 'Shishu Raiko', capture: false },
+      netRegex: { id: '865A', source: 'Shishu Fuko', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'AMR Shishu Fuko Twister',
       type: 'StartsUsing',
-      netRegex: { id: '8658', source: 'Shishu Raiko' },
+      netRegex: { id: '8658', source: 'Shishu Fuko' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'AMR Shishu Fuko Crosswind',
       type: 'StartsUsing',
-      netRegex: { id: '8659', source: 'Shishu Raiko', capture: false },
+      netRegex: { id: '8659', source: 'Shishu Fuko', capture: false },
       response: Responses.knockback(),
     },
     {
