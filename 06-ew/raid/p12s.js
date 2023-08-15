@@ -316,6 +316,18 @@ Options.Triggers.push({
       default: 'shapeAndDebuff',
     },
     {
+      id: 'classicalConcepts2ActualNoFlip',
+      comment: {
+        en:
+          'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
+      },
+      name: {
+        en: 'Classical Concepts 2: Actual only & no inversion',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'pangenesisFirstTower',
       name: {
         en: 'Pangenesis: First Towers',
@@ -2826,6 +2838,12 @@ Options.Triggers.push({
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
           if (columnOrder?.length !== 4)
             return;
+          // If classicalConcepts2ActualNoFlip is enabled the left/west assigned pair will handle
+          // the left/west column, as opposed to flipping to pre-position in the right/east column before Panta Rhei.
+          // To accommodate this, and because the shapes spawn in their flipped arrangement,
+          // we just reverse the columnOrder from the config settings when determining initial safe spots.
+          if (data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+            columnOrder.reverse();
           myColumn = columnOrder.indexOf(data.conceptPair);
           const myColumnLocations = [
             conceptLocationMap.north[myColumn],
@@ -2901,8 +2919,12 @@ Options.Triggers.push({
             data.classical2InitialRow = myRow;
             data.classical2Intercept = myInterceptOutput;
           }
-        } else {
-          // for Panta Rhei, get myColumn, myRow, and myInterceptOutput from data{} and invert them
+        }
+        if (
+          (matches.id === '8336') ||
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+        ) {
+          // invert myColumn, myRow, and myInterceptOutput to correspond to final/actual positions
           if (data.classical2InitialColumn !== undefined)
             myColumn = 3 - data.classical2InitialColumn;
           if (data.classical2InitialRow !== undefined)
@@ -2932,7 +2954,20 @@ Options.Triggers.push({
           });
           return { alertText: outputStr };
         }
-        if (matches.id === '8331') { // classic2 initial
+        // call the actual position on Panta Rhei or on classical2 cast (depending on classicalConcepts2ActualNoFlip)
+        if (
+          (matches.id === '8336' && !data.triggerSetConfig.classicalConcepts2ActualNoFlip) ||
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+        ) {
+          outputStr = output.classic2actual({
+            column: output[columnOutput](),
+            row: output[rowOutput](),
+            intercept: output[myInterceptOutput](),
+          });
+          return { alertText: outputStr };
+        }
+        // the initial call is not suppressed by classicalConcepts2ActualNoFlip, so call it for classical2
+        if (matches.id === '8331') {
           outputStr = output.classic2initial({
             column: output[columnOutput](),
             row: output[rowOutput](),
@@ -2940,12 +2975,8 @@ Options.Triggers.push({
           });
           return { infoText: outputStr };
         }
-        outputStr = output.classic2actual({
-          column: output[columnOutput](),
-          row: output[rowOutput](),
-          intercept: output[myInterceptOutput](),
-        });
-        return { alertText: outputStr };
+        // only case left is Panta Rhei where initial call was suppressed by classicalConcepts2ActualNoFlip, so don't call anything
+        return;
       },
       run: (data) => {
         if (data.phase === 'classical1') {
