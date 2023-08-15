@@ -837,15 +837,16 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Gorai Fighting Spirits Limit Cut',
       type: 'HeadMarker',
       netRegex: { id: limitCutIds },
-      durationSeconds: 10, // FIXME
+      condition: Conditions.targetIsYou(),
+      durationSeconds: 6,
       alertText: (_data, matches, output) => {
         if (matches.id === headmarkers.limitCut1)
           return output.num1!();
-        if (matches.id === headmarkers.limitCut1)
+        if (matches.id === headmarkers.limitCut2)
           return output.num2!();
-        if (matches.id === headmarkers.limitCut1)
+        if (matches.id === headmarkers.limitCut3)
           return output.num3!();
-        if (matches.id === headmarkers.limitCut1)
+        if (matches.id === headmarkers.limitCut4)
           return output.num4!();
       },
       outputStrings: {
