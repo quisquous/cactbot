@@ -744,6 +744,28 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.bleedAoe('info'),
     },
     {
+      id: 'AMR Gorai Brazen Ballad Purple',
+      type: 'StartsUsing',
+      netRegex: { id: '8509', source: 'Gorai the Uncaged', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Expanding Lines',
+        },
+      },
+    },
+    {
+      id: 'AMR Gorai Brazen Ballad Blue',
+      type: 'StartsUsing',
+      netRegex: { id: '850A', source: 'Gorai the Uncaged', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Under Rock + Lines',
+        },
+      },
+    },
+    {
       id: 'AMR Gorai Sparks Count',
       type: 'StartsUsing',
       netRegex: { id: '8503', source: 'Gorai the Uncaged', capture: false },
