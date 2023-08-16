@@ -242,7 +242,7 @@ instead of changing your local cactbot files.
 
 To install npm and start Webpack, follow these steps:
 
-1. Install [nodejs and npm](https://nodejs.org/en/download/)
+1. Install [nodejs 18.17.1 and npm 9.6.7](https://nodejs.org/en/download/)
 1. Run `npm install` in the root of the cactbot directory.
 1. Run `npm run build` or `npm start`.
 
