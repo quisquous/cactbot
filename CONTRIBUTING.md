@@ -79,8 +79,8 @@ in order to install local versions of husky, lint-staged, and eslint.
 It is recommended that you also install ts-node and typescript globally, e.g.
 
 ```shell
-npm install -g typescript@4.6.4
-npm install -g ts-node@10.8.0
+npm install -g typescript
+npm install -g ts-node
 ```
 
 This will let you run commands as `ts-node` directly instead of `npx ts-node`.
