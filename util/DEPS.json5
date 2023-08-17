@@ -9,10 +9,10 @@
         "hash": ["sha256", "8822e08147a44d0b82548068033dc18177c1fac993e8564e1ac32ed94c570e08"],
     },
     "FFXIV_ACT": {
-        "url": "https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.4.2.1.zip",
+        "url": "https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.2.1.6.zip",
         "dest": "plugin/ThirdParty/FFXIV_ACT",
         "strip": 0,
-        "hash": ["sha256", "76fa369d0c1c6f9ab8afa01bf657a7dcf611324f15cf380fbe6a4dc0e150bcc5"],
+        "hash": ["sha256", "9a801d2df30c186b3915cb75dd12d1c75e559de09f71038bf1f68f7d8a3aa34a"],
     },
     "OverlayPlugin": {
         "url": "https://github.com/OverlayPlugin/OverlayPlugin/releases/download/v0.19.21/OverlayPlugin-0.19.21.zip",
