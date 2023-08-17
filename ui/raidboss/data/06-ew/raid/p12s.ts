@@ -170,20 +170,25 @@ const superchainNpcBaseIds: readonly string[] = Object.values(superchainNpcBaseI
 const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
+    cn: '现在',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
+    cn: '不久后',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
+    cn: '有些延后',
   },
   delay4: {
     en: 'very delayed',
+    cn: '延后',
   },
   delay5: {
     en: 'verrry delayed',
+    cn: '非常延后',
   },
 } as const;
 
@@ -1961,7 +1966,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Laser Ködern (${delay})', // FIXME
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
-            cn: '引导激光 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
             ko: '레이저 유도 (${delay})',
           },
           firstWhiteFlame: {
@@ -1969,7 +1974,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(5 und 7 ködern ${delay})', // FIXME
             fr: '(5 et 7 bait ${delay})', // FIXME
             ja: '(5と7誘導 ${delay})', // FIXME
-            cn: '(5 和 7 引导 ${delay})', // FIXME
+            cn: '(5 和 7 引导 ${delay})',
             ko: '(5, 7 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
@@ -2007,7 +2012,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Laser Ködern (${delay})', // FIXME
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
-            cn: '引导激光 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
             ko: '레이저 유도 (${delay})',
           },
           secondWhiteFlame: {
@@ -2015,7 +2020,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(6 und 8 ködern ${delay})', // FIXME
             fr: '(6 et 8 bait ${delay})', // FIXME
             ja: '(6と8誘導 ${delay})', // FIXME
-            cn: '(6 和 8 引导 ${delay})', // FIXME
+            cn: '(6 和 8 引导 ${delay})',
             ko: '(6, 8 레이저 ${delay})',
           },
           thirdWhiteFlame: {
@@ -2023,7 +2028,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(1 und 3 ködern ${delay})', // FIXME
             fr: '(1 et 3 bait ${delay})', // FIXME
             ja: '(1と3誘導 ${delay})', // FIXME
-            cn: '(1 和 3 引导 ${delay})', // FIXME
+            cn: '(1 和 3 引导 ${delay})',
             ko: '(1, 3 레이저 ${delay})',
           },
           fourthWhiteFlame: {
@@ -2031,7 +2036,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(2 und 6 ködern ${delay})', // FIXME
             fr: '(2 et 4 bait ${delay})', // FIXME
             ja: '(2と4誘導 ${delay})', // FIXME
-            cn: '(2 和 4 引导 ${delay})', // FIXME
+            cn: '(2 和 4 引导 ${delay})',
             ko: '(2, 4 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
