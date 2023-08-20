@@ -126,20 +126,25 @@ const superchainNpcBaseIds = Object.values(superchainNpcBaseIdMap);
 const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
+    de: 'jetzt',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
+    de: 'bald',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
+    de: 'verzögert',
   },
   delay4: {
     en: 'very delayed',
+    de: 'sehr verzögert',
   },
   delay5: {
     en: 'verrry delayed',
+    de: 'seeeeehr verzögert',
   },
 };
 const conceptPairMap = {
@@ -322,11 +327,14 @@ Options.Triggers.push({
       comment: {
         en:
           'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
+        de:
+          'Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.“ Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
         ko:
           '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',
+        de: 'Classical Concepts 2: Nur tatsächlich & keine Umkehrung',
         ko: 'Classical Concepts 2: 반전 없이 실제 위치만 알림',
       },
       type: 'checkbox',
