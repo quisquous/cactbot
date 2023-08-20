@@ -12,6 +12,12 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Shishu Onmitsugashira Huton 8663 call something for multiple fast shurikens???
+// TODO: could call out Moko Fleeting Iai-giri corners with map effects
+//         2C = N
+//         2D = NW<->SE
+//         2E = NE<->SW
+//         2F = S
+// TODO: record where the Accursed Edge hits and inform baiters of the dodge on their side
 
 type OdderTower = {
   blue?: string;
@@ -125,6 +131,10 @@ const tripleKasumiAbilityIds = [
   '85C1', // right blue followup
 ] as const;
 
+const shadowKasumiAbilityIds = [
+  '85CA', // back purple first
+] as const;
+
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   wailingCollect: NetMatches['GainsEffect'][];
@@ -138,6 +148,8 @@ export interface Data extends RaidbossData {
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
   invocationCollect: NetMatches['GainsEffect'][];
+  iaigiriTether: NetMatches['Tether'][];
+  iaigiriPurple: NetMatches['GainsEffect'][];
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -365,6 +377,8 @@ const triggerSet: TriggerSet<Data> = {
       shadowKasumiCollect: {},
       shadowKasumiTether: {},
       invocationCollect: [],
+      iaigiriTether: [],
+      iaigiriPurple: [],
     };
   },
   triggers: [
@@ -1021,7 +1035,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
       condition: (data) => data.tripleKasumiCollect.length === 2,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         const ability = data.tripleKasumiCollect[1];
         if (ability === undefined)
           return;
@@ -1098,6 +1112,263 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A');
+      },
+    },
+    {
+      id: 'AMR Moko Iai-giri Cleanup',
+      type: 'StartsUsing',
+      // 85C2 = Fleeting Iai-giri (from Moko the Restless)
+      // 85C8 = Double Iai-giri (from Moko's Shadow)
+      netRegex: { id: ['85C2', '85C8'], capture: false },
+      run: (data) => {
+        data.iaigiriTether = [];
+        data.iaigiriPurple = [];
+      },
+    },
+    {
+      id: 'AMR Moko Iai-giri Tether Collect',
+      type: 'Tether',
+      netRegex: { id: '0011' },
+      run: (data, matches) => data.iaigiriTether.push(matches),
+    },
+    {
+      id: 'AMR Moko Iai-giri Purple Marker Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
+      run: (data, matches) => data.iaigiriPurple.push(matches),
+    },
+    {
+      id: 'AMR Moko Fleeting Iai-giri',
+      type: 'Tether',
+      netRegex: { id: '0011', capture: false },
+      delaySeconds: 0.5,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          backOnYou: {
+            en: 'Back Tether on YOU',
+          },
+          leftOnYou: {
+            en: 'Left Tether on YOU',
+          },
+          frontOnYou: {
+            en: 'Front Tether on YOU',
+          },
+          rightOnYou: {
+            en: 'Front Tether on YOU',
+          },
+          backOnPlayer: {
+            en: 'Back Tether on ${player}',
+          },
+          leftOnPlayer: {
+            en: 'Left Tether on ${player}',
+          },
+          frontOnPlayer: {
+            en: 'Front Tether on ${player}',
+          },
+          rightOnPlayer: {
+            en: 'Right Tether on ${player}',
+          },
+        };
+
+        if (data.iaigiriTether.length !== 1 || data.iaigiriPurple.length !== 1)
+          return;
+
+        const [tether] = data.iaigiriTether;
+        const [marker] = data.iaigiriPurple;
+        if (tether === undefined || marker === undefined)
+          return;
+
+        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
+        const thisAbility = map[marker.count];
+        if (thisAbility === undefined)
+          return;
+
+        const player = tether.target;
+        if (player === data.me) {
+          const outputKey = `${thisAbility}OnYou`;
+          return { alarmText: output[outputKey]!() };
+        }
+
+        const outputKey = `${thisAbility}OnPlayer`;
+        return { infoText: output[outputKey]!({ player: data.ShortName(player) }) };
+      },
+    },
+    {
+      id: 'AMR Moko Double Iai-giri Initial',
+      type: 'Tether',
+      netRegex: { id: '0011', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          backOnYou: {
+            en: 'Back Tether (w/${player})',
+          },
+          leftOnYou: {
+            en: 'Left Tether (w/${player})',
+          },
+          frontOnYou: {
+            en: 'Front Tether (w/${player})',
+          },
+          rightOnYou: {
+            en: 'Right Tether (w/${player})',
+          },
+          unmarkedWithPlayer: {
+            en: 'Unmarked (w/${player})',
+          },
+          unknown: Outputs.unknown,
+        };
+
+        if (data.iaigiriTether.length !== 2 || data.iaigiriPurple.length !== 2)
+          return;
+
+        const [tether1, tether2] = data.iaigiriTether;
+        const [marker1, marker2] = data.iaigiriPurple;
+        if (
+          tether1 === undefined || tether2 === undefined || marker1 === undefined ||
+          marker2 === undefined
+        )
+          return;
+
+        const player1 = tether1.target;
+        const player2 = tether2.target;
+
+        // Technically if folks are dead you could have both, and this will say "with you" but the pull
+        // will not last much longer, so don't worry about this too much.
+        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
+        if (myTether === undefined) {
+          const remainingPlayer = data.party.partyNames.find((x) => {
+            return x !== data.me && x !== player1 && x !== player2;
+          }) ?? output.unknown!();
+
+          return {
+            alertText: output.unmarkedWithPlayer!({ player: data.ShortName(remainingPlayer) }),
+          };
+        }
+
+        const otherPlayer = data.me === player1 ? player2 : player1;
+        const myMarker = marker1.sourceId === myTether.sourceId ? marker1 : marker2;
+
+        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
+        const thisAbility = map[myMarker.count];
+        if (thisAbility === undefined)
+          return;
+
+        const outputKey = `${thisAbility}OnYou`;
+        return { alarmText: output[outputKey]!({ player: data.ShortName(otherPlayer) }) };
+      },
+    },
+    {
+      id: 'AMR Moko Near Far Edge',
+      type: 'StartsUsing',
+      // 85D8 = Far Edge
+      // 85D9 = Near Edge
+      netRegex: { id: ['85D8', '85D9'], source: 'Moko the Restless' },
+      alertText: (data, matches, output) => {
+        const isFarEdge = matches.id === '8D58';
+        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
+        if (myTether === undefined)
+          return isFarEdge ? output.baitFar!() : output.baitNear!();
+
+        // TODO: should we remind people of "back tether" etc?
+        return isFarEdge ? output.tetherNear!() : output.tetherFar!();
+      },
+      outputStrings: {
+        baitNear: {
+          en: 'Bait Near',
+        },
+        baitFar: {
+          en: 'Bait Far',
+        },
+        tetherNear: {
+          en: 'Tether Near',
+        },
+        tetherFar: {
+          en: 'Tether Far',
+        },
+      },
+    },
+    {
+      id: 'AMR Moko Double Iai-giri Second Mark',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
+      infoText: (data, matches, output) => {
+        // Ignore the first two, which get called with the tether.
+        if (data.iaigiriPurple.length <= 2)
+          return;
+
+        // See if the current player is attached to a tether that
+        // is attached to the mob gaining this effect.
+        // Since we aren't sure where the baiters are we can't really tell them anything.
+        const thisTether = data.iaigiriTether.find((x) => {
+          return x.sourceId === matches.targetId && x.target === data.me;
+        });
+        if (thisTether === undefined)
+          return;
+
+        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
+        const thisAbility = map[matches.count];
+        if (thisAbility === undefined)
+          return;
+        return output[thisAbility]!();
+      },
+      outputStrings: {
+        back: {
+          en: '(then stay)',
+        },
+        left: {
+          en: '(then left)',
+        },
+        front: {
+          en: '(then through)',
+        },
+        right: {
+          en: '(then right)',
+        },
+      },
+    },
+    {
+      id: 'AMR Moko Shadow Kasumi-giri Followup',
+      type: 'Ability',
+      // We can't use suppress here if multiple people get hit because there are two clones,
+      // we want to make calls here for, so use "targetIndex 0" to only catch the first instance of damage.
+      // We could technically have a more complicated condition function but then it'd duplicate
+      // a lot of the alertText.
+      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow', targetIndex: '0' },
+      alertText: (data, matches, output) => {
+        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
+        if (myTether === undefined) {
+          // TODO: calculate which side you're on based on accursed edge damage.
+          return;
+        }
+
+        if (matches.sourceId !== myTether.sourceId)
+          return;
+
+        // Find the second marker for this tether.
+        const marker = [...data.iaigiriPurple].reverse().find((x) => {
+          return x.targetId === myTether.sourceId;
+        });
+        if (marker === undefined)
+          return;
+
+        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
+        const thisAbility = map[marker.count];
+        if (thisAbility === undefined)
+          return;
+        return output[thisAbility]!();
+      },
+      outputStrings: {
+        back: {
+          en: 'Stay',
+        },
+        left: Outputs.left,
+        front: {
+          en: 'Through',
+        },
+        right: Outputs.right,
       },
     },
   ],
