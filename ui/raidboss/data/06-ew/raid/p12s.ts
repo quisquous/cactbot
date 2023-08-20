@@ -170,20 +170,25 @@ const superchainNpcBaseIds: readonly string[] = Object.values(superchainNpcBaseI
 const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
+    de: 'jetzt',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
+    de: 'bald',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
+    de: 'verzögert',
   },
   delay4: {
     en: 'very delayed',
+    de: 'sehr verzögert',
   },
   delay5: {
     en: 'verrry delayed',
+    de: 'seeeeehr verzögert',
   },
 } as const;
 
@@ -473,11 +478,14 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
+        de:
+          'Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.“ Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
         ko:
           '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',
+        de: 'Classical Concepts 2: Nur tatsächlich & keine Umkehrung',
         ko: 'Classical Concepts 2: 반전 없이 실제 위치만 알림',
       },
       type: 'checkbox',
@@ -1958,7 +1966,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           baitLaser: {
             en: 'Bait (${delay})',
-            de: 'Laser Ködern (${delay})', // FIXME
+            de: 'Laser Ködern (${delay})',
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
             cn: '引导激光 (${delay})', // FIXME
@@ -1966,7 +1974,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           firstWhiteFlame: {
             en: '(5 and 7 ${delay})',
-            de: '(5 und 7 ködern ${delay})', // FIXME
+            de: '(5 und 7 ködern ${delay})',
             fr: '(5 et 7 bait ${delay})', // FIXME
             ja: '(5と7誘導 ${delay})', // FIXME
             cn: '(5 和 7 引导 ${delay})', // FIXME
@@ -2004,7 +2012,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           baitLaser: {
             en: 'Bait (${delay})',
-            de: 'Laser Ködern (${delay})', // FIXME
+            de: 'Laser Ködern (${delay})',
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
             cn: '引导激光 (${delay})', // FIXME
@@ -2012,7 +2020,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           secondWhiteFlame: {
             en: '(6 and 8 ${delay})',
-            de: '(6 und 8 ködern ${delay})', // FIXME
+            de: '(6 und 8 ködern ${delay})',
             fr: '(6 et 8 bait ${delay})', // FIXME
             ja: '(6と8誘導 ${delay})', // FIXME
             cn: '(6 和 8 引导 ${delay})', // FIXME
@@ -2020,7 +2028,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           thirdWhiteFlame: {
             en: '(1 and 3 ${delay})',
-            de: '(1 und 3 ködern ${delay})', // FIXME
+            de: '(1 und 3 ködern ${delay})',
             fr: '(1 et 3 bait ${delay})', // FIXME
             ja: '(1と3誘導 ${delay})', // FIXME
             cn: '(1 和 3 引导 ${delay})', // FIXME
@@ -2028,7 +2036,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           fourthWhiteFlame: {
             en: '(2 and 4 ${delay})',
-            de: '(2 und 6 ködern ${delay})', // FIXME
+            de: '(2 und 6 ködern ${delay})',
             fr: '(2 et 4 bait ${delay})', // FIXME
             ja: '(2と4誘導 ${delay})', // FIXME
             cn: '(2 和 4 引导 ${delay})', // FIXME
