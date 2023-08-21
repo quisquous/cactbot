@@ -106,7 +106,7 @@ hideall "--sync--"
 # 83F8 Stormcloud Summons cast and self-targeted ability
 # 83F9 Smokeater cast and self-targeted ability for first inhale
 # 83FA Smokeater self-targeted ability for optional second and third inhales
-# 83FB --sync-- Raiun ability on Shishio after being inhaled
+# 83FB --sync-- ability from Raiun cloud on Shishio after being inhaled
 # 83FC Rokujo Revel cast and self-targeted ability for first Smokeater line
 # 83FD Rokujo Revel cast and self-targeted ability for followup Smokeater lines
 # 83FE Rokujo Revel cast and damage for Smokeater lines
@@ -319,6 +319,7 @@ hideall "--sync--"
 
 3184.8 "Kenki Release" sync / 1[56]:[^:]*:Moko's Shadow:85CE:/
 3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+# ???
 
 # TODO: Fleeting Iai-giri right safe
 # TODO: Fleeting Iai-giri front safe
@@ -377,3 +378,39 @@ hideall "--sync--"
 # 8720 --sync-- unknown self-targeted ability before Lateral Slice
 # 8C21 Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
 # 8C27 Clearout damage from Oni's Claw large circles hit 2
+
+
+#~~~~~~~~~#
+# TRASH 1 #
+#~~~~~~~~~#
+
+# ALL ENCOUNTER ABILITIES
+# 7A58 --sync-- various auto damage
+# 8653 Barreling Smash cast and damage for line charge
+# 8654 Howl cast and damage for Shishu Raiko raidwide
+# 8655 Master of Levin cast and damage for Shishu Raiki "get in" donut
+# 8656 Disciples of Levin cast and damage for Shishu Raiko "get out" circle
+# 8657 Bloody Caress cast and damage for Shishu Furutsubaki front conal
+# 8658 Twister cast and damage for Shishu Fuko stack
+# 8659 Crosswind cast and damage for Shishu Fuko knockback
+# 865A Scythe Tail cast and damage for Shishu Fuko "get out"
+# 865B Tornado cast and damage for Red Shishu Penghou targeted circle
+# 8685 Right Swipe cast and damage for Shishu Yuki right 180 cleave
+# 8686 Left Swipe cast and damage for Shishu Yuki left 180 cleave
+
+
+#~~~~~~~~~#
+# TRASH 2 #
+#~~~~~~~~~#
+
+# 7A56 --sync-- various auto damage
+# 865C Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
+# 865D Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
+# 865E Rightward Blows cast and self-targeted ability for Shishu Kotengu front->right conals
+# 865F Blade of the Tengu damage from Shishu Kotengu Blows abilities
+# 8660 Wrath of the Tengu cast and damage for Shishu Kotengu raidwide + bleed
+# 8662 Issen cast and damage for Shishu Onmitsugashira tankbuster
+# 8663 Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
+# 8664 Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
+# 867D Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
+# 8687 Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
