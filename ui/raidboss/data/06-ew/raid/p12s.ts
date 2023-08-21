@@ -171,24 +171,29 @@ const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
     de: 'jetzt',
+    cn: '现在!',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
     de: 'bald',
+    cn: '等一会',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
     de: 'verzögert',
+    cn: '等两会',
   },
   delay4: {
     en: 'very delayed',
     de: 'sehr verzögert',
+    cn: '等三会',
   },
   delay5: {
     en: 'verrry delayed',
     de: 'seeeeehr verzögert',
+    cn: '等前一组(非常延后)',
   },
 } as const;
 
@@ -480,12 +485,15 @@ const triggerSet: TriggerSet<Data> = {
           'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
         de:
           'Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.“ Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
+        cn:
+          '只报自己图案的最终位置，没有位置变换。例如，对于BPOG打法，蓝X是第一列（西面最远）。 <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
         ko:
           '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.gif" target="_blank">Visual</a>',
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',
         de: 'Classical Concepts 2: Nur tatsächlich & keine Umkehrung',
+        cn: '经典概念2: 实际位置 (没有位置变换)',
         ko: 'Classical Concepts 2: 반전 없이 실제 위치만 알림',
       },
       type: 'checkbox',
@@ -1969,7 +1977,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Laser Ködern (${delay})',
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
-            cn: '引导激光 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
             ko: '레이저 유도 (${delay})',
           },
           firstWhiteFlame: {
@@ -1977,7 +1985,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(5 und 7 ködern ${delay})',
             fr: '(5 et 7 bait ${delay})', // FIXME
             ja: '(5と7誘導 ${delay})', // FIXME
-            cn: '(5 和 7 引导 ${delay})', // FIXME
+            cn: '(5 和 7 引导 ${delay})',
             ko: '(5, 7 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
@@ -2015,7 +2023,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Laser Ködern (${delay})',
             fr: 'Bait le laser (${delay})', // FIXME
             ja: 'レーザー誘導 (${delay})', // FIXME
-            cn: '引导激光 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
             ko: '레이저 유도 (${delay})',
           },
           secondWhiteFlame: {
@@ -2023,7 +2031,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(6 und 8 ködern ${delay})',
             fr: '(6 et 8 bait ${delay})', // FIXME
             ja: '(6と8誘導 ${delay})', // FIXME
-            cn: '(6 和 8 引导 ${delay})', // FIXME
+            cn: '(6 和 8 引导 ${delay})',
             ko: '(6, 8 레이저 ${delay})',
           },
           thirdWhiteFlame: {
@@ -2031,7 +2039,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(1 und 3 ködern ${delay})',
             fr: '(1 et 3 bait ${delay})', // FIXME
             ja: '(1と3誘導 ${delay})', // FIXME
-            cn: '(1 和 3 引导 ${delay})', // FIXME
+            cn: '(1 和 3 引导 ${delay})',
             ko: '(1, 3 레이저 ${delay})',
           },
           fourthWhiteFlame: {
@@ -2039,7 +2047,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '(2 und 6 ködern ${delay})',
             fr: '(2 et 4 bait ${delay})', // FIXME
             ja: '(2と4誘導 ${delay})', // FIXME
-            cn: '(2 和 4 引导 ${delay})', // FIXME
+            cn: '(2 和 4 引导 ${delay})',
             ko: '(2, 4 레이저 ${delay})',
           },
           ...whiteFlameDelayOutputStrings,
