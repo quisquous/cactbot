@@ -283,6 +283,190 @@ const zoneReplace: ZoneReplace[] = [
       '1E65': '859E', // The North Star (ignored)
     },
   },
+  {
+    // Criterion
+    fileMap: {
+      'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts':
+        'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon-savage.ts',
+      'ui/oopsyraidsy/data/06-ew/dungeon/another_mount_rokkon.ts':
+        'ui/oopsyraidsy/data/06-ew/dungeon/another_mount_rokkon-savage.ts',
+      'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.txt':
+        'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon-savage.txt',
+    },
+    prefix: { 'AMR': 'AMRS' },
+    other: {
+      'AnotherMountRokkon': 'AnotherMountRokkonSavage',
+      'another_mount_rokkon.txt': 'another_mount_rokkon-savage.txt',
+      '# Another Mount Rokkon': '# Another Mount Rokkon (Savage)',
+    },
+    // eslint-disable-next-line max-len
+    // grep "^# [A-F0-9]\{4\} " ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.txt | sort | sed "s/^..//" | sed "s/^\(....\) \(.*\)$/    '\1': 'TODO', \/\/ \2/"
+    id: {
+      '7A56': 'TODO', // --sync-- various auto damage (trash 2)
+      '7A58': 'TODO', // --sync-- various auto damage (trash 1)
+      '83F8': 'TODO', // Stormcloud Summons cast and self-targeted ability
+      '83F9': 'TODO', // Smokeater cast and self-targeted ability for first inhale
+      '83FA': 'TODO', // Smokeater self-targeted ability for optional second and third inhales
+      '83FB': 'TODO', // --sync-- ability from Raiun cloud on Shishio after being inhaled
+      '83FC': 'TODO', // Rokujo Revel cast and self-targeted ability for first Smokeater line
+      '83FD': 'TODO', // Rokujo Revel cast and self-targeted ability for followup Smokeater lines
+      '83FE': 'TODO', // Rokujo Revel cast and damage for Smokeater lines
+      '83FF': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
+      '8400': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
+      '8401': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
+      '8402': 'TODO', // Lightning Bolt cast and self-targeted ability
+      '8403': 'TODO', // Lightning Bolt cast and damage for initial cloud circles
+      '8404': 'TODO', // Cloud to Cloud cast and damage for 1x Smokeater small lines
+      '8405': 'TODO', // Cloud to Cloud cast and damage for 2x Smokeater medium lines
+      '8406': 'TODO', // Cloud to Cloud cast and damage for 3x Smokeater large lines
+      '8407': 'TODO', // Noble Pursuit cast and damage for initial charge
+      '8408': 'TODO', // Noble Pursuit damage for followup changes
+      '8409': 'TODO', // Levinburst line damage for going through rings during Noble Pursuit
+      '840A': 'TODO', // Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
+      '840B': 'TODO', // Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+      '840C': 'TODO', // Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+      '840D': 'TODO', // Reisho damage from Haunting Thrall untelegraphed aoes
+      '840E': 'TODO', // Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
+      '840F': 'TODO', // Vermilion Aura damage from taking a tower at the same time as Stygian Aura
+      '8410': 'TODO', // Stygian Aura spread marker damage at the same time as Vermillion Aura
+      '8411': 'TODO', // Unmitigated Explosion damage from not taking towers
+      '8412': 'TODO', // Thunder Vortex cast and damage for untelegraphed donut
+      '8413': 'TODO', // Eye of the Thunder Vortex cast and damage for first "out" circle
+      '8414': 'TODO', // Eye of the Thunder Vortex damage for second "in" donut
+      '8415': 'TODO', // Vortex of the Thunder Eye cast and damage for first "in" donut
+      '8416': 'TODO', // Vortex of the Thunder Eye damage for second "out" circle
+      '8417': 'TODO', // Unnatural Wail cast and self-targeted ability
+      '8418': 'TODO', // Unnatural Ailment damage for Unnatural Wail "spread"
+      '8419': 'TODO', // Unnatural Force damage for Unnatural Wail "stack"
+      '841A': 'TODO', // Enkyo cast and damage for raidwide
+      '841B': 'TODO', // Splitting Cry cast and damage for tankbuster
+      '841C': 'TODO', // Slither fast cast and damage for back conal
+      '841D': 'TODO', // --sync-- repositioning ability
+      '841E': 'TODO', // Enkyo cast and damage for enrage
+      '84D3': 'TODO', // --sync-- repositioning
+      '8502': 'TODO', // --sync-- auto damage
+      '8503': 'TODO', // Seal of Scurrying Sparks cast and self-targeted ability
+      '8504': 'TODO', // Seal of Scurrying Sparks ability on players that gives Live Brazier/Live Candle debuffs
+      '8505': 'TODO', // Greater Ball of Fire pair stack damage from Live Brazier debuff
+      '8506': 'TODO', // Great Ball of Fire spread damage from Live Candle debuff
+      '8507': 'TODO', // --sync-- auto damage
+      '8508': 'TODO', // Flame and Sulphur cast and self-targeted summoning rocks and lines
+      '8509': 'TODO', // Brazen Ballad cast and self-targeted purple effect that expands everything
+      '850A': 'TODO', // Brazen Ballad cast and self-targeted blue effect that donutifies everything
+      '850B': 'TODO', // Fire Spread expanded line damage after Brazen Ballad 8509
+      '850C': 'TODO', // Fire Spread split line damage after Brazen Ballad 850A
+      '850D': 'TODO', // Worldly Pursuit cast and damage from cross jumps
+      '850E': 'TODO', // Falling Rock expanded rock damage after Brazen Ballad 8509
+      '850F': 'TODO', // Falling Rock donutified rock damage after Brazen Ballad 850A
+      '8510': 'TODO', // Flickering Flame cast and ability (summoning blue flames for 8511???)
+      '8511': 'TODO', // Fire Spread cast and damage for waffle lines during second towers???
+      '8512': 'TODO', // Rousing Reincarnation cast and self-targeted ability
+      '8513': 'TODO', // Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
+      '8514': 'TODO', // Malformed Reincarnation cast and self-targeted ability
+      '8515': 'TODO', // Malformed Reincarnation ability on player like Rousing Reincarnation, but also gives Odder/Squirrelly Prayer
+      '8518': 'TODO', // Malformed Prayer cast and self-targeted ability that starts the tower sequences
+      '8519': 'TODO', // Burst orange tower damage
+      '851A': 'TODO', // Dramatic Burst missed tower damage (second set? or an orange color?)
+      '851B': 'TODO', // Burst blue tower damage
+      '851C': 'TODO', // Dramatic Burst missed tower damage (first set? or a blue color?)
+      '851D': 'TODO', // Pointed Purgation cast and self-targeted ability before first 851F protean cleave
+      '851E': 'TODO', // Pointed Purgation self-targeted ability before 2/3/4 851F protean cleaves
+      '851F': 'TODO', // Pointed Purgation damage for protean cleave from tether
+      '8520': 'TODO', // Thundercall cast and self-targeted ability that summons Ball of Levin
+      '8521': 'TODO', // Shock cast and self-targeted ability by Ball of Levin
+      '8522': 'TODO', // Shock small ground circle damage from Ball of Levin hit by Humble Hammer
+      '8523': 'TODO', // Shock large ground circle damage from Ball of Levin
+      '8524': 'TODO', // Humble Hammer cast and self-targeted ability
+      '8525': 'TODO', // Humble Hammer cast and damage headmarker on healer that gives mini debuff
+      '8526': 'TODO', // Flintlock self-targeted ability
+      '8527': 'TODO', // Flintlock damage for line stack after Humble Hammer
+      '8528': 'TODO', // Cloud to Ground cast and self-targeted ability
+      '8529': 'TODO', // Cloud to Ground cloud exaflare damage initial hit
+      '852A': 'TODO', // Cloud to Ground cloud exaflare damage ongoing hits
+      '852B': 'TODO', // Fighting Spirits cast and self-targeted
+      '852C': 'TODO', // Fighting Spirits cast and damage for knockback
+      '852D': 'TODO', // Worldly Pursuit untargeted ability jump before 850D cross cast and damage
+      '852F': 'TODO', // Impure Purgation cast and self-targeted ability
+      '8530': 'TODO', // Impure Purgation initial protean damage
+      '8531': 'TODO', // Impure Purgation cast and damage for follow-up protean
+      '8532': 'TODO', // Torching Torment cast and ability on tank that give burns debuff
+      '8533': 'TODO', // Torching Torment cast and damage on tank for tankbuster
+      '8534': 'TODO', // Unenlightenment cast and self-targeted ability
+      '8535': 'TODO', // Unenlightenment damage for raidwide bleed
+      '8599': 'TODO', // Boundless Scarlet cast and self-targeted ability to summon red lines
+      '85AF': 'TODO', // --sync-- repositioning
+      '85B0': 'TODO', // Triple Kasumi-giri long cast and damage for back red first
+      '85B1': 'TODO', // Triple Kasumi-giri long cast and damage for left red first
+      '85B2': 'TODO', // Triple Kasumi-giri long cast and damage for front red first
+      '85B3': 'TODO', // Triple Kasumi-giri long cast and damage for right red first
+      '85B4': 'TODO', // Triple Kasumi-giri short cast and damage for back red followup
+      '85B5': 'TODO', // Triple Kasumi-giri short cast and damage for left red followup
+      '85B6': 'TODO', // Triple Kasumi-giri short cast and damage for front red followup
+      '85B7': 'TODO', // Triple Kasumi-giri short cast and damage for right red followup
+      '85B8': 'TODO', // Unbound Spirit damage for red "out" Triple Kasumi-giri marker
+      '85B9': 'TODO', // Azure Coil damage for blue "in" Triple Kasumi-giri marker
+      '85BA': 'TODO', // Triple Kasumi-giri long cast and damage for back blue first
+      '85BB': 'TODO', // Triple Kasumi-giri long cast and damage for left blue first
+      '85BC': 'TODO', // Triple Kasumi-giri long cast and damage for front blue first
+      '85BD': 'TODO', // Triple Kasumi-giri long cast and damage for right blue first
+      '85BE': 'TODO', // Triple Kasumi-giri short cast and damage for back blue followup
+      '85BF': 'TODO', // Triple Kasumi-giri short cast and damage for left blue followup
+      '85C0': 'TODO', // Triple Kasumi-giri short cast and damage for front blue followup
+      '85C1': 'TODO', // Triple Kasumi-giri short cast and damage for right blue followup
+      '85C2': 'TODO', // Fleeting Iai-giri cast and self-targeted ability for jumping Iai-giri (all types) from boss
+      '85C3': 'TODO', // --sync-- boss jump ability for Fleeting Iai-giri
+      '85C4': 'TODO', // Fleeting Iai-giri short cast and damage for back purple Iai-giri
+      '85C5': 'TODO', // Fleeting Iai-giri short cast and damage for left purple Iai-giri
+      '85C7': 'TODO', // Shadow-twin cast and self-targeted to summon Moko's Shadow clones
+      '85C8': 'TODO', // Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
+      '85C9': 'TODO', // --sync-- clone jump ability for Shadow Kasumi-giri
+      '85CA': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
+      '85CE': 'TODO', // Kenki Release cast and raidwide from Shadow clones
+      '85D1': 'TODO', // Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
+      '85D2': 'TODO', // Boundless Scarlet cast and damage for initial red lines before they grow
+      '85D3': 'TODO', // Explosion cast and damage for growing red lines
+      '85D8': 'TODO', // Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
+      '85D9': 'TODO', // Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
+      '85DA': 'TODO', // Accursed Edge damage and bind on players from Far Edge / Near Edge
+      '85DB': 'TODO', // Invocation of Vengeance cast and self-targeted ability that gives debuffs during Explosions
+      '85DC': 'TODO', // Vengeful Flame spread damage
+      '85DD': 'TODO', // Vengeful Pyre stack damage
+      '85DE': 'TODO', // Moonless Night cast and raidwide damage to summon Oni's Claw
+      '85DF': 'TODO', // Clearout damage from Oni's Claw large circles hit 3
+      '85E0': 'TODO', // Kenki Release cast and raidwide damage from boss
+      '85E3': 'TODO', // Lateral Slice cast and tankbuster damage
+      '8653': 'TODO', // Barreling Smash cast and damage for line charge
+      '8654': 'TODO', // Howl cast and damage for Shishu Raiko raidwide
+      '8655': 'TODO', // Master of Levin cast and damage for Shishu Raiki "get in" donut
+      '8656': 'TODO', // Disciples of Levin cast and damage for Shishu Raiko "get out" circle
+      '8657': 'TODO', // Bloody Caress cast and damage for Shishu Furutsubaki front conal
+      '8658': 'TODO', // Twister cast and damage for Shishu Fuko stack
+      '8659': 'TODO', // Crosswind cast and damage for Shishu Fuko knockback
+      '865A': 'TODO', // Scythe Tail cast and damage for Shishu Fuko "get out"
+      '865B': 'TODO', // Tornado cast and damage for Red Shishu Penghou targeted circle
+      '865C': 'TODO', // Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
+      '865D': 'TODO', // Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
+      '865E': 'TODO', // Rightward Blows cast and self-targeted ability for Shishu Kotengu front->right conals
+      '865F': 'TODO', // Blade of the Tengu damage from Shishu Kotengu Blows abilities
+      '8660': 'TODO', // Wrath of the Tengu cast and damage for Shishu Kotengu raidwide + bleed
+      '8661': 'TODO', // Gaze of the Tengu cast and ability for lookaway
+      '8662': 'TODO', // Issen cast and damage for Shishu Onmitsugashira tankbuster
+      '8663': 'TODO', // Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
+      '8664': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
+      '867D': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
+      '8685': 'TODO', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
+      '8686': 'TODO', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
+      '8687': 'TODO', // Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
+      '86C4': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
+      '86C5': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
+      '86C6': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
+      '86DF': 'TODO', // --sync-- auto damage
+      '871F': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice
+      '8720': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice
+      '8C21': 'TODO', // Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
+      '8C27': 'TODO', // Clearout damage from Oni's Claw large circles hit 2
+    },
+  },
 ];
 
 const processFile = (filename: string, zone: ZoneReplace, inputText: string): string => {

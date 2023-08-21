@@ -355,7 +355,7 @@ hideall "--sync--"
 # 85C5 Fleeting Iai-giri short cast and damage for left purple Iai-giri
 # 85C7 Shadow-twin cast and self-targeted to summon Moko's Shadow clones
 # 85C8 Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
-# 85C9 --sync-- Shadow clone jump ability for Shadow Kasumi-giri
+# 85C9 --sync-- clone jump ability for Shadow Kasumi-giri
 # 85CA Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
 # 85CE Kenki Release cast and raidwide from Shadow clones
 # 85D1 Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
@@ -385,7 +385,7 @@ hideall "--sync--"
 #~~~~~~~~~#
 
 # ALL ENCOUNTER ABILITIES
-# 7A58 --sync-- various auto damage
+# 7A58 --sync-- various auto damage (trash 1)
 # 8653 Barreling Smash cast and damage for line charge
 # 8654 Howl cast and damage for Shishu Raiko raidwide
 # 8655 Master of Levin cast and damage for Shishu Raiki "get in" donut
@@ -403,12 +403,13 @@ hideall "--sync--"
 # TRASH 2 #
 #~~~~~~~~~#
 
-# 7A56 --sync-- various auto damage
+# 7A56 --sync-- various auto damage (trash 2)
 # 865C Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
 # 865D Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
 # 865E Rightward Blows cast and self-targeted ability for Shishu Kotengu front->right conals
 # 865F Blade of the Tengu damage from Shishu Kotengu Blows abilities
 # 8660 Wrath of the Tengu cast and damage for Shishu Kotengu raidwide + bleed
+# 8661 Gaze of the Tengu cast and ability for lookaway
 # 8662 Issen cast and damage for Shishu Onmitsugashira tankbuster
 # 8663 Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
 # 8664 Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
