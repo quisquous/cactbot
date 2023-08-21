@@ -17,7 +17,6 @@ import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger
 //         2D = NW<->SE
 //         2E = NE<->SW
 //         2F = S
-// TODO: record where the Accursed Edge hits and inform baiters of the dodge on their side
 
 type OdderTower = {
   blue?: string;
@@ -42,8 +41,8 @@ const mokoVfxMap = {
   '252': 'frontBlue',
   '253': 'rightBlue',
 } as const;
-
 type KasumiGiri = typeof mokoVfxMap[keyof typeof mokoVfxMap];
+const looseMokoVfxMap: { [id: string]: KasumiGiri } = mokoVfxMap;
 
 const shadowVfxMap = {
   '248': 'back',
@@ -51,8 +50,8 @@ const shadowVfxMap = {
   '24A': 'front',
   '24B': 'right',
 } as const;
-
 type ShadowKasumiGiri = typeof shadowVfxMap[keyof typeof shadowVfxMap];
+const looseShadowVfxMap: { [id: string]: ShadowKasumiGiri } = shadowVfxMap;
 
 const limitCutIds: readonly string[] = Object.values(headmarkers);
 
@@ -150,6 +149,7 @@ export interface Data extends RaidbossData {
   invocationCollect: NetMatches['GainsEffect'][];
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
+  myAccursedEdge?: NetMatches['Ability'];
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -1009,8 +1009,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap) },
       run: (data, matches) => {
-        const map: { [name: string]: KasumiGiri } = mokoVfxMap;
-        const thisAbility = map[matches.count];
+        const thisAbility = looseMokoVfxMap[matches.count];
         if (thisAbility === undefined)
           return;
         data.tripleKasumiCollect.push(thisAbility);
@@ -1123,6 +1122,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => {
         data.iaigiriTether = [];
         data.iaigiriPurple = [];
+        delete data.myAccursedEdge;
       },
     },
     {
@@ -1136,6 +1136,14 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       run: (data, matches) => data.iaigiriPurple.push(matches),
+    },
+    {
+      id: 'AMR Moko Iai-giri Accursed Edge Collect',
+      type: 'Ability',
+      netRegex: { id: '85DA' },
+      condition: Conditions.targetIsYou(),
+      // You could (but shouldn't) be hit by multiple of these, so just take the last.
+      run: (data, matches) => data.myAccursedEdge = matches,
     },
     {
       id: 'AMR Moko Fleeting Iai-giri',
@@ -1179,8 +1187,7 @@ const triggerSet: TriggerSet<Data> = {
         if (tether === undefined || marker === undefined)
           return;
 
-        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
-        const thisAbility = map[marker.count];
+        const thisAbility = looseShadowVfxMap[marker.count];
         if (thisAbility === undefined)
           return;
 
@@ -1251,8 +1258,7 @@ const triggerSet: TriggerSet<Data> = {
         const otherPlayer = data.me === player1 ? player2 : player1;
         const myMarker = marker1.sourceId === myTether.sourceId ? marker1 : marker2;
 
-        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
-        const thisAbility = map[myMarker.count];
+        const thisAbility = looseShadowVfxMap[myMarker.count];
         if (thisAbility === undefined)
           return;
 
@@ -1299,17 +1305,28 @@ const triggerSet: TriggerSet<Data> = {
         if (data.iaigiriPurple.length <= 2)
           return;
 
+        // Special case: if this is the 4th mark (the 2nd in the 2nd set)
+        // and they are both the same, we can call it for everyone.
+        const third = data.iaigiriPurple[2]?.count;
+        const fourth = data.iaigiriPurple[3]?.count;
+        if (third === fourth && third !== undefined) {
+          const thisAbility = looseShadowVfxMap[third];
+          if (thisAbility === undefined)
+            return;
+          return output[thisAbility]!();
+        }
+
         // See if the current player is attached to a tether that
         // is attached to the mob gaining this effect.
         // Since we aren't sure where the baiters are we can't really tell them anything.
         const thisTether = data.iaigiriTether.find((x) => {
           return x.sourceId === matches.targetId && x.target === data.me;
         });
+
         if (thisTether === undefined)
           return;
 
-        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
-        const thisAbility = map[matches.count];
+        const thisAbility = looseShadowVfxMap[matches.count];
         if (thisAbility === undefined)
           return;
         return output[thisAbility]!();
@@ -1332,30 +1349,41 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Moko Shadow Kasumi-giri Followup',
       type: 'Ability',
-      // We can't use suppress here if multiple people get hit because there are two clones,
-      // we want to make calls here for, so use "targetIndex 0" to only catch the first instance of damage.
-      // We could technically have a more complicated condition function but then it'd duplicate
-      // a lot of the alertText.
+      // targetIndex 0 is a minor optimization since we only really care about the source,
+      // so we only trigger once per ability.
       netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow', targetIndex: '0' },
-      alertText: (data, matches, output) => {
+      condition: (data, matches) => {
         const myTether = data.iaigiriTether.find((x) => x.target === data.me);
+
+        // Reject anybody not tethered by this add or on the same side.
         if (myTether === undefined) {
-          // TODO: calculate which side you're on based on accursed edge damage.
-          return;
+          // const centerX = -200;
+          const centerY = 0;
+
+          const myYStr = data.myAccursedEdge?.targetY;
+          if (myYStr === undefined)
+            return false;
+
+          const thisY = parseFloat(matches.y);
+          const myY = parseFloat(myYStr);
+          if (myY < centerY && thisY > centerY || myY > centerY && thisY < centerY)
+            return false;
+        } else if (matches.sourceId !== myTether.sourceId) {
+          return false;
         }
 
-        if (matches.sourceId !== myTether.sourceId)
-          return;
-
-        // Find the second marker for this tether.
+        return true;
+      },
+      suppressSeconds: 1,
+      alertText: (data, matches, output) => {
+        // Find the second marker for this add.
         const marker = [...data.iaigiriPurple].reverse().find((x) => {
-          return x.targetId === myTether.sourceId;
+          return x.targetId === matches.sourceId;
         });
         if (marker === undefined)
           return;
 
-        const map: { [name: string]: ShadowKasumiGiri } = shadowVfxMap;
-        const thisAbility = map[marker.count];
+        const thisAbility = looseShadowVfxMap[marker.count];
         if (thisAbility === undefined)
           return;
         return output[thisAbility]!();
