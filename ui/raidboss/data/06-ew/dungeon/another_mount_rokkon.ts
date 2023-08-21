@@ -136,6 +136,7 @@ const shadowKasumiAbilityIds = [
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
+  rairinCollect: NetMatches['AddedCombatant'][];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
   sparksCollect: NetMatches['GainsEffect'][];
@@ -366,6 +367,7 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
+      rairinCollect: [],
       wailingCollect: [],
       wailCount: 0,
       sparksCollect: [],
@@ -478,6 +480,43 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '841B', source: 'Shishio', capture: false },
       suppressSeconds: 5,
       response: Responses.goFrontOrSides('info'),
+    },
+    {
+      id: 'AMR Rairin Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12430' },
+      run: (data, matches) => data.rairinCollect.push(matches),
+    },
+    {
+      id: 'AMR Noble Pursuit',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12430', capture: false },
+      condition: (data) => data.rairinCollect.length === 4,
+      alertText: (data, _matches, output) => {
+        const [one, two, three, four] = data.rairinCollect;
+        if (one === undefined || two === undefined || three === undefined || four === undefined)
+          return;
+
+        // one is always north (0, -115)
+        // two is always south (0, -85)
+        // three is left or right (+/-15, -80)
+        // four is either diagonal (7.5, -92.5) / (-6, -94) or back north (+/-20, -95)
+
+        // We always end up on the opposite side as the third charge.
+        const isThreeEast = parseFloat(three.x) > 0;
+        // If four is diagonal, you go south otherwise north.
+        const isFourDiagonal = Math.abs(parseFloat(four.x)) < 18;
+
+        if (isFourDiagonal)
+          return isThreeEast ? output.southwest!() : output.southeast!();
+        return isThreeEast ? output.northwest!() : output.northeast!();
+      },
+      outputStrings: {
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        northwest: Outputs.northwest,
+      },
     },
     {
       id: 'AMR Shishio Unnatural Wail Count',
