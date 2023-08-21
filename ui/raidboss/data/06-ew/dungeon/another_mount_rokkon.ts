@@ -420,7 +420,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Shishu Raiko Howl',
       type: 'StartsUsing',
       netRegex: { id: '8654', source: 'Shishu Raiko', capture: false },
-      response: Responses.bleedAoe('info'),
+      response: Responses.aoe(),
     },
     {
       id: 'AMR Shishu Raiko Master of Levin',
