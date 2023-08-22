@@ -152,6 +152,8 @@ export interface Data extends RaidbossData {
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
   myAccursedEdge?: NetMatches['Ability'];
+  myIaigiriTether?: NetMatches['Tether'];
+  seenSoldiersOfDeath?: boolean;
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -1290,6 +1292,8 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 999999,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
+        // TODO: maybe drop the "stack people here" and add a longer duration?
+        // TODO: or include the location?
         return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A');
       },
     },
@@ -1303,13 +1307,18 @@ const triggerSet: TriggerSet<Data> = {
         data.iaigiriTether = [];
         data.iaigiriPurple = [];
         delete data.myAccursedEdge;
+        delete data.myIaigiriTether;
       },
     },
     {
       id: 'AMR Moko Iai-giri Tether Collect',
       type: 'Tether',
       netRegex: { id: '0011' },
-      run: (data, matches) => data.iaigiriTether.push(matches),
+      run: (data, matches) => {
+        data.iaigiriTether.push(matches);
+        if (matches.target === data.me)
+          data.myIaigiriTether = matches;
+      },
     },
     {
       id: 'AMR Moko Iai-giri Purple Marker Collect',
@@ -1330,6 +1339,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       delaySeconds: 0.5,
+      durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1343,7 +1353,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Front Tether on YOU',
           },
           rightOnYou: {
-            en: 'Front Tether on YOU',
+            en: 'Right Tether on YOU',
           },
           backOnPlayer: {
             en: 'Back Tether on ${player}',
@@ -1391,7 +1401,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Moko Double Iai-giri Initial',
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
+      condition: (data) => !data.seenSoldiersOfDeath,
       delaySeconds: 0.5,
+      durationSeconds: 4,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -1430,8 +1442,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Technically if folks are dead you could have both, and this will say "with you" but the pull
         // will not last much longer, so don't worry about this too much.
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-        if (myTether === undefined) {
+        if (data.myIaigiriTether === undefined) {
           const remainingPlayer = data.party.partyNames.find((x) => {
             return x !== data.me && x !== player1 && x !== player2;
           }) ?? output.unknown!();
@@ -1442,7 +1453,7 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const otherPlayer = data.me === player1 ? player2 : player1;
-        const myMarker = marker1.sourceId === myTether.sourceId ? marker1 : marker2;
+        const myMarker = marker1.sourceId === data.myIaigiriTether.sourceId ? marker1 : marker2;
 
         const thisAbility = looseShadowVfxMap[myMarker.count];
         if (thisAbility === undefined)
@@ -1459,9 +1470,9 @@ const triggerSet: TriggerSet<Data> = {
       // 85D9 = Near Edge
       netRegex: { id: ['85D8', '85D9'], source: 'Moko the Restless' },
       alertText: (data, matches, output) => {
-        const isFarEdge = matches.id === '8D58';
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-        if (myTether === undefined)
+        // TODO: include hands
+        const isFarEdge = matches.id === '85D8';
+        if (data.myIaigiriTether === undefined)
           return isFarEdge ? output.baitFar!() : output.baitNear!();
 
         // TODO: should we remind people of "back tether" etc?
@@ -1469,16 +1480,16 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         baitNear: {
-          en: 'Bait Near',
+          en: 'Bait Near (Tether Far)',
         },
         baitFar: {
-          en: 'Bait Far',
+          en: 'Bait Far (Tether Near)',
         },
         tetherNear: {
-          en: 'Tether Near',
+          en: 'Tether Near (Bait Far)',
         },
         tetherFar: {
-          en: 'Tether Far',
+          en: 'Tether Far (Bait Near)',
         },
       },
     },
@@ -1486,31 +1497,39 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Moko Double Iai-giri Second Mark',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
-      infoText: (data, matches, output) => {
-        // Ignore the first two, which get called with the tether.
-        if (data.iaigiriPurple.length <= 2)
-          return;
+      condition: (data, matches) => {
+        const initialMarks = data.seenSoldiersOfDeath ? 4 : 2;
 
-        // Special case: if this is the 4th mark (the 2nd in the 2nd set)
-        // and they are both the same, we can call it for everyone.
+        // Ignore the first set of marks, which get called with the tether.
+        if (data.iaigiriPurple.length <= initialMarks)
+          return false;
+
+        // Special case: for the first two Double-Iaigiris before Soldiers of Death,
+        // if this is the 4th mark (i.e. the 2nd in the 2nd set) and they are both the same,
+        // then we can call that mark for everyone because it doesn't matter where they are.
         const third = data.iaigiriPurple[2]?.count;
         const fourth = data.iaigiriPurple[3]?.count;
-        if (third === fourth && third !== undefined) {
+        if (third === fourth && third !== undefined && !data.seenSoldiersOfDeath)
+          return true;
+
+        // See if the current player is attached to a tether that
+        // is attached to the mob gaining this effect.
+        // Since we aren't sure where the baiters are we can't really tell them anything.
+        return data.myIaigiriTether?.sourceId === matches.targetId;
+      },
+      // Don't collide with Near Far Edge, which is more important.
+      delaySeconds: 3,
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      infoText: (data, matches, output) => {
+        const third = data.iaigiriPurple[2]?.count;
+        const fourth = data.iaigiriPurple[3]?.count;
+        if (third === fourth && third !== undefined && !data.seenSoldiersOfDeath) {
           const thisAbility = looseShadowVfxMap[third];
           if (thisAbility === undefined)
             return;
           return output[thisAbility]!();
         }
-
-        // See if the current player is attached to a tether that
-        // is attached to the mob gaining this effect.
-        // Since we aren't sure where the baiters are we can't really tell them anything.
-        const thisTether = data.iaigiriTether.find((x) => {
-          return x.sourceId === matches.targetId && x.target === data.me;
-        });
-
-        if (thisTether === undefined)
-          return;
 
         const thisAbility = looseShadowVfxMap[matches.count];
         if (thisAbility === undefined)
@@ -1518,6 +1537,7 @@ const triggerSet: TriggerSet<Data> = {
         return output[thisAbility]!();
       },
       outputStrings: {
+        // This is probably not possible.
         back: {
           en: '(then stay)',
         },
@@ -1533,16 +1553,25 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AMR Moko Shadow Kasumi-giri Back Tether',
+      type: 'Ability',
+      netRegex: { id: '85C9', source: 'Moko\'s Shadow' },
+      condition: (data, matches) => data.myIaigiriTether?.sourceId === matches.sourceId,
+      // Maybe you have two tethers, although it probably won't go well.
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.back!(),
+      outputStrings: {
+        // This is a reminder to make sure to move after the clone jumps to you.
+        back: Outputs.back,
+      },
+    },
+    {
       id: 'AMR Moko Shadow Kasumi-giri Followup',
       type: 'Ability',
-      // targetIndex 0 is a minor optimization since we only really care about the source,
-      // so we only trigger once per ability.
-      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow', targetIndex: '0' },
+      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow' },
       condition: (data, matches) => {
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-
         // Reject anybody not tethered by this add or on the same side.
-        if (myTether === undefined) {
+        if (data.myIaigiriTether === undefined) {
           // const centerX = -200;
           const centerY = 0;
 
@@ -1554,7 +1583,7 @@ const triggerSet: TriggerSet<Data> = {
           const myY = parseFloat(myYStr);
           if (myY < centerY && thisY > centerY || myY > centerY && thisY < centerY)
             return false;
-        } else if (matches.sourceId !== myTether.sourceId) {
+        } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
         }
 
@@ -1575,6 +1604,7 @@ const triggerSet: TriggerSet<Data> = {
         return output[thisAbility]!();
       },
       outputStrings: {
+        // This probably can't happen.
         back: {
           en: 'Stay',
         },
@@ -1584,6 +1614,12 @@ const triggerSet: TriggerSet<Data> = {
         },
         right: Outputs.right,
       },
+    },
+    {
+      id: 'AMR Moko Soldiers of Death',
+      type: 'StartsUsing',
+      netRegex: { id: '8593', source: 'Moko the Restless', capture: false },
+      run: (data, _matches) => data.seenSoldiersOfDeath = true,
     },
   ],
   timelineReplace: [
