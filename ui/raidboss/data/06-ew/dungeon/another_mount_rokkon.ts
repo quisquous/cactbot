@@ -1274,7 +1274,30 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Moko Scarlet Auspice',
       type: 'StartsUsing',
       netRegex: { id: '85D1', source: 'Moko the Restless', capture: false },
-      response: Responses.outOfMelee(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Out => Stay Out',
+        },
+      },
+    },
+    {
+      id: 'AMR Moko Azure Auspice',
+      type: 'StartsUsing',
+      netRegex: { id: '85D4', source: 'Moko the Restless', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Under => Get Out',
+        },
+      },
+    },
+    {
+      id: 'AMR Moko Azure Auspice Followup',
+      type: 'Ability',
+      netRegex: { id: '85D4', source: 'Moko the Restless', capture: false },
+      suppressSeconds: 1,
+      response: Responses.getOut('info'),
     },
     {
       id: 'AMR Moko Invocation Collect',
