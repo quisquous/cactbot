@@ -133,10 +133,6 @@ const tripleKasumiAbilityIds = [
   '85C1', // right blue followup
 ] as const;
 
-const shadowKasumiAbilityIds = [
-  '85CA', // back purple first
-] as const;
-
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   rairinCollect: NetMatches['AddedCombatant'][];
@@ -390,6 +386,7 @@ const triggerSet: TriggerSet<Data> = {
       iaigiriTether: [],
       iaigiriPurple: [],
       iaigiriCasts: [],
+      oniClawCollect: [],
     };
   },
   triggers: [
@@ -1501,18 +1498,56 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AMR Moko Oni Claw',
+      type: 'GainsEffect',
+      // This happens ~2.3 seconds prior to the Clearout/Far Edge/Near Edge cast starting,
+      // and is the first time these adds appear in the log other than 261 change lines
+      // which reposition these adds immediately prior to them gaining this effect.
+      netRegex: { effectId: '808', count: '257' },
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.targetId, 16)],
+        })).combatants;
+      },
+      // This is infoText to not conflict with the Unmarked/Tether calls.
+      // We could combine this with the Near Far Edge call, but it seemed better to say it sooner.
+      infoText: (data, _matches, output) => {
+        const [combatant] = data.combatantData;
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        const dir = Directions.xyTo4DirNum(
+          combatant.PosX,
+          combatant.PosY,
+          mokoCenterX,
+          mokoCenterY,
+        );
+        if (dir === 1 || dir === 3)
+          return output.northSouth!();
+        return output.eastWest!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North/South',
+        },
+        eastWest: {
+          en: 'East/West',
+        },
+      },
+    },
+    {
       id: 'AMR Moko Near Far Edge',
       type: 'StartsUsing',
       // 85D8 = Far Edge
       // 85D9 = Near Edge
       netRegex: { id: ['85D8', '85D9'], source: 'Moko the Restless' },
       alertText: (data, matches, output) => {
-        // TODO: include hands
         const isFarEdge = matches.id === '85D8';
         if (data.myIaigiriTether === undefined)
           return isFarEdge ? output.baitFar!() : output.baitNear!();
-
-        // TODO: should we remind people of "back tether" etc?
         return isFarEdge ? output.tetherNear!() : output.tetherFar!();
       },
       outputStrings: {
@@ -1605,9 +1640,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Moko Shadow Kasumi-giri Followup',
       type: 'Ability',
-      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow' },
+      netRegex: { id: '85CA', source: 'Moko\'s Shadow' },
       condition: (data, matches) => {
-        // Reject anybody not tethered by this add or on the same side.
+        // Reject anybody not tethered by this add or not on the same side.
         if (data.myIaigiriTether === undefined) {
           const myYStr = data.myAccursedEdge?.targetY;
           if (myYStr === undefined)
