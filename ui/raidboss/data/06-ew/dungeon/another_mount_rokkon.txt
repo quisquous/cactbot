@@ -268,7 +268,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -p 85E0:3016.4
-# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA
+# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10
@@ -281,7 +281,7 @@ hideall "--sync--"
 3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 
-3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720|TODO):/
+3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
 3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:85E3:/
 
 3077.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
@@ -290,7 +290,7 @@ hideall "--sync--"
 3096.0 "Invocation of Vengeance" sync / 1[56]:[^:]*:Moko the Restless:85DB:/
 3108.1 "Fleeting Iai-giri (cast)" sync / 1[56]:[^:]*:Moko the Restless:85C2:/
 3108.3 "--jump--" sync / 1[56]:[^:]*:Moko the Restless:85C3:/
-3110.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(85C4|85C5|TODO):/
+3110.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(85C4|85C5|85C6):/
 3111.7 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:85D3:/
 3111.8 "Vengeful Flame/Vengeful Pyre" sync / 1[56]:[^:]*:Moko the Restless:(85DC|85DD):/
 3118.6 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:85D3:/
@@ -303,25 +303,62 @@ hideall "--sync--"
 
 3145.1 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85DE:/
 3154.2 "Near Edge/Far Edge 1" sync / 1[56]:[^:]*:Moko the Restless:(85D9|85D8):/
-3154.2 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3154.2 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
 3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
 3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
-3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
-3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(86C6|TODO):/
+3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
 3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85DE:/
 3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
-3174.5 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3174.5 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
 3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
 3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
-3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
-3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(85CA|TODO):/
+3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
-3184.8 "Kenki Release" sync / 1[56]:[^:]*:Moko's Shadow:85CE:/
 3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
-# ???
 
-# TODO: Fleeting Iai-giri right safe
+3195.3 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3201.4 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:85D4:/
+3207.0 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:859D:/
+3218.8 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
+3221.8 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
+3224.8 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
+3225.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3227.8 "Upwell 4" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
+3238.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3241.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3244.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+
+3251.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+3254.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
+3260.0 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3264.1 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3270.2 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+3285.4 "Double Iai-giri x4" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3285.6 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3285.9 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85D0:/
+3285.9 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85CF:/
+3288.3 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
+3291.3 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[46]:/
+3291.7 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A8:/
+3291.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A7:/
+
+3291.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3305.1 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3308.2 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3311.3 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3318.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+3321.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
+3328.8 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:85E3:/
+3336.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
+
+3342.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85E1:/ window 10,10
+3352.0 "Kenki Release Enrage" sync / 1[56]:[^:]*:Moko the Restless:85E1:/
+
+
+# TODO: are any of these possible??? I think no
 # TODO: Fleeting Iai-giri front safe
 # TODO: Shadow Kasumi-giri left safe initial
 # TODO: Shadow Kasumi-giri right safe initial
@@ -329,7 +366,9 @@ hideall "--sync--"
 # TODO: Shadow Kasumi-giri back safe followup
 
 # 8507 --sync-- auto damage
+# 8593 Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
 # 8599 Boundless Scarlet cast and self-targeted ability to summon red lines
+# 859D Boundless Azure cast and self-targeted ability to summon blue lines
 # 85AF --sync-- repositioning
 # 85B0 Triple Kasumi-giri long cast and damage for back red first
 # 85B1 Triple Kasumi-giri long cast and damage for left red first
@@ -353,14 +392,21 @@ hideall "--sync--"
 # 85C3 --sync-- boss jump ability for Fleeting Iai-giri
 # 85C4 Fleeting Iai-giri short cast and damage for back purple Iai-giri
 # 85C5 Fleeting Iai-giri short cast and damage for left purple Iai-giri
+# 85C6 Fleeting Iai-giri short cast and damage for right purple Iai-giri
 # 85C7 Shadow-twin cast and self-targeted to summon Moko's Shadow clones
 # 85C8 Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
 # 85C9 --sync-- clone jump ability for Shadow Kasumi-giri
 # 85CA Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
-# 85CE Kenki Release cast and raidwide from Shadow clones
+# 85CE Kenki Release cast and raidwide enrage from Shadow clones
+# 85CF Iron Rain very long initial cast and medium circle damage from red Ashigaru Kyuheis
+# 85D0 Iron Storm very long initial cast and big circle damage from blue Ashigaru Kyuhei
 # 85D1 Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
 # 85D2 Boundless Scarlet cast and damage for initial red lines before they grow
 # 85D3 Explosion cast and damage for growing red lines
+# 85D4 Azure Auspice cast and damage for "get under" donut before Boundless Azure
+# 85D5 Boundless Azure cast and damage for initial blue lines before they bounce
+# 85D6 Upwell cast and damage for blue line first bounce
+# 85D7 Upwell damage for blue line ongoing bounces
 # 85D8 Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
 # 85D9 Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
 # 85DA Accursed Edge damage and bind on players from Far Edge / Near Edge
@@ -374,8 +420,10 @@ hideall "--sync--"
 # 86C4 Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
 # 86C5 Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
 # 86C6 Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
-# 871F --sync-- unknown self-targeted ability before Lateral Slice
-# 8720 --sync-- unknown self-targeted ability before Lateral Slice
+# 871F --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# 8720 --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# 87A7 Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
+# 87A8 Iron Storm short followup cast and big circle damage from blue Ashigaru Kyuhei
 # 8C21 Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
 # 8C27 Clearout damage from Oni's Claw large circles hit 2
 

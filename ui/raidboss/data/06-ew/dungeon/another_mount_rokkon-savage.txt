@@ -271,7 +271,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -p TODO:3016.4
-# -ii TODO TODO TODO TODO TODO TODO TODO
+# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:TODO:/ window 10000,10
@@ -284,7 +284,7 @@ hideall "--sync--"
 3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 
-3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO|TODO):/
+3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
 3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
 
 3077.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
@@ -306,25 +306,62 @@ hideall "--sync--"
 
 3145.1 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
 3154.2 "Near Edge/Far Edge 1" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3154.2 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3154.2 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
 3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:TODO:/
 3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(TODO|TODO):/
-3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(TODO|TODO):/
+3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
 3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
 3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3174.5 "Double Iai-giri" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3174.5 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
 3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:TODO:/
 3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:(TODO|TODO):/
-3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(TODO|TODO):/
+3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
-3184.8 "Kenki Release" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
 3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-# ???
 
-# TODO: Fleeting Iai-giri right safe
+3195.3 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3201.4 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3207.0 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3218.8 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3221.8 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3224.8 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3225.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3227.8 "Upwell 4" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3238.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3241.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3244.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+
+3251.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3254.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
+3260.0 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3264.1 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3270.2 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3285.4 "Double Iai-giri x4" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3285.6 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3285.9 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
+3285.9 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
+3288.3 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3291.3 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[46]:/
+3291.7 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
+3291.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
+
+3291.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3305.1 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
+3308.2 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3311.3 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3318.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3321.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
+3328.8 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3336.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+
+3342.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85E1:/ window 10,10
+3352.0 "Kenki Release Enrage" sync / 1[56]:[^:]*:Moko the Restless:85E1:/
+
+
+# TODO: are any of these possible??? I think no
 # TODO: Fleeting Iai-giri front safe
 # TODO: Shadow Kasumi-giri left safe initial
 # TODO: Shadow Kasumi-giri right safe initial
@@ -332,7 +369,9 @@ hideall "--sync--"
 # TODO: Shadow Kasumi-giri back safe followup
 
 # TODO --sync-- auto damage
+# TODO Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
 # TODO Boundless Scarlet cast and self-targeted ability to summon red lines
+# TODO Boundless Azure cast and self-targeted ability to summon blue lines
 # TODO --sync-- repositioning
 # TODO Triple Kasumi-giri long cast and damage for back red first
 # TODO Triple Kasumi-giri long cast and damage for left red first
@@ -356,14 +395,21 @@ hideall "--sync--"
 # TODO --sync-- boss jump ability for Fleeting Iai-giri
 # TODO Fleeting Iai-giri short cast and damage for back purple Iai-giri
 # TODO Fleeting Iai-giri short cast and damage for left purple Iai-giri
+# TODO Fleeting Iai-giri short cast and damage for right purple Iai-giri
 # TODO Shadow-twin cast and self-targeted to summon Moko's Shadow clones
 # TODO Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
 # TODO --sync-- clone jump ability for Shadow Kasumi-giri
 # TODO Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
-# TODO Kenki Release cast and raidwide from Shadow clones
+# TODO Kenki Release cast and raidwide enrage from Shadow clones
+# TODO Iron Rain very long initial cast and medium circle damage from red Ashigaru Kyuheis
+# TODO Iron Storm very long initial cast and big circle damage from blue Ashigaru Kyuhei
 # TODO Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
 # TODO Boundless Scarlet cast and damage for initial red lines before they grow
 # TODO Explosion cast and damage for growing red lines
+# TODO Azure Auspice cast and damage for "get under" donut before Boundless Azure
+# TODO Boundless Azure cast and damage for initial blue lines before they bounce
+# TODO Upwell cast and damage for blue line first bounce
+# TODO Upwell damage for blue line ongoing bounces
 # TODO Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
 # TODO Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
 # TODO Accursed Edge damage and bind on players from Far Edge / Near Edge
@@ -377,8 +423,10 @@ hideall "--sync--"
 # TODO Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
 # TODO Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
 # TODO Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
-# TODO --sync-- unknown self-targeted ability before Lateral Slice
-# TODO --sync-- unknown self-targeted ability before Lateral Slice
+# TODO --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# TODO --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# TODO Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
+# TODO Iron Storm short followup cast and big circle damage from blue Ashigaru Kyuhei
 # TODO Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
 # TODO Clearout damage from Oni's Claw large circles hit 2
 

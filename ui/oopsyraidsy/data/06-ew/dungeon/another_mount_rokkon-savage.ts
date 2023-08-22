@@ -14,7 +14,10 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: standing in outside of Shishio arena
 // TODO: better track who didn't take Shishio towers
 // TODO: does Gorai Torching Torment cleave?
+// TODO: Humble Hammer share damage
 // TODO: who missed Gorai towers or was not hit by protean
+// TODO: does Lateral Slice cleave
+// TODO: TODO whose adds were too close
 
 export type Data = OopsyData;
 
@@ -67,7 +70,53 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Gorai Ball of Levin Shock Big': 'TODO', // large circle from Ball of Levin
     'AMRS Gorai Cloud to Ground 1': 'TODO', // initial cloud exaflare
     'AMRS Gorai Cloud to Ground 2': 'TODO', // ongoing cloud exaflare
-    'AMRS Gorai Impure Purgation Second': 'TODO', // follow-up protean
+    'AMRS Gorai Impure Purgation Second': 'TODO', // follow-up protean'
+
+    // Moko
+    'AMRS Moko Triple Kasumi-Giri 1': 'TODO', // back red first
+    'AMRS Moko Triple Kasumi-Giri 2': 'TODO', // left red first
+    'AMRS Moko Triple Kasumi-Giri 3': 'TODO', // front red first
+    'AMRS Moko Triple Kasumi-Giri 4': 'TODO', // right red first
+    'AMRS Moko Triple Kasumi-Giri 5': 'TODO', // back red followup
+    'AMRS Moko Triple Kasumi-Giri 6': 'TODO', // left red followup
+    'AMRS Moko Triple Kasumi-Giri 7': 'TODO', // front red followup
+    'AMRS Moko Triple Kasumi-Giri 8': 'TODO', // right red followup
+    'AMRS Moko Triple Kasumi-Giri 9': 'TODO', // back blue first
+    'AMRS Moko Triple Kasumi-Giri 10': 'TODO', // left blue first
+    'AMRS Moko Triple Kasumi-Giri 11': 'TODO', // front blue first
+    'AMRS Moko Triple Kasumi-Giri 12': 'TODO', // right blue first
+    'AMRS Moko Triple Kasumi-Giri 13': 'TODO', // back blue followup
+    'AMRS Moko Triple Kasumi-Giri 14': 'TODO', // left blue followup
+    'AMRS Moko Triple Kasumi-Giri 15': 'TODO', // front blue followup
+    'AMRS Moko Triple Kasumi-Giri 16': 'TODO', // right blue followup
+    'AMRS Moko Unbound Spirit': 'TODO', // red "out" Triple Kasumi-Giri
+    'AMRS Moko Azure Coil': 'TODO', // blue "in" Triple Kasumi-Giri
+
+    'AMRS Moko Scarlet Auspice': 'TODO', // "get out" before Boundless Scarlet
+    'AMRS Moko Boundless Scarlet': 'TODO', // initial red lines before they grow
+    'AMRS Moko Explosion': 'TODO', // growing red lines
+    'AMRS Moko Azure Auspice': 'TODO', // "get under" donut before Boundless Azure
+    'AMRS Moko Boundless Azure': 'TODO', // initial blue lines before they bounce
+    'AMRS Moko Upwell 1': 'TODO', // blue line first bounce
+    'AMRS Moko Upwell 2': 'TODO', // blue line ongoing bounces
+
+    'AMRS Moko Fleeting Iai-Giri 1': 'TODO', // back purple
+    'AMRS Moko Fleeting Iai-Giri 2': 'TODO', // left purple
+    'AMRS Moko Fleeting Iai-Giri 3': 'TODO', // right purple
+
+    'AMRS Moko Shadow Kasumi-Giri 1': 'TODO', // back purple first
+    'AMRS Moko Shadow Kasumi-giri 2': 'TODO', // left purple followup
+    'AMRS Moko Shadow Kasumi-giri 3': 'TODO', // front purple followup
+    'AMRS Moko Shadow Kasumi-giri 4': 'TODO', // right purple followup
+
+    'AMRS Moko Oni\'s Claw Clearout 1': 'TODO', // hit 1 of large circles
+    'AMRS Moko Oni\'s Claw Clearout 2': 'TODO', // hit 2 of large circles
+    'AMRS Moko Oni\'s Claw Clearout 3': 'TODO', // hit 3 of large circles
+
+    'AMRS Moko Ashigaru Kyuhei Iron Rain 1': 'TODO', // initial medium circle damage from red Ashigaru Kyuheis
+    'AMRS Moko Ashigaru Kyuhei Iron Rain 2': 'TODO', // followup medium circle damage from red Ashigaru Kyuheis
+    'AMRS Moko Ashigaru Kyuhei Iron Storm 1': 'TODO', // initial big circle damage from blue Ashigaru Kyuhei
+    'AMRS Moko Ashigaru Kyuhei Iron Storm 2': 'TODO', // followup big circle damage from blue Ashigaru Kyuhei
   },
   damageFail: {
     'AMRS Shishio Unmitigated Explosion': 'TODO', // not taking towers
@@ -84,11 +133,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'AMRS Shishio Unnatural Ailment': 'TODO', // spread during Unnatural Wail
     'AMRS Gorai Great Ball of Fire': 'TODO', // spread damage from Live Candle debuff
+    'AMRS Gorai Worldy Pursuit': 'TODO', // cross jumps
+    'AMRS Moko Vengeful Flame': 'TODO', // spreads during Fleeting Iai-giri
+    'AMRS Moko Accursed Edge': 'TODO', // bind on players from Far Edge / Near Edge
   },
   soloFail: {
     'AMRS Shishio Unnatural Force': 'TODO', // pair stack during Unnatural Wail
     'AMRS Gorai Greater Ball of Fire': 'TODO', // pair stack from Live Brazier debuff
-    'AMRS Gorai Flintlock': 'TODO', // line share
+    'AMRS Gorai Flintlock': 'TODO', // tank block line share
+    'AMRS Moko Vengeful Pyre': 'TODO', // pair stack during Fleeting Iai-giri
   },
   triggers: [
     {

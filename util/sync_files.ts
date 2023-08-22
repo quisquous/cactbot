@@ -393,7 +393,9 @@ const zoneReplace: ZoneReplace[] = [
       '8533': 'TODO', // Torching Torment cast and damage on tank for tankbuster
       '8534': 'TODO', // Unenlightenment cast and self-targeted ability
       '8535': 'TODO', // Unenlightenment damage for raidwide bleed
+      '8593': 'TODO', // Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
       '8599': 'TODO', // Boundless Scarlet cast and self-targeted ability to summon red lines
+      '859D': 'TODO', // Boundless Azure cast and self-targeted ability to summon blue lines
       '85AF': 'TODO', // --sync-- repositioning
       '85B0': 'TODO', // Triple Kasumi-giri long cast and damage for back red first
       '85B1': 'TODO', // Triple Kasumi-giri long cast and damage for left red first
@@ -417,14 +419,21 @@ const zoneReplace: ZoneReplace[] = [
       '85C3': 'TODO', // --sync-- boss jump ability for Fleeting Iai-giri
       '85C4': 'TODO', // Fleeting Iai-giri short cast and damage for back purple Iai-giri
       '85C5': 'TODO', // Fleeting Iai-giri short cast and damage for left purple Iai-giri
+      '85C6': 'TODO', // Fleeting Iai-giri short cast and damage for right purple Iai-giri
       '85C7': 'TODO', // Shadow-twin cast and self-targeted to summon Moko's Shadow clones
       '85C8': 'TODO', // Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
       '85C9': 'TODO', // --sync-- clone jump ability for Shadow Kasumi-giri
       '85CA': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
-      '85CE': 'TODO', // Kenki Release cast and raidwide from Shadow clones
+      '85CE': 'TODO', // Kenki Release cast and raidwide enrage from Shadow clones
+      '85CF': 'TODO', // Iron Rain very long initial cast and medium circle damage from red Ashigaru Kyuheis
+      '85D0': 'TODO', // Iron Storm very long initial cast and big circle damage from blue Ashigaru Kyuhei
       '85D1': 'TODO', // Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
       '85D2': 'TODO', // Boundless Scarlet cast and damage for initial red lines before they grow
       '85D3': 'TODO', // Explosion cast and damage for growing red lines
+      '85D4': 'TODO', // Azure Auspice cast and damage for "get under" donut before Boundless Azure
+      '85D5': 'TODO', // Boundless Azure cast and damage for initial blue lines before they bounce
+      '85D6': 'TODO', // Upwell cast and damage for blue line first bounce
+      '85D7': 'TODO', // Upwell damage for blue line ongoing bounces
       '85D8': 'TODO', // Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
       '85D9': 'TODO', // Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
       '85DA': 'TODO', // Accursed Edge damage and bind on players from Far Edge / Near Edge
@@ -461,8 +470,10 @@ const zoneReplace: ZoneReplace[] = [
       '86C5': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
       '86C6': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
       '86DF': 'TODO', // --sync-- auto damage
-      '871F': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice
-      '8720': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice
+      '871F': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+      '8720': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+      '87A7': 'TODO', // Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
+      '87A8': 'TODO', // Iron Storm short followup cast and big circle damage from blue Ashigaru Kyuhei
       '8C21': 'TODO', // Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
       '8C27': 'TODO', // Clearout damage from Oni's Claw large circles hit 2
     },

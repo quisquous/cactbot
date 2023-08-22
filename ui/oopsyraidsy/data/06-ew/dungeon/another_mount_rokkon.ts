@@ -14,6 +14,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: Humble Hammer share damage
 // TODO: who missed Gorai towers or was not hit by protean
 // TODO: does Lateral Slice cleave
+// TODO: 85CE whose adds were too close
 
 export type Data = OopsyData;
 
@@ -91,10 +92,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Moko Scarlet Auspice': '85D1', // "get out" before Boundless Scarlet
     'AMR Moko Boundless Scarlet': '85D2', // initial red lines before they grow
     'AMR Moko Explosion': '85D3', // growing red lines
+    'AMR Moko Azure Auspice': '85D4', // "get under" donut before Boundless Azure
+    'AMR Moko Boundless Azure': '85D5', // initial blue lines before they bounce
+    'AMR Moko Upwell 1': '85D6', // blue line first bounce
+    'AMR Moko Upwell 2': '85D7', // blue line ongoing bounces
 
     'AMR Moko Fleeting Iai-Giri 1': '85C4', // back purple
     'AMR Moko Fleeting Iai-Giri 2': '85C5', // left purple
-    // ???
+    'AMR Moko Fleeting Iai-Giri 3': '85C6', // right purple
 
     'AMR Moko Shadow Kasumi-Giri 1': '85CA', // back purple first
     'AMR Moko Shadow Kasumi-giri 2': '86C4', // left purple followup
@@ -104,6 +109,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMR Moko Oni\'s Claw Clearout 1': '8C21', // hit 1 of large circles
     'AMR Moko Oni\'s Claw Clearout 2': '8C27', // hit 2 of large circles
     'AMR Moko Oni\'s Claw Clearout 3': '85DF', // hit 3 of large circles
+
+    'AMR Moko Ashigaru Kyuhei Iron Rain 1': '85CF', // initial medium circle damage from red Ashigaru Kyuheis
+    'AMR Moko Ashigaru Kyuhei Iron Rain 2': '87A7', // followup medium circle damage from red Ashigaru Kyuheis
+    'AMR Moko Ashigaru Kyuhei Iron Storm 1': '85D0', // initial big circle damage from blue Ashigaru Kyuhei
+    'AMR Moko Ashigaru Kyuhei Iron Storm 2': '87A8', // followup big circle damage from blue Ashigaru Kyuhei
   },
   damageFail: {
     'AMR Shishio Unmitigated Explosion': '8411', // not taking towers

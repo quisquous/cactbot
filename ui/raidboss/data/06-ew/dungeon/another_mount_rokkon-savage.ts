@@ -21,7 +21,7 @@ import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger
 //         2E = NE<->SW
 //         2F = S
 
-type OdderTower = {
+type RousingTower = {
   blue?: string;
   orange?: string;
 };
@@ -57,6 +57,9 @@ type ShadowKasumiGiri = typeof shadowVfxMap[keyof typeof shadowVfxMap];
 const looseShadowVfxMap: { [id: string]: ShadowKasumiGiri } = shadowVfxMap;
 
 const limitCutIds: readonly string[] = Object.values(headmarkers);
+
+const mokoCenterX = -200;
+const mokoCenterY = 0;
 
 const tripleKasumiFirstOutputStrings = {
   backRedFirst: {
@@ -139,20 +142,25 @@ const shadowKasumiAbilityIds = [
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
+  rairinCollect: NetMatches['AddedCombatant'][];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
+  devilishThrallCollect: NetMatches['StartsUsing'][];
   sparksCollect: NetMatches['GainsEffect'][];
   sparksCount: number;
-  reincarnationCollect: [OdderTower, OdderTower, OdderTower, OdderTower];
-  towerCount: number;
-  devilishThrallCollect: NetMatches['StartsUsing'][];
+  rousingCollect: [RousingTower, RousingTower, RousingTower, RousingTower];
+  rousingTowerCount: number;
+  malformedCollect: NetMatches['GainsEffect'][];
   tripleKasumiCollect: KasumiGiri[];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
   invocationCollect: NetMatches['GainsEffect'][];
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
+  iaigiriCasts: NetMatches['StartsUsing'][];
   myAccursedEdge?: NetMatches['Ability'];
+  myIaigiriTether?: NetMatches['Tether'];
+  seenSoldiersOfDeath?: boolean;
 }
 
 const countJob = (job1: Job, job2: Job, func: (x: Job) => boolean): number => {
@@ -324,11 +332,11 @@ const towerResponse = (
     num4: Outputs.num4,
   };
 
-  // data.towerCount is 0-indexed
+  // data.rousingTowerCount is 0-indexed
   // towerNum for display is 1-indexed
-  const theseTowers = data.reincarnationCollect[data.towerCount];
-  const towerNum = data.towerCount + 1;
-  data.towerCount++;
+  const theseTowers = data.rousingCollect[data.rousingTowerCount];
+  const towerNum = data.rousingTowerCount + 1;
+  data.rousingTowerCount++;
 
   if (theseTowers === undefined)
     return;
@@ -348,7 +356,7 @@ const towerResponse = (
     return { alertText: output.blueTower!({ num: numStr }) };
   if (data.me === theseTowers.orange)
     return { alertText: output.orangeTower!({ num: numStr }) };
-  const nextTowers = data.reincarnationCollect[towerNum + 1];
+  const nextTowers = data.rousingCollect[towerNum + 1];
   const nextNumStr = numMap[towerNum + 1];
   if (towerNum === 4 || nextTowers === undefined || nextNumStr === undefined)
     return { infoText: output.tether!({ num: numStr }) };
@@ -369,19 +377,22 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
+      rairinCollect: [],
       wailingCollect: [],
       wailCount: 0,
+      devilishThrallCollect: [],
       sparksCollect: [],
       sparksCount: 0,
-      reincarnationCollect: [{}, {}, {}, {}],
-      towerCount: 0,
-      devilishThrallCollect: [],
+      rousingCollect: [{}, {}, {}, {}],
+      rousingTowerCount: 0,
+      malformedCollect: [],
       tripleKasumiCollect: [],
       shadowKasumiCollect: {},
       shadowKasumiTether: {},
       invocationCollect: [],
       iaigiriTether: [],
       iaigiriPurple: [],
+      iaigiriCasts: [],
     };
   },
   triggers: [
@@ -481,6 +492,43 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: 'TODO', source: 'Shishio', capture: false },
       suppressSeconds: 5,
       response: Responses.goFrontOrSides('info'),
+    },
+    {
+      id: 'AMRS Rairin Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12430' },
+      run: (data, matches) => data.rairinCollect.push(matches),
+    },
+    {
+      id: 'AMRS Noble Pursuit',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12430', capture: false },
+      condition: (data) => data.rairinCollect.length === 4,
+      alertText: (data, _matches, output) => {
+        const [one, two, three, four] = data.rairinCollect;
+        if (one === undefined || two === undefined || three === undefined || four === undefined)
+          return;
+
+        // one is always north (0, -115)
+        // two is always south (0, -85)
+        // three is left or right (+/-15, -80)
+        // four is either diagonal (7.5, -92.5) / (-6, -94) or back north (+/-20, -95)
+
+        // We always end up on the opposite side as the third charge.
+        const isThreeEast = parseFloat(three.x) > 0;
+        // If four is diagonal, you go south otherwise north.
+        const isFourDiagonal = Math.abs(parseFloat(four.x)) < 18;
+
+        if (isFourDiagonal)
+          return isThreeEast ? output.southwest!() : output.southeast!();
+        return isThreeEast ? output.northwest!() : output.northeast!();
+      },
+      outputStrings: {
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        northwest: Outputs.northwest,
+      },
     },
     {
       id: 'AMRS Shishio Unnatural Wail Count',
@@ -611,7 +659,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['TODO', 'TODO'], source: 'Devilish Thrall', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      promise: async (data: Data) => {
+      promise: async (data) => {
         data.combatantData = [];
 
         const ids = data.devilishThrallCollect.map((x) => parseInt(x.sourceId, 16));
@@ -921,27 +969,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMRS Gorai Rousing Reincarnation Collect',
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E10', 'E11', 'E12', 'E13', 'E14'] },
+      condition: (data) => data.rousingTowerCount === 0,
       run: (data, matches) => {
         // Odder Incarnation = blue towers
         // Rodential Rebirth = orange towers
         // durations: I = 20s, II = 26s, III = 32s, IV = 38s
         const id = matches.effectId;
         if (id === 'E11')
-          data.reincarnationCollect[0].blue = matches.target;
+          data.rousingCollect[0].blue = matches.target;
         else if (id === 'E0D')
-          data.reincarnationCollect[0].orange = matches.target;
+          data.rousingCollect[0].orange = matches.target;
         else if (id === 'E12')
-          data.reincarnationCollect[1].blue = matches.target;
+          data.rousingCollect[1].blue = matches.target;
         else if (id === 'E0E')
-          data.reincarnationCollect[1].orange = matches.target;
+          data.rousingCollect[1].orange = matches.target;
         else if (id === 'E13')
-          data.reincarnationCollect[2].blue = matches.target;
+          data.rousingCollect[2].blue = matches.target;
         else if (id === 'E0F')
-          data.reincarnationCollect[2].orange = matches.target;
+          data.rousingCollect[2].orange = matches.target;
         else if (id === 'E14')
-          data.reincarnationCollect[3].blue = matches.target;
+          data.rousingCollect[3].blue = matches.target;
         else if (id === 'E10')
-          data.reincarnationCollect[3].orange = matches.target;
+          data.rousingCollect[3].orange = matches.target;
       },
     },
     {
@@ -998,6 +1047,138 @@ const triggerSet: TriggerSet<Data> = {
         num2: Outputs.num2,
         num3: Outputs.num3,
         num4: Outputs.num4,
+      },
+    },
+    {
+      id: 'AMRS Gorai Malformed Reincarnation Collect',
+      type: 'GainsEffect',
+      // E0D = Rodential Rebirth 1 (first orange tower)
+      // E0E = Rodential Rebirth 2 (second orange tower)
+      // E0F = Rodential Rebirth 3 (third orange tower)
+      // E10 = Rodential Rebirth 4 (fourth orange tower)
+      // E11 = Odder Incarnation 1 (first blue tower)
+      // E12 = Odder Incarnation 2 (second blue tower)
+      // E13 = Odder Incarnation 3 (third blue tower)
+      // E14 = Odder Incarnation 4 (fourth blue tower)
+      // E15 = Squirrelly Prayer (place orange tower)
+      // E16 = Odder Prayer (place blue tower)
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
+      condition: (data) => data.rousingTowerCount !== 0,
+      run: (data, matches) => data.malformedCollect.push(matches),
+    },
+    {
+      id: 'AMRS Gorai Malformed Reincarnation',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
+      condition: (data) => data.rousingTowerCount !== 0,
+      delaySeconds: 0.5,
+      durationSeconds: 10,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        let playerCount = 0;
+        let mixedCount = 0;
+        const firstColor: { [name: string]: 'blue' | 'orange' } = {};
+
+        for (const line of data.malformedCollect) {
+          const isOrange = line.effectId === 'E0D' || line.effectId === 'E0E' ||
+            line.effectId === 'E0F';
+          const color = isOrange ? 'orange' : 'blue';
+          const lastColor = firstColor[line.target];
+          if (lastColor === undefined) {
+            playerCount++;
+            firstColor[line.target] = color;
+            continue;
+          }
+          if (lastColor === color)
+            continue;
+          mixedCount++;
+        }
+
+        const myColor = firstColor[data.me];
+        if (myColor === undefined)
+          return;
+
+        // Try to handle dead players who don't have debuffs here.
+        const isAllMixed = playerCount === mixedCount;
+        if (!isAllMixed) {
+          if (myColor === 'orange')
+            return output.halfMixedOrangeSide!();
+          return output.halfMixedBlueSide!();
+        }
+
+        let partner = output.unknown!();
+        for (const [name, color] of Object.entries(firstColor)) {
+          if (name !== data.me && color === myColor) {
+            partner = data.ShortName(name);
+            break;
+          }
+        }
+
+        // If your first tower is orange you're placing blue in "all mixed".
+        if (myColor === 'orange')
+          return output.allMixedPlaceBlue!({ player: partner });
+        return output.allMixedPlaceOrange!({ player: partner });
+      },
+      outputStrings: {
+        // TODO: This is somewhat ambiguous, as you don't want to place blue *with* this player
+        // you want to flex for them.
+        // TODO: I don't know if this is correct or even what other people do
+        // (please don't tell me).
+        allMixedPlaceBlue: {
+          en: 'All Mixed: Place Blue (w/${player})',
+        },
+        allMixedPlaceOrange: {
+          en: 'All Mixed: Place Orange (w/${player})',
+        },
+        halfMixedOrangeSide: {
+          en: 'Half Mixed: Orange Side',
+        },
+        halfMixedBlueSide: {
+          en: 'Half Mixed: Blue Side',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'AMRS Gorai Malformed Tower Calls',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
+      condition: (data, matches) => data.rousingTowerCount !== 0 && data.me === matches.target,
+      // Only two seconds between towers.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (_data, matches, output) => {
+        if (matches.effectId === 'E0D')
+          return output.orangeTower1!();
+        if (matches.effectId === 'E0E')
+          return output.orangeTower2!();
+        if (matches.effectId === 'E0F')
+          return output.orangeTower3!();
+        if (matches.effectId === 'E11')
+          return output.blueTower1!();
+        if (matches.effectId === 'E12')
+          return output.blueTower2!();
+        if (matches.effectId === 'E13')
+          return output.blueTower3!();
+      },
+      outputStrings: {
+        blueTower1: {
+          en: 'Inside Blue Tower 1',
+        },
+        orangeTower1: {
+          en: 'Inside Orange Tower 1',
+        },
+        blueTower2: {
+          en: 'Corner Blue Tower 2',
+        },
+        orangeTower2: {
+          en: 'Corner Orange Tower 2',
+        },
+        blueTower3: {
+          en: 'Placed Blue Tower 3',
+        },
+        orangeTower3: {
+          en: 'Placed Orange Tower 3',
+        },
       },
     },
     // ---------------- Moko the Restless ----------------
@@ -1098,6 +1279,35 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'AMRS Moko Scarlet Auspice',
+      type: 'StartsUsing',
+      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Out => Stay Out',
+        },
+      },
+    },
+    {
+      id: 'AMRS Moko Azure Auspice',
+      type: 'StartsUsing',
+      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Under => Get Out',
+        },
+      },
+    },
+    {
+      id: 'AMRS Moko Azure Auspice Followup',
+      type: 'Ability',
+      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
+      suppressSeconds: 1,
+      response: Responses.getOut('info'),
+    },
+    {
       id: 'AMRS Moko Invocation Collect',
       type: 'GainsEffect',
       // E1A = Vengeful Flame (spread)
@@ -1113,6 +1323,8 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 999999,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
+        // TODO: maybe drop the "stack people here" and add a longer duration?
+        // TODO: or include the location?
         return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A');
       },
     },
@@ -1122,23 +1334,37 @@ const triggerSet: TriggerSet<Data> = {
       // TODO = Fleeting Iai-giri (from Moko the Restless)
       // TODO = Double Iai-giri (from Moko's Shadow)
       netRegex: { id: ['TODO', 'TODO'], capture: false },
+      // Clean up once so we can collect casts.
+      suppressSeconds: 5,
       run: (data) => {
         data.iaigiriTether = [];
         data.iaigiriPurple = [];
+        data.iaigiriCasts = [];
         delete data.myAccursedEdge;
+        delete data.myIaigiriTether;
       },
     },
     {
       id: 'AMRS Moko Iai-giri Tether Collect',
       type: 'Tether',
       netRegex: { id: '0011' },
-      run: (data, matches) => data.iaigiriTether.push(matches),
+      run: (data, matches) => {
+        data.iaigiriTether.push(matches);
+        if (matches.target === data.me)
+          data.myIaigiriTether = matches;
+      },
     },
     {
       id: 'AMRS Moko Iai-giri Purple Marker Collect',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       run: (data, matches) => data.iaigiriPurple.push(matches),
+    },
+    {
+      id: 'AMRS Moko Iai-giri Double Iai-giri Collect',
+      type: 'StartsUsing',
+      netRegex: { id: 'TODO', source: 'Moko\'s Shadow' },
+      run: (data, matches) => data.iaigiriCasts.push(matches),
     },
     {
       id: 'AMRS Moko Iai-giri Accursed Edge Collect',
@@ -1153,6 +1379,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       delaySeconds: 0.5,
+      durationSeconds: 6,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1166,7 +1393,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Front Tether on YOU',
           },
           rightOnYou: {
-            en: 'Front Tether on YOU',
+            en: 'Right Tether on YOU',
           },
           backOnPlayer: {
             en: 'Back Tether on ${player}',
@@ -1205,10 +1432,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Moko Double Iai-giri Initial',
+      id: 'AMRS Moko Moonless Night',
+      type: 'StartsUsing',
+      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'AMRS Moko Shadow Kasumi-giri Initial',
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
+      condition: (data) => !data.seenSoldiersOfDeath,
       delaySeconds: 0.5,
+      durationSeconds: 4,
       suppressSeconds: 1,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
@@ -1247,8 +1482,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Technically if folks are dead you could have both, and this will say "with you" but the pull
         // will not last much longer, so don't worry about this too much.
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-        if (myTether === undefined) {
+        if (data.myIaigiriTether === undefined) {
           const remainingPlayer = data.party.partyNames.find((x) => {
             return x !== data.me && x !== player1 && x !== player2;
           }) ?? output.unknown!();
@@ -1259,7 +1493,7 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const otherPlayer = data.me === player1 ? player2 : player1;
-        const myMarker = marker1.sourceId === myTether.sourceId ? marker1 : marker2;
+        const myMarker = marker1.sourceId === data.myIaigiriTether.sourceId ? marker1 : marker2;
 
         const thisAbility = looseShadowVfxMap[myMarker.count];
         if (thisAbility === undefined)
@@ -1276,9 +1510,9 @@ const triggerSet: TriggerSet<Data> = {
       // TODO = Near Edge
       netRegex: { id: ['TODO', 'TODO'], source: 'Moko the Restless' },
       alertText: (data, matches, output) => {
-        const isFarEdge = matches.id === '8D58';
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-        if (myTether === undefined)
+        // TODO: include hands
+        const isFarEdge = matches.id === 'TODO';
+        if (data.myIaigiriTether === undefined)
           return isFarEdge ? output.baitFar!() : output.baitNear!();
 
         // TODO: should we remind people of "back tether" etc?
@@ -1286,48 +1520,56 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         baitNear: {
-          en: 'Bait Near',
+          en: 'Bait Near (Tether Far)',
         },
         baitFar: {
-          en: 'Bait Far',
+          en: 'Bait Far (Tether Near)',
         },
         tetherNear: {
-          en: 'Tether Near',
+          en: 'Tether Near (Bait Far)',
         },
         tetherFar: {
-          en: 'Tether Far',
+          en: 'Tether Far (Bait Near)',
         },
       },
     },
     {
-      id: 'AMRS Moko Double Iai-giri Second Mark',
+      id: 'AMRS Moko Shadow Kasumi-giri Second Mark',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
-      infoText: (data, matches, output) => {
-        // Ignore the first two, which get called with the tether.
-        if (data.iaigiriPurple.length <= 2)
-          return;
+      condition: (data, matches) => {
+        const initialMarks = data.seenSoldiersOfDeath ? 4 : 2;
 
-        // Special case: if this is the 4th mark (the 2nd in the 2nd set)
-        // and they are both the same, we can call it for everyone.
+        // Ignore the first set of marks, which get called with the tether.
+        if (data.iaigiriPurple.length <= initialMarks)
+          return false;
+
+        // Special case: for the first two Double-Iaigiris before Soldiers of Death,
+        // if this is the 4th mark (i.e. the 2nd in the 2nd set) and they are both the same,
+        // then we can call that mark for everyone because it doesn't matter where they are.
         const third = data.iaigiriPurple[2]?.count;
         const fourth = data.iaigiriPurple[3]?.count;
-        if (third === fourth && third !== undefined) {
+        if (third === fourth && third !== undefined && !data.seenSoldiersOfDeath)
+          return true;
+
+        // See if the current player is attached to a tether that
+        // is attached to the mob gaining this effect.
+        // Since we aren't sure where the baiters are we can't really tell them anything.
+        return data.myIaigiriTether?.sourceId === matches.targetId;
+      },
+      // Don't collide with Near Far Edge, which is more important.
+      delaySeconds: (data) => data.seenSoldiersOfDeath ? 0 : 3,
+      durationSeconds: 5,
+      suppressSeconds: 5,
+      infoText: (data, matches, output) => {
+        const third = data.iaigiriPurple[2]?.count;
+        const fourth = data.iaigiriPurple[3]?.count;
+        if (third === fourth && third !== undefined && !data.seenSoldiersOfDeath) {
           const thisAbility = looseShadowVfxMap[third];
           if (thisAbility === undefined)
             return;
           return output[thisAbility]!();
         }
-
-        // See if the current player is attached to a tether that
-        // is attached to the mob gaining this effect.
-        // Since we aren't sure where the baiters are we can't really tell them anything.
-        const thisTether = data.iaigiriTether.find((x) => {
-          return x.sourceId === matches.targetId && x.target === data.me;
-        });
-
-        if (thisTether === undefined)
-          return;
 
         const thisAbility = looseShadowVfxMap[matches.count];
         if (thisAbility === undefined)
@@ -1335,6 +1577,7 @@ const triggerSet: TriggerSet<Data> = {
         return output[thisAbility]!();
       },
       outputStrings: {
+        // This is probably not possible.
         back: {
           en: '(then stay)',
         },
@@ -1350,28 +1593,34 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AMRS Moko Shadow Kasumi-giri Back Tether',
+      type: 'Ability',
+      netRegex: { id: 'TODO', source: 'Moko\'s Shadow' },
+      condition: (data, matches) => data.myIaigiriTether?.sourceId === matches.sourceId,
+      // Maybe you have two tethers, although it probably won't go well.
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.back!(),
+      outputStrings: {
+        // This is a reminder to make sure to move after the clone jumps to you.
+        back: Outputs.back,
+      },
+    },
+    {
       id: 'AMRS Moko Shadow Kasumi-giri Followup',
       type: 'Ability',
-      // targetIndex 0 is a minor optimization since we only really care about the source,
-      // so we only trigger once per ability.
-      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow', targetIndex: '0' },
+      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow' },
       condition: (data, matches) => {
-        const myTether = data.iaigiriTether.find((x) => x.target === data.me);
-
         // Reject anybody not tethered by this add or on the same side.
-        if (myTether === undefined) {
-          // const centerX = -200;
-          const centerY = 0;
-
+        if (data.myIaigiriTether === undefined) {
           const myYStr = data.myAccursedEdge?.targetY;
           if (myYStr === undefined)
             return false;
 
           const thisY = parseFloat(matches.y);
           const myY = parseFloat(myYStr);
-          if (myY < centerY && thisY > centerY || myY > centerY && thisY < centerY)
+          if (myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY)
             return false;
-        } else if (matches.sourceId !== myTether.sourceId) {
+        } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
         }
 
@@ -1392,6 +1641,7 @@ const triggerSet: TriggerSet<Data> = {
         return output[thisAbility]!();
       },
       outputStrings: {
+        // This probably can't happen.
         back: {
           en: 'Stay',
         },
@@ -1400,6 +1650,113 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Through',
         },
         right: Outputs.right,
+      },
+    },
+    {
+      id: 'AMRS Moko Soldiers of Death',
+      type: 'StartsUsing',
+      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
+      run: (data, _matches) => data.seenSoldiersOfDeath = true,
+    },
+    {
+      id: 'AMRS Moko Soldiers of Death Blue Add',
+      type: 'GainsEffect',
+      // The red soldiers get 1E8 effects, and the blue add gets 5E.
+      // TODO: unfortunately there's no information about where casts are being targeted
+      // and so there's no way to know the final safe spot, only which half.
+      netRegex: { effectId: '808', count: '5E' },
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.targetId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const [combatant] = data.combatantData;
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        const x = combatant.PosX - mokoCenterX;
+        const y = combatant.PosY - mokoCenterY;
+
+        // This add is off the edge (far) and then along that edge (less far).
+        // We need to look at the "less far" direction and go opposite.
+        if (Math.abs(x) > Math.abs(y))
+          return y < 0 ? output.south!() : output.north!();
+        return x < 0 ? output.east!() : output.west!();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'AMRS Moko Shadow Kasumi-giri Final Tether',
+      type: 'Tether',
+      netRegex: { id: '0011', capture: false },
+      condition: (data) => data.seenSoldiersOfDeath,
+      delaySeconds: 0.5,
+      durationSeconds: 7,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const myIaigiriTether = data.myIaigiriTether;
+        if (myIaigiriTether === undefined)
+          return;
+
+        const idToDir: { [id: string]: number } = {};
+        for (const m of data.iaigiriCasts) {
+          const dir = Directions.xyTo4DirNum(
+            parseFloat(m.x),
+            parseFloat(m.y),
+            mokoCenterX,
+            mokoCenterY,
+          );
+          idToDir[m.sourceId] = dir;
+        }
+
+        const myDir = idToDir[myIaigiriTether.sourceId];
+        if (myDir === undefined)
+          return;
+
+        const partnerTether = data.iaigiriTether.find((x) => {
+          if (x.sourceId === myIaigiriTether.sourceId)
+            return false;
+          const dir = idToDir[x.sourceId];
+          if (dir === undefined)
+            return false;
+          return (myDir + 2) % 4 === dir;
+        });
+
+        const partner = partnerTether === undefined
+          ? output.unknown!()
+          : data.ShortName(partnerTether.target);
+
+        if (myDir === 0)
+          return output.north!({ player: partner });
+        if (myDir === 1)
+          return output.east!({ player: partner });
+        if (myDir === 2)
+          return output.south!({ player: partner });
+        if (myDir === 3)
+          return output.west!({ player: partner });
+      },
+      outputStrings: {
+        north: {
+          en: 'North Add (w/${player})',
+        },
+        east: {
+          en: 'East Add (w/${player})',
+        },
+        south: {
+          en: 'South Add (w/${player})',
+        },
+        west: {
+          en: 'West Add (w/${player})',
+        },
+        unknown: Outputs.unknown,
       },
     },
   ],
