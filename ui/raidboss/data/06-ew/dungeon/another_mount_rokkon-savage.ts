@@ -15,11 +15,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Shishu Onmitsugashira Huton TODO call something for multiple fast shurikens???
-// TODO: could call out Moko Fleeting Iai-giri corners with map effects
-//         2C = N
-//         2D = NW<->SE
-//         2E = NE<->SW
-//         2F = S
 
 type RousingTower = {
   blue?: string;
@@ -136,10 +131,6 @@ const tripleKasumiAbilityIds = [
   'TODO', // right blue followup
 ] as const;
 
-const shadowKasumiAbilityIds = [
-  'TODO', // back purple first
-] as const;
-
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
   rairinCollect: NetMatches['AddedCombatant'][];
@@ -152,6 +143,7 @@ export interface Data extends RaidbossData {
   rousingTowerCount: number;
   malformedCollect: NetMatches['GainsEffect'][];
   tripleKasumiCollect: KasumiGiri[];
+  explosionLineCollect: NetMatches['MapEffect'][];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
   invocationCollect: NetMatches['GainsEffect'][];
@@ -233,6 +225,7 @@ const stackSpreadResponse = (
   collect: NetMatches['GainsEffect'][],
   stackId: string,
   spreadId: string,
+  hideStackList?: boolean,
 ): ResponseOutput<Data, NetMatches['GainsEffect']> => {
   // cactbot-builtin-response
   output.responseOutputStrings = {
@@ -283,7 +276,9 @@ const stackSpreadResponse = (
 
   const stacks = [stack1, stack2].map((x) => x.target).sort();
   const [player1, player2] = stacks.map((x) => data.ShortName(x));
-  const stackInfo = { infoText: output.stacks!({ player1: player1, player2: player2 }) };
+  const stackInfo = hideStackList
+    ? {}
+    : { infoText: output.stacks!({ player1: player1, player2: player2 }) };
 
   if (stackType === 'melee') {
     if (isStackFirst)
@@ -387,12 +382,14 @@ const triggerSet: TriggerSet<Data> = {
       rousingTowerCount: 0,
       malformedCollect: [],
       tripleKasumiCollect: [],
+      explosionLineCollect: [],
       shadowKasumiCollect: {},
       shadowKasumiTether: {},
       invocationCollect: [],
       iaigiriTether: [],
       iaigiriPurple: [],
       iaigiriCasts: [],
+      oniClawCollect: [],
     };
   },
   triggers: [
@@ -1237,7 +1234,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
       condition: (data) => data.tripleKasumiCollect.length === 3,
-      durationSeconds: 13,
+      durationSeconds: 10,
       infoText: (data, _matches, output) => {
         const [ability1, ability2, ability3] = data.tripleKasumiCollect;
         if (ability1 === undefined || ability2 === undefined || ability3 === undefined)
@@ -1308,6 +1305,39 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut('info'),
     },
     {
+      id: 'AMRS Moko Fire Line Collect',
+      type: 'MapEffect',
+      // flags:
+      //   00010001 = make lines appear (both blue and red)
+      //   00100020 = make lines glow (both blue and red)
+      // locations:
+      //   2C = N (fire)
+      //   2D = NW<->SE (fire)
+      //   2E = NE<->SW (fire)
+      //   2F = S (fire)
+      //   30-33 = blue lines, some order
+      netRegex: { flags: '00100020', location: '2[CDEF]' },
+      condition: (data, matches) => {
+        data.explosionLineCollect.push(matches);
+        return data.explosionLineCollect.length === 2;
+      },
+      alertText: (data, _matches, output) => {
+        const isNorth = data.explosionLineCollect.find((x) => x.location === '2F') !== undefined;
+        const isSWOrNE = data.explosionLineCollect.find((x) => x.location === '2D') !== undefined;
+
+        if (isNorth)
+          return isSWOrNE ? output.dirNE!() : output.dirNW!();
+        return isSWOrNE ? output.dirSW!() : output.dirSE!();
+      },
+      outputStrings: {
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'AMRS Moko Invocation Collect',
       type: 'GainsEffect',
       // E1A = Vengeful Flame (spread)
@@ -1320,12 +1350,22 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: ['E1A', 'E1B'], capture: false },
       delaySeconds: 0.5,
+      durationSeconds: 5,
       suppressSeconds: 999999,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
-        // TODO: maybe drop the "stack people here" and add a longer duration?
-        // TODO: or include the location?
-        return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A');
+
+        // TODO: the timing of this is a little bit tough to condense:
+        //   t=0.0 these effects
+        //   t=2.3 tether appears
+        //   t=2.7 explosion lines start glowing
+        // Right now we just call everything separately to call it as soon as possible.
+        // A more complicated alternative to be to call this here, and then slightly later
+        // figure out who should stack with the tether where, since you know if it's a melee stack
+        // and the melee has a tether you could tell people "Stack with Tether SE" kind of thing.
+        //
+        // However, because there's so many calls, we'll drop the "stacks on" part of this.
+        return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A', true);
       },
     },
     {
@@ -1504,18 +1544,56 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AMRS Moko Oni Claw',
+      type: 'GainsEffect',
+      // This happens ~2.3 seconds prior to the Clearout/Far Edge/Near Edge cast starting,
+      // and is the first time these adds appear in the log other than 261 change lines
+      // which reposition these adds immediately prior to them gaining this effect.
+      netRegex: { effectId: '808', count: '257' },
+      suppressSeconds: 1,
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.targetId, 16)],
+        })).combatants;
+      },
+      // This is infoText to not conflict with the Unmarked/Tether calls.
+      // We could combine this with the Near Far Edge call, but it seemed better to say it sooner.
+      infoText: (data, _matches, output) => {
+        const [combatant] = data.combatantData;
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        const dir = Directions.xyTo4DirNum(
+          combatant.PosX,
+          combatant.PosY,
+          mokoCenterX,
+          mokoCenterY,
+        );
+        if (dir === 1 || dir === 3)
+          return output.northSouth!();
+        return output.eastWest!();
+      },
+      outputStrings: {
+        northSouth: {
+          en: 'North/South',
+        },
+        eastWest: {
+          en: 'East/West',
+        },
+      },
+    },
+    {
       id: 'AMRS Moko Near Far Edge',
       type: 'StartsUsing',
       // TODO = Far Edge
       // TODO = Near Edge
       netRegex: { id: ['TODO', 'TODO'], source: 'Moko the Restless' },
       alertText: (data, matches, output) => {
-        // TODO: include hands
         const isFarEdge = matches.id === 'TODO';
         if (data.myIaigiriTether === undefined)
           return isFarEdge ? output.baitFar!() : output.baitNear!();
-
-        // TODO: should we remind people of "back tether" etc?
         return isFarEdge ? output.tetherNear!() : output.tetherFar!();
       },
       outputStrings: {
@@ -1608,9 +1686,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Moko Shadow Kasumi-giri Followup',
       type: 'Ability',
-      netRegex: { id: shadowKasumiAbilityIds, source: 'Moko\'s Shadow' },
+      netRegex: { id: 'TODO', source: 'Moko\'s Shadow' },
       condition: (data, matches) => {
-        // Reject anybody not tethered by this add or on the same side.
+        // Reject anybody not tethered by this add or not on the same side.
         if (data.myIaigiriTether === undefined) {
           const myYStr = data.myAccursedEdge?.targetY;
           if (myYStr === undefined)
