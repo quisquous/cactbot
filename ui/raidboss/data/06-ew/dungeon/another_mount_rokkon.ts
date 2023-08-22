@@ -1269,6 +1269,12 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'AMR Moko Scarlet Auspice',
+      type: 'StartsUsing',
+      netRegex: { id: '85D1', source: 'Moko the Restless', capture: false },
+      response: Responses.outOfMelee(),
+    },
+    {
       id: 'AMR Moko Invocation Collect',
       type: 'GainsEffect',
       // E1A = Vengeful Flame (spread)
@@ -1374,6 +1380,12 @@ const triggerSet: TriggerSet<Data> = {
         const outputKey = `${thisAbility}OnPlayer`;
         return { infoText: output[outputKey]!({ player: data.ShortName(player) }) };
       },
+    },
+    {
+      id: 'AMR Moko Moonless Night',
+      type: 'StartsUsing',
+      netRegex: { id: '85DE', source: 'Moko the Restless', capture: false },
+      response: Responses.aoe(),
     },
     {
       id: 'AMR Moko Double Iai-giri Initial',
