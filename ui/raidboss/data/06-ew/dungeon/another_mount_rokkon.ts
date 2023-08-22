@@ -18,7 +18,7 @@ import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger
 //         2E = NE<->SW
 //         2F = S
 
-type OdderTower = {
+type RousingTower = {
   blue?: string;
   orange?: string;
 };
@@ -139,11 +139,12 @@ export interface Data extends RaidbossData {
   rairinCollect: NetMatches['AddedCombatant'][];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
+  devilishThrallCollect: NetMatches['StartsUsing'][];
   sparksCollect: NetMatches['GainsEffect'][];
   sparksCount: number;
-  reincarnationCollect: [OdderTower, OdderTower, OdderTower, OdderTower];
-  towerCount: number;
-  devilishThrallCollect: NetMatches['StartsUsing'][];
+  rousingCollect: [RousingTower, RousingTower, RousingTower, RousingTower];
+  rousingTowerCount: number;
+  malformedCollect: NetMatches['GainsEffect'][];
   tripleKasumiCollect: KasumiGiri[];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
@@ -322,11 +323,11 @@ const towerResponse = (
     num4: Outputs.num4,
   };
 
-  // data.towerCount is 0-indexed
+  // data.rousingTowerCount is 0-indexed
   // towerNum for display is 1-indexed
-  const theseTowers = data.reincarnationCollect[data.towerCount];
-  const towerNum = data.towerCount + 1;
-  data.towerCount++;
+  const theseTowers = data.rousingCollect[data.rousingTowerCount];
+  const towerNum = data.rousingTowerCount + 1;
+  data.rousingTowerCount++;
 
   if (theseTowers === undefined)
     return;
@@ -346,7 +347,7 @@ const towerResponse = (
     return { alertText: output.blueTower!({ num: numStr }) };
   if (data.me === theseTowers.orange)
     return { alertText: output.orangeTower!({ num: numStr }) };
-  const nextTowers = data.reincarnationCollect[towerNum + 1];
+  const nextTowers = data.rousingCollect[towerNum + 1];
   const nextNumStr = numMap[towerNum + 1];
   if (towerNum === 4 || nextTowers === undefined || nextNumStr === undefined)
     return { infoText: output.tether!({ num: numStr }) };
@@ -370,11 +371,12 @@ const triggerSet: TriggerSet<Data> = {
       rairinCollect: [],
       wailingCollect: [],
       wailCount: 0,
+      devilishThrallCollect: [],
       sparksCollect: [],
       sparksCount: 0,
-      reincarnationCollect: [{}, {}, {}, {}],
-      towerCount: 0,
-      devilishThrallCollect: [],
+      rousingCollect: [{}, {}, {}, {}],
+      rousingTowerCount: 0,
+      malformedCollect: [],
       tripleKasumiCollect: [],
       shadowKasumiCollect: {},
       shadowKasumiTether: {},
@@ -957,27 +959,28 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Gorai Rousing Reincarnation Collect',
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E10', 'E11', 'E12', 'E13', 'E14'] },
+      condition: (data) => data.rousingTowerCount === 0,
       run: (data, matches) => {
         // Odder Incarnation = blue towers
         // Rodential Rebirth = orange towers
         // durations: I = 20s, II = 26s, III = 32s, IV = 38s
         const id = matches.effectId;
         if (id === 'E11')
-          data.reincarnationCollect[0].blue = matches.target;
+          data.rousingCollect[0].blue = matches.target;
         else if (id === 'E0D')
-          data.reincarnationCollect[0].orange = matches.target;
+          data.rousingCollect[0].orange = matches.target;
         else if (id === 'E12')
-          data.reincarnationCollect[1].blue = matches.target;
+          data.rousingCollect[1].blue = matches.target;
         else if (id === 'E0E')
-          data.reincarnationCollect[1].orange = matches.target;
+          data.rousingCollect[1].orange = matches.target;
         else if (id === 'E13')
-          data.reincarnationCollect[2].blue = matches.target;
+          data.rousingCollect[2].blue = matches.target;
         else if (id === 'E0F')
-          data.reincarnationCollect[2].orange = matches.target;
+          data.rousingCollect[2].orange = matches.target;
         else if (id === 'E14')
-          data.reincarnationCollect[3].blue = matches.target;
+          data.rousingCollect[3].blue = matches.target;
         else if (id === 'E10')
-          data.reincarnationCollect[3].orange = matches.target;
+          data.rousingCollect[3].orange = matches.target;
       },
     },
     {
@@ -1034,6 +1037,138 @@ const triggerSet: TriggerSet<Data> = {
         num2: Outputs.num2,
         num3: Outputs.num3,
         num4: Outputs.num4,
+      },
+    },
+    {
+      id: 'AMR Gorai Malformed Reincarnation Collect',
+      type: 'GainsEffect',
+      // E0D = Rodential Rebirth 1 (first orange tower)
+      // E0E = Rodential Rebirth 2 (second orange tower)
+      // E0F = Rodential Rebirth 3 (third orange tower)
+      // E10 = Rodential Rebirth 4 (fourth orange tower)
+      // E11 = Odder Incarnation 1 (first blue tower)
+      // E12 = Odder Incarnation 2 (second blue tower)
+      // E13 = Odder Incarnation 3 (third blue tower)
+      // E14 = Odder Incarnation 4 (fourth blue tower)
+      // E15 = Squirrelly Prayer (place orange tower)
+      // E16 = Odder Prayer (place blue tower)
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
+      condition: (data) => data.rousingTowerCount !== 0,
+      run: (data, matches) => data.malformedCollect.push(matches),
+    },
+    {
+      id: 'AMR Gorai Malformed Reincarnation',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
+      condition: (data) => data.rousingTowerCount !== 0,
+      delaySeconds: 0.5,
+      durationSeconds: 10,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        let playerCount = 0;
+        let mixedCount = 0;
+        const firstColor: { [name: string]: 'blue' | 'orange' } = {};
+
+        for (const line of data.malformedCollect) {
+          const isOrange = line.effectId === 'E0D' || line.effectId === 'E0E' ||
+            line.effectId === 'E0F';
+          const color = isOrange ? 'orange' : 'blue';
+          const lastColor = firstColor[line.target];
+          if (lastColor === undefined) {
+            playerCount++;
+            firstColor[line.target] = color;
+            continue;
+          }
+          if (lastColor === color)
+            continue;
+          mixedCount++;
+        }
+
+        const myColor = firstColor[data.me];
+        if (myColor === undefined)
+          return;
+
+        // Try to handle dead players who don't have debuffs here.
+        const isAllMixed = playerCount === mixedCount;
+        if (!isAllMixed) {
+          if (myColor === 'orange')
+            return output.halfMixedOrangeSide!();
+          return output.halfMixedBlueSide!();
+        }
+
+        let partner = output.unknown!();
+        for (const [name, color] of Object.entries(firstColor)) {
+          if (name !== data.me && color === myColor) {
+            partner = data.ShortName(name);
+            break;
+          }
+        }
+
+        // If your first tower is orange you're placing blue in "all mixed".
+        if (myColor === 'orange')
+          return output.allMixedPlaceBlue!({ player: partner });
+        return output.allMixedPlaceOrange!({ player: partner });
+      },
+      outputStrings: {
+        // TODO: This is somewhat ambiguous, as you don't want to place blue *with* this player
+        // you want to flex for them.
+        // TODO: I don't know if this is correct or even what other people do
+        // (please don't tell me).
+        allMixedPlaceBlue: {
+          en: 'All Mixed: Place Blue (w/${player})',
+        },
+        allMixedPlaceOrange: {
+          en: 'All Mixed: Place Orange (w/${player})',
+        },
+        halfMixedOrangeSide: {
+          en: 'Half Mixed: Orange Side',
+        },
+        halfMixedBlueSide: {
+          en: 'Half Mixed: Blue Side',
+        },
+        unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'AMR Gorai Malformed Tower Calls',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
+      condition: (data, matches) => data.rousingTowerCount !== 0 && data.me === matches.target,
+      // Only two seconds between towers.
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
+      alertText: (_data, matches, output) => {
+        if (matches.effectId === 'E0D')
+          return output.orangeTower1!();
+        if (matches.effectId === 'E0E')
+          return output.orangeTower2!();
+        if (matches.effectId === 'E0F')
+          return output.orangeTower3!();
+        if (matches.effectId === 'E11')
+          return output.blueTower1!();
+        if (matches.effectId === 'E12')
+          return output.blueTower2!();
+        if (matches.effectId === 'E13')
+          return output.blueTower3!();
+      },
+      outputStrings: {
+        blueTower1: {
+          en: 'Inside Blue Tower 1',
+        },
+        orangeTower1: {
+          en: 'Inside Orange Tower 1',
+        },
+        blueTower2: {
+          en: 'Corner Blue Tower 2',
+        },
+        orangeTower2: {
+          en: 'Corner Orange Tower 2',
+        },
+        blueTower3: {
+          en: 'Placed Blue Tower 3',
+        },
+        orangeTower3: {
+          en: 'Placed Orange Tower 3',
+        },
       },
     },
     // ---------------- Moko the Restless ----------------
