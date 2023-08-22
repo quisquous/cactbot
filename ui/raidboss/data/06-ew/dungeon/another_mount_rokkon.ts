@@ -1234,7 +1234,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(mokoVfxMap), capture: false },
       condition: (data) => data.tripleKasumiCollect.length === 3,
-      durationSeconds: 13,
+      durationSeconds: 10,
       infoText: (data, _matches, output) => {
         const [ability1, ability2, ability3] = data.tripleKasumiCollect;
         if (ability1 === undefined || ability2 === undefined || ability3 === undefined)
