@@ -55,6 +55,9 @@ const looseShadowVfxMap: { [id: string]: ShadowKasumiGiri } = shadowVfxMap;
 
 const limitCutIds: readonly string[] = Object.values(headmarkers);
 
+const mokoCenterX = -200;
+const mokoCenterY = 0;
+
 const tripleKasumiFirstOutputStrings = {
   backRedFirst: {
     en: 'Back + Out',
@@ -151,6 +154,7 @@ export interface Data extends RaidbossData {
   invocationCollect: NetMatches['GainsEffect'][];
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
+  iaigiriCasts: NetMatches['StartsUsing'][];
   myAccursedEdge?: NetMatches['Ability'];
   myIaigiriTether?: NetMatches['Tether'];
   seenSoldiersOfDeath?: boolean;
@@ -385,6 +389,7 @@ const triggerSet: TriggerSet<Data> = {
       invocationCollect: [],
       iaigiriTether: [],
       iaigiriPurple: [],
+      iaigiriCasts: [],
     };
   },
   triggers: [
@@ -651,7 +656,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['840B', '840C'], source: 'Devilish Thrall', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
-      promise: async (data: Data) => {
+      promise: async (data) => {
         data.combatantData = [];
 
         const ids = data.devilishThrallCollect.map((x) => parseInt(x.sourceId, 16));
@@ -1326,9 +1331,12 @@ const triggerSet: TriggerSet<Data> = {
       // 85C2 = Fleeting Iai-giri (from Moko the Restless)
       // 85C8 = Double Iai-giri (from Moko's Shadow)
       netRegex: { id: ['85C2', '85C8'], capture: false },
+      // Clean up once so we can collect casts.
+      suppressSeconds: 5,
       run: (data) => {
         data.iaigiriTether = [];
         data.iaigiriPurple = [];
+        data.iaigiriCasts = [];
         delete data.myAccursedEdge;
         delete data.myIaigiriTether;
       },
@@ -1348,6 +1356,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       run: (data, matches) => data.iaigiriPurple.push(matches),
+    },
+    {
+      id: 'AMR Moko Iai-giri Double Iai-giri Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '85C8', source: 'Moko\'s Shadow' },
+      run: (data, matches) => data.iaigiriCasts.push(matches),
     },
     {
       id: 'AMR Moko Iai-giri Accursed Edge Collect',
@@ -1421,7 +1435,7 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.aoe(),
     },
     {
-      id: 'AMR Moko Double Iai-giri Initial',
+      id: 'AMR Moko Shadow Kasumi-giri Initial',
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       condition: (data) => !data.seenSoldiersOfDeath,
@@ -1517,7 +1531,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Moko Double Iai-giri Second Mark',
+      id: 'AMR Moko Shadow Kasumi-giri Second Mark',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       condition: (data, matches) => {
@@ -1541,7 +1555,7 @@ const triggerSet: TriggerSet<Data> = {
         return data.myIaigiriTether?.sourceId === matches.targetId;
       },
       // Don't collide with Near Far Edge, which is more important.
-      delaySeconds: 3,
+      delaySeconds: (data) => data.seenSoldiersOfDeath ? 0 : 3,
       durationSeconds: 5,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
@@ -1595,16 +1609,13 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => {
         // Reject anybody not tethered by this add or on the same side.
         if (data.myIaigiriTether === undefined) {
-          // const centerX = -200;
-          const centerY = 0;
-
           const myYStr = data.myAccursedEdge?.targetY;
           if (myYStr === undefined)
             return false;
 
           const thisY = parseFloat(matches.y);
           const myY = parseFloat(myYStr);
-          if (myY < centerY && thisY > centerY || myY > centerY && thisY < centerY)
+          if (myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY)
             return false;
         } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
@@ -1643,6 +1654,107 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8593', source: 'Moko the Restless', capture: false },
       run: (data, _matches) => data.seenSoldiersOfDeath = true,
+    },
+    {
+      id: 'AMR Moko Soldiers of Death Blue Add',
+      type: 'GainsEffect',
+      // The red soldiers get 1E8 effects, and the blue add gets 5E.
+      // TODO: unfortunately there's no information about where casts are being targeted
+      // and so there's no way to know the final safe spot, only which half.
+      netRegex: { effectId: '808', count: '5E' },
+      promise: async (data, matches) => {
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.targetId, 16)],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        const [combatant] = data.combatantData;
+        if (combatant === undefined || data.combatantData.length !== 1)
+          return;
+
+        const x = combatant.PosX - mokoCenterX;
+        const y = combatant.PosY - mokoCenterY;
+
+        // This add is off the edge (far) and then along that edge (less far).
+        // We need to look at the "less far" direction and go opposite.
+        if (Math.abs(x) > Math.abs(y))
+          return y < 0 ? output.south!() : output.north!();
+        return x < 0 ? output.east!() : output.west!();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
+    },
+    {
+      id: 'AMR Moko Shadow Kasumi-giri Final Tether',
+      type: 'Tether',
+      netRegex: { id: '0011', capture: false },
+      condition: (data) => data.seenSoldiersOfDeath,
+      delaySeconds: 0.5,
+      durationSeconds: 7,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const myIaigiriTether = data.myIaigiriTether;
+        if (myIaigiriTether === undefined)
+          return;
+
+        const idToDir: { [id: string]: number } = {};
+        for (const m of data.iaigiriCasts) {
+          const dir = Directions.xyTo4DirNum(
+            parseFloat(m.x),
+            parseFloat(m.y),
+            mokoCenterX,
+            mokoCenterY,
+          );
+          idToDir[m.sourceId] = dir;
+        }
+
+        const myDir = idToDir[myIaigiriTether.sourceId];
+        if (myDir === undefined)
+          return;
+
+        const partnerTether = data.iaigiriTether.find((x) => {
+          if (x.sourceId === myIaigiriTether.sourceId)
+            return false;
+          const dir = idToDir[x.sourceId];
+          if (dir === undefined)
+            return false;
+          return (myDir + 2) % 4 === dir;
+        });
+
+        const partner = partnerTether === undefined
+          ? output.unknown!()
+          : data.ShortName(partnerTether.target);
+
+        if (myDir === 0)
+          return output.north!({ player: partner });
+        if (myDir === 1)
+          return output.east!({ player: partner });
+        if (myDir === 2)
+          return output.south!({ player: partner });
+        if (myDir === 3)
+          return output.west!({ player: partner });
+      },
+      outputStrings: {
+        north: {
+          en: 'North Add (w/${player})',
+        },
+        east: {
+          en: 'East Add (w/${player})',
+        },
+        south: {
+          en: 'South Add (w/${player})',
+        },
+        west: {
+          en: 'West Add (w/${player})',
+        },
+        unknown: Outputs.unknown,
+      },
     },
   ],
   timelineReplace: [

@@ -300,6 +300,13 @@ const xyTo8DirNum = (x: number, y: number, centerX: number, centerY: number): nu
   return Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
+const xyTo4DirNum = (x: number, y: number, centerX: number, centerY: number): number => {
+  // N = 0, E = 1, S = 2, W = 3
+  x = x - centerX;
+  y = y - centerY;
+  return Math.round(2 - 2 * Math.atan2(x, y) / Math.PI) % 4;
+};
+
 const hdgTo8DirNum = (heading: number): number => {
   // N = 0, NE = 1, ..., NW = 7
   return (Math.round(4 - 4 * heading / Math.PI) % 8 + 8) % 8;
@@ -323,6 +330,7 @@ export const Directions = {
   outputStringsCardinalDir: outputStringsCardinalDir,
   outputStringsIntercardDir: outputStringsIntercardDir,
   xyTo8DirNum: xyTo8DirNum,
+  xyTo4DirNum: xyTo4DirNum,
   hdgTo8DirNum: hdgTo8DirNum,
   hdgTo4DirNum: hdgTo4DirNum,
   outputFrom8DirNum: outputFrom8DirNum,
