@@ -87,7 +87,7 @@ Every timeline entry begins with the ability time and the ability name.
 **Number** can be an integer, e.g. `34`, or a float, e.g. `84.381`.
 
 **NumberOrLabel** can be a **Number** (e.g. `42` or `12.8`)
-or a label name with quotes (e.g. `"loop"` or `"branch2"`).
+or a label name with double quotes (e.g. `"loop"` or `"branch2"`).
 
 **String** is a character string, e.g. `"Liftoff"` or `"Double Attack"`
 
