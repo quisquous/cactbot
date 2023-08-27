@@ -2859,11 +2859,11 @@ Options.Triggers.push({
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
           if (columnOrder?.length !== 4)
             return;
-          // If classicalConcepts2ActualNoFlip is enabled the left/west assigned pair will handle
+          // If classicalConcepts2ActualNoFlip is enabled for classic2, the left/west assigned pair will handle
           // the left/west column, as opposed to flipping to pre-position in the right/east column before Panta Rhei.
           // To accommodate this, and because the shapes spawn in their flipped arrangement,
           // we just reverse the columnOrder from the config settings when determining initial safe spots.
-          if (data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+          if (data.triggerSetConfig.classicalConcepts2ActualNoFlip && data.phase === 'classical2')
             columnOrder.reverse();
           myColumn = columnOrder.indexOf(data.conceptPair);
           const myColumnLocations = [
