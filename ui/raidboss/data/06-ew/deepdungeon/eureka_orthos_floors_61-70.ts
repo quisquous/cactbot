@@ -165,6 +165,18 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Palleon': '正统侏儒避役',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aeturna': '아이테르나',
+        'Orthos Basilisk': '오르토스 바실리스크',
+        'Orthos Cobra': '오르토스 코브라',
+        'Orthos Drake': '오르토스 도마뱀',
+        'Orthos Falak': '오르토스 팔라크',
+        'Orthos Gowrow': '오르토스 가우로우',
+        'Orthos Palleon': '오르토스 팔레온',
+      },
+    },
   ],
 };
 

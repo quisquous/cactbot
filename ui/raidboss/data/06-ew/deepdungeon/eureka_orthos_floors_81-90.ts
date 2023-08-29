@@ -441,6 +441,25 @@ const triggerSet: TriggerSet<Data> = {
         'Orthos Wraith': '正统幽灵',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Administrator': '관리자',
+        'Interceptor α': '요격 시스템 α',
+        'Interceptor β': '요격 시스템 β',
+        'Interceptor γ': '요격 시스템 γ',
+        'Orthoiron Corse': '오르토스 강철송장',
+        'Orthos Ahriman': '오르토스 아리만',
+        'Orthos Catoblepas': '오르토스 카토블레파스',
+        'Orthos Deepeye': '오르토스 볼록눈',
+        'Orthos Gourmand': '오르토스 대식가',
+        'Orthos Hecteyes': '오르토스 백눈깔이',
+        'Orthos Pegasus': '오르토스 검은 페가수스',
+        'Orthos Spartoi': '오르토스 스파르토이',
+        'Orthos Specter': '오르토스 그림자요괴',
+        'Orthos Wraith': '오르토스 망령',
+      },
+    },
   ],
 };
 
