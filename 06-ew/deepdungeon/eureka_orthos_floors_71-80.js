@@ -304,5 +304,22 @@ Options.Triggers.push({
         'Weapons Drone': '炮击无人机',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bird of Orthos': '오르토스 새',
+        'Orthos Coeurl': '오르토스 커얼',
+        'Orthos Flamebeast': '오르토스 불꽃 야수',
+        'Orthos Gulo Gulo': '오르토스 굴로굴로',
+        'Orthos Kargas': '오르토스 카르가스',
+        'Orthos Primelephas': '오르토스 프리멜레파스',
+        'Orthos Sasquatch': '오르토스 사스콰치',
+        'Orthos Skatene': '오르토스 스카네테',
+        'Orthos Thunderbeast': '오르토스 번개 야수',
+        'Orthos Toco Toco': '오르토스 총총새',
+        'Proto-Kaliya': '프로토 칼리야',
+        'Weapons Drone': '무인 포격기',
+      },
+    },
   ],
 });

@@ -37,5 +37,11 @@ Options.Triggers.push({
         'Orthos Sawtooth': '正统锯齿花',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Orthos Sawtooth': '오르토스 톱날이빨',
+      },
+    },
   ],
 });
