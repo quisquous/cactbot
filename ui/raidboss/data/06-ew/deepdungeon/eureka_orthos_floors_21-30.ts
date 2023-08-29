@@ -120,6 +120,17 @@ const triggerSet: TriggerSet<Data> = {
         'Tiamat\'s Clone': '提亚马特复制体',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Lesser Orthos Dragon': '오르토스 하급 드래곤',
+        'Orthoknight': '오르토스 기사',
+        'Orthos Brobinyak': '오르토스 브로비냐크',
+        'Orthos Vanara': '오르토스 바나라',
+        'Orthoshelled Dragon': '오르토스 장갑드래곤',
+        'Tiamat\'s Clone': '티아마트 클론',
+      },
+    },
   ],
 };
 
