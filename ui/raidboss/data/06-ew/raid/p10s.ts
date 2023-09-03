@@ -196,7 +196,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zeige ${side}/${dir} Verbindung weg',
           fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
           ja: '線伸ばし ${side}/${dir}',
-          cn: '向 ${side}/${dir} 外侧引导',
+          cn: '向 ${dir} 外侧引导',
           ko: '선을 ${side}/${dir}으로',
         },
         default: {
