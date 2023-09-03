@@ -32,7 +32,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   shareWarn: {
     'P12N Anthropos White Flame': '82CA', // tethered line cleave from Paradeigma adds
-    'P12N Palladion Spread': '82C3', // spread markers during add phase
+    'P12N Palladion Spread': '82CE', // spread markers during add phase
     'P12N Dialogos Spread': '82D7', // spread markers after Dialogos (stack)
   },
   shareFail: {
