@@ -176,28 +176,25 @@ const triggerSet: TriggerSet<Data> = {
           const x = data.combatantData[0]?.PosX;
           if (x === undefined)
             return output.default!();
-          let wingSide;
           let wingDir;
           if (x > 100) {
-            wingSide = output.right!();
             wingDir = output.east!();
           } else if (x < 100) {
-            wingSide = output.left!();
             wingDir = output.west!();
           }
-          if (wingSide !== undefined && wingDir !== undefined)
-            return output.tetherside!({ side: wingSide, dir: wingDir });
+          if (wingDir !== undefined)
+            return output.tetherside!({ dir: wingDir });
           return output.default!();
         }
       },
       outputStrings: {
         tetherside: {
-          en: 'Point ${side}/${dir} Tether Away',
-          de: 'Zeige ${side}/${dir} Verbindung weg',
-          fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
-          ja: '線伸ばし ${side}/${dir}',
+          en: 'Point ${dir} Tether Away',
+          de: 'Zeige ${dir} Verbindung weg',
+          fr: 'Orientez le lien à l\'extérieur - ${dir}',
+          ja: '線伸ばし ${dir}',
           cn: '向 ${dir} 外侧引导',
-          ko: '선을 ${side}/${dir}으로',
+          ko: '선을 ${dir}으로',
         },
         default: {
           en: 'Point Tether Away',
@@ -207,10 +204,22 @@ const triggerSet: TriggerSet<Data> = {
           cn: '向外引导',
           ko: '선을 바깥쪽으로',
         },
-        right: Outputs.right,
-        left: Outputs.left,
-        east: Outputs.east,
-        west: Outputs.west,
+        west: {
+          en: 'Left/West',
+          de: 'Links/Westen',
+          fr: 'Gauche/Ouest',
+          ja: '左/西へ',
+          cn: '左(西)',
+          ko: '왼쪽/서쪽',
+        },
+        east: {
+          en: 'Right/East',
+          de: 'Rechts/Osten',
+          fr: 'Droite/Est',
+          ja: '右/東へ',
+          cn: '右(东)',
+          ko: '오른쪽/동쪽',
+        },
       },
     },
     {
