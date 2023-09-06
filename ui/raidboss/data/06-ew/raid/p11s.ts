@@ -651,7 +651,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Anderes Nahe: ${player1}, ${player2}',
             fr: 'Autre proche : ${player1}, ${player2}',
             ja: '他のペア: ${player1}, ${player2}',
-            cn: '靠近 : ${player1}, ${player2}',
+            cn: '另一组靠近：${player1}, ${player2}',
             ko: '다른 가까이: ${player1}, ${player2}',
           },
           otherFar: {
@@ -659,7 +659,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Anderes Entfernt: ${player1}, ${player2}',
             fr: 'Autre éloigné : ${player1}, ${player2}',
             ja: '他のペア: ${player1}, ${player2}',
-            cn: '远离 : ${player1}, ${player2}',
+            cn: '另一组远离：${player1}, ${player2}',
             ko: '다른 멀리: ${player1}, ${player2}',
           },
           tank: Outputs.tank,
