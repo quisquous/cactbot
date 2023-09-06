@@ -36,7 +36,7 @@ export default class ParseLine {
     const event = parts[0];
 
     // Don't parse raw network packet lines
-    if (!event || event === '252')
+    if (event === undefined || event === '252')
       return;
 
     // This is ugly, but Webpack prefers being explicit
