@@ -29,9 +29,18 @@ export interface Data extends RaidbossData {
     gaolOrder6: string;
     gaolOrder7: string;
     gaolOrder8: string;
-    // Bonus in case of subs / etc.
     gaolOrder9: string;
     gaolOrder10: string;
+    gaolOrder11: string;
+    gaolOrder12: string;
+    gaolOrder13: string;
+    gaolOrder14: string;
+    gaolOrder15: string;
+    gaolOrder16: string;
+    gaolOrder17: string;
+    gaolOrder18: string;
+    gaolOrder19: string;
+    gaolOrder20: string;
   };
   combatantData: PluginCombatantState[];
   phase:
@@ -83,11 +92,12 @@ const triggerSet: TriggerSet<Data> = {
     // Yes yes, a textarea would be nice here to put everything on separate lines,
     // but OverlayPlugin does not seem to support delivering the enter key and
     // so there's no way to have one box with names on separate lines.  Sorry!
+    /* eslint-disable max-len */
     {
       ...gaolConfig('gaolOrder1'),
       comment: {
         en:
-          'The full name (no server) of players in the order you want them called out. Names with smaller numbers will be listed first in the gaol order. Anybody not listed will be added to the end alphabetically.',
+          'Each entry can be the three letter job (e.g. "war" or "SGE") or the full name (e.g. "Tini Poutini"), all case insensitive. Smaller numbers will be listed first in the gaol order. Duplicate jobs will sort players alphabetically. Anybody not listed will be added to the end alphabetically. Blank entries are ignored. If players are listed multiple times by name or job, the lower number will be considered.',
       },
     },
     gaolConfig('gaolOrder2'),
@@ -99,6 +109,17 @@ const triggerSet: TriggerSet<Data> = {
     gaolConfig('gaolOrder8'),
     gaolConfig('gaolOrder9'),
     gaolConfig('gaolOrder10'),
+    gaolConfig('gaolOrder11'),
+    gaolConfig('gaolOrder12'),
+    gaolConfig('gaolOrder13'),
+    gaolConfig('gaolOrder14'),
+    gaolConfig('gaolOrder15'),
+    gaolConfig('gaolOrder16'),
+    gaolConfig('gaolOrder17'),
+    gaolConfig('gaolOrder18'),
+    gaolConfig('gaolOrder19'),
+    gaolConfig('gaolOrder20'),
+    /* eslint-enable max-len */
   ],
   timelineFile: 'ultima_weapon_ultimate.txt',
   initData: () => {
@@ -862,7 +883,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.titanGaols.length !== 3)
           return;
 
-        const gaolOrder = [
+        const rawGaolOrder = [
           data.triggerSetConfig.gaolOrder1,
           data.triggerSetConfig.gaolOrder2,
           data.triggerSetConfig.gaolOrder3,
@@ -873,12 +894,40 @@ const triggerSet: TriggerSet<Data> = {
           data.triggerSetConfig.gaolOrder8,
           data.triggerSetConfig.gaolOrder9,
           data.triggerSetConfig.gaolOrder10,
+          data.triggerSetConfig.gaolOrder11,
+          data.triggerSetConfig.gaolOrder12,
+          data.triggerSetConfig.gaolOrder13,
+          data.triggerSetConfig.gaolOrder14,
+          data.triggerSetConfig.gaolOrder15,
+          data.triggerSetConfig.gaolOrder16,
+          data.triggerSetConfig.gaolOrder17,
+          data.triggerSetConfig.gaolOrder18,
+          data.triggerSetConfig.gaolOrder19,
+          data.triggerSetConfig.gaolOrder20,
         ].map((x) => x.trim()).filter((x) => x !== '');
+
+        const partyNames = [...data.party.partyNames].sort((a, b) => a.localeCompare(b));
+
+        // Merge jobs and names into a single list of names.
+        const gaolOrder: string[] = [];
+        for (const entry of rawGaolOrder) {
+          if (entry.length !== 3) {
+            gaolOrder.push(entry.toLocaleLowerCase());
+            continue;
+          }
+
+          const uppercaseJobEntry = entry.toUpperCase();
+          for (const name of partyNames) {
+            const jobStr: string | undefined = data.party.jobName(name);
+            if (jobStr === uppercaseJobEntry)
+              gaolOrder.push(name.toLocaleLowerCase());
+          }
+        }
 
         data.titanGaols.sort((a, b) => {
           // Sort by `gaolOrder` and then alphabetical for names not in the list.
-          const aIdx = gaolOrder.indexOf(a);
-          const bIdx = gaolOrder.indexOf(b);
+          const aIdx = gaolOrder.indexOf(a.toLocaleLowerCase());
+          const bIdx = gaolOrder.indexOf(b.toLocaleLowerCase());
           if (aIdx === -1 && bIdx !== -1)
             return 1;
           if (bIdx === -1 && aIdx !== -1)
@@ -891,11 +940,9 @@ const triggerSet: TriggerSet<Data> = {
         });
 
         if (data.options.Debug) {
-          console.log(`GAOL OPTIONS: ${JSON.stringify(gaolOrder)}`);
-          console.log(`GAOL ORDER: ${JSON.stringify(data.titanGaols)}`);
-          const missed = data.titanGaols.filter((x) => !gaolOrder.includes(x));
-          if (missed.length !== 0)
-            console.log(`GAOL PLAYERS NOT IN OPTIONS: ${JSON.stringify(missed)}`);
+          console.log(`GAOL CONFIG: ${JSON.stringify(rawGaolOrder)}`);
+          console.log(`GAOL CONFIG NAME ORDER: ${JSON.stringify(gaolOrder)}`);
+          console.log(`GAOL FINAL ORDER: ${JSON.stringify(data.titanGaols)}`);
         }
       },
       alertText: (data, _matches, output) => {
