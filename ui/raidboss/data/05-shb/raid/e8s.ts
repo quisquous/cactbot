@@ -9,7 +9,7 @@ export type ConfigIds = 'uptimeKnockbackStrat';
 
 export interface Data extends RaidbossData {
   triggerSetConfig: { [key in ConfigIds]: ConfigValue };
-  firstFrost?: string;
+  firstFrost?: 'biting' | 'driving';
   rushCount?: number;
   akhMornTargets?: string[];
   wyrmsLament?: number;

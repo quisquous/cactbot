@@ -7,8 +7,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   rot?: boolean;
   seenVirus?: boolean;
-  first?: string;
-  second?: string;
+  first?: 'dada' | 'biblio';
+  second?: 'dada' | 'biblio';
   loadCount?: number;
   runCount?: number;
 }
