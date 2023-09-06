@@ -118,14 +118,14 @@ const buildTable = (state: PageState): void => {
     const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ??
       '???';
     let fightName = '???';
-    if (fight.sealName)
+    if (fight.sealName !== undefined)
       fightName = fight.sealName;
-    else if (fight.fightName)
+    else if (fight.fightName !== undefined)
       fightName = fight.fightName;
 
-    if (!seenSeal && fight.sealName)
+    if (!seenSeal && fight.sealName !== undefined)
       seenSeal = true;
-    else if (seenSeal && !fight.sealName)
+    else if (seenSeal && fight.sealName === undefined)
       seenSeal = false;
 
     const row: Record<keyof Omit<typeof headers, 'include'>, string> = {
