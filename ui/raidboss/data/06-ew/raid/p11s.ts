@@ -19,6 +19,7 @@ export interface Data extends RaidbossData {
   lightDarkBuddy: { [name: string]: string };
   lightDarkTether: { [name: string]: 'near' | 'far' };
   cylinderCollect: NetMatches['HeadMarker'][];
+  styxCount: number;
 }
 
 const headmarkers = {
@@ -51,6 +52,7 @@ const triggerSet: TriggerSet<Data> = {
       lightDarkBuddy: {},
       lightDarkTether: {},
       cylinderCollect: [],
+      styxCount: 4,
     };
   },
   triggers: [
@@ -807,6 +809,25 @@ const triggerSet: TriggerSet<Data> = {
         southeast: Outputs.southeast,
         southwest: Outputs.southwest,
         west: Outputs.west,
+      },
+    },
+    {
+      id: 'P11S Styx Stack',
+      type: 'StartsUsing',
+      netRegex: { id: '8217', source: 'Themis', capture: false },
+      preRun: (data) => {
+        data.styxCount++;
+      },
+      infoText: (data, _matches, output) => output.text!({ num: data.styxCount }),
+      outputStrings: {
+        text: {
+          en: 'Stack (${num} times)',
+          de: 'Sammeln (${num} Mal)',
+          fr: 'Packez-vous (${num} fois)',
+          ja: '頭割り（${num}回）',
+          cn: '集合分摊（${num}次）',
+          ko: '쉐어뎀 (${num}번)',
+        },
       },
     },
   ],
