@@ -2,7 +2,7 @@
 
 # -ii 8022 7F6C 7CC8 7CCA 7CCF 7CCD 8024 7CBF 8025 7CD8 7CD1 7CD9 7CBD 7CDB 7CDE 7CE8 7D96 7CC0
 # -it "Rubicante"
-# -p 7CD0:1000 7CD2:2000 
+# -p 7CD0:1000 7CD2:2000
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -11,7 +11,7 @@ hideall "Infernal Slaughter"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.0 "--sync--" sync / 14:[^:]*:Rubicante:7CEA:/ window 10,10
 12.0 "Inferno" sync / 1[56]:[^:]*:Rubicante:7CEA:/
 
