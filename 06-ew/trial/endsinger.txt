@@ -13,7 +13,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 # P1
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 8.7 "--sync--" sync / 14:[^:]*:The Endsinger:662C:/ window 15,15
 13.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
 36.9 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/

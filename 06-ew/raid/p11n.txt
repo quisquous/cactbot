@@ -25,7 +25,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.4 "--sync--" sync / 14:[^:]*:Themis:81E2:/ window 7.4,10
 12.1 "Eunomia" sync / 1[56]:[^:]*:Themis:81E2:/
 

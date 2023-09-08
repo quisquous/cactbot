@@ -9,7 +9,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 9.9 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 20,20
 14.9 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:7720:/
 22.0 "Ruby Glow 1" sync / 1[56]:[^:]*:Proto-Carbuncle:76F3:/

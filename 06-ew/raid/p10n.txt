@@ -16,7 +16,7 @@
 # 826[B-E]  Supplemental AoE damage from 'Harrowing Hell'
 # 86B[5-8]  Supplemental AoE damage from 'Harrowing Hell'
 
-# Note: The boss's name has a Unicode character (æ)  which is causing syncs to fail.
+# Note: The boss's name has a Unicode character (Ã¦)  which is causing syncs to fail.
 # The character is manually escaped in the syncs with the correct codepoint (U+00E6).
 # Entry names use "ae" as separate characters to ensure proper UI display.
 
@@ -25,8 +25,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /Engage!/ window 0,1
-2.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:827A:/
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.9 "--sync--" sync / 14:[^:]*::Pand\u00e6monium:8259:/ window 15,15
 10.9 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
 23.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
@@ -60,7 +59,7 @@ hideall "--sync--"
 322.7 "Wicked Step" sync / 1[56]:[^:]*:Pand\u00e6monium:8272:/
 
 # Loop begins here
-339.5 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/ 
+339.5 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
 347.4 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
 353.2 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
 374.4 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/

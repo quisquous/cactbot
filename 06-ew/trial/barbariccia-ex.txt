@@ -8,7 +8,7 @@ hideall "Brush with Death"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 10.1 "--sync--" sync / 14:[^:]*:Barbariccia:7570:/ window 11,10
 15.1 "Void Aero IV" sync / 1[56]:[^:]*:Barbariccia:7570:/
 22.3 "Raging Storm" sync / 1[56]:[^:]*:Barbariccia:7572:/

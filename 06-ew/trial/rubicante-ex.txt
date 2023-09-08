@@ -10,8 +10,7 @@ hideall "Infernal Slaughter"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
-#0.0 "--sync--" sync /Engage!/ window 0,1
-0.8 "--sync--" sync / 1[56]:[^:]*:Rubicante:7F6D:/ window 1,0 # Opening autoattack
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.0 "--sync--" sync / 14:[^:]*:Rubicante:7D2C:/ window 10,20
 12.0 "Inferno (aoe)" sync / 1[56]:[^:]*:Rubicante:7D2C:/
 
