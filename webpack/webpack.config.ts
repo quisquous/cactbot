@@ -68,7 +68,7 @@ export default (
       patterns: [
         {
           // copy sounds and images
-          from: 'resources/@(ffxiv|sounds)/**/*',
+          from: 'resources/@(ffxiv|sounds|images)/**/*',
         },
         {
           // copy all the skins folder under modules,
