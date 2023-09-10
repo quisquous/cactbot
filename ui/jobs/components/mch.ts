@@ -25,6 +25,7 @@ export class MCHComponent extends BaseComponent {
   wildFireStacks: HTMLElement[] = [];
   wildFireCounts = 0;
   wildFireActive = false;
+  overheatstack = 0;
 
   constructor(o: ComponentInterface) {
     super(o);
@@ -89,9 +90,12 @@ export class MCHComponent extends BaseComponent {
     this.heatGauge.innerText = jobDetail.heat.toString();
     this.batteryGauge.innerText = jobDetail.battery.toString();
     // These two seconds are shown by half adjust, not like others' ceil.
-    if (jobDetail.overheatMilliseconds > 0) {
+    if (jobDetail.overheatActive === true) {
       this.heatGauge.parentNode.classList.add('overheat');
-      this.heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000).toString();
+      if (this.ffxivVersion >= 630)
+        this.heatGauge.innerText = this.overheatstack.toString();
+      else
+        this.heatGauge.innerText = Math.round(jobDetail.overheatMilliseconds / 1000).toString();
     } else {
       this.heatGauge.parentNode.classList.remove('overheat');
       this.heatGauge.innerText = jobDetail.heat.toString();
@@ -120,6 +124,10 @@ export class MCHComponent extends BaseComponent {
     }
   }
 
+  override onYouGainEffect(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
+    if (id === EffectId.Overheated && this.ffxivVersion >= 630)
+      this.overheatstack = parseInt(matches.count ?? '0');
+  }
   override onMobGainsEffectFromYou(id: string, matches: PartialFieldMatches<'GainsEffect'>): void {
     if (id === EffectId.Wildfire) {
       this.wildFireActive = true;
@@ -152,7 +160,10 @@ export class MCHComponent extends BaseComponent {
       case kAbility.WildFire: {
         this.wildFireBox.duration = 10 + 0.9; // animation delay
         this.wildFireBox.threshold = 1000;
-        this.wildFireBox.fg = computeBackgroundColorFrom(this.wildFireBox, 'mch-color-wildfire.active');
+        this.wildFireBox.fg = computeBackgroundColorFrom(
+          this.wildFireBox,
+          'mch-color-wildfire.active',
+        );
         this.tid1 = window.setTimeout(() => {
           this.wildFireBox.duration = 110 - 0.9;
           this.wildFireBox.threshold = this.player.gcdSkill + 1;

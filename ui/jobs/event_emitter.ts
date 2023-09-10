@@ -89,13 +89,13 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
         break;
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.GainsEffect.fields);
-        if (matches.effectId)
+        if (matches.effectId !== undefined)
           this.emit('effect/gain', matches.effectId, matches);
         break;
       }
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.LosesEffect.fields);
-        if (matches.effectId)
+        if (matches.effectId !== undefined)
           this.emit('effect/lose', matches.effectId, matches);
         break;
       }
@@ -110,7 +110,7 @@ export class JobsEventEmitter extends EventEmitter<EventMap> {
       }
       case logDefinitions.ActorControl.type: {
         const matches = normalizeLogLine(ev.line, logDefinitions.ActorControl.fields);
-        if (matches.command === '40000010')
+        if (matches.command === '40000010' || matches.command === '4000000F')
           this.emit('battle/wipe');
         break;
       }
@@ -200,7 +200,7 @@ export class DotTracker extends EventEmitter<{ tick: (targetId?: string) => void
 
     this.ee.on('tick/dot', (_damage, { id, effectId }) => {
       if (
-        id &&
+        id !== undefined &&
         this.lastAttackedTarget === id &&
         this.targets.includes(id) &&
         // if effectId is not 0, that means this DoT tick is produced

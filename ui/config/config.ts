@@ -5,6 +5,7 @@ import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import Regexes from '../../resources/regexes';
 import UserConfig, { ConfigEntry, ConfigValue, OptionsTemplate } from '../../resources/user_config';
 import ZoneInfo from '../../resources/zone_info';
+import { BaseOptions } from '../../types/data';
 import { SavedConfig, SavedConfigEntry } from '../../types/event';
 import { LooseOopsyTrigger, LooseOopsyTriggerSet } from '../../types/oopsy';
 import {
@@ -186,6 +187,27 @@ const kDirectoryToCategory = {
     cn: '绝境战',
     ko: '절 난이도',
   },
+  hunts: {
+    en: 'Hunts & FATEs',
+    de: 'Hohe Jagd & FATEs',
+    fr: 'Chasse & Aléas',
+    cn: '怪物狩猎 & 危命任务',
+    ko: '마물 & 돌발',
+  },
+  map: {
+    en: 'Treasure Map',
+    de: 'Schatzkarten',
+    fr: 'Cartes au trésor',
+    cn: '宝物地图',
+    ko: '보물 지도',
+  },
+  deepdungeon: {
+    en: 'Deep Dungeon',
+    de: 'Tiefes Gewölbe',
+    fr: 'Donjon sans fond',
+    cn: '深层迷宫',
+    ko: '딥 던전',
+  },
 };
 
 // TODO: maybe we should also sort all the filenames properly too?
@@ -205,6 +227,12 @@ const fileNameToTitle = (filename: string) => {
   return capitalized;
 };
 
+const getOptDefault = (opt: ConfigEntry, options: BaseOptions): ConfigValue => {
+  if (typeof opt.default === 'function')
+    return opt.default(options);
+  return opt.default;
+};
+
 // Annotations by userFileHandler (processRaidbossFiles) on triggers.
 // raidboss_config also combines normal and timeline triggers when building the config ui.
 export type ConfigLooseTrigger = LooseTrigger & LooseTimelineTrigger & {
@@ -217,10 +245,7 @@ export type ConfigLooseTrigger = LooseTrigger & LooseTimelineTrigger & {
   configOutput?: { [field: string]: string };
 };
 
-export type ConfigLooseTriggerSet = LooseTriggerSet & {
-  filename?: string;
-  isUserTriggerSet?: boolean;
-};
+export type ConfigLooseTriggerSet = LooseTriggerSet;
 
 export type ConfigLooseOopsyTrigger = LooseOopsyTrigger;
 
@@ -320,8 +345,10 @@ export class CactbotConfigurator {
     return defaultValue;
   }
 
-  getStringOption(group: string, path: string | string[], defaultValue: ConfigValue): string {
+  getStringOption(group: string, path: string | string[], defaultValue: string): string {
     const value = this.getOption(group, path, defaultValue);
+    if (value === '')
+      return defaultValue;
     return value.toString();
   }
 
@@ -435,7 +462,7 @@ export class CactbotConfigurator {
       return;
     }
     const finalArg = args.slice(-1)[0];
-    if (!finalArg)
+    if (finalArg === undefined)
       throw new UnreachableCode();
 
     const allButFinalArg = args.slice(0, -1);
@@ -481,6 +508,43 @@ export class CactbotConfigurator {
     container.appendChild(buttonInput);
   }
 
+  buildConfigEntry(
+    derivedOptions: BaseOptions,
+    groupDiv: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
+    // Note: `derivedOptions` here is the `RaidbossOptions` or `JobsOptions`
+    // and may be different than `this.configOptions`.
+    switch (opt.type) {
+      case 'checkbox':
+        this.buildCheckbox(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'html':
+        this.buildHtml(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'select':
+        this.buildSelect(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'float':
+        this.buildFloat(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'integer':
+        this.buildInteger(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'string':
+        this.buildString(derivedOptions, groupDiv, opt, group, path);
+        break;
+      case 'directory':
+        this.buildDirectory(derivedOptions, groupDiv, opt, group, path);
+        break;
+      default:
+        console.error('unknown type: ' + JSON.stringify(opt));
+        break;
+    }
+  }
+
   // Top level UI builder, builds everything.
   buildUI(container: HTMLElement, contents: ConfigContents): void {
     for (const group in contents) {
@@ -497,29 +561,7 @@ export class CactbotConfigurator {
         for (const opt of options) {
           if (!this.developerOptions && opt.debugOnly)
             continue;
-          switch (opt.type) {
-            case 'checkbox':
-              this.buildCheckbox(groupDiv, opt, group);
-              break;
-            case 'html':
-              this.buildHtml(groupDiv, opt, group);
-              break;
-            case 'select':
-              this.buildSelect(groupDiv, opt, group);
-              break;
-            case 'float':
-              this.buildFloat(groupDiv, opt, group);
-              break;
-            case 'integer':
-              this.buildInteger(groupDiv, opt, group);
-              break;
-            case 'directory':
-              this.buildDirectory(groupDiv, opt, group);
-              break;
-            default:
-              console.error('unknown type: ' + JSON.stringify(opt));
-              break;
-          }
+          this.buildConfigEntry(this.configOptions, groupDiv, opt, group);
         }
 
         const builder = template.buildExtraUI;
@@ -557,14 +599,32 @@ export class CactbotConfigurator {
     return groupDiv;
   }
 
-  buildNameDiv(opt: ConfigEntry): HTMLElement {
+  buildLeftDiv(opt: ConfigEntry): HTMLElement {
     const div = document.createElement('div');
-    div.innerHTML = this.translate(opt.name);
-    div.classList.add('option-name');
+
+    // Build Name
+    const nameDiv = document.createElement('div');
+    nameDiv.innerHTML = this.translate(opt.name);
+    nameDiv.classList.add('option-name');
+    div.appendChild(nameDiv);
+
+    // Build the trigger comment
+    if (opt.comment) {
+      const commentDiv = document.createElement('div');
+      commentDiv.innerHTML = opt.comment[this.lang] ?? opt.comment?.en ?? '';
+      commentDiv.classList.add('comment');
+      div.appendChild(commentDiv);
+    }
     return div;
   }
 
-  buildCheckbox(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildCheckbox(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -572,27 +632,41 @@ export class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'checkbox';
 
-    const defaultValue = typeof opt.default === 'boolean' ? opt.default : false;
-    if (typeof opt.default !== 'boolean')
-      console.error(`Invalid non-boolean default: ${group} ${opt.id}`);
-    input.checked = this.getBooleanOption(group, opt.id, defaultValue);
-    input.onchange = () => this.setOption(group, opt.id, input.checked);
+    const optDefault = getOptDefault(opt, options);
+    const defaultValue = typeof optDefault === 'boolean' ? optDefault : false;
+    const optIdPath = [...path ?? [], opt.id];
+    if (typeof optDefault !== 'boolean')
+      console.error(`Invalid non-boolean default: ${group} ${optIdPath.join(' ')}`);
+    input.checked = this.getBooleanOption(group, optIdPath, defaultValue);
+    input.onchange = () => this.setOption(group, optIdPath, input.checked);
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
-  buildHtml(parent: HTMLElement, opt: ConfigEntry, _group: string): void {
+  buildHtml(
+    _options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    _group: string,
+    _path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     if (opt.html)
       div.innerHTML = this.translate(opt.html);
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
-  buildDirectory(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildDirectory(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
     div.classList.add('input-dir-container');
@@ -613,9 +687,11 @@ export class CactbotConfigurator {
       else
         label.innerText = this.translate(kDirectoryDefaultText);
     };
-    setLabel(this.getStringOption(group, opt.id, opt.default));
+    const optIdPath = [...path ?? [], opt.id];
+    const optDefault = getOptDefault(opt, options);
+    setLabel(this.getStringOption(group, optIdPath, optDefault.toString()));
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
 
     input.onclick = async () => {
@@ -635,7 +711,7 @@ export class CactbotConfigurator {
       if (result !== undefined) {
         const dir = result.data ?? '';
         if (dir !== prevValue)
-          this.setOption(group, opt.id, dir);
+          this.setOption(group, optIdPath, dir);
         setLabel(dir);
       } else {
         console.error('cactbotChooseDirectory returned undefined');
@@ -643,15 +719,23 @@ export class CactbotConfigurator {
     };
   }
 
-  buildSelect(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildSelect(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
     const input = document.createElement('select');
     div.appendChild(input);
 
-    const defaultValue = this.getOption(group, opt.id, opt.default);
-    input.onchange = () => this.setOption(group, opt.id, input.value);
+    const optIdPath = [...path ?? [], opt.id];
+    const optDefault = getOptDefault(opt, options);
+    const defaultValue = this.getOption(group, optIdPath, optDefault);
+    input.onchange = () => this.setOption(group, optIdPath, input.value);
 
     if (opt.options) {
       const innerOptions = this.translate(opt.options);
@@ -665,12 +749,18 @@ export class CactbotConfigurator {
       }
     }
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
   // FIXME: this could use some data validation if a user inputs non-floats.
-  buildFloat(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildFloat(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -678,21 +768,30 @@ export class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
+    const optDefault = getOptDefault(opt, options);
+    input.placeholder = optDefault.toString();
+    const optIdPath = [...path ?? [], opt.id];
     input.value = this.getNumberOption(
       group,
-      opt.id,
-      parseFloat(opt.default.toString()),
+      optIdPath,
+      parseFloat(optDefault.toString()),
     ).toString();
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
   // FIXME: this could use some data validation if a user inputs non-integers.
-  buildInteger(parent: HTMLElement, opt: ConfigEntry, group: string): void {
+  buildInteger(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
     const div = document.createElement('div');
     div.classList.add('option-input-container');
 
@@ -700,12 +799,47 @@ export class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = '1';
-    input.value = this.getNumberOption(group, opt.id, parseInt(opt.default.toString())).toString();
-    const setFunc = () => this.setOption(group, opt.id, input.value);
+    const optDefault = getOptDefault(opt, options);
+    input.placeholder = optDefault.toString();
+    const optIdPath = [...path ?? [], opt.id];
+    input.value = this.getNumberOption(group, optIdPath, parseInt(optDefault.toString()))
+      .toString();
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
 
-    parent.appendChild(this.buildNameDiv(opt));
+    parent.appendChild(this.buildLeftDiv(opt));
+    parent.appendChild(div);
+  }
+
+  buildString(
+    options: BaseOptions,
+    parent: HTMLElement,
+    opt: ConfigEntry,
+    group: string,
+    path?: string[],
+  ): void {
+    const div = document.createElement('div');
+    div.classList.add('option-input-container');
+
+    const input = document.createElement('input');
+    input.classList.add('input-string-field');
+    div.appendChild(input);
+
+    const optIdPath = [...path ?? [], opt.id];
+    input.type = 'text';
+    const optDefault = getOptDefault(opt, options);
+    input.placeholder = optDefault.toString();
+    input.value = this.getStringOption(
+      group,
+      optIdPath,
+      optDefault.toString(),
+    ).toString();
+    const setFunc = () => this.setOption(group, optIdPath, input.value);
+    input.onchange = setFunc;
+    input.oninput = setFunc;
+
+    parent.appendChild(this.buildLeftDiv(opt));
     parent.appendChild(div);
   }
 
@@ -750,6 +884,14 @@ export class CactbotConfigurator {
           title = this.translate(zoneInfo.name);
       }
 
+      let zoneLabel: LocaleText | undefined = undefined;
+
+      // if a zoneLabel is set, use for the title
+      if (triggerSet.zoneLabel) {
+        zoneLabel = triggerSet.zoneLabel;
+        title = this.translate(zoneLabel);
+      }
+
       const fileKey = filename.replace(/\//g, '-').replace(/.[jt]s$/, '');
       map[fileKey] = {
         filename: filename,
@@ -769,7 +911,7 @@ export class CactbotConfigurator {
     for (const triggerSet of userTriggerSets || []) {
       // TODO: pass in userTriggerSets as a filename -> triggerSet map as well
       // so we don't need to read this added value.
-      if (!triggerSet.filename)
+      if (triggerSet.filename === undefined)
         throw new Error('UserHandler must add filename');
       const fileKey = `user/${triggerSet.filename}/${userFileIdx++}`;
 
@@ -777,7 +919,12 @@ export class CactbotConfigurator {
       // may also use zoneRegex or also have errors and not have either.
       let title = '???';
       let zoneId: number | undefined = undefined;
-      if (typeof triggerSet.zoneId === 'number') {
+      let zoneLabel: LocaleText | undefined = undefined;
+      // if a zoneLabel is set, use for the title
+      if (triggerSet.zoneLabel) {
+        zoneLabel = triggerSet.zoneLabel;
+        title = this.translate(zoneLabel);
+      } else if (typeof triggerSet.zoneId === 'number') {
         zoneId = triggerSet.zoneId;
         // Use the translatable zone info name, if possible.
         const zoneInfo = ZoneInfo[zoneId];

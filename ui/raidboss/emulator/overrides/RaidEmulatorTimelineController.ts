@@ -19,9 +19,14 @@ export default class RaidEmulatorTimelineController extends TimelineController {
   }
 
   // Override
-  public override SetActiveTimeline(timelineFiles: string[], timelines: string[],
-    replacements: TimelineReplacement[], triggers: LooseTimelineTrigger[],
-    styles: TimelineStyle[], zoneId: number): void {
+  public override SetActiveTimeline(
+    timelineFiles: string[],
+    timelines: string[],
+    replacements: TimelineReplacement[],
+    triggers: LooseTimelineTrigger[],
+    styles: TimelineStyle[],
+    zoneId: number,
+  ): void {
     this.activeTimeline = null;
 
     let text = '';
@@ -29,7 +34,7 @@ export default class RaidEmulatorTimelineController extends TimelineController {
     // Get the text from each file in |timelineFiles|.
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
-      if (name)
+      if (name !== undefined)
         text = `${text}\n${name}`;
       else
         console.log(`Timeline file not found: ${timelineFile}`);
@@ -39,8 +44,14 @@ export default class RaidEmulatorTimelineController extends TimelineController {
       text = `${text}\n${timeline}`;
 
     if (text) {
-      this.activeTimeline =
-        new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options, zoneId);
+      this.activeTimeline = new RaidEmulatorTimeline(
+        text,
+        replacements,
+        triggers,
+        styles,
+        this.options,
+        zoneId,
+      );
       if (this.emulator)
         this.activeTimeline.bindTo(this.emulator);
     }

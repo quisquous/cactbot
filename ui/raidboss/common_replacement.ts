@@ -2,15 +2,28 @@
 
 import { Lang, NonEnLang } from '../../resources/languages';
 
+// The seal key is kind of a hack because we use it in a lot of different
+// contexts and need to correctly grab the name of the zone that is sealed.
+// These are some various lookbehinds for those different contexts:
+
+// Regexes for a parsed ACT log line
+const parsedLB = '00:0839::';
+// Regexes for a network log line
+const networkLB = '00\\|[^|]*\\|0839\\|\\|';
+// Regex for a regex for a network log line.  <_<
+const netRegexLB = '\\\\\\|0839\\\\\\|\\[\\^\\|\\]\\*\\\\\\|';
+// A bare parameter (e.g. `X will be sealed off` via `netRegex: { line: 'X will be sealed off' },`)
+const paramLB = '^';
+
 // It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
 export const syncKeys = {
   // Seal is trying to match these types of lines, and is more complicated because it's
   // trying to also capture the area name:
   //   parsed log lines: 00:0839::Something will be sealed off
   //   network log lines: 00|timestamp|0839||Something will be sealed off
-  //   NetRegexes: ^^(?:00)\|(?:[^|]*)\|(?:0839)\|(?:[^|]*)\|(?:Something will be sealed off.*?)\|
+  //   NetRegexes: ^^00\|[^|]*\|0839\|[^|]*\|Something will be sealed off.*?\|
   seal:
-    '(?<=00:0839::|00\\|[^|]*\\|0839\\|\\||\\|\\(\\?:)([^|]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+    `(?<=${parsedLB}|${networkLB}|${netRegexLB}|${paramLB})([^|:]*) will be sealed off(?: in (?:[0-9]+ seconds)?)?`,
   unseal: 'is no longer sealed',
   engage: 'Engage!',
 };

@@ -1,6 +1,6 @@
 import { Lang } from '../../resources/languages';
 import logDefinitions from '../../resources/netlog_defs';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { addOverlayListener, callOverlayHandler } from '../../resources/overlay_plugin_api';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -222,8 +222,8 @@ class PullCounter {
   private party: Party[] = [];
   private bosses: Boss[] = [];
   private resetRegex = NetRegexes.echo({ line: '.*pullcounter reset.*?' });
-  private wipeEndRegex = NetRegexes.echo({ line: 'end' });
-  private wipeFadeInRegex = NetRegexes.network6d({ command: '40000010' });
+  private wipeEndRegex = commonNetRegex.userWipeEcho;
+  private wipeFadeInRegex = commonNetRegex.wipe;
   private countdownEngageRegex: RegExp;
   private pullCounts: { [bossId: string]: number } = {};
 
@@ -276,7 +276,8 @@ class PullCounter {
         return;
       }
     }
-    if (e.line[0] !== logDefinitions.GameLog.type)
+    const type = e.line[0];
+    if (type !== logDefinitions.GameLog.type && type !== logDefinitions.ActorControl.type)
       return;
     if (this.resetRegex.test(log))
       this.ResetPullCounter();
@@ -308,7 +309,7 @@ class PullCounter {
       const firstChar = word[0];
       if (firstChar === undefined)
         return '';
-      return firstChar.toUpperCase() + word.substr(1);
+      return firstChar.toUpperCase() + word.slice(1);
     }).join(' ');
 
     this.ReloadTriggers();
@@ -324,6 +325,7 @@ class PullCounter {
       }
     } else {
       const id = this.zoneName;
+      this.pullCounts[id] = 0;
       console.log(`resetting pull count of: ${id}`);
       this.ShowElementFor(id);
     }

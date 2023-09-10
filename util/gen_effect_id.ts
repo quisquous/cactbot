@@ -53,6 +53,7 @@ const knownMapping = {
   'Eukrasian Dosis III': '2616',
   'Radiant Finale': '2964',
   'Requiescat': '1368',
+  'Overheated': '2688',
 } as const;
 
 // These custom name of effect will not be checked, but you'd better make it clean.
@@ -74,7 +75,7 @@ const makeEffectMap = (table: Table<'#', 'Name'>) => {
   const map = new Map<string, string>();
   for (const [id, effect] of Object.entries(table)) {
     const rawName = effect['Name'];
-    if (!rawName)
+    if (rawName === undefined)
       continue;
     const name = cleanName(rawName);
     // Skip empty strings.

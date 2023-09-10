@@ -1,0 +1,26 @@
+name: Sync Files Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ui/raidboss/**'
+      - '.github/workflows/test-sync-files.yml'
+      - 'package.json'
+  pull_request:
+    paths:
+      - 'ui/raidboss/**'
+      - '.github/workflows/test-sync-files.yml'
+      - 'package.json'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - name: npm run sync-files
+        run: |
+          npm run sync-files

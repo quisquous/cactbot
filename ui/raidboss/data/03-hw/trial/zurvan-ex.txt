@@ -1,0 +1,225 @@
+# Containment Bay Z1-T9 (Extreme)
+# Zurvan Extreme
+
+# -ic "Execrated Wile" "Execrated Will" "Execrated Wit"
+# -ii 1C52 1C53 1C6B 1C6C 1C6E 1E64 1E65
+# -it Zurvan
+
+# 1C52: Twin Spirit
+# 1C53: Twin Spirit
+# 1C6B: the South Star
+# 1C6C: the North Star
+# 1C6E: Tyrfing
+# 1E64: the South Star
+# 1E65: the North Star
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# Preliminary phase. No pushes.
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+6.4 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1E3F:/ window 6.5,2.5
+10.5 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1E3F:/
+16.6 "Flare Star (circles)" sync / 1[56]:[^:]*:Zurvan:1C4E:/
+17.3 "Flare Star (explosion)" sync / 1[56]:[^:]*:Zurvan:1C4F:/
+21.9 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1E3F:/
+28.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1E3F:/
+35.0 "Flare Star (circles)" sync / 1[56]:[^:]*:Zurvan:1C4E:/
+35.7 "Flare Star (explosion)" sync / 1[56]:[^:]*:Zurvan:1C4F:/
+40.6 "the Purge" sync / 1[56]:[^:]*:Zurvan:1C50:/ window 40.6,10
+49.6 "--untargetable--"
+
+
+58.6 "--targetable--"
+61.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/ window 61.7,2.5 # Different from preliminary phase, so this is safe.
+66.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+73.9 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+
+80.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+85.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+90.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+95.3 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+102.4 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+
+108.5 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/ jump 80.0
+113.6 "Metal Cutter"
+118.7 "Metal Cutter"
+123.8 "Metal Cutter"
+130.9 "Wave Cannon (avoid)"
+137.0 "Metal Cutter"
+142.1 "Metal Cutter"
+
+
+#Phase push at <90%
+# It may look like this is two copies of one block,
+# but it alternates between one and two Metal Cutters after Soar.
+200.0 "Sarva" sync / 1[56]:[^:]*:Zurvan:1C51:/ window 200,10
+206.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+211.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+
+221.3 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30
+221.4 "--untargetable--"
+230.4 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:1C54:/
+235.5 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:1C55:/
+236.4 "Cool Flame" sync / 1[56]:[^:]*:Zurvan:1C56:/
+238.5 "--targetable--"
+241.6 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+246.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+254.8 "The Demon's Claw" sync / 1[56]:[^:]*:Zurvan:1C71:/
+261.9 "Wave Cannon (stack)" sync / 1[56]:[^:]*:Zurvan:1C72:/
+268.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+273.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+
+283.1 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30
+283.2 "--untargetable--"
+292.2 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:1C54:/
+297.3 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:1C55:/
+298.2 "Cool Flame" sync / 1[56]:[^:]*:Zurvan:1C56:/
+300.3 "--targetable--"
+303.4 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+311.5 "The Demon's Claw" sync / 1[56]:[^:]*:Zurvan:1C71:/
+318.6 "Wave Cannon (stack)" sync / 1[56]:[^:]*:Zurvan:1C72:/
+324.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+329.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+
+339.8 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 30,30 jump 221.3
+339.8 "Twin Spirit"
+339.9 "--untargetable--"
+348.9 "Flaming Halberd"
+348.9 "Twin Spirit"
+354.0 "Demonic Dive"
+355.0 "Cool Flame"
+357.1 "--targetable--"
+
+
+
+# Phase push at <75%
+
+400.0 "Sarva" sync / 1[56]:[^:]*:Zurvan:1C57:/ window 150,50
+403.1 "Ice and Fire" sync / 1[56]:[^:]*:Zurvan:1C58:/ window 403.1,10
+407.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+411.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+415.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+
+423.2 "Biting Halberd" sync / 1[56]:[^:]*:Zurvan:1C59:/
+429.3 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/ window 430,10
+432.9 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+434.6 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+444.7 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5A|1C5B):/
+
+# This is the earliest point this phase can push
+448.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+452.9 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+457.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+465.1 "Biting Halberd" sync / 1[56]:[^:]*:Zurvan:1C59:/ window 15,15 jump 423.2
+471.2 "Southern Cross (snapshot)"
+474.8 "Southern Cross (puddle)"
+476.5 "Metal Cutter"
+486.6 "Biting Halberd/Ciclicle/Tail End"
+494.9 "Metal Cutter"
+
+
+
+# Intermission push at <69%
+# This ability is untranslated, so we ensure it doesn't cause issues in non-JP timelines.
+# 鬼神：履行技スタート：演出アクション：極
+500.0 "--sync--" sync / 1[56]:[^:]*:Zurvan:1C5E:/ window 500,10
+
+# Intermission gauge increases will vary depnding on how fast mobs die and in what order.
+# There's no good way to figure out the gauge timing here,
+# so just ignore it and hope for the best.
+
+
+
+990.3 "Sarva" sync / 1[56]:[^:]*:Zurvan:1C5F:/ window 500,10
+1000.0 "Ahura Mazda" sync / 1[56]:[^:]*:Zurvan:1C60:/ window 1000,10
+1018.2 "--targetable--"
+1024.4 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1032.5 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1039.7 "Tyrfing x5" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 5 window 1040,5
+1044.8 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1050.9 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1054.5 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1056.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1065.3 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/ window 30,30
+1081.0 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+1086.3 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1091.1 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1099.5 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1106.6 "Tyrfing x6" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 6
+1112.7 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1118.8 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1122.4 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1124.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1133.2 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/
+1147.9 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+1154.0 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1164.1 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 100,20
+1164.2 "--untargetable--"
+1173.2 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:1C54:/
+1178.3 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:1C55:/
+1179.2 "Cool Flame" sync / 1[56]:[^:]*:Zurvan:1C56:/
+1181.3 "--targetable--"
+1187.4 "The Demon's Claw" sync / 1[56]:[^:]*:Zurvan:1C71:/
+1194.5 "Wave Cannon (stack)" sync / 1[56]:[^:]*:Zurvan:1C72:/
+1200.6 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1208.7 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1215.8 "Tyrfing x7" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 7
+1222.9 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1229.0 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1232.6 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1234.3 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1243.4 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/ window 30,30
+1258.4 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+1264.5 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1269.6 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1277.7 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1284.8 "Tyrfing x8" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 8
+1292.9 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1299.0 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1302.6 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1304.3 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1313.4 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/
+1328.6 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+1334.8 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1344.8 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/ window 100,20
+1344.9 "--untargetable--"
+1353.9 "Flaming Halberd" sync / 1[56]:[^:]*:Zurvan:1C54:/
+1359.0 "Demonic Dive" sync / 1[56]:[^:]*:Zurvan:1C55:/
+1359.9 "Cool Flame" sync / 1[56]:[^:]*:Zurvan:1C56:/
+1362.0 "--targetable--"
+1368.1 "The Demon's Claw" sync / 1[56]:[^:]*:Zurvan:1C71:/
+1375.2 "Wave Cannon (stack)" sync / 1[56]:[^:]*:Zurvan:1C72:/
+1381.3 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1389.5 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1396.6 "Tyrfing x9" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 9
+1405.7 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1411.8 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1415.4 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1417.1 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1426.2 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/ window 30,30
+1441.2 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+
+# It should theoretically be impossible to reach here before enrage,
+# but just in case we'll unroll a bit more to get to 10x Tyrfings.
+1447.4 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1452.5 "Infinite Fire/Infinite Ice" sync / 1[56]:[^:]*:Zurvan:(1C67|1C68):/
+1460.6 "Wave Cannon (avoid)" sync / 1[56]:[^:]*:Zurvan:1C73:/
+1467.7 "Tyrfing x10" sync / 1[56]:[^:]*:Zurvan:1C6D:/ duration 10
+1475.8 "Fire III" sync / 1[56]:[^:]*:Zurvan:1C6F:/
+1481.9 "Southern Cross (snapshot)" sync / 1[56]:[^:]*:Zurvan:1C5C:/
+1485.5 "Southern Cross (puddle)" sync / 1[56]:[^:]*:Zurvan:1C5D:/
+1487.2 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1496.3 "Broken Seal" sync / 1[56]:[^:]*:Zurvan:1DC7:/
+1511.5 "Biting Halberd/Ciclicle/Tail End" sync / 1[56]:[^:]*:Zurvan:(1C59|1C5B|1C5A):/
+1517.7 "Metal Cutter" sync / 1[56]:[^:]*:Zurvan:1C70:/
+1527.7 "Soar" sync / 1[56]:[^:]*:Zurvan:1E09:/
+1527.8 "--untargetable--"
+
+
+
+# Enrage at 12 minutes
+1989.7 "--sync--" sync / 14:[^:]*:Zurvan:1E59:/ window 2000,100
+1998.8 "Flame Halberd Enrage" sync / 1[56]:[^:]*:Zurvan:1E59:/
+1998.8 "--untargetable--"
+2000.0 "--sync--" sync / 1[56]:[^:]*:Zurvan:1E58:/

@@ -34,7 +34,7 @@ export class LineEvent0x14 extends LineEvent implements LESource, LETarget, LEAb
     this.id = parts[fields.sourceId]?.toUpperCase() ?? '';
     this.name = parts[fields.source] ?? '';
     this.abilityIdHex = parts[fields.id]?.toUpperCase() ?? '';
-    this.abilityId = parseInt(this.abilityIdHex);
+    this.abilityId = parseInt(this.abilityIdHex, 16);
     this.abilityName = parts[fields.ability] ?? '';
     this.targetId = parts[fields.targetId]?.toUpperCase() ?? '';
     this.targetName = parts[fields.target] ?? '';

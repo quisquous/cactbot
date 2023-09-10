@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -8,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AlaMhigo',
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [
@@ -22,25 +22,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Electromagnetic Field',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '204D', source: 'Magitek Scorpion', capture: false }),
+      netRegex: { id: '204D', source: 'Magitek Scorpion', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Mana Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
+      netRegex: { id: '204F', source: 'Aulus Mal Asina', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Demimagicks',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
+      netRegex: { id: '205D', source: 'Aulus Mal Asina', capture: false },
       response: Responses.spread(),
     },
     {
       id: 'Ala Mhigo Storm',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -56,13 +56,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Swell',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Ala Mhigo Sword',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -78,7 +78,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Ala Mhigo Lightless Spark',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      netRegex: { id: '0029', source: 'Zenos Yae Galvus' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -88,14 +88,14 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Lien vers l\'extérieur',
           ja: '線を外へ向ける',
           cn: '离开人群背对连线',
-          ko: '본진 바깥으로 유도하기',
+          ko: '본진 바깥으로 선 유도하기',
         },
       },
     },
     {
       id: 'Ala Mhigo Concentrativity',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
+      netRegex: { id: '206D', source: 'Zenos Yae Galvus', capture: false },
       response: Responses.aoe(),
     },
   ],

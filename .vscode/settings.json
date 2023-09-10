@@ -28,6 +28,12 @@
       */
     "editor.formatOnSaveMode": "file"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {

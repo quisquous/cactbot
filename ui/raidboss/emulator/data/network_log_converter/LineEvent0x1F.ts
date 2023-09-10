@@ -5,10 +5,10 @@ import LineEvent from './LineEvent';
 import LogRepository from './LogRepository';
 
 const splitFunc = (s: string) => [
-  s.substr(6, 2),
-  s.substr(4, 2),
-  s.substr(2, 2),
-  s.substr(0, 2),
+  s.slice(6, 8),
+  s.slice(4, 6),
+  s.slice(2, 4),
+  s.slice(0, 2),
 ];
 
 const fields = logDefinitions.NetworkGauge.fields;
@@ -40,7 +40,7 @@ export class LineEvent0x1F extends LineEvent {
       ...splitFunc(this.dataBytes4),
     ];
 
-    this.name = repo.Combatants[this.id]?.name || '';
+    this.name = repo.Combatants[this.id]?.name ?? '';
 
     repo.updateCombatant(this.id, {
       name: repo.Combatants[this.id]?.name,

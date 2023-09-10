@@ -1,4 +1,3 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -7,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheNavelExtreme',
   zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan-ex.txt',
   timelineTriggers: [
@@ -68,7 +68,7 @@ const triggerSet: TriggerSet<Data> = {
       // Doesn't seem like this happens twice, but let's be safe.
       id: 'TitanEx Rock Throw',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0007' }),
+      netRegex: { id: '0007' },
       suppressSeconds: 1,
       alertText: (data, matches, output) => {
         if (matches.source === data.me || matches.target === data.me)
@@ -99,8 +99,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'TitanEx Upheaval',
+      type: 'StartsUsing',
       // Five second cast time.
-      netRegex: NetRegexes.startsUsing({ source: 'Titan', id: '5BA', capture: false }),
+      netRegex: { source: 'Titan', id: '5BA', capture: false },
       response: Responses.knockback('info'),
     },
   ],

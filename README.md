@@ -18,7 +18,7 @@
 ## About
 
 cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/). This project is an overlay plugin for
-[ngld's OverlayPlugin](https://github.com/ngld/OverlayPlugin)
+[OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin)
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
@@ -33,11 +33,11 @@ cactbot provides these modules:
 
 ![oopsy screenshot](screenshots/promo_oopsy.png)
 
-* jobs: condensed gauges with buff and proc tracking
+* jobs: condensed gauges with resource, cooldowns, buffs, and procs tracking
 
 ![rdm jobs screenshot](screenshots/promo_jobs.png)
 
-* eureka: Eureka NM tracking map
+* eureka: Adventuring Forays (Eureka/Bozja) tracking map
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
@@ -74,7 +74,7 @@ click on `Options` and then click on `Show Startup Wizard`.
 
 In the startup wizard,
 select `FFXIV Parsing Plugin` and then click the `Download/Enable Plugin` button.
-This will download `%APPDATA%Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`
+This will download `%APPDATA%\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll`
 and enable it in the list of plugins.
 
 ![startup wizard download screenshot](screenshots/ffxiv_plugin_parsing_plugin.png)
@@ -84,7 +84,7 @@ Alternative FFXIV Plugin Guides:
 * [fflogs video guide](https://www.fflogs.com/help/start/)
 * [TomRichter guide](https://gist.github.com/TomRichter/e044a3dff5c50024cf514ffb20a201a9#installing-act--ffxiv-plugin)
 
-### Install ngld OverlayPlugin
+### Install OverlayPlugin
 
 At this point, if you select the `Plugins` tab and go to the `Plugin Listing`,
 your list of plugins should look something like this:
@@ -97,12 +97,12 @@ Select `Overlay Plugin` and then click `Download and Enable`.
 
 ![overlay plugin selection screenshot](screenshots/get_plugins_overlayplugin.png)
 
-This will download the ngld OverlayPlugin into
-`%APPDATA%Advanced Combat Tracker\Plugins\OverlayPlugin`
+This will download OverlayPlugin into
+`%APPDATA%\Advanced Combat Tracker\Plugins\OverlayPlugin`
 and enable `OverlayPlugin.dll` in the list of plugins.
 
-As a note, you must use the [ngld](https://github.com/ngld) version of
-OverlayPlugin and not the original RainbowMage version or the hibiyasleep fork.
+As a note, you must use the [most current fork](https://github.com/OverlayPlugin/OverlayPlugin) of
+OverlayPlugin and not the original RainbowMage version or the hibiyasleep fork or the ngld fork.
 
 ### Installing cactbot
 
@@ -114,7 +114,7 @@ Select `Cactbot` and then click `Download and Enable`.
 ![cactbot selection screenshot](screenshots/get_plugins_cactbot.png)
 
 This will download the cactbot into
-`%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot`
+`%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot`
 and enable `CactbotOverlay.dll` in the list of plugins.
 
 **Note**: Due to a difference in how ACT expects archives to be
@@ -182,7 +182,7 @@ To install dependencies there are 2 methods: **per script** and **manually**
 ### Dependencies: Script Method
 
 1. `curl` MUST be installed (this is used to download dependencies)
-1. Execute the `./util/fetch_deps.py` script
+1. Execute `ts-node ./util/fetch_deps.ts` script
 1. Continue with **Steps to build**
 
 ### Dependencies: Manual Method
@@ -191,7 +191,7 @@ To install dependencies there are 2 methods: **per script** and **manually**
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
 1. Please download the latest SDK Zip file from <https://github.com/ravahn/FFXIV_ACT_Plugin/> (make sure the file says SDK in its name)
 1. Extract the `SDK folder` as well as the `FFXIV_ACT_Plugin.dll` to `cactbot/plugin/ThirdParty/FFXIV_ACT/`
-1. Please download the latest Zip file from <https://github.com/ngld/OverlayPlugin/releases/>
+1. Please download the latest Zip file from <https://github.com/OverlayPlugin/OverlayPlugin/releases/>
 1. Extract the `libs folder` as well as the `OverlayPlugin.dll` to `cactbot/plugin/ThirdParty/OverlayPlugin/`
 1. Continue with **Steps to build**
 
@@ -242,9 +242,13 @@ instead of changing your local cactbot files.
 
 To install npm and start Webpack, follow these steps:
 
-1. Install [nodejs and npm](https://nodejs.org/en/download/)
+1. Install [nodejs LTS and npm](https://nodejs.org/en/download/)
 1. Run `npm install` in the root of the cactbot directory.
 1. Run `npm run build` or `npm start`.
+
+Cactbot should always work with the latest LTS release.
+
+If this is not the case, file an issue.
 
 See the [contributing](CONTRIBUTING.md#validating-changes-via-webpack) documentation
 for more details about using Webpack.
@@ -253,7 +257,7 @@ for more details about using Webpack.
 
 The [ui/](ui/) directory contains cactbot's ui modules.
 If you installed cactbot following the instructions above,
-this will most likely be `%APPDATA%Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`.
+this will most likely be `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`.
 
 Each cactbot ui module should be added as a separate overlay.
 See the [Adding Overlay Modules](#adding-overlay-modules) section for more details about setup.
@@ -281,7 +285,7 @@ with [some extensions](docs/TimelineGuide.md).
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
 Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
 
-Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.js` extension.
+Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.ts` extension.
 
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow, with an `alert`-level text message visible.
@@ -338,49 +342,61 @@ Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data
 
 ![oopsy screenshot](screenshots/promo_oopsy.png)
 
+You can copy oopsy lines to the clipboard by clicking them.
+(You may need to uncheck `Enable Clickthrough` checkbox from the OverlayPlugin option.)
+
 ### [jobs](ui/jobs) module
 
 To use this module,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module provides health and mana bars, as well as icons and timer bars for big raid buffs such as
-The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a visual pull countdown.
+This module includes 3 parts: a resource zone at top middle, a raidbuff zone at top right, and a tracking zone at bottom.
 
-It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
+* **resource zone**: HP bars and job-specific resource, along with some special counters for some jobs.
+* **tracking zone**: job-specific important buff/debuff duration, cooldowns and procs.
+* **raidbuff zone**: important raidbuffs duration and coming cooldowns.
 
-<details>
-<summary>Supported Jobs (Click to expand)</summary>
+You can change some of the behavior or appearance via the user panel, e.g. only show the raidbuff zone, or enable compact view.
 
-|Job|Feature|
-|:-:|:-:|
-|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|Shows current Oath amount, and atonement stacks. Also tracks Goring Blade DoT. |
-|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|Shows the blood amount and darkside time, BloodWeapon&Delirium&LivingShadow duration and cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|Shows No Mercy duration&cooldown, Bloodfest&Gnashing Fang cooldown, Cartridge amount, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|Shows Heal&Blood Lily amount, time to next Lily, DoTs remaining time, and shows Assize&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|Shows Aetherflow stacks, Fairy gauge amount/time remaining, DoTs remaining time, and shows Aetherflow&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|Shows Seals amount, notify who or whether to play the current card, DoTs remaining time, and shows Draw&Lucid Dreaming cooldown.|
-|<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|Shows chakra count and form time, and tracks monk buffs and debuffs.|
-|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|Shows blood&eye amount, remaining Disembowel time, jump cooldown, and Lance Charge&Dragon Sight duration/cooldown.|
-|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|Shows Ninki amount, Huton remaining time, Trick Attack duration&cooldown, Bunshin&Mudras cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|Shows Kenki amount, Meditation stacks, Shifu&Jinpu&Higanbana duration, Tsubame-gaeshi cooldown, and shows combo time remaining.|
-|<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|Shows songs playing and remaining time, Repertoire stack, Soul Voice amount, StraightShotReady track, DoT remaining time, and a bar that show when your DoTs will tick.|
-|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|Shows Heat gauge, Battery gauge, Combo Timer, Drill/Bioblaster&Air Anchor Cooldown, Wild Fire Cooldown&Duration. When Wild Fire is active, there will be a gauge to show how many GCD you have landed.|
-|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|Shows Combo Timer, Feather Guage, Esprit Guage, Standard Step Cooldown, Technical Step&Flourish Cooldown & Duration.|
-|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|Shows DoTs remaining time, firestarter&thundercloud proc duration, time to next xeno, MP ticker, Fire/Ice stack and umbral heart stack.|
-|<img src="./resources/ffxiv/jobs/smn-large.png" width="30px"/><br> Summoner|Shows DoTs remaining time, Energy Drain Cooldown, Trance Cooldown, Aetherflow stack, Demi-Summoning time and FurtherRuin Stack Guage.|
-|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|Shows white/black mana, tracks procs for Verstone&Verfire and show cooldown of lucid dreaming.|
-|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|Shows cooldown of offguard&lucid dreaming, and Song Of Torment DoT remaining time.|
+However, customization of some behavior like cooldown alert thresholds and element order is not available for now.
 
-</details>
-
-In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
-as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. <del>The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar.</del> The proc tracking is circled below in green.
+In this screenshot, the RDM jobs UI is shown as an example.
+The in-game UI is shown at top and the jobs module is shown at bottom.
+HP & MP bar, White Mana and Black Mana are shown in purple.
+The right yellow is raidbuff icon.
+Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
 
 ![jobs screenshot](screenshots/Jobs.png)
+
+#### Features for Each Job
+
+<details>
+<summary>Job Features Table (Click to expand)</summary>
+
+|Job|Feature (left to right, top to bottom)|
+|:-:|-|
+|<img src="./resources/ffxiv/jobs/pld-large.png" width="30px"/><br> Paladin|**Resource zone**: Oath Gauge, Sword Oath stack, combo timer, Requiescat stacks (if under Requiescat). <br> **Tracking zone**: Goring Blade cooldown, Fight or Flight duration & cooldown, Expiacion cooldown.|
+|<img src="./resources/ffxiv/jobs/war-large.png" width="30px"/><br> Warrior|**Resource zone**: Beast Gauge, combo timer. <br> **Tracking zone**: Surging Tempest buff duration, Upheaval/Orogeny cooldown, Inner Release cooldown.|
+|<img src="./resources/ffxiv/jobs/drk-large.png" width="30px"/><br> Dark Knight|**Resource zone**: Blood Gauge, combo timer. <br> **Tracking zone**: Darkside duration, Blood Weapon cooldown, Delirium cooldown, Living Shadow cooldown.|
+|<img src="./resources/ffxiv/jobs/gnb-large.png" width="30px"/><br> Gunbreaker|**Resource zone**: Cartridge amount, combo timer. <br> **Tracking zone**: Gnashing Fang cooldown, No Mercy duration & cooldown, Bloodfest cooldown.|
+|<img src="./resources/ffxiv/jobs/whm-large.png" width="30px"/><br> White Mage|**Resource zone**: Lily timer, Lily & Blood Lily amount. <br> **Tracking zone**: Dia/Aero DoT duration, Assize cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sch-large.png" width="30px"/><br> Scholar|**Resource zone**: Aetherflow stack, Faerie Gauge/Seraph duration. <br> **Tracking zone**: Bio DoT duration, Aetherflow cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/ast-large.png" width="30px"/><br> Astrologian|**Resource zone**: arcanum helper, held Minor Arcana, held Sign. <br> **Tracking zone**: Combust DoT duration, Draw cooldown, Minor Arcana cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/sge-large.png" width="30px"/><br> Sage|**Resource zone**: Addersgall timer, Addersgall & Addersting amount. <br> **Tracking zone**: Eukrasian Dosis DoT duration, Phlegma cooldown, Rhizomata cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/mnk-large.png" width="30px"/><br> Monk|**Resource zone**: chakra stack, form timer, Master's Gauge. <br> **Tracking zone**: Leaden Fist buff duration, Disciplined Fist buff duration, Demolish DoT duration.|
+|<img src="./resources/ffxiv/jobs/drg-large.png" width="30px"/><br> Dragoon|**Resource zone**: first brood's gaze stack/Life of the Dragon duration, Firstminds' Focus stack. <br> **Tracking zone**: Jump cooldown, Power Surge buff duration, Lance Charge duration & cooldown, Dragon Sight duration & cooldown.|
+|<img src="./resources/ffxiv/jobs/nin-large.png" width="30px"/><br> Ninja|**Resource zone**: Ninki amount, combo timer. <br> **Tracking zone**: Huton duration, Trick Attack duration & cooldown, Bunshin cooldown, Mudra cooldown.|
+|<img src="./resources/ffxiv/jobs/sam-large.png" width="30px"/><br> Samurai|**Resource zone**: Kenki amount, Meditation stack, combo timer, held Sen. <br> **Tracking zone**: Fugetsu buff duration, Fuka buff duration, Tsubame-gaeshi cooldown, Higanbana DoT duration.|
+|<img src="./resources/ffxiv/jobs/rpr-large.png" width="30px"/><br> Reaper|**Resource zone**: Soul amount, Shroud amount, combo timer, Lemure Shroud/Void Shroud stack (under Enshroud). <br> **Tracking zone**: Death's Design duration, Soul Slice/Soul Scythe cooldown, Gluttony cooldown, Arcane Circle duration & cooldown.|
+|<img src="./resources/ffxiv/jobs/brd-large.png" width="30px"/><br> Bard|**Resource zone**: Repertoire stack, Soul Voice amount, Repertoire tick timer, held Coda. <br> **Tracking zone**: Windbite/Venomous Bite DoT duration, Song duration, Empyreal Arrow cooldown, Straight Shot Ready proc duration.|
+|<img src="./resources/ffxiv/jobs/mch-large.png" width="30px"/><br> Machinist|**Resource zone**: Heat/Overheated stack, Battery/Automaton Queen duration, combo timer, Wildfire GCD counter (if Wildfire active). <br> **Tracking zone**: Drill/Bioblaster cooldown, Air Anchor cooldown, Chain Saw cooldown, Wildfire duration & cooldown.|
+|<img src="./resources/ffxiv/jobs/dnc-large.png" width="30px"/><br> Dancer|**Resource zone**: Fourfold Feather amount, Esprit amount, combo timer. <br> **Tracking zone**: Standard Step cooldown, Technical Step duration & cooldown, Flourish duration & cooldown.|
+|<img src="./resources/ffxiv/jobs/blm-large.png" width="30px"/><br> Black Mage|**Resource zone**: Umbral Ice/Astral Fire duration, Polyglot timer, MP tick timer, Umbral Hearts stack & Polyglot stack. <br> **Tracking zone**: Firestarter proc duration, Thunder DoT duration, Thundercloud proc duration.|
+|<img src="./resources/ffxiv/jobs/smn-large.png" width="30px"/><br> Summoner|**Resource zone**: Trance/Attunement duration, Aetherflow stack, Arcanum held and Attunement stored in. <br> **Tracking zone**: Energy Drain/Energy Siphon cooldown, Summon Bahamut/Phoenix cooldown, Lucid Dreaming cooldown.|
+|<img src="./resources/ffxiv/jobs/rdm-large.png" width="30px"/><br> Red Mage|**Resource zone**: White Mana and Black Mana amount, Mana Stack (if any). <br> **Tracking zone**: Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown.|
+|<img src="./resources/ffxiv/jobs/blu-large.png" width="30px"/><br> Blue Mage|**Resource zone**: none. <br> **Tracking zone**: Off-guard/Peculiar Light cooldown, Song of Torment/Nightbloom/Aetherial Spark DoT duration, Lucid Dreaming cooldown.|
+
+</details>
 
 ### [eureka](ui/eureka) module
 
@@ -430,8 +446,6 @@ When you cast your line at a fishing hole, this module keeps track of when you r
 ![fishing screenshot](screenshots/promo_fishing.png)
 
 Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
-
-[See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
 
 Check [here](docs/FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
 

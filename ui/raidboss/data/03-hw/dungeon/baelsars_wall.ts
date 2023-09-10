@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -8,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BaelsarsWall',
   zoneId: ZoneId.BaelsarsWall,
   timelineFile: 'baelsars_wall.txt',
   timelineTriggers: [
@@ -28,66 +28,67 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Baelsar Magitek Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB2', source: 'Magitek Predator' }),
+      netRegex: { id: '1CB2', source: 'Magitek Predator' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Baelsar Magitek Ray',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CB3', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CB3', source: 'Magitek Predator', capture: false },
       response: Responses.awayFromFront(),
     },
     {
       id: 'Baelsar Needle Burst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1DC8', source: 'Magitek Vanguard D-1' }),
+      netRegex: { id: '1DC8', source: 'Magitek Vanguard D-1' },
       condition: (data) => data.CanStun(),
       response: Responses.stun(),
     },
     {
       id: 'Baelsar Launcher',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CBC', source: 'Magitek Predator', capture: false }),
+      netRegex: { id: '1CBC', source: 'Magitek Predator', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Baelsar Dynamic Sensory Jammer',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '46C' }),
+      netRegex: { effectId: '46C' },
       condition: Conditions.targetIsYou(),
       response: Responses.stopEverything(),
     },
     {
       id: 'Baelsar Griffin Beak',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC3', source: 'The Griffin', capture: false }),
+      netRegex: { id: '1CC3', source: 'The Griffin', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Baelsar Flash Powder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC4', source: 'The Griffin' }),
+      netRegex: { id: '1CC4', source: 'The Griffin' },
       response: Responses.lookAwayFromSource(),
     },
     {
       id: 'Baelsar Griffin Claw',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC2', source: 'The Griffin' }),
+      netRegex: { id: '1CC2', source: 'The Griffin' },
       response: Responses.tankBuster(),
     },
     {
       id: 'Baelsar Big Boot',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '1CC4' }),
+      netRegex: { id: '1CC4' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
       id: 'Baelsar Restraint Collar',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1CC8', source: 'The Griffin' }),
+      netRegex: { id: '1CC8', source: 'The Griffin' },
       condition: Conditions.targetIsNotYou(),
-      alertText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      alertText: (data, matches, output) =>
+        output.text!({ player: data.ShortName(matches.target) }),
       outputStrings: {
         text: {
           en: 'Break chain on ${player}',
@@ -182,34 +183,34 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Armored Weapon': 'アームドウェポン',
         'Blade Of The Griffin': 'グリフィンブレード',
-        'Magitek Bit': '浮游炮射出',
+        'Magitek Bit': '魔導ビット',
         'Magitek Predator': '魔導プレデター',
         'Magitek Vanguard D-1': '魔導ヴァンガード防衛型',
-        'The Airship Landing': 'ゴールドソーサー・ランディング',
+        'The Airship Landing': '飛空戦艦発着場',
         '(?<! )The Griffin': '鉄面のイルベルド',
         'The Magitek Installation': '魔導兵器格納庫',
         'Via Praetoria': 'ヴィア・プラエトリア',
       },
       'replaceText': {
-        'Assault Cannon': '突击加农炮',
+        'Assault Cannon': 'アサルトカノン',
         'Beak Of The Griffin': 'ビーク・オブ・グリフィン',
         'Big Boot': 'ビックブート',
         'Claw Of The Griffin': 'クロウ・オブ・グリフィン',
         'Corrosion': '溶解',
-        'Diffractive Laser': '扩散射线',
-        'Distress Beacon': '请求支援',
+        'Diffractive Laser': '拡散レーザー',
+        'Distress Beacon': '援軍要請',
         'Dull Blade': 'ダルブレード',
-        'Dynamic Sensory Jammer': '运动体探知干扰器',
+        'Dynamic Sensory Jammer': '動体感知ジャマー',
         'Flash Powder': 'フラッシュパウダー',
         'Gull Dive': 'ガルダイブ',
         'Launcher': 'ランチャー',
         'Lionshead': 'ライオンヘッド',
-        'Magitek Bit': '浮游炮射出',
-        'Magitek Cannon': '魔导加农炮',
-        'Magitek Claw': '魔导爪',
-        'Magitek Missile': '魔导飞弹',
-        'Magitek Ray': '魔导激光',
-        'Restraint Collar': '锁链',
+        'Magitek Bit': 'ビット射出',
+        'Magitek Cannon': '魔導カノン',
+        'Magitek Claw': '魔導クロー',
+        'Magitek Missile': '魔導ミサイル',
+        'Magitek Ray': '魔導レーザー',
+        'Restraint Collar': '鉄鎖',
         'Sanguine Blade': 'サングインブレード',
       },
     },

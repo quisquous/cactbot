@@ -1,0 +1,293 @@
+### P9S: Anabaseios: The Ninth Circle (Savage)
+
+# -p 814C:12.2
+# -ii 814B 814D 8150 815D 816E 815E 8165 8166 820B 820C 8222 8223 817F 8171 8173 817A 8176 8188 8189 8143 8187 818B
+# -it "Kokytos"
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+7.2 "--sync--" sync / 14:[^:]*:Kokytos:814C:/ window 10,10
+12.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+19.6 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+
+# Mage 1
+25.3 "Ravening (Mage #1)" sync / 1[56]:[^:]*:Kokytos:8118:/
+32.0 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+47.0 "Duality of Death" sync / 1[56]:[^:]*:Kokytos:8151:/
+47.9 "Aero IV/Fire IV #1" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+50.2 "Aero IV/Fire IV #2" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+
+60.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
+63.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
+68.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+68.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+
+73.4 "Dualspell (Thunder/Ice)" sync / 1[56]:[^:]*:Kokytos:8155:/
+76.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8123|815C):/
+81.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+81.1 "Thunder III" sync / 1[56]:[^:]*:Kokytos:(815A|815B):/
+
+86.4 "Dualspell (Fire/Ice)" sync / 1[56]:[^:]*:Kokytos:8154:/
+89.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123):/
+94.1 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+94.1 "Pile Pyre" sync / 1[56]:[^:]*:Kokytos:(8156|8158):/
+
+101.8 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
+
+# Fighter
+114.2 "Ravening (Fighter)" sync / 1[56]:[^:]*:Kokytos:8119:/ window 40,40
+120.9 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+134.0 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:816F:/
+
+146.4 "Archaic Rockbreaker (cast)" sync / 1[56]:[^:]*:Kokytos:815F:/
+148.0 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8160:/
+149.3 "Archaic Rockbreaker (stacks)" sync / 1[56]:[^:]*:Kokytos:8162:/
+155.5 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:(8167|8168|8169|816A):/
+155.8 "Archaic Rockbreaker #1" sync / 1[56]:[^:]*:Kokytos:8161:/
+156.3 "Inside Roundhouse/Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:(8238|8239):/
+158.7 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:(816B|816C):/
+161.7 "Archaic Rockbreaker #2" sync / 1[56]:[^:]*:Kokytos:8161:/
+162.4 "Outside Roundhouse/Inside Roundhouse" sync / 1[56]:[^:]*:Kokytos:(8239|8238):/
+168.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:816D:/
+
+175.8 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+187.1 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:816F:/
+
+194.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
+
+# Chimera 1
+202.9 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+208.2 "Ravening (Chimera #1)" sync / 1[56]:[^:]*:Kokytos:817B:/
+214.8 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+
+221.4 "Levinstrike Summoning" sync / 1[56]:[^:]*:Kokytos:817C:/
+233.5 "Scrambled Succession" sync / 1[56]:[^:]*:Kokytos:817D:/
+233.6 "--untargetable--"
+
+# Limit Cut 1
+233.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+235.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:817E:/
+238.4 "Firemeld #1" sync / 1[56]:[^:]*:Kokytos:8180:/
+238.5 "Icemeld #1" sync / 1[56]:[^:]*:Kokytos's Echo:8183:/
+239.4 "Shock #1" sync / 1[56]:[^:]*:Kokytos:8181:/
+
+239.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+241.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:817E:/
+244.1 "Firemeld #2" sync / 1[56]:[^:]*:Kokytos:8180:/
+244.3 "Icemeld #2" sync / 1[56]:[^:]*:Kokytos's Echo:8190:/
+245.2 "Shock #2" sync / 1[56]:[^:]*:Kokytos:8181:/
+
+245.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+246.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:817E:/
+249.7 "Firemeld #3" sync / 1[56]:[^:]*:Kokytos:8180:/
+250.0 "Icemeld #3" sync / 1[56]:[^:]*:Kokytos's Echo:8191:/
+250.7 "Shock #3" sync / 1[56]:[^:]*:Kokytos:8181:/
+
+250.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+252.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:817E:/
+255.4 "Firemeld #4" sync / 1[56]:[^:]*:Kokytos:8180:/
+255.8 "Icemeld #4" sync / 1[56]:[^:]*:Kokytos's Echo:8192:/
+256.5 "Shock #4" sync / 1[56]:[^:]*:Kokytos:8181:/
+256.5 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+
+258.1 "--targetable--"
+262.2 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+265.1 "Two Minds" sync / 1[56]:[^:]*:Kokytos:(8184|8185):/
+266.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+266.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+272.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+
+276.3 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8236:/
+
+# Beast
+284.7 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+289.1 "Ravening (Beast)" sync / 1[56]:[^:]*:Kokytos:811A:/
+297.0 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+302.6 "Charybdis" sync / 1[56]:[^:]*:Kokytos:8170:/
+309.7 "Comet" sync / 1[56]:[^:]*:Kokytos:8172:/
+
+318.7 "Beastly Bile (cast)" sync / 1[56]:[^:]*:Kokytos:8177:/
+323.8 "Thunderbolt #1" sync / 1[56]:[^:]*:Kokytos:8179:/
+325.7 "Beastly Bile #1" sync / 1[56]:[^:]*:Kokytos:8178:/
+
+329.9 "Thunderbolt #2" sync / 1[56]:[^:]*:Kokytos:8179:/
+331.7 "Beastly Bile #2" sync / 1[56]:[^:]*:Kokytos:8178:/
+
+332.5 "Burst #1" sync / 1[56]:[^:]*:Comet:8174:/
+338.5 "Burst #2" sync / 1[56]:[^:]*:Comet:8174:/
+341.3 "Ecliptic Meteor" sync / 1[56]:[^:]*:Kokytos:8175:/
+349.4 "Burst #3" sync / 1[56]:[^:]*:Comet:8174:/
+355.0 "Beastly Fury" sync / 1[56]:[^:]*:Kokytos:8186:/
+
+357.2 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
+
+# Chimera 2
+368.9 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+374.2 "Ravening (Chimera #2)" sync / 1[56]:[^:]*:Kokytos:817B:/
+380.8 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+393.7 "Duality of Death" sync / 1[56]:[^:]*:Kokytos:8151:/
+394.6 "Aero IV/Fire IV #1" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+396.4 "Aero IV/Fire IV #2" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+
+402.9 "Archaic Rockbreaker (cast)" sync / 1[56]:[^:]*:Kokytos:815F:/
+404.5 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8160:/
+405.8 "Archaic Rockbreaker (stacks)" sync / 1[56]:[^:]*:Kokytos:8162:/
+412.5 "Archaic Rockbreaker #1" sync / 1[56]:[^:]*:Kokytos:8161:/
+413.2 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
+416.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+418.5 "Archaic Rockbreaker #2" sync / 1[56]:[^:]*:Kokytos:8161:/
+
+420.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+420.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+426.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+
+# Limit Cut 2
+438.6 "Chimeric Succession" sync / 1[56]:[^:]*:Kokytos:81BB:/
+449.5 "Icemeld #1" sync / 1[56]:[^:]*:Kokytos's Echo:8183:/
+452.5 "Icemeld #2" sync / 1[56]:[^:]*:Kokytos's Echo:8190:/
+454.2 "Front Firestrikes/Rear Firestrikes" sync / 1[56]:[^:]*:Kokytos:(878E|878F):/
+
+454.4 "Pyremeld" sync / 1[56]:[^:]*:Kokytos:(8793|8794):/
+455.8 "Icemeld #3" sync / 1[56]:[^:]*:Kokytos's Echo:8191:/
+458.6 "Icemeld #4" sync / 1[56]:[^:]*:Kokytos's Echo:8192:/
+459.7 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:(8795|8796):/
+
+461.8 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+467.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+470.3 "Two Minds" sync / 1[56]:[^:]*:Kokytos:(8184|8185):/
+471.4 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+471.4 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+
+472.4 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8236:/
+
+# Mage 2
+480.8 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+486.1 "Ravening (Mage #2)" sync / 1[56]:[^:]*:Kokytos:8118:/
+492.7 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+
+500.3 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
+503.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+508.2 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+508.2 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+513.5 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+
+520.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
+523.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+528.5 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+528.5 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+
+534.8 "Duality of Death" sync / 1[56]:[^:]*:Kokytos:8151:/
+535.7 "Aero IV/Fire IV #1" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+538.0 "Aero IV/Fire IV #2" #sync / 1[56]:[^:]*:Kokytos:(8152|8153):/
+
+544.0 "Dualspell" sync / 1[56]:[^:]*:Kokytos:(8154|8155):/
+547.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:(8122|8123|815C):/
+551.9 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(8157|8159):/
+551.9 "Pile Pyre/Thunder III" sync / 1[56]:[^:]*:Kokytos:(8156|8158|815A|815B):/
+557.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:814C:/
+
+564.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
+
+# Final sequence
+573.1 "--middle--" sync / 1[56]:[^:]*:Kokytos:8144:/
+578.5 "Ravening (Final)" sync / 1[56]:[^:]*:Kokytos:817B:/
+585.1 "Soul Surge" sync / 1[56]:[^:]*:Kokytos:811B:/
+
+597.7 "Disintegration (enrage)" sync / 1[56]:[^:]*:Kokytos:818A:/
+
+
+# Abilities
+#
+# Ball of Levin:817F Shock, Levinstrike orb explosion
+# Comet:8143 Burst, self-targeted ability for targeted comet during Ecliptic Meteor
+# Comet:8173 Comet Impact, cast and proximity damage during Charybdis
+# Comet:8174 Burst, cast and damage for full meteor circle explosion
+# Kokytos:8118 Ravening, self-targeted cast for turning into Mage
+# Kokytos:8119 Ravening, self-targeted cast for turning into Fighter
+# Kokytos:811A Ravening, self-targeted cast for turning into Beast
+# Kokytos:811B Soul Surge, raidwide damage after all Ravening
+# Kokytos:8122 unknown_8122, self-targeted ability Fire symbol
+# Kokytos:8123 unknown_8123, self-targeted ability Ice symbol
+# Kokytos:8124 Disgorge, self-targeted ability after Mage phase
+# Kokytos:8125 Disgorge, self-targeted ability after Fighter phase
+# Kokytos:8126 Disgorge, self-targeted ability after Beast phase
+# Kokytos:8144 unknown_8144, repositioning middle self-targeted ability
+# Kokytos:814B unknown_814b, unaspected auto damage
+# Kokytos:814C Gluttony's Augur, self-targeted cast ability
+# Kokytos:814D Gluttony's Augur, raidwide damage
+# Kokytos:8150 unknown_8150, mage auto damage
+# Kokytos:8151 Duality of Death, self-targeted cast tankbuster
+# Kokytos:8152 Fire IV, damage on MT during Duality of Death
+# Kokytos:8153 Aero IV, damage on OT during Duality of Death
+# Kokytos:8154 Dualspell, self-targeted cast Fire and Ice spell
+# Kokytos:8155 Dualspell, self-targeted cast Thunder and Ice spell
+# Kokytos:8156 Pile Pyre, normal fire partner stack damage
+# Kokytos:8157 Blizzard III, normal ice donut damage
+# Kokytos:8158 Pile Pyre, empowered fire partner stack damage
+# Kokytos:8159 Blizzard III, empowered ice donut damage
+# Kokytos:815A Thunder III, empowered thunder protean damage
+# Kokytos:815B Thunder III, normal thunder protean damage
+# Kokytos:815C unknown_815c, self-targeted ability Thunder icon
+# Kokytos:815D unknown_815d, fighter auto damage
+# Kokytos:815E Uplift, ground aoe damage raising walls
+# Kokytos:815F Archaic Rockbreaker, purple knockback circle damage
+# Kokytos:8160 Shockwave, knockback damage into walls
+# Kokytos:8161 Archaic Rockbreaker, cast and damage for fuse explosions
+# Kokytos:8162 Archaic Rockbreaker, partner stack damage after Shockwave
+# Kokytos:8165 Inside Roundhouse, telegraph ability
+# Kokytos:8166 Outside Roundhouse, telegraph ability
+# Kokytos:8167 Front Combination, self-targeted cast for Front+Inside combo
+# Kokytos:8168 Front Combination, self-targeted cast for Front+Outside combo
+# Kokytos:8169 Rear Combination, self-targeted cast for Rear+Inside combo
+# Kokytos:816A Rear Combination, self-targeted cast for Rear+Outside combo
+# Kokytos:816B Swinging Kick, self-targeted ability paired with 8222
+# Kokytos:816C Swinging Kick, self-targeted ability paired with 8223
+# Kokytos:816D Archaic Demolish, self-targeted cast
+# Kokytos:816E Archaic Demolish, healer stack damage
+# Kokytos:816F Ascendant Fist, tank-targeted cast and tankbuster damage
+# Kokytos:8170 Charybdis, self-targeted cast ability
+# Kokytos:8171 Charybdis, cast and damage for initial tornado circles
+# Kokytos:8172 Comet, cast and self-targeted comet summoning before 8173
+# Kokytos:8175 Ecliptic Meteor, self-targeted cast of LOS meteor damage
+# Kokytos:8176 Ecliptic Meteor, self-targeted ability paired with 8188 (probably)
+# Kokytos:8177 Beastly Bile, self-targeted cast of poison stack damage
+# Kokytos:8178 Beastly Bile, shared damage with comet
+# Kokytos:8179 Thunderbolt, self-targeted cast of proteans during meteors
+# Kokytos:817A Thunderbolt, protean lightning damage from 8179
+# Kokytos:817B Ravening, self-targeted cast for turning into Chimera
+# Kokytos:817C Levinstrike Summoning, self-targeted cast for this mechanic
+# Kokytos:817D Scrambled Succession, self-targeted cast during which limit cut dots appear
+# Kokytos:817E unknown_817e, unknown ability during Levinstrike Summoning (repositioning?)
+# Kokytos:8180 Firemeld, spread damage in limit cut order
+# Kokytos:8181 Shock, tower damage
+# Kokytos:8182 Shock, raidwide damage if 8181 hits no target
+# Kokytos:8184 Two Minds, self-targeted cast Fire and Ice spell
+# Kokytos:8185 Two Minds, self-targeted cast Thunder and Ice spell
+# Kokytos:8186 Beastly Fury, self-targeted cast for 8187 raidwide
+# Kokytos:8187 Beastly Fury, raidwide damage
+# Kokytos:8188 Ecliptic Meteor, damage for not LOS-ing meteor (on other meteors, boss, players)
+# Kokytos:8189 unknown_8189, beast auto damage
+# Kokytos:818A Disintegration, self-targeted cast for enrage
+# Kokytos:818B Disintegration, raidwide enrage damage
+# Kokytos:81BB Chimeric Succession, self-targeted cast starting this mechanic
+# Kokytos:820B unknown_820b, unknown self-targeted cast mutually exclusive with 820C
+# Kokytos:820C unknown_820c, unknown self-targeted cast exclusive with 820B
+# Kokytos:8222 Swinging Kick, cast and damage from front combination dodge
+# Kokytos:8223 Swinging Kick, cast and damage from rear combination dodge
+# Kokytos:8236 Disgorge, self-targeted ability after Chimera phase
+# Kokytos:8238 Inside Roundhouse, cast and damage for "get out"
+# Kokytos:8239 Outside Roundhouse, cast and damage for "get in"
+# Kokytos:878E Front Firestrikes, self-targeted cast
+# Kokytos:878F Rear Firestrikes, self-targeted cast
+# Kokytos:8793 Pyremeld, Front Firestrikes charge damage
+# Kokytos:8794 Pyremeld, Rear Firestrikes charge damage
+# Kokytos:8795 Swinging Kick, cast and damage for Front Firestrikes Kick
+# Kokytos:8796 Swinging Kick, cast and damage for Rear Firestrikes Kick
+# Kokytos's Echo:8183 Icemeld, first defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8190 Icemeld, second defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8191 Icemeld, third defamation damage during Levinstrike/Succession
+# Kokytos's Echo:8192 Icemeld, fourth defamation damage during Levinstrike/Succession

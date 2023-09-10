@@ -11,7 +11,11 @@ import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
 export default {
+  id: 'TheWeaponsRefrainUltimate',
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
+  zoneLabel: {
+    en: 'The Weapon\'s Refrain (Ultimate)',
+  },
   overrideTimelineFile: false,
   timelineFile: 'filename.txt',
   timeline: `hideall`,
@@ -37,12 +41,23 @@ export default {
 
 ### Trigger Set Properties
 
+**id**
+A unique string to identify this trigger set.
+This value should be unique among all trigger sets.
+For cactbot triggers, this should generally match the `ZoneId` itself for consistency.
+If there are multiple zones, then pick a reasonable string,
+e.g. `'EurekaOrthosGeneral'` for the set that applies to all Eureka Orthos floors.
+
 **zoneId**
 A shortened name for the zone to use these triggers in.
 The set of id names can be found in [zone_id.ts](../resources/zone_id.ts).
 Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).
+
+**zoneLabel**
+An optional name to use for this trigger set in the configuration interface.
+Overrides the zone name from [zone_info.ts](../resources/zone_info.ts).
 
 **initData**
 A function that can be used to initialize the data this trigger set uses.
@@ -73,7 +88,7 @@ The value may be a string or an array of strings,
 or a `function(data)` that returns string or an array of strings,
 or an array contains different kinds of items above.
 
-There is a complete example that uses the **timeline** property in [test.js](../ui/raidboss/data/00-misc/test.js).
+There is a complete example that uses the **timeline** property in [test.ts](../ui/raidboss/data/00-misc/test.ts).
 
 **locale**
 Optional locale to restrict the trigger file to, e.g. 'en', 'ko', 'fr'. If not present, applies to all locales.
@@ -92,13 +107,13 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 ```javascript
 {
   id: 'id string',
-  // Note: netRegex only, see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
   type: 'StartsUsing',
   disabled: false,
-  // Note: use the regex helpers from [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
-  netRegex: NetRegexes.startsUsing({ id: 'some-id', source: 'some-name' }),
+  // Note: see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
+  // Note: `netRegex: NetRegexes({ id: 'some-id', source: 'some-name' })` is still supported for backwards compatibility.
+  netRegex: { id: 'some-id', source: 'some-name' },
   // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
-  regex: /trigger-regex-for-act-log-lines/,
+  regex: Regexes.ability({ id: 'some-id', source: 'some-name' }),
   condition: function(data, matches, output) { return true if it should run },
   preRun: function(data, matches, output) { do stuff.. },
   delaySeconds: 0,
@@ -117,6 +132,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
     key1: { en: 'output1 ${value}'},
     key2: { en: 'output2 ${value}'},
   },
+  comment: { en: 'comment text' },
 },
 ```
 
@@ -347,6 +363,19 @@ response: (data, matches, output) => {
 },
 ```
 
+**comment**
+An object where keys represent optional strings in various languages.
+This property is an optional auxiliary attribute used to display text around the trigger item in the cactbot configuration panel.
+You can use it to explain your trigger, leave some descriptive text, or even include a hyperlink.
+
+Example:
+
+```javascript
+comment: {
+  en: `Write your annotation text here. <em>Supports HTML tags</em>`,
+},
+```
+
 ## Miscellaneous Trigger Info
 
 Any field that can return a function (e.g. `infoText`, `alertText`, `alarmText`, `tts`)
@@ -355,6 +384,9 @@ e.g. instead of returning 'Get Out',
 they can return {en: 'Get Out', fr: 'something french'} instead.
 Fields can also return a function that return a localized object as well.
 If the current locale does not exist in the object, the 'en' result will be returned.
+
+If multiple triggers match the same log line,
+they will be executed sequentially based on their order in the relevant zone file.
 
 Trigger elements are evaluated in this order, and must be listed in this order:
 
@@ -526,3 +558,287 @@ Show a info-priority text popup on screen before an event will occur. The `event
 **Example alarm-priority popups using the same parameters**
 `alarmtext "event name" before 1`
 `alarmtext "event name" before 2.3 "alternate text"`
+
+## Translation Overview
+
+This section mostly applies to raidboss (and so is in this document),
+but the parts about code translation apply to all parts of cactbot.
+
+Most cactbot developers play FFXIV in English,
+and so any PRs to translate anything missing is much appreciated.
+If you need help using github or git, please ask.
+
+Running `npm run coverage-report` will generate the cactbot coverage report,
+which can be found online [here](https://quisquous.github.io/cactbot/util/coverage/coverage.html).
+
+This report includes links to all of the missing translations:
+
+- [missing_translations_de.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_de.html)
+- [missing_translations_fr.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_fr.html)
+- [missing_translations_ja.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ja.html)
+- [missing_translations_cn.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_cn.html)
+- [missing_translations_ko.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ko.html)
+
+TODO: it'd be nice if we could mark cn/ko fights that haven't been released yet as not needing text/sync translations.
+
+You can run `npm run util` and select find translations using the ui.
+You can also run `npm run util -- findTranslations -f . -l fr`
+(or `-l de` or `-l cn` etc)
+if you don't want to select options manually.
+This script generates the same information that the online version has.
+
+These reports have several different categories of errors:
+
+- other: general miscellaneous errors, usually not related to any line
+- code: a block of TypeScript code is missing a translation
+- sync: a trigger or a timeline `sync /something/` line is missing a translation
+- text: timeline text (e.g. `2.0 "text"`) is missing a translation
+
+### Code Translations
+
+Most bits of code in cactbot use `LocaleText` for any piece of text
+that needs to be translated.
+
+This ends up looking like an object with keys for each language,
+in the order `en`, `de`, `fr`, `ja`, `cn`, `ko`.
+Tests will complain if you put them in a different order.
+This order is "English first", then "alphabetical for the international version",
+and finally "alphabetical for the other regional versions".
+English is always required.
+
+Here's an example,
+where the missing translation report for Japanese says this: `ui/oopsyraidsy/data/06-ew/raid/p4n.ts:78 [code] text: {`.
+The `text: {` part of the line is the beginning of the code that is missing the translation.
+The html report links above have links to the code directly.
+
+This example corresponds to [code](https://github.com/quisquous/cactbot/blob/e47d34b/ui/oopsyraidsy/data/06-ew/raid/p4n.ts#L78-L84) like this:
+
+```typescript
+          text: {
+            en: 'DPS Tower',
+            de: 'DD-Turm',
+            fr: 'Tour DPS',
+            cn: 'DPS塔',
+            ko: '딜러 장판',
+          },
+```
+
+As you can see, this object is missing the `ja` key and needs somebody to add it in.
+
+### Raidboss Translations
+
+For `sync` and `text` errors,
+these must be fixed using the (now poorly named) `timelineReplace` section.
+(Once upon a time, this was only for timeline translations.
+Now it also handles trigger `netRegex` and `regex` translations as well.
+However, for backwards compatibility it's still called `timelineReplace`.)
+
+It looks something like this:
+
+```typescript
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Kokytos\'s Echo': 'spectre de Cocyte',
+        'Kokytos(?!\')': 'Cocyte',
+        // etc
+      },
+      'replaceText': {
+        'Aero IV': 'Giga Vent',
+        'Archaic Demolish': 'Démolition archaïque',
+        // etc
+      },
+    },
+```
+
+The `replaceSync` section applies to `sync /etc/` parts of lines in the timeline file,
+as well as any fields in `netRegex` lines in the trigger file.
+The `replaceText` section only applies to the `"Text"` part of lines in the timeline file.
+All matches are case insensitive.
+
+Internally, cactbot takes the `timelineReplace` section and applies it (logically) like this,
+so that timelines and triggers will work in French:
+
+```diff
+# p9s.txt timeline file
+-168.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:816D:/
++168.7 "Démolition archaïque" sync / 1[56]:[^:]*:Cocyte:816D:/
+```
+
+```diff
+     // p9s.ts trigger file
+     {
+       id: 'P9S Archaic Demolish',
+       type: 'StartsUsing',
+-      netRegex: { id: '816D', source: 'Kokytos', capture: false },
++      netRegex: { id: '816D', source: 'Cocyte', capture: false },
+       alertText: (_data, _matches, output) => output.healerGroups!(),
+       outputStrings: {
+         healerGroups: Outputs.healerGroups,
+       },
+     },
+```
+
+#### Common Replacements
+
+To avoid having to repeat common translations,
+the [common_replacement.ts](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/common_replacement.ts)
+file has a `export const commonReplacement` variable with common `replaceSync` and `replaceText` entries
+that are implicitly added to all raidboss trigger sets.
+
+There is no need to repeat these entries (and `npm run test` will give you an error if you try to.)
+
+#### Collisions
+
+One important part of translations is that there is NO guaranteed ordering
+of how entries in the `replaceSync` and `replaceText` sections are applied.
+The reason for this is that it makes it conceptually easier to review a
+translation section as for any given substring of text,
+at most one entry will apply to it.
+
+To make this possible,
+there's a bunch of "collision" tests in cactbot to make sure that translation entries
+don't collide and try to translate the same piece of text differently.
+These tests are probably a great source of frustration to people writing translations,
+but it prevents a lot of bugs.
+
+If you have translations but get stuck on errors,
+please upload your translation PR with errors and ask for help.
+
+#### Pre-translation Collision
+
+One error that `npm run test` might give you is a "pre-translation collision".
+This means that two entries in the `replaceSync` or `replaceText` section
+both apply to the same text AND cannot be applied in either order.
+
+Here's a p9s example again, slightly modified.
+
+```typescript
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Kokytos\'s Echo': 'spectre de Cocyte',
+        'Kokytos': 'Cocyte',
+        // etc
+      },
+    },
+```
+
+Let's say we're trying to translate `Kokytos's Echo`.
+Both of these entries match,
+so there's two orders that these two translations could apply.
+We can replace `Kokytos` and then `Kokytos's Echo` or vice versa.
+
+If we apply `Kokytos's Echo` first, then `Kokytos's Echo` becomes `spectre de Cocyte`,
+and then the `Kokytos` translation no longer applies. This is a correct translation.
+However, if we apply `Kokytos` first, then `Kokytos's Echo` becomes `Cocyte's Echo`,
+and then the `Kokytos's Echo` translation no longer applies, but this is wrong!
+
+You can see here that applying these translations in different orders produces different results,
+which is why there's a pre-collision test error.
+
+The way to fix this is to use regular expression
+"negative lookahead" `(?!text)` or "negative lookbehind" `(?<!text)`
+to say that an entry only matches strings that are not preceeded or following
+a particular piece of text.
+See [this link](https://www.regular-expressions.info/lookaround.html) for more details.
+
+In this case, you can change `'Kokytos'` to `'Kokytos(?!\')'`.
+This regex says "match Kokytos, but not if there is an apostrophe afterwards".
+By doing this, there is no longer an ordering dependency.
+
+One side note, is that it is possible to have multiple translations apply to the same text without collision.
+For example, if you have `Front / Back` and a separate translation for `Front` and one for `Back`,
+then it does not matter which order you apply those translations in,
+because you will end up with the same result.
+In this case, there is no pre-translation collision.
+
+#### Post-translation Collision
+
+A post-translation collision is one where after one translation entry has been applied,
+then another (possibly the same) translation entry can suddenly apply to the new translated text.
+This is another ordering dependency that we want to avoid.
+This is generally more rare,
+because it often means that a non-English translation matches an English word
+or the same translation applies multiple times.
+
+Here's a partially made-up example of a post-translation collision.
+
+```typescript
+    {
+      'locale': 'de',
+      'replaceText': {
+        'Time Explosion': 'Zeiteruption',
+        'Eruption': 'Ausbruch',
+      },
+    },
+```
+
+Once `Time Explosion` is translated `Zeiteruption`,
+then the `Eruption` translation can now apply to it,
+turning it into the incorrect `ZeitAusbruch`.
+(Remember that all matches are case insensitive.)
+This collision could be fixed by making it `'(?<!t)Eruption': 'Ausbruch'`,
+in other words `Eruption` that is not preceded by the letter t.
+
+Here's one example of a potential post-translation collision of a trigger with itself: `'Bomb': 'Bombe'`.
+`Bomb` re-matches the translated version `Bombe`, and so needs to be `'Bomb(?!e)': 'Bombe'` instead.
+It is true that translations are only applied once, but this is still considered a post-translation error.
+
+One side note here is that `'Ultima': 'Ultima'` looks like a post-translation collision,
+however there's a special case for a "translation" that doesn't do anything.
+The reason these kinds of "do nothing" translations exist are to mark these texts as "having been translated"
+and so they are not collected by the find missing translation script.
+
+#### missingTranslations field
+
+The `timelineReplace` section also has a `missingTranslations` field, which defaults to false.
+If a particular section exists and it does not have all translations,
+this field needs to be set to `true` (and `npm run test` will complain if not).
+This often happens when somebody adds additional lines to the timeline
+or additional triggers with new combatants that are not translated.
+This is an indicator to translators that work needs to be done here.
+
+The other reason for this is once a fight has reached a point of being completedly translated for a language,
+and somebody adds a typo in a text or a sync,
+the tests will catch that error because it expects that there are no missing translations for that language.
+
+It is not an `npm run test` error to have `missingTranslations: true` when it is not needed,
+but this error will show up in the find missing translations script and should be cleaned up if possible.
+
+#### Escaping
+
+Here's a brief aside on escaping special characters, with some examples.
+
+All `replaceSync` and `replaceText` keys are strings that are parsed via `new RegExp(regexString, 'gi')`.
+The awkwardness is that `replaceSync` is used to match both
+syncs inside of a timeline as well as parameters in triggers.
+Unfortunately, timelines are treated as literal text but triggers get one layer of
+parsing applied to them because they are code.
+To say this differently, if you want to match `sync /Pand\u00e6monium/` in a timeline,
+you need to write a regex that matches the string `'Pand\\u00e6monium'`.
+If you want to match `netRegex: { source: 'Pand\u00e6monium' }`,
+you need to write a regex that matches the string `'Pand\u00e6monium'` or
+`'Pandæmonium'` (they are equivalent).
+
+(Sorry, this is somewhat of a not great situation.)
+
+If there is a timeline text such as `Harrowing Hell (cast)`
+and you want to replace the cast part, you will need a `timelineText` entry like `\\(cast\\)`.
+One baskslash is to regex-escape the `(` so it is treated like a literal parenthesis
+and the second backslash is to string-escape the first `\` so it beomces a literal backslash.
+
+A second example, the p10s key `'Pand\\\\u00e6monium'` has four backslashes.
+This is two sets of string-escaped backslashes, `'\\' + '\\'`.
+When parsed through `new RegExp('Pand\\\\u00e6monium')`,
+this becomes a single regex-escaped backslash, `/Pand\\u00e6monium/`.
+In other words, match `Pand` and then a literal backslash with `u00e6` and then `monium`.
+
+A final example is the awkward case `'724P-Operated Superior Flight Unit \\\\\\(A-Lpha\\\\\\)'`.
+`(` is a special regex character and so if we want to match a literal `\(` in text
+we need `\\\\` for the backslash and `\\` to escape the `(` from being treated as regex.
+This becomes the regex `/724P-Operated Superior Flight Unit \\\(A-Lpha\\\)/`.
+
+On the positive side, this only comes up when there are special characters
+that need to be escaped in a string or a regex (e.g. backslash, parens, brackets)
+which are all fairly rare in FFXIV.

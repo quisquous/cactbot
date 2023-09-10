@@ -77,15 +77,23 @@ body > div {
   row-gap: 10px;
 }
 
+#translation-grid {
+  display: grid;
+  grid-template-columns: max-content repeat(3, minmax(60px, max-content));
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
 #zone-grid {
   display: grid;
-  grid-template-columns: max-content repeat(5, minmax(60px, max-content));
+  grid-template-columns: max-content repeat(6, minmax(60px, max-content));
   column-gap: 20px;
   row-gap: 10px;
   justify-items: left;
 }
 
 #expansion-grid > div,
+#translation-grid > div,
 #zone-grid > div {
   width: 100%;
 }

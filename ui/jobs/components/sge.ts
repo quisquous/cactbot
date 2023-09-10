@@ -84,7 +84,10 @@ export class SGEComponent extends BaseComponent {
       case kAbility.Phlegma2:
       case kAbility.Phlegma3:
         if (matches.targetIndex === '0') { // Avoid multiple call in AOE
-          this.phlegma.duration = 45 + this.phlegma.value;
+          if (this.ffxivVersion >= 630)
+            this.phlegma.duration = 40 + this.phlegma.value;
+          else
+            this.phlegma.duration = 45 + this.phlegma.value;
         }
         break;
       case kAbility.Rhizomata:
@@ -112,7 +115,10 @@ export class SGEComponent extends BaseComponent {
 
     const adderCountdown = Math.ceil((20000 - jobDetail.addersgallMilliseconds) / 1000);
     this.adderTimerBox.innerText = jobDetail.addersgall === 3 ? '' : adderCountdown.toString();
-    this.adderTimerBox.parentNode.classList.toggle('exceed', (jobDetail.addersgall === 2 && adderCountdown < 6) || jobDetail.addersgall === 3);
+    this.adderTimerBox.parentNode.classList.toggle(
+      'exceed',
+      jobDetail.addersgall === 2 && adderCountdown < 6 || jobDetail.addersgall === 3,
+    );
   }
 
   override onStatChange({ gcdSpell }: { gcdSpell: number }): void {

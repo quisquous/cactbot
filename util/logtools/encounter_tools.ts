@@ -1,10 +1,10 @@
 import ContentType from '../../resources/content_type';
 import DTFuncs from '../../resources/datetime';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import StringFuncs from '../../resources/stringhandlers';
 import ZoneInfo from '../../resources/zone_info';
-import { NetMatches, NetAnyMatches } from '../../types/net_matches';
+import { NetAnyMatches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { commonReplacement, syncKeys } from '../../ui/raidboss/common_replacement';
 
@@ -61,9 +61,9 @@ export class EncounterFinder {
   constructor() {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
-      cactbotWipe: NetRegexes.echo({ line: 'cactbot wipe.*?' }),
-      win: NetRegexes.network6d({ command: '40000003' }),
-      wipe: NetRegexes.network6d({ command: '40000010' }),
+      cactbotWipe: commonNetRegex.cactbotWipeEcho,
+      win: NetRegexes.network6d({ command: '4000000[23]' }),
+      wipe: commonNetRegex.wipe,
       commence: NetRegexes.network6d({ command: '4000000[16]' }),
       playerAttackingMob: NetRegexes.ability({ sourceId: '1.{7}', targetId: '4.{7}' }),
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
@@ -104,6 +104,7 @@ export class EncounterFinder {
       ContentType.Trials,
       ContentType.UltimateRaids,
       ContentType.DeepDungeons,
+      ContentType.VCDungeonFinder,
     ];
 
     return !keepTypes.includes(content);
@@ -112,10 +113,8 @@ export class EncounterFinder {
   process(line: string, store: boolean): void {
     // Irrespective of any processing that occurs, we want to store every line of an encounter.
     // This allows us to save a pass when making timelines.
-    if (store && this.currentFight.startTime !== undefined) {
-      this.currentFight.logLines = this.currentFight.logLines ?? [];
-      this.currentFight.logLines?.push(line);
-    }
+    if (store && this.currentFight.startTime !== undefined)
+      (this.currentFight.logLines ??= []).push(line);
 
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
@@ -129,7 +128,7 @@ export class EncounterFinder {
       // Therefore we can safely initialize everything.
       if (this.currentFight.startTime)
         this.onEndFight(line, cZ, 'Zone Change');
-      if (this.currentZone.zoneName)
+      if (this.currentZone.zoneName !== undefined)
         this.onEndZone(line, this.currentZone.zoneName, cZ);
 
       this.zoneInfo = ZoneInfo[parseInt(cZ.id, 16)];
@@ -143,7 +142,7 @@ export class EncounterFinder {
     }
 
     // If no zone change is found, we next verify that we are inside a combat zone.
-    if (this.skipZone() || !this.currentZone.zoneName)
+    if (this.skipZone() || this.currentZone.zoneName === undefined)
       return;
 
     // We are in a combat zone, so we next check for victory/defeat.
@@ -153,14 +152,14 @@ export class EncounterFinder {
     const cW = this.regex.cactbotWipe.exec(line)?.groups;
     if (cW) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-      this.onEndFight(line, cW, 'Wipe');
+        this.onEndFight(line, cW, 'Wipe');
       return;
     }
 
     const wipe = this.regex.wipe.exec(line)?.groups;
     if (wipe) {
       if (this.currentFight.startTime && !this.haveSeenSeals)
-      this.onEndFight(line, wipe, 'Wipe');
+        this.onEndFight(line, wipe, 'Wipe');
       return;
     }
 
@@ -178,14 +177,20 @@ export class EncounterFinder {
       const s = regex.exec(line)?.groups;
       if (s) {
         const seal = s.seal ?? 'UNKNOWN';
+        const previouslyStarted = this.currentFight.startTime !== undefined;
         this.onSeal(line, seal, s);
+        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
+          (this.currentFight.logLines ??= []).push(line);
+        return;
       }
     }
 
     for (const regex of this.unsealRegexes) {
       const u = regex.exec(line)?.groups;
-      if (u)
+      if (u) {
         this.onUnseal(line, u);
+        return;
+      }
     }
 
     // Most dungeons and some older raid content have zone zeals that indicate encounters.
@@ -193,10 +198,13 @@ export class EncounterFinder {
     if (!(this.currentFight.startTime || this.haveWon || this.haveSeenSeals)) {
       let a = this.regex.playerAttackingMob.exec(line);
       if (!a)
-      // TODO: This regex catches faerie healing and could potentially give false positives!
+        // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
+        const previouslyStarted = this.currentFight.startTime !== undefined;
         this.onStartFight(line, this.currentZone.zoneName, a.groups);
+        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
+          (this.currentFight.logLines ??= []).push(line);
         return;
       }
     }
@@ -258,7 +266,11 @@ class EncounterCollector extends EncounterFinder {
     this.initializeZone();
   }
 
-  override onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
+  override onStartFight(
+    line: string,
+    fightName: string,
+    matches: NetMatches['Ability' | 'GameLog'],
+  ): void {
     this.currentFight = {
       fightName: fightName,
       zoneName: this.currentZone.zoneName,
@@ -293,7 +305,7 @@ class TLFuncs {
   // TODO: Replace the line argument with a NetAnyMatches once
   // we move the ParseLine logic out of the emulator.
   static getTZOffsetFromLogLine(line: string): number {
-    const time = line.substring(0, 3).includes('|') ? line.substring(3, 36) : line.substring(4, 37);
+    const time = line.slice(0, 3).includes('|') ? line.slice(3, 36) : line.slice(4, 37);
     return DTFuncs.getTimezoneOffsetMillis(time);
   }
 
@@ -306,7 +318,7 @@ class TLFuncs {
   }
   static timeFromDate(date?: Date): string {
     if (date) {
-      const wholeTime = date.toLocaleTimeString('en-US', { hour12: false });
+      const wholeTime = date.toLocaleTimeString('en-US', { hourCycle: 'h23' });
       const milliseconds = date.getMilliseconds();
       // If milliseconds is under 100, the leading zeroes will be truncated.
       // We don't want that, so we pad it inside the formatter.
@@ -340,10 +352,10 @@ class TLFuncs {
     }
 
     const duration = TLFuncs.durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
-    let seal;
+    let seal: string | undefined;
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
-    if (seal)
+    if (seal !== undefined)
       seal = '_' + StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
     else
       seal = '';
@@ -352,8 +364,8 @@ class TLFuncs {
       wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
     return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
   }
-// For an array of arrays, return an array where each value is the max length at that index
-// among all of the inner arrays, e.g. find the max length per field of an array of rows.
+  // For an array of arrays, return an array where each value is the max length at that index
+  // among all of the inner arrays, e.g. find the max length per field of an array of rows.
   static maxLengthPerIndex(outputRows: Array<Array<string>>): Array<number> {
     const outputSizes = outputRows.map((row) => row.map((field) => field.length));
     return outputSizes.reduce((max, row) => {
@@ -362,9 +374,9 @@ class TLFuncs {
         if (indexed !== undefined)
           return Math.max(val, indexed);
         return val;
-     });
+      });
     });
   }
 }
 
-export { EncounterCollector, TLFuncs, ZoneEncInfo, FightEncInfo };
+export { EncounterCollector, FightEncInfo, TLFuncs, ZoneEncInfo };

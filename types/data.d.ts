@@ -1,5 +1,6 @@
 import { Lang } from '../resources/languages';
 import PartyTracker from '../resources/party';
+import { ConfigValue } from '../resources/user_config';
 
 import { SystemInfo } from './event';
 import { Job, Role } from './job';
@@ -29,6 +30,8 @@ export interface RaidbossData {
   displayLang: Lang;
   currentHP: number;
   options: BaseOptions;
+  inCombat: boolean;
+  triggerSetConfig: { [key: string]: ConfigValue };
   ShortName: (x?: string) => string;
   StopCombat: () => void;
   /** @deprecated Use parseFloat instead */
@@ -47,6 +50,7 @@ export interface OopsyData {
   role: Role;
   party: PartyTracker;
   inCombat: boolean;
+  IsImmune: (x?: string) => boolean;
   ShortName: (x?: string) => string;
   IsPlayerId: (x?: string) => boolean;
   DamageFromMatches: (matches: NetMatches['Ability']) => number;

@@ -6,7 +6,7 @@ import { ResourceBox } from '../bars';
 import { ComboTracker } from '../combo_tracker';
 import { kAbility } from '../constants';
 import { PartialFieldMatches } from '../event_emitter';
-import { computeBackgroundColorFrom } from '../utils';
+import { computeBackgroundColorFrom, showDuration } from '../utils';
 
 import { BaseComponent, ComponentInterface } from './base';
 
@@ -55,17 +55,24 @@ export class PLDComponent extends BaseComponent {
     const requiescatContainer = document.createElement('div');
     requiescatContainer.id = 'pld-stacks-requiescat';
     this.stacksContainer.appendChild(requiescatContainer);
-
-    for (let i = 0; i < 5; ++i) {
-      const d = document.createElement('div');
-      requiescatContainer.appendChild(d);
-      this.requiescat.push(d);
+    if (this.ffxivVersion >= 630) {
+      for (let i = 0; i < 4; ++i) {
+        const d = document.createElement('div');
+        requiescatContainer.appendChild(d);
+        this.requiescat.push(d);
+      }
+    } else {
+      for (let i = 0; i < 5; ++i) {
+        const d = document.createElement('div');
+        requiescatContainer.appendChild(d);
+        this.requiescat.push(d);
+      }
     }
 
     this.reset();
   }
 
-  override onJobDetailUpdate(jobDetail: JobDetail['PLD']):void {
+  override onJobDetailUpdate(jobDetail: JobDetail['PLD']): void {
     const oath = jobDetail.oath.toString();
     if (this.oathBox.innerText === oath)
       return;
@@ -97,6 +104,8 @@ export class PLDComponent extends BaseComponent {
   }
 
   override onCombo(skill: string, combo: ComboTracker): void {
+    if (skill === kAbility.GoringBlade && this.ffxivVersion >= 630)
+      return;
     this.comboTimer.duration = 0;
     if (skill === kAbility.GoringBlade)
       this.goreBox.duration = 21;
@@ -109,21 +118,27 @@ export class PLDComponent extends BaseComponent {
   override onUseAbility(skill: string): void {
     switch (skill) {
       case kAbility.BladeOfValor:
-        this.goreBox.duration = 21;
+        if (this.ffxivVersion < 630)
+          this.goreBox.duration = 21;
+        break;
+      case kAbility.GoringBlade:
+        if (this.ffxivVersion >= 630)
+          this.goreBox.duration = this.bars.player.getActionCooldown(60000, 'skill');
         break;
       case kAbility.Expiacion:
       case kAbility.SpiritsWithin:
         this.expiacionBox.duration = 30;
         break;
       case kAbility.FightOrFlight:
-        this.fightOrFlightBox.duration = 25;
-        this.fightOrFlightBox.threshold = 1000;
-        this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight.active');
-        this.tid1 = window.setTimeout(() => {
-          this.fightOrFlightBox.duration = 35;
-          this.fightOrFlightBox.threshold = this.player.gcdSkill * 2 + 1;
-          this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight');
-        }, 25000);
+        this.tid1 = showDuration({
+          tid: this.tid1,
+          timerbox: this.fightOrFlightBox,
+          duration: this.ffxivVersion >= 630 ? 20 : 25,
+          cooldown: 60,
+          threshold: this.player.gcdSkill * 2 + 1,
+          activecolor: 'pld-color-fightorflight.active',
+          deactivecolor: 'pld-color-fightorflight',
+        });
         break;
     }
   }
@@ -149,7 +164,7 @@ export class PLDComponent extends BaseComponent {
     }
   }
 
-  override onStatChange({ gcdSkill } : { gcdSkill: number }): void {
+  override onStatChange({ gcdSkill }: { gcdSkill: number }): void {
     this.goreBox.valuescale = gcdSkill;
     this.goreBox.threshold = gcdSkill * 3 + 0.3;
     this.expiacionBox.valuescale = gcdSkill;
@@ -163,11 +178,13 @@ export class PLDComponent extends BaseComponent {
     this.expiacionBox.duration = 0;
     this.fightOrFlightBox.duration = 0;
     this.fightOrFlightBox.threshold = this.player.gcdSkill * 2 + 1;
-    this.fightOrFlightBox.fg = computeBackgroundColorFrom(this.fightOrFlightBox, 'pld-color-fightorflight');
+    this.fightOrFlightBox.fg = computeBackgroundColorFrom(
+      this.fightOrFlightBox,
+      'pld-color-fightorflight',
+    );
     window.clearTimeout(this.tid1);
     this.setAtonement(this.atonementBox, 0);
     this.setRequiescat(0);
     this.stacksContainer.classList.add('hide');
   }
 }
-

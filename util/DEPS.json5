@@ -3,21 +3,21 @@
 //   I just borrowed the basic concept and naming scheme.
 {
     "ACT": {
-        "url": "https://github.com/EQAditu/AdvancedCombatTracker/releases/download/3.4.6.267/ACTv3.zip",
+        "url": "https://github.com/EQAditu/AdvancedCombatTracker/releases/download/3.6.2.279/ACTv3.zip",
         "dest": "plugin/ThirdParty/ACT",
         "strip": 0,
-        "hash": ["sha256", "adf13a38d0938ce90f8e674f8365b227d933b91636ddf72b26c85702f6e3b808"],
+        "hash": ["sha256", "8822e08147a44d0b82548068033dc18177c1fac993e8564e1ac32ed94c570e08"],
     },
     "FFXIV_ACT": {
-        "url": "https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.0.6.1.zip",
+        "url": "https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.2.1.6.zip",
         "dest": "plugin/ThirdParty/FFXIV_ACT",
         "strip": 0,
-        "hash": ["sha256", "55eed8660848273b285e2f128a65e6822f086c885942be69691baf5c530a7cd6"],
+        "hash": ["sha256", "9a801d2df30c186b3915cb75dd12d1c75e559de09f71038bf1f68f7d8a3aa34a"],
     },
     "OverlayPlugin": {
-        "url": "https://github.com/ngld/OverlayPlugin/releases/download/v0.18.2/OverlayPlugin-0.18.2.zip",
+        "url": "https://github.com/OverlayPlugin/OverlayPlugin/releases/download/v0.19.21/OverlayPlugin-0.19.21.zip",
         "dest": "plugin/ThirdParty/OverlayPlugin",
         "strip": 1,
-        "hash": ["sha256", "aa07446ecd85d36834de7b28e79eccea53b5577759c2da0e8b8358a2c2bed0a5"],
+        "hash": ["sha256", "5abd855169dc02bb8a337bdff511f24e1ed0b783dca197bdce3e9ec160735624"],
     },
 }

@@ -6,6 +6,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheBowlOfEmbers',
   zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [
@@ -45,7 +46,8 @@ const triggerSet: TriggerSet<Data> = {
       'replaceSync': {
         'Ifrit': 'Ifrit',
         'Succumb to the inferno': 'Verglühe zu Asche im heiligen Inferno!',
-        'Surrender thyself to the fires of judgment': 'Die Flammen werden das Fleisch von deinen Knochen sengen ...',
+        'Surrender thyself to the fires of judgment':
+          'Die Flammen werden das Fleisch von deinen Knochen sengen ...',
       },
       'replaceText': {
         'Eruption': 'Eruption',

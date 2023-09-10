@@ -1,6 +1,6 @@
 import './raidboss_config';
 import DTFuncs from '../../resources/datetime';
-import { isLang, Lang, langMap } from '../../resources/languages';
+import { browserLanguagesToLang, Lang, langMap } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
 import UserConfig from '../../resources/user_config';
@@ -138,6 +138,9 @@ const raidEmulatorOnLoad = async () => {
         UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
           // Update options from anything changed via getUserConfigLocation.
           options = { ...defaultOptions };
+          // If DisplayLanguage isn't English, switch to correct lang for emulator display
+          if (options.DisplayLanguage !== 'en')
+            applyTranslation(options.DisplayLanguage);
           querySelectorSafe(document, '.websocketConnected').classList.remove('d-none');
           querySelectorSafe(document, '.websocketDisconnected').classList.add('d-none');
           res();
@@ -148,13 +151,9 @@ const raidEmulatorOnLoad = async () => {
 
   if (!websocketConnected) {
     // Find the most appropriate lang code to use based on browser language priority
-    const browserLang = [...navigator.languages, 'en']
-      .map((l) => l.substr(0, 2))
-      // Remap `zh` to `cn` to match cactbot languages
-      .map((l) => l === 'zh' ? 'cn' : l)
-      .filter((l) => ['en', 'de', 'fr', 'ja', 'cn', 'ko'].includes(l))[0];
-    options.ParserLanguage = isLang(browserLang) ? browserLang : 'en';
-    options.DisplayLanguage = isLang(browserLang) ? browserLang : 'en';
+    const browserLang = browserLanguagesToLang(navigator.languages);
+    options.ParserLanguage = browserLang;
+    options.DisplayLanguage = browserLang;
     // Default options
     options.IsRemoteRaidboss = true;
     options.TextAlertsEnabled = true;
@@ -163,10 +162,6 @@ const raidEmulatorOnLoad = async () => {
     options.GroupSpokenAlertsEnabled = false;
   }
 
-  // If DisplayLanguage isn't English, switch to correct lang for emulator display
-  if (options.DisplayLanguage !== 'en')
-    applyTranslation(options.DisplayLanguage);
-
   const emulator = new RaidEmulator(options);
   const progressBar = new ProgressBar(emulator);
   const encounterTab = new EncounterTab(persistor);
@@ -174,6 +169,7 @@ const raidEmulatorOnLoad = async () => {
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
   const logConverterWorker = new Worker(
+    /* webpackEntryOptions: { filename: "ui/raidboss/raidemulator.worker.js" } */
     new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url),
   );
 
@@ -285,7 +281,7 @@ const raidEmulatorOnLoad = async () => {
       showModal('.introModal');
     } else {
       let lastEncounter: string | number | null = window.localStorage.getItem('currentEncounter');
-      if (lastEncounter) {
+      if (lastEncounter !== null) {
         lastEncounter = parseInt(lastEncounter);
         const matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
         if (matchedEncounters.length)
@@ -333,7 +329,7 @@ const raidEmulatorOnLoad = async () => {
         switch (msg.data.type) {
           case 'progress':
             {
-              const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
+              const percent = (msg.data.bytes / msg.data.totalBytes * 100).toFixed(2);
               bar.style.width = percent + '%';
               label.innerText =
                 `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
@@ -444,7 +440,7 @@ const raidEmulatorOnLoad = async () => {
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
     const targetSel = n.getAttribute('data-target');
-    if (!targetSel)
+    if (targetSel === null)
       throw new UnreachableCode();
     const target = querySelectorSafe(document, targetSel);
     n.addEventListener('click', () => {

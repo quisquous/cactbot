@@ -10,7 +10,7 @@ import { NetFields } from '../../types/net_fields';
 
 import { ComboCallback, ComboTracker } from './combo_tracker';
 import { JobsEventEmitter, PartialFieldMatches } from './event_emitter';
-import { FfxivRegion } from './jobs';
+import { FfxivVersion } from './jobs';
 import { calcGCDFromStat, normalizeLogLine } from './utils';
 
 export type Stats = Omit<
@@ -156,7 +156,7 @@ export class Player extends PlayerBase {
   constructor(
     jobsEmitter: JobsEventEmitter,
     partyTracker: PartyTracker,
-    private ffxivRegion: FfxivRegion,
+    private ffxivVersion: FfxivVersion,
   ) {
     super();
     this.ee = new EventEmitter();
@@ -164,7 +164,7 @@ export class Player extends PlayerBase {
     this.partyTracker = partyTracker;
 
     // setup combo tracker
-    this.combo = ComboTracker.setup(this.ffxivRegion, this);
+    this.combo = ComboTracker.setup(this.ffxivVersion, this);
 
     // setup event emitter
     this.jobsEmitter.on('player', (ev) => this.processPlayerChangedEvent(ev));
@@ -418,7 +418,7 @@ export class Player extends PlayerBase {
       case logDefinitions.GainsEffect.type: {
         const matches = normalizeLogLine(line, logDefinitions.GainsEffect.fields);
         const effectId = matches.effectId?.toUpperCase();
-        if (!effectId)
+        if (effectId === undefined)
           break;
 
         if (matches.targetId?.toUpperCase() === this.idHex)
@@ -429,7 +429,7 @@ export class Player extends PlayerBase {
       case logDefinitions.LosesEffect.type: {
         const matches = normalizeLogLine(line, logDefinitions.LosesEffect.fields);
         const effectId = matches.effectId?.toUpperCase();
-        if (!effectId)
+        if (effectId === undefined)
           break;
 
         if (matches.targetId?.toUpperCase() === this.idHex)
@@ -442,16 +442,18 @@ export class Player extends PlayerBase {
         const matches = normalizeLogLine(line, logDefinitions.Ability.fields);
         const sourceId = matches.sourceId?.toUpperCase();
         const id = matches.id;
-        if (!id)
+        if (id === undefined)
           break;
 
         this.emit('action', id, matches);
 
-        if (sourceId && sourceId === this.idHex)
+        if (sourceId === undefined)
+          break;
+        if (sourceId === this.idHex)
           this.emit('action/you', id, matches);
-        else if (sourceId && this.partyTracker.inParty(matches.source ?? ''))
+        else if (this.partyTracker.inParty(matches.source ?? ''))
           this.emit('action/party', id, matches);
-        else if (sourceId && sourceId.startsWith('1')) // starts with '1' is a player
+        else if (sourceId.startsWith('1')) // starts with '1' is a player
           this.emit('action/other', id, matches);
         break;
       }

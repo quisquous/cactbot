@@ -3,6 +3,7 @@ import { Lang } from '../../resources/languages';
 import NetRegexes from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import TimerBar from '../../resources/timerbar';
+import TimerBox from '../../resources/timerbox';
 import TimerIcon from '../../resources/timericon';
 import { LocaleNetRegex } from '../../resources/translations';
 import Util from '../../resources/util';
@@ -142,7 +143,7 @@ export const calcGCDFromStat = (player: PlayerLike, stat: number, actionDelay = 
   const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - mod[0]) / mod[1])) * actionDelay / 1000;
   const a = (100 - type1Buffs) / 100;
   const b = (100 - type2Buffs) / 100;
-  const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
+  const gcdC = Math.floor(Math.floor(a * b * gcdMs / 10) * astralUmbralMod / 100);
   return gcdC / 100;
 };
 
@@ -249,4 +250,24 @@ export const isPvPZone = (zoneId: number): boolean => {
   if (zoneInfo.contentType === ContentType.Pvp || zoneId === ZoneId.WolvesDenPier)
     return true;
   return false;
+};
+
+export const showDuration = (o: {
+  tid: number;
+  timerbox: TimerBox;
+  duration: number;
+  cooldown: number;
+  threshold: number;
+  activecolor: string;
+  deactivecolor: string;
+}): number => {
+  o.timerbox.duration = o.duration;
+  o.timerbox.threshold = o.duration;
+  o.timerbox.fg = computeBackgroundColorFrom(o.timerbox, o.activecolor);
+  o.tid = window.setTimeout(() => {
+    o.timerbox.duration = o.cooldown - o.duration;
+    o.timerbox.threshold = o.threshold;
+    o.timerbox.fg = computeBackgroundColorFrom(o.timerbox, o.deactivecolor);
+  }, o.duration * 1000);
+  return o.tid;
 };

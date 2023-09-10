@@ -4,10 +4,10 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# Note: Use zone seal message instead of 0x104 line to start timeline
+# as there are pre-boss adds to start the encounter.
 
 ### Phase 1 (100%)
-0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839::Bioweapon Storage will be sealed off/ window 10,10
 6.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/ window 7,0
 12.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/

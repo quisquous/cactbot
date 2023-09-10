@@ -1905,6 +1905,128 @@ const data: WeatherRateType = {
       'Transcendence',
     ],
   },
+  148: {
+    'rates': [
+      25,
+      70,
+      80,
+      90,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Rain',
+      'Fog',
+      'Showers',
+    ],
+  },
+  149: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Vacuity',
+    ],
+  },
+  150: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Dimensional Disruption',
+    ],
+  },
+  151: {
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Thunderstorms',
+    ],
+  },
+  152: {
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
+  153: {
+    'rates': [
+      40,
+      55,
+      70,
+      90,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Wind',
+      'Thunder',
+    ],
+  },
+  154: {
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
+  155: {
+    'rates': [],
+    'weathers': [],
+  },
+  156: {
+    'rates': [],
+    'weathers': [],
+  },
+  157: {
+    'rates': [],
+    'weathers': [],
+  },
+  158: {
+    'rates': [],
+    'weathers': [],
+  },
+  159: {
+    'rates': [],
+    'weathers': [],
+  },
+  160: {
+    'rates': [],
+    'weathers': [],
+  },
 };
 
 export default data;

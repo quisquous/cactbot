@@ -50,7 +50,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexJa: NetRegexes.gainsEffect({ source: 'シャドウフレイム', effectId: '82C' }),
       netRegexCn: NetRegexes.gainsEffect({ source: '影烈火', effectId: '82C' }),
       mistake: (_data, matches) => {
-        return { type: 'damage', blame: matches.target, reportId: matches.targetId, text: `${matches.effect} (partial stack)` };
+        return {
+          type: 'damage',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: `${matches.effect} (partial stack)`,
+        };
       },
     },
     {
@@ -66,7 +71,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegexJa: NetRegexes.gainsEffect({ source: '影の王', effectId: '82C' }),
       netRegexCn: NetRegexes.gainsEffect({ source: '影之王', effectId: '82C' }),
       mistake: (_data, matches) => {
-        return { type: 'damage', blame: matches.target, reportId: matches.targetId, text: `${matches.effect}` };
+        return {
+          type: 'damage',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: `${matches.effect}`,
+        };
       },
     },
     {
@@ -77,7 +87,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: ['572A', '5B27'], ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
   ],

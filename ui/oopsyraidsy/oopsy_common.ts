@@ -21,8 +21,12 @@ export const damageFields = {
   flags: `[^|]*(?:${kAttackFlags.join('|')})(?=\\|)`,
 };
 
-export const playerDamageFields = {
+export const playerTargetFields = {
   targetId: '[^4].......',
+};
+
+export const playerDamageFields = {
+  ...playerTargetFields,
   ...damageFields,
 };
 
@@ -91,15 +95,15 @@ export const ShortNamify = (
 ): string => {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
-  if (!name)
+  if (name === undefined)
     return '???';
 
   const nick = playerNicks[name];
-  if (nick)
+  if (nick !== undefined)
     return nick;
 
   const idx = name.indexOf(' ');
-  return idx < 0 ? name : name.substr(0, idx);
+  return idx < 0 ? name : name.slice(0, idx);
 };
 
 export const Translate = (lang: Lang, obj?: LocaleText | string): string | undefined => {
@@ -127,11 +131,11 @@ export const UnscrambleDamage = (field?: string): number => {
   if (len <= 4)
     return 0;
   // Get the left two bytes as damage.
-  let damage = parseInt(field.substr(0, len - 4), 16);
+  let damage = parseInt(field.slice(0, len - 4), 16);
   // Check for third byte == 0x40.
   if (field[len - 4] === '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.
-    const rightDamage = parseInt(field.substr(len - 2, 2), 16);
+    const rightDamage = parseInt(field.slice(len - 2, len), 16);
     damage = damage - rightDamage + (rightDamage << 16);
   }
   return damage;
@@ -141,7 +145,7 @@ export const IsPlayerId = (id?: string): boolean => {
   if (id === undefined)
     return false;
   const firstChar = id[0];
-  return firstChar ? firstChar < '4' : false;
+  return firstChar !== undefined ? firstChar < '4' : false;
 };
 
 export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => {
@@ -155,24 +159,29 @@ export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => 
   return true;
 };
 
-export const GetSoloMistakeText = (ability: string): LocaleText => {
+export const GetSoloMistakeText = (ability: string | LocaleText): LocaleText => {
+  const localeText: LocaleText = typeof ability === 'string' ? { en: ability } : ability;
   return {
-    en: `${ability} (alone)`,
-    de: `${ability} (allein)`,
-    fr: `${ability} (seul(e))`,
-    ja: `${ability} (一人)`,
-    cn: `${ability} (单吃)`,
-    ko: `${ability} (혼자 맞음)`,
+    en: `${localeText['en']} (alone)`,
+    de: `${localeText['de'] ?? localeText['en']} (allein)`,
+    fr: `${localeText['fr'] ?? localeText['en']} (seul(e))`,
+    ja: `${localeText['ja'] ?? localeText['en']} (一人)`,
+    cn: `${localeText['cn'] ?? localeText['en']} (单吃)`,
+    ko: `${localeText['ko'] ?? localeText['en']} (혼자 맞음)`,
   };
 };
 
-export const GetShareMistakeText = (ability: string, numTargets: number): LocaleText => {
+export const GetShareMistakeText = (
+  ability: string | LocaleText,
+  numTargets: number,
+): LocaleText => {
+  const localeText: LocaleText = typeof ability === 'string' ? { en: ability } : ability;
   return {
-    en: `${ability} (share x${numTargets})`,
-    de: `${ability} (geteilt mit ${numTargets})`,
-    fr: `${ability} (partage)`, // FIXME
-    ja: `${ability} (頭割り)`, // FIXME
-    cn: `${ability} (重叠: ${numTargets}次)`,
-    ko: `${ability} (같이 맞음: ${numTargets}명)`,
+    en: `${localeText['en']} (share x${numTargets})`,
+    de: `${localeText['de'] ?? localeText['en']} (geteilt mit ${numTargets})`,
+    fr: `${localeText['fr'] ?? localeText['en']} (partage x${numTargets})`,
+    ja: `${localeText['ja'] ?? localeText['en']} (頭割り)`, // FIXME
+    cn: `${localeText['cn'] ?? localeText['en']} (重叠: ${numTargets}次)`,
+    ko: `${localeText['ko'] ?? localeText['en']} (같이 맞음: ${numTargets}명)`,
   };
 };

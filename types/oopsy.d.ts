@@ -72,6 +72,7 @@ export type OopsyTriggerField<Data extends OopsyData, MatchType extends NetAnyMa
 
 export type BaseOopsyTrigger<Data extends OopsyData, Type extends TriggerTypes> = {
   id: string;
+  comment?: Partial<LocaleText>;
   condition?: OopsyTriggerField<Data, NetMatches[Type], boolean>;
   delaySeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
   suppressSeconds?: OopsyTriggerField<Data, NetMatches[Type], number>;
@@ -106,6 +107,7 @@ type MistakeMap = { [mistakeId: string]: string };
 
 type SimpleOopsyTriggerSet = {
   zoneId: ZoneIdType | ZoneIdType[];
+  zoneLabel?: LocaleText;
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
   gainsEffectWarn?: MistakeMap;

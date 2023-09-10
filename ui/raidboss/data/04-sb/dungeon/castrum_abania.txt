@@ -1,120 +1,123 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Magna Roader
 # -p 1F14:9.4
 # -ii 1F17 1F18 2090 1F19 2085
 # -it "Magna Roader"
 
 # initial
-0 "Start" sync / 00:0839::Terrestrial Weaponry will be sealed off/ window 10000,0
-9.4 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/ window 10,10
-16.9 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-22.0 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-29.1 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+0.0 "--sync--" sync / 00:0839::Terrestrial Weaponry will be sealed off/ window 0,1
+13.5 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+18.6 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+25.7 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
 
-# Wild Speed Loop (until stunned)
-40.4 "--untargetable--"
-40.4 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-40.5 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-41.5 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-42.5 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-43.5 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+# Wild Speed Loop (until stunned, max 4 cycles)
+35.5 "--untargetable--"
+35.5 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 5,5 # boss moves south first, can delay timeline
+35.6 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+36.6 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+37.6 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+38.6 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
-50.6 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-50.7 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-51.7 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-52.7 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-53.7 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+45.7 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+45.8 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+46.8 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+47.8 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+48.8 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
-60.8 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-60.9 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-61.9 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-62.9 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-63.9 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+55.9 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+56.0 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+57.0 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+58.0 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+59.0 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
-71.0 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-71.1 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-72.1 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-73.1 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-74.1 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-
-81.2 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 5,30 jump 50.6
-81.3 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-82.3 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-83.3 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-84.3 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+66.1 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
+66.2 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+67.2 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+68.2 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+69.2 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
 # Post Wild Speed loop -> back into Wild Speed loop
-100.0 "--targetable--"
-105.8 "--sync--" sync / 14:[^:]*:Magna Roader:1F16:/ window 70,10
-108.8 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
-112.9 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
-120.4 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-125.5 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-129.7 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
-137.2 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
-141.3 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
-148.8 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-154.0 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+70.2 "--targetable--"
+70.2 "--sync--" sync / 14:[^:]*:Magna Roader:1F16:/ window 40,10
+73.2 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+77.3 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/ window 47,10 # can jump here instead after being hit with the cannons
+84.8 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+89.9 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+94.1 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
+101.6 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+105.7 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
+113.2 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+118.4 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
 
-166.9 "--untargetable--"
-166.9 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 60,60 jump 40.4
-167.0 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-168.0 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-169.0 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-170.0 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+133.3 "--untargetable--"
+133.3 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 60,60 jump 35.5
+133.4 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+134.4 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+135.4 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+136.4 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
-177.1 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
-177.2 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-178.2 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-179.2 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-180.2 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+143.5 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
+143.6 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+144.6 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+145.6 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+146.6 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
-187.3 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
-187.4 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-188.4 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-189.4 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-190.4 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+153.7 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
+153.8 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+154.8 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+155.8 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+156.8 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
 
 
-### Number XXIV
-#-p 1F1B:1011.4
-# -ii 2083 1F20 1F24 1F1E 1F1F
+### Subject Number XXIV
+# first phase is random, cycle order is always fire > ice > thunder > fire (repeat)
+# -ii 82B1 82B2 83D3 82AE 82AF 82B0 83D4 83D5 83D6 82B9
 
-# Note: "Towers" here means Fire II (1F1D) / Blizzard II (1F1E) / Thunder II (1F1F)
 1000.0 "Start" sync / 00:0839::Project Aegis will be sealed off/ window 10000,0
-1011.4 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
-1019.9 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1030.1 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A9:/ window 10,10 jump 1095.0 # fire phase first
+1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A8:/ window 10,10 jump 1144.7 # ice phase first
+1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82AA:/ window 10,10 jump 1193.6 # thunder phase first
+1013.2 "Elemental Overload (Random)"
 
-1033.1 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
-1044.6 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
-1053.7 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1060.8 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
-1069.2 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+# fire phase
+1100.0 "Elemental Overload (Fire)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(9|C):/
+1112.2 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1118.9 "Fire II" sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
+1130.0 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1132.6 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1133.6 "Fire II" sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
+1134.6 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
 
-# loop begins
-1082.4 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
-1087.4 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
-1096.6 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1103.8 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
-1112.3 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1122.5 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+# ice phase
+1149.7 "Elemental Overload (Ice)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(8|B):/
+1161.1 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
+1167.8 "Blizzard II" sync / 1[56]:[^:]*:Subject Number XXIV:82B5:/
+1178.8 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
+1181.4 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
+1182.4 "Blizzard II" sync / 1[56]:[^:]*:Subject Number XXIV:82B5:/
+1183.5 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
 
-1125.5 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/
-1131.6 "Barrier Shift" sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
-1140.8 "Gale Cut" sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1148.0 "Stab" sync / 1[56]:[^:]*:Number XXIV:1F1B:/
+# thunder phase
+1198.6 "Elemental Overload (Thunder)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(A|D):/
+1211.6 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
+1213.1 "--sync--" sync / 1[56]:[^:]*:Subject Number XXIV:82BB:/
+1218.1 "Sparking Current" sync / 1[56]:[^:]*:Subject Number XXIV:82BA:/
+1227.0 "--sync--" sync / 1[56]:[^:]*:Subject Number XXIV:82BB:/
+1230.4 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
+1232.1 "Sparking Current" sync / 1[56]:[^:]*:Subject Number XXIV:82BA:/
+1234.5 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
+1236.1 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
 
-1161.5 "Towers" sync / 1[56]:[^:]*:Number XXIV:1F1[DEF]:/ window 20,20 jump 1082.4
-1166.5 "Barrier Shift" #sync / 1[56]:[^:]*:Number XXIV:1F2[123]:/
-1175.7 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1182.9 "Stab" #sync / 1[56]:[^:]*:Number XXIV:1F1B:/
-1191.4 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
-1201.6 "Gale Cut" #sync / 1[56]:[^:]*:Number XXIV:1F1C:/
+# loop
+1251.2 "Elemental Overload (Fire)" sync / 1[56]:[^:]*:Subject Number XXIV:82AC:/ jump 1100.0
+1262.5 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1269.2 "Fire II" #sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
+1280.2 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1282.8 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
+1283.8 "Fire II" #sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
+1284.9 "System Error" #sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
 
 
 ### Inferno

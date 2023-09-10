@@ -24,7 +24,7 @@ export class LineEvent0x1A extends LineEvent {
   constructor(repo: LogRepository, line: string, parts: string[]) {
     super(repo, line, parts);
 
-    this.effectId = parseInt(parts[fields.effectId]?.toUpperCase() ?? '');
+    this.effectId = parseInt(parts[fields.effectId]?.toUpperCase() ?? '', 16);
     this.effect = parts[fields.effect] ?? '';
     this.durationString = parts[fields.duration] ?? '';
     this.durationFloat = parseFloat(this.durationString);

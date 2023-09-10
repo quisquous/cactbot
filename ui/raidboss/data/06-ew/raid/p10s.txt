@@ -1,0 +1,161 @@
+### P10S: Anabaseios: The Tenth Circle (Savage)
+
+# -p 82A5:14.1
+# -ii 82A0 8281 8284 8286 87B1 829E 828A 8296
+
+# Ignored abilities
+# Pandaemonium:82A0 Soul Grasp (damage)
+# Pandaemoniac Pillar:8281 Bury (self-targeted)
+# Pandaemoniac Pillar:8286 Cannonspawn (self-targeted)
+# Pandaemoniac Pillar:8284 Imprisonment (self-targeted)
+# Pandaemonium:8287 Cannonspawn (damage)
+# Pandaemonium:8285 Imprisonment (damage)
+# Pandaemonium:87B1 Pandaemoniac Meltdown (spread laser damage)
+# Pandaemonium:829E Pandaemoniac Meltdown (line stack damage)
+# Pandaemonium:828E Touchdown (damage)
+# Pandaemonium:828A Pandaemoniac Ray (damage)
+# Pandaemonium:8296 Parted Plumes (damage)
+
+# TODO: should we get rid of "(cast)" abilities and mark them "--sync--"
+# as they are not particularly useful mit-wise?
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+9.1 "--sync--" sync / 14:[^:]*:Pand\u00e6monium:82A5:/ window 15,15
+14.1 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
+23.2 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+34.7 "Dividing Wings (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
+40.8 "Steel Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8723:/
+48.5 "Dividing Wings (cone)" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
+48.7 "Steel Web (share)" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
+58.7 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
+67.4 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
+68.5 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
+70.9 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
+78.6 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
+89.6 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+
+96.0 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
+97.3 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
+102.9 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
+103.0 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+
+108.4 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
+118.4 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
+122.8 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
+126.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
+131.9 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
+
+144.2 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828D:/
+145.8 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+148.8 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+
+159.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
+168.9 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+
+185.0 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
+194.1 "Pandaemoniac Turrets" sync / 1[56]:[^:]*:Pand\u00e6monium:87AF:/
+195.4 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
+206.1 "Peal of Condemnation 1" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
+210.7 "Peal of Condemnation 2" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
+215.1 "Peal of Condemnation 3" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
+219.7 "Peal of Condemnation 4" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
+
+223.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+226.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+233.8 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
+237.6 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
+
+249.3 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
+258.4 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+277.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
+278.6 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
+281.0 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
+288.7 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
+298.9 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
+299.6 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+
+308.0 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
+308.9 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
+316.2 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
+317.5 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
+323.1 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
+323.2 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+
+329.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+330.6 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
+333.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+
+334.3 "Jade Passage" #sync / 1[56]:[^:]*:Arcane Sphere:828C:/
+338.6 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
+344.7 "Steel Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8723:/
+356.8 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828D:/
+357.4 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
+357.7 "Steel Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
+357.7 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828E:/
+370.3 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
+375.3 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
+384.6 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+
+405.0 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
+411.1 "Pandaemoniac Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8724:/
+418.9 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
+419.1 "Steel Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
+419.2 "Pandaemon's Holy" sync / 1[56]:[^:]*:Pand\u00e6monium:82A6:/
+422.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+426.4 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
+428.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+
+437.8 "Harrowing Hell (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:828F:/
+438.8 "Harrowing Hell 1" sync / 1[56]:[^:]*:Pand\u00e6monium:8290:/
+440.8 "Harrowing Hell 2" sync / 1[56]:[^:]*:Pand\u00e6monium:8291:/
+442.6 "Harrowing Hell 3" sync / 1[56]:[^:]*:Pand\u00e6monium:8292:/
+444.3 "Harrowing Hell 4" sync / 1[56]:[^:]*:Pand\u00e6monium:8293:/
+446.0 "Harrowing Hell 5" sync / 1[56]:[^:]*:Pand\u00e6monium:86B9:/
+447.6 "Harrowing Hell 6" sync / 1[56]:[^:]*:Pand\u00e6monium:86BA:/
+448.9 "Harrowing Hell 7" sync / 1[56]:[^:]*:Pand\u00e6monium:86BB:/
+450.1 "Harrowing Hell 8" sync / 1[56]:[^:]*:Pand\u00e6monium:86BC:/
+454.0 "Harrowing Hell (knockback)" sync / 1[56]:[^:]*:Pand\u00e6monium:8294:/
+
+459.3 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+462.3 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+
+480.5 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
+490.6 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+512.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
+514.0 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
+516.4 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
+523.1 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
+534.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+
+543.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8295:/ duration 10
+
+555.9 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
+
+559.7 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
+563.0 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
+569.1 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
+579.1 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
+
+586.4 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
+587.3 "Bury" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8281:/
+593.3 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
+593.4 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+
+595.8 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
+600.8 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
+
+623.5 "Harrowing Hell (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:828F:/
+624.5 "Harrowing Hell 1" sync / 1[56]:[^:]*:Pand\u00e6monium:8290:/
+626.5 "Harrowing Hell 2" sync / 1[56]:[^:]*:Pand\u00e6monium:8291:/
+628.3 "Harrowing Hell 3" sync / 1[56]:[^:]*:Pand\u00e6monium:8292:/
+630.0 "Harrowing Hell 4" sync / 1[56]:[^:]*:Pand\u00e6monium:8293:/
+631.7 "Harrowing Hell 5" sync / 1[56]:[^:]*:Pand\u00e6monium:86B9:/
+633.3 "Harrowing Hell 6" sync / 1[56]:[^:]*:Pand\u00e6monium:86BA:/
+634.6 "Harrowing Hell 7" sync / 1[56]:[^:]*:Pand\u00e6monium:86BB:/
+635.8 "Harrowing Hell 8" sync / 1[56]:[^:]*:Pand\u00e6monium:86BC:/
+639.7 "Harrowing Hell (enrage)" sync / 1[56]:[^:]*:Pand\u00e6monium:8294:/

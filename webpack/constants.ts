@@ -13,6 +13,7 @@ export const cactbotModules = {
   radar: 'ui/radar/radar',
   raidboss: 'ui/raidboss/raidboss',
   raidemulator: 'ui/raidboss/raidemulator',
+  splitter: 'util/logtools/web_splitter',
   test: 'ui/test/test',
 };
 
@@ -122,6 +123,11 @@ export const cactbotHtmlChunksMap = {
   'ui/test/test.html': {
     chunks: [
       cactbotModules.test,
+    ],
+  },
+  'util/logtools/splitter.html': {
+    chunks: [
+      cactbotModules.splitter,
     ],
   },
 };

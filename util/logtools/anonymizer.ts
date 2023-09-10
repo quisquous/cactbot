@@ -44,7 +44,7 @@ export default class Anonymizer {
       return line;
 
     // Always replace the hash.
-    if (splitLine[splitLine.length - 1]?.length === 16)
+    if (splitLine[splitLine.length - 1]?.trimEnd().length === 16)
       splitLine[splitLine.length - 1] = this.fakeHash;
     else
       notifier.warn(`missing hash ${splitLine.length}`, splitLine);
@@ -125,7 +125,7 @@ export default class Anonymizer {
       const playerId = field.toUpperCase();
 
       // Cutscenes get added combatant messages with ids such as 'FF000006' and no name.
-      const isCutsceneId = playerId.substr(0, 2) === 'FF';
+      const isCutsceneId = playerId.startsWith('FF');
 
       // Handle weirdly shaped ids.
       if (playerId.length !== 8 || isCutsceneId) {
@@ -145,11 +145,11 @@ export default class Anonymizer {
       }
 
       // Ignore monsters.
-      if (playerId[0] === '4')
+      if (playerId.startsWith('4'))
         continue;
 
       // Replace the id at this index with a fake player id.
-      if (!this.anonMap[playerId])
+      if (this.anonMap[playerId] === undefined)
         this.anonMap[playerId] = this.addNewPlayer();
       const fakePlayerId = this.anonMap[playerId];
       if (fakePlayerId === undefined) {
@@ -220,7 +220,7 @@ export default class Anonymizer {
       if (emptyIds.includes(field))
         return;
       if (playerIds.includes(field)) {
-        notifier.warn(`uncaught player id ${field}, idx: ${idx}`, splitLine);
+        notifier.error(`uncaught player id ${field}, idx: ${idx}`, splitLine);
         success = false;
       }
     });

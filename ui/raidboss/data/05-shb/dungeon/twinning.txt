@@ -3,14 +3,10 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
-
 ### Alpha Zaghnal
 # -p 3D65:108.5 -ii 3D66 3D67 3D68 3D69 3D6A 41CA 3D6C
 100.0 "--sync--" sync / 00:0839::Repurposing will be sealed off/ window 100,0
-102.5 "--sync--" sync / 1[56]:[^:]*:Cladoselache:366:/ window 103,0
-108.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/
+108.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/ window 109,9
 117.6 "Beastly Roar" sync / 1[56]:[^:]*:Alpha Zaghnal:3D64:/
 122.9 "Beast Rampant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D60:/
 
@@ -37,9 +33,8 @@ hideall "--sync--"
 ### Mithridates
 # -p 3DED:512 -ii 3DEC 3DEF
 500.0 "--sync--" sync / 00:0839::Aetherial Observation will be sealed off/ window 500,0
-501.0 "--sync--" sync / 1[56]:[^:]*:Mithridates:366:/ window 501,0
 
-512.0 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
+512.0 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/ window 512,10
 522.2 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/
 531.1 "Shock" sync / 1[56]:[^:]*:Levinball:3DF1:/
 543.8 "Laserblade" sync / 1[56]:[^:]*:Mithridates:3DEB:/
@@ -69,10 +64,8 @@ hideall "Temporal Paradox"
 hideall "Temporal Flow"
 
 1000.0 "--sync--" sync / 00:0839::The Cornice will be sealed off/ window 1000,0
-1001.0 "--sync--" sync / 1[56]:[^:]*:The Tycoon:3DFD:/ window 1001,0
 
-
-1013.8 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
+1013.8 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/ window 1013.8,5
 1016.2 "Temporal Paradox" sync / 1[56]:[^:]*:The Tycoon:3DF7:/
 1023.1 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
 1024.4 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/

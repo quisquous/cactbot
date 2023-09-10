@@ -1,21 +1,29 @@
+import { PluginCombatantState } from '../types/event';
 import { NetFieldsReverse } from '../types/net_fields';
 
 export type LogDefinition = {
+  // The log id, as a decimal string, minimum two characters.
   type: string;
+  // The informal name of this log (must match the key that the LogDefinition is a value for).
   name: string;
-  // Parsed ACT log line type.
+  // The plugin that generates this log.
+  source: 'FFXIV_ACT_Plugin' | 'OverlayPlugin';
+  // Parsed ACT log line type.  OverlayPlugin lines use the `type` as a string.
   messageType: string;
-  // include all of these lines in any split
+  // If true, always include this line when splitting logs (e.g. FFXIV plugin version).
   globalInclude?: boolean;
-  // include the last line of this type in any split
+  // If true, always include the last instance of this line when splitting logs (e.g. ChangeZone).
   lastInclude?: boolean;
-  // whether this line can be anonymized
+  // True if the line can be anonymized (i.e. removing player ids and names).
   canAnonymize?: boolean;
-  // needs more information, never seen this log
+  // If true, this log has not been seen before and needs more information.
   isUnknown?: boolean;
-  // fields at this index and beyond are cleared, when anonymizing
+  // Fields at this index and beyond are cleared, when anonymizing.
   firstUnknownField?: number;
+  // A map of all of the fields, unique field name to field index.
   fields?: { [fieldName: string]: number };
+  // A list of field ids that *may* contain RSV keys (for decoding)
+  possibleRsvFields?: readonly number[];
   subFields?: {
     [fieldName: string]: {
       [fieldValue: string]: {
@@ -24,20 +32,77 @@ export type LogDefinition = {
       };
     };
   };
-  // map of indexes from a player id to the index of that player name
+  // Map of indexes from a player id to the index of that player name.
   playerIds?: { [fieldIdx: number]: number | null };
-  // a list of fields that are ok to be blank (or have invalid ids)
+  // A list of fields that are ok to be blank (or have invalid ids).
   blankFields?: readonly number[];
-  // this field and any field after will be treated as optional when creating capturing regexes
-  firstOptionalField: (number | undefined);
+  // This field and any field after will be treated as optional when creating capturing regexes.
+  firstOptionalField: number | undefined;
+  // These fields are treated as repeatable fields
+  repeatingFields?: {
+    startingIndex: number;
+    label: string;
+    names: readonly string[];
+    sortKeys?: boolean;
+    primaryKey: string;
+    possibleKeys: readonly string[];
+  };
 };
 export type LogDefinitionMap = { [name: string]: LogDefinition };
 type LogDefinitionVersionMap = { [version: string]: LogDefinitionMap };
+
+// TODO: Maybe bring in a helper library that can compile-time extract these keys instead?
+const combatantMemoryKeys: readonly (Extract<keyof PluginCombatantState, string>)[] = [
+  'CurrentWorldID',
+  'WorldID',
+  'WorldName',
+  'BNpcID',
+  'BNpcNameID',
+  'PartyType',
+  'ID',
+  'OwnerID',
+  'WeaponId',
+  'Type',
+  'Job',
+  'Level',
+  'Name',
+  'CurrentHP',
+  'MaxHP',
+  'CurrentMP',
+  'MaxMP',
+  'PosX',
+  'PosY',
+  'PosZ',
+  'Heading',
+  'MonsterType',
+  'Status',
+  'ModelStatus',
+  'AggressionStatus',
+  'TargetID',
+  'IsTargetable',
+  'Radius',
+  'Distance',
+  'EffectiveDistance',
+  'NPCTargetID',
+  'CurrentGP',
+  'MaxGP',
+  'CurrentCP',
+  'MaxCP',
+  'PCTargetID',
+  'IsCasting1',
+  'IsCasting2',
+  'CastBuffID',
+  'CastTargetID',
+  'CastDurationCurrent',
+  'CastDurationMax',
+  'TransformationId',
+] as const;
 
 const latestLogDefinitions = {
   GameLog: {
     type: '00',
     name: 'GameLog',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'ChatLog',
     fields: {
       type: 0,
@@ -71,6 +136,7 @@ const latestLogDefinitions = {
   ChangeZone: {
     type: '01',
     name: 'ChangeZone',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Territory',
     fields: {
       type: 0,
@@ -85,6 +151,7 @@ const latestLogDefinitions = {
   ChangedPlayer: {
     type: '02',
     name: 'ChangedPlayer',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'ChangePrimaryPlayer',
     fields: {
       type: 0,
@@ -102,6 +169,7 @@ const latestLogDefinitions = {
   AddedCombatant: {
     type: '03',
     name: 'AddedCombatant',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'AddCombatant',
     fields: {
       type: 0,
@@ -136,6 +204,7 @@ const latestLogDefinitions = {
   RemovedCombatant: {
     type: '04',
     name: 'RemovedCombatant',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'RemoveCombatant',
     fields: {
       type: 0,
@@ -164,6 +233,7 @@ const latestLogDefinitions = {
   PartyList: {
     type: '11',
     name: 'PartyList',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'PartyList',
     fields: {
       type: 0,
@@ -227,6 +297,7 @@ const latestLogDefinitions = {
   PlayerStats: {
     type: '12',
     name: 'PlayerStats',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'PlayerStats',
     fields: {
       type: 0,
@@ -256,6 +327,7 @@ const latestLogDefinitions = {
   StartsUsing: {
     type: '20',
     name: 'StartsUsing',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'StartsCasting',
     fields: {
       type: 0,
@@ -272,6 +344,7 @@ const latestLogDefinitions = {
       z: 11,
       heading: 12,
     },
+    possibleRsvFields: [5],
     blankFields: [6],
     playerIds: {
       2: 3,
@@ -283,6 +356,7 @@ const latestLogDefinitions = {
   Ability: {
     type: '21',
     name: 'Ability',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'ActionEffect',
     fields: {
       type: 0,
@@ -319,18 +393,19 @@ const latestLogDefinitions = {
       targetIndex: 45,
       targetCount: 46,
     },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
       6: 7,
     },
     blankFields: [6],
-    firstUnknownField: 44,
     canAnonymize: true,
     firstOptionalField: undefined,
   },
   NetworkAOEAbility: {
     type: '22',
     name: 'NetworkAOEAbility',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'AOEActionEffect',
     fields: {
       type: 0,
@@ -367,18 +442,19 @@ const latestLogDefinitions = {
       targetIndex: 45,
       targetCount: 46,
     },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
       6: 7,
     },
     blankFields: [6],
-    firstUnknownField: 44,
     canAnonymize: true,
     firstOptionalField: undefined,
   },
   NetworkCancelAbility: {
     type: '23',
     name: 'NetworkCancelAbility',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'CancelAction',
     fields: {
       type: 0,
@@ -389,6 +465,7 @@ const latestLogDefinitions = {
       name: 5,
       reason: 6,
     },
+    possibleRsvFields: [5],
     playerIds: {
       2: 3,
     },
@@ -398,6 +475,7 @@ const latestLogDefinitions = {
   NetworkDoT: {
     type: '24',
     name: 'NetworkDoT',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'DoTHoT',
     fields: {
       type: 0,
@@ -417,9 +495,24 @@ const latestLogDefinitions = {
       y: 14,
       z: 15,
       heading: 16,
+      sourceId: 17,
+      source: 18,
+      // An id number lookup into the AttackType table
+      damageType: 19,
+      sourceCurrentHp: 20,
+      sourceMaxHp: 21,
+      sourceCurrentMp: 22,
+      sourceMaxMp: 23,
+      // sourceCurrentTp: 24,
+      // sourceMaxTp: 25,
+      sourceX: 26,
+      sourceY: 27,
+      sourceZ: 28,
+      sourceHeading: 29,
     },
     playerIds: {
       2: 3,
+      17: 18,
     },
     canAnonymize: true,
     firstOptionalField: undefined,
@@ -427,6 +520,7 @@ const latestLogDefinitions = {
   WasDefeated: {
     type: '25',
     name: 'WasDefeated',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Death',
     fields: {
       type: 0,
@@ -446,6 +540,7 @@ const latestLogDefinitions = {
   GainsEffect: {
     type: '26',
     name: 'GainsEffect',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'StatusAdd',
     fields: {
       type: 0,
@@ -461,6 +556,7 @@ const latestLogDefinitions = {
       targetMaxHp: 10,
       sourceMaxHp: 11,
     },
+    possibleRsvFields: [3],
     playerIds: {
       5: 6,
       7: 8,
@@ -471,6 +567,7 @@ const latestLogDefinitions = {
   HeadMarker: {
     type: '27',
     name: 'HeadMarker',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'TargetIcon',
     fields: {
       type: 0,
@@ -488,6 +585,7 @@ const latestLogDefinitions = {
   NetworkRaidMarker: {
     type: '28',
     name: 'NetworkRaidMarker',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'WaymarkMarker',
     fields: {
       type: 0,
@@ -506,6 +604,7 @@ const latestLogDefinitions = {
   NetworkTargetMarker: {
     type: '29',
     name: 'NetworkTargetMarker',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'SignMarker',
     fields: {
       type: 0,
@@ -526,6 +625,7 @@ const latestLogDefinitions = {
   LosesEffect: {
     type: '30',
     name: 'LosesEffect',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'StatusRemove',
     fields: {
       type: 0,
@@ -538,6 +638,7 @@ const latestLogDefinitions = {
       target: 8,
       count: 9,
     },
+    possibleRsvFields: [3],
     playerIds: {
       5: 6,
       7: 8,
@@ -548,6 +649,7 @@ const latestLogDefinitions = {
   NetworkGauge: {
     type: '31',
     name: 'NetworkGauge',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Gauge',
     fields: {
       type: 0,
@@ -570,6 +672,7 @@ const latestLogDefinitions = {
   NetworkWorld: {
     type: '32',
     name: 'NetworkWorld',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'World',
     fields: {
       type: 0,
@@ -581,6 +684,7 @@ const latestLogDefinitions = {
   ActorControl: {
     type: '33',
     name: 'ActorControl',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Director',
     fields: {
       type: 0,
@@ -598,6 +702,7 @@ const latestLogDefinitions = {
   NameToggle: {
     type: '34',
     name: 'NameToggle',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'NameToggle',
     fields: {
       type: 0,
@@ -618,6 +723,7 @@ const latestLogDefinitions = {
   Tether: {
     type: '35',
     name: 'Tether',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Tether',
     fields: {
       type: 0,
@@ -639,6 +745,7 @@ const latestLogDefinitions = {
   LimitBreak: {
     type: '36',
     name: 'LimitBreak',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'LimitBreak',
     fields: {
       type: 0,
@@ -652,6 +759,7 @@ const latestLogDefinitions = {
   NetworkEffectResult: {
     type: '37',
     name: 'NetworkEffectResult',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'EffectResult',
     fields: {
       type: 0,
@@ -680,6 +788,7 @@ const latestLogDefinitions = {
   StatusEffect: {
     type: '38',
     name: 'StatusEffect',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'StatusList',
     fields: {
       type: 0,
@@ -713,6 +822,7 @@ const latestLogDefinitions = {
   NetworkUpdateHP: {
     type: '39',
     name: 'NetworkUpdateHP',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'UpdateHp',
     fields: {
       type: 0,
@@ -739,6 +849,7 @@ const latestLogDefinitions = {
   Map: {
     type: '40',
     name: 'Map',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'ChangeMap',
     fields: {
       type: 0,
@@ -750,10 +861,12 @@ const latestLogDefinitions = {
     },
     canAnonymize: true,
     firstOptionalField: undefined,
+    lastInclude: true,
   },
   SystemLogMessage: {
     type: '41',
     name: 'SystemLogMessage',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'SystemLogMessage',
     fields: {
       type: 0,
@@ -770,6 +883,7 @@ const latestLogDefinitions = {
   StatusList3: {
     type: '42',
     name: 'StatusList3',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'StatusList3',
     fields: {
       type: 0,
@@ -788,6 +902,7 @@ const latestLogDefinitions = {
   ParserInfo: {
     type: '249',
     name: 'ParserInfo',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Settings',
     fields: {
       type: 0,
@@ -800,6 +915,7 @@ const latestLogDefinitions = {
   ProcessInfo: {
     type: '250',
     name: 'ProcessInfo',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Process',
     fields: {
       type: 0,
@@ -812,6 +928,7 @@ const latestLogDefinitions = {
   Debug: {
     type: '251',
     name: 'Debug',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Debug',
     fields: {
       type: 0,
@@ -824,6 +941,7 @@ const latestLogDefinitions = {
   PacketDump: {
     type: '252',
     name: 'PacketDump',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'PacketDump',
     fields: {
       type: 0,
@@ -835,6 +953,7 @@ const latestLogDefinitions = {
   Version: {
     type: '253',
     name: 'Version',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Version',
     fields: {
       type: 0,
@@ -847,6 +966,7 @@ const latestLogDefinitions = {
   Error: {
     type: '254',
     name: 'Error',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'Error',
     fields: {
       type: 0,
@@ -858,12 +978,155 @@ const latestLogDefinitions = {
   None: {
     type: '[0-9]+',
     name: 'None',
+    source: 'FFXIV_ACT_Plugin',
     messageType: 'None',
     fields: {
       type: 0,
       timestamp: 1,
     },
     isUnknown: true,
+    firstOptionalField: undefined,
+  },
+  // OverlayPlugin log lines
+  LineRegistration: {
+    type: '256',
+    name: 'LineRegistration',
+    source: 'OverlayPlugin',
+    messageType: '256',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      id: 2,
+      source: 3,
+      version: 4,
+    },
+    globalInclude: true,
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  MapEffect: {
+    type: '257',
+    name: 'MapEffect',
+    source: 'OverlayPlugin',
+    messageType: '257',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      instance: 2,
+      flags: 3,
+      // values for the location field seem to vary between instances
+      // (e.g. a location of '08' in P5S does not appear to be the same location in P5S as in P6S)
+      // but this field does appear to consistently contain position info for the effect rendering
+      location: 4,
+      data0: 5,
+      data1: 6,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  FateDirector: {
+    type: '258',
+    name: 'FateDirector',
+    source: 'OverlayPlugin',
+    messageType: '258',
+    // fateId and progress are in hex.
+    fields: {
+      type: 0,
+      timestamp: 1,
+      category: 2,
+      // padding0: 3,
+      fateId: 4,
+      progress: 5,
+      // param3: 6,
+      // param4: 7,
+      // param5: 8,
+      // param6: 9,
+      // padding1: 10,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  CEDirector: {
+    type: '259',
+    name: 'CEDirector',
+    source: 'OverlayPlugin',
+    messageType: '259',
+    // all fields are in hex
+    fields: {
+      type: 0,
+      timestamp: 1,
+      popTime: 2,
+      timeRemaining: 3,
+      // unknown0: 4,
+      ceKey: 5,
+      numPlayers: 6,
+      status: 7,
+      // unknown1: 8,
+      progress: 9,
+      // unknown2: 10,
+      // unknown3: 11,
+      // unknown4: 12,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  InCombat: {
+    type: '260',
+    name: 'InCombat',
+    source: 'OverlayPlugin',
+    messageType: '260',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      inACTCombat: 2,
+      inGameCombat: 3,
+    },
+    canAnonymize: true,
+    firstOptionalField: undefined,
+  },
+  CombatantMemory: {
+    type: '261',
+    name: 'CombatantMemory',
+    source: 'OverlayPlugin',
+    messageType: '261',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      change: 2,
+      id: 3,
+      // from here, pairs of field name/values
+    },
+    canAnonymize: true,
+    firstOptionalField: 5,
+    // TODO: fix this data structure and anonymizer to be able to handle repeatingFields.
+    // At the very least, Name and PCTargetID need to be anonymized as well.
+    firstUnknownField: 4,
+    playerIds: {
+      3: null,
+    },
+    repeatingFields: {
+      startingIndex: 4,
+      label: 'pair',
+      names: ['key', 'value'],
+      sortKeys: true,
+      primaryKey: 'key',
+      possibleKeys: combatantMemoryKeys,
+    },
+  },
+  RSVData: {
+    type: '262',
+    name: 'RSVData',
+    source: 'OverlayPlugin',
+    messageType: '262',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      locale: 2,
+      // unknown0: 3,
+      key: 4,
+      value: 5,
+    },
+    canAnonymize: true,
     firstOptionalField: undefined,
   },
 } as const;
@@ -880,6 +1143,21 @@ export type LogDefinitions = typeof logDefinitionsVersions['latest'];
 export type LogDefinitionTypes = keyof LogDefinitions;
 export type LogDefinitionVersions = keyof typeof logDefinitionsVersions;
 
+type RepeatingFieldsNarrowingType = { readonly repeatingFields: unknown };
+
+export type RepeatingFieldsTypes = keyof {
+  [
+    type in LogDefinitionTypes as LogDefinitions[type] extends RepeatingFieldsNarrowingType ? type
+      : never
+  ]: null;
+};
+
+export type RepeatingFieldsDefinitions = {
+  [type in RepeatingFieldsTypes]: LogDefinitions[type] & {
+    readonly repeatingFields: Exclude<LogDefinitions[type]['repeatingFields'], undefined>;
+  };
+};
+
 export type ParseHelperField<
   Type extends LogDefinitionTypes,
   Fields extends NetFieldsReverse[Type],
@@ -888,6 +1166,11 @@ export type ParseHelperField<
   field: Fields[Field] extends string ? Fields[Field] : never;
   value?: string;
   optional?: boolean;
+  repeating?: boolean;
+  repeatingKeys?: string[];
+  sortKeys?: boolean;
+  primaryKey?: string;
+  possibleKeys?: string[];
 };
 
 export type ParseHelperFields<T extends LogDefinitionTypes> = {

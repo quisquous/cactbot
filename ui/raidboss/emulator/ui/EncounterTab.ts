@@ -55,8 +55,8 @@ export default class EncounterTab extends EventBus {
         const zone = enc.zoneName;
         // ?? operator here to account for old encounters that don't have the property
         const encDate = DTFuncs.timeStringToDateString(enc.start, enc.tzOffsetMillis ?? 0);
-        const encTime = DTFuncs.timeToTimeString(enc.start, enc.tzOffsetMillis ?? 0);
-        const encDuration = DTFuncs.msToDuration(enc.duration);
+        const encTime = DTFuncs.timeToTimeString(enc.start + enc.offset, enc.tzOffsetMillis ?? 0);
+        const encDuration = DTFuncs.msToDuration(enc.duration - enc.offset);
         const zoneObj = this.encounters[zone] = this.encounters[zone] || {};
         const dateObj = zoneObj[encDate] = zoneObj[encDate] || [];
         dateObj.push({
@@ -161,7 +161,7 @@ export default class EncounterTab extends EventBus {
 
     let clear = true;
 
-    if (!this.currentZone || !this.currentDate)
+    if (this.currentZone === undefined || this.currentDate === undefined)
       return;
 
     const zoneMap = this.encounters[this.currentZone];
@@ -199,7 +199,7 @@ export default class EncounterTab extends EventBus {
         });
         t.classList.add('selected');
         const index = t.getAttribute('data-index');
-        if (index)
+        if (index !== null)
           this.currentEncounter = parseInt(index);
         this.refreshUI();
       });
@@ -213,12 +213,12 @@ export default class EncounterTab extends EventBus {
   refreshInfo(): void {
     this.$infoColumn.innerHTML = '';
 
-    const zoneMap = this.currentZone ? this.encounters[this.currentZone] : undefined;
+    const zoneMap = this.currentZone !== undefined ? this.encounters[this.currentZone] : undefined;
 
     if (!zoneMap)
       return;
 
-    const dateMap = this.currentDate ? zoneMap[this.currentDate] : undefined;
+    const dateMap = this.currentDate !== undefined ? zoneMap[this.currentDate] : undefined;
 
     if (!dateMap)
       return;
@@ -229,10 +229,6 @@ export default class EncounterTab extends EventBus {
       return;
 
     const enc = encMap.encounter;
-
-    let pullAt = 'N/A';
-    if (!isNaN(enc.offset))
-      pullAt = DTFuncs.timeToString(enc.offset, false);
 
     const $info = this.$encounterInfoTemplate.cloneNode(true);
     if (!($info instanceof HTMLElement))
@@ -253,12 +249,11 @@ export default class EncounterTab extends EventBus {
     querySelectorSafe($info, '.encounterZone .label').textContent = enc.zoneName;
     // ?? operator here to account for old encounters that don't have the property
     querySelectorSafe($info, '.encounterStart .label').textContent = DTFuncs
-      .dateTimeToString(enc.start, enc.tzOffsetMillis ?? 0);
+      .dateTimeToString(enc.start + enc.offset, enc.tzOffsetMillis ?? 0);
     querySelectorSafe($info, '.encounterDuration .label').textContent = DTFuncs.timeToString(
-      enc.duration,
+      enc.duration - enc.offset,
       false,
     );
-    querySelectorSafe($info, '.encounterOffset .label').textContent = pullAt;
     querySelectorSafe($info, '.encounterName .label').textContent = enc.name;
     querySelectorSafe($info, '.encounterStartStatus .label').textContent = enc.startStatus;
     querySelectorSafe($info, '.encounterEndStatus .label').textContent = enc.endStatus;

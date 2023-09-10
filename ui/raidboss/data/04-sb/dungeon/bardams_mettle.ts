@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -10,22 +9,28 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'BardamsMettle',
   zoneId: ZoneId.BardamsMettle,
   timelineFile: 'bardams_mettle.txt',
   timelineTriggers: [
     {
       id: 'Bardam\'s Mettle Feathercut',
+      // untelegraphed, instant tank cleave
       regex: /Feathercut/,
       beforeSeconds: 4,
-      response: Responses.tankBuster(),
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
     {
       id: 'Bardam\'s Mettle Rush',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0039' }),
+      // 0039 = pink, un-stretched tether
+      // 0001 = purple, stretched tether
+      // capture both in case we start already stretched
+      netRegex: { id: ['0039', '0001'], source: 'Garula' },
       condition: Conditions.targetIsYou(),
+      suppressSeconds: 15, // tether log line is sent repeatedly until mechanic finishes
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -39,29 +44,33 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Bardam\'s Mettle War Cry',
-      type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
+      id: 'Bardam\'s Mettle War Cry + Earthquake',
+      // War Cry (1EFA, small raidwide, triggers adds) and Earthquake (1EFB, medium raidwide w/ 2s stun)
+      // are instant and used after Rush (1EF9, charge on tethered player)
+      type: 'Ability',
+      netRegex: { id: '1EF9', source: 'Garula', capture: false },
       response: Responses.aoe(),
     },
     {
       // Both Bardam and Yol use the 0017 head marker.
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
+      // trigger off Yol's first auto in case of chat lines being turned off
       id: 'Bardam\'s Mettle Dead Bardam',
-      type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Voiceless Muse will be sealed off.*?', capture: false }),
+      type: 'Ability',
+      netRegex: { id: '367', source: 'Yol', capture: false },
+      suppressSeconds: 99999,
       run: (data) => data.deadBardam = true,
     },
     {
       id: 'Bardam\'s Mettle Empty Gaze',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F04', source: 'Hunter Of Bardam', capture: false }),
+      netRegex: { id: '1F04', source: 'Hunter Of Bardam', capture: false },
       response: Responses.lookAway(),
     },
     {
       id: 'Bardam\'s Mettle Sacrifice',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
+      netRegex: { id: '1F01', source: 'Bardam', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -80,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       // but 257D is used only once. The others are 257E.
       id: 'Bardam\'s Mettle Comet',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
+      netRegex: { id: '257D', source: 'Bardam', capture: false },
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -97,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Meteor Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2582', source: 'Looming Shadow' }),
+      netRegex: { id: '2582', source: 'Looming Shadow' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -114,26 +123,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Wind Unbound',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
+      netRegex: { id: '1F0A', source: 'Yol', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Bardam\'s Mettle Flutterfall',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: (data, matches) => data.me === matches.target && data.deadBardam,
       response: Responses.spread(),
     },
     {
       id: 'Bardam\'s Mettle Eye Of The Fierce',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
-      response: Responses.lookAway(),
+      netRegex: { id: '1F0D', source: 'Yol', capture: false },
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'Bardam\'s Mettle Wingbeat You',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -150,7 +159,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Bardam\'s Mettle Wingbeat Others',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0010' }),
+      netRegex: { id: '0010' },
       condition: Conditions.targetIsNotYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {

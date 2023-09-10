@@ -41,7 +41,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Damage Down
       netRegex: NetRegexes.gainsEffect({ effectId: '2B8' }),
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.effect };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
   ],

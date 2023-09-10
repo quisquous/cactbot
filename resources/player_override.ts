@@ -1,7 +1,7 @@
-import { Lang } from '../resources/languages';
 import { Party, PlayerChangedRet } from '../types/event';
 import { Job } from '../types/job';
 
+import { Lang } from './languages';
 import { addOverlayListener } from './overlay_plugin_api';
 import Util from './util';
 
@@ -27,7 +27,7 @@ export const addPlayerChangedOverrideListener = (
   let lastPlayerJob: Job | null = null;
 
   const onPlayerChanged: PlayerChangedFunc = (e: PlayerChangedDetail) => {
-    if (playerName) {
+    if (playerName !== undefined && playerName.length > 0) {
       e.detail.name = playerName;
       if (lastPlayerJob) {
         // Use the non-overridden job if we don't know an overridden one.
@@ -40,7 +40,7 @@ export const addPlayerChangedOverrideListener = (
   };
 
   addOverlayListener('onPlayerChangedEvent', onPlayerChanged);
-  if (!playerName)
+  if (playerName === undefined || playerName.length === 0)
     return;
 
   addOverlayListener('PartyChanged', (e) => {
@@ -210,7 +210,7 @@ export const addRemotePlayerSelectUI = (lang: Lang): void => {
     const defaultElem = addRadio(defaultText, '', 'player-radio-default');
     defaultElem.checked = true;
 
-    if (lastSelectedPlayer) {
+    if (lastSelectedPlayer !== null && lastSelectedPlayer.length > 0) {
       const last = addRadio(lastSelectedPlayer, lastSelectedPlayer, 'player-radio-last');
       last.checked = true;
     }

@@ -1,22 +1,20 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 # Guard Scorpion
 # -ii 2049 204A 204B 204C
+# boss will walk center before using 2048 Tail Laser, causes timeline drift
 0.0 "--Start--" sync / 00:0839::Rhalgr's Gate will be sealed off/
-4.1 "--sync--" sync / 1[56]:[^:]*:Magitek Scorpion:2457:/ window 3,1
-9.6 "Electromagnetic Field" sync / 1[56]:[^:]*:Magitek Scorpion:204D:/
+9.6 "Electromagnetic Field" sync / 1[56]:[^:]*:Magitek Scorpion:204D:/ window 10,5
 18.8 "Target Search" sync / 1[56]:[^:]*:Magitek Scorpion:2046:/
 29.4 "Lock On" sync / 1[56]:[^:]*:Magitek Scorpion:2047:/
-31.5 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/
+31.5 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/ window 5,5
 56.7 "Electromagnetic Field" sync / 1[56]:[^:]*:Magitek Scorpion:204D:/
 
 64.9 "Target Search" sync / 1[56]:[^:]*:Magitek Scorpion:2046:/
-72.2 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/
+72.2 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/ window 5,5
 75.5 "Lock On" sync / 1[56]:[^:]*:Magitek Scorpion:2047:/
-85.5 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/
+85.5 "Tail Laser" sync / 1[56]:[^:]*:Magitek Scorpion:2048:/ window 5,5
 93.9 "Lock On" sync / 1[56]:[^:]*:Magitek Scorpion:2047:/
 101.6 "Electromagnetic Field" sync / 1[56]:[^:]*:Magitek Scorpion:204D:/
 111.8 "Electromagnetic Field" sync / 1[56]:[^:]*:Magitek Scorpion:204D:/
@@ -30,87 +28,89 @@ hideall "--sync--"
 
 # Aulus Mal Asina
 # -ii 2051 2052 205E
-1000.0 "--Start--" sync / 00:0839::The Chamber of Knowledge will be sealed off/ window 1000,5
-1002.7 "--sync--" sync / 1[56]:[^:]*:Aulus Mal Asina:2458:/ window 3,1
-1013.2 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/
-1019.4 "Order To Charge" sync / 1[56]:[^:]*:Aulus Mal Asina:2057:/
-1020.2 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1025.6 "Order To Fire" sync / 1[56]:[^:]*:Aulus Mal Asina:2058:/
-1029.2 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Prototype Bit:205A:/
-1033.8 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
-1035.9 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1050.6 "Magitek Disruptor" sync / 1[56]:[^:]*:Aulus Mal Asina:2050:/
-1055.7 "Mindjack" sync / 1[56]:[^:]*:Aulus Mal Asina:204E:/ window 50,10
+1000.0 "--Start--" sync / 00:0839::The Chamber Of Knowledge will be sealed off/ window 1000,5
+1013.0 "Mana Burst" sync / 1[56]:[^:]*:Aulus mal Asina:204F:/ window 14,5
+1019.1 "Order to Charge" sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
+1020.0 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1025.3 "Order to Fire" sync / 1[56]:[^:]*:Aulus mal Asina:2058:/
+1028.9 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Prototype Bit:205A:/
+1033.3 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1035.3 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1053.3 "Mana Burst" sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1059.4 "Order to Charge" sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
 
-# Intermission.
-1056.9 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/ window 50,5
-1067.8 "Magitek Ray" sync / 1[56]:[^:]*:Prototype Bit:2054:/
-1073.8 "Magitek Ray" sync / 1[56]:[^:]*:Prototype Bit:2054:/ jump 1067.8
-1079.8 "Magitek Ray"
-1085.8 "Magitek Ray"
-1091.8 "Magitek Ray"
-1097.8 "Magitek Ray"
+# Phase 1 loop
+1060.3 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/ jump 1020.0
+1065.6 "Order to Fire" #sync / 1[56]:[^:]*:Aulus mal Asina:2058:/
+1069.2 "Aetherochemical Grenado" #sync / 1[56]:[^:]*:Prototype Bit:205A:/
+1073.7 "Integrated Aetheromodulator" #sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1075.7 "--sync--" #sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1093.7 "Mana Burst" #sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1099.8 "Order to Charge" #sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
 
-# Intermission closing
-1200.0 "--sync--" sync / 1[56]:[^:]*:Aulus Mal Asina:2056:/ window 200,5
-1201.5 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1216.5 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/
+# Intermission at <= 60% HP
+1500.0 "--sync--" sync / 14:[^:]*:Aulus Mal Asina:2050:/ window 500,1
+1503.0 "Magitek Disruptor" sync / 1[56]:[^:]*:Aulus mal Asina:2050:/
+1508.0 "Mindjack" sync / 1[56]:[^:]*:Aulus mal Asina:204E:/
+1509.2 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1517.8 "Magitek Ray" sync / 1[56]:[^:]*:Prototype Bit:2054:/
+1522.2 "Magitek Ray" sync / 1[56]:[^:]*:Prototype Bit:2054:/ jump 1517.8
+1528.3 "Magitek Ray"
+1534.3 "Magitek Ray"
+1540.3 "Magitek Ray"
+1546.3 "Magitek Ray"
 
-# Main rotation resumes
-1222.7 "Order To Charge" sync / 1[56]:[^:]*:Aulus Mal Asina:2057:/ window 150,30
-1223.5 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1228.9 "Order To Fire" sync / 1[56]:[^:]*:Aulus Mal Asina:2058:/
-1231.8 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
-1232.5 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Prototype Bit:205A:/
-1237.1 "Demimagicks" sync / 1[56]:[^:]*:Aulus Mal Asina:205D:/
-1237.1 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
-1239.2 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1247.2 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/
-1260.3 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/
+# Phase 2
+1600.0 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/ window 85,1
+1615.0 "Mana Burst" sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1621.1 "Order to Charge" sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
 
-1266.5 "Order To Charge" sync / 1[56]:[^:]*:Aulus Mal Asina:2057:/ window 15,15
-1267.3 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1272.7 "Order To Fire" sync / 1[56]:[^:]*:Aulus Mal Asina:2058:/
-1275.6 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
-1276.3 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Prototype Bit:205A:/
-1280.9 "Demimagicks" sync / 1[56]:[^:]*:Aulus Mal Asina:205D:/
-1280.9 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
-1283.0 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
-1291.0 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/
-1304.1 "Mana Burst" sync / 1[56]:[^:]*:Aulus Mal Asina:204F:/ jump 1141.7
+1622.0 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1627.3 "Order to Fire" sync / 1[56]:[^:]*:Aulus mal Asina:2058:/
+1630.3 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1630.7 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Prototype Bit:205A:/
+1635.2 "Integrated Aetheromodulator" sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1635.2 "Demimagicks" sync / 1[56]:[^:]*:Aulus mal Asina:205D:/
+1637.3 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1645.3 "Mana Burst" sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1658.5 "Mana Burst" sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1664.6 "Order to Charge" sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
 
-1310.3 "Order To Charge"
-1316.5 "Order To Fire"
-1319.4 "Integrated Aetheromodulator"
-1320.1 "Aetherochemical Grenado"
-1324.7 "Demimagicks"
-1324.7 "Integrated Aetheromodulator"
-1334.8 "Mana Burst"
+# Phase 2 loop
+1665.5 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:2053:/ jump 1622.0
+1670.8 "Order to Fire" #sync / 1[56]:[^:]*:Aulus mal Asina:2058:/
+1673.8 "Integrated Aetheromodulator" #sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1674.4 "Aetherochemical Grenado" #sync / 1[56]:[^:]*:Prototype Bit:205A:/
+1678.8 "Integrated Aetheromodulator" #sync / 1[56]:[^:]*:Prototype Bit:205B:/
+1678.8 "Demimagicks" #sync / 1[56]:[^:]*:Aulus mal Asina:205D:/
+1680.9 "--sync--" #sync / 1[56]:[^:]*:Prototype Bit:2053:/
+1688.9 "Mana Burst" #sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1702.1 "Mana Burst" #sync / 1[56]:[^:]*:Aulus mal Asina:204F:/
+1708.2 "Order to Charge" #sync / 1[56]:[^:]*:Aulus mal Asina:2057:/
 
 # Zenos Yae Galvus
 # -ii 2061 2062 2064 2067 2069 2589
-
+# boss will walk center before using 2065/2066/2068 Art of the Swell/Storm/Sword, causes timeline drift
 2000.0 "--Start--" sync / 00:0839::The Hall of the Griffin will be sealed off/ window 2000,5
-2003.5 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:366:/ window 3,1
-2009.7 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:205F:/
-2023.4 "Art of the Swell" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/
+2009.7 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:205F:/ window 10,5
+2023.4 "Storm?/Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[56]:/ window 5,5
 
 2032.8 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
-2050.6 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/
-2059.3 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/
+2050.6 "Storm?/Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[56]:/ window 5,5
+2059.3 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/ window 5,5
 2068.5 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
 
-2088.4 "Art of the Swell" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/
-2097.1 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/
+2088.4 "Storm?/Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[56]:/ window 5,5
+2097.1 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/ window 5,5
 2106.4 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
-2126.2 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/
-2134.9 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/
+2126.2 "Storm?/Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[56]:/ window 5,5
+2134.9 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/ window 5,5
 2144.2 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/ jump 2068.5
 
-2164.0 "Art of the Swell"
+2164.0 "Storm?/Swell?"
 2172.7 "Art of the Sword"
 2182.0 "Unmoving Troika"
-2201.8 "Art of the Storm"
+2201.8 "Storm?/Swell?"
 2210.5 "Art of the Sword"
 2219.8 "Unmoving Troika"
 
@@ -121,14 +121,14 @@ hideall "--sync--"
 2323.3 "Lightless Spark" sync / 1[56]:[^:]*:Zenos Yae Galvus:206B:/
 2331.6 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
 2341.7 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
-2354.4 "Storm?/Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[56]:/
+2354.4 "Storm?/Swell?/Sword?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[568]:/ window 5,5
 2366.5 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
 2371.7 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
 
 # Paths diverge into Storm/Swell blocks
 # Blocks loop at random to 20% HP
-2379.3 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ jump 2600.0
-2379.3 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ jump 2500.0
+2379.3 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ window 5,5 jump 2600.0
+2379.3 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ window 5,5 jump 2500.0
 2381.8 "Vein Splitter"
 2385.3 "Lightless Spark?"
 2388.0 "Art of the Sword"
@@ -136,17 +136,17 @@ hideall "--sync--"
 2406.3 "Concentrativity"
 
 # Storm block
-2500.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/
+2500.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ window 5,5
 2502.5 "Vein Splitter" sync / 1[56]:[^:]*:Zenos Yae Galvus:206C:/
-2508.7 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/
+2508.7 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/ window 5,5
 2517.0 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
 2527.0 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
-2539.3 "Storm?/Swell?/Sword?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[568]:/
+2539.3 "Storm?/Swell?/Sword?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[568]:/ window 5,5
 2551.4 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
 2556.4 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/ window 20,20
 
-2564.0 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ jump 2600.0
-2564.0 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ jump 2500.0
+2564.0 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ window 5,5 jump 2600.0
+2564.0 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ window 5,5 jump 2500.0
 2566.5 "Vein Splitter"
 2570.0 "Lightless Spark?"
 2572.7 "Art of the Sword"
@@ -154,18 +154,18 @@ hideall "--sync--"
 2591.0 "Concentrativity"
 
 # Swell block
-2600.0 "Art of the Swell" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/
+2600.0 "Art of the Swell" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ window 5,5
 2602.5 "Vein Splitter" sync / 1[56]:[^:]*:Zenos Yae Galvus:206C:/
 2606.0 "Lightless Spark" sync / 1[56]:[^:]*:Zenos Yae Galvus:206B:/
-2608.7 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/
+2608.7 "Art of the Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2068:/ window 5,5
 2617.0 "Unmoving Troika" sync / 1[56]:[^:]*:Zenos Yae Galvus:2060:/
 2627.0 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
-2639.8 "Storm?/Swell?/Sword?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[568]:/
+2639.8 "Storm?/Swell?/Sword?" sync / 1[56]:[^:]*:Zenos Yae Galvus:206[568]:/ window 5,5
 2651.8 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/
 2656.8 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/ window 20,20
 
-2664.4 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ jump 2500.0
-2664.4 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ jump 2600.0
+2664.4 "Art of the Storm?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2066:/ window 5,5 jump 2500.0
+2664.4 "Art of the Swell?" sync / 1[56]:[^:]*:Zenos Yae Galvus:2065:/ window 5,5 jump 2600.0
 2666.9 "Vein Splitter"
 2670.4 "Lightless Spark?"
 2673.1 "Art of the Sword"
@@ -175,26 +175,26 @@ hideall "--sync--"
 # Intermission at < 20% HP
 2700.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:206E:/ window 700,5
 2706.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
-2712.7 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/
-2715.1 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/
+2712.7 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/ window 5,5
+2715.1 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/ window 5,5
 2732.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
-2739.1 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/
-2741.1 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/
+2739.1 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/ window 5,5
+2741.1 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/ window 5,5
 2763.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
-2769.6 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/
-2772.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/
+2769.6 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/ window 5,5
+2772.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/ window 5,5
 2789.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
-2796.0 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/
-2798.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/
+2796.0 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/ window 5,5
+2798.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/ window 5,5
 2815.0 "--sync--" sync / 1[56]:[^:]*:Zenos Yae Galvus:239F:/
-2822.0 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/
-2824.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/
+2822.0 "Swell/Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:258[68]:/ window 5,5
+2824.0 "Art of the Storm" sync / 1[56]:[^:]*:Zenos Yae Galvus:2587:/ window 5,5
 
 # The intermission closes here regardless.
 # Parties reaching here naturally will die to a full boss gauge.
 2836.1 "Storm, Swell, Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:206F:/ window 135,10
 2839.0 "--sync--" sync / 1[56]:[^:]*:The Storm:239E:/
-2843.1 "Storm, Swell, Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2070:/
+2843.1 "Storm, Swell, Sword" sync / 1[56]:[^:]*:Zenos Yae Galvus:2070:/ window 5,5
 
 2855.9 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/ window 20,5
 2866.1 "Concentrativity" sync / 1[56]:[^:]*:Zenos Yae Galvus:206D:/

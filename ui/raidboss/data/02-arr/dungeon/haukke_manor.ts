@@ -1,6 +1,6 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -8,12 +8,13 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'HaukkeManor',
   zoneId: ZoneId.HaukkeManor,
   triggers: [
     {
       id: 'Haukke Normal Dark Mist Stun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
+      netRegex: { id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] },
       condition: (data) => data.CanStun(),
       suppressSeconds: 2,
       response: Responses.stun('info'),
@@ -21,7 +22,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Haukke Normal Steward Soul Drain Stun',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
+      netRegex: { id: '35C', source: 'Manor Steward' },
       condition: (data) => data.CanStun(),
       response: Responses.stun('info'),
     },
@@ -29,21 +30,21 @@ const triggerSet: TriggerSet<Data> = {
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegex: { id: '2C1', source: 'Lady Amandine', capture: false },
       condition: (data) => !data.CanStun(),
       response: Responses.outOfMelee('alert'),
     },
     {
       id: 'Haukke Normal Amandine Void Fire III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
+      netRegex: { id: '356', source: 'Lady Amandine' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('info'),
     },
     {
       id: 'Haukke Normal Amandine Void Thunder III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegex: { id: '358', source: 'Lady Amandine' },
       condition: Conditions.targetIsYou(),
       response: Responses.getBehind('info'),
     },
@@ -51,7 +52,11 @@ const triggerSet: TriggerSet<Data> = {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow', capture: false }),
+      netRegex: {
+        line: 'The void lamps have begun emitting an eerie glow',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -68,7 +73,7 @@ const triggerSet: TriggerSet<Data> = {
       // Lady's Candle Spawn
       id: 'Haukke Normal Ladys Candle',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
+      netRegex: { npcNameId: '425', capture: false },
       response: Responses.killAdds(),
     },
     {
@@ -78,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
       // Suppression included since 2 Handmaiden's spawn at the same time
       id: 'Haukke Normal Ladys Handmaiden',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
+      netRegex: { npcNameId: '424', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -101,7 +106,8 @@ const triggerSet: TriggerSet<Data> = {
         'Manor Claviger': 'Herrenhaus-Schlüsselträgerin',
         'Lady Amandine': 'Lady Amandine',
         'Manor Steward': 'Seneschall',
-        'The void lamps have begun emitting an eerie glow': 'Die düsteren Lampen flackern unheilvoll auf',
+        'The void lamps have begun emitting an eerie glow':
+          'Die düsteren Lampen flackern unheilvoll auf',
       },
     },
     {
@@ -111,7 +117,8 @@ const triggerSet: TriggerSet<Data> = {
         'Manor Claviger': 'clavière du manoir',
         'Lady Amandine': 'dame Amandine',
         'Manor Steward': 'intendant du manoir',
-        'The void lamps have begun emitting an eerie glow': 'La lanterne sinistre luit d\'un éclat lugubre',
+        'The void lamps have begun emitting an eerie glow':
+          'La lanterne sinistre luit d\'un éclat lugubre',
       },
     },
     {

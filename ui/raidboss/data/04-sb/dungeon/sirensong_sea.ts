@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -8,6 +7,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSirensongSea',
   zoneId: ZoneId.TheSirensongSea,
   timelineFile: 'sirensong_sea.txt',
   timelineTriggers: [
@@ -22,25 +22,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sirensong Lugat Hydroball',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sirensong Lugat Sea Swallows All',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lugat', id: '1F58', capture: false }),
+      netRegex: { source: 'Lugat', id: '1F58', capture: false },
       response: Responses.drawIn(),
     },
     {
       id: 'Sirensong Lugat Overtow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lugat', id: '1F59', capture: false }),
+      netRegex: { source: 'Lugat', id: '1F59', capture: false },
       response: Responses.knockback('info'),
     },
     {
       id: 'Sirensong Governor Shadowflow',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Governor', id: '1F5E', capture: false }),
+      netRegex: { source: 'The Governor', id: '1F5E', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -56,26 +56,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sirensong Governor Bloodburst',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'The Governor', id: '1F5C', capture: false }),
+      netRegex: { source: 'The Governor', id: '1F5C', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'Sirensong Governor Enter Night',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0016' }),
+      netRegex: { id: '0016' },
       condition: Conditions.targetIsYou(),
       response: Responses.getOut(),
     },
     {
       id: 'Sirensong Fleshless Captive Seductive Scream',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Fleshless Captive', id: '2352' }),
+      netRegex: { source: 'Fleshless Captive', id: '2352' },
       response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'Sirensong Lorelei Morbid Advance',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lorelei', id: '1F65', capture: false }),
+      netRegex: { source: 'Lorelei', id: '1F65', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -91,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sirensong Lorelei Morbid Retreat',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lorelei', id: '1F66', capture: false }),
+      netRegex: { source: 'Lorelei', id: '1F66', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -107,7 +107,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sirensong Lorelei Somber Melody',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Lorelei', id: '1F67', capture: false }),
+      netRegex: { source: 'Lorelei', id: '1F67', capture: false },
       response: Responses.aoe(),
     },
   ],

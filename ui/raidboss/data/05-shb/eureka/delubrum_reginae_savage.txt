@@ -9,7 +9,7 @@ hideall "--sync--"
 # boss, as the Stygimoloch Warrior and Dahu areas can be seen from one
 # another, and so a generic "is no longer sealed" from one would stop
 # any timeline running for those in the other.
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
 ### Slimes (The Barracks, left side)

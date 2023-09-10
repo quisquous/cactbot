@@ -59,31 +59,31 @@ export default class PartyTracker {
   }
 
   // returns an array of the names of players in your immediate party
-  get partyNames(): string[] {
+  get partyNames(): readonly string[] {
     return this.partyNames_;
   }
 
-  get partyIds(): string[] {
+  get partyIds(): readonly string[] {
     return this.partyIds_;
   }
 
   // returns an array of the names of players in your alliance
-  get allianceNames(): string[] {
+  get allianceNames(): readonly string[] {
     return this.allianceNames_;
   }
 
   // returns an array of the names of tanks in your immediate party
-  get tankNames(): string[] {
+  get tankNames(): readonly string[] {
     return this.roleToPartyNames_['tank'];
   }
 
   // returns an array of the names of healers in your immediate party
-  get healerNames(): string[] {
+  get healerNames(): readonly string[] {
     return this.roleToPartyNames_['healer'];
   }
 
   // returns an array of the names of dps players in your immediate party
-  get dpsNames(): string[] {
+  get dpsNames(): readonly string[] {
     return this.roleToPartyNames_['dps'];
   }
 
@@ -132,7 +132,7 @@ export default class PartyTracker {
 
   // see: otherTank, but for healers.
   otherHealer(name: string): string | undefined {
-    const names = this.roleToPartyNames_['healer'];
+    const names = this.healerNames;
     if (names.length !== 2)
       return;
     if (names[0] === name)
@@ -144,8 +144,12 @@ export default class PartyTracker {
   // returns the job name of the specified party member
   jobName(name: string): Job | undefined {
     const partyIndex = this.partyNames.indexOf(name);
-    if (partyIndex >= 0)
-      return Util.jobEnumToJob(this.details[partyIndex]?.job as number);
+    if (partyIndex < 0)
+      return;
+    const job = this.details[partyIndex]?.job;
+    if (job === undefined)
+      return;
+    return Util.jobEnumToJob(job);
   }
 
   nameFromId(id: string): string | undefined {

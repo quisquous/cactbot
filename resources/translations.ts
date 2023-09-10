@@ -1,4 +1,5 @@
-import { CactbotBaseRegExp } from '../types/net_trigger';
+import { NetParams } from '../types/net_props';
+import { CactbotBaseRegExp, TriggerTypes } from '../types/net_trigger';
 import {
   commonReplacement,
   partialCommonTimelineReplacementKeys,
@@ -7,7 +8,7 @@ import {
 import { TimelineReplacement } from '../ui/raidboss/timeline_parser';
 
 import { Lang } from './languages';
-import NetRegexes from './netregexes';
+import NetRegexes, { keysThatRequireTranslation } from './netregexes';
 import Regexes from './regexes';
 
 // Fill in LocaleRegex so that things like LocaleRegex.countdownStart.de is a valid regex.
@@ -127,6 +128,10 @@ type LocaleLine = { en: string } & Partial<Record<Exclude<Lang, 'en'>, string>>;
 
 type LocaleRegexesObj = Record<keyof typeof localeLines, Record<Lang, RegExp>>;
 
+export type AnonNetRegexParams = {
+  [name: string]: string | readonly string[] | boolean | undefined | unknown[];
+};
+
 class RegexSet {
   regexes?: LocaleRegexesObj;
   netRegexes?: LocaleRegexesObj;
@@ -169,11 +174,11 @@ class RegexSet {
     const regexEn = builder(lines.en);
     return {
       en: regexEn,
-      de: lines.de ? builder(lines.de) : regexEn,
-      fr: lines.fr ? builder(lines.fr) : regexEn,
-      ja: lines.ja ? builder(lines.ja) : regexEn,
-      cn: lines.cn ? builder(lines.cn) : regexEn,
-      ko: lines.ko ? builder(lines.ko) : regexEn,
+      de: lines.de !== undefined ? builder(lines.de) : regexEn,
+      fr: lines.fr !== undefined ? builder(lines.fr) : regexEn,
+      ja: lines.ja !== undefined ? builder(lines.ja) : regexEn,
+      cn: lines.cn !== undefined ? builder(lines.cn) : regexEn,
+      ko: lines.ko !== undefined ? builder(lines.ko) : regexEn,
     };
   }
 }
@@ -194,6 +199,10 @@ export const translateWithReplacements = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): { text: string; wasTranslated: boolean } => {
+  // Special cases for empty and "not empty".
+  if (text === '' || text === '[^:]+' || text === '[^|]+')
+    return { text: text, wasTranslated: true };
+
   // All regex replacements are always global.
   const isGlobal = replaceKey === 'replaceSync';
 
@@ -216,7 +225,7 @@ export const translateWithReplacements = (
   const replacement = commonReplacement[replaceKey];
   for (const [key, value] of Object.entries(replacement ?? {})) {
     const repl = value[replaceLang];
-    if (!repl)
+    if (repl === undefined)
       continue;
     const regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
 
@@ -261,3 +270,68 @@ export const translateText = (
   replaceLang: Lang,
   replacements?: TimelineReplacement[],
 ): string => translateWithReplacements(text, 'replaceText', replaceLang, replacements).text;
+
+export const translateRegexBuildParam = <T extends TriggerTypes>(
+  params: NetParams[T],
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): {
+  params: NetParams[T];
+  wasTranslated: boolean;
+  missingFields?: string[];
+} => {
+  return translateRegexBuildParamAnon(params, replaceLang, replacements);
+};
+
+export const translateRegexBuildParamAnon = (
+  anonParams: Readonly<AnonNetRegexParams>,
+  replaceLang: Lang,
+  replacements?: TimelineReplacement[],
+): {
+  params: AnonNetRegexParams;
+  wasTranslated: boolean;
+  missingFields?: string[];
+} => {
+  let missingFields: string[] | undefined = undefined;
+  let wasTranslated = true;
+
+  // TODO: it's probably ok that this isn't a deep copy because we don't
+  // modify string[] directly, but it probably should be anyway.
+  const params: AnonNetRegexParams = { ...anonParams };
+
+  for (const key of keysThatRequireTranslation) {
+    const value = anonParams[key];
+    if (typeof value === 'boolean' || value === undefined)
+      continue;
+    // TODO: ideally, it'd be nice to assign directly back to params[key] instead of
+    // cheating and assigning back through anonParams.  The reason this is mostly
+    // ok is that if params[key] is a string it only gets assigned a string,
+    // and if it is a string[] it only gets assigned a string[], so the type can't
+    // change.  It might be possible to assign to params[key] if we make
+    // timestamp a string | string[]?
+    if (typeof value === 'string') {
+      const result = translateWithReplacements(
+        value,
+        'replaceSync',
+        replaceLang,
+        replacements,
+      );
+      params[key] = result.text;
+      wasTranslated = wasTranslated && result.wasTranslated;
+      if (!result.wasTranslated)
+        (missingFields ??= []).push(key);
+    } else {
+      params[key] = value.map((x) => {
+        if (typeof x !== 'string')
+          return x;
+        const result = translateWithReplacements(x, 'replaceSync', replaceLang, replacements);
+        wasTranslated = wasTranslated && result.wasTranslated;
+        if (!result.wasTranslated)
+          (missingFields ??= []).push(key);
+        return result.text;
+      });
+    }
+  }
+
+  return { params, wasTranslated, missingFields };
+};

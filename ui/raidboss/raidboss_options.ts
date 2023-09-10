@@ -1,5 +1,5 @@
 import { Lang } from '../../resources/languages';
-import UserConfig from '../../resources/user_config';
+import UserConfig, { ConfigValue } from '../../resources/user_config';
 import { BaseOptions, RaidbossData } from '../../types/data';
 import { Matches } from '../../types/net_matches';
 import {
@@ -7,6 +7,7 @@ import {
   TriggerAutoConfig,
   TriggerField,
   TriggerOutput,
+  TriggerSetAutoConfig,
 } from '../../types/trigger';
 
 // This file defines the base options that raidboss expects to see.
@@ -34,9 +35,11 @@ export type TimelineConfig = Partial<{
 }>;
 
 export type PerTriggerAutoConfig = { [triggerId: string]: TriggerAutoConfig };
+export type PerTriggerSetAutoConfig = { [triggerSetId: string]: TriggerSetAutoConfig };
 export type PerTriggerOptions = { [triggerId: string]: PerTriggerOption };
 export type DisabledTriggers = { [triggerId: string]: boolean };
 export type PerZoneTimelineConfig = { [zoneId: number]: TimelineConfig };
+export type TriggerSetConfig = { [triggerSetId: string]: { [key: string]: ConfigValue } };
 
 type RaidbossNonConfigOptions = {
   PlayerNicks: { [gameName: string]: string };
@@ -48,8 +51,10 @@ type RaidbossNonConfigOptions = {
   AudioAllowed: boolean;
   DisabledTriggers: DisabledTriggers;
   PerTriggerAutoConfig: PerTriggerAutoConfig;
+  PerTriggerSetAutoConfig: PerTriggerSetAutoConfig;
   PerTriggerOptions: PerTriggerOptions;
   PerZoneTimelineConfig: PerZoneTimelineConfig;
+  TriggerSetConfig: TriggerSetConfig;
   Triggers: LooseTriggerSet[];
   PlayerNameOverride?: string;
   IsRemoteRaidboss: boolean;
@@ -72,8 +77,10 @@ const defaultRaidbossNonConfigOptions: RaidbossNonConfigOptions = {
   DisabledTriggers: {},
 
   PerTriggerAutoConfig: {},
+  PerTriggerSetAutoConfig: {},
   PerTriggerOptions: {},
   PerZoneTimelineConfig: {},
+  TriggerSetConfig: {},
 
   Triggers: [],
 
@@ -112,8 +119,6 @@ const defaultRaidbossConfigOptions = {
   AlarmRumbleDuration: 750,
   AlarmRumbleWeak: 0.75,
   AlarmRumbleStrong: 0.75,
-  cactbotWormholeStrat: false,
-  cactbote8sUptimeKnockbackStrat: false,
 };
 type RaidbossConfigOptions = typeof defaultRaidbossConfigOptions;
 

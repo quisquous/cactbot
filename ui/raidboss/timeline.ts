@@ -1,6 +1,5 @@
-import { Lang, langToLocale } from '../../resources/languages';
-import NetRegexes from '../../resources/netregexes';
-import TimerBar from '../../resources/timerbar';
+import { commonNetRegex } from '../../resources/netregexes';
+import { UnreachableCode } from '../../resources/not_reached';
 import { LocaleRegex } from '../../resources/translations';
 import { LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
@@ -17,58 +16,35 @@ import {
   TimelineStyle,
 } from './timeline_parser';
 
-const kBig = 1000000000; // Something bigger than any fight length in seconds.
+// Hi, sorry about this whole class.  This is all pretty old code and honestly could
+// probably all be entirely rewritten at this point if anybody has the time or brain.
+//
+// This TimelineController class is involved in playing back the timeline efficiently.
+// As it says on the tin, it's the controller here and HtmlTimelineUI is the view.
+// The UI does very little and relies on TimelineController to manually add and remove
+// timer bars as necessary.  It does some animations when things are removed, but
+// only when it's been told to remove them.
+//
+// When any time is resynced even slightly, then all of the bars are removed and readded
+// with new times.  (This could probably be better to just update them in place!).
+// Similarly, any jump (even with lookahead) can't do any UI animations or anything
+// because the lookahead bars don't know anything about the new bars at the jump location.
+// This is kind of jarring but hopefully most people don't notice it.
+//
+// Things are also very precarious in terms of how this class walks through things.
+// If this.activeEvents is out of sync or unsorted, then it will clog up and new bars
+// will not be able to be added.  Durations are extremely awkward as they are manually
+// added once their original event has passed.  This means that if you ever jump
+// to a new location with an ongoing duration from the past, it will not appear.
+// It also has some issues if the duration extends past the jump (see comments inline).
+// Also because of this, we have to look through every event all the time to figure
+// out if there's a duration to care about (and probably we could figure this out
+// ahead of time like we do with placing text events + beforeSeconds at the correct
+// place in the timeline).
+//
+// There's also no testing, sorry.
 
-const timelineInstructions = {
-  en: [
-    'These lines are',
-    'debug timeline entries.',
-    'If you lock the overlay,',
-    'they will disappear!',
-    'Real timelines automatically',
-    'appear when supported.',
-  ],
-  de: [
-    'Diese Zeilen sind',
-    'Timeline Debug-Einträge.',
-    'Wenn du das Overlay sperrst,',
-    'werden sie verschwinden!',
-    'Echte Timelines erscheinen automatisch,',
-    'wenn sie unterstützt werden.',
-  ],
-  fr: [
-    'Ces lignes sont',
-    'des timelines de test.',
-    'Si vous bloquez l\'overlay,',
-    'elles disparaîtront !',
-    'Les vraies Timelines',
-    'apparaîtront automatiquement.',
-  ],
-  ja: [
-    'こちらはデバッグ用の',
-    'タイムラインです。',
-    'オーバーレイをロックすれば、',
-    'デバッグ用テキストも消える',
-    'サポートするゾーンにはタイム',
-    'ラインを動的にロードする。',
-  ],
-  cn: [
-    '显示在此处的是',
-    '调试用时间轴。',
-    '将此悬浮窗锁定',
-    '则会立刻消失',
-    '真实的时间轴会根据',
-    '当前区域动态加载并显示',
-  ],
-  ko: [
-    '이 막대바는 디버그용',
-    '타임라인 입니다.',
-    '오버레이를 위치잠금하면,',
-    '이 막대바도 사라집니다.',
-    '지원되는 구역에서 타임라인이',
-    '자동으로 표시됩니다.',
-  ],
-};
+const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
 const activeText = {
   en: 'Active:',
@@ -79,17 +55,78 @@ const activeText = {
   ko: '시전중:',
 };
 
-// TODO: Duplicated in 'jobs'
-const computeBackgroundColorFrom = (element: HTMLElement, classList: string): string => {
-  const div = document.createElement('div');
-  const classes = classList.split('.');
-  for (const cls of classes)
-    div.classList.add(cls);
-  element.appendChild(div);
-  const color = window.getComputedStyle(div).backgroundColor;
-  element.removeChild(div);
-  return color;
-};
+export class TimelineUI {
+  protected timeline: Timeline | null = null;
+
+  protected Init(): void {
+    /* noop */
+  }
+
+  protected AddDebugInstructions(): void {
+    /* noop */
+  }
+
+  public SetPopupTextInterface(_popupText: PopupTextGenerator): void {
+    /* noop */
+  }
+
+  protected Reset(): void {
+    /* noop */
+  }
+
+  public SetTimeline(timeline: Timeline | null): void {
+    this.Init();
+    this.Reset();
+
+    this.timeline = timeline;
+    if (this.timeline)
+      this.timeline.ui = this;
+  }
+
+  public OnAddTimer(_fightNow: number, _e: Event, _channeling: boolean): void {
+    /* noop */
+  }
+
+  public OnRemoveTimer(_e: Event, _expired: boolean, _force = false): void {
+    /* noop */
+  }
+
+  public OnShowInfoText(_text: string, _currentTime: number): void {
+    /* noop */
+  }
+
+  public OnShowAlertText(_text: string, _currentTime: number): void {
+    /* noop */
+  }
+
+  public OnShowAlarmText(_text: string, _currentTime: number): void {
+    /* noop */
+  }
+
+  public OnSpeakTTS(_text: string, _currentTime: number): void {
+    /* noop */
+  }
+
+  public OnTrigger(
+    _trigger: LooseTimelineTrigger,
+    _matches: RegExpExecArray | null,
+    _currentTime: number,
+  ): void {
+    /* noop */
+  }
+
+  public OnSyncTime(_fightNow: number, _running: boolean): void {
+    /* noop */
+  }
+}
+
+const initialNextEventState = {
+  index: 0,
+  minFightNow: 0,
+  timeOffset: 0,
+  sortKeyOffset: 0,
+  jumpCount: 0,
+} as const;
 
 export class Timeline {
   private replacements: TimelineReplacement[];
@@ -98,19 +135,28 @@ export class Timeline {
 
   protected activeSyncs: Sync[];
   private activeEvents: Event[];
+  private activeLastForceJumpSync?: Sync;
 
   public ignores: { [ignoreId: string]: boolean };
   public events: Event[];
   public texts: Text[];
   public syncStarts: Sync[];
   public syncEnds: Sync[];
+  public forceJumps: Sync[];
 
   public timebase = 0;
 
-  private nextEvent = 0;
+  private nextEventState: {
+    index: number;
+    minFightNow: number;
+    timeOffset: number;
+    sortKeyOffset: number;
+    jumpCount: number;
+  } = { ...initialNextEventState };
   private nextText = 0;
   private nextSyncStart = 0;
   private nextSyncEnd = 0;
+  private nextForceJump = 0;
 
   private updateTimer = 0;
 
@@ -143,6 +189,8 @@ export class Timeline {
     this.syncStarts = [];
     // Sorted by sync.end time.
     this.syncEnds = [];
+    // Sorted by event occurrence time.
+    this.forceJumps = [];
 
     this.LoadFile(text, triggers, styles);
     this.Stop();
@@ -162,15 +210,17 @@ export class Timeline {
     this.texts = parsed.texts;
     this.syncStarts = parsed.syncStarts;
     this.syncEnds = parsed.syncEnds;
+    this.forceJumps = parsed.forceJumps;
   }
 
   public Stop(): void {
     this.timebase = 0;
 
-    this.nextEvent = 0;
+    this.nextEventState = { ...initialNextEventState };
     this.nextText = 0;
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
+    this.nextForceJump = 0;
 
     const fightNow = 0;
     this._AdvanceTimeTo(fightNow);
@@ -182,7 +232,10 @@ export class Timeline {
     this.ui?.OnSyncTime(fightNow, false);
   }
 
-  protected SyncTo(fightNow: number, currentTime: number): void {
+  protected SyncTo(fightNow: number, currentTime: number, _sync?: Sync): void {
+    // If we ever sync somewhere else, then remove any active overhanging windows from force jumps.
+    this.activeLastForceJumpSync = undefined;
+
     // This records the actual time which aligns with "0" in the timeline.
     const newTimebase = new Date(currentTime - fightNow * 1000).valueOf();
     // Skip syncs that are too close.  Many syncs happen on abilities that
@@ -191,7 +244,7 @@ export class Timeline {
       return;
     this.timebase = newTimebase;
 
-    this.nextEvent = 0;
+    this.nextEventState = { ...initialNextEventState };
     this.nextText = 0;
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
@@ -224,18 +277,30 @@ export class Timeline {
       if (syncEnd && syncEnd.start <= fightNow)
         this.activeSyncs.push(syncEnd);
     }
+
+    if (
+      this.activeLastForceJumpSync !== undefined &&
+      this.activeLastForceJumpSync.start <= fightNow &&
+      this.activeLastForceJumpSync.end > fightNow
+    ) {
+      this.activeSyncs.push(this.activeLastForceJumpSync);
+    } else {
+      this.activeLastForceJumpSync = undefined;
+    }
   }
 
   public OnLogLine(line: string, currentTime: number): void {
     for (const sync of this.activeSyncs) {
-      if (line.search(sync.regex) >= 0) {
+      if (sync.regex.test(line)) {
         if ('jump' in sync) {
-          if (!sync.jump)
+          if (!sync.jump) {
+            this.SyncTo(0, currentTime, sync);
             this.Stop();
-          else
-            this.SyncTo(sync.jump, currentTime);
+          } else {
+            this.SyncTo(sync.jump, currentTime, sync);
+          }
         } else {
-          this.SyncTo(sync.time, currentTime);
+          this.SyncTo(sync.time, currentTime, sync);
         }
         break;
       }
@@ -243,9 +308,13 @@ export class Timeline {
   }
 
   private _AdvanceTimeTo(fightNow: number): void {
-    let event = this.events[this.nextEvent];
-    while (this.nextEvent < this.events.length && event && event.time <= fightNow)
-      event = this.events[++this.nextEvent];
+    // This function advances time to fightNow without processing any events.
+    let event = this.events[this.nextEventState.index];
+    while (
+      this.nextEventState.index < this.events.length && event &&
+      event.time + this.nextEventState.timeOffset <= fightNow
+    )
+      event = this.events[++this.nextEventState.index];
     let text = this.texts[this.nextText];
     while (this.nextText < this.texts.length && text && text.time <= fightNow)
       text = this.texts[++this.nextText];
@@ -255,6 +324,9 @@ export class Timeline {
     let syncEnd = this.syncEnds[this.nextSyncEnd];
     while (this.nextSyncEnd < this.syncEnds.length && syncEnd && syncEnd.end <= fightNow)
       syncEnd = this.syncEnds[++this.nextSyncEnd];
+    let forceJump = this.forceJumps[this.nextForceJump];
+    while (this.nextForceJump < this.forceJumps.length && forceJump && forceJump.time <= fightNow)
+      forceJump = this.forceJumps[++this.nextForceJump];
   }
 
   private _ClearTimers(): void {
@@ -291,6 +363,17 @@ export class Timeline {
       const e = this.activeEvents[i];
       if (e && e.time <= fightNow && e.duration) {
         const durationEvent: Event = {
+          // FIXME: it is incorrect to have a duration timer share an id with its non-duration
+          // origin when the duration extends across the end of a short loop.  Re-adding the
+          // non-duration origin will remove (due to same id) the ongoing duration timer.
+          // HOWEVER, there's also various issues (sortKey is incorrect, and activeEvent.time
+          // also needs to be adjusted) so for now we'll work around this by just not supporting
+          // durations that extend across jumps.
+          //
+          // Example timeline:
+          //   3 "Loop Target"
+          //   7 "Long Duration Event" duration 100
+          //   8 "Jump Backwards to Loop Target" sync /etc/ jump 3
           id: e.id,
           time: e.time + e.duration,
           sortKey: e.sortKey,
@@ -300,6 +383,7 @@ export class Timeline {
         };
         events.push(durationEvent);
         this.activeEvents.splice(i, 1);
+        this.ui?.OnRemoveTimer(e, false, true);
         this.ui?.OnAddTimer(fightNow, durationEvent, true);
         --i;
       }
@@ -313,19 +397,52 @@ export class Timeline {
 
   private _AddUpcomingTimers(fightNow: number): void {
     while (
-      this.nextEvent < this.events.length &&
+      this.nextEventState.index < this.events.length &&
       this.activeEvents.length < this.options.MaxNumberOfTimerBars
     ) {
-      const e = this.events[this.nextEvent];
-      if (!e)
+      const e = this.events[this.nextEventState.index];
+      if (e === undefined)
+        throw new UnreachableCode();
+
+      // If we have too many bars, just hold at this next event state
+      // until space frees up and we can start processing again.
+      const timeUntilEvent = e.time + this.nextEventState.timeOffset - fightNow;
+      if (timeUntilEvent > this.options.ShowTimerBarsAtSeconds)
         break;
-      if (e.time - fightNow > this.options.ShowTimerBarsAtSeconds)
-        break;
-      if (fightNow < e.time && !(e.name in this.ignores)) {
-        this.activeEvents.push(e);
-        this.ui?.OnAddTimer(fightNow, e, false);
+
+      ++this.nextEventState.index;
+
+      // If this event is before a forced jump or has already happened, skip.
+      if (e.time <= this.nextEventState.minFightNow || timeUntilEvent <= 0)
+        continue;
+
+      if (!(e.name in this.ignores)) {
+        const activeEvent: Event = {
+          ...e,
+          id: `${e.id}-${this.nextEventState.jumpCount}`,
+          time: e.time + this.nextEventState.timeOffset,
+          sortKey: e.sortKey + this.nextEventState.sortKeyOffset,
+        };
+        this.activeEvents.push(activeEvent);
+        this.ui?.OnAddTimer(fightNow, activeEvent, false);
       }
-      ++this.nextEvent;
+
+      const sync = e.sync;
+      if (sync?.jumpType === 'force' && sync?.jump !== undefined) {
+        this.nextEventState.index = 0;
+        this.nextEventState.minFightNow = sync.jump;
+        this.nextEventState.timeOffset += sync.time - sync.jump;
+        this.nextEventState.jumpCount++;
+        // All events are numbered with a sort key.  We could find the max sort key of all
+        // timeline entries and multiply by jump count to get an ordering such that
+        // all sort keys at a higher jump count sort after previous ones.  However,
+        // since we doing a forced jump lookahead at this point, we will never see anything higher
+        // than `e.sortKey`, so we can use that as a max.  Once the timeline syncs for any
+        // reason, we'll be back to jumpCount=0 and normal sort keys.  Sadly, this will not
+        // be true if we ever fix the duration bug across loops (see comments inline)
+        // but it's a band-aid for now, sorry.  Probably HtmlTimelineUI needs smarter ordering.
+        this.nextEventState.sortKeyOffset = e.sortKey * this.nextEventState.jumpCount;
+      }
     }
   }
 
@@ -366,10 +483,10 @@ export class Timeline {
     let nextSyncStarting = kBig;
     let nextSyncEnding = kBig;
 
-    if (this.nextEvent < this.events.length) {
-      const nextEvent = this.events[this.nextEvent];
+    if (this.nextEventState.index < this.events.length) {
+      const nextEvent = this.events[this.nextEventState.index];
       if (nextEvent) {
-        const nextEventEndsAt = nextEvent.time;
+        const nextEventEndsAt = nextEvent.time + this.nextEventState.timeOffset;
         console.assert(
           nextEventStarting > fightNow,
           'nextEvent wasn\'t updated before calling _ScheduleUpdate',
@@ -422,6 +539,10 @@ export class Timeline {
       }
     }
 
+    const forceEnd = this.activeLastForceJumpSync?.end;
+    if (forceEnd !== undefined && forceEnd < nextSyncEnding)
+      nextSyncEnding = forceEnd;
+
     const nextTime = Math.min(
       nextEventStarting,
       nextEventEnding,
@@ -429,22 +550,53 @@ export class Timeline {
       nextSyncStarting,
       nextSyncEnding,
     );
-    if (nextTime !== kBig) {
-      console.assert(nextTime > fightNow, 'nextTime is in the past');
-      this.updateTimer = window.setTimeout(
-        () => {
-          this._OnUpdateTimer(Date.now());
-        },
-        (nextTime - fightNow) * 1000,
-      );
-    }
+    if (nextTime === kBig)
+      return;
+
+    console.assert(nextTime > fightNow, 'nextTime is in the past');
+    this._CancelUpdate();
+    this.updateTimer = window.setTimeout(
+      () => this._OnUpdateTimer(Date.now()),
+      (nextTime - fightNow) * 1000,
+    );
   }
 
   public _OnUpdateTimer(currentTime: number): void {
     console.assert(this.timebase, '_OnTimerUpdate called while stopped');
+    // Round to ~30ms precision to avoid micro changes of fightNow from 10 to 10.003.
+    // Also round *up*, as these timers are always scheduled for the next event
+    // and it doesn't make sense to schedule something for 0.8s out and then
+    // round down to 0.799s and need another timer to have that text complete.
+    const fightNow = Math.ceil(32 * (currentTime - this.timebase) / 1000) / 32;
 
-    // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
-    const fightNow = (currentTime - this.timebase) / 1000;
+    // Unlike other jumps which happen "immediately", an unconditional jump may have happened
+    // in the past (+/- some timer variation).  Should we just consider that the update
+    // always happens exactly at the time it should?
+    const unconditionalJump = this._CheckUnconditionalJump(fightNow);
+    if (unconditionalJump) {
+      const jumpSource = unconditionalJump.time;
+      this._AddPassedTexts(jumpSource, currentTime);
+      const jumpDest = unconditionalJump.jump;
+      if (jumpDest === undefined)
+        throw new UnreachableCode();
+      const offset = fightNow - jumpSource;
+      this.SyncTo(jumpDest, currentTime - offset);
+
+      // Handle "overhanging" windows on unconditional jumps, by rewriting:
+      //   old: 500.0 sync /something/ window 20,10 jump 300
+      //   new: 300.0 sync /something window 0,10 jump 300
+      this.activeLastForceJumpSync = {
+        ...unconditionalJump,
+        time: jumpDest,
+        start: jumpDest,
+        end: unconditionalJump.end - unconditionalJump.time + jumpDest,
+        jumpType: 'normal',
+      };
+
+      this._OnUpdateTimer(currentTime);
+      return;
+    }
+
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
     this._AddPassedTexts(fightNow, currentTime);
     this._AdvanceTimeTo(fightNow);
@@ -455,256 +607,11 @@ export class Timeline {
     this._AddUpcomingTimers(fightNow);
     this._ScheduleUpdate(fightNow);
   }
-}
 
-export class TimelineUI {
-  private init: boolean;
-  private lang: Lang;
-
-  private root: HTMLElement | null = null;
-  private barColor: string | null = null;
-  private barExpiresSoonColor: string | null = null;
-  private timerlist: HTMLElement | null = null;
-
-  private activeBars: { [activebar: string]: TimerBar } = {};
-  private expireTimers: { [expireTimer: string]: number } = {};
-
-  private debugElement: HTMLElement | null = null;
-  private debugFightTimer: TimerBar | null = null;
-
-  protected timeline: Timeline | null = null;
-
-  private popupText?: PopupTextGenerator;
-
-  constructor(protected options: RaidbossOptions) {
-    this.options = options;
-    this.init = false;
-    this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
-    this.AddDebugInstructions();
-  }
-
-  protected Init(): void {
-    if (this.init)
-      return;
-    this.init = true;
-
-    this.root = document.getElementById('timeline-container');
-    if (!this.root)
-      throw new Error('can\'t find timeline-container');
-
-    // TODO: left for now as backwards compatibility with user css.  Remove this later??
-    this.root.classList.add(`lang-${this.lang}`);
-    this.root.lang = langToLocale(this.lang);
-    if (this.options.Skin)
-      this.root.classList.add(`skin-${this.options.Skin}`);
-
-    this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
-    this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
-
-    this.timerlist = document.getElementById('timeline');
-    if (this.timerlist) {
-      this.timerlist.style.gridTemplateRows =
-        `repeat(${this.options.MaxNumberOfTimerBars}, min-content)`;
-    }
-
-    this.activeBars = {};
-    this.expireTimers = {};
-  }
-
-  protected AddDebugInstructions(): void {
-    const lang = this.lang in timelineInstructions ? this.lang : 'en';
-    const instructions = timelineInstructions[lang];
-
-    // Helper for positioning/resizing when locked.
-    const helper = document.getElementById('timeline-resize-helper');
-    if (!helper)
-      return;
-    const rows = Math.max(6, this.options.MaxNumberOfTimerBars);
-    helper.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-
-    for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
-      const helperBar = document.createElement('div');
-      helperBar.classList.add('text');
-      helperBar.classList.add('resize-helper-bar');
-      helperBar.classList.add('timeline-bar-color');
-      if (i < 1)
-        helperBar.classList.add('soon');
-      if (i < instructions.length)
-        helperBar.innerText = instructions[i] ?? '';
-      else
-        helperBar.innerText = `${i + 1}`;
-      helper.appendChild(helperBar);
-    }
-
-    // For simplicity in code, always make debugElement valid,
-    // however it does not exist in the raid emulator.
-    this.debugElement = document.getElementById('timeline-debug');
-    if (!this.debugElement)
-      this.debugElement = document.createElement('div');
-  }
-
-  public SetPopupTextInterface(popupText: PopupTextGenerator): void {
-    this.popupText = popupText;
-  }
-
-  public SetTimeline(timeline: Timeline | null): void {
-    this.Init();
-    if (this.timeline) {
-      delete this.timeline.ui;
-      while (this.timerlist && this.timerlist.lastChild)
-        this.timerlist.removeChild(this.timerlist.lastChild);
-      if (this.debugElement)
-        this.debugElement.innerHTML = '';
-      this.debugFightTimer = null;
-      this.activeBars = {};
-    }
-
-    this.timeline = timeline;
-    if (this.timeline)
-      this.timeline.ui = this;
-  }
-
-  public OnAddTimer(fightNow: number, e: Event, channeling: boolean): void {
-    const div = document.createElement('div');
-    const bar = TimerBar.create();
-    div.classList.add('timer-bar');
-    div.appendChild(bar);
-    bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
-    bar.value = e.time - fightNow;
-    bar.righttext = 'remain';
-    bar.lefttext = e.text;
-    bar.toward = 'right';
-    bar.stylefill = !channeling ? 'fill' : 'empty';
-
-    if (e.style)
-      bar.applyStyles(e.style);
-
-    if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
-      bar.fg = this.barColor;
-      window.setTimeout(
-        this.OnTimerExpiresSoon.bind(this, e.id),
-        (e.time - fightNow - this.options.BarExpiresSoonSeconds) * 1000,
-      );
-    } else {
-      bar.fg = this.barExpiresSoonColor;
-    }
-
-    // Adding a timer with the same id immediately removes the previous.
-    const activeBar = this.activeBars[e.id];
-    if (activeBar) {
-      const div = activeBar.parentNode;
-      div?.parentNode?.removeChild(div);
-    }
-
-    if (e.sortKey)
-      div.style.order = e.sortKey.toString();
-    div.id = e.id.toString();
-    this.timerlist?.appendChild(div);
-    this.activeBars[e.id] = bar;
-    if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id]);
-      delete this.expireTimers[e.id];
-    }
-  }
-
-  public OnTimerExpiresSoon(id: number): void {
-    const bar = this.activeBars[id];
-    if (bar)
-      bar.fg = this.barExpiresSoonColor;
-  }
-
-  public OnRemoveTimer(e: Event, expired: boolean, force = false): void {
-    if (!force && expired && this.options.KeepExpiredTimerBarsForSeconds) {
-      this.expireTimers[e.id] = window.setTimeout(
-        this.OnRemoveTimer.bind(this, e, false),
-        this.options.KeepExpiredTimerBarsForSeconds * 1000,
-      );
-      return;
-    } else if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id]);
-      delete this.expireTimers[e.id];
-    }
-
-    const bar = this.activeBars[e.id];
-    if (!bar)
-      return;
-
-    const div = bar.parentNode;
-    const element = document.getElementById(e.id.toString());
-    if (!element)
-      return;
-
-    const removeBar = () => {
-      div?.parentNode?.removeChild(div);
-      delete this.activeBars[e.id];
-    };
-
-    if (!force)
-      element.classList.add('animate-timer-bar-removed');
-    if (window.getComputedStyle(element).animationName !== 'none') {
-      // Wait for animation to finish
-      element.addEventListener('animationend', removeBar);
-    } else {
-      removeBar();
-    }
-  }
-
-  public OnShowInfoText(text: string, currentTime: number): void {
-    if (this.popupText)
-      this.popupText.Info(text, currentTime);
-  }
-
-  public OnShowAlertText(text: string, currentTime: number): void {
-    if (this.popupText)
-      this.popupText.Alert(text, currentTime);
-  }
-
-  public OnShowAlarmText(text: string, currentTime: number): void {
-    if (this.popupText)
-      this.popupText.Alarm(text, currentTime);
-  }
-
-  public OnSpeakTTS(text: string, currentTime: number): void {
-    if (this.popupText)
-      this.popupText.TTS(text, currentTime);
-  }
-
-  public OnTrigger(
-    trigger: LooseTimelineTrigger,
-    matches: RegExpExecArray | null,
-    currentTime: number,
-  ): void {
-    if (this.popupText)
-      this.popupText.Trigger(trigger, matches, currentTime);
-  }
-
-  public OnSyncTime(fightNow: number, running: boolean): void {
-    if (!this.options.Debug || !this.debugElement)
-      return;
-
-    if (!running) {
-      if (this.debugFightTimer)
-        this.debugElement.removeChild(this.debugFightTimer);
-      this.debugFightTimer = null;
-      return;
-    }
-
-    if (!this.debugFightTimer) {
-      this.debugFightTimer = TimerBar.create();
-      this.debugFightTimer.width = '100px';
-      this.debugFightTimer.height = '17px';
-      this.debugFightTimer.duration = kBig;
-      this.debugFightTimer.lefttext = 'elapsed';
-      this.debugFightTimer.toward = 'right';
-      this.debugFightTimer.stylefill = 'fill';
-      this.debugFightTimer.bg = 'transparent';
-      this.debugFightTimer.fg = 'transparent';
-      this.debugElement.appendChild(this.debugFightTimer);
-    }
-
-    // Force this to be reset.
-    this.debugFightTimer.elapsed = 0;
-    this.debugFightTimer.elapsed = fightNow;
+  public _CheckUnconditionalJump(fightNow: number): Sync | undefined {
+    const forceJump = this.forceJumps[this.nextForceJump];
+    if (forceJump && forceJump.time <= fightNow)
+      return forceJump;
   }
 }
 
@@ -732,7 +639,7 @@ export class TimelineController {
 
     // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
     this.suppressNextEngage = false;
-    this.wipeRegex = NetRegexes.network6d({ command: '40000010' });
+    this.wipeRegex = commonNetRegex.wipe;
   }
 
   public SetPopupTextInterface(popupText: PopupTextGenerator): void {
@@ -788,7 +695,7 @@ export class TimelineController {
     // Get the text from each file in |timelineFiles|.
     for (const timelineFile of timelineFiles) {
       const name = this.timelines[timelineFile];
-      if (name)
+      if (name !== undefined)
         text = `${text}\n${name}`;
       else
         console.log(`Timeline file not found: ${timelineFile}`);

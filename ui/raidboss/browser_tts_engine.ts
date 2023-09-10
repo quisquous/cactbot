@@ -7,7 +7,7 @@ class TTSItem {
   constructor(text: string, lang?: string, voice?: SpeechSynthesisVoice) {
     this.text = text;
     this.item = new SpeechSynthesisUtterance(text);
-    if (lang)
+    if (lang !== undefined)
       this.item.lang = lang;
     if (voice)
       this.item.voice = voice;
@@ -26,8 +26,26 @@ export default class BrowserTTSEngine {
   readonly ttsItems: TTSItemDictionary = {};
   private speechLang?: string;
   private speechVoice?: SpeechSynthesisVoice;
+  private initializeAttempts = 0;
 
-  constructor(lang: Lang) {
+  constructor(private cactbotLang: Lang) {
+    if (window.speechSynthesis !== undefined) {
+      // https://bugs.chromium.org/p/chromium/issues/detail?id=334847
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => this.initializeVoice();
+    } else
+      console.error('BrowserTTS error: no browser support for window.speechSynthesis');
+  }
+
+  initializeVoice(): boolean {
+    if (window.speechSynthesis === undefined)
+      return false;
+    if (this.speechVoice !== undefined)
+      return true;
+    if (this.initializeAttempts > 5)
+      return false;
+    this.initializeAttempts++;
+
     const cactbotLangToSpeechLang = {
       en: 'en-US',
       de: 'de-DE',
@@ -39,25 +57,25 @@ export default class BrowserTTSEngine {
     };
 
     // figure out what TTS engine type we need
-    if (window.speechSynthesis !== undefined) {
-      window.speechSynthesis.onvoiceschanged = () => {
-        const speechLang = cactbotLangToSpeechLang[lang];
-        const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang === speechLang);
-        if (voice) {
-          this.speechLang = speechLang;
-          this.speechVoice = voice;
-          window.speechSynthesis.onvoiceschanged = null;
-        } else {
-          console.error('BrowserTTS error: could not find voice');
-        }
-      };
-    } else {
-      console.error('BrowserTTS error: no browser support for window.speechSynthesis');
+    const speechLang = cactbotLangToSpeechLang[this.cactbotLang];
+    const voice = window.speechSynthesis.getVoices().find((voice) =>
+      voice.lang.replaceAll('_', '-') === speechLang
+    );
+    if (voice) {
+      this.speechLang = speechLang;
+      this.speechVoice = voice;
+      window.speechSynthesis.onvoiceschanged = null;
+      return true;
     }
+
+    console.error('BrowserTTS error: could not find voice');
+    return false;
   }
 
   play(text: string): void {
-    if (!this.speechVoice)
+    // TODO: try to address a report of the constructor not finding voices
+    // by lazily looking later.
+    if (!this.initializeVoice())
       return;
 
     try {

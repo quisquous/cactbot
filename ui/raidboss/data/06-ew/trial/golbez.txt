@@ -1,0 +1,112 @@
+### The Voidcast Dais
+#
+# -ii 844B 8463 8460 84AE 84AF 8469 8719 86CF 8473 849B 878B 84B6 84A7 84A9 8483 86B3 8484
+# -it "Golbez"
+# -ic "Gale Sphere" "Shadow Dragon" "Golbez's Shadow"
+
+# Ignored Ids:
+#  - 844B      (autos)
+#  - 8463      Terrastorm (initial cast; meteor telegraph/damage is 8465)
+#  - 8460      Damage from Arctic Assault
+#  - 84AE      Damage from Void Comet (small initial hits from Void Meteor)
+#  - 84AF      Damage from Void Meteor (final larger hit from Void Meteor)
+#  - 8469      Damage from Lingering Spark puddles
+#  - 8719      Duplicative Black Fang
+#  - 86CF      Duplicative Black Fang
+#  - 8473      Duplicative Black Fang
+#  - 849B      Duplicative Explosion
+#  - 878B      Duplicative Double Meteor
+#  - 84B6      Duplicative Double Meteor
+#  - 84A7      sync/vfx?
+#  - 84A9      Subsequent meteors (+ damage) during Void Stardust
+#  - 8483      Duplicative Eventide Fall
+#  - 86B3      Duplicative Eventide Fall
+#  - 8484      sync/vfx?
+
+
+hideall "--Reset--"
+hideall "--sync--"
+hideall "--middle--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+11.0 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/ window 12,12
+25.2 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8465:/
+30.3 "Crescent Blade" sync / 1[56]:[^:]*:Golbez:846B:/
+37.0 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+42.1 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845E:/
+50.3 "Crescent Blade" sync / 1[56]:[^:]*:Golbez:846B:/
+60.9 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AC:/ duration 4
+69.1 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+74.2 "Lingering Spark" sync / 1[56]:[^:]*:Golbez:8467:/ duration 8
+86.5 "Crescent Blade" sync / 1[56]:[^:]*:Golbez:846B:/
+97.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B2:/
+106.3 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+113.6 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:86FE:/
+113.6 "--untargetable--"
+128.6 "--targetable--"
+132.6 "Black Fang" sync / 1[56]:[^:]*:Golbez:8471:/ duration 6.5
+142.7 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+150.8 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+156.8 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8476:/
+167.1 "Shadow Crescent" sync / 1[56]:[^:]*:Golbez:8487:/
+169.4 "Rising Beacon" sync / 1[56]:[^:]*:Golbez:848F:/
+172.2 "Burning Shade" sync / 1[56]:[^:]*:Golbez:8493:/
+172.8 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+186.7 "Explosion" sync / 1[56]:[^:]*:Golbez:8499:/
+191.1 "Double Meteor" sync / 1[56]:[^:]*:Golbez:84B4:/
+194.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+200.3 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+205.6 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+225.3 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+234.3 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A3:/
+238.2 "Void Stardust" sync / 1[56]:[^:]*:Golbez:84A5:/ duration 3
+248.5 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AC:/ duration 4
+259.7 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+265.7 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8476:/
+274.0 "Lingering Spark" sync / 1[56]:[^:]*:Golbez:8467:/ duration 8
+285.2 "Eventide Fall" sync / 1[56]:[^:]*:Golbez:8482:/ duration 4.6
+298.5 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+318.2 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+325.5 "Shadow Crescent" sync / 1[56]:[^:]*:Golbez:8487:/
+327.8 "Rising Beacon" sync / 1[56]:[^:]*:Golbez:848F:/
+330.0 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+331.4 "Immolating Shade" sync / 1[56]:[^:]*:Golbez:8495:/
+
+# begin loop
+340.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B2:/
+346.3 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+352.3 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8476:/
+360.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A3:/
+364.4 "Void Stardust" sync / 1[56]:[^:]*:Golbez:84A5:/ duration 3
+370.7 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845E:/
+386.9 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8465:/
+391.2 "Shadow Crescent" sync / 1[56]:[^:]*:Golbez:8487:/
+393.5 "Rising Beacon" sync / 1[56]:[^:]*:Golbez:848F:/
+396.3 "Burning Shade" sync / 1[56]:[^:]*:Golbez:8493:/
+396.9 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+410.9 "Explosion" sync / 1[56]:[^:]*:Golbez:849A:/
+415.3 "Double Meteor" sync / 1[56]:[^:]*:Golbez:84B4:/
+418.4 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+431.5 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AC:/ duration 4
+441.7 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+447.7 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8476:/
+456.1 "Lingering Spark" sync / 1[56]:[^:]*:Golbez:8467:/ duration 8
+467.3 "Eventide Fall" sync / 1[56]:[^:]*:Golbez:8482:/ duration 4.6
+480.4 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
+500.1 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
+507.4 "Shadow Crescent" sync / 1[56]:[^:]*:Golbez:8487:/
+509.7 "Rising Beacon" sync / 1[56]:[^:]*:Golbez:848F:/
+511.9 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
+
+# jump + fake loop
+522.0 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B2:/ window 60,60 jump 340.1
+528.2 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+534.2 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8476:/
+542.4 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A3:/
+546.3 "Void Stardust" sync / 1[56]:[^:]*:Golbez:84A5:/
+552.6 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845E:/
+568.8 "Terrastorm" sync / 1[56]:[^:]*:Golbez:8465:/
+572.9 "Shadow Crescent" sync / 1[56]:[^:]*:Golbez:8487:/
+575.2 "Rising Beacon" sync / 1[56]:[^:]*:Golbez:848F:/
+

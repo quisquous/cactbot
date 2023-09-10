@@ -125,7 +125,7 @@ class Point2D {
 
   // Calculates vector length (magnitude)
   length() {
-    return Math.sqrt((this.x) * (this.x) + (this.y) * (this.y));
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   // Calculate delta vector
@@ -176,6 +176,7 @@ const PlayPullSound = (monster: Monster, options: RadarOptions) => {
     const pullText: LocaleText = {
       en: `${monster.name} pulled`,
       de: `${monster.name} gepullt`,
+      fr: `${monster.name} a été attaqué`,
       cn: `${monster.name} 已开怪`,
       ko: `${monster.name} 풀링됨`,
     };
@@ -344,7 +345,7 @@ class Radar {
   }
 
   UpdateMonsterPuller(monster: Monster, puller: string) {
-    if (monster.puller || monster.alreadyPulled)
+    if (monster.puller !== undefined || monster.alreadyPulled)
       return;
 
     PlayPullSound(monster, this.options);
@@ -386,7 +387,7 @@ class Radar {
           monster.hp).toFixed(2) +
           '%';
       }
-      if (monster.puller)
+      if (monster.puller !== undefined)
         node.innerHTML += '&nbsp;&nbsp;' + monster.puller;
       // Z position is relative to the map so it's omitted.
       if (options.Position) {
