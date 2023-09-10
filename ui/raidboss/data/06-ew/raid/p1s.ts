@@ -11,7 +11,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   companionship?: string;
   loneliness?: string;
-  safeColor?: string;
+  safeColor?: 'light' | 'fire';
 }
 
 const flailDirections = {

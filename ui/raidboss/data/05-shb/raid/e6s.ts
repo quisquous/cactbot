@@ -82,8 +82,8 @@ const triggerSet: TriggerSet<Data> = {
         // south      x: 96-104   y: 107-115
         // southeast  x: 107-115  y: 107-115
         // southwest  x: 85-93    y: 107-115
-        let safeZone1 = null;
-        let safeZone2 = null;
+        let safeZone1: string | undefined;
+        let safeZone2: string | undefined;
 
         if (!currentHighestCombatant)
           throw new UnreachableCode();
@@ -100,16 +100,16 @@ const triggerSet: TriggerSet<Data> = {
         else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116)
           safeZone2 = output.east!();
 
-        if (safeZone1 && safeZone2)
+        if (safeZone1 !== undefined && safeZone2 !== undefined)
           data.safeZone = output.twoDirs!({ dir1: safeZone1, dir2: safeZone2 });
-        else if (safeZone1)
+        else if (safeZone1 !== undefined)
           data.safeZone = output.oneDir!({ dir: safeZone1 });
-        else if (safeZone2)
+        else if (safeZone2 !== undefined)
           data.safeZone = output.oneDir!({ dir: safeZone2 });
         else
           data.safeZone = undefined;
       },
-      infoText: (data, _matches, output) => !data.safeZone ? output.unknown!() : data.safeZone,
+      infoText: (data, _matches, output) => data.safeZone ?? output.unknown!(),
       outputStrings: {
         oneDir: {
           en: '${dir}',

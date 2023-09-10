@@ -272,7 +272,7 @@ const triggerSet: TriggerSet<Data> = {
           6: output.west!(),
           7: output.northwest!(),
         }[adjustedDir];
-        if (!outputDir)
+        if (outputDir === undefined)
           throw new UnreachableCode();
 
         if (parentTether)
