@@ -118,13 +118,13 @@ Options.Triggers.push({
           '-1,0': 'dirNW',
         };
         const direction = directions[`${x},${y}`];
-        if (!direction)
+        if (direction === undefined)
           return;
         if (matches.id === '76E7')
           data.topazRayDirections[0] = direction;
         if (matches.id === '76EA')
           data.topazRayDirections[1] = direction;
-        if (!data.topazRayDirections[0] || !data.topazRayDirections[1])
+        if (data.topazRayDirections[0] === undefined || data.topazRayDirections[1] === undefined)
           return;
         const dir0Str = output[data.topazRayDirections[0]]();
         const dir1Str = output[data.topazRayDirections[1]]();

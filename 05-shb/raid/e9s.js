@@ -245,7 +245,7 @@ Options.Triggers.push({
       delaySeconds: 7,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined)
           return output[key]();
       },
       outputStrings: phaserOutputStrings,
@@ -257,7 +257,7 @@ Options.Triggers.push({
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined)
           return output[key]();
       },
       outputStrings: phaserOutputStrings,
@@ -285,7 +285,7 @@ Options.Triggers.push({
       delaySeconds: 8,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined)
           return output[key]();
       },
       outputStrings: phaserOutputStrings,
@@ -297,7 +297,7 @@ Options.Triggers.push({
       delaySeconds: 12,
       alertText: (data, _matches, output) => {
         const key = data.phaserOutputs?.shift();
-        if (key)
+        if (key !== undefined)
           return output[key]();
       },
       outputStrings: phaserOutputStrings,
@@ -372,7 +372,7 @@ Options.Triggers.push({
         for (let i = 0; i < 4; ++i) {
           const hexPivot = (idPivot + i).toString(16).toUpperCase().padStart(4, '0');
           const outputKey = artOfDarknessOutputKeys[i];
-          if (!outputKey)
+          if (outputKey === undefined)
             throw new UnreachableCode();
           data.artOfDarknessIdMap[hexPivot] = outputKey;
         }

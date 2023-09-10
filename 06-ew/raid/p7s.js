@@ -534,7 +534,7 @@ Options.Triggers.push({
         if (!data.tetherCollect.includes(data.me)) {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
-          if (!data.tetherCollectPhase)
+          if (data.tetherCollectPhase === undefined)
             return { infoText: output.noTether() };
           if (data.tetherCollectPhase === 'famine')
             return { alertText: output.famineNoTether() };

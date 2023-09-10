@@ -107,7 +107,7 @@ const orbOutputStrings = {
 };
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (ceName) => (data, matches) => {
-  if (ceName && data.ce !== ceName)
+  if (ceName !== undefined && data.ce !== ceName)
     return false;
   if (matches.target === data.me)
     return true;
@@ -157,7 +157,7 @@ Options.Triggers.push({
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
-          if (data.ce && data.options.Debug)
+          if (data.ce !== undefined && data.options.Debug)
             console.log(`Stop CE: ${data.ce}`);
           // Stop any active timelines.
           data.StopCombat();
@@ -415,10 +415,9 @@ Options.Triggers.push({
           return output.unknown();
         const orbOutput = data.orbOutput = sortedOrbs.map((orbId) => {
           const nameId = orbIdToNameId[orbId];
-          if (!nameId)
+          if (nameId === undefined)
             return 'unknown';
-          const output = orbNpcNameIdToOutputString[nameId];
-          return output ? output : 'unknown';
+          return orbNpcNameIdToOutputString[nameId] ?? 'unknown';
         });
         // If there is a pair of orbs, and they are the same type, then this is the mechanic
         // introduction and only one orb goes off.
@@ -453,7 +452,7 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
-        if (!orb)
+        if (orb === undefined)
           return;
         return output[orb]();
       },
@@ -468,7 +467,7 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         data.orbOutput ??= [];
         const orb = data.orbOutput.shift();
-        if (!orb)
+        if (orb === undefined)
           return;
         return output[orb]();
       },

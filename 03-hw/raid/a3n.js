@@ -155,7 +155,7 @@ Options.Triggers.push({
         const partner = data.ferroTether[data.me];
         const marker1 = data.ferroMarker[data.me];
         const marker2 = data.ferroMarker[partner ?? ''];
-        if (!partner || !marker1 || !marker2)
+        if (partner === undefined || marker1 === undefined || marker2 === undefined)
           return matches.ability + ' (???)';
         if (marker1 === marker2)
           return output.repel({ player: data.ShortName(partner) });

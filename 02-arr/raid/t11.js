@@ -25,29 +25,24 @@ Options.Triggers.push({
       id: 'T11 Seed River First',
       type: 'Ability',
       netRegex: { source: 'Kaliya', id: 'B74', capture: false },
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined,
       response: Responses.spreadThenStack(),
-      run: (data) => {
-        if (!data.firstSeed)
-          data.firstSeed = 'river';
-      },
+      run: (data) => data.firstSeed = 'river',
     },
     {
       id: 'T11 Seed Sea First',
       type: 'Ability',
       netRegex: { id: 'B75', source: 'Kaliya', capture: false },
-      condition: (data) => !data.firstSeed,
+      condition: (data) => data.firstSeed === undefined,
       response: Responses.stackThenSpread(),
-      run: (data) => {
-        if (!data.firstSeed)
-          data.firstSeed = 'sea';
-      },
+      run: (data) => data.firstSeed = 'sea',
     },
     {
       id: 'T11 Seed River Second',
       type: 'Ability',
       netRegex: { id: 'B76', source: 'Kaliya', capture: false },
-      condition: (data) => !data.firstSeed,
+      // FIXME: is this condition reversed?
+      condition: (data) => data.firstSeed === undefined,
       response: Responses.stackMarker(),
       run: (data) => delete data.firstSeed,
     },
@@ -55,7 +50,8 @@ Options.Triggers.push({
       id: 'T11 Seed Sea Second',
       type: 'Ability',
       netRegex: { id: 'B77', source: 'Kaliya', capture: false },
-      condition: (data) => !data.firstSeed,
+      // FIXME: is this condition reversed?
+      condition: (data) => data.firstSeed === undefined,
       response: Responses.spread(),
       run: (data) => delete data.firstSeed,
     },
@@ -145,13 +141,13 @@ Options.Triggers.push({
       alarmText: (data, _matches, output) => {
         let partner;
         const [player0, player1] = data.tetherA ?? [];
-        if (!player0 || !player1)
+        if (player0 === undefined || player1 === undefined)
           return;
         if (player0 === data.me)
           partner = player1;
         if (player1 === data.me)
           partner = player0;
-        if (!partner)
+        if (partner === undefined)
           return;
         return output.text({ player: data.ShortName(partner) });
       },
@@ -174,13 +170,13 @@ Options.Triggers.push({
       alarmText: (data, _matches, output) => {
         let partner;
         const [player0, player1] = data.tetherB ?? [];
-        if (!player0 || !player1)
+        if (player0 === undefined || player1 === undefined)
           return;
         if (player0 === data.me)
           partner = player1;
         if (player1 === data.me)
           partner = player0;
-        if (!partner)
+        if (partner === undefined)
           return;
         return output.text({ player: data.ShortName(partner) });
       },

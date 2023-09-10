@@ -249,7 +249,7 @@ Options.Triggers.push({
       delaySeconds: 0.5,
       alertText: (data, _matches, output) => {
         const [firstTether, secondTether] = data.tethers ?? [];
-        if (!firstTether || !secondTether)
+        if (firstTether === undefined || secondTether === undefined)
           return;
         // Leviathan's mechanics aren't easily described in a single word,
         // so we special-case them.
@@ -263,7 +263,7 @@ Options.Triggers.push({
       },
       infoText: (data, _matches, output) => {
         const onlyTether = data.tethers?.[0];
-        if (!onlyTether || data.tethers?.length === 2)
+        if (onlyTether === undefined || data.tethers?.length === 2)
           return;
         return output[onlyTether]();
       },

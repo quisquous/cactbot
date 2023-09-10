@@ -853,7 +853,7 @@ Options.Triggers.push({
         if (data.dooms)
           name = data.dooms[data.doomCount];
         data.doomCount++;
-        if (name)
+        if (typeof name === 'string')
           return output.text({ num: data.doomCount, player: data.ShortName(name) });
       },
       outputStrings: {
@@ -1263,7 +1263,7 @@ Options.Triggers.push({
           return output.twinOnYou();
       },
       infoText: (data, _matches, output) => {
-        if (!data.lastOctetMarker)
+        if (data.lastOctetMarker === undefined)
           return output.twinOnUnknown();
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
@@ -1271,7 +1271,7 @@ Options.Triggers.push({
           return output.twinOnPlayer({ player: data.ShortName(data.lastOctetMarker) });
       },
       tts: (data, _matches, output) => {
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.stackTTS();
       },
       outputStrings: {
@@ -1466,7 +1466,7 @@ Options.Triggers.push({
           return;
         if (data.trio === 'blackfire')
           return output.blackfireTower();
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.octetTowerPlusTwin();
         return output.octetTower();
       },
@@ -1520,7 +1520,7 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return;
         const twin = data.ShortName(data.lastOctetMarker);
         if (data.megaStack.includes(data.lastOctetMarker))

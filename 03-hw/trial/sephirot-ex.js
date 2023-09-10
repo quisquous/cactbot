@@ -203,7 +203,7 @@ Options.Triggers.push({
         // they just take moderate AoE damage.
         // Unlike Flood of Naught (colors) in O4s,
         // standing center is safe if the user has no debuff.
-        if (data.force)
+        if (data.force !== undefined)
           return data.force === '3ED' ? output.left() : output.right();
         return output.aoe();
       },
@@ -219,7 +219,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '1579', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.force)
+        if (data.force !== undefined)
           return data.force === '3EE' ? output.left() : output.right();
         return output.aoe();
       },
@@ -234,7 +234,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { id: '1575', source: 'Sephirot', capture: false },
       alertText: (data, _matches, output) => {
-        if (data.force === '3ED' || !data.force && data.role === 'tank')
+        if (data.force === '3ED' || data.force === undefined && data.role === 'tank')
           return output.getTower();
         return output.avoidTower();
       },

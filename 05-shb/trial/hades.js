@@ -279,7 +279,7 @@ Options.Triggers.push({
       netRegex: { id: '003E', capture: false },
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
-        if (!data.ancient || !data.ancient[data.me])
+        if (!data.ancient || data.ancient[data.me] === undefined)
           return;
         const name = Object.keys(data.ancient).find((key) => data.ancient?.[key] === '003E');
         return output.text({ player: data.ShortName(name) });

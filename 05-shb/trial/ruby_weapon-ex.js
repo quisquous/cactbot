@@ -236,7 +236,7 @@ Options.Triggers.push({
         if (data.role === 'dps' && data.job !== 'BLU')
           return false;
         const myColor = data.colors?.[data.me];
-        if (myColor && myColor === data.colors?.[matches.target])
+        if (myColor !== undefined && myColor === data.colors?.[matches.target])
           return true;
         return data.me === matches.target;
       },
@@ -330,10 +330,10 @@ Options.Triggers.push({
         const colorToAction = {};
         for (const color of ['blue', 'red']) {
           const id = data.colorToImageId[color];
-          if (!id)
+          if (id === undefined)
             continue;
           const action = data.imageIdToAction[id];
-          if (!action)
+          if (action === undefined)
             continue;
           colorToAction[color] = action;
         }
@@ -345,11 +345,11 @@ Options.Triggers.push({
           suffix = output.bothSuffix();
         } else if (numAdds === 1) {
           const color = Object.keys(colorToAction)[0];
-          if (!color)
+          if (color === undefined)
             throw new UnreachableCode();
           suffix = color === 'blue' ? output.blueSuffix() : output.redSuffix();
           actionId = colorToAction[color];
-        } else if (myColor && colorToAction[myColor]) {
+        } else if (myColor !== undefined && colorToAction[myColor] !== undefined) {
           suffix = myColor === 'blue' ? output.blueSuffix() : output.redSuffix();
           actionId = colorToAction[myColor];
         } else {
@@ -357,7 +357,7 @@ Options.Triggers.push({
           // Don't call anything out, because it'd be confusing.
           return;
         }
-        if (!suffix || !actionId)
+        if (actionId === undefined)
           return;
         const isDynamo = actionId === '4EB0';
         const text = isDynamo ? 'alertText' : 'alarmText';
@@ -383,7 +383,7 @@ Options.Triggers.push({
         if (data.ravenDead)
           return;
         const color = data.colors?.[data.me];
-        if (!color)
+        if (color === undefined)
           return;
         if (color === 'red')
           return output.attackRedEast();

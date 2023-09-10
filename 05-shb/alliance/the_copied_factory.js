@@ -117,7 +117,7 @@ Options.Triggers.push({
         capture: false,
       },
       infoText: (_data, _matches, output) => output.text(),
-      run: (data) => data.alliance = data.alliance ?? 'A',
+      run: (data) => data.alliance ??= 'A',
       outputStrings: {
         text: {
           en: 'Dodge Moving Circle',
@@ -138,7 +138,7 @@ Options.Triggers.push({
         capture: false,
       },
       alertText: (_data, _matches, output) => output.text(),
-      run: (data) => data.alliance = data.alliance || 'B',
+      run: (data) => data.alliance ??= 'B',
       outputStrings: {
         text: {
           en: 'Look Behind For Flamethrowers',
@@ -160,7 +160,7 @@ Options.Triggers.push({
       },
       durationSeconds: 6,
       response: Responses.getOut('info'),
-      run: (data) => data.alliance = data.alliance || 'C',
+      run: (data) => data.alliance ??= 'C',
     },
     {
       id: 'Copied Hobbes Left Arm 2',

@@ -459,7 +459,7 @@ Options.Triggers.push({
         }
         for (const head of headData.combatants) {
           const headId = head.ID?.toString(16).toUpperCase();
-          if (!headId) {
+          if (headId === undefined) {
             console.error(`5Head Initial Direction: invalid head ID`);
             continue;
           }
@@ -511,7 +511,7 @@ Options.Triggers.push({
         }
         for (const head of headData.combatants) {
           const headId = head.ID?.toString(16).toUpperCase();
-          if (!headId) {
+          if (headId === undefined) {
             console.error(`5Head Mechanics Collector: invalid head ID`);
             continue;
           }
@@ -676,7 +676,7 @@ Options.Triggers.push({
           }
           const dir1 = headPositions[0];
           const dir2 = headPositions[1];
-          if (!dir1 || !dir2) {
+          if (dir1 === undefined || dir2 === undefined) {
             console.error(`6 Head Collector: expected 2 safe heads`);
             return;
           }

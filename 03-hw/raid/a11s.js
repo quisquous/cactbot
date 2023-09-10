@@ -221,7 +221,7 @@ Options.Triggers.push({
         }
         // Evens
         const partner = data.limitCutMap[data.limitCutNumber - 1];
-        if (!partner) {
+        if (partner === undefined) {
           // In case something goes awry?
           return output.knockbackCharge();
         }

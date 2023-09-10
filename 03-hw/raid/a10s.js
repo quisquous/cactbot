@@ -138,7 +138,7 @@ Options.Triggers.push({
         if (data.charges.length === 0)
           return;
         const charge = data.charges.shift();
-        if (charge)
+        if (charge !== undefined)
           return { alertText: output[charge]() };
       },
     },

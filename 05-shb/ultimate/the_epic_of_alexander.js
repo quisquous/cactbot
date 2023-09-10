@@ -317,7 +317,7 @@ Options.Triggers.push({
         if (data.role === 'healer') {
           if (multipleSwings)
             return output.tankBusters();
-          if (data.liquidTank)
+          if (data.liquidTank !== undefined)
             return output.tankBusterOn({ player: data.ShortName(data.liquidTank) });
           return output.tankBuster();
         }
@@ -435,16 +435,16 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (matches[1] !== undefined && parseInt(matches[1]) === data.puddle)
           return output.soakThisPuddle({ num: matches[1] });
       },
       infoText: (data, matches, output) => {
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (matches[1] !== undefined && parseInt(matches[1]) === data.puddle)
           return;
         return output.puddle({ num: matches[1] });
       },
       tts: (data, matches, output) => {
-        if (matches[1] && parseInt(matches[1]) === data.puddle)
+        if (matches[1] !== undefined && parseInt(matches[1]) === data.puddle)
           return output.soakThisPuddleTTS();
       },
       outputStrings: {
@@ -1188,7 +1188,7 @@ Options.Triggers.push({
       durationSeconds: 10,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
-        if (data.buffMap?.[data.me])
+        if (data.buffMap?.[data.me] !== undefined)
           return;
         return output.text();
       },
@@ -2295,7 +2295,7 @@ Options.Triggers.push({
           3: 'west',
         };
         data.radiantOutputStringKey = outputMap[idx];
-        if (data.radiantOutputStringKey)
+        if (data.radiantOutputStringKey !== undefined)
           return output[data.radiantOutputStringKey]();
       },
       outputStrings: radiantOutputStrings,
@@ -2356,7 +2356,9 @@ Options.Triggers.push({
         // Error?
         if (!data.betaBait || data.betaBait.length === 0)
           return output.opticalStack();
-        const names = data.betaBait.map((x) => x ? data.ShortName(x) : output.unknown()).sort();
+        const names = data.betaBait.map((x) =>
+          x !== undefined ? data.ShortName(x) : output.unknown()
+        ).sort();
         return output.opticalStackPlayers({ players: names.join(', ') });
       },
       outputStrings: {
@@ -2399,7 +2401,7 @@ Options.Triggers.push({
       id: 'TEA Beta Radiant Final',
       type: 'Ability',
       netRegex: { source: 'Perfect Alexander', id: '4B14', capture: false },
-      condition: (data) => !!data.radiantOutputStringKey,
+      condition: (data) => data.radiantOutputStringKey !== undefined,
       delaySeconds: 16,
       alertText: (data, _matches, output) => output[data.radiantOutputStringKey ?? 'unknown'](),
       outputStrings: radiantOutputStrings,
@@ -2445,7 +2447,7 @@ Options.Triggers.push({
           108: 'y',
         };
         const thisTrine = trineMap[y];
-        if (!thisTrine)
+        if (thisTrine === undefined)
           return;
         data.trine.push(thisTrine);
         // Call out after two, because that's when the mechanic is fully known.
@@ -2456,7 +2458,7 @@ Options.Triggers.push({
         const threeArr = ['r', 'g', 'y'].filter((x) => !data.trine?.includes(x));
         const [three] = threeArr;
         const [one] = data.trine;
-        if (!one || !three)
+        if (one === undefined || three === undefined)
           return;
         // Start on the third trine, then move to the first.
         const threeOne = three + one;

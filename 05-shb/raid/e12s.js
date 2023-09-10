@@ -14,7 +14,7 @@ const getTetherString = (tethers, output) => {
   // All tethers in E12S are double tethers, plus an optional junction (not in the tether list).
   const sorted = tethers?.sort();
   const [first, second] = sorted ?? [];
-  if (!first || !second)
+  if (first === undefined || second === undefined)
     return;
   const comboStr = first + second;
   if (comboStr in primalOutputStrings)
@@ -425,11 +425,11 @@ Options.Triggers.push({
           4: output.laser4(),
         };
         const numStr = numMap[data.statueTetherNumber ?? -1];
-        if (!numStr) {
+        if (numStr === undefined) {
           console.error(`sculpture: invalid tether number: ${data.statueTetherNumber ?? '???'}`);
           return;
         }
-        if (!data.statueDir) {
+        if (data.statueDir === undefined) {
           console.error(`sculpture: missing statueDir`);
           return;
         }
@@ -785,7 +785,7 @@ Options.Triggers.push({
         data.stockedTethers = data.tethers;
         delete data.tethers;
         const text = getTetherString(data.stockedTethers, output);
-        if (!text)
+        if (text === undefined)
           return;
         return output.stock({ text: text });
       },
@@ -810,9 +810,9 @@ Options.Triggers.push({
         // which means that we need to grab the original tethers during the first stock.
         const isRelease = matches.id === '5893';
         const text = getTetherString(isRelease ? data.stockedTethers : data.tethers, output);
-        if (!text)
+        if (text === undefined)
           return;
-        if (!data.junctionSuffix)
+        if (data.junctionSuffix === undefined)
           return text;
         return output.junctionSuffix({
           text: text,
@@ -1063,7 +1063,7 @@ Options.Triggers.push({
         };
         data.safeZone = dirs[cardinal];
       },
-      infoText: (data, _matches, output) => !data.safeZone ? output.unknown() : data.safeZone,
+      infoText: (data, _matches, output) => data.safeZone ?? output.unknown(),
       outputStrings: {
         unknown: Outputs.unknown,
         north: Outputs.north,
@@ -1194,7 +1194,7 @@ Options.Triggers.push({
         );
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
         const [key0, key1, key2] = keys;
-        if (!key0 || !key1 || !key2)
+        if (key0 === undefined || key1 === undefined || key2 === undefined)
           throw new UnreachableCode();
         // Stash outputstring keys to use later.
         data.intermediateDebuffs = [key1, key2];
@@ -1243,7 +1243,7 @@ Options.Triggers.push({
         if (data.phase !== 'intermediate')
           return { infoText: output.moveAway() };
         const key = data.intermediateDebuffs && data.intermediateDebuffs.shift();
-        if (!key)
+        if (key === undefined)
           return { infoText: output.moveAway() };
         return { alertText: output[key]() };
       },
@@ -1273,7 +1273,7 @@ Options.Triggers.push({
             player1: data.ShortName(player1),
             player2: data.ShortName(player2),
           });
-        } else if (player1 === data.me && player2) {
+        } else if (player1 === data.me && player2 !== undefined) {
           // Call out second player name if exists and you have eye
           return output.lookAwayFromPlayer({ player: data.ShortName(player2) });
         } else if (player2 === data.me) {

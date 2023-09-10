@@ -59,14 +59,16 @@ Options.Triggers.push({
           7: output.northwest(),
         };
         const dirUnknown = output.unknown();
-        let idx = data.purgationLoc ? purgationLocations.indexOf(data.purgationLoc) : undefined;
+        let idx = data.purgationLoc !== undefined
+          ? purgationLocations.indexOf(data.purgationLoc)
+          : undefined;
         if (idx === undefined || idx === -1)
           return output.avoidCone({ dir: dirUnknown });
         // adjust idx for 2nd & 3rd+ purgations based on jagged middle lines or rotation
         if (data.purgation === 2) {
           // 2nd purgation - CW/CCW line only, no rotation
           const jaggedLineFlags = [purgationCWLineFlag, purgationCCWLineFlag];
-          if (!data.purgationLine || !jaggedLineFlags.includes(data.purgationLine))
+          if (data.purgationLine === undefined || !jaggedLineFlags.includes(data.purgationLine))
             return output.avoidCone({ dir: dirUnknown });
           const modIdx = data.purgationLine === purgationCWLineFlag ? 1 : -1; // +1 if CW line, -1 if CCW line
           idx = (idx + purgationLocations.length + modIdx) % purgationLocations.length;
@@ -74,7 +76,8 @@ Options.Triggers.push({
           // 3rd+ purgation - straight line, CW/CCW rotation.
           // CW rotation results in CCW final path, and vice versa.
           if (
-            !data.purgationMidRotate || !purgationMidRotateFlags.includes(data.purgationMidRotate)
+            data.purgationMidRotate === undefined ||
+            !purgationMidRotateFlags.includes(data.purgationMidRotate)
           )
             return output.avoidCone({ dir: dirUnknown });
           const modIdx = data.purgationMidRotate === purgationMidRotateCCWFlag ? 1 : -1;

@@ -322,7 +322,10 @@ Options.Triggers.push({
           output.middle(),
         ];
         const [s4, s5] = spawns.filter((x) => ![s0, s1, s2, s3].includes(x));
-        if (!s0 || !s1 || !s2 || !s3 || !s4 || !s5)
+        if (
+          s0 === undefined || s1 === undefined || s2 === undefined || s3 === undefined ||
+          s4 === undefined || s5 === undefined
+        )
           throw new UnreachableCode();
         // A pair of swords s0/s1, s2/s3, s4/s5 is either two intercard corners or two middle.
         // The second pair (s2/s3) is never the middle pair of swords.

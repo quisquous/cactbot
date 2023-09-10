@@ -63,7 +63,7 @@ Options.Triggers.push({
           },
         };
         if (data.role === 'tank') {
-          if (data.currentTank && data.blunt && data.blunt[data.currentTank])
+          if (data.currentTank !== undefined && data.blunt && data.blunt[data.currentTank])
             return { alertText: output.staffTankSwap() };
         }
         return { infoText: output.staff() };
@@ -95,7 +95,7 @@ Options.Triggers.push({
           },
         };
         if (data.role === 'tank') {
-          if (data.currentTank && data.slashing && data.slashing[data.currentTank])
+          if (data.currentTank !== undefined && data.slashing && data.slashing[data.currentTank])
             return { alertText: output.swordTankSwap() };
         }
         return { infoText: output.sword() };
