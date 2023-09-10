@@ -921,7 +921,7 @@ export class PopupText {
 
     trigger.output = TriggerOutputProxy.makeOutput(
       trigger,
-      this.options.DisplayLanguage,
+      this.displayLang,
       this.options.PerTriggerAutoConfig,
     );
   }
