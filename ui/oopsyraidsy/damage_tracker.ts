@@ -190,7 +190,7 @@ export class DamageTracker {
   private OnEngage(timestamp: number) {
     this.engageTime = timestamp;
 
-    if (!this.firstPuller || !this.combatState.startTime)
+    if (this.firstPuller === undefined || !this.combatState.startTime)
       return;
 
     const seconds = (timestamp - this.combatState.startTime) / 1000;
@@ -210,7 +210,7 @@ export class DamageTracker {
 
   private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
-    if (timeField)
+    if (timeField !== undefined)
       this.lastTimestamp = new Date(timeField).getTime();
   }
 
@@ -304,7 +304,7 @@ export class DamageTracker {
   }
 
   private OnAbilityEvent(line: string, splitLine: string[]): void {
-    if (this.firstPuller || this.combatState.startTime)
+    if (this.firstPuller !== undefined || this.combatState.startTime)
       return;
 
     // This is kind of obnoxious to have to regex match every ability line that's already split.
@@ -320,7 +320,7 @@ export class DamageTracker {
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
     const origFlags = splitLine[kFieldFlags];
-    if (origFlags && kShiftFlagValues.includes(origFlags)) {
+    if (origFlags !== undefined && kShiftFlagValues.includes(origFlags)) {
       matches.flags = splitLine[kFieldFlags + 2] ?? matches.flags;
       matches.damage = splitLine[kFieldFlags + 3] ?? matches.damage;
     }
@@ -391,7 +391,7 @@ export class DamageTracker {
       });
     }
 
-    if (trigger.id) {
+    if (trigger.id !== undefined) {
       if (!IsTriggerEnabled(this.options, trigger.id))
         return;
 
@@ -427,7 +427,7 @@ export class DamageTracker {
     const suppress = 'suppressSeconds' in trigger
       ? ValueOrFunction(trigger.suppressSeconds, matches)
       : 0;
-    if (trigger.id && typeof suppress === 'number' && suppress > 0)
+    if (trigger.id !== undefined && typeof suppress === 'number' && suppress > 0)
       this.triggerSuppress[trigger.id] = triggerTime + suppress * 1000;
 
     const f = () => {
@@ -615,7 +615,7 @@ export class DamageTracker {
     this.ProcessDataFiles();
 
     // Wait for datafiles / jobs / zone events / localization.
-    if (!this.triggerSets || !this.zoneName)
+    if (!this.triggerSets || this.zoneName === undefined)
       return;
 
     this.Reset();
@@ -667,7 +667,7 @@ export class DamageTracker {
       }
 
       if (this.options.Debug) {
-        if (set.filename)
+        if (set.filename !== undefined)
           console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');

@@ -95,11 +95,11 @@ export const ShortNamify = (
 ): string => {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
-  if (!name)
+  if (name === undefined)
     return '???';
 
   const nick = playerNicks[name];
-  if (nick)
+  if (nick !== undefined)
     return nick;
 
   const idx = name.indexOf(' ');
@@ -145,7 +145,7 @@ export const IsPlayerId = (id?: string): boolean => {
   if (id === undefined)
     return false;
   const firstChar = id[0];
-  return firstChar ? firstChar < '4' : false;
+  return firstChar !== undefined ? firstChar < '4' : false;
 };
 
 export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => {
