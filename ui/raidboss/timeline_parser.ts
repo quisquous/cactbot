@@ -180,7 +180,7 @@ export class TimelineParser {
       let match = regexes.ignore.exec(line);
       if (match && match['groups']) {
         const ignore = match['groups'];
-        if (ignore.id)
+        if (ignore.id !== undefined)
           this.ignores[ignore.id] = true;
         continue;
       }
@@ -188,7 +188,7 @@ export class TimelineParser {
       match = regexes.tts.exec(line);
       if (match && match['groups']) {
         const tts = match['groups'];
-        if (!tts.id || !tts.beforeSeconds || !tts.command)
+        if (tts.id === undefined || tts.beforeSeconds === undefined || tts.command === undefined)
           throw new UnreachableCode();
         // TODO: Support alert sounds?
         if (tts.command === 'sound')
@@ -198,7 +198,7 @@ export class TimelineParser {
         ttsItems.push({
           type: 'tts',
           secondsBefore: parseFloat(tts.beforeSeconds),
-          text: tts.text ? tts.text : tts.id,
+          text: tts.text ?? tts.id,
         });
         continue;
       }
@@ -212,7 +212,10 @@ export class TimelineParser {
       match = regexes.popupText.exec(line);
       if (match && match['groups']) {
         const popupText = match['groups'];
-        if (!popupText.type || !popupText.id || !popupText.beforeSeconds)
+        if (
+          popupText.type === undefined || popupText.id === undefined ||
+          popupText.beforeSeconds === undefined
+        )
           throw new UnreachableCode();
         const popupTextItems = texts[popupText.id] || [];
         texts[popupText.id] = popupTextItems;
@@ -222,7 +225,7 @@ export class TimelineParser {
         popupTextItems.push({
           type: type,
           secondsBefore: parseFloat(popupText.beforeSeconds),
-          text: popupText.text ? popupText.text : popupText.id,
+          text: popupText.text ?? popupText.id,
         });
         continue;
       }
@@ -249,7 +252,10 @@ export class TimelineParser {
       }
       const parsedLine = match['groups'];
       // Technically the name can be empty
-      if (!parsedLine.text || !parsedLine.time || parsedLine.name === undefined)
+      if (
+        parsedLine.text === undefined || parsedLine.time === undefined ||
+        parsedLine.name === undefined
+      )
         throw new UnreachableCode();
       line = line.replace(parsedLine.text, '').trim();
       // There can be # in the ability name, but probably not in the regex.
@@ -271,7 +277,7 @@ export class TimelineParser {
         let commandMatch = regexes.durationCommand.exec(line);
         if (commandMatch && commandMatch['groups']) {
           const durationCommand = commandMatch['groups'];
-          if (!durationCommand.text || !durationCommand.seconds)
+          if (durationCommand.text === undefined || durationCommand.seconds === undefined)
             throw new UnreachableCode();
           line = line.replace(durationCommand.text, '').trim();
           e.duration = parseFloat(durationCommand.seconds);
@@ -280,7 +286,7 @@ export class TimelineParser {
         commandMatch = regexes.syncCommand.exec(line);
         if (commandMatch && commandMatch['groups']) {
           const syncCommand = commandMatch['groups'];
-          if (!syncCommand.text || !syncCommand.regex)
+          if (syncCommand.text === undefined || syncCommand.regex === undefined)
             throw new UnreachableCode();
           line = line.replace(syncCommand.text, '').trim();
           const sync: Sync = {
@@ -294,14 +300,14 @@ export class TimelineParser {
             event: e,
           };
           e.sync = sync;
-          if (syncCommand.args) {
+          if (syncCommand.args !== undefined) {
             let argMatch = regexes.windowCommand.exec(syncCommand.args);
             if (argMatch && argMatch['groups']) {
               const windowCommand = argMatch['groups'];
-              if (!windowCommand.text || !windowCommand.end)
+              if (windowCommand.text === undefined || windowCommand.end === undefined)
                 throw new UnreachableCode();
               line = line.replace(windowCommand.text, '').trim();
-              if (windowCommand.start) {
+              if (windowCommand.start !== undefined) {
                 sync.start = seconds - parseFloat(windowCommand.start);
                 sync.end = seconds + parseFloat(windowCommand.end);
               } else {
@@ -402,7 +408,7 @@ export class TimelineParser {
           continue;
 
         // TODO: beforeSeconds should support being a function.
-        const autoConfig = trigger.id && this.perTriggerAutoConfig[trigger.id] || {};
+        const autoConfig = trigger.id !== undefined && this.perTriggerAutoConfig[trigger.id] || {};
         const beforeSeconds = autoConfig['BeforeSeconds'] ?? trigger.beforeSeconds;
 
         // TODO: also put these before any forcejump as well; this will solve

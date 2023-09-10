@@ -40,7 +40,7 @@ export class LineEvent0x1F extends LineEvent {
       ...splitFunc(this.dataBytes4),
     ];
 
-    this.name = repo.Combatants[this.id]?.name || '';
+    this.name = repo.Combatants[this.id]?.name ?? '';
 
     repo.updateCombatant(this.id, {
       name: repo.Combatants[this.id]?.name,
