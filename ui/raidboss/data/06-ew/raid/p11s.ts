@@ -20,6 +20,7 @@ export interface Data extends RaidbossData {
   lightDarkTether: { [name: string]: 'near' | 'far' };
   cylinderCollect: NetMatches['HeadMarker'][];
   styxCount: number;
+  busterTargets: string[];
 }
 
 const headmarkers = {
@@ -53,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       lightDarkTether: {},
       cylinderCollect: [],
       styxCount: 4,
+      busterTargets: [],
     };
   },
   triggers: [
@@ -90,6 +92,44 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '822B', source: 'Themis', capture: false },
       response: Responses.bleedAoe(),
+    },
+    {
+      id: 'P11S Dike',
+      type: 'StartsUsing',
+      netRegex: { id: ['8230', '822F'], capture: true },
+      preRun: (data, matches) => data.busterTargets.push(matches.target),
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
+          },
+          tankBusterOnYOU: Outputs.tankBusterOnYou,
+          tankBusterOthers: Outputs.tankBusters,
+        };
+        if (data.busterTargets.length === 2) {
+          if (data.busterTargets.includes(data.me)) {
+            if (data.role === 'tank') {
+              return { alertText: output.tankBusterAndSwap!() };
+            }
+            return { alarmText: output.tankBusterOnYOU!() };
+          }
+          return { infoText: output.tankBusterOthers!() };
+        }
+      },
+    },
+    {
+      id: 'P11S Dike Clean',
+      type: 'StartsUsing',
+      netRegex: { id: ['8230', '822F'], capture: false },
+      delaySeconds: 1,
+      suppressSeconds: 1,
+      run: (data) => data.busterTargets.length = 0,
     },
     {
       id: 'P11S Jury Overruling Light',
