@@ -101,13 +101,25 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          busterOnYou: Outputs.tankBusterOnYou,
-          busterOthers: Outputs.tankBusters,
+          tankBusterAndSwap: {
+            en: 'Tank Buster + Swap',
+            de: 'Tankbuster + Wechsel',
+            fr: 'Tank buster + Swap',
+            ja: 'タンクバスター + スイッチ',
+            cn: '死刑 + 换T',
+            ko: '탱버 + 교대',
+          },
+          tankBusterOnYOU: Outputs.tankBusterOnYou,
+          tankBusterOthers: Outputs.tankBusters,
         };
         if (data.busterTargets.length === 2) {
-          if (data.busterTargets.includes(data.me))
-            return { alertText: output.busterOnYou!() };
-          return { infoText: output.busterOthers!() };
+          if (data.busterTargets.includes(data.me)) {
+            if (data.role === 'tank') {
+              return { alertText: output.tankBusterAndSwap!() };
+            }
+            return { alarmText: output.tankBusterOnYOU!() };
+          }
+          return { infoText: output.tankBusterOthers!() };
         }
       },
     },
