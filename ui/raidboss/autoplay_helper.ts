@@ -1,5 +1,5 @@
 export default class AutoplayHelper {
-  private static context: AudioContext | null = null;
+  private static context?: AudioContext;
   private static isButtonCreated = false;
 
   private static getContext(): AudioContext {
