@@ -99,6 +99,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: ['8230', '822F'], capture: true },
       preRun: (data, matches) => data.busterTargets.push(matches.target),
       response: (data, _matches, output) => {
+        // cactbot-builtin-response
         output.responseOutputStrings = {
           busterOnYou: Outputs.tankBusterOnYou,
           busterOthers: Outputs.tankBusters,
