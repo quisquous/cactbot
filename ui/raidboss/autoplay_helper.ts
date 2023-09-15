@@ -3,7 +3,7 @@ export default class AutoplayHelper {
   private static isButtonCreated = false;
 
   private static getContext(): AudioContext {
-    AutoplayHelper.context ??= new AudioContext(); 
+    AutoplayHelper.context ??= new AudioContext();
     return AutoplayHelper.context;
   }
 
