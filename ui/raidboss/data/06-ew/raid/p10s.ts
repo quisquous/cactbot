@@ -176,28 +176,25 @@ const triggerSet: TriggerSet<Data> = {
           const x = data.combatantData[0]?.PosX;
           if (x === undefined)
             return output.default!();
-          let wingSide;
           let wingDir;
           if (x > 100) {
-            wingSide = output.right!();
             wingDir = output.east!();
           } else if (x < 100) {
-            wingSide = output.left!();
             wingDir = output.west!();
           }
-          if (wingSide !== undefined && wingDir !== undefined)
-            return output.tetherside!({ side: wingSide, dir: wingDir });
+          if (wingDir !== undefined)
+            return output.tetherside!({ dir: wingDir });
           return output.default!();
         }
       },
       outputStrings: {
         tetherside: {
-          en: 'Point ${side}/${dir} Tether Away',
-          de: 'Zeige ${side}/${dir} Verbindung weg',
-          fr: 'Orientez le lien à l\'extérieur - ${side}/${dir}',
-          ja: '線伸ばし ${side}/${dir}',
-          cn: '向 ${side}/${dir} 外侧引导',
-          ko: '선을 ${side}/${dir}으로',
+          en: 'Point ${dir} Tether Away',
+          de: 'Zeige ${dir} Verbindung weg',
+          fr: 'Orientez le lien à l\'extérieur - ${dir}',
+          ja: '線伸ばし ${dir}',
+          cn: '向 ${dir} 外侧引导',
+          ko: '선을 ${dir}으로',
         },
         default: {
           en: 'Point Tether Away',
@@ -207,10 +204,22 @@ const triggerSet: TriggerSet<Data> = {
           cn: '向外引导',
           ko: '선을 바깥쪽으로',
         },
-        right: Outputs.right,
-        left: Outputs.left,
-        east: Outputs.east,
-        west: Outputs.west,
+        west: {
+          en: 'Left/West',
+          de: 'Links/Westen',
+          fr: 'Gauche/Ouest',
+          ja: '左/西へ',
+          cn: '左(西)',
+          ko: '왼쪽/서쪽',
+        },
+        east: {
+          en: 'Right/East',
+          de: 'Rechts/Osten',
+          fr: 'Droite/Est',
+          ja: '右/東へ',
+          cn: '右(东)',
+          ko: '오른쪽/동쪽',
+        },
       },
     },
     {
@@ -643,7 +652,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'In den Boxen (vermeide Laser)',
           fr: 'Dans les carrés (évitez les lasers)',
           ja: 'レーザー回避(マスの内側)',
-          cn: '站在盒子里（躲避激光）',
+          cn: '站方格内（躲避激光）',
           ko: '네모칸 안 (레이저 피하기)',
         },
       },
@@ -753,6 +762,42 @@ const triggerSet: TriggerSet<Data> = {
         'Steel Web': 'ヘビーウェブ',
         'Touchdown': 'タッチダウン',
         'Ultima': 'アルテマ',
+        'Wicked Step': '尖脚',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Arcane Sphere': '立体魔法阵',
+        'Pand(?:\\\\u00e6|\u00e6)moniac Pillar': '万魔殿之塔',
+        'Pand(?:\\\\u00e6|\u00e6)monium': '万魔殿',
+      },
+      'replaceText': {
+        '\\(cast\\)': '(咏唱)',
+        '\\(cone\\)': '(锥形)',
+        '\\(knockback\\)': '(击退)',
+        '\\(share\\)': '(分摊)',
+        'Bury': '塌方',
+        'Circles of Pandaemonium': '万魔殿之环',
+        'Dividing Wings': '分割之翼',
+        'Daemoniac Bonds': '万魔殿牢狱',
+        'Entangling Web': '纠缠之网',
+        'Harrowing Hell': '魔殿震击',
+        'Jade Passage': '翡翠通道',
+        'Pandaemoniac Meltdown': '万魔殿熔毁',
+        'Pandaemoniac Pillars': '万魔殿之柱',
+        'Pandaemoniac Ray': '万魔殿射线',
+        'Pandaemoniac Turrets': '万魔殿炮塔',
+        'Pandaemoniac Web': '万魔殿之网',
+        'Pandaemon\'s Holy': '万魔殿神圣',
+        'Parted Plumes': '分割之羽',
+        'Peal of Condemnation': '谴责冲击波',
+        'Peal of Damnation': '诅咒冲击波',
+        'Silkspit': '喷吐丝网',
+        'Soul Grasp': '攥魂',
+        'Steel Web': '沉重之网',
+        'Touchdown': '空降',
+        'Ultima': '究极',
         'Wicked Step': '尖脚',
       },
     },

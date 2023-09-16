@@ -21,7 +21,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       comment: { cn: '食物消失' },
       type: 'LosesEffect',
       // Well Fed
-      netRegex: NetRegexes.losesEffect({ effectId: '48' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '30' }),
       condition: (_data, matches) => {
         // Prevent "Eos loses the effect of Well Fed from Critlo Mcgee"
         return matches.target === matches.source;
@@ -51,7 +51,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'General Well Fed',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '48' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '30' }),
       run: (data, matches) => {
         if (!data.lostFood)
           return;

@@ -32,7 +32,7 @@ export interface Data extends RaidbossData {
   wideThirdDive: boolean;
   unsafeThirdMark: boolean;
   naelDiveMarkerCount: number;
-  trio?: string;
+  trio?: 'quickmarch' | 'blackfire' | 'fellruin' | 'heavensfall' | 'tenstrike' | 'octet';
   trioSourceIds: { [name: string]: number };
   combatantData: PluginCombatantState[];
   shakers: string[];
@@ -44,7 +44,7 @@ export interface Data extends RaidbossData {
   mornAfahCount: number;
 }
 
-const resetTrio = (data: Data, trio: string) => {
+const resetTrio = (data: Data, trio: Data['trio']) => {
   data.trio = trio;
   data.shakers = [];
   data.megaStack = [];
@@ -923,7 +923,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.dooms)
           name = data.dooms[data.doomCount];
         data.doomCount++;
-        if (name)
+        if (typeof name === 'string')
           return output.text!({ num: data.doomCount, player: data.ShortName(name) });
       },
       outputStrings: {
@@ -1343,7 +1343,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnYou!();
       },
       infoText: (data, _matches, output) => {
-        if (!data.lastOctetMarker)
+        if (data.lastOctetMarker === undefined)
           return output.twinOnUnknown!();
 
         // If this person is not alive, then everybody should stack,
@@ -1352,7 +1352,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnPlayer!({ player: data.ShortName(data.lastOctetMarker) });
       },
       tts: (data, _matches, output) => {
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.stackTTS!();
       },
       outputStrings: {
@@ -1550,7 +1550,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.trio === 'blackfire')
           return output.blackfireTower!();
 
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.octetTowerPlusTwin!();
 
         return output.octetTower!();
@@ -1606,7 +1606,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return;
 
         const twin = data.ShortName(data.lastOctetMarker);

@@ -243,7 +243,6 @@ const tsOverrides = {
       // @TODO: Remove these keys over time, setting them back to default
       'allowNullableBoolean': true,
       'allowNullableNumber': true,
-      'allowNullableString': true,
     }],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': [

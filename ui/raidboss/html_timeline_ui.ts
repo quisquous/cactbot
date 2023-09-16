@@ -113,7 +113,7 @@ export class HTMLTimelineUI extends TimelineUI {
     // TODO: left for now as backwards compatibility with user css.  Remove this later??
     this.root.classList.add(`lang-${this.lang}`);
     this.root.lang = langToLocale(this.lang);
-    if (this.options.Skin)
+    if (this.options.Skin !== undefined)
       this.root.classList.add(`skin-${this.options.Skin}`);
 
     this.barColor = computeBackgroundFrom(this.root, 'timeline-bar-color');

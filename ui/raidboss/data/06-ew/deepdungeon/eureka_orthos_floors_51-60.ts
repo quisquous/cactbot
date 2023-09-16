@@ -234,6 +234,18 @@ const triggerSet: TriggerSet<Data> = {
         'Servomechanical Minotaur 16': '自控化弥诺陶洛斯16',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Orthos Big Claw': '오르토스 왕집게',
+        'Orthos Ice Sprite': '오르토스 얼음 정령',
+        'Orthos Rockfin': '오르토스 바위지느러미',
+        'Orthos Stingray': '오르토스 창가오리',
+        'Orthos Ymir': '오르토스 위미르',
+        'Orthos Zaratan': '오르토스 자라탄',
+        'Servomechanical Minotaur 16': '자동제어 미노타우로스 16',
+      },
+    },
   ],
 };
 

@@ -167,6 +167,36 @@ const limitCutIds: readonly string[] = Object.keys(limitCutMap);
 const wingIds: readonly string[] = Object.values(wings);
 const superchainNpcBaseIds: readonly string[] = Object.values(superchainNpcBaseIdMap);
 
+const whiteFlameDelayOutputStrings = {
+  delay1: {
+    en: 'now',
+    de: 'jetzt',
+    cn: '现在!',
+    ko: '바로',
+  },
+  delay2: {
+    en: 'soon',
+    de: 'bald',
+    cn: '等1只小怪',
+    ko: '곧',
+  },
+  delay3: {
+    en: 'delayed',
+    de: 'verzögert',
+    cn: '等2只小怪',
+  },
+  delay4: {
+    en: 'very delayed',
+    de: 'sehr verzögert',
+    cn: '等3只小怪',
+  },
+  delay5: {
+    en: 'verrry delayed',
+    de: 'seeeeehr verzögert',
+    cn: '等4只小怪',
+  },
+} as const;
+
 type FloorTile =
   | 'outsideNW'
   | 'outsideNE'
@@ -299,6 +329,7 @@ export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower';
     classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs' | 'shapeAndDebuff';
+    classicalConcepts2ActualNoFlip: true | false;
     pangenesisFirstTower: 'agnostic' | 'not' | 'one';
   };
   decOffset?: number;
@@ -446,6 +477,27 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
       default: 'shapeAndDebuff',
+    },
+    {
+      id: 'classicalConcepts2ActualNoFlip',
+      comment: {
+        en:
+          'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+        de:
+          'Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.“ Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+        cn:
+          '只报自己图案的最终位置，没有位置变换。例如，对于 BPOG 打法，蓝 X 是第一列（西面最远）。 <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+        ko:
+          '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+      },
+      name: {
+        en: 'Classical Concepts 2: Actual only & no inversion',
+        de: 'Classical Concepts 2: Nur tatsächlich & keine Umkehrung',
+        cn: '经典概念2: 实际位置 (没有位置变换)',
+        ko: 'Classical Concepts 2: 반전 없이 실제 위치만 알림',
+      },
+      type: 'checkbox',
+      default: false,
     },
     {
       id: 'pangenesisFirstTower',
@@ -627,7 +679,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Clones ${dir}',
           de: 'Klone ${dir}',
           ja: '${dir}',
-          cn: '${dir}',
+          cn: '分身 ${dir}',
           ko: '분신 ${dir}',
         },
         north: Outputs.north,
@@ -659,14 +711,14 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Inside West / Outside East',
           de: 'Westen innen / Osten außen',
           ja: '西の内側 / 東の外側',
-          cn: '内西 / 外东',
+          cn: '内左 (西) / 外右 (东)',
           ko: '서쪽 안 / 동쪽 바깥',
         },
         insideEastOutsideWest: {
           en: 'Inside East / Outside West',
           de: 'Osten innen / Westen außen',
           ja: '西の外側 / 東の内側',
-          cn: '内东 / 外西',
+          cn: '内右 (东) / 外左 (西)',
           ko: '동쪽 안 / 서쪽 바깥',
         },
       },
@@ -720,56 +772,56 @@ const triggerSet: TriggerSet<Data> = {
           en: 'North + Her Left (then back North)',
           de: 'Norden + Links von Ihr (dannach Norden)',
           ja: '北 + 北に戻る (左安置)',
-          cn: '北 + Boss左侧 (稍后 回到北)',
+          cn: '上 (北) + Boss左侧 (稍后 回上北)',
           ko: '북쪽 + 보스 왼쪽 (그리고 다시 북쪽)',
         },
         superchain2aLeftNorthSouth: {
           en: 'North + Her Left (then go South)',
           de: 'Norden + Links von Ihr (dannach Süden)',
           ja: '北 + 南へ前進 (左安置)',
-          cn: '北 + Boss左侧 (稍后 去南)',
+          cn: '上 (北) + Boss左侧 (稍后 去下南)',
           ko: '북쪽 + 보스 왼쪽 (그리고 남쪽으로)',
         },
         superchain2aLeftSouthNorth: {
           en: 'South + Left (then go North)',
           de: 'Süden + Links (dannach Norden)',
           ja: '南 + 北へ前進 (左安置)',
-          cn: '南 + 左 (稍后 去北)',
+          cn: '下 (南) + 左 (稍后 去上北)',
           ko: '남쪽 + 왼쪽 (그리고 북쪽으로)',
         },
         superchain2aLeftSouthSouth: {
           en: 'South + Left (then back South)',
           de: 'Süden + Links (dannach Süden)',
           ja: '南 + 南に戻る (左安置)',
-          cn: '南 + 左 (稍后 回到南)',
+          cn: '下 (南) + 左 (稍后 回下南)',
           ko: '남쪽 + 왼쪽 (그리고 다시 남쪽)',
         },
         superchain2aRightNorthNorth: {
           en: 'North + Her Right (then back North)',
           de: 'Norden + Rechts von Ihr (dannach Norden)',
           ja: '北 + 北に戻る (右安置)',
-          cn: '北 + Boss右侧 (稍后 回到北)',
+          cn: '上 (北) + Boss右侧 (稍后 回上北)',
           ko: '북쪽 + 보스 오른쪽 (그리고 다시 북쪽)',
         },
         superchain2aRightNorthSouth: {
           en: 'North + Her Right (then go South)',
           de: 'Norden + Rechts von Ihr (dannach Süden)',
           ja: '北 + 南へ前進 (右安置)',
-          cn: '北 + Boss右侧 (稍后 去南)',
+          cn: '上 (北) + Boss右侧 (稍后 去下南)',
           ko: '북쪽 + 보스 오른쪽 (그리고 남쪽으로)',
         },
         superchain2aRightSouthNorth: {
           en: 'South + Right (then go North)',
           de: 'Süden + Rechts (dannach Norden)',
           ja: '南 + 北へ前進 (右安置)',
-          cn: '南 + 右 (稍后 去北)',
+          cn: '下 (南) + 右 (稍后 去上北)',
           ko: '남쪽 + 오른쪽 (그리고 북쪽으로)',
         },
         superchain2aRightSouthSouth: {
           en: 'South + Right (then back South)',
           de: 'Süden + Rechts (dannach Süden)',
           ja: '南 + 南に戻る (右安置)',
-          cn: '南 + 右 (稍后 回到南)',
+          cn: '下 (南) + 右 (稍后 回下南)',
           ko: '남쪽 + 오른쪽 (그리고 다시 남쪽)',
         },
       },
@@ -1868,22 +1920,18 @@ const triggerSet: TriggerSet<Data> = {
         pair: [{ key: 'ModelStatus', value: '16384' }],
         capture: true,
       },
-      condition: (data, matches) =>
-        data.lcCombatants.length > 0 &&
-        data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16)) !== undefined,
-      run: (data, matches) => {
+      condition: (data, matches) => {
+        // This happens repeatedly, so suppress future calls.
+        if (data.lcWhiteFlameDelay !== undefined)
+          return false;
         const combatant = data.lcCombatants.find((c) => c.ID === parseInt(matches.id, 16));
-        if (combatant === undefined) {
-          console.error(`LC Line Bait Collector: Could not find combatant for ID ${matches.id}`);
-          return;
-        }
-
+        if (combatant === undefined)
+          return false;
         combatant.order = data.lcCombatantsOffset;
         ++data.lcCombatantsOffset;
-
-        if (data.lcCombatantsOffset < 8)
-          return;
-
+        return data.lcCombatantsOffset === 8;
+      },
+      run: (data) => {
         // Find the intercardinal adds that jumped, and then sort by order.
         const orderedJumps = data.lcCombatants
           .filter((combatant) =>
@@ -1903,7 +1951,6 @@ const triggerSet: TriggerSet<Data> = {
         if (o1 === undefined || o2 === undefined || o3 === undefined || o4 === undefined)
           return;
 
-        // delay of 1 = immediate, 5 = maximum
         data.lcWhiteFlameDelay = [o1 + 1, o2 - o1, o3 - o2, o4 - o3];
       },
     },
@@ -1926,26 +1973,35 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           baitLaser: {
-            en: 'Bait Laser',
-            de: 'Laser Ködern',
-            fr: 'Bait le laser',
-            ja: 'レーザー誘導',
-            cn: '引导激光',
-            ko: '레이저 유도',
+            en: 'Bait (${delay})',
+            de: 'Laser Ködern (${delay})',
+            fr: 'Bait le laser (${delay})', // FIXME
+            ja: 'レーザー誘導 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
+            ko: '레이저 유도 (${delay})',
           },
           firstWhiteFlame: {
-            en: '(5 and 7 bait)',
-            de: '(5 und 7 ködern)',
-            fr: '(5 et 7 bait)',
-            ja: '(5と7誘導)',
-            cn: '(5 和 7 引导)',
-            ko: '(5, 7 레이저)',
+            en: '(5 and 7 ${delay})',
+            de: '(5 und 7 ködern ${delay})',
+            fr: '(5 et 7 bait ${delay})', // FIXME
+            ja: '(5と7誘導 ${delay})', // FIXME
+            cn: '(5 和 7 引导 ${delay})',
+            ko: '(5, 7 레이저 ${delay})',
           },
+          ...whiteFlameDelayOutputStrings,
         };
-        // TODO: use `data.lcWhiteFlameDelay` to say things like "quick" or "delayed" or "very delayed".
-        const infoText = output.firstWhiteFlame!();
+
+        const delayMap: { [delay: number]: string } = {
+          1: output.delay1!(),
+          2: output.delay2!(),
+          3: output.delay3!(),
+          4: output.delay4!(),
+          5: output.delay5!(),
+        } as const;
+        const delayStr = delayMap[data.lcWhiteFlameDelay?.[0] ?? 1];
+        const infoText = output.firstWhiteFlame!({ delay: delayStr });
         if (data.limitCutNumber === 5 || data.limitCutNumber === 7)
-          return { alertText: output.baitLaser!(), infoText: infoText };
+          return { alertText: output.baitLaser!({ delay: delayStr }), infoText: infoText };
         return { infoText: infoText };
       },
     },
@@ -1963,57 +2019,65 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           baitLaser: {
-            en: 'Bait Laser',
-            de: 'Laser Ködern',
-            fr: 'Bait le laser',
-            ja: 'レーザー誘導',
-            cn: '引导激光',
-            ko: '레이저 유도',
+            en: 'Bait (${delay})',
+            de: 'Laser Ködern (${delay})',
+            fr: 'Bait le laser (${delay})', // FIXME
+            ja: 'レーザー誘導 (${delay})', // FIXME
+            cn: '引导激光 (${delay})',
+            ko: '레이저 유도 (${delay})',
           },
           secondWhiteFlame: {
-            en: '(6 and 8 bait)',
-            de: '(6 und 8 ködern)',
-            fr: '(6 et 8 bait)',
-            ja: '(6と8誘導)',
-            cn: '(6 和 8 引导)',
-            ko: '(6, 8 레이저)',
+            en: '(6 and 8 ${delay})',
+            de: '(6 und 8 ködern ${delay})',
+            fr: '(6 et 8 bait ${delay})', // FIXME
+            ja: '(6と8誘導 ${delay})', // FIXME
+            cn: '(6 和 8 引导 ${delay})',
+            ko: '(6, 8 레이저 ${delay})',
           },
           thirdWhiteFlame: {
-            en: '(1 and 3 bait)',
-            de: '(1 und 3 ködern)',
-            fr: '(1 et 3 bait)',
-            ja: '(1と3誘導)',
-            cn: '(1 和 3 引导)',
-            ko: '(1, 3 레이저)',
+            en: '(1 and 3 ${delay})',
+            de: '(1 und 3 ködern ${delay})',
+            fr: '(1 et 3 bait ${delay})', // FIXME
+            ja: '(1と3誘導 ${delay})', // FIXME
+            cn: '(1 和 3 引导 ${delay})',
+            ko: '(1, 3 레이저 ${delay})',
           },
           fourthWhiteFlame: {
-            en: '(2 and 4 bait)',
-            de: '(2 und 6 ködern)',
-            fr: '(2 et 4 bait)',
-            ja: '(2と4誘導)',
-            cn: '(2 和 4 引导)',
-            ko: '(2, 4 레이저)',
+            en: '(2 and 4 ${delay})',
+            de: '(2 und 6 ködern ${delay})',
+            fr: '(2 et 4 bait ${delay})', // FIXME
+            ja: '(2と4誘導 ${delay})', // FIXME
+            cn: '(2 和 4 引导 ${delay})',
+            ko: '(2, 4 레이저 ${delay})',
           },
+          ...whiteFlameDelayOutputStrings,
         };
 
-        // TODO: use `data.lcWhiteFlameDelay` to say things like "quick" or "delayed" or "very delayed".
+        const delayMap: { [delay: number]: string } = {
+          1: output.delay1!(),
+          2: output.delay2!(),
+          3: output.delay3!(),
+          4: output.delay4!(),
+          5: output.delay5!(),
+        } as const;
+        const delayStr = delayMap[data.lcWhiteFlameDelay?.[data.whiteFlameCounter] ?? 1];
 
-        const baitLaser = output.baitLaser!();
+        const baitLaser = output.baitLaser!({ delay: delayStr });
 
         if (data.whiteFlameCounter === 1) {
-          const infoText = output.secondWhiteFlame!();
+          const infoText = output.secondWhiteFlame!({ delay: delayStr });
           if (data.limitCutNumber === 6 || data.limitCutNumber === 8)
             return { alertText: baitLaser, infoText: infoText };
           return { infoText: infoText };
         }
         if (data.whiteFlameCounter === 2) {
-          const infoText = output.thirdWhiteFlame!();
+          const infoText = output.thirdWhiteFlame!({ delay: delayStr });
           if (data.limitCutNumber === 1 || data.limitCutNumber === 3)
             return { alertText: baitLaser, infoText: infoText };
           return { infoText: infoText };
         }
         if (data.whiteFlameCounter === 3) {
-          const infoText = output.fourthWhiteFlame!();
+          const infoText = output.fourthWhiteFlame!({ delay: delayStr });
           if (data.limitCutNumber === 2 || data.limitCutNumber === 4)
             return { alertText: baitLaser, infoText: infoText };
           return { infoText: infoText };
@@ -2536,20 +2600,20 @@ const triggerSet: TriggerSet<Data> = {
         inside: {
           en: 'Inside (avoid clones)',
           de: 'Innen (Klonen ausweichen)',
-          cn: '内侧 (躲避场边激光)',
+          cn: '内侧 (躲避小怪激光)',
           ko: '안쪽 (분신 피하기)',
         },
         outside: {
           en: 'Outside (avoid clones)',
           de: 'Außen (Klonen ausweichen)',
-          cn: '外侧 (躲避场边激光)',
+          cn: '外侧 (躲避小怪激光)',
           ko: '바깥쪽 (분신 피하기)',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
           de: 'Vermeide Linien AoEs',
           ja: '直線回避',
-          cn: '躲避场边激光',
+          cn: '躲避小怪激光',
           ko: '직선 장판 피하기',
         },
       },
@@ -2671,7 +2735,7 @@ const triggerSet: TriggerSet<Data> = {
         outsideNW: {
           en: 'Outside NW',
           de: 'Außerhalb NW',
-          cn: '外侧 左上(西北)',
+          cn: '外侧 左上 (西北)',
           ko: '북서 바깥',
         },
         outsideNE: {
@@ -3021,6 +3085,13 @@ const triggerSet: TriggerSet<Data> = {
           if (columnOrder?.length !== 4)
             return;
 
+          // If classicalConcepts2ActualNoFlip is enabled for classic2, the left/west assigned pair will handle
+          // the left/west column, as opposed to flipping to pre-position in the right/east column before Panta Rhei.
+          // To accommodate this, and because the shapes spawn in their flipped arrangement,
+          // we just reverse the columnOrder from the config settings when determining initial safe spots.
+          if (data.triggerSetConfig.classicalConcepts2ActualNoFlip && data.phase === 'classical2')
+            columnOrder.reverse();
+
           myColumn = columnOrder.indexOf(data.conceptPair);
           const myColumnLocations = [
             conceptLocationMap.north[myColumn],
@@ -3103,8 +3174,13 @@ const triggerSet: TriggerSet<Data> = {
             data.classical2InitialRow = myRow;
             data.classical2Intercept = myInterceptOutput;
           }
-        } else {
-          // for Panta Rhei, get myColumn, myRow, and myInterceptOutput from data{} and invert them
+        }
+
+        if (
+          (matches.id === '8336') ||
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+        ) {
+          // invert myColumn, myRow, and myInterceptOutput to correspond to final/actual positions
           if (data.classical2InitialColumn !== undefined)
             myColumn = 3 - data.classical2InitialColumn;
           if (data.classical2InitialRow !== undefined)
@@ -3137,7 +3213,20 @@ const triggerSet: TriggerSet<Data> = {
           });
           return { alertText: outputStr };
         }
-        if (matches.id === '8331') { // classic2 initial
+        // call the actual position on Panta Rhei or on classical2 cast (depending on classicalConcepts2ActualNoFlip)
+        if (
+          (matches.id === '8336' && !data.triggerSetConfig.classicalConcepts2ActualNoFlip) ||
+          (matches.id === '8331' && data.triggerSetConfig.classicalConcepts2ActualNoFlip)
+        ) {
+          outputStr = output.classic2actual!({
+            column: output[columnOutput]!(),
+            row: output[rowOutput]!(),
+            intercept: output[myInterceptOutput]!(),
+          });
+          return { alertText: outputStr };
+        }
+        // the initial call is not suppressed by classicalConcepts2ActualNoFlip, so call it for classical2
+        if (matches.id === '8331') {
           outputStr = output.classic2initial!({
             column: output[columnOutput]!(),
             row: output[rowOutput]!(),
@@ -3145,12 +3234,8 @@ const triggerSet: TriggerSet<Data> = {
           });
           return { infoText: outputStr };
         }
-        outputStr = output.classic2actual!({
-          column: output[columnOutput]!(),
-          row: output[rowOutput]!(),
-          intercept: output[myInterceptOutput]!(),
-        });
-        return { alertText: outputStr };
+        // only case left is Panta Rhei where initial call was suppressed by classicalConcepts2ActualNoFlip, so don't call anything
+        return;
       },
       run: (data) => {
         if (data.phase === 'classical1') {
@@ -3358,58 +3443,58 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Short Light (get first dark)',
           de: 'Hell kurz (nimm erstes Dunkel)',
           ja: '早: 1番目のやみ塔',
-          cn: '白1: 踩第1轮黑塔',
+          cn: '短光: 踩第1轮黑塔',
           ko: '짧은 빛 (첫 어둠 대상)',
         },
         longLight: {
           en: 'Long Light (get second dark)',
           de: 'Hell lang (nimm zweites Dunkel)',
           ja: '遅: 2番目の下のやみ塔',
-          cn: '白2: 踩第2轮黑塔',
+          cn: '长光: 踩第2轮黑塔',
           ko: '긴 빛 (두번째 어둠 대상)',
         },
         longLightMerge: {
           en: 'Long Light (get second dark - merge first)',
           de: 'Hell lang (nimm zweites Dunkel - zuerst kombinieren)',
-          cn: '白2 (踩第2轮黑塔 - 先合成)',
+          cn: '长光 (踩第2轮黑塔 - 先合成)',
           ko: '긴 빛 (두번째 어둠 대상 - 융합 먼저)',
         },
         shortDark: {
           en: 'Short Dark (get first light)',
           de: 'Dunkel kurz (nimm erstes Hell)',
           ja: '早: 1番目のひかり塔',
-          cn: '黑1: 踩第1轮白塔',
+          cn: '短暗: 踩第1轮白塔',
           ko: '짧은 어둠 (첫 빛 대상)',
         },
         longDark: {
           en: 'Long Dark (get second light)',
           de: 'Dunkel lang (nimm zweites Hell)',
           ja: '遅: 2番目の下のひかり塔',
-          cn: '黑2: 踩第2轮白塔',
+          cn: '长暗: 踩第2轮白塔',
           ko: '긴 어둠 (두번째 빛 대상)',
         },
         longDarkMerge: {
           en: 'Long Dark (get second light - merge first)',
           de: 'Dunkel lang (nimm zweites Hell - zuerst kombinieren)',
-          cn: '黑2 (踩第2轮白塔 - 先合成)',
+          cn: '长暗 (踩第2轮白塔 - 先合成)',
           ko: '긴 어둠 (두번째 빛 대상 - 융합 먼저)',
         },
         firstTower: {
           en: 'First Tower',
           de: 'Erster Turm',
-          cn: '第一轮塔', // FIXME: Maybe not correct.
+          cn: '1 塔',
           ko: '첫번째 기둥',
         },
         secondTower: {
           en: 'Second Tower',
           de: 'Zweiter Turm',
-          cn: '第二轮塔',
+          cn: '2 塔',
           ko: '두번째 기둥',
         },
         secondTowerMerge: {
           en: 'Second Tower (Merge first)',
           de: 'Zweiter Turm (zuerst kombinieren)',
-          cn: '第二轮塔 (先合成)',
+          cn: '2 塔 (先合成)',
           ko: '두번째 기둥 (융합 먼저)',
         },
         unknown: Outputs.unknown,
@@ -4327,6 +4412,63 @@ const triggerSet: TriggerSet<Data> = {
         'Umbral Glow': 'アンブラルグロウ',
         'Umbral Impact': '霊撃',
         'Unnatural Enchainment': '魂の鎖',
+        'White Flame': '白火',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        '(?<! )Athena': '雅典娜',
+        'Anthropos': '人',
+        'Pallas Athena': '帕拉斯雅典娜',
+        'Thymou Idea': '激情理念',
+      },
+      'replaceText': {
+        '\\(Floor Drop\\)': '(地板坠落)',
+        '\\(cast\\)': '(咏唱)',
+        '\\(enrage\\)': '(狂暴)',
+        '\\(proximity\\)': '(近)',
+        '\\(spread\\)': '(分散)',
+        '--tethers--': '--连线--',
+        'Apodialogos': '远距离对话',
+        'Astral Impact': '星击',
+        'Caloric Theory': '热质说',
+        'Crush Helm': '星天爆击打',
+        'Demi Parhelion': '亚幻日',
+        '(?<!(Apo|Peri))Dialogos': '对话',
+        'Divine Excoriation': '神罚',
+        'Dynamic Atmosphere': '冲风',
+        'Engravement of Souls': '灵魂刻印',
+        'Geocentrism': '地心说',
+        'Glaukopis': '明眸',
+        'Ignorabimus': '我仍将一无所知',
+        'On the Soul': '论灵魂',
+        'Palladion': '女神的护佑',
+        'Pangenesis': '泛生论',
+        'Panta Rhei': '万物流变',
+        'Paradeigma': '范式',
+        'Parthenos': '贞女',
+        'Peridialogos': '近距离对话',
+        'Polarized Ray': '偏振炽光',
+        'Pyre Pulse': '重热波',
+        'Ray of Light': '光波',
+        'Sample': '贪食',
+        'Shock': '放电',
+        'Summon Darkness': '暗黑召唤',
+        'Superchain Burst': '超链爆发',
+        'Superchain Coil': '超链回环',
+        'Superchain Theory I(?!I)': '超链理论I',
+        'Superchain Theory IIA': '超链理论IIA',
+        'Superchain Theory IIB': '超链理论IIB',
+        'Theos\'s Cross': '神之十字',
+        'Theos\'s Holy': '神之炽光',
+        'Theos\'s Saltire': '神之交错',
+        'Theos\'s Ultima': '神之究极',
+        'Trinity of Souls': '三魂一体',
+        '(?<! )Ultima(?! (B|R))': '究极',
+        'Ultima Blade': '究极之刃',
+        'Unnatural Enchainment': '灵魂链',
         'White Flame': '白火',
       },
     },

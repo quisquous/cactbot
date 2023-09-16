@@ -912,7 +912,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         // Something went awry, or maybe healers dead.  Just say stack on water anyway,
         // instead of trying to be smart when the healers die.
-        if (data.waterHealer)
+        if (data.waterHealer !== undefined)
           return output.stackOnWaterhealer!({ player: data.waterHealer });
 
         return output.stackOnWater!();
@@ -957,7 +957,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
         // Good for both dps and tanks.
-        if (data.waterHealer)
+        if (data.waterHealer !== undefined)
           return output.stackUnderBossOnWaterhealer!({ waterHealer: data.waterHealer });
 
         return output.stackOnWater!();

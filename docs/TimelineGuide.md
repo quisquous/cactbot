@@ -76,13 +76,18 @@ Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" (duration Number)`
 
-`Number "String" sync /Regex/ (window Number,Number) (jump Number) (duration Number)`
+`Number "String" sync /Regex/ (window Number,Number) (jump NumberOrLabel) (duration Number)`
 
-`Number "String" sync /Regex/ (window Number,Number) (forcejump Number) (duration Number)`
+`Number "String" sync /Regex/ (window Number,Number) (forcejump NumberOrLabel) (duration Number)`
+
+`Number label "String"`
 
 (The parentheses here indicate optionality and are not literal parentheses.)
 
 **Number** can be an integer, e.g. `34`, or a float, e.g. `84.381`.
+
+**NumberOrLabel** can be a **Number** (e.g. `42` or `12.8`)
+or a label name with double quotes (e.g. `"loop"` or `"branch2"`).
 
 **String** is a character string, e.g. `"Liftoff"` or `"Double Attack"`
 
