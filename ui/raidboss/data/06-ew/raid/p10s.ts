@@ -652,7 +652,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'In den Boxen (vermeide Laser)',
           fr: 'Dans les carrés (évitez les lasers)',
           ja: 'レーザー回避(マスの内側)',
-          cn: '站在盒子里（躲避激光）',
+          cn: '站方格内（躲避激光）',
           ko: '네모칸 안 (레이저 피하기)',
         },
       },

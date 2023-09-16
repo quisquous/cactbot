@@ -218,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Gruppe raus (${player} rein)=> Rein + Partner',
             fr: 'Groupe à l\'extérieur (${player} intérieur) => Intérieur + Partenaires',
             ja: '外側へ (${player}が内側) => 内側で + ペア',
-            cn: '场外 （${player} 引导） => 场中 + 两人分摊',
+            cn: '场外 (${player} 引导) => 场中 + 两人分摊',
             ko: '본대 밖으로 (${player} 안) => 안으로 + 파트너',
           },
           upheldNotOnYou: {
@@ -284,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Mit der Gruppe sammeln (${player} raus)',
             fr: 'Package en groupe (${player} à l\'extérieur)',
             ja: 'あたまわり (${player}が外側)',
-            cn: '集合 （${player} 放月环）',
+            cn: '集合 (${player} 放月环)',
             ko: '쉐어 (${player} 밖)',
           },
           // If we're not sure who the tether is on.
@@ -825,7 +825,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sammeln (${num} Mal)',
           fr: 'Packez-vous (${num} fois)',
           ja: '頭割り（${num}回）',
-          cn: '集合分摊（${num}次）',
+          cn: '集合分摊 (${num}次)',
           ko: '쉐어뎀 (${num}번)',
         },
       },
