@@ -171,29 +171,29 @@ const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
     de: 'jetzt',
-    cn: '现在!',
+    cn: '立刻',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
     de: 'bald',
-    cn: '等一会',
+    cn: '下一组',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
     de: 'verzögert',
-    cn: '等两会',
+    cn: '下两组',
   },
   delay4: {
     en: 'very delayed',
     de: 'sehr verzögert',
-    cn: '等三会',
+    cn: '下三组',
   },
   delay5: {
     en: 'verrry delayed',
     de: 'seeeeehr verzögert',
-    cn: '等前一组(非常延后)',
+    cn: '最后一组',
   },
 } as const;
 
@@ -2600,20 +2600,20 @@ const triggerSet: TriggerSet<Data> = {
         inside: {
           en: 'Inside (avoid clones)',
           de: 'Innen (Klonen ausweichen)',
-          cn: '内侧 (躲避场边激光)',
+          cn: '内侧 (躲避小怪激光)',
           ko: '안쪽 (분신 피하기)',
         },
         outside: {
           en: 'Outside (avoid clones)',
           de: 'Außen (Klonen ausweichen)',
-          cn: '外侧 (躲避场边激光)',
+          cn: '外侧 (躲避小怪激光)',
           ko: '바깥쪽 (분신 피하기)',
         },
         avoid: {
           en: 'Avoid Line Cleaves',
           de: 'Vermeide Linien AoEs',
           ja: '直線回避',
-          cn: '躲避场边激光',
+          cn: '躲避小怪激光',
           ko: '직선 장판 피하기',
         },
       },
