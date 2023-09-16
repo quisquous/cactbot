@@ -177,7 +177,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Eruption Baits',
-          cn: '诱导喷发',
+          cn: '诱导地火',
         },
       },
     },
@@ -292,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
           partyStack: Outputs.stackMarker,
           tankCleavePartyOut: {
             en: 'Tank Cleave (PARTY OUT)',
-            cn: '坦克顺劈 (快出去)',
+            cn: '坦克顺劈 (人群出)',
           },
         };
 
@@ -390,7 +390,7 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Where the two sisters are for the tanks to block. dir1 is always the first sister location starting North and going clockwise',
-        cn: '两姐妹待坦克阻挡的位置。Dir1 始终是从上 (北) 开始顺时针方向的第一个姐妹位置',
+        cn: '两分身待坦克阻挡的位置。dir1 始终是从上 (北) 开始顺时针方向的第一个姐妹位置',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B55', source: 'Garuda', capture: false },
@@ -443,7 +443,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sisters: ${dir1} / ${dir2}',
-          cn: '姐妹：${dir1} / ${dir2}',
+          cn: '分身：${dir1} / ${dir2}',
         },
         // TODO: the lint fails if you `...Directions.outputStringsCardinalDir` :C
         dirN: Outputs.dirN,
@@ -464,12 +464,12 @@ const triggerSet: TriggerSet<Data> = {
           // The person with two stacks must get a tether.
           garuda2: {
             en: 'Get Sister Tether!!!',
-            cn: '接姐妹的线!!!',
+            cn: '接分身的线!!!',
           },
           // Other people with 1 stack can be informed about it.
           garuda1: {
             en: 'Sister Tethers',
-            cn: '姐妹连线',
+            cn: '分身连线',
           },
           // Usually static on a ranged.
           annihilation1: {
