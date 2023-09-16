@@ -99,6 +99,8 @@ Options.Triggers.push({
           '<a href="https://github.com/quisquous/cactbot/releases/tag/v0.28.19" target="_blank">Read Notes</a>',
         de:
           '<a href="https://github.com/quisquous/cactbot/releases/tag/v0.28.19" target="_blank">Notizen lesen</a>',
+        cn:
+          '<a href="https://github.com/quisquous/cactbot/releases/tag/v0.28.19" target="_blank">阅读笔记</a>',
       },
       name: {
         en: 'Run: Omega Staff Sword Dodge Direction',
