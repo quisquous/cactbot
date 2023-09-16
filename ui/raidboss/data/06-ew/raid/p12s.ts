@@ -171,29 +171,29 @@ const whiteFlameDelayOutputStrings = {
   delay1: {
     en: 'now',
     de: 'jetzt',
-    cn: '立刻',
+    cn: '现在!',
     ko: '바로',
   },
   delay2: {
     en: 'soon',
     de: 'bald',
-    cn: '下一组',
+    cn: '等1只小怪',
     ko: '곧',
   },
   delay3: {
     en: 'delayed',
     de: 'verzögert',
-    cn: '下两组',
+    cn: '等2只小怪',
   },
   delay4: {
     en: 'very delayed',
     de: 'sehr verzögert',
-    cn: '下三组',
+    cn: '等3只小怪',
   },
   delay5: {
     en: 'verrry delayed',
     de: 'seeeeehr verzögert',
-    cn: '最后一组',
+    cn: '等4只小怪',
   },
 } as const;
 
