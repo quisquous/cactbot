@@ -180,7 +180,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': '魔导六轮装甲浮游炮',
         'Hypertuned Grynewaht': '强化格林瓦特',
