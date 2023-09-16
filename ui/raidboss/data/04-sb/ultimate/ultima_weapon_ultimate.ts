@@ -78,6 +78,7 @@ const gaolConfig = (id: GaolKey): NamedConfigEntry<GaolKey> => {
     id: id,
     name: {
       en: `Titan Gaol Order ${numStr}`,
+      cn: `泰坦石牢顺序 ${numStr}`,
     },
     type: 'string',
     default: '',
@@ -98,6 +99,8 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Each entry can be the three letter job (e.g. "war" or "SGE") or the full name (e.g. "Tini Poutini"), all case insensitive. Smaller numbers will be listed first in the gaol order. Duplicate jobs will sort players alphabetically. Anybody not listed will be added to the end alphabetically. Blank entries are ignored. If players are listed multiple times by name or job, the lower number will be considered.',
+        cn:
+          '每个条目可以是三个字母的职业缩写 (例如 "war" 或  "SGE") 或玩家全名（例如 "Tini Poutini"），所有字母不区分大小写。编号较小的将在石牢顺序中排列在前。重复的职业将按姓名字母顺序对玩家进行排序。未列出的队员将按字母顺序添加到末尾。空白条目将被忽略。如果玩家按姓名或职业被多次列出，则以较小编号为准。',
       },
     },
     gaolConfig('gaolOrder2'),
@@ -174,6 +177,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Eruption Baits',
+          cn: '诱导喷发',
         },
       },
     },
@@ -288,6 +292,7 @@ const triggerSet: TriggerSet<Data> = {
           partyStack: Outputs.stackMarker,
           tankCleavePartyOut: {
             en: 'Tank Cleave (PARTY OUT)',
+            cn: '坦克顺劈 (快出去)',
           },
         };
 
@@ -385,6 +390,8 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Where the two sisters are for the tanks to block. dir1 is always the first sister location starting North and going clockwise',
+        cn:
+          '两姐妹待坦克阻挡的位置。Dir1 始终是从上 (北) 开始顺时针方向的第一个姐妹位置',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B55', source: 'Garuda', capture: false },
@@ -437,6 +444,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sisters: ${dir1} / ${dir2}',
+          cn: '姐妹：${dir1} / ${dir2}',
         },
         // TODO: the lint fails if you `...Directions.outputStringsCardinalDir` :C
         dirN: Outputs.dirN,
@@ -457,18 +465,22 @@ const triggerSet: TriggerSet<Data> = {
           // The person with two stacks must get a tether.
           garuda2: {
             en: 'Get Sister Tether!!!',
+            cn: '接姐妹的线!!!',
           },
           // Other people with 1 stack can be informed about it.
           garuda1: {
             en: 'Sister Tethers',
+            cn: '姐妹连线',
           },
           // Usually static on a ranged.
           annihilation1: {
             en: 'Tether',
+            cn: '连线',
           },
           // Late in the raid, so make sure anybody with a stack remembers this.
           suppression1: {
             en: 'Tether!!!',
+            cn: '连线!!!',
           },
         };
 
@@ -537,6 +549,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Near: ${dir}',
+          cn: '近: ${dir}',
         },
         ...Directions.outputStrings16Dir,
       },
@@ -618,6 +631,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fetters: {
           en: 'Fetters (w/${player})',
+          cn: '锁链 (与 /${player})',
         },
       },
     },
@@ -681,6 +695,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         intercardSafeSpot: {
           en: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -711,6 +726,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Adjust 45° ${rotation}',
+          cn: '${rotation} 旋转 45°',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -782,15 +798,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         awokenDash1: {
           en: '${rotation} 45° to ${dir} (fast)',
+          cn: '${rotation} 45° 到 ${dir} (快)',
         },
         awokenDash2: {
           en: '${rotation} 90° to ${dir} (fast)',
+          cn: '${rotation} 90° 到 ${dir} (快)',
         },
         awokenDash3: {
           en: '${rotation} 45° to ${dir} (slow)',
+          cn: '${rotation} 45° 到 ${dir} (慢)',
         },
         awokenDash4: {
           en: '${rotation} 90° to ${dir} (slow)',
+          cn: '${rotation} 90° 到 ${dir} (慢)',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -997,6 +1017,7 @@ const triggerSet: TriggerSet<Data> = {
         num3: Outputs.num3,
         text: {
           en: 'Everyone to ${num} (${player} died)',
+          cn: '所有人到 ${num} (${player}死亡)',
         },
       },
     },
@@ -1021,6 +1042,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Caster LB NOW!',
+          cn: '法系LB!',
         },
       },
     },
@@ -1035,6 +1057,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Healer LB NOW!',
+          cn: '奶妈LB!',
         },
       },
     },
@@ -1048,6 +1071,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Melee LB NOW!',
+          cn: '近战LB!',
         },
       },
     },
@@ -1073,6 +1097,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UWU Predation',
       comment: {
         en: '"early safe" here means that you can move before the first Ifrit dash.',
+        cn: '这里的 "提前安全" 指你可以在伊弗利特第一次冲锋前移动。',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B76', source: 'The Ultima Weapon', capture: false },
@@ -1197,9 +1222,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         early: {
           en: '${dir} => ${rotation} (early safe)',
+          cn: '${dir} => ${rotation} (提前安全)',
         },
         normal: {
           en: '${dir} => ${rotation}',
+          cn: '${dir} => ${rotation}',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -1532,13 +1559,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
         'Chirada': '妙翅',
         'Garuda': '迦楼罗',
         'Ifrit': '伊弗利特',
         'Lahabrea': '拉哈布雷亚',
+        'Magitek Bit': '浮游炮射出',
         'Spiny Plume': '刺羽',
         'Suparna': '美翼',
         'The Ultima Weapon': '究极神兵',
@@ -1553,6 +1580,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blight': '毒雾',
         'Bury': '塌方',
         'Ceruleum Vent': '青磷放射',
+        'Citadel Siege': '堡垒围攻',
         'Crimson Cyclone': '深红旋风',
         'Dark IV': '冥暗',
         'Diffractive Laser': '扩散射线',
@@ -1572,6 +1600,7 @@ const triggerSet: TriggerSet<Data> = {
         'Infernal Fetters': '火狱之锁',
         'Inferno Howl': '灼热咆哮',
         'Landslide': '地裂',
+        'Light Pillar': '光柱',
         'Mesohigh': '中高压',
         'Mistral Shriek': '寒风之啸',
         'Mistral Song': '寒风之歌',
@@ -1581,6 +1610,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Buster': '碎岩',
         'Rock Throw': '花岗岩牢狱',
         'Searing Wind': '灼热',
+        'Self-detonate': '雾散爆发',
         'Slipstream': '螺旋气流',
         'Summon Random Primal': '召唤随机蛮神',
         'Tank Purge': '魔导核爆',
