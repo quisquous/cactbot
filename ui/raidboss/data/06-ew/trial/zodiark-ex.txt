@@ -10,8 +10,7 @@ hideall "Infernal Torrent"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /Engage!/ window 0,1
-1.8 "--sync--" sync / 1[56]:[^:]*:Zodiark:6C73:/ window 2.3,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 10.8 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C60:/ window 11.3,5
 21.0 "Paradeigma 1" sync / 1[56]:[^:]*:Zodiark:67BF:/
 33.0 "Keraunos Eidolon" sync / 1[56]:[^:]*:Quetzalcoatl:67E1:/

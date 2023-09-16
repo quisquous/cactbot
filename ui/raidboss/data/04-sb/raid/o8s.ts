@@ -8,9 +8,9 @@ import { TriggerSet } from '../../../../../types/trigger';
 export interface Data extends RaidbossData {
   truths?: boolean;
   antics?: boolean;
-  lastFire?: string;
-  lastThunder?: string;
-  lastIceDir?: string;
+  lastFire?: 'spread' | 'stack';
+  lastThunder?: 'fakeThunder' | 'trueThunder';
+  lastIceDir?: 'getOut' | 'getIn';
   manaReleaseText?: string;
   fireMarker?: string;
 }

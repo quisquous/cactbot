@@ -43,7 +43,7 @@ namespace Cactbot {
     private Version overlay_plugin_version_;
     private Version ffxiv_plugin_version_;
     private Version act_version_;
-    private GameRegion game_region_ = GameRegion.International;
+    private Cactbot.VersionChecker.GameRegion game_region_ = Cactbot.VersionChecker.GameRegion.International;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
     public event ForceReloadHandler OnForceReload;
@@ -249,11 +249,11 @@ namespace Cactbot {
 
       switch (game_region_)
       {
-        case GameRegion.Chinese:
+        case Cactbot.VersionChecker.GameRegion.Chinese:
           ffxiv_ = new FFXIVProcessCn(this.logger);
           logger.Log(LogLevel.Info, Strings.Version, "cn");
           break;
-        case GameRegion.Korean:
+        case Cactbot.VersionChecker.GameRegion.Korean:
           ffxiv_ = new FFXIVProcessKo(this.logger);
           logger.Log(LogLevel.Info, Strings.Version, "ko");
           break;

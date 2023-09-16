@@ -203,6 +203,19 @@ const triggerSet: TriggerSet<Data> = {
         'Servomechanical Chimera 14X': '自控化奇美拉14X',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Cacophony': '불협화음',
+        'Orthos Acheron': '오르토스 아케론',
+        'Orthos Bergthurs': '오르토스 베르그투르스',
+        'Orthos Gelato': '오르토스 젤라토',
+        'Orthos Goobbue': '오르토스 구부',
+        'Orthos Hoarhound': '오르토스 호어하운드',
+        'Orthos Kelpie': '오르토스 켈피',
+        'Servomechanical Chimera 14X': '자동제어 키마이라 14X',
+      },
+    },
   ],
 };
 

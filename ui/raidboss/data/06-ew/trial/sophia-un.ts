@@ -289,7 +289,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '002D' },
       run: (data, matches) => {
         const spot = data.cloneSpots?.[matches.sourceId];
-        if (!spot)
+        if (spot === undefined)
           throw new UnreachableCode();
         // Only Thunder 2 is ever used on centerline clones,
         // so center clones will never affect quadrant safety.

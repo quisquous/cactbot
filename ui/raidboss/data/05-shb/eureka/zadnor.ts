@@ -91,7 +91,7 @@ const limitCutHeadmarkers = ['004F', '0050', '0051', '0052'];
 
 // TODO: promote something like this to Conditions?
 const tankBusterOnParty = (ceName?: string) => (data: Data, matches: NetMatches['StartsUsing']) => {
-  if (ceName && data.ce !== ceName)
+  if (ceName !== undefined && data.ce !== ceName)
     return false;
   if (matches.target === data.me)
     return true;
@@ -119,7 +119,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => {
         // This fires when you win, lose, or teleport out.
         if (matches.data0 === '00') {
-          if (data.ce && data.options.Debug)
+          if (data.ce !== undefined && data.options.Debug)
             console.log(`Stop CE: ${data.ce}`);
           // Stop any active timelines.
           data.StopCombat();

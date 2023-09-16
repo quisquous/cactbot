@@ -232,6 +232,33 @@ const triggerSet: TriggerSet<Data> = {
         'Void Stardust': 'ヴォイド・コメットレイン',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Golbez': '高贝扎',
+        'Golbez\'s Shadow': '高贝扎的幻影',
+      },
+      'replaceText': {
+        '\\(preview\\)': '(预览)',
+        'Arctic Assault': '极寒突袭',
+        'Azdaja\'s Shadow': '黑龙剑阿珠达雅',
+        'Binding Cold': '咒缚寒气',
+        'Black Fang': '黑牙',
+        'Burning Shade': '黑炎',
+        'Crescent Blade': '弦月剑',
+        'Double Meteor': '双重陨石',
+        'Eventide Fall': '集束黑龙闪',
+        'Explosion': '爆炸',
+        'Gale Sphere': '风晶球',
+        'Immolating Shade': '重黑炎',
+        'Lingering Spark': '迟缓电火花',
+        'Rising Beacon': '升龙烽火',
+        'Shadow Crescent': '弦月黑龙剑',
+        'Terrastorm': '迟缓地暴',
+        'Void Meteor': '虚空陨石',
+        'Void Stardust': '虚空彗星雨',
+      },
+    },
   ],
 };
 
