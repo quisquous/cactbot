@@ -390,7 +390,7 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Where the two sisters are for the tanks to block. dir1 is always the first sister location starting North and going clockwise',
-        cn: '两分身待坦克阻挡的位置。dir1 始终是从上 (北) 开始顺时针方向的第一个姐妹位置',
+        cn: '两分身待坦克阻挡的位置。dir1 始终是从上 (北) 开始顺时针方向的第一个分身位置',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B55', source: 'Garuda', capture: false },
