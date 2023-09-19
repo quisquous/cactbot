@@ -775,7 +775,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AMR Shishu Kotengu Wrath of the Tengu',
       type: 'StartsUsing',
       netRegex: { id: '8654', source: 'Shishu Kotengu', capture: false },
-      response: Responses.bleedAoe('info'),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'AMR Shishu Kotengu Gaze of the Tengu',
@@ -1467,12 +1467,6 @@ const triggerSet: TriggerSet<Data> = {
         const outputKey = `${thisAbility}OnPlayer`;
         return { infoText: output[outputKey]!({ player: data.ShortName(player) }) };
       },
-    },
-    {
-      id: 'AMR Moko Moonless Night',
-      type: 'StartsUsing',
-      netRegex: { id: '85DE', source: 'Moko the Restless', capture: false },
-      response: Responses.aoe(),
     },
     {
       id: 'AMR Moko Shadow Kasumi-giri Initial',
