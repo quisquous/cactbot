@@ -358,8 +358,8 @@ const zoneReplace: ZoneReplace[] = [
       '850D': 'TODO', // Worldly Pursuit cast and damage from cross jumps
       '850E': 'TODO', // Falling Rock expanded rock damage after Brazen Ballad 8509
       '850F': 'TODO', // Falling Rock donutified rock damage after Brazen Ballad 850A
-      '8510': 'TODO', // Flickering Flame cast and ability (summoning blue flames for 8511???)
-      '8511': 'TODO', // Fire Spread cast and damage for waffle lines during second towers???
+      '8510': 'TODO', // Flickering Flame cast and ability (summoning blue flames for 8511)
+      '8511': 'TODO', // Fire Spread cast and damage for waffle lines during second towers
       '8512': 'TODO', // Rousing Reincarnation cast and self-targeted ability
       '8513': 'TODO', // Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
       '8514': 'TODO', // Malformed Reincarnation cast and self-targeted ability
@@ -393,6 +393,9 @@ const zoneReplace: ZoneReplace[] = [
       '8533': 'TODO', // Torching Torment cast and damage on tank for tankbuster
       '8534': 'TODO', // Unenlightenment cast and self-targeted ability
       '8535': 'TODO', // Unenlightenment damage for raidwide bleed
+      '8536': 'TODO', // Living Hell cast and self-targeted enrage
+      '8537': 'TODO', // Living Hell self-targeted ability for follow-up enrage if 8536 failed
+      '8538': 'TODO', // Living Hell damage for 8536/8537 enrage abilities
       '8593': 'TODO', // Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
       '8599': 'TODO', // Boundless Scarlet cast and self-targeted ability to summon red lines
       '859D': 'TODO', // Boundless Azure cast and self-targeted ability to summon blue lines

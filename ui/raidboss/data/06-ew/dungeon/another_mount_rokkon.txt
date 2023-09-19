@@ -205,11 +205,28 @@ hideall "--sync--"
 2245.8 "Malformed Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8514:/
 2252.2 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
 2265.3 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:8510:/
-2267.3 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
-2269.9 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
-2271.9 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
-# ???
+2267.3 "Burst 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2269.9 "Burst 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2271.9 "Burst 3" #sync / 1[56]:[^:]*:Gorai the Uncaged:851B:/
+2272.6 "Fire Spread 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:8511:/
+2274.6 "Fire Spread 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:8511:/
 
+2282.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2289.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2294.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2305.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:850A:/
+2308.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:850F:/
+2308.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:850C:/
+2309.1 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:8505:/
+2318.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
+
+2325.4 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8536:/
+2335.4 "Living Hell Enrage" sync / 1[56]:[^:]*:Gorai the Uncaged:8536:/
+#2336.0 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
+#2337.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8537:/
+#2338.4 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
+#2340.2 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8537:/
+#2340.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
 
 # ALL ENCOUNTER ABILITIES
 # 84D3 --sync-- repositioning
@@ -226,8 +243,8 @@ hideall "--sync--"
 # 850D Worldly Pursuit cast and damage from cross jumps
 # 850E Falling Rock expanded rock damage after Brazen Ballad 8509
 # 850F Falling Rock donutified rock damage after Brazen Ballad 850A
-# 8510 Flickering Flame cast and ability (summoning blue flames for 8511???)
-# 8511 Fire Spread cast and damage for waffle lines during second towers???
+# 8510 Flickering Flame cast and ability (summoning blue flames for 8511)
+# 8511 Fire Spread cast and damage for waffle lines during second towers
 # 8512 Rousing Reincarnation cast and self-targeted ability
 # 8513 Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
 # 8514 Malformed Reincarnation cast and self-targeted ability
@@ -261,6 +278,9 @@ hideall "--sync--"
 # 8533 Torching Torment cast and damage on tank for tankbuster
 # 8534 Unenlightenment cast and self-targeted ability
 # 8535 Unenlightenment damage for raidwide bleed
+# 8536 Living Hell cast and self-targeted enrage
+# 8537 Living Hell self-targeted ability for follow-up enrage if 8536 failed
+# 8538 Living Hell damage for 8536/8537 enrage abilities
 
 
 #~~~~~~~~~~~~~~~~~~~#
@@ -268,7 +288,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -p 85E0:3016.4
-# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7
+# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7 8357 8538
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10

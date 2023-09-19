@@ -139,6 +139,7 @@ export interface Data extends RaidbossData {
   rousingCollect: [RousingTower, RousingTower, RousingTower, RousingTower];
   rousingTowerCount: number;
   malformedCollect: NetMatches['GainsEffect'][];
+  myMalformedEffects: string[];
   tripleKasumiCollect: KasumiGiri[];
   explosionLineCollect: NetMatches['MapEffect'][];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
@@ -378,6 +379,8 @@ const triggerSet: TriggerSet<Data> = {
       rousingCollect: [{}, {}, {}, {}],
       rousingTowerCount: 0,
       malformedCollect: [],
+      myMalformedEffects: [],
+      malformedTowerCount: 0,
       tripleKasumiCollect: [],
       explosionLineCollect: [],
       shadowKasumiCollect: {},
@@ -774,7 +777,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Shishu Kotengu Wrath of the Tengu',
       type: 'StartsUsing',
-      netRegex: { id: '8654', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '8660', source: 'Shishu Kotengu', capture: false },
       response: Responses.bleedAoe(),
     },
     {
@@ -842,10 +845,10 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.sparksCollect.push(matches),
     },
     {
-      id: 'AMR Gorai Seal of Scurrying Sparks 1',
+      id: 'AMR Gorai Seal of Scurrying Sparks Flame and Sulphur',
       type: 'GainsEffect',
       netRegex: { effectId: ['E17', 'E18'], capture: false },
-      condition: (data) => data.sparksCount === 1,
+      condition: (data) => data.sparksCount !== 2,
       delaySeconds: 0.5,
       suppressSeconds: 10,
       response: (data, _matches, output) => {
@@ -888,7 +891,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Gorai Seal of Scurrying Sparks 2',
+      id: 'AMR Gorai Seal of Scurrying Sparks Cloud to Ground',
       type: 'GainsEffect',
       netRegex: { effectId: ['E17', 'E18'], capture: false },
       condition: (data) => data.sparksCount === 2,
@@ -1058,7 +1061,11 @@ const triggerSet: TriggerSet<Data> = {
       // E16 = Odder Prayer (place blue tower)
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
       condition: (data) => data.rousingTowerCount !== 0,
-      run: (data, matches) => data.malformedCollect.push(matches),
+      run: (data, matches) => {
+        data.malformedCollect.push(matches);
+        if (matches.target === data.me)
+          data.myMalformedEffects.push(matches.effectId);
+      },
     },
     {
       id: 'AMR Gorai Malformed Reincarnation',
@@ -1116,8 +1123,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         // TODO: This is somewhat ambiguous, as you don't want to place blue *with* this player
         // you want to flex for them.
-        // TODO: I don't know if this is correct or even what other people do
-        // (please don't tell me).
         allMixedPlaceBlue: {
           en: 'All Mixed: Place Blue (w/${player})',
         },
@@ -1134,24 +1139,45 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Gorai Malformed Tower Calls',
-      type: 'GainsEffect',
-      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
-      condition: (data, matches) => data.rousingTowerCount !== 0 && data.me === matches.target,
-      // Only two seconds between towers.
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
-      alertText: (_data, matches, output) => {
-        if (matches.effectId === 'E0D')
+      id: 'AMR Gorai Malformed First Tower',
+      type: 'LosesEffect',
+      // E15 = Squirrelly Prayer (place orange tower)
+      // E16 = Odder Prayer (place blue tower)
+      netRegex: { effectId: ['E15', 'E16'] },
+      condition: (data, matches) => data.me === matches.target,
+      durationSeconds: 4,
+      alertText: (data, _matches, output) => {
+        const effectId = data.myMalformedEffects.shift();
+        if (effectId === 'E0D')
           return output.orangeTower1!();
-        if (matches.effectId === 'E0E')
-          return output.orangeTower2!();
-        if (matches.effectId === 'E0F')
-          return output.orangeTower3!();
-        if (matches.effectId === 'E11')
+        if (effectId === 'E11')
           return output.blueTower1!();
-        if (matches.effectId === 'E12')
+      },
+      outputStrings: {
+        blueTower1: {
+          en: 'Inside Blue Tower 1',
+        },
+        orangeTower1: {
+          en: 'Inside Orange Tower 1',
+        },
+      },
+    },
+    {
+      id: 'AMR Gorai Malformed Other Towers',
+      type: 'Ability',
+      netRegex: { id: '851B', source: 'Gorai the Uncaged', capture: false },
+      condition: (data) => data.myMalformedEffects.length > 0,
+      durationSeconds: 2,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const effectId = data.myMalformedEffects.shift();
+        if (effectId === 'E0E')
+          return output.orangeTower2!();
+        if (effectId === 'E0F')
+          return output.orangeTower3!();
+        if (effectId === 'E11')
           return output.blueTower2!();
-        if (matches.effectId === 'E13')
+        if (effectId === 'E13')
           return output.blueTower3!();
       },
       outputStrings: {
@@ -1174,6 +1200,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Placed Orange Tower 3',
         },
       },
+    },
+    {
+      id: 'AMR Gorai Fire Spread',
+      type: 'Ability',
+      netRegex: { id: '8511', source: 'Gorai the Uncaged', capture: false },
+      suppressSeconds: 30,
+      response: Responses.moveAway(),
     },
     // ---------------- Moko the Restless ----------------
     {
