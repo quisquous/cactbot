@@ -25,13 +25,13 @@ const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnotherMountRokkonSavage,
   damageWarn: {
     // Trash 1
-    'AMRS Shishu Raiko Disciples of Levin': 'TODO', // centered circle
-    'AMRS Shishu Raiko Master of Levin': 'TODO', // very large donut
-    'AMRS Shishu Furutsubaki Bloody Carress': 'TODO', // front conal
+    'AMRS Shishu Raiko Disciples of Levin': '8668', // centered circle
+    'AMRS Shishu Raiko Master of Levin': '8667', // very large donut
+    'AMRS Shishu Furutsubaki Bloody Carress': '8669', // front conal
     'AMRS Shishu Fuko Scythe Tail': 'TODO', // centered circle
     'AMRS Red Shishu Penghou Tornado': 'TODO', // targeted circle
-    'AMRS Shishu Yuki Right Swipe': 'TODO', // 180 right cleave
-    'AMRS Shishu Yuki Left Swipe': 'TODO', // 180 left cleave
+    'AMRS Shishu Yuki Right Swipe': '8668', // 180 right cleave
+    'AMRS Shishu Yuki Left Swipe': '8669', // 180 left cleave
 
     // Shishio
     'AMRS Shishio Rokujo Revel': 'TODO', // Smokeater line
@@ -126,7 +126,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Gorai Burns': 'BF9', // standing in outside square of Gorai
   },
   shareWarn: {
-    'AMRS Shishu Raiko Barreling Smash': 'TODO', // line charge
+    'AMRS Shishu Raiko Barreling Smash': '8665', // line charge
     'AMRS Gorai Pointed Purgation': 'TODO', // protean tether during towers
     'AMRS Gorai Impure Purgation': 'TODO', // initial protean for double hit protean
   },

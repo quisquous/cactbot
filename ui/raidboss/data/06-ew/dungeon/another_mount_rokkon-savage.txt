@@ -436,18 +436,18 @@ hideall "--sync--"
 #~~~~~~~~~#
 
 # ALL ENCOUNTER ABILITIES
-# TODO --sync-- various auto damage (trash 1)
-# TODO Barreling Smash cast and damage for line charge
-# TODO Howl cast and damage for Shishu Raiko raidwide
-# TODO Master of Levin cast and damage for Shishu Raiki "get in" donut
-# TODO Disciples of Levin cast and damage for Shishu Raiko "get out" circle
-# TODO Bloody Caress cast and damage for Shishu Furutsubaki front conal
+# 7A58 --sync-- various auto damage (trash 1)
+# 8665 Barreling Smash cast and damage for line charge
+# 8666 Howl cast and damage for Shishu Raiko raidwide
+# 8667 Master of Levin cast and damage for Shishu Raiki "get in" donut
+# 8668 Disciples of Levin cast and damage for Shishu Raiko "get out" circle
+# 8669 Bloody Caress cast and damage for Shishu Furutsubaki front conal
 # TODO Twister cast and damage for Shishu Fuko stack
 # TODO Crosswind cast and damage for Shishu Fuko knockback
 # TODO Scythe Tail cast and damage for Shishu Fuko "get out"
 # TODO Tornado cast and damage for Red Shishu Penghou targeted circle
-# TODO Right Swipe cast and damage for Shishu Yuki right 180 cleave
-# TODO Left Swipe cast and damage for Shishu Yuki left 180 cleave
+# 8668 Right Swipe cast and damage for Shishu Yuki right 180 cleave
+# 8669 Left Swipe cast and damage for Shishu Yuki left 180 cleave
 
 
 #~~~~~~~~~#

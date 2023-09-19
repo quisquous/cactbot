@@ -397,20 +397,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Raiko Disciples of Levin',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Raiko', capture: false },
+      netRegex: { id: '8668', source: 'Shishu Raiko', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'AMRS Shishu Furutsubaki Bloody Caress',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Furutsubaki', capture: false },
+      netRegex: { id: '8669', source: 'Shishu Furutsubaki', capture: false },
       suppressSeconds: 5,
       response: Responses.getBehind('info'),
     },
     {
       id: 'AMRS Shishu Raiko Barreling Smash',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Raiko' },
+      netRegex: { id: '8665', source: 'Shishu Raiko' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -430,13 +430,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Raiko Howl',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Raiko', capture: false },
+      netRegex: { id: '8666', source: 'Shishu Raiko', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'AMRS Shishu Raiko Master of Levin',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Raiko', capture: false },
+      netRegex: { id: '8667', source: 'Shishu Raiko', capture: false },
       response: Responses.getUnder(),
     },
     {
@@ -460,13 +460,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Yuki Right Swipe',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Yuki', capture: false },
+      netRegex: { id: '8668', source: 'Shishu Yuki', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'AMRS Shishu Yuki Left Swipe',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Yuki', capture: false },
+      netRegex: { id: '8669', source: 'Shishu Yuki', capture: false },
       response: Responses.goRight('info'),
     },
     // ---------------- Shishio ----------------
@@ -777,8 +777,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Wrath of the Tengu',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
-      response: Responses.bleedAoe('info'),
+      netRegex: { id: '8666', source: 'Shishu Kotengu', capture: false },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'AMRS Shishu Kotengu Gaze of the Tengu',
@@ -1470,12 +1470,6 @@ const triggerSet: TriggerSet<Data> = {
         const outputKey = `${thisAbility}OnPlayer`;
         return { infoText: output[outputKey]!({ player: data.ShortName(player) }) };
       },
-    },
-    {
-      id: 'AMRS Moko Moonless Night',
-      type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Moko the Restless', capture: false },
-      response: Responses.aoe(),
     },
     {
       id: 'AMRS Moko Shadow Kasumi-giri Initial',

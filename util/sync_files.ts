@@ -303,7 +303,7 @@ const zoneReplace: ZoneReplace[] = [
     // grep "^# [A-F0-9]\{4\} " ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.txt | sort | sed "s/^..//" | sed "s/^\(....\) \(.*\)$/    '\1': 'TODO', \/\/ \2/"
     id: {
       '7A56': 'TODO', // --sync-- various auto damage (trash 2)
-      '7A58': 'TODO', // --sync-- various auto damage (trash 1)
+      '7A58': '7A58', // --sync-- various auto damage (trash 1)
       '83F8': 'TODO', // Stormcloud Summons cast and self-targeted ability
       '83F9': 'TODO', // Smokeater cast and self-targeted ability for first inhale
       '83FA': 'TODO', // Smokeater self-targeted ability for optional second and third inhales
@@ -444,11 +444,11 @@ const zoneReplace: ZoneReplace[] = [
       '85DF': 'TODO', // Clearout damage from Oni's Claw large circles hit 3
       '85E0': 'TODO', // Kenki Release cast and raidwide damage from boss
       '85E3': 'TODO', // Lateral Slice cast and tankbuster damage
-      '8653': 'TODO', // Barreling Smash cast and damage for line charge
-      '8654': 'TODO', // Howl cast and damage for Shishu Raiko raidwide
-      '8655': 'TODO', // Master of Levin cast and damage for Shishu Raiki "get in" donut
-      '8656': 'TODO', // Disciples of Levin cast and damage for Shishu Raiko "get out" circle
-      '8657': 'TODO', // Bloody Caress cast and damage for Shishu Furutsubaki front conal
+      '8653': '8665', // Barreling Smash cast and damage for line charge
+      '8654': '8666', // Howl cast and damage for Shishu Raiko raidwide
+      '8655': '8667', // Master of Levin cast and damage for Shishu Raiki "get in" donut
+      '8656': '8668', // Disciples of Levin cast and damage for Shishu Raiko "get out" circle
+      '8657': '8669', // Bloody Caress cast and damage for Shishu Furutsubaki front conal
       '8658': 'TODO', // Twister cast and damage for Shishu Fuko stack
       '8659': 'TODO', // Crosswind cast and damage for Shishu Fuko knockback
       '865A': 'TODO', // Scythe Tail cast and damage for Shishu Fuko "get out"
@@ -463,8 +463,8 @@ const zoneReplace: ZoneReplace[] = [
       '8663': 'TODO', // Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
       '8664': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
       '867D': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
-      '8685': 'TODO', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
-      '8686': 'TODO', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
+      '8685': '8668', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
+      '8686': '8669', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
       '8687': 'TODO', // Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
       '86C4': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
       '86C5': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
