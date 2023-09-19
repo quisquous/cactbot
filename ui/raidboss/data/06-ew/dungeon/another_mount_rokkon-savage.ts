@@ -142,10 +142,12 @@ export interface Data extends RaidbossData {
   rousingCollect: [RousingTower, RousingTower, RousingTower, RousingTower];
   rousingTowerCount: number;
   malformedCollect: NetMatches['GainsEffect'][];
+  myMalformedEffects: string[];
   tripleKasumiCollect: KasumiGiri[];
   explosionLineCollect: NetMatches['MapEffect'][];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
+  oniClaw?: 'northSouth' | 'eastWest';
   invocationCollect: NetMatches['GainsEffect'][];
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
@@ -381,6 +383,8 @@ const triggerSet: TriggerSet<Data> = {
       rousingCollect: [{}, {}, {}, {}],
       rousingTowerCount: 0,
       malformedCollect: [],
+      myMalformedEffects: [],
+      malformedTowerCount: 0,
       tripleKasumiCollect: [],
       explosionLineCollect: [],
       shadowKasumiCollect: {},
@@ -777,7 +781,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Wrath of the Tengu',
       type: 'StartsUsing',
-      netRegex: { id: '8666', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
       response: Responses.bleedAoe(),
     },
     {
@@ -845,10 +849,10 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.sparksCollect.push(matches),
     },
     {
-      id: 'AMRS Gorai Seal of Scurrying Sparks 1',
+      id: 'AMRS Gorai Seal of Scurrying Sparks Flame and Sulphur',
       type: 'GainsEffect',
       netRegex: { effectId: ['E17', 'E18'], capture: false },
-      condition: (data) => data.sparksCount === 1,
+      condition: (data) => data.sparksCount !== 2,
       delaySeconds: 0.5,
       suppressSeconds: 10,
       response: (data, _matches, output) => {
@@ -891,7 +895,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Gorai Seal of Scurrying Sparks 2',
+      id: 'AMRS Gorai Seal of Scurrying Sparks Cloud to Ground',
       type: 'GainsEffect',
       netRegex: { effectId: ['E17', 'E18'], capture: false },
       condition: (data) => data.sparksCount === 2,
@@ -1061,7 +1065,11 @@ const triggerSet: TriggerSet<Data> = {
       // E16 = Odder Prayer (place blue tower)
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
       condition: (data) => data.rousingTowerCount !== 0,
-      run: (data, matches) => data.malformedCollect.push(matches),
+      run: (data, matches) => {
+        data.malformedCollect.push(matches);
+        if (matches.target === data.me)
+          data.myMalformedEffects.push(matches.effectId);
+      },
     },
     {
       id: 'AMRS Gorai Malformed Reincarnation',
@@ -1119,8 +1127,6 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         // TODO: This is somewhat ambiguous, as you don't want to place blue *with* this player
         // you want to flex for them.
-        // TODO: I don't know if this is correct or even what other people do
-        // (please don't tell me).
         allMixedPlaceBlue: {
           en: 'All Mixed: Place Blue (w/${player})',
         },
@@ -1137,24 +1143,45 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Gorai Malformed Tower Calls',
-      type: 'GainsEffect',
-      netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'] },
-      condition: (data, matches) => data.rousingTowerCount !== 0 && data.me === matches.target,
-      // Only two seconds between towers.
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 2,
-      alertText: (_data, matches, output) => {
-        if (matches.effectId === 'E0D')
+      id: 'AMRS Gorai Malformed First Tower',
+      type: 'LosesEffect',
+      // E15 = Squirrelly Prayer (place orange tower)
+      // E16 = Odder Prayer (place blue tower)
+      netRegex: { effectId: ['E15', 'E16'] },
+      condition: (data, matches) => data.me === matches.target,
+      durationSeconds: 4,
+      alertText: (data, _matches, output) => {
+        const effectId = data.myMalformedEffects.shift();
+        if (effectId === 'E0D')
           return output.orangeTower1!();
-        if (matches.effectId === 'E0E')
-          return output.orangeTower2!();
-        if (matches.effectId === 'E0F')
-          return output.orangeTower3!();
-        if (matches.effectId === 'E11')
+        if (effectId === 'E11')
           return output.blueTower1!();
-        if (matches.effectId === 'E12')
+      },
+      outputStrings: {
+        blueTower1: {
+          en: 'Inside Blue Tower 1',
+        },
+        orangeTower1: {
+          en: 'Inside Orange Tower 1',
+        },
+      },
+    },
+    {
+      id: 'AMRS Gorai Malformed Other Towers',
+      type: 'Ability',
+      netRegex: { id: 'TODO', source: 'Gorai the Uncaged', capture: false },
+      condition: (data) => data.myMalformedEffects.length > 0,
+      durationSeconds: 2,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const effectId = data.myMalformedEffects.shift();
+        if (effectId === 'E0E')
+          return output.orangeTower2!();
+        if (effectId === 'E0F')
+          return output.orangeTower3!();
+        if (effectId === 'E11')
           return output.blueTower2!();
-        if (matches.effectId === 'E13')
+        if (effectId === 'E13')
           return output.blueTower3!();
       },
       outputStrings: {
@@ -1177,6 +1204,13 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Placed Orange Tower 3',
         },
       },
+    },
+    {
+      id: 'AMRS Gorai Fire Spread',
+      type: 'Ability',
+      netRegex: { id: 'TODO', source: 'Gorai the Uncaged', capture: false },
+      suppressSeconds: 30,
+      response: Responses.moveAway(),
     },
     // ---------------- Moko the Restless ----------------
     {
@@ -1382,6 +1416,7 @@ const triggerSet: TriggerSet<Data> = {
         data.iaigiriCasts = [];
         delete data.myAccursedEdge;
         delete data.myIaigiriTether;
+        delete data.oniClaw;
       },
     },
     {
@@ -1472,7 +1507,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Moko Shadow Kasumi-giri Initial',
+      id: 'AMRS Moko Double Shadow Kasumi-giri Initial',
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       condition: (data) => !data.seenSoldiersOfDeath,
@@ -1485,6 +1520,7 @@ const triggerSet: TriggerSet<Data> = {
           backOnYou: {
             en: 'Back Tether (w/${player})',
           },
+          // These are probably impossible.
           leftOnYou: {
             en: 'Left Tether (w/${player})',
           },
@@ -1565,7 +1601,8 @@ const triggerSet: TriggerSet<Data> = {
           mokoCenterX,
           mokoCenterY,
         );
-        if (dir === 1 || dir === 3)
+        data.oniClaw = (dir === 1 || dir === 3) ? 'northSouth' : 'eastWest';
+        if (data.oniClaw === 'northSouth')
           return output.northSouth!();
         return output.eastWest!();
       },
@@ -1606,17 +1643,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Moko Shadow Kasumi-giri Second Mark',
+      id: 'AMRS Moko Double Shadow Kasumi-giri Second Mark',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       condition: (data, matches) => {
-        const initialMarks = data.seenSoldiersOfDeath ? 4 : 2;
-
-        // Ignore the first set of marks, which get called with the tether.
-        if (data.iaigiriPurple.length <= initialMarks)
+        if (data.seenSoldiersOfDeath)
           return false;
 
-        // Special case: for the first two Double-Iaigiris before Soldiers of Death,
+        // Ignore the first set of marks, which get called with the tether.
+        if (data.iaigiriPurple.length <= 2)
+          return false;
+
+        // For the first two Double-Iaigiris before Soldiers of Death,
         // if this is the 4th mark (i.e. the 2nd in the 2nd set) and they are both the same,
         // then we can call that mark for everyone because it doesn't matter where they are.
         const third = data.iaigiriPurple[2]?.count;
@@ -1630,8 +1668,8 @@ const triggerSet: TriggerSet<Data> = {
         return data.myIaigiriTether?.sourceId === matches.targetId;
       },
       // Don't collide with Near Far Edge, which is more important.
-      delaySeconds: (data) => data.seenSoldiersOfDeath ? 0 : 3,
-      durationSeconds: 5,
+      delaySeconds: 3,
+      durationSeconds: 5.5,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         const third = data.iaigiriPurple[2]?.count;
@@ -1669,11 +1707,13 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: 'TODO', source: 'Moko\'s Shadow' },
       condition: (data, matches) => data.myIaigiriTether?.sourceId === matches.sourceId,
+      durationSeconds: 2,
       // Maybe you have two tethers, although it probably won't go well.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.back!(),
       outputStrings: {
         // This is a reminder to make sure to move after the clone jumps to you.
+        // TODO: should see this say Back => Right or something?
         back: Outputs.back,
       },
     },
@@ -1684,14 +1724,32 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => {
         // Reject anybody not tethered by this add or not on the same side.
         if (data.myIaigiriTether === undefined) {
-          const myYStr = data.myAccursedEdge?.targetY;
-          if (myYStr === undefined)
-            return false;
+          if (data.oniClaw === 'northSouth') {
+            const myYStr = data.myAccursedEdge?.targetY;
+            if (myYStr === undefined)
+              return false;
 
-          const thisY = parseFloat(matches.y);
-          const myY = parseFloat(myYStr);
-          if (myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY)
-            return false;
+            const thisY = parseFloat(matches.y);
+            const myY = parseFloat(myYStr);
+            if (
+              myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY
+            )
+              return false;
+          } else if (data.oniClaw === 'eastWest') {
+            const myXStr = data.myAccursedEdge?.targetX;
+            if (myXStr === undefined)
+              return false;
+
+            const thisX = parseFloat(matches.x);
+            const myX = parseFloat(myXStr);
+            if (
+              myX < mokoCenterX && thisX > mokoCenterX || myX > mokoCenterX && thisX < mokoCenterX
+            )
+              return false;
+          }
+
+          // missing data.oniClaw somehow
+          return false;
         } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
         }
@@ -1766,69 +1824,60 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMRS Moko Shadow Kasumi-giri Final Tether',
-      type: 'Tether',
-      netRegex: { id: '0011', capture: false },
-      condition: (data) => data.seenSoldiersOfDeath,
-      delaySeconds: 0.5,
-      durationSeconds: 7,
-      suppressSeconds: 1,
+      id: 'AMRS Moko Soldiers of Death Shadow Kasumi-giri Tether',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap), capture: false },
+      // Ignore the first set of marks, which get called with the tether.
+      condition: (data) => data.iaigiriPurple.length > 4,
+      // Wait to collect or call immediately if we have everything.
+      delaySeconds: (data) => data.iaigiriPurple.length === 8 ? 0 : 0.5,
+      durationSeconds: 5,
+      suppressSeconds: 5,
       alertText: (data, _matches, output) => {
-        const myIaigiriTether = data.myIaigiriTether;
-        if (myIaigiriTether === undefined)
+        const myTether = data.myIaigiriTether;
+        if (myTether === undefined)
           return;
 
-        const idToDir: { [id: string]: number } = {};
-        for (const m of data.iaigiriCasts) {
-          const dir = Directions.xyTo4DirNum(
-            parseFloat(m.x),
-            parseFloat(m.y),
-            mokoCenterX,
-            mokoCenterY,
-          );
-          idToDir[m.sourceId] = dir;
-        }
-
-        const myDir = idToDir[myIaigiriTether.sourceId];
-        if (myDir === undefined)
-          return;
-
-        const partnerTether = data.iaigiriTether.find((x) => {
-          if (x.sourceId === myIaigiriTether.sourceId)
-            return false;
-          const dir = idToDir[x.sourceId];
-          if (dir === undefined)
-            return false;
-          return (myDir + 2) % 4 === dir;
+        // Find the second marker for this add.
+        const marker = [...data.iaigiriPurple].reverse().find((x) => {
+          return x.targetId === myTether.sourceId;
         });
+        if (marker === undefined)
+          return;
 
-        const partner = partnerTether === undefined
-          ? output.unknown!()
-          : data.ShortName(partnerTether.target);
+        const thisAbility = looseShadowVfxMap[marker.count];
+        if (thisAbility !== 'left' && thisAbility !== 'right')
+          return;
 
-        if (myDir === 0)
-          return output.north!({ player: partner });
-        if (myDir === 1)
-          return output.east!({ player: partner });
-        if (myDir === 2)
-          return output.south!({ player: partner });
-        if (myDir === 3)
-          return output.west!({ player: partner });
+        // Find the matching marker for your marker.
+        const matchingMarkers = data.iaigiriPurple.filter((x) => {
+          return x.count === marker.count && x.targetId !== marker.targetId;
+        });
+        // Make sure there's only one matching symbol, just in case.
+        const [partnerMarker] = matchingMarkers;
+        if (partnerMarker === undefined || matchingMarkers.length !== 1)
+          return;
+
+        // Find the matching tether for this matching marker.
+        const partnerTether = data.iaigiriTether.find((x) => {
+          return x.sourceId === partnerMarker.targetId;
+        });
+        if (partnerTether === undefined)
+          return;
+
+        const flexPartner = data.ShortName(partnerTether.target);
+
+        if (thisAbility === 'left')
+          return output.left!({ player: flexPartner });
+        return output.right!({ player: flexPartner });
       },
       outputStrings: {
-        north: {
-          en: 'North Add (w/${player})',
+        left: {
+          en: 'Left Tether (w/${player})',
         },
-        east: {
-          en: 'East Add (w/${player})',
+        right: {
+          en: 'Right Tether (w/${player})',
         },
-        south: {
-          en: 'South Add (w/${player})',
-        },
-        west: {
-          en: 'West Add (w/${player})',
-        },
-        unknown: Outputs.unknown,
       },
     },
   ],

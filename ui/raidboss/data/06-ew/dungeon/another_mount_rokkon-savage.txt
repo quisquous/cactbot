@@ -208,11 +208,28 @@ hideall "--sync--"
 2245.8 "Malformed Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
 2252.2 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
 2265.3 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2267.3 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2269.9 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2271.9 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-# ???
+2267.3 "Burst 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2269.9 "Burst 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2271.9 "Burst 3" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2272.6 "Fire Spread 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2274.6 "Fire Spread 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
 
+2282.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2289.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2294.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2305.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2308.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2308.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2309.1 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2318.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+
+2325.4 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:TODO:/
+2335.4 "Living Hell Enrage" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+#2336.0 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+#2337.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+#2338.4 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+#2340.2 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+#2340.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
 
 # ALL ENCOUNTER ABILITIES
 # TODO --sync-- repositioning
@@ -229,8 +246,8 @@ hideall "--sync--"
 # TODO Worldly Pursuit cast and damage from cross jumps
 # TODO Falling Rock expanded rock damage after Brazen Ballad TODO
 # TODO Falling Rock donutified rock damage after Brazen Ballad TODO
-# TODO Flickering Flame cast and ability (summoning blue flames for TODO???)
-# TODO Fire Spread cast and damage for waffle lines during second towers???
+# TODO Flickering Flame cast and ability (summoning blue flames for TODO)
+# TODO Fire Spread cast and damage for waffle lines during second towers
 # TODO Rousing Reincarnation cast and self-targeted ability
 # TODO Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
 # TODO Malformed Reincarnation cast and self-targeted ability
@@ -264,6 +281,9 @@ hideall "--sync--"
 # TODO Torching Torment cast and damage on tank for tankbuster
 # TODO Unenlightenment cast and self-targeted ability
 # TODO Unenlightenment damage for raidwide bleed
+# TODO Living Hell cast and self-targeted enrage
+# TODO Living Hell self-targeted ability for follow-up enrage if TODO failed
+# TODO Living Hell damage for TODO/TODO enrage abilities
 
 
 #~~~~~~~~~~~~~~~~~~~#
@@ -271,7 +291,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -p TODO:3016.4
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:TODO:/ window 10000,10

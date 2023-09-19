@@ -1504,7 +1504,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Moko Shadow Kasumi-giri Initial',
+      id: 'AMR Moko Double Shadow Kasumi-giri Initial',
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       condition: (data) => !data.seenSoldiersOfDeath,
@@ -1517,6 +1517,7 @@ const triggerSet: TriggerSet<Data> = {
           backOnYou: {
             en: 'Back Tether (w/${player})',
           },
+          // These are probably impossible.
           leftOnYou: {
             en: 'Left Tether (w/${player})',
           },
@@ -1639,17 +1640,18 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Moko Shadow Kasumi-giri Second Mark',
+      id: 'AMR Moko Double Shadow Kasumi-giri Second Mark',
       type: 'GainsEffect',
       netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap) },
       condition: (data, matches) => {
-        const initialMarks = data.seenSoldiersOfDeath ? 4 : 2;
-
-        // Ignore the first set of marks, which get called with the tether.
-        if (data.iaigiriPurple.length <= initialMarks)
+        if (data.seenSoldiersOfDeath)
           return false;
 
-        // Special case: for the first two Double-Iaigiris before Soldiers of Death,
+        // Ignore the first set of marks, which get called with the tether.
+        if (data.iaigiriPurple.length <= 2)
+          return false;
+
+        // For the first two Double-Iaigiris before Soldiers of Death,
         // if this is the 4th mark (i.e. the 2nd in the 2nd set) and they are both the same,
         // then we can call that mark for everyone because it doesn't matter where they are.
         const third = data.iaigiriPurple[2]?.count;
@@ -1663,7 +1665,7 @@ const triggerSet: TriggerSet<Data> = {
         return data.myIaigiriTether?.sourceId === matches.targetId;
       },
       // Don't collide with Near Far Edge, which is more important.
-      delaySeconds: (data) => data.seenSoldiersOfDeath ? 0 : 3,
+      delaySeconds: 3,
       durationSeconds: 5.5,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
@@ -1819,69 +1821,60 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AMR Moko Shadow Kasumi-giri Final Tether',
-      type: 'Tether',
-      netRegex: { id: '0011', capture: false },
-      condition: (data) => data.seenSoldiersOfDeath,
-      delaySeconds: 0.5,
-      durationSeconds: 7,
-      suppressSeconds: 1,
+      id: 'AMR Moko Soldiers of Death Shadow Kasumi-giri Tether',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'B9A', count: Object.keys(shadowVfxMap), capture: false },
+      // Ignore the first set of marks, which get called with the tether.
+      condition: (data) => data.iaigiriPurple.length > 4,
+      // Wait to collect or call immediately if we have everything.
+      delaySeconds: (data) => data.iaigiriPurple.length === 8 ? 0 : 0.5,
+      durationSeconds: 5,
+      suppressSeconds: 5,
       alertText: (data, _matches, output) => {
-        const myIaigiriTether = data.myIaigiriTether;
-        if (myIaigiriTether === undefined)
+        const myTether = data.myIaigiriTether;
+        if (myTether === undefined)
           return;
 
-        const idToDir: { [id: string]: number } = {};
-        for (const m of data.iaigiriCasts) {
-          const dir = Directions.xyTo4DirNum(
-            parseFloat(m.x),
-            parseFloat(m.y),
-            mokoCenterX,
-            mokoCenterY,
-          );
-          idToDir[m.sourceId] = dir;
-        }
-
-        const myDir = idToDir[myIaigiriTether.sourceId];
-        if (myDir === undefined)
-          return;
-
-        const partnerTether = data.iaigiriTether.find((x) => {
-          if (x.sourceId === myIaigiriTether.sourceId)
-            return false;
-          const dir = idToDir[x.sourceId];
-          if (dir === undefined)
-            return false;
-          return (myDir + 2) % 4 === dir;
+        // Find the second marker for this add.
+        const marker = [...data.iaigiriPurple].reverse().find((x) => {
+          return x.targetId === myTether.sourceId;
         });
+        if (marker === undefined)
+          return;
 
-        const partner = partnerTether === undefined
-          ? output.unknown!()
-          : data.ShortName(partnerTether.target);
+        const thisAbility = looseShadowVfxMap[marker.count];
+        if (thisAbility !== 'left' && thisAbility !== 'right')
+          return;
 
-        if (myDir === 0)
-          return output.north!({ player: partner });
-        if (myDir === 1)
-          return output.east!({ player: partner });
-        if (myDir === 2)
-          return output.south!({ player: partner });
-        if (myDir === 3)
-          return output.west!({ player: partner });
+        // Find the matching marker for your marker.
+        const matchingMarkers = data.iaigiriPurple.filter((x) => {
+          return x.count === marker.count && x.targetId !== marker.targetId;
+        });
+        // Make sure there's only one matching symbol, just in case.
+        const [partnerMarker] = matchingMarkers;
+        if (partnerMarker === undefined || matchingMarkers.length !== 1)
+          return;
+
+        // Find the matching tether for this matching marker.
+        const partnerTether = data.iaigiriTether.find((x) => {
+          return x.sourceId === partnerMarker.targetId;
+        });
+        if (partnerTether === undefined)
+          return;
+
+        const flexPartner = data.ShortName(partnerTether.target);
+
+        if (thisAbility === 'left')
+          return output.left!({ player: flexPartner });
+        return output.right!({ player: flexPartner });
       },
       outputStrings: {
-        north: {
-          en: 'North Add (w/${player})',
+        left: {
+          en: 'Left Tether (w/${player})',
         },
-        east: {
-          en: 'East Add (w/${player})',
+        right: {
+          en: 'Right Tether (w/${player})',
         },
-        south: {
-          en: 'South Add (w/${player})',
-        },
-        west: {
-          en: 'West Add (w/${player})',
-        },
-        unknown: Outputs.unknown,
       },
     },
   ],

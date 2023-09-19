@@ -288,7 +288,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -p 85E0:3016.4
-# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7 8357 8538
+# -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7 8537 8538
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10
