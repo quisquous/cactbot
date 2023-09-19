@@ -144,6 +144,7 @@ export interface Data extends RaidbossData {
   explosionLineCollect: NetMatches['MapEffect'][];
   shadowKasumiCollect: { [shadowId: string]: ShadowKasumiGiri[] };
   shadowKasumiTether: { [shadowId: string]: string };
+  oniClaw?: 'northSouth' | 'eastWest';
   invocationCollect: NetMatches['GainsEffect'][];
   iaigiriTether: NetMatches['Tether'][];
   iaigiriPurple: NetMatches['GainsEffect'][];
@@ -1412,6 +1413,7 @@ const triggerSet: TriggerSet<Data> = {
         data.iaigiriCasts = [];
         delete data.myAccursedEdge;
         delete data.myIaigiriTether;
+        delete data.oniClaw;
       },
     },
     {
@@ -1595,7 +1597,8 @@ const triggerSet: TriggerSet<Data> = {
           mokoCenterX,
           mokoCenterY,
         );
-        if (dir === 1 || dir === 3)
+        data.oniClaw = (dir === 1 || dir === 3) ? 'northSouth' : 'eastWest';
+        if (data.oniClaw === 'northSouth')
           return output.northSouth!();
         return output.eastWest!();
       },
@@ -1661,7 +1664,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       // Don't collide with Near Far Edge, which is more important.
       delaySeconds: (data) => data.seenSoldiersOfDeath ? 0 : 3,
-      durationSeconds: 5,
+      durationSeconds: 5.5,
       suppressSeconds: 5,
       infoText: (data, matches, output) => {
         const third = data.iaigiriPurple[2]?.count;
@@ -1699,11 +1702,13 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '85C9', source: 'Moko\'s Shadow' },
       condition: (data, matches) => data.myIaigiriTether?.sourceId === matches.sourceId,
+      durationSeconds: 2,
       // Maybe you have two tethers, although it probably won't go well.
       suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.back!(),
       outputStrings: {
         // This is a reminder to make sure to move after the clone jumps to you.
+        // TODO: should see this say Back => Right or something?
         back: Outputs.back,
       },
     },
@@ -1714,14 +1719,32 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => {
         // Reject anybody not tethered by this add or not on the same side.
         if (data.myIaigiriTether === undefined) {
-          const myYStr = data.myAccursedEdge?.targetY;
-          if (myYStr === undefined)
-            return false;
+          if (data.oniClaw === 'northSouth') {
+            const myYStr = data.myAccursedEdge?.targetY;
+            if (myYStr === undefined)
+              return false;
 
-          const thisY = parseFloat(matches.y);
-          const myY = parseFloat(myYStr);
-          if (myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY)
-            return false;
+            const thisY = parseFloat(matches.y);
+            const myY = parseFloat(myYStr);
+            if (
+              myY < mokoCenterY && thisY > mokoCenterY || myY > mokoCenterY && thisY < mokoCenterY
+            )
+              return false;
+          } else if (data.oniClaw === 'eastWest') {
+            const myXStr = data.myAccursedEdge?.targetX;
+            if (myXStr === undefined)
+              return false;
+
+            const thisX = parseFloat(matches.x);
+            const myX = parseFloat(myXStr);
+            if (
+              myX < mokoCenterX && thisX > mokoCenterX || myX > mokoCenterX && thisX < mokoCenterX
+            )
+              return false;
+          }
+
+          // missing data.oniClaw somehow
+          return false;
         } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
         }
