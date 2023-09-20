@@ -785,6 +785,7 @@ Options.Triggers.push({
         frontLeft: {
           en: 'Front Left',
           de: 'Vorne Links',
+          fr: 'Avant Gauche',
           ja: '前左',
           cn: '左前',
           ko: '앞 왼쪽',
@@ -792,6 +793,7 @@ Options.Triggers.push({
         frontRight: {
           en: 'Front Right',
           de: 'Vorne Rechts',
+          fr: 'Avant Droit',
           ja: '前右',
           cn: '右前',
           ko: '앞 오른쪽',
@@ -799,6 +801,7 @@ Options.Triggers.push({
         backLeft: {
           en: 'Back Left',
           de: 'Hinten Links',
+          fr: 'Arrière Gauche',
           ja: '後左',
           cn: '左后',
           ko: '뒤 왼쪽',
@@ -806,6 +809,7 @@ Options.Triggers.push({
         backRight: {
           en: 'Back Right',
           de: 'Hinten Rechts',
+          fr: 'Arrière Droit',
           ja: '後ろ右',
           cn: '右后',
           ko: '뒤 오른쪽',

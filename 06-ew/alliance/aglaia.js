@@ -762,6 +762,7 @@ Options.Triggers.push({
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        '--hammer--': '--Marteau--',
         'Azeyma': 'Azeyma',
         'Azeyma\'s Heat': 'mirage d\'Azeyma',
         'Byregot': 'Byregot',
