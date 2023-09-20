@@ -4,7 +4,6 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
-import PartyTracker from '../../../../../resources/party';
 import { Responses } from '../../../../../resources/responses';
 import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -132,6 +131,9 @@ const tripleKasumiAbilityIds = [
 ] as const;
 
 export interface Data extends RaidbossData {
+  readonly triggerSetConfig: {
+    stackOrder: 'meleeRolesPartners' | 'rolesPartners';
+  };
   combatantData: PluginCombatantState[];
   rairinCollect: NetMatches['AddedCombatant'][];
   wailingCollect: NetMatches['GainsEffect'][];
@@ -178,12 +180,13 @@ const couldStackLooseFunc = (
 const isMeleeOrTank = (x: Job) => Util.isMeleeDpsJob(x) || Util.isTankJob(x);
 const isSupport = (x: Job) => Util.isHealerJob(x) || Util.isTankJob(x);
 
-type StackPartners = 'melee' | 'role' | 'mixed' | 'unknown';
+type StackPartners = 'melee' | 'role' | 'partner' | 'unknown';
 const findStackPartners = (
-  party: PartyTracker,
+  data: Data,
   stack1?: string,
   stack2?: string,
 ): StackPartners => {
+  const party = data.party;
   if (stack1 === undefined || stack2 === undefined)
     return 'unknown';
 
@@ -203,19 +206,19 @@ const findStackPartners = (
     return couldStackLooseFunc(stackJob1, stackJob2, unmarkedJob1, unmarkedJob2, func);
   };
 
-  if (couldStack(isMeleeOrTank))
+  if (data.triggerSetConfig.stackOrder === 'meleeRolesPartners' && couldStack(isMeleeOrTank))
     return 'melee';
   if (couldStack(isSupport))
     return 'role';
 
-  // if we get here, then you have a not normal light party comp, e.g. two ranged.
-  // For a tank/healer/ranged/ranged comp, this condition will always be true
-  // when the role stack check above fails, but make it anyway in case the party
-  // comp is something else entirely.
+  // if we get here, then you have a not normal light party comp, e.g. two ranged
+  // or you have set the config option to be "rolesPartners" to not prefer melee.
+  // For a tank/healer/ranged/ranged comp, this condition below will always be true
+  // but make it anyway in case the party comp is something else entirely.
   const stackCount = countJob(stackJob1, stackJob2, isSupport);
   const unmarkedCount = countJob(unmarkedJob1, unmarkedJob2, isSupport);
   if (stackCount === 2 && unmarkedCount === 0 || stackCount === 0 && unmarkedCount === 2)
-    return 'mixed';
+    return 'partner';
 
   // if something has gone incredibly awry, then just return the default
   return 'unknown';
@@ -242,22 +245,22 @@ const stackSpreadResponse = (
     // Prefer "melee/ranged" stacks here and elsewhere because it keeps
     // the tank and melee together for uptime.
     spreadThenMeleeStack: {
-      en: 'Spread => Melees Stack/Ranged Stack',
+      en: 'Spread => Melees Stack',
     },
     spreadThenRoleStack: {
       en: 'Spread => Role Stacks',
     },
-    spreadThenMixedStack: {
-      en: 'Spread => Support w/DPS Stacks',
+    spreadThenPartnerStack: {
+      en: 'Spread => Partner Stacks',
     },
     meleeStackThenSpread: {
-      en: 'Melees Stack/Ranged Stack => Spread',
+      en: 'Melees Stack => Spread',
     },
     roleStackThenSpread: {
       en: 'Role Stacks => Spread',
     },
-    mixedStackThenSpread: {
-      en: 'Support w/DPS Stacks => Spread',
+    partnerStackThenSpread: {
+      en: 'Partner Stacks => Spread',
     },
     spreadThenStack: Outputs.spreadThenStack,
     stackThenSpread: Outputs.stackThenSpread,
@@ -274,7 +277,7 @@ const stackSpreadResponse = (
   const spreadTime = parseFloat(spread.duration);
   const isStackFirst = stackTime < spreadTime;
 
-  const stackType = findStackPartners(data.party, stack1.target, stack2.target);
+  const stackType = findStackPartners(data, stack1.target, stack2.target);
 
   const stacks = [stack1, stack2].map((x) => x.target).sort();
   const [player1, player2] = stacks.map((x) => data.ShortName(x));
@@ -290,10 +293,10 @@ const stackSpreadResponse = (
     if (isStackFirst)
       return { alertText: output.roleStackThenSpread!(), ...stackInfo };
     return { alertText: output.spreadThenRoleStack!(), ...stackInfo };
-  } else if (stackType === 'mixed') {
+  } else if (stackType === 'partner') {
     if (isStackFirst)
-      return { alertText: output.mixedStackThenSpread!(), ...stackInfo };
-    return { alertText: output.spreadThenMixedStack!(), ...stackInfo };
+      return { alertText: output.partnerStackThenSpread!(), ...stackInfo };
+    return { alertText: output.spreadThenPartnerStack!(), ...stackInfo };
   }
 
   // 'unknown' catch-all
@@ -370,6 +373,31 @@ const towerResponse = (
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherMountRokkonSavage',
   zoneId: ZoneId.AnotherMountRokkonSavage,
+  config: [
+    {
+      id: 'stackOrder',
+      comment: {
+        en:
+          `For any two person stacks, this specifies the priority order for picking people to stack together.
+           If you want your melee and tank to stick together if possible, pick the option with melees in it.
+           Melee stacks means melee+tank and healer+ranged. Role stacks means tank+healer and dps+dps.
+           Partner stacks mean support+dps and support+dps (any combination works).
+           If you have two ranged dps or two melee dps, it will never call "melees" regardless of this config option.
+           There is no support for party comps that are not two support and two dps.`,
+      },
+      name: {
+        en: 'Stack Selection Order',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Melees > Roles > Partners': 'meleeRolesPartners',
+          'Roles > Partners': 'rolesPartners',
+        },
+      },
+      default: 'meleeRolesPartners',
+    },
+  ],
   timelineFile: 'another_mount_rokkon-savage.txt',
   initData: () => {
     return {
@@ -578,8 +606,8 @@ const triggerSet: TriggerSet<Data> = {
           spreadThenRoleStack: {
             en: '${inOut} + Spread => ${outIn} + Role Stacks',
           },
-          spreadThenMixedStack: {
-            en: '${inOut} + Spread => ${outIn} + Support w/DPS Stacks',
+          spreadThenPartnerStack: {
+            en: '${inOut} + Spread => ${outIn} + Partner Stacks',
           },
           meleeStackThenSpread: {
             en: '${inOut} + Melees Stack => ${outIn} + Spread',
@@ -587,8 +615,8 @@ const triggerSet: TriggerSet<Data> = {
           roleStackThenSpread: {
             en: '${inOut} + Role Stacks => ${outIn} + Spread',
           },
-          mixedStackThenSpread: {
-            en: '${inOut} + Support w/DPS Stacks => ${outIn} + Spread',
+          partnerStackThenSpread: {
+            en: '${inOut} + Partner Stacks => ${outIn} + Spread',
           },
           spreadThenStack: {
             en: '${inOut} + Spread => ${outIn} + Stack',
@@ -609,7 +637,7 @@ const triggerSet: TriggerSet<Data> = {
         const spreadTime = parseFloat(spread.duration);
         const isStackFirst = stackTime < spreadTime;
 
-        const stackType = findStackPartners(data.party, stack1.target, stack2.target);
+        const stackType = findStackPartners(data, stack1.target, stack2.target);
 
         const isInFirst = matches.id === '843C';
         const inOut = isInFirst ? output.in!() : output.out!();
@@ -628,10 +656,10 @@ const triggerSet: TriggerSet<Data> = {
           if (isStackFirst)
             return { alertText: output.roleStackThenSpread!(args), ...stackInfo };
           return { alertText: output.spreadThenRoleStack!(args), ...stackInfo };
-        } else if (stackType === 'mixed') {
+        } else if (stackType === 'partner') {
           if (isStackFirst)
-            return { alertText: output.mixedStackThenSpread!(args), ...stackInfo };
-          return { alertText: output.spreadThenMixedStack!(args), ...stackInfo };
+            return { alertText: output.partnerStackThenSpread!(args), ...stackInfo };
+          return { alertText: output.spreadThenPartnerStack!(args), ...stackInfo };
         }
 
         // 'unknown' catch-all
@@ -859,13 +887,13 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           meleeStack: {
-            en: 'Melees Stack/Ranged Stack',
+            en: 'Melee Stacks',
           },
           roleStack: {
             en: 'Role Stacks',
           },
-          mixedStack: {
-            en: 'Support w/DPS Stacks',
+          partnerStack: {
+            en: 'Partner Stacks',
           },
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
@@ -876,7 +904,7 @@ const triggerSet: TriggerSet<Data> = {
         if (stack1 === undefined || stack2 === undefined)
           return;
 
-        const stackType = findStackPartners(data.party, stack1.target, stack2.target);
+        const stackType = findStackPartners(data, stack1.target, stack2.target);
 
         const stacks = [stack1, stack2].map((x) => x.target).sort();
         const [player1, player2] = stacks.map((x) => data.ShortName(x));
@@ -886,8 +914,8 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.meleeStack!(), ...stackInfo };
         } else if (stackType === 'role') {
           return { alertText: output.roleStack!(), ...stackInfo };
-        } else if (stackType === 'mixed') {
-          return { alertText: output.mixedStack!(), ...stackInfo };
+        } else if (stackType === 'partner') {
+          return { alertText: output.partnerStack!(), ...stackInfo };
         }
 
         // 'unknown' catch-all
