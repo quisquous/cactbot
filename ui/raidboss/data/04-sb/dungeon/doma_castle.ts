@@ -116,7 +116,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hexadrone Bit': 'module d\'hexadrone',
         'Hypertuned Grynewaht': 'Grynewaht hyper-renforcé',
