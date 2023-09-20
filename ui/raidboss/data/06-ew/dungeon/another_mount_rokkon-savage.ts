@@ -446,7 +446,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Fuko Scythe Tail',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Fuko', capture: false },
+      netRegex: { id: '866C', source: 'Shishu Fuko', capture: false },
       response: Responses.getOut(),
     },
     {
@@ -458,39 +458,39 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Fuko Crosswind',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Fuko', capture: false },
+      netRegex: { id: '866B', source: 'Shishu Fuko', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'AMRS Shishu Yuki Right Swipe',
       type: 'StartsUsing',
-      netRegex: { id: '8668', source: 'Shishu Yuki', capture: false },
+      netRegex: { id: '8688', source: 'Shishu Yuki', capture: false },
       response: Responses.goLeft('info'),
     },
     {
       id: 'AMRS Shishu Yuki Left Swipe',
       type: 'StartsUsing',
-      netRegex: { id: '8669', source: 'Shishu Yuki', capture: false },
+      netRegex: { id: '8689', source: 'Shishu Yuki', capture: false },
       response: Responses.goRight('info'),
     },
     // ---------------- Shishio ----------------
     {
       id: 'AMRS Shishio Enkyo',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishio', capture: false },
+      netRegex: { id: '8441', source: 'Shishio', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'AMRS Shishio Splitting Cry',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishio' },
+      netRegex: { id: '8442', source: 'Shishio' },
       response: Responses.tankBuster(),
     },
     {
       id: 'AMRS Shishio Splitter',
       type: 'Ability',
       // This comes out ~4s after Splitting Cry.
-      netRegex: { id: 'TODO', source: 'Shishio', capture: false },
+      netRegex: { id: '8442', source: 'Shishio', capture: false },
       suppressSeconds: 5,
       response: Responses.goFrontOrSides('info'),
     },
@@ -534,7 +534,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishio Unnatural Wail Count',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishio', capture: false },
+      netRegex: { id: '843E', source: 'Shishio', capture: false },
       run: (data) => {
         data.wailCount++;
         data.wailingCollect = [];
@@ -563,9 +563,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishio Vortex of the Thunder Eye',
       type: 'StartsUsing',
-      // TODO = Eye of the Thunder Vortex (out)
-      // TODO = Vortex of the Thnder Eye (in)
-      netRegex: { id: ['TODO', 'TODO'], source: 'Shishio' },
+      // 843A = Eye of the Thunder Vortex (out)
+      // 843C = Vortex of the Thnder Eye (in)
+      netRegex: { id: ['843A', '843C'], source: 'Shishio' },
       durationSeconds: 7,
       response: (data, matches, output) => {
         // cactbot-builtin-response
@@ -611,7 +611,7 @@ const triggerSet: TriggerSet<Data> = {
 
         const stackType = findStackPartners(data.party, stack1.target, stack2.target);
 
-        const isInFirst = matches.id === 'TODO';
+        const isInFirst = matches.id === '843C';
         const inOut = isInFirst ? output.in!() : output.out!();
         const outIn = isInFirst ? output.out!() : output.in!();
         const args = { inOut: inOut, outIn: outIn };
@@ -643,21 +643,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishio Thunder Vortex',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishio', capture: false },
+      netRegex: { id: '8439', source: 'Shishio', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'AMRS Shishio Devilish Thrall Collect',
       type: 'StartsUsing',
-      // TODO = Right Swipe
-      // TODO = Left Swipe
-      netRegex: { id: ['TODO', 'TODO'], source: 'Devilish Thrall' },
+      // 8432 = Right Swipe
+      // 8433 = Left Swipe
+      netRegex: { id: ['8432', '8433'], source: 'Devilish Thrall' },
       run: (data, matches) => data.devilishThrallCollect.push(matches),
     },
     {
       id: 'AMRS Shishio Devilish Thrall Safe Spot',
       type: 'StartsUsing',
-      netRegex: { id: ['TODO', 'TODO'], source: 'Devilish Thrall', capture: false },
+      netRegex: { id: ['8432', '8433'], source: 'Devilish Thrall', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       promise: async (data) => {
@@ -1355,6 +1355,7 @@ const triggerSet: TriggerSet<Data> = {
         data.explosionLineCollect.push(matches);
         return data.explosionLineCollect.length === 2;
       },
+      durationSeconds: 5,
       alertText: (data, _matches, output) => {
         const isNorth = data.explosionLineCollect.find((x) => x.location === '2F') !== undefined;
         const isSWOrNE = data.explosionLineCollect.find((x) => x.location === '2D') !== undefined;
@@ -1454,7 +1455,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       delaySeconds: 0.5,
-      durationSeconds: 6,
+      durationSeconds: 7,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {

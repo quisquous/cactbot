@@ -1352,6 +1352,7 @@ const triggerSet: TriggerSet<Data> = {
         data.explosionLineCollect.push(matches);
         return data.explosionLineCollect.length === 2;
       },
+      durationSeconds: 5,
       alertText: (data, _matches, output) => {
         const isNorth = data.explosionLineCollect.find((x) => x.location === '2F') !== undefined;
         const isSWOrNE = data.explosionLineCollect.find((x) => x.location === '2D') !== undefined;
@@ -1451,7 +1452,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Tether',
       netRegex: { id: '0011', capture: false },
       delaySeconds: 0.5,
-      durationSeconds: 6,
+      durationSeconds: 7,
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {

@@ -8,9 +8,9 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: does Shishu Onmitsugashira Issen TODO cleave?
-// TODO: does Splitting Cry TODO cleave?
-// TODO: taking both Vermilion Aura TODO and Stygian Aura TODO
-// TODO: taking two Unnatural Force TODO stacks
+// TODO: does Splitting Cry 8442 cleave?
+// TODO: taking both Vermilion Aura 8436 and Stygian Aura 8437
+// TODO: taking two Unnatural Force 8440 stacks
 // TODO: standing in outside of Shishio arena
 // TODO: better track who didn't take Shishio towers
 // TODO: does Gorai Torching Torment cleave?
@@ -28,32 +28,32 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Shishu Raiko Disciples of Levin': '8668', // centered circle
     'AMRS Shishu Raiko Master of Levin': '8667', // very large donut
     'AMRS Shishu Furutsubaki Bloody Carress': '8669', // front conal
-    'AMRS Shishu Fuko Scythe Tail': 'TODO', // centered circle
+    'AMRS Shishu Fuko Scythe Tail': '866C', // centered circle
     'AMRS Red Shishu Penghou Tornado': 'TODO', // targeted circle
-    'AMRS Shishu Yuki Right Swipe': '8668', // 180 right cleave
-    'AMRS Shishu Yuki Left Swipe': '8669', // 180 left cleave
+    'AMRS Shishu Yuki Right Swipe': '8688', // 180 right cleave
+    'AMRS Shishu Yuki Left Swipe': '8689', // 180 left cleave
 
     // Shishio
-    'AMRS Shishio Rokujo Revel': 'TODO', // Smokeater line
-    'AMRS Shishio Raiun Leaping Levin 1': 'TODO', // Raiun 1x Smokeater small cloud circles
-    'AMRS Shishio Raiun Leaping Levin 2': 'TODO', // Raiun 1x Smokeater medium cloud circles
-    'AMRS Shishio Raiun Leaping Levin 3': 'TODO', // Raiun 1x Smokeater large cloud circles
-    'AMRS Shishio Lightning Bolt': 'TODO', // initial Cloud to Cloud circles
-    'AMRS Shishio Cloud to Cloud 1': 'TODO', // 1x Smokeater small lines
-    'AMRS Shishio Cloud to Cloud 2': 'TODO', // 2x Smokeater medium lines
-    'AMRS Shishio Cloud to Cloud 3': 'TODO', // 3x Smokeater large lines
-    'AMRS Shishio Noble Pursuit 1': 'TODO', // initial charge line
-    'AMRS Shishio Noble Pursuit 2': 'TODO', // followup charge line
-    'AMRS Shishio Levinburst': 'TODO', // line damage during Noble Pursuit
-    'AMRS Shishio Devilish Thrall Right Swipe': 'TODO', // 180 right cleave from adds
-    'AMRS Shishio Devilish Thrall Left Swipe': 'TODO', // 180 left cleave from adds
-    'AMRS Shishio Haunting Thrall Reisho': 'TODO', // untelegraphed white explosions from Thralls
-    'AMRS Shishio Thunder Vortex': 'TODO', // donut
-    'AMRS Shishio Eye of the Thunder Vortex 1': 'TODO', // first "out" circle
-    'AMRS Shishio Eye of the Thunder Vortex 2': 'TODO', // second "in" donut
-    'AMRS Shishio Vortex of the Thunder Eye 1': 'TODO', // first "in" donut
-    'AMRS Shishio Vortex of the Thunder Eye 2': 'TODO', // second "out" circle
-    'AMRS Shishio Slither': 'TODO', // back conal
+    'AMRS Shishio Rokujo Revel': '8425', // Smokeater line
+    'AMRS Shishio Raiun Leaping Levin 1': '8426', // Raiun 1x Smokeater small cloud circles
+    'AMRS Shishio Raiun Leaping Levin 2': '8427', // Raiun 1x Smokeater medium cloud circles
+    'AMRS Shishio Raiun Leaping Levin 3': '8428', // Raiun 1x Smokeater large cloud circles
+    'AMRS Shishio Lightning Bolt': '842A', // initial Cloud to Cloud circles
+    'AMRS Shishio Cloud to Cloud 1': '842B', // 1x Smokeater small lines
+    'AMRS Shishio Cloud to Cloud 2': '824C', // 2x Smokeater medium lines
+    'AMRS Shishio Cloud to Cloud 3': '824D', // 3x Smokeater large lines
+    'AMRS Shishio Noble Pursuit 1': '842E', // initial charge line
+    'AMRS Shishio Noble Pursuit 2': '842F', // followup charge line
+    'AMRS Shishio Levinburst': '8430', // line damage during Noble Pursuit
+    'AMRS Shishio Devilish Thrall Right Swipe': '8432', // 180 right cleave from adds
+    'AMRS Shishio Devilish Thrall Left Swipe': '8433', // 180 left cleave from adds
+    'AMRS Shishio Haunting Thrall Reisho': '8434', // untelegraphed white explosions from Thralls
+    'AMRS Shishio Thunder Vortex': '8439', // donut
+    'AMRS Shishio Eye of the Thunder Vortex 1': '843A', // first "out" circle
+    'AMRS Shishio Eye of the Thunder Vortex 2': '843B', // second "in" donut
+    'AMRS Shishio Vortex of the Thunder Eye 1': '843C', // first "in" donut
+    'AMRS Shishio Vortex of the Thunder Eye 2': '843D', // second "out" circle
+    'AMRS Shishio Slither': '8443', // back conal
 
     // Trash 2
     'AMRS Shishu Yamabiko': 'TODO', // sprite line aoe
@@ -119,7 +119,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Moko Ashigaru Kyuhei Iron Storm 2': 'TODO', // followup big circle damage from blue Ashigaru Kyuhei
   },
   damageFail: {
-    'AMRS Shishio Unmitigated Explosion': 'TODO', // not taking towers
+    'AMRS Shishio Unmitigated Explosion': '8438', // not taking towers
   },
   gainsEffectWarn: {
     // BF9 = 9999s duration, BFA = 15s duration
@@ -131,14 +131,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Gorai Impure Purgation': 'TODO', // initial protean for double hit protean
   },
   shareFail: {
-    'AMRS Shishio Unnatural Ailment': 'TODO', // spread during Unnatural Wail
+    'AMRS Shishio Unnatural Ailment': '843F', // spread during Unnatural Wail
     'AMRS Gorai Great Ball of Fire': 'TODO', // spread damage from Live Candle debuff
     'AMRS Gorai Worldy Pursuit': 'TODO', // cross jumps
     'AMRS Moko Vengeful Flame': 'TODO', // spreads during Fleeting Iai-giri
     'AMRS Moko Accursed Edge': 'TODO', // bind on players from Far Edge / Near Edge
   },
   soloFail: {
-    'AMRS Shishio Unnatural Force': 'TODO', // pair stack during Unnatural Wail
+    'AMRS Shishio Unnatural Force': '8440', // pair stack during Unnatural Wail
     'AMRS Gorai Greater Ball of Fire': 'TODO', // pair stack from Live Brazier debuff
     'AMRS Gorai Flintlock': 'TODO', // tank block line share
     'AMRS Moko Vengeful Pyre': 'TODO', // pair stack during Fleeting Iai-giri

@@ -13,8 +13,8 @@ hideall "--sync--"
 # SHISHIO #
 #~~~~~~~~~#
 
-# -p TODO:1012
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -p 8441:1012
+# -ii 86E0 8422 8423 8424 8425 8426 8427 8428 8434 8429 842A 842B 824C 824D
 
 # Note: for Stormcloud Summons, differing amounts of Smokeater create different timings
 # and ability ids for both the "circles" and "lines" patterns. The timelines match up
@@ -23,129 +23,129 @@ hideall "--sync--"
 # is just a dodge check.
 
 1000.0 "--sync--" sync / 00:0839::The Trial Of Benevolence will be sealed off/ window 10000,0
-1007.0 "--sync--" sync / 14:[^:]*:Shishio:TODO:/ window 10000,0
-1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:TODO:/
+1007.0 "--sync--" sync / 14:[^:]*:Shishio:8441:/ window 10000,0
+1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
 
-1014.1 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1019.4 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:TODO:/
-1024.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:TODO:/
-1026.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1028.3 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:TODO:/
+1014.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1019.4 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:841F:/
+1024.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1026.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1028.3 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
 
-1046.5 "--sync--" sync / 14:[^:]*:Shishio:TODO:/ window 10,10
-1051.5 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:TODO:/
-1055.5 "Slither" sync / 1[56]:[^:]*:Shishio:TODO:/
+1046.5 "--sync--" sync / 14:[^:]*:Shishio:8442:/ window 10,10
+1051.5 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
+1055.5 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
 
-1060.7 "--jump--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1071.0 "Noble Pursuit 1" sync / 1[56]:[^:]*:Shishio:TODO:/
-1071.8 "Levinburst 1" #sync / 1[56]:[^:]*:Rairin:TODO:/
-1072.5 "Noble Pursuit 2" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1073.3 "Levinburst 2" #sync / 1[56]:[^:]*:Rairin:TODO:/
-1074.0 "Noble Pursuit 3" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1074.8 "Levinburst 3" #sync / 1[56]:[^:]*:Rairin:TODO:/
-1075.5 "Noble Pursuit 4" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1076.3 "Levinburst 4" #sync / 1[56]:[^:]*:Rairin:TODO:/
-1081.7 "Enkyo" sync / 1[56]:[^:]*:Shishio:TODO:/
+1060.7 "--jump--" sync / 1[56]:[^:]*:Shishio:8444:/
+1071.0 "Noble Pursuit 1" sync / 1[56]:[^:]*:Shishio:842E:/
+1071.8 "Levinburst 1" #sync / 1[56]:[^:]*:Rairin:8430:/
+1072.5 "Noble Pursuit 2" #sync / 1[56]:[^:]*:Shishio:842F:/
+1073.3 "Levinburst 2" #sync / 1[56]:[^:]*:Rairin:8430:/
+1074.0 "Noble Pursuit 3" #sync / 1[56]:[^:]*:Shishio:842F:/
+1074.8 "Levinburst 3" #sync / 1[56]:[^:]*:Rairin:8430:/
+1075.5 "Noble Pursuit 4" #sync / 1[56]:[^:]*:Shishio:842F:/
+1076.3 "Levinburst 4" #sync / 1[56]:[^:]*:Rairin:8430:/
+1081.7 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
 
-1083.8 "--middle--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1088.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:TODO:/
-1093.9 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:TODO:/
-1105.9 "Right Swipe" sync / 1[56]:[^:]*:Devilish Thrall:TODO:/
-1105.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:TODO:/
-1106.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1112.9 "Right Swipe" sync / 1[56]:[^:]*:Devilish Thrall:TODO:/
-1112.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:TODO:/
-1113.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
+1083.8 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
+1088.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1093.9 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:8431:/
+1105.9 "Right Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8432:/
+1105.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8433:/
+1106.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1112.9 "Right Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8432:/
+1112.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8433:/
+1113.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(8440|843F):/
 
-1118.1 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1123.4 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:TODO:/
-1128.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:TODO:/
-1130.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1132.2 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:TODO:/
+1118.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1123.4 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:841F:/
+1128.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1130.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1132.2 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
 
-1155.7 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/ window 10,10
-1160.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:TODO:/
-1168.1 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1168.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
+1155.7 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
+1160.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1168.1 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
+1168.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
 # Technically, the in/out and out/in for each pair are named the same thing.
 # But in a timeline, switching them makes it obvious it's the other.
-1172.1 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1172.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1181.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:TODO:/
+1172.1 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(843B|843D):/
+1172.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(8440|843F):/
+1181.4 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
 
-1189.5 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:TODO:/
-1194.6 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1211.9 "Vengeful Souls" sync / 1[56]:[^:]*:Shishio:TODO:/
-1211.9 "Stygian Aura" sync / 1[56]:[^:]*:Shishio:TODO:/
-1211.9 "Vermilion Aura" sync / 1[56]:[^:]*:Shishio:TODO:/
+1189.5 "Haunting Cry" sync / 1[56]:[^:]*:Shishio:8431:/
+1194.6 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1211.9 "Vengeful Souls" sync / 1[56]:[^:]*:Shishio:8435:/
+1211.9 "Stygian Aura" sync / 1[56]:[^:]*:Shishio:8437:/
+1211.9 "Vermilion Aura" sync / 1[56]:[^:]*:Shishio:8436:/
 
-1219.0 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:TODO:/
-1226.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:TODO:/
-1230.3 "Slither" sync / 1[56]:[^:]*:Shishio:TODO:/
+1219.0 "Thunder Vortex" sync / 1[56]:[^:]*:Shishio:8439:/
+1226.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
+1230.3 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
 
-1235.5 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1240.8 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:TODO:/
-1245.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:TODO:/
-1247.6 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1249.7 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1267.1 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
+1235.5 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1240.8 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:841F:/
+1245.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1247.6 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1249.7 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1267.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
 
-1272.2 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:TODO:/
-1276.9 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:TODO:/
-1279.0 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:TODO:/
-1281.0 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:TODO:/
+1272.2 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:841F:/
+1276.9 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
+1279.0 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
+1281.0 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
 
-1307.4 "--sync--" sync / 1[56]:[^:]*:Shishio:TODO:/
-1312.5 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:TODO:/
-1319.8 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1320.4 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1323.8 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
-1324.4 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(TODO|TODO):/
+1307.4 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1312.5 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
+1319.8 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
+1320.4 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
+1323.8 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" sync / 1[56]:[^:]*:Shishio:(843B|843D):/
+1324.4 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(8440|843F):/
 
-1329.4 "--sync--" sync / 14:[^:]*:Shishio:TODO:/ window 20,20
-1339.4 "Enkyo Enrage" sync / 1[56]:[^:]*:Shishio:TODO:/
+1329.4 "--sync--" sync / 14:[^:]*:Shishio:841E:/ window 20,20
+1339.4 "Enkyo Enrage" sync / 1[56]:[^:]*:Shishio:841E:/
 
 # ALL ENCOUNTER ABILITIES
-# TODO Stormcloud Summons cast and self-targeted ability
-# TODO Smokeater cast and self-targeted ability for first inhale
-# TODO Smokeater self-targeted ability for optional second and third inhales
-# TODO --sync-- ability from Raiun cloud on Shishio after being inhaled
-# TODO Rokujo Revel cast and self-targeted ability for first Smokeater line
-# TODO Rokujo Revel cast and self-targeted ability for followup Smokeater lines
-# TODO Rokujo Revel cast and damage for Smokeater lines
-# TODO Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
-# TODO Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
-# TODO Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
-# TODO Lightning Bolt cast and self-targeted ability
-# TODO Lightning Bolt cast and damage for initial cloud circles
-# TODO Cloud to Cloud cast and damage for 1x Smokeater small lines
-# TODO Cloud to Cloud cast and damage for 2x Smokeater medium lines
-# TODO Cloud to Cloud cast and damage for 3x Smokeater large lines
-# TODO Noble Pursuit cast and damage for initial charge
-# TODO Noble Pursuit damage for followup changes
-# TODO Levinburst line damage for going through rings during Noble Pursuit
-# TODO Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
-# TODO Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
-# TODO Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
-# TODO Reisho damage from Haunting Thrall untelegraphed aoes
-# TODO Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
-# TODO Vermilion Aura damage from taking a tower at the same time as Stygian Aura
-# TODO Stygian Aura spread marker damage at the same time as Vermillion Aura
-# TODO Unmitigated Explosion damage from not taking towers
-# TODO Thunder Vortex cast and damage for untelegraphed donut
-# TODO Eye of the Thunder Vortex cast and damage for first "out" circle
-# TODO Eye of the Thunder Vortex damage for second "in" donut
-# TODO Vortex of the Thunder Eye cast and damage for first "in" donut
-# TODO Vortex of the Thunder Eye damage for second "out" circle
-# TODO Unnatural Wail cast and self-targeted ability
-# TODO Unnatural Ailment damage for Unnatural Wail "spread"
-# TODO Unnatural Force damage for Unnatural Wail "stack"
-# TODO Enkyo cast and damage for raidwide
-# TODO Splitting Cry cast and damage for tankbuster
-# TODO Slither fast cast and damage for back conal
-# TODO --sync-- repositioning ability
-# TODO Enkyo cast and damage for enrage
-# TODO --sync-- auto damage
+# 841F Stormcloud Summons cast and self-targeted ability
+# 8420 Smokeater cast and self-targeted ability for first inhale
+# 8421 Smokeater self-targeted ability for optional second and third inhales
+# 8422 --sync-- ability from Raiun cloud on Shishio after being inhaled
+# 8423 Rokujo Revel cast and self-targeted ability for first Smokeater line
+# 8424 Rokujo Revel cast and self-targeted ability for followup Smokeater lines
+# 8425 Rokujo Revel cast and damage for Smokeater lines
+# 8426 Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
+# 8427 Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
+# 8428 Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
+# 8429 Lightning Bolt cast and self-targeted ability
+# 842A Lightning Bolt cast and damage for initial cloud circles
+# 842B Cloud to Cloud cast and damage for 1x Smokeater small lines
+# 824C Cloud to Cloud cast and damage for 2x Smokeater medium lines
+# 824D Cloud to Cloud cast and damage for 3x Smokeater large lines
+# 842E Noble Pursuit cast and damage for initial charge
+# 842F Noble Pursuit damage for followup changes
+# 8430 Levinburst line damage for going through rings during Noble Pursuit
+# 8431 Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
+# 8432 Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+# 8433 Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+# 8434 Reisho damage from Haunting Thrall untelegraphed aoes
+# 8435 Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
+# 8436 Vermilion Aura damage from taking a tower at the same time as Stygian Aura
+# 8437 Stygian Aura spread marker damage at the same time as Vermillion Aura
+# 8438 Unmitigated Explosion damage from not taking towers
+# 8439 Thunder Vortex cast and damage for untelegraphed donut
+# 843A Eye of the Thunder Vortex cast and damage for first "out" circle
+# 843B Eye of the Thunder Vortex damage for second "in" donut
+# 843C Vortex of the Thunder Eye cast and damage for first "in" donut
+# 843D Vortex of the Thunder Eye damage for second "out" circle
+# 843E Unnatural Wail cast and self-targeted ability
+# 843F Unnatural Ailment damage for Unnatural Wail "spread"
+# 8440 Unnatural Force damage for Unnatural Wail "stack"
+# 8441 Enkyo cast and damage for raidwide
+# 8442 Splitting Cry cast and damage for tankbuster
+# 8443 Slither fast cast and damage for back conal
+# 8444 --sync-- repositioning ability
+# 841E Enkyo cast and damage for enrage
+# 86E0 --sync-- auto damage
 
 
 #~~~~~~~~~~~~~~~~~~~#
@@ -463,11 +463,11 @@ hideall "--sync--"
 # 8668 Disciples of Levin cast and damage for Shishu Raiko "get out" circle
 # 8669 Bloody Caress cast and damage for Shishu Furutsubaki front conal
 # TODO Twister cast and damage for Shishu Fuko stack
-# TODO Crosswind cast and damage for Shishu Fuko knockback
-# TODO Scythe Tail cast and damage for Shishu Fuko "get out"
+# 866B Crosswind cast and damage for Shishu Fuko knockback
+# 866C Scythe Tail cast and damage for Shishu Fuko "get out"
 # TODO Tornado cast and damage for Red Shishu Penghou targeted circle
-# 8668 Right Swipe cast and damage for Shishu Yuki right 180 cleave
-# 8669 Left Swipe cast and damage for Shishu Yuki left 180 cleave
+# 8688 Right Swipe cast and damage for Shishu Yuki right 180 cleave
+# 8689 Left Swipe cast and damage for Shishu Yuki left 180 cleave
 
 
 #~~~~~~~~~#

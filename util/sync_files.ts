@@ -304,45 +304,45 @@ const zoneReplace: ZoneReplace[] = [
     id: {
       '7A56': 'TODO', // --sync-- various auto damage (trash 2)
       '7A58': '7A58', // --sync-- various auto damage (trash 1)
-      '83F8': 'TODO', // Stormcloud Summons cast and self-targeted ability
-      '83F9': 'TODO', // Smokeater cast and self-targeted ability for first inhale
-      '83FA': 'TODO', // Smokeater self-targeted ability for optional second and third inhales
-      '83FB': 'TODO', // --sync-- ability from Raiun cloud on Shishio after being inhaled
-      '83FC': 'TODO', // Rokujo Revel cast and self-targeted ability for first Smokeater line
-      '83FD': 'TODO', // Rokujo Revel cast and self-targeted ability for followup Smokeater lines
-      '83FE': 'TODO', // Rokujo Revel cast and damage for Smokeater lines
-      '83FF': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
-      '8400': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
-      '8401': 'TODO', // Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
-      '8402': 'TODO', // Lightning Bolt cast and self-targeted ability
-      '8403': 'TODO', // Lightning Bolt cast and damage for initial cloud circles
-      '8404': 'TODO', // Cloud to Cloud cast and damage for 1x Smokeater small lines
-      '8405': 'TODO', // Cloud to Cloud cast and damage for 2x Smokeater medium lines
-      '8406': 'TODO', // Cloud to Cloud cast and damage for 3x Smokeater large lines
-      '8407': 'TODO', // Noble Pursuit cast and damage for initial charge
-      '8408': 'TODO', // Noble Pursuit damage for followup changes
-      '8409': 'TODO', // Levinburst line damage for going through rings during Noble Pursuit
-      '840A': 'TODO', // Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
-      '840B': 'TODO', // Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
-      '840C': 'TODO', // Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
-      '840D': 'TODO', // Reisho damage from Haunting Thrall untelegraphed aoes
-      '840E': 'TODO', // Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
-      '840F': 'TODO', // Vermilion Aura damage from taking a tower at the same time as Stygian Aura
-      '8410': 'TODO', // Stygian Aura spread marker damage at the same time as Vermillion Aura
-      '8411': 'TODO', // Unmitigated Explosion damage from not taking towers
-      '8412': 'TODO', // Thunder Vortex cast and damage for untelegraphed donut
-      '8413': 'TODO', // Eye of the Thunder Vortex cast and damage for first "out" circle
-      '8414': 'TODO', // Eye of the Thunder Vortex damage for second "in" donut
-      '8415': 'TODO', // Vortex of the Thunder Eye cast and damage for first "in" donut
-      '8416': 'TODO', // Vortex of the Thunder Eye damage for second "out" circle
-      '8417': 'TODO', // Unnatural Wail cast and self-targeted ability
-      '8418': 'TODO', // Unnatural Ailment damage for Unnatural Wail "spread"
-      '8419': 'TODO', // Unnatural Force damage for Unnatural Wail "stack"
-      '841A': 'TODO', // Enkyo cast and damage for raidwide
-      '841B': 'TODO', // Splitting Cry cast and damage for tankbuster
-      '841C': 'TODO', // Slither fast cast and damage for back conal
-      '841D': 'TODO', // --sync-- repositioning ability
-      '841E': 'TODO', // Enkyo cast and damage for enrage
+      '83F8': '841F', // Stormcloud Summons cast and self-targeted ability
+      '83F9': '8420', // Smokeater cast and self-targeted ability for first inhale
+      '83FA': '8421', // Smokeater self-targeted ability for optional second and third inhales
+      '83FB': '8422', // --sync-- ability from Raiun cloud on Shishio after being inhaled
+      '83FC': '8423', // Rokujo Revel cast and self-targeted ability for first Smokeater line
+      '83FD': '8424', // Rokujo Revel cast and self-targeted ability for followup Smokeater lines
+      '83FE': '8425', // Rokujo Revel cast and damage for Smokeater lines
+      '83FF': '8426', // Leaping Levin cast and damage from Raiun cloud adds for 1x Smokeater small circles
+      '8400': '8427', // Leaping Levin cast and damage from Raiun cloud adds for 2x Smokeater medium circles
+      '8401': '8428', // Leaping Levin cast and damage from Raiun cloud adds for 3x Smokeater large circles
+      '8402': '8429', // Lightning Bolt cast and self-targeted ability
+      '8403': '842A', // Lightning Bolt cast and damage for initial cloud circles
+      '8404': '842B', // Cloud to Cloud cast and damage for 1x Smokeater small lines
+      '8405': '824C', // Cloud to Cloud cast and damage for 2x Smokeater medium lines
+      '8406': '824D', // Cloud to Cloud cast and damage for 3x Smokeater large lines
+      '8407': '842E', // Noble Pursuit cast and damage for initial charge
+      '8408': '842F', // Noble Pursuit damage for followup changes
+      '8409': '8430', // Levinburst line damage for going through rings during Noble Pursuit
+      '840A': '8431', // Haunting Cry cast and self-targeted ability to summon Devilish Thrall ghosts
+      '840B': '8432', // Right Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+      '840C': '8433', // Left Swipe cast and damage for Devilish Thrall cleave during first Unnatural Wail
+      '840D': '8434', // Reisho damage from Haunting Thrall untelegraphed aoes
+      '840E': '8435', // Vengeful Souls self-targeted ability at the same time as Vermillion/Stygian Aura
+      '840F': '8436', // Vermilion Aura damage from taking a tower at the same time as Stygian Aura
+      '8410': '8437', // Stygian Aura spread marker damage at the same time as Vermillion Aura
+      '8411': '8438', // Unmitigated Explosion damage from not taking towers
+      '8412': '8439', // Thunder Vortex cast and damage for untelegraphed donut
+      '8413': '843A', // Eye of the Thunder Vortex cast and damage for first "out" circle
+      '8414': '843B', // Eye of the Thunder Vortex damage for second "in" donut
+      '8415': '843C', // Vortex of the Thunder Eye cast and damage for first "in" donut
+      '8416': '843D', // Vortex of the Thunder Eye damage for second "out" circle
+      '8417': '843E', // Unnatural Wail cast and self-targeted ability
+      '8418': '843F', // Unnatural Ailment damage for Unnatural Wail "spread"
+      '8419': '8440', // Unnatural Force damage for Unnatural Wail "stack"
+      '841A': '8441', // Enkyo cast and damage for raidwide
+      '841B': '8442', // Splitting Cry cast and damage for tankbuster
+      '841C': '8443', // Slither fast cast and damage for back conal
+      '841D': '8444', // --sync-- repositioning ability
+      '841E': '841E', // Enkyo cast and damage for enrage
       '84D3': 'TODO', // --sync-- repositioning
       '8502': 'TODO', // --sync-- auto damage
       '8503': 'TODO', // Seal of Scurrying Sparks cast and self-targeted ability
@@ -453,8 +453,8 @@ const zoneReplace: ZoneReplace[] = [
       '8656': '8668', // Disciples of Levin cast and damage for Shishu Raiko "get out" circle
       '8657': '8669', // Bloody Caress cast and damage for Shishu Furutsubaki front conal
       '8658': 'TODO', // Twister cast and damage for Shishu Fuko stack
-      '8659': 'TODO', // Crosswind cast and damage for Shishu Fuko knockback
-      '865A': 'TODO', // Scythe Tail cast and damage for Shishu Fuko "get out"
+      '8659': '866B', // Crosswind cast and damage for Shishu Fuko knockback
+      '865A': '866C', // Scythe Tail cast and damage for Shishu Fuko "get out"
       '865B': 'TODO', // Tornado cast and damage for Red Shishu Penghou targeted circle
       '865C': 'TODO', // Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
       '865D': 'TODO', // Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
@@ -466,13 +466,13 @@ const zoneReplace: ZoneReplace[] = [
       '8663': 'TODO', // Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
       '8664': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
       '867D': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
-      '8685': '8668', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
-      '8686': '8669', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
+      '8685': '8688', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
+      '8686': '8689', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
       '8687': 'TODO', // Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
       '86C4': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
       '86C5': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
       '86C6': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
-      '86DF': 'TODO', // --sync-- auto damage
+      '86DF': '86E0', // --sync-- auto damage
       '871F': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
       '8720': 'TODO', // --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
       '87A7': 'TODO', // Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
