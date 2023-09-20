@@ -441,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '(${dir} First)',
           de: '(${dir} Zuerst)',
-          fr: '(${dir} en 1er)'
+          fr: '(${dir} en 1er)',
           cn: '(首先${dir})',
           ko: '(${dir} 먼저)',
         },
@@ -598,7 +598,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Between Rings + Outside Line',
           de: 'Zwischen Ringen + äußere Linie',
-          fr; 'Entre les anneaux + Extérieur des lignes',
+          fr: 'Entre les anneaux + Extérieur des lignes',
           cn: '内环 + 外线',
           ko: '고리들 사이 + 바깥',
         },
