@@ -1775,10 +1775,10 @@ const triggerSet: TriggerSet<Data> = {
               myX < mokoCenterX && thisX > mokoCenterX || myX > mokoCenterX && thisX < mokoCenterX
             )
               return false;
+          } else if (data.oniClaw === undefined) {
+            // missing data.oniClaw somehow??
+            return false;
           }
-
-          // missing data.oniClaw somehow
-          return false;
         } else if (matches.sourceId !== data.myIaigiriTether.sourceId) {
           return false;
         }
