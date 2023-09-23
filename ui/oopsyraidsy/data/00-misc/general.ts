@@ -90,7 +90,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
       mistake: (data, matches) => {
         data.raiseTracker ??= {};
-        if (data.raiseTracker[matches.targetId]) {
+        if (data.raiseTracker[matches.targetId] !== undefined) {
           return {
             type: 'warn',
             blame: matches.source,
