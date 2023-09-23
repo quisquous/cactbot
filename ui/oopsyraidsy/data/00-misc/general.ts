@@ -90,13 +90,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
       mistake: (data, matches) => {
         data.raiseTracker ??= {};
-        if (data.raiseTracker[matches.targetId] !== undefined) {
+        const lastRaiser = data.raiseTracker[matches.targetId];
+        if (lastRaiser !== undefined) {
           return {
             type: 'warn',
             blame: matches.source,
             reportId: matches.sourceId,
             text: {
-              en: 'overwrote ' + data.raiseTracker[matches.targetId] + '\'s raise',
+              en: 'overwrote ' + lastRaiser + '\'s raise',
             },
           };
         }
