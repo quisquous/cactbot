@@ -423,20 +423,12 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'GolbezEx Gale Initial Safe Spot',
+      id: 'GolbezEx Gale Safe Spots',
       type: 'StartsUsing',
       netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
       condition: (data) => data.galeSphereCasts.length === 16,
       durationSeconds: 15,
-      response: (data, _matches, output) => {
-        // cactbot-builtin-response
-        output.responseOutputStrings = {
-          safeSpotList: {
-            en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
-          },
-          ...galeSphereOutputStrings,
-        };
-
+      alertText: (data, _matches, output) => {
         const order: GaleDirections[] = [];
         const safeSpots: { [dir in GaleDirections]: GaleSafeSpots } = {
           n: 'unknown',
@@ -511,32 +503,39 @@ const triggerSet: TriggerSet<Data> = {
           data.galeSafeSpots.push(safeSpots[dir]);
         data.galeSphereCasts = [];
 
-        const safeSpotList = (() => {
-          const [dir1, dir2, dir3, dir4] = data.galeSafeSpots.map((x) => output[x]!());
-          if (dir1 === undefined || dir2 === undefined || dir3 === undefined || dir4 === undefined)
-            return;
+        const [dir1, dir2, dir3, dir4] = data.galeSafeSpots.map((x) => output[x]!());
+        if (dir1 === undefined || dir2 === undefined || dir3 === undefined || dir4 === undefined)
+          return;
 
-          return output.safeSpotList!({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
-        })();
-
-        const firstSpot = (() => {
-          const spot = data.galeSafeSpots.shift();
-          if (spot === undefined)
-            return;
-          const dir = output[spot]!();
-
-          const mech = data.firstGaleMechanic;
-          delete data.firstGaleMechanic;
-
-          if (mech === undefined)
-            return dir;
-
-          const mechanicStr = mech === 'partner' ? output.partnerStack!() : output.healerGroups!();
-          return output.dirAndMechanic!({ dir: dir, mechanic: mechanicStr });
-        })();
-
-        return { alertText: firstSpot, infoText: safeSpotList };
+        return output.safeSpotList!({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
       },
+      outputStrings: {
+        safeSpotList: {
+          en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Gale Initial Safe Spot',
+      type: 'StartsUsing',
+      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
+      condition: (data) => data.galeSafeSpots.length === 4,
+      infoText: (data, _matches, output) => {
+        const spot = data.galeSafeSpots.shift();
+        if (spot === undefined)
+          return;
+        const dir = output[spot]!();
+
+        const mech = data.firstGaleMechanic;
+        delete data.firstGaleMechanic;
+
+        if (mech === undefined)
+          return dir;
+
+        const mechanicStr = mech === 'partner' ? output.partnerStack!() : output.healerGroups!();
+        return output.dirAndMechanic!({ dir: dir, mechanic: mechanicStr });
+      },
+      outputStrings: galeSphereOutputStrings,
     },
     {
       id: 'GolbezEx Arctic Assault Collector',
