@@ -5,7 +5,7 @@ import { OopsyTriggerSet } from '../../../../types/oopsy';
 
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
-  raiseTracker?: { [targetId: string]: boolean };
+  raiseTracker?: { [targetId: string]: string };
 }
 
 // General mistakes; these apply everywhere.
@@ -90,17 +90,17 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
       mistake: (data, matches) => {
         data.raiseTracker ??= {};
-        if (data.raiseTracker[matches.targetId] === true) {
+        if (data.raiseTracker[matches.targetId] !== undefined) {
           return {
             type: 'warn',
             blame: matches.source,
             reportId: matches.sourceId,
             text: {
-              en: 'double raise',
+              en: 'overwrote ' + data.raiseTracker[matches.targetId] + '\'s raise',
             },
           };
         }
-        data.raiseTracker[matches.targetId] ??= true;
+        data.raiseTracker[matches.targetId] ??= data.ShortName(matches.source);
       },
     },
     {
