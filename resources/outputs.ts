@@ -370,7 +370,7 @@ export default {
     ko: '근접범위 밖으로',
   },
   inThenOut: {
-    en: 'In, then out',
+    en: 'In => out',
     de: 'Rein, dann raus',
     fr: 'Intérieur, puis extérieur',
     ja: '中 => 外',
@@ -378,7 +378,7 @@ export default {
     ko: '안으로 => 밖으로',
   },
   outThenIn: {
-    en: 'Out, then in',
+    en: 'Out => in',
     de: 'Raus, dann rein',
     fr: 'Extérieur, puis intérieur',
     ja: '外 => 中',
@@ -386,7 +386,7 @@ export default {
     ko: '밖으로 => 안으로',
   },
   backThenFront: {
-    en: 'Back Then Front',
+    en: 'Back => Front',
     de: 'Nach Hinten, danach nach Vorne',
     fr: 'Derrière puis devant',
     ja: '後ろ => 前',
@@ -394,7 +394,7 @@ export default {
     ko: '뒤로 => 앞으로',
   },
   frontThenBack: {
-    en: 'Front Then Back',
+    en: 'Front => Back',
     de: 'Nach Vorne, danach nach Hinten',
     fr: 'Devant puis derrière',
     ja: '前 => 後ろ',
