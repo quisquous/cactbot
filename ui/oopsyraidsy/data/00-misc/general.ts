@@ -84,8 +84,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'General Double Raise',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7D', 'AD', '1D63', 'E13', '5EDF', '7426'] }),
-      // 7D = Raise, AD = Resurrection, 1D63 = Verraise, E13 = Ascend, 5EDF = Egeiro, 7426 = Variant
+      netRegex: NetRegexes.ability({
+        id: ['7D', 'AD', 'E13', '1D63', '5EDF', '478D', '7423', '7426'],
+      }),
+      // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
       mistake: (data, matches) => {
         data.raiseTracker ??= {};
         if (data.raiseTracker[matches.targetId]) {
