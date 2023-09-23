@@ -68,6 +68,7 @@ export interface Data extends RaidbossData {
   arcticAssaultCount: number;
   arcticAssaultSafeSpots?: ArcticAssaultSafeSpot[];
   dragonsDescentMarker: string[];
+  recordedShadowMechanic?: 'spread' | 'stack';
 }
 
 // MapEffect info:
@@ -188,7 +189,75 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Phases of the Blade',
       type: 'StartsUsing',
       netRegex: { id: '86DB', source: 'Golbez', capture: false },
-      response: Responses.getBackThenFront(),
+      durationSeconds: 4,
+      response: Responses.getBackThenFront('alert'),
+    },
+    {
+      id: 'GolbezEx Phases of the Blade Followup',
+      type: 'Ability',
+      netRegex: { id: '86DB', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.front!(),
+      outputStrings: {
+        front: Outputs.front,
+      },
+    },
+    {
+      id: 'GolbezEx Phases of the Shadow',
+      type: 'StartsUsing',
+      netRegex: { id: '86E7', source: 'Golbez', capture: false },
+      durationSeconds: 4,
+      alertText: (data, _matches, output) => {
+        if (data.recordedShadowMechanic === 'spread')
+          return output.backThenFrontThenSpread!();
+        if (data.recordedShadowMechanic === 'stack')
+          return output.backThenFrontThenHealerGroups!();
+        return output.backThenFront!();
+      },
+      outputStrings: {
+        backThenFront: Outputs.backThenFront,
+        backThenFrontThenHealerGroups: {
+          en: 'Back => Front => Out => Stacks',
+        },
+        backThenFrontThenSpread: {
+          en: 'Back => Front => Under => Spread',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Phases of the Shadow Followup',
+      type: 'Ability',
+      netRegex: { id: '86E7', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.recordedShadowMechanic === 'spread')
+          return output.frontThenSpread!();
+        if (data.recordedShadowMechanic === 'stack')
+          return output.frontThenHealerGroups!();
+        return output.front!();
+      },
+      run: (data) => delete data.recordedShadowMechanic,
+      outputStrings: {
+        front: Outputs.front,
+        frontThenHealerGroups: {
+          en: 'Front => Out => Stacks',
+        },
+        frontThenSpread: {
+          en: 'Front => Under',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Rising Ring Followup',
+      type: 'Ability',
+      netRegex: { id: '86ED', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.outAndSpread!(),
+      outputStrings: {
+        outAndSpread: {
+          en: 'Spread Out',
+        },
+      },
     },
     {
       id: 'GolbezEx Binding Cold',
@@ -259,6 +328,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8478', source: 'Golbez', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.recordedShadowMechanic = 'stack',
       outputStrings: {
         text: {
           en: '(out + healer groups, for later)',
@@ -270,6 +340,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8479', source: 'Golbez', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
+      run: (data) => data.recordedShadowMechanic = 'spread',
       outputStrings: {
         text: {
           en: '(in + spread, for later)',
