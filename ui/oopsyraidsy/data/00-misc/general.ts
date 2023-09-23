@@ -5,6 +5,7 @@ import { OopsyTriggerSet } from '../../../../types/oopsy';
 
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
+  raiseTracker?: { [targetId: string]: boolean };
 }
 
 // General mistakes; these apply everywhere.
@@ -78,6 +79,37 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ko: '토끼',
           },
         };
+      },
+    },
+    {
+      id: 'General Double Raise',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({
+        id: ['7D', 'AD', 'E13', '1D63', '5EDF', '478D', '7423', '7426'],
+      }),
+      // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
+      mistake: (data, matches) => {
+        data.raiseTracker ??= {};
+        if (data.raiseTracker[matches.targetId] === true) {
+          return {
+            type: 'warn',
+            blame: matches.source,
+            reportId: matches.sourceId,
+            text: {
+              en: 'double raise',
+            },
+          };
+        }
+        data.raiseTracker[matches.targetId] ??= true;
+      },
+    },
+    {
+      id: 'General Raise Cleanup',
+      type: 'LosesEffect',
+      netRegex: NetRegexes.losesEffect({ effectId: '94' }),
+      run: (data, matches) => {
+        if (data.raiseTracker)
+          delete data.raiseTracker[matches.targetId];
       },
     },
   ],
