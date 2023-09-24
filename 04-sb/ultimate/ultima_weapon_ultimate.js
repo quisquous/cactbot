@@ -12,6 +12,7 @@ const gaolConfig = (id) => {
       en: `Titan Gaol Order ${numStr}`,
       de: `Titan Gefängnis Reihenfolge ${numStr}`,
       cn: `泰坦石牢顺序 ${numStr}`,
+      ko: `돌감옥 순서 ${numStr}`,
     },
     type: 'string',
     default: '',
@@ -35,6 +36,8 @@ Options.Triggers.push({
           'Jeder Eintrag kann aus drei Buchstaben des Jobs bestehen (z. B. "war" oder "SGE") oder aus dem vollständigen Namen (z. B. "Tini Poutini"), wobei Groß- und Kleinschreibung nicht berücksichtigt werden. Kleinere Nummern werden in der Reihenfolge der Gefängnisse zuerst aufgeführt. Bei doppelten Aufträgen werden die Spieler alphabetisch sortiert. Jeder nicht aufgeführte Spieler wird am Ende alphabetisch eingeordnet. Leere Einträge werden ignoriert. Wenn Spieler mehrfach nach Namen oder Beruf aufgelistet sind, wird die niedrigere Nummer berücksichtigt.',
         cn:
           '每个条目可以是三个字母的职业缩写 (例如 "war" 或  "SGE") 或玩家全名（例如 "Tini Poutini"），所有字母不区分大小写。编号较小的将在石牢顺序中排列在前。重复的职业将按姓名字母顺序对玩家进行排序。未列出的队员将按字母顺序添加到末尾。空白条目将被忽略。如果玩家按姓名或职业被多次列出，则以较小编号为准。',
+        ko:
+          '각 항목에는 대소문자를 구분하지 않는 세 글자 직업명(예: "war" 또는 "SGE") 또는 전체 이름(예: "빛의전사")을 입력할 수 있습니다. 먼저 입력된 항목이 감옥 순서에서 먼저 나열됩니다. 직업이 중복된 경우에는  알파벳 순(가나다 순)으로 나타납니다. 목록에 없는 사람은 알파벳 순으로 맨 끝에 추가됩니다. 빈 칸은 무시됩니다. 플레이어가 이름 또는 직업별로 여러 번 나열된 경우, 먼저 입력된 항목이 사용됩니다.',
       },
     },
     gaolConfig('gaolOrder2'),
@@ -113,6 +116,7 @@ Options.Triggers.push({
           en: 'Eruption Baits',
           de: 'Köder Eruption',
           cn: '诱导地火',
+          ko: '용암 분출 유도',
         },
       },
     },
@@ -229,6 +233,7 @@ Options.Triggers.push({
             en: 'Tank Cleave (PARTY OUT)',
             de: 'Tank Cleave (GRUPPE RAUS)',
             cn: '坦克顺劈 (人群出)',
+            ko: '광역 탱버 (본대 밖으로)',
           },
         };
         if (data.slipstreamCount === 1 || data.slipstreamCount > 4)
@@ -326,6 +331,7 @@ Options.Triggers.push({
         de:
           'Wo sich die beiden Schwestern befinden, die die Tanks blockieren sollen. dir1 ist immer die erste Schwester, die im Norden beginnt und im Uhrzeigersinn verläuft.',
         cn: '两分身待坦克阻挡的位置。dir1 始终是从上 (北) 开始顺时针方向的第一个分身位置',
+        ko: '탱커가 막을 두 분신의 위치. dir1은 북쪽에서 시계방향으로 도는 것을 기준으로 항상 첫 번째 분신의 위치입니다',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B55', source: 'Garuda', capture: false },
@@ -378,6 +384,7 @@ Options.Triggers.push({
           en: 'Sisters: ${dir1} / ${dir2}',
           de: 'Schwestern: ${dir1} / ${dir2}',
           cn: '分身：${dir1} / ${dir2}',
+          ko: '분신: ${dir1} / ${dir2}',
         },
         // TODO: the lint fails if you `...Directions.outputStringsCardinalDir` :C
         dirN: Outputs.dirN,
@@ -400,24 +407,28 @@ Options.Triggers.push({
             en: 'Get Sister Tether!!!',
             de: 'Nimm Verbindung von der Schwester!!!',
             cn: '接分身的线!!!',
+            ko: '분신 줄 가져가기!!!',
           },
           // Other people with 1 stack can be informed about it.
           garuda1: {
             en: 'Sister Tethers',
             de: 'Schwester Verbindungen',
             cn: '分身连线',
+            ko: '분신 줄',
           },
           // Usually static on a ranged.
           annihilation1: {
             en: 'Tether',
             de: 'Verbindungen',
             cn: '连线',
+            ko: '줄',
           },
           // Late in the raid, so make sure anybody with a stack remembers this.
           suppression1: {
             en: 'Tether!!!',
             de: 'Verbindungen!!!',
             cn: '连线!!!',
+            ko: '줄!!!',
           },
         };
         const myStacks = data.thermalLow[data.me];
@@ -483,6 +494,7 @@ Options.Triggers.push({
           en: 'Near: ${dir}',
           de: 'Nahe: ${dir}',
           cn: '近: ${dir}',
+          ko: '가까운 기둥: ${dir}',
         },
         ...Directions.outputStrings16Dir,
       },
@@ -561,6 +573,7 @@ Options.Triggers.push({
           en: 'Fetters (w/${player})',
           de: 'Fesseln (mit ${player})',
           cn: '锁链 (与 /${player})',
+          ko: '사슬 (+${player})',
         },
       },
     },
@@ -577,7 +590,7 @@ Options.Triggers.push({
           fr: 'Carbonisation sur VOUS',
           ja: '自分に灼熱',
           cn: '灼热咆哮点名',
-          ko: '작열 → 나',
+          ko: '작열 대상자',
         },
       },
     },
@@ -624,6 +637,7 @@ Options.Triggers.push({
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -654,6 +668,7 @@ Options.Triggers.push({
           en: 'Adjust 45° ${rotation}',
           de: 'Rotiere 45° ${rotation}',
           cn: '${rotation} 旋转 45°',
+          ko: '${rotation} 45° 이동',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -721,21 +736,25 @@ Options.Triggers.push({
           en: '${rotation} 45° to ${dir} (fast)',
           de: '${rotation} 45° nach ${dir} (schnell)',
           cn: '${rotation} 45° 到 ${dir} (快)',
+          ko: '${rotation} 45° ${dir}까지 (빠르게)',
         },
         awokenDash2: {
           en: '${rotation} 90° to ${dir} (fast)',
           de: '${rotation} 90° nach ${dir} (schnell)',
           cn: '${rotation} 90° 到 ${dir} (快)',
+          ko: '${rotation} 90° ${dir}까지 (빠르게)',
         },
         awokenDash3: {
           en: '${rotation} 45° to ${dir} (slow)',
           de: '${rotation} 45° nach ${dir} (langsam)',
           cn: '${rotation} 45° 到 ${dir} (慢)',
+          ko: '${rotation} 45° ${dir}까지 (천천히)',
         },
         awokenDash4: {
           en: '${rotation} 90° to ${dir} (slow)',
           de: '${rotation} 90° nach ${dir} (langsam)',
           cn: '${rotation} 90° 到 ${dir} (慢)',
+          ko: '${rotation} 90° ${dir}까지 (천천히)',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -934,6 +953,7 @@ Options.Triggers.push({
           en: 'Everyone to ${num} (${player} died)',
           de: 'Alle zur ${num} (${player} ist gestorben)',
           cn: '所有人到 ${num} (${player}死亡)',
+          ko: '전부다 ${num} 쪽으로 (${player} 죽음)',
         },
       },
     },
@@ -960,6 +980,7 @@ Options.Triggers.push({
           en: 'Caster LB NOW!',
           de: 'Magier LB JETZT!',
           cn: '法系LB!',
+          ko: '캐스터 리밋!',
         },
       },
     },
@@ -976,6 +997,7 @@ Options.Triggers.push({
           en: 'Healer LB NOW!',
           de: 'Heiler LB JETZT!',
           cn: '奶妈LB!',
+          ko: '힐러 리밋!',
         },
       },
     },
@@ -991,6 +1013,7 @@ Options.Triggers.push({
           en: 'Melee LB NOW!',
           de: 'Nahkämpfer LB JETZT!',
           cn: '近战LB!',
+          ko: '근딜 리밋!',
         },
       },
     },
@@ -1019,6 +1042,7 @@ Options.Triggers.push({
         de:
           '"früh sicher" bedeutet hier, dass man such auch schon for dem ersten Ifrit Dash bewegen kann.',
         cn: '这里的 "提前安全" 指你可以在伊弗利特第一次冲锋前移动。',
+        ko: '여기서 "안전"이란 첫 이프리트 돌진 전에 미리 가 있어도 된다는 의미입니다.',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B76', source: 'The Ultima Weapon', capture: false },
@@ -1131,11 +1155,13 @@ Options.Triggers.push({
           en: '${dir} => ${rotation} (early safe)',
           de: '${dir} => ${rotation} (früh sicher)',
           cn: '${dir} => ${rotation} (提前安全)',
+          ko: '${dir} => ${rotation} (안전)',
         },
         normal: {
           en: '${dir} => ${rotation}',
           de: '${dir} => ${rotation}',
           cn: '${dir} => ${rotation}',
+          ko: '${dir} => ${rotation}',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -1337,7 +1363,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
         'Chirada': 'Chirada',
@@ -1408,7 +1433,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Chirada': 'チラーダ',
@@ -1549,7 +1573,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
         'Chirada': '치라다',
