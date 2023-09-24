@@ -428,7 +428,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
       condition: (data) => data.galeSphereCasts.length === 16,
       durationSeconds: 15,
-      alertText: (data, _matches, output) => {
+      infoText: (data, _matches, output) => {
         const order: GaleDirections[] = [];
         const safeSpots: { [dir in GaleDirections]: GaleSafeSpots } = {
           n: 'unknown',
@@ -513,6 +513,7 @@ const triggerSet: TriggerSet<Data> = {
         safeSpotList: {
           en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
         },
+        ...galeSphereOutputStrings,
       },
     },
     {
@@ -520,7 +521,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
       condition: (data) => data.galeSafeSpots.length === 4,
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         const spot = data.galeSafeSpots.shift();
         if (spot === undefined)
           return;
