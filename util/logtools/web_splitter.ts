@@ -67,7 +67,7 @@ const buildTable = (state: PageState): void => {
   const headers = {
     include: {
       en: 'Include',
-      en: 'Einschließen',
+      de: 'Einschließen',
       cn: '包括',
     },
     startDate: {
