@@ -99,6 +99,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: 'overwrote ' + lastRaiser + '\'s raise',
               de: 'überschrieb ' + lastRaiser + '\'s Wiederbeleben',
+              ko: lastRaiser + '의 부활과 겹침',
             },
           };
         }
