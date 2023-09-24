@@ -271,6 +271,14 @@ hideall "--sync--"
 1703.6 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 1800.0
 1703.6 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 1900.0
 
+# repeated for timeline rolling
+1708.8 "Flames of Eventide 1" #sync / 1[56]:[^:]*:Golbez:847B:/
+1711.9 "Flames of Eventide 2" #sync / 1[56]:[^:]*:Golbez:847B:/
+1715.0 "Flames of Eventide 3" #sync / 1[56]:[^:]*:Golbez:847B:/
+1717.0 "--middle--" #sync / 1[56]:[^:]*:Golbez:84B8:/
+1724.3 "Phases of the Shadow (front)" #sync / 1[56]:[^:]*:Golbez:86E7:/
+1727.8 "Phases of the Shadow (back)" #sync / 1[56]:[^:]*:Golbez:86EF:/
+
 # Mini-phase 4, in then spread, or out then light parties
 
 # out -> light parties variation
