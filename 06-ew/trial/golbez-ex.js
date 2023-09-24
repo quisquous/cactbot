@@ -144,7 +144,7 @@ Options.Triggers.push({
           en: 'Role positions',
           de: 'Rollenposition',
           fr: 'Positions par rôle',
-          ja: '4:4あたまわり',
+          ja: 'ロール特定位置へ',
           cn: '去指定位置',
           ko: '직업군별 위치로',
         },
