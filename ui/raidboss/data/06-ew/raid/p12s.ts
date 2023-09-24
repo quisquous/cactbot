@@ -426,7 +426,7 @@ const triggerSet: TriggerSet<Data> = {
           '方針なし': 'tower',
         },
         cn: {
-          '看小怪位置(果子)': 'tetherbase',
+          '看小怪位置(菓子)': 'tetherbase',
           '垂直拉线 (Game8)': 'quadrant',
           '对角拉线': 'clockwise',
           '仅提示塔颜色': 'tower',
