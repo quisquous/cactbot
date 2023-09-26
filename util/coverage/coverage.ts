@@ -157,7 +157,7 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
   [ContentType.VCDungeonFinder]: {
     en: 'V&C',
     de: 'Gewölbesuche',
-    fr: 'Donjon V&C'
+    fr: 'Donjon V&C',
     cn: '多变&异闻迷宫',
     ko: '변형&파생던전',
   },
