@@ -80,7 +80,7 @@ export default {
   // when there are multiple tankbusters going out
   tankBusters: {
     en: 'Tank Busters',
-    de: 'Tank buster',
+    de: 'Tank busters',
     fr: 'Tank busters',
     ja: 'タンク強攻撃',
     cn: '坦克死刑',
@@ -104,6 +104,7 @@ export default {
   },
   tankBusterCleavesOnYou: {
     en: 'Tank Cleaves on YOU',
+    de: 'Tank Cleaves auf DIR',
     fr: 'Tank cleaves sur VOUS',
     cn: '坦克顺劈点名',
     ko: '광역 탱버 대상자',
@@ -134,6 +135,7 @@ export default {
   },
   sharedTankbuster: {
     en: 'Shared Tank Buster',
+    de: 'Geteilter Tankbuster',
     fr: 'Partagez le Tank buster',
     ja: 'タンク頭割り',
     cn: '分摊死刑',
@@ -370,7 +372,7 @@ export default {
     ko: '근접범위 밖으로',
   },
   inThenOut: {
-    en: 'In, then out',
+    en: 'In => out',
     de: 'Rein, dann raus',
     fr: 'Intérieur, puis extérieur',
     ja: '中 => 外',
@@ -378,7 +380,7 @@ export default {
     ko: '안으로 => 밖으로',
   },
   outThenIn: {
-    en: 'Out, then in',
+    en: 'Out => in',
     de: 'Raus, dann rein',
     fr: 'Extérieur, puis intérieur',
     ja: '外 => 中',
@@ -386,7 +388,7 @@ export default {
     ko: '밖으로 => 안으로',
   },
   backThenFront: {
-    en: 'Back Then Front',
+    en: 'Back => Front',
     de: 'Nach Hinten, danach nach Vorne',
     fr: 'Derrière puis devant',
     ja: '後ろ => 前',
@@ -394,7 +396,7 @@ export default {
     ko: '뒤로 => 앞으로',
   },
   frontThenBack: {
-    en: 'Front Then Back',
+    en: 'Front => Back',
     de: 'Nach Vorne, danach nach Hinten',
     fr: 'Devant puis derrière',
     ja: '前 => 後ろ',
@@ -411,6 +413,7 @@ export default {
   },
   front: {
     en: 'Front',
+    de: 'Vorne',
     fr: 'Devant',
     ja: '前',
     cn: '前',
@@ -418,6 +421,7 @@ export default {
   },
   back: {
     en: 'Back',
+    de: 'Hinten',
     fr: 'Derrière',
     ja: '後ろ',
     cn: '后',

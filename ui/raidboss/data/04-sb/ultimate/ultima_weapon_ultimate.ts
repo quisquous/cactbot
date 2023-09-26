@@ -78,7 +78,9 @@ const gaolConfig = (id: GaolKey): NamedConfigEntry<GaolKey> => {
     id: id,
     name: {
       en: `Titan Gaol Order ${numStr}`,
+      de: `Titan Gefängnis Reihenfolge ${numStr}`,
       cn: `泰坦石牢顺序 ${numStr}`,
+      ko: `돌감옥 순서 ${numStr}`,
     },
     type: 'string',
     default: '',
@@ -99,8 +101,12 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Each entry can be the three letter job (e.g. "war" or "SGE") or the full name (e.g. "Tini Poutini"), all case insensitive. Smaller numbers will be listed first in the gaol order. Duplicate jobs will sort players alphabetically. Anybody not listed will be added to the end alphabetically. Blank entries are ignored. If players are listed multiple times by name or job, the lower number will be considered.',
+        de:
+          'Jeder Eintrag kann aus drei Buchstaben des Jobs bestehen (z. B. "war" oder "SGE") oder aus dem vollständigen Namen (z. B. "Tini Poutini"), wobei Groß- und Kleinschreibung nicht berücksichtigt werden. Kleinere Nummern werden in der Reihenfolge der Gefängnisse zuerst aufgeführt. Bei doppelten Aufträgen werden die Spieler alphabetisch sortiert. Jeder nicht aufgeführte Spieler wird am Ende alphabetisch eingeordnet. Leere Einträge werden ignoriert. Wenn Spieler mehrfach nach Namen oder Beruf aufgelistet sind, wird die niedrigere Nummer berücksichtigt.',
         cn:
           '每个条目可以是三个字母的职业缩写 (例如 "war" 或  "SGE") 或玩家全名（例如 "Tini Poutini"），所有字母不区分大小写。编号较小的将在石牢顺序中排列在前。重复的职业将按姓名字母顺序对玩家进行排序。未列出的队员将按字母顺序添加到末尾。空白条目将被忽略。如果玩家按姓名或职业被多次列出，则以较小编号为准。',
+        ko:
+          '각 항목에는 대소문자를 구분하지 않는 세 글자 직업명(예: "war" 또는 "SGE") 또는 전체 이름(예: "빛의전사")을 입력할 수 있습니다. 먼저 입력된 항목이 감옥 순서에서 먼저 나열됩니다. 직업이 중복된 경우에는  알파벳 순(가나다 순)으로 나타납니다. 목록에 없는 사람은 알파벳 순으로 맨 끝에 추가됩니다. 빈 칸은 무시됩니다. 플레이어가 이름 또는 직업별로 여러 번 나열된 경우, 먼저 입력된 항목이 사용됩니다.',
       },
     },
     gaolConfig('gaolOrder2'),
@@ -177,7 +183,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Eruption Baits',
+          de: 'Köder Eruption',
           cn: '诱导地火',
+          ko: '용암 분출 유도',
         },
       },
     },
@@ -292,7 +300,9 @@ const triggerSet: TriggerSet<Data> = {
           partyStack: Outputs.stackMarker,
           tankCleavePartyOut: {
             en: 'Tank Cleave (PARTY OUT)',
+            de: 'Tank Cleave (GRUPPE RAUS)',
             cn: '坦克顺劈 (人群出)',
+            ko: '광역 탱버 (본대 밖으로)',
           },
         };
 
@@ -390,7 +400,10 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en:
           'Where the two sisters are for the tanks to block. dir1 is always the first sister location starting North and going clockwise',
+        de:
+          'Wo sich die beiden Schwestern befinden, die die Tanks blockieren sollen. dir1 ist immer die erste Schwester, die im Norden beginnt und im Uhrzeigersinn verläuft.',
         cn: '两分身待坦克阻挡的位置。dir1 始终是从上 (北) 开始顺时针方向的第一个分身位置',
+        ko: '탱커가 막을 두 분신의 위치. dir1은 북쪽에서 시계방향으로 도는 것을 기준으로 항상 첫 번째 분신의 위치입니다',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B55', source: 'Garuda', capture: false },
@@ -443,7 +456,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sisters: ${dir1} / ${dir2}',
+          de: 'Schwestern: ${dir1} / ${dir2}',
           cn: '分身：${dir1} / ${dir2}',
+          ko: '분신: ${dir1} / ${dir2}',
         },
         // TODO: the lint fails if you `...Directions.outputStringsCardinalDir` :C
         dirN: Outputs.dirN,
@@ -464,22 +479,30 @@ const triggerSet: TriggerSet<Data> = {
           // The person with two stacks must get a tether.
           garuda2: {
             en: 'Get Sister Tether!!!',
+            de: 'Nimm Verbindung von der Schwester!!!',
             cn: '接分身的线!!!',
+            ko: '분신 줄 가져가기!!!',
           },
           // Other people with 1 stack can be informed about it.
           garuda1: {
             en: 'Sister Tethers',
+            de: 'Schwester Verbindungen',
             cn: '分身连线',
+            ko: '분신 줄',
           },
           // Usually static on a ranged.
           annihilation1: {
             en: 'Tether',
+            de: 'Verbindungen',
             cn: '连线',
+            ko: '줄',
           },
           // Late in the raid, so make sure anybody with a stack remembers this.
           suppression1: {
             en: 'Tether!!!',
+            de: 'Verbindungen!!!',
             cn: '连线!!!',
+            ko: '줄!!!',
           },
         };
 
@@ -548,7 +571,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Near: ${dir}',
+          de: 'Nahe: ${dir}',
           cn: '近: ${dir}',
+          ko: '가까운 기둥: ${dir}',
         },
         ...Directions.outputStrings16Dir,
       },
@@ -630,7 +655,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         fetters: {
           en: 'Fetters (w/${player})',
+          de: 'Fesseln (mit ${player})',
           cn: '锁链 (与 /${player})',
+          ko: '사슬 (+${player})',
         },
       },
     },
@@ -647,7 +674,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Carbonisation sur VOUS',
           ja: '自分に灼熱',
           cn: '灼热咆哮点名',
-          ko: '작열 → 나',
+          ko: '작열 대상자',
         },
       },
     },
@@ -694,7 +721,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         intercardSafeSpot: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -725,7 +754,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Adjust 45° ${rotation}',
+          de: 'Rotiere 45° ${rotation}',
           cn: '${rotation} 旋转 45°',
+          ko: '${rotation} 45° 이동',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -797,19 +828,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         awokenDash1: {
           en: '${rotation} 45° to ${dir} (fast)',
+          de: '${rotation} 45° nach ${dir} (schnell)',
           cn: '${rotation} 45° 到 ${dir} (快)',
+          ko: '${rotation} 45° ${dir}까지 (빠르게)',
         },
         awokenDash2: {
           en: '${rotation} 90° to ${dir} (fast)',
+          de: '${rotation} 90° nach ${dir} (schnell)',
           cn: '${rotation} 90° 到 ${dir} (快)',
+          ko: '${rotation} 90° ${dir}까지 (빠르게)',
         },
         awokenDash3: {
           en: '${rotation} 45° to ${dir} (slow)',
+          de: '${rotation} 45° nach ${dir} (langsam)',
           cn: '${rotation} 45° 到 ${dir} (慢)',
+          ko: '${rotation} 45° ${dir}까지 (천천히)',
         },
         awokenDash4: {
           en: '${rotation} 90° to ${dir} (slow)',
+          de: '${rotation} 90° nach ${dir} (langsam)',
           cn: '${rotation} 90° 到 ${dir} (慢)',
+          ko: '${rotation} 90° ${dir}까지 (천천히)',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -1016,7 +1055,9 @@ const triggerSet: TriggerSet<Data> = {
         num3: Outputs.num3,
         text: {
           en: 'Everyone to ${num} (${player} died)',
+          de: 'Alle zur ${num} (${player} ist gestorben)',
           cn: '所有人到 ${num} (${player}死亡)',
+          ko: '전부다 ${num} 쪽으로 (${player} 죽음)',
         },
       },
     },
@@ -1041,7 +1082,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Caster LB NOW!',
+          de: 'Magier LB JETZT!',
           cn: '法系LB!',
+          ko: '캐스터 리밋!',
         },
       },
     },
@@ -1056,7 +1099,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Healer LB NOW!',
+          de: 'Heiler LB JETZT!',
           cn: '奶妈LB!',
+          ko: '힐러 리밋!',
         },
       },
     },
@@ -1070,7 +1115,9 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Melee LB NOW!',
+          de: 'Nahkämpfer LB JETZT!',
           cn: '近战LB!',
+          ko: '근딜 리밋!',
         },
       },
     },
@@ -1096,7 +1143,10 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UWU Predation',
       comment: {
         en: '"early safe" here means that you can move before the first Ifrit dash.',
+        de:
+          '"früh sicher" bedeutet hier, dass man such auch schon for dem ersten Ifrit Dash bewegen kann.',
         cn: '这里的 "提前安全" 指你可以在伊弗利特第一次冲锋前移动。',
+        ko: '여기서 "안전"이란 첫 이프리트 돌진 전에 미리 가 있어도 된다는 의미입니다.',
       },
       type: 'StartsUsing',
       netRegex: { id: '2B76', source: 'The Ultima Weapon', capture: false },
@@ -1221,11 +1271,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         early: {
           en: '${dir} => ${rotation} (early safe)',
+          de: '${dir} => ${rotation} (früh sicher)',
           cn: '${dir} => ${rotation} (提前安全)',
+          ko: '${dir} => ${rotation} (안전)',
         },
         normal: {
           en: '${dir} => ${rotation}',
+          de: '${dir} => ${rotation}',
           cn: '${dir} => ${rotation}',
+          ko: '${dir} => ${rotation}',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
@@ -1357,13 +1411,13 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'Bomber-Brocken',
         'Chirada': 'Chirada',
         'Garuda': 'Garuda',
         'Ifrit': 'Ifrit',
         'Lahabrea': 'Lahabrea',
+        'Magitek Bit': 'Magitek-Drohne',
         'Spiny Plume': 'dornig(?:e|er|es|en) Federsturm',
         'Suparna': 'Suparna',
         'The Ultima Weapon': 'Ultima-Waffe',
@@ -1378,6 +1432,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blight': 'Pesthauch',
         'Bury': 'Begraben',
         'Ceruleum Vent': 'Erdseim-Entlüfter',
+        'Citadel Siege': 'Belagerung der Zitadelle',
         'Crimson Cyclone': 'Zinnober-Zyklon',
         'Dark IV': 'Neka',
         'Diffractive Laser': 'Diffraktiver Laser',
@@ -1390,13 +1445,14 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': 'Schwerer Beschuss',
         'Friction': 'Windklinge',
         'Geocrush': 'Geo-Stoß',
-        'Great Whirlwind': 'Großer Wirbelsturm', // FIXME
+        'Great Whirlwind': 'Windhose',
         'Hellfire': 'Höllenfeuer',
         'Homing Lasers': 'Leitlaser',
         'Incinerate': 'Einäschern',
         'Infernal Fetters': 'Infernofesseln',
         'Inferno Howl': 'Brennende Wut',
         'Landslide': 'Bergsturz',
+        'Light Pillar': 'Lichtsäule',
         'Mesohigh': 'Meso-Hoch',
         'Mistral Shriek': 'Mistral-Schrei',
         'Mistral Song': 'Mistral-Song',
@@ -1406,6 +1462,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Buster': 'Steinsprenger',
         'Rock Throw': 'Granitgefängnis',
         'Searing Wind': 'Versengen',
+        'Self-detonate': 'Zerbersten',
         'Slipstream': 'Wirbelströmung',
         'Summon Random Primal': 'Zufällige Primaebeschwörung',
         'Tank Purge': 'Tankreinigung',
@@ -1424,13 +1481,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
         'Chirada': 'Chirada',
         'Garuda': 'Garuda',
         'Ifrit': 'Ifrit',
         'Lahabrea': 'Lahabrea',
+        'Magitek Bit': 'drone magitek',
         'Spiny Plume': 'plume perforante',
         'Suparna': 'Suparna',
         'The Ultima Weapon': 'Ultima Arma',
@@ -1445,6 +1502,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blight': 'Supplice',
         'Bury': 'Impact',
         'Ceruleum Vent': 'Exutoire à Céruleum',
+        'Citadel Siege': 'Siège de citadelle',
         'Crimson Cyclone': 'Cyclone écarlate',
         'Dark IV': 'Giga Ténèbres',
         'Diffractive Laser': 'Laser diffractif',
@@ -1464,6 +1522,7 @@ const triggerSet: TriggerSet<Data> = {
         'Infernal Fetters': 'Chaînes infernales',
         'Inferno Howl': 'Rugissement infernal',
         'Landslide': 'Glissement de terrain',
+        'Light Pillar': 'Colonne lumineuse',
         'Mesohigh': 'Anticyclone de méso-échelle',
         'Mistral Shriek': 'Cri du mistral',
         'Mistral Song': 'Chant du mistral',
@@ -1473,6 +1532,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Buster': 'Casse-roc',
         'Rock Throw': 'Jeté de rocs',
         'Searing Wind': 'Carbonisation',
+        'Self-detonate': 'Auto-atomisation',
         'Slipstream': 'Sillage',
         'Summon Random Primal': 'Invocation de primordial aléatoire',
         'Tank Purge': 'Vidange de réservoir',
@@ -1491,13 +1551,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Chirada': 'チラーダ',
         'Garuda': 'ガルーダ',
         'Ifrit': 'イフリート',
         'Lahabrea': 'アシエン・ラハブレア',
+        'Magitek Bit': '魔導ビット',
         'Spiny Plume': 'スパイニープルーム',
         'Suparna': 'スパルナ',
         'The Ultima Weapon': 'アルテマウェポン',
@@ -1512,6 +1572,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blight': 'クラウダ',
         'Bury': '衝撃',
         'Ceruleum Vent': 'セルレアムベント',
+        'Citadel Siege': 'シタデルシージ',
         'Crimson Cyclone': 'クリムゾンサイクロン',
         'Dark IV': 'ダージャ',
         'Diffractive Laser': '拡散レーザー',
@@ -1524,13 +1585,14 @@ const triggerSet: TriggerSet<Data> = {
         'Freefire': '誘爆',
         'Friction': 'ウィンドブレード',
         'Geocrush': 'ジオクラッシュ',
-        'Great Whirlwind': '大旋風', // FIXME
+        'Great Whirlwind': '大旋風',
         'Hellfire': '地獄の火炎',
         'Homing Lasers': '誘導レーザー',
         'Incinerate': 'インシネレート',
         'Infernal Fetters': '炎獄の鎖',
         'Inferno Howl': '灼熱の咆吼',
         'Landslide': 'ランドスライド',
+        'Light Pillar': 'リヒト・ゾイレ',
         'Mesohigh': 'メソハイ',
         'Mistral Shriek': 'ミストラルシュリーク',
         'Mistral Song': 'ミストラルソング',
@@ -1540,6 +1602,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Buster': 'ロックバスター',
         'Rock Throw': 'グラナイト・ジェイル',
         'Searing Wind': '熱風',
+        'Self-detonate': '爆発霧散',
         'Slipstream': 'スリップストリーム',
         'Summon Random Primal': 'ランダム蛮神を召喚',
         'Tank Purge': '魔導フレア',
@@ -1628,13 +1691,13 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
         'Chirada': '치라다',
         'Garuda': '가루다',
         'Ifrit': '이프리트',
         'Lahabrea': '아씨엔 라하브레아',
+        'Magitek Bit': '마도 비트',
         'Spiny Plume': '가시돋힌 깃털',
         'Suparna': '수파르나',
         'The Ultima Weapon': '알테마 웨폰',
@@ -1649,6 +1712,7 @@ const triggerSet: TriggerSet<Data> = {
         'Blight': '독안개',
         'Bury': '충격',
         'Ceruleum Vent': '청린 방출',
+        'Citadel Siege': '공성',
         'Crimson Cyclone': '진홍 회오리',
         'Dark IV': '다쟈',
         'Diffractive Laser': '확산 레이저',
@@ -1668,6 +1732,7 @@ const triggerSet: TriggerSet<Data> = {
         'Infernal Fetters': '염옥의 사슬',
         'Inferno Howl': '작열의 포효',
         'Landslide': '산사태',
+        'Light Pillar': '빛 기둥',
         'Mesohigh': '뇌우고기압',
         'Mistral Shriek': '삭풍의 비명',
         'Mistral Song': '삭풍의 노래',
@@ -1677,6 +1742,7 @@ const triggerSet: TriggerSet<Data> = {
         'Rock Buster': '바위 쪼개기',
         'Rock Throw': '화강암 감옥',
         'Searing Wind': '열풍',
+        'Self-detonate': '자가폭발',
         'Slipstream': '반동 기류',
         'Summon Random Primal': '무작위 야만신 소환',
         'Tank Purge': '마도 플레어',
