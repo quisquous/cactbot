@@ -302,7 +302,7 @@ const zoneReplace: ZoneReplace[] = [
     // eslint-disable-next-line max-len
     // grep "^# [A-F0-9]\{4\} " ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.txt | sort | sed "s/^..//" | sed "s/^\(....\) \(.*\)$/    '\1': 'TODO', \/\/ \2/"
     id: {
-      '7A56': 'TODO', // --sync-- various auto damage (trash 2)
+      '7A56': '7A56', // --sync-- various auto damage (trash 2)
       '7A58': '7A58', // --sync-- various auto damage (trash 1)
       '83F8': '841F', // Stormcloud Summons cast and self-targeted ability
       '83F9': '8420', // Smokeater cast and self-targeted ability for first inhale
@@ -452,23 +452,23 @@ const zoneReplace: ZoneReplace[] = [
       '8655': '8667', // Master of Levin cast and damage for Shishu Raiki "get in" donut
       '8656': '8668', // Disciples of Levin cast and damage for Shishu Raiko "get out" circle
       '8657': '8669', // Bloody Caress cast and damage for Shishu Furutsubaki front conal
-      '8658': 'TODO', // Twister cast and damage for Shishu Fuko stack
+      '8658': '866A', // Twister cast and damage for Shishu Fuko stack
       '8659': '866B', // Crosswind cast and damage for Shishu Fuko knockback
       '865A': '866C', // Scythe Tail cast and damage for Shishu Fuko "get out"
-      '865B': 'TODO', // Tornado cast and damage for Red Shishu Penghou targeted circle
-      '865C': 'TODO', // Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
-      '865D': 'TODO', // Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
-      '865E': 'TODO', // Rightward Blows cast and self-targeted ability for Shishu Kotengu front->right conals
-      '865F': 'TODO', // Blade of the Tengu damage from Shishu Kotengu Blows abilities
-      '8660': 'TODO', // Wrath of the Tengu cast and damage for Shishu Kotengu raidwide + bleed
-      '8661': 'TODO', // Gaze of the Tengu cast and ability for lookaway
-      '8662': 'TODO', // Issen cast and damage for Shishu Onmitsugashira tankbuster
-      '8663': 'TODO', // Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
-      '8664': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
-      '867D': 'TODO', // Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
+      '865B': '866D', // Tornado cast and damage for Red Shishu Penghou targeted circle
+      '865C': '866E', // Backward Blows cast and self-targeted ability for Shishu Kotengu front->back conals
+      '865D': '866F', // Leftward Blows cast and self-targeted ability for Shishu Kotengu front->left conals
+      '865E': '8670', // Rightward Blows cast and self-targeted ability for Shishu Kotengu front->right conals
+      '865F': '8671', // Blade of the Tengu damage from Shishu Kotengu Blows abilities
+      '8660': '8672', // Wrath of the Tengu cast and damage for Shishu Kotengu raidwide + bleed
+      '8661': '8673', // Gaze of the Tengu cast and ability for lookaway
+      '8662': '8674', // Issen cast and damage for Shishu Onmitsugashira tankbuster
+      '8663': '8675', // Huton cast and self-targeted ability for Shishu Onmitsugashira before multiple shuriken
+      '8664': '8676', // Juji Shuriken cast and damage for Shishu Onmitsugashira line aoe
+      '867D': '867E', // Juji Shuriken cast and damage for Shishu Onmitsugashira multiple fast line aoe
       '8685': '8688', // Right Swipe cast and damage for Shishu Yuki right 180 cleave
       '8686': '8689', // Left Swipe cast and damage for Shishu Yuki left 180 cleave
-      '8687': 'TODO', // Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
+      '8687': '868A', // Mountain Breeze cast and damage from Shishu Yamabiko sprite line aoe
       '86C4': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
       '86C5': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
       '86C6': 'TODO', // Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup

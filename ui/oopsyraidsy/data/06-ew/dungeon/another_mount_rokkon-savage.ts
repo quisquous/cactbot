@@ -7,7 +7,7 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
 import { playerDamageFields } from '../../../oopsy_common';
 
-// TODO: does Shishu Onmitsugashira Issen TODO cleave?
+// TODO: does Shishu Onmitsugashira Issen 8674 cleave?
 // TODO: does Splitting Cry 8442 cleave?
 // TODO: taking both Vermilion Aura 8436 and Stygian Aura 8437
 // TODO: taking two Unnatural Force 8440 stacks
@@ -29,7 +29,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Shishu Raiko Master of Levin': '8667', // very large donut
     'AMRS Shishu Furutsubaki Bloody Carress': '8669', // front conal
     'AMRS Shishu Fuko Scythe Tail': '866C', // centered circle
-    'AMRS Red Shishu Penghou Tornado': 'TODO', // targeted circle
+    'AMRS Red Shishu Penghou Tornado': '866D', // targeted circle
     'AMRS Shishu Yuki Right Swipe': '8688', // 180 right cleave
     'AMRS Shishu Yuki Left Swipe': '8689', // 180 left cleave
 
@@ -56,10 +56,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Shishio Slither': '8443', // back conal
 
     // Trash 2
-    'AMRS Shishu Yamabiko': 'TODO', // sprite line aoe
-    'AMRS Shishu Kotengu Blade of the Tengu': 'TODO', // Leftward/Rightward/Backward Blows
-    'AMRS Shishu Onmitsugashira Juji Shuriken': 'TODO', // untelegraphed front line
-    'AMRS Shishu Onmitsugashira Juji Shuriken Huton': 'TODO', // untelegraphed fast front line on all players
+    'AMRS Shishu Yamabiko': '868A', // sprite line aoe
+    'AMRS Shishu Kotengu Blade of the Tengu': '8671', // Leftward/Rightward/Backward Blows
+    'AMRS Shishu Onmitsugashira Juji Shuriken': '8676', // untelegraphed front line
+    'AMRS Shishu Onmitsugashira Juji Shuriken Huton': '867E', // untelegraphed fast front line on all players
 
     // Gorai
     'AMRS Gorai Fire Spread Purple': 'TODO', // line damage after purple Brazen Ballad
@@ -147,7 +147,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Gaze of the Tengu',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: 'TODO', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '8673', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

@@ -13,7 +13,7 @@ import { Job } from '../../../../../types/job';
 import { NetMatches } from '../../../../../types/net_matches';
 import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
-// TODO: Shishu Onmitsugashira Huton TODO call something for multiple fast shurikens???
+// TODO: Shishu Onmitsugashira Huton 8675 call something for multiple fast shurikens???
 
 type RousingTower = {
   blue?: string;
@@ -480,7 +480,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Fuko Twister',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Fuko' },
+      netRegex: { id: '866A', source: 'Shishu Fuko' },
       response: Responses.stackMarkerOn(),
     },
     {
@@ -773,7 +773,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Backward Blows',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '866E', source: 'Shishu Kotengu', capture: false },
       durationSeconds: 5.7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -785,7 +785,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Leftward Blows',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '866F', source: 'Shishu Kotengu', capture: false },
       durationSeconds: 5.7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -797,7 +797,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Rightward Blows',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '8670', source: 'Shishu Kotengu', capture: false },
       durationSeconds: 5.7,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -809,25 +809,25 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMRS Shishu Kotengu Wrath of the Tengu',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '8672', source: 'Shishu Kotengu', capture: false },
       response: Responses.bleedAoe(),
     },
     {
       id: 'AMRS Shishu Kotengu Gaze of the Tengu',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Kotengu', capture: false },
+      netRegex: { id: '8673', source: 'Shishu Kotengu', capture: false },
       response: Responses.lookAway('alert'),
     },
     {
       id: 'AMRS Shishu Onmitsugashira Juji Shuriken',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Onmitsugashira', capture: false },
+      netRegex: { id: '8676', source: 'Shishu Onmitsugashira', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'AMRS Shishu Onmitsugashira Issen',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Shishu Onmitsugashira' },
+      netRegex: { id: '8674', source: 'Shishu Onmitsugashira' },
       response: Responses.tankBuster(),
     },
     // ---------------- Gorai the Uncaged ----------------
