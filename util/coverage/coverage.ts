@@ -157,6 +157,7 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
   [ContentType.VCDungeonFinder]: {
     en: 'V&C',
     de: 'Gewölbesuche',
+    fr: 'Donjon V&C'
     cn: '多变&异闻迷宫',
     ko: '변형&파생던전',
   },
@@ -223,6 +224,7 @@ const zoneGridHeaders = {
   translated: {
     en: 'Translated',
     de: 'Übersetzt',
+    fr: 'Traduit',
     cn: '已翻译',
   },
 } as const;
@@ -280,21 +282,25 @@ const translationGridHeaders = {
   language: {
     en: 'Translations',
     de: 'Übersetzungen',
+    fr: 'Traductions',
     cn: '翻译',
   },
   coverage: {
     en: 'Coverage',
     de: 'Abdeckung',
+    fr: 'Couvert',
     cn: '覆盖率',
   },
   errors: {
     en: 'Errors',
     de: 'Fehler',
+    fr: 'Erreurs',
     cn: '错误',
   },
   url: {
     en: 'Link to Missing Translation List',
     de: 'Link zur Liste mit den fehlenden Übersetzungen',
+    fr: 'Lien vers la liste des traductions manquantes',
     cn: '缺失翻译表链接',
   },
 } as const;
