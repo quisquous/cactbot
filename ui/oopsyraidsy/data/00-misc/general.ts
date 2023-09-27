@@ -57,7 +57,7 @@ const shieldEffectIdToAbilityId: { [id: string]: string } = {
   '5B1': '1CDC', // shake it off
   '552': 'DD4', // divine veil
   'D25': '5EF6', // holosakos -> holos
-  'A53': '5EF7', // pamhaimatinon -> panhaima
+  'A53': '5EF7', // panhaimatinon -> panhaima
 };
 
 // General mistakes; these apply everywhere.
@@ -180,25 +180,17 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
 
         const mitTracker = isTargetMit
-          ? (data.targetMitTracker ??= {})[matches.targetId]
-          : data.partyMitTracker;
+          ? ((data.targetMitTracker ??= {})[matches.targetId] ??= {})
+          : (data.partyMitTracker ??= {});
         const newTime = new Date(matches.timestamp).getTime();
         const newSource = data.ShortName(matches.source);
-        const lastTime = mitTracker?.[matches.id]?.time;
-        const lastSource = mitTracker?.[matches.id]?.source;
+        const lastTime = mitTracker[matches.id]?.time;
+        const lastSource = mitTracker[matches.id]?.source;
 
-        if (isTargetMit) {
-          ((data.targetMitTracker ??= {})[matches.targetId] ??= {})[matches.id] = {
-            time: newTime,
-            source: newSource,
-          };
-        }
-        if (isPartyMit) {
-          (data.partyMitTracker ??= {})[matches.id] = {
-            time: newTime,
-            source: newSource,
-          };
-        }
+        mitTracker[matches.id] = {
+          time: newTime,
+          source: newSource,
+        };
 
         const duration = isTargetMit
           ? targetMitAbilityIdToDuration[matches.id]
