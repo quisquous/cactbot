@@ -2,19 +2,21 @@ import NetRegexes from '../../../../resources/netregexes';
 import ZoneId from '../../../../resources/zone_id';
 import { OopsyData } from '../../../../types/data';
 import { OopsyTriggerSet } from '../../../../types/oopsy';
-import Options from '../../oopsy_options';
+
+type MitTracker = {
+  [abilityId: string]: {
+    time: number;
+    source: string;
+  };
+};
 
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
   raiseTracker?: { [targetId: string]: string };
-  mitTracker?: {
-    [targetId: string]: {
-      [abilityId: string]: {
-        time: number;
-        source: string;
-      };
-    };
+  targetMitTracker?: {
+    [targetId: string]: MitTracker;
   };
+  partyMitTracker?: MitTracker;
 }
 
 const targetMitAbilityIdToDuration: { [id: string]: number } = {
@@ -164,7 +166,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'General Overwritten Boss Mit',
+      id: 'General Overwritten Mit',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: targetMitAbilityIds.concat(partyMitAbilityIds) }),
       mistake: (data, matches) => {
@@ -176,23 +178,36 @@ const triggerSet: OopsyTriggerSet<Data> = {
           return;
         if (isPartyMit && matches.targetId !== matches.sourceId)
           return;
-        data.mitTracker ??= {};
-        const target = isTargetMit ? matches.targetId : 'party';
-        const lastTime = data.mitTracker[target]?.[matches.id]?.time;
-        const lastSource = data.mitTracker[target]?.[matches.id]?.source;
+
+        const mitTracker = isTargetMit
+          ? (data.targetMitTracker ??= {})[matches.targetId]
+          : data.partyMitTracker;
         const newTime = new Date(matches.timestamp).getTime();
         const newSource = data.ShortName(matches.source);
+        const lastTime = mitTracker?.[matches.id]?.time;
+        const lastSource = mitTracker?.[matches.id]?.source;
+
+        if (isTargetMit) {
+          ((data.targetMitTracker ??= {})[matches.targetId] ??= {})[matches.id] = {
+            time: newTime,
+            source: newSource,
+          };
+        }
+        if (isPartyMit) {
+          (data.partyMitTracker ??= {})[matches.id] = {
+            time: newTime,
+            source: newSource,
+          };
+        }
+
         const duration = isTargetMit
           ? targetMitAbilityIdToDuration[matches.id]
           : partyMitAbilityIdToDuration[matches.id];
         if (lastTime !== undefined && lastSource !== undefined && duration !== undefined) {
           const diff = newTime - lastTime;
-          const leeway = (duration * 1000 - diff) > Options.MinimumTimeForOverwrittenMit * 1000;
+          const leeway =
+            (duration * 1000 - diff) > data.options.MinimumTimeForOverwrittenMit * 1000;
           if (diff < duration * 1000 && leeway) {
-            (data.mitTracker[target] ??= {})[matches.id] = {
-              time: newTime,
-              source: newSource,
-            };
             return {
               type: 'heal',
               blame: matches.source,
@@ -203,10 +218,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
             };
           }
         }
-        (data.mitTracker[target] ??= {})[matches.id] = {
-          time: newTime,
-          source: newSource,
-        };
       },
     },
     {
@@ -216,7 +227,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       run: (data, matches) => {
         const abilityId = shieldEffectIdToAbilityId[matches.effectId];
         if (abilityId !== undefined)
-          delete (data.mitTracker ??= {})['party']?.[abilityId];
+          delete (data.partyMitTracker ??= {})?.[abilityId];
       },
     },
   ],
