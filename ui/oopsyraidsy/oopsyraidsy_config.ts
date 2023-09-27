@@ -371,6 +371,14 @@ const templateOptions: OptionsTemplate = {
       },
       default: 'left',
     },
+    {
+      id: 'MinimumTimeForOverwrittenMit',
+      name: {
+        en: 'Minimum time to show overwritten mit (seconds)',
+      },
+      type: 'float',
+      default: 2,
+    },
   ],
 };
 
