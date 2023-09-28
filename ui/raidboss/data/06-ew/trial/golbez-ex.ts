@@ -118,6 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'GolbezEx Flames of Eventide 1',
       regex: /Flames of Eventide 1/,
       beforeSeconds: 5,
+      suppressSeconds: 5,
       response: Responses.tankCleave(),
     },
   ],
