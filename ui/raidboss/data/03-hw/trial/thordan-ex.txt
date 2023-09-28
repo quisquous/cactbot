@@ -60,20 +60,20 @@ hideall "--sync--"
 178.3 "Skyward Leap 2" sync / 1[56]:[^:]*:Ser Paulecrain:14A9:/
 179.4 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
 181.3 "Skyward Leap 3" sync / 1[56]:[^:]*:Ser Ignasse:14A9:/
-192.4 "Holiest of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
+192.4 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
 198.5 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
 205.6 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-212.7 "Holiest of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
+212.7 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
 216.8 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
 
 232.9 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
 242.0 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
 260.0 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
 262.1 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
-275.2 "Holiest of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
+275.2 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
 281.3 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
 288.3 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-295.4 "Holiest of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
+295.4 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
 299.5 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/ forcejump 216.8
 
 
@@ -110,13 +110,13 @@ hideall "--sync--"
 
 
 427.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:105B:/ window 260,10
-437.7 "The Light of Ascalon 1" #sync / 1[56]:[^:]*:Ascalon:148F:/
-439.1 "The Light of Ascalon 2" #sync / 1[56]:[^:]*:Ascalon:148F:/
-440.5 "The Light of Ascalon 3" #sync / 1[56]:[^:]*:Ascalon:148F:/
-441.9 "The Light of Ascalon 4" #sync / 1[56]:[^:]*:Ascalon:148F:/
-443.3 "The Light of Ascalon 5" #sync / 1[56]:[^:]*:Ascalon:148F:/
-444.7 "The Light of Ascalon 6" #sync / 1[56]:[^:]*:Ascalon:148F:/
-446.1 "The Light of Ascalon 7" #sync / 1[56]:[^:]*:Ascalon:148F:/
+437.7 "The Light Of Ascalon 1" #sync / 1[56]:[^:]*:Ascalon:148F:/
+439.1 "The Light Of Ascalon 2" #sync / 1[56]:[^:]*:Ascalon:148F:/
+440.5 "The Light Of Ascalon 3" #sync / 1[56]:[^:]*:Ascalon:148F:/
+441.9 "The Light Of Ascalon 4" #sync / 1[56]:[^:]*:Ascalon:148F:/
+443.3 "The Light Of Ascalon 5" #sync / 1[56]:[^:]*:Ascalon:148F:/
+444.7 "The Light Of Ascalon 6" #sync / 1[56]:[^:]*:Ascalon:148F:/
+446.1 "The Light Of Ascalon 7" #sync / 1[56]:[^:]*:Ascalon:148F:/
 447.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:148D:/ # Ultimate End wind-up
 451.8 "--sync--" sync / 1[56]:[^:]*:[^:]:1059:/ # All the knights use this unknown attack here
 455.8 "Ultimate End" sync / 1[56]:[^:]*:King Thordan:148E:/
@@ -125,10 +125,10 @@ hideall "--sync--"
 # Phase 3
 # Save the [healer]!
 466.4 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-476.6 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
+476.6 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 481.7 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
 488.1 "Holy Shield Bash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1497:/
-497.1 "Spear of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:1492:/ # A smile better suits a hero
+497.1 "Spear Of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:1492:/ # A smile better suits a hero
 499.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
 504.6 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
 516.6 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
@@ -136,7 +136,7 @@ hideall "--sync--"
 #Phase 4
 # Conviction Trio
 521.8 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-532.0 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
+532.0 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 543.1 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
 543.2 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:149C:/
 544.1 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:14A0:/
@@ -153,7 +153,7 @@ hideall "--sync--"
 # Phase 5
 # Spiral Sky Trio
 572.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-582.2 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
+582.2 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 588.9 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:1481:/
 589.3 "--sync--" sync / 1[56]:[^:]*:King Thordan:1482:/# Lightning Storm
 597.3 "Spiral Thrust" sync / 1[56]:[^:]*:Ser Vellguine:14A6:/
@@ -166,7 +166,7 @@ hideall "--sync--"
 # Phase 6
 # Meteor Trio
 622.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-632.3 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
+632.3 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 638.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
 642.4 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:14B0:/
 643.5 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
@@ -185,15 +185,15 @@ hideall "--sync--"
 # Phase 7 -- zomg SO MUCH AOE DAMAGE
 # Heavensward Trio
 673.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-683.3 "Knights of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
+683.3 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 688.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-693.4 "Holiest of Holy" sync / 1[56]:[^:]*:Ser Janlenoux:1495:/
+693.4 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Janlenoux:1495:/
 698.5 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
 704.6 "Heavensward Leap 1" sync / 1[56]:[^:]*:Ser Vellguine:14AA:/
 707.6 "Heavensward Leap 2" sync / 1[56]:[^:]*:Ser Paulecrain:14AA:/
 710.6 "Heavensward Leap 3" sync / 1[56]:[^:]*:Ser Ignasse:14AA:/
 718.7 "Sacred Cross" sync / 14:[^:]*:Ser Zephirin:1491:/ duration 24.7
-724.6 "Pure of Soul" sync / 1[56]:[^:]*:(Ser Charibert|Ser Noudenet|Ser Haumeric):(14B1|14B2):/
+724.6 "Pure Of Soul" sync / 1[56]:[^:]*:(Ser Charibert|Ser Noudenet|Ser Haumeric):(14B1|14B2):/
 732.6 "Absolute Conviction 1" sync / 1[56]:[^:]*:Ser Guerrique:14A4:/
 735.5 "Absolute Conviction 2" sync / 1[56]:[^:]*:Ser Hermenost:14A5:/
 740.6 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
@@ -238,16 +238,16 @@ hideall "--sync--"
 # 1489 the Dragon's Gaze
 # 148A the Dragon's Glory
 # 148B the Dragon's Rage
-# 148C Knights of the Round
+# 148C Knights Of the Round
 # 148D Ultimate End
 # 148E Ultimate End
-# 148F the Light of Ascalon
+# 148F the Light Of Ascalon
 # 1490 Sacred Cross
 # 1491 Sacred Cross
-# 1492 Spear of the Fury
+# 1492 Spear Of the Fury
 # 1493 Divine Right
 # 1494 Heavenly Slash
-# 1495 Holiest of Holy
+# 1495 Holiest Of Holy
 # 1496 Holy Bladedance
 # 1497 Holy Shield Bash
 # 1499 Dimensional Collapse
@@ -272,8 +272,8 @@ hideall "--sync--"
 # 14AE Hiemal Storm
 # 14AF Hiemal Storm
 # 14B0 Holy Meteor
-# 14B1 Pure of Soul
-# 14B2 Pure of Soul
+# 14B1 Pure Of Soul
+# 14B2 Pure Of Soul
 # 14B3 Comet Impact
 # 14B4 Meteor Impact
 # 14B5 Comet
