@@ -1164,6 +1164,26 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         data.engravement1Towers.push(matches.target);
 
+        if (data.me !== matches.target)
+          return;
+
+        // if Only notify tower color
+        if (data.triggerSetConfig.engravement1DropTower === 'tower') {
+          if (matches.effectId === engravementIdMap.lightTower)
+            return output.lightTower!();
+          return output.darkTower!();
+        }
+
+        const locations = ['NE', 'SW', 'SE', 'NW'] as const;
+        type TowerLocation = typeof locations[number];
+        type CloneLocation = 'NNW' | 'NNE' | 'ENE' | 'ESE' | 'SSE' | 'SSW' | 'WNW' | 'WSW';
+        type TowerData = {
+          location: TowerLocation;
+          clone: CloneLocation;
+        };
+        const towerList: TowerData[] = [];
+        const towerStrategy = data.triggerSetConfig.engravement1DropTower;
+
         for (const combatant of data.combatantData) {
           const x = combatant.PosX;
           const y = combatant.PosY;
@@ -1173,200 +1193,135 @@ const triggerSet: TriggerSet<Data> = {
             return;
 
           const tempColor = data.engravement1TetherPlayers[combatantId.toString(16).toUpperCase()];
-
           const color = tempColor === 'light' ? 'dark' : 'light';
 
-          if (data.triggerSetConfig.engravement1DropTower === 'quadrant') {
+          const isCorrectColor =
+            color === 'light' && matches.effectId === engravementIdMap.lightTower ||
+            color === 'dark' && matches.effectId === engravementIdMap.darkTower;
+
+          if (!isCorrectColor)
+            continue;
+
+          if (towerStrategy === 'quadrant' || towerStrategy === 'tetherbase') {
             if (x < 80 && y < 100) { // WNW: x = 75 && y = 97
-              data.engravement1BeamsPosMap.set('NE', color);
+              towerList.push({ location: 'NE', clone: 'WNW' });
             } else if (x < 100 && y < 80) { // NNW: x = 97 && y = 75
-              data.engravement1BeamsPosMap.set('SW', color);
+              towerList.push({ location: 'SW', clone: 'NNW' });
             } else if (x > 100 && y < 80) { // NNE: x = 103 && y = 75
-              data.engravement1BeamsPosMap.set('SE', color);
+              towerList.push({ location: 'SE', clone: 'NNE' });
             } else if (x > 120 && y < 100) { // ENE: x = 125 && y = 97
-              data.engravement1BeamsPosMap.set('NW', color);
+              towerList.push({ location: 'NW', clone: 'ENE' });
             } else if (x > 120 && y > 100) { // ESE: x = 125 && y = 103
-              data.engravement1BeamsPosMap.set('SW', color);
+              towerList.push({ location: 'SW', clone: 'ESE' });
             } else if (x > 100 && y > 120) { // SSE: x = 103 && y = 125
-              data.engravement1BeamsPosMap.set('NE', color);
+              towerList.push({ location: 'NE', clone: 'SSE' });
             } else if (x < 100 && y > 120) { // SSW: x = 97 && y = 125
-              data.engravement1BeamsPosMap.set('NW', color);
+              towerList.push({ location: 'NW', clone: 'SSW' });
             } else if (x < 80 && y > 100) { // WSW: x = 75 && y = 103
-              data.engravement1BeamsPosMap.set('SE', color);
+              towerList.push({ location: 'SE', clone: 'WSW' });
             }
           } else if (data.triggerSetConfig.engravement1DropTower === 'clockwise') {
             // Tether stretches across and tower is clockwise; e.g. N add stretches S, and tower is SW.
             if (x < 80 && y < 100) { // WNW: x = 75 && y = 97
-              data.engravement1BeamsPosMap.set('SE', color);
+              towerList.push({ location: 'SE', clone: 'WNW' });
             } else if (x < 100 && y < 80) { // NNW: x = 97 && y = 75
-              data.engravement1BeamsPosMap.set('SW', color);
+              towerList.push({ location: 'SW', clone: 'NNW' });
             } else if (x > 100 && y < 80) { // NNE: x = 103 && y = 75
-              data.engravement1BeamsPosMap.set('SW', color);
+              towerList.push({ location: 'SW', clone: 'NNE' });
             } else if (x > 120 && y < 100) { // ENE: x = 125 && y = 97
-              data.engravement1BeamsPosMap.set('NW', color);
+              towerList.push({ location: 'NW', clone: 'ENE' });
             } else if (x > 120 && y > 100) { // ESE: x = 125 && y = 103
-              data.engravement1BeamsPosMap.set('NW', color);
+              towerList.push({ location: 'NW', clone: 'ESE' });
             } else if (x > 100 && y > 120) { // SSE: x = 103 && y = 125
-              data.engravement1BeamsPosMap.set('NE', color);
+              towerList.push({ location: 'NE', clone: 'SSE' });
             } else if (x < 100 && y > 120) { // SSW: x = 97 && y = 125
-              data.engravement1BeamsPosMap.set('NE', color);
+              towerList.push({ location: 'NE', clone: 'SSW' });
             } else if (x < 80 && y > 100) { // WSW: x = 75 && y = 103
-              data.engravement1BeamsPosMap.set('SE', color);
-            }
-          } else if (data.triggerSetConfig.engravement1DropTower === 'tetherbase') {
-            if (x < 80 && y < 100) { // WNW: x = 75 && y = 97
-              data.engravement1BeamsPosMap.set('D+NE', color);
-            } else if (x < 100 && y < 80) { // NNW: x = 97 && y = 75
-              data.engravement1BeamsPosMap.set('A+SW', color);
-            } else if (x > 100 && y < 80) { // NNE: x = 103 && y = 75
-              data.engravement1BeamsPosMap.set('A+SE', color);
-            } else if (x > 120 && y < 100) { // ENE: x = 125 && y = 97
-              data.engravement1BeamsPosMap.set('B+NW', color);
-            } else if (x > 120 && y > 100) { // ESE: x = 125 && y = 103
-              data.engravement1BeamsPosMap.set('B+SW', color);
-            } else if (x > 100 && y > 120) { // SSE: x = 103 && y = 125
-              data.engravement1BeamsPosMap.set('C+NE', color);
-            } else if (x < 100 && y > 120) { // SSW: x = 97 && y = 125
-              data.engravement1BeamsPosMap.set('C+NW', color);
-            } else if (x < 80 && y > 100) { // WSW: x = 75 && y = 103
-              data.engravement1BeamsPosMap.set('D+SE', color);
+              towerList.push({ location: 'SE', clone: 'WSW' });
             }
           }
         }
 
-        if (data.triggerSetConfig.engravement1DropTower === 'tetherbase') {
-          if (data.me === matches.target) {
-            data.engravement1DarkBeamsPos = [];
-            data.engravement1LightBeamsPos = [];
+        // Now use strategy and towerList (which only contains the correct color for the player)
+        // to call out two spots or sort down to one spot.
+        const outputMap: { [dir in TowerLocation]: string } = {
+          NW: output.northwest!(),
+          NE: output.northeast!(),
+          SE: output.southeast!(),
+          SW: output.southwest!(),
+        } as const;
 
+        const [tower0, tower1] = towerList;
+        if (tower0 === undefined || tower1 === undefined)
+          return;
+
+        if (towerStrategy === 'clockwise' || towerStrategy === 'quadrant') {
+          if (matches.effectId === engravementIdMap.lightTower) {
+            return output.lightTowerSide!({
+              pos1: outputMap[tower0.location],
+              pos2: outputMap[tower1.location],
+            });
+          }
+
+          return output.darkTowerSide!({
+            pos1: outputMap[tower0.location],
+            pos2: outputMap[tower1.location],
+          });
+        } else if (towerStrategy === 'tetherbase') {
+          let towerResult: TowerLocation | undefined;
+
+          // Do the sort by role
+          if (data.role === 'dps') {
+            if (tower0.clone === 'SSW' || tower0.clone === 'SSE') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'SSW' || tower1.clone === 'SSE') {
+              towerResult = tower1.location;
+            } else if (tower0.clone === 'ENE' || tower0.clone === 'ESE') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'ENE' || tower1.clone === 'ESE') {
+              towerResult = tower1.location;
+            }
+          } else {
+            if (tower0.clone === 'ENE' || tower0.clone === 'ESE') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'ENE' || tower1.clone === 'ESE') {
+              towerResult = tower1.location;
+            } else if (tower0.clone === 'SSW' || tower0.clone === 'SSE') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'SSW' || tower1.clone === 'SSE') {
+              towerResult = tower1.location;
+            }
+          }
+
+          // Check role Only tower clone location
+          towerList.forEach((tower) => {
             if (data.role === 'dps') {
-              data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
-                if (matches.effectId === engravementIdMap.lightTower && value === 'light') {
-                  if (key === 'D+NE')
-                    data.engravement1LightBeamsPos.push('D' + output.northeast!());
-                  else if (key === 'D+SE')
-                    data.engravement1LightBeamsPos.push('D' + output.southeast!());
-                  else if (key === 'B+NW')
-                    data.engravement1LightBeamsPos.push('B' + output.northwest!());
-                  else if (key === 'B+SW')
-                    data.engravement1LightBeamsPos.push('B' + output.southwest!());
-                  else if (key === 'C+NE')
-                    data.engravement1LightBeamsPos.push('C' + output.northeast!());
-                  else if (key === 'C+NW')
-                    data.engravement1LightBeamsPos.push('C' + output.northwest!());
-                } else if (matches.effectId === engravementIdMap.darkTower && value === 'dark') {
-                  if (key === 'D+NE')
-                    data.engravement1DarkBeamsPos.push('D' + output.northeast!());
-                  else if (key === 'D+SE')
-                    data.engravement1DarkBeamsPos.push('D' + output.southeast!());
-                  else if (key === 'B+NW')
-                    data.engravement1DarkBeamsPos.push('B' + output.northwest!());
-                  else if (key === 'B+SW')
-                    data.engravement1DarkBeamsPos.push('B' + output.southwest!());
-                  else if (key === 'C+NE')
-                    data.engravement1DarkBeamsPos.push('C' + output.northeast!());
-                  else if (key === 'C+NW')
-                    data.engravement1DarkBeamsPos.push('C' + output.northwest!());
-                }
-              });
+              // handle DPS only WSW and WNW clone
+              if (tower.clone === 'WSW' || tower.clone === 'WNW') {
+                towerResult = tower.location;
+                return;
+              }
             } else {
-              data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
-                if (matches.effectId === engravementIdMap.lightTower && value === 'light') {
-                  if (key === 'A+SW')
-                    data.engravement1LightBeamsPos.push('A' + output.southwest!());
-                  else if (key === 'A+SE')
-                    data.engravement1LightBeamsPos.push('A' + output.southeast!());
-                  else if (key === 'B+NW')
-                    data.engravement1LightBeamsPos.push('B' + output.northwest!());
-                  else if (key === 'B+SW')
-                    data.engravement1LightBeamsPos.push('B' + output.southwest!());
-                  else if (key === 'C+NE')
-                    data.engravement1LightBeamsPos.push('C' + output.northeast!());
-                  else if (key === 'C+NW')
-                    data.engravement1LightBeamsPos.push('C' + output.northwest!());
-                } else if (matches.effectId === engravementIdMap.darkTower && value === 'dark') {
-                  if (key === 'A+SW')
-                    data.engravement1DarkBeamsPos.push('A' + output.southwest!());
-                  else if (key === 'A+SE')
-                    data.engravement1DarkBeamsPos.push('A' + output.southeast!());
-                  else if (key === 'B+NW')
-                    data.engravement1DarkBeamsPos.push('B' + output.northwest!());
-                  else if (key === 'B+SW')
-                    data.engravement1DarkBeamsPos.push('B' + output.southwest!());
-                  else if (key === 'C+NE')
-                    data.engravement1DarkBeamsPos.push('C' + output.northeast!());
-                  else if (key === 'C+NW')
-                    data.engravement1DarkBeamsPos.push('C' + output.northwest!());
-                }
-              });
-            }
-
-            // Check role priority: TH: A>B>C DPS: D>C>B
-            if (data.role === 'dps') {
-              if (data.engravement1DarkBeamsPos[0]?.charAt(0) === 'B') {
-                data.engravement1DarkBeamsPos = data.engravement1DarkBeamsPos.reverse();
-              }
-              if (data.engravement1LightBeamsPos[0]?.charAt(0) === 'B') {
-                data.engravement1LightBeamsPos = data.engravement1LightBeamsPos.reverse();
+              // handle TH only NNW and NNE clone
+              if (tower.clone === 'NNW' || tower.clone === 'NNE') {
+                towerResult = tower.location;
+                return;
               }
             }
+          });
 
-            // if light tower
-            if (matches.effectId === engravementIdMap.lightTower) {
-              return output.lightTowerOneSide!({
-                pos1: data.engravement1LightBeamsPos[0]?.slice(1),
-              });
-            }
+          if (towerResult === undefined)
+            return;
 
-            return output.darkTowerOneSide!({
-              pos1: data.engravement1DarkBeamsPos[0]?.slice(1),
+          if (matches.effectId === engravementIdMap.lightTower) {
+            return output.lightTowerOneSide!({
+              pos1: outputMap[towerResult],
             });
           }
-        } else {
-          if (data.me === matches.target) {
-            // if Only notify tower color
-            if (data.triggerSetConfig.engravement1DropTower === 'tower') {
-              if (matches.effectId === engravementIdMap.lightTower)
-                return output.lightTower!();
-              return output.darkTower!();
-            }
-            data.engravement1DarkBeamsPos = [];
-            data.engravement1LightBeamsPos = [];
-            data.engravement1BeamsPosMap.forEach((value: string, key: string) => {
-              if (matches.effectId === engravementIdMap.lightTower && value === 'light') {
-                if (key === 'NE')
-                  data.engravement1LightBeamsPos.push(output.northeast!());
-                else if (key === 'NW')
-                  data.engravement1LightBeamsPos.push(output.northwest!());
-                else if (key === 'SE')
-                  data.engravement1LightBeamsPos.push(output.southeast!());
-                else if (key === 'SW')
-                  data.engravement1LightBeamsPos.push(output.southwest!());
-              } else if (matches.effectId === engravementIdMap.darkTower && value === 'dark') {
-                if (key === 'NE')
-                  data.engravement1DarkBeamsPos.push(output.northeast!());
-                else if (key === 'NW')
-                  data.engravement1DarkBeamsPos.push(output.northwest!());
-                else if (key === 'SE')
-                  data.engravement1DarkBeamsPos.push(output.southeast!());
-                else if (key === 'SW')
-                  data.engravement1DarkBeamsPos.push(output.southwest!());
-              }
-            });
 
-            // if light tower
-            if (matches.effectId === engravementIdMap.lightTower) {
-              return output.lightTowerSide!({
-                pos1: data.engravement1LightBeamsPos[0],
-                pos2: data.engravement1LightBeamsPos[1],
-              });
-            }
-
-            return output.darkTowerSide!({
-              pos1: data.engravement1DarkBeamsPos[0],
-              pos2: data.engravement1DarkBeamsPos[1],
-            });
-          }
+          return output.darkTowerOneSide!({
+            pos1: outputMap[towerResult],
+          });
         }
       },
       outputStrings: {
