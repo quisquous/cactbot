@@ -21,7 +21,7 @@ export interface Data extends OopsyData {
   partyMitTracker?: MitTracker;
 }
 
-const raiseAbiliyIds = [
+const raiseAbilityIds = [
   '7D', // raise
   'AD', // resurrection
   'E13', // ascend
@@ -177,9 +177,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
             blame: matches.source,
             reportId: matches.sourceId,
             text: {
-              en: 'overwrote ' + originalRaiser + '\'s raise',
-              de: 'überschrieb ' + originalRaiser + '\'s Wiederbeleben',
-              ko: originalRaiser + '의 부활과 겹침',
+              en: `overwrote ${originalRaiser}'s raise`,
+              de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
+              ko: `${originalRaiser}의 부활과 겹침`,
             },
           };
         }
@@ -188,32 +188,30 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'General Raise Cast Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: raiseAbiliyIds }),
+      netRegex: NetRegexes.startsUsing({ id: raiseAbilityIds }),
       run: (data, matches) => {
         (data.raiseTargetTracker ??= {})[matches.sourceId] = matches.targetId;
       },
     },
     {
-      id: 'General Targetless Raise',
+      id: 'General Targetless Raise', // target raised before cast finished
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: raiseAbiliyIds }),
+      netRegex: NetRegexes.ability({ id: raiseAbilityIds, targetId: 'E0000000' }),
       mistake: (data, matches) => {
-        if (matches.targetId === 'E0000000') { // target raised before raise cast finished
-          const targetId = (data.raiseTargetTracker ??= {})[matches.sourceId];
-          if (targetId !== undefined) {
-            const originalRaiser = (data.originalRaiser ??= {})[targetId];
-            if (originalRaiser !== undefined) {
-              return {
-                type: 'warn',
-                blame: matches.source,
-                reportId: matches.sourceId,
-                text: {
-                  en: 'overwrote ' + originalRaiser + '\'s raise',
-                  de: 'überschrieb ' + originalRaiser + '\'s Wiederbeleben',
-                  ko: originalRaiser + '의 부활과 겹침',
-                },
-              };
-            }
+        const targetId = (data.raiseTargetTracker ??= {})[matches.sourceId];
+        if (targetId !== undefined) {
+          const originalRaiser = (data.originalRaiser ??= {})[targetId];
+          if (originalRaiser !== undefined) {
+            return {
+              type: 'warn',
+              blame: matches.source,
+              reportId: matches.sourceId,
+              text: {
+                en: `overwrote ${originalRaiser}'s raise`,
+                de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
+                ko: `${originalRaiser}의 부활과 겹침`,
+              },
+            };
           }
         }
       },
@@ -258,7 +256,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               blame: matches.source,
               reportId: matches.sourceId,
               text: {
-                en: 'overwrote ' + lastSource + '\'s ' + matches.ability,
+                en: `overwrote ${lastSource}'s ${matches.ability}`,
               },
             };
           }
