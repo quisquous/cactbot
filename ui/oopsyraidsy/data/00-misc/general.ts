@@ -13,8 +13,8 @@ type MitTracker = {
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
   originalRaiser?: { [targetId: string]: string };
-  raiseLostTracker?: { [targetId: string]: string };
-  raiseCastTracker?: { [sourceId: string]: string };
+  lastRaisedLostTime?: { [targetId: string]: string };
+  raiseTargetTracker?: { [sourceId: string]: string };
   targetMitTracker?: {
     [targetId: string]: MitTracker;
   };
@@ -151,7 +151,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '94' }),
       run: (data, matches) => {
-        (data.raiseLostTracker ??= {})[matches.targetId] = matches.timestamp;
+        (data.lastRaisedLostTime ??= {})[matches.targetId] = matches.timestamp;
       },
     },
     {
@@ -159,27 +159,27 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '94' }),
       mistake: (data, matches) => {
-        data.raiseLostTracker ??= {};
+        data.lastRaisedLostTime ??= {};
         data.originalRaiser ??= {};
-        const lastRaiser = data.originalRaiser[matches.targetId];
+        const originalRaiser = data.originalRaiser[matches.targetId];
         // 30 and 26 lines having the same timestamp means effect was overwritten and the target is still dead
-        const overwrittenRaise = data.raiseLostTracker[matches.targetId] === matches.timestamp;
+        const overwrittenRaise = data.lastRaisedLostTime[matches.targetId] === matches.timestamp;
         // if that's not the case, target doesn't have a raise yet
         if (!overwrittenRaise) {
           data.originalRaiser[matches.targetId] = data.ShortName(matches.source);
           return;
         }
         // otherwise, report overwritten raise
-        if (lastRaiser !== undefined) {
-          delete data.raiseLostTracker[matches.targetId];
+        if (originalRaiser !== undefined) {
+          delete data.lastRaisedLostTime[matches.targetId];
           return {
             type: 'warn',
             blame: matches.source,
             reportId: matches.sourceId,
             text: {
-              en: 'overwrote ' + lastRaiser + '\'s raise',
-              de: 'überschrieb ' + lastRaiser + '\'s Wiederbeleben',
-              ko: lastRaiser + '의 부활과 겹침',
+              en: 'overwrote ' + originalRaiser + '\'s raise',
+              de: 'überschrieb ' + originalRaiser + '\'s Wiederbeleben',
+              ko: originalRaiser + '의 부활과 겹침',
             },
           };
         }
@@ -190,7 +190,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: raiseAbiliyIds }),
       run: (data, matches) => {
-        (data.raiseCastTracker ??= {})[matches.sourceId] = matches.targetId;
+        (data.raiseTargetTracker ??= {})[matches.sourceId] = matches.targetId;
       },
     },
     {
@@ -199,18 +199,18 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: raiseAbiliyIds }),
       mistake: (data, matches) => {
         if (matches.targetId === 'E0000000') { // target raised before raise cast finished
-          const targetId = (data.raiseCastTracker ??= {})[matches.sourceId];
+          const targetId = (data.raiseTargetTracker ??= {})[matches.sourceId];
           if (targetId !== undefined) {
-            const lastRaiser = (data.originalRaiser ??= {})[targetId];
-            if (lastRaiser !== undefined) {
+            const originalRaiser = (data.originalRaiser ??= {})[targetId];
+            if (originalRaiser !== undefined) {
               return {
                 type: 'warn',
                 blame: matches.source,
                 reportId: matches.sourceId,
                 text: {
-                  en: 'overwrote ' + lastRaiser + '\'s raise',
-                  de: 'überschrieb ' + lastRaiser + '\'s Wiederbeleben',
-                  ko: lastRaiser + '의 부활과 겹침',
+                  en: 'overwrote ' + originalRaiser + '\'s raise',
+                  de: 'überschrieb ' + originalRaiser + '\'s Wiederbeleben',
+                  ko: originalRaiser + '의 부활과 겹침',
                 },
               };
             }
