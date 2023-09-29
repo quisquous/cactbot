@@ -1,12 +1,45 @@
-// Calculate combatant position in an all 8 cards/intercards
-const matchedPositionTo8Dir = (combatant) => {
-  // Positions are moved up 100 and right 100
-  const y = combatant.PosY - 100;
-  const x = combatant.PosX - 100;
-  // Majority of mechanics center around three circles:
-  // NW at 0, NE at 2, South at 5
-  // Map NW = 0, N = 1, ..., W = 7
-  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+// These don't seem to be randomized.
+// Listing them all in case future BLU players want to call out who the stacks are on.
+const headmarkers = {
+  voidMeteor: '0158',
+  spread: '0178',
+  knockback: '01DA',
+  flare: '01D9',
+  cauterize: '0001',
+  partnerStackAbyssalQuasar: '015B',
+  healerStackImmolatingShade: '00A1',
+  healerStackVoidBlizzardIII: '013E',
+  partnerStackVoidAeroIII: '01C3',
+};
+const arcticAssaultQuadrants = {
+  '00': 'nw',
+  '01': 'ne',
+  '02': 'ne',
+  '03': 'se',
+  '04': 'sw',
+  '05': 'se',
+  '06': 'nw',
+  '07': 'sw',
+};
+const galeSphereOutputStrings = {
+  middle: Outputs.middle,
+  n: Outputs.north,
+  e: Outputs.east,
+  s: Outputs.south,
+  w: Outputs.west,
+  unknown: Outputs.unknown,
+  dirAndMechanic: {
+    en: '${dir} + ${mechanic}',
+  },
+  healerGroups: Outputs.healerGroups,
+  partnerStack: {
+    en: 'Partner Stack',
+    de: 'Mit Partner sammeln',
+    fr: 'Package partenaire',
+    ja: 'ペア',
+    cn: '2 人分摊',
+    ko: '2인 쉐어',
+  },
 };
 Options.Triggers.push({
   id: 'TheVoidcastDaisExtreme',
@@ -16,59 +49,60 @@ Options.Triggers.push({
     return {
       terrastormCount: 0,
       terrastormCombatantDirs: [],
+      galeSphereShadows: [],
+      galeSphereCasts: [],
+      galeSafeSpots: [],
+      arcticAssaultMapEffects: [],
+      arcticAssaultCount: 0,
+      dragonsDescentMarker: [],
     };
   },
+  timelineTriggers: [
+    {
+      id: 'GolbezEx Flames of Eventide 1',
+      regex: /Flames of Eventide 1/,
+      beforeSeconds: 5,
+      suppressSeconds: 5,
+      response: Responses.tankCleave(),
+    },
+  ],
   triggers: [
     {
-      id: 'GolbezEx Terrastorm',
-      type: 'StartsUsing',
-      netRegex: { id: '8466', source: 'Golbez', capture: true },
-      delaySeconds: 0.5,
-      promise: async (data, matches) => {
-        const meteorData = await callOverlayHandler({
-          call: 'getCombatants',
-          ids: [parseInt(matches.sourceId, 16)],
-        });
-        if (meteorData === null) {
-          console.error(`Terrastorm: null data`);
-          return;
-        }
-        if (meteorData.combatants.length !== 1) {
-          console.error(`Terrastorm: expected 1, got ${meteorData.combatants.length}`);
-          return;
-        }
-        const meteor = meteorData.combatants[0];
-        if (!meteor)
-          throw new UnreachableCode();
-        data.terrastormCombatantDirs.push(matchedPositionTo8Dir(meteor));
+      id: 'GolbezEx Flames of Eventide Swap',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'DF5', count: '01' },
+      condition: (data, matches) => {
+        if (data.me === matches.target)
+          return false;
+        return data.role === 'tank' || data.job === 'BLU';
       },
-      alertText: (data, _matches, output) => {
-        const wanted = data.terrastormCount === 0 ? 2 : 3;
-        if (data.terrastormCombatantDirs.length < wanted)
+      suppressSeconds: 10,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: Outputs.tankSwap,
+      },
+    },
+    {
+      id: 'GolbezEx Terrastorm 1',
+      type: 'MapEffect',
+      netRegex: { location: '0[89]', flags: '00010004', capture: true },
+      alertText: (data, matches, output) => {
+        data.terrastormCount++;
+        data.terrastormDir = matches.location === '08' ? 'nw' : 'ne';
+        // We'll handle this elsewhere to combine with arctic assault.
+        if (data.terrastormCount === 2)
           return;
-        const meteors = data.terrastormCombatantDirs;
-        data.terrastormCombatantDirs = [];
-        ++data.terrastormCount;
-        const dirs = {
-          0: 'nw',
-          2: 'ne',
-          4: 'se',
-          6: 'sw',
-        };
-        for (const meteor of meteors) {
-          delete dirs[meteor];
-        }
-        const dirOutputs = [];
-        for (const dir of Object.values(dirs)) {
-          dirOutputs.push(output[dir]());
-        }
-        return dirOutputs.join('/');
+        if (data.terrastormDir === 'nw')
+          return output.dirNESW();
+        return output.dirNWSE();
       },
       outputStrings: {
-        nw: Outputs.dirNW,
-        ne: Outputs.dirNE,
-        sw: Outputs.dirSW,
-        se: Outputs.dirSE,
+        dirNWSE: {
+          en: 'NW / SE',
+        },
+        dirNESW: {
+          en: 'NE / SW',
+        },
       },
     },
     {
@@ -98,7 +132,75 @@ Options.Triggers.push({
       id: 'GolbezEx Phases of the Blade',
       type: 'StartsUsing',
       netRegex: { id: '86DB', source: 'Golbez', capture: false },
-      response: Responses.getBackThenFront(),
+      durationSeconds: 4,
+      response: Responses.getBackThenFront('alert'),
+    },
+    {
+      id: 'GolbezEx Phases of the Blade Followup',
+      type: 'Ability',
+      netRegex: { id: '86DB', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.front(),
+      outputStrings: {
+        front: Outputs.front,
+      },
+    },
+    {
+      id: 'GolbezEx Phases of the Shadow',
+      type: 'StartsUsing',
+      netRegex: { id: '86E7', source: 'Golbez', capture: false },
+      durationSeconds: 4,
+      alertText: (data, _matches, output) => {
+        if (data.recordedShadowMechanic === 'spread')
+          return output.backThenFrontThenSpread();
+        if (data.recordedShadowMechanic === 'stack')
+          return output.backThenFrontThenHealerGroups();
+        return output.backThenFront();
+      },
+      outputStrings: {
+        backThenFront: Outputs.backThenFront,
+        backThenFrontThenHealerGroups: {
+          en: 'Back => Front => Out => Stacks',
+        },
+        backThenFrontThenSpread: {
+          en: 'Back => Front => Under => Spread',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Phases of the Shadow Followup',
+      type: 'Ability',
+      netRegex: { id: '86E7', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.recordedShadowMechanic === 'spread')
+          return output.frontThenSpread();
+        if (data.recordedShadowMechanic === 'stack')
+          return output.frontThenHealerGroups();
+        return output.front();
+      },
+      run: (data) => delete data.recordedShadowMechanic,
+      outputStrings: {
+        front: Outputs.front,
+        frontThenHealerGroups: {
+          en: 'Front => Out => Stacks',
+        },
+        frontThenSpread: {
+          en: 'Front => Under',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Rising Ring Followup',
+      type: 'Ability',
+      netRegex: { id: '86ED', source: 'Golbez', capture: false },
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.outAndSpread(),
+      outputStrings: {
+        outAndSpread: {
+          en: 'Spread Out',
+        },
+      },
     },
     {
       id: 'GolbezEx Binding Cold',
@@ -109,8 +211,11 @@ Options.Triggers.push({
     {
       id: 'GolbezEx Void Meteor',
       type: 'StartsUsing',
-      netRegex: { id: '84AD', source: 'Golbez', capture: true },
-      response: Responses.tankBuster(),
+      netRegex: { id: '84AD', source: 'Golbez', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: Outputs.tankBusters,
+      },
     },
     {
       id: 'GolbezEx Black Fang',
@@ -122,6 +227,7 @@ Options.Triggers.push({
       id: 'GolbezEx Abyssal Quasar',
       type: 'StartsUsing',
       netRegex: { id: '84AB', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.partnerStack(),
       outputStrings: {
         partnerStack: {
@@ -154,43 +260,373 @@ Options.Triggers.push({
       id: 'GolbezEx Eventide Fall',
       type: 'StartsUsing',
       netRegex: { id: '8485', source: 'Golbez', capture: false },
+      suppressSeconds: 3,
       alertText: (_data, _matches, output) => output.healerGroups(),
       outputStrings: {
         healerGroups: Outputs.healerGroups,
       },
     },
     {
-      id: 'GolbezEx Void Tornado',
+      id: 'GolbezEx Azdaja\'s Shadow Out Tell',
       type: 'StartsUsing',
-      netRegex: { id: '845D', source: 'Golbez', capture: false },
-      alertText: (_data, _matches, output) => output.healerGroups(),
+      netRegex: { id: '8478', source: 'Golbez', capture: false },
+      infoText: (_data, _matches, output) => output.text(),
+      run: (data) => data.recordedShadowMechanic = 'stack',
       outputStrings: {
-        healerGroups: Outputs.healerGroups,
-      },
-    },
-    {
-      id: 'GolbezEx Void Aero III',
-      type: 'StartsUsing',
-      netRegex: { id: '845C', source: 'Golbez', capture: false },
-      alertText: (_data, _matches, output) => output.partnerStack(),
-      outputStrings: {
-        partnerStack: {
-          en: 'Partner Stack',
-          de: 'Mit Partner sammeln',
-          fr: 'Package partenaire',
-          ja: 'ペア',
-          cn: '2 人分摊',
-          ko: '2인 쉐어',
+        text: {
+          en: '(out + healer groups, for later)',
         },
       },
     },
     {
-      id: 'GolbezEx Void Blizzard III',
+      id: 'GolbezEx Azdaja\'s Shadow In Tell',
       type: 'StartsUsing',
-      netRegex: { id: '8462', source: 'Golbez', capture: false },
-      alertText: (_data, _matches, output) => output.healerGroups(),
+      netRegex: { id: '8479', source: 'Golbez', capture: false },
+      infoText: (_data, _matches, output) => output.text(),
+      run: (data) => data.recordedShadowMechanic = 'spread',
       outputStrings: {
-        healerGroups: Outputs.healerGroups,
+        text: {
+          en: '(in + spread, for later)',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Void Tornado / Void Aero III',
+      type: 'StartsUsing',
+      // 845C = Void Aero III (partner stacks)
+      // 845D = Void Tornado (healer stacks)
+      netRegex: { id: '845[CD]', source: 'Golbez' },
+      suppressSeconds: 30,
+      run: (data, matches) => {
+        if (matches.id === '845D') {
+          data.firstGaleMechanic = 'healer';
+          data.secondGaleMechanic = 'partner';
+        } else {
+          data.firstGaleMechanic = 'partner';
+          data.secondGaleMechanic = 'healer';
+        }
+      },
+    },
+    {
+      id: 'GolbezEx Gale Sphere Collector',
+      type: 'StartsUsing',
+      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: true },
+      run: (data, matches) => {
+        data.galeSafeSpots = [];
+        data.galeSphereCasts.push({
+          x: parseFloat(matches.x),
+          y: parseFloat(matches.y),
+          castTime: parseFloat(matches.castTime),
+        });
+      },
+    },
+    {
+      id: 'GolbezEx Gale Sphere Directions',
+      type: 'Ability',
+      netRegex: { id: '84(?:4F|50|51|52)', source: 'Golbez\'s Shadow', capture: true },
+      infoText: (data, matches, output) => {
+        switch (matches.id) {
+          case '844F':
+            data.galeSphereShadows.push('n');
+            break;
+          case '8450':
+            data.galeSphereShadows.push('e');
+            break;
+          case '8451':
+            data.galeSphereShadows.push('w');
+            break;
+          case '8452':
+            data.galeSphereShadows.push('s');
+            break;
+        }
+        if (data.galeSphereShadows.length < 4)
+          return;
+        const [dir1, dir2, dir3, dir4] = data.galeSphereShadows;
+        data.galeSphereShadows = [];
+        return output.clones({
+          dir1: dir1,
+          dir2: dir2,
+          dir3: dir3,
+          dir4: dir4,
+        });
+      },
+      outputStrings: {
+        n: Outputs.dirN,
+        e: Outputs.dirE,
+        s: Outputs.dirS,
+        w: Outputs.dirW,
+        unknown: Outputs.unknown,
+        clones: {
+          en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Gale Safe Spots',
+      type: 'StartsUsing',
+      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
+      condition: (data) => data.galeSphereCasts.length === 16,
+      durationSeconds: 15,
+      infoText: (data, _matches, output) => {
+        const order = [];
+        const safeSpots = {
+          n: 'unknown',
+          e: 'unknown',
+          s: 'unknown',
+          w: 'unknown',
+        };
+        data.galeSphereCasts.sort((left, right) => {
+          return left.castTime - right.castTime;
+        });
+        data.galeSphereCasts.forEach((sphere) => {
+          let dir;
+          if (sphere.x > 113)
+            dir = 'e';
+          else if (sphere.y > 113)
+            dir = 's';
+          else if (sphere.x < 87)
+            dir = 'w';
+          else
+            dir = 'n';
+          if (!order.includes(dir))
+            order.push(dir);
+        });
+        const sphereDirections = {
+          n: data.galeSphereCasts.filter((sphere) => sphere.y < 87),
+          e: data.galeSphereCasts.filter((sphere) => sphere.x > 113),
+          s: data.galeSphereCasts.filter((sphere) => sphere.y > 113),
+          w: data.galeSphereCasts.filter((sphere) => sphere.x < 87),
+        };
+        const possibleDirs = ['n', 'e', 's', 'w'];
+        for (const dir of possibleDirs) {
+          const spheres = sphereDirections[dir];
+          const key = ['n', 's'].includes(dir) ? 'x' : 'y';
+          // For these, there are 6 possible cast locations, of which 4 will be present
+          // We only need to check three of the six to determine the safe spot
+          // All of these coordinates are 0.50 higher. To avoid floating point issues
+          // we're just using the floor'd coordinates.
+          const possibleSpots = {
+            112: ['s', 'e'],
+            102: ['middle'],
+            87: ['n', 'w'],
+          };
+          for (const sphere of spheres) {
+            delete possibleSpots[Math.floor(sphere[key])];
+          }
+          const remainingSpots = Object.values(possibleSpots);
+          const spot = remainingSpots[0];
+          if (remainingSpots.length > 1 || !spot)
+            continue;
+          let finalSpot = 'unknown';
+          if (spot[0] === 'middle')
+            finalSpot = 'middle';
+          else
+            finalSpot = key === 'y' ? spot[0] : spot[1];
+          safeSpots[dir] = finalSpot ?? 'unknown';
+        }
+        data.galeSafeSpots = [];
+        for (const dir of order)
+          data.galeSafeSpots.push(safeSpots[dir]);
+        data.galeSphereCasts = [];
+        const [dir1, dir2, dir3, dir4] = data.galeSafeSpots.map((x) => output[x]());
+        if (dir1 === undefined || dir2 === undefined || dir3 === undefined || dir4 === undefined)
+          return;
+        return output.safeSpotList({ dir1: dir1, dir2: dir2, dir3: dir3, dir4: dir4 });
+      },
+      outputStrings: {
+        safeSpotList: {
+          en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+        },
+        ...galeSphereOutputStrings,
+      },
+    },
+    {
+      id: 'GolbezEx Gale Initial Safe Spot',
+      type: 'StartsUsing',
+      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
+      condition: (data) => data.galeSafeSpots.length === 4,
+      alertText: (data, _matches, output) => {
+        const spot = data.galeSafeSpots.shift();
+        if (spot === undefined)
+          return;
+        const dir = output[spot]();
+        const mech = data.firstGaleMechanic;
+        delete data.firstGaleMechanic;
+        if (mech === undefined)
+          return dir;
+        const mechanicStr = mech === 'partner' ? output.partnerStack() : output.healerGroups();
+        return output.dirAndMechanic({ dir: dir, mechanic: mechanicStr });
+      },
+      outputStrings: galeSphereOutputStrings,
+    },
+    {
+      id: 'GolbezEx Arctic Assault Collector',
+      type: 'MapEffect',
+      netRegex: { location: '0[0-7]', flags: '00020001' },
+      run: (data, matches) => {
+        delete data.arcticAssaultSafeSpots;
+        data.arcticAssaultMapEffects.push(matches.location);
+        if (data.arcticAssaultMapEffects.length < 2)
+          return;
+        // 1 = Gale Sphere 1
+        // 2 = Terrastorm 2
+        // 3 = Gale Sphere 2
+        // 4 = Gale Sphere 3
+        data.arcticAssaultCount++;
+        const safe = ['nw', 'ne', 'sw', 'se'];
+        data.arcticAssaultSafeSpots = safe.filter((quadrant) => {
+          for (const slot of data.arcticAssaultMapEffects) {
+            if (arcticAssaultQuadrants[slot] === quadrant)
+              return false;
+          }
+          return true;
+        });
+        data.arcticAssaultMapEffects = [];
+      },
+    },
+    {
+      id: 'GolbezEx Terrastorm 2',
+      // The terrastorm meteors come out before the arctic assault, and so wait for them.
+      type: 'MapEffect',
+      netRegex: { location: '0[0-7]', flags: '00020001', capture: false },
+      condition: (data) => {
+        return data.arcticAssaultCount === 2 && data.arcticAssaultSafeSpots !== undefined;
+      },
+      alertText: (data, _matches, output) => {
+        const [safe1, safe2] = data.arcticAssaultSafeSpots ?? [];
+        const terrastormDir = data.terrastormDir;
+        if (terrastormDir === undefined || safe1 === undefined || safe2 === undefined)
+          return;
+        const isSafe1Safe = terrastormDir === 'nw' && safe1 !== 'nw' && safe1 !== 'se' ||
+          terrastormDir === 'ne' && safe1 !== 'ne' && safe1 !== 'sw';
+        const isSafe2Safe = terrastormDir === 'nw' && safe2 !== 'nw' && safe2 !== 'se' ||
+          terrastormDir === 'ne' && safe2 !== 'ne' && safe2 !== 'sw';
+        if (isSafe1Safe && isSafe2Safe || !isSafe1Safe && !isSafe2Safe)
+          return;
+        const dir = {
+          ne: output.northeast(),
+          se: output.southeast(),
+          sw: output.southwest(),
+          nw: output.northwest(),
+        }[isSafe1Safe ? safe1 : safe2];
+        return output.text({ dir: dir });
+      },
+      outputStrings: {
+        text: {
+          en: '${dir} => Healer Groups',
+        },
+        northeast: Outputs.northeast,
+        southeast: Outputs.southeast,
+        southwest: Outputs.southwest,
+        northwest: Outputs.northwest,
+      },
+    },
+    {
+      id: 'GolbezEx Gale Sphere Followup Safe Spots',
+      type: 'Ability',
+      netRegex: { id: '845[89AB]', source: 'Gale Sphere', capture: false },
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        const spot = data.galeSafeSpots.shift();
+        if (spot === undefined)
+          return;
+        const nextSpot = data.galeSafeSpots[0] ?? 'unknown';
+        // Safe spot 2 with arctic assault.
+        if (data.galeSafeSpots.length === 2 && data.arcticAssaultSafeSpots !== undefined) {
+          if (spot === 'w' && data.arcticAssaultSafeSpots.includes('nw'))
+            return output.northwest();
+          if (spot === 'w' && data.arcticAssaultSafeSpots.includes('sw'))
+            return output.southwest();
+          if (spot === 'e' && data.arcticAssaultSafeSpots.includes('ne'))
+            return output.northeast();
+          if (spot === 'e' && data.arcticAssaultSafeSpots.includes('se'))
+            return output.southeast();
+          // If in the middle, try to steer people towards the next safe spot.
+          if (spot === 'middle') {
+            if (nextSpot === 'n') {
+              if (data.arcticAssaultSafeSpots.includes('nw'))
+                return output.middleLean({ dir: output.dirNW() });
+              if (data.arcticAssaultSafeSpots.includes('ne'))
+                return output.middleLean({ dir: output.dirNE() });
+            } else if (nextSpot === 's') {
+              if (data.arcticAssaultSafeSpots.includes('sw'))
+                return output.middleLean({ dir: output.dirSW() });
+              if (data.arcticAssaultSafeSpots.includes('se'))
+                return output.middleLean({ dir: output.dirSE() });
+            }
+          }
+        }
+        // Safe spot 3.
+        const dir = output[spot]();
+        if (data.galeSafeSpots.length > 0)
+          return dir;
+        // Safe spot 4
+        const mech = data.secondGaleMechanic;
+        delete data.secondGaleMechanic;
+        if (mech === undefined)
+          return dir;
+        const mechanicStr = mech === 'partner' ? output.partnerStack() : output.healerGroups();
+        return output.dirAndMechanic({ dir: dir, mechanic: mechanicStr });
+      },
+      outputStrings: {
+        ...galeSphereOutputStrings,
+        northwest: Outputs.northwest,
+        northeast: Outputs.northeast,
+        southwest: Outputs.southwest,
+        southeast: Outputs.southeast,
+        dirNW: Outputs.dirNW,
+        dirNE: Outputs.dirNE,
+        dirSW: Outputs.dirSW,
+        dirSE: Outputs.dirSE,
+        middleLean: {
+          en: 'Middle (lean ${dir})',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Knockback Headmarker',
+      type: 'HeadMarker',
+      netRegex: { id: headmarkers.knockback },
+      alarmText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      run: (data, matches) => data.dragonsDescentMarker.push(matches.target),
+      outputStrings: {
+        text: {
+          en: 'Knockback on YOU',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx Flare Headmarker',
+      type: 'HeadMarker',
+      netRegex: { id: headmarkers.flare },
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.text();
+      },
+      run: (data, matches) => data.dragonsDescentMarker.push(matches.target),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+        },
+      },
+    },
+    {
+      id: 'GolbezEx No Headmarker',
+      type: 'HeadMarker',
+      netRegex: { id: headmarkers.flare, capture: false },
+      condition: (data) => data.dragonsDescentMarker.length === 3,
+      infoText: (data, _matches, output) => {
+        if (!data.dragonsDescentMarker.includes(data.me))
+          return output.text();
+      },
+      run: (data) => data.dragonsDescentMarker = [],
+      outputStrings: {
+        text: {
+          en: 'Get Tower',
+        },
       },
     },
   ],
