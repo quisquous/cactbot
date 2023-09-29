@@ -12,13 +12,25 @@ type MitTracker = {
 
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
-  raiseLostTracker?: { [targetId: string]: string[] };
   originalRaiser?: { [targetId: string]: string };
+  raiseLostTracker?: { [targetId: string]: string };
+  raiseCastTracker?: { [sourceId: string]: string };
   targetMitTracker?: {
     [targetId: string]: MitTracker;
   };
   partyMitTracker?: MitTracker;
 }
+
+const raiseAbiliyIds = [
+  '7D', // raise
+  'AD', // resurrection
+  'E13', // ascend
+  '1D63', // verraise
+  '5EDF', // egeiro
+  '478D', // angel whisper
+  '7423', // variant raise
+  '7426', // variant raise II
+];
 
 const targetMitAbilityIdToDuration: { [id: string]: number } = {
   '1D6F': 10, // reprisal
@@ -139,12 +151,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '94' }),
       run: (data, matches) => {
-        ((data.raiseLostTracker ??= {})[matches.targetId] ??= []).push(matches.timestamp);
+        (data.raiseLostTracker ??= {})[matches.targetId] = matches.timestamp;
       },
     },
     {
       id: 'General Double Raise',
-      // delaySeconds: 0.5,
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '94' }),
       mistake: (data, matches) => {
@@ -152,20 +163,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
         data.originalRaiser ??= {};
         const lastRaiser = data.originalRaiser[matches.targetId];
         // 30 and 26 lines having the same timestamp means effect was overwritten and the target is still dead
-        const overwrittenRaise = data.raiseLostTracker[matches.targetId]?.includes(
-          matches.timestamp,
-        );
+        const overwrittenRaise = data.raiseLostTracker[matches.targetId] === matches.timestamp;
         // if that's not the case, target doesn't have a raise yet
         if (!overwrittenRaise) {
           data.originalRaiser[matches.targetId] = data.ShortName(matches.source);
-          // also clean up any remaining timestamps from accepted/expired raises
-          delete data.raiseLostTracker[matches.targetId];
           return;
         }
         // otherwise, report overwritten raise
         if (lastRaiser !== undefined) {
-          const index = (data.raiseLostTracker[matches.targetId] ??= []).indexOf(matches.timestamp);
-          data.raiseLostTracker[matches.targetId]?.splice(index, 1);
+          delete data.raiseLostTracker[matches.targetId];
           return {
             type: 'warn',
             blame: matches.source,
@@ -176,6 +182,39 @@ const triggerSet: OopsyTriggerSet<Data> = {
               ko: lastRaiser + '의 부활과 겹침',
             },
           };
+        }
+      },
+    },
+    {
+      id: 'General Raise Cast Tracker',
+      type: 'StartsUsing',
+      netRegex: NetRegexes.startsUsing({ id: raiseAbiliyIds }),
+      run: (data, matches) => {
+        (data.raiseCastTracker ??= {})[matches.sourceId] = matches.targetId;
+      },
+    },
+    {
+      id: 'General Targetless Raise',
+      type: 'Ability',
+      netRegex: NetRegexes.ability({ id: raiseAbiliyIds }),
+      mistake: (data, matches) => {
+        if (matches.targetId === 'E0000000') { // target raised before raise cast finished
+          const targetId = (data.raiseCastTracker ??= {})[matches.sourceId];
+          if (targetId !== undefined) {
+            const lastRaiser = (data.originalRaiser ??= {})[targetId];
+            if (lastRaiser !== undefined) {
+              return {
+                type: 'warn',
+                blame: matches.source,
+                reportId: matches.sourceId,
+                text: {
+                  en: 'overwrote ' + lastRaiser + '\'s raise',
+                  de: 'überschrieb ' + lastRaiser + '\'s Wiederbeleben',
+                  ko: lastRaiser + '의 부활과 겹침',
+                },
+              };
+            }
+          }
         }
       },
     },
