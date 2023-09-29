@@ -426,7 +426,7 @@ const triggerSet: TriggerSet<Data> = {
           '方針なし': 'tower',
         },
         cn: {
-          '看小怪位置(菓子)': 'tetherbase',
+          '看小怪位置(果子)': 'tetherbase',
           '垂直拉线 (Game8)': 'quadrant',
           '对角拉线': 'clockwise',
           '仅提示塔颜色': 'tower',
@@ -1272,7 +1272,11 @@ const triggerSet: TriggerSet<Data> = {
 
           // Do the sort by role
           if (data.role === 'dps') {
-            if (tower0.clone === 'SSW' || tower0.clone === 'SSE') {
+            if (tower0.clone === 'WSW' || tower0.clone === 'WNW') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'WSW' || tower1.clone === 'WNW') {
+              towerResult = tower1.location;
+            } else if (tower0.clone === 'SSW' || tower0.clone === 'SSE') {
               towerResult = tower0.location;
             } else if (tower1.clone === 'SSW' || tower1.clone === 'SSE') {
               towerResult = tower1.location;
@@ -1282,7 +1286,11 @@ const triggerSet: TriggerSet<Data> = {
               towerResult = tower1.location;
             }
           } else {
-            if (tower0.clone === 'ENE' || tower0.clone === 'ESE') {
+            if (tower0.clone === 'NNW' || tower0.clone === 'NNE') {
+              towerResult = tower0.location;
+            } else if (tower1.clone === 'NNW' || tower1.clone === 'NNE') {
+              towerResult = tower1.location;
+            } else if (tower0.clone === 'ENE' || tower0.clone === 'ESE') {
               towerResult = tower0.location;
             } else if (tower1.clone === 'ENE' || tower1.clone === 'ESE') {
               towerResult = tower1.location;
@@ -1292,23 +1300,6 @@ const triggerSet: TriggerSet<Data> = {
               towerResult = tower1.location;
             }
           }
-
-          // Check role Only tower clone location
-          towerList.forEach((tower) => {
-            if (data.role === 'dps') {
-              // handle DPS only WSW and WNW clone
-              if (tower.clone === 'WSW' || tower.clone === 'WNW') {
-                towerResult = tower.location;
-                return;
-              }
-            } else {
-              // handle TH only NNW and NNE clone
-              if (tower.clone === 'NNW' || tower.clone === 'NNE') {
-                towerResult = tower.location;
-                return;
-              }
-            }
-          });
 
           if (towerResult === undefined)
             return;
