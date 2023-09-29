@@ -12,7 +12,8 @@ type MitTracker = {
 
 export interface Data extends OopsyData {
   lostFood?: { [name: string]: boolean };
-  raiseTracker?: { [targetId: string]: string };
+  raiseCastTracker?: { [targetId: string]: string };
+  raiseGainTracker?: { [targetId: string]: string[] };
   targetMitTracker?: {
     [targetId: string]: MitTracker;
   };
@@ -141,8 +142,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
       }),
       // 7D = Raise; AD = Resurrection; E13 = Ascend; 1D63 = Verraise; 5EDF = Egeiro; 478D = BLU; 7423, 7426 = Variant
       mistake: (data, matches) => {
-        data.raiseTracker ??= {};
-        const lastRaiser = data.raiseTracker[matches.targetId];
+        if (matches.targetId === 'E0000000') // target raised before cast finished
+          return;
+        data.raiseCastTracker ??= {};
+        const lastRaiser = data.raiseCastTracker[matches.targetId];
         if (lastRaiser !== undefined) {
           return {
             type: 'warn',
@@ -155,16 +158,30 @@ const triggerSet: OopsyTriggerSet<Data> = {
             },
           };
         }
-        data.raiseTracker[matches.targetId] ??= data.ShortName(matches.source);
+        data.raiseCastTracker[matches.targetId] ??= data.ShortName(matches.source);
       },
     },
     {
-      id: 'General Raise Cleanup',
+      id: 'General Raise Gain',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '94' }),
+      run: (data, matches) => {
+        ((data.raiseGainTracker ??= {})[matches.targetId] ??= []).push(matches.timestamp);
+      },
+    },
+    {
+      id: 'General Raise Removal',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '94' }),
+      delaySeconds: 0.5,
       run: (data, matches) => {
-        if (data.raiseTracker)
-          delete data.raiseTracker[matches.targetId];
+        data.raiseGainTracker ??= {};
+        // 30 and 26 lines having the same timestamp means effect was overwritten and the target is still dead
+        if (data.raiseGainTracker[matches.targetId]?.includes(matches.timestamp))
+          return;
+        // otherwise raise was accepted / expired/ removed by wiping
+        delete (data.raiseCastTracker ??= {})[matches.targetId];
+        delete (data.raiseGainTracker ??= {})[matches.targetId];
       },
     },
     {
