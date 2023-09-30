@@ -511,8 +511,8 @@ Options.Triggers.push({
         if (puffDir === undefined)
           return output.default();
         const puffLocs = dirCards.includes(puffDir) ? 'Cardinal' : 'Intercard';
-        const baitOutput = silkieStatus + puffEffect + puffLocs + 'Puff';
-        const safeOutput = silkieStatus + 'Puffs' + puffLocs + 'SafeLater';
+        const baitOutput = `${silkieStatus + puffEffect + puffLocs}Puff`;
+        const safeOutput = `${silkieStatus}Puffs${puffLocs}SafeLater`;
         // set the output for the subsequent safe call here and pass the output to the followup trigger
         // this keeps all of the interrelated output strings in this trigger for ease of customization
         data.freshPuff2SafeAlert = output[safeOutput]();

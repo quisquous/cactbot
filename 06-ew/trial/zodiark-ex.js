@@ -597,12 +597,12 @@ Options.Triggers.push({
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: Outputs.killAdds.en + '(back first)',
-          de: Outputs.killAdds.de + '(hinten zuerst)',
-          fr: Outputs.killAdds.fr + '(arrière d\'abord)',
-          ja: Outputs.killAdds.ja + '(下の雑魚から)',
-          cn: Outputs.killAdds.cn + '(先打后方的)',
-          ko: Outputs.killAdds.ko + '(아래쪽 먼저)',
+          en: 'Kill adds (back first)',
+          de: 'Adds besiegen (hinten zuerst)',
+          fr: 'Tuez les adds (arrière d\'abord)',
+          ja: '雑魚から倒して (下の雑魚から)',
+          cn: '击杀小怪 (先打后方的)',
+          ko: '쫄 잡기 (아래쪽 먼저)',
         },
       },
     },
