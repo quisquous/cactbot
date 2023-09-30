@@ -111,7 +111,7 @@ const processFile = async (originalFilename: string) => {
   fs.writeFileSync(distFilePath.replace('.ts', '.js'), contents);
 
   // Copy timeline file if present
-  const importPath = ('../ui/raidboss/data/' + path.relative(root, originalFilename)).replace(
+  const importPath = (`../ui/raidboss/data/${path.relative(root, originalFilename)}`).replace(
     '\\',
     '/',
   );

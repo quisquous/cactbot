@@ -328,7 +328,7 @@ export class DamageTracker {
     // Length 1 or 2.
     let lowByte = matches.flags.slice(-2);
     if (lowByte.length === 1)
-      lowByte = '0' + lowByte;
+      lowByte = `0${lowByte}`;
 
     if (!kAttackFlags.includes(lowByte))
       return;
@@ -724,19 +724,19 @@ export class DamageTracker {
     this.triggerSets = this.options.Triggers;
     for (const [filename, json] of Object.entries<LooseOopsyTriggerSet>(this.dataFiles)) {
       if (typeof json !== 'object') {
-        console.error('Unexpected JSON from ' + filename + ', expected an object');
+        console.error(`Unexpected JSON from ${filename}, expected an object`);
         continue;
       }
       const hasZoneRegex = 'zoneRegex' in json;
       const hasZoneId = 'zoneId' in json;
       if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
-        console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
+        console.error(`Unexpected JSON from ${filename}, need one of zoneRegex/zoneID`);
         continue;
       }
 
       if ('triggers' in json) {
         if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
-          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+          console.error(`Unexpected JSON from ${filename}, expected triggers to be an array`);
           continue;
         }
       }

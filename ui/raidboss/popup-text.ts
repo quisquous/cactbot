@@ -148,10 +148,10 @@ const onTriggerException = (trigger: ProcessedTrigger, e: unknown) => {
   if (e === null || typeof e !== 'object')
     return;
 
-  let str = 'Error in trigger: ' + (trigger.id !== undefined ? trigger.id : '[unknown trigger id]');
+  let str = `Error in trigger: ${trigger.id !== undefined ? trigger.id : '[unknown trigger id]'}`;
 
   if (trigger.filename !== undefined)
-    str += ' (' + trigger.filename + ')';
+    str += ` (${trigger.filename})`;
   console.error(str);
 
   if (e instanceof Error) {
@@ -669,8 +669,8 @@ export class PopupText {
 
     // construct something like regexDe or regexFr.
     const langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
-    const regexParserLang = 'regex' + langSuffix;
-    const netRegexParserLang = 'netRegex' + langSuffix;
+    const regexParserLang = `regex${langSuffix}`;
+    const netRegexParserLang = `netRegex${langSuffix}`;
 
     for (const set of this.triggerSets) {
       // zoneRegex can be undefined, a regex, or translatable object of regex.
@@ -699,7 +699,7 @@ export class PopupText {
         let zoneRegex = set.zoneRegex;
         if (typeof zoneRegex !== 'object') {
           console.error(
-            'zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex),
+            `zoneRegex must be translatable object or regexp: ${JSON.stringify(set.zoneRegex)}`,
           );
           continue;
         } else if (!(zoneRegex instanceof RegExp)) {
@@ -709,12 +709,12 @@ export class PopupText {
           } else if (zoneRegex['en']) {
             zoneRegex = zoneRegex['en'];
           } else {
-            console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
+            console.error(`unknown zoneRegex parser language: ${JSON.stringify(set.zoneRegex)}`);
             continue;
           }
 
           if (!(zoneRegex instanceof RegExp)) {
-            console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+            console.error(`zoneRegex must be regexp: ${JSON.stringify(set.zoneRegex)}`);
             continue;
           }
         }
@@ -861,11 +861,11 @@ export class PopupText {
       if (set.timelineFile !== undefined) {
         if (set.filename !== undefined) {
           const dir = set.filename.slice(0, Math.max(0, set.filename.lastIndexOf('/')));
-          timelineFiles.push(dir + '/' + set.timelineFile);
+          timelineFiles.push(`${dir}/${set.timelineFile}`);
         } else {
           // Note: For user files, this should get handled by raidboss_config.js,
           // where `timelineFile` should get converted to `timeline`.
-          console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
+          console.error(`Can't specify timelineFile in non-manifest file:${set.timelineFile}`);
         }
       }
 
@@ -1423,8 +1423,8 @@ export class PopupText {
       triggerHelper.soundUrl !== undefined &&
       soundStrs.includes(triggerHelper.soundUrl)
     ) {
-      const namedSound = triggerHelper.soundUrl + 'Sound';
-      const namedSoundVolume = triggerHelper.soundUrl + 'SoundVolume';
+      const namedSound = `${triggerHelper.soundUrl}Sound`;
+      const namedSoundVolume = `${triggerHelper.soundUrl}SoundVolume`;
       const sound = this.options[namedSound];
       if (typeof sound === 'string') {
         triggerHelper.soundUrl = sound;
@@ -1495,7 +1495,7 @@ export class PopupText {
     duration: number,
   ): void {
     // info-text
-    const textElementClass = textType + '-text';
+    const textElementClass = `${textType}-text`;
     if (textType !== 'info')
       text = triggerUpperCase(text);
 

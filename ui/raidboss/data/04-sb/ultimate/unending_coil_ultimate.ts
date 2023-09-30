@@ -1239,7 +1239,7 @@ const triggerSet: TriggerSet<Data> = {
         const partyList = Object.keys(data.partyList);
 
         if (partyList.length !== 8) {
-          console.error('Octet error: bad party list size: ' + JSON.stringify(partyList));
+          console.error(`Octet error: bad party list size: ${JSON.stringify(partyList)}`);
           return;
         }
         const uniqDict: { [name: string]: boolean } = {};
@@ -1262,8 +1262,9 @@ const triggerSet: TriggerSet<Data> = {
         if (remainingPlayers.length !== 1) {
           // This could happen if the party list wasn't unique.
           console.error(
-            'Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' +
-              JSON.stringify(data.octetMarker),
+            `Octet error: failed to find player, ${JSON.stringify(partyList)} ${
+              JSON.stringify(data.octetMarker)
+            }`,
           );
           return;
         }

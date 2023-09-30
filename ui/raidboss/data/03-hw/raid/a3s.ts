@@ -200,7 +200,7 @@ const triggerSet: TriggerSet<Data> = {
         const marker2 = data.ferroMarker[partner ?? ''];
 
         if (partner === undefined || marker1 === undefined || marker2 === undefined)
-          return matches.ability + ' (???)';
+          return `${matches.ability} (???)`;
 
         if (marker1 === marker2)
           return output.repel!({ player: data.ShortName(partner) });

@@ -74,7 +74,7 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
   before(async () => {
     contents = fs.readFileSync(file).toString();
     // Normalize path
-    const importPath = '../../' + path.relative(process.cwd(), file).replace('.ts', '.js');
+    const importPath = `../../${path.relative(process.cwd(), file).replace('.ts', '.js')}`;
 
     // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
     // See details in that function for more information.
