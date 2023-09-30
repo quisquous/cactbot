@@ -452,7 +452,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '1018', source: 'Ser Grinnaux' }, // Shared ability from all knights when they teleport in.
       condition: (data) => data.phase === 4,
-      delaySeconds: 7, // Grinnaux insta-casts Faith Unmoving 13s after appearing. Give ~7s of warning.
+      delaySeconds: 7, // Grinnaux insta-casts Faith Unmoving 13s after appearing. Give ~6s of warning.
       alertText: (_data, matches, output) => {
         const knightX = parseFloat(matches.x);
         const knightY = parseFloat(matches.y);
