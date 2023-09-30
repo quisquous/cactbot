@@ -897,6 +897,7 @@ const triggerSet: TriggerSet<Data> = {
         'Azdaja\'s Shadow': '黑龙剑阿珠达雅',
         'Binding Cold': '咒缚寒气',
         'Black Fang': '黑牙',
+        'Burning Shade': '黑炎',
         'Cauterize': '黑炎俯冲',
         'Double Meteor': '双重陨石',
         'Dragon\'s Descent': '降龙爆火',
