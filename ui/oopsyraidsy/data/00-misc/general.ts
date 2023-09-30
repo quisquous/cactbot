@@ -11,14 +11,14 @@ type MitTracker = {
 };
 
 export interface Data extends OopsyData {
-  lostFood?: { [name: string]: boolean };
-  originalRaiser?: { [targetId: string]: string };
-  lastRaisedLostTime?: { [targetId: string]: string };
-  raiseTargetTracker?: { [sourceId: string]: string };
-  targetMitTracker?: {
+  lostFood: { [name: string]: boolean };
+  originalRaiser: { [targetId: string]: string };
+  lastRaisedLostTime: { [targetId: string]: string };
+  raiseTargetTracker: { [sourceId: string]: string };
+  targetMitTracker: {
     [targetId: string]: MitTracker;
   };
-  partyMitTracker?: MitTracker;
+  partyMitTracker: MitTracker;
 }
 
 const raiseAbilityIds = [
@@ -76,6 +76,16 @@ const shieldEffectIdToAbilityId: { [id: string]: string } = {
 // General mistakes; these apply everywhere.
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.MatchAll,
+  initData: () => {
+    return {
+      lostFood: {},
+      originalRaiser: {},
+      lastRaisedLostTime: {},
+      raiseTargetTracker: {},
+      targetMitTracker: {},
+      partyMitTracker: {},
+    };
+  },
   triggers: [
     {
       // Trigger id for internally generated early pull warning.
