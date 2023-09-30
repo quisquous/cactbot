@@ -217,8 +217,8 @@ const triggerSet: TriggerSet<Data> = {
         },
         doubleGaze: {
           en: 'Look away from Thordan and Eye',
-        }
-      }
+        },
+      },
     },
     {
       id: 'ThordanEX Conviction Towers',
@@ -237,7 +237,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ThordanEX Triple Spiral Thrust Call',
       type: 'Ability',
-      netRegex: { id: '1018', source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'], capture: false }, // Shared ability from all knights when they teleport in.
+      netRegex: {
+        id: '1018',
+        source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'],
+        capture: false,
+      }, // Shared ability from all knights when they teleport in.
       condition: (data) => data.phase === 2 && !data.seenThrust,
       delaySeconds: 0.5,
       infoText: (data, _matches, output) => {
@@ -280,7 +284,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         attackSword: {
           en: 'Attack ${swordKnight}',
-        }
+        },
       },
     },
     {
@@ -299,13 +303,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ThordanEX Holy Bladedance Collect',
       type: 'StartsUsing',
-      netRegex: { id: '1496', source: ['Ser Adelphel', 'Ser Janlenoux'], },
+      netRegex: { id: '1496', source: ['Ser Adelphel', 'Ser Janlenoux'] },
       run: (data, matches) => {
         if (data.swordKnight === matches.source)
           data.swordTarget = matches.target;
         if (data.shieldKnight === matches.source)
           data.shieldTarget = matches.target;
-      }
+      },
     },
     {
       id: 'ThordanEX Holy Bladedance Call',
@@ -330,7 +334,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         unknownDance: {
-          en: 'Heavy busters'
+          en: 'Heavy busters',
         },
         singleDance: {
           en: '2x buster on ${target}',
@@ -338,7 +342,7 @@ const triggerSet: TriggerSet<Data> = {
         doubleDance: {
           en: 'Sword buster on ${sword} (shield on ${shield})',
         },
-      }
+      },
     },
     {
       id: 'ThordanEX Skyward Leap',
@@ -389,7 +393,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         pierceOthers: {
           en: 'Avoid tether line AoEs',
-        }
+        },
       },
     },
     {
@@ -445,8 +449,8 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Wild Charge: STAY OUT',
         },
         spearOther: {
-          en: 'Wild Charge: Intercept ${spearTarget}'
-        }
+          en: 'Wild Charge: Intercept ${spearTarget}',
+        },
       },
     },
     {
@@ -465,8 +469,8 @@ const triggerSet: TriggerSet<Data> = {
         const knightDir = Directions.outputFrom8DirNum(knightNum);
         const [dir1, dir2] = [knightDir, unsafeMap[knightDir]].sort();
         if (dir1 === undefined || dir2 === undefined)
-        return;
-      return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
+          return;
+        return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
       },
       outputStrings: {
         combined: {
@@ -493,7 +497,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         ...fullDirNameMap,
       },
-    }
+    },
   ],
 
   timelineReplace: [
