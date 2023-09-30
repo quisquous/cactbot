@@ -305,7 +305,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
         });
 
         if (fieldRegex.length > 0) {
-          str += '(?:' + fieldRegex + ')' + (rep !== undefined ? '' : '?');
+          str += `(?:${fieldRegex})${rep !== undefined ? '' : '?'}`;
         }
       });
     } else if (fields[keyStr]?.repeating) {

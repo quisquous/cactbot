@@ -273,7 +273,7 @@ export class OopsyLiveList implements MistakeObserver {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
     const blameText = blame !== undefined
-      ? ShortNamify(blame, this.options.PlayerNicks) + ': '
+      ? `${ShortNamify(blame, this.options.PlayerNicks)}: `
       : '';
     const translatedText = Translate(this.options.DisplayLanguage, m.text);
     if (translatedText === undefined)

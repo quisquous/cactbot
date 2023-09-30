@@ -13,7 +13,7 @@ export type Data = OopsyData;
 // If the flag is present,a full trigger object is returned that drops in seamlessly.
 const abilityWarn = (args: { abilityId: string; id: string }): OopsyTrigger<Data> => {
   if (!args.abilityId)
-    console.error('Missing ability ' + JSON.stringify(args));
+    console.error(`Missing ability ${JSON.stringify(args)}`);
   const trigger: OopsyTrigger<Data> = {
     id: args.id,
     type: 'Ability',

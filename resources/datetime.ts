@@ -37,7 +37,7 @@ export default class DateTimeFuncs {
     const millis = `00${millisNum}`.slice(-3);
     const secs = `0${secsNum}`.slice(-2);
     const mins = `0${((time % (60 * 60 * 1000) - millisNum) / 1000 - secsNum) / 60}`.slice(-2);
-    return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
+    return `${negative + mins}:${secs}${includeMillis ? `.${millis}` : ''}`;
   }
 
   static timeToTimeString(time: number, tzOffsetMillis: number, includeMillis = false): string {
@@ -63,20 +63,20 @@ export default class DateTimeFuncs {
     const second = StringFuncs.leftExtendStr(convDate.getUTCSeconds().toString(), 2, '0');
     let ret = `${hour}:${minute}:${second}`;
     if (includeMillis)
-      ret = ret + `.${StringFuncs.leftExtendStr(convDate.getUTCMilliseconds().toString(), 3, '0')}`;
+      ret = `${ret}.${StringFuncs.leftExtendStr(convDate.getUTCMilliseconds().toString(), 3, '0')}`;
 
     return ret;
   }
 
   static msToDuration(ms: number): string {
     const tmp = DateTimeFuncs.timeToString(ms, false);
-    return tmp.replace(':', 'm') + 's';
+    return `${tmp.replace(':', 'm')}s`;
   }
 
   static dateTimeToString(time: number, tzOffsetMillis: number, includeMillis = false): string {
     const date = new Date(time);
     const dateString = this.dateObjectToDateString(date, tzOffsetMillis);
     const timeString = this.dateObjectToTimeString(date, tzOffsetMillis, includeMillis);
-    return dateString + ' ' + timeString;
+    return `${dateString} ${timeString}`;
   }
 }

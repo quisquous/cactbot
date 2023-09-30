@@ -141,7 +141,7 @@ class RegexSet {
       return this.regexes;
     this.regexes = this.buildLocaleRegexes(
       localeLines,
-      (s: string) => Regexes.gameLog({ line: s + '.*?' }),
+      (s: string) => Regexes.gameLog({ line: `${s}.*?` }),
     );
     return this.regexes;
   }
@@ -151,7 +151,7 @@ class RegexSet {
       return this.netRegexes;
     this.netRegexes = this.buildLocaleRegexes(
       localeLines,
-      (s: string) => NetRegexes.gameLog({ line: s + '[^|]*?' }),
+      (s: string) => NetRegexes.gameLog({ line: `${s}[^|]*?` }),
     );
     return this.netRegexes;
   }

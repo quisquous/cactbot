@@ -159,6 +159,7 @@ const rules = {
   'prefer-const': 'error',
   'prefer-regex-literals': 'error',
   'prefer-rest-params': 'off',
+  'prefer-template': 'error',
   'quotes': [
     'error',
     'single',

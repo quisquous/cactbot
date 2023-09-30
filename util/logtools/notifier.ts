@@ -8,15 +8,15 @@ export class ConsoleNotifier implements Notifier {
 
   public warn(reason: string, splitLine?: string[]): void {
     if (splitLine === undefined)
-      this.errorFunc(this.fileName + ': ' + reason);
+      this.errorFunc(`${this.fileName}: ${reason}`);
     else
-      this.errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
+      this.errorFunc(`${this.fileName}: ${reason}: ${splitLine.join('|')}`);
   }
 
   public error(reason: string, splitLine?: string[]): void {
     if (splitLine === undefined)
-      this.errorFunc(this.fileName + ': ' + reason);
+      this.errorFunc(`${this.fileName}: ${reason}`);
     else
-      this.errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
+      this.errorFunc(`${this.fileName}: ${reason}: ${splitLine.join('|')}`);
   }
 }

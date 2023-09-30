@@ -262,7 +262,7 @@ class UserConfig {
       // The basePath isn't using for anything other than cosmetic printing of full paths,
       // so replace any slashes here for uniformity.  In case anybody is using cactbot on
       // Linux (?!?), support any style of slashes elsewhere.
-      const basePath = e.detail.userLocation.replace(/[/\\]*$/, '') + '\\';
+      const basePath = `${e.detail.userLocation.replace(/[/\\]*$/, '')}\\`;
       const localFiles = e.detail.localUserFiles;
 
       options.SystemInfo = {
