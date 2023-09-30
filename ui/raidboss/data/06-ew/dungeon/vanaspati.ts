@@ -269,6 +269,7 @@ const triggerSet: TriggerSet<Data> = {
         'Trnakiya': '森中空地',
       },
       'replaceText': {
+        '\\(Bubble\\)': '(泡泡)',
         '\\(Knockback\\)': '(击退)',
         '\\(Spread\\)': '(扩散)',
         '--meteor': '--陨石',
