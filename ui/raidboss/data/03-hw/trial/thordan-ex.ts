@@ -17,7 +17,6 @@ export interface Data extends RaidbossData {
   shieldKnight?: string;
   shieldTarget?: string;
   defCounter: number;
-  pierceTargets: string[];
 }
 
 const unsafeMap: Partial<Record<DirectionOutput8, DirectionOutput8>> = {
@@ -53,7 +52,6 @@ const triggerSet: TriggerSet<Data> = {
       thrustPositions: [],
       seenThrust: false,
       defCounter: 1,
-      pierceTargets: [],
     };
   },
   timelineTriggers: [
@@ -82,14 +80,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // This is timed off the towers appearing,
-      // so having no beforeSeconds parameter is correct.
-      id: 'ThordanEX Conviction',
-      regex: /--towers spawn--/,
-      suppressSeconds: 5,
-      response: Responses.getTowers(),
-    },
-    {
       id: 'ThordanEX Heavenly Slash',
       regex: /Heavenly Slash/,
       beforeSeconds: 4,
@@ -99,7 +89,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ThordanEX Faith Unmoving',
       regex: /Faith Unmoving/,
-      beforeSeconds: 5,
+      beforeSeconds: 6,
       condition: (data) => data.phase === 2,
       suppressSeconds: 5,
       response: Responses.knockback(),
@@ -190,8 +180,6 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '0009' },
       condition: (data, matches) => data.me === matches.source || data.me === matches.target,
       alertText: (data, matches, output) => {
-        if (matches.source === undefined || matches.target === undefined)
-          return output.unknown!();
         const partner = data.me === matches.source ? matches.target : matches.source;
         return output.breakChains!({ partner: data.ShortName(partner) });
       },
@@ -199,8 +187,14 @@ const triggerSet: TriggerSet<Data> = {
         breakChains: {
           en: 'Break chains with ${partner}',
         },
-        unknown: Outputs.breakChains,
       },
+    },
+    {
+      id: 'ThordanEX Conviction',
+      type: 'StartsUsing',
+      netRegex: { id: '149D', source: 'Ser Hermenost', capture: false },
+      suppressSeconds: 5,
+      response: Responses.getTowers(),
     },
     {
       id: 'ThordanEX Dragons Gaze',
@@ -219,13 +213,6 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Look away from Thordan and Eye',
         },
       },
-    },
-    {
-      id: 'ThordanEX Conviction Towers',
-      type: 'StartsUsing',
-      netRegex: { id: '149D', source: 'Ser Hermenost', capture: false },
-      suppressSeconds: 5,
-      response: Responses.getTowers(),
     },
     {
       id: 'ThordanEX Triple Spiral Thrust Collect',
@@ -365,34 +352,15 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'ThordanEX Spiral Pierce Collect',
-      type: 'Tether',
-      netRegex: { id: '0005' },
-      run: (data, matches) => data.pierceTargets.push(matches.target),
-    },
-    {
       id: 'ThordanEX Spiral Pierce',
       type: 'Tether',
-      netRegex: { id: '0005', capture: false },
-      delaySeconds: 0.5,
+      netRegex: { id: '0005' },
+      condition: Conditions.targetIsYou(),
       suppressSeconds: 5,
-      alarmText: (data, _matches, output) => {
-        if (!data.pierceTargets.includes(data.me))
-          return;
-        return output.pierceYou!();
-      },
-      alertText: (data, _matches, output) => {
-        if (data.pierceTargets.includes(data.me))
-          return;
-        return output.pierceOthers!();
-      },
-      run: (data) => data.pierceTargets = [],
+      alertText: (_data, _matches, output) => output.pierceYou!(),
       outputStrings: {
         pierceYou: {
           en: 'Line AoE on YOU',
-        },
-        pierceOthers: {
-          en: 'Avoid tether line AoEs',
         },
       },
     },
@@ -484,8 +452,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '1018', source: 'Ser Grinnaux' }, // Shared ability from all knights when they teleport in.
       condition: (data) => data.phase === 4,
-      delaySeconds: 6, // Grinnaux insta-casts Faith Unmoving 13s after appearing. Give ~7s of warning.
-      alarmText: (_data, matches, output) => {
+      delaySeconds: 7, // Grinnaux insta-casts Faith Unmoving 13s after appearing. Give ~7s of warning.
+      alertText: (_data, matches, output) => {
         const knightX = parseFloat(matches.x);
         const knightY = parseFloat(matches.y);
         const knightDir = Directions.xyTo8DirOutput(knightX, knightY, 0, 0);

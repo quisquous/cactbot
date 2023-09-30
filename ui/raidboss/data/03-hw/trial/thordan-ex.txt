@@ -94,18 +94,10 @@ hideall "--sync--"
 # They overlap heavily. Because they use different IDs for each ring,
 # it's safe to leave them all synced.
 366.0 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:14B0:/ window 220,10
-374.6 "--sync--" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ # Heavy Impact (intial cast, no earth ring)
+374.6 "Heavy Impact Set 1" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ duration 10
 376.0 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
-379.4 "Heavy Impact (round 1 ring 1)" sync / 1[56]:[^:]*:Ser Guerrique:14A0:/
-379.9 "--sync--" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ # Heavy Impact (intial cast, no earth ring)
-381.4 "Heavy Impact (round 1 ring 2)" sync / 1[56]:[^:]*:Ser Guerrique:14A1:/
-383.4 "Heavy Impact (round 1 ring 3)" sync / 1[56]:[^:]*:Ser Guerrique:14A2:/
+379.9 "Heavy Impact Set 2" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ duration 10
 383.8 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
-384.6 "Heavy Impact (round 2 ring 1)" sync / 1[56]:[^:]*:Ser Guerrique:14A0:/
-385.3 "Heavy Impact (round 1 ring 4)" sync / 1[56]:[^:]*:Ser Guerrique:14A3:/
-386.5 "Heavy Impact (round 2 ring 2)" sync / 1[56]:[^:]*:Ser Guerrique:14A1:/
-388.5 "Heavy Impact (round 2 ring 3)" sync / 1[56]:[^:]*:Ser Guerrique:14A2:/
-390.5 "Heavy Impact (round 2 ring 4)" sync / 1[56]:[^:]*:Ser Guerrique:14A3:/
 398.1 "Comet Impact" sync / 1[56]:[^:]*:Comet Circle:14B3:/
 420.7 "Meteor Impact Enrage" sync / 1[56]:[^:]*:Meteor Circle:14B4:/
 
