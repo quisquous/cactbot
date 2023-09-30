@@ -67,7 +67,7 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   // The leading zeroes are stripped when converting back to string, so we re-add them here.
   // Fortunately, we don't have to worry about whether or not this is robust,
   // since we know all the IDs that will be present in the encounter.
-  return '00' + (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase();
+  return `00${(parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase()}`;
 };
 
 const kDecreeNisi = ['8AE', '8AF', '859', '85A'];

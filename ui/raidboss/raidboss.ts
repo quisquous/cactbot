@@ -33,7 +33,7 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   const playerNameParam = params.get('player');
   if (playerNameParam !== null) {
     options.PlayerNameOverride = playerNameParam;
-    console.log('Enabling player name override via query parameter, name: ' + playerNameParam);
+    console.log(`Enabling player name override via query parameter, name: ${playerNameParam}`);
   }
 
   if (options.IsRemoteRaidboss && playerNameParam === null) {

@@ -40,7 +40,7 @@ export default class ParseLine {
       return;
 
     // This is ugly, but Webpack prefers being explicit
-    switch ('LineEvent' + event) {
+    switch (`LineEvent${event}`) {
       case 'LineEvent00':
         ret = new LineEvent00(repo, line, parts);
         break;

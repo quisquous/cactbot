@@ -130,8 +130,9 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
 
         before(async () => {
           // Normalize path
-          const importPath = '../../' +
-            path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
+          const importPath = `../../${
+            path.relative(process.cwd(), triggersFile).replace('.ts', '.js')
+          }`;
           timelineText = String(fs.readFileSync(timelineFile));
 
           // Dynamic imports don't have a type, so add type assertion.

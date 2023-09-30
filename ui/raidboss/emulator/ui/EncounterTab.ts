@@ -184,9 +184,9 @@ export default class EncounterTab extends EventBus {
         clear = false;
         $row.classList.add('selected');
       }
-      querySelectorSafe($row, '.encounterStart').innerText = '[' + enc.start + ']';
+      querySelectorSafe($row, '.encounterStart').innerText = `[${enc.start}]`;
       querySelectorSafe($row, '.encounterName').innerText = enc.name;
-      querySelectorSafe($row, '.encounterDuration').innerText = '(' + enc.duration + ')';
+      querySelectorSafe($row, '.encounterDuration').innerText = `(${enc.duration})`;
       $row.addEventListener('click', (ev) => {
         const t = ev.currentTarget;
         if (!(t instanceof HTMLElement))

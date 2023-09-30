@@ -192,7 +192,7 @@ export default class RaidEmulatorPopupText extends StubbedPopupText {
     _lowerTextKey: TextText,
     duration: number,
   ): void {
-    const textElementClass = textType + '-text';
+    const textElementClass = `${textType}-text`;
     const e = this._makeTextElement(triggerHelper, text, textElementClass);
     this.addDisplayText(e, this.emulatedOffset + duration * 1000);
   }

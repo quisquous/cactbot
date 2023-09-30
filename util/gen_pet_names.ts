@@ -17,7 +17,7 @@ type XivapiResult = {
 };
 
 const fetchXivapi = async () => {
-  const url = 'https://xivapi.com/Pet?columns=' + localeKeys.join(',');
+  const url = `https://xivapi.com/Pet?columns=${localeKeys.join(',')}`;
   const response = await fetch(url);
   const json = (await response.json()) as XivapiResult;
   return json.Results;
