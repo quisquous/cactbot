@@ -12,6 +12,7 @@ import { Job, Role } from '../../types/job';
 import { Matches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import {
+  DataInitializeFunc,
   LooseOopsyTrigger,
   LooseOopsyTriggerSet,
   MistakeMap,
@@ -117,6 +118,10 @@ export class DamageTracker {
   private zoneName?: string;
   private zoneId: ZoneIdType = ZoneId.MatchAll;
   private contentType = 0;
+  protected dataInitializers: {
+    file: string;
+    func: DataInitializeFunc<OopsyData>;
+  }[] = [];
 
   constructor(
     private options: OopsyOptions,
@@ -153,7 +158,7 @@ export class DamageTracker {
   }
 
   GetDataObject(): OopsyData {
-    return {
+    const data: OopsyData = {
       me: this.me,
       job: this.job,
       role: this.role,
@@ -174,6 +179,23 @@ export class DamageTracker {
       // Deprecated.
       ParseLocaleFloat: parseFloat,
     };
+
+    let triggerData = {};
+
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
+      const initData = init();
+      if (typeof initData === 'object') {
+        triggerData = {
+          ...triggerData,
+          ...initData,
+        };
+      } else {
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
+      }
+    }
+    return { ...triggerData, ...data };
   }
 
   // TODO: this shouldn't clear timers and triggers
@@ -671,6 +693,15 @@ export class DamageTracker {
           console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');
+      }
+
+      const setFilename = set.filename ?? 'Unknown';
+
+      if (set.initData) {
+        this.dataInitializers.push({
+          file: setFilename,
+          func: set.initData,
+        });
       }
 
       this.AddDamageTriggers('warn', set.damageWarn);
