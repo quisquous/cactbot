@@ -1,18 +1,47 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
+import { DirectionOutput8, Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
-import { TriggerSet } from '../../../../../types/trigger';
-
+import { NetMatches } from '../../../../../types/net_matches';
+import { OutputStrings, TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   phase: number;
+  mainTank?: string;
+  thrustPositions: NetMatches['Ability'][];
+  seenThrust: boolean;
   swordKnight?: string;
   swordTarget?: string;
   shieldKnight?: string;
   shieldTarget?: string;
+  defCounter: number;
   pierceTargets: string[];
 }
+
+const unsafeMap: Partial<Record<DirectionOutput8, DirectionOutput8>> = {
+  dirN: 'dirS',
+  dirNE: 'dirSW',
+  dirE: 'dirW',
+  dirSE: 'dirNW',
+  dirS: 'dirN',
+  dirSW: 'dirNE',
+  dirW: 'dirE',
+  dirNW: 'dirSE',
+} as const;
+
+const fullDirNameMap: { [outputString: string]: OutputStrings } = {
+  dirN: Outputs.north,
+  dirNE: Outputs.northeast,
+  dirE: Outputs.east,
+  dirSE: Outputs.southeast,
+  dirS: Outputs.south,
+  dirSW: Outputs.southwest,
+  dirW: Outputs.west,
+  dirNW: Outputs.northwest,
+  unknown: Outputs.unknown,
+};
 
 const triggerSet: TriggerSet<Data> = {
   id: 'TheMinstrelsBalladThordansReign',
@@ -21,39 +50,65 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       phase: 1,
+      thrustPositions: [],
+      seenThrust: false,
+      defCounter: 1,
       pierceTargets: [],
     };
   },
   timelineTriggers: [
+    // All timeline triggers include a base suppression of 5 seconds
+    // to avoid potential noise from timeline jitter.
     {
       id: 'ThordanEX Ascalons Might',
       regex: /Ascalon's Might/,
       beforeSeconds: 4,
+      suppressSeconds: 5,
       response: Responses.tankCleave(),
+    },
+    {
+      // Puddle positions snapshot well before the actual Heavensflame explosion.
+      // BeforeSeconds: 10 is correct, as it ends up being only 5-6 seconds
+      // in practice.
+      id: 'ThordanEX Heavensflame',
+      regex: /Heavensflame 1/,
+      beforeSeconds: 10,
+      suppressSeconds: 5,
+      infoText: (_data, _matches, output) => output.baitPuddles!(),
+      outputStrings: {
+        baitPuddles: {
+          en: 'Bait puddles',
+        },
+      },
     },
     {
       // This is timed off the towers appearing,
       // so having no beforeSeconds parameter is correct.
       id: 'ThordanEX Conviction',
       regex: /--towers spawn--/,
+      suppressSeconds: 5,
       response: Responses.getTowers(),
     },
     {
       id: 'ThordanEX Heavenly Slash',
       regex: /Heavenly Slash/,
       beforeSeconds: 4,
+      suppressSeconds: 5,
       response: Responses.tankCleave(),
     },
     {
       id: 'ThordanEX Faith Unmoving',
       regex: /Faith Unmoving/,
       beforeSeconds: 5,
+      condition: (data) => data.phase === 2,
+      suppressSeconds: 5,
       response: Responses.knockback(),
     },
     {
       id: 'ThordanEX Dimensional Collapse',
       regex: /Dimensional Collapse/,
       beforeSeconds: 10,
+      suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.baitPuddles!(),
       outputStrings: {
         baitPuddles: {
@@ -65,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ThordanEX Light Of Ascalon',
       regex: /The Light of Ascalon 1/,
       beforeSeconds: 5,
+      suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.knockbackAoe!(),
       outputStrings: {
         knockbackAoe: {
@@ -76,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ThordanEX Ultimate End',
       regex: /Ultimate End/,
       beforeSeconds: 6,
+      suppressSeconds: 5,
       response: Responses.bigAoe(),
     },
   ],
@@ -96,6 +153,13 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.phase += 1,
     },
     {
+      id: 'ThordanEX Main Tank Tracker',
+      type: 'Ability',
+      netRegex: { id: '147D', source: 'King Thordan' },
+      condition: (data, matches) => data.mainTank !== matches.target,
+      run: (data, matches) => data.mainTank = matches.target,
+    },
+    {
       id: 'ThordanEX Lightning Storm',
       type: 'HeadMarker',
       netRegex: { id: '0018' },
@@ -106,7 +170,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ThordanEX Dragons Rage',
       type: 'HeadMarker',
       netRegex: { id: '003E' },
-      condition: Conditions.targetIsYou(),
       response: Responses.stackMarkerOn(),
     },
     {
@@ -122,6 +185,24 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'ThordanEX Holy Chains',
+      type: 'Tether',
+      netRegex: { id: '0009' },
+      condition: (data, matches) => data.me === matches.source || data.me === matches.target,
+      alertText: (data, matches, output) => {
+        if (matches.source === undefined || matches.target === undefined)
+          return output.unknown!();
+        const partner = data.me === matches.source ? matches.target : matches.source;
+        return output.breakChains!({ partner: data.ShortName(partner) });
+      },
+      outputStrings: {
+        breakChains: {
+          en: 'Break chains with ${partner}',
+        },
+        unknown: Outputs.breakChains,
+      },
+    },
+    {
       id: 'ThordanEX Dragons Gaze',
       type: 'StartsUsing',
       netRegex: { id: '1489', source: 'King Thordan', capture: false },
@@ -131,8 +212,6 @@ const triggerSet: TriggerSet<Data> = {
         return output.doubleGaze!();
       },
       outputStrings: {
-        // We could do some composition magic to make this more "elegant",
-        // but for ease of translation it's best to just define fixed output strings.
         singleGaze: {
           en: 'Look away from Thordan',
         },
@@ -147,6 +226,50 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '149D', source: 'Ser Hermenost', capture: false },
       suppressSeconds: 5,
       response: Responses.getTowers(),
+    },
+    {
+      id: 'ThordanEX Triple Spiral Thrust Collect',
+      type: 'Ability',
+      netRegex: { id: '1018', source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'] }, // Shared ability from all knights when they teleport in.
+      condition: (data) => data.phase === 2 && !data.seenThrust,
+      run: (data, matches) => data.thrustPositions.push(matches),
+    },
+    {
+      id: 'ThordanEX Triple Spiral Thrust Call',
+      type: 'Ability',
+      netRegex: { id: '1018', source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'], capture: false }, // Shared ability from all knights when they teleport in.
+      condition: (data) => data.phase === 2 && !data.seenThrust,
+      delaySeconds: 0.5,
+      infoText: (data, _matches, output) => {
+        if (data.thrustPositions.length !== 3)
+          return;
+        let safeDirs = Object.keys(unsafeMap);
+        data.thrustPositions.forEach((knight) => {
+          const knightNum = Directions.hdgTo8DirNum(parseFloat(knight.heading));
+          const knightDir = Directions.outputFrom8DirNum(knightNum);
+          const pairedDir = unsafeMap[knightDir];
+          safeDirs = safeDirs.filter((dir) => dir !== knightDir && dir !== pairedDir);
+        });
+        if (safeDirs.length !== 2)
+          return;
+        const [dir1, dir2] = safeDirs.sort();
+        if (dir1 === undefined || dir2 === undefined)
+          return;
+        return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
+      },
+      run: (data) => {
+        data.thrustPositions = [];
+        data.seenThrust = true;
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir1} / ${dir2} Safe',
+          de: '${dir1} / ${dir2} Sicher',
+          cn: '${dir1} / ${dir2} 安全',
+          ko: '${dir1} / ${dir2} 안전',
+        },
+        ...Directions.outputStrings8Dir,
+      },
     },
     {
       id: 'ThordanEX Sword Of The Heavens',
@@ -193,9 +316,17 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.swordTarget === undefined || data.shieldTarget === undefined)
           return output.unknownDance!();
+        const swordTarget = data.ShortName(data.swordTarget);
+        const shieldTarget = data.ShortName(data.shieldTarget);
         if (data.swordTarget === data.shieldTarget)
-          return output.singleDance!({ target: data.swordTarget });
-        return output.doubleDance!({ sword: data.swordTarget, shield: data.shieldTarget });
+          return output.singleDance!({ target: swordTarget });
+        return output.doubleDance!({ sword: swordTarget, shield: shieldTarget });
+      },
+      run: (data) => {
+        delete data.shieldKnight;
+        delete data.swordKnight;
+        delete data.shieldTarget;
+        delete data.swordTarget;
       },
       outputStrings: {
         unknownDance: {
@@ -214,10 +345,18 @@ const triggerSet: TriggerSet<Data> = {
       type: 'HeadMarker',
       netRegex: { id: '000E' },
       condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.defamationYou!(),
+      alarmText: (data, _matches, output) => {
+        if (data.phase !== 2)
+          return output.defamationNoNumber!();
+        return output.defamationCounted!({ number: data.defCounter });
+      },
+      run: (data) => data.defCounter += 1,
       outputStrings: {
-        defamationYou: {
+        defamationNoNumber: {
           en: 'Defamation on YOU',
+        },
+        defamationCounted: {
+          en: 'Defamation #${number} on YOU',
         },
       },
     },
@@ -234,8 +373,13 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       suppressSeconds: 5,
       alarmText: (data, _matches, output) => {
+        if (!data.pierceTargets.includes(data.me))
+          return;
+        return output.pierceYou!();
+      },
+      alertText: (data, _matches, output) => {
         if (data.pierceTargets.includes(data.me))
-          return output.pierceYou!();
+          return;
         return output.pierceOthers!();
       },
       run: (data) => data.pierceTargets = [],
@@ -276,7 +420,19 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ThordanEX Fury Spear',
       type: 'HeadMarker',
       netRegex: { id: '0010' },
+      alarmText: (data, matches, output) => {
+        // Whoever is actively tanking Thordan must not stack,
+        // because they will be taking Heavenly Heel shortly after.
+        // If they stack, they will receive the physical vulnerability up and auto-die.
+        if (data.me !== data.mainTank)
+          return;
+        if (data.me === matches.target)
+          return output.spearYou!();
+        return output.spearMainTank!();
+      },
       alertText: (data, matches, output) => {
+        if (data.me === data.mainTank)
+          return;
         if (data.me === matches.target)
           return output.spearYou!();
         return output.spearOther!({ spearTarget: matches.target });
@@ -285,11 +441,59 @@ const triggerSet: TriggerSet<Data> = {
         spearYou: {
           en: 'Wild Charge on YOU',
         },
+        spearMainTank: {
+          en: 'Wild Charge: STAY OUT',
+        },
         spearOther: {
           en: 'Wild Charge: Intercept ${spearTarget}'
         }
       },
     },
+    {
+      id: 'ThordanEX Pure Of Soul',
+      type: 'StartsUsing',
+      netRegex: { id: '14B1', source: 'Ser Charibert', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'ThordanEX Single Spiral Thrust',
+      type: 'Ability',
+      netRegex: { id: '1018', source: 'Ser Vellguine' }, // Shared ability from all knights when they teleport in.
+      condition: (data) => data.phase === 5,
+      infoText: (_data, matches, output) => {
+        const knightNum = Directions.hdgTo8DirNum(parseFloat(matches.heading));
+        const knightDir = Directions.outputFrom8DirNum(knightNum);
+        const [dir1, dir2] = [knightDir, unsafeMap[knightDir]].sort();
+        if (dir1 === undefined || dir2 === undefined)
+        return;
+      return output.combined!({ dir1: output[dir1]!(), dir2: output[dir2]!() });
+      },
+      outputStrings: {
+        combined: {
+          en: '${dir1} / ${dir2} Unsafe',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
+      id: 'ThordanEX Faith Unmoving Off Center',
+      type: 'Ability',
+      netRegex: { id: '1018', source: 'Ser Grinnaux' }, // Shared ability from all knights when they teleport in.
+      condition: (data) => data.phase === 4,
+      delaySeconds: 6, // Grinnaux insta-casts Faith Unmoving 13s after appearing. Give ~7s of warning.
+      alarmText: (_data, matches, output) => {
+        const knightX = parseFloat(matches.x);
+        const knightY = parseFloat(matches.y);
+        const knightDir = Directions.xyTo8DirOutput(knightX, knightY, 0, 0);
+        return output.knockbackWarn!({ knightDir: output[knightDir]!() });
+      },
+      outputStrings: {
+        knockbackWarn: {
+          en: 'Knockback from ${knightDir}',
+        },
+        ...fullDirNameMap,
+      },
+    }
   ],
 
   timelineReplace: [

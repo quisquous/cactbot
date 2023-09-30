@@ -32,6 +32,7 @@ hideall "--sync--"
 82.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:105A:/ window 82.4,10
 91.4 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1018:/
 93.4 "--sync--" sync / 1[56]:[^:]*:Ser Hermenost:1018:/
+95.7 "--chains appear--"
 98.0 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:14AB:/ window 10,10 # Heavensflame cast
 98.4 "Heavensflame 1" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
 99.4 "Heavensflame 2" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
@@ -168,6 +169,7 @@ hideall "--sync--"
 622.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
 632.3 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
 638.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
+641.5 "--chains appear--"
 642.4 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:14B0:/
 643.5 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
 643.5 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/

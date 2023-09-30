@@ -7,7 +7,8 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
   zoneId: ZoneId.TheMinstrelsBalladThordansReign,
   damageWarn: {
     'ThordanEX Meteorain': '1484', // Targeted puddle AoEs, phase 1
-    'ThordanEX Ascalons Mercy': '1480', // Fan-shaped conal AoEs
+    'ThordanEX Ascalons Mercy 1': '147F', // Fan-shaped conal AoEs
+    'ThordanEX Ascalons Mercy 2': '1480', // Fan-shaped conal AoEs
     'ThordanEX Charibert Heavensflame': '14AC', // Targeted puddle AoEs, phases 2/6
     'ThordanEX Spiral Thrust': '14A6', // Cross-arena dashes, Ignasse/Paulecrain/Vellguine
     'ThordanEX Grinnaux Dimensional Collapse': '149A', // Gravity puddles
@@ -15,13 +16,15 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'ThordanEX Guerrique Heavy Impact 2': '14A1', // Earth ring small
     'ThordanEX Guerrique Heavy Impact 3': '14A2', // Earth ring large
     'ThordanEX Guerrique Heavy Impact 4': '14A3', // Earth ring giant
-    'ThordanEX Noudenet Comet': '14B5', // Targeted puddle AoEs, phases 2/6
+    'ThordanEX Charibert Holy Chain': '14AD', // Failure to break chains on time
   },
   damageFail: {
+    'ThordanEX Hermenost Eternal Conviction': '149E', // Missed towers
     'ThordanEX Comet Circle Comet Impact': '14B3', // Small meteor enrage, might not be survivable
   },
-  gainsEffectFail: {
-    'ThordanEX Hermenost Eternal Conviction': '149E', // Missed towers
+  gainsEffectWarn: {
+    'ThordanEX Frostbite': '10C', // Standing in Hiemal Storm ice puddles
+    'ThordanEX Hysteria': '128', // Gaze mechanic failure
   },
   shareWarn: {
     'ThordanEX Ascalons Might': '147E', // Instant tank cleave
@@ -29,6 +32,7 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'ThordanEX Heavenly Slash': '1494', // Cleaving mini-buster, Adelphel/Janlenoux, phase 2
     'ThordanEX Haumeric Hiemal Storm': '14AF', // Ice spread circles, Haumeric, phase 2/6
     'ThordanEX Spiral Pierce': '14A7', // Tethered line AoEs, Ignasse/Paulecrain/Vellguine
+    'ThordanEX Noudenet Comet': '14B5', // Targeted puddle AoEs, phases 2/6
   },
   soloWarn: {
     'ThordanEX Dragons Rage': '148B', // Standard stack marker
@@ -44,12 +48,12 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
           id: matches.targetId,
           name: matches.target,
           text: {
-            en: 'Knocked off',
-            de: 'Runtergefallen',
-            fr: 'Renversé(e)',
-            ja: 'ノックバック',
-            cn: '击退坠落',
-            ko: '넉백',
+            en: 'Pushed into wall',
+            de: 'Rückstoß in die Wand',
+            fr: 'Poussé(e) dans le mur',
+            ja: '壁へノックバック',
+            cn: '击退至墙',
+            ko: '벽으로 넉백',
           },
         };
       },
