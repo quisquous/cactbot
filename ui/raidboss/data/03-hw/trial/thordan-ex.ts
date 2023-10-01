@@ -76,6 +76,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitPuddles: {
           en: 'Bait puddles',
+          cn: '诱导圈圈',
         },
       },
     },
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitPuddles: {
           en: 'Bait gravity puddles',
+          cn: '诱导黑圈',
         },
       },
     },
@@ -115,6 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         knockbackAoe: {
           en: 'AOE + knockback x7',
+          cn: 'AOE + 击退 x7',
         },
       },
     },
@@ -186,6 +189,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         breakChains: {
           en: 'Break chains with ${partner}',
+          cn: '与 ${partner} 拉断连锁',
         },
       },
     },
@@ -208,9 +212,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         singleGaze: {
           en: 'Look away from Thordan',
+          cn: '背对托尔丹',
         },
         doubleGaze: {
           en: 'Look away from Thordan and Eye',
+          cn: '背对托尔丹和眼睛',
         },
       },
     },
@@ -271,6 +277,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         attackSword: {
           en: 'Attack ${swordKnight}',
+          cn: '攻击 ${swordKnight}',
         },
       },
     },
@@ -322,12 +329,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         unknownDance: {
           en: 'Heavy busters',
+          cn: '高伤死刑',
         },
         singleDance: {
           en: '2x buster on ${target}',
+          cn: '双死刑点 ${target}',
         },
         doubleDance: {
           en: 'Sword buster on ${sword} (shield on ${shield})',
+          cn: '剑死刑点 ${sword} (盾死刑点 ${shield})',
         },
       },
     },
@@ -345,9 +355,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         defamationNoNumber: {
           en: 'Defamation on YOU',
+          cn: '穿天点名',
         },
         defamationCounted: {
           en: 'Defamation #${number} on YOU',
+          cn: '穿天 #${number} 点名',
         },
       },
     },
@@ -361,6 +373,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         pierceYou: {
           en: 'Line AoE on YOU',
+          cn: '直线AOE点名',
         },
       },
     },
@@ -373,6 +386,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         icePuddleYou: {
           en: 'Ice puddle on YOU',
+          cn: '冰圈点名',
         },
       },
     },
@@ -385,6 +399,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         meteorYou: {
           en: '4x meteor puddles on YOU',
+          cn: '4连陨石点名',
         },
       },
     },
@@ -412,12 +427,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spearYou: {
           en: 'Wild Charge on YOU',
+          cn: '奶枪点名',
         },
         spearMainTank: {
           en: 'Wild Charge: STAY OUT',
+          cn: '奶枪: 保持远离',
         },
         spearOther: {
           en: 'Wild Charge: Intercept ${spearTarget}',
+          cn: '奶枪: 挡住 ${spearTarget}',
         },
       },
     },
@@ -443,6 +461,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combined: {
           en: '${dir1} / ${dir2} Unsafe',
+          cn: '${dir1} / ${dir2} 危险',
         },
         ...Directions.outputStrings8Dir,
       },
@@ -462,6 +481,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         knockbackWarn: {
           en: 'Knockback from ${knightDir}',
+          cn: '${knightDir} 击退',
         },
         ...fullDirNameMap,
       },

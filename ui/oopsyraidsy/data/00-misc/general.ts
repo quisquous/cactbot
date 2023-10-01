@@ -184,6 +184,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             text: {
               en: `overwrote ${originalRaiser}'s raise`,
               de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
+              cn: `顶掉了${originalRaiser}的复活`,
               ko: `${originalRaiser}의 부활과 겹침`,
             },
           };
@@ -214,6 +215,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               text: {
                 en: `overwrote ${originalRaiser}'s raise`,
                 de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
+                cn: `顶掉了${originalRaiser}的复活`,
                 ko: `${originalRaiser}의 부활과 겹침`,
               },
             };
@@ -262,6 +264,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               reportId: matches.sourceId,
               text: {
                 en: `overwrote ${lastSource}'s ${matches.ability}`,
+                cn: `顶掉了${lastSource}的${matches.ability}`,
               },
             };
           }
