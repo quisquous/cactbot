@@ -30,6 +30,7 @@ const galeSphereOutputStrings = {
   unknown: Outputs.unknown,
   dirAndMechanic: {
     en: '${dir} + ${mechanic}',
+    cn: '${dir} + ${mechanic}',
   },
   healerGroups: Outputs.healerGroups,
   partnerStack: {
@@ -99,9 +100,11 @@ Options.Triggers.push({
       outputStrings: {
         dirNWSE: {
           en: 'NW / SE',
+          cn: '左上 (西北) / 右下 (东南)',
         },
         dirNESW: {
           en: 'NE / SW',
+          cn: '右上 (东北) / 左下 (西南)',
         },
       },
     },
@@ -161,9 +164,11 @@ Options.Triggers.push({
         backThenFront: Outputs.backThenFront,
         backThenFrontThenHealerGroups: {
           en: 'Back => Front => Out => Stacks',
+          cn: '后 => 前 => 钢铁 => 集合',
         },
         backThenFrontThenSpread: {
           en: 'Back => Front => Under => Spread',
+          cn: '后 => 前 => 月环 => 分散',
         },
       },
     },
@@ -184,9 +189,11 @@ Options.Triggers.push({
         front: Outputs.front,
         frontThenHealerGroups: {
           en: 'Front => Out => Stacks',
+          cn: '前 => 钢铁 => 集合',
         },
         frontThenSpread: {
           en: 'Front => Under',
+          cn: '前 => 月环',
         },
       },
     },
@@ -199,6 +206,7 @@ Options.Triggers.push({
       outputStrings: {
         outAndSpread: {
           en: 'Spread Out',
+          cn: '分散',
         },
       },
     },
@@ -275,6 +283,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '(out + healer groups, for later)',
+          cn: '(钢铁 + 稍后治疗分组分摊)',
         },
       },
     },
@@ -287,6 +296,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '(in + spread, for later)',
+          cn: '(月环 + 稍后分散)',
         },
       },
     },
@@ -358,6 +368,7 @@ Options.Triggers.push({
         unknown: Outputs.unknown,
         clones: {
           en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
+          cn: '分身：${dir1}->${dir2}->${dir3}->${dir4}',
         },
       },
     },
@@ -436,6 +447,7 @@ Options.Triggers.push({
       outputStrings: {
         safeSpotList: {
           en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          cn: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
         },
         ...galeSphereOutputStrings,
       },
@@ -514,6 +526,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${dir} => Healer Groups',
+          cn: '${dir} => 治疗分组分摊',
         },
         northeast: Outputs.northeast,
         southeast: Outputs.southeast,
@@ -580,6 +593,7 @@ Options.Triggers.push({
         dirSE: Outputs.dirSE,
         middleLean: {
           en: 'Middle (lean ${dir})',
+          cn: '中间 (偏 ${dir})',
         },
       },
     },
@@ -595,6 +609,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback on YOU',
+          cn: '击退点名',
         },
       },
     },
@@ -610,6 +625,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Flare on YOU',
+          cn: '陨石点名',
         },
       },
     },
@@ -626,6 +642,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Tower',
+          cn: '踩塔',
         },
       },
     },
@@ -792,6 +809,7 @@ Options.Triggers.push({
         'Azdaja\'s Shadow': '黑龙剑阿珠达雅',
         'Binding Cold': '咒缚寒气',
         'Black Fang': '黑牙',
+        'Burning Shade': '黑炎',
         'Cauterize': '黑炎俯冲',
         'Double Meteor': '双重陨石',
         'Dragon\'s Descent': '降龙爆火',

@@ -4239,6 +4239,7 @@ Options.Triggers.push({
         'Astral Advent': '星极临',
         'Astral Glow': '星极炽光',
         'Astral Impact': '星击',
+        'Buster': '死刑',
         'Caloric Theory': '热质说',
         'Crush Helm': '星天爆击打',
         'Demi Parhelion': '亚幻日',

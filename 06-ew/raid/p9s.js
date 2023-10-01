@@ -1000,6 +1000,7 @@ Options.Triggers.push({
         '\\(Mage': '(魔法师',
         '\\(cast\\)': '(咏唱)',
         '\\(resolve\\)': '(判定)',
+        '\\(stacks\\)': '(分摊)',
         'Aero IV': '飙风',
         'Archaic Demolish': '古式破碎拳',
         'Archaic Rockbreaker': '古式地烈劲',

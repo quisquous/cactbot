@@ -304,6 +304,7 @@ Options.Triggers.push({
         'Sonic Bloop': '杂音波',
         'Spinning Claw': '回旋雷爪',
         'Spun Lightning': '旋转闪电',
+        'Telekinesis': '念力',
         'Tidal Breath': '怒潮吐息',
         'Tidal Roar': '怒潮咆哮',
         'Tidalspout': '潮水喷涌',
