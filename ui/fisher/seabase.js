@@ -164,7 +164,7 @@ export default class SeaBase {
         data[keys[index]] === null
       ) {
         commit = false;
-        console.log(keys[index] + 'missing in catch');
+        console.log(`${keys[index]}missing in catch`);
       }
     }
 
@@ -229,21 +229,21 @@ export default class SeaBase {
   getFish(fish) {
     const result = this.getInfo('fish', fish);
     if (!result.id || !result.name)
-      console.log('failed to look up fish: ' + fish);
+      console.log(`failed to look up fish: ${fish}`);
     return result;
   }
 
   getBait(bait) {
     const result = this.getInfo('tackle', bait);
     if (!result.id || !result.name)
-      console.log('failed to look up bait: ' + bait);
+      console.log(`failed to look up bait: ${bait}`);
     return result;
   }
 
   getPlace(place) {
     const result = this.getInfo('places', place);
     if (!result.id || !result.name)
-      console.log('failed to look up place: ' + place);
+      console.log(`failed to look up place: ${place}`);
     return result;
   }
 

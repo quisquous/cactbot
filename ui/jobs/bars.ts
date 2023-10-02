@@ -217,7 +217,7 @@ export class Bars {
   }
 
   addJobBarContainer(): HTMLElement {
-    const id = this.player.job.toLowerCase() + '-bar';
+    const id = `${this.player.job.toLowerCase()}-bar`;
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
@@ -229,7 +229,7 @@ export class Bars {
   }
 
   addJobBoxContainer(): HTMLElement {
-    const id = this.player.job.toLowerCase() + '-boxes';
+    const id = `${this.player.job.toLowerCase()}-boxes`;
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
@@ -369,7 +369,7 @@ export class Bars {
     pullCountdownContainer.appendChild(pullCountdown);
     pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
+    pullCountdown.classList.add(`lang-${this.options.DisplayLanguage}`);
 
     // reset pull bar when in combat (game)
     this.ee.on('battle/in-combat', (ev) => {

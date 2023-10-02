@@ -540,7 +540,7 @@ export class CactbotConfigurator {
         this.buildDirectory(derivedOptions, groupDiv, opt, group, path);
         break;
       default:
-        console.error('unknown type: ' + JSON.stringify(opt));
+        console.error(`unknown type: ${JSON.stringify(opt)}`);
         break;
     }
   }

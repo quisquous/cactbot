@@ -52,7 +52,7 @@ type World = {
 };
 
 const fetchXivapi = async () => {
-  const url = 'https://xivapi.com/World?columns=' + Object.keys(worldFieldMap).join(',');
+  const url = `https://xivapi.com/World?columns=${Object.keys(worldFieldMap).join(',')}`;
   const response = await fetch(url);
   const json = (await response.json()) as XivapiResult;
   return json.Results;

@@ -178,22 +178,25 @@ const whiteFlameDelayOutputStrings = {
     en: 'soon',
     de: 'bald',
     cn: '等1只小怪',
-    ko: '곧',
+    ko: '1번째 쫄',
   },
   delay3: {
     en: 'delayed',
     de: 'verzögert',
     cn: '等2只小怪',
+    ko: '2번째 쫄',
   },
   delay4: {
     en: 'very delayed',
     de: 'sehr verzögert',
     cn: '等3只小怪',
+    ko: '3번째 쫄',
   },
   delay5: {
     en: 'verrry delayed',
     de: 'seeeeehr verzögert',
     cn: '等4只小怪',
+    ko: '4번째 쫄',
   },
 } as const;
 
@@ -4510,6 +4513,7 @@ const triggerSet: TriggerSet<Data> = {
         'Astral Advent': '星极临',
         'Astral Glow': '星极炽光',
         'Astral Impact': '星击',
+        'Buster': '死刑',
         'Caloric Theory': '热质说',
         'Crush Helm': '星天爆击打',
         'Demi Parhelion': '亚幻日',

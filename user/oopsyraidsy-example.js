@@ -43,7 +43,7 @@ Options.Triggers = [
           return e.targetName === data.me && matches.flags === '10004';
         },
         mistake: function(e, data) {
-          const text = e.abilityName + ': ' + e.damageStr;
+          const text = `${e.abilityName}: ${e.damageStr}`;
           return { type: 'good', blame: e.targetName, text: text };
         },
       },

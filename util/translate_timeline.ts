@@ -55,7 +55,7 @@ const translateTimeline = async (timelinePath: string, locale: Lang): Promise<vo
   });
 
   // TODO: this block is very duplicated with a number of other scripts.
-  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace('.ts', '.js');
+  const importPath = `../${path.relative(process.cwd(), triggersFile).replace('.ts', '.js')}`;
   // TODO: Fix dynamic imports in TypeScript
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const triggerSet = (await import(importPath))?.default as LooseTriggerSet;

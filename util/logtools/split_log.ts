@@ -111,7 +111,7 @@ const writeFile = (
 
     lineReader.on('close', () => {
       writer.end();
-      console.log('Wrote: ' + outputFile);
+      console.log(`Wrote: ${outputFile}`);
 
       anonymizer.validateIds(notifier);
       for (const line of lines)

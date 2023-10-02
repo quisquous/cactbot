@@ -438,7 +438,7 @@ class EurekaTracker {
       if (!aspect)
         throw new UnreachableCode();
       aspect.classList.remove(...aspect.classList);
-      aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
+      aspect.classList.add(`aspect-ratio-${this.zoneInfo.shortName}`);
 
       if (this.zoneInfo.mapImage) {
         const mapImageElement = document.getElementById('map-image');
@@ -713,8 +713,9 @@ class EurekaTracker {
 
         if (openUntil) {
           const openMin = (openUntil - nowMs) / 1000 / 60;
-          const nmString = `${respawnIcon}${Math.ceil(openMin)}` +
-            this.TransByDispLang(this.options.timeStrings.minute);
+          const nmString = `${respawnIcon}${Math.ceil(openMin)}${
+            this.TransByDispLang(this.options.timeStrings.minute)
+          }`;
           timeElement.innerHTML = nmString;
         } else {
           timeElement.innerText = '';
@@ -726,8 +727,9 @@ class EurekaTracker {
           respawnIcon = '';
 
         const remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
-        const nmString = `${respawnIcon}${remainingMinutes}` +
-          this.TransByDispLang(this.options.timeStrings.minute);
+        const nmString = `${respawnIcon}${remainingMinutes}${
+          this.TransByDispLang(this.options.timeStrings.minute)
+        }`;
         if (timeElement.innerHTML !== nmString)
           timeElement.innerHTML = nmString;
 

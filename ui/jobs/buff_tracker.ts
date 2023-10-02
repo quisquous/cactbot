@@ -105,7 +105,7 @@ export class Buff {
     // Remove any preexisting cooldowns with the same name in case they unexpectedly exist.
     this.cooldown[source]?.removeCallback();
 
-    const cooldownKey = 'c:' + this.name + ':' + source;
+    const cooldownKey = `c:${this.name}:${source}`;
 
     let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
     secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow, 1), this.info.cooldown);
@@ -141,7 +141,7 @@ export class Buff {
 
     const color = this.info.borderColor;
 
-    const readyKey = 'r:' + this.name + ':' + source;
+    const readyKey = `r:${this.name}:${source}`;
     this.ready[source] = this.makeAura(
       readyKey,
       this.readyList,
@@ -659,7 +659,7 @@ export class BuffTracker {
           continue;
         const key = buff[prop];
         if (typeof key === 'undefined') {
-          console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
+          console.error(`undefined value for key ${prop} for buff ${buff.name}`);
           continue;
         }
 
