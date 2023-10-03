@@ -40,6 +40,7 @@ const galeSphereOutputStrings = {
   unknown: Outputs.unknown,
   dirAndMechanic: {
     en: '${dir} + ${mechanic}',
+    de: '${dir} + ${mechanic}',
     cn: '${dir} + ${mechanic}',
   },
   healerGroups: Outputs.healerGroups,
@@ -158,10 +159,12 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         dirNWSE: {
           en: 'NW / SE',
+          de: 'NW / SO',
           cn: '左上 (西北) / 右下 (东南)',
         },
         dirNESW: {
           en: 'NE / SW',
+          de: 'NO / SW',
           cn: '右上 (东北) / 左下 (西南)',
         },
       },
@@ -222,10 +225,12 @@ const triggerSet: TriggerSet<Data> = {
         backThenFront: Outputs.backThenFront,
         backThenFrontThenHealerGroups: {
           en: 'Back => Front => Out => Stacks',
+          de: 'Hinten => Vorne => Raus => Sammeln',
           cn: '后 => 前 => 钢铁 => 集合',
         },
         backThenFrontThenSpread: {
           en: 'Back => Front => Under => Spread',
+          de: 'Hinten => Vorne => Unter ihn => Verteilen',
           cn: '后 => 前 => 月环 => 分散',
         },
       },
@@ -247,10 +252,12 @@ const triggerSet: TriggerSet<Data> = {
         front: Outputs.front,
         frontThenHealerGroups: {
           en: 'Front => Out => Stacks',
+          de: 'Vorne => Raus => Sammeln',
           cn: '前 => 钢铁 => 集合',
         },
         frontThenSpread: {
           en: 'Front => Under',
+          de: 'Vorne => Unter ihn',
           cn: '前 => 月环',
         },
       },
@@ -264,6 +271,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         outAndSpread: {
           en: 'Spread Out',
+          de: 'Außen verteilen',
           cn: '分散',
         },
       },
@@ -341,6 +349,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '(out + healer groups, for later)',
+          de: '(raus + Heiler Gruppen, für später)',
           cn: '(钢铁 + 稍后治疗分组分摊)',
         },
       },
@@ -354,6 +363,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '(in + spread, for later)',
+          de: '(rein + verteilen, für später)',
           cn: '(月环 + 稍后分散)',
         },
       },
@@ -430,6 +440,7 @@ const triggerSet: TriggerSet<Data> = {
         unknown: Outputs.unknown,
         clones: {
           en: 'Clones: ${dir1}->${dir2}->${dir3}->${dir4}',
+          de: 'Klone: ${dir1}->${dir2}->${dir3}->${dir4}',
           cn: '分身：${dir1}->${dir2}->${dir3}->${dir4}',
         },
       },
@@ -524,6 +535,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         safeSpotList: {
           en: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
+          de: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
           cn: '${dir1} => ${dir2} => ${dir3} => ${dir4}',
         },
         ...galeSphereOutputStrings,
@@ -610,6 +622,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${dir} => Healer Groups',
+          de: '${dir} => Heiler Gruppen',
           cn: '${dir} => 治疗分组分摊',
         },
         northeast: Outputs.northeast,
@@ -681,6 +694,7 @@ const triggerSet: TriggerSet<Data> = {
         dirSE: Outputs.dirSE,
         middleLean: {
           en: 'Middle (lean ${dir})',
+          de: 'Mitte (${dir} halten)',
           cn: '中间 (偏 ${dir})',
         },
       },
@@ -697,6 +711,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Knockback on YOU',
+          de: 'Rückstoß auf DIR',
           cn: '击退点名',
         },
       },
@@ -713,6 +728,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Flare on YOU',
+          de: 'Flare auf DIR',
           cn: '陨石点名',
         },
       },
@@ -730,6 +746,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Tower',
+          de: 'Nimm Turm',
           cn: '踩塔',
         },
       },

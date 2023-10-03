@@ -264,6 +264,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               reportId: matches.sourceId,
               text: {
                 en: `overwrote ${lastSource}'s ${matches.ability}`,
+                de: `überschrieb ${lastSource}'s ${matches.ability}`,
                 cn: `顶掉了${lastSource}的${matches.ability}`,
               },
             };
