@@ -8,6 +8,7 @@ const triggerSet: TriggerSet<Data> = {
   id: 'TheAbyssalFractureExtreme',
   zoneId: ZoneId.TheAbyssalFractureExtreme,
   timelineFile: 'zeromus-ex.txt',
+  triggers: [],
 };
 
 export default triggerSet;
