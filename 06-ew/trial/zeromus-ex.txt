@@ -87,29 +87,29 @@ hideall "--sync--"
 319.2 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
 324.2 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
 329.2 "Sable Thread" sync / 1[56]:[^:]*:Zeromus:8B38:/
-353.2 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-361.2 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
+353.2 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+361.2 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 361.2 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 380.2 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
 394.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
 403.4 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
 414.4 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-430.6 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-438.6 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
+430.6 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+438.6 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 438.6 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 467.7 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
 483.7 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
 488.7 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
 493.7 "Sable Thread" sync / 1[56]:[^:]*:Zeromus:8B38:/
-517.7 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-525.7 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
+517.7 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+525.7 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 525.7 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 544.8 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
 558.9 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
 567.9 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
 578.9 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-595.0 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-603.0 "Branding/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
+595.0 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+603.0 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 603.0 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 632.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
 648.1 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
