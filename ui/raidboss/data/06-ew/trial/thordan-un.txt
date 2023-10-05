@@ -105,7 +105,7 @@ hideall "--sync--"
 420.7 "Meteor Impact Enrage" sync / 1[56]:[^:]*:Meteor Circle:89F3:/
 
 
-427.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:85A0:/ window 260,10
+427.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:89BB:/ window 260,10
 437.7 "The Light Of Ascalon 1" #sync / 1[56]:[^:]*:Ascalon:89CE:/
 439.1 "The Light Of Ascalon 2" #sync / 1[56]:[^:]*:Ascalon:89CE:/
 440.5 "The Light Of Ascalon 3" #sync / 1[56]:[^:]*:Ascalon:89CE:/
@@ -219,7 +219,7 @@ hideall "--sync--"
 # 89B8 --sync--
 # 8598 --sync--
 # 8599 --sync--
-# 85A0 --sync--
+# 89BB --sync--
 # 89BC attack
 # 89BD Ascalon's Might
 # 89BE Ascalon's Mercy
