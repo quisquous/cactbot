@@ -1,0 +1,237 @@
+### THE LUNAR SUBTERRANE
+# ZoneId: 1164
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~#
+# DARK ELF #
+#~~~~~~~~~~#
+
+# -p 87D9:1009
+# -ii  87E5 89B6 87DF
+
+1000.0 "--sync--" sync / 00:0839::The Cloven Crystal Square will be sealed off/ window 10000,0
+1006.0 "--sync--" sync / 14:[^:]*:Dark Elf:87D9:/ window 10,10
+1009.0 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
+1017.1 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
+1027.1 "Shadowy Sigil" sync / 1[56]:[^:]*:Dark Elf:87D[BC]:/
+1027.5 "Explosion" sync / 1[56]:[^:]*:Dark Elf:87E3:/
+1034.2 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
+1044.3 "Sorcerous Shroud" sync / 1[56]:[^:]*:Dark Elf:87DA:/
+1051.0 "Void Dark II (cast)" sync / 1[56]:[^:]*:Dark Elf:87DD:/
+1056.6 "Void Dark II (spread)" sync / 1[56]:[^:]*:Dark Elf:87E4:/
+1060.3 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
+
+1067.2 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
+1077.3 "Sorcerous Shroud" sync / 1[56]:[^:]*:Dark Elf:87DA:/
+1084.0 "Void Dark II (cast)" sync / 1[56]:[^:]*:Dark Elf:87DD:/
+1091.6 "Void Dark II (spread)" sync / 1[56]:[^:]*:Dark Elf:87E4:/
+1092.2 "Shadowy Sigil" sync / 1[56]:[^:]*:Dark Elf:87D[BC]:/
+1092.8 "Explosion" sync / 1[56]:[^:]*:Dark Elf:87E3:/
+1099.4 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
+1109.6 "Staff Smite" sync / 1[56]:[^:]*:Dark Elf:8984:/
+1120.6 "Abyssal Outburst" sync / 1[56]:[^:]*:Dark Elf:87DE:/
+1129.7 "Abyssal Outburst" sync / 1[56]:[^:]*:Dark Elf:87DE:/
+
+1140.4 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/ window 50,50 forcejump 1067.2
+
+# ALL ENCOUNTER ABILITIES
+# 368 Attack ye olde auto
+# 87D9 Hexing Staves cast to summon staves for Ruinous Hex
+# 87DA Sorcerous Shroud cast to hide staves
+# 87DB Shadowy Sigil pink triangle sigil cast
+# 87DC Shadowy Sigil blue/purple square sigil cast
+# 87DD Void Dark II self-targeted cast that gives people headmarkers for 87E4
+# 87DE Abyssal Outburst aoe
+# 87DF Ruinous Hex self-targeted ability from staves before 87E5
+# 87E3 Explosion casted damage for sigil explosions (either color)
+# 87E4 Void Dark II spread damage
+# 87E5 Ruinous Hex damage from hidden staves
+# 8984 Staff Smite non-cleaving tankbuster cast
+# 8985 Ruinous Confluence self-targeted cast at the same time as 89B6/87E5
+# 89B6 Ruinous Hex damage from first staves
+
+
+#~~~~~~~~~~~~~~~~~#
+# Damcyan Antlion #
+#~~~~~~~~~~~~~~~~~#
+
+# -p 87FD:2014.5
+# -ii 8C36 8803 8C1F 8801 8806
+
+# Note: Antlion March 8800 is into 5x Antlion March (8801) segments
+# Note: timing is the same, even once all towers have fallen
+
+2000.0 "--sync--" sync / 00:0839::The Bloodied Barbican will be sealed off/ window 10000,0
+2009.5 "--sync--" sync / 14:[^:]*:Damcyan Antlion:87FD:/ window 10,10
+2014.5 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2023.6 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+
+2028.8 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2037.0 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
+2049.6 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2052.9 "Towerfall 1" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+
+2056.7 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2062.8 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
+2073.9 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
+2083.0 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+
+# note: we cooould just loop here
+2089.1 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2097.3 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
+2109.9 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2113.2 "Towerfall 2" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+
+2117.0 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2123.1 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
+2134.2 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
+2143.3 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+
+2149.4 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2157.6 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
+2170.2 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2173.5 "Towerfall 3" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+
+2177.3 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2183.4 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
+2194.5 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
+2203.6 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+
+2209.7 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2217.9 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
+2230.5 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2233.8 "Towerfall 4" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+
+2237.6 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2243.7 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
+2254.8 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
+2263.9 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+
+2270.0 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2278.2 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
+2290.8 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+
+2297.9 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
+2304.0 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
+2315.1 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
+2324.2 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+
+2330.3 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/ window 50,50 forcejump 2270.0
+
+
+# ALL ENCOUNTER ABILITIES
+# 366 attack various background mobs doing autos
+# 367 attack various background mobs doing autos
+# 368 attack Antlion auto, but also various mobs in the background doing autos
+# 868B Pound Sand large targeted(?) circle after Earthen Geyser
+# 87FD Sandblast raidwide cast
+# 8800 Antlion March self-targeted cast
+# 8801 Antlion March damage for individual march segments
+# 8802 Landslip self-targeted cast for moving lines
+# 8803 Landslip cast and movement ability for each landslip line
+# 8804 Towerfall cast and damage for falling towers
+# 8805 Earthen Geyser self-targeted ability for stack
+# 8806 Earthen Geyser cast and damage for stack marker
+# 8808 --sync-- repositioning
+# 8C1F --sync-- Antlion March preview
+# 8C36 Aqua Vitae there's a Baron Knight-captain casting this in the background
+
+
+#~~~~~~~~~#
+# Durante #
+#~~~~~~~~~#
+
+# -p 88C3:3012.3
+# -ii 8CDA 88B2 88B6 8CD8 88C0 88B9 8C20 88B4
+
+3000.0 "--sync--" sync / 00:0839::The Carnelian Courtyard will be sealed off/ window 10000,0
+3007.3 "--sync--" sync / 14:[^:]*:Durante:88C3:/ window 10,10
+3012.3 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
+3014.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3022.7 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/ duration 2.5
+3035.5 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
+3044.3 "Explosion" sync / 1[56]:[^:]*:Aetheric Charge:88BE:/
+
+3048.6 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3058.0 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/ duration 2.5
+3064.6 "Fallen Grace" sync / 1[56]:[^:]*:Durante:8C2A:/
+
+3070.7 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
+3076.1 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
+3081.2 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
+3082.1 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
+3094.1 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
+
+3094.5 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
+3099.8 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
+3104.9 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
+3105.8 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
+3117.8 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
+3123.2 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
+
+3128.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3130.4 "--sync--" sync / 1[56]:[^:]*:Durante:38FC:/
+3135.4 "Antipodal Assault" sync / 1[56]:[^:]*:Durante:88BF:/
+3142.9 "Hard Slash" sync / 1[56]:[^:]*:Durante:88C1:/
+
+3145.2 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3154.4 "Twilight Phase" sync / 1[56]:[^:]*:Durante:8CD7:/
+3165.6 "Dark Impact" sync / 1[56]:[^:]*:Durante:88BA:/
+
+3172.3 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3180.6 "Death's Journey" sync / 1[56]:[^:]*:Durante:88B3:/
+
+3185.7 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
+3191.0 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
+3196.1 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
+3197.0 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
+3209.0 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
+3212.3 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
+
+3217.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3226.8 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/
+3233.2 "Fallen Grace" sync / 1[56]:[^:]*:Durante:8C2A:/
+
+3241.3 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3243.4 "--sync--" sync / 1[56]:[^:]*:Durante:38FC:/
+3248.4 "Antipodal Assault" sync / 1[56]:[^:]*:Durante:88BF:/
+3255.8 "Hard Slash" sync / 1[56]:[^:]*:Durante:88C1:/
+
+3257.9 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3267.1 "Twilight Phase" sync / 1[56]:[^:]*:Durante:8CD7:/
+3278.3 "Dark Impact" sync / 1[56]:[^:]*:Durante:88BA:/
+3287.2 "Arcane Edge" sync / 1[56]:[^:]*:Durante:88C2:/
+
+3295.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
+3303.7 "Death's Journey" sync / 1[56]:[^:]*:Durante:88B3:/ window 100,100 forcejump 3180.6
+
+# ALL ENCOUNTER ABILITIES
+# 366 attack
+# 38FC --sync-- ability on line stack target for Antipodal Assault
+# 88AF --sync-- repositioning
+# 88B2 Duplicitous Battery damage
+# 88B3 Death's Journey cast and damage for center circle during purple line pinwheel
+# 88B4 Death's Journey cast and damage for lines during purple line pinwheel
+# 88B6 Twilight Phase self-targeted ability
+# 88B9 Dark Impact cast and untargeted no damage(?) ability before shooting an orb at the ground
+# 88BA Dark Impact cast and damage for large circle
+# 88BB Forsaken Fount self-targeted cast to summon Aetheric Charge orbs
+# 88BC Splinter splitting ability from Aetheric Orb after Contrapasso
+# 88BD Explosion split Aetheric Orb circle cast and damage
+# 88BE Explosion unsplit Aetheric Orb circle cast and damage
+# 88BF Antipodal Assault self-targeted cast for line stack
+# 88C0 Antipodal Assault line stack damage (no cast)
+# 88C1 Hard Slash large cleave from wall after Antipodal Assault charge
+# 88C2 Arcane Edge cast and non-cleaving tankbuster
+# 88C3 Old Magic raidwide aoe
+# 8C20 --sync-- unnamed ability tied to Death's Journey 88B4
+# 8C2A Fallen Grace cast and spread damage
+# 8C41 Contrapasso cast and minor raidwide damage that causes Splinter
+# 8CD7 Twilight Phase self-targeted cast
+# 8CD8 Twilight Phase cast and damage for large purple ribs (go sides)
+# 8CD9 Duplicitous Battery self-targeted cast (8CDA happens during cast, then 88B2 damage)
+# 8CDA --sync-- Duplicitous Battery telegraph
