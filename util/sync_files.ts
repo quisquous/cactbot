@@ -284,81 +284,81 @@ const zoneReplace: ZoneReplace[] = [
     },
   },
   {
-        // Thordan
-        fileMap: {
-          'ui/raidboss/data/03-hw/trial/thordan-ex.ts': 'ui/raidboss/data/06-ew/trial/thordan-un.ts',
-          'ui/raidboss/data/03-hw/trial/thordan-ex.txt': 'ui/raidboss/data/06-ew/trial/thordan-un.txt',
-          'ui/oopsyraidsy/data/03-hw/trial/thordan-ex.ts':
-            'ui/oopsyraidsy/data/06-ew/trial/thordan-un.ts',
-        },
-        prefix: { 'ThordanEX': 'ThordanUN' },
-        other: {
-          'TheMinstrelsBalladThordansReign': 'TheSingularityReactorUnreal',
-          'THE MINSTREL\'S BALLAD: THORDAN\'S REIGN': 'THE SINGULARITY REACTOR (UNREAL)',
-          'thordan-ex.txt': 'thordan-un.txt',
-        },
-        id: {
-          '1018': '89B7', // Knights teleporting in
-          '1019': '89B8', // Knights teleporting out
-          '1059': '8598',
-          '105A': '8599',
-          '105B': '85A0',
-          '147D': '89BC', // attack
-          '147E': '89BD', // Ascalon's Might
-          '147F': '89BE', // Ascalon's Mercy
-          '1480': '89BF', // Ascalon's Mercy
-          '1481': '89C0', // Lightning Storm
-          '1482': '89C1', // Lightning Storm
-          '1483': '89C2', // Meteorain
-          '1484': '89C3', // Meteorain
-          '1485': '89C4', // Ancient Quaga
-          '1486': '89C5', // Ancient Quaga enrage
-          '1487': '89C6', // Heavenly Heel
-          '1488': '89C7', // The Dragon's Eye
-          '1489': '89C8', // The Dragon's Gaze
-          '148A': '89C9', // The Dragon's Glory
-          '148B': '89CA', // The Dragon's Rage
-          '148C': '89CB', // Knights Of The Round
-          '148D': '89CC', // Ultimate End
-          '148E': '89CD', // Ultimate End
-          '148F': '89CE', // The Light Of Ascalon
-          '1490': '89CF', // Sacred Cross
-          '1491': '89D0', // Sacred Cross
-          '1492': '89D1', // Spear Of The Fury
-          '1493': '89D2', // Divine Right
-          '1494': '89D3', // Heavenly Slash
-          '1495': '89D4', // Holiest Of Holy
-          '1496': '89D5', // Holy Bladedance
-          '1497': '89D6', // Holy Shield Bash
-          '1499': '89D8', // Dimensional Collapse
-          '149A': '89D9', // Dimensional Collapse
-          '149B': '89DA', // Faith Unmoving
-          '149C': '89DB', // Conviction
-          '149D': '89DC', // Conviction
-          '149E': '89DD', // Eternal Conviction
-          '149F': '89DE', // Heavy Impact
-          '14A0': '89DF', // Heavy Impact
-          '14A1': '89E0', // Heavy Impact
-          '14A2': '89E1', // Heavy Impact
-          '14A3': '89E2', // Heavy Impact
-          '14A4': '89E3', // Absolute Conviction
-          '14A5': '89E4', // Absolute Conviction
-          '14A6': '89E5', // Spiral Thrust
-          '14A7': '89E6', // Spiral Pierce
-          '14A9': '89E8', // Skyward Leap
-          '14AA': '89E9', // Heavensward Leap
-          '14AB': '89EA', // Heavensflame
-          '14AC': '89EB', // Heavensflame
-          '14AD': '89EC', // Holy Chain
-          '14AE': '89ED', // Hiemal Storm
-          '14AF': '89EE', // Hiemal Storm
-          '14B0': '89EF', // Holy Meteor
-          '14B1': '89F0', // Pure Of Soul
-          '14B2': '89F1', // Pure Of Soul
-          '14B3': '89F2', // Comet Impact
-          '14B4': '89F3', // Meteor Impact
-          '14B5': '89F4', // Comet
-          },
+    // Thordan
+    fileMap: {
+      'ui/raidboss/data/03-hw/trial/thordan-ex.ts': 'ui/raidboss/data/06-ew/trial/thordan-un.ts',
+      'ui/raidboss/data/03-hw/trial/thordan-ex.txt': 'ui/raidboss/data/06-ew/trial/thordan-un.txt',
+      'ui/oopsyraidsy/data/03-hw/trial/thordan-ex.ts':
+        'ui/oopsyraidsy/data/06-ew/trial/thordan-un.ts',
+    },
+    prefix: { 'ThordanEX': 'ThordanUN' },
+    other: {
+      'TheMinstrelsBalladThordansReign': 'TheSingularityReactorUnreal',
+      'THE MINSTREL\'S BALLAD: THORDAN\'S REIGN': 'THE SINGULARITY REACTOR (UNREAL)',
+      'thordan-ex.txt': 'thordan-un.txt',
+    },
+    id: {
+      '1018': '89B7', // Knights teleporting in
+      '1019': '89B8', // Knights teleporting out
+      '1059': '8598',
+      '105A': '8599',
+      '105B': '85A0',
+      '147D': '89BC', // attack
+      '147E': '89BD', // Ascalon's Might
+      '147F': '89BE', // Ascalon's Mercy
+      '1480': '89BF', // Ascalon's Mercy
+      '1481': '89C0', // Lightning Storm
+      '1482': '89C1', // Lightning Storm
+      '1483': '89C2', // Meteorain
+      '1484': '89C3', // Meteorain
+      '1485': '89C4', // Ancient Quaga
+      '1486': '89C5', // Ancient Quaga enrage
+      '1487': '89C6', // Heavenly Heel
+      '1488': '89C7', // The Dragon's Eye
+      '1489': '89C8', // The Dragon's Gaze
+      '148A': '89C9', // The Dragon's Glory
+      '148B': '89CA', // The Dragon's Rage
+      '148C': '89CB', // Knights Of The Round
+      '148D': '89CC', // Ultimate End
+      '148E': '89CD', // Ultimate End
+      '148F': '89CE', // The Light Of Ascalon
+      '1490': '89CF', // Sacred Cross
+      '1491': '89D0', // Sacred Cross
+      '1492': '89D1', // Spear Of The Fury
+      '1493': '89D2', // Divine Right
+      '1494': '89D3', // Heavenly Slash
+      '1495': '89D4', // Holiest Of Holy
+      '1496': '89D5', // Holy Bladedance
+      '1497': '89D6', // Holy Shield Bash
+      '1499': '89D8', // Dimensional Collapse
+      '149A': '89D9', // Dimensional Collapse
+      '149B': '89DA', // Faith Unmoving
+      '149C': '89DB', // Conviction
+      '149D': '89DC', // Conviction
+      '149E': '89DD', // Eternal Conviction
+      '149F': '89DE', // Heavy Impact
+      '14A0': '89DF', // Heavy Impact
+      '14A1': '89E0', // Heavy Impact
+      '14A2': '89E1', // Heavy Impact
+      '14A3': '89E2', // Heavy Impact
+      '14A4': '89E3', // Absolute Conviction
+      '14A5': '89E4', // Absolute Conviction
+      '14A6': '89E5', // Spiral Thrust
+      '14A7': '89E6', // Spiral Pierce
+      '14A9': '89E8', // Skyward Leap
+      '14AA': '89E9', // Heavensward Leap
+      '14AB': '89EA', // Heavensflame
+      '14AC': '89EB', // Heavensflame
+      '14AD': '89EC', // Holy Chain
+      '14AE': '89ED', // Hiemal Storm
+      '14AF': '89EE', // Hiemal Storm
+      '14B0': '89EF', // Holy Meteor
+      '14B1': '89F0', // Pure Of Soul
+      '14B2': '89F1', // Pure Of Soul
+      '14B3': '89F2', // Comet Impact
+      '14B4': '89F3', // Meteor Impact
+      '14B5': '89F4', // Comet
+    },
   },
 ];
 
