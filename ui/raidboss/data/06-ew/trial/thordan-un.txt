@@ -32,7 +32,7 @@ hideall "--sync--"
 
 # Phase 2
 # Intermission part 1
-82.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:8599:/ window 82.4,10
+82.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:89BA:/ window 82.4,10
 91.4 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:89B7:/
 93.4 "--sync--" sync / 1[56]:[^:]*:Ser Hermenost:89B7:/
 95.7 "--chains appear--"
@@ -86,7 +86,7 @@ hideall "--sync--"
 352.0 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:89B7:/ window 150,10
 353.0 "--sync--" sync / 1[56]:[^:]*:Ser Haumeric:89B7:/ window 150,10
 359.6 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:89ED:/ window 328,10
-359.8 "--sync--" sync / 1[56]:[^:]*:Ser Noudenet:89EE:/ # Hiemal Storm
+359.8 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):89EE:/ # Hiemal Storm
 360.2 "Spiral Pierce" sync / 1[56]:[^:]*:(Ser Ignasse|Ser Paulecrain|Ser Vellguine):89E6:/
 361.5 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:89D8:/
 361.9 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:89D9:/ # Dimensional Collapse
@@ -114,7 +114,7 @@ hideall "--sync--"
 444.7 "The Light Of Ascalon 6" #sync / 1[56]:[^:]*:Ascalon:89CE:/
 446.1 "The Light Of Ascalon 7" #sync / 1[56]:[^:]*:Ascalon:89CE:/
 447.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:89CC:/ # Ultimate End wind-up
-451.8 "--sync--" sync / 1[56]:[^:]*:[^:]:8598:/ # All the knights use this unknown attack here
+451.8 "--sync--" sync / 1[56]:[^:]*:[^:]*:89B9:/ # All the knights use this unknown attack here
 455.8 "Ultimate End" sync / 1[56]:[^:]*:King Thordan:89CD:/
 460.3 "--targetable--"
 
@@ -173,7 +173,7 @@ hideall "--sync--"
 645.3 "Heavensflame 2" #sync / 1[56]:[^:]*:Ser Charibert:89EB:/
 646.4 "Heavensflame 3" #sync / 1[56]:[^:]*:Ser Charibert:89EB:/
 646.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:89ED:/
-647.4 "--sync--" sync / 1[56]:[^:]*:Ser Noudenet:89EE:/ # Hiemal Storm
+647.4 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):89EE:/ # Hiemal Storm
 648.7 "Ascalon's Mercy" sync / 1[56]:[^:]*:King Thordan:89BE:/
 656.8 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:89C4:/
 662.9 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:89C6:/
@@ -217,8 +217,8 @@ hideall "--sync--"
 # 366 attack
 # 89B7 --sync--
 # 89B8 --sync--
-# 8598 --sync--
-# 8599 --sync--
+# 89B9 --sync--
+# 89BA --sync--
 # 89BB --sync--
 # 89BC attack
 # 89BD Ascalon's Might

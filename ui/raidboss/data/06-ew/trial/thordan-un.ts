@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       // Cue off Thordan's movement ability alongside him going untargetable
       id: 'ThordanUN Intermission Phase',
       type: 'Ability',
-      netRegex: { id: '8599', source: 'King Thordan', capture: false },
+      netRegex: { id: '89BA', source: 'King Thordan', capture: false },
       run: (data) => data.phase = 2,
     },
     {

@@ -300,8 +300,8 @@ const zoneReplace: ZoneReplace[] = [
     id: {
       '1018': '89B7', // Knights teleporting in
       '1019': '89B8', // Knights teleporting out
-      '1059': '8598',
-      '105A': '8599',
+      '1059': '89B9',
+      '105A': '89BA',
       '105B': '89BB', // Thordan teleporting in
       '147D': '89BC', // attack
       '147E': '89BD', // Ascalon's Might
