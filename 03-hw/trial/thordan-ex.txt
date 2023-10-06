@@ -83,7 +83,7 @@ hideall "--sync--"
 352.0 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:1018:/ window 150,10
 353.0 "--sync--" sync / 1[56]:[^:]*:Ser Haumeric:1018:/ window 150,10
 359.6 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:14AE:/ window 328,10
-359.8 "--sync--" sync / 1[56]:[^:]*:Ser Noudenet:14AF:/ # Hiemal Storm
+359.8 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):14AF:/ # Hiemal Storm
 360.2 "Spiral Pierce" sync / 1[56]:[^:]*:(Ser Ignasse|Ser Paulecrain|Ser Vellguine):14A7:/
 361.5 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1499:/
 361.9 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:149A:/ # Dimensional Collapse
@@ -111,7 +111,7 @@ hideall "--sync--"
 444.7 "The Light Of Ascalon 6" #sync / 1[56]:[^:]*:Ascalon:148F:/
 446.1 "The Light Of Ascalon 7" #sync / 1[56]:[^:]*:Ascalon:148F:/
 447.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:148D:/ # Ultimate End wind-up
-451.8 "--sync--" sync / 1[56]:[^:]*:[^:]:1059:/ # All the knights use this unknown attack here
+451.8 "--sync--" sync / 1[56]:[^:]*:[^:]*:1059:/ # All the knights use this unknown attack here
 455.8 "Ultimate End" sync / 1[56]:[^:]*:King Thordan:148E:/
 460.3 "--targetable--"
 
@@ -170,7 +170,7 @@ hideall "--sync--"
 645.3 "Heavensflame 2" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
 646.4 "Heavensflame 3" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
 646.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:14AE:/
-647.4 "--sync--" sync / 1[56]:[^:]*:Ser Noudenet:14AF:/ # Hiemal Storm
+647.4 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):14AF:/ # Hiemal Storm
 648.7 "Ascalon's Mercy" sync / 1[56]:[^:]*:King Thordan:147F:/
 656.8 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
 662.9 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
