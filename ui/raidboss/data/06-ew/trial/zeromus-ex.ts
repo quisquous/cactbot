@@ -243,9 +243,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'A61' },
       condition: Conditions.targetIsYou(),
-      // the effect duration in logs is 57.00, which is wrong.
-      // it expires after 30s, so use a fixed delay (ugh)
-      delaySeconds: 26,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       response: Responses.stopMoving(),
     },
   ],
