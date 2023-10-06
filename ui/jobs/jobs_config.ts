@@ -68,6 +68,14 @@ UserConfig.registerOptions('jobs', {
       default: true,
     },
     {
+      id: 'CountdownSoundVolume',
+      name: {
+        en: 'Countdown sound volume',
+      },
+      type: 'float',
+      default: 0.3,
+    },
+    {
       id: 'HideWellFedAboveSeconds',
       name: {
         en: 'Hide cheese icon when food > time (in seconds)',
