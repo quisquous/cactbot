@@ -87,7 +87,12 @@ hideall "--sync--"
 #413.3 "Dark Matter" #sync / 1[56]:[^:]*:Zeromus:8B37:/
 #414.9 "Dark Matter" #sync / 1[56]:[^:]*:Zeromus:8B37:/
 #416.5 "Dark Matter" #sync / 1[56]:[^:]*:Zeromus:8B37:/
-# ???
+
+428.7 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B17:/
+442.8 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8AFB:/
+
+# FIXME: is this the loop? have seen through the sable thread at 360/484
+460.9 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8AF7:/ window 30,30 forcejump 335.1
 
 
 # Phase 2: ~25% push
