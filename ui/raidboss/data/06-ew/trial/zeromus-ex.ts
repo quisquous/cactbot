@@ -256,6 +256,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'Komet',
         'Toxic Bubble': 'Giftblase',
@@ -299,6 +300,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'comète',
         'Toxic Bubble': 'bulle empoisonnée',
@@ -342,6 +344,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'コメット',
         'Toxic Bubble': 'ポイズナスバブル',
