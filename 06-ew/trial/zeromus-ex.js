@@ -20,6 +20,7 @@ Options.Triggers.push({
   initData: () => {
     return {
       miasmicBlasts: [],
+      forkedPlayers: [],
     };
   },
   triggers: [
@@ -128,12 +129,37 @@ Options.Triggers.push({
       },
     },
     {
+      id: 'ZeromusEx Forked Lightning Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'ED7' },
+      run: (data, matches) => data.forkedPlayers.push(matches.target),
+    },
+    {
       id: 'ZeromusEx Stack Headmarker',
       type: 'HeadMarker',
       netRegex: { capture: true },
       condition: (data, matches) =>
         data.decOffset !== undefined && getHeadmarkerId(data, matches) === headmarkerMap.stack,
-      response: Responses.stackMarkerOn(),
+      alertText: (data, matches, output) => {
+        if (data.forkedPlayers !== undefined && data.forkedPlayers.includes(data.me))
+          return output.forkedLightning();
+        if (data.me === matches.target)
+          return output.stackOnYou();
+        return output.stackOnTarget({ player: data.ShortName(matches.target) });
+      },
+      run: (data) => data.forkedPlayers = [],
+      outputStrings: {
+        stackOnYou: Outputs.stackOnYou,
+        stackOnTarget: Outputs.stackOnPlayer,
+        forkedLightning: {
+          en: 'Lightning on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Éclair sur VOUS',
+          ja: '自分にフォークライトニング',
+          cn: '雷点名',
+          ko: '갈래 번개 대상자',
+        },
+      },
     },
     {
       id: 'ZeromusEx Miasmic Blasts Reset',
