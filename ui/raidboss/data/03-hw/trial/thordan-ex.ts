@@ -735,6 +735,8 @@ const triggerSet: TriggerSet<Data> = {
         'Ser Zephirin': '圣骑士泽菲兰',
       },
       'replaceText': {
+        '--chains appear--': '--锁链出现--',
+        '--towers spawn--': '--塔生成--',
         'Absolute Conviction': '绝对信仰',
         'Ancient Quaga': '古代爆震',
         'Ascalon\'s Mercy': '阿斯卡隆之仁',
