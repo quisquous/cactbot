@@ -152,7 +152,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ZeromusEx Forked Lightning Collect',
       type: 'GainsEffect',
       netRegex: { effectId: 'ED7' },
-      condition: Conditions.targetIsYou(),
       run: (data, matches) => data.forkedPlayers.push(matches.target),
     },
     {
