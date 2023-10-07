@@ -152,7 +152,7 @@ hideall "--sync--"
 # 8B3B Sable Thread line stack share damage
 # 8B3C Fractured Eventide cast and self-targeted ability (NE safe)
 # 8B3D Fractured Eventide cast and self-targeted ability (NW safe)
-# 8B3E Fractured Eventide initial damage from Eventide line (NE safe)
+# 8B3E Fractured Eventide initial damage from Eventide line (both)
 # 8B3F Abyssal Nox cast and set-to-1 ability
 # 8B40 --sync-- unnamed unknown ability before Abyssal Echoes
 # 8B41 --sync-- unnamed unknown ability before Abyssal Echoes
@@ -194,7 +194,7 @@ hideall "--sync--"
 # 8B71 Roar magical damage 5 from Nostalgia
 # 8B72 Roar magical damage 6 from Nostalgia
 # 8B73 Primal Roar final hit of Nostalgia
-# 8B74 Akh Rhai cast and spread damage before Akh Rhais
+# 8B74 Akh Rhai self-targeted cast before Akh Rhais
 # 8B75 Akh Rhai ongoing damage from Akh Rhai
 # 8B76 Umbral Rays cast and full party stack damage
 # 8B77 Umbral Prism cast and damage for two stack enumerations
