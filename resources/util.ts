@@ -313,6 +313,13 @@ const outputStringsIntercardDir: { [outputString: string]: OutputStrings } = {
 // E.g. Math.round((north + 4) - 4 * Math.atan2(x, y) / Math.PI) % 8;
 // Will need to adjust the output arrays as well though.
 
+const xyTo16DirNum = (x: number, y: number, centerX: number, centerY: number): number => {
+  // N = 0, NNE = 1, ..., NNW = 15
+  x = x - centerX;
+  y = y - centerY;
+  return Math.round(8 - 8 * Math.atan2(x, y) / Math.PI) % 16;
+};
+
 const xyTo8DirNum = (x: number, y: number, centerX: number, centerY: number): number => {
   // N = 0, NE = 1, ..., NW = 7
   x = x - centerX;
@@ -350,6 +357,7 @@ export const Directions = {
   outputStrings8Dir: outputStrings8Dir,
   outputStringsCardinalDir: outputStringsCardinalDir,
   outputStringsIntercardDir: outputStringsIntercardDir,
+  xyTo16DirNum: xyTo16DirNum,
   xyTo8DirNum: xyTo8DirNum,
   xyTo4DirNum: xyTo4DirNum,
   hdgTo8DirNum: hdgTo8DirNum,

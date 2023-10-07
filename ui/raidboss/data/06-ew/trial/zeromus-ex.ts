@@ -1,12 +1,17 @@
+import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
+import { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   decOffset?: number;
+  miasmicBlasts: PluginCombatantState[];
 }
 
 const headmarkerMap = {
@@ -24,10 +29,18 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+const centerX = 100;
+const centerY = 100;
+
 const triggerSet: TriggerSet<Data> = {
   id: 'TheAbyssalFractureExtreme',
   zoneId: ZoneId.TheAbyssalFractureExtreme,
   timelineFile: 'zeromus-ex.txt',
+  initData: () => {
+    return {
+      miasmicBlasts: [],
+    };
+  },
   triggers: [
     {
       id: 'ZeromusEx Headmarker Tracker',
@@ -140,6 +153,98 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) =>
         data.decOffset !== undefined && getHeadmarkerId(data, matches) === headmarkerMap.stack,
       response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'ZeromusEx Miasmic Blasts Reset',
+      type: 'StartsUsing',
+      // reset Blasts combatant data when the preceding Visceral Whirl is used
+      netRegex: { id: '8B4[36]', source: 'Zeromus', capture: false },
+      run: (data) => data.miasmicBlasts = [],
+    },
+    {
+      id: 'ZeromusEx Miasmic Blast Safe Spots',
+      type: 'StartsUsing',
+      netRegex: { id: '8B49', capture: true },
+      delaySeconds: 0.5,
+      promise: async (data, matches) => {
+        const combatants = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [parseInt(matches.sourceId, 16)],
+        })).combatants;
+
+        if (combatants.length !== 1)
+          return;
+
+        const combatant = combatants[0];
+        if (combatant === undefined)
+          return;
+
+        data.miasmicBlasts.push(combatant);
+      },
+      alertText: (data, _matches, output) => {
+        if (data.miasmicBlasts.length !== 3) {
+          return;
+        }
+        // Blasts can spawn center, on cardinals (+/-14 from center), or on intercards (+/-7 from center).
+        // Unsafe spots vary for each of the 9 possible spawn points, but are always the same *relative* to that type.
+        // So apply a fixed set of modifiers based on type, regardless of spawn point, to eliminate unsafe spots.
+        const cardinal16Dirs = [0, 4, 8, 12];
+        const intercard16Dirs = [2, 6, 10, 14];
+        const unsafe16DirModifiers = {
+          cardinal: [-1, 0, 1, 4, 5, 11, 12],
+          intercard: [-2, 0, 2, 3, 8, 13],
+        };
+
+        let possibleSafeSpots = Directions.output16Dir;
+
+        for (const blast of data.miasmicBlasts) {
+          // special case for center - don't need to find relative dirs, just remove all intercards
+          if (Math.round(blast.PosX) === 100 && Math.round(blast.PosY) === 100)
+            intercard16Dirs.forEach((intercard) =>
+              possibleSafeSpots = possibleSafeSpots.filter((dir) =>
+                dir !== Directions.output16Dir[intercard]
+              )
+            );
+          else {
+            const blastPos16Dir = Directions.xyTo16DirNum(blast.PosX, blast.PosY, centerX, centerY);
+            const relativeUnsafeDirs = cardinal16Dirs.includes(blastPos16Dir)
+              ? unsafe16DirModifiers.cardinal
+              : unsafe16DirModifiers.intercard;
+            for (const relativeUnsafeDir of relativeUnsafeDirs) {
+              const actualUnsafeDir = (16 + blastPos16Dir + relativeUnsafeDir) % 16;
+              possibleSafeSpots = possibleSafeSpots.filter((dir) =>
+                dir !== Directions.output16Dir[actualUnsafeDir]
+              );
+            }
+          }
+        }
+
+        if (possibleSafeSpots.length !== 2)
+          return output.avoidUnknown!();
+
+        const [safeDir1, safeDir2] = possibleSafeSpots;
+        if (safeDir1 === undefined || safeDir2 === undefined)
+          return output.avoidUnknown!();
+
+        return output.combo!({ dir1: output[safeDir1]!(), dir2: output[safeDir2]!() });
+      },
+      outputStrings: {
+        combo: {
+          en: '${dir1} / ${dir2}',
+        },
+        avoidUnknown: {
+          en: 'Avoid Line Cleaves',
+        },
+        ...Directions.outputStrings16Dir,
+      },
+    },
+    {
+      id: 'ZeromusEx Acceleration Bomb',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'A61' },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
+      response: Responses.stopMoving(),
     },
   ],
   timelineReplace: [
