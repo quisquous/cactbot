@@ -1,3 +1,4 @@
+import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyTriggerSet } from '../../../../../types/oopsy';
@@ -5,9 +6,11 @@ import { OopsyTriggerSet } from '../../../../../types/oopsy';
 // TODO: people not in 8B3B Sable Thread line stack
 // TODO: people not in 8B60 Flare tower
 // TODO: people not taking 8B58 and failing meteors(???)
+// TODO: instant death on enumerations / meteor tethers not stretched
 // TODO: try to assign blame for Forked Lightning
 // TODO: having a Forked Lightning/tank debuff and being in The Dark Beckons stack
 // TODO: not being in The Dark Beckons stack when you don't have a tank/lightning debuff
+// TODO: black hole death
 // TODO: people missing from Umbral Rays stack
 // TODO: people missing / extra people in Umbral Prism enumerations
 
@@ -56,6 +59,21 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'ZeromusEx The Dark Beckons': '8D3A', // stack debuff after Big Bang
     'ZeromusEx Umbral Prism': '8B77', // enumerations
   },
+  triggers: [
+    {
+      id: 'ZeromusEx Doom',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
+      deathReason: (_data, matches) => {
+        return {
+          id: matches.targetId,
+          name: matches.target,
+          text: matches.effect,
+        };
+      },
+    },
+  ],
 };
 
 export default triggerSet;
