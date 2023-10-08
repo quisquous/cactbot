@@ -222,7 +222,15 @@ const triggerSet: TriggerSet<Data> = {
           intercard: [-2, 0, 2, 3, 8, 13],
         };
 
-        let possibleSafeSpots = Directions.output16Dir;
+        // Filter to north half.
+        let possibleSafeSpots = [
+          'dirNNE',
+          'dirNE',
+          'dirENE',
+          'dirWNW',
+          'dirNW',
+          'dirNNW',
+        ];
 
         for (const blast of data.miasmicBlasts) {
           // special case for center - don't need to find relative dirs, just remove all intercards
@@ -246,23 +254,37 @@ const triggerSet: TriggerSet<Data> = {
           }
         }
 
-        if (possibleSafeSpots.length !== 2)
+        if (possibleSafeSpots.length !== 1)
           return output.avoidUnknown!();
 
-        const [safeDir1, safeDir2] = possibleSafeSpots;
-        if (safeDir1 === undefined || safeDir2 === undefined)
+        const [safeDir] = possibleSafeSpots;
+        if (safeDir === undefined)
           return output.avoidUnknown!();
 
-        return output.combo!({ dir1: output[safeDir1]!(), dir2: output[safeDir2]!() });
+        return output[safeDir]!();
       },
       outputStrings: {
-        combo: {
-          en: '${dir1} / ${dir2}',
-        },
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
         },
-        ...Directions.outputStrings16Dir,
+        dirNNE: {
+          en: 'North Wall (NNE/WSW)',
+        },
+        dirNNW: {
+          en: 'North Wall (NNW/WSW)',
+        },
+        dirNE: {
+          en: 'Corners (NE/SW)',
+        },
+        dirNW: {
+          en: 'Corners (NW/SE)',
+        },
+        dirENE: {
+          en: 'East Wall (ENE/SSW)',
+        },
+        dirWNW: {
+          en: 'West Wall (WNW/SSE)',
+        },
       },
     },
     {
