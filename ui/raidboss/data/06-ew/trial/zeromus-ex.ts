@@ -223,14 +223,15 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Filter to north half.
-        let possibleSafeSpots = [
+        const validSafeSpots = [
           'dirNNE',
           'dirNE',
           'dirENE',
           'dirWNW',
           'dirNW',
           'dirNNW',
-        ];
+        ] as const;
+        let possibleSafeSpots = [...validSafeSpots];
 
         for (const blast of data.miasmicBlasts) {
           // special case for center - don't need to find relative dirs, just remove all intercards
