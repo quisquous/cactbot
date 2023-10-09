@@ -45,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Blue Square Safe',
           de: 'Blaues Viereck sicher',
+          ko: '파란색 네모 안전',
         },
       },
     },
@@ -57,6 +58,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pink Triangle Safe',
           de: 'Pinkes Dreieck sicher',
+          ko: '분홍색 삼각형 안전',
         },
       },
     },
@@ -75,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Cleanse ${player}\'s Doom',
           de: 'Reinige ${player}\'s Verhängnis',
+          ko: '${player} 선고 해제하기',
         },
       },
     },
@@ -127,6 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Sides on Wall',
           de: 'Geh seitlich an die Wand',
+          ko: '옆쪽 벽에 붙기',
         },
       },
     },
