@@ -33,11 +33,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Zeromus Dimension Surge 3': '8B33', // ground line damage attached to 8B32 circles
     'Zeromus Dimension Surge Line': '8B35', // large white line cleave from wall
     'Zeromus Akh Rhai': '8B24', // ongoing Akh Rhai damage
-    'Zeromus Chasmic Nails 1': '82BC', // south damage
-    'Zeromus Chasmic Nails 2': '82BD', // weest damage
-    'Zeromus Chasmic Nails 3': '82BE', // southeast damage
-    'Zeromus Chasmic Nails 4': '82BF', // southwest damage
-    'Zeromus Chasmic Nails 5': '8230', // east damage
+    'Zeromus Chasmic Nails 1': '82BC', // first damage
+    'Zeromus Chasmic Nails 2': '82BD', // second damage
+    'Zeromus Chasmic Nails 3': '82BE', // third damage
+    'Zeromus Chasmic Nails 4': '82BF', // fourth damage
+    'Zeromus Chasmic Nails 5': '8230', // fifth damage
   },
   shareWarn: {
     'Zeromus The Dark Divides': '8B09', // Big Bang spread
