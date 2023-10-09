@@ -72,6 +72,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Countdown sound volume',
         cn: '倒计时提示音量',
+        ko: '카운트다운 소리 크기',
       },
       type: 'float',
       default: 0.3,
