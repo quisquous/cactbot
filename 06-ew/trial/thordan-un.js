@@ -536,7 +536,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet Circle': 'Meteoritensiegel',
         'King Thordan': 'Thordan',

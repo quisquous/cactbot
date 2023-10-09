@@ -65,6 +65,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Heal to full',
+          de: 'Voll heilen',
         },
       },
     },
@@ -82,9 +83,11 @@ Options.Triggers.push({
       outputStrings: {
         lineStackOn: {
           en: '${num}x line stack on ${player}',
+          de: '${num}x in einer Linie sammeln mit ${player}',
         },
         lineStackOnYou: {
           en: '${num}x line stack on YOU',
+          de: '${num}x in einer Linie sammeln mit DIR',
         },
       },
     },
@@ -225,9 +228,11 @@ Options.Triggers.push({
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
         },
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
+          de: 'Weiche den Linien Cleaves aus',
         },
         ...Directions.outputStrings16Dir,
       },
@@ -252,6 +257,7 @@ Options.Triggers.push({
       outputStrings: {
         forkedLightning: {
           en: 'Spread (forked lightning)',
+          de: 'Verteilen (Gabelblitz)',
         },
       },
     },
@@ -293,6 +299,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Group middle for tethers',
+          de: 'Gruppe in die Mitte für Verbindungen',
         },
       },
     },
@@ -336,6 +343,7 @@ Options.Triggers.push({
         northeast: Outputs.northeast,
         blackHole: {
           en: 'East Black Hole on Wall',
+          de: 'Schwarzes Loch an die östliche Wand',
         },
       },
     },
@@ -353,6 +361,7 @@ Options.Triggers.push({
         northwest: Outputs.northwest,
         blackHole: {
           en: 'West Black Hole on Wall',
+          de: 'Schwarzes Loch an die westliche Wand',
         },
       },
     },
@@ -372,6 +381,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Towers => Spread',
+          de: 'Türme nehmen => Verteilen',
         },
       },
     },
@@ -385,6 +395,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Towers => Partner Stacks',
+          de: 'Türme nehmen => mit Partner sammeln',
         },
       },
     },
@@ -405,9 +416,11 @@ Options.Triggers.push({
       outputStrings: {
         stackWithNox: {
           en: 'Partner Stack + Chasing Nox',
+          de: 'Mit Partner Sammeln + verfolgendes Nox',
         },
         spreadWithNox: {
           en: 'Spread + Chasing Nox',
+          de: 'Verteilen + verfolgendes Nox',
         },
       },
     },
@@ -428,9 +441,11 @@ Options.Triggers.push({
       outputStrings: {
         stack: {
           en: 'Partner Stack',
+          de: 'mit Partner sammeln',
         },
         spread: {
           en: 'Spread',
+          de: 'Verteilen',
         },
       },
     },
@@ -470,12 +485,15 @@ Options.Triggers.push({
       outputStrings: {
         north: {
           en: 'Out of North',
+          de: 'Weg vom Norden',
         },
         middle: {
           en: 'Out of Middle',
+          de: 'Weg von der Mitte',
         },
         south: {
           en: 'Out of South',
+          de: 'Weg vom Süden',
         },
       },
     },
@@ -494,12 +512,15 @@ Options.Triggers.push({
         spread: Outputs.spread,
         northSpread: {
           en: 'Spread Middle/South',
+          de: 'Verteilen Mitte/Süden',
         },
         middleSpread: {
           en: 'Spread North/South',
+          de: 'Verteilen Norden/Süden',
         },
         southSpread: {
           en: 'Spread North/Middle',
+          de: 'Verteilen Norden/Mitte',
         },
       },
     },
@@ -532,12 +553,15 @@ Options.Triggers.push({
         },
         northEnumeration: {
           en: 'Enumeration Middle/South',
+          de: 'Enumeration Mitte/Süden',
         },
         middleEnumeration: {
           en: 'Enumeration North/South',
+          de: 'Enumeration Norden/Süden',
         },
         southEnumeration: {
           en: 'Enumeration North/Middle',
+          de: 'Enumeration Norden/Mitte',
         },
       },
     },
@@ -556,12 +580,15 @@ Options.Triggers.push({
         stack: Outputs.stackMarker,
         northStack: {
           en: 'Stack Middle',
+          de: 'Mittig sammeln',
         },
         middleStack: {
           en: 'Stack North',
+          de: 'Nördlich sammeln',
         },
         southStack: {
           en: 'Stack North/Middle',
+          de: 'Nördlich/Mittig sammeln',
         },
       },
     },
@@ -575,13 +602,14 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'Komet',
         'Toxic Bubble': 'Giftblase',
         'Zeromus': 'Zeromus',
       },
       'replaceText': {
+        '--spread--': '--verteilen--',
+        '--towers--': '--Türme--',
         'Abyssal Echoes': 'Abyssal-Echos',
         'Abyssal Nox': 'Abyssal-Nox',
         'Akh Rhai': 'Akh Rhai',
@@ -605,8 +633,11 @@ Options.Triggers.push({
         'Primal Roar': 'Lautes Gebrüll',
         'Prominence Spine': 'Ossale Protuberanz',
         'Rend the Rift': 'Dimensionsstörung',
+        '(?<! )Roar': 'Brüllen',
         'Sable Thread': 'Pechschwarzer Pfad',
         'Sparking Flare': 'Flare-Funken',
+        'The Dark Beckons': 'Fressende Finsternis: Last',
+        'The Dark Divides': 'Fressende Finsternis: Zerschmetterung',
         'Umbral Prism': 'Umbrales Prisma',
         'Umbral Rays': 'Pfad der Dunkelheit',
         'Visceral Whirl': 'Viszerale Schürfwunden',
@@ -649,8 +680,11 @@ Options.Triggers.push({
         'Primal Roar': 'Rugissement furieux',
         'Prominence Spine': 'Évidence ossuaire',
         'Rend the Rift': 'Déchirure dimensionnelle',
+        '(?<! )Roar': 'Rugissement',
         'Sable Thread': 'Rayon sombre',
         'Sparking Flare': 'Étincelle de brasier',
+        'The Dark Beckons': 'Ténèbres rongeuses : Gravité',
+        'The Dark Divides': 'Ténèbres rongeuses : Pulvérisation',
         'Umbral Prism': 'Déluge de Ténèbres',
         'Umbral Rays': 'Voie de ténèbres',
         'Visceral Whirl': 'Écorchure viscérale',
@@ -693,8 +727,11 @@ Options.Triggers.push({
         'Primal Roar': '大咆哮',
         'Prominence Spine': 'プロミネンススパイン',
         'Rend the Rift': '次元干渉',
+        '(?<! )Roar': '咆哮',
         'Sable Thread': '漆黒の熱線',
         'Sparking Flare': 'フレアスパーク',
+        'The Dark Beckons': '闇の侵食：重',
+        'The Dark Divides': '闇の侵食：砕',
         'Umbral Prism': '闇の重波動',
         'Umbral Rays': '闇の波動',
         'Visceral Whirl': 'ヴィセラルワール',
