@@ -255,6 +255,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'Komet',
         'Toxic Bubble': 'Giftblase',
@@ -298,6 +299,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'comète',
         'Toxic Bubble': 'bulle empoisonnée',
@@ -341,6 +343,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'コメット',
         'Toxic Bubble': 'ポイズナスバブル',

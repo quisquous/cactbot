@@ -1,143 +1,227 @@
-# Timelines pulled from FFLogs reports
+### THE ABYSSAL FRACTURE (EXTREME)
+# ZoneId: 1169
 
-# Phase one args:
-# -p 8B3F:11.1
-# -ii 8B40 8B41 8D2B 8AEF 8B3B 8B39 8B3A 8B84 8B47 8B48 8CF8 8B60 8B62 8BB6 8B44 8B45 8B4E 8B3E 8BB2 8D31 8D32 8BDE 8D24 8D28 8D2A 8D34
+# -p 8B3F:11.1 8C0D:1006
+# -ii 8CB9 8B55 8B5B 8B5C 8C49 8B40 8B41 8D2B 8AEF 8B3B 8B47 8B48 8CF8 8B60 8B62 8BB6 8B44 8B45 8B4E 8B3E 8BB2 8D31 8D32 8D24 8D2A 8D34 8B67 8B7E 8B75 8B27 8B28 8B29 8B2A 8B2B 8B79 8B7A 8B7B 8B7C 8B7D 8B4E
 
-# Ignored abilities:
-# 8B40/8B41/8D2B/8AEF - Nothing?
-# 8B3B/8B39 - Sable Thread line laser follow-up hits
-# 8B3A - Sable Thread big "last hit"
-# 8B84 - Dark Matter tankbuster follow-up hits
-# 8B47/8B48 - Visceral Whirl actual hits (vs castbar/snapshot)
-# 8CF8 - Miasmic Blast ghost hits
-# 8B60 - Second Flare tower, noisy
-# 8B62 - Ghost Flare at the end of the mechanic for some reason
-# 8BB6 - "Scald" mistake damage I think?
-# 8B44/8B45 - More Visceral Whirl actual hits
-# 8B4E/8BDE - Big Bang random puddles, noisy
-# 8B3E/8BB2 - Fractured Eventide line attack spam, noisy
-# 8D31/8D32 - Big Crunch random puddles, noisy
-# 8D24/8D28/8D2A - "Nox", during second Abyssal Nox and randomly afterwards, doesn't seem to do anything?
-# 8D34 - Meteor explosion during failure of meteor mechanics
-
-# Other notes:
-# The entire meteor phase needs manually cleaned up, it's ugly
-# "Big Bang"/8C1E - P1 enrage
-
-
-# Phase two args:
-# -p 8C0D:1005.7
-# -ii 8B7E 8B6E 8B6F 8B70 8B71 8B72 8B75 8B27 8B28 8B29 8B2A 8B2B 8B79 8B7A 8B7B 8B7C 8B7D 8B4E 8BDE
-
-# Ignored abilities:
-# 8B7E - "Dimensional Surge" puddles
-# 8B6E/8B6F/8B70/8B71/8B72 - "Bury"/"Roar" follow-up hits for "Nostalgia", combine into a duration bar instead, duration is 6s from starting "Bury" cast 8B6D
-# 8B75 - "Akh Rhai" follow-up hits
-# 8B27/8B28/8B29/8B2A/8B2B - "Chasmic Nails" previews
-# 8B79/8B7A/8B7B/8B7C/8B7D - "Chasmic Nails" actual hits
-# 8B4E/8BDE - Big Bang random puddles, noisy
-
-# Other notes:
-# 8B78 is the actual castbar for "Chasmic Nails"
-# Enrage happens at roughly 11m into the fight no matter how long you've been in P2. No clue how to handle/indicate this in the timeline.
-
+# Optional extra ignores used for duration timings
+# -ii 8B39 8B3A 8B84
 
 hideall "--Reset--"
 hideall "--sync--"
 
-# Phase one
+# Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/ window 15,0
-27.1 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-32.1 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-42.1 "Sable Thread" sync / 1[56]:[^:]*:Zeromus:8B38:/
-61.7 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-78.8 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B46:/
+6.1 "--sync--" sync / 14:[^:]*:Zeromus:8B3F:/ window 10,10
+11.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
+27.1 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
+32.1 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
+42.1 "Sable Thread x6" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 6.9
+#43.8 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#45.1 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#46.4 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#47.7 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+49.0 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+
+61.7 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+
+78.8 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
 87.8 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
+
 101.8 "Flare" sync / 1[56]:[^:]*:Zeromus:8B5D:/
 109.9 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 119.9 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-131.7 "Burst" sync / 1[56]:[^:]*:Toxic Bubble:8B67:/
-134.1 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
+134.1 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
 143.1 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
+
+148.1 "--sync--" sync / 14:[^:]*:Zeromus:8B4C:/ window 10,10
+153.1 "--spread--" #sync / 1[56]:[^:]*:Zeromus:8BDE:/
 158.1 "Big Bang" sync / 1[56]:[^:]*:Zeromus:8B4C:/
+
 173.1 "Void Meteor" sync / 1[56]:[^:]*:Zeromus:8B57:/
-# Initial hit
-174.3 "Meteor Impact" sync / 1[56]:[^:]*:Comet:8B5C:/
-# Ghost cast? This one's weird, need to verify
-186.3 "Meteor Impact" sync / 1[56]:[^:]*:Zeromus:8B56:/
-# First lines
-188.3 "Meteor Impact" #sync / 1[56]:[^:]*:Comet:8B58:/
-# Second lines
-194.8 "Meteor Impact" #sync / 1[56]:[^:]*:Comet:8B58:/
+186.3 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B56:/
+188.3 "Meteor Impact 1" #sync / 1[56]:[^:]*:Comet:8B58:/
+194.8 "Meteor Impact 2" #sync / 1[56]:[^:]*:Comet:8B58:/
 202.0 "Explosion" sync / 1[56]:[^:]*:Comet:8D34:/
-213.4 "the Dark Binds" #sync / 1[56]:[^:]*:Zeromus:8B55:/
-214.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
-215.5 "the Dark Binds" #sync / 1[56]:[^:]*:Zeromus:8B55:/
+
+214.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
 223.5 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-227.1 "the Dark Divides" sync / 1[56]:[^:]*:Zeromus:8B52:/
-233.5 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-234.1 "the Dark Beckons" sync / 1[56]:[^:]*:Zeromus:8D3A:/
+227.1 "The Dark Divides" sync / 1[56]:[^:]*:Zeromus:8B52:/
+233.5 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+234.1 "The Dark Beckons" sync / 1[56]:[^:]*:Zeromus:8D3A:/
 234.1 "Forked Lightning" sync / 1[56]:[^:]*:Zeromus:8B54:/
+
 247.7 "Black Hole" sync / 1[56]:[^:]*:Zeromus:8B69:/
-259.8 "Fractured Eventide" sync / 1[56]:[^:]*:Zeromus:8B3D:/
+259.8 "Fractured Eventide" sync / 1[56]:[^:]*:Zeromus:8B3[CD]:/
+
+278.0 "--sync--" sync / 14:[^:]*:Zeromus:8B4D:/ window 10,10
+282.1 "--spread--" #sync / 1[56]:[^:]*:Zeromus:8D32:/
 288.0 "Big Crunch" sync / 1[56]:[^:]*:Zeromus:8B4D:/
+
 303.2 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-319.2 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-324.2 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-329.2 "Sable Thread" sync / 1[56]:[^:]*:Zeromus:8B38:/
-353.2 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+319.2 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
+324.2 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
+329.2 "Sable Thread x7" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 8.2
+#330.9 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#332.2 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#333.5 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#334.8 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#336.1 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+337.4 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+
+353.2 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
 361.2 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 361.2 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 380.2 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-394.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
+394.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
 403.4 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-414.4 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-430.6 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+414.4 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+
+430.6 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
 438.6 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 438.6 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 467.7 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-483.7 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-488.7 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-493.7 "Sable Thread" sync / 1[56]:[^:]*:Zeromus:8B38:/
-517.7 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+483.7 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
+488.7 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
+493.7 "Sable Thread x7" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 8.2
+#495.4 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#496.7 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#498.0 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#499.3 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+#500.6 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
+501.9 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+
+517.7 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
 525.7 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 525.7 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 544.8 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-558.9 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B43:/
+558.9 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
 567.9 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-578.9 "Dark Matter" sync / 1[56]:[^:]*:Zeromus:8B83:/
-595.0 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
+578.9 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+
+595.0 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
 603.0 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
 603.0 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
 632.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-648.1 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-653.1 "Abyssal Echoes" sync / 1[56]:[^:]*:Zeromus:8B42:/
-668.2 "Big Bang (Enrage)" sync / 1[56]:[^:]*:Zeromus:8C1E:/
-
-# Phase two
-1000.0 "--sync--" sync / 14:[^:]*:Zeromus:8C0D:/ window 1000,0
-1005.7 "Rend the Rift" sync / 1[56]:[^:]*:Zeromus:8C0D:/
-1022.8 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/
-1023.6 "Bury" sync / 1[56]:[^:]*:Zeromus:8B6D:/
-1032.6 "Primal Roar" sync / 1[56]:[^:]*:Zeromus:8B73:/
-1046.9 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
-1048.0 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
-1048.9 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1060.0 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
-1062.0 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1081.1 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
-1082.2 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
-1083.1 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1094.2 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
-1096.2 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1114.4 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/
-1115.2 "Bury" sync / 1[56]:[^:]*:Zeromus:8B6D:/
-1124.2 "Primal Roar" sync / 1[56]:[^:]*:Zeromus:8B73:/
-1138.5 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
-1139.6 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
-1140.5 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+648.1 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
+653.1 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
 
 # Note that this enrage can happen at any time in P2, because it always happens at roughly 11m into the pull regardless of when you hit P2
-1155.6 "Big Bang (Enrage)" sync / 1[56]:[^:]*:Zeromus:8C1E:/
+658.2 "--sync--" sync / 14:[^:]*:Zeromus:8C1E:/ window 1000,1000
+668.2 "Big Bang (Enrage)" sync / 1[56]:[^:]*:Zeromus:8C1E:/
+
+
+# Phase 2: ~25% push
+1000.0 "--sync--" sync / 14:[^:]*:Zeromus:8C0D:/ window 1000,0
+1006.0 "Rend the Rift" sync / 1[56]:[^:]*:Zeromus:8C0D:/
+1023.1 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/
+1023.9 "Bury 1" sync / 1[56]:[^:]*:Zeromus:8B6D:/
+1024.9 "Bury 2" sync / 1[56]:[^:]*:Zeromus:8B6E:/
+1025.9 "Bury 3" sync / 1[56]:[^:]*:Zeromus:8B6F:/
+1026.9 "Bury 4" sync / 1[56]:[^:]*:Zeromus:8B70:/
+1028.9 "Roar 5" sync / 1[56]:[^:]*:Zeromus:8B71:/
+1029.9 "Roar 6" sync / 1[56]:[^:]*:Zeromus:8B72:/
+1032.9 "Primal Roar 7" sync / 1[56]:[^:]*:Zeromus:8B73:/
+
+1047.2 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
+1048.3 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
+1049.2 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+1060.3 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
+1062.3 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+
+1081.4 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
+1082.5 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
+1083.4 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+1094.5 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
+1096.5 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+
+# Is this the loop?
+1114.7 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/ window 30,30 forcejump 1023.1
+
+
+# ALL ENCOUNTER ABILITIES
+# 8AEF --sync-- unnamed ability on line stack target for Sable Thread
+# 8B27 --sync-- Chasmic Nail preview 1
+# 8B28 --sync-- Chasmic Nail preview 2
+# 8B29 --sync-- Chasmic Nail preview 3
+# 8B2A --sync-- Chasmic Nail preview 4
+# 8B2B --sync-- Chasmic Nail preview 5
+# 8B38 Sable Thread self-targeted cast for line stack
+# 8B39 Sable Thread self-targeted ability before each non-first/non-last hit
+# 8B3A Sable Thread self-targeted ability for final hit
+# 8B3B Sable Thread line stack share damage
+# 8B3C Fractured Eventide cast and self-targeted ability (NE safe)
+# 8B3D Fractured Eventide cast and self-targeted ability (NW safe)
+# 8B3E Fractured Eventide initial damage from Eventide line (both)
+# 8B3F Abyssal Nox cast and set-to-1 ability
+# 8B40 --sync-- unnamed unknown ability before Abyssal Echoes
+# 8B41 --sync-- unnamed unknown ability before Abyssal Echoes
+# 8B42 Abyssal Echoes cast and damage for lines->circle light up on floor
+# 8B43 Visceral Whirl cast and self-targeted claw swipes NE/SW safe
+# 8B44 Visceral Whirl cast and damage paired with 8B43 version
+# 8B45 Visceral Whirl cast and damage paired with 8B43 version
+# 8B46 Visceral Whirl cast and self-targeted claw swipes NW/SE safe
+# 8B47 Visceral Whirl cast and damage paired with 8B46 version
+# 8B48 Visceral Whirl cast and damage paired with 8B46 version
+# 8B49 Miasmic Blast cast and damage for 3 X's after Visceral Whirl
+# 8B4C Big Bang cast and damage on players to give debuffs while 8B4E puddles appear
+# 8B4D Big Crunch cast and damage on players while 8D31 puddles appear
+# 8B4E Big Bang ground aoe damage during 8BDE
+# 8B52 The Dark Divides spread damage after Big Bang
+# 8B54 Forked Lightning damage (on others) from a player's Forked Lightning debuff, the player is not hit
+# 8B55 The Dark Binds damage from tether failures
+# 8B5B Massive Explosion raidwide damage from colliding meteors from Comet
+# 8B56 Meteor Impact self-targeted cast for meteor tethers
+# 8B57 Void Meteor cast and self-targeted ability to summon meteors for prox damage
+# 8B58 Meteor Impact damage from 8B56 meteor tethers (both sets of meteors)
+# 8B5C Meteor Impact cast and proximity damage from Comet
+# 8B5D Flare self-targeted tower light party share
+# 8B5E Sparking Flare self-targeted cast for tower before Sparking Flare spread
+# 8B5F Branding Flare self-targeted cast for tower before Branding Flare partner stacks
+# 8B60 Flare cast and damage for 85BD tower share (all light party towers)
+# 8B62 Flare (???) damage from standing in the post-tower meteor itself when it goes off
+# 8B63 Prominence Spine line aoe damage shooting from post-tower meteor
+# 8B64 Sparking Flare spread damage after 8B5E
+# 8B65 Branding Flare partner stack damage after 8B5F
+# 8B66 Void Bio self-targeted cast to summon Toxic Bubbles
+# 8B67 Burst damage from hitting an 8B66 Toxic Bubble
+# 8B69 Black Hole self-targeted cast to summon black hole during Fractured Eventide
+# 8B6B Nostalgia cast and self-targeted for multi-hit physical/magic damage
+# 8B6D Bury physical damage 1 from Nostalgia
+# 8B6E Bury physical damage 2 from Nostalgia
+# 8B6F Bury physical damage 3 from Nostalgia
+# 8B70 Bury physical damage 4 from Nostalgia
+# 8B71 Roar magical damage 5 from Nostalgia
+# 8B72 Roar magical damage 6 from Nostalgia
+# 8B73 Primal Roar final hit of Nostalgia
+# 8B74 Akh Rhai self-targeted cast before Akh Rhais
+# 8B75 Akh Rhai ongoing damage from Akh Rhai
+# 8B76 Umbral Rays cast and full party stack damage
+# 8B77 Umbral Prism cast and damage for two stack enumerations
+# 8B78 Chasmic Nails cast and self-targeted ability
+# 8B79 Chasmic Nails damage 1
+# 8B7A Chasmic Nails damage 2
+# 8B7B Chasmic Nails damage 3
+# 8B7C Chasmic Nails damage 4
+# 8B7D Chasmic Nails damage 5
+# 8B7E Dimensional Surge ground circle damage after Rend the Rift
+# 8B82 Dimensional Surge cast and damage for line cleave from tether to wall
+# 8B83 Dark Matter self-targeted cast for tankbuster
+# 8B84 Dark Matter tankbuster damage
+# 8BB2 Fractured Eventide ongoing damage from Eventide line
+# 8BB6 Scald very light damage from standing in the post-tower meteor
+# 8BDE Big Bang spread damage on players during 8B4C cast
+# 8C0D Rend the Rift cast and raidwide damage phase transition
+# 8C1E Big Bang enrage cast and damge
+# 8C49 --sync-- auto damage on main tank
+# 8CB9 Meteor Impact unknown untargeted damage during meteor tethers (maybe correlated with Massive Explosion)
+# 8CF8 --sync-- unnamed unknown self-targeted cast during Miasmic Blast 8B49
+# 8CFA Flow of the Abyss cast and self-targeted tether to wall before 8B82 Dimension Surge line
+# 8D24 Nox damage for chasing Nox orbs
+# 8D28 Nox self-targeted cast for chasing orbs
+# 8D2A Nox cast and damage for initial circle for chasing orbs
+# 8D2B --sync-- unnamed unknown ability before Abyssal Echoes
+# 8D31 Big Crunch ground aoe damage during 8B4D
+# 8D32 Big Crunch spread damage on players during 8B4D cast
+# 8D34 Explosion cast and ground damage from Comet meteors landed during Void Meteor
+# 8D3A The Dark Beckons stack damage after Big Bang

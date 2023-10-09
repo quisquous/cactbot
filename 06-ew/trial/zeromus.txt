@@ -129,7 +129,7 @@ hideall "--sync--"
 
 # ALL ENCOUNTER ABILITIES
 # 8AEE Sable Thread self-targeted cast for line stack
-# 8AEF --sync-- ability on line stack target for Sable Thread
+# 8AEF --sync-- unnamed ability on line stack target for Sable Thread
 # 8AF0 Sable Thread self-targeted ability before each non-first/non-last hit
 # 8AF1 Sable Thread self-targeted ability for final hit
 # 8AF2 Sable Thread line stack share damage
@@ -138,8 +138,8 @@ hideall "--sync--"
 # 8AF5 Fractured Eventide initial damage from Eventide line (NE safe)
 # 8AF6 Fractured Eventide ongoing damage from Eventide line
 # 8AF7 Abyssal Nox cast and set-to-1 ability
-# 8AF8 --sync-- unnamed ability before Abyssal Echoes
-# 8AF9 --sync-- unnamed ability before Abyssal Echoes
+# 8AF8 --sync-- unnamed unknown ability before Abyssal Echoes
+# 8AF9 --sync-- unnamed unknown ability before Abyssal Echoes
 # 8AFA Abyssal Echoes cast and damage for lines->circle light up on floor
 # 8AFB Visceral Whirl cast and self-targeted claw swipes NE/SW safe
 # 8AFC Visceral Whirl cast and damage paired with 8AFB version
@@ -150,15 +150,15 @@ hideall "--sync--"
 # 8B03 Big Bang cast and damage on players to give debuffs while 8B05 puddles appear
 # 8B04 Big Crunch cast and damage on players while 8D30 puddles appear
 # 8B05 Big Bang ground aoe damage during 8B03
-# 8B09 the Dark Divides spread damage after Big Bang
-# 8B0A the Dark Beckons stack damage after Big Bang
+# 8B09 The Dark Divides spread damage after Big Bang
+# 8B0A The Dark Beckons stack damage after Big Bang
 # 8B0B Meteor Impact self-targeted cast for meteor tethers
 # 8B0C Void Meteor cast and self-targeted ability to summon meteors for prox damage
 # 8B0D Meteor Impact damage from 8B0B meteor tethers (first set of meteors)
 # 8B0E Meteor Impact unknown untargeted damage during meteor tethers (maybe correlated with Unmitigated Explosion)
 # 8B0F Meteor Impact damage from 8B0B meteor tethers (second set of meteors)
-# 8B10 Unmitigated Explosion damage from colliding meteors
-# 8B11 Meteor Impact cast and proximity damage
+# 8B10 Unmitigated Explosion raidwide damage from colliding meteors from Comet
+# 8B11 Meteor Impact cast and proximity damage from Comet
 # 8B12 Flare self-targeted tower party share cast
 # 8B13 Flare cast and damage for tower share
 # 8B15 Flare (???) damage from standing in the post-tower meteor itself when it goes off
