@@ -271,7 +271,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'North Wall (NNE/WSW)',
         },
         dirNNW: {
-          en: 'North Wall (NNW/WSW)',
+          en: 'North Wall (NNW/ESE)',
         },
         dirNE: {
           en: 'Corners (NE/SW)',
