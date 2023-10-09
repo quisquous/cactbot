@@ -196,7 +196,16 @@ Options.Triggers.push({
           cardinal: [-1, 0, 1, 4, 5, 11, 12],
           intercard: [-2, 0, 2, 3, 8, 13],
         };
-        let possibleSafeSpots = Directions.output16Dir;
+        // Filter to north half.
+        const validSafeSpots = [
+          'dirNNE',
+          'dirNE',
+          'dirENE',
+          'dirWNW',
+          'dirNW',
+          'dirNNW',
+        ];
+        let possibleSafeSpots = [...validSafeSpots];
         for (const blast of data.miasmicBlasts) {
           // special case for center - don't need to find relative dirs, just remove all intercards
           if (Math.round(blast.PosX) === 100 && Math.round(blast.PosY) === 100)
@@ -218,23 +227,36 @@ Options.Triggers.push({
             }
           }
         }
-        if (possibleSafeSpots.length !== 2)
+        if (possibleSafeSpots.length !== 1)
           return output.avoidUnknown();
-        const [safeDir1, safeDir2] = possibleSafeSpots;
-        if (safeDir1 === undefined || safeDir2 === undefined)
+        const [safeDir] = possibleSafeSpots;
+        if (safeDir === undefined)
           return output.avoidUnknown();
-        return output.combo({ dir1: output[safeDir1](), dir2: output[safeDir2]() });
+        return output[safeDir]();
       },
       outputStrings: {
-        combo: {
-          en: '${dir1} / ${dir2}',
-          de: '${dir1} / ${dir2}',
-        },
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
           de: 'Weiche den Linien Cleaves aus',
         },
-        ...Directions.outputStrings16Dir,
+        dirNNE: {
+          en: 'North Wall (NNE/WSW)',
+        },
+        dirNNW: {
+          en: 'North Wall (NNW/ESE)',
+        },
+        dirNE: {
+          en: 'Corners (NE/SW)',
+        },
+        dirNW: {
+          en: 'Corners (NW/SE)',
+        },
+        dirENE: {
+          en: 'East Wall (ENE/SSW)',
+        },
+        dirWNW: {
+          en: 'West Wall (WNW/SSE)',
+        },
       },
     },
     {
