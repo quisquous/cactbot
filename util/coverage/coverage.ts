@@ -226,6 +226,7 @@ const zoneGridHeaders = {
     de: 'Übersetzt',
     fr: 'Traduit',
     cn: '已翻译',
+    ko: '번역됨',
   },
 } as const;
 
@@ -284,24 +285,28 @@ const translationGridHeaders = {
     de: 'Übersetzungen',
     fr: 'Traductions',
     cn: '翻译',
+    ko: '번역',
   },
   coverage: {
     en: 'Coverage',
     de: 'Abdeckung',
     fr: 'Couvert',
     cn: '覆盖率',
+    ko: '커버리지',
   },
   errors: {
     en: 'Errors',
     de: 'Fehler',
     fr: 'Erreurs',
     cn: '错误',
+    ko: '오류',
   },
   url: {
     en: 'Link to Missing Translation List',
     de: 'Link zur Liste mit den fehlenden Übersetzungen',
     fr: 'Lien vers la liste des traductions manquantes',
     cn: '缺失翻译表链接',
+    ko: '번역 누락 리스트 링크',
   },
 } as const;
 
