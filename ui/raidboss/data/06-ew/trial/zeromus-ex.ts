@@ -93,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Heal to full',
+          de: 'Voll heilen',
         },
       },
     },
@@ -110,9 +111,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         lineStackOn: {
           en: '${num}x line stack on ${player}',
+          de: '${num}x in einer Linie sammeln mit ${player}',
         },
         lineStackOnYou: {
           en: '${num}x line stack on YOU',
+          de: '${num}x in einer Linie sammeln mit DIR',
         },
       },
     },
@@ -261,9 +264,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         combo: {
           en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
         },
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
+          de: 'Weiche den Linien Cleaves aus',
         },
         ...Directions.outputStrings16Dir,
       },
@@ -288,6 +293,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         forkedLightning: {
           en: 'Spread (forked lightning)',
+          de: 'Verteilen (Gabelblitz)',
         },
       },
     },
@@ -329,6 +335,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Group middle for tethers',
+          de: 'Gruppe in die Mitte für Verbindungen',
         },
       },
     },
@@ -372,6 +379,7 @@ const triggerSet: TriggerSet<Data> = {
         northeast: Outputs.northeast,
         blackHole: {
           en: 'East Black Hole on Wall',
+          de: 'Schwarzes Loch an die östliche Wand',
         },
       },
     },
@@ -389,6 +397,7 @@ const triggerSet: TriggerSet<Data> = {
         northwest: Outputs.northwest,
         blackHole: {
           en: 'West Black Hole on Wall',
+          de: 'Schwarzes Loch an die westliche Wand',
         },
       },
     },
@@ -408,6 +417,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Towers => Spread',
+          de: 'Türme nehmen => Verteilen',
         },
       },
     },
@@ -421,6 +431,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Towers => Partner Stacks',
+          de: 'Türme nehmen => mit Partner sammeln',
         },
       },
     },
@@ -441,9 +452,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         stackWithNox: {
           en: 'Partner Stack + Chasing Nox',
+          de: 'Mit Partner Sammeln + verfolgendes Nox',
         },
         spreadWithNox: {
           en: 'Spread + Chasing Nox',
+          de: 'Verteilen + verfolgendes Nox',
         },
       },
     },
@@ -464,9 +477,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         stack: {
           en: 'Partner Stack',
+          de: 'mit Partner sammeln',
         },
         spread: {
           en: 'Spread',
+          de: 'Verteilen',
         },
       },
     },
@@ -507,12 +522,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         north: {
           en: 'Out of North',
+          de: 'Weg vom Norden',
         },
         middle: {
           en: 'Out of Middle',
+          de: 'Weg von der Mitte',
         },
         south: {
           en: 'Out of South',
+          de: 'Weg vom Süden',
         },
       },
     },
@@ -531,12 +549,15 @@ const triggerSet: TriggerSet<Data> = {
         spread: Outputs.spread,
         northSpread: {
           en: 'Spread Middle/South',
+          de: 'Verteilen Mitte/Süden',
         },
         middleSpread: {
           en: 'Spread North/South',
+          de: 'Verteilen Norden/Süden',
         },
         southSpread: {
           en: 'Spread North/Middle',
+          de: 'Verteilen Norden/Mitte',
         },
       },
     },
@@ -569,12 +590,15 @@ const triggerSet: TriggerSet<Data> = {
         },
         northEnumeration: {
           en: 'Enumeration Middle/South',
+          de: 'Enumeration Mitte/Süden',
         },
         middleEnumeration: {
           en: 'Enumeration North/South',
+          de: 'Enumeration Norden/Süden',
         },
         southEnumeration: {
           en: 'Enumeration North/Middle',
+          de: 'Enumeration Norden/Mitte',
         },
       },
     },
@@ -593,12 +617,15 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         northStack: {
           en: 'Stack Middle',
+          de: 'Mittig sammeln',
         },
         middleStack: {
           en: 'Stack North',
+          de: 'Nördlich sammeln',
         },
         southStack: {
           en: 'Stack North/Middle',
+          de: 'Nördlich/Mittig sammeln',
         },
       },
     },
@@ -612,13 +639,14 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'Komet',
         'Toxic Bubble': 'Giftblase',
         'Zeromus': 'Zeromus',
       },
       'replaceText': {
+        '--spread--': '--verteilen--',
+        '--towers--': '--Türme--',
         'Abyssal Echoes': 'Abyssal-Echos',
         'Abyssal Nox': 'Abyssal-Nox',
         'Akh Rhai': 'Akh Rhai',
@@ -642,8 +670,11 @@ const triggerSet: TriggerSet<Data> = {
         'Primal Roar': 'Lautes Gebrüll',
         'Prominence Spine': 'Ossale Protuberanz',
         'Rend the Rift': 'Dimensionsstörung',
+        '(?<! )Roar': 'Brüllen',
         'Sable Thread': 'Pechschwarzer Pfad',
         'Sparking Flare': 'Flare-Funken',
+        'The Dark Beckons': 'Fressende Finsternis: Last',
+        'The Dark Divides': 'Fressende Finsternis: Zerschmetterung',
         'Umbral Prism': 'Umbrales Prisma',
         'Umbral Rays': 'Pfad der Dunkelheit',
         'Visceral Whirl': 'Viszerale Schürfwunden',
@@ -686,8 +717,11 @@ const triggerSet: TriggerSet<Data> = {
         'Primal Roar': 'Rugissement furieux',
         'Prominence Spine': 'Évidence ossuaire',
         'Rend the Rift': 'Déchirure dimensionnelle',
+        '(?<! )Roar': 'Rugissement',
         'Sable Thread': 'Rayon sombre',
         'Sparking Flare': 'Étincelle de brasier',
+        'The Dark Beckons': 'Ténèbres rongeuses : Gravité',
+        'The Dark Divides': 'Ténèbres rongeuses : Pulvérisation',
         'Umbral Prism': 'Déluge de Ténèbres',
         'Umbral Rays': 'Voie de ténèbres',
         'Visceral Whirl': 'Écorchure viscérale',
@@ -730,8 +764,11 @@ const triggerSet: TriggerSet<Data> = {
         'Primal Roar': '大咆哮',
         'Prominence Spine': 'プロミネンススパイン',
         'Rend the Rift': '次元干渉',
+        '(?<! )Roar': '咆哮',
         'Sable Thread': '漆黒の熱線',
         'Sparking Flare': 'フレアスパーク',
+        'The Dark Beckons': '闇の侵食：重',
+        'The Dark Divides': '闇の侵食：砕',
         'Umbral Prism': '闇の重波動',
         'Umbral Rays': '闇の波動',
         'Visceral Whirl': 'ヴィセラルワール',
