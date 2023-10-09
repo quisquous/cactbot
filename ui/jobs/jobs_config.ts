@@ -71,6 +71,7 @@ UserConfig.registerOptions('jobs', {
       id: 'CountdownSoundVolume',
       name: {
         en: 'Countdown sound volume',
+        de: 'Countdown Lautstärke',
         cn: '倒计时提示音量',
         ko: '초읽기 소리 크기',
       },

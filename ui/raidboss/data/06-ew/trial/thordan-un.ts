@@ -560,7 +560,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet Circle': 'Meteoritensiegel',
         'King Thordan': 'Thordan',
