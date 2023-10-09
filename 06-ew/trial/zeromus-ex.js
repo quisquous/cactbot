@@ -164,6 +164,8 @@ Options.Triggers.push({
     {
       id: 'ZeromusEx Miasmic Blast Safe Spots',
       type: 'StartsUsing',
+      // TODO: https://github.com/quisquous/cactbot/issues/5848
+      disabled: true,
       netRegex: { id: '8B49', source: 'Zeromus', capture: true },
       delaySeconds: 0.5,
       promise: async (data, matches) => {
