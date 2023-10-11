@@ -30,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          cn: '奶满全队',
         },
       },
     },
@@ -43,6 +44,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from glowing circles',
           de: 'Weg von den leuchtenden Kreisen',
+          cn: '远离黑洞',
         },
       },
     },
@@ -57,6 +59,7 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOn: {
           en: '5x line stack on ${player}',
           de: '5x in einer Linie Sammeln auf ${player}',
+          cn: '${player} 直线分摊 (5次)',
         },
       },
     },
@@ -71,6 +74,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
         sw: Outputs.southwest,
@@ -87,6 +91,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
         se: Outputs.southeast,
@@ -132,6 +137,7 @@ const triggerSet: TriggerSet<Data> = {
         tower: {
           en: 'Stand in Tower',
           de: 'Steh im Turm',
+          cn: '踩塔',
         },
       },
     },
@@ -191,6 +197,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread + Stay Out',
           de: 'Verteilen + Draußen stehen',
+          cn: '分散 + 远离',
         },
       },
     },
