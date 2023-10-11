@@ -719,7 +719,7 @@ export class Bars {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
         const audio = new Audio('../../resources/sounds/freesound/sonar.webm');
-        audio.volume = 0.3;
+        audio.volume = this.options.CountdownSoundVolume;
         void audio.play();
       }
     }

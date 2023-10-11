@@ -9,6 +9,7 @@ export interface JobsNonConfigOptions {
   LowerOpacityOutOfCombat: boolean;
   OpacityOutOfCombat: number;
   PlayCountdownSound: boolean;
+  CountdownSoundVolume: number;
   HideWellFedAboveSeconds: number;
   ShowMPTickerOutOfCombat: boolean;
   MidHealthThresholdPercent: number;
@@ -53,6 +54,7 @@ const defaultJobsNonConfigOptions: JobsNonConfigOptions = {
   LowerOpacityOutOfCombat: true,
   OpacityOutOfCombat: 0.5,
   PlayCountdownSound: true,
+  CountdownSoundVolume: 0.3,
   HideWellFedAboveSeconds: 15 * 60,
   ShowMPTickerOutOfCombat: false,
   MidHealthThresholdPercent: 0.8,

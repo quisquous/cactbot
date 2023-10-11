@@ -375,7 +375,9 @@ const templateOptions: OptionsTemplate = {
       id: 'MinimumTimeForOverwrittenMit',
       name: {
         en: 'Minimum time to show overwritten mit (seconds)',
+        de: 'Minimum Zeit überschriebene Mitigation anzuzeigen (Sekunden)',
         cn: '显示被顶减伤最小时间 (秒)',
+        ko: '파티 생존기 덮어씀 경고를 표시할 기준 시간 (초)',
       },
       type: 'float',
       default: 2,

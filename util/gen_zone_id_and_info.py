@@ -34,6 +34,7 @@ synthetic_ids = {
     "ContainmentBayS1T7Unreal": 1090,
     "ContainmentBayP1T6Unreal": 1121,
     "TheMaskedCarnivale": 796,
+    "ContainmentBayZ1T9Unreal": 1157,
     # 6.2 revamp
     "Snowcloak61": 371,
     "SohmAl61": 441,
@@ -55,6 +56,9 @@ synthetic_ids = {
     "CastrumAbania63": 661,
     "DomaCastle63": 660,
     "TheSirensongSea63": 626,
+    # 6.5 revamp
+    "TheBurn64": 789,
+    "TheGhimlytDark64": 793,
 }
 
 synthetic_zone_info = {
@@ -150,6 +154,21 @@ synthetic_zone_info = {
         "offsetY": 0,
         "sizeFactor": 400,
         "weatherRate": 69,
+    },
+    1157: {
+        "contentType": 4,
+        "exVersion": 4,
+        "name": {
+            "cn": "祖尔宛幻巧战",
+            "de": "Traumprüfung - Zurvan",
+            "en": "Containment Bay Z1T9 (Unreal)",
+            "fr": "Unité de contention Z1P9 (irréel)",
+            "ja": "幻鬼神ズルワーン討滅戦",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 400,
+        "weatherRate": 75,
     },
     # 6.2 revamp
     143: {
@@ -360,6 +379,38 @@ synthetic_zone_info = {
         "offsetY": 32,
         "sizeFactor": 200,
         "weatherRate": 40,
+    },
+    789: {
+        "contentType": 2,
+        "exVersion": 2,
+        "name": {
+            "cn": "死亡大地终末焦土",
+            "de": "Das Kargland",
+            "en": "The Burn",
+            "fr": "L'Escarre",
+            "ja": "永久焦土 ザ・バーン",
+            "ko": "영구 초토지대",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 200,
+        "weatherRate": 97,
+    },
+    793: {
+        "contentType": 2,
+        "exVersion": 2,
+        "name": {
+            "cn": "国境防线基姆利特暗区",
+            "de": "Die Ghimlyt-Finsternis",
+            "en": "The Ghimlyt Dark",
+            "fr": "Les Ténèbres de Ghimlyt",
+            "ja": "境界戦線 ギムリトダーク",
+            "ko": "김리트 황야",
+        },
+        "offsetX": 0,
+        "offsetY": 0,
+        "sizeFactor": 200,
+        "weatherRate": 0,
     },
 }
 
