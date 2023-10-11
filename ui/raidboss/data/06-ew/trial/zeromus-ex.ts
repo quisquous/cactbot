@@ -89,11 +89,15 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: '6E9', capture: false },
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (_data, _matches, output) => {
+        if (_data.role === 'healer')
+          return output.text!();
+      },
       outputStrings: {
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          cn: '奶满全队',
         },
       },
     },
@@ -112,10 +116,12 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOn: {
           en: '${num}x line stack on ${player}',
           de: '${num}x in einer Linie sammeln mit ${player}',
+          cn: '${num}x 直线分摊 (${player})',
         },
         lineStackOnYou: {
           en: '${num}x line stack on YOU',
           de: '${num}x in einer Linie sammeln mit DIR',
+          cn: '${num}x 直线分摊点名',
         },
       },
     },
@@ -164,6 +170,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
         sw: Outputs.southwest,
@@ -180,6 +187,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
         se: Outputs.southeast,
@@ -272,24 +280,31 @@ const triggerSet: TriggerSet<Data> = {
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
           de: 'Weiche den Linien Cleaves aus',
+          cn: '远离十字AOE',
         },
         dirNNE: {
           en: 'North Wall (NNE/WSW)',
+          cn: '右上前方/左下侧边',
         },
         dirNNW: {
           en: 'North Wall (NNW/ESE)',
+          cn: '左上前方/右下侧边',
         },
         dirNE: {
           en: 'Corners (NE/SW)',
+          cn: '右上/左下角落',
         },
         dirNW: {
           en: 'Corners (NW/SE)',
+          cn: '左上/右下角落',
         },
         dirENE: {
           en: 'East Wall (ENE/SSW)',
+          cn: '右上侧边/左下后方',
         },
         dirWNW: {
           en: 'West Wall (WNW/SSE)',
+          cn: '左上侧边/右下后方',
         },
       },
     },
@@ -314,6 +329,7 @@ const triggerSet: TriggerSet<Data> = {
         forkedLightning: {
           en: 'Spread (forked lightning)',
           de: 'Verteilen (Gabelblitz)',
+          cn: '分散（闪电点名）',
         },
       },
     },
@@ -356,6 +372,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Group middle for tethers',
           de: 'Gruppe in die Mitte für Verbindungen',
+          cn: '集合等待连线',
         },
       },
     },
@@ -400,6 +417,7 @@ const triggerSet: TriggerSet<Data> = {
         blackHole: {
           en: 'East Black Hole on Wall',
           de: 'Schwarzes Loch an die östliche Wand',
+          cn: '右上放置黑洞',
         },
       },
     },
@@ -418,6 +436,7 @@ const triggerSet: TriggerSet<Data> = {
         blackHole: {
           en: 'West Black Hole on Wall',
           de: 'Schwarzes Loch an die westliche Wand',
+          cn: '左上放置黑洞',
         },
       },
     },
@@ -438,6 +457,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Towers => Spread',
           de: 'Türme nehmen => Verteilen',
+          cn: '踩塔 => 分散',
         },
       },
     },
@@ -452,6 +472,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Towers => Partner Stacks',
           de: 'Türme nehmen => mit Partner sammeln',
+          cn: '踩塔 => 分摊',
         },
       },
     },
@@ -473,10 +494,12 @@ const triggerSet: TriggerSet<Data> = {
         stackWithNox: {
           en: 'Partner Stack + Chasing Nox',
           de: 'Mit Partner Sammeln + verfolgendes Nox',
+          cn: '分摊 + 步进点名',
         },
         spreadWithNox: {
           en: 'Spread + Chasing Nox',
           de: 'Verteilen + verfolgendes Nox',
+          cn: '分散 + 步进点名',
         },
       },
     },
@@ -498,10 +521,12 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Partner Stack',
           de: 'mit Partner sammeln',
+          cn: '分摊',
         },
         spread: {
           en: 'Spread',
           de: 'Verteilen',
+          cn: '分散',
         },
       },
     },
@@ -543,14 +568,17 @@ const triggerSet: TriggerSet<Data> = {
         north: {
           en: 'Out of North',
           de: 'Weg vom Norden',
+          cn: '远离北边',
         },
         middle: {
           en: 'Out of Middle',
           de: 'Weg von der Mitte',
+          cn: '远离中间',
         },
         south: {
           en: 'Out of South',
           de: 'Weg vom Süden',
+          cn: '远离南边',
         },
       },
     },
@@ -570,14 +598,17 @@ const triggerSet: TriggerSet<Data> = {
         northSpread: {
           en: 'Spread Middle/South',
           de: 'Verteilen Mitte/Süden',
+          cn: '中间/南边 分散',
         },
         middleSpread: {
           en: 'Spread North/South',
           de: 'Verteilen Norden/Süden',
+          cn: '北边/南边 分散',
         },
         southSpread: {
           en: 'Spread North/Middle',
           de: 'Verteilen Norden/Mitte',
+          cn: '北边/中间 分散',
         },
       },
     },
@@ -611,14 +642,17 @@ const triggerSet: TriggerSet<Data> = {
         northEnumeration: {
           en: 'Enumeration Middle/South',
           de: 'Enumeration Mitte/Süden',
+          cn: '中间/南边 蓝圈分摊',
         },
         middleEnumeration: {
           en: 'Enumeration North/South',
           de: 'Enumeration Norden/Süden',
+          cn: '北边/南边 蓝圈分摊',
         },
         southEnumeration: {
           en: 'Enumeration North/Middle',
           de: 'Enumeration Norden/Mitte',
+          cn: '北边/中间 蓝圈分摊',
         },
       },
     },
@@ -638,14 +672,17 @@ const triggerSet: TriggerSet<Data> = {
         northStack: {
           en: 'Stack Middle',
           de: 'Mittig sammeln',
+          cn: '中间分摊',
         },
         middleStack: {
           en: 'Stack North',
           de: 'Nördlich sammeln',
+          cn: '北边分摊',
         },
         southStack: {
           en: 'Stack North/Middle',
           de: 'Nördlich/Mittig sammeln',
+          cn: '北边/中间 分摊',
         },
       },
     },
