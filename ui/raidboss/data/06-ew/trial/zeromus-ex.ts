@@ -89,10 +89,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: '6E9', capture: false },
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => {
-        if (_data.role === 'healer')
-          return output.text!();
-      },
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Heal to full',
