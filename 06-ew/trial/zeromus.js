@@ -13,6 +13,7 @@ Options.Triggers.push({
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          cn: '奶满全队',
         },
       },
     },
@@ -26,6 +27,7 @@ Options.Triggers.push({
         text: {
           en: 'Away from glowing circles',
           de: 'Weg von den leuchtenden Kreisen',
+          cn: '远离黑洞',
         },
       },
     },
@@ -40,6 +42,7 @@ Options.Triggers.push({
         lineStackOn: {
           en: '5x line stack on ${player}',
           de: '5x in einer Linie Sammeln auf ${player}',
+          cn: '${player} 直线分摊 (5次)',
         },
       },
     },
@@ -54,6 +57,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
         sw: Outputs.southwest,
@@ -70,6 +74,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
         se: Outputs.southeast,
@@ -115,6 +120,7 @@ Options.Triggers.push({
         tower: {
           en: 'Stand in Tower',
           de: 'Steh im Turm',
+          cn: '踩塔',
         },
       },
     },
@@ -174,6 +180,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread + Stay Out',
           de: 'Verteilen + Draußen stehen',
+          cn: '分散 + 远离',
         },
       },
     },
