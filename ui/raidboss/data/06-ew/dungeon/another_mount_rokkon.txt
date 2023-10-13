@@ -23,7 +23,7 @@ hideall "--sync--"
 1007.0 "--sync--" sync / 14:[^:]*:Shishio:841A:/ window 10000,0
 1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:841A:/
 
-1014.1 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/
+1014.1 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/
 1019.4 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:83F8:/
 1024.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83F9:/
 1026.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83FA:/
@@ -33,7 +33,7 @@ hideall "--sync--"
 1051.5 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:841B:/
 1055.5 "Slither" sync / 1[56]:[^:]*:Shishio:841C:/
 
-1060.7 "--jump--" sync / 1[56]:[^:]*:Shishio:841D:/
+1060.7 "--north--" sync / 1[56]:[^:]*:Shishio:841D:/
 1071.0 "Noble Pursuit 1" sync / 1[56]:[^:]*:Shishio:8407:/
 1071.8 "Levinburst 1" #sync / 1[56]:[^:]*:Rairin:8409:/
 1072.5 "Noble Pursuit 2" #sync / 1[56]:[^:]*:Shishio:8408:/
@@ -54,13 +54,13 @@ hideall "--sync--"
 1112.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:840C:/
 1113.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(8419|8418):/
 
-1118.1 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/
+1118.1 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/
 1123.4 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:83F8:/
 1128.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83F9:/
 1130.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83FA:/
 1132.2 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83FA:/
 
-1155.7 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/ window 10,10
+1155.7 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/ window 10,10
 1160.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:8417:/
 1168.1 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(8413|8415):/
 1168.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(8418|8419):/
@@ -80,19 +80,19 @@ hideall "--sync--"
 1226.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:841B:/
 1230.3 "Slither" sync / 1[56]:[^:]*:Shishio:841C:/
 
-1235.5 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/
+1235.5 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/
 1240.8 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:83F8:/
 1245.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83F9:/
 1247.6 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83FA:/
 1249.7 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83FA:/
-1267.1 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/
 
+1267.1 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/
 1272.2 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:83F8:/
 1276.9 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:83F9:/
 1279.0 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:83FA:/
 1281.0 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:83FA:/
 
-1307.4 "--sync--" sync / 1[56]:[^:]*:Shishio:841D:/
+1307.4 "--middle--" sync / 1[56]:[^:]*:Shishio:841D:/
 1312.5 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:8417:/
 1319.8 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(8413|8415):/
 1320.4 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(8418|8419):/
@@ -436,6 +436,7 @@ hideall "--sync--"
 # 85DE Moonless Night cast and raidwide damage to summon Oni's Claw
 # 85DF Clearout damage from Oni's Claw large circles hit 3
 # 85E0 Kenki Release cast and raidwide damage from boss
+# 85E1 Kenki Release enrage cast from boss
 # 85E3 Lateral Slice cast and tankbuster damage
 # 86C4 Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
 # 86C5 Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
