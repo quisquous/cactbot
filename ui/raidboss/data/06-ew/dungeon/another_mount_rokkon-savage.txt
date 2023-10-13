@@ -26,7 +26,7 @@ hideall "--sync--"
 1007.0 "--sync--" sync / 14:[^:]*:Shishio:8441:/ window 10000,0
 1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
 
-1014.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1014.1 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
 1019.4 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:841F:/
 1024.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
 1026.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
@@ -36,7 +36,7 @@ hideall "--sync--"
 1051.5 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
 1055.5 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
 
-1060.7 "--jump--" sync / 1[56]:[^:]*:Shishio:8444:/
+1060.7 "--north--" sync / 1[56]:[^:]*:Shishio:8444:/
 1071.0 "Noble Pursuit 1" sync / 1[56]:[^:]*:Shishio:842E:/
 1071.8 "Levinburst 1" #sync / 1[56]:[^:]*:Rairin:8430:/
 1072.5 "Noble Pursuit 2" #sync / 1[56]:[^:]*:Shishio:842F:/
@@ -57,13 +57,13 @@ hideall "--sync--"
 1112.9 "Left Swipe" sync / 1[56]:[^:]*:Devilish Thrall:8433:/
 1113.8 "Unnatural Force/Unnatural Ailment 2" sync / 1[56]:[^:]*:Shishio:(8440|843F):/
 
-1118.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1118.1 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
 1123.4 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:841F:/
 1128.1 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
 1130.2 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
 1132.2 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
 
-1155.7 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
+1155.7 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/ window 10,10
 1160.8 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
 1168.1 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
 1168.8 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
@@ -83,19 +83,19 @@ hideall "--sync--"
 1226.3 "Splitting Cry" sync / 1[56]:[^:]*:Shishio:8442:/
 1230.3 "Slither" sync / 1[56]:[^:]*:Shishio:8443:/
 
-1235.5 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1235.5 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
 1240.8 "Stormcloud Summons (circles)" sync / 1[56]:[^:]*:Shishio:841F:/
 1245.5 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
 1247.6 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
 1249.7 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
-1267.1 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
 
+1267.1 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
 1272.2 "Stormcloud Summons (lines)" sync / 1[56]:[^:]*:Shishio:841F:/
 1276.9 "Smokeater 1" sync / 1[56]:[^:]*:Shishio:8420:/
 1279.0 "Smokeater 2?" #sync / 1[56]:[^:]*:Shishio:8421:/
 1281.0 "Smokeater 3?" #sync / 1[56]:[^:]*:Shishio:8421:/
 
-1307.4 "--sync--" sync / 1[56]:[^:]*:Shishio:8444:/
+1307.4 "--middle--" sync / 1[56]:[^:]*:Shishio:8444:/
 1312.5 "Unnatural Wail" sync / 1[56]:[^:]*:Shishio:843E:/
 1319.8 "Eye of the Thunder Vortex/Vortex of the Thunder Eye" sync / 1[56]:[^:]*:Shishio:(843A|843C):/
 1320.4 "Unnatural Ailment/Unnatural Force 1" sync / 1[56]:[^:]*:Shishio:(843F|8440):/
@@ -152,150 +152,150 @@ hideall "--sync--"
 # GORAI THE UNCAGED #
 #~~~~~~~~~~~~~~~~~~~#
 
-# -p TODO:2014.3
-# -ii TODO TODO TODO 8504 TODO TODO TODO TODO TODO TODO TODO 8257 TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -p 8534:2014.3
+# -ii 8502 8504 8555 8504 8545 851D 851E 8584 8585 852F 854B 8257 8549 8554 8628 8544 854E 853E 852B 854C 854A
 
 2000.0 "--sync--" sync / 00:0839::The Trial Of Wisdom will be sealed off/ window 10000,0
-2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:TODO:/ window 10000,0
-2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8534:/ window 10000,0
+2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
 
-2021.7 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2028.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2033.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2044.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:(TODO|TODO):/
-2047.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(TODO|TODO):/
-2047.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(TODO|TODO):/
-2048.0 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2055.6 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2057.6 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2021.7 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2028.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2033.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2044.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:(8509|850A):/
+2047.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:(853F|8540):/
+2047.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:(853C|853D):/
+2048.0 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:8539:/
+2055.6 "Impure Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8552:/
+2057.6 "Impure Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8553:/
 
-2063.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2068.7 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2079.6 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2083.2 "Flintlock" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2083.6 "Shock" sync / 1[56]:[^:]*:Ball of Levin:TODO:/
-2094.5 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2063.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2068.7 "Thundercall" sync / 1[56]:[^:]*:Gorai the Uncaged:8520:/
+2079.6 "Humble Hammer" sync / 1[56]:[^:]*:Gorai the Uncaged:8502:/
+2083.2 "Flintlock" sync / 1[56]:[^:]*:Gorai the Uncaged:8526:/
+2083.6 "Shock" sync / 1[56]:[^:]*:Ball of Levin:8521:/
+2094.5 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:8532:/
 
-2100.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2108.0 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2114.3 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2126.3 "Pointed Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2126.4 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2132.4 "Pointed Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2132.4 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2138.4 "Pointed Purgation 3" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2138.4 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2144.4 "Pointed Purgation 4" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2144.4 "Burst 4" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2155.7 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2100.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2108.0 "Rousing Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8512:/
+2114.3 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
+2126.3 "Pointed Purgation 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2126.4 "Burst 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2132.4 "Pointed Purgation 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2132.4 "Burst 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2138.4 "Pointed Purgation 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2138.4 "Burst 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2144.4 "Pointed Purgation 4" sync / 1[56]:[^:]*:Gorai the Uncaged:8548:/
+2144.4 "Burst 4" sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2155.7 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
 
-2163.1 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2169.2 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2178.5 "Cloud to Ground" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/ duration 6.3
-2180.5 "Greater Ball of Fire/Great Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(TODO|TODO):/ window 1,1
-2183.5 "Great Ball of Fire/Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(TODO|TODO):/ window 1,1
+2163.1 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2169.2 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2178.5 "Cloud to Ground" sync / 1[56]:[^:]*:Gorai the Uncaged:854D:/ duration 6.3
+2180.5 "Greater Ball of Fire/Great Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(8539|853A):/ window 1,1
+2183.5 "Great Ball of Fire/Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:(853A|8539):/ window 1,1
 
-2193.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2202.2 "Fighting Spirits" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2205.5 "Worldly Pursuit 1" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2208.6 "Worldly Pursuit 2" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2211.6 "Worldly Pursuit 3" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2214.6 "Worldly Pursuit 4" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2217.6 "Worldly Pursuit 5" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2232.2 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2193.5 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2202.2 "Fighting Spirits" sync / 1[56]:[^:]*:Gorai the Uncaged:854F:/
+2205.5 "Worldly Pursuit 1" sync / 1[56]:[^:]*:Gorai the Uncaged:8550:/
+2208.6 "Worldly Pursuit 2" sync / 1[56]:[^:]*:Gorai the Uncaged:8550:/
+2211.6 "Worldly Pursuit 3" sync / 1[56]:[^:]*:Gorai the Uncaged:8550:/
+2214.6 "Worldly Pursuit 4" sync / 1[56]:[^:]*:Gorai the Uncaged:8550:/
+2217.6 "Worldly Pursuit 5" sync / 1[56]:[^:]*:Gorai the Uncaged:8550:/
+2232.2 "Torching Torment" sync / 1[56]:[^:]*:Gorai the Uncaged:8532:/
 
-2238.6 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2245.8 "Malformed Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2252.2 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2265.3 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2267.3 "Burst 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2269.9 "Burst 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2271.9 "Burst 3" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2272.6 "Fire Spread 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2274.6 "Fire Spread 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2238.6 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2245.8 "Malformed Reincarnation" sync / 1[56]:[^:]*:Gorai the Uncaged:8514:/
+2252.2 "Malformed Prayer" sync / 1[56]:[^:]*:Gorai the Uncaged:8518:/
+2265.3 "Flickering Flame" sync / 1[56]:[^:]*:Gorai the Uncaged:8510:/
+2267.3 "Burst 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2269.9 "Burst 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2271.9 "Burst 3" #sync / 1[56]:[^:]*:Gorai the Uncaged:8546:/
+2272.6 "Fire Spread 1" #sync / 1[56]:[^:]*:Gorai the Uncaged:8541:/
+2274.6 "Fire Spread 2" #sync / 1[56]:[^:]*:Gorai the Uncaged:8541:/
 
-2282.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2289.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2294.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2305.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2308.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2308.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2309.1 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-2318.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2282.9 "--middle--" sync / 1[56]:[^:]*:Gorai the Uncaged:84D3:/
+2289.0 "Seal of Scurrying Sparks" sync / 1[56]:[^:]*:Gorai the Uncaged:8503:/
+2294.3 "Flame and Sulphur" sync / 1[56]:[^:]*:Gorai the Uncaged:8508:/
+2305.6 "Brazen Ballad" sync / 1[56]:[^:]*:Gorai the Uncaged:850A:/
+2308.7 "Falling Rock" sync / 1[56]:[^:]*:Gorai the Uncaged:8540:/
+2308.7 "Fire Spread" sync / 1[56]:[^:]*:Gorai the Uncaged:853D:/
+2309.1 "Greater Ball of Fire" sync / 1[56]:[^:]*:Gorai the Uncaged:8539:/
+2318.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
 
-2325.4 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:TODO:/
-2335.4 "Living Hell Enrage" sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-#2336.0 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-#2337.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-#2338.4 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-#2340.2 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
-#2340.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:TODO:/
+2325.4 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8536:/
+2335.4 "Living Hell Enrage" sync / 1[56]:[^:]*:Gorai the Uncaged:8536:/
+#2336.0 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
+#2337.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8537:/
+#2338.4 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
+#2340.2 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8537:/
+#2340.8 "Living Hell" #sync / 1[56]:[^:]*:Gorai the Uncaged:8538:/
 
 # ALL ENCOUNTER ABILITIES
-# TODO --sync-- repositioning
-# TODO --sync-- auto damage
-# TODO Seal of Scurrying Sparks cast and self-targeted ability
-# TODO Seal of Scurrying Sparks ability on players that gives Live Brazier/Live Candle debuffs
-# TODO Greater Ball of Fire pair stack damage from Live Brazier debuff
-# TODO Great Ball of Fire spread damage from Live Candle debuff
-# TODO Flame and Sulphur cast and self-targeted summoning rocks and lines
-# TODO Brazen Ballad cast and self-targeted purple effect that expands everything
-# TODO Brazen Ballad cast and self-targeted blue effect that donutifies everything
-# TODO Fire Spread expanded line damage after Brazen Ballad TODO
-# TODO Fire Spread split line damage after Brazen Ballad TODO
-# TODO Worldly Pursuit cast and damage from cross jumps
-# TODO Falling Rock expanded rock damage after Brazen Ballad TODO
-# TODO Falling Rock donutified rock damage after Brazen Ballad TODO
-# TODO Flickering Flame cast and ability (summoning blue flames for TODO)
-# TODO Fire Spread cast and damage for waffle lines during second towers
-# TODO Rousing Reincarnation cast and self-targeted ability
-# TODO Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
-# TODO Malformed Reincarnation cast and self-targeted ability
-# TODO Malformed Reincarnation ability on player like Rousing Reincarnation, but also gives Odder/Squirrelly Prayer
-# TODO Malformed Prayer cast and self-targeted ability that starts the tower sequences
-# TODO Burst orange tower damage
-# TODO Dramatic Burst missed tower damage (second set? or an orange color?)
-# TODO Burst blue tower damage
-# TODO Dramatic Burst missed tower damage (first set? or a blue color?)
-# TODO Pointed Purgation cast and self-targeted ability before first TODO protean cleave
-# TODO Pointed Purgation self-targeted ability before 2/3/4 TODO protean cleaves
-# TODO Pointed Purgation damage for protean cleave from tether
-# TODO Thundercall cast and self-targeted ability that summons Ball of Levin
-# TODO Shock cast and self-targeted ability by Ball of Levin
-# TODO Shock small ground circle damage from Ball of Levin hit by Humble Hammer
-# TODO Shock large ground circle damage from Ball of Levin
-# TODO Humble Hammer cast and self-targeted ability
-# TODO Humble Hammer cast and damage headmarker on healer that gives mini debuff
-# TODO Flintlock self-targeted ability
-# TODO Flintlock damage for line stack after Humble Hammer
-# TODO Cloud to Ground cast and self-targeted ability
-# TODO Cloud to Ground cloud exaflare damage initial hit
-# TODO Cloud to Ground cloud exaflare damage ongoing hits
-# TODO Fighting Spirits cast and self-targeted
-# TODO Fighting Spirits cast and damage for knockback
-# TODO Worldly Pursuit untargeted ability jump before TODO cross cast and damage
-# TODO Impure Purgation cast and self-targeted ability
-# TODO Impure Purgation initial protean damage
-# TODO Impure Purgation cast and damage for follow-up protean
-# TODO Torching Torment cast and ability on tank that give burns debuff
-# TODO Torching Torment cast and damage on tank for tankbuster
-# TODO Unenlightenment cast and self-targeted ability
-# TODO Unenlightenment damage for raidwide bleed
-# TODO Living Hell cast and self-targeted enrage
-# TODO Living Hell self-targeted ability for follow-up enrage if TODO failed
-# TODO Living Hell damage for TODO/TODO enrage abilities
+# 84D3 --sync-- repositioning
+# 8502 --sync-- auto damage
+# 8503 Seal of Scurrying Sparks cast and self-targeted ability
+# 8504 Seal of Scurrying Sparks ability on players that gives Live Brazier/Live Candle debuffs
+# 8539 Greater Ball of Fire pair stack damage from Live Brazier debuff
+# 853A Great Ball of Fire spread damage from Live Candle debuff
+# 8508 Flame and Sulphur cast and self-targeted summoning rocks and lines
+# 8509 Brazen Ballad cast and self-targeted purple effect that expands everything
+# 850A Brazen Ballad cast and self-targeted blue effect that donutifies everything
+# 853C Fire Spread expanded line damage after Brazen Ballad 8509
+# 853D Fire Spread split line damage after Brazen Ballad 850A
+# 8550 Worldly Pursuit cast and damage from cross jumps
+# 853F Falling Rock expanded rock damage after Brazen Ballad 8509
+# 8540 Falling Rock donutified rock damage after Brazen Ballad 850A
+# 8510 Flickering Flame cast and ability (summoning blue flames for 8541)
+# 8541 Fire Spread cast and damage for waffle lines during second towers
+# 8512 Rousing Reincarnation cast and self-targeted ability
+# 8584 Rousing Reincarnation ability on player that gives Odder Incarnation and Rodential Rebirth
+# 8514 Malformed Reincarnation cast and self-targeted ability
+# 8585 Malformed Reincarnation ability on player like Rousing Reincarnation, but also gives Odder/Squirrelly Prayer
+# 8518 Malformed Prayer cast and self-targeted ability that starts the tower sequences
+# 8544 Burst orange tower damage
+# 8545 Dramatic Burst missed tower damage (second set? or an orange color?)
+# 8546 Burst blue tower damage
+# 8547 Dramatic Burst missed tower damage (first set? or a blue color?)
+# 851D Pointed Purgation cast and self-targeted ability before first 8548 protean cleave
+# 851E Pointed Purgation self-targeted ability before 2/3/4 8548 protean cleaves
+# 8548 Pointed Purgation damage for protean cleave from tether
+# 8520 Thundercall cast and self-targeted ability that summons Ball of Levin
+# 8521 Shock cast and self-targeted ability by Ball of Levin
+# 8549 Shock small ground circle damage from Ball of Levin hit by Humble Hammer
+# 854A Shock large ground circle damage from Ball of Levin
+# 8502 Humble Hammer cast and self-targeted ability
+# 854B Humble Hammer cast and damage headmarker on healer that gives mini debuff
+# 8526 Flintlock self-targeted ability
+# 854C Flintlock damage for line stack after Humble Hammer
+# 8628 Cloud to Ground cast and self-targeted ability
+# 854D Cloud to Ground cloud exaflare damage initial hit
+# 854E Cloud to Ground cloud exaflare damage ongoing hits
+# 852B Fighting Spirits cast and self-targeted
+# 854F Fighting Spirits cast and damage for knockback
+# 853E Worldly Pursuit untargeted ability jump before 8550 cross cast and damage
+# 852F Impure Purgation cast and self-targeted ability
+# 8552 Impure Purgation initial protean damage
+# 8553 Impure Purgation cast and damage for follow-up protean
+# 8532 Torching Torment cast and ability on tank that give burns debuff
+# 8554 Torching Torment cast and damage on tank for tankbuster
+# 8534 Unenlightenment cast and self-targeted ability
+# 8555 Unenlightenment damage for raidwide bleed
+# 8536 Living Hell cast and self-targeted enrage
+# 8537 Living Hell self-targeted ability for follow-up enrage if 8536 failed
+# 8538 Living Hell damage for 8536/8537 enrage abilities
 
 
 #~~~~~~~~~~~~~~~~~~~#
 # MOKO THE RESTLESS #
 #~~~~~~~~~~~~~~~~~~~#
 
-# -p TODO:3016.4
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -p 860C:3016.4
+# -ii 8507 85EC 85ED 8601 860B 8C28 8607 85FD 8604 8606 8537 8538
 
 3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
-3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:TODO:/ window 10000,10
-3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:860C:/ window 10000,10
+3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
 
 3035.6 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
 3038.6 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
@@ -304,81 +304,81 @@ hideall "--sync--"
 3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 
-3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
+3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:860D:/
 
-3077.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3083.3 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3088.9 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3096.0 "Invocation of Vengeance" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3108.1 "Fleeting Iai-giri (cast)" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3108.3 "--jump--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3110.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO|TODO):/
-3111.7 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3111.8 "Vengeful Flame/Vengeful Pyre" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3118.6 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3119.7 "Vengeful Pyre/Vengeful Flame" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
+3077.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3083.3 "Scarlet Auspice" sync / 1[56]:[^:]*:Moko the Restless:8600:/
+3088.9 "Boundless Scarlet" sync / 1[56]:[^:]*:Moko the Restless:8599:/
+3096.0 "Invocation of Vengeance" sync / 1[56]:[^:]*:Moko the Restless:85BD:/
+3108.1 "Fleeting Iai-giri (cast)" sync / 1[56]:[^:]*:Moko the Restless:85C2:/
+3108.3 "--jump--" sync / 1[56]:[^:]*:Moko the Restless:85C3:/
+3110.6 "Fleeting Iai-giri" sync / 1[56]:[^:]*:Moko the Restless:(85F6|85F7|85F8):/
+3111.7 "Explosion 1" sync / 1[56]:[^:]*:Moko the Restless:8602:/
+3111.8 "Vengeful Flame/Vengeful Pyre" sync / 1[56]:[^:]*:Moko the Restless:(8608|8609):/
+3118.6 "Explosion 2" sync / 1[56]:[^:]*:Moko the Restless:8602:/
+3119.7 "Vengeful Pyre/Vengeful Flame" sync / 1[56]:[^:]*:Moko the Restless:(8609|8608):/
 
-3127.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3127.6 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
 
-3134.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3139.0 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3134.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3139.0 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
 
-3145.1 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3154.2 "Near Edge/Far Edge 1" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3154.2 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:TODO:/
-3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3145.1 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:860A:/
+3154.2 "Near Edge/Far Edge 1" sync / 1[56]:[^:]*:Moko the Restless:(85D9|85D8):/
+3154.2 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C22:/
+3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85F9:/
 3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
-3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3174.5 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:TODO:/
-3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:860A:/
+3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
+3174.5 "Double Iai-giri x2" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C22:/
+3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85F9:/
 3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
 
-3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
 
-3195.3 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3201.4 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3207.0 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3218.8 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3221.8 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3224.8 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3225.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3227.8 "Upwell 4" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3195.3 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3201.4 "Azure Auspice" sync / 1[56]:[^:]*:Moko the Restless:8603:/
+3207.0 "Boundless Azure" sync / 1[56]:[^:]*:Moko the Restless:859D:/
+3218.8 "Upwell 1" sync / 1[56]:[^:]*:Moko the Restless:8605:/
+3221.8 "Upwell 2" sync / 1[56]:[^:]*:Moko the Restless:8605:/
+3224.8 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:8605:/
+3225.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3227.8 "Upwell 4" sync / 1[56]:[^:]*:Moko the Restless:8605:/
 3238.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
 3241.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 3244.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 
-3251.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3254.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3260.0 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3264.1 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3270.2 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3285.4 "Double Iai-giri x4" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3285.6 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
-3285.9 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
-3285.9 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
-3288.3 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:TODO:/
+3251.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+3254.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
+3260.0 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
+3264.1 "Soldiers of Death" sync / 1[56]:[^:]*:Moko the Restless:8593:/
+3270.2 "Shadow-twin" sync / 1[56]:[^:]*:Moko the Restless:85C7:/
+3285.4 "Double Iai-giri x4" sync / 1[56]:[^:]*:Moko's Shadow:85C8:/
+3285.6 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
+3285.9 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85FF:/
+3285.9 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85FE:/
+3288.3 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85F9:/
 3291.3 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[46]:/
-3291.7 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
-3291.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:TODO:/
+3291.7 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87AA:/
+3291.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A9:/
 
-3291.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3291.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
 3305.1 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
 3308.2 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
 3311.3 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3318.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3321.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(TODO|TODO):/
-3328.8 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
-3336.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:TODO:/
+3318.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
+3321.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
+3328.8 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:860D:/
+3336.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
 
-3342.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85E1:/ window 10,10
-3352.0 "Kenki Release Enrage" sync / 1[56]:[^:]*:Moko the Restless:85E1:/
+3342.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85E2:/ window 10,10
+3352.0 "Kenki Release Enrage" sync / 1[56]:[^:]*:Moko the Restless:85E2:/
 
 
 # TODO: are any of these possible??? I think no
@@ -388,67 +388,68 @@ hideall "--sync--"
 # TODO: Shadow Kasumi-giri front safe initial
 # TODO: Shadow Kasumi-giri back safe followup
 
-# TODO --sync-- auto damage
-# TODO Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
-# TODO Boundless Scarlet cast and self-targeted ability to summon red lines
-# TODO Boundless Azure cast and self-targeted ability to summon blue lines
-# TODO --sync-- repositioning
-# TODO Triple Kasumi-giri long cast and damage for back red first
-# TODO Triple Kasumi-giri long cast and damage for left red first
-# TODO Triple Kasumi-giri long cast and damage for front red first
-# TODO Triple Kasumi-giri long cast and damage for right red first
-# TODO Triple Kasumi-giri short cast and damage for back red followup
-# TODO Triple Kasumi-giri short cast and damage for left red followup
-# TODO Triple Kasumi-giri short cast and damage for front red followup
-# TODO Triple Kasumi-giri short cast and damage for right red followup
-# TODO Unbound Spirit damage for red "out" Triple Kasumi-giri marker
-# TODO Azure Coil damage for blue "in" Triple Kasumi-giri marker
-# TODO Triple Kasumi-giri long cast and damage for back blue first
-# TODO Triple Kasumi-giri long cast and damage for left blue first
-# TODO Triple Kasumi-giri long cast and damage for front blue first
-# TODO Triple Kasumi-giri long cast and damage for right blue first
-# TODO Triple Kasumi-giri short cast and damage for back blue followup
-# TODO Triple Kasumi-giri short cast and damage for left blue followup
-# TODO Triple Kasumi-giri short cast and damage for front blue followup
-# TODO Triple Kasumi-giri short cast and damage for right blue followup
-# TODO Fleeting Iai-giri cast and self-targeted ability for jumping Iai-giri (all types) from boss
-# TODO --sync-- boss jump ability for Fleeting Iai-giri
-# TODO Fleeting Iai-giri short cast and damage for back purple Iai-giri
-# TODO Fleeting Iai-giri short cast and damage for left purple Iai-giri
-# TODO Fleeting Iai-giri short cast and damage for right purple Iai-giri
-# TODO Shadow-twin cast and self-targeted to summon Moko's Shadow clones
-# TODO Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
-# TODO --sync-- clone jump ability for Shadow Kasumi-giri
-# TODO Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
-# TODO Kenki Release cast and raidwide enrage from Shadow clones
-# TODO Iron Rain very long initial cast and medium circle damage from red Ashigaru Kyuheis
-# TODO Iron Storm very long initial cast and big circle damage from blue Ashigaru Kyuhei
-# TODO Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
-# TODO Boundless Scarlet cast and damage for initial red lines before they grow
-# TODO Explosion cast and damage for growing red lines
-# TODO Azure Auspice cast and damage for "get under" donut before Boundless Azure
-# TODO Boundless Azure cast and damage for initial blue lines before they bounce
-# TODO Upwell cast and damage for blue line first bounce
-# TODO Upwell damage for blue line ongoing bounces
-# TODO Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
-# TODO Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
-# TODO Accursed Edge damage and bind on players from Far Edge / Near Edge
-# TODO Invocation of Vengeance cast and self-targeted ability that gives debuffs during Explosions
-# TODO Vengeful Flame spread damage
-# TODO Vengeful Pyre stack damage
-# TODO Moonless Night cast and raidwide damage to summon Oni's Claw
-# TODO Clearout damage from Oni's Claw large circles hit 3
-# TODO Kenki Release cast and raidwide damage from boss
-# TODO Lateral Slice cast and tankbuster damage
-# TODO Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
-# TODO Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
-# TODO Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
-# TODO --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
-# TODO --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
-# TODO Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
-# TODO Iron Storm short followup cast and big circle damage from blue Ashigaru Kyuhei
-# TODO Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
-# TODO Clearout damage from Oni's Claw large circles hit 2
+# 8507 --sync-- auto damage
+# 8593 Soldiers of Death cast and self-targeted ability to summon Ashigaru Kyuhei adds
+# 8599 Boundless Scarlet cast and self-targeted ability to summon red lines
+# 859D Boundless Azure cast and self-targeted ability to summon blue lines
+# 85AF --sync-- repositioning
+# 85E4 Triple Kasumi-giri long cast and damage for back red first
+# 85E5 Triple Kasumi-giri long cast and damage for left red first
+# 85E6 Triple Kasumi-giri long cast and damage for front red first
+# 85E7 Triple Kasumi-giri long cast and damage for right red first
+# 85E8 Triple Kasumi-giri short cast and damage for back red followup
+# 85E9 Triple Kasumi-giri short cast and damage for left red followup
+# 85EA Triple Kasumi-giri short cast and damage for front red followup
+# 85EB Triple Kasumi-giri short cast and damage for right red followup
+# 85EC Unbound Spirit damage for red "out" Triple Kasumi-giri marker
+# 85ED Azure Coil damage for blue "in" Triple Kasumi-giri marker
+# 85EF Triple Kasumi-giri long cast and damage for back blue first
+# 85F0 Triple Kasumi-giri long cast and damage for left blue first
+# 85F1 Triple Kasumi-giri long cast and damage for front blue first
+# 85F2 Triple Kasumi-giri long cast and damage for right blue first
+# 85F3 Triple Kasumi-giri short cast and damage for back blue followup
+# 85F4 Triple Kasumi-giri short cast and damage for left blue followup
+# 85F5 Triple Kasumi-giri short cast and damage for front blue followup
+# 85F6 Triple Kasumi-giri short cast and damage for right blue followup
+# 85C2 Fleeting Iai-giri cast and self-targeted ability for jumping Iai-giri (all types) from boss
+# 85C3 --sync-- boss jump ability for Fleeting Iai-giri
+# 85F6 Fleeting Iai-giri short cast and damage for back purple Iai-giri
+# 85F7 Fleeting Iai-giri short cast and damage for left purple Iai-giri
+# 85F8 Fleeting Iai-giri short cast and damage for right purple Iai-giri
+# 85C7 Shadow-twin cast and self-targeted to summon Moko's Shadow clones
+# 85C8 Double Iai-giri cast and self-targeted ability for Shadow clone (all types)
+# 85C9 --sync-- clone jump ability for Shadow Kasumi-giri
+# 85F9 Shadow Kasumi-giri short cast and damage for Shadow clone back purple first
+# 85FD Kenki Release cast and raidwide enrage from Shadow clones
+# 85FE Iron Rain very long initial cast and medium circle damage from red Ashigaru Kyuheis
+# 85FF Iron Storm very long initial cast and big circle damage from blue Ashigaru Kyuhei
+# 8600 Scarlet Auspice cast and damage for "get out" before Boundless Scarlet
+# 8601 Boundless Scarlet cast and damage for initial red lines before they grow
+# 8602 Explosion cast and damage for growing red lines
+# 8603 Azure Auspice cast and damage for "get under" donut before Boundless Azure
+# 8604 Boundless Azure cast and damage for initial blue lines before they bounce
+# 8605 Upwell cast and damage for blue line first bounce
+# 8606 Upwell damage for blue line ongoing bounces
+# 85D8 Far Edge cast and self-targeted ability paired with Accursed Edge on farthest players
+# 85D9 Near Edge cast and self-targeted ability paired with Accursed Edge on nearest players
+# 8607 Accursed Edge damage and bind on players from Far Edge / Near Edge
+# 85BD Invocation of Vengeance cast and self-targeted ability that gives debuffs during Explosions
+# 8608 Vengeful Flame spread damage
+# 8609 Vengeful Pyre stack damage
+# 860A Moonless Night cast and raidwide damage to summon Oni's Claw
+# 860B Clearout damage from Oni's Claw large circles hit 3
+# 860C Kenki Release cast and raidwide damage from boss
+# 85E2 Kenki Release enrage cast from boss
+# 860D Lateral Slice cast and tankbuster damage
+# 86CC Shadow Kasumi-giri short cast and damage for Shadow clone left purple followup
+# 86CD Shadow Kasumi-giri short cast and damage for Shadow clone front purple followup
+# 86CE Shadow Kasumi-giri short cast and damage for Shadow clone right purple followup
+# 871F --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# 8720 --sync-- unknown self-targeted ability before Lateral Slice or Soldiers of Death
+# 87A9 Iron Rain short followup cast and medium circle damage from red Ashigaru Kyuheis
+# 87AA Iron Storm short followup cast and big circle damage from blue Ashigaru Kyuhei
+# 8C22 Clearout cast and damage for Oni's Claw large circles hit 1 (of 3)
+# 8C28 Clearout damage from Oni's Claw large circles hit 2
 
 
 #~~~~~~~~~#
