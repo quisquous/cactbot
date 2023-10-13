@@ -8,9 +8,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { Job } from '../../../../../types/job';
 import { NetMatches } from '../../../../../types/net_matches';
-import { Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
-
-// TODO: Shishu Onmitsugashira Huton 8663 call something for multiple fast shurikens???
+import { LocaleText, Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
 type RousingTower = {
   blue?: string;
@@ -108,6 +106,24 @@ const tripleKasumiFollowupOutputStrings = {
   },
 };
 
+type StackPartners = 'melee' | 'role' | 'partner' | 'unknown';
+type StackSpreadMechanic = StackPartners | 'spread';
+const basicStackSpreadOutputStrings: Record<StackSpreadMechanic, LocaleText> = {
+  spread: Outputs.spread,
+  melee: {
+    en: 'Melees Stack',
+  },
+  role: {
+    en: 'Role Stacks',
+  },
+  partner: {
+    en: 'Partner Stacks',
+  },
+  unknown: {
+    en: 'Stacks',
+  },
+} as const;
+
 const tripleKasumiAbilityIds = [
   '85B0', // back red first
   '85B1', // left red first
@@ -131,11 +147,19 @@ export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
   };
+  stackSpreadFirstMechanic?: StackSpreadMechanic;
+  stackSpreadSecondMechanic?: StackSpreadMechanic;
   combatantData: PluginCombatantState[];
+  seenShishuYukiAuto?: boolean;
+  smokeaterCount: number;
   rairinCollect: NetMatches['AddedCombatant'][];
   wailingCollect: NetMatches['GainsEffect'][];
   wailCount: number;
   devilishThrallCollect: NetMatches['StartsUsing'][];
+  vortexSecondMechanic?: 'in' | 'out';
+  reishoCount: number;
+  ghostHeadmarkers: NetMatches['HeadMarker'][];
+  ghostMechanic?: 'spread' | 'tower';
   sparksCollect: NetMatches['GainsEffect'][];
   sparksCount: number;
   rousingCollect: [RousingTower, RousingTower, RousingTower, RousingTower];
@@ -177,7 +201,6 @@ const couldStackLooseFunc = (
 const isMeleeOrTank = (x: Job) => Util.isMeleeDpsJob(x) || Util.isTankJob(x);
 const isSupport = (x: Job) => Util.isHealerJob(x) || Util.isTankJob(x);
 
-type StackPartners = 'melee' | 'role' | 'partner' | 'unknown';
 const findStackPartners = (
   data: Data,
   stack1?: string,
@@ -282,6 +305,9 @@ const stackSpreadResponse = (
     ? {}
     : { infoText: output.stacks!({ player1: player1, player2: player2 }) };
 
+  data.stackSpreadFirstMechanic = isStackFirst ? stackType : 'spread';
+  data.stackSpreadSecondMechanic = isStackFirst ? 'spread' : stackType;
+
   if (stackType === 'melee') {
     if (isStackFirst)
       return { alertText: output.meleeStackThenSpread!(), ...stackInfo };
@@ -377,7 +403,7 @@ const triggerSet: TriggerSet<Data> = {
         en:
           `For any two person stacks, this specifies the priority order for picking people to stack together.
            If you want your melee and tank to stick together if possible, pick the option with melees in it.
-           Melee stacks means melee+tank and healer+ranged. Role stacks means tank+healer and dps+dps.
+           Melees stack means melee+tank and healer+ranged. Role stacks means tank+healer and dps+dps.
            Partner stacks mean support+dps and support+dps (any combination works).
            If you have two ranged dps or two melee dps, it will never call "melees" regardless of this config option.
            There is no support for party comps that are not two support and two dps.`,
@@ -399,10 +425,13 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
+      smokeaterCount: 0,
       rairinCollect: [],
       wailingCollect: [],
       wailCount: 0,
       devilishThrallCollect: [],
+      reishoCount: 0,
+      ghostHeadmarkers: [],
       sparksCollect: [],
       sparksCount: 0,
       rousingCollect: [{}, {}, {}, {}],
@@ -428,13 +457,6 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8656', source: 'Shishu Raiko', capture: false },
       response: Responses.getOut(),
-    },
-    {
-      id: 'AMR Shishu Furutsubaki Bloody Caress',
-      type: 'StartsUsing',
-      netRegex: { id: '8657', source: 'Shishu Furutsubaki', capture: false },
-      suppressSeconds: 5,
-      response: Responses.getBehind('info'),
     },
     {
       id: 'AMR Shishu Raiko Barreling Smash',
@@ -487,16 +509,38 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.knockback(),
     },
     {
+      id: 'AMR Shishu Yuki Auto Tracker',
+      type: 'Ability',
+      netRegex: { id: '7A58', source: 'Shishu Yuki', capture: false },
+      // Before being pulled (aka seeing an auto), Shishu Yuki faces south when doing
+      // right/left cleaves. Make these absolute directions for clarity.
+      // Shishu Yuki does have a buff that prevents pulling it, but there's no line
+      // for this buff loss.
+      run: (data) => data.seenShishuYukiAuto = true,
+    },
+    {
       id: 'AMR Shishu Yuki Right Swipe',
       type: 'StartsUsing',
       netRegex: { id: '8685', source: 'Shishu Yuki', capture: false },
-      response: Responses.goLeft('info'),
+      alertText: (data, _matches, output) => {
+        return data.seenShishuYukiAuto ? output.left!() : output.east!();
+      },
+      outputStrings: {
+        east: Outputs.east,
+        left: Outputs.left,
+      },
     },
     {
       id: 'AMR Shishu Yuki Left Swipe',
       type: 'StartsUsing',
       netRegex: { id: '8686', source: 'Shishu Yuki', capture: false },
-      response: Responses.goRight('info'),
+      alertText: (data, _matches, output) => {
+        return data.seenShishuYukiAuto ? output.right!() : output.west!();
+      },
+      outputStrings: {
+        west: Outputs.west,
+        right: Outputs.right,
+      },
     },
     // ---------------- Shishio ----------------
     {
@@ -504,6 +548,28 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '841A', source: 'Shishio', capture: false },
       response: Responses.aoe(),
+    },
+    {
+      id: 'AMR Shishio Smokeater Count',
+      type: 'Ability',
+      // 83F9 is the initial Smokeater, and 83FA is the followup optional two.
+      netRegex: { id: ['83F9', '83FA'], source: 'Shishio' },
+      sound: '',
+      infoText: (data, matches, output) => {
+        if (matches.id === '83F9') {
+          data.smokeaterCount = 1;
+          return output.num1!();
+        }
+        data.smokeaterCount++;
+        if (data.smokeaterCount === 2)
+          return output.num2!();
+        return output.num3!();
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+      },
     },
     {
       id: 'AMR Shishio Splitting Cry',
@@ -645,6 +711,10 @@ const triggerSet: TriggerSet<Data> = {
         const [player1, player2] = stacks.map((x) => data.ShortName(x));
         const stackInfo = { infoText: output.stacks!({ player1: player1, player2: player2 }) };
 
+        data.vortexSecondMechanic = isInFirst ? 'out' : 'in';
+        data.stackSpreadFirstMechanic = isStackFirst ? stackType : 'spread';
+        data.stackSpreadSecondMechanic = isStackFirst ? 'spread' : stackType;
+
         if (stackType === 'melee') {
           if (isStackFirst)
             return { alertText: output.meleeStackThenSpread!(args), ...stackInfo };
@@ -666,10 +736,43 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AMR Shishio Vortex of the Thunder Eye Followup',
+      type: 'Ability',
+      // 8418 = Unnatural Ailment
+      // 8419 = Unnatural Force
+      netRegex: { id: ['8418', '8419'], capture: false },
+      condition: (data) => data.wailCount !== 1,
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const mech = data.stackSpreadSecondMechanic;
+        if (mech === undefined)
+          return;
+        delete data.stackSpreadFirstMechanic;
+        delete data.stackSpreadSecondMechanic;
+        const mechanicStr = output[mech]!();
+
+        const inOut = data.vortexSecondMechanic;
+        if (inOut === undefined)
+          return;
+        delete data.vortexSecondMechanic;
+
+        const inOutStr = output[inOut]!();
+        return output.text!({ inOut: inOutStr, mechanic: mechanicStr });
+      },
+      outputStrings: {
+        text: {
+          en: '${inOut} + ${mechanic}',
+        },
+        out: Outputs.out,
+        in: Outputs.in,
+        ...basicStackSpreadOutputStrings,
+      },
+    },
+    {
       id: 'AMR Shishio Thunder Vortex',
       type: 'StartsUsing',
       netRegex: { id: '8412', source: 'Shishio', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'AMR Shishio Devilish Thrall Collect',
@@ -682,8 +785,11 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Shishio Devilish Thrall Safe Spot',
       type: 'StartsUsing',
+      // Note: the second call of this comes out before the first one happens,
+      // but it's important to know where you're going.
       netRegex: { id: ['840B', '840C'], source: 'Devilish Thrall', capture: false },
       delaySeconds: 0.5,
+      durationSeconds: 6,
       suppressSeconds: 1,
       promise: async (data) => {
         data.combatantData = [];
@@ -725,45 +831,117 @@ const triggerSet: TriggerSet<Data> = {
         if (pos1 === undefined || pos2 === undefined || outwardStates.length !== 2)
           return;
 
+        const mech = data.stackSpreadFirstMechanic ?? data.stackSpreadSecondMechanic;
+        const mechanicStr = mech !== undefined ? output[mech]!() : output.unknownMech!();
+
+        if (data.stackSpreadFirstMechanic)
+          delete data.stackSpreadFirstMechanic;
+        else if (data.stackSpreadSecondMechanic)
+          delete data.stackSpreadSecondMechanic;
+
         // 0/6 (average 7) and 1/7 (average 0) are the two cases where the difference is 6 and not 2.
         const averagePos = Math.floor((pos2 + pos1 + (pos2 - pos1 === 6 ? 8 : 0)) / 2) % 8;
+        const params = { mechanic: mechanicStr } as const;
         return {
-          0: output.north!(),
-          1: output.northeast!(),
-          2: output.east!(),
-          3: output.southeast!(),
-          4: output.south!(),
-          5: output.southwest!(),
-          6: output.west!(),
-          7: output.northwest!(),
+          0: output.north!(params),
+          1: output.northeast!(params),
+          2: output.east!(params),
+          3: output.southeast!(params),
+          4: output.south!(params),
+          5: output.southwest!(params),
+          6: output.west!(params),
+          7: output.northwest!(params),
         }[averagePos];
       },
       run: (data) => data.devilishThrallCollect = [],
       outputStrings: {
         north: {
-          en: 'North Diamond',
+          en: 'North Diamond + ${mechanic}',
         },
         east: {
-          en: 'East Diamond',
+          en: 'East Diamond + ${mechanic}',
         },
         south: {
-          en: 'South Diamond',
+          en: 'South Diamond + ${mechanic}',
         },
         west: {
-          en: 'West Diamond',
+          en: 'West Diamond + ${mechanic}',
         },
         northeast: {
-          en: 'Northeast Square',
+          en: 'Northeast Square + ${mechanic}',
         },
         southeast: {
-          en: 'Southeast Square',
+          en: 'Southeast Square + ${mechanic}',
         },
         southwest: {
-          en: 'Southwest Square',
+          en: 'Southwest Square + ${mechanic}',
         },
         northwest: {
-          en: 'Northwest Square',
+          en: 'Northwest Square + ${mechanic}',
         },
+        ...basicStackSpreadOutputStrings,
+        unknownMech: Outputs.unknown,
+      },
+    },
+    {
+      id: 'AMR Shishio Haunting Thrall Reisho Count',
+      type: 'Ability',
+      // Sometimes these adds have not changed their name from Shishio to Haunting Thrall.
+      netRegex: { id: '840D', capture: false },
+      preRun: (data) => data.reishoCount++,
+      durationSeconds: 1.5,
+      // There are 8 pulses, 2 seconds apart.
+      suppressSeconds: 0.5,
+      sound: '',
+      alarmText: (data, _matches, output) => {
+        if (data.ghostMechanic === 'tower')
+          return output.tower!();
+      },
+      infoText: (data, _matches, output) => output[`num${data.reishoCount}`]!(),
+      outputStrings: {
+        tower: {
+          en: 'Tower',
+        },
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
+        num7: Outputs.num7,
+        num8: Outputs.num8,
+      },
+    },
+    {
+      id: 'AMR Shishio Haunting Thrall Headmarker',
+      type: 'HeadMarker',
+      netRegex: { id: '01D8' },
+      condition: (data, matches) => {
+        data.ghostHeadmarkers.push(matches);
+        return data.ghostHeadmarkers.length === 2;
+      },
+      alertText: (data, _matches, output) => {
+        const spread = data.ghostHeadmarkers.map((x) => x.target);
+        const towers = data.party.partyNames.filter((x) => !spread.includes(x));
+
+        if (spread.includes(data.me)) {
+          data.ghostMechanic = 'spread';
+          const otherPlayer = spread.find((x) => x !== data.me) ?? output.unknown!();
+          return output.spread!({ player: data.ShortName(otherPlayer) });
+        }
+
+        data.ghostMechanic = 'tower';
+        const otherPlayer = towers.find((x) => x !== data.me) ?? output.unknown!();
+        return output.tower!({ player: data.ShortName(otherPlayer) });
+      },
+      outputStrings: {
+        tower: {
+          en: 'Get Tower (w/${player})',
+        },
+        spread: {
+          en: 'Spread (w/${player})',
+        },
+        unknown: Outputs.unknown,
       },
     },
     // ---------------- second trash ----------------
@@ -827,6 +1005,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8662', source: 'Shishu Onmitsugashira' },
       response: Responses.tankBuster(),
     },
+    {
+      id: 'AMR Shishu Onmitsugashira Huton',
+      type: 'StartsUsing',
+      netRegex: { id: '8663', source: 'Shishu Onmitsugashira', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Keep Staying Behind',
+        },
+      },
+    },
     // ---------------- Gorai the Uncaged ----------------
     {
       id: 'AMR Gorai Unenlightenment',
@@ -883,15 +1072,9 @@ const triggerSet: TriggerSet<Data> = {
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
-          meleeStack: {
-            en: 'Melee Stacks',
-          },
-          roleStack: {
-            en: 'Role Stacks',
-          },
-          partnerStack: {
-            en: 'Partner Stacks',
-          },
+          meleeStack: basicStackSpreadOutputStrings.melee,
+          roleStack: basicStackSpreadOutputStrings.role,
+          partnerStack: basicStackSpreadOutputStrings.partner,
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
           },
@@ -930,6 +1113,23 @@ const triggerSet: TriggerSet<Data> = {
         // cactbot-builtin-response
         return stackSpreadResponse(data, output, data.sparksCollect, 'E17', 'E18');
       },
+    },
+    {
+      id: 'AMR Gorai Seal of Scurrying Sparks Cloud to Ground Followup',
+      type: 'Ability',
+      // 8505 = Greater Ball of Fire
+      // 8605 = Great Ball of Fire
+      netRegex: { id: ['8505', '8506'], capture: false },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const mech = data.stackSpreadSecondMechanic;
+        if (mech === undefined)
+          return;
+        delete data.stackSpreadFirstMechanic;
+        delete data.stackSpreadSecondMechanic;
+        return output[mech]!();
+      },
+      outputStrings: basicStackSpreadOutputStrings,
     },
     {
       id: 'AMR Gorai Torching Torment',
@@ -975,19 +1175,24 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AMR Gorai Flintlock',
       type: 'Ability',
-      // Trigger this on Humble Hammer damage
-      netRegex: { id: '8525', source: 'Gorai the Uncaged', capture: false },
-      // This cleaves and should hit the orb and the player.
-      suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
+      // Trigger this on Humble Hammer damage. The first target is the player.
+      netRegex: { id: '8525', source: 'Gorai the Uncaged', targetIndex: '0' },
+      alertText: (data, matches, output) => {
+        if (matches.target === data.me)
+          return output.beBehindTank!();
+        if (data.role === 'tank')
+          return output.blockLaser!({ player: data.ShortName(matches.target) });
+        return output.avoidLaser!();
+      },
       outputStrings: {
-        text: {
-          en: 'Line Stack',
-          de: 'Sammeln in einer Linie',
-          fr: 'Packez-vous en ligne',
-          ja: '頭割り',
-          cn: '直线分摊',
-          ko: '직선 쉐어',
+        beBehindTank: {
+          en: 'Stay Behind Tank',
+        },
+        blockLaser: {
+          en: 'Block Laser on ${player}',
+        },
+        avoidLaser: {
+          en: 'Avoid Laser',
         },
       },
     },
@@ -1204,7 +1409,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.orangeTower2!();
         if (effectId === 'E0F')
           return output.orangeTower3!();
-        if (effectId === 'E11')
+        if (effectId === 'E12')
           return output.blueTower2!();
         if (effectId === 'E13')
           return output.blueTower3!();
@@ -1341,7 +1546,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Out => Stay Out',
+          en: 'Sides + Out => Stay Out',
         },
       },
     },
@@ -1352,7 +1557,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Under => Get Out',
+          en: 'Under => Sides + Out',
         },
       },
     },
@@ -1361,7 +1566,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '85D4', source: 'Moko the Restless', capture: false },
       suppressSeconds: 1,
-      response: Responses.getOut('info'),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Sides + Out',
+        },
+      },
     },
     {
       id: 'AMR Moko Fire Line Collect',
@@ -1427,6 +1637,23 @@ const triggerSet: TriggerSet<Data> = {
         // However, because there's so many calls, we'll drop the "stacks on" part of this.
         return stackSpreadResponse(data, output, data.invocationCollect, 'E1B', 'E1A', true);
       },
+    },
+    {
+      id: 'AMR Moko Invocation of Vengeance Followup',
+      type: 'Ability',
+      // 85DC = Vengeful Flame
+      // 85DD = Vengeful Pyre
+      netRegex: { id: ['85DC', '85DD'], capture: false },
+      suppressSeconds: 1,
+      infoText: (data, _matches, output) => {
+        const mech = data.stackSpreadSecondMechanic;
+        if (mech === undefined)
+          return;
+        delete data.stackSpreadFirstMechanic;
+        delete data.stackSpreadSecondMechanic;
+        return output[mech]!();
+      },
+      outputStrings: basicStackSpreadOutputStrings,
     },
     {
       id: 'AMR Moko Iai-giri Cleanup',
