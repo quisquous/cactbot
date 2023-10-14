@@ -1012,7 +1012,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Keep Staying Behind',
+          en: 'Dodge 4x Shuriken',
         },
       },
     },
