@@ -61,7 +61,7 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOn: {
           en: '5x line stack on ${player}',
           de: '5x in einer Linie Sammeln auf ${player}',
-          ja: '${player}に5回の直線頭割り'
+          ja: '${player}に5回の直線頭割り',
           cn: '${player} 直线分摊 (5次)',
         },
       },
@@ -203,7 +203,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread + Stay Out',
           de: 'Verteilen + Draußen stehen',
-          ja: '散開 + 範囲から離れる'
+          ja: '散開 + 範囲から離れる',
           cn: '分散 + 远离',
         },
       },
