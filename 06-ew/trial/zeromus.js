@@ -13,6 +13,7 @@ Options.Triggers.push({
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          ja: 'HPを全回復する',
           cn: '奶满全队',
         },
       },
@@ -27,6 +28,7 @@ Options.Triggers.push({
         text: {
           en: 'Away from glowing circles',
           de: 'Weg von den leuchtenden Kreisen',
+          ja: '光っている円から離れる',
           cn: '远离黑洞',
         },
       },
@@ -42,6 +44,7 @@ Options.Triggers.push({
         lineStackOn: {
           en: '5x line stack on ${player}',
           de: '5x in einer Linie Sammeln auf ${player}',
+          ja: '${player}に5回の直線頭割り',
           cn: '${player} 直线分摊 (5次)',
         },
       },
@@ -57,6 +60,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
@@ -74,6 +78,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
@@ -120,6 +125,7 @@ Options.Triggers.push({
         tower: {
           en: 'Stand in Tower',
           de: 'Steh im Turm',
+          ja: '塔を踏む',
           cn: '踩塔',
         },
       },
@@ -180,6 +186,7 @@ Options.Triggers.push({
         text: {
           en: 'Spread + Stay Out',
           de: 'Verteilen + Draußen stehen',
+          ja: '散開 + 範囲から離れる',
           cn: '分散 + 远离',
         },
       },
