@@ -30,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          ja: 'HPを全回復する',
           cn: '奶满全队',
         },
       },
@@ -44,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Away from glowing circles',
           de: 'Weg von den leuchtenden Kreisen',
+          ja: '光っている円から離れる',
           cn: '远离黑洞',
         },
       },
@@ -59,6 +61,7 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOn: {
           en: '5x line stack on ${player}',
           de: '5x in einer Linie Sammeln auf ${player}',
+          ja: '${player}に5回の直線頭割り',
           cn: '${player} 直线分摊 (5次)',
         },
       },
@@ -74,6 +77,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
@@ -91,6 +95,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
@@ -137,6 +142,7 @@ const triggerSet: TriggerSet<Data> = {
         tower: {
           en: 'Stand in Tower',
           de: 'Steh im Turm',
+          ja: '塔を踏む',
           cn: '踩塔',
         },
       },
@@ -197,6 +203,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread + Stay Out',
           de: 'Verteilen + Draußen stehen',
+          ja: '散開 + 範囲から離れる',
           cn: '分散 + 远离',
         },
       },
