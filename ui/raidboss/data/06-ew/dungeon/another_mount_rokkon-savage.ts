@@ -895,9 +895,10 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 1.5,
       // There are 8 pulses, 2 seconds apart.
       suppressSeconds: 0.5,
-      sound: '',
+      // Play an alarm on the 8th one, but don't play noises for each count.
+      sound: (data) => data.ghostMechanic === 'tower' && data.reishoCount === 8 ? undefined : '',
       alarmText: (data, _matches, output) => {
-        if (data.ghostMechanic === 'tower')
+        if (data.ghostMechanic === 'tower' && data.reishoCount === 8)
           return output.tower!();
       },
       infoText: (data, _matches, output) => output[`num${data.reishoCount}`]!(),
