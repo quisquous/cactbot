@@ -159,6 +159,7 @@ const rules = {
   'prefer-const': 'error',
   'prefer-regex-literals': 'error',
   'prefer-rest-params': 'off',
+  'prefer-template': 'error',
   'quotes': [
     'error',
     'single',
@@ -243,7 +244,6 @@ const tsOverrides = {
       // @TODO: Remove these keys over time, setting them back to default
       'allowNullableBoolean': true,
       'allowNullableNumber': true,
-      'allowNullableString': true,
     }],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
     'import/order': [

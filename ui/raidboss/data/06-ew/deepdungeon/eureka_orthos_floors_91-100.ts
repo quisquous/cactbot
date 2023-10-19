@@ -363,6 +363,24 @@ const triggerSet: TriggerSet<Data> = {
         'Servomechanical Orthotaur': '正统自控化弥诺陶洛斯',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Excalibur': '투신 엑스칼리버',
+        'Orthodrone': '오르토스 무인기',
+        'Orthonaught': '오르토스 드레드노트',
+        'Orthos Fitter': '오르토스 정비공',
+        'Orthos Mining Drone': '오르토스 무인 채굴기',
+        'Orthos Mithridates': '오르토스 미트리다테스',
+        'Orthos Motherbit': '오르토스 마더 비트',
+        'Orthos Sphinx': '오르토스 스핑크스',
+        'Orthos Zaghnal': '오르토스 자그날',
+        'Orthosystem α': '오르토스 시스템 α',
+        'Orthosystem γ': '오르토스 시스템 γ',
+        'Servomechanical Orthochimera': '오르토스 자동제어 키마이라',
+        'Servomechanical Orthotaur': '오르토스 자동제어 미노타우로스',
+      },
+    },
   ],
 };
 

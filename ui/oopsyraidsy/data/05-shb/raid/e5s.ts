@@ -16,12 +16,12 @@ export interface Data extends OopsyData {
 
 const noOrb = (str: string) => {
   return {
-    en: str + ' (no orb)',
-    de: str + ' (kein Orb)',
-    fr: str + ' (pas d\'orbe)',
-    ja: str + ' (雷玉無し)',
-    cn: str + ' (没吃球)',
-    ko: str + ' (구슬 없음)',
+    en: `${str} (no orb)`,
+    de: `${str} (kein Orb)`,
+    fr: `${str} (pas d'orbe)`,
+    ja: `${str} (雷玉無し)`,
+    cn: `${str} (没吃球)`,
+    ko: `${str} (구슬 없음)`,
   };
 };
 

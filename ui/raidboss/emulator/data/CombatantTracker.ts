@@ -221,7 +221,7 @@ export default class CombatantTracker {
 
   getMainCombatantName(): string {
     const defaultName = 'Unknown';
-    if (this.mainCombatantID) {
+    if (this.mainCombatantID !== undefined) {
       // This gets called when persisting to indexedDB, after it has been returned from the worker
       // As such, prototypes aren't applied to combatants
       // Re-apply the prototype if needed

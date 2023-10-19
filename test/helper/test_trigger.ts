@@ -74,7 +74,7 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
   before(async () => {
     contents = fs.readFileSync(file).toString();
     // Normalize path
-    const importPath = '../../' + path.relative(process.cwd(), file).replace('.ts', '.js');
+    const importPath = `../../${path.relative(process.cwd(), file).replace('.ts', '.js')}`;
 
     // Set a global flag to mark regexes for NetRegexes.doesNetRegexNeedTranslation.
     // See details in that function for more information.
@@ -273,7 +273,7 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
       if (!set)
         continue;
       for (const trigger of set) {
-        if (!trigger.id) {
+        if (trigger.id === undefined) {
           assert.fail(`Missing id field in trigger ${trigger.regex?.source ?? '???'}`);
           continue;
         }

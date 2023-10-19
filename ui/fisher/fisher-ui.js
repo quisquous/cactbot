@@ -38,7 +38,7 @@ export default class FisherUI {
     const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
-    this.arrowEl.style.top = timeMs / 600 + '%';
+    this.arrowEl.style.top = `${timeMs / 600}%`;
 
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
@@ -52,7 +52,7 @@ export default class FisherUI {
 
     if (!place) {
       if (oldPlace && oldPlace[0] !== '(')
-        this.placeEl.innerHTML = '(' + oldPlace + ')';
+        this.placeEl.innerHTML = `(${oldPlace})`;
       else
         this.placeEl.innerHTML = '------------';
     } else {
@@ -161,12 +161,12 @@ export default class FisherUI {
         const el = document.createElement('div');
         el.classList.add('well-entry');
         el.setAttribute('data-fish', fish);
-        el.style.top = (hookTimes[fish].min / 600).toString() + '%';
-        el.style.height = ((hookTimes[fish].max - hookTimes[fish].min) / 600).toString() + '%';
+        el.style.top = `${(hookTimes[fish].min / 600).toString()}%`;
+        el.style.height = `${((hookTimes[fish].max - hookTimes[fish].min) / 600).toString()}%`;
         el.style.backgroundColor = this.options.Colors[this.tugNames[tug]];
 
         // Put the element in the well
-        const well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);
+        const well = this.element.querySelector(`#fisher-well-${this.tugNames[tug]}`);
         well.appendChild(el);
       }
 

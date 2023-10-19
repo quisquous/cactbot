@@ -59,31 +59,31 @@ export default class PartyTracker {
   }
 
   // returns an array of the names of players in your immediate party
-  get partyNames(): string[] {
+  get partyNames(): readonly string[] {
     return this.partyNames_;
   }
 
-  get partyIds(): string[] {
+  get partyIds(): readonly string[] {
     return this.partyIds_;
   }
 
   // returns an array of the names of players in your alliance
-  get allianceNames(): string[] {
+  get allianceNames(): readonly string[] {
     return this.allianceNames_;
   }
 
   // returns an array of the names of tanks in your immediate party
-  get tankNames(): string[] {
+  get tankNames(): readonly string[] {
     return this.roleToPartyNames_['tank'];
   }
 
   // returns an array of the names of healers in your immediate party
-  get healerNames(): string[] {
+  get healerNames(): readonly string[] {
     return this.roleToPartyNames_['healer'];
   }
 
   // returns an array of the names of dps players in your immediate party
-  get dpsNames(): string[] {
+  get dpsNames(): readonly string[] {
     return this.roleToPartyNames_['dps'];
   }
 

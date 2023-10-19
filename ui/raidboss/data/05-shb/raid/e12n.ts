@@ -270,7 +270,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5, // Tethers should be first in the log, but let's be SURE
       alertText: (data, _matches, output) => {
         const [firstTether, secondTether] = data.tethers ?? [];
-        if (!firstTether || !secondTether)
+        if (firstTether === undefined || secondTether === undefined)
           return;
         // Leviathan's mechanics aren't easily described in a single word,
         // so we special-case them.
@@ -285,7 +285,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, _matches, output) => {
         const onlyTether = data.tethers?.[0];
-        if (!onlyTether || data.tethers?.length === 2)
+        if (onlyTether === undefined || data.tethers?.length === 2)
           return;
         return output[onlyTether]!();
       },

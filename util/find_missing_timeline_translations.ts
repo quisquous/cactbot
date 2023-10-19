@@ -31,7 +31,7 @@ export const findMissing = async (
   const timelineText = fs.readFileSync(timelineFile).toString();
   const timeline = new TimelineParser(timelineText, [], [], []);
 
-  const importPath = '../' + path.relative(process.cwd(), triggersFile).replace(/\\/g, '/');
+  const importPath = `../${path.relative(process.cwd(), triggersFile).replace(/\\/g, '/')}`;
 
   // Dynamic imports don't have a type, so add type assertion.
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

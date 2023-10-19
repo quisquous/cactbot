@@ -1,6 +1,6 @@
 class StringFuncs {
   static zeroPad(str: string, len = 2): string {
-    return ('' + str).padStart(len, '0');
+    return (`${str}`).padStart(len, '0');
   }
 
   static toProperCase(str: string): string {

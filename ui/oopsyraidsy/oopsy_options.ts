@@ -47,6 +47,7 @@ type OopsyConfigOptions = {
   MinimumTimeForPullMistake: number;
   TimeToShowDeathReportMs: number;
   DeathReportSide: DeathReportSide;
+  MinimumTimeForOverwrittenMit: number;
 };
 
 const defaultOopsyConfigOptions: OopsyConfigOptions = {
@@ -54,6 +55,7 @@ const defaultOopsyConfigOptions: OopsyConfigOptions = {
   MinimumTimeForPullMistake: 0.4,
   TimeToShowDeathReportMs: 4000,
   DeathReportSide: 'left',
+  MinimumTimeForOverwrittenMit: 2,
 };
 
 export interface OopsyOptions extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions {}

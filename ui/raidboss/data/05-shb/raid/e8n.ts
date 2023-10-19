@@ -218,7 +218,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: 0.5,
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
-        if (data.rampant?.[data.me])
+        if (data.rampant?.[data.me] !== undefined)
           return output.coneOnYouAvoidTowers!();
 
         return output.standInATower!();

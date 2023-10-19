@@ -13,18 +13,22 @@ import './splitter.css';
 const pageText = {
   titleText: {
     en: 'Log Splitter and Anonymizer',
+    de: 'Log Aufteiler und Anonymisierer',
     cn: '日志分割与匿名器',
   },
   fileDropText: {
     en: 'Drop Network log file here',
+    de: 'Network log Datei hier ablegen',
     cn: '将网络日志文件拖放到此处',
   },
   anonInput: {
     en: 'Anonymize Log',
+    de: 'Log Anonymisieren',
     cn: '对日志进行匿名化处理',
   },
   exportInput: {
     en: 'Export',
+    de: 'Export',
     cn: '导出',
   },
 } as const;
@@ -63,30 +67,37 @@ const buildTable = (state: PageState): void => {
   const headers = {
     include: {
       en: 'Include',
+      de: 'Einschließen',
       cn: '包括',
     },
     startDate: {
       en: 'Date',
+      de: 'Datum',
       cn: '日期',
     },
     startTime: {
       en: 'Time',
+      de: 'Zeit',
       cn: '时间',
     },
     duration: {
       en: 'Duration',
+      de: 'Dauer',
       cn: '持续时间',
     },
     zone: {
       en: 'Zone',
+      de: 'Zone',
       cn: '区域',
     },
     encounter: {
       en: 'Encounter',
+      de: 'Begegnung',
       cn: '战斗',
     },
     end: {
       en: 'End',
+      de: 'Ende',
       cn: '结束方式',
     },
   } as const;
@@ -118,14 +129,14 @@ const buildTable = (state: PageState): void => {
     const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ??
       '???';
     let fightName = '???';
-    if (fight.sealName)
+    if (fight.sealName !== undefined)
       fightName = fight.sealName;
-    else if (fight.fightName)
+    else if (fight.fightName !== undefined)
       fightName = fight.fightName;
 
-    if (!seenSeal && fight.sealName)
+    if (!seenSeal && fight.sealName !== undefined)
       seenSeal = true;
-    else if (seenSeal && !fight.sealName)
+    else if (seenSeal && fight.sealName === undefined)
       seenSeal = false;
 
     const row: Record<keyof Omit<typeof headers, 'include'>, string> = {

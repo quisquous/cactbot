@@ -465,7 +465,8 @@ const validDelayAdjustOrUndefined = (valEntry?: SavedConfigEntry) => {
   return undefined;
 };
 
-const canBeConfigured = (trig: ConfigLooseTrigger) => !trig.isMissingId && !trig.overriddenByFile;
+const canBeConfigured = (trig: ConfigLooseTrigger) =>
+  !trig.isMissingId && trig.overriddenByFile === undefined;
 
 const addTriggerDetail = (
   container: HTMLElement,
@@ -615,7 +616,7 @@ class RaidbossConfigurator {
 
       const parts = [info.title, info.type, info.prefix];
       for (const part of parts) {
-        if (!part)
+        if (part === undefined)
           continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
@@ -720,7 +721,7 @@ class RaidbossConfigurator {
             this.base.translate(kMiscTranslations.missingId),
           );
         }
-        if (trig.overriddenByFile) {
+        if (trig.overriddenByFile !== undefined) {
           const baseText = this.base.translate(kMiscTranslations.overriddenByFile);
           const detailText = baseText.replace('${file}', trig.overriddenByFile);
           addTriggerDetail(
@@ -746,7 +747,7 @@ class RaidbossConfigurator {
 
           const detailCls = [opt.cls];
           let detailText: string | undefined;
-          if (trigOutput) {
+          if (trigOutput !== undefined) {
             detailText = trigOutput;
           } else if (typeof trigFunc === 'function') {
             detailText = this.base.translate(kMiscTranslations.valueIsFunction);
@@ -1173,7 +1174,7 @@ class RaidbossConfigurator {
     const keys = Object.keys(uniqEvents).sort();
     for (const key of keys) {
       const event = uniqEvents[key];
-      if (!event)
+      if (event === undefined)
         continue;
 
       const checkInput = document.createElement('input');
@@ -1222,9 +1223,9 @@ class RaidbossConfigurator {
       return result;
     if (typeof result !== 'object' || result === null)
       return result;
-    if (result[this.alertsLang])
+    if (result[this.alertsLang] !== undefined)
       return this.valueOrFunction(result[this.alertsLang], data, matches, output);
-    if (result[this.timelineLang])
+    if (result[this.timelineLang] !== undefined)
       return this.valueOrFunction(result[this.timelineLang], data, matches, output);
     // For partially localized results where this localization doesn't
     // exist, prefer English over nothing.
@@ -1466,7 +1467,7 @@ class RaidbossConfigurator {
       if (triggerSet.timelineTriggers)
         rawTriggers.timeline.push(...triggerSet.timelineTriggers);
 
-      if (!triggerSet.isUserTriggerSet && triggerSet.filename)
+      if (!triggerSet.isUserTriggerSet && triggerSet.filename !== undefined)
         flattenTimeline(triggerSet, triggerSet.filename, timelineFiles);
 
       item.triggers = {};
@@ -1474,7 +1475,7 @@ class RaidbossConfigurator {
         for (const baseTrig of triggerArr) {
           const trig: ConfigLooseTrigger = baseTrig;
           triggerIdx++;
-          if (!trig.id) {
+          if (trig.id === undefined) {
             // Give triggers with no id some "unique" string so that they can
             // still be added to the set and show up in the ui.
             trig.id = `!!NoIdTrigger${triggerIdx}`;
@@ -1500,7 +1501,7 @@ class RaidbossConfigurator {
   buildTriggerOptions(trig: LooseTrigger, labelDiv: HTMLElement) {
     // This shouldn't happen, as all triggers should be processed with a unique id.
     const trigId = trig.id;
-    if (!trigId)
+    if (trigId === undefined)
       throw new UnreachableCode();
 
     const optionKey = kOptionKeys.output;
@@ -1556,7 +1557,7 @@ const flattenTimeline = (
   files: { [filename: string]: string },
 ) => {
   // Convert set.timelineFile to set.timeline.
-  if (!set.timelineFile)
+  if (set.timelineFile === undefined)
     return;
   const lastIndex = Math.max(filename.lastIndexOf('/'), filename.lastIndexOf('\\'));
   // If lastIndex === -1, truncate name to the empty string.

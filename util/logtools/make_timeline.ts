@@ -640,7 +640,7 @@ const assembleAbilityTableStrings = (
   assembled.push('# ALL ENCOUNTER ABILITIES');
   for (const id of (Object.keys(encounterAbilityList).sort())) {
     const abilityName = encounterAbilityList[id];
-    if (abilityName) {
+    if (abilityName !== undefined) {
       const listedLine = `# ${id} ${abilityName}`;
       assembled.push(listedLine);
     }
