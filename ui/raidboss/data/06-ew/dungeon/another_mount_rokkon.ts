@@ -1175,9 +1175,12 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'AMR Gorai Flintlock',
-      type: 'Ability',
-      // Trigger this on Humble Hammer damage. The first target is the player.
-      netRegex: { id: '8525', source: 'Gorai the Uncaged', targetIndex: '0' },
+      type: 'StartsUsing',
+      // Trigger this on the Humble Hammer damage; however this should hit
+      // both one player (although possibly more) and one Ball of Levin (although possibly none)
+      // so use `StartsUsing` with a delay to get the proper cast target here.
+      netRegex: { id: '8525', source: 'Gorai the Uncaged' },
+      delaySeconds: (_data, matches) => parseFloat(matches.castTime),
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.beBehindTank!();
