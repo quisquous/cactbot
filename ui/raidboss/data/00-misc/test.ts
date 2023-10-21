@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     (data) => {
       return [
-        '40 "Death To ' + data.ShortName(data.me) + '!!"',
+        `40 "Death To ${data.ShortName(data.me)}!!"`,
         'hideall "Death"',
       ];
     },

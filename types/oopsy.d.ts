@@ -105,7 +105,17 @@ export type OopsyTrigger<Data extends OopsyData> =
 
 type MistakeMap = { [mistakeId: string]: string };
 
-type SimpleOopsyTriggerSet = {
+export type DataInitializeFunc<Data extends OopsyData> = () => Omit<Data, keyof OopsyData>;
+
+// This helper takes all of the properties in Type and checks to see if they can be assigned to a
+// blank object, and if so excludes them from the returned union. The `-?` syntax removes the
+// optional modifier from the attribute which prevents `undefined` from being included in the union
+// See also: https://www.typescriptlang.org/docs/handbook/2/mapped-types.html#mapping-modifiers
+type RequiredFieldsAsUnion<Type> = {
+  [key in keyof Type]-?: Record<string, never> extends Pick<Type, key> ? never : key;
+}[keyof Type];
+
+type SimpleOopsyTriggerSet<Data extends OopsyData> = {
   zoneId: ZoneIdType | ZoneIdType[];
   zoneLabel?: LocaleText;
   damageWarn?: MistakeMap;
@@ -116,11 +126,18 @@ type SimpleOopsyTriggerSet = {
   shareFail?: MistakeMap;
   soloWarn?: MistakeMap;
   soloFail?: MistakeMap;
-};
-
-export type OopsyTriggerSet<Data extends OopsyData> = SimpleOopsyTriggerSet & {
   triggers?: OopsyTrigger<Data>[];
 };
+
+// If Data contains required properties that are not on OopsyData, require initData
+export type OopsyTriggerSet<Data extends OopsyData = OopsyData> =
+  & SimpleOopsyTriggerSet<Data>
+  & (RequiredFieldsAsUnion<Data> extends RequiredFieldsAsUnion<OopsyData> ? {
+      initData?: DataInitializeFunc<Data>;
+    }
+    : {
+      initData: DataInitializeFunc<Data>;
+    });
 
 export type LooseOopsyTrigger = Partial<
   BaseOopsyTrigger<OopsyData, 'None'> & OopsyTriggerRegex<'None'>

@@ -1,6 +1,7 @@
 import { Lang } from '../resources/languages';
 import PartyTracker, { PartyMemberParamObject } from '../resources/party';
 import { ConfigValue } from '../resources/user_config';
+import { OopsyOptions } from '../ui/oopsyraidsy/oopsy_options';
 
 import { SystemInfo } from './event';
 import { Job, Role } from './job';
@@ -55,7 +56,7 @@ export interface OopsyData {
   ShortName: (x?: string) => string;
   IsPlayerId: (x?: string) => boolean;
   DamageFromMatches: (matches: NetMatches['Ability']) => number;
-  options: BaseOptions;
+  options: OopsyOptions;
 
   /** @deprecated Use parseFloat instead */
   ParseLocaleFloat: (string: string) => number;

@@ -128,7 +128,7 @@ export const IsPlayerId = (id?: string): boolean => {
   if (id === undefined)
     return false;
   const firstChar = id[0];
-  return firstChar ? firstChar < '4' : false;
+  return firstChar !== undefined ? firstChar < '4' : false;
 };
 
 export const IsTriggerEnabled = (options: OopsyOptions, id: string): boolean => {

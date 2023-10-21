@@ -261,7 +261,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         const targets = Object.keys(data.tethers);
         const [firstTarget, secondTarget] = targets;
-        if (!firstTarget || !secondTarget || targets.length !== 2) {
+        if (firstTarget === undefined || secondTarget === undefined || targets.length !== 2) {
           console.error(`Unknown Sundered Sky tether targets: ${JSON.stringify(data.tethers)}`);
           return;
         }
@@ -324,7 +324,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         const targets = Object.keys(data.tethers);
         const [firstTarget, secondTarget] = targets;
-        if (!firstTarget || !secondTarget || targets.length !== 2) {
+        if (firstTarget === undefined || secondTarget === undefined || targets.length !== 2) {
           console.error(`Unknown Sundered Sky tether targets: ${JSON.stringify(data.tethers)}`);
           return;
         }

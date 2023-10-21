@@ -72,12 +72,12 @@ export default class Anonymizer {
           }
         }
         if (fieldIdx === -1) {
-          notifier.warn('internal error: invalid subfield: ' + subFieldName, splitLine);
+          notifier.warn(`internal error: invalid subfield: ${subFieldName}`, splitLine);
           return;
         }
         const value = splitLine[fieldIdx];
         if (value === undefined) {
-          notifier.warn('internal error: missing subfield: ' + subFieldName, splitLine);
+          notifier.warn(`internal error: missing subfield: ${subFieldName}`, splitLine);
           return;
         }
         const subValues = type.subFields[subFieldName];

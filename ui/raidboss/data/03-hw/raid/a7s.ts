@@ -335,7 +335,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '炸弹',
         'Boomtype Magitek Gobwalker G-VII': '7号哥布林战车L型',
@@ -346,7 +345,6 @@ const triggerSet: TriggerSet<Data> = {
         'Shanoa': '夏诺雅',
         'Sturm Doll': '风暴人偶',
         'The electrocution gallery': '公开处刑广场',
-        'Undying Affection': '声援',
       },
       'replaceText': {
         'Big Doll': '大人偶',

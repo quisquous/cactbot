@@ -99,7 +99,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerBar = querySelectorSafe(document, '.player-triggers');
     this.latestDisplayedState = 0;
     for (let i = 0; i < 8; ++i)
-      this.triggerBars[i] = querySelectorSafe(this.$triggerBar, '.player' + i.toString());
+      this.triggerBars[i] = querySelectorSafe(this.$triggerBar, `.player${i.toString()}`);
 
     emulator.on('tick', (_currentLogTime, lastLogLineTime: number) => {
       if (lastLogLineTime) {
@@ -234,7 +234,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
         const $e = cloneSafe(this.$triggerItemTemplate);
         const adjustedOffset = trigger.resolvedOffset - encounter.encounter.initialOffset;
-        $e.style.left = (adjustedOffset / trimmedDuration * 100).toString() + '%';
+        $e.style.left = `${(adjustedOffset / trimmedDuration * 100).toString()}%`;
         const triggerId = trigger.triggerHelper.trigger.id ?? 'Unknown Trigger';
         this.tooltips.push(new Tooltip($e, 'bottom', triggerId));
         bar.append($e);
@@ -244,7 +244,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.updateTriggerState();
 
     const toDisplay = membersToDisplay[0];
-    if (!toDisplay)
+    if (toDisplay === undefined)
       throw new UnreachableCode();
 
     this.selectPerspective(toDisplay);
@@ -371,7 +371,7 @@ export default class EmulatedPartyInfo extends EventBus {
         name: trigger.triggerHelper.trigger.id,
         icon: this.getTriggerLabelIcon(trigger),
         text: triggerText,
-        classes: type ? [type] : [],
+        classes: type !== undefined ? [type] : [],
         $obj: $triggerDataViewer,
       });
       if (trigger.status.executed)
@@ -468,7 +468,7 @@ export default class EmulatedPartyInfo extends EventBus {
       $icon.innerHTML = `<i class="fa fa-${params.icon}" aria-hidden="true"></i>`;
 
     if (Array.isArray(params.classes))
-      params.classes.forEach((c) => $button.classList.add('triggertype-' + c));
+      params.classes.forEach((c) => $button.classList.add(`triggertype-${c}`));
 
     const $wrapper = querySelectorSafe($ret, '.wrap-collapse-wrapper');
     $button.addEventListener('click', () => {

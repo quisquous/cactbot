@@ -398,12 +398,12 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.swipe)
           return;
 
-        // The first swipe callout has been cleared to null.
+        // The first swipe callout has been cleared to undefined.
         // Deliberately skip it so that when the first swipe goes off, we call the second.
         let swipe = data.swipe.shift();
-        if (!swipe)
+        if (swipe === undefined)
           swipe = data.swipe.shift();
-        if (!swipe)
+        if (swipe === undefined)
           return;
         return output[swipe]!();
       },

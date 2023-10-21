@@ -54,8 +54,9 @@
     <Reference Include="Advanced Combat Tracker">
       <HintPath>..\ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
     </Reference>
-    <Reference Include="FFXIV_ACT_Plugin.Common">
+    <Reference Include="FFXIV_ACT_Plugin.Common, Version=2.2.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\ThirdParty\FFXIV_ACT\SDK\FFXIV_ACT_Plugin.Common.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="HtmlRenderer, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

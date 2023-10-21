@@ -334,8 +334,8 @@ class TLFuncs {
     const totalSeconds = Math.round(ms / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
     if (totalMinutes > 0)
-      return totalMinutes.toString() + 'm';
-    return (totalSeconds % 60).toString() + 's';
+      return `${totalMinutes.toString()}m`;
+    return `${(totalSeconds % 60).toString()}s`;
   }
 
   static generateFileName(fightOrZone: FightEncInfo | ZoneEncInfo): string {
@@ -356,7 +356,7 @@ class TLFuncs {
     if ('sealName' in fightOrZone)
       seal = fightOrZone['sealName'];
     if (seal !== undefined)
-      seal = '_' + StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '');
+      seal = `_${StringFuncs.toProperCase(seal).replace(/[^A-z0-9]/g, '')}`;
     else
       seal = '';
     let wipeStr = '';

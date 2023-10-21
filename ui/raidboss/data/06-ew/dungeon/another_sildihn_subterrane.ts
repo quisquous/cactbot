@@ -562,8 +562,8 @@ const triggerSet: TriggerSet<Data> = {
           return output.default!();
 
         const puffLocs = dirCards.includes(puffDir) ? 'Cardinal' : 'Intercard';
-        const baitOutput: string = silkieStatus + puffEffect + puffLocs + 'Puff';
-        const safeOutput: string = silkieStatus + 'Puffs' + puffLocs + 'SafeLater';
+        const baitOutput = `${silkieStatus + puffEffect + puffLocs}Puff`;
+        const safeOutput = `${silkieStatus}Puffs${puffLocs}SafeLater`;
 
         // set the output for the subsequent safe call here and pass the output to the followup trigger
         // this keeps all of the interrelated output strings in this trigger for ease of customization

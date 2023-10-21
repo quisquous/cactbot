@@ -319,7 +319,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.smallLionOwners)
           return;
         const owner = data.smallLionIdToOwner?.[matches.sourceId.toUpperCase()];
-        if (!owner)
+        if (owner === undefined)
           return;
         if (matches.target === owner)
           return;
@@ -428,7 +428,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const labels = [];
         const lang: Lang = data.options.ParserLanguage;
 
-        if (data.northBigLion) {
+        if (data.northBigLion !== undefined) {
           if (data.northBigLion === matches.sourceId)
             labels.push(northBigLion[lang] ?? northBigLion['en']);
           else

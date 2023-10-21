@@ -114,6 +114,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheFellCourtOfTroia,
   ZoneId.LapisManalis,
   ZoneId.TheAetherfont,
+  ZoneId.TheLunarSubterrane,
 
   // Guildhests
   ZoneId.BasicTrainingEnemyParties,
@@ -231,6 +232,7 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.StormsCrown,
   ZoneId.MountOrdeals,
   ZoneId.TheVoidcastDais,
+  ZoneId.TheAbyssalFracture,
 
   // High-end Trials (Endwalker)
   ZoneId.TheMinstrelsBalladZodiarksFall,
@@ -239,10 +241,12 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.StormsCrownExtreme,
   ZoneId.MountOrdealsExtreme,
   ZoneId.TheVoidcastDaisExtreme,
+  ZoneId.TheAbyssalFractureExtreme,
   ZoneId.UltimasBaneUnreal,
   ZoneId.ContainmentBayS1T7Unreal,
   ZoneId.ContainmentBayP1T6Unreal,
   ZoneId.ContainmentBayZ1T9Unreal,
+  ZoneId.TheSingularityReactorUnreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -372,6 +376,7 @@ const contentList: (ZoneIdType)[] = [
   // Alliance Raids (Endwalker)
   ZoneId.Aglaia,
   ZoneId.Euphrosyne,
+  ZoneId.Thaleia,
 
   // Normal Raids (Endwalker)
   ZoneId.AsphodelosTheFirstCircle,
@@ -405,6 +410,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.TheSildihnSubterrane,
   ZoneId.AnotherSildihnSubterrane,
   ZoneId.AnotherSildihnSubterraneSavage,
+  ZoneId.MountRokkon,
+  ZoneId.AnotherMountRokkon,
+  ZoneId.AnotherMountRokkonSavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,

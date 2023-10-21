@@ -303,7 +303,7 @@ const parseHelper = <T extends LogDefinitionTypes>(
         });
 
         if (fieldRegex.length > 0) {
-          str += '(?:' + fieldRegex + ')' + (rep !== undefined ? '' : '?');
+          str += `(?:${fieldRegex})${rep !== undefined ? '' : '?'}`;
         }
       });
     } else if (fields[keyStr]?.repeating) {
@@ -600,11 +600,11 @@ export default class Regexes {
   // Creates a named regex capture group named |name| for the match |value|.
   static namedCapture(name: string, value: string): string {
     if (name.includes('>'))
-      console.error('"' + name + '" contains ">".');
+      console.error(`"${name}" contains ">".`);
     if (name.includes('<'))
-      console.error('"' + name + '" contains ">".');
+      console.error(`"${name}" contains ">".`);
 
-    return '(?<' + name + '>' + value + ')';
+    return `(?<${name}>${value})`;
   }
 
   /**

@@ -21,9 +21,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'GolbezEx Phases of the Blade 1': '86DB', // forward 180 cleave
     'GolbezEx Phases of the Blade 2': '86F2', // backwards 180 cleave
     'GolbezEx Arctic Assault': '8461', // ice walls hitting quadrants
-    'GolbezEx Gale Sphere': '845A', // wind orb line aoes
+    'GolbezEx Gale Sphere 1': '8458', // wind orb line aoes
+    'GolbezEx Gale Sphere 2': '8459', // wind orb line aoes
+    'GolbezEx Gale Sphere 3': '845A', // wind orb line aoes
+    'GolbezEx Gale Sphere 4': '845B', // wind orb line aoes
     'GolbezEx Phases of the Shadow 1': '86E7', // forward 180 cleave
-    'GolbezEx Phases of the Shadow 2': '86EF', // forward 180 cleave
+    'GolbezEx Phases of the Shadow 2': '86EF', // backwards 180 cleave
     'GolbezEx Rising Beacon': '86EC', // "get out" during Phases of the Shadow
     'GolbezEx Rising Ring': '86ED', // "get in" during Phases of the Shadow
   },

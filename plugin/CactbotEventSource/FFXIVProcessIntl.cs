@@ -8,7 +8,7 @@ using RainbowMage.OverlayPlugin;
 
 namespace Cactbot {
   public class FFXIVProcessIntl : FFXIVProcess {
-    // Last updated for FFXIV 6.4
+    // Last updated for FFXIV 6.5
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
@@ -41,10 +41,10 @@ namespace Cactbot {
       [FieldOffset(0xC0)]
       public Single rotation;
 
-      [FieldOffset(0x1C4)]
+      [FieldOffset(0x1BC)]
       public CharacterDetails charDetails;
 
-      [FieldOffset(0x1ED)]
+      [FieldOffset(0x1E6)]
       public byte shieldPercentage;
     }
 
@@ -638,16 +638,16 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct ScholarJobMemory {
-      [FieldOffset(0x01)]
+      [FieldOffset(0x00)]
       public byte aetherflowStacks;
 
-      [FieldOffset(0x02)]
+      [FieldOffset(0x01)]
       public byte fairyGauge;
 
-      [FieldOffset(0x03)]
+      [FieldOffset(0x02)]
       public ushort fairyMilliseconds; // Seraph time left ms.
 
-      [FieldOffset(0x05)]
+      [FieldOffset(0x04)]
       public byte fairyStatus; // Seraph: 6, else 0.
     };
 

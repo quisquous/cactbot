@@ -815,7 +815,7 @@ const latestLogDefinitions = {
     playerIds: {
       2: 3,
     },
-    firstUnknownField: 20,
+    firstUnknownField: 18,
     canAnonymize: true,
     firstOptionalField: 18,
   },

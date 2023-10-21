@@ -16,7 +16,7 @@ export interface Data extends RaidbossData {
   decOffset?: number;
   fruitCount: number;
   unhatchedEggs?: PluginCombatantState[];
-  bondsDebuff?: string;
+  bondsDebuff?: 'stackMarker' | 'spread';
   rootsCount: number;
   tetherCollect: string[];
   stopTethers?: boolean;
@@ -592,7 +592,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.tetherCollect.includes(data.me)) {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
-          if (!data.tetherCollectPhase)
+          if (data.tetherCollectPhase === undefined)
             return { infoText: output.noTether!() };
           if (data.tetherCollectPhase === 'famine')
             return { alertText: output.famineNoTether!() };

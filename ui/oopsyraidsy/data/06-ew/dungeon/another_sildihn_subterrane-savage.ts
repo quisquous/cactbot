@@ -36,6 +36,11 @@ const stackMistake = (
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnotherSildihnSubterraneSavage,
+  initData: () => {
+    return {
+      hasRiteOfPassage: {},
+    };
+  },
   damageWarn: {
     'ASSS Aqueduct Kaluk Right Sweep': '797B', // right 200 degree cleave
     'ASSS Aqueduct Kaluk Left Sweep': '797C', // left 200 degree cleave
