@@ -260,7 +260,9 @@ class OrderedTriggerList {
   }
 }
 
-const isObject = (x: unknown): x is { [key: string]: unknown } => x instanceof Object;
+const isObject = (x: unknown): x is { [key: string]: unknown } => {
+  return x !== null && x instanceof Object && !Array.isArray(x);
+};
 
 // User trigger may pass anything as parameters
 type TriggerParams = { [key: string]: unknown };
@@ -403,36 +405,43 @@ class TriggerOutputProxy {
             case 'number':
               return val.toString();
             case 'object': {
-              if (val === null)
-                break;
-              if (prop === undefined)
+              if (!isObject(val))
                 break;
 
-              // `val` is always type `object` here, because the narrowing parent type is `unknown`
-              // It also doesn't make sense to `as` cast here to `OutputStringsParamObject`,
-              // because this property is user-supplied and would need to be checked regardless
-              const looseVal = val as { [outputName: string]: unknown };
-              if (!(prop in looseVal)) {
+              if (prop !== undefined) {
+                const retVal = val[prop];
+                if (typeof retVal === 'string' || typeof retVal === 'number')
+                  return retVal.toString();
+
+                if (retVal === undefined || retVal === null) {
+                  console.error(
+                    `Trigger ${id} is referencing non-existent object property ${key}.${prop}.`,
+                  );
+                } else {
+                  console.error(
+                    `Trigger ${id} is referencing object property ${key}.${prop} with incorrect type ${typeof retVal}.`,
+                  );
+                }
+              }
+
+              // At this point, we're going to try to return a default value if we can,
+              // either from an error or because `prop` was unspecified.
+              const toStringFunc = val['toString'];
+              if (typeof toStringFunc !== 'function') {
                 console.error(
-                  `Trigger ${id} is referencing non-existant object property ${key}.${prop}.`,
+                  `Trigger ${id} has non-func ${key}.toString property.`,
                 );
                 return this.unknownValue;
               }
-              const retVal = looseVal[prop];
 
-              if (
-                typeof retVal !== 'string' &&
-                typeof retVal !== 'number' &&
-                typeof retVal !== 'object'
-              ) {
-                return val.toString();
-              }
-
-              if (retVal === null) {
-                console.error(`Trigger ${id} has null object value ${key}.${prop}.`);
+              const toStringVal: unknown = toStringFunc();
+              if (typeof toStringVal !== 'string') {
+                console.error(
+                  `Trigger ${id} returned non-string ${typeof toStringVal} from ${key}.toString().`,
+                );
                 return this.unknownValue;
               }
-              return retVal.toString();
+              return toStringVal;
             }
           }
           console.error(`Trigger ${id} has non-string param value ${key}.`);

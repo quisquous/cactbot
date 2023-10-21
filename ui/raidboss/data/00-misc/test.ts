@@ -374,11 +374,11 @@ const triggerSet: TriggerSet<Data> = {
         // TODO: This doesn't work unless you're in a party, because party tracker is empty.
         // OverlayPlugin should probably always return the current player as being in the party
         // regardless of the rest of the party composition.
-        return output.text!({ customData: data.partyMemberParam(data.me) });
+        return output.text!({ player: data.partyMemberParam(data.me) });
       },
       outputStrings: {
         text: {
-          en: 'data = ${customData}, data.job = ${customData.job}',
+          en: 'data = ${player}, data.job = ${player.job}, default = ${player.bogus}',
         },
       },
     },
