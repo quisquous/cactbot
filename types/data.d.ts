@@ -1,5 +1,5 @@
 import { Lang } from '../resources/languages';
-import PartyTracker, { PartyMemberParamObject } from '../resources/party';
+import PartyTracker from '../resources/party';
 import { ConfigValue } from '../resources/user_config';
 import { OopsyOptions } from '../ui/oopsyraidsy/oopsy_options';
 
@@ -43,7 +43,6 @@ export interface RaidbossData {
   CanCleanse: () => boolean;
   CanFeint: () => boolean;
   CanAddle: () => boolean;
-  partyMemberParam: (name: string) => PartyMemberParamObject | undefined;
 }
 
 export interface OopsyData {

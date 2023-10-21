@@ -1245,7 +1245,7 @@ class RaidbossConfigurator {
       me: '',
       job: 'NONE',
       role: 'none',
-      party: new PartyTracker(),
+      party: new PartyTracker(raidbossOptions),
       lang: this.base.lang,
       currentHP: 1000,
       options: this.base.configOptions,
@@ -1260,7 +1260,6 @@ class RaidbossConfigurator {
       CanCleanse: () => false,
       CanFeint: () => false,
       CanAddle: () => false,
-      partyMemberParam: (_name) => undefined,
       parserLang: this.base.lang,
       displayLang: this.base.lang,
     };

@@ -30,6 +30,12 @@ export interface PartyMemberParamObject
   toString: () => string;
 }
 
+// This is a partial interface of both RaidbossOptions and OopsyOptions.
+export interface PartyTrackerOptions {
+  DefaultPlayerLabel: keyof PartyMemberParamObject;
+  PlayerNicks: { [gameName: string]: string };
+}
+
 export default class PartyTracker {
   details: Party[] = [];
   partyNames_: string[] = [];
@@ -39,6 +45,8 @@ export default class PartyTracker {
   nameToRole_: { [name: string]: Role } = {};
   idToName_: { [id: string]: string } = {};
   roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames();
+
+  constructor(private options: PartyTrackerOptions) {}
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[] }): void {
@@ -172,14 +180,10 @@ export default class PartyTracker {
     return this.idToName_[id];
   }
 
-  paramObjectFromName(
-    name: string,
-    defaultValue: keyof PartyMemberParamObject,
-    playerNicks: { [name: string]: string },
-  ): PartyMemberParamObject | undefined {
+  member(name: string): PartyMemberParamObject | undefined {
     const partyMember = this.details.find((member) => member.name === name);
     let ret: PartyMemberParamObject;
-    const nick = Util.shortName(name, playerNicks);
+    const nick = Util.shortName(name, this.options.PlayerNicks);
 
     if (!partyMember) {
       // If we can't find this party member for some reason, use some sort of default.
@@ -201,7 +205,7 @@ export default class PartyTracker {
 
     // Need to assign this afterwards so it can reference `ret`.
     ret.toString = () => {
-      const retVal = ret[defaultValue];
+      const retVal = ret[this.options.DefaultPlayerLabel];
       if (typeof retVal === 'string')
         return retVal;
       if (typeof retVal === 'number')

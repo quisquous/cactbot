@@ -112,7 +112,7 @@ export class PlayerStateTracker {
     private collector: MistakeCollector,
     requestTimestampCallback: RequestTimestampCallback,
   ) {
-    this.partyTracker = new PartyTracker();
+    this.partyTracker = new PartyTracker(this.options);
     this.missedBuffCollector = new MissedBuffCollector(
       requestTimestampCallback,
       (timestamp, buff) => this.OnBuffCollected(timestamp, buff),

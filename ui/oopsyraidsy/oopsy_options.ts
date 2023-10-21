@@ -1,4 +1,5 @@
 import ContentType from '../../resources/content_type';
+import { PartyMemberParamObjectKeys } from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
@@ -43,6 +44,8 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
 export type DeathReportSide = 'left' | 'right' | 'disabled';
 
 type OopsyConfigOptions = {
+  // TODO: support DefaultPlayerLabel in oopsy and add it to options
+  DefaultPlayerLabel: PartyMemberParamObjectKeys;
   NumLiveListItemsInCombat: number;
   MinimumTimeForPullMistake: number;
   TimeToShowDeathReportMs: number;
@@ -51,6 +54,7 @@ type OopsyConfigOptions = {
 };
 
 const defaultOopsyConfigOptions: OopsyConfigOptions = {
+  DefaultPlayerLabel: 'nick',
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
   TimeToShowDeathReportMs: 4000,

@@ -35,7 +35,7 @@ import {
 } from '../../types/trigger';
 import raidbossOptions from '../../ui/raidboss/raidboss_options';
 
-const emptyPartyTracker = new PartyTracker();
+const emptyPartyTracker = new PartyTracker(raidbossOptions);
 
 const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
   return {
@@ -59,7 +59,6 @@ const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
     CanCleanse: () => false,
     CanFeint: () => false,
     CanAddle: () => false,
-    partyMemberParam: (_name) => undefined,
     ...triggerSet?.initData?.() ?? {},
   };
 };

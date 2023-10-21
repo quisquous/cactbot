@@ -538,7 +538,7 @@ export class PopupText {
   protected displayLang: Lang;
   protected ttsEngine?: BrowserTTSEngine;
   protected ttsSay: (text: string) => void;
-  protected partyTracker = new PartyTracker();
+  protected partyTracker: PartyTracker;
   protected readonly kMaxRowsOfText = 2;
   protected data: RaidbossData;
   protected me = '';
@@ -560,6 +560,7 @@ export class PopupText {
     protected raidbossDataFiles: RaidbossFileData,
   ) {
     this.options = options;
+    this.partyTracker = new PartyTracker(options);
     this.timelineLoader = timelineLoader;
     this.ProcessDataFiles(raidbossDataFiles);
 
@@ -1651,12 +1652,6 @@ export class PopupText {
       CanCleanse: () => Util.canCleanse(this.job),
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
-      partyMemberParam: (name) =>
-        this.partyTracker.paramObjectFromName(
-          name,
-          this.options.DefaultPlayerLabel ?? 'shortName',
-          this.options.PlayerNicks,
-        ),
     };
 
     let triggerData = {};
