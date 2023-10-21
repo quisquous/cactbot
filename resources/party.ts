@@ -179,6 +179,8 @@ export default class PartyTracker {
   ): PartyMemberParamObject | undefined {
     const partyMember = this.details.find((member) => member.name === name);
     let ret: PartyMemberParamObject;
+    const nick = Util.shortName(name, playerNicks);
+
     if (!partyMember) {
       // If we can't find this party member for some reason, use some sort of default
       ret = {
@@ -186,8 +188,8 @@ export default class PartyTracker {
         job: 'NONE',
         role: 'none',
         name: name,
-        shortName: Util.shortName(name, playerNicks),
-        toString: () => Util.shortName(name, playerNicks),
+        shortName: nick,
+        toString: () => nick,
       };
     } else {
       const jobName = Util.jobEnumToJob(partyMember.job);
@@ -197,7 +199,7 @@ export default class PartyTracker {
         job: jobName,
         role: role,
         name: name,
-        shortName: Util.shortName(name, playerNicks),
+        shortName: nick,
       };
     }
 
