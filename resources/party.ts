@@ -20,7 +20,7 @@ export type BasePartyMemberParamObject = {
   job: Job;
   id: string;
   name: string;
-  shortName: string;
+  nick: string;
 };
 
 export type PartyMemberParamObjectKeys = keyof BasePartyMemberParamObject;
@@ -188,7 +188,7 @@ export default class PartyTracker {
         job: 'NONE',
         role: 'none',
         name: name,
-        shortName: nick,
+        nick: nick,
         toString: () => nick,
       };
     } else {
@@ -199,7 +199,7 @@ export default class PartyTracker {
         job: jobName,
         role: role,
         name: name,
-        shortName: nick,
+        nick: nick,
       };
     }
 
@@ -210,7 +210,7 @@ export default class PartyTracker {
         return retVal;
       if (typeof retVal === 'number')
         return retVal.toString();
-      return ret.shortName;
+      return ret.nick;
     };
 
     return ret;

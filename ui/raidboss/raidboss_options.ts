@@ -98,7 +98,7 @@ const defaultRaidbossConfigOptions = {
   TimelineLanguage: undefined as (Lang | undefined),
   TimelineEnabled: true,
   AlertsEnabled: true,
-  DefaultPlayerLabel: 'shortName' as PartyMemberParamObjectKeys,
+  DefaultPlayerLabel: 'nick' as PartyMemberParamObjectKeys,
   ShowTimerBarsAtSeconds: 30,
   KeepExpiredTimerBarsForSeconds: 0.7,
   BarExpiresSoonSeconds: 6,

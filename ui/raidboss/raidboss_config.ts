@@ -2143,13 +2143,13 @@ const templateOptions: OptionsTemplate = {
       type: 'select',
       options: {
         en: {
-          'Short Name (Tini)': 'shortName',
+          'Nickname (Tini)': 'nick',
           'Role (Tank)': 'role',
           'Job (WAR)': 'job',
           'Full Name (Tini Poutini)': 'name',
         },
       },
-      default: 'shortName',
+      default: 'nick',
     },
     {
       id: 'ShowTimerBarsAtSeconds',
