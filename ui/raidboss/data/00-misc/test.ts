@@ -378,7 +378,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'data = ${player}, data.job = ${player.job}, default = ${player.bogus}',
+          en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
         },
       },
     },
