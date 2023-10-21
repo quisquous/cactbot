@@ -16,9 +16,9 @@ const emptyRoleToPartyNames = () => {
 };
 
 export type BasePartyMemberParamObject = {
-  role: Role;
-  job: Job;
-  id: string;
+  role?: Role;
+  job?: Job;
+  id?: string;
   name: string;
   nick: string;
 };
@@ -182,14 +182,10 @@ export default class PartyTracker {
     const nick = Util.shortName(name, playerNicks);
 
     if (!partyMember) {
-      // If we can't find this party member for some reason, use some sort of default
+      // If we can't find this party member for some reason, use some sort of default.
       ret = {
-        id: '???',
-        job: 'NONE',
-        role: 'none',
         name: name,
         nick: nick,
-        toString: () => nick,
       };
     } else {
       const jobName = Util.jobEnumToJob(partyMember.job);
@@ -203,7 +199,7 @@ export default class PartyTracker {
       };
     }
 
-    // Need to assign this afterwards so it can reference `ret`
+    // Need to assign this afterwards so it can reference `ret`.
     ret.toString = () => {
       const retVal = ret[defaultValue];
       if (typeof retVal === 'string')

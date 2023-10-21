@@ -39,7 +39,7 @@ export type OutputStringsParamObject = {
   // The indexer type requires that `() => string` be a possible value, or else `toString` can't be
   // defined. Effectively, typescript sees it as `someParamObject['toString']()`, not as a direct
   // function call of `someParamObject.toString()`.
-  [key: string]: string | number | (() => string);
+  [key: string]: undefined | string | number | (() => string);
   toString: () => string;
 };
 
