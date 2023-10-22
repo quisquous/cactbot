@@ -2135,22 +2135,6 @@ const templateOptions: OptionsTemplate = {
       default: true,
     },
     {
-      id: 'DefaultPlayerLabel',
-      name: {
-        en: 'Default Player Label',
-      },
-      type: 'select',
-      options: {
-        en: {
-          'Nickname (Tini)': 'nick',
-          'Role (Tank)': 'role',
-          'Job (WAR)': 'job',
-          'Full Name (Tini Poutini)': 'name',
-        },
-      },
-      default: 'nick',
-    },
-    {
       id: 'ShowTimerBarsAtSeconds',
       name: {
         en: 'Timer bar show window (seconds)',
