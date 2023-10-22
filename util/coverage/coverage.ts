@@ -301,6 +301,9 @@ const translationGridHeaders = {
     cn: '错误',
     ko: '오류',
   },
+  missingFiles: {
+    en: 'Missing',
+  },
   url: {
     en: 'Link to Missing Translation List',
     de: 'Link zur Liste mit den fehlenden Übersetzungen',
@@ -365,13 +368,10 @@ const buildExpansionGrid = (container: HTMLElement, lang: Lang, totals: Coverage
 const buildTranslationGrid = (
   container: HTMLElement,
   thisLang: Lang,
-  totals: CoverageTotals,
   translationTotals: TranslationTotals,
 ) => {
   for (const header of Object.values(translationGridHeaders))
     addDiv(container, 'label', translate(header, thisLang));
-
-  const totalZones = totals.overall.raidboss;
 
   for (const lang of languages) {
     if (lang === 'en')
@@ -380,9 +380,12 @@ const buildTranslationGrid = (
     const url = `missing_translations_${lang}.html`;
     const aHref = `<a href="${url}">${url}</a>`;
 
+    const langTotals = translationTotals[lang];
+
     addDiv(container, 'text', translate(langMap, thisLang)[lang]);
-    addDiv(container, 'data', `${translationTotals[lang].files} / ${totalZones}`);
-    addDiv(container, 'data', `${translationTotals[lang].errors}`);
+    addDiv(container, 'data', `${langTotals.translatedFiles} / ${langTotals.totalFiles}`);
+    addDiv(container, 'data', `${langTotals.errors}`);
+    addDiv(container, 'data', `${langTotals.missingFiles === 0 ? '' : langTotals.missingFiles}`);
     addDiv(container, 'text', aHref);
   }
 };
@@ -552,7 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const translationGrid = document.getElementById('translation-grid');
   if (!translationGrid)
     throw new UnreachableCode();
-  buildTranslationGrid(translationGrid, lang, coverageTotals, translationTotals);
+  buildTranslationGrid(translationGrid, lang, translationTotals);
 
   const zoneGrid = document.getElementById('zone-grid');
   if (!zoneGrid)
