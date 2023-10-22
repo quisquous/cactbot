@@ -464,7 +464,6 @@ const Util = {
     playerNicks: { [name: string]: string },
   ): string => {
     // TODO: make this unique among the party in case of first name collisions.
-    // TODO: probably this should be a general cactbot utility.
     if (typeof name !== 'string') {
       if (typeof name !== 'undefined')
         console.error('called ShortNamify with non-string');
@@ -472,7 +471,6 @@ const Util = {
     }
 
     const nick = playerNicks[name];
-
     if (nick !== undefined)
       return nick;
 

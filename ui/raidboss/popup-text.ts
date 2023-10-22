@@ -261,7 +261,8 @@ class OrderedTriggerList {
 }
 
 const isObject = (x: unknown): x is { [key: string]: unknown } => {
-  return x !== null && x instanceof Object && !Array.isArray(x);
+  // JavaScript considers [] to be an object, so check for that explicitly.
+  return x instanceof Object && !Array.isArray(x);
 };
 
 // User trigger may pass anything as parameters
