@@ -57,18 +57,20 @@ export const findMissing = async (
     errorFunc(
       triggersFile,
       undefined,
-      'other',
+      'replaceSection',
       locale,
       `missing timelineReplace section`,
     );
+    return;
   } else if (!transBlockFound) {
     errorFunc(
       triggersFile,
       undefined,
-      'other',
+      'replaceSection',
       locale,
       `missing locale entry in timelineReplace section`,
     );
+    return;
   }
 
   const missingTimeline = findMissingTimeline(
