@@ -4,8 +4,12 @@ Options.Triggers.push({
   timelineFile: 'barbariccia-ex.txt',
   initData: () => {
     return {
+      secretBreezeCount: 0,
       boldBoulderTargets: [],
+      boulderBreakCount: 0,
       hairFlayUpbraidTargets: [],
+      blowAwayCount: 0,
+      blowAwayPuddleCount: 0,
     };
   },
   timelineTriggers: [
@@ -13,16 +17,36 @@ Options.Triggers.push({
       id: 'BarbaricciaEx Knuckle Drum',
       regex: /Knuckle Drum/,
       beforeSeconds: 5,
+      suppressSeconds: 15,
       response: Responses.bigAoe(),
     },
     {
       id: 'BarbaricciaEx Blow Away',
       regex: /Blow Away/,
-      beforeSeconds: 5,
-      response: Responses.getTogether('info'),
+      beforeSeconds: 10,
+      durationSeconds: 5,
+      suppressSeconds: 15,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack to Bait Puddles',
+        },
+      },
     },
   ],
   triggers: [
+    {
+      id: 'BarbaricciaEx Curling Iron Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: '75B2', source: 'Barbariccia', capture: false },
+      suppressSeconds: 5,
+      run: (data) => {
+        // This is mostly to clean up the rogue "Hair Spray" that happens
+        // not during Savage Barbery.
+        delete data.barberyMechanic;
+        delete data.nextBarberyMechanic;
+      },
+    },
     {
       id: 'BarbaricciaEx Void Aero IV',
       type: 'StartsUsing',
@@ -66,15 +90,51 @@ Options.Triggers.push({
       id: 'BarbaricciaEx Hair Raid Donut',
       type: 'StartsUsing',
       netRegex: { id: '757E', source: 'Barbariccia', capture: false },
-      response: Responses.getIn(),
+      durationSeconds: (data) => data.nextBarberyMechanic === undefined ? undefined : 5,
+      alertText: (data, _matches, output) => {
+        if (data.nextBarberyMechanic === 'stack')
+          return output.inAndHealerGroups();
+        if (data.nextBarberyMechanic === 'spread')
+          return output.inThenSpread();
+        return output.in();
+      },
+      outputStrings: {
+        in: Outputs.in,
+        inThenSpread: {
+          en: 'In => Spread',
+        },
+        inAndHealerGroups: {
+          en: 'In => Healer Groups',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Hair Raid Donut Move',
+      type: 'Ability',
+      netRegex: { id: '757F', source: 'Barbariccia', capture: false },
+      condition: (data) => data.barberyMechanic === 'spread',
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Out',
+        },
+      },
     },
     {
       id: 'BarbaricciaEx Hair Raid Wall',
       type: 'StartsUsing',
       netRegex: { id: '757C', source: 'Barbariccia', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
+      durationSeconds: (data) => data.nextBarberyMechanic === undefined ? undefined : 5,
+      alertText: (data, _matches, output) => {
+        if (data.nextBarberyMechanic === 'stack')
+          return output.wallAndHealerGroups();
+        if (data.nextBarberyMechanic === 'spread')
+          return output.wallThenSpread();
+        return output.wall();
+      },
       outputStrings: {
-        text: {
+        wall: {
           en: 'Wall',
           de: 'Wand',
           fr: 'Mur',
@@ -82,46 +142,97 @@ Options.Triggers.push({
           cn: '去场边',
           ko: '벽으로',
         },
+        wallAndHealerGroups: {
+          en: 'Wall + Healer Groups',
+        },
+        wallThenSpread: {
+          en: 'Wall => Spread',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Hair Raid Wall Move',
+      type: 'Ability',
+      netRegex: { id: '757D', source: 'Barbariccia', capture: false },
+      condition: (data) => data.barberyMechanic === 'spread',
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Out',
+        },
       },
     },
     {
       id: 'BarbaricciaEx Hair Spray',
       type: 'StartsUsing',
-      // This spread mechanic is used later in other phases of the fight as well.
       netRegex: { id: '75A6', source: 'Barbariccia', capture: false },
       suppressSeconds: 1,
-      response: Responses.spread(),
+      infoText: (data, _matches, output) => {
+        // This spread mechanic is used later in other phases of the fight as well.
+        // However, that extra usage is fixed in the Curling Iron Cleanup trigger.
+        data.barberyMechanic = 'spread';
+        data.nextBarberyMechanic ??= 'stack';
+        // Suppress extra "spread" if we handled it in Hair Raid.
+        if (data.nextBarberyMechanic === 'spread') {
+          delete data.nextBarberyMechanic;
+          return;
+        }
+        return output.spread();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+      },
     },
     {
       id: 'BarbaricciaEx Deadly Twist',
       type: 'StartsUsing',
       netRegex: { id: '75A7', source: 'Barbariccia', capture: false },
       suppressSeconds: 2,
-      infoText: (_data, _matches, output) => output.groups(),
+      infoText: (data, _matches, output) => {
+        data.barberyMechanic = 'stack';
+        data.nextBarberyMechanic ??= 'spread';
+        // Suppress extra "stack" if we handled it in Hair Raid.
+        if (data.nextBarberyMechanic === 'stack') {
+          delete data.nextBarberyMechanic;
+          return;
+        }
+        return output.groups();
+      },
       outputStrings: {
-        groups: {
-          en: 'Healer Groups',
-          de: 'Heiler-Gruppen',
-          fr: 'Groupes sur les heals',
-          ja: 'ヒラに頭割り',
-          cn: '治疗分组分摊',
-          ko: '힐러 그룹 쉐어',
-        },
+        groups: Outputs.healerGroups,
       },
     },
     {
       id: 'BarbaricciaEx Void Aero III',
       type: 'StartsUsing',
       netRegex: { id: '7571', source: 'Barbariccia' },
-      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap(),
     },
     {
-      id: 'BarbaricciaEx Secret Breeze',
+      id: 'BarbaricciaEx Secret Breeze 1',
+      type: 'Ability',
+      // Trigger on 7413 Hair Flay (large spreads during partner stacks)
+      netRegex: { id: '7413', source: 'Barbariccia', capture: false },
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.protean(),
+      outputStrings: {
+        protean: {
+          en: 'Protean Spread',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Secret Breeze Others',
       type: 'StartsUsing',
       netRegex: { id: '7580', source: 'Barbariccia', capture: false },
+      preRun: (data) => data.secretBreezeCount++,
       durationSeconds: 3,
-      alertText: (_data, _matches, output) => output.protean(),
+      alertText: (data, _matches, output) => {
+        // On the first one, don't call too early. Call after the spread/partner stacks go off.
+        if (data.secretBreezeCount !== 1)
+          return output.protean();
+      },
       outputStrings: {
         protean: {
           en: 'Protean',
@@ -140,19 +251,32 @@ Options.Triggers.push({
       response: Responses.sharedTankBuster(),
     },
     {
-      id: 'BarbaricciaEx Brittle Boulder',
-      type: 'HeadMarker',
-      netRegex: { id: '016D', capture: false },
-      suppressSeconds: 2,
+      id: 'BarbaricciaEx Brittle Boulder 1',
+      type: 'Ability',
+      netRegex: { id: '7383', source: 'Barbariccia', capture: false },
+      durationSeconds: 8,
+      suppressSeconds: 5,
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Bait Middle => Out (Spread)',
+          en: 'Bait Middle => Out + Spread',
           de: 'In der Mitte Ködern => Raus (verteilen)',
           fr: 'Posez au centre -> Écartez-vous à l\'extérieur',
           ja: '真ん中で誘導 => 8方向散開',
           cn: '中间集合 => 八方分散',
           ko: '중앙에 장판 유도 => 밖으로 산개',
+        },
+      },
+    },
+    {
+      id: 'BarbaricciaEx Boulder',
+      type: 'HeadMarker',
+      netRegex: { id: '0173', capture: false },
+      suppressSeconds: 2,
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out + Spread',
         },
       },
     },
@@ -179,8 +303,13 @@ Options.Triggers.push({
       id: 'BarbaricciaEx Brutal Rush Move',
       type: 'Ability',
       // When the Brutal Rush hits you, the follow-up Brutal Gust has locked in.
-      netRegex: { id: '7583', source: 'Barbariccia' },
-      condition: Conditions.targetIsYou(),
+      netRegex: { id: ['7583', '7584'], source: 'Barbariccia' },
+      condition: (data, matches) => {
+        // Suppress during the middle of puddles where these are (usually) naturally dodged.
+        if (data.blowAwayPuddleCount !== 0 && data.blowAwayPuddleCount !== 4)
+          return false;
+        return matches.target === data.me;
+      },
       response: Responses.moveAway(),
     },
     {
@@ -276,6 +405,39 @@ Options.Triggers.push({
       run: (data) => data.boldBoulderTargets = [],
       outputStrings: {
         stackMarker: Outputs.stackMarker,
+      },
+    },
+    {
+      id: 'BarbaricciaEx Blow Away Reset',
+      type: 'Ability',
+      netRegex: { id: '7595', source: 'Barbariccia', capture: false },
+      run: (data) => {
+        data.blowAwayCount++;
+        data.blowAwayPuddleCount = 0;
+      },
+    },
+    {
+      id: 'BarbaricciaEx Blow Away Puddle Count',
+      type: 'StartsUsing',
+      netRegex: { id: '7596', source: 'Barbariccia', capture: false },
+      preRun: (data) => data.blowAwayPuddleCount++,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        // This handles Brittle Boulder 2 as well.
+        if (data.blowAwayCount === 2 && data.blowAwayPuddleCount === 4)
+          return output.stackMiddle();
+      },
+      infoText: (data, _matches, output) => {
+        return output[`num${data.blowAwayPuddleCount}`]();
+      },
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        stackMiddle: {
+          en: 'Bait Middle',
+        },
       },
     },
     {
