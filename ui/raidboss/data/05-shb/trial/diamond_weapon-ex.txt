@@ -3,7 +3,9 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# -it "The Diamond Weapon" -ii 5FEB 5FBE 5FAA 5FEC 5FBA 5FFD 5FBB 6055 6159 5FF9 5FCD 5FFA 5FF9 612E 5FB3 5FCE 5FD2 5FFE 5FD3 5FB4 5FB6 5FB1 5FB0 5FBF 5FAE 5FA6 5FC3 5FC9 5FCA 5FC4
+# -it "The Diamond Weapon"
+# -ii 5FEB 5FBE 5FAA 5FEC 5FBA 5FFD 5FBB 6055 6159 5FF9 5FCD 5FFA 5FF9 612E 5FB3 5FCE 5FD2 5FFE 5FD3 5FB4 5FB6 5FB1 5FB0 5FBF 5FAE 5FA6 5FC3 5FC9 5FCA 5FC4
+# -p 5FA7:21.3
 
 ### Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
@@ -17,7 +19,7 @@ hideall "--sync--"
 46.7 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
 49.9 "Homing Laser/Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[01]:/
 67.1 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
-83.4 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[8B]:/
+83.4 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[8AB]:/
 93.6 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
 104.8 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
 120.0 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[2345]:/
@@ -35,7 +37,7 @@ hideall "--sync--"
 197.8 "--targetable--"
 210.0 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
 218.2 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-229.6 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:5FAF:/
+229.6 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:(5FAF|5FF8):/
 229.6 "--untargetable--"
 236.4 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FB2:/
 241.0 "--targetable--"
@@ -49,7 +51,7 @@ hideall "--sync--"
 291.1 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
 301.3 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FC1:/
 312.4 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-312.9 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:5FAF:/
+312.9 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:(5FAF|5FF8):/
 312.9 "--untargetable--"
 319.7 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FB2:/
 320.4 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
