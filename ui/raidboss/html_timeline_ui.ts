@@ -76,7 +76,6 @@ const computeBackgroundFrom = (element: HTMLElement, classList: string): string 
 export type ActiveBar = {
   bar: TimerBar;
   soonTimeout?: number;
-  expireTimeout?: number;
 };
 
 export class HTMLTimelineUI extends TimelineUI {
@@ -199,11 +198,6 @@ export class HTMLTimelineUI extends TimelineUI {
     if (activeBar) {
       const parentDiv = activeBar.bar.parentNode;
       parentDiv?.parentNode?.removeChild(parentDiv);
-      // Expiry timeout must be cleared so that it will not remove this new bar.
-      if (activeBar.expireTimeout !== undefined) {
-        window.clearTimeout(activeBar.expireTimeout);
-        activeBar.expireTimeout = undefined;
-      }
       // Soon timeout is just an optimization to remove, as it's unnecessary.
       if (activeBar.soonTimeout !== undefined) {
         window.clearTimeout(activeBar.soonTimeout);
@@ -233,21 +227,10 @@ export class HTMLTimelineUI extends TimelineUI {
     };
   }
 
-  public override OnRemoveTimer(e: Event, expired: boolean, force = false): void {
+  public override OnRemoveTimer(e: Event, force: boolean): void {
     const activeBar = this.activeBars[e.id];
     if (!activeBar)
       return;
-
-    if (activeBar.expireTimeout !== undefined)
-      window.clearTimeout(activeBar.expireTimeout);
-
-    if (!force && expired && this.options.KeepExpiredTimerBarsForSeconds) {
-      activeBar.expireTimeout = window.setTimeout(
-        () => this.OnRemoveTimer(e, false),
-        this.options.KeepExpiredTimerBarsForSeconds * 1000,
-      );
-      return;
-    }
 
     const div = activeBar.bar.parentNode;
     if (!(div instanceof HTMLElement))
