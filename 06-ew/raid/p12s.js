@@ -306,6 +306,7 @@ Options.Triggers.push({
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (Rainbow)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           'Just call shape and debuff': 'shapeAndDebuff',
         },
         de: {
@@ -313,6 +314,7 @@ Options.Triggers.push({
           '○XΔ□ (Linien)': 'cxts',
           '○Δ□X (Raketenschiff)': 'ctsx',
           '○ΔX□ (Regenbogen)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           'Just call shape and debuff': 'shapeAndDebuff', // FIXME
         },
         cn: {
@@ -320,6 +322,7 @@ Options.Triggers.push({
           '○XΔ□ (1234笔画)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (彩虹)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           '只报形状和debuff': 'shapeAndDebuff',
         },
         ko: {
@@ -327,6 +330,7 @@ Options.Triggers.push({
           '○XΔ□ (1234)': 'cxts',
           '○Δ□X (동세네엑)': 'ctsx',
           '○ΔX□ (무지개)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           '모양과 디버프만 알림': 'shapeAndDebuff',
         },
       },
@@ -2912,6 +2916,7 @@ Options.Triggers.push({
             cxts: ['circle', 'cross', 'triangle', 'square'],
             ctsx: ['circle', 'triangle', 'square', 'cross'],
             ctxs: ['circle', 'triangle', 'cross', 'square'],
+            tcxs: ['triangle', 'circle', 'cross', 'square'],
           };
           const columnOrder =
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
