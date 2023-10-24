@@ -12,7 +12,7 @@ body {
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 10px;
   color: #ded7be;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0 0 0 / 30%);
   border-radius: 10px;
   padding: 0;
 }
