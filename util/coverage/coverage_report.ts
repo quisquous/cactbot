@@ -15,10 +15,17 @@ export const coverageTotals: CoverageTotals = {
   },
 };
 
+const defaultTranslations = {
+  totalFiles: 0,
+  translatedFiles: 0,
+  missingFiles: 0,
+  errors: 0,
+} as const;
+
 export const translationTotals: TranslationTotals = {
-  de: { files: 0, errors: 0 },
-  fr: { files: 0, errors: 0 },
-  ja: { files: 0, errors: 0 },
-  cn: { files: 0, errors: 0 },
-  ko: { files: 0, errors: 0 },
+  de: { ...defaultTranslations },
+  fr: { ...defaultTranslations },
+  ja: { ...defaultTranslations },
+  cn: { ...defaultTranslations },
+  ko: { ...defaultTranslations },
 };

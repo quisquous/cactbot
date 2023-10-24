@@ -94,6 +94,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          cn: '奶满全队',
+          ko: '체력 풀피로',
         },
       },
     },
@@ -112,10 +114,14 @@ const triggerSet: TriggerSet<Data> = {
         lineStackOn: {
           en: '${num}x line stack on ${player}',
           de: '${num}x in einer Linie sammeln mit ${player}',
+          cn: '${num}x 直线分摊 (${player})',
+          ko: '${num}x 직선 쉐어 (${player})',
         },
         lineStackOnYou: {
           en: '${num}x line stack on YOU',
           de: '${num}x in einer Linie sammeln mit DIR',
+          cn: '${num}x 直线分摊点名',
+          ko: '${num}x 직선 쉐어 대상자',
         },
       },
     },
@@ -164,6 +170,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         ne: Outputs.northeast,
         sw: Outputs.southwest,
@@ -180,6 +188,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
         },
         nw: Outputs.northwest,
         se: Outputs.southeast,
@@ -272,24 +282,38 @@ const triggerSet: TriggerSet<Data> = {
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
           de: 'Weiche den Linien Cleaves aus',
+          cn: '远离十字AOE',
+          ko: '직선 장판 피하기',
         },
         dirNNE: {
           en: 'North Wall (NNE/WSW)',
+          cn: '右上前方/左下侧边',
+          ko: '1시/8시',
         },
         dirNNW: {
           en: 'North Wall (NNW/ESE)',
+          cn: '左上前方/右下侧边',
+          ko: '11시/4시',
         },
         dirNE: {
           en: 'Corners (NE/SW)',
+          cn: '右上/左下角落',
+          ko: '구석 (북동/남서)',
         },
         dirNW: {
           en: 'Corners (NW/SE)',
+          cn: '左上/右下角落',
+          ko: '구석 (북서/남동)',
         },
         dirENE: {
           en: 'East Wall (ENE/SSW)',
+          cn: '右上侧边/左下后方',
+          ko: '2시/7시',
         },
         dirWNW: {
           en: 'West Wall (WNW/SSE)',
+          cn: '左上侧边/右下后方',
+          ko: '10시/5시',
         },
       },
     },
@@ -314,6 +338,8 @@ const triggerSet: TriggerSet<Data> = {
         forkedLightning: {
           en: 'Spread (forked lightning)',
           de: 'Verteilen (Gabelblitz)',
+          cn: '分散（闪电点名）',
+          ko: '산개',
         },
       },
     },
@@ -356,6 +382,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Group middle for tethers',
           de: 'Gruppe in die Mitte für Verbindungen',
+          cn: '集合等待连线',
+          ko: '중앙에 모여서 사슬 연결 기다리기',
         },
       },
     },
@@ -400,6 +428,8 @@ const triggerSet: TriggerSet<Data> = {
         blackHole: {
           en: 'East Black Hole on Wall',
           de: 'Schwarzes Loch an die östliche Wand',
+          cn: '右上放置黑洞',
+          ko: '오른쪽 구석에 블랙홀 놓기',
         },
       },
     },
@@ -418,6 +448,8 @@ const triggerSet: TriggerSet<Data> = {
         blackHole: {
           en: 'West Black Hole on Wall',
           de: 'Schwarzes Loch an die westliche Wand',
+          cn: '左上放置黑洞',
+          ko: '왼쪽 구석에 블랙홀 놓기',
         },
       },
     },
@@ -438,6 +470,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Towers => Spread',
           de: 'Türme nehmen => Verteilen',
+          cn: '踩塔 => 分散',
+          ko: '기둥 밟기 => 산개',
         },
       },
     },
@@ -452,6 +486,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get Towers => Partner Stacks',
           de: 'Türme nehmen => mit Partner sammeln',
+          cn: '踩塔 => 分摊',
+          ko: '기둥 밟기 => 2인 쉐어',
         },
       },
     },
@@ -473,10 +509,14 @@ const triggerSet: TriggerSet<Data> = {
         stackWithNox: {
           en: 'Partner Stack + Chasing Nox',
           de: 'Mit Partner Sammeln + verfolgendes Nox',
+          cn: '分摊 + 步进点名',
+          ko: '2인 쉐어 + 따라오는 장판',
         },
         spreadWithNox: {
           en: 'Spread + Chasing Nox',
           de: 'Verteilen + verfolgendes Nox',
+          cn: '分散 + 步进点名',
+          ko: '산개 + 따라오는 장판',
         },
       },
     },
@@ -498,10 +538,14 @@ const triggerSet: TriggerSet<Data> = {
         stack: {
           en: 'Partner Stack',
           de: 'mit Partner sammeln',
+          cn: '分摊',
+          ko: '2인 쉐어',
         },
         spread: {
           en: 'Spread',
           de: 'Verteilen',
+          cn: '分散',
+          ko: '산개',
         },
       },
     },
@@ -543,14 +587,20 @@ const triggerSet: TriggerSet<Data> = {
         north: {
           en: 'Out of North',
           de: 'Weg vom Norden',
+          cn: '远离北边',
+          ko: '북쪽 피하기',
         },
         middle: {
           en: 'Out of Middle',
           de: 'Weg von der Mitte',
+          cn: '远离中间',
+          ko: '중앙 피하기',
         },
         south: {
           en: 'Out of South',
           de: 'Weg vom Süden',
+          cn: '远离南边',
+          ko: '남쪽 피하기',
         },
       },
     },
@@ -570,14 +620,20 @@ const triggerSet: TriggerSet<Data> = {
         northSpread: {
           en: 'Spread Middle/South',
           de: 'Verteilen Mitte/Süden',
+          cn: '中间/南边 分散',
+          ko: '중앙/남쪽으로 산개',
         },
         middleSpread: {
           en: 'Spread North/South',
           de: 'Verteilen Norden/Süden',
+          cn: '北边/南边 分散',
+          ko: '북쪽/남쪽으로 산개',
         },
         southSpread: {
           en: 'Spread North/Middle',
           de: 'Verteilen Norden/Mitte',
+          cn: '北边/中间 分散',
+          ko: '북쪽/중앙으로 산개',
         },
       },
     },
@@ -611,14 +667,20 @@ const triggerSet: TriggerSet<Data> = {
         northEnumeration: {
           en: 'Enumeration Middle/South',
           de: 'Enumeration Mitte/Süden',
+          cn: '中间/南边 蓝圈分摊',
+          ko: '2인 장판 중앙/남쪽',
         },
         middleEnumeration: {
           en: 'Enumeration North/South',
           de: 'Enumeration Norden/Süden',
+          cn: '北边/南边 蓝圈分摊',
+          ko: '2인 장판 북쪽/남쪽',
         },
         southEnumeration: {
           en: 'Enumeration North/Middle',
           de: 'Enumeration Norden/Mitte',
+          cn: '北边/中间 蓝圈分摊',
+          ko: '2인 장판 북쪽/중앙',
         },
       },
     },
@@ -638,14 +700,20 @@ const triggerSet: TriggerSet<Data> = {
         northStack: {
           en: 'Stack Middle',
           de: 'Mittig sammeln',
+          cn: '中间分摊',
+          ko: '중앙에서 쉐어',
         },
         middleStack: {
           en: 'Stack North',
           de: 'Nördlich sammeln',
+          cn: '北边分摊',
+          ko: '북쪽에서 쉐어',
         },
         southStack: {
           en: 'Stack North/Middle',
           de: 'Nördlich/Mittig sammeln',
+          cn: '北边/中间 分摊',
+          ko: '북쪽/중앙에서 쉐어',
         },
       },
     },

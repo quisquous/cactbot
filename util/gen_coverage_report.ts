@@ -250,7 +250,7 @@ const buildTotals = (coverage: Coverage, missingTranslations: MissingTranslation
 
   const defaultTotal = { raidboss: 0, oopsy: 0, total: 0 };
 
-  const defaultTranslationTotal = { files: 0, errors: 0 };
+  const defaultTranslationTotal = { totalFiles: 0, translatedFiles: 0, missingFiles: 0, errors: 0 };
   const translationTotals: TranslationTotals = {
     de: { ...defaultTranslationTotal },
     fr: { ...defaultTranslationTotal },
@@ -333,19 +333,33 @@ const buildTotals = (coverage: Coverage, missingTranslations: MissingTranslation
     for (const lang in translationTotals) {
       if (!isLang(lang) || lang === 'en')
         continue;
-      const translations = thisCoverage?.translations?.[lang] ?? {};
+
+      const translations = thisCoverage.translations?.[lang] ?? {};
       let totalMistakes = 0;
+
+      // Chinese and Korean are unable to get translation sections until the content
+      // is released, so if there is a missing translations section, we'll treat that
+      // as the fight not existing for that language.
+      const isMissingSection = (translations.replaceSection ?? 0) > 0;
+      if (isMissingSection) {
+        translationTotals[lang].missingFiles++;
+        continue;
+      }
+
       for (const value of Object.values(translations))
         totalMistakes += value;
+      translationTotals[lang].totalFiles++;
       if (totalMistakes === 0)
-        translationTotals[lang].files++;
+        translationTotals[lang].translatedFiles++;
     }
   }
 
   for (const [lang, translations] of Object.entries(missingTranslations)) {
     if (!isLang(lang) || lang === 'en')
       continue;
-    translationTotals[lang].errors += translations.length;
+    // Separate out missing file errors here.
+    const errors = translations.filter((x) => x.type !== 'replaceSection');
+    translationTotals[lang].errors += errors.length;
   }
 
   return {

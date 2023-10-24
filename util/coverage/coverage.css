@@ -79,7 +79,7 @@ body > div {
 
 #translation-grid {
   display: grid;
-  grid-template-columns: max-content repeat(3, minmax(60px, max-content));
+  grid-template-columns: max-content repeat(4, minmax(60px, max-content));
   column-gap: 20px;
   row-gap: 10px;
 }

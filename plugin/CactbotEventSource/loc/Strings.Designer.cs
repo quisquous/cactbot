@@ -19,7 +19,7 @@ namespace CactbotEventSource.loc {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -84,6 +84,27 @@ namespace CactbotEventSource.loc {
         internal static string CactbotBaseInfo {
             get {
                 return ResourceManager.GetString("CactbotBaseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These overlay(s) appear to be using an out of date cactbot path and likely are no longer receiving updates and working with new content: {0}
+        ///
+        ///
+        ///To fix this, you should remove and then re-add all of your cactbot overlays listed above.  To remove an overlay, go to ACT -&gt;Plugins -&gt; OverlayPlugin.dll -&gt; (overlay name).  Select the overlay, and click the Remove button.  Once removed, click the New button, select cactbot overlay type, and re-add it..
+        /// </summary>
+        internal static string CactbotPathWarning {
+            get {
+                return ResourceManager.GetString("CactbotPathWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Broken Cactbot Overlay Paths.
+        /// </summary>
+        internal static string CactbotPathWarningTitle {
+            get {
+                return ResourceManager.GetString("CactbotPathWarningTitle", resourceCulture);
             }
         }
         

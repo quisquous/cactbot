@@ -8,7 +8,7 @@ import { isLang, Lang } from '../resources/languages';
 import { walkDirSync } from './file_utils';
 import { findMissing } from './find_missing_timeline_translations';
 
-export type MissingTranslationErrorType = 'sync' | 'text' | 'code' | 'other';
+export type MissingTranslationErrorType = 'sync' | 'text' | 'code' | 'replaceSection' | 'other';
 
 export type ErrorFuncType = (
   file: string,

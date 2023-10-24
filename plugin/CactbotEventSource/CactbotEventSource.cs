@@ -79,6 +79,8 @@ namespace Cactbot {
     public CactbotEventSource(TinyIoCContainer container) : base(container) {
       Name = "Cactbot Config";
 
+      container.Register(new CactbotPathWarning(container));
+
       RegisterPresets();
 
       RegisterEventTypes(new List<string>()

@@ -5,7 +5,7 @@
     url("Peace Sans.otf") format("opentype");
 }
 
-.resizeHandle {
+.resize-handle {
   background-color: rgb(24 24 24 / 60%);
 }
 
@@ -43,7 +43,7 @@
 }
 
 #popup-text-container > .text {
-  font-family: "Peace Sans";
+  font-family: "Peace Sans", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1.8rem;
