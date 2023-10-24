@@ -41,7 +41,9 @@ export type CoverageTotals = {
 
 export type TranslationTotals = {
   [lang in Exclude<Lang, 'en'>]: {
-    files: number;
+    translatedFiles: number;
+    totalFiles: number;
+    missingFiles: number;
     errors: number;
   };
 };

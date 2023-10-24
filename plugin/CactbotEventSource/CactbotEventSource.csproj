@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="CactbotEventSource.cs" />
     <Compile Include="CactbotEventSourceConfig.cs" />
+    <Compile Include="CactbotPathWarning.cs" />
     <Compile Include="FFXIVPlugin.cs" />
     <Compile Include="loc\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
