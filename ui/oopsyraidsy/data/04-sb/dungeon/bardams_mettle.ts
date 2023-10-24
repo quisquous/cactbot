@@ -13,14 +13,19 @@ export type Data = OopsyData;
 // If the flag is present,a full trigger object is returned that drops in seamlessly.
 const abilityWarn = (args: { abilityId: string; id: string }): OopsyTrigger<Data> => {
   if (!args.abilityId)
-    console.error('Missing ability ' + JSON.stringify(args));
+    console.error(`Missing ability ${JSON.stringify(args)}`);
   const trigger: OopsyTrigger<Data> = {
     id: args.id,
     type: 'Ability',
     netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
-    condition: (_data, matches) => matches.flags.substr(-2) === '0E',
+    condition: (_data, matches) => matches.flags.endsWith('0E'),
     mistake: (_data, matches) => {
-      return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+      return {
+        type: 'warn',
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: matches.ability,
+      };
     },
   };
   return trigger;

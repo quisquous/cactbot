@@ -1,6 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
-import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
@@ -12,18 +10,19 @@ import { LocaleText, TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Tether locations, and/or additional egg locations
 
+export type PurgationDebuff = 'stack' | 'spread';
+
 export interface Data extends RaidbossData {
   decOffset?: number;
   fruitCount: number;
   unhatchedEggs?: PluginCombatantState[];
-  bondsDebuff?: string;
+  bondsDebuff?: 'stackMarker' | 'spread';
   rootsCount: number;
   tetherCollect: string[];
   stopTethers?: boolean;
   tetherCollectPhase?: string;
-  purgationDebuffs: { [role: string]: { [name: string]: number } };
-  purgationDebuffCount: number;
-  purgationEffects?: string[];
+  purgationDebuffs: [PurgationDebuff, PurgationDebuff, PurgationDebuff, PurgationDebuff];
+  seenInviolatePurgation?: boolean;
   purgationEffectIndex: number;
 }
 
@@ -53,11 +52,11 @@ const matchedPositionTo8Dir = (combatant: PluginCombatantState) => {
   // NW at 0, NE at 2, South at 5
   // Map NW = 0, N = 1, ..., W = 7
 
-  return (Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8);
+  return Math.round(5 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 };
 
 // effect ids for inviolate purgation
-const effectIdToOutputStringKey: { [effectId: string]: string } = {
+const effectIdToOutputStringKey: { [effectId: string]: PurgationDebuff } = {
   'CEE': 'spread',
   'D3F': 'spread',
   'D40': 'spread',
@@ -69,13 +68,14 @@ const effectIdToOutputStringKey: { [effectId: string]: string } = {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheSeventhCircleSavage',
   zoneId: ZoneId.AbyssosTheSeventhCircleSavage,
   timelineFile: 'p7s.txt',
   initData: () => ({
     fruitCount: 0,
     rootsCount: 0,
     tetherCollect: [],
-    purgationDebuffs: { 'dps': {}, 'support': {} },
+    purgationDebuffs: ['stack', 'stack', 'stack', 'stack'],
     purgationDebuffCount: 0,
     purgationEffectIndex: 0,
   }),
@@ -83,7 +83,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -102,12 +102,17 @@ const triggerSet: TriggerSet<Data> = {
       //   6-9 are Birds
       //   10-12 are Ios
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7811', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7811', source: 'Agdistis', capture: false },
       preRun: (data) => data.fruitCount = data.fruitCount + 1,
       delaySeconds: 0.5,
       promise: async (data) => {
         const fruitLocaleNames: LocaleText = {
           en: 'Forbidden Fruit',
+          de: 'Frucht des Lebens',
+          fr: 'Fruits de la vie',
+          ja: '生命の果実',
+          cn: '生命之果',
+          ko: '생명의 열매',
         };
 
         // Select the Forbidden Fruits
@@ -124,12 +129,15 @@ const triggerSet: TriggerSet<Data> = {
         }
         const combatantDataLength = combatantData.combatants.length;
         if (combatantDataLength < 13) {
-          console.error(`Forbidden Fruit: expected at least 13 combatants got ${combatantDataLength}`);
+          console.error(
+            `Forbidden Fruit: expected at least 13 combatants got ${combatantDataLength}`,
+          );
           return;
         }
 
         // Sort the combatants for parsing its role in the encounter
-        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) => (a.ID ?? 0) - (b.ID ?? 0);
+        const sortCombatants = (a: PluginCombatantState, b: PluginCombatantState) =>
+          (a.ID ?? 0) - (b.ID ?? 0);
         const sortedCombatantData = combatantData.combatants.sort(sortCombatants);
         data.unhatchedEggs = sortedCombatantData;
       },
@@ -141,18 +149,43 @@ const triggerSet: TriggerSet<Data> = {
           south: Outputs.south,
           twoPlatforms: {
             en: '${platform1} / ${platform2}',
+            de: '${platform1} / ${platform2}',
+            fr: '${platform1} / ${platform2}',
+            ja: '${platform1} / ${platform2}',
+            cn: '${platform1} / ${platform2}',
+            ko: '${platform1} / ${platform2}',
           },
           orientation: {
             en: 'Line Bull: ${location}',
+            de: 'Bullen-Linie: ${location}',
+            fr: 'Taureau Ligne : ${location}',
+            ja: '線付き牛: ${location}',
+            cn: '连线牛: ${location}',
+            ko: '줄 달린 소: ${location}',
           },
           famineOrientation: {
             en: 'Minotaurs without Bird: ${location}',
+            de: 'Minotauren ohne Vögel: ${location}',
+            fr: 'Minotaure sans oiseau : ${location}',
+            ja: 'ミノがある場所: ${location}',
+            cn: '无鸟牛头人: ${location}',
+            ko: '새 없는 곳: ${location}',
           },
           deathOrientation: {
             en: 'Lightning Bull: ${location}',
+            de: 'Blitz-Bulle: ${location}',
+            fr: 'Taureau éclair : ${location}',
+            ja: '線付いてない牛: ${location}',
+            cn: '钢铁牛: ${location}',
+            ko: '줄 안달린 소: ${location}',
           },
           warOrientation: {
             en: 'Bird with Minotaurs: ${location}',
+            de: 'Vögel mit Minotauren : ${location}',
+            fr: 'Oiseau sans Minotaure : ${location}',
+            ja: 'ミノと鳥: ${location}',
+            cn: '有鸟牛头人: ${location}',
+            ko: '새 + 미노타우로스: ${location}',
           },
         };
 
@@ -172,7 +205,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount === 1) {
           // Find location of the north-most bird
           // Forbidden Fruit 1 uses last two birds
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined ||
+            data.unhatchedEggs[9] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
@@ -180,7 +216,7 @@ const triggerSet: TriggerSet<Data> = {
           const bird2 = data.unhatchedEggs[9];
 
           // Lower PosY = more north
-          const northBird = (bird1.PosY < bird2.PosY ? bird1 : bird2);
+          const northBird = bird1.PosY < bird2.PosY ? bird1 : bird2;
 
           // Check north bird's side
           if (northBird.PosX < 100)
@@ -212,7 +248,12 @@ const triggerSet: TriggerSet<Data> = {
               const safePlatform1 = newPlatforms[0];
               const safePlatform2 = newPlatforms[1];
               if (safePlatform1 !== undefined && safePlatform2 !== undefined)
-                return { infoText: output.twoPlatforms!({ platform1: output[safePlatform1]!(), platform2: output[safePlatform2]!() }) };
+                return {
+                  infoText: output.twoPlatforms!({
+                    platform1: output[safePlatform1]!(),
+                    platform2: output[safePlatform2]!(),
+                  }),
+                };
             }
           }
           console.error(`Forbidden Fruit ${data.fruitCount}: Invalid positions.`);
@@ -221,7 +262,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount === 10) {
           // Check where minotaurs are to determine middle bird
           // Forbidden Fruit 10 uses last two minotaurs
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined || data.unhatchedEggs[5] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[4] === undefined ||
+            data.unhatchedEggs[5] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
@@ -231,7 +275,9 @@ const triggerSet: TriggerSet<Data> = {
           // Return if received bad data
           const validDirs = [1, 4, 6];
           if (!validDirs.includes(minotaurDir1) || !validDirs.includes(minotaurDir2)) {
-            console.error(`Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`);
+            console.error(
+              `Forbidden Fruit ${data.fruitCount}: Expected minotaurs at 1, 4, or 6. Got ${minotaurDir1} and ${minotaurDir2}.`,
+            );
             return;
           }
 
@@ -251,7 +297,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.fruitCount > 6 && data.fruitCount < 10) {
           // Check each location for bird, call out where there is no bird
           // Forbidden Fruit 7 - 10 use last two birds
-          if (data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined || data.unhatchedEggs[9] === undefined) {
+          if (
+            data.unhatchedEggs === undefined || data.unhatchedEggs[8] === undefined ||
+            data.unhatchedEggs[9] === undefined
+          ) {
             console.error(`Forbidden Fruit ${data.fruitCount}: Missing egg data.`);
             return;
           }
@@ -262,7 +311,9 @@ const triggerSet: TriggerSet<Data> = {
           const birdPlatform2 = dirToPlatform[birdDir2];
 
           // Remove platform from platforms
-          const newPlatforms = platforms.filter((val) => val !== birdPlatform1 && val !== birdPlatform2);
+          const newPlatforms = platforms.filter((val) =>
+            val !== birdPlatform1 && val !== birdPlatform2
+          );
 
           if (newPlatforms.length === 1) {
             const platform = newPlatforms[0];
@@ -284,7 +335,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Hemitheos\'s Holy III Healer Groups',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -298,20 +349,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Condensed Aero II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7836', source: 'Agdistis' }),
+      netRegex: { id: '7836', source: 'Agdistis' },
       response: Responses.sharedTankBuster(),
     },
     {
       id: 'P7S Dispersed Aero II',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7835', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7835', source: 'Agdistis', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           fr: 'Séparez des Tankbusters',
           ja: '2人同時タンク強攻撃',
+          cn: '分散死刑',
           ko: '따로맞는 탱버',
         },
       },
@@ -319,19 +371,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Bough of Attis Left Arrows',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7824', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7824', source: 'Agdistis', capture: false },
       response: Responses.goLeft(),
     },
     {
       id: 'P7S Bough of Attis Right Arrows',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7823', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7823', source: 'Agdistis', capture: false },
       response: Responses.goRight(),
     },
     {
       id: 'P7S Roots of Attis 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 2,
       infoText: (_data, _matches, output) => output.baitSoon!(),
       outputStrings: {
@@ -340,6 +392,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Bald auf freier Plattform ködern',
           fr: 'Déposez sur une plateforme vide bientôt',
           ja: '果実がない空きの円盤へ移動',
+          cn: '移动到空平台',
           ko: '빈 플랫폼에서 장판 유도 준비',
         },
       },
@@ -347,7 +400,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Roots of Attis 2',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 1,
       infoText: (_data, _matches, output) => output.separateHealerGroups!(),
       run: (data) => data.rootsCount = data.rootsCount + 1,
@@ -355,8 +408,9 @@ const triggerSet: TriggerSet<Data> = {
         separateHealerGroups: {
           en: 'Healer Group Platforms',
           de: 'Heiler-Gruppen Plattformen',
-          fr: 'Groupes heals Plateforme',
+          fr: 'Groupes heals sur les plateformes',
           ja: '円盤の内でヒーラーと頭割り',
+          cn: '治疗分组平台',
           ko: '힐러 그룹별로 플랫폼',
         },
       },
@@ -367,20 +421,20 @@ const triggerSet: TriggerSet<Data> = {
       // Third breaks all bridges, Bait on Empty Platform
       id: 'P7S Roots of Attis 1',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '780E', source: 'Agdistis', capture: false }),
+      netRegex: { id: '780E', source: 'Agdistis', capture: false },
       condition: (data) => data.rootsCount === 0,
       run: (data) => data.rootsCount = data.rootsCount + 1,
     },
     {
       id: 'P7S Hemitheos\'s Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7A0B', source: 'Agdistis', capture: false }),
+      netRegex: { id: '7A0B', source: 'Agdistis', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'P7S Immature Stymphalide Tether',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0011', source: 'Immature Stymphalide', capture: false }),
+      netRegex: { id: '0011', source: 'Immature Stymphalide', capture: false },
       // ~9s between tether and Bronze Bellows (no cast) in all cases.
       delaySeconds: 4,
       // Just give this to everyone.  People in towers or elsewhere can be safe.
@@ -390,24 +444,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Spark of Life',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7839', source: 'Agdistis', capture: false }),
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'aoe + bleed',
-          de: 'AoE + Blutung',
-          fr: 'AoE + Saignement',
-          ja: 'AOE + 出血',
-          ko: '전체 공격 + 도트',
-        },
-      },
+      netRegex: { id: '7839', source: 'Agdistis', capture: false },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'P7S Inviolate Bonds',
       type: 'GainsEffect',
       // CEC/D45 = Inviolate Winds
       // CED/D56 = Holy Bonds
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CEC', 'D45'] }),
+      netRegex: { effectId: ['CEC', 'D45'] },
       condition: Conditions.targetIsYou(),
       durationSeconds: 20,
       response: (data, matches, output) => {
@@ -418,7 +463,7 @@ const triggerSet: TriggerSet<Data> = {
         };
 
         // Store debuff for reminders
-        data.bondsDebuff = (matches.effectId === 'CEC' ? 'spread' : 'stackMarker');
+        data.bondsDebuff = matches.effectId === 'CEC' ? 'spread' : 'stackMarker';
 
         const longTimer = parseFloat(matches.duration) > 9;
         if (longTimer)
@@ -438,7 +483,7 @@ const triggerSet: TriggerSet<Data> = {
       // War: 4 Bull Tethers, 2 Minotaur Tethers, 2 Bird Tethers
       // TODO: Get locations with OverlayPlugin via X, Y and bird headings?
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0001', '0006', '0039', '0011'] }),
+      netRegex: { id: ['0001', '0006', '0039', '0011'] },
       condition: (data) => !data.stopTethers,
       preRun: (data, matches) => data.tetherCollect.push(matches.target),
       delaySeconds: 0.1,
@@ -450,6 +495,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           deathBullTether: {
@@ -457,6 +503,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           warBullTether: {
@@ -464,6 +511,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Stier-Verbindung (Linien AoE)',
             fr: 'Lien Taureau (AoE en ligne)',
             ja: '牛から直線',
+            cn: '牛连线 (直线AOE)',
             ko: '소 (직선 장판)',
           },
           minotaurTether: {
@@ -471,6 +519,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure (Gros Cleave)',
             ja: 'ミノから扇',
+            cn: '牛头人连线 (大顺劈)',
             ko: '미노타우로스 (부채꼴 장판)',
           },
           famineMinotaurTether: {
@@ -478,13 +527,15 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Überkreuze Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure en croix (Gros Cleave)',
             ja: 'ミノからの扇を交える',
-            ko: '미노타우로스 선 교차하기 (부채꼴 장판)',
+            cn: '交叉牛头人连线 (大顺劈)',
+            ko: '미노타우로스 선 교차시키기 (부채꼴 장판)',
           },
           warMinotaurTether: {
             en: 'Minotaur Tether (Big Cleave)',
             de: 'Minotaurus-Verbindung (Große Kegel-AoE)',
             fr: 'Lien Minotaure (Gros Cleave)',
             ja: 'ミノから扇',
+            cn: '牛头人连线 (大顺劈)',
             ko: '미노타우로스 (부채꼴 장판)',
           },
           warBirdTether: {
@@ -492,6 +543,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Vogel-Verbindung',
             fr: 'Lien Oiseau',
             ja: '鳥から線',
+            cn: '鸟连线',
             ko: '새',
           },
           noTether: {
@@ -499,6 +551,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Keine Verbindung, Minotaurus-Verbindung ködern (Mitte)',
             fr: 'Aucun lien, encaissez le cleave du Minotaure (Milieu)',
             ja: '線なし、中央で扇を誘導',
+            cn: '无连线，诱导牛头人顺劈 (中间)',
             ko: '선 없음, 미노타우로스 유도 (중앙)',
           },
           famineNoTether: {
@@ -506,6 +559,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Keine Verbindung, Minotaurus-Verbindung ködern',
             fr: 'Aucun lien, encaissez le cleave du Minotaure',
             ja: '線なし、ミノからの扇を誘導',
+            cn: '无连线，诱导牛头人顺劈',
             ko: '선 없음, 미노타우로스 유도',
           },
         };
@@ -538,7 +592,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.tetherCollect.includes(data.me)) {
           // Prevent duplicate callout
           data.tetherCollect.push(data.me);
-          if (!data.tetherCollectPhase)
+          if (data.tetherCollectPhase === undefined)
             return { infoText: output.noTether!() };
           if (data.tetherCollectPhase === 'famine')
             return { alertText: output.famineNoTether!() };
@@ -551,7 +605,7 @@ const triggerSet: TriggerSet<Data> = {
       // to 0039 possibly reapplying. This trigger is used to only collect tethers
       // during a defined window.
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['0006', '0039'], capture: false }),
+      netRegex: { id: ['0006', '0039'], capture: false },
       delaySeconds: 0.2,
       suppressSeconds: 6,
       run: (data) => data.stopTethers = true,
@@ -559,7 +613,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Harvest Phase Tracker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7A4F', '7A50', '7A51'] }),
+      netRegex: { id: ['7A4F', '7A50', '7A51'] },
       run: (data, matches) => {
         data.stopTethers = false;
         data.tetherCollect = [];
@@ -581,21 +635,22 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
+      condition: (data) => !data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount === 0 && data.bondsDebuff)
+        if (correctedMatch === '00A6' && data.bondsDebuff)
           return output[data.bondsDebuff]!();
       },
-      run: (data) => data.bondsDebuff = (data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread'),
+      run: (data) => data.bondsDebuff = data.bondsDebuff === 'spread' ? 'stackMarker' : 'spread',
       outputStrings: {
         spread: Outputs.spread,
         stackMarker: Outputs.stackMarker,
       },
     },
     {
-      id: 'P7S Inviolate Purgation',
+      id: 'P7S Inviolate Purgation Collect',
       type: 'GainsEffect',
       // CEE = Purgatory Winds I
       // D3F = Purgatory Winds II
@@ -605,35 +660,40 @@ const triggerSet: TriggerSet<Data> = {
       // D42 = Holy Purgation II
       // D43 = Holy Purgation III
       // D44 = Holy Purgation IV
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CE[EF]', 'D3F', 'D4[01234]'] }),
-      preRun: (data, matches) => {
-        data.purgationDebuffCount += 1;
-
-        const role = data.party.isDPS(matches.target) ? 'dps' : 'support';
-        const debuff = data.purgationDebuffs[role];
-        if (!debuff)
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'] },
+      run: (data, matches) => {
+        data.seenInviolatePurgation = true;
+        if (data.me !== matches.target)
           return;
-        debuff[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
+
+        const effectId = matches.effectId.toUpperCase();
+        const duration = parseFloat(matches.duration);
+
+        const effectStr = effectIdToOutputStringKey[effectId];
+        if (effectStr === undefined)
+          return;
+
+        if (duration < 11)
+          data.purgationDebuffs[0] = effectStr;
+        else if (duration < 26)
+          data.purgationDebuffs[1] = effectStr;
+        else if (duration < 41)
+          data.purgationDebuffs[2] = effectStr;
+        else if (duration < 56)
+          data.purgationDebuffs[3] = effectStr;
+        else
+          console.log(`Invalid purg debuff duration ${duration}`);
       },
+    },
+    {
+      id: 'P7S Inviolate Purgation',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['CE[EF]', 'D3F', 'D4[01234]'], capture: false },
+      delaySeconds: 0.5,
       durationSeconds: 55,
+      suppressSeconds: 10,
       infoText: (data, _matches, output) => {
-        if (data.purgationDebuffCount !== 20)
-          return;
-
-        // Sort effects ascending by duration
-        const role = data.role === 'dps' ? 'dps' : 'support';
-        const unsortedDebuffs = Object.keys(data.purgationDebuffs[role] ?? {});
-        const sortedDebuffs = unsortedDebuffs.sort((a, b) => (data.purgationDebuffs[role]?.[a] ?? 0) - (data.purgationDebuffs[role]?.[b] ?? 0));
-
-        // get stack or spread from effectId
-        const effects = sortedDebuffs.map((effectId) => effectIdToOutputStringKey[effectId]);
-
-        const [effect1, effect2, effect3, effect4] = effects;
-        if (!effect1 || !effect2 || !effect3 || !effect4)
-          throw new UnreachableCode();
-
-        // Store effects for reminders later
-        data.purgationEffects = [effect1, effect2, effect3, effect4];
+        const [effect1, effect2, effect3, effect4] = data.purgationDebuffs;
 
         return output.comboText!({
           effect1: output[effect1]!(),
@@ -648,6 +708,7 @@ const triggerSet: TriggerSet<Data> = {
           de: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           fr: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           ja: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
+          cn: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
           ko: '${effect1} => ${effect2} => ${effect3} => ${effect4}',
         },
         spread: Outputs.spread,
@@ -659,16 +720,17 @@ const triggerSet: TriggerSet<Data> = {
       // First trigger is ~4s after debuffs callout
       // These happen 6s before cast
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
+      condition: (data) => data.seenInviolatePurgation,
       suppressSeconds: 1,
       infoText: (data, matches, output) => {
         // Return if we are missing effects
-        if (data.purgationEffects === undefined)
+        if (data.purgationDebuffs === undefined)
           return;
 
         const correctedMatch = getHeadmarkerId(data, matches);
-        if (correctedMatch === '00A6' && data.purgationDebuffCount !== 0) {
-          const text = data.purgationEffects[data.purgationEffectIndex];
+        if (correctedMatch === '00A6') {
+          const text = data.purgationDebuffs[data.purgationEffectIndex];
           data.purgationEffectIndex = data.purgationEffectIndex + 1;
           if (text === undefined)
             return;
@@ -683,7 +745,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P7S Light of Life',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78E2', source: 'Agdistis', capture: false }),
+      netRegex: { id: '78E2', source: 'Agdistis', capture: false },
       // ~5s castTime, but boss cancels it and ability goes off 26s after start
       delaySeconds: 21,
       alertText: (_data, _matches, output) => output.bigAoEMiddle!(),
@@ -692,7 +754,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Big AOE, Get Middle',
           de: 'Große AoE, geh in die Mitte',
           fr: 'Grosse AoE, allez au milieu',
-          ja: '強力なAOE、真ん中へ',
+          ja: '強力な全体攻撃、真ん中へ',
           cn: '超大伤害，去中间',
           ko: '아픈 광뎀, 중앙으로',
         },
@@ -755,9 +817,9 @@ const triggerSet: TriggerSet<Data> = {
       'missingTranslations': true,
       'replaceSync': {
         'Agdistis': 'Agdistis',
-        'Immature Io': 'io immature',
-        'Immature Minotaur': 'minotaure immature',
-        'Immature Stymphalide': 'stymphalide immature',
+        'Immature Io': 'Io immature',
+        'Immature Minotaur': 'Minotaure immature',
+        'Immature Stymphalide': 'Stymphalide immature',
       },
       'replaceText': {
         'Blades of Attis': 'Lames d\'Attis',
@@ -828,6 +890,93 @@ const triggerSet: TriggerSet<Data> = {
         'Static Path': 'スタティックパース',
         'Stymphalian Strike': 'バードストライク',
         'War\'s Harvest': '生命の繁茂【乱】',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Agdistis': '阿格狄斯提斯',
+        'Immature Io': '未成熟的伊娥',
+        'Immature Minotaur': '未成熟的弥诺陶洛斯',
+        'Immature Stymphalide': '未成熟的铁爪怪鸟',
+      },
+      'replaceText': {
+        '--chasing aoe--': '--追踪AOE--',
+        '--eggs--': '--蛋--',
+        'arrow': '箭头',
+        'close': '近',
+        'far': '远',
+        'Blades of Attis': '阿提斯的叶刃',
+        'Bough of Attis': '阿提斯的巨枝',
+        'Bronze Bellows': '突风强袭',
+        'Bullish Slash': '牛魔猛击',
+        'Bullish Swipe': '牛魔横扫',
+        'Condensed Aero II': '集聚烈风',
+        'Death\'s Harvest': '生命繁茂之凶',
+        'Dispersed Aero II': '流散烈风',
+        'Famine\'s Harvest': '生命繁茂之猛',
+        'Forbidden Fruit': '生命之果',
+        'Hemitheos\'s Aero III': '半神暴风',
+        'Hemitheos\'s Aero IV': '半神飙风',
+        'Hemitheos\'s Glare(?! III)': '半神闪耀',
+        'Hemitheos\'s Glare III': '半神闪灼',
+        'Hemitheos\'s Holy(?! III)': '半神神圣',
+        'Hemitheos\'s Holy III': '半神豪圣',
+        'Hemitheos\'s Tornado': '半神龙卷',
+        'Immortal\'s Obol': '不灭者的导枝',
+        'Inviolate Bonds': '创造魔印',
+        'Inviolate Purgation': '创造双印',
+        'Light of Life': '生命的极光',
+        'Multicast': '多重施法',
+        'Roots of Attis': '阿提斯的根足',
+        'Shadow of Attis': '阿提斯的光露',
+        'Spark of Life': '生命的光芒',
+        'Static Path': '静电之路',
+        'Stymphalian Strike': '怪鸟强袭',
+        'War\'s Harvest': '生命繁茂之乱',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Agdistis': '아그디스티스',
+        'Immature Io': '덜 자란 이오',
+        'Immature Minotaur': '덜 자란 미노타우로스',
+        'Immature Stymphalide': '덜 자란 스팀팔로스 괴조',
+      },
+      'replaceText': {
+        '--chasing aoe--': '--추적 장판--',
+        '--eggs--': '--알--',
+        'arrow': '화살표',
+        'close': '가까이',
+        'far': '멀리',
+        'Blades of Attis': '아티스의 칼날잎',
+        'Bough of Attis': '아티스의 큰가지',
+        'Bronze Bellows': '돌풍 충돌',
+        'Bullish Slash': '황소 매질',
+        'Bullish Swipe': '황소 휘두르기',
+        'Condensed Aero II/Dispersed Aero II': '집합/산개 에어로라',
+        'Death\'s Harvest': '흉포한 생명의 번성',
+        'Famine\'s Harvest': '맹렬한 생명의 번성',
+        'Forbidden Fruit': '생명의 열매',
+        'Hemitheos\'s Aero III': '헤미테오스 에어로가',
+        'Hemitheos\'s Aero IV': '헤미테오스 에어로쟈',
+        'Hemitheos\'s Glare(?! III)': '헤미테오스 글레어',
+        'Hemitheos\'s Glare III': '헤미테오스 글레어가',
+        'Hemitheos\'s Holy(?! III)': '헤미테오스 홀리',
+        'Hemitheos\'s Holy III': '헤미테오스 홀리가',
+        'Hemitheos\'s Tornado': '헤미테오스 토네이도',
+        'Immortal\'s Obol': '생멸의 가지',
+        'Inviolate Bonds': '마법각인 생성',
+        'Inviolate Purgation': '연옥의 마법각인 생성',
+        'Light of Life': '생명의 극광',
+        'Multicast': '다중 시전',
+        'Roots of Attis': '아티스의 뿌리',
+        'Shadow of Attis': '아티스의 빛방울',
+        'Spark of Life': '생명의 광망',
+        'Static Path': '정전기 길',
+        'Stymphalian Strike': '괴조 충돌',
+        'War\'s Harvest': '난폭한 생명의 번성',
       },
     },
   ],

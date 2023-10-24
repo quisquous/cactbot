@@ -67,7 +67,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'DSR Nidhogg Darkdragon Dive Miss': '671B', // tower failure
     'DSR Dragon-King Thordan Flames of Ascalon': '6D91', // final phase "get out"
     'DSR Dragon-King Thordan Ice of Ascalon': '6D92', // final phase "get in"
-    'DSR Dragon-King Thordan Exaflare\'s Edge': '6D9D', // final phase exaflares
+    'DSR Dragon-King Thordan Exaflare\'s Edge 1': '6D9C', // final phase exaflares (initial)
+    'DSR Dragon-King Thordan Exaflare\'s Edge 2': '6D9D', // final phase exaflares
   },
   gainsEffectFail: {
     'DSR Burns': 'B81', // fire puddles during Sanctity of the Ward
@@ -176,7 +177,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['63D1', '63D2'], ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -261,7 +267,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.ability({ id: ['6D3E', '6D3F'], ...playerDamageFields }),
       condition: (data) => !data.seenWrothFlames,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {

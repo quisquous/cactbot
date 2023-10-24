@@ -1,3 +1,6 @@
+import { Lang } from '../../resources/languages';
+import { MissingTranslationErrorType } from '../find_missing_translations';
+
 export type CoverageEntry = {
   triggers: {
     num: number;
@@ -9,6 +12,11 @@ export type CoverageEntry = {
   };
   oopsy?: {
     num: number;
+  };
+  translations?: {
+    [lang in Lang]?: {
+      [type in MissingTranslationErrorType]?: number;
+    };
   };
 };
 
@@ -29,4 +37,13 @@ export type CoverageTotals = {
   };
   byContentType: { [contentType: string]: CoverageTotalEntry };
   overall: CoverageTotalEntry;
+};
+
+export type TranslationTotals = {
+  [lang in Exclude<Lang, 'en'>]: {
+    translatedFiles: number;
+    totalFiles: number;
+    missingFiles: number;
+    errors: number;
+  };
 };

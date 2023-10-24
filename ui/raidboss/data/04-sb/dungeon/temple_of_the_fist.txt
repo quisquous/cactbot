@@ -1,14 +1,11 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 # Coeurl Twins
 # -ii 1FD2 1FD8
 
 0.0 "--sync--" sync / 00:0839::Tourmaline Pond will be sealed off/
-3.3 "--sync--" sync / 1[56]:[^:]*:Coeurl Sruti:366:/ window 3,1
-6.4 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
+6.4 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/ window 7,7
 17.8 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
 22.0 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
 
@@ -55,8 +52,7 @@ hideall "--sync--"
 # Arbuda
 
 1000.0 "--sync--" sync / 00:0839::Harmony will be sealed off/ window 1000,10
-1001.5 "--sync--" sync / 1[56]:[^:]*:Arbuda:366:/ window 2,1
-1006.5 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
+1006.5 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/ window 7,7
 1014.6 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
 1022.6 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
 1026.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/

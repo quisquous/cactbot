@@ -34,11 +34,11 @@ export default class FisherUI {
   }
 
   draw() {
-    const timeMs = (new Date() - this.castStart);
+    const timeMs = new Date() - this.castStart;
     const time = (timeMs / 1000).toFixed(1);
 
     this.timeEl.innerHTML = time;
-    this.arrowEl.style.top = (timeMs / 600) + '%';
+    this.arrowEl.style.top = `${timeMs / 600}%`;
 
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
@@ -52,7 +52,7 @@ export default class FisherUI {
 
     if (!place) {
       if (oldPlace && oldPlace[0] !== '(')
-        this.placeEl.innerHTML = '(' + oldPlace + ')';
+        this.placeEl.innerHTML = `(${oldPlace})`;
       else
         this.placeEl.innerHTML = '------------';
     } else {
@@ -75,7 +75,7 @@ export default class FisherUI {
       bar.centertext = row.getAttribute('data-fish');
 
       // Step one: fill until the minimum time
-      if ((min && min !== 'undefined') && (max && max !== 'undefined')) {
+      if (min && min !== 'undefined' && max && max !== 'undefined') {
         row.opacity = 0.8;
         bar.duration = min / 1000;
         bar.stylefill = 'fill';
@@ -87,7 +87,7 @@ export default class FisherUI {
           bar.duration = (max - min) / 1000;
           timeouts.push(window.setTimeout(() => {
             row.style.opacity = 0.5;
-          }, (max - min)));
+          }, max - min));
         }, min));
       } else {
         bar.duration = 0;
@@ -161,12 +161,12 @@ export default class FisherUI {
         const el = document.createElement('div');
         el.classList.add('well-entry');
         el.setAttribute('data-fish', fish);
-        el.style.top = (hookTimes[fish].min / 600).toString() + '%';
-        el.style.height = ((hookTimes[fish].max - hookTimes[fish].min) / 600).toString() + '%';
+        el.style.top = `${(hookTimes[fish].min / 600).toString()}%`;
+        el.style.height = `${((hookTimes[fish].max - hookTimes[fish].min) / 600).toString()}%`;
         el.style.backgroundColor = this.options.Colors[this.tugNames[tug]];
 
         // Put the element in the well
-        const well = this.element.querySelector('#fisher-well-' + this.tugNames[tug]);
+        const well = this.element.querySelector(`#fisher-well-${this.tugNames[tug]}`);
         well.appendChild(el);
       }
 

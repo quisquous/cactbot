@@ -1,4 +1,4 @@
-### A12S
+### A8S
 # Alexander - The Burden of the Son (Savage)
 # https://dtguilds.enjin.com/a8sguide
 # -p 162A:6.7 163B:313.5 1657:603 167C:800 166E:1257.1
@@ -9,11 +9,8 @@ hideall "--sync--"
 hideall "Magicked Mark"
 hideall "Brute Force"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-
 ### Phase 1: Onslaughter: Execution and Legislation
-0.0 "--sync--" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync / 1[56]:[^:]*:Onslaughter:1629:/ window 1,0
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 6.7 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:162A:/ window 7,5
 15.9 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:162D:/
 17.9 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:162E:/

@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -11,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheLostCityOfAmdaporHard',
   zoneId: ZoneId.TheLostCityOfAmdaporHard,
   timelineFile: 'the_lost_city_of_amdapor_hard.txt',
   // Temporarily out of combat during Kuribu phases.  @_@;;
@@ -25,9 +25,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Gremlin Bad-Mouth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '775', source: 'Ranting Ranks Gremlin' }),
+      netRegex: { id: '775', source: 'Ranting Ranks Gremlin' },
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, matches, output) => output.comfort!({ name: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.comfort!({ name: data.ShortName(matches.target) }),
       outputStrings: {
         comfort: {
           en: '/comfort ${name}',
@@ -41,7 +42,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Achamoth Neuro Squama',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '15C5', source: 'Achamoth', capture: false }),
+      netRegex: { id: '15C5', source: 'Achamoth', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -56,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Achamoth Toxic Squama',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001', capture: false }),
+      netRegex: { id: '0001', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -71,26 +72,26 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Void Monk Water III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16C7', source: 'Void Monk' }),
+      netRegex: { id: '16C7', source: 'Void Monk' },
       response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'LostCityHard Void Monk Sucker',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16C5', source: 'Void Monk', capture: false }),
+      netRegex: { id: '16C5', source: 'Void Monk', capture: false },
       response: Responses.drawIn(),
     },
     {
       id: 'LostCityHard Void Monk Flood',
       type: 'Ability',
       // This is an instant cast followup to Sucker.
-      netRegex: NetRegexes.ability({ id: '16C5', source: 'Void Monk', capture: false }),
+      netRegex: { id: '16C5', source: 'Void Monk', capture: false },
       response: Responses.getOut('info'),
     },
     {
       id: 'LostCityHard Winged Lion Wind Resist Down II Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '41C' }),
+      netRegex: { effectId: '41C' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -109,13 +110,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Wind Resist Down II Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '41C' }),
+      netRegex: { effectId: '41C' },
       run: (data, matches) => data.windResistDown[matches.target] = false,
     },
     {
       id: 'LostCityHard Winged Lion Earth Resist Down II Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '41D' }),
+      netRegex: { effectId: '41D' },
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.text!();
@@ -134,25 +135,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Earth Resist Down II Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '41D' }),
+      netRegex: { effectId: '41D' },
       run: (data, matches) => data.earthResistDown[matches.target] = false,
     },
     {
       id: 'LostCityHard Winged Lion Ancient Stone',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '15D2', source: 'Winged Lion', capture: false }),
+      netRegex: { id: '15D2', source: 'Winged Lion', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           pop: {
             en: 'Pop stone orb',
             de: 'Nimm Stein Orb',
+            fr: 'Prenez l\'orbe en pierre',
             cn: '踩石圈',
             ko: '스톤 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid stone orb',
             de: 'Vermeide Stein Orb',
+            fr: 'Évitez l\'orbe de pierre',
             cn: '躲避石圈',
             ko: '스톤 구슬 피하기',
           },
@@ -166,19 +169,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Ancient Aero',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '15CE', source: 'Winged Lion', capture: false }),
+      netRegex: { id: '15CE', source: 'Winged Lion', capture: false },
       response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           pop: {
             en: 'Pop aero orb',
             de: 'Nimm Wind Orb',
+            fr: 'Prenez l\'orbe de vent',
             cn: '踩风圈',
             ko: '에어로 구슬 부딪히기',
           },
           avoid: {
             en: 'Avoid aero orb',
             de: 'Vermeide Wind Orb',
+            fr: 'Évitez l\'orbe de vent',
             cn: '躲避风圈',
             ko: '에어로 구슬 피하기',
           },
@@ -192,12 +197,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Winged Lion Ancient Holy',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '15CA', source: 'Winged Lion', capture: false }),
+      netRegex: { id: '15CA', source: 'Winged Lion', capture: false },
+      suppressSeconds: 1,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Pop holy orb',
           de: 'Nimm Sanctus Orb',
+          fr: 'Prenez l\'orbe de lumière',
           cn: '踩神圣圈',
           ko: '홀리 구슬 잡기',
         },
@@ -206,13 +213,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Light Sprite Banish 3',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '680', source: 'Light Sprite' }),
+      netRegex: { id: '680', source: 'Light Sprite' },
       response: Responses.stunOrInterruptIfPossible(),
     },
     {
       id: 'LostCityHard Mana Pot Mysterious Light',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16C8', source: 'Mana Pot', capture: false }),
+      netRegex: { id: '16C8', source: 'Mana Pot', capture: false },
       // These adds tend to do this all at once (or close) so be less noisy.
       suppressSeconds: 5,
       response: Responses.lookAway('alert'),
@@ -220,8 +227,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Kuribu Regen',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '15DC', source: 'Kuribu', capture: false }),
-      condition: (data) => data.role === 'tank',
+      netRegex: { id: '15DC', source: 'Kuribu', capture: false },
+      condition: (data) => data.role === 'tank' || data.job === 'BLU',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -236,8 +243,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'LostCityHard Kuribu Cure IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '15DF', source: 'Kuribu', capture: false }),
-      condition: (data) => data.role === 'tank',
+      netRegex: { id: '15DF', source: 'Kuribu', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -250,9 +256,15 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'LostCityHard Kuribu Cure IV Reverse',
+      type: 'StartsUsing',
+      netRegex: { id: '15E0', source: 'Kuribu', capture: false },
+      response: Responses.aoe(),
+    },
+    {
       id: 'LostCityHard Kuribu Cure III',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '004A' }),
+      netRegex: { id: '004A' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -295,7 +307,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': 'Achamoth',
         'Dark Wings': 'Ailes sombres',
@@ -310,6 +321,7 @@ const triggerSet: TriggerSet<Data> = {
         'light sprite': 'élémentaire de lumière',
       },
       'replaceText': {
+        '--adds--': '--Adds--',
         'Ancient Aero': 'Vent ancien',
         'Ancient Holy': 'Miracle ancien',
         'Ancient Libra': 'Acuité ancienne',
@@ -400,7 +412,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Achamoth': '아카모트',
         'Dark Wings': '흑풍',

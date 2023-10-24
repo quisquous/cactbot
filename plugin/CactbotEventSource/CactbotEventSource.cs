@@ -36,7 +36,6 @@ namespace Cactbot {
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
     private FFXIVProcess ffxiv_;
-    private FateWatcher fate_watcher_;
 
     private string language_ = null;
     private string pc_locale_ = null;
@@ -44,7 +43,7 @@ namespace Cactbot {
     private Version overlay_plugin_version_;
     private Version ffxiv_plugin_version_;
     private Version act_version_;
-    private GameRegion game_region_ = GameRegion.International;
+    private Cactbot.VersionChecker.GameRegion game_region_ = Cactbot.VersionChecker.GameRegion.International;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
     public event ForceReloadHandler OnForceReload;
@@ -73,26 +72,14 @@ namespace Cactbot {
     public delegate void PlayerDiedHandler(JSEvents.PlayerDiedEvent e);
     public event PlayerDiedHandler OnPlayerDied;
 
-    public delegate void FateEventHandler(JSEvents.FateEvent e);
-    public event FateEventHandler OnFateEvent;
-
-    public delegate void CEEventHandler(JSEvents.CEEvent e);
-    public event CEEventHandler OnCEEvent;
-
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
     }
 
-    public void DoFateEvent(JSEvents.FateEvent e) {
-      OnFateEvent(e);
-    }
-
-    public void DoCEEvent(JSEvents.CEEvent e) {
-      OnCEEvent(e);
-    }
-
     public CactbotEventSource(TinyIoCContainer container) : base(container) {
       Name = "Cactbot Config";
+
+      container.Register(new CactbotPathWarning(container));
 
       RegisterPresets();
 
@@ -105,8 +92,6 @@ namespace Cactbot {
         "onImportLogEvent",
         "onInCombatChangedEvent",
         "onZoneChangedEvent",
-        "onFateEvent",
-        "onCEEvent",
         "onPlayerDied",
         "onPlayerChangedEvent",
         "onUserFileChanged",
@@ -266,11 +251,11 @@ namespace Cactbot {
 
       switch (game_region_)
       {
-        case GameRegion.Chinese:
+        case Cactbot.VersionChecker.GameRegion.Chinese:
           ffxiv_ = new FFXIVProcessCn(this.logger);
           logger.Log(LogLevel.Info, Strings.Version, "cn");
           break;
-        case GameRegion.Korean:
+        case Cactbot.VersionChecker.GameRegion.Korean:
           ffxiv_ = new FFXIVProcessKo(this.logger);
           logger.Log(LogLevel.Info, Strings.Version, "ko");
           break;
@@ -285,8 +270,6 @@ namespace Cactbot {
       plugin_helper.RegisterProcessChangedHandler(ffxiv_.OnProcessChanged);
       ffxiv_.OnProcessChanged(plugin_helper.GetCurrentProcess());
 
-      fate_watcher_ = new FateWatcher(this, language_, logger);
-
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
@@ -300,12 +283,9 @@ namespace Cactbot {
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
-      OnFateEvent += (e) => DispatchToJS(e);
-      OnCEEvent += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
-      fate_watcher_.Start();
 
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
@@ -317,7 +297,6 @@ namespace Cactbot {
 
     public override void Stop() {
       fast_update_timer_.Stop();
-      fate_watcher_.Stop();
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
     }
 
@@ -342,11 +321,6 @@ namespace Cactbot {
       ev["type"] = e.EventName();
       ev["detail"] = JObject.FromObject(e);
       DispatchEvent(ev);
-    }
-
-    public void ClearFateWatcherDictionaries() {
-      fate_watcher_.RemoveAndClearCEs();
-      fate_watcher_.RemoveAndClearFates();
     }
 
     // Events that we want to update as soon as possible.  Return next time this should be called.
@@ -414,7 +388,6 @@ namespace Cactbot {
       if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
-        ClearFateWatcherDictionaries();
       }
 
       DateTime now = DateTime.Now;
@@ -436,9 +409,6 @@ namespace Cactbot {
       if (player != null) {
         bool send = false;
         if (!player.Equals(notify_state_.player)) {
-          // Clear the FateWatcher dictionaries if we switched characters
-          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name))
-            ClearFateWatcherDictionaries();
           notify_state_.player = player;
           send = true;
         }

@@ -1,0 +1,81 @@
+### P10N: Anabaseios: The Tenth Circle
+#
+# -ii 825E 825F 8261 8263 8277 8279 825B 825C 8266 8269 8271 8273 8274 826B 826C 826D 826E 86B5 86B6 86B7 86B8
+#
+# Ignored Ids:
+# 825[EF] - 'Bury' action/damage from Pandaemoniac Pillars
+# 8261      'Imprisonment' extra
+# 8263      'Cannonspawn' extra
+# 8277      'Pandaemonic Meldown' extra
+# 8279      'Soul Grasp' extra
+# 825[BC]   'Entangling Web' extra
+# 8266      'Pandaemonic Ray' extra
+# 8269      'Touchdown' extra
+# 8271      'Parted Plumes' blades
+# 827[34]   'Wicked Step' individual towers
+# 826[B-E]  Supplemental AoE damage from 'Harrowing Hell'
+# 86B[5-8]  Supplemental AoE damage from 'Harrowing Hell'
+
+# Note: The boss's name has a Unicode character (æ)  which is causing syncs to fail.
+# The character is manually escaped in the syncs with the correct codepoint (U+00E6).
+# Entry names use "ae" as separate characters to ensure proper UI display.
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+7.9 "--sync--" sync / 14:[^:]*::Pand\u00e6monium:8259:/ window 15,15
+10.9 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
+23.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
+35.4 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
+43.4 "Imprisonment" sync / 1[56]:[^:]*:Pand\u00e6monium:8262:/
+50.1 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
+59.9 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
+67.8 "Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:8264:/
+74.6 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
+80.0 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
+90.1 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
+101.3 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
+114.7 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
+126.7 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
+140.4 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+150.6 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
+165.2 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
+170.5 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
+179.7 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
+191.0 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
+210.5 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+224.6 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
+233.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
+245.7 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
+253.5 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
+259.3 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
+264.7 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
+272.8 "Harrowing Hell (x8)" sync / 1[56]:[^:]*:Pand\u00e6monium:826A:/ duration 12
+289.0 "Harrowing Hell (knockback)" sync / 1[56]:[^:]*:Pand\u00e6monium:826F:/
+304.2 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
+322.7 "Wicked Step" sync / 1[56]:[^:]*:Pand\u00e6monium:8272:/
+
+# Loop begins here
+339.5 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
+347.4 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
+353.2 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
+374.4 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
+380.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
+385.8 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
+392.0 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
+404.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
+417.7 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
+423.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
+442.4 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
+457.6 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
+
+# Repeat
+485.0 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/ window 50,50 jump 339.5
+492.9 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
+498.7 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
+519.9 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
+525.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
+531.3 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/

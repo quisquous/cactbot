@@ -1,5 +1,5 @@
 import logDefinitions from '../../resources/netlog_defs';
-import NetRegexes from '../../resources/netregexes';
+import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -12,6 +12,7 @@ import { Job, Role } from '../../types/job';
 import { Matches, NetMatches } from '../../types/net_matches';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import {
+  DataInitializeFunc,
   LooseOopsyTrigger,
   LooseOopsyTriggerSet,
   MistakeMap,
@@ -36,6 +37,7 @@ import {
   kFieldFlags,
   kShiftFlagValues,
   playerDamageFields,
+  playerTargetFields,
   ShortNamify,
   Translate,
   UnscrambleDamage,
@@ -116,6 +118,10 @@ export class DamageTracker {
   private zoneName?: string;
   private zoneId: ZoneIdType = ZoneId.MatchAll;
   private contentType = 0;
+  protected dataInitializers: {
+    file: string;
+    func: DataInitializeFunc<OopsyData>;
+  }[] = [];
 
   constructor(
     private options: OopsyOptions,
@@ -135,8 +141,8 @@ export class DamageTracker {
     this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
     this.abilityFullRegex = NetRegexes.abilityFull();
-    this.wipeCactbotEcho = NetRegexes.echo({ line: 'cactbot wipe.*?' });
-    this.wipeEndEcho = NetRegexes.echo({ line: 'end' });
+    this.wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
+    this.wipeEndEcho = commonNetRegex.userWipeEcho;
 
     this.data = this.GetDataObject();
     this.Reset();
@@ -152,12 +158,19 @@ export class DamageTracker {
   }
 
   GetDataObject(): OopsyData {
-    return {
+    const data: OopsyData = {
       me: this.me,
       job: this.job,
       role: this.role,
       party: this.playerStateTracker.partyTracker,
       inCombat: this.inCombat,
+      IsImmune: (targetId?: string) => {
+        // 52 = hallowed, 199 = holmgang, 32A = living, 32B = walking, 72C = bolide
+        const invulnIds = ['52', '199', '32A', '32B', '72C'];
+        if (this.playerStateTracker.HasEffect(targetId, invulnIds))
+          return true;
+        return false;
+      },
       ShortName: (name?: string) => ShortNamify(name, this.options.PlayerNicks),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
@@ -166,6 +179,23 @@ export class DamageTracker {
       // Deprecated.
       ParseLocaleFloat: parseFloat,
     };
+
+    let triggerData = {};
+
+    for (const initObj of this.dataInitializers) {
+      const init = initObj.func;
+      const initData = init();
+      if (typeof initData === 'object') {
+        triggerData = {
+          ...triggerData,
+          ...initData,
+        };
+      } else {
+        console.log(`Error in file: ${initObj.file}: these triggers may not work;
+        initData function returned invalid object: ${init.toString()}`);
+      }
+    }
+    return { ...triggerData, ...data };
   }
 
   // TODO: this shouldn't clear timers and triggers
@@ -182,7 +212,7 @@ export class DamageTracker {
   private OnEngage(timestamp: number) {
     this.engageTime = timestamp;
 
-    if (!this.firstPuller || !this.combatState.startTime)
+    if (this.firstPuller === undefined || !this.combatState.startTime)
       return;
 
     const seconds = (timestamp - this.combatState.startTime) / 1000;
@@ -202,7 +232,7 @@ export class DamageTracker {
 
   private UpdateLastTimestamp(splitLine: string[]): void {
     const timeField = splitLine[logDefinitions.None.fields.timestamp];
-    if (timeField)
+    if (timeField !== undefined)
       this.lastTimestamp = new Date(timeField).getTime();
   }
 
@@ -296,7 +326,7 @@ export class DamageTracker {
   }
 
   private OnAbilityEvent(line: string, splitLine: string[]): void {
-    if (this.firstPuller || this.combatState.startTime)
+    if (this.firstPuller !== undefined || this.combatState.startTime)
       return;
 
     // This is kind of obnoxious to have to regex match every ability line that's already split.
@@ -312,15 +342,15 @@ export class DamageTracker {
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
     const origFlags = splitLine[kFieldFlags];
-    if (origFlags && kShiftFlagValues.includes(origFlags)) {
+    if (origFlags !== undefined && kShiftFlagValues.includes(origFlags)) {
       matches.flags = splitLine[kFieldFlags + 2] ?? matches.flags;
       matches.damage = splitLine[kFieldFlags + 3] ?? matches.damage;
     }
 
     // Length 1 or 2.
-    let lowByte = matches.flags.substr(-2);
+    let lowByte = matches.flags.slice(-2);
     if (lowByte.length === 1)
-      lowByte = '0' + lowByte;
+      lowByte = `0${lowByte}`;
 
     if (!kAttackFlags.includes(lowByte))
       return;
@@ -337,7 +367,7 @@ export class DamageTracker {
       this.firstPuller = '???';
 
     if (this.engageTime) {
-      const seconds = ((Date.now() - this.engageTime) / 1000);
+      const seconds = (Date.now() - this.engageTime) / 1000;
       if (seconds >= this.options.MinimumTimeForPullMistake) {
         const mistakeStr = Translate(this.options.DisplayLanguage, latePullText) ?? '';
         const text = `${mistakeStr} (${seconds.toFixed(1)}s)`;
@@ -383,7 +413,7 @@ export class DamageTracker {
       });
     }
 
-    if (trigger.id) {
+    if (trigger.id !== undefined) {
       if (!IsTriggerEnabled(this.options, trigger.id))
         return;
 
@@ -399,7 +429,7 @@ export class DamageTracker {
       f: OopsyTriggerField<OopsyData, Matches, OopsyField>,
       matches: Matches,
     ) => {
-      return (typeof f === 'function') ? f(this.data, matches) : f;
+      return typeof f === 'function' ? f(this.data, matches) : f;
     };
 
     if ('condition' in trigger) {
@@ -419,10 +449,10 @@ export class DamageTracker {
     const suppress = 'suppressSeconds' in trigger
       ? ValueOrFunction(trigger.suppressSeconds, matches)
       : 0;
-    if (trigger.id && typeof suppress === 'number' && suppress > 0)
-      this.triggerSuppress[trigger.id] = triggerTime + (suppress * 1000);
+    if (trigger.id !== undefined && typeof suppress === 'number' && suppress > 0)
+      this.triggerSuppress[trigger.id] = triggerTime + suppress * 1000;
 
-    const f = (() => {
+    const f = () => {
       if ('mistake' in trigger) {
         const m = ValueOrFunction(trigger.mistake, matches);
         if (typeof m === 'object') {
@@ -444,7 +474,7 @@ export class DamageTracker {
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, matches);
-    });
+    };
 
     if (delaySeconds <= 0)
       f();
@@ -535,7 +565,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'GainsEffect',
-        netRegex: NetRegexes.gainsEffect({ effectId: id }),
+        netRegex: NetRegexes.gainsEffect({ effectId: id, ...playerTargetFields }),
         mistake: (_data, matches) => {
           return {
             type: type,
@@ -607,7 +637,7 @@ export class DamageTracker {
     this.ProcessDataFiles();
 
     // Wait for datafiles / jobs / zone events / localization.
-    if (!this.triggerSets || !this.zoneName)
+    if (!this.triggerSets || this.zoneName === undefined)
       return;
 
     this.Reset();
@@ -659,10 +689,19 @@ export class DamageTracker {
       }
 
       if (this.options.Debug) {
-        if (set.filename)
+        if (set.filename !== undefined)
           console.log(`Loading ${set.filename}`);
         else
           console.log('Loading user triggers for zone');
+      }
+
+      const setFilename = set.filename ?? 'Unknown';
+
+      if (set.initData) {
+        this.dataInitializers.push({
+          file: setFilename,
+          func: set.initData,
+        });
       }
 
       this.AddDamageTriggers('warn', set.damageWarn);
@@ -716,19 +755,19 @@ export class DamageTracker {
     this.triggerSets = this.options.Triggers;
     for (const [filename, json] of Object.entries<LooseOopsyTriggerSet>(this.dataFiles)) {
       if (typeof json !== 'object') {
-        console.error('Unexpected JSON from ' + filename + ', expected an object');
+        console.error(`Unexpected JSON from ${filename}, expected an object`);
         continue;
       }
       const hasZoneRegex = 'zoneRegex' in json;
       const hasZoneId = 'zoneId' in json;
       if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
-        console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
+        console.error(`Unexpected JSON from ${filename}, need one of zoneRegex/zoneID`);
         continue;
       }
 
       if ('triggers' in json) {
         if (typeof json.triggers !== 'object' || !(json.triggers.length >= 0)) {
-          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+          console.error(`Unexpected JSON from ${filename}, expected triggers to be an array`);
           continue;
         }
       }

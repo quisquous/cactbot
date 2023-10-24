@@ -24,7 +24,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Instant death has a special flag value, differentiating
       // from the explosion damage you take when somebody else
       // pops one.
-      netRegex: NetRegexes.abilityFull({ id: '26AB', ...playerDamageFields, flags: kFlagInstantDeath }),
+      netRegex: NetRegexes.abilityFull({
+        id: '26AB',
+        ...playerDamageFields,
+        flags: kFlagInstantDeath,
+      }),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -140,11 +144,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
         let text;
         const duration = parseFloat(matches.duration);
         if (duration < 9)
-          text = matches.effect + ' #1';
+          text = `${matches.effect} #1`;
         else if (duration < 14)
-          text = matches.effect + ' #2';
+          text = `${matches.effect} #2`;
         else
-          text = matches.effect + ' #3';
+          text = `${matches.effect} #3`;
         return {
           id: matches.targetId,
           name: matches.target,

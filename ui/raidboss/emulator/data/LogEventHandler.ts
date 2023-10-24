@@ -49,7 +49,7 @@ Line Count: ${this.currentFight.length}
 `);
     void this.dispatch(
       'fight',
-      start.substr(0, 10),
+      start.slice(0, 10),
       this.currentZoneId,
       this.currentZoneName,
       this.currentFight,

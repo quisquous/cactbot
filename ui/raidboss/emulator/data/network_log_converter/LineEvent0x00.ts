@@ -23,8 +23,7 @@ export class LineEvent0x00 extends LineEvent {
     if (this.message.split('\u001f\u001f').length > 1)
       this.invalid = true;
 
-    this.convertedLine = this.prefix() + this.type + ':' +
-      this.speaker + ':' + this.message.trim();
+    this.convertedLine = `${this.prefix() + this.type}:${this.speaker}:${this.message.trim()}`;
     this.convertedLine = LineEvent00.replaceChatSymbols(this.convertedLine);
   }
 

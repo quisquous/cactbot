@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Peace Sans";
+  src:
+    local("Peace Sans"),
+    url("Peace Sans.otf") format("opentype");
+}
+
+.resize-handle {
+  background-color: rgb(24 24 24 / 60%);
+}
+
+#timeline-container {
+  width: 100%;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+#timeline-resize-helper .resize-helper-bar,
+.timer-bar {
+  height: 2rem;
+  margin: 0;
+}
+
+.timeline-grid,
+#timeline-resize-helper .timeline-grid {
+  grid-template-columns: 100vw;
+}
+
+.timeline-bar-color {
+  background-color: #639;
+}
+
+.timeline-bar-color.soon {
+  background-color: #ff8c19;
+}
+
+.timeline-bar-color.imminent {
+  background-color: #f00;
+}
+
+.timeline-bar-color.active {
+  background-color: #954adf;
+}
+
+#popup-text-container > .text {
+  font-family: "Peace Sans", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  font-variant-caps: all-small-caps;
+}
+
+.alarm-text {
+  color: #fff;
+  background-color: rgb(239 0 0 / 50%);
+}
+
+.alert-text {
+  color: #fff;
+  background-color: rgb(255 140 25 / 50%);
+}
+
+.info-text {
+  color: #fff;
+  background-color: rgb(149 74 223 / 50%);
+}

@@ -232,7 +232,7 @@ html {
   font-weight: normal;
 }
 
-.timeline-text-container > div:nth-child(-n+3) {
+.timeline-text-container > div:nth-child(-n + 3) {
   font-weight: bold;
 }
 
@@ -273,7 +273,7 @@ html {
   margin: 12px 0 0 24px;
 }
 
-.timeline-add-container > div:nth-child(-n+4) {
+.timeline-add-container > div:nth-child(-n + 4) {
   align-self: end;
 }
 
@@ -344,6 +344,21 @@ html {
   justify-content: flex-end;
 }
 
+.comment {
+  margin-top: 8px;
+  margin-left: 8px;
+  font-size: 12px;
+  max-width: calc(18em + 8px);
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.comment > * {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
 .alarm-text {
   color: #f30;
 }
@@ -396,6 +411,11 @@ input[type="text"] {
   text-align: left;
 }
 
+input[type="text"].input-string-field {
+  width: min(200px, 100%);
+  text-align: left;
+}
+
 input[type="submit"] {
   padding: 3px;
 }
@@ -403,4 +423,9 @@ input[type="submit"] {
 select {
   padding: 3px;
   width: fit-content;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
 }

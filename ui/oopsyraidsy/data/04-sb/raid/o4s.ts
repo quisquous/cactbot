@@ -70,7 +70,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Ignore unavoidable raid aoe Blizzard III.
       condition: (data) => !data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -80,7 +85,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Only consider this during random mechanic after decisive battle.
       condition: (data) => data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -90,9 +100,19 @@ const triggerSet: OopsyTriggerSet<Data> = {
       mistake: (data, matches) => {
         // On Neo, being petrified is because you looked at Shriek, so your fault.
         if (data.isNeoExdeath)
-          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.effect };
+          return {
+            type: 'fail',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: matches.effect,
+          };
         // On normal ExDeath, this is due to White Hole.
-        return { type: 'warn', name: matches.target, reportId: matches.targetId, text: matches.effect };
+        return {
+          type: 'warn',
+          name: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
       },
     },
     {
@@ -100,7 +120,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '242E', ...playerDamageFields }),
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {

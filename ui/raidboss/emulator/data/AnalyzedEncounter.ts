@@ -54,11 +54,12 @@ export default class AnalyzedEncounter extends EventBus {
           const partyMember = this.encounter?.combatantTracker?.combatants[id];
           if (!partyMember)
             throw new UnreachableCode();
+          const initState = partyMember.nextState(0);
           return {
             id: id,
             worldId: 0,
-            name: partyMember.name,
-            job: Util.jobToJobEnum(partyMember.job ?? 'NONE'),
+            name: initState.Name ?? '',
+            job: initState.Job ?? 0,
             inParty: true,
           };
         }),
@@ -77,20 +78,20 @@ export default class AnalyzedEncounter extends EventBus {
     timestamp: number,
     popupText: PopupTextAnalysis | RaidEmulatorPopupText,
   ): void {
-    const job = combatant.job;
+    const state = combatant.getState(timestamp);
+    const job = state.Job;
     if (!job)
       throw new UnreachableCode();
-    const state = combatant.getState(timestamp);
     popupText?.OnPlayerChange({
       detail: {
-        id: parseInt(combatant.id),
-        name: combatant.name,
-        job: job,
-        level: combatant.level ?? 0,
-        currentHP: state.hp,
-        maxHP: state.maxHp,
-        currentMP: state.mp,
-        maxMP: state.maxMp,
+        id: state.ID ?? 0,
+        name: state.Name ?? '',
+        job: Util.jobEnumToJob(job),
+        level: state.Level ?? 0,
+        currentHP: state.CurrentHP,
+        maxHP: state.MaxHP,
+        currentMP: state.CurrentMP,
+        maxMP: state.MaxMP,
         currentCP: 0,
         maxCP: 0,
         currentGP: 0,
@@ -98,11 +99,11 @@ export default class AnalyzedEncounter extends EventBus {
         currentShield: 0,
         jobDetail: null,
         pos: {
-          x: state.posX,
-          y: state.posY,
-          z: state.posZ,
+          x: state.PosX,
+          y: state.PosY,
+          z: state.PosZ,
         },
-        rotation: state.heading,
+        rotation: state.Heading,
         bait: 0,
         debugJob: '',
       },
@@ -138,7 +139,9 @@ export default class AnalyzedEncounter extends EventBus {
     if (!partyMember)
       return;
 
-    if (!partyMember.job) {
+    const initState = partyMember?.nextState(0);
+
+    if (initState.Job === 0) {
       this.perspectives[id] = {
         initialData: {},
         triggers: [],
@@ -217,7 +220,7 @@ export default class AnalyzedEncounter extends EventBus {
         triggerHelper: triggerHelper,
         status: currentTriggerStatus,
         logLine: log,
-        resolvedOffset: (log.timestamp - this.encounter.startTimestamp),
+        resolvedOffset: log.timestamp - this.encounter.startTimestamp,
       });
     };
     popupText.triggerResolvers = [];

@@ -3,8 +3,6 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-
 ### Knave of Hearts
 # -p 5EB5:1012
 # -ii 5CEC 5CED 5CEE 5CEF 5EA5 5EA6 5CF9 5EB4 5EAF
@@ -18,7 +16,7 @@ hideall "--sync--"
 # So, give up, and add extra syncs on abilities after.
 
 1000.0 "--sync--" sync / 00:0839::Closed Area A will be sealed off/ window 10000,0
-1012.0 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/ window 10,10
+1012.0 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/ window 1012,10
 1022.1 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA7:/
 1033.2 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA4:/
 1040.3 "--sync--" sync / 1[56]:[^:]*:Knave Of Hearts:5EB2:/ # Magic Artillery Beta cast
@@ -98,9 +96,9 @@ hideall "--sync--"
 # -ic "2B"
 # -it "Hansel"
 
-2000.0 "--sync--" sync / 00:0839::Staging Node B will be sealed off/ window 10000,0
-2012.0 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/
-2012.0 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/
+2000.0 "--sync--" sync / 00:0839::Staging Node B will be sealed off/ window 2000,0
+2012.0 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/ window 2012,10
+2012.0 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/ window 2012,10
 2025.2 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
 2025.3 "Crippling Blow (G)" sync / 1[56]:[^:]*:Gretel:5C78:/
 2035.5 "Wail" sync / 1[56]:[^:]*:Gretel:5C76:/
@@ -237,10 +235,10 @@ hideall "--sync--"
 3031.6 "Lightfast Blade 1?"
 
 3500.0 "--targetable--"
-3501.1 "--sync--" sync / 14:[^:]*:2P-Operated Flight Unit:5BFE:/ window 3510,0
+3501.1 "--sync--" sync / 14:[^:]*:2P-Operated Flight Unit:5BFE:/ window 3501.1,0
 3505.0 "--targetable--"
 3510.0 "--targetable--"
-3513.1 "Lightfast Blade 1" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
+3513.1 "Lightfast Blade 1" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/ window 3513.1,3
 3515.0 "--targetable--"
 3518.1 "Lightfast Blade 2" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
 3523.1 "Lightfast Blade 3" sync / 1[56]:[^:]*:2P-Operated Flight Unit:5BFE:/
@@ -261,8 +259,8 @@ hideall "--sync--"
 # -it "Red Girl"
 
 # Phase 1
-4000.0 "--sync--" sync / 00:0839::Staging Node D will be sealed off/ window 10000,0
-4009.0 "--sync--" sync / 14:[^:]*:Red Girl:6012:/ window 10,10
+4000.0 "--sync--" sync / 00:0839::Staging Node D will be sealed off/ window 4000,0
+4009.0 "--sync--" sync / 14:[^:]*:Red Girl:6012:/ window 4009,10
 4014.0 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6012:/
 4019.9 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
 4026.0 "Generate: Barrier" sync / 1[56]:[^:]*:Red Girl:6004:/
@@ -359,8 +357,8 @@ hideall "--sync--"
 # -it "Xun-Zi"
 # -p 5C00:5013.3
 # -ii 5CEC 5CED 5CEE 5C02 5C05 5C07 5C08
-5000.0 "--sync--" sync / 00:0839::The Ascension Platform will be sealed off/ window 10000,0
-5013.3 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
+5000.0 "--sync--" sync / 00:0839::The Ascension Platform will be sealed off/ window 5000,0
+5013.3 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/ window 5013.3,7
 5023.4 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
 5036.4 "Universal Assault" sync / 1[56]:[^:]*:Xun-Zi:5C06:/
 # ???
@@ -398,8 +396,8 @@ hideall "--sync--"
 # -it "False Idol"
 # -p 5BDD:6012.3
 # -ii 5CEC 5CED 5CEE 5CEF 5FFC 5FFF 5BDA 5BDC
-6000.0 "--sync--" sync / 00:0839::Beyond will be sealed off/ window 10000,0
-6007.3 "--sync--" sync / 14:[^:]*:False Idol:5BDD:/ window 10000,10
+6000.0 "--sync--" sync / 00:0839::Beyond will be sealed off/ window 6000,0
+6007.3 "--sync--" sync / 14:[^:]*:False Idol:5BDD:/ window 6007.3,10
 6012.3 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
 6025.5 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
 6035.7 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/
@@ -455,7 +453,7 @@ hideall "--sync--"
 6968.3 "--untargetable--"
 
 7000.0 "--targetable--"
-7010.2 "--sync--" sync / 14:[^:]*:Her Inflorescence:5BE0:/ window 10000,0
+7010.2 "--sync--" sync / 14:[^:]*:Her Inflorescence:5BE0:/ window 7010.2,0
 7013.2 "Pervasion" sync / 1[56]:[^:]*:Her Inflorescence:5BE0:/
 7019.3 "Recreate Structure" sync / 1[56]:[^:]*:Her Inflorescence:5BE1:/
 7030.4 "Uneven Footing" sync / 1[56]:[^:]*:Her Inflorescence:5BE2:/

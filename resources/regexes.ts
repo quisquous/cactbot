@@ -1,4 +1,4 @@
-import { NetFieldsReverse } from '../types/net_fields';
+import { NetFields, NetFieldsReverse } from '../types/net_fields';
 import { NetParams } from '../types/net_props';
 import { CactbotBaseRegExp } from '../types/net_trigger';
 
@@ -7,7 +7,10 @@ import logDefinitions, {
   LogDefinitionTypes,
   LogDefinitionVersions,
   ParseHelperFields,
+  RepeatingFieldsDefinitions,
+  RepeatingFieldsTypes,
 } from './netlog_defs';
+import { UnreachableCode } from './not_reached';
 
 const separator = ':';
 const matchDefault = '[^:]*';
@@ -18,31 +21,105 @@ const defaultParams = <
   T extends LogDefinitionTypes,
   V extends LogDefinitionVersions,
 >(type: T, version: V, include?: string[]): Partial<ParseHelperFields<T>> => {
-  include ??= Object.keys(logDefinitionsVersions[version][type].fields);
-  const params: { [index: number]: { field: string; value?: string; optional: boolean } } = {};
-  const firstOptionalField = logDefinitionsVersions[version][type].firstOptionalField;
+  const logType = logDefinitionsVersions[version][type];
+  if (include === undefined) {
+    include = Object.keys(logType.fields);
+    if ('repeatingFields' in logType) {
+      include.push(logType.repeatingFields.label);
+    }
+  }
 
-  for (const [prop, index] of Object.entries(logDefinitionsVersions[version][type].fields)) {
+  const params: {
+    [index: number]: {
+      field: string;
+      value?: string;
+      optional: boolean;
+      repeating?: boolean;
+      repeatingKeys?: string[];
+      sortKeys?: boolean;
+      primaryKey?: string;
+      possibleKeys?: string[];
+    };
+  } = {};
+  const firstOptionalField = logType.firstOptionalField;
+
+  for (const [prop, index] of Object.entries(logType.fields)) {
     if (!include.includes(prop))
       continue;
-    const param: { field: string; value?: string; optional: boolean } = {
+    const param: { field: string; value?: string; optional: boolean; repeating?: boolean } = {
       field: prop,
       optional: firstOptionalField !== undefined && index >= firstOptionalField,
     };
     if (prop === 'type')
-      param.value = logDefinitionsVersions[version][type].type;
+      param.value = logType.type;
 
     params[index] = param;
   }
 
-  return params as unknown as Partial<ParseHelperFields<T>>;
+  if ('repeatingFields' in logType && include.includes(logType.repeatingFields.label)) {
+    params[logType.repeatingFields.startingIndex] = {
+      field: logType.repeatingFields.label,
+      optional: firstOptionalField !== undefined &&
+        logType.repeatingFields.startingIndex >= firstOptionalField,
+      repeating: true,
+      repeatingKeys: [...logType.repeatingFields.names],
+      sortKeys: logType.repeatingFields.sortKeys,
+      primaryKey: logType.repeatingFields.primaryKey,
+      possibleKeys: [...logType.repeatingFields.possibleKeys],
+    };
+  }
+
+  return params as Partial<ParseHelperFields<T>>;
 };
+
+type RepeatingFieldsMap<
+  TBase extends LogDefinitionTypes,
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = {
+  [name in RepeatingFieldsDefinitions[TKey]['repeatingFields']['names'][number]]:
+    | string
+    | string[];
+}[];
+
+type RepeatingFieldsMapTypeCheck<
+  TBase extends LogDefinitionTypes,
+  F extends keyof NetFields[TBase],
+  TKey extends RepeatingFieldsTypes = TBase extends RepeatingFieldsTypes ? TBase : never,
+> = F extends RepeatingFieldsDefinitions[TKey]['repeatingFields']['label']
+  ? RepeatingFieldsMap<TKey> :
+  never;
+
+type RepeatingFieldsMapType<
+  T extends LogDefinitionTypes,
+  F extends keyof NetFields[T],
+> = T extends RepeatingFieldsTypes ? RepeatingFieldsMapTypeCheck<T, F>
+  : never;
 
 type ParseHelperType<T extends LogDefinitionTypes> =
   & {
-    [field in Extract<keyof NetFieldsReverse[T], string>]?: string;
+    [field in keyof NetFields[T]]?: string | readonly string[] | RepeatingFieldsMapType<T, field>;
   }
   & { capture?: boolean };
+
+const isRepeatingField = <
+  T extends LogDefinitionTypes,
+>(
+  repeating: boolean | undefined,
+  value: string | readonly string[] | RepeatingFieldsMap<T> | undefined,
+): value is RepeatingFieldsMap<T> => {
+  if (repeating !== true)
+    return false;
+  // Allow excluding the field to match for extraction
+  if (value === undefined)
+    return true;
+  if (!Array.isArray(value))
+    return false;
+  for (const e of value) {
+    if (typeof e !== 'object')
+      return false;
+  }
+  return true;
+};
 
 const parseHelper = <T extends LogDefinitionTypes>(
   params: ParseHelperType<T> | undefined,
@@ -99,9 +176,12 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
   // Build the regex from the fields.
   const prefix = defKey !== 'Ability' ? logDefinitions[defKey].messageType : abilityMessageType;
-  const hexCode = defKey !== 'Ability'
-    ? `00${parseInt(logDefinitions[defKey].type).toString(16)}`.slice(-2).toUpperCase()
-    : abilityHexCode;
+
+  // Hex codes are a minimum of two characters.  Abilities are special because
+  // they need to support both 0x15 and 0x16.
+  const typeAsHex = parseInt(logDefinitions[defKey].type).toString(16).toUpperCase();
+  const defaultHexCode = typeAsHex.length < 2 ? `00${typeAsHex}`.slice(-2) : typeAsHex;
+  const hexCode = defKey !== 'Ability' ? defaultHexCode : abilityHexCode;
 
   let str = '';
   if (capture)
@@ -111,7 +191,10 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
   let lastKey = 1;
   for (const keyStr in fields) {
-    const fieldName = fields[keyStr]?.field;
+    const parseField = fields[keyStr];
+    if (parseField === undefined)
+      continue;
+    const fieldName = parseField.field;
 
     // Regex handles these manually above in the `str` initialization.
     if (fieldName === 'timestamp' || fieldName === 'type')
@@ -128,26 +211,118 @@ const parseHelper = <T extends LogDefinitionTypes>(
 
     str += separator;
 
-    const value = fields[keyStr];
-    if (typeof value !== 'object')
-      throw new Error(`${defKey}: invalid value: ${JSON.stringify(value)}`);
+    if (typeof parseField !== 'object')
+      throw new Error(`${defKey}: invalid value: ${JSON.stringify(parseField)}`);
 
     const fieldDefault = fieldName !== undefined && fieldsWithPotentialColons.includes(fieldName)
       ? matchWithColonsDefault
       : matchDefault;
-    const fieldValue = fields[keyStr]?.value?.toString() ?? fieldDefault;
+    const defaultFieldValue = parseField.value?.toString() ?? fieldDefault;
+    const fieldValue = params[fieldName];
 
-    if (fieldName !== undefined) {
-      str += Regexes.maybeCapture(
-        // more accurate type instead of `as` cast
-        // maybe this function needs a refactoring
-        capture,
-        fieldName,
-        params[fieldName],
-        fieldValue,
-      );
+    if (isRepeatingField(fields[keyStr]?.repeating, fieldValue)) {
+      const repeatingFieldsSeparator = '(?:$|:)';
+      let repeatingArray: RepeatingFieldsMap<T> | undefined = fieldValue;
+
+      const sortKeys = fields[keyStr]?.sortKeys;
+      const primaryKey = fields[keyStr]?.primaryKey;
+      const possibleKeys = fields[keyStr]?.possibleKeys;
+
+      // primaryKey is required if this is a repeating field per typedef in netlog_defs.ts
+      // Same with possibleKeys
+      if (primaryKey === undefined || possibleKeys === undefined)
+        throw new UnreachableCode();
+
+      // Allow sorting if needed
+      if (sortKeys) {
+        // Also sort our valid keys list
+        possibleKeys.sort((left, right) => left.toLowerCase().localeCompare(right.toLowerCase()));
+        if (repeatingArray !== undefined) {
+          repeatingArray = [...repeatingArray].sort(
+            (left: Record<string, unknown>, right: Record<string, unknown>): number => {
+              // We check the validity of left/right because they're user-supplied
+              if (typeof left !== 'object' || left[primaryKey] === undefined) {
+                console.warn('Invalid argument passed to trigger:', left);
+                return 0;
+              }
+              const leftValue = left[primaryKey];
+              if (typeof leftValue !== 'string' || !possibleKeys?.includes(leftValue)) {
+                console.warn('Invalid argument passed to trigger:', left);
+                return 0;
+              }
+              if (typeof right !== 'object' || right[primaryKey] === undefined) {
+                console.warn('Invalid argument passed to trigger:', right);
+                return 0;
+              }
+              const rightValue = right[primaryKey];
+              if (typeof rightValue !== 'string' || !possibleKeys?.includes(rightValue)) {
+                console.warn('Invalid argument passed to trigger:', right);
+                return 0;
+              }
+              return leftValue.toLowerCase().localeCompare(rightValue.toLowerCase());
+            },
+          );
+        }
+      }
+
+      const anonReps: { [name: string]: string | string[] }[] | undefined = repeatingArray;
+      // Loop over our possible keys
+      // Build a regex that can match any possible key with required values substituted in
+      possibleKeys.forEach((possibleKey) => {
+        const rep = anonReps?.find((rep) => primaryKey in rep && rep[primaryKey] === possibleKey);
+
+        let fieldRegex = '';
+        // Rather than looping over the keys defined on the object,
+        // loop over the base type def's keys. This enforces the correct order.
+        fields[keyStr]?.repeatingKeys?.forEach((key) => {
+          let val = rep?.[key];
+          if (rep === undefined || !(key in rep)) {
+            // If we don't have a value for this key
+            // insert a placeholder, unless it's the primary key
+            if (key === primaryKey)
+              val = possibleKey;
+            else
+              val = matchDefault;
+          }
+          if (typeof val !== 'string') {
+            if (!Array.isArray(val))
+              val = matchDefault;
+            else if (val.length < 1)
+              val = matchDefault;
+            else if (val.some((v) => typeof v !== 'string'))
+              val = matchDefault;
+          }
+          fieldRegex += Regexes.maybeCapture(
+            key === primaryKey ? false : capture,
+            // All capturing groups are `fieldName` + `possibleKey`, e.g. `pairIsCasting1`
+            fieldName + possibleKey,
+            val,
+            defaultFieldValue,
+          ) +
+            repeatingFieldsSeparator;
+        });
+
+        if (fieldRegex.length > 0) {
+          str += `(?:${fieldRegex})${rep !== undefined ? '' : '?'}`;
+        }
+      });
+    } else if (fields[keyStr]?.repeating) {
+      // If this is a repeating field but the actual value is empty or otherwise invalid,
+      // don't process further. We can't use `continue` in the above block because that
+      // would skip the early-out break at the end of the loop.
     } else {
-      str += fieldValue;
+      if (fieldName !== undefined) {
+        str += Regexes.maybeCapture(
+          // more accurate type instead of `as` cast
+          // maybe this function needs a refactoring
+          capture,
+          fieldName,
+          fieldValue,
+          defaultFieldValue,
+        );
+      } else {
+        str += fieldValue;
+      }
     }
 
     // Stop if we're not capturing and don't care about future fields.
@@ -160,6 +335,13 @@ const parseHelper = <T extends LogDefinitionTypes>(
   return Regexes.parse(str) as CactbotBaseRegExp<T>;
 };
 
+export const buildRegex = <T extends keyof NetParams>(
+  type: T,
+  params?: ParseHelperType<T>,
+): CactbotBaseRegExp<T> => {
+  return parseHelper(params, type, defaultParams(type, Regexes.logVersion));
+};
+
 export default class Regexes {
   static logVersion: LogDefinitionVersions = 'latest';
 
@@ -167,7 +349,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-20-0x14-networkstartscasting
    */
   static startsUsing(params?: NetParams['StartsUsing']): CactbotBaseRegExp<'StartsUsing'> {
-    return parseHelper(params, 'StartsUsing', defaultParams('StartsUsing', Regexes.logVersion));
+    return buildRegex('StartsUsing', params);
   }
 
   /**
@@ -175,7 +357,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
-    return parseHelper(params, 'Ability', defaultParams('Ability', Regexes.logVersion));
+    return buildRegex('Ability', params);
   }
 
   /**
@@ -192,7 +374,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-27-0x1b-networktargeticon-head-marker
    */
   static headMarker(params?: NetParams['HeadMarker']): CactbotBaseRegExp<'HeadMarker'> {
-    return parseHelper(params, 'HeadMarker', defaultParams('HeadMarker', Regexes.logVersion));
+    return buildRegex('HeadMarker', params);
   }
 
   /**
@@ -217,11 +399,7 @@ export default class Regexes {
   static addedCombatantFull(
     params?: NetParams['AddedCombatant'],
   ): CactbotBaseRegExp<'AddedCombatant'> {
-    return parseHelper(
-      params,
-      'AddedCombatant',
-      defaultParams('AddedCombatant', Regexes.logVersion),
-    );
+    return buildRegex('AddedCombatant', params);
   }
 
   /**
@@ -230,18 +408,14 @@ export default class Regexes {
   static removingCombatant(
     params?: NetParams['RemovedCombatant'],
   ): CactbotBaseRegExp<'RemovedCombatant'> {
-    return parseHelper(
-      params,
-      'RemovedCombatant',
-      defaultParams('RemovedCombatant', Regexes.logVersion),
-    );
+    return buildRegex('RemovedCombatant', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-26-0x1a-networkbuff
    */
   static gainsEffect(params?: NetParams['GainsEffect']): CactbotBaseRegExp<'GainsEffect'> {
-    return parseHelper(params, 'GainsEffect', defaultParams('GainsEffect', Regexes.logVersion));
+    return buildRegex('GainsEffect', params);
   }
 
   /**
@@ -251,21 +425,21 @@ export default class Regexes {
   static statusEffectExplicit(
     params?: NetParams['StatusEffect'],
   ): CactbotBaseRegExp<'StatusEffect'> {
-    return parseHelper(params, 'StatusEffect', defaultParams('StatusEffect', Regexes.logVersion));
+    return buildRegex('StatusEffect', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-30-0x1e-networkbuffremove
    */
   static losesEffect(params?: NetParams['LosesEffect']): CactbotBaseRegExp<'LosesEffect'> {
-    return parseHelper(params, 'LosesEffect', defaultParams('LosesEffect', Regexes.logVersion));
+    return buildRegex('LosesEffect', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-35-0x23-networktether
    */
   static tether(params?: NetParams['Tether']): CactbotBaseRegExp<'Tether'> {
-    return parseHelper(params, 'Tether', defaultParams('Tether', Regexes.logVersion));
+    return buildRegex('Tether', params);
   }
 
   /**
@@ -273,14 +447,14 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-25-0x19-networkdeath
    */
   static wasDefeated(params?: NetParams['WasDefeated']): CactbotBaseRegExp<'WasDefeated'> {
-    return parseHelper(params, 'WasDefeated', defaultParams('WasDefeated', Regexes.logVersion));
+    return buildRegex('WasDefeated', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-24-0x18-networkdot
    */
   static networkDoT(params?: NetParams['NetworkDoT']): CactbotBaseRegExp<'NetworkDoT'> {
-    return parseHelper(params, 'NetworkDoT', defaultParams('NetworkDoT', Regexes.logVersion));
+    return buildRegex('NetworkDoT', params);
   }
 
   /**
@@ -333,7 +507,7 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
-    return parseHelper(params, 'GameLog', defaultParams('GameLog', Regexes.logVersion));
+    return buildRegex('GameLog', params);
   }
 
   /**
@@ -348,35 +522,35 @@ export default class Regexes {
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-12-0x0c-playerstats
    */
   static statChange(params?: NetParams['PlayerStats']): CactbotBaseRegExp<'PlayerStats'> {
-    return parseHelper(params, 'PlayerStats', defaultParams('PlayerStats', Regexes.logVersion));
+    return buildRegex('PlayerStats', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-01-0x01-changezone
    */
   static changeZone(params?: NetParams['ChangeZone']): CactbotBaseRegExp<'ChangeZone'> {
-    return parseHelper(params, 'ChangeZone', defaultParams('ChangeZone', Regexes.logVersion));
+    return buildRegex('ChangeZone', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-33-0x21-network6d-actor-control
    */
   static network6d(params?: NetParams['ActorControl']): CactbotBaseRegExp<'ActorControl'> {
-    return parseHelper(params, 'ActorControl', defaultParams('ActorControl', Regexes.logVersion));
+    return buildRegex('ActorControl', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-34-0x22-networknametoggle
    */
   static nameToggle(params?: NetParams['NameToggle']): CactbotBaseRegExp<'NameToggle'> {
-    return parseHelper(params, 'NameToggle', defaultParams('NameToggle', Regexes.logVersion));
+    return buildRegex('NameToggle', params);
   }
 
   /**
    * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-40-0x28-map
    */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
-    return parseHelper(params, 'Map', defaultParams('Map', Regexes.logVersion));
+    return buildRegex('Map', params);
   }
 
   /**
@@ -385,11 +559,23 @@ export default class Regexes {
   static systemLogMessage(
     params?: NetParams['SystemLogMessage'],
   ): CactbotBaseRegExp<'SystemLogMessage'> {
-    return parseHelper(
-      params,
-      'SystemLogMessage',
-      defaultParams('SystemLogMessage', Regexes.logVersion),
-    );
+    return buildRegex('SystemLogMessage', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
+   */
+  static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
+    return buildRegex('MapEffect', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-261-0x105-combatantmemory
+   */
+  static combatantMemory(
+    params?: NetParams['CombatantMemory'],
+  ): CactbotBaseRegExp<'CombatantMemory'> {
+    return buildRegex('CombatantMemory', params);
   }
 
   /**
@@ -398,7 +584,7 @@ export default class Regexes {
   static maybeCapture(
     capture: boolean,
     name: string,
-    value: string | string[] | undefined,
+    value: string | readonly string[] | undefined,
     defaultValue?: string,
   ): string {
     if (value === undefined)
@@ -414,11 +600,11 @@ export default class Regexes {
   // Creates a named regex capture group named |name| for the match |value|.
   static namedCapture(name: string, value: string): string {
     if (name.includes('>'))
-      console.error('"' + name + '" contains ">".');
+      console.error(`"${name}" contains ">".`);
     if (name.includes('<'))
-      console.error('"' + name + '" contains ">".');
+      console.error(`"${name}" contains ">".`);
 
-    return '(?<' + name + '>' + value + ')';
+    return `(?<${name}>${value})`;
   }
 
   /**
@@ -428,24 +614,25 @@ export default class Regexes {
    * args may be strings or RegExp, although any additional markers to RegExp
    * like /insensitive/i are dropped.
    */
-  static anyOf(...args: (string | string[] | RegExp)[]): string {
-    const anyOfArray = (array: (string | RegExp)[]): string => {
+  static anyOf(...args: (string | readonly string[] | RegExp)[]): string {
+    const anyOfArray = (array: readonly (string | RegExp)[]): string => {
       const [elem] = array;
       if (elem !== undefined && array.length === 1)
         return `${elem instanceof RegExp ? elem.source : elem}`;
       return `(?:${array.map((elem) => elem instanceof RegExp ? elem.source : elem).join('|')})`;
     };
-    let array: (string | RegExp)[] = [];
+    let array: readonly (string | RegExp)[] = [];
+    const [firstArg] = args;
     if (args.length === 1) {
-      if (Array.isArray(args[0]))
-        array = args[0];
-      else if (args[0] !== undefined)
-        array = [args[0]];
+      if (typeof firstArg === 'string' || firstArg instanceof RegExp)
+        array = [firstArg];
+      else if (Array.isArray(firstArg))
+        array = firstArg;
       else
         array = [];
     } else {
       // TODO: more accurate type instead of `as` cast
-      array = args as string[];
+      array = args as readonly string[];
     }
     return anyOfArray(array);
   }
@@ -486,12 +673,12 @@ export default class Regexes {
     const regex = Regexes.parse(regexpString);
     let modifiers = 'gi';
     if (regexpString instanceof RegExp)
-      modifiers += (regexpString.multiline ? 'm' : '');
+      modifiers += regexpString.multiline ? 'm' : '';
     return new RegExp(regex.source, modifiers);
   }
 
   static trueIfUndefined(value?: boolean): boolean {
-    if (typeof (value) === 'undefined')
+    if (typeof value === 'undefined')
       return true;
     return !!value;
   }

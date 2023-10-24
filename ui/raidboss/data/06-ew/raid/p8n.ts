@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { UnreachableCode } from '../../../../../resources/not_reached';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
@@ -38,6 +37,7 @@ const positionTo8Dir = (combatant: PluginCombatantState) => {
 };
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheEighthCircle',
   zoneId: ZoneId.AbyssosTheEighthCircle,
   timelineFile: 'p8n.txt',
   initData: () => {
@@ -51,21 +51,21 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Genesis of Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7095', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '7905', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8N Scorching Fang',
       type: 'StartsUsing',
       // has 78EC Sunforge castbar
-      netRegex: NetRegexes.startsUsing({ id: '78EE', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78EE', source: 'Hephaistos', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'P8N Sun\'s Pinion',
       type: 'StartsUsing',
       // also has 78EC Sunforge castbar
-      netRegex: NetRegexes.startsUsing({ id: '78EF', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78EF', source: 'Hephaistos', capture: false },
       // There are two casts, one for each side.
       suppressSeconds: 1,
       response: Responses.goMiddle(),
@@ -73,14 +73,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Flameviper',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7908', source: 'Hephaistos' }),
+      netRegex: { id: '7908', source: 'Hephaistos' },
       // This is a "line" tank cleave that leaves a bleed.
       response: Responses.tankCleave(),
     },
     {
       id: 'P8N Petrifaction',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78FC', source: 'Gorgon', capture: false }),
+      netRegex: { id: '78FC', source: 'Gorgon', capture: false },
       // There are two casts, one for each Gorgon.
       suppressSeconds: 1,
       response: Responses.lookAway(),
@@ -90,20 +90,20 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // We could use addedCombatant({ npcNameId: '11517' }), but this also fires on the
       // spawn of the lookaway eyeballs.
-      netRegex: NetRegexes.ability({ id: '78FC', source: 'Gorgon', capture: false }),
+      netRegex: { id: '78FC', source: 'Gorgon', capture: false },
       suppressSeconds: 1,
       response: Responses.killAdds(),
     },
     {
       id: 'P8N Ektothermos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78FE', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78FE', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8N Abyssal Fires',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F1', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78F1', source: 'Hephaistos', capture: false },
       // There are four of these, one for each fire.
       suppressSeconds: 1,
       response: Responses.goMiddle(),
@@ -111,19 +111,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Rearing Rampage',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '79AB', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '79AB', source: 'Hephaistos', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P8N Suneater Cthonic Vent Add',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '11404' }),
+      netRegex: { npcNameId: '11404' },
       run: (data, matches) => data.ventIds.push(matches.id),
     },
     {
       id: 'P8N Suneater Cthonic Vent Initial',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F5', source: 'Suneater', capture: false }),
+      netRegex: { id: '78F5', source: 'Suneater', capture: false },
       suppressSeconds: 1,
       promise: async (data: Data) => {
         data.combatantData = [];
@@ -183,6 +183,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         north: Outputs.north,
@@ -200,19 +201,19 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P8N Volcanic Torches Cleanup',
       type: 'StartsUsing',
       // This always precedes 78F8 Torch Flame casts.
-      netRegex: NetRegexes.startsUsing({ id: ['78F7', '71DE'], source: 'Hephaistos', capture: false }),
+      netRegex: { id: ['78F7', '71DE'], source: 'Hephaistos', capture: false },
       run: (data) => data.torches = [],
     },
     {
       id: 'P8N Torch Flame Collect',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F8', source: 'Hephaistos' }),
+      netRegex: { id: '78F8', source: 'Hephaistos' },
       run: (data, matches) => data.torches.push(matches),
     },
     {
       id: 'P8N Torch Flame',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '78F8', source: 'Hephaistos', capture: false }),
+      netRegex: { id: '78F8', source: 'Hephaistos', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       promise: async (data: Data) => {
@@ -290,6 +291,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
           ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
         outsideNorth: {
@@ -297,6 +299,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden raus',
           fr: 'Nord Extérieur',
           ja: '北の外側',
+          cn: '上 (北) 外',
           ko: '북쪽 바깥',
         },
         insideNorth: {
@@ -304,6 +307,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Norden rein',
           fr: 'Nord Intérieur',
           ja: '北の内側',
+          cn: '上 (北) 内',
           ko: '북쪽 안',
         },
         outsideEast: {
@@ -311,6 +315,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Osten raus',
           fr: 'Est Extérieur',
           ja: '東の外側',
+          cn: '右 (东) 外',
           ko: '동쪽 바깥',
         },
         insideEast: {
@@ -318,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Osten rein',
           fr: 'Est Intérieur',
           ja: '東の内側',
+          cn: '右 (东) 内',
           ko: '동쪽 안',
         },
         outsideSouth: {
@@ -325,6 +331,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Süden raus',
           fr: 'Sud Extérieur',
           ja: '南の外側',
+          cn: '下 (南) 外',
           ko: '남쪽 바깥',
         },
         insideSouth: {
@@ -332,6 +339,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Süden rein',
           fr: 'Sud Intérieur',
           ja: '南の内側',
+          cn: '下 (南) 内',
           ko: '남쪽 안',
         },
         outsideWest: {
@@ -339,6 +347,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Westen raus',
           fr: 'Ouest Extérieur',
           ja: '西の外側',
+          cn: '左 (西) 外',
           ko: '서쪽 바깥',
         },
         insideWest: {
@@ -346,6 +355,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Im Westen rein',
           fr: 'Ouest Intérieur',
           ja: '西の内側',
+          cn: '左 (西) 内',
           ko: '서쪽 안',
         },
       },
@@ -353,7 +363,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P8N Hemitheos\'s Flare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7907', source: 'Hephaistos' }),
+      netRegex: { id: '7907', source: 'Hephaistos' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -361,7 +371,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Gorgon': 'Gorgone',
         '(?<!Illusory )Hephaistos': 'Hephaistos',
@@ -456,6 +465,70 @@ const triggerSet: TriggerSet<Data> = {
         'Torch Flame': '熾炎',
         'Trailblaze': 'トレイルブレイズ',
         'Volcanic Torches': '熾炎創火',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Gorgon': '戈尔贡',
+        '(?<!Illusory )Hephaistos': '赫淮斯托斯',
+        'Illusory Hephaistos': '赫淮斯托斯的幻影',
+        'Suneater': '炎灵蛇',
+      },
+      'replaceText': {
+        'Abyssal Fires': '火炎风暴',
+        'Blazing Footfalls': '炽热践踏',
+        'Cthonic Vent': '喷炎升蛇',
+        'Ektothermos': '爆热波动',
+        'Flameviper': '炎蛇炮',
+        'Fourfold Fires': '四重火炎风暴',
+        'Genesis of Flame': '创世真炎',
+        'Gorgospit': '戈尔贡喷吐',
+        'Hemitheos\'s Flare': '半神核爆',
+        'Into the Shadows': '潜入阴影',
+        'Petrifaction': '石化',
+        'Quadrupedal Crush': '践踏碎击',
+        'Quadrupedal Impact': '践踏冲击',
+        'Rearing Rampage': '双足狂怒',
+        'Reforged Reflection': '变异创身',
+        'Scorching Fang': '烈火牙',
+        'Sun\'s Pinion': '炎之翼',
+        'Sunforge': '创兽炎舞',
+        'Torch Flame': '灼炎',
+        'Trailblaze': '踏火寻迹',
+        'Volcanic Torches': '灼炎创火',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Gorgon': '고르곤',
+        '(?<!Illusory )Hephaistos': '헤파이스토스',
+        'Illusory Hephaistos': '헤파이스토스의 환영',
+        'Suneater': '염령사',
+      },
+      'replaceText': {
+        'Abyssal Fires': '화염 폭풍',
+        'Blazing Footfalls': '맹렬한 발걸음',
+        'Cthonic Vent': '불뱀 승천',
+        'Ektothermos': '폭염 파동',
+        'Flameviper': '불뱀 진격',
+        'Fourfold Fires': '4중 화염 폭풍',
+        'Genesis of Flame': '창세의 불꽃',
+        'Gorgospit': '고르곤의 침',
+        'Hemitheos\'s Flare': '헤미테오스 플레어',
+        'Into the Shadows': '그림자 속으로',
+        'Petrifaction': '석화',
+        'Quadrupedal Crush': '발걸음 파괴',
+        'Quadrupedal Impact': '발걸음 충격',
+        'Rearing Rampage': '난폭한 앞발질',
+        'Reforged Reflection': '신체 변이',
+        'Scorching Fang': '타오르는 송곳니',
+        'Sun\'s Pinion': '타오르는 날개',
+        'Sunforge': '창조물의 불꽃춤',
+        'Torch Flame': '단불',
+        'Trailblaze': '불꽃 발자국',
+        'Volcanic Torches': '단불 창조',
       },
     },
   ],

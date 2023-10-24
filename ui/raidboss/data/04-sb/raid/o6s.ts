@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -11,19 +10,20 @@ export interface Data extends RaidbossData {
 
 // O6S - Sigmascape 2.0 Savage
 const triggerSet: TriggerSet<Data> = {
+  id: 'SigmascapeV20Savage',
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [
     {
       id: 'O6S Demonic Shear',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
+      netRegex: { id: '2829', source: 'Demon Chadarnook' },
       response: Responses.tankBuster(),
     },
     {
       id: 'O6S Storms Grip',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
+      netRegex: { name: 'The Storm\'s Grip', capture: false },
       condition: (data) => data.role === 'tank',
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -40,7 +40,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6S Demonic Stone',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0001' }),
+      netRegex: { id: '0001' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -57,13 +57,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6S Last Kiss Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       run: (data, matches) => data.lastKiss = matches.target,
     },
     {
       id: 'O6S Last Kiss Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0017' }),
+      netRegex: { id: '0017' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -80,7 +80,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'O6S Last Kiss',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '5BF' }),
+      netRegex: { effectId: '5BF' },
       condition: (data, matches) => {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.

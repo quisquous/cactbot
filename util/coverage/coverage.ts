@@ -1,12 +1,18 @@
 import contentList from '../../resources/content_list';
 import ContentType from '../../resources/content_type';
-import { isLang, Lang, langToLocale } from '../../resources/languages';
+import { isLang, Lang, langMap, langToLocale, languages } from '../../resources/languages';
 import { UnreachableCode } from '../../resources/not_reached';
 import ZoneInfo from '../../resources/zone_info';
-import { LocaleText } from '../../types/trigger';
+import { LocaleObject, LocaleText } from '../../types/trigger';
 
-import { Coverage, CoverageEntry, CoverageTotalEntry, CoverageTotals } from './coverage.d';
-import { coverage, coverageTotals } from './coverage_report';
+import {
+  Coverage,
+  CoverageEntry,
+  CoverageTotalEntry,
+  CoverageTotals,
+  TranslationTotals,
+} from './coverage.d';
+import { coverage, coverageTotals, translationTotals } from './coverage_report';
 
 import './coverage.css';
 
@@ -148,6 +154,13 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
     cn: '行会令',
     ko: '길드작전',
   },
+  [ContentType.VCDungeonFinder]: {
+    en: 'V&C',
+    de: 'Gewölbesuche',
+    fr: 'Donjon V&C',
+    cn: '多变&异闻迷宫',
+    ko: '변형&파생던전',
+  },
 } as const;
 
 const contentTypeLabelOrder = [
@@ -208,7 +221,13 @@ const zoneGridHeaders = {
     cn: '犯错监控',
     ko: 'Oopsy',
   },
-  // TODO: missing translation items
+  translated: {
+    en: 'Translated',
+    de: 'Übersetzt',
+    fr: 'Traduit',
+    cn: '已翻译',
+    ko: '번역됨',
+  },
 } as const;
 
 const miscStrings = {
@@ -260,7 +279,43 @@ const miscStrings = {
   },
 } as const;
 
-const translate = (obj: LocaleText, lang: Lang) => obj[lang] ?? obj['en'];
+const translationGridHeaders = {
+  language: {
+    en: 'Translations',
+    de: 'Übersetzungen',
+    fr: 'Traductions',
+    cn: '翻译',
+    ko: '번역',
+  },
+  coverage: {
+    en: 'Coverage',
+    de: 'Abdeckung',
+    fr: 'Couvert',
+    cn: '覆盖率',
+    ko: '커버리지',
+  },
+  errors: {
+    en: 'Errors',
+    de: 'Fehler',
+    fr: 'Erreurs',
+    cn: '错误',
+    ko: '오류',
+  },
+  missingFiles: {
+    en: 'Missing',
+  },
+  url: {
+    en: 'Link to Missing Translation List',
+    de: 'Link zur Liste mit den fehlenden Übersetzungen',
+    fr: 'Lien vers la liste des traductions manquantes',
+    cn: '缺失翻译表链接',
+    ko: '번역 누락 리스트 링크',
+  },
+} as const;
+
+const translate = <T>(object: LocaleObject<T>, lang: Lang): T => {
+  return object[lang] ?? object.en;
+};
 
 const addDiv = (container: HTMLElement, cls: string, text?: string) => {
   const div = document.createElement('div');
@@ -310,9 +365,39 @@ const buildExpansionGrid = (container: HTMLElement, lang: Lang, totals: Coverage
   addDiv(container, 'data', `${totals.overall.oopsy} / ${totals.overall.total}`);
 };
 
+const buildTranslationGrid = (
+  container: HTMLElement,
+  thisLang: Lang,
+  translationTotals: TranslationTotals,
+) => {
+  for (const header of Object.values(translationGridHeaders))
+    addDiv(container, 'label', translate(header, thisLang));
+
+  for (const lang of languages) {
+    if (lang === 'en')
+      continue;
+
+    const url = `missing_translations_${lang}.html`;
+    const aHref = `<a href="${url}">${url}</a>`;
+
+    const langTotals = translationTotals[lang];
+
+    addDiv(container, 'text', translate(langMap, thisLang)[lang]);
+    addDiv(container, 'data', `${langTotals.translatedFiles} / ${langTotals.totalFiles}`);
+    addDiv(container, 'data', `${langTotals.errors}`);
+    addDiv(container, 'data', `${langTotals.missingFiles === 0 ? '' : langTotals.missingFiles}`);
+    addDiv(container, 'text', aHref);
+  }
+};
+
 const buildZoneGrid = (container: HTMLElement, lang: Lang, coverage: Coverage) => {
-  for (const header of Object.values(zoneGridHeaders))
-    addDiv(container, 'label', translate(header, lang));
+  for (const [key, header] of Object.entries(zoneGridHeaders)) {
+    // English is already "translated" so we skip it.
+    if (key === 'translated' && lang === 'en')
+      addDiv(container, 'label', '');
+    else
+      addDiv(container, 'label', translate(header, lang));
+  }
 
   // By expansion, then content list.
   for (const exVersion in exVersionToName) {
@@ -369,6 +454,34 @@ const buildZoneGrid = (container: HTMLElement, lang: Lang, coverage: Coverage) =
         },
         oopsy: () => {
           const emoji = zoneCoverage.oopsy && zoneCoverage.oopsy.num > 0 ? '✔️' : undefined;
+          addDiv(container, 'emoji', emoji);
+        },
+        translated: () => {
+          let emoji = undefined;
+
+          const translations = zoneCoverage.translations?.[lang];
+
+          if (lang === 'en') {
+            emoji = undefined;
+          } else if (translations === undefined) {
+            emoji = '✔️';
+          } else {
+            const isMissingSync = translations.sync !== undefined && translations.sync > 0;
+
+            let totalMissing = 0;
+            for (const value of Object.values(translations))
+              totalMissing += value;
+
+            // Missing a sync translation means that triggers or timelines won't work properly
+            // and so count as "not being translated at all". If all syncs are translated but
+            // there are missing timeline texts or output strings, that's a "partial" translation
+            // given the warning sign.
+            if (totalMissing === 0)
+              emoji = '✔️';
+            else if (!isMissingSync)
+              emoji = '⚠️';
+          }
+
           addDiv(container, 'emoji', emoji);
         },
       };
@@ -438,6 +551,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!expansionGrid)
     throw new UnreachableCode();
   buildExpansionGrid(expansionGrid, lang, coverageTotals);
+
+  const translationGrid = document.getElementById('translation-grid');
+  if (!translationGrid)
+    throw new UnreachableCode();
+  buildTranslationGrid(translationGrid, lang, translationTotals);
 
   const zoneGrid = document.getElementById('zone-grid');
   if (!zoneGrid)

@@ -67,7 +67,7 @@ export class BRDComponent extends BaseComponent {
     [
       this.magesCoda,
       this.armysCoda,
-      this.wanderersCoda
+      this.wanderersCoda,
     ].forEach((e) => codaContainer.appendChild(e));
 
     this.soulVoiceBox = this.bars.addResourceBox({
@@ -166,7 +166,9 @@ export class BRDComponent extends BaseComponent {
     }
 
     // GCD calculate
-    if (jobDetail.songName === 'Paeon' && this.player.speedBuffs.paeonStacks !== jobDetail.songProcs)
+    if (
+      jobDetail.songName === 'Paeon' && this.player.speedBuffs.paeonStacks !== jobDetail.songProcs
+    )
       this.player.speedBuffs.paeonStacks = jobDetail.songProcs;
   }
 

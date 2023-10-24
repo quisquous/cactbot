@@ -13,23 +13,23 @@ import { playerDamageFields } from '../../../oopsy_common';
 
 const wrongBuff = (str: string) => {
   return {
-    en: str + ' (wrong buff)',
-    de: str + ' (falscher Buff)',
-    fr: str + ' (mauvais buff)',
-    ja: str + ' (不適切なバフ)',
-    cn: str + ' (Buff错了)',
-    ko: str + ' (버프 틀림)',
+    en: `${str} (wrong buff)`,
+    de: `${str} (falscher Buff)`,
+    fr: `${str} (mauvais buff)`,
+    ja: `${str} (不適切なバフ)`,
+    cn: `${str} (Buff错了)`,
+    ko: `${str} (버프 틀림)`,
   };
 };
 
 const noBuff = (str: string) => {
   return {
-    en: str + ' (no buff)',
-    de: str + ' (kein Buff)',
-    fr: str + ' (pas de buff)',
-    ja: str + ' (バフ無し)',
-    cn: str + ' (没有Buff)',
-    ko: str + ' (버프 없음)',
+    en: `${str} (no buff)`,
+    de: `${str} (kein Buff)`,
+    fr: `${str} (pas de buff)`,
+    ja: `${str} (バフ無し)`,
+    cn: `${str} (没有Buff)`,
+    ko: `${str} (버프 없음)`,
   };
 };
 
@@ -110,30 +110,56 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7S Light\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'], ...playerDamageFields }),
+      netRegex: NetRegexes.abilityFull({
+        id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'],
+        ...playerDamageFields,
+      }),
       condition: (data, matches) => {
         return !data.hasUmbral || !data.hasUmbral[matches.target];
       },
       mistake: (data, matches) => {
         if (data.hasAstral && data.hasAstral[matches.target])
-          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
+          return {
+            type: 'fail',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: wrongBuff(matches.ability),
+          };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: noBuff(matches.ability),
+        };
       },
     },
     {
       id: 'E7S Darks\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: ['4C65', '4C66', '4C67', '4C5A', '4C60'], ...playerDamageFields }),
+      netRegex: NetRegexes.abilityFull({
+        id: ['4C65', '4C66', '4C67', '4C5A', '4C60'],
+        ...playerDamageFields,
+      }),
       condition: (data, matches) => {
         return !data.hasAstral || !data.hasAstral[matches.target];
       },
       mistake: (data, matches) => {
         if (data.hasUmbral && data.hasUmbral[matches.target])
-          return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: wrongBuff(matches.ability) };
+          return {
+            type: 'fail',
+            blame: matches.target,
+            reportId: matches.targetId,
+            text: wrongBuff(matches.ability),
+          };
         // This case is probably impossible, as the debuff ticks after death,
         // but leaving it here in case there's some rez or disconnect timing
         // that could lead to this.
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: noBuff(matches.ability) };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: noBuff(matches.ability),
+        };
       },
     },
     {

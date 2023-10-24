@@ -68,13 +68,16 @@ export default (
       patterns: [
         {
           // copy sounds and images
-          from: 'resources/@(ffxiv|sounds)/**/*',
+          from: 'resources/@(ffxiv|sounds|images)/**/*',
         },
         {
           // copy all the skins folder under modules,
           // only raidboss for now though.
           from: 'ui/*/skins/**/*',
           noErrorOnMissing: true,
+        },
+        {
+          from: 'util/coverage/missing_translations*.html',
         },
       ],
     }),
@@ -142,7 +145,7 @@ export default (
                 [
                   '@babel/preset-env',
                   {
-                    targets: { chrome: '75' },
+                    targets: { chrome: '95' },
                   },
                 ],
                 [
@@ -189,14 +192,7 @@ export default (
         },
         {
           test: /data[\\\/](?!\w*_manifest\.txt).*\.txt$/,
-          use: [
-            {
-              loader: 'raw-loader',
-            },
-            {
-              loader: './webpack/loaders/timeline-loader.ts',
-            },
-          ],
+          type: 'asset/source',
         },
       ],
     },

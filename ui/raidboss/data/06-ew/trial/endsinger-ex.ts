@@ -1,17 +1,19 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
+import { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
-import { Output, OutputStrings, TriggerField, TriggerOutput, TriggerSet } from '../../../../../types/trigger';
+import { Output, OutputStrings, TriggerSet } from '../../../../../types/trigger';
+
+// TODO: in the four planets section, earlier/combined callout of where the third planet is
 
 export type Mechanic = 'aoe' | 'donut' | 'safeN' | 'safeE' | 'safeS' | 'safeW' | 'unknown';
 
-const echoesOutputStrings = {
+export const echoesOutputStrings = {
   stack: Outputs.stackOnYou,
   donut: {
     en: 'Stack Donut',
@@ -32,7 +34,17 @@ const echoesOutputStrings = {
   },
 } as const;
 
+export const headDir = {
+  ne: 1,
+  se: 3,
+  sw: 5,
+  nw: 7,
+  none: 0,
+} as const;
+
 export interface Data extends RaidbossData {
+  combatantData: PluginCombatantState[];
+  diairesisId?: string;
   headPhase?: 5 | 6;
   starMechanicCounter: number;
   storedHeads: {
@@ -53,43 +65,169 @@ export interface Data extends RaidbossData {
     3?: keyof typeof echoesOutputStrings;
     counter: 1 | 2 | 3;
   };
+  elenchosCount: number;
 }
 
-const orbOutputStrings: OutputStrings = {
-  ne: Outputs.northeast,
-  nw: Outputs.northwest,
-  se: Outputs.southeast,
-  sw: Outputs.southwest,
+export const orbOutputStrings: OutputStrings = {
+  ne: Outputs.dirNE,
+  nw: Outputs.dirNW,
+  se: Outputs.dirSE,
+  sw: Outputs.dirSW,
+  n: Outputs.dirN,
+  e: Outputs.dirE,
+  s: Outputs.dirS,
+  w: Outputs.dirW,
+  knockback: {
+    en: '${dir} Knockback',
+    de: '${dir} Rückstoß',
+    cn: '${dir} 击退',
+    ko: '${dir} 넉백',
+  },
+  knockbackWithHead: {
+    en: '${dir1} Knockback -> ${dir2}',
+    de: '${dir1} Rückstoß -> ${dir2}',
+    cn: '${dir1} 击退 -> ${dir2}',
+    ko: '${dir1} 넉백 -> ${dir2}',
+  },
+  aoeWithHead: {
+    en: 'Go ${dir1} (lean ${dir2})',
+    de: 'Geh ${dir1} (nach ${dir2} bewegen)',
+    cn: '去${dir1} (偏${dir2})',
+    ko: '${dir1}쪽으로 (살짝 ${dir2}쪽으로)',
+  },
 };
 
-const getKBOrbSafeDir = (posX: number, posY: number, output: Output): string | undefined => {
+export const get5HeadSafeDir = (
+  posX: number,
+  posY: number,
+  output: Output,
+): string | undefined => {
+  // NOTE: in both this function and the other safe dir, it's probably not possible to have the head facing
+  // exactly where the knockback destination / aoe safe zone is.  For completionism, we'll add some
+  // instruction but this probably can't happen.
+
   if (posX < 100) {
     if (posY < 100)
       return output.nw!();
 
     return output.sw!();
   }
+
   if (posY < 100)
     return output.ne!();
 
   return output.se!();
 };
 
-const getAoEOrbSafeDir = (posX: number, posY: number, output: Output): string | undefined => {
+export const getKBOrbSafeDir = (
+  posX: number,
+  posY: number,
+  output: Output,
+  head8Dir?: number,
+): string | undefined => {
+  if (head8Dir === undefined || head8Dir % 2 === 0)
+    head8Dir = headDir.none;
+
+  // NOTE: in both this function and the other safe dir, it's probably not possible to have the head facing
+  // exactly where the knockback destination / aoe safe zone is.  For completionism, we'll add some
+  // instruction but this probably can't happen.  Additionally, since "SW", "S", and "SE" are not really
+  // melee uptime friendly, try to call "W", "N", and "E" as the head safe spots.
+
   if (posX < 100) {
-    if (posY < 100)
-      return output.se!();
+    if (posY < 100) {
+      const mainDir = output.nw!();
+      return {
+        [headDir.none]: output.knockback!({ dir: mainDir }),
+        [headDir.ne]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.s!() }),
+        [headDir.se]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.w!() }),
+        [headDir.sw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.e!() }),
+        [headDir.nw]: output.knockback!({ dir: mainDir }),
+      }[head8Dir];
+    }
 
-    return output.ne!();
+    const mainDir = output.sw!();
+    return {
+      [headDir.none]: output.knockback!({ dir: mainDir }),
+      [headDir.ne]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.w!() }),
+      [headDir.se]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.n!() }),
+      [headDir.sw]: output.knockback!({ dir: mainDir }),
+      [headDir.nw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.e!() }),
+    }[head8Dir];
   }
-  if (posY < 100)
-    return output.sw!();
+  if (posY < 100) {
+    const mainDir = output.ne!();
+    return {
+      [headDir.none]: output.knockback!({ dir: mainDir }),
+      [headDir.ne]: output.knockback!({ dir: mainDir }),
+      [headDir.se]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.w!() }),
+      [headDir.sw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.e!() }),
+      [headDir.nw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.s!() }),
+    }[head8Dir];
+  }
 
-  return output.nw!();
+  const mainDir = output.se!();
+  return {
+    [headDir.none]: output.knockback!({ dir: mainDir }),
+    [headDir.ne]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.w!() }),
+    [headDir.se]: output.knockback!({ dir: mainDir }),
+    [headDir.sw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.n!() }),
+    [headDir.nw]: output.knockbackWithHead!({ dir1: mainDir, dir2: output.e!() }),
+  }[head8Dir];
 };
 
-const getStarPositionFromHeading = (heading: string) => {
-  const dir = ((2 - Math.round(parseFloat(heading) * 8 / Math.PI) / 2) + 2) % 8;
+export const getAoEOrbSafeDir = (
+  posX: number,
+  posY: number,
+  output: Output,
+  head8Dir?: number,
+): string | undefined => {
+  if (head8Dir === undefined || head8Dir % 2 === 0)
+    head8Dir = headDir.none;
+
+  if (posX < 100) {
+    if (posY < 100) {
+      const mainDir = output.se!();
+      return {
+        [headDir.none]: mainDir,
+        [headDir.ne]: output.aoeWithHead!({ dir1: mainDir, dir2: output.s!() }),
+        [headDir.se]: output.aoeWithHead!({ dir1: mainDir, dir2: output.w!() }),
+        [headDir.sw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.e!() }),
+        [headDir.nw]: mainDir,
+      }[head8Dir];
+    }
+
+    const mainDir = output.ne!();
+    return {
+      [headDir.none]: mainDir,
+      [headDir.ne]: output.aoeWithHead!({ dir1: mainDir, dir2: output.w!() }),
+      [headDir.se]: output.aoeWithHead!({ dir1: mainDir, dir2: output.n!() }),
+      [headDir.sw]: mainDir,
+      [headDir.nw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.e!() }),
+    }[head8Dir];
+  }
+  if (posY < 100) {
+    const mainDir = output.sw!();
+    return {
+      [headDir.none]: mainDir,
+      [headDir.ne]: mainDir,
+      [headDir.se]: output.aoeWithHead!({ dir1: mainDir, dir2: output.w!() }),
+      [headDir.sw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.e!() }),
+      [headDir.nw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.s!() }),
+    }[head8Dir];
+  }
+
+  const mainDir = output.nw!();
+  return {
+    [headDir.none]: mainDir,
+    [headDir.ne]: output.aoeWithHead!({ dir1: mainDir, dir2: output.w!() }),
+    [headDir.se]: mainDir,
+    [headDir.sw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.n!() }),
+    [headDir.nw]: output.aoeWithHead!({ dir1: mainDir, dir2: output.e!() }),
+  }[head8Dir];
+};
+
+export const getStarPositionFromHeading = (heading: string) => {
+  const dir = Directions.hdgTo8DirNum(parseFloat(heading));
   return {
     1: [114, 86], //  NE
     3: [114, 114], // SE
@@ -98,7 +236,11 @@ const getStarPositionFromHeading = (heading: string) => {
   }[dir] ?? [];
 };
 
-const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], TriggerOutput<Data, NetMatches['Ability' | 'StartsUsing']>> = (_data, matches, output) => {
+export const getStarText = (
+  head8Dir: number | undefined,
+  matches: NetMatches['Ability' | 'StartsUsing'],
+  output: Output,
+) => {
   let posX: number | undefined;
   let posY: number | undefined;
 
@@ -115,25 +257,43 @@ const getStarText: TriggerField<Data, NetMatches['Ability' | 'StartsUsing'], Tri
   }
 
   if (posX === undefined || posY === undefined) {
-    console.error(`EndsingerEx getStarText: Could not resolve star position from heading ${parseFloat(matches.heading)}`);
+    console.error(
+      `EndsingerEx getStarText: Could not resolve star position from heading ${
+        JSON.stringify(matches)
+      }`,
+    );
     return;
   }
 
   if (['6FF9', '6FFB', '7000', '7001'].includes(matches.id))
-    return getKBOrbSafeDir(posX, posY, output);
+    return getKBOrbSafeDir(posX, posY, output, head8Dir);
 
   if (['6FF8', '6FFA', '6FFE', '6FFF'].includes(matches.id))
-    return getAoEOrbSafeDir(posX, posY, output);
+    return getAoEOrbSafeDir(posX, posY, output, head8Dir);
 
   console.error(`EndsingerEx getStarText: Could not match ability ID ${matches.id} to color`);
   return;
 };
 
+export type ElenchosCombo = 'solo' | 'towers' | 'stacks';
+export const elenchosComboMap: { [key: number]: ElenchosCombo } = {
+  1: 'towers',
+  2: 'solo',
+  3: 'stacks',
+  4: 'solo',
+  5: 'solo',
+  6: 'towers',
+  7: 'stacks',
+  8: 'solo',
+} as const;
+
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheMinstrelsBalladEndsingersAria',
   zoneId: ZoneId.TheMinstrelsBalladEndsingersAria,
   timelineFile: 'endsinger-ex.txt',
   initData: () => {
     return {
+      combatantData: [],
       starMechanicCounter: 0,
       storedStars: {},
       storedHeads: {},
@@ -141,71 +301,171 @@ const triggerSet: TriggerSet<Data> = {
       storedMechs: {
         counter: 1,
       },
+      elenchosCount: 0,
     };
   },
-  timelineTriggers: [
-    {
-      id: 'EndsingerEx Towers',
-      regex: /Tower/,
-      beforeSeconds: 4,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Towers',
-          de: 'Türme',
-          fr: 'Tours',
-          ja: '塔を踏む',
-          cn: '踩塔',
-          ko: '장판 들어가기',
-        },
-      },
-    },
-  ],
   triggers: [
     // Fire this trigger on ability since actual damage is 5s after cast bar finishes
     {
       id: 'EndsingerEx Elegeia',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '6FF6', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '6FF6', source: 'The Endsinger', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'EndsingerEx Telos',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '702E', source: 'The Endsinger', capture: false }),
+      netRegex: { id: '702E', source: 'The Endsinger', capture: false },
       response: Responses.bigAoe(),
+    },
+    {
+      id: 'EndsingerEx Telomania',
+      // This is a long series of small aoes and one big aoe with bleed.
+      // The big aoe is ~10s after the ability goes off so delay call here.
+      type: 'Ability',
+      netRegex: { id: '72C3', source: 'The Endsinger', capture: false },
+      response: Responses.bleedAoe(),
     },
     {
       id: 'EndsingerEx Elenchos Middle',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7022', source: 'The Endsinger', capture: false }),
-      response: Responses.goSides(),
+      netRegex: { id: '7022', source: 'The Endsinger', capture: false },
+      preRun: (data) => data.elenchosCount++,
+      durationSeconds: 5,
+      alertText: (data, _matches, output) => {
+        const combo = elenchosComboMap[data.elenchosCount];
+        if (combo === undefined || combo === 'solo')
+          return output.sides!();
+        if (combo === 'towers')
+          return output.sidesWithTower!();
+        return output.sidesWithStacks!();
+      },
+      outputStrings: {
+        sides: {
+          en: 'Out (Sides)',
+          de: 'Raus (Seiten)',
+          cn: '去外面 (两边)',
+          ko: '밖으로 (양 옆)',
+        },
+        sidesWithTower: {
+          en: 'Tower + Outside',
+          de: 'Turm + Außerhalb',
+          cn: '踩塔 + 去外面',
+          ko: '기둥 + 양 옆',
+        },
+        sidesWithStacks: {
+          en: 'Outside + Healer Groups',
+          de: 'Außerhalb + Heiler-Gruppen',
+          cn: '去外面 + 治疗分组分摊',
+          ko: '양 옆 + 힐러 그룹',
+        },
+      },
     },
     {
       id: 'EndsingerEx Elenchos Outsides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7020', source: 'The Endsinger', capture: false }),
-      response: Responses.goMiddle(),
+      netRegex: { id: '7020', source: 'The Endsinger', capture: false },
+      preRun: (data) => data.elenchosCount++,
+      durationSeconds: 5,
+      alertText: (data, _matches, output) => {
+        const combo = elenchosComboMap[data.elenchosCount];
+        if (combo === undefined || combo === 'solo')
+          return output.middle!();
+        if (combo === 'towers')
+          return output.middleWithTower!();
+        return output.middleWithStacks!();
+      },
+      outputStrings: {
+        middle: {
+          en: 'Inside (Middle)',
+          de: 'Innen (Mitte)',
+          cn: '去里面 (中间)',
+          ko: '안으로 (가운데)',
+        },
+        middleWithTower: {
+          en: 'Tower + Inside',
+          de: 'Turm + Innen',
+          cn: '踩塔 + 去里面',
+          ko: '기둥 + 안으로',
+        },
+        middleWithStacks: {
+          en: 'Inside + Healer Groups',
+          de: 'Innen + Heiler-Gruppen',
+          cn: '去里面 + 治疗分组分摊',
+          ko: '안으로 + 힐러 그룹',
+        },
+      },
     },
     {
       id: 'EndsingerEx Hubris',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '702C', source: 'The Endsinger', capture: true }),
-      response: Responses.tankCleave(),
+      netRegex: { id: '702C', source: 'The Endsinger', capture: true },
+      response: Responses.tankCleave('alert'),
+    },
+    {
+      id: 'EndsingerEx Diairesis Head Spawn',
+      type: 'GainsEffect',
+      // This appears to happen ~6s before cast starts.
+      // It is also the same id the whole fight, so don't bother resetting.
+      netRegex: { effectId: '891', count: '187', capture: true },
+      run: (data, matches) => data.diairesisId = matches.targetId,
     },
     {
       id: 'EndsingerEx Single Star',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6FFA', '6FFB'], capture: true }),
-      alertText: getStarText,
+      // Each single star is also paired with a head in the middle doing a 180 cleave in some direction.
+      // The head is already in place by the time this cast starts.
+      netRegex: { id: ['6FFA', '6FFB'] },
+      durationSeconds: 6,
+      promise: async (data) => {
+        data.combatantData = [];
+        if (data.diairesisId === undefined)
+          return;
+        const decimalIds = [data.diairesisId].map((x) => parseInt(x, 16));
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: decimalIds,
+        })).combatants;
+      },
+      alertText: (data, matches, output) => {
+        const simpleOutput = getStarText(undefined, matches, output);
+
+        const [head] = data.combatantData;
+        if (data.combatantData.length !== 1 || head === undefined)
+          return simpleOutput;
+
+        // Head should be facing intercardinalish.
+        const rawHead8Dir = Directions.hdgTo8DirNum(head.Heading);
+        const head8Dir = rawHead8Dir % 2 === 0 ? undefined : rawHead8Dir;
+        return getStarText(head8Dir, matches, output);
+      },
       outputStrings: orbOutputStrings,
+    },
+    {
+      id: 'EndsingerEx Grip of Despair Cast',
+      type: 'StartsUsing',
+      netRegex: { id: '701D', source: 'The Endsinger', capture: false },
+      response: Responses.stackMiddle(),
+    },
+    {
+      id: 'EndsingerEx Grip of Despair Chains',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'BB1' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.breakChains('alert'),
     },
     {
       id: 'EndsingerEx Eironeia',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['702F', '7030'], source: 'The Endsinger', capture: false }),
-      suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.groups!(),
+      netRegex: { id: ['702F', '7030'], source: 'The Endsinger', capture: false },
+      suppressSeconds: 4,
+      infoText: (data, _matches, output) => {
+        // This is combined with the Elenchos call so suppress here.
+        const combo = elenchosComboMap[data.elenchosCount];
+        if (combo === 'stacks')
+          return;
+        return output.groups!();
+      },
       outputStrings: {
         groups: {
           en: 'Healer Groups',
@@ -220,28 +480,27 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Star Order Resolver',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'] }),
+      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'] },
       delaySeconds: (data, matches) => {
         ++data.starMechanicCounter;
-        const offset = data.starMechanicCounter > 1 ? 2 : 0;
         switch (matches.id) {
           case '6FFE':
           case '7000':
-            return 0 + offset;
+            return 0;
           case '6FFF':
           case '7001':
-            return 6.5 + offset;
+            return 6.5;
         }
 
         return 0;
       },
-      alertText: getStarText,
+      alertText: (_data, matches, output) => getStarText(undefined, matches, output),
       outputStrings: orbOutputStrings,
     },
     {
       id: 'EndsingerEx Star Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['6FFE', '6FFF', '7000', '7001'], capture: false }),
+      netRegex: { id: ['6FFE', '6FFF', '7000', '7001'], capture: false },
       delaySeconds: 30,
       run: (data) => {
         data.starMechanicCounter = 0;
@@ -250,7 +509,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Detector',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7007', '72B1'] }),
+      netRegex: { id: ['7007', '72B1'] },
       run: (data, matches) => {
         switch (matches.id) {
           case '7007':
@@ -265,7 +524,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Head Phase Cleanup',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7007', '72B1'], capture: false }),
+      netRegex: { id: ['7007', '72B1'], capture: false },
       delaySeconds: 50,
       run: (data) => {
         data.headPhase = undefined;
@@ -274,7 +533,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Initial Direction',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '891', capture: true }),
+      netRegex: { effectId: '891', capture: true },
       condition: (data) => data.headPhase === 5,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
@@ -289,7 +548,7 @@ const triggerSet: TriggerSet<Data> = {
 
         for (const head of headData.combatants) {
           const headId = head.ID?.toString(16).toUpperCase();
-          if (!headId) {
+          if (headId === undefined) {
             console.error(`5Head Initial Direction: invalid head ID`);
             continue;
           }
@@ -305,7 +564,7 @@ const triggerSet: TriggerSet<Data> = {
 
         // Snap heading to closest card and add 2 for opposite direction
         // N = 0, E = 1, S = 2, W = 3
-        const cardinal = ((2 - Math.round(headCombatant.state.Heading * 4 / Math.PI) / 2) + 2) % 4;
+        const cardinal = (Directions.hdgTo4DirNum(headCombatant.state.Heading) + 2) % 4;
 
         const dirs: { [dir: number]: string } = {
           0: output.north!(),
@@ -327,7 +586,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Mechanics Collector',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['6FFC', '7006', '7009', '700A'], source: 'The Endsinger', capture: true }),
+      netRegex: { id: ['6FFC', '7006', '7009', '700A'], source: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 5,
       // Do not need delaySeconds here, heads have been spawned for 5+ seconds
       promise: async (data, matches) => {
@@ -346,7 +605,7 @@ const triggerSet: TriggerSet<Data> = {
 
         for (const head of headData.combatants) {
           const headId = head.ID?.toString(16).toUpperCase();
-          if (!headId) {
+          if (headId === undefined) {
             console.error(`5Head Mechanics Collector: invalid head ID`);
             continue;
           }
@@ -366,8 +625,7 @@ const triggerSet: TriggerSet<Data> = {
           head.mechanics.push('donut');
         } else {
           // Snap heading to closest card and add 2 for opposite direction
-          // N = 0, E = 1, S = 2, W = 3
-          const cardinal = ((2 - Math.round(parseFloat(matches.heading) * 4 / Math.PI) / 2) + 2) % 4;
+          const cardinal = (Directions.hdgTo4DirNum(parseFloat(matches.heading)) + 2) % 4;
           const safeDir: { [dir: number]: Mechanic } = {
             0: 'safeN',
             1: 'safeE',
@@ -379,13 +637,17 @@ const triggerSet: TriggerSet<Data> = {
 
         // If we have the same count of mechanics stored for all 5 heads, resolve safe spot
         const heads = Object.values(data.storedHeads);
-        if (heads.length === heads.filter((h) => h.mechanics.length === head.mechanics.length).length && heads.length === 5) {
+        if (
+          heads.length ===
+            heads.filter((h) => h.mechanics.length === head.mechanics.length).length &&
+          heads.length === 5
+        ) {
           const lastMechanic = head.mechanics.length - 1;
 
           const safeDirHead = heads.find((h) => h.mechanics[0]?.includes('safe'));
-          const donutHeads = heads.filter((h) => h.mechanics[lastMechanic] === 'donut');
-          const donutHead1 = donutHeads[0];
-          const donutHead2 = donutHeads[1];
+          const [donutHead1, donutHead2] = heads.filter((h) =>
+            h.mechanics[lastMechanic] === 'donut'
+          );
 
           if (!safeDirHead || !donutHead1 || !donutHead2) {
             console.error(`5Head Mechanics Collector: Missing safe/donut head`);
@@ -395,20 +657,20 @@ const triggerSet: TriggerSet<Data> = {
           switch (safeDirHead.mechanics[lastMechanic]) {
             case 'safeN':
               if (donutHead1.state.PosY < 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+                return get5HeadSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
+              return get5HeadSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
             case 'safeE':
               if (donutHead1.state.PosX > 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+                return get5HeadSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
+              return get5HeadSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
             case 'safeS':
               if (donutHead1.state.PosY > 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+                return get5HeadSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
+              return get5HeadSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
             case 'safeW':
               if (donutHead1.state.PosX < 100)
-                return getKBOrbSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
-              return getKBOrbSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
+                return get5HeadSafeDir(donutHead1.state.PosX, donutHead1.state.PosY, output);
+              return get5HeadSafeDir(donutHead2.state.PosX, donutHead2.state.PosY, output);
           }
         }
       },
@@ -417,9 +679,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 5Head Mechanics Rewind Collector',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '808', target: 'The Endsinger', capture: true }),
+      netRegex: { effectId: '808', target: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 5,
-      infoText: (data, matches, output) => {
+      durationSeconds: 5,
+      alertText: (data, matches, output) => {
         const head = data.storedHeads[matches.targetId];
         if (!head) {
           console.error(`5Head Mechanics Rewind Collector: null data`);
@@ -481,7 +744,7 @@ const triggerSet: TriggerSet<Data> = {
             return;
           }
 
-          return getKBOrbSafeDir(safeDonut.state.PosX, safeDonut.state.PosY, output);
+          return get5HeadSafeDir(safeDonut.state.PosX, safeDonut.state.PosY, output);
         }
       },
       outputStrings: orbOutputStrings,
@@ -489,7 +752,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx 6 Head Collector',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: ['00BD', '00B5'], target: 'The Endsinger', capture: true }),
+      netRegex: { id: ['00BD', '00B5'], target: 'The Endsinger', capture: true },
       condition: (data) => data.headPhase === 6,
       delaySeconds: 0.5,
       promise: async (data, matches) => {
@@ -527,7 +790,7 @@ const triggerSet: TriggerSet<Data> = {
           const dir1 = headPositions[0];
           const dir2 = headPositions[1];
 
-          if (!dir1 || !dir2) {
+          if (dir1 === undefined || dir2 === undefined) {
             console.error(`6 Head Collector: expected 2 safe heads`);
             return;
           }
@@ -558,7 +821,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Benevolence',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BB0' }),
+      netRegex: { effectId: 'BB0' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -573,7 +836,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Nausea',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAD' }),
+      netRegex: { effectId: 'BAD' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -588,7 +851,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of the Future',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAF' }),
+      netRegex: { effectId: 'BAF' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -603,7 +866,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes of Befoulment',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'BAE' }),
+      netRegex: { effectId: 'BAE' },
       condition: Conditions.targetIsYou(),
       suppressSeconds: 60,
       infoText: (data, _matches, output) => {
@@ -618,7 +881,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'EndsingerEx Echoes Rewind',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '95D' }),
+      netRegex: { effectId: '95D' },
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const mechanicIndex: 1 | 2 | 3 | undefined = ({
@@ -756,16 +1019,33 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Azure Star': '청색천체',
         'Fiery Star': '적색천체',
         'The Endsinger': '종언을 노래하는 자',
       },
       'replaceText': {
+        '\\(big\\)': '(강)',
+        '\\(cast\\)': '(시전)',
+        '\\(small\\)': '(약)',
+        'Befoulment': '고름탄',
+        'Benevolence': '박애',
+        'Despair Unforgotten': '절망 침식: 현상 기록',
+        'Diairesis': '디아이레시스',
+        'Eironeia': '에이로네이아',
+        'Elegeia Unforgotten': '엘레게이아: 현상 기록',
         'Elenchos': '엘렝코스',
-        'Fatalism': '운명론',
+        'Endsong\'s Aporrhoia': '발출: 절망 돌림노래',
+        'Endsong(?!\')': '절망 돌림노래',
+        '(?<! )Fatalism': '운명론',
+        'Grip of Despair': '절망의 사슬',
+        'Hubris': '휴브리스',
+        'Star Collision': '천체 충돌',
         'Telomania': '텔로스마니아',
+        'Telos': '텔로스',
+        'Tower Explosion': '기둥 폭발',
+        'Theological Fatalism': '신학적 운명론',
+        'Twinsong\'s Aporrhoia': '발출: 절망 합창',
         'Ultimate Fate': '종언의 운명',
       },
     },

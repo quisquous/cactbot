@@ -29,6 +29,7 @@ module.exports = {
   create: (context) => {
     const raidbossOrderList = [
       'id',
+      'comment',
       'type',
       'disabled',
       'netRegex',
@@ -57,6 +58,7 @@ module.exports = {
     ];
     const oopsyraidsyOrderList = [
       'id',
+      'comment',
       'netRegex',
       'netRegexDe',
       'netRegexFr',
@@ -77,7 +79,7 @@ module.exports = {
       'run',
     ];
     const optionModule = context.options[0] ? context.options[0].module : undefined;
-    if (!optionModule || (optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss'))
+    if (!optionModule || optionModule !== 'oopsyraidsy' && optionModule !== 'raidboss')
       return;
     const orderList = optionModule === 'oopsyraidsy' ? oopsyraidsyOrderList : raidbossOrderList;
     return {

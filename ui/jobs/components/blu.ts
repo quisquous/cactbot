@@ -5,8 +5,8 @@ import { BaseComponent, ComponentInterface } from './base';
 
 export class BLUComponent extends BaseComponent {
   offguardBox: TimerBox;
-tormentBox: TimerBox;
-lucidBox: TimerBox;
+  tormentBox: TimerBox;
+  lucidBox: TimerBox;
   constructor(o: ComponentInterface) {
     super(o);
 

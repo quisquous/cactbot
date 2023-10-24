@@ -95,7 +95,7 @@ class OopsyConfigurator {
 
       const parts = [info.title, info.type, expansion];
       for (const part of parts) {
-        if (!part)
+        if (part === undefined)
           continue;
         const partDiv = document.createElement('div');
         partDiv.classList.add('trigger-file-header-part');
@@ -115,6 +115,16 @@ class OopsyConfigurator {
         triggerDiv.innerHTML = id;
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
+
+        // Build the trigger comment
+        const comment = info.triggers[id]?.comment;
+        if (comment) {
+          const trigComment = comment[this.base.lang] ?? comment?.en ?? '';
+          const triggerComment = document.createElement('div');
+          triggerComment.innerHTML = trigComment;
+          triggerComment.classList.add('comment');
+          triggerDiv.appendChild(triggerComment);
+        }
 
         // Container for the right side ui (select boxes, all of the info).
         const triggerDetails = document.createElement('div');
@@ -303,7 +313,7 @@ const templateOptions: OptionsTemplate = {
       },
       type: 'float',
       default: 4,
-      setterFunc: (options, value) => {
+      setterFunc: (value, options) => {
         let seconds;
         if (typeof value === 'string')
           seconds = parseFloat(value);
@@ -311,6 +321,8 @@ const templateOptions: OptionsTemplate = {
           seconds = value;
         else
           return;
+
+        // Store in a separate variable with a different unit.
         options['TimeToShowDeathReportMs'] = seconds * 1000;
       },
     },
@@ -358,6 +370,17 @@ const templateOptions: OptionsTemplate = {
         },
       },
       default: 'left',
+    },
+    {
+      id: 'MinimumTimeForOverwrittenMit',
+      name: {
+        en: 'Minimum time to show overwritten mit (seconds)',
+        de: 'Minimum Zeit überschriebene Mitigation anzuzeigen (Sekunden)',
+        cn: '显示被顶减伤最小时间 (秒)',
+        ko: '파티 생존기 덮어씀 경고를 표시할 기준 시간 (초)',
+      },
+      type: 'float',
+      default: 2,
     },
   ],
 };

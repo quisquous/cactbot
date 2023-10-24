@@ -21,20 +21,18 @@ import peculiarLightImage from '../../resources/ffxiv/status/peculiar-light.png'
 import physicalImage from '../../resources/ffxiv/status/physical.png';
 import potionImage from '../../resources/ffxiv/status/potion.png';
 import finaleImage from '../../resources/ffxiv/status/radiant-finale.png';
-import searingLight60Image from '../../resources/ffxiv/status/searing-light-6.0.png';
 import searingLightImage from '../../resources/ffxiv/status/searing-light.png';
 import spearImage from '../../resources/ffxiv/status/spear.png';
 import spireImage from '../../resources/ffxiv/status/spire.png';
 import standardFinishImage from '../../resources/ffxiv/status/standard-finish.png';
 import technicalFinishImage from '../../resources/ffxiv/status/technical-finish.png';
-import trickAttackImage from '../../resources/ffxiv/status/trick-attack.png';
 import umbralImage from '../../resources/ffxiv/status/umbral.png';
 import PartyTracker from '../../resources/party';
 import WidgetList from '../../resources/widget_list';
 import { NetMatches } from '../../types/net_matches';
 
 import { kAbility } from './constants';
-import { FfxivRegion } from './jobs';
+import { FfxivVersion } from './jobs';
 import { JobsOptions } from './jobs_options';
 import { makeAuraTimerIcon } from './utils';
 
@@ -107,7 +105,7 @@ export class Buff {
     // Remove any preexisting cooldowns with the same name in case they unexpectedly exist.
     this.cooldown[source]?.removeCallback();
 
-    const cooldownKey = 'c:' + this.name + ':' + source;
+    const cooldownKey = `c:${this.name}:${source}`;
 
     let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
     secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow, 1), this.info.cooldown);
@@ -143,7 +141,7 @@ export class Buff {
 
     const color = this.info.borderColor;
 
-    const readyKey = 'r:' + this.name + ':' + source;
+    const readyKey = `r:${this.name}:${source}`;
     this.ready[source] = this.makeAura(
       readyKey,
       this.readyList,
@@ -280,7 +278,7 @@ export class BuffTracker {
     private leftBuffDiv: WidgetList,
     private rightBuffDiv: WidgetList,
     private partyTracker: PartyTracker,
-    private ffxivRegion: FfxivRegion,
+    private ffxivVersion: FfxivVersion,
   ) {
     this.options = options;
     this.playerName = playerName;
@@ -611,50 +609,21 @@ export class BuffTracker {
       },
     };
 
-    // Abilities that are different in Cn region.
-    // const vCn = {
+    // Abilities that are different in 6.1 version.
+    const v610: { [s: string]: BuffInfo } = {};
 
-    // };
+    // Abilities that are different in 6.0 version.
+    const v600: { [s: string]: BuffInfo } = {};
 
-    // Abilities that are different in Ko region.
-    const vKo = {
-      mug: {
-        cooldownAbility: [kAbility.TrickAttack],
-        mobGainsEffect: EffectId.VulnerabilityUp,
-        mobLosesEffect: EffectId.VulnerabilityUp,
-        useEffectDuration: true,
-        durationSeconds: 15,
-        icon: trickAttackImage,
-        // Magenta.
-        borderColor: '#FC4AE6',
-        sortKey: 1,
-        cooldown: 60,
-      },
-      searingLight: {
-        // FIXME: pet is not considered inParty, so this cannot track it if it misses you.
-        cooldownAbility: [kAbility.SearingLight60],
-        gainEffect: [EffectId.SearingLight],
-        loseEffect: [EffectId.SearingLight],
-        useEffectDuration: true,
-        durationSeconds: 30,
-        partyOnly: true,
-        icon: searingLight60Image,
-        // Pink.
-        borderColor: '#FF4A9D',
-        sortKey: 14,
-        cooldown: 120,
-      },
-    };
-
-    if (this.ffxivRegion === 'ko') {
-      for (const [key, entry] of Object.entries(vKo))
+    if (this.ffxivVersion < 620) {
+      for (const [key, entry] of Object.entries(v610))
         this.buffInfo[key] = entry;
     }
 
-    // if (this.ffxivRegion === 'cn') {
-    //   for (const [key, entry] of Object.entries(vCn))
-    //     this.buffInfo[key] = entry;
-    // }
+    if (this.ffxivVersion < 610) {
+      for (const [key, entry] of Object.entries(v600))
+        this.buffInfo[key] = entry;
+    }
 
     this.gainEffectMap = {};
     this.loseEffectMap = {};
@@ -690,7 +659,7 @@ export class BuffTracker {
           continue;
         const key = buff[prop];
         if (typeof key === 'undefined') {
-          console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
+          console.error(`undefined value for key ${prop} for buff ${buff.name}`);
           continue;
         }
 

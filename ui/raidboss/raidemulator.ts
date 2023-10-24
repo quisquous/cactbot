@@ -83,14 +83,14 @@ const hideModal = (selector = '.modal.show'): HTMLElement => {
 
 const applyTranslation = (lang: Lang) => {
   for (const [key, value] of Object.entries(emulatorTranslations)) {
-    querySelectorAllSafe(document, '.translate' + key).forEach(
+    querySelectorAllSafe(document, `.translate${key}`).forEach(
       (elem) => {
         elem.innerHTML = translate(lang, value);
       },
     );
   }
   for (const [key, value] of Object.entries(emulatorTooltipTranslations)) {
-    querySelectorAllSafe(document, '.translate' + key).forEach(
+    querySelectorAllSafe(document, `.translate${key}`).forEach(
       (elem) => {
         elem.title = translate(lang, value);
       },
@@ -99,7 +99,7 @@ const applyTranslation = (lang: Lang) => {
   for (const [sel, trans] of Object.entries(emulatorTemplateTranslations)) {
     const template = getTemplateChild(document, sel);
     for (const [key, value] of Object.entries(trans)) {
-      querySelectorAllSafe(template, '.translate' + key).forEach(
+      querySelectorAllSafe(template, `.translate${key}`).forEach(
         (elem) => {
           elem.innerHTML = translate(lang, value);
         },
@@ -138,6 +138,9 @@ const raidEmulatorOnLoad = async () => {
         UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
           // Update options from anything changed via getUserConfigLocation.
           options = { ...defaultOptions };
+          // If DisplayLanguage isn't English, switch to correct lang for emulator display
+          if (options.DisplayLanguage !== 'en')
+            applyTranslation(options.DisplayLanguage);
           querySelectorSafe(document, '.websocketConnected').classList.remove('d-none');
           querySelectorSafe(document, '.websocketDisconnected').classList.add('d-none');
           res();
@@ -159,10 +162,6 @@ const raidEmulatorOnLoad = async () => {
     options.GroupSpokenAlertsEnabled = false;
   }
 
-  // If DisplayLanguage isn't English, switch to correct lang for emulator display
-  if (options.DisplayLanguage !== 'en')
-    applyTranslation(options.DisplayLanguage);
-
   const emulator = new RaidEmulator(options);
   const progressBar = new ProgressBar(emulator);
   const encounterTab = new EncounterTab(persistor);
@@ -170,6 +169,7 @@ const raidEmulatorOnLoad = async () => {
   const emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
   emulatedWebSocket.connected = websocketConnected;
   const logConverterWorker = new Worker(
+    /* webpackEntryOptions: { filename: "ui/raidboss/raidemulator.worker.js" } */
     new URL('./emulator/data/NetworkLogConverter.worker.ts', import.meta.url),
   );
 
@@ -281,7 +281,7 @@ const raidEmulatorOnLoad = async () => {
       showModal('.introModal');
     } else {
       let lastEncounter: string | number | null = window.localStorage.getItem('currentEncounter');
-      if (lastEncounter) {
+      if (lastEncounter !== null) {
         lastEncounter = parseInt(lastEncounter);
         const matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
         if (matchedEncounters.length)
@@ -329,8 +329,8 @@ const raidEmulatorOnLoad = async () => {
         switch (msg.data.type) {
           case 'progress':
             {
-              const percent = ((msg.data.bytes / msg.data.totalBytes) * 100).toFixed(2);
-              bar.style.width = percent + '%';
+              const percent = (msg.data.bytes / msg.data.totalBytes * 100).toFixed(2);
+              bar.style.width = `${percent}%`;
               label.innerText =
                 `${msg.data.bytes}/${msg.data.totalBytes} bytes, ${msg.data.lines} lines (${percent}%)`;
             }
@@ -440,7 +440,7 @@ const raidEmulatorOnLoad = async () => {
   // Auto initialize all collapse elements on the page
   document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
     const targetSel = n.getAttribute('data-target');
-    if (!targetSel)
+    if (targetSel === null)
       throw new UnreachableCode();
     const target = querySelectorSafe(document, targetSel);
     n.addEventListener('click', () => {
@@ -499,7 +499,7 @@ const raidEmulatorOnLoad = async () => {
         target = target.parentElement ?? target;
 
       if (target !== document.body)
-        hideModal('.' + [...target.classList].join('.'));
+        hideModal(`.${[...target.classList].join('.')}`);
     });
   });
 

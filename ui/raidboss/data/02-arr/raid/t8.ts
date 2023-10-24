@@ -1,5 +1,5 @@
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
+import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -9,6 +9,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheSecondCoilOfBahamutTurn3',
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn3,
   timelineFile: 't8.txt',
   initData: () => {
@@ -20,13 +21,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Stack',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0011' }),
+      netRegex: { id: '0011' },
       response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'T8 Landmine Start',
       type: 'GameLog',
-      netRegex: NetRegexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
+      netRegex: {
+        line: 'Landmines have been scattered.*?',
+        code: Util.gameLogCodes.message,
+        capture: false,
+      },
       alertText: (_data, _matches, output) => output.text!(),
       run: (data) => data.landmines = {},
       outputStrings: {
@@ -43,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Landmine Explosion',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7D1', source: 'Allagan Mine' }),
+      netRegex: { id: '7D1', source: 'Allagan Mine' },
       infoText: (data, matches, output) => {
         if (matches.target in data.landmines)
           return;
@@ -82,7 +87,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Homing Missile Warning',
       type: 'Tether',
-      netRegex: NetRegexes.tether({ id: '0005', target: 'The Avatar' }),
+      netRegex: { id: '0005', target: 'The Avatar' },
       suppressSeconds: 6,
       infoText: (data, matches, output) => {
         return output.text!({ player: data.ShortName(matches.source) });
@@ -101,7 +106,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Brainjack',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
+      netRegex: { id: '7C3', source: 'The Avatar' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.brainjackOnYou!();
@@ -132,7 +137,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Allagan Field',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
+      netRegex: { id: '7C4', source: 'The Avatar' },
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.allaganFieldOnYou!();
@@ -163,7 +168,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'T8 Dreadnaught',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
+      netRegex: { name: 'Clockwork Dreadnaught', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {

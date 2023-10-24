@@ -93,24 +93,7 @@ export class DRKComponent extends BaseComponent {
   override onUseAbility(id: string): void {
     switch (id) {
       case kAbility.BloodWeapon: {
-        if (this.ffxivRegion !== 'ko') {
-          this.bloodWeapon.duration = 60;
-        } else {
-          this.bloodWeapon.duration = 10;
-          this.bloodWeapon.threshold = 10;
-          this.bloodWeapon.fg = computeBackgroundColorFrom(
-            this.bloodWeapon,
-            'drk-color-bloodweapon.active',
-          );
-          this.tid1 = window.setTimeout(() => {
-            this.bloodWeapon.duration = 50;
-            this.bloodWeapon.threshold = this.player.gcdSkill * 2;
-            this.bloodWeapon.fg = computeBackgroundColorFrom(
-              this.bloodWeapon,
-              'drk-color-bloodweapon',
-            );
-          }, 10000);
-        }
+        this.bloodWeapon.duration = 60;
         break;
       }
       case kAbility.Delirium:

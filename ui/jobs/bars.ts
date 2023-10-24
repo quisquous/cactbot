@@ -217,7 +217,7 @@ export class Bars {
   }
 
   addJobBarContainer(): HTMLElement {
-    const id = this.player.job.toLowerCase() + '-bar';
+    const id = `${this.player.job.toLowerCase()}-bar`;
     let container = document.getElementById(id);
     if (!container) {
       container = document.createElement('div');
@@ -229,7 +229,7 @@ export class Bars {
   }
 
   addJobBoxContainer(): HTMLElement {
-    const id = this.player.job.toLowerCase() + '-boxes';
+    const id = `${this.player.job.toLowerCase()}-boxes`;
     let boxes = document.getElementById(id);
     if (!boxes) {
       boxes = document.createElement('div');
@@ -259,13 +259,7 @@ export class Bars {
     return textDiv as ResourceBox;
   }
 
-  addProcBox({
-    id,
-    fgColor,
-    threshold,
-    scale,
-    notifyWhenExpired,
-  }: {
+  addProcBox({ id, fgColor, threshold, scale, notifyWhenExpired }: {
     id?: string;
     fgColor?: string;
     threshold?: number;
@@ -306,10 +300,7 @@ export class Bars {
     return timerBox;
   }
 
-  addTimerBar({
-    id,
-    fgColor,
-  }: {
+  addTimerBar({ id, fgColor }: {
     id: string;
     fgColor: string;
   }): TimerBar {
@@ -332,11 +323,7 @@ export class Bars {
     return timer;
   }
 
-  addResourceBar({
-    id,
-    fgColor,
-    maxvalue,
-  }: {
+  addResourceBar({ id, fgColor, maxvalue }: {
     id: string;
     fgColor: string;
     maxvalue: number;
@@ -382,7 +369,7 @@ export class Bars {
     pullCountdownContainer.appendChild(pullCountdown);
     pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
+    pullCountdown.classList.add(`lang-${this.options.DisplayLanguage}`);
 
     // reset pull bar when in combat (game)
     this.ee.on('battle/in-combat', (ev) => {
@@ -732,7 +719,7 @@ export class Bars {
       this.o.pullCountdown.duration = seconds;
       if (inCountdown && this.options.PlayCountdownSound) {
         const audio = new Audio('../../resources/sounds/freesound/sonar.webm');
-        audio.volume = 0.3;
+        audio.volume = this.options.CountdownSoundVolume;
         void audio.play();
       }
     }

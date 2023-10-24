@@ -1,9 +1,7 @@
-import chai from 'chai';
+import { assert } from 'chai';
 
 import NetRegexes from '../../resources/netregexes';
 import regexCaptureTest, { RegexUtilParams } from '../helper/regex_util';
-
-const { assert } = chai;
 
 describe('netregex tests', () => {
   it('startsUsing', () => {
@@ -55,9 +53,9 @@ describe('netregex tests', () => {
   });
   it('networkDoT', () => {
     const lines = [
-      '24|2022-07-07T21:59:30.6210000-07:00|105C4F8B|Tini Poutini|DoT|3C0|9920|32134|63300|10000|10000|||90.44|87.60|0.00|-3.07|549a72f2e53a9dea',
-      '24|2022-07-07T21:45:54.1840000-07:00|4000F643|King Thordan|DoT|0|1597|7328307|7439000|10000|10000|||99.78|104.81|0.00|2.95|875689e722298558',
-      '24|2022-07-07T21:45:54.7190000-07:00|10595B8B|Baked Potato|HoT|0|1560|56391|56391|9500|10000|||99.73|108.37|0.00|3.14|9849e336f9aeec29',
+      '24|2022-07-07T21:59:30.6210000-07:00|105C4F8B|Tini Poutini|DoT|3C0|9920|32134|63300|10000|10000|||90.44|87.60|0.00|-3.07|4000F123|Shikigami of the Pyre|5|7328307|7439000|10000|10000|||99.78|104.81|0.00|2.95|549a72f2e53a9dea',
+      '24|2023-07-05T20:05:54.6070000-07:00|10FF0006|French Fry|HoT|0|2824|91002|91002|10000|10000|||97.46|101.98|0.00|3.13|10FF0007|Mimite Mite|0|81541|81541|9600|10000|||100.04|110.55|0.00|-3.08|1ea68a0cb73843c7bb51808eeb8e80f8',
+      '24|2023-07-05T20:05:55.9400000-07:00|4001AAAF|Pandæmonium|DoT|0|1D1B|43502881|43656896|10000|10000|||100.00|65.00|0.00|0.00|10FF0003|Papas Fritas|FFFFFFFF|77094|77094|9200|10000|||100.16|99.85|0.00|-2.84|5b77b8e553b0ee5797caa1ab87b5a910',
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.networkDoT(params), lines);
 
@@ -73,6 +71,17 @@ describe('netregex tests', () => {
     assert.equal(matches?.y, '87.60');
     assert.equal(matches?.z, '0.00');
     assert.equal(matches?.heading, '-3.07');
+    assert.equal(matches?.sourceId, '4000F123');
+    assert.equal(matches?.source, 'Shikigami of the Pyre');
+    assert.equal(matches?.damageType, '5');
+    assert.equal(matches?.sourceCurrentHp, '7328307');
+    assert.equal(matches?.sourceMaxHp, '7439000');
+    assert.equal(matches?.sourceCurrentMp, '10000');
+    assert.equal(matches?.sourceMaxMp, '10000');
+    assert.equal(matches?.sourceX, '99.78');
+    assert.equal(matches?.sourceY, '104.81');
+    assert.equal(matches?.sourceZ, '0.00');
+    assert.equal(matches?.sourceHeading, '2.95');
   });
   it('headMarker', () => {
     const lines = [
@@ -407,5 +416,33 @@ describe('netregex tests', () => {
     assert.equal(matches?.param0, 'FF5FDA02');
     assert.equal(matches?.param1, 'E1B');
     assert.equal(matches?.param2, '00');
+  });
+  it('combatantMemory', () => {
+    const lines = [
+      '261|2023-05-26T21:37:40.5600000-04:00|Add|40008953|BNpcID|3F5A|BNpcNameID|304E|CastTargetID|E0000000|CurrentMP|10000|CurrentWorldID|65535|Heading|-3.1416|Level|90|MaxHP|69200|MaxMP|10000|ModelStatus|18432|Name|Golbez\'s Shadow|NPCTargetID|E0000000|PosX|100.0000|PosY|100.0000|PosZ|0.0300|Radius|7.5000|Type|2|WorldID|65535|9d9028a8e087e4c3',
+      '261|2023-05-26T21:39:41.2920000-04:00|Change|10001234|CurrentMP|2400|Heading|-2.3613|2f5ff0a91385050a',
+      '261|2023-05-26T21:39:42.7380000-04:00|Remove|40008AA0|f4b30f181245b5da',
+    ] as const;
+    // TODO: regexCaptureTest doesn't handle the repeating fields well,
+    // so don't run it for this test
+    const matches = lines[0].match(NetRegexes.combatantMemory())?.groups;
+    assert.equal(matches?.pairBNpcID, '3F5A');
+    assert.equal(matches?.pairBNpcNameID, '304E');
+    assert.equal(matches?.pairCastTargetID, 'E0000000');
+    assert.equal(matches?.pairCurrentMP, '10000');
+    assert.equal(matches?.pairCurrentWorldID, '65535');
+    assert.equal(matches?.pairHeading, '-3.1416');
+    assert.equal(matches?.pairLevel, '90');
+    assert.equal(matches?.pairMaxHP, '69200');
+    assert.equal(matches?.pairMaxMP, '10000');
+    assert.equal(matches?.pairModelStatus, '18432');
+    assert.equal(matches?.pairName, 'Golbez\'s Shadow');
+    assert.equal(matches?.pairNPCTargetID, 'E0000000');
+    assert.equal(matches?.pairPosX, '100.0000');
+    assert.equal(matches?.pairPosY, '100.0000');
+    assert.equal(matches?.pairPosZ, '0.0300');
+    assert.equal(matches?.pairRadius, '7.5000');
+    assert.equal(matches?.pairType, '2');
+    assert.equal(matches?.pairWorldID, '65535');
   });
 });

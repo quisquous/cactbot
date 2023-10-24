@@ -91,7 +91,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'warn', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'warn',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
     {
@@ -314,7 +319,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (!data.smallLionOwners)
           return;
         const owner = data.smallLionIdToOwner?.[matches.sourceId.toUpperCase()];
-        if (!owner)
+        if (owner === undefined)
           return;
         if (matches.target === owner)
           return;
@@ -423,7 +428,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const labels = [];
         const lang: Lang = data.options.ParserLanguage;
 
-        if (data.northBigLion) {
+        if (data.northBigLion !== undefined) {
           if (data.northBigLion === matches.sourceId)
             labels.push(northBigLion[lang] ?? northBigLion['en']);
           else
@@ -471,7 +476,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
       netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
-        return { type: 'fail', blame: matches.target, reportId: matches.targetId, text: matches.ability };
+        return {
+          type: 'fail',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.ability,
+        };
       },
     },
   ],

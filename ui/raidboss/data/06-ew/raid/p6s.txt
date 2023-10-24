@@ -1,4 +1,4 @@
-### P6N: Abyssos: The Sixth Circle (Savage)
+### P6S: Abyssos: The Sixth Circle (Savage)
 # -ii 7865 786A 7870 7871 7872 7873 7875 7879 787D 787E 7885 7886 7888 7889 7890 7892 79EB 79EC 7A18
 
 hideall "--Reset--"
@@ -7,7 +7,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
-0.0 "--sync--" sync /Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 9.5 "--sync--" sync / 14:[^:]*:Hegemone:7860:/ window 10,5
 14.2 "Hemitheos's Dark IV" sync / 1[56]:[^:]*:Hegemone:7860:/
 28.0 "Synergy" sync / 1[56]:[^:]*:Hegemone:(7887|788A):/
@@ -68,12 +68,12 @@ hideall "--sync--"
 305.1 "Choros Ixou 2" sync / 1[56]:[^:]*:Hegemone:(7881|7882|7883|7884):/
 311.8 "--sync--" sync / 1[56]:[^:]*:Hegemone:784C:/
 317.6 "Cachexia" sync / 1[56]:[^:]*:Hegemone:7876:/ window 30,30
-326.6 "Aetheronecrosis 1" sync / 1[56]:[^:]*:Hegemone:7877:/
-330.6 "Aetheronecrosis 2" sync / 1[56]:[^:]*:Hegemone:7877:/
-334.6 "Aetheronecrosis 3" sync / 1[56]:[^:]*:Hegemone:7877:/
+326.6 "Aetheronecrosis 1" #sync / 1[56]:[^:]*:Hegemone:7877:/
+330.6 "Aetheronecrosis 2" #sync / 1[56]:[^:]*:Hegemone:7877:/
+334.6 "Aetheronecrosis 3" #sync / 1[56]:[^:]*:Hegemone:7877:/
 334.8 "Dual Predation" sync / 1[56]:[^:]*:Hegemone:7878:/
 335.8 "Predation 1" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
-338.7 "Aetheronecrosis 4" sync / 1[56]:[^:]*:Hegemone:7877:/
+338.7 "Aetheronecrosis 4" #sync / 1[56]:[^:]*:Hegemone:7877:/
 339.9 "Predation 2" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
 343.9 "Predation 3" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/
 347.9 "Predation 4" sync / 1[56]:[^:]*:Hegemone:(787A|787B):/

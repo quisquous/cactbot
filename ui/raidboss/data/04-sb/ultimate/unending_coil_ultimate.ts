@@ -1,10 +1,11 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
@@ -18,6 +19,8 @@ export interface Data extends RaidbossData {
   dooms?: { [doomIdx: number]: string | null };
   fireDebuff: boolean;
   iceDebuff: boolean;
+  thunderDebuffs: string[];
+  thunderOnYou: boolean;
   naelFireballCount: number;
   fireballs: { [fireballIdx: number]: string[] };
   tookThreeFireballs?: boolean;
@@ -29,7 +32,9 @@ export interface Data extends RaidbossData {
   wideThirdDive: boolean;
   unsafeThirdMark: boolean;
   naelDiveMarkerCount: number;
-  trio?: string;
+  trio?: 'quickmarch' | 'blackfire' | 'fellruin' | 'heavensfall' | 'tenstrike' | 'octet';
+  trioSourceIds: { [name: string]: number };
+  combatantData: PluginCombatantState[];
   shakers: string[];
   megaStack: string[];
   octetMarker: string[];
@@ -39,10 +44,24 @@ export interface Data extends RaidbossData {
   mornAfahCount: number;
 }
 
-const resetTrio = (data: Data, trio: string) => {
+const resetTrio = (data: Data, trio: Data['trio']) => {
   data.trio = trio;
   data.shakers = [];
   data.megaStack = [];
+};
+
+const centerX = 0;
+const centerY = 0;
+
+export const isClockwise = (start: number, compare: number) => {
+  // assumes both start and compare are 0-360.
+  // returns false if start = compare
+  let isCW = false;
+  if (compare > start)
+    isCW = compare - start <= 180;
+  else if (compare < start)
+    isCW = start - compare >= 180;
+  return isCW;
 };
 
 // Begin copy and paste from dragon_test.js.
@@ -78,7 +97,9 @@ export const badSpots = (mark: number, dragon: number) => {
   return bad;
 };
 
-export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
+export const findDragonMarks = (
+  array: number[],
+): undefined | { wideThirdDive: boolean; unsafeThirdMark: boolean; marks: number[] } => {
   const marks = [-1, -1, -1];
   let isWideThirdDive = false;
 
@@ -173,6 +194,7 @@ export const findDragonMarks = (array: number[]): undefined | { wideThirdDive: b
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 const triggerSet: TriggerSet<Data> = {
+  id: 'TheUnendingCoilOfBahamutUltimate',
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   initData: () => {
@@ -183,6 +205,8 @@ const triggerSet: TriggerSet<Data> = {
       currentPhase: 2,
       fireDebuff: false,
       iceDebuff: false,
+      thunderDebuffs: [],
+      thunderOnYou: false,
       naelFireballCount: 0,
       fireballs: {
         1: [],
@@ -196,6 +220,8 @@ const triggerSet: TriggerSet<Data> = {
       wideThirdDive: false,
       unsafeThirdMark: false,
       naelDiveMarkerCount: 0,
+      trioSourceIds: {},
+      combatantData: [],
       shakers: [],
       megaStack: [],
       octetMarker: [],
@@ -215,41 +241,55 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 1,
       response: Responses.tankBuster(),
     },
+    {
+      id: 'UCU Plummet',
+      regex: /Plummet/,
+      beforeSeconds: 3,
+      suppressSeconds: 10,
+      response: Responses.tankCleave(),
+    },
+    {
+      id: 'UCU Flare Breath',
+      regex: /Flare Breath/,
+      beforeSeconds: 4,
+      suppressSeconds: 10,
+      response: Responses.tankCleave(),
+    },
   ],
   triggers: [
     // --- State ---
     {
       id: 'UCU Firescorched Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = true,
     },
     {
       id: 'UCU Firescorched Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
+      netRegex: { effectId: '1D0' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.fireDebuff = false,
     },
     {
       id: 'UCU Icebitten Gain',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = true,
     },
     {
       id: 'UCU Icebitten Lose',
       type: 'LosesEffect',
-      netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
+      netRegex: { effectId: '1D1' },
       condition: Conditions.targetIsYou(),
       run: (data) => data.iceDebuff = false,
     },
     {
       id: 'UCU Fireball Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '26C5', source: 'Firehorn' }),
+      netRegex: { id: '26C5', source: 'Firehorn' },
       run: (data, matches) => {
         (data.fireballs[data.naelFireballCount] ??= []).push(matches.target);
       },
@@ -257,43 +297,43 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Quickmarch Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E2', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'quickmarch'),
     },
     {
       id: 'UCU Blackfire Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E3', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'blackfire'),
     },
     {
       id: 'UCU Fellruin Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E4', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'fellruin'),
     },
     {
       id: 'UCU Heavensfall Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E5', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'heavensfall'),
     },
     {
       id: 'UCU Tenstrike Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E6', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'tenstrike'),
     },
     {
       id: 'UCU Octet Phase',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
       run: (data) => resetTrio(data, 'octet'),
     },
     {
       id: 'UCU Ragnarok Party Tracker',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      netRegex: { id: '26B8', source: 'Ragnarok' },
       run: (data, matches) => {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -306,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Twisters',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegex: { id: '26AA', source: 'Twintania', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -322,23 +362,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Death Sentence',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Death Sentence',
-          de: 'Todesurteil',
-          fr: 'Peine de mort',
-          ja: 'デスセンテンス',
-          cn: '死刑',
-          ko: '사형 선고',
-        },
-      },
+      netRegex: { id: '26A9', source: 'Twintania' },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'UCU Hatch Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       run: (data, matches) => {
         data.hatch ??= [];
         data.hatch.push(matches.target);
@@ -347,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Marker YOU',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076' }),
+      netRegex: { id: '0076' },
       condition: Conditions.targetIsYou(),
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -364,7 +394,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Callouts',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 0.25,
       infoText: (data, _matches, output) => {
         if (!data.hatch)
@@ -387,7 +417,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Hatch Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
+      netRegex: { id: '0076', capture: false },
       delaySeconds: 5,
       run: (data) => delete data.hatch,
     },
@@ -395,7 +425,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'UCU Twintania Phase Change Watcher',
       type: 'StartsUsing',
       // On Twister or Generate.
-      netRegex: NetRegexes.startsUsing({ id: '26A[AE]', source: 'Twintania' }),
+      netRegex: { id: '26A[AE]', source: 'Twintania' },
       condition: (data) => !data.monitoringHP && data.hpThresholds[data.currentPhase] !== undefined,
       preRun: (data) => data.monitoringHP = true,
       promise: (data, matches) =>
@@ -430,7 +460,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the hallowed moon to call.*?', capture: false }),
+      netRegex: {
+        line: 'From on high I descend, the hallowed moon to call.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -448,7 +482,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the iron path to walk.*?', capture: false }),
+      netRegex: {
+        line: 'From on high I descend, the iron path to walk.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -466,7 +504,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Take fire, O hallowed moon.*?', capture: false }),
+      netRegex: {
+        line: 'Take fire, O hallowed moon.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 6,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -484,7 +526,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Blazing path, lead me to iron rule.*?', capture: false }),
+      netRegex: {
+        line: 'Blazing path, lead me to iron rule.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -501,7 +547,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'O hallowed moon, take fire and scorch my foes.*?', capture: false }),
+      netRegex: {
+        line: 'O hallowed moon, take fire and scorch my foes.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -518,7 +568,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'O hallowed moon, shine you the iron path.*?', capture: false }),
+      netRegex: {
+        line: 'O hallowed moon, shine you the iron path.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -535,7 +589,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?', capture: false }),
+      netRegex: {
+        line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -555,7 +613,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?', capture: false }),
+      netRegex: {
+        line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       delaySeconds: 4,
       durationSeconds: 6,
       // Make this alert so it doesn't overlap with the dive infoText occuring here.
@@ -575,7 +637,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the moon and stars to bring.*?', capture: false }),
+      netRegex: {
+        line: 'From on high I descend, the moon and stars to bring.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -593,7 +659,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring.*?', capture: false }),
+      netRegex: {
+        line: 'From hallowed moon I descend, a rain of stars to bring.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -611,7 +681,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield.*?', capture: false }),
+      netRegex: {
+        line: 'From hallowed moon I bare iron, in my descent to wield.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -629,7 +703,10 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread.*?', capture: false }),
+      netRegex: {
+        line: 'From hallowed moon I descend, upon burning earth to tread.*?',
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -647,7 +724,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Unbending iron, take fire and descend.*?', capture: false }),
+      netRegex: {
+        line: 'Unbending iron, take fire and descend.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -665,7 +746,11 @@ const triggerSet: TriggerSet<Data> = {
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       type: 'GameLog',
-      netRegex: NetRegexes.dialog({ line: 'Unbending iron, descend with fiery edge.*?', capture: false }),
+      netRegex: {
+        line: 'Unbending iron, descend with fiery edge.*?',
+        code: Util.gameLogCodes.dialog,
+        capture: false,
+      },
       durationSeconds: 9,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -680,15 +765,41 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'UCU Nael Thunder Collect',
+      type: 'Ability',
+      netRegex: { source: 'Thunderwing', id: '26C7' },
+      run: (data, matches) => {
+        data.thunderDebuffs.push(matches.target);
+        if (data.me === matches.target)
+          data.thunderOnYou = true;
+      },
+    },
+    {
       id: 'UCU Nael Thunderstruck',
       type: 'Ability',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '26C7' }),
-      condition: Conditions.targetIsYou(),
-      alarmText: (_data, _matches, output) => output.text!(),
+      netRegex: { source: 'Thunderwing', id: '26C7', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      alarmText: (data, _matches, output) => {
+        if (data.thunderOnYou)
+          return output.thunderOnYou!();
+      },
+      infoText: (data, _matches, output) => {
+        if (!data.thunderOnYou) {
+          const thunderPlayers = data.thunderDebuffs.map((p) => data.ShortName(p));
+          const thunder1 = thunderPlayers[0] ?? '???';
+          const thunder2 = thunderPlayers[1] ?? '???';
+          return output.thunderOnOthers!({ player1: thunder1, player2: thunder2 });
+        }
+      },
+      run: (data) => {
+        data.thunderDebuffs = [];
+        data.thunderOnYou = false;
+      },
       outputStrings: {
-        text: {
+        thunderOnYou: {
           en: 'Thunder on YOU',
           de: 'Blitz auf DIR',
           fr: 'Foudre sur VOUS',
@@ -696,12 +807,18 @@ const triggerSet: TriggerSet<Data> = {
           cn: '雷点名',
           ko: '나에게 번개',
         },
+        thunderOnOthers: {
+          en: 'Thunder on ${player1}, ${player2}',
+          de: 'Blitz auf ${player1}, ${player2}',
+          cn: '雷点 ${player1}, ${player2}',
+          ko: '번개 ${player1}, ${player2}',
+        },
       },
     },
     {
       id: 'UCU Nael Your Doom',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       condition: (data, matches) => {
         return data.me === matches.target;
       },
@@ -769,7 +886,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Init',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
+      netRegex: { effectId: 'D2' },
       run: (data, matches) => {
         data.dooms ??= [null, null, null];
         let order = null;
@@ -789,7 +906,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Doom Cleanup',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
+      netRegex: { effectId: 'D2', capture: false },
       delaySeconds: 20,
       run: (data) => {
         delete data.dooms;
@@ -799,14 +916,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Cleanse Callout',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      netRegex: { source: 'Fang Of Light', id: '26CA', capture: false },
       infoText: (data, _matches, output) => {
         data.doomCount ??= 0;
         let name;
         if (data.dooms)
           name = data.dooms[data.doomCount];
         data.doomCount++;
-        if (name)
+        if (typeof name === 'string')
           return output.text!({ num: data.doomCount, player: data.ShortName(name) });
       },
       outputStrings: {
@@ -823,7 +940,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 1',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: (_data, _matches, output) => output.text!(),
@@ -842,7 +959,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 2',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 51,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -881,7 +998,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 3',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 77,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -934,7 +1051,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Fireball 4',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegex: { source: 'Ragnarok', id: '26B8', capture: false },
       delaySeconds: 98,
       suppressSeconds: 99999,
       alertText: (data, _matches, output) => {
@@ -978,7 +1095,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Dragon Tracker',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegex: {
+        source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'],
+        id: ['26C6', '26C7', '26CA', '26C9', '26C5'],
+      },
       condition: (data, matches) => !(matches.source in data.seenDragon),
       run: (data, matches) => {
         data.seenDragon[matches.source] = true;
@@ -987,8 +1107,7 @@ const triggerSet: TriggerSet<Data> = {
         const y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
-        // Map N = 0, NE = 1, ..., NW = 7
-        const dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
+        const dir = Directions.xyTo8DirNum(x, y, centerX, centerY);
 
         data.naelDragons[dir] = 1;
 
@@ -998,9 +1117,8 @@ const triggerSet: TriggerSet<Data> = {
         const result = findDragonMarks(data.naelDragons);
         if (!result)
           return;
-        const dirNames = ['dirN', 'dirNE', 'dirE', 'dirSE', 'dirS', 'dirSW', 'dirW', 'dirNW'];
         data.naelMarks = result.marks.map((i) => {
-          return dirNames[i] ?? 'unknown';
+          return Directions.output8Dir[i] ?? 'unknown';
         });
         data.wideThirdDive = result.wideThirdDive;
         data.unsafeThirdMark = result.unsafeThirdMark;
@@ -1012,14 +1130,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Ravensbeak',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      netRegex: { source: 'Nael deus Darnus', id: '26B6' },
       response: Responses.tankBusterSwap('alert'),
     },
     {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      netRegex: { source: 'Nael deus Darnus', id: '26B6', capture: false },
       condition: (data) => data.naelMarks && !data.calledNaelDragons,
       durationSeconds: 10,
       infoText: (data, _matches, output) => {
@@ -1050,26 +1168,18 @@ const triggerSet: TriggerSet<Data> = {
           cn: '标记: ${dive1}, ${dive2}, ${dive3} (大)',
           ko: '징: ${dive1}, ${dive2}, ${dive3} (넓음)',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknown: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       alarmText: (data, matches, output) => {
         if (matches.target !== data.me)
           return;
-        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknownDir';
+        const dir = data.naelMarks?.[data.naelDiveMarkerCount] ?? 'unknown';
         return output.text!({ dir: output[dir]!() });
       },
       outputStrings: {
@@ -1081,21 +1191,13 @@ const triggerSet: TriggerSet<Data> = {
           cn: '带着点名去${dir}',
           ko: '${dir}으로 이동',
         },
-        dirN: Outputs.dirN,
-        dirNE: Outputs.dirNE,
-        dirE: Outputs.dirE,
-        dirSE: Outputs.dirSE,
-        dirS: Outputs.dirS,
-        dirSW: Outputs.dirSW,
-        dirW: Outputs.dirW,
-        dirNW: Outputs.dirNW,
-        unknownDir: Outputs.unknown,
+        ...Directions.outputStrings8Dir,
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => !data.trio,
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -1117,15 +1219,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
+      netRegex: { id: '0014', capture: false },
       condition: (data) => !data.trio,
       run: (data) => data.naelDiveMarkerCount++,
     },
+
+    // --- Bahamut Prime ---
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
+      netRegex: { id: ['0077', '0014', '0029'] },
       condition: (data) => data.trio === 'octet',
       run: (data, matches) => {
         data.octetMarker.push(matches.target);
@@ -1135,7 +1239,7 @@ const triggerSet: TriggerSet<Data> = {
         const partyList = Object.keys(data.partyList);
 
         if (partyList.length !== 8) {
-          console.error('Octet error: bad party list size: ' + JSON.stringify(partyList));
+          console.error(`Octet error: bad party list size: ${JSON.stringify(partyList)}`);
           return;
         }
         const uniqDict: { [name: string]: boolean } = {};
@@ -1157,7 +1261,11 @@ const triggerSet: TriggerSet<Data> = {
         });
         if (remainingPlayers.length !== 1) {
           // This could happen if the party list wasn't unique.
-          console.error('Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' + JSON.stringify(data.octetMarker));
+          console.error(
+            `Octet error: failed to find player, ${JSON.stringify(partyList)} ${
+              JSON.stringify(data.octetMarker)
+            }`,
+          );
           return;
         }
 
@@ -1168,7 +1276,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Nael Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0077' }),
+      netRegex: { id: '0077' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1188,7 +1296,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Dragon Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0014' }),
+      netRegex: { id: '0014' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1208,7 +1316,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Baha Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029' }),
+      netRegex: { id: '0029' },
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
@@ -1228,7 +1336,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Octet Twin Marker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0029', capture: false }),
+      netRegex: { id: '0029', capture: false },
       condition: (data) => data.trio === 'octet',
       delaySeconds: 0.5,
       alarmText: (data, _matches, output) => {
@@ -1236,7 +1344,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnYou!();
       },
       infoText: (data, _matches, output) => {
-        if (!data.lastOctetMarker)
+        if (data.lastOctetMarker === undefined)
           return output.twinOnUnknown!();
 
         // If this person is not alive, then everybody should stack,
@@ -1245,7 +1353,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.twinOnPlayer!({ player: data.ShortName(data.lastOctetMarker) });
       },
       tts: (data, _matches, output) => {
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.stackTTS!();
       },
       outputStrings: {
@@ -1286,7 +1394,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Twister Dives',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      netRegex: { source: 'Twintania', id: '26B2', capture: false },
       suppressSeconds: 2,
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1301,9 +1409,16 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'UCU Bahamut Flatten',
+      type: 'StartsUsing',
+      netRegex: { id: '26D5', source: 'Bahamut Prime' },
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster(),
+    },
+    {
       id: 'UCU Bahamut Gigaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26D6', source: 'Bahamut Prime', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -1317,9 +1432,92 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'UCU Quickmarch Dive Dir',
+      type: 'StartsUsing',
+      netRegex: { id: '26E1', source: 'Bahamut Prime' },
+      condition: (data) => data.trio === 'quickmarch',
+      alertText: (_data, matches, output) => {
+        // Bosses jump, and dive placement is locked once Bahamut starts casting.
+        // Position data is always updated by now, so need to rely on combatant data from OP.
+        // Bahamut will always be on an exact cardinal/intercardinal (w/Nael & Twin on either side)
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
+        const diveDir = Directions.xyTo8DirOutput(x, y, centerX, centerY);
+        return output.dive!({ dir: output[diveDir]!() });
+      },
+      outputStrings: {
+        dive: {
+          en: '${dir} Dive',
+          de: '${dir} Sturzbombe',
+          cn: '${dir} 俯冲',
+          ko: '${dir} 다이브',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    // Collect sourceIds for Nael, Twin & Bahamut when they dive during Quickmarch
+    // Will use these ids later to get combatant data from Overlay Plugin
+    {
+      id: 'UCU P3 Nael Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26C3', source: 'Nael deus Darnus' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.nael = parseInt(matches.sourceId, 16),
+    },
+    {
+      id: 'UCU P3 Bahamut Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26E1', source: 'Bahamut Prime' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.bahamut = parseInt(matches.sourceId, 16),
+    },
+    {
+      id: 'UCU P3 Twintania Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '26B2', source: 'Twintania' },
+      condition: (data) => data.trio === 'quickmarch',
+      run: (data, matches) => data.trioSourceIds.twin = parseInt(matches.sourceId, 16),
+    },
+    // For Blackfire:
+    // After bosses jump, there's no clear log line we can trigger off of to find Nael's position
+    // until it's effectively too late.  The best way to do this seems to be to fire the trigger
+    // with a delay when Bahamut uses Blackfire Trio before all 3 bosses jump.
+    {
+      id: 'UCU Blackfire Party Dir',
+      type: 'Ability',
+      netRegex: { id: '26E3', source: 'Bahamut Prime', capture: false },
+      condition: (data) => data.trio === 'blackfire',
+      delaySeconds: 3.5,
+      promise: async (data) => {
+        if (data.trioSourceIds.nael === undefined)
+          return;
+        data.combatantData = [];
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.combatantData[0] === undefined)
+          return;
+        const nael = data.combatantData[0];
+        const naelDirOutput = Directions.combatantStatePosTo8DirOutput(nael, centerX, centerY);
+        return output.naelPosition!({ dir: output[naelDirOutput]!() });
+      },
+      outputStrings: {
+        naelPosition: {
+          en: 'Nael is ${dir}',
+          de: 'Nael ist im ${dir}',
+          cn: '奈尔在 ${dir}',
+          ko: '넬 ${dir}',
+        },
+        ...Directions.outputStrings8Dir,
+      },
+    },
+    {
       id: 'UCU Megaflare Stack Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       condition: Conditions.targetIsYou(),
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -1336,13 +1534,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Stack Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027' }),
+      netRegex: { id: '0027' },
       run: (data, matches) => data.megaStack.push(matches.target),
     },
     {
       id: 'UCU Megaflare Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
@@ -1353,7 +1551,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.trio === 'blackfire')
           return output.blackfireTower!();
 
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return output.octetTowerPlusTwin!();
 
         return output.octetTower!();
@@ -1403,13 +1601,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Megaflare Twin Tower',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
+      netRegex: { id: '0027', capture: false },
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: (data, _matches, output) => {
         if (data.trio !== 'blackfire' && data.trio !== 'octet' || data.megaStack.length !== 4)
           return;
-        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
+        if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return;
 
         const twin = data.ShortName(data.lastOctetMarker);
@@ -1438,22 +1636,81 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'UCU Heavensfall Nael Spot',
+      type: 'StartsUsing',
+      // Grab position data once Bahamut begins casting Megaflare Dive
+      netRegex: { id: '26E1', source: 'Bahamut Prime', capture: false },
+      condition: (data) => data.trio === 'heavensfall',
+      promise: async (data) => {
+        data.combatantData = [];
+        if (
+          data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.twin === undefined ||
+          data.trioSourceIds.bahamut === undefined
+        )
+          return;
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut, data.trioSourceIds.twin],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        // Bosses line up adjacent to one another, but don't necessarily have discrete directional positions (based on 8Dir scale).
+        // But we can calculate their position as an angle (relative to circular arena): 0 = N, 90 = E, 180 = S, 270 = W, etc.
+        let naelAngle;
+        let bahamutAngle;
+        let twinAngle;
+        let naelPos = 'unknown';
+        for (const mob of data.combatantData) {
+          const mobAngle = (Math.round(180 - 180 * Math.atan2(mob.PosX, mob.PosY) / Math.PI) % 360);
+          // As OP does not return combatants in the order, they were passed, match based on sourceId.
+          if (mob.ID === data.trioSourceIds.nael)
+            naelAngle = mobAngle;
+          else if (mob.ID === data.trioSourceIds.bahamut)
+            bahamutAngle = mobAngle;
+          else if (mob.ID === data.trioSourceIds.twin)
+            twinAngle = mobAngle;
+        }
+        if (naelAngle === undefined || bahamutAngle === undefined || twinAngle === undefined)
+          return;
+        if (naelAngle >= 0 && bahamutAngle >= 0 && twinAngle >= 0) {
+          if (isClockwise(naelAngle, bahamutAngle))
+            naelPos = isClockwise(naelAngle, twinAngle) ? 'left' : 'middle';
+          else
+            naelPos = isClockwise(naelAngle, twinAngle) ? 'middle' : 'right';
+        }
+        return output.naelPosition!({ dir: output[naelPos]!() });
+      },
+      outputStrings: {
+        naelPosition: {
+          en: '${dir} Nael',
+          de: '${dir} Nael',
+          cn: '${dir} 奈尔',
+          ko: '넬 ${dir}',
+        },
+        left: Outputs.left,
+        middle: Outputs.middle,
+        right: Outputs.right,
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'UCU Earthshaker Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker('alarm'),
     },
     {
       id: 'UCU Earthshaker Tracking',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       run: (data, matches) => data.shakers.push(matches.target),
     },
     {
       id: 'UCU Earthshaker Not Me',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
+      netRegex: { id: '0028', capture: false },
       alertText: (data, _matches, output) => {
         if (data.trio !== 'quickmarch')
           return;
@@ -1504,10 +1761,100 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
+    // For Grand Octet:
+    // After bosses and dragons start spawning, there's no clear log line we can trigger off of to find bosses' position
+    // until it's effectively too late.  The best way to do this seems to be to fire the trigger
+    // with a delay when Bahamut uses Grand Octet before all 3 bosses jump.
+    {
+      id: 'UCU Grand Octet Run & Rotate',
+      type: 'Ability',
+      // Grab mob position data after dragons/bosses are positioned
+      netRegex: { id: '26E7', source: 'Bahamut Prime', capture: false },
+      delaySeconds: 4.8,
+      promise: async (data) => {
+        data.combatantData = [];
+        if (
+          data.trioSourceIds.nael === undefined ||
+          data.trioSourceIds.bahamut === undefined
+        )
+          return;
+        data.combatantData = (await callOverlayHandler({
+          call: 'getCombatants',
+          ids: [data.trioSourceIds.nael, data.trioSourceIds.bahamut],
+        })).combatants;
+      },
+      alertText: (data, _matches, output) => {
+        let naelDirIdx;
+        let bahaDirIdx;
+
+        for (const mob of data.combatantData) {
+          const mobDirIdx = Directions.combatantStatePosTo8Dir(mob, centerX, centerY);
+          if (mob.ID === data.trioSourceIds.nael)
+            naelDirIdx = mobDirIdx;
+          else if (mob.ID === data.trioSourceIds.bahamut)
+            bahaDirIdx = mobDirIdx;
+        }
+
+        if (naelDirIdx === undefined || bahaDirIdx === undefined)
+          return;
+
+        // If Bahamut spaws on a cardinal, the party goes opposite and rotates counter-clockwise; if intercardinal, clockwise.
+        // If Nael is directly opposite Bahamut, the party instead starts one directional position over (same as the rotation direction)
+        // http://clees.me/guides/ucob/
+        let rotationIdxModifier; // this is used to modify the party starting spot in directions[] if Nael is opposite Bahamut
+        let rotationPath;
+
+        const bahaOutputStr = Directions.output8Dir[bahaDirIdx];
+        const cardinalDirs: string[] = Directions.outputCardinalDir;
+        if (bahaOutputStr === undefined)
+          return;
+        if (cardinalDirs.includes(bahaOutputStr)) {
+          rotationIdxModifier = -1;
+          rotationPath = 'counterclockwise';
+        } else {
+          rotationIdxModifier = 1;
+          rotationPath = 'clockwise';
+        }
+
+        // start by going directly opposite Bahamut
+        let partyStartIdx = bahaDirIdx >= 4 ? bahaDirIdx - 4 : bahaDirIdx + 4;
+        // If Nael is there, instead go +1/-1 direction (depending on the rotation direction)
+        if (naelDirIdx === partyStartIdx) {
+          partyStartIdx += rotationIdxModifier;
+          // if this pushes partyStartIdx beyond the array boundary, wrap around
+          if (partyStartIdx === -1) {
+            partyStartIdx = 7;
+          } else if (partyStartIdx === 8) {
+            partyStartIdx = 0;
+          }
+        }
+        const partyStartDir = Directions.output8Dir[partyStartIdx] ?? 'unknown';
+
+        if (partyStartDir === undefined || rotationPath === undefined)
+          return;
+        return output.grandOctet!({
+          startDir: output[partyStartDir]!(),
+          path: output[rotationPath]!(),
+        });
+      },
+      outputStrings: {
+        grandOctet: {
+          en: 'Bait dash, go ${startDir}, rotate ${path}',
+          de: 'Ansturm ködern, gehe nach ${startDir}, rotiere ${path}',
+          cn: '诱导俯冲, 去 ${startDir}, ${path} 转',
+          ko: '돌진 유도, ${startDir}쪽으로, ${path}',
+        },
+        clockwise: Outputs.clockwise,
+        counterclockwise: Outputs.counterclockwise,
+        ...Directions.outputStrings8Dir,
+      },
+    },
+
+    // --- Golden Bahamut ---
     {
       id: 'UCU Morn Afah',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      netRegex: { id: '26EC', source: 'Bahamut Prime' },
       preRun: (data) => data.mornAfahCount++,
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
@@ -1539,7 +1886,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Akh Morn',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26EA', source: 'Bahamut Prime', capture: false },
       preRun: (data) => {
         data.akhMornCount++;
       },
@@ -1558,7 +1905,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'UCU Exaflare',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      netRegex: { id: '26EF', source: 'Bahamut Prime', capture: false },
       preRun: (data) => data.exaflareCount++,
       infoText: (data, _matches, output) => output.text!({ num: data.exaflareCount }),
       outputStrings: {
@@ -1587,20 +1934,30 @@ const triggerSet: TriggerSet<Data> = {
         'Tail of Darkness': 'Dunkelschweif',
         'Thunderwing': 'Donnerschwinge',
         'Twintania': 'Twintania',
-        'From on high I descend, the hallowed moon to call': 'Seht, ich steige herab, vom rotglühenden Monde',
-        'From on high I descend, the iron path to walk': 'Seht, ich steige herab, um euch zu beherrschen',
+        'From on high I descend, the hallowed moon to call':
+          'Seht, ich steige herab, vom rotglühenden Monde',
+        'From on high I descend, the iron path to walk':
+          'Seht, ich steige herab, um euch zu beherrschen',
         'Take fire, O hallowed moon': 'Flammender Pfad, geschaffen vom roten Mond',
         'Blazing path, lead me to iron rule': 'Umloderter Pfad, führe mich zur Herrschaft',
         'O hallowed moon, take fire and scorch my foes': 'O roter Mond! Umlodere meinen Pfad',
         'O hallowed moon, shine you the iron path': 'O roter Mond! Führe mich zur Herrschaft',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Neues Gestirn! Überstrahle jede Sternschnuppe',
-        'From on high I descend, the moon and stars to bring': 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
-        'From hallowed moon I descend, a rain of stars to bring': 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
-        'From hallowed moon I bare iron, in my descent to wield': 'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
-        'From hallowed moon I descend, upon burning earth to tread': 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
-        'Unbending iron, take fire and descend': 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
-        'Unbending iron, descend with fiery edge': 'Zur Herrschaft steige ich herab, auf umlodertem Pfad',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          'Neues Gestirn! Überstrahle jede Sternschnuppe',
+        'From on high I descend, the moon and stars to bring':
+          'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
+        'From hallowed moon I descend, a rain of stars to bring':
+          'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
+        'From hallowed moon I bare iron, in my descent to wield':
+          'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
+        'From hallowed moon I descend, upon burning earth to tread':
+          'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
+        'Unbending iron, take fire and descend':
+          'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
+        'Unbending iron, descend with fiery edge':
+          'Zur Herrschaft steige ich herab, auf umlodertem Pfad',
       },
       'replaceText': {
         '--push--': '--stoß--',
@@ -1667,31 +2024,44 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Blazing path, lead me to iron rule': 'La voie marquée par l\'incandescence mène à la domination',
+        'Blazing path, lead me to iron rule':
+          'La voie marquée par l\'incandescence mène à la domination',
         'Fang of Light': 'croc de lumière',
         'Firehorn': 'corne-de-feu',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Supernova, brille de tout ton feu et glorifie la lune rouge',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Supernova, brille de tout ton feu et irradie la terre rougie',
-        'From hallowed moon I bare iron, in my descent to wield': 'De la lune je m\'arme d\'acier et descends',
-        'From hallowed moon I descend, a rain of stars to bring': 'Depuis la lune, j\'invoque une pluie d\'étoiles',
-        'From hallowed moon I descend, upon burning earth to tread': 'De la lune, je descends et marche sur la terre ardente',
-        'From on high I descend, the hallowed moon to call': 'Des cieux je vais descendre et révérer la lune',
-        'From on high I descend, the iron path to walk': 'Du haut des cieux, je vais descendre pour conquérir',
-        'From on high I descend, the moon and stars to bring': 'Du haut des cieux, j\'appelle une pluie d\'étoiles',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          'Supernova, brille de tout ton feu et glorifie la lune rouge',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          'Supernova, brille de tout ton feu et irradie la terre rougie',
+        'From hallowed moon I bare iron, in my descent to wield':
+          'De la lune je m\'arme d\'acier et descends',
+        'From hallowed moon I descend, a rain of stars to bring':
+          'Depuis la lune, j\'invoque une pluie d\'étoiles',
+        'From hallowed moon I descend, upon burning earth to tread':
+          'De la lune, je descends et marche sur la terre ardente',
+        'From on high I descend, the hallowed moon to call':
+          'Des cieux je vais descendre et révérer la lune',
+        'From on high I descend, the iron path to walk':
+          'Du haut des cieux, je vais descendre pour conquérir',
+        'From on high I descend, the moon and stars to bring':
+          'Du haut des cieux, j\'appelle une pluie d\'étoiles',
         'Iceclaw': 'griffe-de-glace',
         'Nael Deus Darnus': 'Nael deus Darnus',
         'Nael Geminus': 'Nael Geminus',
         'O hallowed moon, shine you the iron path': 'Ô lune! Éclaire la voie de la domination',
-        'O hallowed moon, take fire and scorch my foes': 'Que l\'incandescence de la lune brûle mes ennemis',
+        'O hallowed moon, take fire and scorch my foes':
+          'Que l\'incandescence de la lune brûle mes ennemis',
         'Ragnarok': 'Ragnarok',
         'Tail of Darkness': 'queue de ténèbres',
         'Take fire, O hallowed moon': 'Baignez dans la bénédiction de la lune incandescente',
         'Thunderwing': 'aile-de-foudre',
         'Twintania': 'Gémellia',
-        'Unbending iron, descend with fiery edge': 'Fier acier! Sois ma lame plongeante et deviens incandescent',
-        'Unbending iron, take fire and descend': 'Ô noble acier! Rougis ardemment et deviens ma lame transperçante',
+        'Unbending iron, descend with fiery edge':
+          'Fier acier! Sois ma lame plongeante et deviens incandescent',
+        'Unbending iron, take fire and descend':
+          'Ô noble acier! Rougis ardemment et deviens ma lame transperçante',
       },
       'replaceText': {
         '--push--': '--poussé(e)--',
@@ -1761,6 +2131,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
         'Fang of Light': 'ライトファング',
@@ -1778,8 +2149,10 @@ const triggerSet: TriggerSet<Data> = {
         'Blazing path, lead me to iron rule': '赤熱し、焼かれし道を\\s*鉄の覇道と成す！',
         'O hallowed moon, take fire and scorch my foes': '月よ！\\s*赤熱し、神敵を焼け！',
         'O hallowed moon, shine you the iron path': '月よ！\\s*鉄の覇道を照らせ！',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': '超新星よ、輝きを増せ！\\s*紅月下の赤熱せし地を照らせ！',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': '超新星よ、輝きを増せ！\\s*星降りの夜に、紅月を称えよ！',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          '超新星よ、輝きを増せ！\\s*紅月下の赤熱せし地を照らせ！',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          '超新星よ、輝きを増せ！\\s*星降りの夜に、紅月を称えよ！',
         'From on high I descend, the moon and stars to bring': '我、舞い降りて月を仰ぎ\\s*星降りの夜を招かん！',
         'From hallowed moon I descend, a rain of stars to bring': '我、月より舞い降りて\\s*星降りの夜を招かん！',
         'From hallowed moon I bare iron, in my descent to wield': '我、月より鉄を備え\\s*舞い降りん！',
@@ -1870,7 +2243,8 @@ const triggerSet: TriggerSet<Data> = {
         'O hallowed moon, take fire and scorch my foes': '月光啊！\\s*用你的炽热烧尽敌人！',
         'O hallowed moon, shine you the iron path': '月光啊！\\s*照亮铁血霸道！',
         'Fleeting light! \'Neath the red moon, scorch you the earth': '超新星啊，更加闪耀吧！\\s*照亮红月下炽热之地！',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': '超新星啊，更加闪耀吧！\\s*在星降之夜，称赞红月！',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          '超新星啊，更加闪耀吧！\\s*在星降之夜，称赞红月！',
         'From on high I descend, the moon and stars to bring': '我降临于此对月长啸！\\s*召唤星降之夜！',
         'From hallowed moon I descend, a rain of stars to bring': '我自月而来降临于此，\\s*召唤星降之夜！',
         'From hallowed moon I bare iron, in my descent to wield': '我自月而来携钢铁降临于此！',
@@ -1960,12 +2334,16 @@ const triggerSet: TriggerSet<Data> = {
         'Blazing path, lead me to iron rule': '붉게 타오른 길을 강철의 패도로 만들겠노라!',
         'O hallowed moon, take fire and scorch my foes': '달이여! 붉게 타올라 신의 적을 태워버려라!',
         'O hallowed moon, shine you the iron path': '달이여! 강철의 패도를 비춰라!',
-        'Fleeting light! \'Neath the red moon, scorch you the earth': '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!',
-        'Fleeting light! Amid a rain of stars, exalt you the red moon': '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!',
-        'From on high I descend, the moon and stars to bring': '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!',
+        'Fleeting light! \'Neath the red moon, scorch you the earth':
+          '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon':
+          '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!',
+        'From on high I descend, the moon and stars to bring':
+          '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!',
         'From hallowed moon I descend, a rain of stars to bring': '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!',
         'From hallowed moon I bare iron, in my descent to wield': '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!',
-        'From hallowed moon I descend, upon burning earth to tread': '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!',
+        'From hallowed moon I descend, upon burning earth to tread':
+          '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!',
         'Unbending iron, take fire and descend': '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!',
         'Unbending iron, descend with fiery edge': '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!',
       },

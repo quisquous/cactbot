@@ -1,12 +1,7 @@
 import { UnreachableCode } from '../../resources/not_reached';
 
-const fakePlayerNames = [
-  'Tini Poutini',
-  'Potato Chippy',
-  'Papas Fritas',
-  'Tater Tot',
-  'Hash Brown',
-  'French Fry',
+const fakePlayerNames: string[] = [
+  // Fixed custom fake names here.
 ];
 
 const randomFromArray = <T>(array: T[]): T => {
@@ -107,23 +102,23 @@ export default class FakeNameGenerator {
           const a = this.makeLalaSyl1Or2();
           const b = this.makeLalaSyl1Or2();
           const c = this.makeLalaSyl1Or2();
-          return a + b + ' ' + c + b;
+          return `${a + b} ${c}${b}`;
         },
         () => {
           const a = this.makeLalaSyl1();
           const b = this.makeLalaSyl1();
-          return a + b + b + ' ' + a + b;
+          return `${a + b + b} ${a}${b}`;
         },
         () => {
           const a = this.makeLalaSyl1();
           const b = this.makeLalaSyl2();
           const c = this.makeLalaSyl1();
-          return a + a + b + ' ' + c + c + b;
+          return `${a + a + b} ${c}${c}${b}`;
         },
         () => {
           const a = this.makeLalaSyl1();
           const b = this.makeLalaSyl1();
-          return a + a + b + ' ' + a + b;
+          return `${a + a + b} ${a}${b}`;
         },
       ])();
 
@@ -141,6 +136,6 @@ export default class FakeNameGenerator {
       // shift [a-p] to [k-z]
       return String.fromCharCode(c.charCodeAt(0) + 10);
     }).join('');
-    return 'X\'' + randomStr + ' Tia';
+    return `X'${randomStr} Tia`;
   }
 }

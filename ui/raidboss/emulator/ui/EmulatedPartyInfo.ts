@@ -99,7 +99,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.$triggerBar = querySelectorSafe(document, '.player-triggers');
     this.latestDisplayedState = 0;
     for (let i = 0; i < 8; ++i)
-      this.triggerBars[i] = querySelectorSafe(this.$triggerBar, '.player' + i.toString());
+      this.triggerBars[i] = querySelectorSafe(this.$triggerBar, `.player${i.toString()}`);
 
     emulator.on('tick', (_currentLogTime, lastLogLineTime: number) => {
       if (lastLogLineTime) {
@@ -192,10 +192,11 @@ export default class EmulatedPartyInfo extends EventBus {
       const b = enc.combatantTracker?.combatants[r];
       if (!a || !b)
         return 0;
-
-      if (!isJobOrder(a.job) || !isJobOrder(b.job))
+      const aJob = Util.jobEnumToJob(a.nextState(0).Job ?? 0);
+      const bJob = Util.jobEnumToJob(b.nextState(0).Job ?? 0);
+      if (!isJobOrder(aJob) || !isJobOrder(bJob))
         return 0;
-      return EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job);
+      return EmulatedPartyInfo.jobOrder.indexOf(aJob) - EmulatedPartyInfo.jobOrder.indexOf(bJob);
     }).slice(0, 8);
     document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
       n.remove();
@@ -208,15 +209,16 @@ export default class EmulatedPartyInfo extends EventBus {
       const perspective = encounter.perspectives[id];
       if (!bar || !combatant || !perspective)
         throw new UnreachableCode();
+      const firstState = combatant.nextState(0);
       this.displayedParty[id] = obj;
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
       bar.classList.remove('tank');
       bar.classList.remove('healer');
       bar.classList.remove('dps');
-      if (combatant.job) {
+      if (firstState.Job) {
         bar.classList.add(
-          Util.jobToRole(combatant.job),
+          Util.jobToRole(Util.jobEnumToJob(firstState.Job)),
         );
       }
 
@@ -232,7 +234,7 @@ export default class EmulatedPartyInfo extends EventBus {
 
         const $e = cloneSafe(this.$triggerItemTemplate);
         const adjustedOffset = trigger.resolvedOffset - encounter.encounter.initialOffset;
-        $e.style.left = ((adjustedOffset / trimmedDuration) * 100).toString() + '%';
+        $e.style.left = `${(adjustedOffset / trimmedDuration * 100).toString()}%`;
         const triggerId = trigger.triggerHelper.trigger.id ?? 'Unknown Trigger';
         this.tooltips.push(new Tooltip($e, 'bottom', triggerId));
         bar.append($e);
@@ -242,7 +244,7 @@ export default class EmulatedPartyInfo extends EventBus {
     this.updateTriggerState();
 
     const toDisplay = membersToDisplay[0];
-    if (!toDisplay)
+    if (toDisplay === undefined)
       throw new UnreachableCode();
 
     this.selectPerspective(toDisplay);
@@ -252,7 +254,8 @@ export default class EmulatedPartyInfo extends EventBus {
     if (id === this.currentPerspective)
       return;
 
-    if (!this.emulator.currentEncounter?.encounter.combatantTracker?.combatants[id]?.job)
+    const combatant = this.emulator.currentEncounter?.encounter.combatantTracker?.combatants[id];
+    if (!combatant?.nextState(0).Job)
       return;
 
     const display = this.displayedParty[id];
@@ -282,8 +285,8 @@ export default class EmulatedPartyInfo extends EventBus {
     if (!combatant)
       throw new UnreachableCode();
 
-    const State = combatant.getState(stateID);
-    if (State === undefined)
+    const state = combatant.getState(stateID);
+    if (state === undefined)
       throw new UnreachableCode();
 
     const display = this.displayedParty[id];
@@ -291,15 +294,15 @@ export default class EmulatedPartyInfo extends EventBus {
     if (!display)
       throw new UnreachableCode();
 
-    const hpProg = (State.hp / State.maxHp) * 100;
-    let hpLabel = `${State.hp}/${State.maxHp}`;
-    hpLabel = SFuncs.leftExtendStr(hpLabel, (State.maxHp.toString().length * 2) + 1, ' ');
+    const hpProg = state.CurrentHP / state.MaxHP * 100;
+    let hpLabel = `${state.CurrentHP}/${state.MaxHP}`;
+    hpLabel = SFuncs.leftExtendStr(hpLabel, state.MaxHP.toString().length * 2 + 1, ' ');
     display.$hpProgElem.style.width = `${hpProg}%`;
     display.$hpLabelElem.textContent = hpLabel;
 
-    const mpProg = (State.mp / State.maxMp) * 100;
-    let mpLabel = `${State.mp}/${State.maxMp}`;
-    mpLabel = SFuncs.leftExtendStr(mpLabel, (State.maxMp.toString().length * 2) + 1, ' ');
+    const mpProg = state.CurrentMP / state.MaxMP * 100;
+    let mpLabel = `${state.CurrentMP}/${state.MaxMP}`;
+    mpLabel = SFuncs.leftExtendStr(mpLabel, state.MaxMP.toString().length * 2 + 1, ' ');
     display.$mpProgElem.style.width = `${mpProg}%`;
     display.$mpLabelElem.textContent = mpLabel;
   }
@@ -326,9 +329,10 @@ export default class EmulatedPartyInfo extends EventBus {
     const combatant = encounter.encounter.combatantTracker?.combatants[id];
     if (!combatant)
       throw new UnreachableCode();
-    ret.$rootElem.classList.add((combatant.job || '').toLowerCase());
-    this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
-    $name.innerHTML = combatant.name;
+    const firstState = combatant.nextState(0);
+    ret.$rootElem.classList.add((Util.jobEnumToJob(firstState.Job ?? 0) || '').toLowerCase());
+    this.tooltips.push(new Tooltip(ret.$rootElem, 'left', firstState.Name ?? ''));
+    $name.innerHTML = firstState.Name ?? '';
     ret.$rootElem.addEventListener('click', () => {
       this.selectPerspective(id);
     });
@@ -367,7 +371,7 @@ export default class EmulatedPartyInfo extends EventBus {
         name: trigger.triggerHelper.trigger.id,
         icon: this.getTriggerLabelIcon(trigger),
         text: triggerText,
-        classes: type ? [type] : [],
+        classes: type !== undefined ? [type] : [],
         $obj: $triggerDataViewer,
       });
       if (trigger.status.executed)
@@ -464,7 +468,7 @@ export default class EmulatedPartyInfo extends EventBus {
       $icon.innerHTML = `<i class="fa fa-${params.icon}" aria-hidden="true"></i>`;
 
     if (Array.isArray(params.classes))
-      params.classes.forEach((c) => $button.classList.add('triggertype-' + c));
+      params.classes.forEach((c) => $button.classList.add(`triggertype-${c}`));
 
     const $wrapper = querySelectorSafe($ret, '.wrap-collapse-wrapper');
     $button.addEventListener('click', () => {
@@ -472,7 +476,7 @@ export default class EmulatedPartyInfo extends EventBus {
         $wrapper.classList.remove('d-none');
       else
         $wrapper.classList.add('d-none');
-      typeof (params.onclick) === 'function' && params.onclick();
+      typeof params.onclick === 'function' && params.onclick();
     });
     $wrapper.append(params.$obj);
     return $ret;

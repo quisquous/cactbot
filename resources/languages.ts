@@ -75,7 +75,7 @@ export const langToLocale = (lang: Lang): string => {
 
 export const browserLanguagesToLang = (languages: readonly string[]): Lang => {
   const lang = [...navigator.languages, 'en']
-    .map((l) => l.substring(0, 2))
+    .map((l) => l.slice(0, 2))
     // Remap `zh` to `cn` to match cactbot languages
     .map((l) => l === 'zh' ? 'cn' : l)
     .filter((l) => languages.includes(l))[0];

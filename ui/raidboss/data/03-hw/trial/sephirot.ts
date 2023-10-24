@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -8,31 +7,32 @@ import { TriggerSet } from '../../../../../types/trigger';
 export type Data = RaidbossData;
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'ContainmentBayS1T7',
   zoneId: ZoneId.ContainmentBayS1T7,
   triggers: [
     {
       id: 'Sephirot Fiendish Rage',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0048' }),
+      netRegex: { id: '0048' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sephirot Ratzon',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0046' }),
+      netRegex: { id: '0046' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Sephirot Ain',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16DD', source: 'Sephirot', capture: false }),
+      netRegex: { id: '16DD', source: 'Sephirot', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'Sephirot Earth Shaker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0028' }),
+      netRegex: { id: '0028' },
       condition: Conditions.targetIsYou(),
       response: Responses.earthshaker(),
     },
@@ -41,13 +41,13 @@ const triggerSet: TriggerSet<Data> = {
       // reliably determine the position of the knockback.
       id: 'Sephirot Pillar of Mercy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16EA', source: 'Sephirot', capture: false }),
+      netRegex: { id: '16EA', source: 'Sephirot', capture: false },
       response: Responses.knockback(),
     },
     {
       id: 'Sephirot Storm of Words Revelation',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16EC', source: 'Storm of Words', capture: false }),
+      netRegex: { id: '16EC', source: 'Storm of Words', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -62,8 +62,45 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Sephirot Malkuth',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '16EB', source: 'Sephirot', capture: false }),
+      netRegex: { id: '16EB', source: 'Sephirot', capture: false },
       response: Responses.knockback(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Sephirot': 'Sephirot',
+        'Storm of Words': 'Wörtersturm',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Sephirot': 'Sephirot',
+        'Storm of Words': 'tempête de mots',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Sephirot': 'セフィロト',
+        'Storm of Words': 'ストーム・オブ・ワード',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Sephirot': '萨菲洛特',
+        'Storm of Words': '言语风暴',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Sephirot': '세피로트',
+        'Storm of Words': '신언의 폭풍',
+      },
     },
   ],
 };

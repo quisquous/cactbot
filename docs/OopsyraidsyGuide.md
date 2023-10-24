@@ -10,6 +10,9 @@ import ZoneId from '../path/to/resources/zone_id';
 
 export default {
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  zoneLabel: {
+    en: 'The Unending Coil of Bahamut (Ultimate)',
+  },
   damageWarn: {
     'UCU Lunar Dynamo': '26BC',
     // ...
@@ -59,6 +62,10 @@ Prefer using this over zoneRegex.
 A trigger set must have one of zoneId or zoneRegex to specify the zone
 (but not both).
 
+**zoneLabel**
+An optional name to use for this trigger set in the configuration interface.
+Overrides the zone name from [zone_info.ts](../resources/zone_info.ts).
+
 **zoneRegex**:
 A regular expression that matches against the zone name (coming from ACT).
 If the regular expression matches, then the triggers will apply to that zone.
@@ -77,11 +84,11 @@ Just like **damageWarn** and **damageFail**, but triggered when hit by an effect
 
 **shareWarn** and **shareFail**:
 Just like **damageWarn** and **damageFail**,
-triggered when multiple players share damage which should only be on one player.
+triggered when multiple players share damage which should only be on one player (e.g. spread AoE).
 
 **soloWarn** and **soloFail**:
 The opposite of **shareWarn** and **shareFail**
-in that they are trigger when something should be taken alone but hits multiple people.
+in that they are triggered when something that should be shared hits only one person (e.g. stack markers).
 
 **triggers**:
 An array of triggers in the trigger set.

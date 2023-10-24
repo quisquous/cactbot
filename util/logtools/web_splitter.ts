@@ -13,15 +13,23 @@ import './splitter.css';
 const pageText = {
   titleText: {
     en: 'Log Splitter and Anonymizer',
+    de: 'Log Aufteiler und Anonymisierer',
+    cn: '日志分割与匿名器',
   },
   fileDropText: {
     en: 'Drop Network log file here',
+    de: 'Network log Datei hier ablegen',
+    cn: '将网络日志文件拖放到此处',
   },
   anonInput: {
     en: 'Anonymize Log',
+    de: 'Log Anonymisieren',
+    cn: '对日志进行匿名化处理',
   },
   exportInput: {
     en: 'Export',
+    de: 'Export',
+    cn: '导出',
   },
 } as const;
 
@@ -59,24 +67,38 @@ const buildTable = (state: PageState): void => {
   const headers = {
     include: {
       en: 'Include',
+      de: 'Einschließen',
+      cn: '包括',
     },
     startDate: {
       en: 'Date',
+      de: 'Datum',
+      cn: '日期',
     },
     startTime: {
       en: 'Time',
+      de: 'Zeit',
+      cn: '时间',
     },
     duration: {
       en: 'Duration',
+      de: 'Dauer',
+      cn: '持续时间',
     },
     zone: {
       en: 'Zone',
+      de: 'Zone',
+      cn: '区域',
     },
     encounter: {
       en: 'Encounter',
+      de: 'Begegnung',
+      cn: '战斗',
     },
     end: {
       en: 'End',
+      de: 'Ende',
+      cn: '结束方式',
     },
   } as const;
 
@@ -107,14 +129,14 @@ const buildTable = (state: PageState): void => {
     const fightDuration = TLFuncs.durationFromDates(fight.startTime, fight.endTime) ??
       '???';
     let fightName = '???';
-    if (fight.sealName)
+    if (fight.sealName !== undefined)
       fightName = fight.sealName;
-    else if (fight.fightName)
+    else if (fight.fightName !== undefined)
       fightName = fight.fightName;
 
-    if (!seenSeal && fight.sealName)
+    if (!seenSeal && fight.sealName !== undefined)
       seenSeal = true;
-    else if (seenSeal && !fight.sealName)
+    else if (seenSeal && fight.sealName === undefined)
       seenSeal = false;
 
     const row: Record<keyof Omit<typeof headers, 'include'>, string> = {
@@ -159,12 +181,30 @@ class PageState {
     public table: HTMLElement,
     public exportButton: HTMLButtonElement,
     public anonInput: HTMLInputElement,
+    public errorDiv: HTMLElement,
   ) {}
 }
 
 class WebNotifier implements Notifier {
-  public warn(_reason: string, _splitLine?: string[]): void {/* noop */}
-  public error(_reason: string, _splitLine?: string[]): void {/* noop */}
+  constructor(private errorDiv: HTMLElement) {}
+
+  private errorFunc(severity: 'warn' | 'error', reason: string, splitLine?: string[]) {
+    const splitStr = splitLine === undefined ? '' : `:${splitLine.join('|')}`;
+    const outputStr = `${severity}: ${reason}${splitStr}`;
+
+    const div = document.createElement('div');
+    div.innerHTML = outputStr;
+    div.classList.add(severity);
+    this.errorDiv.appendChild(div);
+  }
+
+  public warn(reason: string, splitLine?: string[]): void {
+    this.errorFunc('warn', reason, splitLine);
+  }
+
+  public error(reason: string, splitLine?: string[]): void {
+    this.errorFunc('error', reason, splitLine);
+  }
 }
 
 const doExport = (state: PageState): void => {
@@ -181,7 +221,7 @@ const doExport = (state: PageState): void => {
 
   let firstTime = true;
   const output: string[] = [];
-  const notifier = new WebNotifier();
+  const notifier = new WebNotifier(state.errorDiv);
   const anonymizer = new Anonymizer();
 
   const anonymizeLogs = state.anonInput.checked;
@@ -211,6 +251,12 @@ const doExport = (state: PageState): void => {
     }
   }
 
+  if (anonymizeLogs) {
+    anonymizer.validateIds(notifier);
+    for (const line of output)
+      anonymizer.validateLine(line, notifier);
+  }
+
   // TODO: could be smarter here if they all had the same zone or something.
   let filename = 'split.log';
   if (selected.length === 1) {
@@ -238,6 +284,7 @@ const onLoaded = () => {
   const exportOptions = getElement('export-options');
   const exportButton = getElement('export') as HTMLButtonElement;
   const anonCheckbox = getElement('anon') as HTMLInputElement;
+  const errorDiv = getElement('errors');
 
   const fileDropText: LocaleText = pageText.fileDropText;
   fileDrop.innerText = fileDropText[lang] ?? fileDropText['en'];
@@ -251,6 +298,7 @@ const onLoaded = () => {
     table,
     exportButton,
     anonCheckbox,
+    errorDiv,
   );
   fileDrop.addEventListener('drop', (e) => {
     exportOptions.classList.remove('hide');

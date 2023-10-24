@@ -1,9 +1,10 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
+import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
@@ -16,6 +17,14 @@ export interface Data extends RaidbossData {
   aetheronecrosisDuration: number;
   predationCount: number;
   predationDebuff?: string;
+  polyInstance: number;
+  tileTethers: NetMatches['Tether'][];
+  mapEffects: NetMatches['MapEffect'][];
+  combatantData: PluginCombatantState[];
+  poly5FrontBackTile?: string;
+  poly5SideTile?: string;
+  darkSpheres: NetMatches['StartsUsing'][];
+  poly6SafeSide?: string;
 }
 
 // Due to changes introduced in patch 5.2, overhead markers now have a random offset
@@ -34,7 +43,11 @@ const getHeadmarkerId = (data: Data, matches: NetMatches['HeadMarker']) => {
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
 
+const crossTileFlags = '00020001'; // mapEffect flags for '+' tile effect
+const diagonalTileFlags = '00400020'; // mapEffect flags for 'x' tile effect
+
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheSixthCircleSavage',
   zoneId: ZoneId.AbyssosTheSixthCircleSavage,
   timelineFile: 'p6s.txt',
   initData: () => {
@@ -42,13 +55,18 @@ const triggerSet: TriggerSet<Data> = {
       pathogenicCellsCounter: 0,
       aetheronecrosisDuration: 0,
       predationCount: 0,
+      polyInstance: 0,
+      tileTethers: [],
+      mapEffects: [],
+      combatantData: [],
+      darkSpheres: [],
     };
   },
   triggers: [
     {
       id: 'P6S Headmarker Tracker',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data) => data.decOffset === undefined,
       // Unconditionally set the first headmarker here so that future triggers are conditional.
       run: (data, matches) => {
@@ -58,13 +76,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Hemitheos\'s Dark IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7860', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7860', source: 'Hegemone', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P6S Chelic Synergy',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '788A', source: 'Hegemone' }),
+      netRegex: { id: '788A', source: 'Hegemone' },
       response: Responses.sharedTankBuster(),
     },
     {
@@ -72,16 +90,494 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       // There are 7889 individual starts using casts on the two tanks as well,
       // if this trigger wanted to be more complicated.
-      netRegex: NetRegexes.startsUsing({ id: '7887', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7887', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Split Tankbusters',
-          de: 'Geteilter Tankbuster',
+          de: 'getrennte Tankbuster',
           fr: 'Séparez les Tankbusters',
           ja: '2人同時タンク強攻撃',
-          cn: '坦克分摊死刑',
+          cn: '分散死刑',
           ko: '따로맞는 탱버',
+        },
+      },
+    },
+    {
+      id: 'P6S Polyominoid Tether Collect',
+      type: 'Tether',
+      netRegex: { id: '00CF' },
+      run: (data, matches) => {
+        data.tileTethers.push(matches);
+      },
+    },
+    {
+      id: 'P6S Polyominoid MapEffect Collect',
+      type: 'MapEffect',
+      netRegex: { flags: [crossTileFlags, diagonalTileFlags] },
+      run: (data, matches) => {
+        // location '00' won't be used for determining mechanic resolution
+        if (matches.location !== '00')
+          data.mapEffects.push(matches);
+      },
+    },
+    {
+      // Use a single trigger for Aetherial Polyominod (7866) and
+      // Polyominoid Sigma (7868).  Both use MapEffects, but only
+      // 7868 uses tethers to hidden actors to "swap" tiles.
+      id: 'P6S Polyominoid All',
+      type: 'Ability',
+      netRegex: { id: '786[68]', source: 'Hegemone', capture: false },
+      delaySeconds: 2, // relevant mapeffect and trigger lines are consistently sent ~1.83s after the cast
+      durationSeconds: 10, // leave the output up while overlapping mechanics resolve
+      promise: async (data) => {
+        data.combatantData = [];
+        const ids = [];
+        if (data.tileTethers.length !== 0) {
+          for (const tether of data.tileTethers)
+            ids.push(parseInt(tether.sourceId, 16), parseInt(tether.targetId, 16));
+          data.combatantData = (await callOverlayHandler({
+            call: 'getCombatants',
+            ids: ids,
+          })).combatants;
+        }
+      },
+      infoText: (data, _matches, output) => {
+        data.polyInstance++;
+
+        if (data.tileTethers.length > 0 && data.combatantData.length === 0)
+          return;
+        if (data.mapEffects.length < 2)
+          return;
+        if (data.polyInstance === 4) // lots of safe spots, doesn't need a trigger response
+          return;
+
+        const safe: { [tile: string]: boolean } = {
+          // This ordering matters for most Poly instances.
+          insideNW: true,
+          insideNE: true,
+          insideSW: true,
+          insideSE: true,
+          cornerNW: true,
+          cornerNE: true,
+          cornerSW: true,
+          cornerSE: true,
+          outsideNNW: true,
+          outsideNNE: true,
+          outsideSSW: true,
+          outsideSSE: true,
+          outsideWNW: true,
+          outsideENE: true,
+          outsideWSW: true,
+          outsideESE: true,
+        };
+
+        // Tile index mapped to arrays containing the MapEffect location code
+        // for that tile and the corresponding tile name in safe[].
+        const unsafeMap: { [idx: number]: [location: string, tile: string] } = {
+          0: ['01', 'cornerNW'],
+          1: ['02', 'outsideNNW'],
+          2: ['03', 'outsideNNE'],
+          3: ['04', 'cornerNE'],
+
+          10: ['0F', 'outsideWNW'],
+          11: ['05', 'insideNW'],
+          12: ['06', 'insideNE'],
+          13: ['10', 'outsideENE'],
+
+          20: ['0D', 'outsideWSW'],
+          21: ['07', 'insideSW'],
+          22: ['08', 'insideSE'],
+          23: ['0E', 'outsideESE'],
+
+          30: ['09', 'cornerSW'],
+          31: ['0A', 'outsideSSW'],
+          32: ['0B', 'outsideSSE'],
+          33: ['0C', 'cornerSE'],
+        };
+
+        const mapLookup: { [location: string]: number } = Object.fromEntries(
+          Object.entries(unsafeMap).map(([tile, [location]]) => [location, parseInt(tile, 10)]),
+        );
+
+        // Polys 2, 3, 5, and 6 involve tethers. We only care about which
+        // tiles have tethers, not which tiles are tethered together.
+        // This is because there are only two types of tiles, and swaps
+        // are only done between tiles of opposite types.
+        const tetheredTiles = [];
+        if (data.tileTethers.length >= 1) {
+          for (const tile of data.combatantData) {
+            // x, y = 85, 95, 105, 115 (with a little variance)
+            // map to ([0, 1, 2, 3] and [0, 10, 20, 30]
+            const x = Math.floor((tile.PosX - 83) / 10); // add in a -2/+8 buffer in case of goofy pos data
+            const y = Math.floor((tile.PosY - 83) / 10) * 10; // add in a -2/+8 buffer in case of goofy pos data
+            const idx = x + y;
+            if (unsafeMap[idx] === undefined)
+              return;
+            tetheredTiles.push(idx);
+          }
+        }
+
+        // modifiers used to calculate unsafeMap indexes to be removed for each type of tile
+        const relCrossTiles = new Int8Array([-30, -20, -10, -3, -2, -1, 1, 2, 3, 10, 20, 30]);
+        const relDiagonalTiles = new Int8Array([
+          -33,
+          -27,
+          -22,
+          -18,
+          -11,
+          -9,
+          9,
+          11,
+          18,
+          22,
+          27,
+          33,
+        ]);
+
+        for (const effect of data.mapEffects) {
+          if (mapLookup[effect.location] === undefined)
+            return;
+
+          const startTile: number = mapLookup[effect.location]!;
+          const isTethered: boolean = tetheredTiles.includes(startTile);
+
+          if (unsafeMap[startTile] !== undefined)
+            delete safe[unsafeMap[startTile]![1]]; // delete tile where effect appears, as it will always be unsafe
+          if (
+            effect.flags === crossTileFlags && !isTethered ||
+            effect.flags === diagonalTileFlags && isTethered
+          ) {
+            relCrossTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if (unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else if (
+            effect.flags === diagonalTileFlags && !isTethered ||
+            effect.flags === crossTileFlags && isTethered
+          ) {
+            relDiagonalTiles.forEach((tileMod) => {
+              const deleteTile: number = startTile + tileMod;
+              if (unsafeMap[deleteTile] !== undefined)
+                delete safe[unsafeMap[deleteTile]![1]];
+            });
+          } else {
+            return;
+          }
+        }
+
+        const safeTiles: string[] = Object.keys(safe);
+        const [safe0, safe1] = safeTiles;
+
+        if (safe0 === undefined)
+          return;
+
+        const outsideFrontBackTiles = ['outsideNNW', 'outsideNNE', 'outsideSSW', 'outsideSSE'];
+        const outsideSideTiles = ['outsideWNW', 'outsideENE', 'outsideWSW', 'outsideESE'];
+        // establishes pairs of east/west tiles that will be safe during Poly 6
+        const poly6Pairs: { [anchor: keyof typeof safe]: keyof typeof safe } = {
+          insideNW: 'outsideSSW',
+          insideNE: 'outsideSSE',
+          insideSW: 'outsideNNW',
+          insideSE: 'outsideNNE',
+          cornerNW: 'outsideWSW',
+          cornerNE: 'outsideESE',
+          cornerSE: 'outsideENE',
+          cornerSW: 'outsideWNW',
+        };
+
+        switch (data.polyInstance) {
+          case 1: // four safe spots: two inside (east or west pair) and two outside (opposite east or west pair)
+            if (safeTiles.length !== 4)
+              return;
+            if (safe0 === 'insideNW')
+              return output.combo!({ dir1: output.insideWest!(), dir2: output.outsideEast!() });
+            else if (safe0 === 'insideNE')
+              return output.combo!({ dir1: output.insideEast!(), dir2: output.outsideWest!() });
+            return;
+          case 2: // one inside safe spot
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+          case 3: // two inside safe spots
+            if (
+              safeTiles.length !== 2 || safe1 === undefined || output[safe0] === undefined ||
+              output[safe1] === undefined
+            )
+              return;
+            return output.combo!({ dir1: output[safe0]!(), dir2: output[safe1]!() });
+          case 4: // here for completeness, but should never be run
+            return;
+          case 5: // two outside safe spots (reduced to one by Chorus Ixou)
+            if (safeTiles.length !== 2 || safe1 === undefined)
+              return;
+            if (outsideFrontBackTiles.includes(safe0) && outsideSideTiles.includes(safe1)) { // should be always true because of ordering
+              data.poly5FrontBackTile = output[safe0]!();
+              data.poly5SideTile = output[safe1]!();
+              return; // success - output will be handled by Chorus Ixou trigger
+            }
+            return;
+          case 6: // Cachexia 2 - four safe spots that form corners of a 3x3 tile sub-grid
+            if (safeTiles.length !== 4 || safe1 === undefined || data.predationDebuff === undefined)
+              return;
+            // data.predationDebuff should be set by P6S Predation Debuff Collect
+            // - CF7 Glossal Resistance Down (Snake Icon) (Left/west safe)
+            // - CF8 Chelic Resistance Down (Wing Icon) (right/east safe)
+            // for pol6, safe0 should always be an inside tile, and safe1 should always be a corner tile
+            if (data.predationDebuff === 'CF7') {
+              data.poly6SafeSide = output.left!();
+              if (safe0 === 'insideNW' || safe0 === 'insideSW') // inside + wall tile safe
+                return output.poly6!({
+                  dir1: output.left!(),
+                  dir2: output[safe0]!(),
+                  dir3: output[poly6Pairs[safe0]!]!(),
+                });
+              else if (safe1 === 'cornerNW' || safe1 === 'cornerSW')
+                return output.poly6!({
+                  dir1: output.left!(),
+                  dir2: output[safe1]!(),
+                  dir3: output[poly6Pairs[safe1]!]!(),
+                });
+              return;
+            } else if (data.predationDebuff === 'CF8') {
+              data.poly6SafeSide = output.right!();
+              if (safe0 === 'insideNE' || safe0 === 'insideSE') // inside + wall tile safe
+                return output.poly6!({
+                  dir1: output.right!(),
+                  dir2: output[safe0]!(),
+                  dir3: output[poly6Pairs[safe0]!]!(),
+                });
+              else if (safe1 === 'cornerNE' || safe1 === 'cornerSE')
+                return output.poly6!({
+                  dir1: output.right!(),
+                  dir2: output[safe1]!(),
+                  dir3: output[poly6Pairs[safe1]!]!(),
+                });
+              return;
+            }
+            return;
+          case 7: // one inside safe spot
+            if (safeTiles.length !== 1 || output[safe0] === undefined)
+              return;
+            return output.single!({ dir1: output[safe0]!() });
+          case 8: // four safe spots: two inside (east or west pair) and two outside (opposite east or west pair)
+            if (safeTiles.length !== 4)
+              return;
+            if (safe0 === 'insideNW')
+              return output.combo!({ dir1: output.insideWest!(), dir2: output.outsideEast!() });
+            else if (safe0 === 'insideNE')
+              return output.combo!({ dir1: output.insideEast!(), dir2: output.outsideWest!() });
+            return;
+          default:
+            return;
+        }
+      },
+      run: (data) => {
+        data.tileTethers = [];
+        data.mapEffects = [];
+        data.combatantData = [];
+      },
+      outputStrings: {
+        combo: {
+          en: '${dir1} / ${dir2}',
+          de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
+          ja: '${dir1} / ${dir2}',
+          cn: '${dir1} / ${dir2}',
+          ko: '${dir1} / ${dir2}',
+        },
+        single: {
+          en: '${dir1}',
+          de: '${dir1}',
+          fr: '${dir1}',
+          ja: '${dir1}',
+          cn: '${dir1}',
+          ko: '${dir1}',
+        },
+        poly6: {
+          en: '${dir1}: ${dir2} / ${dir3}',
+          de: '${dir1}: ${dir2} / ${dir3}',
+          fr: '${dir1}: ${dir2} / ${dir3}',
+          ja: '${dir1}: ${dir2} / ${dir3}',
+          cn: '${dir1}: ${dir2} / ${dir3}',
+          ko: '${dir1}: ${dir2} / ${dir3}',
+        },
+        left: {
+          en: 'Left (Wing Side)',
+          de: 'Links (Flügel-Seite)',
+          fr: 'Gauche (Côté aile)',
+          ja: '左 (翼)',
+          cn: '左 (翅膀侧)',
+          ko: '왼쪽 (날개쪽)',
+        },
+        right: {
+          en: 'Right (Snake Side)',
+          de: 'Rechts (Schlangen-Seite)',
+          fr: 'Droite (Côté serpent)',
+          ja: '右 (蛇)',
+          cn: '右 (蛇侧)',
+          ko: '오른쪽 (뱀쪽)',
+        },
+        insideWest: {
+          en: 'Inside West',
+          de: 'Westen innen',
+          fr: 'Intérieur Ouest',
+          ja: '内側 西',
+          cn: '内侧 左 (西)',
+          ko: '안 서쪽',
+        },
+        insideEast: {
+          en: 'Inside East',
+          de: 'Osten innen',
+          fr: 'Intérieur Est',
+          ja: '内側 東',
+          cn: '内侧 右 (东)',
+          ko: '안 동쪽',
+        },
+        outsideWest: {
+          en: 'Outside West',
+          de: 'Westen außen',
+          fr: 'Extérieur Ouest',
+          ja: '外側 西',
+          cn: '外侧 左 (西)',
+          ko: '바깥 서쪽',
+        },
+        outsideEast: {
+          en: 'Outside East',
+          de: 'Osten außen',
+          fr: 'Extérieur Est',
+          ja: '外側 東',
+          cn: '外侧 右 (东)',
+          ko: '바깥 동쪽',
+        },
+        insideNW: {
+          en: 'Inside NW',
+          de: 'NW innen',
+          fr: 'Intérieur NO',
+          ja: '内側 北西',
+          cn: '内侧 左上 (西北)',
+          ko: '안 북서쪽',
+        },
+        insideNE: {
+          en: 'Inside NE',
+          de: 'NO innen',
+          fr: 'Intérieur NE',
+          ja: '内側 北東',
+          cn: '内侧 右上 (东北)',
+          ko: '안 북동쪽',
+        },
+        insideSE: {
+          en: 'Inside SE',
+          de: 'SO innen',
+          fr: 'Intérieur SE',
+          ja: '内側 南東',
+          cn: '内侧 右下 (东南)',
+          ko: '안 남동쪽',
+        },
+        insideSW: {
+          en: 'Inside SW',
+          de: 'SW innen',
+          fr: 'Intérieur SO',
+          ja: '内側 南西',
+          cn: '内侧 左下 (西南)',
+          ko: '안 남서쪽',
+        },
+        outsideNNW: {
+          en: 'Outside NNW',
+          de: 'NNW außen',
+          fr: 'Extérieur NNO',
+          ja: '1列 西の内側',
+          cn: '外侧 上偏左 (北偏西)',
+          ko: '바깥 북쪽 왼칸',
+        },
+        outsideNNE: {
+          en: 'Outside NNE',
+          de: 'NNO außen',
+          fr: 'Extérieur NNE',
+          ja: '1列 東の内側',
+          cn: '外侧 上偏右 (北偏东)',
+          ko: '바깥 북쪽 오른칸',
+        },
+        outsideSSW: {
+          en: 'Outside SSW',
+          de: 'SSW außen',
+          fr: 'Extérieur SSO',
+          ja: '4列 西の内側',
+          cn: '外侧 下偏左 (南偏西)',
+          ko: '바깥 남쪽 왼칸',
+        },
+        outsideSSE: {
+          en: 'Outside SSE',
+          de: 'SSO außen',
+          fr: 'Extérieur SSE',
+          ja: '4列 東の内側',
+          cn: '外侧 下偏右 (南偏东)',
+          ko: '바깥 남쪽 오른칸',
+        },
+        outsideWNW: {
+          en: 'Outside WNW',
+          de: 'WNW außen',
+          fr: 'Extérieur ONO',
+          ja: '2列 西の外側',
+          cn: '外侧 左偏上 (西偏北)',
+          ko: '바깥 서쪽 위칸',
+        },
+        outsideENE: {
+          en: 'Outside ENE',
+          de: 'ONO außen',
+          fr: 'Extérieur ENE',
+          ja: '2列 東の外側',
+          cn: '外侧 右偏上 (东偏北)',
+          ko: '바깥 동쪽 위칸',
+        },
+        outsideWSW: {
+          en: 'Outside WSW',
+          de: 'WSW außen',
+          fr: 'Extérieur OSO',
+          ja: '3列 西の外側',
+          cn: '外侧 左偏下 (西偏南)',
+          ko: '바깥 서쪽 아래칸',
+        },
+        outsideESE: {
+          en: 'Outside ESE',
+          de: 'OSO außen',
+          fr: 'Extérieur ESE',
+          ja: '3列 東の外側',
+          cn: '外侧 右偏下 (东偏南)',
+          ko: '바깥 동쪽 아래칸',
+        },
+        cornerNW: {
+          en: 'NW Corner',
+          de: 'NW Ecke',
+          fr: 'Coin NO',
+          ja: '北西 隅',
+          cn: '左上 (西北) 角',
+          ko: '북서쪽 구석',
+        },
+        cornerNE: {
+          en: 'NE Corner',
+          de: 'NO Ecke',
+          fr: 'Coin NE',
+          ja: '北東 隅',
+          cn: '右上 (东北) 角',
+          ko: '북동쪽 구석',
+        },
+        cornerSE: {
+          en: 'SE Corner',
+          de: 'SO Ecke',
+          fr: 'Coin SE',
+          ja: '南東 隅',
+          cn: '右下 (东南) 角',
+          ko: '남동쪽 구석',
+        },
+        cornerSW: {
+          en: 'SW Corner',
+          de: 'SW Ecke',
+          fr: 'Coin SO',
+          ja: '南西 隅',
+          cn: '左下 (西南) 角',
+          ko: '남서쪽 구석',
         },
       },
     },
@@ -89,7 +585,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'P6S Exocleaver Healer Groups',
       // Unholy Darkness stack headmarkers are same time as first Exocleaver
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
       condition: (data) => !data.secondExocleavers,
       alertText: (_data, _matches, output) => output.healerGroups!(),
       run: (data) => data.secondExocleavers = true,
@@ -100,29 +596,73 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Exocleaver Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['7869', '786B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
       // Supress until after second Exocleaver in the set
       suppressSeconds: 4,
       response: Responses.moveAway(),
     },
     {
+      id: 'P6S Polyominoid Healer Groups',
+      type: 'StartsUsing',
+      netRegex: { id: '7892', source: 'Hegemone', capture: false },
+      // Should not be fired during Poly 1, since the Unholy Darkness headmarkers there
+      // are handled by P6S Exocleaver Healer Groups.
+      condition: (data) => data.polyInstance === 3,
+      suppressSeconds: 1,
+      alertText: (_data, _matches, output) => output.healerGroups!(),
+      outputStrings: {
+        healerGroups: Outputs.healerGroups,
+      },
+    },
+    {
       id: 'P6S Choros Ixou Front Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7883', source: 'Hegemone', capture: false }),
-      response: Responses.goFrontBack(),
+      netRegex: { id: '7883', source: 'Hegemone', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5FrontBackTile !== undefined)
+          return output.goFrontBackPoly5!({ tile: data.poly5FrontBackTile });
+        return output.goFrontBack!();
+      },
+      outputStrings: {
+        goFrontBack: Outputs.goFrontBack,
+        goFrontBackPoly5: {
+          en: 'Go Front/Back (${tile})',
+          de: 'Gehe nach Vorne/Hinten (${tile})',
+          fr: 'Allez Devant/Derrière (${tile})',
+          ja: '縦へ (${tile})',
+          cn: '去前/后 (${tile})',
+          ko: '앞/뒤로 (${tile})',
+        },
+      },
     },
     {
       id: 'P6S Choros Ixou Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7881', source: 'Hegemone', capture: false }),
-      response: Responses.goSides(),
+      netRegex: { id: '7881', source: 'Hegemone', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data.polyInstance === 5 && data.poly5SideTile !== undefined)
+          return output.goSidesPoly5!({ tile: data.poly5SideTile });
+        return output.goSides!();
+      },
+      outputStrings: {
+        goSides: Outputs.sides,
+        goSidesPoly5: {
+          en: 'Sides (${tile})',
+          de: 'Seiten (${tile})',
+          fr: 'Côté (${tile})',
+          ja: '横へ (${tile})',
+          cn: '去两侧 (${tile})',
+          ko: '옆으로 (${tile})',
+        },
+      },
     },
     {
       id: 'P6S Pathogenic Cells Numbers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: (data, matches) => {
-        return data.me === matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
+        return data.me === matches.target &&
+          (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: (data, matches) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -161,7 +701,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '#${num}',
           de: '#${num}',
           fr: '#${num}',
-          ja: '${num}番',
+          ja: '自分: ${num}番',
           cn: '#${num}',
           ko: '${num}번째',
         },
@@ -170,8 +710,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Pathogenic Cells Counter',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '7865', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7865', source: 'Hegemone', capture: false },
       preRun: (data, _matches) => data.pathogenicCellsCounter++,
+      durationSeconds: 1.5,
       suppressSeconds: 1,
       sound: '',
       infoText: (data, _matches, output) => output.text!({ num: data.pathogenicCellsCounter }),
@@ -181,7 +722,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${num}',
           de: '${num}',
           fr: '${num}',
-          ja: '${num}',
+          ja: '${num}番',
           cn: '${num}',
           ko: '${num}',
         },
@@ -193,7 +734,7 @@ const triggerSet: TriggerSet<Data> = {
       // Therefore, there is no need to keep track of tethers as well.
       id: 'P6S Exchange of Agonies Markers',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({}),
+      netRegex: {},
       condition: Conditions.targetIsYou(),
       infoText: (data, matches, output) => {
         const correctedMatch = getHeadmarkerId(data, matches);
@@ -235,7 +776,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Dome Bait',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '788B', source: 'Hegemone', capture: false }),
+      netRegex: { id: '788B', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -251,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Dark Dome Move',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '788B', source: 'Hegemone', capture: false }),
+      netRegex: { id: '788B', source: 'Hegemone', capture: false },
       response: Responses.moveAway(),
     },
     {
@@ -259,7 +800,7 @@ const triggerSet: TriggerSet<Data> = {
       // CF7 Glossal Resistance Down (Snake Icon)
       // CF8 Chelic Resistance Down (Wing Icon)
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['CF7', 'CF8'] }),
+      netRegex: { effectId: ['CF7', 'CF8'] },
       condition: Conditions.targetIsYou(),
       run: (data, matches) => data.predationDebuff = matches.effectId,
     },
@@ -268,7 +809,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Aetheronecrosis (CF9)
       // These come out as 20s, 16s, 12s, or 8s
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF9' }),
+      netRegex: { effectId: 'CF9' },
       condition: Conditions.targetIsYou(),
       preRun: (data, matches) => data.aetheronecrosisDuration = parseFloat(matches.duration),
       delaySeconds: 0.1,
@@ -303,6 +844,7 @@ const triggerSet: TriggerSet<Data> = {
           de: '${dir}, ${bait}',
           fr: '${dir}, ${bait}',
           ja: '${dir}, ${bait}',
+          cn: '${dir}, ${bait}',
           ko: '${dir}, ${bait}',
         },
         left: {
@@ -310,6 +852,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
+          cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -317,6 +860,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
+          cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
         },
         firstBait: {
@@ -324,6 +868,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Köder als 1. (20s)',
           fr: 'Dépose en 1er (20s)',
           ja: '1番目 (20秒)',
+          cn: '1组引导 (20秒)',
           ko: '유도 1번 (20초)',
         },
         secondBait: {
@@ -331,6 +876,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Köder als 2. (8s)',
           fr: 'Dépose en 2ème (8s)',
           ja: '2番目 (8秒)',
+          cn: '2组引导 (8秒)',
           ko: '유도 2번 (8초)',
         },
         thirdBait: {
@@ -338,6 +884,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Köder als 3. (12s)',
           fr: 'Dépose en 3ème (12s)',
           ja: '3番目 (12秒)',
+          cn: '3组引导 (12秒)',
           ko: '유도 3번 (12초)',
         },
         fourthBait: {
@@ -345,6 +892,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Köder als 4. (16s)',
           fr: 'Dépose en 4ème (16s)',
           ja: '4番目 (16秒)',
+          cn: '4组引导 (16秒)',
           ko: '유도 4번 (16초)',
         },
       },
@@ -354,7 +902,7 @@ const triggerSet: TriggerSet<Data> = {
       // Using Dual Predation (7878)
       // Delayed to give roughly same notice interval as other bait reminders
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7878', source: 'Hegemone' }),
+      netRegex: { id: '7878', source: 'Hegemone' },
       condition: (data) => data.aetheronecrosisDuration > 16,
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 4,
       infoText: (_data, _matches, output) => output.inFirstBait!(),
@@ -364,6 +912,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rein (Köder als 1.)',
           fr: 'À l\'intérieur (1er)',
           ja: '内側へ (1番目)',
+          cn: '内侧引导 (第1组)',
           ko: '안으로 (유도 1번)',
         },
       },
@@ -373,10 +922,10 @@ const triggerSet: TriggerSet<Data> = {
       // Using Chelic Predation (787B) and Glossal Predation (787A)
       // Player could get hit at wrong time and still get this trigger
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone', capture: false }),
+      netRegex: { id: ['787A', '787B'], source: 'Hegemone', capture: false },
       durationSeconds: 4,
       suppressSeconds: 1,
-      infoText: (data, _matches, output) => {
+      alertText: (data, _matches, output) => {
         data.predationCount = data.predationCount + 1;
         let countMap;
 
@@ -408,6 +957,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rein (Köder als 2.)',
           fr: 'À l\'intérieur (2ème)',
           ja: '内側へ (2番目)',
+          cn: '内侧引导 (第2组)',
           ko: '안으로 (유도 2번)',
         },
         inThirdBait: {
@@ -415,6 +965,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rein (Köder als 3.)',
           fr: 'À l\'intérieur (3ème)',
           ja: '内側へ (3番目)',
+          cn: '内侧引导 (第3组)',
           ko: '안으로 (유도 3번)',
         },
         inFourthBait: {
@@ -422,6 +973,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rein (Köder als 4.)',
           fr: 'À l\'intérieur (4ème)',
           ja: '内側へ (4番目)',
+          cn: '内侧引导 (第4组)',
           ko: '안으로 (유도 4번)',
         },
       },
@@ -429,8 +981,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Predation Out',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: ['787A', '787B'], source: 'Hegemone' }),
-      condition: Conditions.targetIsYou(),
+      netRegex: { id: ['787A', '787B'], source: 'Hegemone' },
+      // Don't bother calling "out" for the final person.
+      condition: (data, matches) =>
+        data.me === matches.target && data.aetheronecrosisDuration <= 12,
       infoText: (_data, _matches, output) => output.out!(),
       outputStrings: {
         out: Outputs.out,
@@ -439,14 +993,17 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6S Ptera Ixou',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '787C', source: 'Hegemone', capture: false }),
-      infoText: (data, _matches, output) => data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
+      netRegex: { id: '787C', source: 'Hegemone', capture: false },
+      condition: (data) => data.polyInstance !== 6, // do not run during Poly 6/Cachexia 2 - this is handled by P6S Cachexia 2 Dark Spheres
+      infoText: (data, _matches, output) =>
+        data.predationDebuff === 'CF7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Left (Wing Side)',
           de: 'Links (Flügel-Seite)',
           fr: 'Gauche (Côté Aile)',
           ja: '左 (翼)',
+          cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
         },
         right: {
@@ -454,7 +1011,115 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Rechts (Schlangen-Seite)',
           fr: 'Droite (Côté Serpent)',
           ja: '右 (蛇)',
+          cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
+        },
+      },
+    },
+    {
+      id: 'P6S Transmission',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: { effectId: ['CF3', 'D48'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => {
+        // 1st transmission has 11s duration, 2nd has 25s duration
+        // in either case, trigger should fire 3s before debuff expires
+        return parseFloat(matches.duration) - 3;
+      },
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave',
+          de: 'Kegel Aoe nach Vorne',
+          fr: 'Cleave Avant',
+          ja: '口からおくび',
+          cn: '前方扇形',
+          ko: '전방 부채꼴 장판',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave',
+          de: 'Kegel Aoe nach Hinten',
+          fr: 'Cleave Arrière',
+          ja: '尻からおなら',
+          cn: '背后扇形',
+          ko: '후방 부채꼴 장판',
+        },
+      },
+    },
+    {
+      id: 'P6S Transmission Instant',
+      type: 'GainsEffect',
+      // CF3 Chelomorph (Wing icon - cleave behind player)
+      // D48 Glossomorph (Snake icon - cleave in front of player)
+      netRegex: { effectId: ['CF3', 'D48'] },
+      condition: Conditions.targetIsYou(),
+      infoText: (_data, matches, output) => {
+        return matches.effectId === 'D48' ? output.forwardCleave!() : output.backwardCleave!();
+      },
+      outputStrings: {
+        forwardCleave: {
+          en: 'Front Cleave, for later',
+          de: 'Kegel Aoe nach Vorne, für später',
+          fr: 'Cleave Avant, pour après',
+          ja: '後で口からおくび',
+          cn: '稍后 前方扇形',
+          ko: '곧 전방 부채꼴 장판',
+        },
+        backwardCleave: {
+          en: 'Rear Cleave, for later',
+          de: 'Kegel Aoe nach Hinten, für später',
+          fr: 'Cleave Arrière, pour après',
+          ja: '後で尻からおなら',
+          cn: '稍后 背后扇形',
+          ko: '곧 후방 부채꼴 장판',
+        },
+      },
+    },
+    {
+      id: 'P6S Dark Spheres Collect',
+      type: 'StartsUsing',
+      netRegex: { id: '7880', source: 'Hegemone' },
+      run: (data, matches) => data.darkSpheres.push(matches),
+    },
+    {
+      id: 'P6S Cachexia 2 Dark Spheres',
+      type: 'StartsUsing',
+      netRegex: { id: '7880', source: 'Hegemone', capture: false },
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      alertText: (data, _matches, output) => {
+        for (const darkSphere of data.darkSpheres) {
+          if (data.me === darkSphere.target)
+            return data.poly6SafeSide === undefined
+              ? output.spread!()
+              : output.spreadSide!({ dir1: data.poly6SafeSide });
+          return data.poly6SafeSide === undefined
+            ? output.stack!()
+            : output.stackSide!({ dir1: data.poly6SafeSide });
+        }
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+        spreadSide: {
+          en: 'Spread ${dir1}',
+          de: 'Verteilen ${dir1}',
+          fr: 'Dispersion ${dir1}',
+          ja: '散会 ${dir1}',
+          cn: '分散 ${dir1}',
+          ko: '산개 ${dir1}',
+        },
+        stackSide: {
+          en: 'Stack ${dir1}',
+          de: 'Sammeln ${dir1}',
+          fr: 'Package ${dir1}',
+          ja: '頭割り ${dir1}',
+          cn: '分摊 ${dir1}',
+          ko: '쉐어 ${dir1}',
         },
       },
     },
@@ -551,6 +1216,68 @@ const triggerSet: TriggerSet<Data> = {
         'Synergy': 'シュネルギア',
         'Transmission': '寄生',
         'Unholy Darkness': 'ダークホーリー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hegemone': '赫革摩涅',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'Aetherial Exchange': '以太交换',
+        'Aetheric Polyominoid': '以太多连方',
+        'Aetheronecrosis': '魔活细胞',
+        'Cachexia': '恶病质',
+        'Chelic Claw': '爪击',
+        'Choros Ixou': '寄生之舞',
+        'Dark Ashes': '冥灰',
+        'Dark Dome': '暗天顶',
+        'Dark Sphere': '黑暗球',
+        'Dual Predation': '甲软双击',
+        'Exchange Of Agonies': '极苦交换',
+        'Exocleaver': '外劈',
+        'Hemitheos\'s Dark IV': '半神冥暗',
+        'Pathogenic Cells': '软体细胞流',
+        'Polyominoid Sigma': '以太多连方Σ',
+        'Polyominous Dark IV': '多连方冥暗',
+        '(?<!Dual )Predation': '双击',
+        'Ptera Ixou': '寄生之翼',
+        'Reek Havoc': '喷气',
+        'Synergy': '协同',
+        'Transmission': '寄生传染',
+        'Unholy Darkness': '黑暗神圣',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hegemone': '헤게모네',
+        'Parasitos': '기생생물',
+      },
+      'replaceText': {
+        'Aetherial Exchange': '에테르 변환',
+        'Aetheric Polyominoid': '에테르 폴리오미노',
+        'Aetheronecrosis': '마활세포',
+        'Cachexia': '악액질',
+        'Chelic Claw': '갈퀴',
+        'Choros Ixou': '기생체의 춤',
+        'Dark Ashes': '어둠의 잿더미',
+        'Dark Dome': '어둠의 반구',
+        'Dark Sphere': '어둠의 구체',
+        'Dual Predation': '갑각연체 쌍격',
+        'Exchange Of Agonies': '변환 폭격',
+        'Exocleaver': '외측 살육',
+        'Hemitheos\'s Dark IV': '헤미테오스 다쟈',
+        'Pathogenic Cells': '연체세포류',
+        'Polyominoid Sigma': '에테르 폴리오미노Σ',
+        'Polyominous Dark IV': '다쟈 폴리오미노',
+        '(?<!Dual )Predation': '연체/갑각 공격',
+        'Ptera Ixou': '기생체의 날갯짓',
+        'Reek Havoc': '입김',
+        'Synergy': '협동 공격',
+        'Transmission': '기생',
+        'Unholy Darkness': '다크 홀리',
       },
     },
   ],

@@ -1,5 +1,5 @@
-import { LocaleNetRegex } from '../../../resources/translations';
 import NetRegexes from '../../../resources/netregexes';
+import { LocaleNetRegex } from '../../../resources/translations';
 
 const kTestPhaseStart = NetRegexes.gameLog({ line: '.*?cactbot phase start.*?', capture: false });
 const kTestPhaseEnd = NetRegexes.gameLog({ line: '.*?cactbot phase end.*?', capture: false });
@@ -43,7 +43,7 @@ export default class DpsPhaseTracker {
     if (!this.defaultPhase) {
       if (this.areaSealRegex.test(log) || kTestPhaseStart.test(log)) {
         this.defaultPhaseIdx++;
-        this.defaultPhase = 'B' + this.defaultPhaseIdx;
+        this.defaultPhase = `B${this.defaultPhaseIdx}`;
         this.onFightPhaseStart(this.defaultPhase, this.lastData);
         return;
       }
@@ -103,7 +103,7 @@ export default class DpsPhaseTracker {
     // Make sure there's no phase name collision.
     for (let i = 0; i < this.phases.length; ++i) {
       if (this.phases[i].name === name && !this.phases[i].complete) {
-        console.error('Duplicate phase: ' + name);
+        console.error(`Duplicate phase: ${name}`);
         return;
       }
     }
@@ -125,7 +125,7 @@ export default class DpsPhaseTracker {
         return;
       }
     }
-    console.error('Can\'t find phase: ' + name);
+    console.error(`Can't find phase: ${name}`);
   }
 
   clearPhases() {

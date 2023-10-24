@@ -46,7 +46,7 @@ const exclusiveArgs: (keyof SplitLogArgs)[] = [
   'zone_regex',
 ];
 for (const opt of exclusiveArgs) {
-  if (args[opt] !== null)
+  if (args[opt] !== undefined)
     numExclusiveArgs++;
 }
 if (numExclusiveArgs !== 1) {
@@ -87,8 +87,8 @@ const writeFile = (
     const writer = fs.createWriteStream(outputFile, { flags: flags });
     writer.on('error', (err: string) => {
       errorFunc(err);
+      reject(new Error(err));
       process.exit(-1);
-      reject();
     });
 
     const splitter = new Splitter(startLine, endLine, notifier, true);
@@ -111,13 +111,13 @@ const writeFile = (
 
     lineReader.on('close', () => {
       writer.end();
-      console.log('Wrote: ' + outputFile);
+      console.log(`Wrote: ${outputFile}`);
 
       anonymizer.validateIds(notifier);
       for (const line of lines)
         anonymizer.validateLine(line, notifier);
 
-      resolve();
+      writer.close(() => resolve());
     });
   });
 };

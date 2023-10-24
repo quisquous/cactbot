@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -11,6 +10,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'StormsCrown',
   zoneId: ZoneId.StormsCrown,
   timelineFile: 'barbariccia.txt',
   timelineTriggers: [
@@ -31,7 +31,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Void Aero IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75B6', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75B6', source: 'Barbariccia', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -41,19 +41,21 @@ const triggerSet: TriggerSet<Data> = {
       // 9.8 duration: 75BB (out, paired with donut), 75C1 (out, paired with line)
       id: 'Barbariccia Savage Barbery Donut',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75BA', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75BA', source: 'Barbariccia', capture: false },
       response: Responses.getIn(),
     },
     {
       id: 'Barbariccia Savage Barbery Line',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75C0', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75C0', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Out and Away',
           de: 'Raus und Weg',
+          fr: 'Extérieur et loin',
           ja: '外へ',
+          cn: '外侧远离',
           ko: '밖으로',
         },
       },
@@ -61,13 +63,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Hair Raid Wall',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75C2', source: 'Barbariccia', capture: false }),
+      netRegex: { id: '75C2', source: 'Barbariccia', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
           en: 'Wall',
           de: 'Wand',
+          fr: 'Mur',
           ja: '壁へ',
+          cn: '去场边',
           ko: '벽으로',
         },
       },
@@ -75,19 +79,19 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Void Aero III',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75B7', source: 'Barbariccia' }),
-      response: Responses.tankBuster(),
+      netRegex: { id: '75B7', source: 'Barbariccia' },
+      response: Responses.sharedTankBuster(),
     },
     {
       id: 'Barbariccia Deadly Twist',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: { id: '003E' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'Barbariccia Hair Spray',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0175' }),
+      netRegex: { id: '0175' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
@@ -95,21 +99,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Barbariccia Brutal Rush Move',
       type: 'Ability',
       // When the Brutal Rush hits you, the follow-up Brutal Gust has locked in.
-      netRegex: NetRegexes.ability({ id: '75C6', source: 'Barbariccia' }),
+      netRegex: { id: '75C6', source: 'Barbariccia' },
       condition: Conditions.targetIsYou(),
       response: Responses.moveAway(),
     },
     {
       id: 'Barbariccia Boulder',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0160' }),
+      netRegex: { id: '0160' },
       condition: Conditions.targetIsYou(),
       response: Responses.awayFrom(),
     },
     {
       id: 'Barbariccia Boulder Break Tankbuster',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '73CF', source: 'Voidwalker', capture: false }),
+      netRegex: { id: '73CF', source: 'Voidwalker', capture: false },
       suppressSeconds: 1,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -119,7 +123,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Bold Boulder',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75D6', source: 'Barbariccia' }),
+      netRegex: { id: '75D6', source: 'Barbariccia' },
       infoText: (data, matches, output) => {
         data.boldBoulderTarget = matches.target;
         if (data.me === matches.target)
@@ -140,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Trample',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0064' }),
+      netRegex: { id: '0064' },
       condition: (data) => data.boldBoulderTarget !== data.me,
       delaySeconds: 0.5,
       response: Responses.stackMarkerOn(),
@@ -148,14 +152,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Barbariccia Touchdown',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '746D', source: 'Barbariccia' }),
+      netRegex: { id: '746D', source: 'Barbariccia' },
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback(),
     },
     {
       id: 'Barbariccia Impact',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '75D8', source: 'Barbariccia' }),
+      netRegex: { id: '75D8', source: 'Barbariccia' },
       // Could also have used 75D9, full cast time is 5.9s
       delaySeconds: (_data, matches) => parseFloat(matches.castTime) - 5,
       response: Responses.knockback('info'), // probably used on Touchdown
@@ -262,6 +266,74 @@ const triggerSet: TriggerSet<Data> = {
         'Void Aero IV': 'ヴォイド・エアロジャ',
         'Voidstrom': 'ヴォイドストーム',
         'Winding Gale': 'ウィンディングゲイル',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Barbariccia': '巴尔巴莉希娅',
+        'Voidwalker': '虚无行者',
+      },
+      'replaceText': {
+        'Blow Away': '重拳激震',
+        'Bold Boulder': '巨岩砾',
+        'Boulder Break': '砾岩碎',
+        'Brush with Death': '咒发操控',
+        'Brutal Rush': '残暴冲锋',
+        'Catabasis': '落狱煞',
+        'Curling Iron': '咒发武装',
+        'Deadly Twist': '咒发刺',
+        'Dry Blows': '拳震',
+        'Fetters': '拘束',
+        'Hair Raid': '咒发突袭',
+        'Hair Spray': '咒发针',
+        'Impact': '冲击',
+        'Knuckle Drum': '怒拳连震',
+        'Savage Barbery': '野蛮剃',
+        'Secret Breeze': '隐秘之风',
+        'Teasing Tangles': '咒发拘束',
+        'Tornado Chain': '龙卷连风',
+        'Touchdown': '空降',
+        'Trample': '踩踏',
+        'Void Aero(?! )': '虚空疾风',
+        'Void Aero III': '虚空暴风',
+        'Void Aero IV': '虚空飙风',
+        'Voidstrom': '虚无风暴',
+        'Winding Gale': '追命狂风',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Barbariccia': '바르바리차',
+        'Voidwalker': '보이드워커',
+      },
+      'replaceText': {
+        'Blow Away': '융기격',
+        'Bold Boulder': '큰 바윗덩이',
+        'Boulder Break': '무거운 바윗덩이',
+        'Brush with Death': '머리털 조작',
+        'Brutal Rush': '사나운 돌격',
+        'Catabasis': '카타바시스',
+        'Curling Iron': '머리털 갑옷',
+        'Deadly Twist': '머리털 송곳',
+        'Dry Blows': '지진격',
+        'Fetters': '구속',
+        'Hair Raid': '머리칼 급습',
+        'Hair Spray': '머리털 바늘',
+        'Impact': '충격',
+        'Knuckle Drum': '주먹 연타',
+        'Savage Barbery': '난폭한 이발',
+        'Secret Breeze': '은밀한 바람',
+        'Teasing Tangles': '머리털 구속',
+        'Tornado Chain': '연속 회오리',
+        'Touchdown': '착지',
+        'Trample': '짓밟기',
+        'Void Aero(?! )': '보이드 에어로',
+        'Void Aero III': '보이드 에어로가',
+        'Void Aero IV': '보이드 에어로쟈',
+        'Voidstrom': '보이드의 폭풍',
+        'Winding Gale': '휘도는 큰바람',
       },
     },
   ],

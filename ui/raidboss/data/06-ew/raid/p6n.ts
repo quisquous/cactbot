@@ -1,5 +1,4 @@
 import Conditions from '../../../../../resources/conditions';
-import NetRegexes from '../../../../../resources/netregexes';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
@@ -14,6 +13,7 @@ export interface Data extends RaidbossData {
 }
 
 const triggerSet: TriggerSet<Data> = {
+  id: 'AbyssosTheSixthCircle',
   zoneId: ZoneId.AbyssosTheSixthCircle,
   timelineFile: 'p6n.txt',
   initData: () => {
@@ -25,31 +25,31 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Hemitheos Dark IV',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '784E', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784E', source: 'Hegemone', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'P6N Choros Ixou Sides',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7858', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7858', source: 'Hegemone', capture: false },
       response: Responses.goFrontBack(),
     },
     {
       id: 'P6N Choros Ixou Front Back',
       type: 'StartsUsing',
-      netRegex: NetRegexes.startsUsing({ id: '7857', source: 'Hegemone', capture: false }),
+      netRegex: { id: '7857', source: 'Hegemone', capture: false },
       response: Responses.goSides(),
     },
     {
       id: 'P6N Synergy Collect',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157' }),
+      netRegex: { id: '0157' },
       run: (data, matches) => data.busterTargets.push(matches.target),
     },
     {
       id: 'P6N Synergy Call',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157', capture: false }),
+      netRegex: { id: '0157', capture: false },
       delaySeconds: 0.3,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
@@ -65,14 +65,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Synergy Cleanup',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0157', capture: false }),
+      netRegex: { id: '0157', capture: false },
       delaySeconds: 5,
       run: (data) => data.busterTargets = [],
     },
     {
       id: 'P6N Glossomorph Initial',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF2' }),
+      netRegex: { effectId: 'CF2' },
       condition: Conditions.targetIsYou(),
       infoText: (_data, matches, output) => {
         if (parseFloat(matches.duration) > 15)
@@ -85,6 +85,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Kurzer Parasit auf DIR',
           fr: 'Parasite court sur VOUS',
           ja: '自分に短い寄生',
+          cn: '短寄生点名',
           ko: '짧은 기생 디버프 대상자',
         },
         second: {
@@ -92,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Langer Parasit auf DIR',
           fr: 'Parasite long sur VOUS',
           ja: '自分に長い寄生',
+          cn: '长寄生点名',
           ko: '긴 기생 디버프 대상자',
         },
       },
@@ -99,7 +101,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Glossomorph Call',
       type: 'GainsEffect',
-      netRegex: NetRegexes.gainsEffect({ effectId: 'CF2' }),
+      netRegex: { effectId: 'CF2' },
       condition: Conditions.targetIsYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
       alertText: (_data, _matches, output) => output.text!(),
@@ -109,6 +111,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Nach außen schauen: Parasit',
           fr: 'Regardez vers l\'extérieur : Parasite',
           ja: '外向き：寄生',
+          cn: '面向外面: 寄生',
           ko: '바깥 보기: 기생',
         },
       },
@@ -117,8 +120,9 @@ const triggerSet: TriggerSet<Data> = {
       // 00A7 is the orange clockwise indicator. 00A8 is the blue counterclockwise one.
       id: 'P6N Strophe Ixou',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: ['00A7', '00A8'] }),
-      infoText: (_data, matches, output) => matches.id === '00A7' ? output.left!() : output.right!(),
+      netRegex: { id: ['00A7', '00A8'] },
+      infoText: (_data, matches, output) =>
+        matches.id === '00A7' ? output.left!() : output.right!(),
       outputStrings: {
         left: {
           en: 'Rotate left',
@@ -141,14 +145,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'P6N Dark Ashes',
       type: 'HeadMarker',
-      netRegex: NetRegexes.headMarker({ id: '0065' }),
+      netRegex: { id: '0065' },
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'P6N Aetherial Exchange',
       type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '784D', source: 'Hegemone', capture: false }),
+      netRegex: { id: '784D', source: 'Hegemone', capture: false },
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
@@ -156,6 +160,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sei gegenüber dem verbundenen, sicheren Platz',
           fr: 'Placez vous sur la zone sûre de l\'élément opposé',
           ja: '線が繋がってる安置へ移動',
+          cn: '去连线方格对侧安全区',
           ko: '선 연결된 기둥의 안전지대로',
         },
       },
@@ -226,6 +231,54 @@ const triggerSet: TriggerSet<Data> = {
         'Strophe Ixou': 'ストロペー・イクソス',
         'Synergy': 'シュネルギア',
         'Transmission': '寄生',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hegemone': '赫革摩涅',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'random': '随机',
+        'sides': '两侧',
+        'front': '前方',
+        'back': '后方',
+        'Aetherial Exchange': '以太交换',
+        'Aetheric Polyominoid': '以太多连方',
+        'Choros Ixou': '寄生之舞',
+        'Dark Ashes': '冥灰',
+        'Hemitheos\'s Dark IV': '半神冥暗',
+        'Polyominoid Sigma': '以太多连方Σ',
+        'Polyominous Dark IV': '多连方冥暗',
+        'Reek Havoc': '喷气',
+        'Strophe Ixou': '寄生之旋',
+        'Synergy': '协同',
+        'Transmission': '寄生传染',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hegemone': '헤게모네',
+        'Parasitos': '기생생물',
+      },
+      'replaceText': {
+        'random': '랜덤',
+        'sides': '옆',
+        'front': '앞',
+        'back': '뒤',
+        'Aetherial Exchange': '에테르 변환',
+        'Aetheric Polyominoid': '에테르 폴리오미노',
+        'Choros Ixou': '기생체의 춤',
+        'Dark Ashes': '어둠의 잿더미',
+        'Hemitheos\'s Dark IV': '헤미테오스 다쟈',
+        'Polyominoid Sigma': '에테르 폴리오미노Σ',
+        'Polyominous Dark IV': '다쟈 폴리오미노',
+        'Reek Havoc': '입김',
+        'Strophe Ixou': '기생체의 회전',
+        'Synergy': '협동 공격',
+        'Transmission': '기생',
       },
     },
   ],
