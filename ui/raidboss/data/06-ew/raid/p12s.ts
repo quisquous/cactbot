@@ -331,7 +331,7 @@ export type LimitCutCombatantState = PluginCombatantState & {
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     engravement1DropTower: 'quadrant' | 'clockwise' | 'tower' | 'tetherbase';
-    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs' | 'shapeAndDebuff';
+    classicalConceptsPairOrder: 'xsct' | 'cxts' | 'ctsx' | 'ctxs' | 'tcxs' | 'shapeAndDebuff';
     classicalConcepts2ActualNoFlip: true | false;
     pangenesisFirstTower: 'agnostic' | 'not' | 'one';
   };
@@ -457,6 +457,7 @@ const triggerSet: TriggerSet<Data> = {
           '○XΔ□ (Lines)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (Rainbow)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           'Just call shape and debuff': 'shapeAndDebuff',
         },
         de: {
@@ -464,6 +465,7 @@ const triggerSet: TriggerSet<Data> = {
           '○XΔ□ (Linien)': 'cxts',
           '○Δ□X (Raketenschiff)': 'ctsx',
           '○ΔX□ (Regenbogen)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           'Just call shape and debuff': 'shapeAndDebuff', // FIXME
         },
         cn: {
@@ -471,6 +473,7 @@ const triggerSet: TriggerSet<Data> = {
           '○XΔ□ (1234笔画)': 'cxts',
           '○Δ□X (Rocketship)': 'ctsx',
           '○ΔX□ (彩虹)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           '只报形状和debuff': 'shapeAndDebuff',
         },
         ko: {
@@ -478,6 +481,7 @@ const triggerSet: TriggerSet<Data> = {
           '○XΔ□ (1234)': 'cxts',
           '○Δ□X (동세네엑)': 'ctsx',
           '○ΔX□ (무지개)': 'ctxs',
+          'Δ○X□ (TOXS)': 'tcxs',
           '모양과 디버프만 알림': 'shapeAndDebuff',
         },
       },
@@ -3152,6 +3156,7 @@ const triggerSet: TriggerSet<Data> = {
             cxts: ['circle', 'cross', 'triangle', 'square'],
             ctsx: ['circle', 'triangle', 'square', 'cross'],
             ctxs: ['circle', 'triangle', 'cross', 'square'],
+            tcxs: ['triangle', 'circle', 'cross', 'square'],
           };
           const columnOrder =
             columnOrderFromConfig[data.triggerSetConfig.classicalConceptsPairOrder];
