@@ -378,6 +378,7 @@ export class Timeline {
                   found = true;
                   return false;
                 }
+                return true;
               });
               this.ui?.OnRemoveTimer(event, false);
               // Because keepalive events are in "real time" just update the timer
