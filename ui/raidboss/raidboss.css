@@ -161,8 +161,12 @@
 
 #timeline-debug {
   position: absolute;
-  top: 0;
   left: calc(100%);
+}
+
+.reversed {
+  position: absolute;
+  bottom: 0;
 }
 
 .autoplay-helper-button {

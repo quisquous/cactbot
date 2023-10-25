@@ -87,7 +87,7 @@ export class TimelineUI {
     /* noop */
   }
 
-  public OnRemoveTimer(_e: Event, _expired: boolean, _force = false): void {
+  public OnRemoveTimer(_e: Event, _force = false): void {
     /* noop */
   }
 
@@ -135,6 +135,10 @@ export class Timeline {
 
   protected activeSyncs: Sync[];
   private activeEvents: Event[];
+  private keepAliveEvents: {
+    event: Event;
+    timeout: number;
+  }[];
   private activeLastForceJumpSync?: Sync;
 
   public ignores: { [ignoreId: string]: boolean };
@@ -179,6 +183,8 @@ export class Timeline {
     this.activeSyncs = [];
     // Sorted by event occurrence time.
     this.activeEvents = [];
+    // Events that are no longer active but we are keeping on screen briefly.
+    this.keepAliveEvents = [];
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurrence time.
@@ -333,6 +339,10 @@ export class Timeline {
     for (const activeEvent of this.activeEvents)
       this.ui?.OnRemoveTimer(activeEvent, false);
     this.activeEvents = [];
+    for (const keepAlive of this.keepAliveEvents) {
+      window.clearTimeout(keepAlive.timeout);
+      this.ui?.OnRemoveTimer(keepAlive.event, false);
+    }
   }
 
   private _ClearExceptRunningDurationTimers(fightNow: number): void {
@@ -342,8 +352,10 @@ export class Timeline {
         durationEvents.push(event);
         continue;
       }
-      this.ui?.OnRemoveTimer(event, false, true);
+      this.ui?.OnRemoveTimer(event, true);
     }
+    // Do not clear keep alive events here, as this is part of a sync jump
+    // and keep alive timing is independent of timeline time.
 
     this.activeEvents = durationEvents;
   }
@@ -351,7 +363,35 @@ export class Timeline {
   private _RemoveExpiredTimers(fightNow: number): void {
     let activeEvent = this.activeEvents[0];
     while (this.activeEvents.length && activeEvent && activeEvent.time <= fightNow) {
-      this.ui?.OnRemoveTimer(activeEvent, true);
+      const event = activeEvent;
+      if (this.options.KeepExpiredTimerBarsForSeconds > 0) {
+        this.keepAliveEvents.push({
+          event: event,
+          timeout: window.setTimeout(
+            () => {
+              // Find and remove the first keepalive event with this id.
+              let found = false;
+              this.keepAliveEvents = this.keepAliveEvents.filter((x) => {
+                if (found)
+                  return true;
+                if (x.event.id === event.id) {
+                  found = true;
+                  return false;
+                }
+                return true;
+              });
+              this.ui?.OnRemoveTimer(event, false);
+              // Because keepalive events are in "real time" just update the timer
+              // whenever any has been removed in case more bars need to be added.
+              this._OnUpdateTimer(Date.now());
+            },
+            this.options.KeepExpiredTimerBarsForSeconds * 1000,
+          ),
+        });
+      } else {
+        this.ui?.OnRemoveTimer(activeEvent, false);
+      }
+
       this.activeEvents.splice(0, 1);
       activeEvent = this.activeEvents[0];
     }
@@ -383,7 +423,7 @@ export class Timeline {
         };
         events.push(durationEvent);
         this.activeEvents.splice(i, 1);
-        this.ui?.OnRemoveTimer(e, false, true);
+        this.ui?.OnRemoveTimer(e, true);
         this.ui?.OnAddTimer(fightNow, durationEvent, true);
         --i;
       }
@@ -398,7 +438,7 @@ export class Timeline {
   private _AddUpcomingTimers(fightNow: number): void {
     while (
       this.nextEventState.index < this.events.length &&
-      this.activeEvents.length < this.options.MaxNumberOfTimerBars
+      this.activeEvents.length + this.keepAliveEvents.length < this.options.MaxNumberOfTimerBars
     ) {
       const e = this.events[this.nextEventState.index];
       if (e === undefined)
