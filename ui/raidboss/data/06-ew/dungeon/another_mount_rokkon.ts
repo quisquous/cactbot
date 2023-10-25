@@ -2144,19 +2144,31 @@ const triggerSet: TriggerSet<Data> = {
         if (partnerTether === undefined)
           return;
 
-        const flexPartner = data.ShortName(partnerTether.target);
+        const flexPartner = partnerTether.target;
+        const stackType = findStackPartners(data, data.me, flexPartner);
+        const stackStr = output[stackType]!();
 
         if (thisAbility === 'left')
-          return output.left!({ player: flexPartner });
-        return output.right!({ player: flexPartner });
+          return output.left!({ partners: stackStr });
+        return output.right!({ partners: stackStr });
       },
       outputStrings: {
         left: {
-          en: 'Left Tether (w/${player})',
+          en: 'Left Tether (${partners})',
         },
         right: {
-          en: 'Right Tether (w/${player})',
+          en: 'Right Tether (${partners})',
         },
+        melee: {
+          en: 'melees together',
+        },
+        role: {
+          en: 'roles together',
+        },
+        partner: {
+          en: 'partners together',
+        },
+        unknown: Outputs.unknown,
       },
     },
   ],
