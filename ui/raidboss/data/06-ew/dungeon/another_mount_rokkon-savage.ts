@@ -138,12 +138,12 @@ const tripleKasumiAbilityIds = [
   '85EB', // right red followup
   '85EE', // back blue first
   '85EF', // left blue first
-  '85F1', // front blue first
-  '85F2', // right blue first
-  '85F3', // back blue followup
-  '85F4', // left blue followup
-  '85F5', // front blue followup
-  '85F6', // right blue followup
+  '85F0', // front blue first
+  '85F1', // right blue first
+  '85F2', // back blue followup
+  '85F3', // left blue followup
+  '85F4', // front blue followup
+  '85F5', // right blue followup
 ] as const;
 
 export interface Data extends RaidbossData {

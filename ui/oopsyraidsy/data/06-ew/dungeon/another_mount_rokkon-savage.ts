@@ -83,12 +83,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Moko Triple Kasumi-Giri 8': '85E8', // right red followup
     'AMRS Moko Triple Kasumi-Giri 9': '85EE', // back blue first
     'AMRS Moko Triple Kasumi-Giri 10': '85EF', // left blue first
-    'AMRS Moko Triple Kasumi-Giri 11': '85F1', // front blue first
-    'AMRS Moko Triple Kasumi-Giri 12': '85F2', // right blue first
-    'AMRS Moko Triple Kasumi-Giri 13': '85F3', // back blue followup
-    'AMRS Moko Triple Kasumi-Giri 14': '85F4', // left blue followup
-    'AMRS Moko Triple Kasumi-Giri 15': '85F5', // front blue followup
-    'AMRS Moko Triple Kasumi-Giri 16': '85F6', // right blue followup
+    'AMRS Moko Triple Kasumi-Giri 11': '85F0', // front blue first
+    'AMRS Moko Triple Kasumi-Giri 12': '85F1', // right blue first
+    'AMRS Moko Triple Kasumi-Giri 13': '85F2', // back blue followup
+    'AMRS Moko Triple Kasumi-Giri 14': '85F3', // left blue followup
+    'AMRS Moko Triple Kasumi-Giri 15': '85F4', // front blue followup
+    'AMRS Moko Triple Kasumi-Giri 16': '85F5', // right blue followup
     'AMRS Moko Unbound Spirit': '85EC', // red "out" Triple Kasumi-Giri
     'AMRS Moko Azure Coil': '85ED', // blue "in" Triple Kasumi-Giri
 
