@@ -136,8 +136,8 @@ const tripleKasumiAbilityIds = [
   '85E9', // left red followup
   '85EA', // front red followup
   '85EB', // right red followup
-  '85EF', // back blue first
-  '85F0', // left blue first
+  '85EE', // back blue first
+  '85EF', // left blue first
   '85F1', // front blue first
   '85F2', // right blue first
   '85F3', // back blue followup

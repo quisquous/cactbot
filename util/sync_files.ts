@@ -410,10 +410,11 @@ const zoneReplace: ZoneReplace[] = [
       '85B7': '85EB', // Triple Kasumi-giri short cast and damage for right red followup
       '85B8': '85EC', // Unbound Spirit damage for red "out" Triple Kasumi-giri marker
       '85B9': '85ED', // Azure Coil damage for blue "in" Triple Kasumi-giri marker
-      '85BA': '85EF', // Triple Kasumi-giri long cast and damage for back blue first
-      '85BB': '85F0', // Triple Kasumi-giri long cast and damage for left blue first
+      '85BA': '85EE', // Triple Kasumi-giri long cast and damage for back blue first
+      '85BB': '85EF', // Triple Kasumi-giri long cast and damage for left blue first
       '85BC': '85F1', // Triple Kasumi-giri long cast and damage for front blue first
       '85BD': '85F2', // Triple Kasumi-giri long cast and damage for right blue first
+      // ^ check these two?
       '85BE': '85F3', // Triple Kasumi-giri short cast and damage for back blue followup
       '85BF': '85F4', // Triple Kasumi-giri short cast and damage for left blue followup
       '85C0': '85F5', // Triple Kasumi-giri short cast and damage for front blue followup

@@ -403,8 +403,8 @@ hideall "--sync--"
 # 85EB Triple Kasumi-giri short cast and damage for right red followup
 # 85EC Unbound Spirit damage for red "out" Triple Kasumi-giri marker
 # 85ED Azure Coil damage for blue "in" Triple Kasumi-giri marker
-# 85EF Triple Kasumi-giri long cast and damage for back blue first
-# 85F0 Triple Kasumi-giri long cast and damage for left blue first
+# 85EE Triple Kasumi-giri long cast and damage for back blue first
+# 85EF Triple Kasumi-giri long cast and damage for left blue first
 # 85F1 Triple Kasumi-giri long cast and damage for front blue first
 # 85F2 Triple Kasumi-giri long cast and damage for right blue first
 # 85F3 Triple Kasumi-giri short cast and damage for back blue followup

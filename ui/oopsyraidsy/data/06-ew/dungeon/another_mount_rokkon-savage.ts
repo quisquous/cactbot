@@ -81,8 +81,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AMRS Moko Triple Kasumi-Giri 6': '85E8', // left red followup
     'AMRS Moko Triple Kasumi-Giri 7': '85E8', // front red followup
     'AMRS Moko Triple Kasumi-Giri 8': '85E8', // right red followup
-    'AMRS Moko Triple Kasumi-Giri 9': '85EF', // back blue first
-    'AMRS Moko Triple Kasumi-Giri 10': '85F0', // left blue first
+    'AMRS Moko Triple Kasumi-Giri 9': '85EE', // back blue first
+    'AMRS Moko Triple Kasumi-Giri 10': '85EF', // left blue first
     'AMRS Moko Triple Kasumi-Giri 11': '85F1', // front blue first
     'AMRS Moko Triple Kasumi-Giri 12': '85F2', // right blue first
     'AMRS Moko Triple Kasumi-Giri 13': '85F3', // back blue followup
