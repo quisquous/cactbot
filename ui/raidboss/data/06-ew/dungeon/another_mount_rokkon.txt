@@ -294,12 +294,12 @@ hideall "--sync--"
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10
 3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
 
-3035.6 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
-3038.6 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3041.6 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3055.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
-3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3035.6 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:(85B0|85B1|85B2|85B3|85BA|85BB|85BC|85BD):/
+3038.6 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
+3041.6 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
+3055.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:(85B0|85B1|85B2|85B3|85BA|85BB|85BC|85BD):/
+3058.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
+3061.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
 
 3063.8 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
 3071.1 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:85E3:/
@@ -327,7 +327,7 @@ hideall "--sync--"
 3154.2 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
 3154.2 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
 3156.9 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
-3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
+3160.0 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(86C4|86C5|86C6):/
 
 3165.4 "Moonless Night" sync / 1[56]:[^:]*:Moko the Restless:85DE:/
 3174.5 "Far Edge/Near Edge 2" sync / 1[56]:[^:]*:Moko the Restless:(85D8|85D9):/
@@ -335,7 +335,7 @@ hideall "--sync--"
 3174.5 "Clearout x3" sync / 1[56]:[^:]*:Oni's Claw:8C21:/
 3174.7 "--jump--" sync / 1[56]:[^:]*:Moko's Shadow:85C9:/
 3176.8 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
-3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[456]:/
+3179.8 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(86C4|86C5|86C6):/
 
 3187.1 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
 
@@ -347,9 +347,9 @@ hideall "--sync--"
 3224.8 "Upwell 3" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
 3225.2 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
 3227.8 "Upwell 4" sync / 1[56]:[^:]*:Moko the Restless:85D6:/
-3238.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
-3241.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3244.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3238.7 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:(85B0|85B1|85B2|85B3|85BA|85BB|85BC|85BD):/
+3241.7 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
+3244.7 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
 
 3251.8 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
 3254.9 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
@@ -361,14 +361,14 @@ hideall "--sync--"
 3285.9 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85D0:/
 3285.9 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:85CF:/
 3288.3 "Shadow Kasumi-giri 1" sync / 1[56]:[^:]*:Moko's Shadow:85CA:/
-3291.3 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:86C[46]:/
+3291.3 "Shadow Kasumi-giri 2" sync / 1[56]:[^:]*:Moko's Shadow:(86C4|86C6):/
 3291.7 "Iron Storm" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A8:/
 3291.7 "Iron Rain" sync / 1[56]:[^:]*:Ashigaru Kyuhei:87A7:/
 
 3291.8 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
-3305.1 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:85B[0123ABCD]:/
-3308.2 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
-3311.3 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B[4567EF]|85C[01]):/
+3305.1 "Triple Kasumi-giri 1" sync / 1[56]:[^:]*:Moko the Restless:(85B0|85B1|85B2|85B3|85BA|85BB|85BC|85BD):/
+3308.2 "Triple Kasumi-giri 2" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
+3311.3 "Triple Kasumi-giri 3" sync / 1[56]:[^:]*:Moko the Restless:(85B4|85B5|85B6|85B7|85BE|85BF|85C0|85C1):/
 3318.3 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
 3321.4 "--sync--" sync / 1[56]:[^:]*:Moko the Restless:(871F|8720):/
 3328.8 "Lateral Slice" sync / 1[56]:[^:]*:Moko the Restless:85E3:/
