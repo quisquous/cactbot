@@ -1307,21 +1307,60 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'AMR Gorai Malformed Reincarnation',
+      // TODO: we could add more config options for this if needed, as there are many strats.
+      // However, this given trigger should give enough info for most strats.
+      // (1) player flex, always go mixed sides, people with all one color go to specific spots.
+      //     See: https://www.youtube.com/watch?v=TzoNEWbMpQ0#t=7m53s
+      // (2) no player flexing, go to opposite side, run THROUGH, possible swap sides for tower
+      //     See: https://ff14.toolboxgaming.space/?id=938195953989861&preview=1
+      // (3) different strats for half mixed / full mixed, flex only on full mixed
+      //     See: https://raidplan.io/plan/9tVR4vj9kPjgF3PM
+      comment: {
+        en: `Full mixed means everybody has both colors (two of one, one of the other).
+             Half mixed means two people have both colors and two people have all the same color.`,
+      },
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
       condition: (data) => data.rousingTowerCount !== 0,
       delaySeconds: 0.5,
       durationSeconds: 10,
       suppressSeconds: 1,
-      alertText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          alertText: {
+            en: '${color1} -> ${color2} -> ${color3} (${mixedType})',
+          },
+          infoText: {
+            en: '(first ${color} w/${player})',
+          },
+          orange: {
+            en: 'Orange',
+          },
+          blue: {
+            en: 'Blue',
+          },
+          mixedTypeFull: {
+            en: 'full mixed',
+          },
+          mixedTypeHalf: {
+            en: 'half mixed',
+          },
+          unknown: Outputs.unknown,
+        };
+
         let playerCount = 0;
         let mixedCount = 0;
-        const firstColor: { [name: string]: 'blue' | 'orange' } = {};
+        type Color = 'blue' | 'orange';
+        const firstColor: { [name: string]: Color } = {};
+        const myColors: Color[] = [];
 
         for (const line of data.malformedCollect) {
           const isOrange = line.effectId === 'E0D' || line.effectId === 'E0E' ||
             line.effectId === 'E0F';
           const color = isOrange ? 'orange' : 'blue';
+          if (line.target === data.me)
+            myColors.push(color);
           const lastColor = firstColor[line.target];
           if (lastColor === undefined) {
             playerCount++;
@@ -1333,47 +1372,30 @@ const triggerSet: TriggerSet<Data> = {
           mixedCount++;
         }
 
-        const myColor = firstColor[data.me];
-        if (myColor === undefined)
+        const [color1, color2, color3] = myColors;
+        if (color1 === undefined || color2 === undefined || color3 === undefined)
           return;
 
         // Try to handle dead players who don't have debuffs here.
         const isAllMixed = playerCount === mixedCount;
-        if (!isAllMixed) {
-          if (myColor === 'orange')
-            return output.halfMixedOrangeSide!();
-          return output.halfMixedBlueSide!();
-        }
+        const mixedType = isAllMixed ? output.mixedTypeFull!() : output.mixedTypeHalf!();
 
         let partner = output.unknown!();
         for (const [name, color] of Object.entries(firstColor)) {
-          if (name !== data.me && color === myColor) {
+          if (name !== data.me && color === color1) {
             partner = data.ShortName(name);
             break;
           }
         }
 
-        // If your first tower is orange you're placing blue in "all mixed".
-        if (myColor === 'orange')
-          return output.allMixedPlaceBlue!({ player: partner });
-        return output.allMixedPlaceOrange!({ player: partner });
-      },
-      outputStrings: {
-        // TODO: This is somewhat ambiguous, as you don't want to place blue *with* this player
-        // you want to flex for them.
-        allMixedPlaceBlue: {
-          en: 'All Mixed: Place Blue (w/${player})',
-        },
-        allMixedPlaceOrange: {
-          en: 'All Mixed: Place Orange (w/${player})',
-        },
-        halfMixedOrangeSide: {
-          en: 'Half Mixed: Orange Side',
-        },
-        halfMixedBlueSide: {
-          en: 'Half Mixed: Blue Side',
-        },
-        unknown: Outputs.unknown,
+        const alertText = output.alertText!({
+          color1: color1,
+          color2: color2,
+          color3: color3,
+          mixedType: mixedType,
+        });
+        const infoText = output.infoText!({ color: color1, player: partner });
+        return { alertText, infoText };
       },
     },
     {
