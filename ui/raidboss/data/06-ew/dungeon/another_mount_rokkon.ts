@@ -53,27 +53,35 @@ const mokoCenterY = 0;
 const tripleKasumiFirstOutputStrings = {
   backRedFirst: {
     en: 'Back + Out',
+    cn: '背后 + 远离',
   },
   leftRedFirst: {
     en: 'Left + Out',
+    cn: '左 + 远离',
   },
   frontRedFirst: {
     en: 'Front + Out',
+    cn: '面前 + 远离',
   },
   rightRedFirst: {
     en: 'Right + Out',
+    cn: '右 + 远离',
   },
   backBlueFirst: {
     en: 'Back + In',
+    cn: '背后 + 靠近',
   },
   leftBlueFirst: {
     en: 'Left + In',
+    cn: '左 + 靠近',
   },
   frontBlueFirst: {
     en: 'Front + In',
+    cn: '面前 + 靠近',
   },
   rightBlueFirst: {
     en: 'Right + In',
+    cn: '右 + 靠近',
   },
 } as const;
 
@@ -82,27 +90,35 @@ const tripleKasumiFirstOutputStrings = {
 const tripleKasumiFollowupOutputStrings = {
   backRed: {
     en: 'Stay + Out',
+    cn: '停 + 远离',
   },
   leftRed: {
     en: 'Left + Out',
+    cn: '左左左 + 远离',
   },
   frontRed: {
     en: 'Through + Out',
+    cn: '穿 + 远离',
   },
   rightRed: {
     en: 'Right + Out',
+    cn: '右右右 + 远离',
   },
   backBlue: {
     en: 'Stay + In',
+    cn: '停 + 靠近',
   },
   leftBlue: {
     en: 'Left + In',
+    cn: '左左左 + 靠近',
   },
   frontBlue: {
     en: 'Through + In',
+    cn: '穿 + 靠近',
   },
   rightBlue: {
     en: 'Right + In',
+    cn: '右右右 + 靠近',
   },
 };
 
@@ -112,15 +128,19 @@ const basicStackSpreadOutputStrings: Record<StackSpreadMechanic, LocaleText> = {
   spread: Outputs.spread,
   melee: {
     en: 'Melees Stack',
+    cn: '近战分摊',
   },
   role: {
     en: 'Role Stacks',
+    cn: '职能分摊',
   },
   partner: {
     en: 'Partner Stacks',
+    cn: '和搭档分摊',
   },
   unknown: {
     en: 'Stacks',
+    cn: '分摊',
   },
 } as const;
 
@@ -266,26 +286,33 @@ const stackSpreadResponse = (
     // the tank and melee together for uptime.
     spreadThenMeleeStack: {
       en: 'Spread => Melees Stack',
+      cn: '分散 => 近战分摊',
     },
     spreadThenRoleStack: {
       en: 'Spread => Role Stacks',
+      cn: '分散 => 职能分摊',
     },
     spreadThenPartnerStack: {
       en: 'Spread => Partner Stacks',
+      cn: '分散 => 和搭档分摊',
     },
     meleeStackThenSpread: {
       en: 'Melees Stack => Spread',
+      cn: '近战分摊 => 分散',
     },
     roleStackThenSpread: {
       en: 'Role Stacks => Spread',
+      cn: '职能分摊 => 分散',
     },
     partnerStackThenSpread: {
       en: 'Partner Stacks => Spread',
+      cn: '和搭档分摊 => 分散',
     },
     spreadThenStack: Outputs.spreadThenStack,
     stackThenSpread: Outputs.stackThenSpread,
     stacks: {
       en: 'Stacks: ${player1}, ${player2}',
+      cn: '分摊点: ${player1}, ${player2}',
     },
   };
 
@@ -336,18 +363,23 @@ const towerResponse = (
   output.responseOutputStrings = {
     tetherThenBlueTower: {
       en: 'Tether ${num1} => Blue Tower ${num2}',
+      cn: '连线 ${num1} => 蓝塔 ${num2}',
     },
     tetherThenOrangeTower: {
       en: 'Tether ${num1} => Orange Tower ${num2}',
+      cn: '连线 ${num1} => 橙塔 ${num2}',
     },
     tether: {
       en: 'Tether ${num}',
+      cn: '连线 ${num}',
     },
     blueTower: {
       en: 'Blue Tower ${num}',
+      cn: '蓝塔 ${num}',
     },
     orangeTower: {
       en: 'Orange Tower ${num}',
+      cn: '橙塔 ${num}',
     },
     num1: Outputs.num1,
     num2: Outputs.num2,
@@ -467,9 +499,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           chargeOnYou: {
             en: 'Charge on YOU',
+            cn: '冲锋点名',
           },
           chargeOn: {
             en: 'Charge on ${player}',
+            cn: '冲锋点 ${player}',
           },
         };
 
@@ -665,30 +699,39 @@ const triggerSet: TriggerSet<Data> = {
           in: Outputs.in,
           spreadThenMeleeStack: {
             en: '${inOut} + Spread => ${outIn} + Melees Stack',
+            cn: '${inOut} + 分散 => ${outIn} + 近战分摊',
           },
           spreadThenRoleStack: {
             en: '${inOut} + Spread => ${outIn} + Role Stacks',
+            cn: '${inOut} + 分散 => ${outIn} + 职能分摊',
           },
           spreadThenPartnerStack: {
             en: '${inOut} + Spread => ${outIn} + Partner Stacks',
+            cn: '${inOut} + 分散 => ${outIn} + 和搭档分摊',
           },
           meleeStackThenSpread: {
             en: '${inOut} + Melees Stack => ${outIn} + Spread',
+            cn: '${inOut} + 近战分摊 => ${outIn} + 分散',
           },
           roleStackThenSpread: {
             en: '${inOut} + Role Stacks => ${outIn} + Spread',
+            cn: '${inOut} + 职能分摊 => ${outIn} + 分散',
           },
           partnerStackThenSpread: {
             en: '${inOut} + Partner Stacks => ${outIn} + Spread',
+            cn: '${inOut} + 和搭档分摊 => ${outIn} + 分散',
           },
           spreadThenStack: {
             en: '${inOut} + Spread => ${outIn} + Stack',
+            cn: '${inOut} + 分散 => ${outIn} + 分摊',
           },
           stackThenSpread: {
             en: '${inOut} + Stack => ${outIn} + Spread',
+            cn: '${inOut} + 分摊 => ${outIn} + 分散',
           },
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
+            cn: '分摊点: ${player1}, ${player2}',
           },
         };
 
@@ -762,6 +805,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${inOut} + ${mechanic}',
+          cn: '${inOut} + ${mechanic}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -857,27 +901,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         north: {
           en: 'North Diamond + ${mechanic}',
+          cn: '上(北) 菱形 + ${mechanic}',
         },
         east: {
           en: 'East Diamond + ${mechanic}',
+          cn: '右(东) 菱形 + ${mechanic}',
         },
         south: {
           en: 'South Diamond + ${mechanic}',
+          cn: '下(南) 菱形 + ${mechanic}',
         },
         west: {
           en: 'West Diamond + ${mechanic}',
+          cn: '左(西) 菱形 + ${mechanic}',
         },
         northeast: {
           en: 'Northeast Square + ${mechanic}',
+          cn: '右上(东北) 正方形 + ${mechanic}',
         },
         southeast: {
           en: 'Southeast Square + ${mechanic}',
+          cn: '右下(东南) 正方形 + ${mechanic}',
         },
         southwest: {
           en: 'Southwest Square + ${mechanic}',
+          cn: '左下(西南) 正方形 + ${mechanic}',
         },
         northwest: {
           en: 'Northwest Square + ${mechanic}',
+          cn: '左上(西北) 正方形 + ${mechanic}',
         },
         ...basicStackSpreadOutputStrings,
         unknownMech: Outputs.unknown,
@@ -938,9 +990,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tower: {
           en: 'Get Tower (w/${player})',
+          cn: '踩塔 (和 ${player})',
         },
         spread: {
           en: 'Spread (w/${player})',
+          cn: '分散 (和 ${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -955,6 +1009,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides (Stay Sides)',
+          cn: '两侧 (待在两侧)',
         },
       },
     },
@@ -967,6 +1022,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Right + Behind',
+          cn: '右右右 + 去背后',
         },
       },
     },
@@ -979,6 +1035,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Left + Behind',
+          cn: '左左左 + 去背后',
         },
       },
     },
@@ -1014,6 +1071,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge 4x Shuriken',
+          cn: '躲避四次攻击', // FIXME
         },
       },
     },
@@ -1032,6 +1090,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Expanding Lines',
+          cn: '远离扩大连线',
         },
       },
     },
@@ -1043,6 +1102,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under Rock + Lines',
+          cn: '站在石头和线下',
         },
       },
     },
@@ -1078,6 +1138,7 @@ const triggerSet: TriggerSet<Data> = {
           partnerStack: basicStackSpreadOutputStrings.partner,
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
+            cn: '分摊点: ${player1}, ${player2}',
           },
         };
 
@@ -1170,6 +1231,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Shrink Lone Orb',
+          cn: '缩小一个单独的球',
         },
       },
     },
@@ -1191,12 +1253,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         beBehindTank: {
           en: 'Stay Behind Tank',
+          cn: '站坦克后面',
         },
         blockLaser: {
           en: 'Block Laser on ${player}',
+          cn: '挡枪 ${player}', // FIXME
         },
         avoidLaser: {
           en: 'Avoid Laser',
+          cn: '躲避激光',
         },
       },
     },
@@ -1318,6 +1383,8 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en: `Full mixed means everybody has both colors (two of one, one of the other).
              Half mixed means two people have both colors and two people have all the same color.`,
+        cn: `全异色 指的是所有人的3个buff中有2个同色buff（2个是1种颜色，剩下1个是另1种）。
+             半异色 指的是2个人有2个同色buff，其余2人拥有3个同色buff。`,
       },
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
@@ -1330,21 +1397,27 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           alertText: {
             en: '${color1} -> ${color2} -> ${color3} (${mixedType})',
+            cn: '${color1} -> ${color2} -> ${color3} (${mixedType})',
           },
           infoText: {
             en: '(first ${color} w/${player})',
+            cn: '(第一个 ${color} 和 ${player})',
           },
           orange: {
             en: 'Orange',
+            cn: '橙色',
           },
           blue: {
             en: 'Blue',
+            cn: '蓝色',
           },
           mixedTypeFull: {
             en: 'full mixed',
+            cn: '全异色',
           },
           mixedTypeHalf: {
             en: 'half mixed',
+            cn: '半异色',
           },
           unknown: Outputs.unknown,
         };
@@ -1416,9 +1489,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blueTower1: {
           en: 'Inside Blue Tower 1',
+          cn: '内侧 蓝塔 1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
+          cn: '内侧 橙塔 1',
         },
       },
     },
@@ -1443,21 +1518,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blueTower1: {
           en: 'Inside Blue Tower 1',
+          cn: '内侧 蓝塔 1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
+          cn: '内侧 橙塔 1',
         },
         blueTower2: {
           en: 'Corner Blue Tower 2',
+          cn: '角落 蓝塔 2',
         },
         orangeTower2: {
           en: 'Corner Orange Tower 2',
+          cn: '角落 橙塔 2',
         },
         blueTower3: {
           en: 'Placed Blue Tower 3',
+          cn: '放置 蓝塔 3',
         },
         orangeTower3: {
           en: 'Placed Orange Tower 3',
+          cn: '放置 橙塔 3',
         },
       },
     },
@@ -1515,6 +1596,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '(${text})',
+          cn: '(${text})',
         },
         ...tripleKasumiFollowupOutputStrings,
       },
@@ -1538,6 +1620,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${text1} => ${text2} => ${text3}',
+          cn: '${text1} => ${text2} => ${text3}',
         },
         ...tripleKasumiFirstOutputStrings,
         ...tripleKasumiFollowupOutputStrings,
@@ -1573,6 +1656,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Out => Stay Out',
+          cn: '两侧 + 远离 => 待在外面',
         },
       },
     },
@@ -1584,6 +1668,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Sides + Out',
+          cn: '去脚下 => 两侧 + 出去',
         },
       },
     },
@@ -1596,6 +1681,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Out',
+          cn: '两侧 + 出去',
         },
       },
     },
@@ -1739,27 +1825,35 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           backOnYou: {
             en: 'Back Tether on YOU',
+            cn: '下方连线点名!',
           },
           leftOnYou: {
             en: 'Left Tether on YOU',
+            cn: '左侧连线点名!',
           },
           frontOnYou: {
             en: 'Front Tether on YOU',
+            cn: '上方连线点名!',
           },
           rightOnYou: {
             en: 'Right Tether on YOU',
+            cn: '右侧连线点名!',
           },
           backOnPlayer: {
             en: 'Back Tether on ${player}',
+            cn: '下方连线点 ${player}',
           },
           leftOnPlayer: {
             en: 'Left Tether on ${player}',
+            cn: '左侧连线点 ${player}',
           },
           frontOnPlayer: {
             en: 'Front Tether on ${player}',
+            cn: '上方连线点 ${player}',
           },
           rightOnPlayer: {
             en: 'Right Tether on ${player}',
+            cn: '右侧连线点 ${player}',
           },
         };
 
@@ -1798,19 +1892,24 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           backOnYou: {
             en: 'Back Tether (w/${player})',
+            cn: '下方连线 (和 ${player})',
           },
           // These are probably impossible.
           leftOnYou: {
             en: 'Left Tether (w/${player})',
+            cn: '左侧连线 (和 ${player})',
           },
           frontOnYou: {
             en: 'Front Tether (w/${player})',
+            cn: '上方连线 (和 ${player})',
           },
           rightOnYou: {
             en: 'Right Tether (w/${player})',
+            cn: '右侧连线 (和 ${player})',
           },
           unmarkedWithPlayer: {
             en: 'Unmarked (w/${player})',
+            cn: '无点名 (和 ${player})',
           },
           unknown: Outputs.unknown,
         };
@@ -1888,9 +1987,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'North/South',
+          cn: '上(北)/下(南)',
         },
         eastWest: {
           en: 'East/West',
+          cn: '左(西)/右(东)',
         },
       },
     },
@@ -1909,15 +2010,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitNear: {
           en: 'Bait Near (Tether Far)',
+          cn: '靠近引导 (连线远离)',
         },
         baitFar: {
           en: 'Bait Far (Tether Near)',
+          cn: '远离引导 (连线靠近)',
         },
         tetherNear: {
           en: 'Tether Near (Bait Far)',
+          cn: '靠近拉线 (引导远离)',
         },
         tetherFar: {
           en: 'Tether Far (Bait Near)',
+          cn: '远离拉线 (引导靠近)',
         },
       },
     },
@@ -1969,15 +2074,19 @@ const triggerSet: TriggerSet<Data> = {
         // This is probably not possible.
         back: {
           en: '(then stay)',
+          cn: '(稍后 停)',
         },
         left: {
           en: '(then left)',
+          cn: '(稍后 去左侧)',
         },
         front: {
           en: '(then through)',
+          cn: '(稍后 穿)',
         },
         right: {
           en: '(then right)',
+          cn: '(稍后 去右侧)',
         },
       },
     },
@@ -2053,10 +2162,12 @@ const triggerSet: TriggerSet<Data> = {
         // This probably can't happen.
         back: {
           en: 'Stay',
+          cn: '停',
         },
         left: Outputs.left,
         front: {
           en: 'Through',
+          cn: '穿',
         },
         right: Outputs.right,
       },
@@ -2155,18 +2266,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         left: {
           en: 'Left Tether (${partners})',
+          cn: '左侧连线 (${partners})',
         },
         right: {
           en: 'Right Tether (${partners})',
+          cn: '右侧连线 (${partners})',
         },
         melee: {
           en: 'melees together',
+          cn: '近战集合',
         },
         role: {
           en: 'roles together',
+          cn: '职能集合',
         },
         partner: {
           en: 'partners together',
+          cn: '和搭档集合',
         },
         unknown: Outputs.unknown,
       },
