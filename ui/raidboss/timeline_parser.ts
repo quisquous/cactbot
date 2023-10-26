@@ -237,6 +237,15 @@ export class TimelineParser {
           throw new UnreachableCode();
         const seconds = parseFloat(parsedLine.time);
         const label = parsedLine.label;
+
+        const prevTime = this.labelToTime[label];
+        if (prevTime !== undefined) {
+          const text = `Duplicate ${label} name found for time ${prevTime} and ${seconds}`;
+          this.errors.push({
+            error: text,
+            lineNumber: lineNumber,
+          });
+        }
         this.labelToTime[label] = seconds;
         continue;
       }
