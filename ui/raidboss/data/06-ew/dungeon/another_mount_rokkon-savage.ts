@@ -56,27 +56,35 @@ const mokoCenterY = 0;
 const tripleKasumiFirstOutputStrings = {
   backRedFirst: {
     en: 'Back + Out',
+    de: 'Hinten + Raus',
   },
   leftRedFirst: {
     en: 'Left + Out',
+    de: 'Links + Raus',
   },
   frontRedFirst: {
     en: 'Front + Out',
+    de: 'Vorne + Raus',
   },
   rightRedFirst: {
     en: 'Right + Out',
+    de: 'Rechts + Raus',
   },
   backBlueFirst: {
     en: 'Back + In',
+    de: 'Hinten + Rein',
   },
   leftBlueFirst: {
     en: 'Left + In',
+    de: 'Links + Rein',
   },
   frontBlueFirst: {
     en: 'Front + In',
+    de: 'Vorne + Rein',
   },
   rightBlueFirst: {
     en: 'Right + In',
+    de: 'Rechts + Rein',
   },
 } as const;
 
@@ -85,27 +93,35 @@ const tripleKasumiFirstOutputStrings = {
 const tripleKasumiFollowupOutputStrings = {
   backRed: {
     en: 'Stay + Out',
+    de: 'bleib Stehen + Raus',
   },
   leftRed: {
     en: 'Left + Out',
+    de: 'Links + Raus',
   },
   frontRed: {
     en: 'Through + Out',
+    de: 'Durch + Raus',
   },
   rightRed: {
     en: 'Right + Out',
+    de: 'Rechts + Raus',
   },
   backBlue: {
     en: 'Stay + In',
+    de: 'bleib Stehen + Rein',
   },
   leftBlue: {
     en: 'Left + In',
+    de: 'Links + Rein',
   },
   frontBlue: {
     en: 'Through + In',
+    de: 'Durch + Rein',
   },
   rightBlue: {
     en: 'Right + In',
+    de: 'Rechts + Rein',
   },
 };
 
@@ -115,15 +131,19 @@ const basicStackSpreadOutputStrings: Record<StackSpreadMechanic, LocaleText> = {
   spread: Outputs.spread,
   melee: {
     en: 'Melees Stack',
+    de: 'Nahkämpfer sammeln',
   },
   role: {
     en: 'Role Stacks',
+    de: 'Rollengruppe sammeln',
   },
   partner: {
     en: 'Partner Stacks',
+    de: 'Partner sammeln',
   },
   unknown: {
     en: 'Stacks',
+    de: 'Sammeln',
   },
 } as const;
 
@@ -269,26 +289,33 @@ const stackSpreadResponse = (
     // the tank and melee together for uptime.
     spreadThenMeleeStack: {
       en: 'Spread => Melees Stack',
+      de: 'Verteilen => Nahkämpfer sammeln',
     },
     spreadThenRoleStack: {
       en: 'Spread => Role Stacks',
+      de: 'Verteilen => Rollengruppe sammeln',
     },
     spreadThenPartnerStack: {
       en: 'Spread => Partner Stacks',
+      de: 'Verteilen => Partner sammeln',
     },
     meleeStackThenSpread: {
       en: 'Melees Stack => Spread',
+      de: 'Nahkämpfer sammeln => Verteilen',
     },
     roleStackThenSpread: {
       en: 'Role Stacks => Spread',
+      de: 'Rollengruppe sammeln => Verteilen',
     },
     partnerStackThenSpread: {
       en: 'Partner Stacks => Spread',
+      de: 'Partner sammeln => Verteilen',
     },
     spreadThenStack: Outputs.spreadThenStack,
     stackThenSpread: Outputs.stackThenSpread,
     stacks: {
       en: 'Stacks: ${player1}, ${player2}',
+      de: 'Sammeln: ${player1}, ${player2}',
     },
   };
 
@@ -339,18 +366,23 @@ const towerResponse = (
   output.responseOutputStrings = {
     tetherThenBlueTower: {
       en: 'Tether ${num1} => Blue Tower ${num2}',
+      de: 'Verbindung ${num1} => Blauer Turm ${num2}',
     },
     tetherThenOrangeTower: {
       en: 'Tether ${num1} => Orange Tower ${num2}',
+      de: 'Verbindung ${num1} => Orangener Turm ${num2}',
     },
     tether: {
       en: 'Tether ${num}',
+      de: 'Verbindung ${num}',
     },
     blueTower: {
       en: 'Blue Tower ${num}',
+      de: 'Blauer Turm ${num}',
     },
     orangeTower: {
       en: 'Orange Tower ${num}',
+      de: 'Orangener Turm ${num}',
     },
     num1: Outputs.num1,
     num2: Outputs.num2,
@@ -410,15 +442,27 @@ const triggerSet: TriggerSet<Data> = {
            Partner stacks mean support+dps and support+dps (any combination works).
            If you have two ranged dps or two melee dps, it will never call "melees" regardless of this config option.
            There is no support for party comps that are not two support and two dps.`,
+        de:
+          `Für jeden Zwei-Personen-Stack gibt dies die Prioritätsreihenfolge für die Auswahl der Personen an, die sich sammeln.
+           Wenn ihr wollt, dass Nahkämpfer und Tank nach Möglichkeit zusammenbleiben, wählt die Option mit den Nahkämpfern aus.
+           Nahkampf-Stack bedeutet Nahkampf+Tank und Heiler+Ranger. Rollen-Stack bedeutet Tank+Heiler und Dps+Dps.
+           Partner-Stack bedeuten Supporter+Dps und Supporter+Dps (jede Kombination ist möglich).
+           Wenn du zwei Fernkampf-DPS oder zwei Nahkampf-DPS hast, wird es nie "Nahkämpfer" nennen, unabhängig von dieser Konfigurationsoption.
+           Es gibt keine Unterstützung für Gruppenkombinationen, die nicht aus zwei Supportern und zwei DPS bestehen.`,
       },
       name: {
         en: 'Stack Selection Order',
+        de: 'Sammel-Reihenfolge',
       },
       type: 'select',
       options: {
         en: {
           'Melees > Roles > Partners': 'meleeRolesPartners',
           'Roles > Partners': 'rolesPartners',
+        },
+        de: {
+          'Nahkämpfer > Rollen > Partner': 'meleeRolesPartners',
+          'Rollen > Partner': 'rolesPartners',
         },
       },
       default: 'meleeRolesPartners',
@@ -470,9 +514,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           chargeOnYou: {
             en: 'Charge on YOU',
+            de: 'Ansturm auf DIR',
           },
           chargeOn: {
             en: 'Charge on ${player}',
+            de: 'Ansturm auf ${player}',
           },
         };
 
@@ -668,30 +714,39 @@ const triggerSet: TriggerSet<Data> = {
           in: Outputs.in,
           spreadThenMeleeStack: {
             en: '${inOut} + Spread => ${outIn} + Melees Stack',
+            de: '${inOut} + Verteilen => ${outIn} + Nahkämpfer sammeln',
           },
           spreadThenRoleStack: {
             en: '${inOut} + Spread => ${outIn} + Role Stacks',
+            de: '${inOut} + Verteilen => ${outIn} + Rollengruppe sammeln',
           },
           spreadThenPartnerStack: {
             en: '${inOut} + Spread => ${outIn} + Partner Stacks',
+            de: '${inOut} + Verteilen => ${outIn} + Partner sammeln',
           },
           meleeStackThenSpread: {
             en: '${inOut} + Melees Stack => ${outIn} + Spread',
+            de: '${inOut} + Nahkämpfer sammeln => ${outIn} + Verteilen',
           },
           roleStackThenSpread: {
             en: '${inOut} + Role Stacks => ${outIn} + Spread',
+            de: '${inOut} + Rollengruppe sammeln => ${outIn} + Verteilen',
           },
           partnerStackThenSpread: {
             en: '${inOut} + Partner Stacks => ${outIn} + Spread',
+            de: '${inOut} + Partner sammeln => ${outIn} + Verteilen',
           },
           spreadThenStack: {
             en: '${inOut} + Spread => ${outIn} + Stack',
+            de: '${inOut} + Verteilen => ${outIn} + Sammeln',
           },
           stackThenSpread: {
             en: '${inOut} + Stack => ${outIn} + Spread',
+            de: '${inOut} + Sammeln => ${outIn} + Verteilen',
           },
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
+            de: 'Sammeln: ${player1}, ${player2}',
           },
         };
 
@@ -765,6 +820,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${inOut} + ${mechanic}',
+          de: '${inOut} + ${mechanic}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -860,27 +916,35 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         north: {
           en: 'North Diamond + ${mechanic}',
+          de: 'nördlicher Diamant + ${mechanic}',
         },
         east: {
           en: 'East Diamond + ${mechanic}',
+          de: 'östlicher Diamant + ${mechanic}',
         },
         south: {
           en: 'South Diamond + ${mechanic}',
+          de: 'südlicher Diamant + ${mechanic}',
         },
         west: {
           en: 'West Diamond + ${mechanic}',
+          de: 'westlicher Diamant + ${mechanic}',
         },
         northeast: {
           en: 'Northeast Square + ${mechanic}',
+          de: 'nordöstliches Viereck + ${mechanic}',
         },
         southeast: {
           en: 'Southeast Square + ${mechanic}',
+          de: 'südöstliches Viereck + ${mechanic}',
         },
         southwest: {
           en: 'Southwest Square + ${mechanic}',
+          de: 'südwestliches Viereck + ${mechanic}',
         },
         northwest: {
           en: 'Northwest Square + ${mechanic}',
+          de: 'nordwestliches Viereck + ${mechanic}',
         },
         ...basicStackSpreadOutputStrings,
         unknownMech: Outputs.unknown,
@@ -905,6 +969,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tower: {
           en: 'Tower',
+          de: 'Türme',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -941,9 +1006,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tower: {
           en: 'Get Tower (w/${player})',
+          de: 'Nimm Turm mit (w/${player})',
         },
         spread: {
           en: 'Spread (w/${player})',
+          de: 'Verteilen (w/${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -958,6 +1025,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides (Stay Sides)',
+          de: 'Seiten (Seitlich bleiben)',
         },
       },
     },
@@ -970,6 +1038,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Right + Behind',
+          de: 'Rechts + Hinten',
         },
       },
     },
@@ -982,6 +1051,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Left + Behind',
+          de: 'Links + Hinten',
         },
       },
     },
@@ -1017,6 +1087,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge 4x Shuriken',
+          de: 'Weiche 4x Shuriken aus',
         },
       },
     },
@@ -1035,6 +1106,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Avoid Expanding Lines',
+          de: 'Weiche den größer werdenden Linien aus',
         },
       },
     },
@@ -1046,6 +1118,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under Rock + Lines',
+          de: 'Unter dem Stein + Linien',
         },
       },
     },
@@ -1081,6 +1154,7 @@ const triggerSet: TriggerSet<Data> = {
           partnerStack: basicStackSpreadOutputStrings.partner,
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
+            de: 'Sammeln: ${player1}, ${player2}',
           },
         };
 
@@ -1173,6 +1247,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Shrink Lone Orb',
+          de: 'Einzel-Orb verkleinern',
         },
       },
     },
@@ -1194,12 +1269,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         beBehindTank: {
           en: 'Stay Behind Tank',
+          de: 'Hinter dem Tank stehen',
         },
         blockLaser: {
           en: 'Block Laser on ${player}',
+          de: 'Blockiere Laser auf ${player}',
         },
         avoidLaser: {
           en: 'Avoid Laser',
+          de: 'Laser vermeiden',
         },
       },
     },
@@ -1321,6 +1399,9 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en: `Full mixed means everybody has both colors (two of one, one of the other).
              Half mixed means two people have both colors and two people have all the same color.`,
+        de:
+          `Voll gemischt bedeutet, dass jeder beide Farben hat (zwei von der einen, eine von der anderen).
+             Halb gemischt bedeutet, dass zwei Personen beide Farben haben und zwei Personen nur eine Farbe haben`,
       },
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
@@ -1333,21 +1414,27 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           alertText: {
             en: '${color1} -> ${color2} -> ${color3} (${mixedType})',
+            de: '${color1} -> ${color2} -> ${color3} (${mixedType})',
           },
           infoText: {
             en: '(first ${color} w/${player})',
+            de: '(zuerst ${color} mit ${player})',
           },
           orange: {
             en: 'Orange',
+            de: 'Orange',
           },
           blue: {
             en: 'Blue',
+            de: 'Blau',
           },
           mixedTypeFull: {
             en: 'full mixed',
+            de: 'Voll gemischt',
           },
           mixedTypeHalf: {
             en: 'half mixed',
+            de: 'Halb gemischt',
           },
           unknown: Outputs.unknown,
         };
@@ -1419,9 +1506,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blueTower1: {
           en: 'Inside Blue Tower 1',
+          de: 'Innerhalb blauer Turm 1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
+          de: 'Innerhalb orangener Turm 1',
         },
       },
     },
@@ -1446,21 +1535,27 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blueTower1: {
           en: 'Inside Blue Tower 1',
+          de: 'Mittig blauer Turm 1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
+          de: 'Mittig orangener Turm 1',
         },
         blueTower2: {
           en: 'Corner Blue Tower 2',
+          de: 'Ecke blauer Turm 2',
         },
         orangeTower2: {
           en: 'Corner Orange Tower 2',
+          de: 'Ecke orangener Turm 2',
         },
         blueTower3: {
           en: 'Placed Blue Tower 3',
+          de: 'Platzierter blauer Turm 3',
         },
         orangeTower3: {
           en: 'Placed Orange Tower 3',
+          de: 'Platzierter orangener Turm 3',
         },
       },
     },
@@ -1518,6 +1613,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '(${text})',
+          de: '(${text})',
         },
         ...tripleKasumiFollowupOutputStrings,
       },
@@ -1541,6 +1637,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${text1} => ${text2} => ${text3}',
+          de: '${text1} => ${text2} => ${text3}',
         },
         ...tripleKasumiFirstOutputStrings,
         ...tripleKasumiFollowupOutputStrings,
@@ -1576,6 +1673,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Out => Stay Out',
+          de: 'Seiten + Raus => Bleib drausen',
         },
       },
     },
@@ -1587,6 +1685,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Under => Sides + Out',
+          de: 'Unter ihn => Seiten + Geh Raus',
         },
       },
     },
@@ -1599,6 +1698,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Out',
+          de: 'Seiten + Raus',
         },
       },
     },
@@ -1742,27 +1842,35 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           backOnYou: {
             en: 'Back Tether on YOU',
+            de: 'Zurück-Verbindung auf DIR',
           },
           leftOnYou: {
             en: 'Left Tether on YOU',
+            de: 'Links-Verbindung auf DIR',
           },
           frontOnYou: {
             en: 'Front Tether on YOU',
+            de: 'Vorne-Verbindung auf DIR',
           },
           rightOnYou: {
             en: 'Right Tether on YOU',
+            de: 'Rechts-Verbindung auf DIR',
           },
           backOnPlayer: {
             en: 'Back Tether on ${player}',
+            de: 'Zurück-Verbindung auf ${player}',
           },
           leftOnPlayer: {
             en: 'Left Tether on ${player}',
+            de: 'Links-Verbindung auf ${player}',
           },
           frontOnPlayer: {
             en: 'Front Tether on ${player}',
+            de: 'Vorne-Verbindung auf ${player}',
           },
           rightOnPlayer: {
             en: 'Right Tether on ${player}',
+            de: 'Rechts-Verbindung auf ${player}',
           },
         };
 
@@ -1801,19 +1909,24 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           backOnYou: {
             en: 'Back Tether (w/${player})',
+            de: 'Zurück-Verbindung (w/${player})',
           },
           // These are probably impossible.
           leftOnYou: {
             en: 'Left Tether (w/${player})',
+            de: 'Links-Verbindung (w/${player})',
           },
           frontOnYou: {
             en: 'Front Tether (w/${player})',
+            de: 'Vorne-Verbindung (w/${player})',
           },
           rightOnYou: {
             en: 'Right Tether (w/${player})',
+            de: 'Rechts-Verbindung (w/${player})',
           },
           unmarkedWithPlayer: {
             en: 'Unmarked (w/${player})',
+            de: 'Unmarkiert (w/${player})',
           },
           unknown: Outputs.unknown,
         };
@@ -1891,9 +2004,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouth: {
           en: 'North/South',
+          de: 'Norden/Süden',
         },
         eastWest: {
           en: 'East/West',
+          de: 'Osten/Westen',
         },
       },
     },
@@ -1912,15 +2027,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         baitNear: {
           en: 'Bait Near (Tether Far)',
+          de: 'Nah ködern (Verbindung Fern)',
         },
         baitFar: {
           en: 'Bait Far (Tether Near)',
+          de: 'Fern ködern (Verbindung Nah)',
         },
         tetherNear: {
           en: 'Tether Near (Bait Far)',
+          de: 'Verbindung Nahe (Fern ködern)',
         },
         tetherFar: {
           en: 'Tether Far (Bait Near)',
+          de: 'Verbindung Fern (Nahe ködern)',
         },
       },
     },
@@ -1972,15 +2091,19 @@ const triggerSet: TriggerSet<Data> = {
         // This is probably not possible.
         back: {
           en: '(then stay)',
+          de: '(bleib stehen)',
         },
         left: {
           en: '(then left)',
+          de: '(dann links)',
         },
         front: {
           en: '(then through)',
+          de: '(dann durchgehen)',
         },
         right: {
           en: '(then right)',
+          de: '(dann rechts)',
         },
       },
     },
@@ -2056,10 +2179,12 @@ const triggerSet: TriggerSet<Data> = {
         // This probably can't happen.
         back: {
           en: 'Stay',
+          de: 'Bleib stehen',
         },
         left: Outputs.left,
         front: {
           en: 'Through',
+          de: 'Lauf durch',
         },
         right: Outputs.right,
       },
@@ -2158,18 +2283,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         left: {
           en: 'Left Tether (${partners})',
+          de: 'Linke Verbindung (${partners})',
         },
         right: {
           en: 'Right Tether (${partners})',
+          de: 'Rechte Verbindung (${partners})',
         },
         melee: {
           en: 'melees together',
+          de: 'Nahkämpfer zusammen',
         },
         role: {
           en: 'roles together',
+          de: 'Rollen zusammen',
         },
         partner: {
           en: 'partners together',
+          de: 'Partner zusammen',
         },
         unknown: Outputs.unknown,
       },
@@ -2177,17 +2307,288 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
-      locale: 'en',
-      replaceText: {
+      'locale': 'en',
+      'replaceText': {
+        'Eye of the Thunder Vortex/Vortex of the Thunder Eye': 'Thunder Eye/Vortex',
+        'Far Edge/Near Edge': 'Far/Near Edge',
+        'Great Ball of Fire/Greater Ball of Fire': 'Greater/Great Ball of Fire',
+        'Greater Ball of Fire/Great Ball of Fire': 'Great/Greater Ball of Fire',
+        'Near Edge/Far Edge': 'Near/Far Edge',
         'Unnatural Ailment/Unnatural Force': 'Unnatural Ailment/Force',
         'Unnatural Force/Unnatural Ailment': 'Unnatural Force/Ailment',
-        'Eye of the Thunder Vortex/Vortex of the Thunder Eye': 'Thunder Eye/Vortex',
-        'Vortex of the Thunder Eye/Eye of the Thunder Vortex': 'Thunder Vortex/Eye',
-        'Greater Ball of Fire/Great Ball of Fire': 'Great/Greater Ball of Fire',
-        'Great Ball of Fire/Greater Ball of Fire': 'Greater/Great Ball of Fire',
         'Vengeful Flame/Vengeful Pyre': 'Vengeful Flame/Pyre',
-        'Near Edge/Far Edge': 'Near/Far Edge',
-        'Far Edge/Near Edge': 'Far/Near Edge',
+        'Vortex of the Thunder Eye/Eye of the Thunder Vortex': 'Thunder Vortex/Eye',
+      },
+    },
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ashigaru Kyuhei': 'Ashigaru Kyuhei',
+        'Ball of Levin': 'Elektrosphäre',
+        'Devilish Thrall': 'hörig(?:e|er|es|en) Shiki',
+        'Gorai the Uncaged': 'Gorai (?:der|die|das) Entfesselt(?:e|er|es|en)',
+        'Moko the Restless': 'Moko (?:der|die|das) Rastlos(?:e|er|es|en)',
+        'Moko\'s Shadow': 'Phantom-Moko',
+        'Oni\'s Claw': 'Oni-Klaue',
+        'Shishio': 'Shishio',
+        'Shishu Fuko': 'Shishu-Fuko',
+        'Shishu Furutsubaki': 'Shishu-Furutsubaki',
+        'Shishu Kotengu': 'Shishu-Kotengu',
+        'Shishu Onmitsugashira': 'Shishu-Onmitsugarashi',
+        'Shishu Raiko': 'Shishu-Raiko',
+        'Shishu Yuki': 'Shishu-Yuki',
+        'The Trial Of Benevolence': 'Probe der Güte',
+        'The Trial Of Responsibility': 'Probe der Pflicht',
+        'The Trial Of Wisdom': 'Probe der Weisheit',
+      },
+      'replaceText': {
+        '\\(circles\\)': '(Kreise)',
+        '\\(lines\\)': '(Linien)',
+        'Azure Auspice': 'Azurblauer Kenki-Fokus',
+        'Boundless Azure': 'Grenzenloses Azurblau',
+        'Boundless Scarlet': 'Grenzenloses Scharlachrot',
+        'Brazen Ballad': 'Biwa-Weise',
+        '(?<!Levin)Burst': 'Explosion',
+        'Clearout': 'Ausräumung',
+        'Cloud to Ground': 'Sturmkonzentration',
+        'Double Iai-giri': 'Doppeltes Iai-giri',
+        'Enkyo': 'Enkyo',
+        'Explosion': 'Explosion',
+        'Eye of the Thunder Vortex': 'Auge des Sturmwirbels',
+        'Falling Rock': 'Steinschlag',
+        'Far Edge': 'Fernschneidung',
+        'Fighting Spirits': 'Kräftigender Schluck',
+        'Fire Spread': 'Brandstiftung',
+        'Flame and Sulphur': 'Flamme und Schwefel',
+        'Fleeting Iai-giri': 'Leichtfüßiges Iai-giri',
+        'Flickering Flame': 'Flackernde Flamme',
+        'Flintlock': 'Steinschloss',
+        'Great Ball of Fire': 'Großer Feuerball',
+        'Greater Ball of Fire': 'Größerer Feuerball',
+        'Haunting Cry': 'Klagender Schrei',
+        'Humble Hammer': 'Entehrender Hammer',
+        'Impure Purgation': 'Flammenwind',
+        'Invocation of Vengeance': 'Ruf nach Vergeltung',
+        'Iron Rain': 'Eisenregen',
+        'Iron Storm': 'Eisensturm',
+        'Kenki Release': 'Kenki-Entfesselung',
+        'Lateral Slice': 'Lateralschlitzer',
+        'Left Swipe': 'Linker Feger',
+        'Levinburst': 'Blitzgang',
+        'Malformed Prayer': 'Unheil des Perlenkranzes',
+        'Malformed Reincarnation': 'Unheilvolle Verwandlung',
+        'Moonless Night': 'Mondlose Nacht',
+        'Near Edge': 'Nahschneidung',
+        'Noble Pursuit': 'Reißzahn des Löwen',
+        'Pointed Purgation': 'Gerichteter Flammenwind',
+        'Right Swipe': 'Rechter Feger',
+        'Rousing Reincarnation': 'Fluch der Verwandlung',
+        'Scarlet Auspice': 'Scharlachroter Kenki-Fokus',
+        'Seal of Scurrying Sparks': 'Siegel des Funkenflugs',
+        'Shadow Kasumi-giri': 'Obskures Kasumi-giri',
+        'Shadow-twin': 'Schattenzwilling',
+        'Shock': 'Entladung',
+        'Slither': 'Schlängeln',
+        'Smokeater': 'Dunstfresser',
+        'Soldiers of Death': 'Soldaten des Todes',
+        'Splitting Cry': 'Schrecklicher Schrei',
+        'Stormcloud Summons': 'Elektrizitätsgenerierung',
+        'Stygian Aura': 'Schwarze Aura',
+        '(?<!Eye of the )Thunder Vortex': 'Sturmwirbel',
+        'Thundercall': 'Donnerruf',
+        'Torching Torment': 'Höllische Hitze',
+        'Triple Kasumi-giri': 'Dreifaches Kasumi-giri',
+        'Unenlightenment': 'Glühende Geißel',
+        'Unnatural Ailment': 'Unnatürliches Leiden',
+        'Unnatural Force': 'Unnatürliche Macht',
+        'Unnatural Wail': 'Unnatürliches Heulen',
+        'Upwell': 'Strömung',
+        'Vengeful Flame': 'Vergeltende Flamme',
+        'Vengeful Pyre': 'Vergeltendes Feuer',
+        'Vengeful Souls': 'Rachsüchtige Seelen',
+        'Vermilion Aura': 'Rote Aura',
+        'Vortex of the Thunder Eye': 'Wirbel des Sturmauges',
+        'Worldly Pursuit': 'Schmerzschlag der Springmaus',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ashigaru Kyuhei': 'ashigaru kyûhei',
+        'Ball of Levin': 'orbe de foudre',
+        'Devilish Thrall': 'ilote malicieux',
+        'Gorai the Uncaged': 'Gôrai le fureteur',
+        'Moko the Restless': 'Môko le tourmenté',
+        'Moko\'s Shadow': 'spectre de Môko',
+        'Oni\'s Claw': 'griffe d\'oni',
+        'Shishio': 'Shishiô',
+        'Shishu Fuko': 'fûkô de Shishû',
+        'Shishu Furutsubaki': 'furutsubaki de Shishû',
+        'Shishu Kotengu': 'kotengu de Shishû',
+        'Shishu Onmitsugashira': 'onmitsugashira de Shishû',
+        'Shishu Raiko': 'raikô de Shishû',
+        'Shishu Yuki': 'yûki de Shishû',
+        'The Trial Of Benevolence': 'Épreuve de la Prospérité',
+        'The Trial Of Responsibility': 'Épreuve de la Longévité',
+        'The Trial Of Wisdom': 'Épreuve de la Connaissance',
+      },
+      'replaceText': {
+        'Azure Auspice': 'Auspice azuré',
+        'Boundless Azure': 'Lueur azurée',
+        'Boundless Scarlet': 'Lueur écarlate',
+        'Brazen Ballad': 'Ballade cuivrée',
+        '(?<!Levin)Burst': 'Explosion',
+        'Clearout': 'Fauchage',
+        'Cloud to Ground': 'Attaque fulminante',
+        'Double Iai-giri': 'Iai-giri double',
+        'Enkyo': 'Enkyô',
+        'Explosion': 'Explosion',
+        'Eye of the Thunder Vortex': 'Œil du vortex de foudre',
+        'Falling Rock': 'Chute de pierre',
+        'Far Edge': 'Visée lointaine',
+        'Fighting Spirits': 'Esprits spiritueux',
+        'Fire Spread': 'Nappe de feu',
+        'Flame and Sulphur': 'Soufre enflammé',
+        'Fleeting Iai-giri': 'Iai-giri fugace',
+        'Flickering Flame': 'Flamme vacillante',
+        'Flintlock': 'Tir d\'artillerie',
+        'Great Ball of Fire': 'Grande boule de feu',
+        'Greater Ball of Fire': 'Grande sphère de feu',
+        'Haunting Cry': 'Cri de tourmente',
+        'Humble Hammer': 'Marteau d\'humilité',
+        'Impure Purgation': 'Purgation impure',
+        'Invocation of Vengeance': 'Invocation vengeresse',
+        'Iron Rain': 'Pluie de fer',
+        'Iron Storm': 'Orage de fer',
+        'Kenki Release': 'Décharge Kenki',
+        'Lateral Slice': 'Taillade latérale',
+        'Left Swipe': 'Tranchage gauche',
+        'Levinburst': 'Éclat de foudre',
+        'Malformed Prayer': 'Prière difforme',
+        'Malformed Reincarnation': 'Sceau de réincarnation difforme',
+        'Moonless Night': 'Nuit noire',
+        'Near Edge': 'Visée proche',
+        'Noble Pursuit': 'Noble ambition',
+        'Pointed Purgation': 'Purgation pointée',
+        'Right Swipe': 'Tranchage droit',
+        'Rousing Reincarnation': 'Réincarnation vibrante',
+        'Scarlet Auspice': 'Auspice écarlate',
+        'Seal of Scurrying Sparks': 'Sceau des feux follets',
+        'Shadow Kasumi-giri': 'Kasumi-giri spectral',
+        'Shadow-twin': 'Ombre jumelle',
+        'Shock': 'Décharge électrostatique',
+        'Slither': 'Serpentin',
+        'Smokeater': 'Dévoreur de brouillard',
+        'Soldiers of Death': 'Guerriers de la mort',
+        'Splitting Cry': 'Cri d\'horreur',
+        'Stormcloud Summons': 'Nuage d\'orage',
+        'Stygian Aura': 'Aura stygienne',
+        '(?<!Eye of the )Thunder Vortex': 'Spirale de foudre',
+        'Thundercall': 'Drain fulminant',
+        'Torching Torment': 'Brasier de tourments',
+        'Triple Kasumi-giri': 'Kasumi-giri triple',
+        'Unenlightenment': 'Sommeil spirituel',
+        'Unnatural Ailment': 'Affection contre nature',
+        'Unnatural Force': 'Force contre nature',
+        'Unnatural Wail': 'Hurlement contre nature',
+        'Upwell': 'Torrent violent',
+        'Vengeful Flame': 'Flamme vengeresse',
+        'Vengeful Pyre': 'Bûcher vengeur',
+        'Vengeful Souls': 'Âmes vengeresses',
+        'Vermilion Aura': 'Aura vermillon',
+        'Vortex of the Thunder Eye': 'Vortex de l\'œil de foudre',
+        'Worldly Pursuit': 'Matérialisme',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ashigaru Kyuhei': '足軽弓兵',
+        'Ball of Levin': '雷球',
+        'Devilish Thrall': '惑わされた屍鬼',
+        'Gorai the Uncaged': '鉄鼠ゴウライ',
+        'Moko the Restless': '怨霊モウコ',
+        'Moko\'s Shadow': 'モウコの幻影',
+        'Oni\'s Claw': '鬼腕',
+        'Shishio': '獅子王',
+        'Shishu Fuko': 'シシュウ・フウコウ',
+        'Shishu Furutsubaki': 'シシュウ・フルツバキ',
+        'Shishu Kotengu': 'シシュウ・コテング',
+        'Shishu Onmitsugashira': 'シシュウ・オンミツガシラ',
+        'Shishu Raiko': 'シシュウ・ライコウ',
+        'Shishu Yuki': 'シシュウ・ユウキ',
+        'The Trial Of Benevolence': '福徳の試練',
+        'The Trial Of Responsibility': '寿徳の試練',
+        'The Trial Of Wisdom': '智徳の試練',
+      },
+      'replaceText': {
+        'Azure Auspice': '青帝剣気',
+        'Boundless Azure': '青帝空閃刃',
+        'Boundless Scarlet': '赤帝空閃刃',
+        'Brazen Ballad': '琵琶の旋律',
+        '(?<!Levin)Burst': '爆発',
+        'Clearout': 'なぎ払い',
+        'Cloud to Ground': '襲雷',
+        'Double Iai-giri': '俊足居合二段',
+        'Enkyo': '猿叫',
+        'Explosion': '爆発',
+        'Eye of the Thunder Vortex': '渦雷の連舞：円輪',
+        'Falling Rock': '落石',
+        'Far Edge': '遠間当て',
+        'Fighting Spirits': '般若湯',
+        'Fire Spread': '放火',
+        'Flame and Sulphur': '岩火招来',
+        'Fleeting Iai-giri': '俊足居合斬り',
+        'Flickering Flame': '怪火招来',
+        'Flintlock': '火砲',
+        'Great Ball of Fire': '火球',
+        'Greater Ball of Fire': '重火球',
+        'Haunting Cry': '不気味な鳴声',
+        'Humble Hammer': '打ち出の小槌',
+        'Impure Purgation': '炎流',
+        'Invocation of Vengeance': '怨呪の祈請',
+        'Iron Rain': '矢の雨',
+        'Iron Storm': '矢の嵐',
+        'Kenki Release': '剣気解放',
+        'Lateral Slice': '胴薙ぎ',
+        'Left Swipe': '左爪薙ぎ払い',
+        'Levinburst': '発雷',
+        'Malformed Prayer': '呪珠印',
+        'Malformed Reincarnation': '変現呪珠の印',
+        'Moonless Night': '闇夜斬り',
+        'Near Edge': '近間当て',
+        'Noble Pursuit': '獅子王牙',
+        'Pointed Purgation': '指向炎流',
+        'Right Swipe': '右爪薙ぎ払い',
+        'Rousing Reincarnation': '変現の呪い',
+        'Scarlet Auspice': '赤帝剣気',
+        'Seal of Scurrying Sparks': '乱火の印',
+        'Shadow Kasumi-giri': '幻影霞斬り',
+        'Shadow-twin': '幻影呼び',
+        'Shock': '放電',
+        'Slither': '蛇尾薙ぎ',
+        'Smokeater': '霞喰い',
+        'Soldiers of Death': '屍兵呼び',
+        'Splitting Cry': '霊鳴砲',
+        'Stormcloud Summons': '雷雲生成',
+        'Stygian Aura': '黒妖弾',
+        '(?<!Eye of the )Thunder Vortex': '輪転渦雷',
+        'Thundercall': '招雷',
+        'Torching Torment': '煩熱',
+        'Triple Kasumi-giri': '霞三段',
+        'Unenlightenment': '煩悩熾盛',
+        'Unnatural Ailment': '妖撃',
+        'Unnatural Force': '重妖撃',
+        'Unnatural Wail': '不気味な呪声',
+        'Upwell': '水流',
+        'Vengeful Flame': '怨呪の火',
+        'Vengeful Pyre': '怨呪の重火',
+        'Vengeful Souls': '黒赤招魂',
+        'Vermilion Aura': '赤妖弾',
+        'Vortex of the Thunder Eye': '渦雷の連舞：輪円',
+        'Worldly Pursuit': '跳鼠痛撃',
       },
     },
   ],
