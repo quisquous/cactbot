@@ -1080,6 +1080,8 @@ const latestLogDefinitions = {
       timestamp: 1,
       inACTCombat: 2,
       inGameCombat: 3,
+      isACTChanged: 4,
+      isGameChanged: 5,
     },
     canAnonymize: true,
     firstOptionalField: undefined,

@@ -2424,6 +2424,12 @@ This log line tracks in combat state.
 which may include other people around you and not yourself
 and also takes your ACT encounter settings into consideration.
 
+`isACTChanged` and `isGameChanged` represent whether the state has changed
+since the last log line.
+This allows triggers to be written for when a particular one changes,
+as lines are emitted if either changes.
+These are both true the first time the log is written.
+
 OverlayPlugin uses `inACTCombat` to re-split your encounters during import
 based on how they were split when they were originally recorded.
 
@@ -2433,34 +2439,34 @@ based on how they were split when they were originally recorded.
 
 ```log
 Network Log Line Structure:
-260|[timestamp]|[inACTCombat]|[inGameCombat]
+260|[timestamp]|[inACTCombat]|[inGameCombat]|[isACTChanged]|[isGameChanged]
 
 Parsed Log Line Structure:
-[timestamp] 260 104:[inACTCombat]:[inGameCombat]
+[timestamp] 260 104:[inACTCombat]:[inGameCombat]:[isACTChanged]:[isGameChanged]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>260)\|(?<timestamp>[^|]*)\|(?<inACTCombat>[^|]*)\|(?<inGameCombat>[^|]*)\|
+^(?<type>260)\|(?<timestamp>[^|]*)\|(?<inACTCombat>[^|]*)\|(?<inGameCombat>[^|]*)\|(?<isACTChanged>[^|]*)\|(?<isGameChanged>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) 260 (?<type>104):(?<inACTCombat>[^:]*):(?<inGameCombat>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) 260 (?<type>104):(?<inACTCombat>[^:]*):(?<inGameCombat>[^:]*):(?<isACTChanged>[^:]*):(?<isGameChanged>[^:]*)(?:$|:)
 ```
 
 #### Examples
 
 ```log
 Network Log Line Examples:
-260|2023-01-03T10:17:15.8240000-08:00|0|0|7da9e0cfed11abfe
-260|2023-01-03T17:51:42.9680000-08:00|1|0|ae12d0898d923251
-260|2023-01-03T17:54:50.0680000-08:00|1|1|3ba06c97a4cbbf42
+260|2023-01-03T10:17:15.8240000-08:00|0|0|1|1|7da9e0cfed11abfe
+260|2023-01-03T17:51:42.9680000-08:00|1|0|0|1|ae12d0898d923251
+260|2023-01-03T17:54:50.0680000-08:00|1|1|1|0|3ba06c97a4cbbf42
 
 Parsed Log Line Examples:
-[10:17:15.824] 260 104:0:0
-[17:51:42.968] 260 104:1:0
-[17:54:50.068] 260 104:1:1
+[10:17:15.824] 260 104:0:0:1:1
+[17:51:42.968] 260 104:1:0:0:1
+[17:54:50.068] 260 104:1:1:1:0
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=InCombat&lang=en-US) -->
