@@ -1396,7 +1396,8 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en: `Full mixed means everybody has both colors (two of one, one of the other).
              Half mixed means two people have both colors and two people have all the same color.`,
-        de: `Voll gemischt bedeutet, dass jeder beide Farben hat (zwei von der einen, eine von der anderen).
+        de:
+          `Voll gemischt bedeutet, dass jeder beide Farben hat (zwei von der einen, eine von der anderen).
              Halb gemischt bedeutet, dass zwei Personen beide Farben haben und zwei Personen nur eine Farbe haben`,
       },
       type: 'GainsEffect',
