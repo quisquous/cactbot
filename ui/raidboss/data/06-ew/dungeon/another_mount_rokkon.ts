@@ -128,15 +128,19 @@ const basicStackSpreadOutputStrings: Record<StackSpreadMechanic, LocaleText> = {
   spread: Outputs.spread,
   melee: {
     en: 'Melees Stack',
+    de: 'Nahkämpfer sammeln',
   },
   role: {
     en: 'Role Stacks',
+    de: 'Rollengruppe sammeln',
   },
   partner: {
     en: 'Partner Stacks',
+    de: 'Partner sammeln',
   },
   unknown: {
     en: 'Stacks',
+    de: 'Sammeln',
   },
 } as const;
 
@@ -813,6 +817,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${inOut} + ${mechanic}',
+          de: '${inOut} + ${mechanic}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -961,6 +966,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tower: {
           en: 'Tower',
+          de: 'Türme',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -997,9 +1003,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         tower: {
           en: 'Get Tower (w/${player})',
+          de: 'Nimm Turm mit (w/${player})',
         },
         spread: {
           en: 'Spread (w/${player})',
+          de: 'Verteilen (w/${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -1076,6 +1084,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Dodge 4x Shuriken',
+          de: 'Weiche 4x Shuriken aus',
         },
       },
     },
@@ -1257,12 +1266,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         beBehindTank: {
           en: 'Stay Behind Tank',
+          de: 'Hinter dem Tank stehen',
         },
         blockLaser: {
           en: 'Block Laser on ${player}',
+          de: 'Blockiere Laser auf ${player}',
         },
         avoidLaser: {
           en: 'Avoid Laser',
+          de: 'Laser vermeiden',
         },
       },
     },
@@ -1384,6 +1396,8 @@ const triggerSet: TriggerSet<Data> = {
       comment: {
         en: `Full mixed means everybody has both colors (two of one, one of the other).
              Half mixed means two people have both colors and two people have all the same color.`,
+        de: `Voll gemischt bedeutet, dass jeder beide Farben hat (zwei von der einen, eine von der anderen).
+             Halb gemischt bedeutet, dass zwei Personen beide Farben haben und zwei Personen nur eine Farbe haben`,
       },
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
@@ -1396,21 +1410,27 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           alertText: {
             en: '${color1} -> ${color2} -> ${color3} (${mixedType})',
+            de: '${color1} -> ${color2} -> ${color3} (${mixedType})',
           },
           infoText: {
             en: '(first ${color} w/${player})',
+            de: '(zuerst ${color} mit ${player})',
           },
           orange: {
             en: 'Orange',
+            de: 'Orange',
           },
           blue: {
             en: 'Blue',
+            de: 'Blau',
           },
           mixedTypeFull: {
             en: 'full mixed',
+            de: 'Voll gemischt',
           },
           mixedTypeHalf: {
             en: 'half mixed',
+            de: 'Halb gemischt',
           },
           unknown: Outputs.unknown,
         };
@@ -1674,6 +1694,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Sides + Out',
+          de: 'Seiten + Raus',
         },
       },
     },
@@ -2258,18 +2279,23 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         left: {
           en: 'Left Tether (${partners})',
+          de: 'Linke Verbindung (${partners})',
         },
         right: {
           en: 'Right Tether (${partners})',
+          de: 'Rechte Verbindung (${partners})',
         },
         melee: {
           en: 'melees together',
+          de: 'Nahkämpfer zusammen',
         },
         role: {
           en: 'roles together',
+          de: 'Rollen zusammen',
         },
         partner: {
           en: 'partners together',
+          de: 'Partner zusammen',
         },
         unknown: Outputs.unknown,
       },
