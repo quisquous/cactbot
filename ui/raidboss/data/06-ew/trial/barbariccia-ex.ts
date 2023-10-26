@@ -52,6 +52,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stack to Bait Puddles',
+          de: 'Sammeln um Flächen zu ködern',
         },
       },
     },
@@ -124,9 +125,11 @@ const triggerSet: TriggerSet<Data> = {
         in: Outputs.in,
         inThenSpread: {
           en: 'In => Spread',
+          de: 'Rein => Verteilen',
         },
         inAndHealerGroups: {
           en: 'In => Healer Groups',
+          de: 'Rein => Heiler Gruppen',
         },
       },
     },
@@ -140,6 +143,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread Out',
+          de: 'Außen Verteilen',
         },
       },
     },
@@ -166,9 +170,11 @@ const triggerSet: TriggerSet<Data> = {
         },
         wallAndHealerGroups: {
           en: 'Wall + Healer Groups',
+          de: 'Wand + Heiler Gruppen',
         },
         wallThenSpread: {
           en: 'Wall => Spread',
+          de: 'Wand => Verteilen',
         },
       },
     },
@@ -182,6 +188,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Spread Out',
+          de: 'Außen Verteilen',
         },
       },
     },
@@ -243,6 +250,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         protean: {
           en: 'Protean Spread',
+          de: 'in Himmelsrichtungen verteilen',
         },
       },
     },
@@ -301,6 +309,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out + Spread',
+          de: 'Raus + Verteilen',
         },
       },
     },
@@ -461,6 +470,7 @@ const triggerSet: TriggerSet<Data> = {
         num4: Outputs.num4,
         stackMiddle: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
         },
       },
     },
