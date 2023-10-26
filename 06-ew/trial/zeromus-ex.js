@@ -251,31 +251,37 @@ Options.Triggers.push({
         },
         dirNNE: {
           en: 'North Wall (NNE/WSW)',
+          de: 'Nördliche Wand (NNO/WSW)',
           cn: '右上前方/左下侧边',
           ko: '1시/8시',
         },
         dirNNW: {
           en: 'North Wall (NNW/ESE)',
+          de: 'Nördliche Wand (NNW/OSO)',
           cn: '左上前方/右下侧边',
           ko: '11시/4시',
         },
         dirNE: {
           en: 'Corners (NE/SW)',
+          de: 'Ecken (NO/SW)',
           cn: '右上/左下角落',
           ko: '구석 (북동/남서)',
         },
         dirNW: {
           en: 'Corners (NW/SE)',
+          de: 'Ecken (NW/SO)',
           cn: '左上/右下角落',
           ko: '구석 (북서/남동)',
         },
         dirENE: {
           en: 'East Wall (ENE/SSW)',
+          de: 'Östliche Wand (ONO/SSW)',
           cn: '右上侧边/左下后方',
           ko: '2시/7시',
         },
         dirWNW: {
           en: 'West Wall (WNW/SSE)',
+          de: 'Westliche Wand (WNW/SSO)',
           cn: '左上侧边/右下后方',
           ko: '10시/5시',
         },

@@ -30,6 +30,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stack to Bait Puddles',
+          de: 'Sammeln um Flächen zu ködern',
         },
       },
     },
@@ -102,9 +103,11 @@ Options.Triggers.push({
         in: Outputs.in,
         inThenSpread: {
           en: 'In => Spread',
+          de: 'Rein => Verteilen',
         },
         inAndHealerGroups: {
           en: 'In => Healer Groups',
+          de: 'Rein => Heiler Gruppen',
         },
       },
     },
@@ -118,6 +121,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Spread Out',
+          de: 'Außen Verteilen',
         },
       },
     },
@@ -144,9 +148,11 @@ Options.Triggers.push({
         },
         wallAndHealerGroups: {
           en: 'Wall + Healer Groups',
+          de: 'Wand + Heiler Gruppen',
         },
         wallThenSpread: {
           en: 'Wall => Spread',
+          de: 'Wand => Verteilen',
         },
       },
     },
@@ -160,6 +166,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Spread Out',
+          de: 'Außen Verteilen',
         },
       },
     },
@@ -219,6 +226,7 @@ Options.Triggers.push({
       outputStrings: {
         protean: {
           en: 'Protean Spread',
+          de: 'in Himmelsrichtungen verteilen',
         },
       },
     },
@@ -277,6 +285,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Out + Spread',
+          de: 'Raus + Verteilen',
         },
       },
     },
@@ -437,6 +446,7 @@ Options.Triggers.push({
         num4: Outputs.num4,
         stackMiddle: {
           en: 'Bait Middle',
+          de: 'Mitte ködern',
         },
       },
     },
