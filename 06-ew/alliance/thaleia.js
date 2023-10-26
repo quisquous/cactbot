@@ -36,6 +36,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Puddle on YOU',
+          de: 'Fläche auf DIR',
           ja: '自分にAOE',
         },
       },
@@ -84,6 +85,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bait puddles',
+          de: 'Flächen ködern',
           ja: 'AOE回避',
         },
       },
@@ -103,6 +105,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Look for knockback position',
+          de: 'Nach Rückstoß Position schauen',
           ja: 'ノックバック位置へ',
         },
       },
@@ -115,6 +118,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback + Rolling stones',
+          de: 'Rückstoß + rollende Steine',
           ja: 'ノックバック + 石AOE',
         },
       },
@@ -127,6 +131,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to safe zone',
+          de: 'Geh zum sichere Feld',
           ja: '安置へ移動',
         },
       },
@@ -157,6 +162,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback',
+          de: 'Rückstoß',
           ja: 'まもなくノックバック',
         },
       },
@@ -169,6 +175,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Far knockback',
+          de: 'Weiter Rückstoß',
           ja: '遠くノックバック',
         },
       },
@@ -200,6 +207,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Last trident => 1st trident',
+          de: 'Letzer Dreizack => erster Dreizack',
           ja: '最後の槍 => 1番目の槍へ',
         },
       },
@@ -224,6 +232,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to side of the arrow (Boss doesn\'t move)',
+          de: 'Geh seitlich des Pfeils (Boss bewegt sich nicht)',
           ja: '矢印の横へ (ボスは動かない)',
         },
       },
@@ -240,10 +249,12 @@ Options.Triggers.push({
       outputStrings: {
         one: {
           en: 'Go to side of the arrow',
+          de: 'Geh seitlich des Pfeils',
           ja: '矢印の横へ',
         },
         two: {
           en: 'Corner between two arrows',
+          de: 'Ecke zwichen 2 Pfeilen',
           ja: '2つの矢印の隅',
         },
       },
@@ -278,6 +289,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback to safe corner',
+          de: 'Rückstoß in die sichere Ecke',
           ja: 'AOEがないどころへ + ノックバック',
         },
       },
@@ -290,6 +302,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Oschon second phase',
+          de: 'Oschon zweite Phase',
           ja: 'すぐ大きくなる',
         },
       },
@@ -302,6 +315,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to safe zone',
+          de: 'Geh in den sicheren Bereich',
           ja: '安置で待機',
         },
       },
@@ -314,6 +328,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Far from Orb',
+          de: 'Weit weg vom Orb',
           ja: '玉からはなれて',
         },
       },
@@ -326,6 +341,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Far from Orb + Knockback',
+          de: 'Weit weg vom Orb + Rückstoß',
           ja: '玉からはなれて + ノックバック',
         },
       },
@@ -354,6 +370,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${form1} => ${form2} => ${form3}',
+          de: '${form1} => ${form2} => ${form3}',
         },
         left: Outputs.left,
         right: Outputs.right,
@@ -382,6 +399,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Start from the bright moon',
+          de: 'Starte vom hellen Mond',
           ja: '明るい月から',
         },
       },
@@ -395,6 +413,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '3 => 1 => 2',
+          de: '3 => 1 => 2',
           ja: '3 => 1 => 2',
         },
       },
@@ -408,6 +427,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to safe zone',
+          de: 'Geh in den sicheren Bereich',
           ja: '安置へ移動',
         },
       },
@@ -453,6 +473,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Last trident => 1st trident',
+          de: 'Letzer Dreizack => erster Dreizack',
           ja: '最後の槍 => 1番目の槍へ',
         },
       },
@@ -510,10 +531,12 @@ Options.Triggers.push({
       outputStrings: {
         red: {
           en: 'Blue is safe',
+          de: 'Blau ist sicher',
           ja: '青安置',
         },
         blue: {
           en: 'Red is safe',
+          de: 'Rot ist sicher',
           ja: '赤安置',
         },
       },
@@ -526,6 +549,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Knockback to safe corner',
+          de: 'Rückstoß in die sichere Ecke',
           ja: '安置へノックバック',
         },
       },
@@ -545,6 +569,37 @@ Options.Triggers.push({
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Eulogia': 'Eulogia',
+        'Llymlaen(?!\')': 'Llymlaen',
+        'Oschon(?!\')': 'Oschon',
+        'Thaliak(?!\')': 'Thaliak',
+        'The Briny Deep': 'Auge des Meeres',
+        'The River Of Knowledge': 'Fluss der Weisheit',
+        'The Stairway To The Seventh': 'Aufgang zum Firmament',
+        'The Twelve\'s Embrace': 'Himmlische Sphäre des Segens',
+        'The Way of the Wise': 'Kanal des Wissens',
+        'The Windward Pass': 'Pfad des Windes',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Eulogia': 'Eulogie',
+        'Llymlaen(?!\')': 'Llymlaen',
+        'Oschon(?!\')': 'Oschon',
+        'Thaliak(?!\')': 'Thaliak',
+        'The Briny Deep': 'Œil de l\'océan',
+        'The River Of Knowledge': 'Rivière du savoir',
+        'The Stairway To The Seventh': 'Marches du firmament',
+        'The Twelve\'s Embrace': 'Sphère céleste de la bénédiction',
+        'The Way of the Wise': 'Canaux de la connaissance',
+        'The Windward Pass': 'Voie des vents',
+      },
+    },
     {
       'locale': 'ja',
       'missingTranslations': true,
