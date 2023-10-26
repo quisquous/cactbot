@@ -117,7 +117,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Look for knockback position', // FIXME
+          en: 'Look for knockback position',
           ja: 'ノックバック位置へ',
         },
       },
@@ -129,7 +129,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback + Rolling stones', // FIXME
+          en: 'Knockback + Rolling stones',
           ja: 'ノックバック + 石AOE',
         },
       },
@@ -141,7 +141,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to safe zone', // FIXME
+          en: 'Go to safe zone',
           ja: '安置へ移動',
         },
       },
@@ -165,26 +165,6 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOut(),
     },
     {
-      id: 'Thaleia Llymlaen Navigator\'s Trident',
-      type: 'StartsUsing',
-      netRegex: { id: '8CCE', source: 'Llymlaen' },
-      infoText: (_data, matches, output) => {
-        if (parseFloat(matches.z) < 0)
-          return output.right!();
-        return output.left!();
-      },
-      outputStrings: {
-        left: {
-          en: 'Right => Left => Knockback',
-          ja: '右 => 左 => ノックバック',
-        },
-        right: {
-          en: 'Left => Right => Knockback',
-          ja: '左 => 右 => ノックバック',
-        },
-      },
-    },
-    {
       id: 'Thaleia Llymlaen Navigator\'s Trident Knockback',
       type: 'StartsUsing',
       netRegex: { id: '8811', source: 'Llymlaen', capture: false },
@@ -203,7 +183,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Far knockback', // FIXME
+          en: 'Far knockback',
           ja: '遠くノックバック',
         },
       },
@@ -258,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to side of the arrow (Boss doesn\'t move)', // FIXME
+          en: 'Go to side of the arrow (Boss doesn\'t move)',
           ja: '矢印の横へ (ボスは動かない)',
         },
       },
@@ -274,11 +254,11 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         one: {
-          en: 'Go to side of the arrow', // FIXME
+          en: 'Go to side of the arrow',
           ja: '矢印の横へ',
         },
         two: {
-          en: 'Corner between two arrows', // FIXME
+          en: 'Corner between two arrows',
           ja: '2つの矢印の隅',
         },
       },
@@ -288,13 +268,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: ['89A3', '89A4'], source: 'Oschon', capture: false },
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'AOE',
-          ja: '連続AOE',
-        },
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Thaleia Oschon Soaring Minuet',
@@ -318,7 +292,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback to safe corner', // FIXME
+          en: 'Knockback to safe corner',
           ja: 'AOEがないどころへ + ノックバック',
         },
       },
@@ -335,21 +309,6 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    /*
-    {
-      id: 'Thaleia Oschon Piton Pull',
-      type: 'StartsUsing',
-      netRegex: { id: ['89A9', '89AA', '89AB'], source: 'Oschon', capture: false },
-      suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Go to safe zone between two hooks', // FIXME
-          ja: '2つの鉤の隅へ',
-        },
-      },
-    },
-    */
     {
       id: 'Thaleia Oschon Altitude',
       type: 'StartsUsing',
@@ -369,7 +328,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Far from Orb', // FIXME
+          en: 'Far from Orb',
           ja: '玉からはなれて',
         },
       },
@@ -381,7 +340,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Far from Orb + Knockback', // FIXME
+          en: 'Far from Orb + Knockback',
           ja: '玉からはなれて + ノックバック',
         },
       },
@@ -437,7 +396,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Start from the bright moon', // FIXME
+          en: 'Start from the bright moon',
           ja: '明るい月から',
         },
       },
@@ -463,7 +422,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Go to safe zone', // FIXME
+          en: 'Go to safe zone',
           ja: '安置へ移動',
         },
       },
@@ -565,11 +524,11 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         red: {
-          en: 'Blue is safe', // FIXME
+          en: 'Blue is safe',
           ja: '青安置',
         },
         blue: {
-          en: 'Red is safe', // FIXME
+          en: 'Red is safe',
           ja: '赤安置',
         },
       },
@@ -581,7 +540,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Knockback to safe corner', // FIXME
+          en: 'Knockback to safe corner',
           ja: '安置へノックバック',
         },
       },
@@ -597,13 +556,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8A2C', source: 'Eulogia', capture: false },
       durationSeconds: 18,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'AOE',
-          ja: '連続AOE',
-        },
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [
