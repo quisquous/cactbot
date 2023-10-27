@@ -12,7 +12,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Euphrosyne Nophica Spring Flowers': '7C10', // "out" from The Giving Land
     'Euphrosyne Nophica Summer Shade': '7C0F', // "in" from The Giving Land
     'Euphrosyne Nophica Reaper\'s Gale': '7C0E', // waffles
-    'Euphrosyne Nophica Landwaker': '7C0E', // circles paired with waffles
+    'Euphrosyne Nophica Landwaker': '7C1C', // circles paired with waffles
     'Euphrosyne Nophica Sowing Circle 1': '7C14', // initial exaflares
     'Euphrosyne Nophica Sowing Circle 2': '7C15', // ongoing exaflares
 
@@ -54,7 +54,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Euphrosyne Menphina Midnight Frost 2': '7BDD', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 3': '7BD1', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 4': '7BD2', // 180 cleave
-    'Euphrosyne Menphina Midnight Frost 5': '7BDD', // 180 cleave
+    // FIXME: this id is the same as Midnight Frost 2 above, is it correct or one of them incorrect?
+    // 'Euphrosyne Menphina Midnight Frost 5': '7BDD', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 6': '7BDE', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 7': '7BEA', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 8': '7BEB', // 180 cleave

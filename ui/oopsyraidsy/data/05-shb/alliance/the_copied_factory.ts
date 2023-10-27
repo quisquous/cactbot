@@ -55,7 +55,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Copied Goliath Energy Ring 2': '4938',
     'Copied Goliath Energy Ring 3': '4939',
     'Copied Goliath Energy Ring 4': '493A',
-    'Copied Goliath Energy Ring 5': '4937',
+    // FIXME: this id is the same as Energy Ring 1 above, is it correct or one of them incorrect?
+    // 'Copied Goliath Energy Ring 5': '4937',
     'Copied Goliath Laser Turret': '48E6',
 
     'Copied Flight Unit Area Bombing': '4943',
@@ -77,13 +78,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
 
     'Copied Engels Marx Crush': '48FC',
     'Copied Engels Crushing Wheel': '474B',
-    'Copied Engels Marx Thrust': '48FC',
+    // FIXME: this id is the same as Marx Crush above, is it correct or one of them incorrect?
+    // 'Copied Engels Marx Thrust': '48FC',
 
     'Copied 9S Laser Suppression': '48E0', // Cannons
     'Copied 9S Ballistic Impact 1': '4974',
     'Copied 9S Ballistic Impact 2': '48DC',
     'Copied 9S Ballistic Impact 3': '48E4',
-    'Copied 9S Ballistic Impact 4': '48E0',
+    // FIXME: this id is the same as Laser Suppression above, is it correct or one of them incorrect?
+    // 'Copied 9S Ballistic Impact 4': '48E0',
 
     'Copied 9S Marx Impact': '48D4',
 

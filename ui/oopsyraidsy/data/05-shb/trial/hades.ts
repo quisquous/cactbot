@@ -22,7 +22,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Hades Echo 2': '4164',
   },
   shareFail: {
-    'Hades Nether Blast': '4163',
+    // FIXME: this id is the same as Echo 1 above, is it correct or one of them incorrect?
+    // 'Hades Nether Blast': '4163',
     'Hades Ravenous Assault': '4158',
     'Hades Ancient Darkness': '4593',
     'Hades Dual Strike': '4162',

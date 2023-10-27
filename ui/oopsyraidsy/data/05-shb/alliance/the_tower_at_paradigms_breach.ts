@@ -60,7 +60,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Tower Philosopher Deploy Armaments Sides': '5C05', // sides laser
     'Tower Philosopher Deploy Armaments 3': '6078', // goes with 5C01
     'Tower Philosopher Deploy Armaments 4': '6079', // goes with 5C04
-    'Tower Philosopher Energy Bomb': '5C05', // pink bubble
+    // FIXME: this id is the same as Deploy Armaments Sides above, is it correct or one of them incorrect?
+    // 'Tower Philosopher Energy Bomb': '5C05', // pink bubble
     'Tower False Idol Made Magic Right': '5BD7', // rotating wheel going right
     'Tower False Idol Made Magic Left': '5BD6', // rotating wheel going left
     'Tower False Idol Lighter Note': '5BDA', // lighter note moving aoes

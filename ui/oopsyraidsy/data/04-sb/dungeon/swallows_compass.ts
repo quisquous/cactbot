@@ -22,8 +22,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Swallows Compass Greater Palm 2': '2B9E', // Half arena left cleave, Daidarabotchi, boss 2
     'Swallows Compass Tributary': '2BA0', // Targeted thin conal ground AoEs, Daidarabotchi, boss 2
 
-    'Swallows Compass Wildswind 2': '2C06', // Circle ground AoE, environment, after boss 2
-    'Swallows Compass Wildswind 3': '2C07', // Circle ground AoE, placed by Sai Taisui trash, after boss 2
+    // FIXME: this id is the same as Upwell above, is it correct or one of them incorrect?
+    // 'Swallows Compass Wildswind 2': '2C06', // Circle ground AoE, environment, after boss 2
+    // FIXME: this id is the same as Bad Breath above, is it correct or one of them incorrect?
+    // 'Swallows Compass Wildswind 3': '2C07', // Circle ground AoE, placed by Sai Taisui trash, after boss 2
     'Swallows Compass Filoplumes': '2C76', // Frontal rectangle AoE, Dragon Bi Fang trash, after boss 2
 
     'Swallows Compass Both Ends 1': '2BA8', // Chariot AoE, Qitian Dasheng, boss 3
