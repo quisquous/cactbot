@@ -17,8 +17,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Alzadaal Ambujam Corrosive Fountain': '7374', // Blue AoE  circles, boss 1
 
     'Alzadaal Bounty Rockfin Aqua Spear': '704C', // Rectangle cleave AoE, before boss 2
-    // FIXME: this id is the same as Bad Breath above (which is confirmed correct); this is wrong
-    // 'Alzadaal Alzadaal\'s Rampart Pulse Laser': '7041', // Rectangle AoE, before boss 2
+    'Alzadaal Alzadaal\'s Rampart Pulse Laser': '7048', // Rectangle AoE, before boss 2, only if VERRRY slow
     'Alzadaal Bounty Uragnite Palsynixys': '7043', // Frontal cone AoE, before boss 2
     'Alzadaal Bounty Ruszor Aqua BLast': '7044', // Large frontal cone AoE, before boss 2
     'Alzadaal Shallows Ogrebon Flounder': '7046', // Rectangle AoE, before boss 2
