@@ -2138,6 +2138,7 @@ const templateOptions: OptionsTemplate = {
       id: 'ReverseTimeline',
       name: {
         en: 'Reverse timeline order (bottom-to-top)',
+        de: 'Umgekehrte Timeline Reihenfolge (unten-nach-oben)',
       },
       type: 'checkbox',
       default: false,
