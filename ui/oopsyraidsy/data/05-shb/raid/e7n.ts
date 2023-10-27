@@ -40,7 +40,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   shareWarn: {
     'E7N Stygian Stake': '4C33', // Laser tank buster, outside intermission phase
-    'E5N Silver Shot': '4E7D', // Spread markers, intermission
+    'E7N Silver Shot': '4E7D', // Spread markers, intermission
   },
   triggers: [
     {

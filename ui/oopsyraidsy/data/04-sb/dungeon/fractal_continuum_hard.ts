@@ -29,10 +29,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'FractalHard Ultima Warrior Ein Sof': '2798', // Sephirot phase being in the green growing bubble
     'FractalHard Biomanufactured Minotaur 11-Tonze Swipe': '29A2', // untelegraphed conal
     'FractalHard Biomanufactured Minotaur 111-Tonze Swing': '29A1', // telegraphed large circle
-    'Fractalhard Ultima Beast Death Spin': '27AD', // melee range untelegraphed circle
-    'Fractalhard Ultima Beast Aether Bend': '27AF', // get under donut
-    'Fractalhard Ultima Beast Light Pillar 1': '227BA', // initial point of light pillar circles
-    'Fractalhard Ultima Beast Light Pillar 2': '27BB', // follow up light pillar hits
+    'FractalHard Ultima Beast Death Spin': '27AD', // melee range untelegraphed circle
+    'FractalHard Ultima Beast Aether Bend': '27AF', // get under donut
+    'FractalHard Ultima Beast Light Pillar 1': '227BA', // initial point of light pillar circles
+    'FractalHard Ultima Beast Light Pillar 2': '27BB', // follow up light pillar hits
   },
   damageFail: {
     'FractalHard Motherbit False Gravity': '27A7', // standing in Allagan Gravity puddle, gives Heavy
@@ -40,12 +40,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
   gainsEffectWarn: {
     'FractalHard Ultima Warrior Infinite Anguish': '487', // Personally failing Zurvan towers
     'FractalHard Ultima Warrior Reduced Immunity': '143', // Failing Sophia Dischordant Cleansing
-    'Fractalhard Ultima Beast Burns': '11C', // standing in fire from Flare Star
+    'FractalHard Ultima Beast Burns': '11C', // standing in fire from Flare Star
   },
   shareWarn: {
     'FractalHard Ultima Warrior Aetheroplasm': '2793', // tankbuster cleave
     'FractalHard Ultima Warrior Ratzon': '2797', // Sephirot phase bubble drop
-    'Fractalhard Ultima Beast Allagan Gravity': '27B9', // spread
+    'FractalHard Ultima Beast Allagan Gravity': '27B9', // spread
   },
   soloWarn: {
     'FractalHard Ultima Warrior Mass Aetheroplasm': '2795', // tankbuster cleave

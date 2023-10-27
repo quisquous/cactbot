@@ -40,7 +40,7 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
   },
   triggers: [
     {
-      id: 'ThordanEx Grinnaux Faith Unmoving',
+      id: 'ThordanEX Grinnaux Faith Unmoving',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '149B' }),
       deathReason: (_data, matches) => {

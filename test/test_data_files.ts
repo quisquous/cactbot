@@ -4,6 +4,7 @@ import Mocha from 'mocha';
 
 import { walkDirSync } from '../util/file_utils';
 
+import testOopsyFiles from './helper/test_oopsy';
 import testTimelineFiles from './helper/test_timeline';
 import testTriggerFiles from './helper/test_trigger';
 
@@ -11,6 +12,7 @@ export type TestMochaGlobal = typeof global & {
   triggerFiles?: string[];
   manifestFiles?: string[];
   timelineFiles?: string[];
+  oopsyFiles?: string[];
 };
 
 // This file runs in one of two ways:
@@ -31,6 +33,7 @@ const mocha = new Mocha();
 
 const timelineFiles: string[] = [];
 const triggerFiles: string[] = [];
+const oopsyFiles: string[] = [];
 
 const processInputs = (inputPath: string[]) => {
   inputPath.forEach((path: string) => {
@@ -44,6 +47,10 @@ const processInputs = (inputPath: string[]) => {
       }
       if (/\/raidboss\/data\/.*\.[jt]s/.test(filepath)) {
         triggerFiles.push(filepath);
+        return;
+      }
+      if (/\/oopsyraidsy\/data\/.*\.[jt]s/.test(filepath)) {
+        oopsyFiles.push(filepath);
         return;
       }
     });
@@ -64,6 +71,7 @@ processInputs(inputs);
 if (insideMocha) {
   testTriggerFiles(triggerFiles);
   testTimelineFiles(timelineFiles);
+  testOopsyFiles(oopsyFiles);
 } else {
   const annotatedGlobal: TestMochaGlobal = global;
 
@@ -72,6 +80,7 @@ if (insideMocha) {
   // passed via globals.  We can't add files after Mocha has started, unfortunately.
   annotatedGlobal.timelineFiles = timelineFiles;
   annotatedGlobal.triggerFiles = triggerFiles;
+  annotatedGlobal.oopsyFiles = oopsyFiles;
   mocha.addFile(path.posix.join(path.relative(process.cwd(), './test/helper/test_data_runner.ts')));
 
   mocha.loadFilesAsync()

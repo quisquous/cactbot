@@ -171,7 +171,10 @@ const zoneReplace: ZoneReplace[] = [
       'ui/oopsyraidsy/data/03-hw/trial/sophia-ex.ts':
         'ui/oopsyraidsy/data/06-ew/trial/sophia-un.ts',
     },
-    prefix: { 'SophiaEX': 'SophiaUN' },
+    prefix: {
+      'SophiaEX': 'SophiaUN',
+      'SophiaEx': 'SophiaUn',
+    },
     other: {
       'ContainmentBayP1T6Extreme': 'ContainmentBayP1T6Unreal',
       'sophia-ex.txt': 'sophia-un.txt',

@@ -19,7 +19,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'O7S Tentacle': '277E', // tentacles appearing
     'O7S Tentacle Wallop': '277F', // tentacles attacking
     'O7S Air Force Diffractive Laser': '2740', // Air Force adds conal
-    'O7N Guardian Diffractive Laser': '2780', // initial Air Force centered circle on Guardian
+    'O7S Guardian Diffractive Laser': '2780', // initial Air Force centered circle on Guardian
     'O7S The Heat': '2777', // explosion from searing wind
     'O7S Super Chakra Burst': '2786', // failing Dadaluma towers
   },

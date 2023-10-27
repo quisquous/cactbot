@@ -31,12 +31,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Paglthan Lunar Bahamut Lunar Nail Upburst': '605B', // small aoes before Big Burst
     'Paglthan Lunar Bahamut Lunar Nail Big Burst': '5B48', // large circular aoes from nails
     'Paglthan Lunar Bahamut Perigean Breath': '5B59', // large conal cleave
-    'Paglthan Lunar Bahamut Megaflare': '5B4E', // megaflare pepperoni
+    'Paglthan Lunar Bahamut Megaflare Pepperoni': '5B4E', // megaflare pepperoni
     'Paglthan Lunar Bahamut Megaflare Dive': '5B52', // megaflare line aoe across the arena
     'Paglthan Lunar Bahamut Lunar Flare': '5B4A', // large purple shrinking circles
   },
   shareWarn: {
-    'Paglthan Lunar Bahamut Megaflare': '5B4D', // megaflare spread markers
+    'Paglthan Lunar Bahamut Megaflare Spread': '5B4D', // megaflare spread markers
   },
 };
 

@@ -8,8 +8,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.KtisisHyperboreia,
   damageWarn: {
     'Ktisis Ktiseos Leon Cry': '6857', // centered ricle
-    'KtisisKtiseos Panther Charged Whisker': '6855', // centered circle
-    'KtisisKtiseos Panther Megablaster': '6856', // conal
+    'Ktisis Ktiseos Panther Charged Whisker': '6855', // centered circle
+    'Ktisis Ktiseos Panther Megablaster': '6856', // conal
     'Ktisis Ktiseos Chione Snowcap': '6707', // circle when appearing
     'Ktisis Ktiseos Chione White Death': '685B', // targeted conal
     'Ktisis Lyssa Punishing Slice': '6259', // 180 cleave after Frostbite and Seek

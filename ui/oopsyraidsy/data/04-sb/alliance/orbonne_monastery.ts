@@ -50,8 +50,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Orbonne Ultima Demi-Belias Time Eruption 1': '38D0', // fast/slow clocks
     'Orbonne Ultima Demi-Belias Time Eruption 2': '38D1', // fast/slow clocks
     'Orbonne Ultima Demi-Hashmal Towerfall': '38D7', // control tower falling over
-    'Orbonna Ultima Demi-Hashmal Extreme Edge 1': '38DA', // left/right cleave dash
-    'Orbonna Ultima Demi-Hashmal Extreme Edge 2': '38DB', // left/right cleave dash
+    'Orbonne Ultima Demi-Hashmal Extreme Edge 1': '38DA', // left/right cleave dash
+    'Orbonne Ultima Demi-Hashmal Extreme Edge 2': '38DB', // left/right cleave dash
     'Orbonne Ultima Demi-Belias Eruption': '37C8', // headmarker with chasing telegraphed circle aoes
     'Orbonne Ultima Dominion Ray Of Light': '38B7', // lingering line aoe with Eastward/Westward March
     'Orbonne Ultima Embrace Initial': '38B9', // hidden blue traps being placed

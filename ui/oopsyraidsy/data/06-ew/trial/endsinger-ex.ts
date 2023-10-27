@@ -41,7 +41,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   triggers: [
     {
-      id: 'Endsinger Galaxias',
+      id: 'EndsingerEx Galaxias',
       type: 'Ability',
       // 6FFB = Azure Star Caerustellar Collision knockback
       // 7005 = Fatalism Azure Star Caerustellar Collision knockback

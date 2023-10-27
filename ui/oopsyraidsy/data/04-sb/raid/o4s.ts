@@ -18,29 +18,31 @@ export interface Data extends OopsyData {
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.DeltascapeV40Savage,
   damageWarn: {
-    'O4S1 Vine Clearout': '240C', // circle of vines
-    'O4S1 Zombie Breath': '240B', // tree exdeath conal
-    'O4S1 Vacuum Wave': '23FE', // circle centered on exdeath
-    'O4S2 Neo Vacuum Wave': '241D', // "out of melee"
-    'O4S2 Death Bomb': '2431', // failed acceleration bomb
-    'O4S2 Emptiness 1': '2421', // exaflares initial
-    'O4S2 Emptiness 2': '2422', // exaflares moving
+    'O4S Vine Clearout': '240C', // circle of vines
+    'O4S Zombie Breath': '240B', // tree exdeath conal
+    'O4S Vacuum Wave': '23FE', // circle centered on exdeath
+
+    'O4S Neo Vacuum Wave': '241D', // "out of melee"
+    'O4S Death Bomb': '2431', // failed acceleration bomb
+    'O4S Emptiness 1': '2421', // exaflares initial
+    'O4S Emptiness 2': '2422', // exaflares moving
   },
   damageFail: {
-    'O4S1 Black Hole Black Spark': '2407', // black hole catching you
-    'O4S2 Edge Of Death': '2415', // standing between the two color lasers
-    'O4S2 Inner Antilight': '244C', // inner laser
-    'O4S2 Outer Antilight': '2410', // outer laser
+    'O4S Black Hole Black Spark': '2407', // black hole catching you
+
+    'O4S Edge Of Death': '2415', // standing between the two color lasers
+    'O4S Inner Antilight': '244C', // inner laser
+    'O4S Outer Antilight': '2410', // outer laser
   },
   shareWarn: {
-    'O4S1 Fire III': '23F6', // spread explosion
+    'O4S Fire III': '23F6', // spread explosion
   },
   shareFail: {
-    'O4S1 Thunder III': '23FA', // tankbuster
+    'O4S Thunder III Tankbuster': '23FA', // tankbuster
   },
   triggers: [
     {
-      id: 'O4S2 Decisive Battle',
+      id: 'O4S Decisive Battle',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2408', capture: false }),
       run: (data) => {
@@ -48,7 +50,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S1 Vacuum Wave',
+      id: 'O4S Vacuum Wave Tracker',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '23FE', capture: false }),
       run: (data) => {
@@ -56,7 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Almagest',
+      id: 'O4S Almagest',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '2417', capture: false }),
       run: (data) => {
@@ -64,7 +66,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Blizzard III',
+      id: 'O4S Blizzard III',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '23F8', ...playerDamageFields }),
       // Ignore unavoidable raid aoe Blizzard III.
@@ -79,7 +81,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Thunder III',
+      id: 'O4S Thunder III',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '23FD', ...playerDamageFields }),
       // Only consider this during random mechanic after decisive battle.
@@ -94,7 +96,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Petrified',
+      id: 'O4S Petrified',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '262' }),
       mistake: (data, matches) => {
@@ -116,7 +118,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Forked Lightning',
+      id: 'O4S Forked Lightning',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '242E', ...playerDamageFields }),
       mistake: (_data, matches) => {
@@ -129,7 +131,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Beyond Death Gain',
+      id: 'O4S Beyond Death Gain',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       run: (data, matches) => {
@@ -138,7 +140,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Beyond Death Lose',
+      id: 'O4S Beyond Death Lose',
       type: 'LosesEffect',
       netRegex: NetRegexes.losesEffect({ effectId: '566' }),
       run: (data, matches) => {
@@ -147,7 +149,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Beyond Death',
+      id: 'O4S Beyond Death',
       type: 'GainsEffect',
       netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 0.5,
@@ -164,7 +166,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Double Attack Collect',
+      id: 'O4S Double Attack Collect',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
       run: (data, matches) => {
@@ -173,7 +175,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       },
     },
     {
-      id: 'O4S2 Double Attack',
+      id: 'O4S Double Attack',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
       mistake: (data) => {

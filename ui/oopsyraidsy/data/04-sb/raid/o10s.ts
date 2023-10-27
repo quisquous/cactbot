@@ -18,9 +18,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'O10S Dark Wave': '341A', // Ancient Dragon circle upon death
     'O10S Cauterize': '3240', // divebomb attack
     'O10S Flame Blast': '31C1', // bombs
-    'O10N Scarlet Thread': '362B', // orb waffle lines
-    'O10N Exaflare 1': '362C',
-    'O10N Exaflare 2': '362E',
+    'O10S Scarlet Thread': '362B', // orb waffle lines
+    'O10S Exaflare 1': '362C',
+    'O10S Exaflare 2': '362E',
   },
   shareWarn: {
     'O10S Earth Shaker': '31B6', // as it says on the tin

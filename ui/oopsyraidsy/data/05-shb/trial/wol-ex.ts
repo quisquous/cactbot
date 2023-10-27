@@ -33,7 +33,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'WOLEx Perfect Decimation': '4F05', // smn/war phase marker
   },
   soloWarn: {
-    'WolEx Katon San Share': '4EFE',
+    'WOLEx Katon San Share': '4EFE',
   },
   triggers: [
     {

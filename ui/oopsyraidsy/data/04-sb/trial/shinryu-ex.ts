@@ -30,7 +30,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'ShinryuEx Benighting Breath': '264A', // 90 degree conal attack
   },
   shareWarn: {
-    'ShinryuEx Levinbolt': '25EA', // untelegraphed lightning spread
+    'ShinryuEx Levinbolt Spread': '25EA', // untelegraphed lightning spread
     'ShinryuEx Earth Breath': '25ED', // earthshaker-esque conal attacks
   },
   soloWarn: {
@@ -80,7 +80,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     },
     {
       // Knockback from center.
-      id: 'Shinryu Aerial Blast',
+      id: 'ShinryuEx Aerial Blast',
       type: 'Ability',
       netRegex: NetRegexes.abilityFull({ id: '25DF', ...playerDamageFields }),
       deathReason: (_data, matches) => {
