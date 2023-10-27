@@ -28,7 +28,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'LostCityHard Winged Lion Ancient Aero Grown': '1760', // raidwide if aero not popped
     'LostCityHard Winged Lion Ancient Stone Grown': '167B', // untelegraphed circle? if stone not popped
     'LostCityHard Winged Lion Ancient Holy Grown': '15CD', // raidwide if holy not popped
-    'LostCityHard Winged Lion Gargoyle Holy': '1706', // letting adds live too long
+    // FIXME: this id is the same as the Holy above, is it correct or one of them incorrect?
+    // 'LostCityHard Winged Lion Gargoyle Holy': '1706', // letting adds live too long
 
     'LostCityHard Clay Effigy Wild Horn': '1507', // frontal conal
     'LostCityHard Mana Idol Neck Splinter': '1169', // centered circle

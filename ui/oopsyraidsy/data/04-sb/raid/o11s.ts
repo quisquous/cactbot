@@ -22,8 +22,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'O11S Larboard Wave Cannon Surge 1': '3268',
     'O11S Larboard Wave Cannon Surge 2': '3269',
     'O11S Critical Dual Storage Violation': '3258', // failing a tower
-    'O11S Level Checker Reset': '3268', // "get out" circle
-    'O11S Level Checker Reformat': '3267', // "get in" donut
+    // FIXME: this id is the same as Wave Cannon Surge 1 above, is it correct or one of them incorrect?
+    // 'O11S Level Checker Reset': '3268', // "get out" circle
+    // FIXME: this id is the same as Wave Cannon Surge 2 above, is it correct or one of them incorrect?
+    // 'O11S Level Checker Reformat': '3267', // "get in" donut
     'O11S Ballistic Impact': '370B', // circles during Panto 1
     'O11S Flame Thrower Panto': '3707', // pinwheel during Panto 2
     'O11S Guided Missile Kyrios': '370A', // Panto 2 baited circle
@@ -42,7 +44,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
   shareFail: {
     'O11S Mustard Bomb': '326D', // tank buster
     'O11S Blaster': '3261', // tethered explosion
-    'O11S Diffuse Wave Cannon Kyrios': '3705', // Panto 2 tank lasers
+    // FIXME: this id is the same as Wave Cannon Kyrios above, is it correct or one of them incorrect?
+    // 'O11S Diffuse Wave Cannon Kyrios': '3705', // Panto 2 tank lasers
   },
 };
 

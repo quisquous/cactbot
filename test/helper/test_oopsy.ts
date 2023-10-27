@@ -4,7 +4,6 @@ import path from 'path';
 
 import { assert } from 'chai';
 
-// TODO: verify that no mistake map field maps to the same id twice
 // TODO: verify usage of matches vs capture: true in oopsy triggers
 
 import { LooseOopsyTrigger, LooseOopsyTriggerSet, OopsyMistakeMapFields } from '../../types/oopsy';
@@ -91,6 +90,8 @@ const testOopsyFile = (file: string, info: OopsyTriggerSetInfo) => {
       // if prefix includes more than one word, just remove latter letters.
       if (prefix.includes(' '))
         prefix = prefix.slice(0, prefix.lastIndexOf(' ') + 1);
+      // TODO: it would be nice to do a loop back through all the ids and list
+      // which ones fail this, rather than just saying "O4S is not a full word".
       if (!prefix.endsWith(' '))
         assert.fail(`id prefix '${prefix}' is not a full word, must end in a space`);
     }
@@ -145,6 +146,23 @@ const testOopsyFile = (file: string, info: OopsyTriggerSetInfo) => {
 
     if ('zoneRegex' in triggerSet)
       assert.fail(`use zoneId instead of zoneRegex`);
+  });
+
+  it('does not reuse the same ability id', () => {
+    // Within the same file's mistake maps, it's wrong to have the same ability id listed twice
+    // as it means that it would show two errors if that ever happened. This is likely a typo.
+
+    const abilityIdToId: { [abilityid: string]: string } = {};
+    for (const field of oopsyMistakeMapKeys) {
+      for (const [id, abilityId] of Object.entries(triggerSet[field] ?? {})) {
+        const prevId = abilityIdToId[abilityId];
+        if (prevId === undefined) {
+          abilityIdToId[abilityId] = id;
+          continue;
+        }
+        assert.fail(`duplicate ability '${abilityId}' in '${id}' and '${prevId}'`);
+      }
+    }
   });
 };
 

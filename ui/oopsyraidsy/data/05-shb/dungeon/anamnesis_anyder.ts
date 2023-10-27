@@ -11,7 +11,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Anamnesis Trench Anemone Falling Rock': '4E37', // ground circle aoe from Trench Anemone showing up
     'Anamnesis Trench Dagonite Sewer Water': '4D1C', // frontal conal from Trench Anemone (?!)
     'Anamnesis Trench Yovra Rock Hard': '4D21', // targeted circle aoe
-    'Anamnesis Trench Yovra Torrential Torment': '4D21', // frontal conal
+    // FIXME: this id is the same as Rock Hard above, is it correct or one of them incorrect?
+    // 'Anamnesis Trench Yovra Torrential Torment': '4D21', // frontal conal
     'Anamnesis Unknown Luminous Ray': '4E27', // Unknown line aoe
     'Anamnesis Unknown Sinster Bubble Explosion': '4B6E', // Unknown explosions during Scrutiny
     'Anamnesis Unknown Reflection': '4B6F', // Unknown conal attack during Scrutiny

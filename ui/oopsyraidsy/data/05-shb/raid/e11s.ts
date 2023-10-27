@@ -28,7 +28,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'E11S Image Burnt Strike Lightning': '567B', // Fate Breaker's Image line cleave
     'E11S Image Burnout': '567C', // Fate Breaker's Image lightning expansion
     'E11S Image Burnt Strike Fire': '5679', // Fate Breaker's Image line cleave
-    'E11S Image Burnt Strike Holy': '567B', // Fate Breaker's Image line cleave
+    // FIXME: this id is the same as Image Burnt Strike Lightning above, is it correct or one of them incorrect?
+    // 'E11S Image Burnt Strike Holy': '567B', // Fate Breaker's Image line cleave
     'E11S Image Shining Blade': '567E', // Fate Breaker's Image baited explosion
   },
   damageFail: {
