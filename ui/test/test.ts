@@ -175,8 +175,4 @@ addOverlayListener('onUserFileChanged', (e) => {
   console.log(`User file ${e.file} changed!`);
 });
 
-addOverlayListener('FileChanged', (e) => {
-  console.log(`File ${e.file} changed!`);
-});
-
 void callOverlayHandler({ call: 'cactbotRequestState' });
