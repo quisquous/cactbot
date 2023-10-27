@@ -478,10 +478,18 @@ const triggerSet: TriggerSet<Data> = {
            Partner-Stack bedeuten Supporter+Dps und Supporter+Dps (jede Kombination ist möglich).
            Wenn du zwei Fernkampf-DPS oder zwei Nahkampf-DPS hast, wird es nie "Nahkämpfer" nennen, unabhängig von dieser Konfigurationsoption.
            Es gibt keine Unterstützung für Gruppenkombinationen, die nicht aus zwei Supportern und zwei DPS bestehen.`,
+        cn:
+          `对于所有双人分摊，该选项指定了选择谁与谁分摊的优先级。
+           如果你想让近战和坦克分摊（假设分摊没有同时点这两个人），选择含有“近战（melee）”的选项。
+           近战（melee）分摊指的是 近战+坦克 和 治疗+远程。职能分摊指的是 坦克+治疗 和 DPS+DPS。
+           搭档分摊指的是 支援+DPS 和 支援+DPS（任何组合都有可能，支援位是坦克和治疗）。
+           如果队伍中有两名远程DPS或近战DPS，无论此配置选项如何，它都不会报“近战（melees）。”
+           没有考虑对非标准阵容队伍（非2支援+2DPS）构成的支持。`,
       },
       name: {
         en: 'Stack Selection Order',
         de: 'Sammel-Reihenfolge',
+        cn: '选择分摊次序',
       },
       type: 'select',
       options: {
@@ -492,6 +500,10 @@ const triggerSet: TriggerSet<Data> = {
         de: {
           'Nahkämpfer > Rollen > Partner': 'meleeRolesPartners',
           'Rollen > Partner': 'rolesPartners',
+        },
+        cn: {
+          '近战 > 职能 > 搭档': 'meleeRolesPartners',
+          '职能 > 搭档': 'rolesPartners',
         },
       },
       default: 'meleeRolesPartners',
@@ -1019,6 +1031,7 @@ const triggerSet: TriggerSet<Data> = {
         tower: {
           en: 'Tower',
           de: 'Türme',
+          cn: '塔',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
