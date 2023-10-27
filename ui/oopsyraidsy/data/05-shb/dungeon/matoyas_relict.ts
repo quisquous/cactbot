@@ -23,7 +23,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Matoya Relict Molten Phoebad Pyroclastic Shot': '57EB', // the line aoes as you run to trash
     'Matoya Relict Flan Flood': '5523', // big circle aoe
     'Matoya Pyroduct Eldthurs Mash': '5527', // line aoe
-    'Matyoa Pyroduct Eldthurs Spin': '5528', // very large circle aoe
+    'Matoya Pyroduct Eldthurs Spin': '5528', // very large circle aoe
     'Matoya Relict Bavarois Thunder III': '5525', // circle aoe
     'Matoya Relict Marshmallow Ancient Aero': '5524', // very large line groaoe
     'Matoya Relict Pudding Fire II': '5522', // circle aoe

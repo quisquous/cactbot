@@ -21,7 +21,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Endsinger Dead Star': '5E4E', // targeted circles during final phase
   },
   shareWarn: {
-    'EndSinger Death\'s Embrace': '6649', // purple protean triangles
+    'Endsinger Death\'s Embrace': '6649', // purple protean triangles
     'Endsinger Nemesis': '664E', // spread during Interstellar
   },
   shareFail: {

@@ -5,7 +5,7 @@ module.exports = {
   colors: true,
   reporter: 'progress',
   exclude: [
-    // Run via test_raidboss_data.js.
+    // Run via test_data_files.js.
     'test/helper/*',
   ],
   loader: [

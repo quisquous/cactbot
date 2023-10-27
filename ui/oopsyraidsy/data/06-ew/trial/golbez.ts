@@ -19,7 +19,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Golbez Void Stardust Continuing': '84A9', // subsequent meteor drops
   },
   damageFail: {
-    'Goblez Massive Explosion': '849F', // tower exploding with too few (or no) players
+    'Golbez Massive Explosion': '849F', // tower exploding with too few (or no) players
   },
   shareWarn: {
     'Golbez Void Comet': '84AE', // smaller initial hits of multi-hit Void Meteor splash buster

@@ -49,7 +49,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Euphrosyne Halone Glacial Spear Cheimon 1': '7D6C', // initial rotating lines
     'Euphrosyne Halone Glacial Spear Cheimon 2': '7D6D', // ongoing rotating lines
 
-    'Eurphosyne Menphina First Blush': '7BBC', // getting hit by the Full Bright moon
+    'Euphrosyne Menphina First Blush': '7BBC', // getting hit by the Full Bright moon
     'Euphrosyne Menphina Midnight Frost 1': '7BCD', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 2': '7BDD', // 180 cleave
     'Euphrosyne Menphina Midnight Frost 3': '7BD1', // 180 cleave

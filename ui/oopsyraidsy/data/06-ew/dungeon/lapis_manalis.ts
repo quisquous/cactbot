@@ -17,7 +17,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Albion Left Slam': '802E', // left cleave, boss 1
     'Lapis Albion Knock on Ice': '7A7F', // circle AoE, boss 1
     'Lapis Albion Icebreaker': '7A81', // jumping circle AoE, boss 1
-    'Lapis Albion Icy Throes': '7FB9', // ground AOEs, boss 1
+    'Lapis Albion Icy Throes Ground': '7FB9', // ground AOEs, boss 1
     'Lapis Albion Roar of Albion': '7A84', // line-of-sight damage if not hidden behind boulder, boss 1
 
     'Lapis Visitant Vodoriga Terror Eye': '7F1C', // front cone AoE, before boss 2
@@ -54,7 +54,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Lapis Galatea Magna Stony Gaze': 'BBF', // 4x gaze, boss 2
   },
   shareWarn: {
-    'Lapis Albion Icy Throes': '7A83', // spread circles, boss 1
+    'Lapis Albion Icy Throes Spread': '7A83', // spread circles, boss 1
 
     'Lapis Cagnazzo Neap Tide': '799E', // spread circles, boss 3
     'Lapis Cagnazzo Void Torrent': '798E', // tankbuster cleave, boss 3

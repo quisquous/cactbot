@@ -9,7 +9,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   damageWarn: {
     // Trash
     'Sildihn Aqueduct Wamoura Poison Dust': '77CC', // frontal conal
-    'Silidhn Aqueduct Gigantoad Labored Leap': '77CE', // centered circle after Sticky Tongue
+    'Sildihn Aqueduct Gigantoad Labored Leap': '77CE', // centered circle after Sticky Tongue
     'Sildihn Aqueduct Ameretat Bad Breath': '77CF', // frontal conal
     'Sildihn Forgotten Head Butt': '77D0', // Forgotten Sabotender/Forgotten Cliffmole
     'Sildihn Forgotten Campeador Several Thousand Needles': '77D1',
