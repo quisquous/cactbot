@@ -478,8 +478,7 @@ const triggerSet: TriggerSet<Data> = {
            Partner-Stack bedeuten Supporter+Dps und Supporter+Dps (jede Kombination ist möglich).
            Wenn du zwei Fernkampf-DPS oder zwei Nahkampf-DPS hast, wird es nie "Nahkämpfer" nennen, unabhängig von dieser Konfigurationsoption.
            Es gibt keine Unterstützung für Gruppenkombinationen, die nicht aus zwei Supportern und zwei DPS bestehen.`,
-        cn:
-          `对于所有双人分摊，该选项指定了选择谁与谁分摊的优先级。
+        cn: `对于所有双人分摊，该选项指定了选择谁与谁分摊的优先级。
            如果你想让近战和坦克分摊（假设分摊没有同时点这两个人），选择含有“近战（melee）”的选项。
            近战（melee）分摊指的是 近战+坦克 和 治疗+远程。职能分摊指的是 坦克+治疗 和 DPS+DPS。
            搭档分摊指的是 支援+DPS 和 支援+DPS（任何组合都有可能，支援位是坦克和治疗）。
