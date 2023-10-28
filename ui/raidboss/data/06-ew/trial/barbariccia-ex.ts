@@ -53,6 +53,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stack to Bait Puddles',
           de: 'Sammeln um Flächen zu ködern',
+          cn: '集合诱导黄圈',
         },
       },
     },
@@ -126,10 +127,12 @@ const triggerSet: TriggerSet<Data> = {
         inThenSpread: {
           en: 'In => Spread',
           de: 'Rein => Verteilen',
+          cn: '靠近 => 分散',
         },
         inAndHealerGroups: {
           en: 'In => Healer Groups',
           de: 'Rein => Heiler Gruppen',
+          cn: '靠近 => 治疗分组分摊',
         },
       },
     },
@@ -144,6 +147,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread Out',
           de: 'Außen Verteilen',
+          cn: '分散',
         },
       },
     },
@@ -171,10 +175,12 @@ const triggerSet: TriggerSet<Data> = {
         wallAndHealerGroups: {
           en: 'Wall + Healer Groups',
           de: 'Wand + Heiler Gruppen',
+          cn: '去场边 + 治疗分组分摊',
         },
         wallThenSpread: {
           en: 'Wall => Spread',
           de: 'Wand => Verteilen',
+          cn: '去场边 => 分散',
         },
       },
     },
@@ -189,6 +195,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread Out',
           de: 'Außen Verteilen',
+          cn: '分散',
         },
       },
     },
@@ -251,6 +258,7 @@ const triggerSet: TriggerSet<Data> = {
         protean: {
           en: 'Protean Spread',
           de: 'in Himmelsrichtungen verteilen',
+          cn: '八方分散',
         },
       },
     },
@@ -310,6 +318,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out + Spread',
           de: 'Raus + Verteilen',
+          cn: '远离 => 分散',
         },
       },
     },
@@ -471,6 +480,7 @@ const triggerSet: TriggerSet<Data> = {
         stackMiddle: {
           en: 'Bait Middle',
           de: 'Mitte ködern',
+          cn: '中间诱导',
         },
       },
     },
