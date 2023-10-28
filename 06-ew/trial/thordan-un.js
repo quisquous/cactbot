@@ -717,7 +717,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet Circle': '星屑圣纹',
         'King Thordan': '骑神托尔丹',
