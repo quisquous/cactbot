@@ -369,10 +369,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
         'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 L형',
+        'Frostbite': '동상',
         'Padlock': '자물쇠',
         'Quickthinx Allthoughts': '만능의 퀵싱크스',
         'Shanoa': '샤노아',
@@ -391,6 +391,7 @@ const triggerSet: TriggerSet<Data> = {
         'Hammertime': '장판',
         'Jails': '감옥',
         'Kill Heart': '진심 없애기',
+        'Resync': '재동기화',
         'Small Doll(?!s)': '작은 인형',
         'Small Dolls': '작은 인형',
         'Sizzlebeam': '고블린식 파동포',
