@@ -78,9 +78,11 @@ Options.Triggers.push({
         goFront: Outputs.goFront,
         backRight: {
           en: 'Get behind and right',
+          ko: '오른쪽 뒤로',
         },
         backLeft: {
           en: 'Get behind and left',
+          ko: '왼쪽 뒤로',
         },
       },
     },
