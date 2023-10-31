@@ -6297,7 +6297,7 @@ const data: FisherData = {
         'Alyketoses',
       ],
       '36518': 'Ereignishorizontheimkehrer',
-      '36519': 'Ü.B.E-9318',
+      '36519': 'Ü.B.E.-9318',
       '36520': [
         'Missratene Quelle',
         'Missratene Quellen',
@@ -6797,6 +6797,26 @@ const data: FisherData = {
         'Kätzchenheringe',
       ],
       '41061': 'Sarikuyruk',
+      '41298': [
+        'Schwarzholz-Fisch',
+        'Schwarzholz-Fische',
+      ],
+      '41299': [
+        'Ronka-Bullion',
+        'Ronka-Bullions',
+      ],
+      '41300': [
+        'Schatz-Guppy',
+        'Schatz-Guppys',
+      ],
+      '41301': [
+        'Fathric-Steinkopf',
+        'Fathric-Steinköpfe',
+      ],
+      '41302': [
+        'Goldmünzling',
+        'Goldmünzlinge',
+      ],
       '41401': 'Zirkel-Tilapia',
       '41402': 'Durdinafisch',
       '41403': [
@@ -6817,7 +6837,7 @@ const data: FisherData = {
         'kreisendes Sterne',
         'kreisender Sterne',
       ],
-      '41406': 'Ü.B.E-852738',
+      '41406': 'Ü.B.E.-852738',
       '41419': [
         'Güldensternerne Hummer',
         'Güldensternernen Hummer',
@@ -10649,6 +10669,26 @@ const data: FisherData = {
       ],
       '41059': 'kitty herring',
       '41061': 'sarikuyruk',
+      '41298': [
+        'deadwood shadow',
+        'deadwood shadows',
+      ],
+      '41299': [
+        'Ronkan bullion',
+        'Ronkan bullions',
+      ],
+      '41300': [
+        'little Bounty',
+        'little Bounties',
+      ],
+      '41301': [
+        'Saint Fathric\'s face',
+        'Saint Fathric\'s faces',
+      ],
+      '41302': [
+        'golding',
+        'goldings',
+      ],
       '41401': 'Circuit tilapia',
       '41402': 'Durdina fish',
       '41403': [
@@ -15567,6 +15607,26 @@ const data: FisherData = {
         'harengs félidés',
       ],
       '41061': 'sarikuryuk',
+      '41298': [
+        'branche-noire',
+        'branches-noires',
+      ],
+      '41299': [
+        'lingot ronka',
+        'lingots ronka',
+      ],
+      '41300': [
+        'guppy d\'Abondance',
+        'guppys d\'Abondance',
+      ],
+      '41301': [
+        'obstination de Saint-Fathric',
+        'obstinations de Saint-Fathric',
+      ],
+      '41302': [
+        'poisson-pièce-d\'or',
+        'poissons-pièces-d\'or',
+      ],
       '41401': [
         'tilapia du Circuit',
         'tilapias du Circuit',
@@ -16930,6 +16990,11 @@ const data: FisherData = {
       '41058': 'オシクラムフィッシュ',
       '41059': 'キティヘリング',
       '41061': 'サリクユク',
+      '41298': '黒き木塊',
+      '41299': 'ロンカブリオン',
+      '41300': 'バウンティグッピー',
+      '41301': '聖ファスリクの石頭',
+      '41302': '金貨魚',
       '41401': 'サーキット・ティラピア',
       '41402': 'ドゥルディナフィッシュ',
       '41403': 'マーヤーカイマン',
@@ -20761,6 +20826,8 @@ const data: FisherData = {
       27479,
       27480,
       30436,
+      41300,
+      41301,
     ],
     '3314': [
       27469,
@@ -20973,6 +21040,9 @@ const data: FisherData = {
       27482,
       27486,
       33324,
+      41298,
+      41299,
+      41302,
     ],
     '3489': [
       30002,
@@ -25492,6 +25562,8 @@ const data: FisherData = {
     '39881': 3,
     '39882': 3,
     '39883': 3,
+    '41405': 3,
+    '41419': 2,
   },
 };
 
