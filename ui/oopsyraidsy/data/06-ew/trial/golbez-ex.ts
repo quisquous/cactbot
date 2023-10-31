@@ -32,11 +32,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
   },
   damageFail: {
     'GolbezEx Void Stardust': '84AA', // exaflares (will kill somebody during Abyssal Quasar after)
-    'GoblezEx Massive Explosion': '84A0', // failing towers
+    'GolbezEx Massive Explosion': '84A0', // failing towers
   },
   shareWarn: {
     'GolbezEx Void Comet': '84B0', // mini tank busters
-    'GoblezEx Cauterize': '84A2', // wide line aoe on healer with knockback during Double Meteor
+    'GolbezEx Cauterize': '84A2', // wide line aoe on healer with knockback during Double Meteor
   },
   shareFail: {
     'GolbezEx Void Meteor': '84B1', // large tank busters

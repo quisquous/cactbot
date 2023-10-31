@@ -31,7 +31,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Vanaspati Svarbhanu Cosmic Kiss Spread': '6250', // spread marker
   },
   soloWarn: {
-    'Vanaspati Terminus Wrecker Poison Heart': '6CDC', // stack marker
+    'Vanaspati Terminus Wrecker Poison Heart': '6CCB', // stack marker
   },
   triggers: [
     {

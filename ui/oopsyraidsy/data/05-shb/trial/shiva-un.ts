@@ -10,31 +10,31 @@ const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   damageWarn: {
     // Large white circles.
-    'ShivaEx Icicle Impact': '537B',
+    'ShivaUn Icicle Impact': '537B',
     // "get in" aoe
-    'ShivaEx Whiteout': '5376',
+    'ShivaUn Whiteout': '5376',
     // Avoidable tank stun.
-    'ShivaEx Glacier Bash': '5375',
+    'ShivaUn Glacier Bash': '5375',
   },
   damageFail: {
     // 270 degree attack.
-    'ShivaEx Glass Dance': '5378',
+    'ShivaUn Glass Dance': '5378',
   },
   shareWarn: {
     // Hailstorm spread marker.
-    'ShivaEx Hailstorm': '536F',
+    'ShivaUn Hailstorm': '536F',
   },
   shareFail: {
     // Laser.  TODO: maybe blame the person it's on??
-    'ShivaEx Avalanche': '5379',
+    'ShivaUn Avalanche': '5379',
   },
   soloWarn: {
     // Party shared tank buster.
-    'ShivaEx Icebrand': '5373',
+    'ShivaUn Icebrand': '5373',
   },
   triggers: [
     {
-      id: 'ShivaEx Deep Freeze',
+      id: 'ShivaUn Deep Freeze',
       type: 'GainsEffect',
       // Shiva also uses ability 537A on you, but it has an unknown name.
       // So, use the effect instead for free translation.

@@ -12,29 +12,29 @@ import { playerDamageFields } from '../../../oopsy_common';
 const triggerSet: OopsyTriggerSet<OopsyData> = {
   zoneId: ZoneId.ContainmentBayP1T6Unreal,
   damageWarn: {
-    'SophiaEx Thunder II': '7DAA', // untelegraphed front cleave
-    'SophiaEx Aero III': '7DA8', // "get out"
-    'SophiaEx Thunder III': '7DA6', // "get under"
-    'Sophia Ex Aion Teleos Execute 1': '7DAB', // Thunder II duplication
-    'Sophia Ex Aion Teleos Execute 2': '7DA9', // Aero III duplication
-    'Sophia Ex Aion Teleos Execute 3': '7DA7', // Thunder III duplication
-    'SophiaEx Gnosis': '7DBC', // knockback
-    'SophiaEx The Third Demiurge Ring of Pain': '7DB4', // circle that leaves a frost puddle
-    'SophiaEx The Third Demiurge Gnostic Spear': '7DB3', // 270 degree untelegraphed cleave
-    'SophiaEx Onrush': '7DBB', // dash
-    'SophiaEx Barbelo Light Dew Execute': '7DB9', // line laser from Barbelo head during Execuute
-    'SophiaEx Barbelo Light Dew Onrush': '7DBA', // line laser from Barbelo head during Onrush
+    'SophiaUn Thunder II': '7DAA', // untelegraphed front cleave
+    'SophiaUn Aero III': '7DA8', // "get out"
+    'SophiaUn Thunder III': '7DA6', // "get under"
+    'SophiaUn Aion Teleos Execute 1': '7DAB', // Thunder II duplication
+    'SophiaUn Aion Teleos Execute 2': '7DA9', // Aero III duplication
+    'SophiaUn Aion Teleos Execute 3': '7DA7', // Thunder III duplication
+    'SophiaUn Gnosis': '7DBC', // knockback
+    'SophiaUn The Third Demiurge Ring of Pain': '7DB4', // circle that leaves a frost puddle
+    'SophiaUn The Third Demiurge Gnostic Spear': '7DB3', // 270 degree untelegraphed cleave
+    'SophiaUn Onrush': '7DBB', // dash
+    'SophiaUn Barbelo Light Dew Execute': '7DB9', // line laser from Barbelo head during Execuute
+    'SophiaUn Barbelo Light Dew Onrush': '7DBA', // line laser from Barbelo head during Onrush
   },
   damageFail: {
-    'SophiaEx The First Demiurge Revengeance': '7DB7', // hitting Vertical/Horizontal Kenoma
+    'SophiaUn The First Demiurge Revengeance': '7DB7', // hitting Vertical/Horizontal Kenoma
   },
   gainsEffectWarn: {
-    'SophiaEx Frostbite': '25D', // standing in the frost puddle from the Third Demiurge
+    'SophiaUn Frostbite': '25D', // standing in the frost puddle from the Third Demiurge
   },
   triggers: [
     {
       // Look away; does damage if failed.
-      id: 'SophiaEx The Second Demiurge Divine Spark',
+      id: 'SophiaUn The Second Demiurge Divine Spark',
       type: 'Ability',
       netRegex: NetRegexes.ability({ id: '7DB0', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
@@ -48,7 +48,7 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
       },
     },
     {
-      id: 'SophiaEx Knocked Off',
+      id: 'SophiaUn Knocked Off',
       type: 'Ability',
       // 7D9C = The Scales of Wisdom
       // 7DC6 = The Scales of Wisdom

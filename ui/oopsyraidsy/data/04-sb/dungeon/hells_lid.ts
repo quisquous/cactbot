@@ -30,7 +30,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'HellsLid Stillwind Nue Twister': '2965', // targeted circle
     'HellsLid Boltstorm Nue Scythe Tail': '2A08', // centered circle
     'HellsLid Boltstorm Nue Butcher': '2964', // large wide conal
-    'HellsLid Boltstorm Nue Spark': '2964', // donut with a very large hole
+    // FIXME: this id is the same as Butcher above, is it correct or one of them incorrect?
+    // 'HellsLid Boltstorm Nue Spark': '2964', // donut with a very large hole
     'HellsLid Genbu Sinister Tide': '27D5', // light up arrow hexes
     'HellsLid Genbu Hell of Water': '27D0', // cross aoe
     'HellsLid Genbu Shell Shower': '2850', // light up hex squares during Chelonian Gate midphase

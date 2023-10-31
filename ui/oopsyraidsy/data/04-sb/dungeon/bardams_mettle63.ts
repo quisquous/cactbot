@@ -46,15 +46,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Bardam63 Double Smash': '26A', // Circle AoE, Mettling Dhara trash
     'Bardam63 Transonic Blast': '1262', // Circle AoE, Steppe Eagle trash
     'Bardam63 Wild Horn': '2208', // Frontal cleave, Khun Gurvel trash
-    'Bardam63 Heavy Strike 1': '2578', // 1 of 3 270-degree ring AoEs, Bardam, second boss
-    'Bardam63 Heavy Strike 2': '2579', // 2 of 3 270-degree ring AoEs, Bardam, second boss
-    'Bardam63 Heavy Strike 3': '257A', // 3 of 3 270-degree ring AoEs, Bardam, second boss
-    'Bardam63 Tremblor 1': '257B', // 1 of 2 concentric ring AoEs, Bardam, second boss
-    'Bardam63 Tremblor 2': '257C', // 2 of 2 concentric ring AoEs, Bardam, second boss
-    'Bardam63 Throwing Spear': '257F', // Checkerboard AoE, Throwing Spear, second boss
-    'Bardam63 Bardam\'s Ring': '2581', // Donut AoE headmarkers, Bardam, second boss
-    'Bardam63 Comet': '257D', // Targeted circle AoEs, Bardam, second boss
-    'Bardam63 Comet Impact': '2580', // Circle AoEs, Star Shard, second boss
     'Bardam63 Iron Sphere Attack': '16B6', // Contact damage, Iron Sphere trash, before third boss
     'Bardam63 Tornado': '247E', // Circle AoE, Khun Shavara trash
     'Bardam63 Pinion': '1F11', // Line AoE, Yol Feather, third boss
@@ -88,7 +79,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Gaze attack, Warrior of Bardam, second boss
     abilityWarn({ id: 'Bardam63 Empty Gaze', abilityId: '1F04' }),
     // Donut AoE headmarkers, Bardam, second boss
-    abilityWarn({ id: 'Bardam63\'s Ring', abilityId: '2581' }),
+    abilityWarn({ id: 'Bardam63 Bardam\'s Ring', abilityId: '2581' }),
     // Targeted circle AoEs, Bardam, second boss
     abilityWarn({ id: 'Bardam63 Comet', abilityId: '257D' }),
     // Circle AoEs, Star Shard, second boss

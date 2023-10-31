@@ -50,7 +50,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'TEA Fluid Strike': '49B7',
     'TEA Hidden Mine': '4852',
     'TEA Alpha Sword': '486B',
-    'TEA Flarethrower': '486B',
+    // FIXME: this id is the same as Alpha Sword above, is it correct or one of them incorrect?
+    // 'TEA Flarethrower': '486B',
     'TEA Chastening Heat': '4A80',
     'TEA Divine Spear': '4A82',
     'TEA Ordained Punishment': '4891',

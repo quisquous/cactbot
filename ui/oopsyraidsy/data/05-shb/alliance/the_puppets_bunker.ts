@@ -79,7 +79,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Pretty noisy.
     'Puppet Maneuver High-Powered Laser': '5002', // tank laser
     'Puppet Compound Mechnical Contusion Targeted': '51B6', // targeted spread marker
-    'Puppet Compound 2P R012 Laser Tank': '51AE', // targeted spread pod laser on non-tank
+    // FIXME: this id is the same as R012 Laser Ground above, is it correct or one of them incorrect?
+    // 'Puppet Compound 2P R012 Laser Tank Spread': '51AE', // targeted spread pod laser on non-tank
   },
   shareFail: {
     'Puppet Aegis Anti-Personnel Laser': '5090', // tank buster marker

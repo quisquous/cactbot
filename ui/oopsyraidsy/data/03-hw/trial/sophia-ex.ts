@@ -12,9 +12,9 @@ const triggerSet: OopsyTriggerSet<OopsyData> = {
     'SophiaEx Thunder II': '19B0', // untelegraphed front cleave
     'SophiaEx Aero III': '19AE', // "get out"
     'SophiaEx Thunder III': '19AC', // "get under"
-    'Sophia Ex Aion Teleos Execute 1': '19B1', // Thunder II duplication
-    'Sophia Ex Aion Teleos Execute 2': '19AF', // Aero III duplication
-    'Sophia Ex Aion Teleos Execute 3': '19AD', // Thunder III duplication
+    'SophiaEx Aion Teleos Execute 1': '19B1', // Thunder II duplication
+    'SophiaEx Aion Teleos Execute 2': '19AF', // Aero III duplication
+    'SophiaEx Aion Teleos Execute 3': '19AD', // Thunder III duplication
     'SophiaEx Gnosis': '19C2', // knockback
     'SophiaEx The Third Demiurge Ring of Pain': '19BA', // circle that leaves a frost puddle
     'SophiaEx The Third Demiurge Gnostic Spear': '19B9', // 270 degree untelegraphed cleave

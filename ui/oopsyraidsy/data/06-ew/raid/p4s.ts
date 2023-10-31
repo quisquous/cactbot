@@ -32,12 +32,12 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'P4S Hell\'s Sting 2': '6A21', // curtain call protean
   },
   damageFail: {
-    'P4S Hemitheos\'s Thunder III': '6A0F', // missing a 6A0E tower
+    'P4S Hemitheos\'s Thunder III Missed Tower': '6A0F', // missing a 6A0E tower
   },
   shareWarn: {
     'P4S Inversive Chlamys': '69EE', // tethers
     'P4S Acid Mekhane': '69D0', // acid pinax spread
-    'P4S Hemitheos\'s Thunder III': '6A0E', // Act 1, Act 2, Act 3, Act 4, Finale towers
+    'P4S Hemitheos\'s Thunder III Tower': '6A0E', // Act 1, Act 2, Act 3, Act 4, Finale towers
     'P4S Hemitheos\'s Water III': '6A14', // Act 4 water tether explosion
   },
   shareFail: {

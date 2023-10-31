@@ -14,14 +14,14 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Endsinger Elenchos Sides': '6643', // side lasers
     'Endsinger Elenchos Heads': '663E', // head lasers
     'Endsinger Feather of Despair Pharmakon': '664C', // feather circles after Death's Embrace
-    'Endsinger Epigonoi': '664C', // circles after Ekstasis that spawn heads with puddles
+    'Endsinger Epigonoi': '6646', // circles after Ekstasis that spawn heads with puddles
     'Endsinger Misery': '6648', // black puddles
     'Endsinger Interstellar': '67FB', // large line dive (with spread during)
     'Endsinger Kakodaimon Crash': '6657', // planets being tossed during midphase
     'Endsinger Dead Star': '5E4E', // targeted circles during final phase
   },
   shareWarn: {
-    'EndSinger Death\'s Embrace': '6649', // purple protean triangles
+    'Endsinger Death\'s Embrace': '6649', // purple protean triangles
     'Endsinger Nemesis': '664E', // spread during Interstellar
   },
   shareFail: {

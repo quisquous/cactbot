@@ -303,6 +303,8 @@ const translationGridHeaders = {
   },
   missingFiles: {
     en: 'Missing',
+    cn: '缺失',
+    ko: '누락됨',
   },
   url: {
     en: 'Link to Missing Translation List',

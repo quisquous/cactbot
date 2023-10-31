@@ -16,13 +16,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
   damageWarn: {
     'E10S Implosion Single 1': '56F2', // single tail up shadow implosion
     'E10S Implosion Single 2': '56EF', // single howl shadow implosion
-    'E10S Implosion Quadruple 1': '56EF', // quadruple set of shadow implosions
-    'E10S Implosion Quadruple 2': '56F2', // quadruple set of shadow implosions
+    // FIXME: this id is the same as Implosion Single 2 above, is it correct or one of them incorrect?
+    // 'E10S Implosion Quadruple 1': '56EF', // quadruple set of shadow implosions
+    // FIXME: this id is the same as Implosion Single 1 above, is it correct or one of them incorrect?
+    // 'E10S Implosion Quadruple 2': '56F2', // quadruple set of shadow implosions
     'E10S Giga Slash Single 1': '56EC', // Giga slash single from shadow
     'E10S Giga Slash Single 2': '56ED', // Giga slash single from shadow
     'E10S Giga Slash Box 1': '5709', // Giga slash box from four ground shadows
     'E10S Giga Slash Box 2': '570D', // Giga slash box from four ground shadows
-    'E10S Giga Slash Quadruple 1': '56EC', // quadruple set of giga slash cleaves
+    // FIXME: this id is the same as Giga Slash Single 1 above, is it correct or one of them incorrect?
+    // 'E10S Giga Slash Quadruple 1': '56EC', // quadruple set of giga slash cleaves
     'E10S Giga Slash Quadruple 2': '56E9', // quadruple set of giga slash cleaves
     'E10S Cloak Of Shadows 1': '5B13', // initial non-squiggly line explosions
     'E10S Cloak Of Shadows 2': '5B14', // second squiggly line explosions

@@ -51,10 +51,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'ASS Aqueduct Oqdan Uproot': '795A', // targeted circle
     'ASS Aqueduct Oqdan Gelid Gale': '7959', // targeted circle
 
-    'ASS Silkie Chilling Duster 1': '7763', // cardinal cross ice
-    'ASS Silkie Chilling Duster 2': '7768', // cardinal cross ice
-    'ASS Silkie Bracing Duster 1': '7764', // donut wind
-    'ASS Silkie Bracing Duster 2': '7769', // donut wind
+    'ASS Silkie Chilling Duster': '7763', // cardinal cross ice
+    'ASS Silkie Bracing Duster': '7764', // donut wind
     'ASS Silkie Fizzling Duster 1': '7765', // intercardinal cross lightning
     'ASS Silkie Fizzling Duster 2': '775D', // intercardinal cross lightning
     'ASS Silkie Soapsud Static': '77ED', // Fizzling Duster forked lightning spread

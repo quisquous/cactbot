@@ -170,7 +170,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Rokkon Enenra Pipe Cleaner': '8055', // earth shaker line cleave
   },
   shareFail: {
-    'Rokkon Enenra Snuff': '8057', // tank buster
+    'Rokkon Enenra Snuff': '8056', // tank buster
   },
 };
 

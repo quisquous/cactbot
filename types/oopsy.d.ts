@@ -115,9 +115,7 @@ type RequiredFieldsAsUnion<Type> = {
   [key in keyof Type]-?: Record<string, never> extends Pick<Type, key> ? never : key;
 }[keyof Type];
 
-type SimpleOopsyTriggerSet<Data extends OopsyData> = {
-  zoneId: ZoneIdType | ZoneIdType[];
-  zoneLabel?: LocaleText;
+export type OopsyMistakeMapFields = {
   damageWarn?: MistakeMap;
   damageFail?: MistakeMap;
   gainsEffectWarn?: MistakeMap;
@@ -126,8 +124,13 @@ type SimpleOopsyTriggerSet<Data extends OopsyData> = {
   shareFail?: MistakeMap;
   soloWarn?: MistakeMap;
   soloFail?: MistakeMap;
-  triggers?: OopsyTrigger<Data>[];
 };
+
+type SimpleOopsyTriggerSet<Data extends OopsyData> = {
+  zoneId: ZoneIdType | ZoneIdType[];
+  zoneLabel?: LocaleText;
+  triggers?: OopsyTrigger<Data>[];
+} & OopsyMistakeMapFields;
 
 // If Data contains required properties that are not on OopsyData, require initData
 export type OopsyTriggerSet<Data extends OopsyData = OopsyData> =

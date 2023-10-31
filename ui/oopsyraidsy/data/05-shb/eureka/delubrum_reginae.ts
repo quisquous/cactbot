@@ -55,7 +55,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Delubrum Queen The End 2': '59BC', // Also The Queen's Beck and Call cross aoe from adds
     'Delubrum Queen Northswain\'s Glow': '59C4', // expanding lines with explosion intersections
     'Delubrum Queen Judgment Blade Left': '5B83', // dash across room with left cleave
-    'Delubrum Queen Judgment Blade Right': '5B83', // dash across room with right cleave
+    // FIXME: this id is the same as  Blade Left above, is it correct or one of them incorrect?
+    // In this case, it seems possible that there's two self-targeted casts but one damage id.
+    // 'Delubrum Queen Judgment Blade Right': '5B83', // dash across room with right cleave
     'Delubrum Queen Queen\'s Justice': '59BF', // failing to walk the right number of squares
     'Delubrum Queen Turret\'s Tour 1': '59E0', // reflective turret shot during Queen
     'Delubrum Queen Turret\'s Tour 2': '59E1', // reflective turret shot during Queen
