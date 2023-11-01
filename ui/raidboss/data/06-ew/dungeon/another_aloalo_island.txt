@@ -1,0 +1,143 @@
+### ANOTHER ALOALO ISLAND
+# ZoneId: 49B
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~#
+# KETUDUKE #
+#~~~~~~~~~~#
+
+# -p 8AD4:1015.2
+# -ii 8AA7 8AD5 8AAE 8AB9 8AB6 8AD1 8ABE 8ABF 8AC9 8ACB 8AC0 8AAA 8AA9 8AC6 8AC8 8AC3 8A82 8A83
+
+1000.0 "--sync--" sync / 00:0839::The Dawn Trial will be sealed off/ window 10000,0
+1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:8AD4:/ window 20,20
+1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
+
+1022.0 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+1027.0 "Spring Crystals 1" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1034.0 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1041.0 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1050.0 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1060.0 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1062.0 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1065.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1065.1 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1074.0 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1077.1 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8C6D|8AB5):/
+1084.3 "Blowing Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABD:/
+1091.4 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1096.3 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8AB7|8ABA):/
+1099.6 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1102.5 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1113.6 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1118.9 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1130.3 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8ACC|8ACE):/
+1130.9 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1133.4 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8ACF|8ACD):/
+1134.0 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1134.0 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
+
+1143.7 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB8:/
+1149.7 "Roar" sync / 1[56]:[^:]*:Ketuduke:8AC4:/
+1154.6 "Spring Crystals 2" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1164.6 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AC5:/
+1177.0 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ABA:/
+1177.6 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1182.7 "Updraft" sync / 1[56]:[^:]*:Ketuduke:8AC7:/
+1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:8ACA:/
+
+1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+# TODO: this is probably either/or
+1199.4 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1202.4 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8C6D:/
+1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:8AC1:/
+1211.6 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
+1212.2 "Hydrobullet" sync / 1[56]:[^:]*:[^:]*:8ABA:/ # this sometimes has the wrong source
+1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1216.8 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ABA:/
+1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1227.8 "Fluke Typhoon (cast)" sync / 1[56]:[^:]*:Ketuduke:8AAF:/
+1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:8AB0:/
+1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAB:/
+1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:8AC2:/
+# ???
+
+# ALL ENCOUNTER ABILITIES
+# 8A77 --sync-- Ketuduke repositioning
+# 8A82 Riptide ability on players from Angry Seas Airy Bubble when you step in one
+# 8A83 Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
+# 8AA7 --sync-- auto damage from Ketuduke
+# 8AA8 Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
+# 8AA9 衝撃 self-targeted ability from Spring Crystal orbs
+# 8AAA 衝撃 self-targeted ability from Spring Crystal rupees
+# 8AAB Saturate cast and damage from Spring Crystal orb circle
+# 8AAC Saturate cast and damage from Spring Crystal rupee line laser
+# 8AAD Bubble Net self-targeted cast before Bubbles along with 8AAE during Spring Crystals 1
+# 8AAE Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
+# 8AAF Fluke Typhoon self-targeted cast before 8AB0 knockback during Spring Crystals 3
+# 8AB0 Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
+# 8AB1 Fluke Gale self-targeted cast that adds limit cut winds
+# 8AB2 Fluke Gale cast and ability for limit cut 1 wind
+# 8AB3 Fluke Gale cast and ability for limit cut 2 wind
+# 8AB4 Hydrofall self-targeted cast that adds stack markers
+# 8AB5 Hydrofall ability on players to give "stack second" before Blowing Bubbles
+# 8AB6 Hydrofall ability on players that adds stack debuffs
+# 8AB7 Hydrofall damage from stack debuuffs
+# 8AB8 Hydrobullet self-targeted cast that adds stack markers
+# 8AB9 Hydrobullet ability on players that adds spread debuffs
+# 8ABA Hydrobullet damage from spread debuffs
+# 8ABB Strewn Bubbles self-targeted cast before 8ABC Sphere Shatter moving arches
+# 8ABC Sphere Shatter damage from moving arches
+# 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
+# 8ABE Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+# 8ABF Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
+# 8AC0 Angry Seas cast and self-targeted ability for 8AC1 red line knockback
+# 8AC1 Angry Seas cast and knockback damage from red line
+# 8AC2 Burst tower damage
+# 8AC3 Big Burst tower failure damage
+# 8AC4 Roar self-targeted cast that summons Zaratan adds
+# 8AC5 Bubble Net self-targeted cast before Bubbles along with 8AC6 during Spring Crystals 2
+# 8AC6 Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
+# 8AC7 Updraft self-targeted cast to boost adds and players into the air
+# 8AC8 Updraft ability on players for 8AC7 Updraft
+# 8AC9 Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
+# 8ACA Hundred Lashings cast and self-targeted ability for bubbled Zaratan adds
+# 8ACB Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
+# 8ACC Receding Twintides cast and damage for initial out during out->in
+# 8ACD Near Tide fast cast and damage for second out during in->out with 8ACE Encroaching Twintides
+# 8ACE Encroaching Twintides cast and damage for initial in during in->out
+# 8ACF Far Tide fast cast and damage for second in during out->in with 8ACC Receding Twintides
+# 8AD0 Hydrobomb self-targeted cast for 8AD1 puddles
+# 8AD1 Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
+# 8AD4 Tidal Roar self-targeted cast for raidwide aoe
+# 8AD5 Tidal Roar damage from 8AD4
+# 8C6D Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+
+
+
+#~~~~~~~~~#
+# TRASH 1 #
+#~~~~~~~~~#
+
+# ALL ENCOUNTER ABILITIES
+# 7A56 --sync-- various auto damage (trash 1)
+# 8BC0 --sync-- damage from Twister tornados
+# 8C6E Lead Hook casted damage from Kiwakin 3x tankbuster
+# 8C62 Lead Hook damage from hit 2
+# 8C53 Lead Hook damage from hit 3
+# 8C64 Water III casted damage from Snipper stack marker
+# 8C63 Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
+# 8BB8 Tail Screw casted damage from Kiwakin baited circle
+# 8BB9 Bubble Shower casted damage from Snipper front conal
+# 8BBA Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BB9
+# 8BBD Hydrocannon casted damage from Ray front line
+# 8BBF Expulsion casted damage from Ray "get out"
+# 8BBE Electric Whorl casted damage from Ray "get in"
+# 8C65 Hydroshot casted damage from Monk knockback line with a dot
+# 8BBB Cross Attack casted damage from Monk tankbuster
