@@ -44,6 +44,9 @@ import {
 //
 // There's also no testing, sorry.
 
+// TODO: we should also refactor uses of `window` out of here and maybe into
+// set/clear timeout wrappers in html_timeline_ui as well.
+
 const kBig = 1000000000; // Something bigger than any fight length in seconds.
 
 const activeText = {
@@ -364,7 +367,7 @@ export class Timeline {
     let activeEvent = this.activeEvents[0];
     while (this.activeEvents.length && activeEvent && activeEvent.time <= fightNow) {
       const event = activeEvent;
-      if (this.options.KeepExpiredTimerBarsForSeconds > 0) {
+      if (typeof window !== 'undefined' && this.options.KeepExpiredTimerBarsForSeconds > 0) {
         this.keepAliveEvents.push({
           event: event,
           timeout: window.setTimeout(
