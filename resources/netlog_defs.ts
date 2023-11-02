@@ -771,8 +771,8 @@ const latestLogDefinitions = {
       maxHp: 6,
       currentMp: 7,
       maxMp: 8,
-      // currentTp: 9,
-      // maxTp: 10,
+      currentShield: 9,
+      // Field index 10 is always `0`
       x: 11,
       y: 12,
       z: 13,
@@ -800,6 +800,8 @@ const latestLogDefinitions = {
       maxHp: 6,
       mp: 7,
       maxMp: 8,
+      currentShield: 9,
+      // Field index 10 is always `0`
       x: 11,
       y: 12,
       z: 13,
