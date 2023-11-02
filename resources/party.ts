@@ -1,6 +1,6 @@
 import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
-import { OutputStringsParamObject } from '../types/trigger';
+import { PartyMemberParamObject, PartyTrackerOptions } from '../types/party';
 
 import Util from './util';
 
@@ -14,27 +14,6 @@ const emptyRoleToPartyNames = () => {
     none: [],
   };
 };
-
-export type BasePartyMemberParamObject = {
-  role?: Role;
-  job?: Job;
-  id?: string;
-  name: string;
-  nick: string;
-};
-
-export type PartyMemberParamObjectKeys = keyof BasePartyMemberParamObject;
-
-export interface PartyMemberParamObject
-  extends OutputStringsParamObject, BasePartyMemberParamObject {
-  toString: () => string;
-}
-
-// This is a partial interface of both RaidbossOptions and OopsyOptions.
-export interface PartyTrackerOptions {
-  DefaultPlayerLabel: keyof PartyMemberParamObject;
-  PlayerNicks: { [gameName: string]: string };
-}
 
 export default class PartyTracker {
   details: Party[] = [];
@@ -208,8 +187,6 @@ export default class PartyTracker {
       const retVal = ret[this.options.DefaultPlayerLabel];
       if (typeof retVal === 'string')
         return retVal;
-      if (typeof retVal === 'number')
-        return retVal.toString();
       return ret.nick;
     };
 

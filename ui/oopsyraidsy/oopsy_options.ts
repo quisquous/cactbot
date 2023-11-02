@@ -1,9 +1,9 @@
 import ContentType from '../../resources/content_type';
-import { PartyMemberParamObjectKeys } from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 import ZoneId from '../../resources/zone_id';
 import { BaseOptions } from '../../types/data';
 import { LooseOopsyTriggerSet } from '../../types/oopsy';
+import { PartyMemberParamObjectKeys, PartyTrackerOptions } from '../../types/party';
 import { ZoneIdType } from '../../types/trigger';
 
 export type DisabledTriggers = { [triggerId: string]: boolean };
@@ -44,7 +44,6 @@ const defaultOopsyNonConfigOptions: OopsyNonConfigOptions = {
 export type DeathReportSide = 'left' | 'right' | 'disabled';
 
 type OopsyConfigOptions = {
-  // TODO: support DefaultPlayerLabel in oopsy and add it to options
   DefaultPlayerLabel: PartyMemberParamObjectKeys;
   NumLiveListItemsInCombat: number;
   MinimumTimeForPullMistake: number;
@@ -54,6 +53,7 @@ type OopsyConfigOptions = {
 };
 
 const defaultOopsyConfigOptions: OopsyConfigOptions = {
+  // TODO: support DefaultPlayerLabel in oopsy and add it to options
   DefaultPlayerLabel: 'nick',
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
@@ -62,7 +62,8 @@ const defaultOopsyConfigOptions: OopsyConfigOptions = {
   MinimumTimeForOverwrittenMit: 2,
 };
 
-export interface OopsyOptions extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions {}
+export interface OopsyOptions
+  extends BaseOptions, OopsyNonConfigOptions, OopsyConfigOptions, PartyTrackerOptions {}
 
 // See user/raidboss-example.js for documentation.
 const Options: OopsyOptions = {
