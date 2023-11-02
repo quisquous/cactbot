@@ -344,10 +344,31 @@ Options.Triggers.push({
         },
       },
     },
+    {
+      id: 'Test OutputStrings',
+      type: 'GameLog',
+      netRegex: {
+        line: 'cactbot test outputStrings',
+        code: Util.gameLogCodes.echo,
+        capture: false,
+      },
+      infoText: (data, _matches, output) => {
+        // TODO: This doesn't work unless you're in a party, because party tracker is empty.
+        // OverlayPlugin should probably always return the current player as being in the party
+        // regardless of the rest of the party composition.
+        return output.text({ player: data.party.member(data.me) });
+      },
+      outputStrings: {
+        text: {
+          en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+        },
+      },
+    },
   ],
   timelineReplace: [
     {
       locale: 'de',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -386,6 +407,7 @@ Options.Triggers.push({
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceSync: {
         'cactbot lang': 'cactbot langue',
         'cactbot test response': 'cactbot test de réponse',
@@ -428,6 +450,7 @@ Options.Triggers.push({
     },
     {
       locale: 'ja',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*は木人に別れの挨拶をした',
         'You bow courteously to the striking dummy': '.*は木人にお辞儀した',
@@ -465,6 +488,7 @@ Options.Triggers.push({
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
@@ -502,6 +526,7 @@ Options.Triggers.push({
     },
     {
       locale: 'ko',
+      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
