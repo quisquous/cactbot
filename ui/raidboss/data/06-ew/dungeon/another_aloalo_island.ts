@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -10,6 +11,8 @@ export interface Data extends RaidbossData {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
   };
   combatantData: PluginCombatantState[];
+  ketuSpringCrystalCount: number;
+  ketuHydroBuffCount: number;
 }
 
 const triggerSet: TriggerSet<Data> = {
@@ -19,6 +22,8 @@ const triggerSet: TriggerSet<Data> = {
   initData: () => {
     return {
       combatantData: [],
+      ketuSpringCrystalCount: 0,
+      ketuHydroBuffCount: 0,
     };
   },
   triggers: [
@@ -102,6 +107,88 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     // ---------------- Ketuduke ----------------
+    {
+      id: 'AAI Ketuduke Tidal Roar',
+      type: 'StartsUsing',
+      netRegex: { id: '8AD4', source: 'Ketuduke', capture: false },
+      response: Responses.bleedAoe(),
+    },
+    {
+      id: 'AAI Ketuduke Foamy Fetters',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'ECC' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Fetters',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Bubble Weave',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E9F' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Bubble',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Hydro Buff Counter',
+      type: 'StartsUsing',
+      // 8AB8 = Hydrobullet (spread)
+      // 8AB4 = Hydrofall (stack)
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke', capture: false },
+      run: (data) => data.ketuHydroBuffCount++,
+    },
+    {
+      id: 'AAI Ketuduke Hydro Buff 1',
+      type: 'StartsUsing',
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
+      condition: (data) => data.ketuHydroBuffCount === 1,
+      alertText: (_data, matches, output) => {
+        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stacks: {
+          en: 'Stacks',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Hydro Buff 2',
+      type: 'StartsUsing',
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
+      condition: (data) => data.ketuHydroBuffCount === 2,
+      alertText: (_data, matches, output) => {
+        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
+      },
+      outputStrings: {
+        spread: {
+          en: 'Spread => Stacks',
+        },
+        stacks: {
+          en: 'Stacks => Spread',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Receding Twintides',
+      type: 'StartsUsing',
+      netRegex: { id: '8ACC', source: 'Ketuduke', capture: false },
+      response: Responses.getOutThenIn(),
+    },
+    {
+      id: 'AAI Ketuduke Encroaching Twintides',
+      type: 'StartsUsing',
+      netRegex: { id: '8ACE', source: 'Ketuduke', capture: false },
+      response: Responses.getInThenOut(),
+    },
   ],
   timelineReplace: [
     {
