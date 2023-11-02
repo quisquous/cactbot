@@ -413,6 +413,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.MountRokkon,
   ZoneId.AnotherMountRokkon,
   ZoneId.AnotherMountRokkonSavage,
+  ZoneId.AloaloIsland,
+  ZoneId.AnotherAloaloIsland,
+  ZoneId.AnotherAloaloIslandSavage,
 
   // Ultimate Raids
   ZoneId.TheUnendingCoilOfBahamutUltimate,
