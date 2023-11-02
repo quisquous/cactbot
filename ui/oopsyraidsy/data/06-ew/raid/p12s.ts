@@ -112,6 +112,20 @@ const triggerSet: OopsyTriggerSet<Data> = {
         };
       },
     },
+    {
+      id: 'P12S Close Caloric Count',
+      type: 'GainsEffect',
+      netRegex: NetRegexes.gainsEffect({ effectId: 'E05', count: '05' }),
+      suppressSeconds: 10,
+      mistake: (_data, matches) => {
+        return {
+          type: 'wipe',
+          blame: matches.target,
+          reportId: matches.targetId,
+          text: matches.effect,
+        };
+      },
+    },
   ],
 };
 
