@@ -39,10 +39,17 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
         const names = data.pelicanPoisons.sort();
-        if (names.length === 1 && names[0] === data.me)
-          return output.esunaYourPoison!();
+        const [player] = names;
+        if (names.length === 0 || player === undefined)
+          return;
+        if (names.length === 1) {
+          if (player === data.me)
+            return output.esunaYourPoison!();
+          return output.esunaPoisonOn!({ player: data.party.member(player) });
+        }
 
-        return output.esunaPoisonOn!({ players: names.map((x) => data.ShortName(x)).join(', ') });
+        // Don't bother trying to name everybody here.
+        return output.esunaPoisons!();
       },
       run: (data) => data.pelicanPoisons = [],
       outputStrings: {
@@ -55,12 +62,15 @@ const triggerSet: TriggerSet<Data> = {
           ko: '독 에스나 하기',
         },
         esunaPoisonOn: {
-          en: 'Esuna Poison on ${players}',
-          de: 'Entferne Gift von ${players}',
-          fr: 'Purifiez le poison sur ${players}',
-          ja: '${players}の毒をエスナ',
-          cn: '康复${players}',
-          ko: '"${players}" 독 에스나',
+          en: 'Esuna Poison on ${player}',
+          de: 'Entferne Gift von ${player}', // FIXME
+          fr: 'Purifiez le poison sur ${player}', // FIXME
+          ja: '${player}の毒をエスナ', // FIXME
+          cn: '康复${player}', // FIXME
+          ko: '"${player}" 독 에스나', // FIXME
+        },
+        esunaPoisons: {
+          en: 'Esuna Poisons',
         },
       },
     },
@@ -103,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '3D3', source: 'Hellbender' },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.breakBubbleOn!({ player: data.ShortName(matches.target) });
+          return output.breakBubbleOn!({ player: data.party.member(matches.target) });
 
         if (matches.target === data.me)
           return output.breakYourBubble!();
@@ -162,7 +172,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.esunaPoisonOn!({ player: data.ShortName(matches.target) });
+          return output.esunaPoisonOn!({ player: data.party.member(matches.target) });
 
         return output.esunaYourPoison!();
       },

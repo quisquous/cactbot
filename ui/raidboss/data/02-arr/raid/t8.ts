@@ -90,7 +90,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '0005', target: 'The Avatar' },
       suppressSeconds: 6,
       infoText: (data, matches, output) => {
-        return output.text!({ player: data.ShortName(matches.source) });
+        return output.text!({ player: data.party.member(matches.source) });
       },
       outputStrings: {
         text: {
@@ -113,7 +113,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.brainjackOn!({ player: data.ShortName(matches.target) });
+          return output.brainjackOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         brainjackOn: {
@@ -144,7 +144,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.allaganFieldOn!({ player: data.ShortName(matches.target) });
+          return output.allaganFieldOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         allaganFieldOn: {
