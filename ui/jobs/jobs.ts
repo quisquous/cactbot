@@ -1,6 +1,7 @@
 import { Lang } from '../../resources/languages';
 import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
+import { PartyTrackerOptions } from '../../types/party';
 
 import { Bars } from './bars';
 import { ComponentManager } from './components';
@@ -31,7 +32,9 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
   const ffxivVersion = ffxivlanguageToVersion[options.ParserLanguage];
 
   const emitter = new JobsEventEmitter();
-  const partyTracker = new PartyTracker();
+  // Jobs doesn't have a need for PartyTracker.member support and so just passes in dummy options.
+  const dummyOptions: PartyTrackerOptions = { DefaultPlayerLabel: 'nick', PlayerNicks: {} };
+  const partyTracker = new PartyTracker(dummyOptions);
   const player = new Player(emitter, partyTracker, ffxivVersion);
   const bars = new Bars(options, { emitter, player });
 

@@ -1,10 +1,11 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
+import Util from '../../resources/util';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
 import { MistakeObserver, ViewEvent } from './mistake_observer';
-import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
+import { GetFormattedTime, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 const kCopiedMessage = {
@@ -273,7 +274,7 @@ export class OopsyLiveList implements MistakeObserver {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
     const blameText = blame !== undefined
-      ? `${ShortNamify(blame, this.options.PlayerNicks)}: `
+      ? `${Util.shortName(blame, this.options.PlayerNicks)}: `
       : '';
     const translatedText = Translate(this.options.DisplayLanguage, m.text);
     if (translatedText === undefined)

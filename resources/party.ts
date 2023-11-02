@@ -1,5 +1,6 @@
 import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
+import { PartyMemberParamObject, PartyTrackerOptions } from '../types/party';
 
 import Util from './util';
 
@@ -23,6 +24,8 @@ export default class PartyTracker {
   nameToRole_: { [name: string]: Role } = {};
   idToName_: { [id: string]: string } = {};
   roleToPartyNames_: Record<Role, string[]> = emptyRoleToPartyNames();
+
+  constructor(private options: PartyTrackerOptions) {}
 
   // Bind this to PartyChanged events.
   onPartyChanged(e: { party: Party[] }): void {
@@ -154,5 +157,39 @@ export default class PartyTracker {
 
   nameFromId(id: string): string | undefined {
     return this.idToName_[id];
+  }
+
+  member(name: string): PartyMemberParamObject | undefined {
+    const partyMember = this.details.find((member) => member.name === name);
+    let ret: PartyMemberParamObject;
+    const nick = Util.shortName(name, this.options.PlayerNicks);
+
+    if (!partyMember) {
+      // If we can't find this party member for some reason, use some sort of default.
+      ret = {
+        name: name,
+        nick: nick,
+      };
+    } else {
+      const jobName = Util.jobEnumToJob(partyMember.job);
+      const role = Util.jobToRole(jobName);
+      ret = {
+        id: partyMember.id,
+        job: jobName,
+        role: role,
+        name: name,
+        nick: nick,
+      };
+    }
+
+    // Need to assign this afterwards so it can reference `ret`.
+    ret.toString = () => {
+      const retVal = ret[this.options.DefaultPlayerLabel];
+      if (typeof retVal === 'string')
+        return retVal;
+      return ret.nick;
+    };
+
+    return ret;
   }
 }

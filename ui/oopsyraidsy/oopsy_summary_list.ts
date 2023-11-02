@@ -1,8 +1,9 @@
+import Util from '../../resources/util';
 import { OopsyMistake } from '../../types/oopsy';
 
 import { DeathReport } from './death_report';
 import { MistakeObserver, ViewEvent } from './mistake_observer';
-import { GetFormattedTime, ShortNamify, Translate } from './oopsy_common';
+import { GetFormattedTime, Translate } from './oopsy_common';
 import { OopsyOptions } from './oopsy_options';
 
 type TableEntry = {
@@ -84,7 +85,7 @@ export class OopsySummaryTable implements MistakeObserver {
     const longName = m.name ?? m.blame;
     if (longName === undefined)
       return;
-    const name = ShortNamify(longName, this.options.PlayerNicks);
+    const name = Util.shortName(longName, this.options.PlayerNicks);
 
     // Don't create a player row if the summary doesn't care about this type of mistake.
     if (!this.types.includes(m.type))
@@ -217,7 +218,7 @@ export class OopsySummaryList implements MistakeObserver {
     const iconClass = m.type;
     const blame = m.name ?? m.blame;
     const blameText = blame !== undefined
-      ? `${ShortNamify(blame, this.options.PlayerNicks)}: `
+      ? `${Util.shortName(blame, this.options.PlayerNicks)}: `
       : '';
     const text = Translate(this.options.DisplayLanguage, m.text);
     if (text === undefined)
