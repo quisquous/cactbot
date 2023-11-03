@@ -118,7 +118,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Outside of between tridents',
+          en: 'Outside between tridents',
           ja: '槍の間の外側へ',
         },
       },
