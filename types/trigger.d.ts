@@ -35,12 +35,24 @@ export type ZoneIdType = number | null;
 
 export type OutputStrings = { [outputKey: string]: LocaleText | string };
 
+export type OutputStringsParamObject = {
+  // The indexer type requires that `() => string` be a possible value, or else `toString` can't be
+  // defined. Effectively, typescript sees it as `someParamObject['toString']()`, not as a direct
+  // function call of `someParamObject.toString()`.
+  [key: string]: undefined | string | number | (() => string);
+  toString: () => string;
+};
+
+export type OutputStringsParams = {
+  [param: string]: string | number | OutputStringsParamObject | undefined;
+};
+
 // TODO: is it awkward to have Outputs the static class and Output the unrelated type?
 // This type corresponds to TriggerOutputProxy.
 export type Output = {
   responseOutputStrings: OutputStrings;
 } & {
-  [key: string]: (params?: { [param: string]: string | number | undefined }) => string;
+  [key: string]: (params?: OutputStringsParams) => string;
 };
 
 // The output of any non-response raidboss trigger function.

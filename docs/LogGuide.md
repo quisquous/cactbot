@@ -1835,7 +1835,7 @@ at the moment the action is "locked in".
 > so I would need to do a lot of work-arounds."
 
 Structure:
-`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
+`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current Shield Percentage]:0:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
 
 Examples:
 
@@ -1858,20 +1858,20 @@ and [NetworkActionSync](#line37).
 
 ```log
 Network Log Line Structure:
-38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[?]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]|[data5]
+38|[timestamp]|[targetId]|[target]|[jobLevelData]|[hp]|[maxHp]|[mp]|[maxMp]|[currentShield]|[?]|[x]|[y]|[z]|[heading]|[data0]|[data1]|[data2]|[data3]|[data4]|[data5]
 
 Parsed Log Line Structure:
-[timestamp] StatusList 26:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[?]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]:[data5]
+[timestamp] StatusList 26:[targetId]:[target]:[jobLevelData]:[hp]:[maxHp]:[mp]:[maxMp]:[currentShield]:[?]:[x]:[y]:[z]:[heading]:[data0]:[data1]:[data2]:[data3]:[data4]:[data5]
 ```
 
 #### Regexes
 
 ```log
 Network Log Line Regex:
-^(?<type>38)\|(?<timestamp>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<jobLevelData>[^|]*)\|(?<hp>[^|]*)\|(?<maxHp>[^|]*)\|(?<mp>[^|]*)\|(?<maxMp>[^|]*)\|(?:[^|]*\|){2}(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|
+^(?<type>38)\|(?<timestamp>[^|]*)\|(?<targetId>[^|]*)\|(?<target>[^|]*)\|(?<jobLevelData>[^|]*)\|(?<hp>[^|]*)\|(?<maxHp>[^|]*)\|(?<mp>[^|]*)\|(?<maxMp>[^|]*)\|(?<currentShield>[^|]*)\|(?:[^|]*\|)(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|(?<data0>[^|]*)\|(?<data1>[^|]*)\|(?<data2>[^|]*)\|
 
 Parsed Log Line Regex:
-(?<timestamp>^.{14}) StatusList (?<type>26):(?<targetId>[^:]*):(?<target>[^:]*):(?<jobLevelData>[^:]*):(?<hp>[^:]*):(?<maxHp>[^:]*):(?<mp>[^:]*):(?<maxMp>[^:]*)(?::[^:]*){2}:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*):(?<data2>[^:]*)(?:$|:)
+(?<timestamp>^.{14}) StatusList (?<type>26):(?<targetId>[^:]*):(?<target>[^:]*):(?<jobLevelData>[^:]*):(?<hp>[^:]*):(?<maxHp>[^:]*):(?<mp>[^:]*):(?<maxMp>[^:]*):(?<currentShield>[^:]*):[^:]*:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*):(?<data0>[^:]*):(?<data1>[^:]*):(?<data2>[^:]*)(?:$|:)
 ```
 
 #### Examples

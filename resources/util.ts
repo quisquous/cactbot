@@ -459,6 +459,24 @@ const Util = {
     clearCombatantsOverride = clearFunc;
   },
   gameLogCodes: gameLogCodes,
+  shortName: (
+    name: string | undefined,
+    playerNicks: { [name: string]: string },
+  ): string => {
+    // TODO: make this unique among the party in case of first name collisions.
+    if (typeof name !== 'string') {
+      if (typeof name !== 'undefined')
+        console.error('called ShortNamify with non-string');
+      return '???';
+    }
+
+    const nick = playerNicks[name];
+    if (nick !== undefined)
+      return nick;
+
+    const idx = name.indexOf(' ');
+    return idx < 0 ? name : name.slice(0, idx);
+  },
 } as const;
 
 export default Util;

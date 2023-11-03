@@ -40,6 +40,7 @@ const ruleModule = {
       notFoundProperty: 'no \'{{prop}}\' in \'{{outputParam}}\'',
       notFoundTemplate: '`output.{{prop}}(...)` doesn\'t have template \'{{template}}\'.',
       missingTemplateValue: 'template \'{{prop}}\' is missing in function call',
+      incorrectObjectKey: 'template \'{{prop}}\' specifies an object key with too many parts',
     },
   },
   create: function(context) {
@@ -237,12 +238,23 @@ const ruleModule = {
             const keysInParams = getAllKeys(args[0].properties);
             if (outputTemplate !== null && outputTemplate !== undefined) {
               for (const key of outputTemplate) {
-                if (!t.isIdentifier(args[0]) && !keysInParams.includes(key)) {
+                const keyParts = key.split('.');
+                if (keyParts.length > 2) {
+                  context.report({
+                    node,
+                    messageId: 'incorrectObjectKey',
+                    data: {
+                      prop: key,
+                    },
+                  });
+                }
+                const trimmedKey = keyParts[0];
+                if (!t.isIdentifier(args[0]) && !keysInParams.includes(trimmedKey)) {
                   context.report({
                     node,
                     messageId: 'missingTemplateValue',
                     data: {
-                      prop: key,
+                      prop: trimmedKey,
                     },
                   });
                 }

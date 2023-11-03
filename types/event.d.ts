@@ -196,11 +196,6 @@ export interface EventMap {
     charName: string;
   }) => void;
 
-  'FileChanged': (ev: {
-    type: 'FileChanged';
-    file: string;
-  }) => void;
-
   'OnlineStatusChanged': (ev: {
     type: 'OnlineStatusChanged';
     target: string;

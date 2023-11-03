@@ -35,7 +35,7 @@ import {
 } from '../../types/trigger';
 import raidbossOptions from '../../ui/raidboss/raidboss_options';
 
-const emptyPartyTracker = new PartyTracker();
+const emptyPartyTracker = new PartyTracker(raidbossOptions);
 
 const getFakeRaidbossData = (triggerSet?: LooseTriggerSet): RaidbossData => {
   return {
@@ -643,7 +643,16 @@ const testTriggerFile = (file: string, info: TriggerSetInfo) => {
 
           for (const key of keys) {
             for (const param of outputStringsParams[key] ?? []) {
-              if (!Regexes.parse(`\\b${param}\\s*:`).exec(funcStr)) {
+              // Only allow one level of prop specification, e.g. `obj.key`
+              // Do not allow `obj.key.subkey`
+              const paramParts = param.split('.');
+              if (paramParts.length > 2) {
+                assert.fail(
+                  `'${id}' specifies an object key ('${param}') with too many parts`,
+                );
+              }
+              const trimmedParam = paramParts[0] ?? param;
+              if (!Regexes.parse(`\\b${trimmedParam}\\s*:`).exec(funcStr)) {
                 assert.fail(
                   `'${id}' does not define param '${param}' for outputStrings entry '${key}'`,
                 );
