@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ドーナツ玉の下へ',
         },
         text: {
-          en: 'Becareful Orbs',
+          en: 'Under Donut Far From Axe',
           ja: '玉に気を付けて',
         },
       },
