@@ -1133,6 +1133,51 @@ const latestLogDefinitions = {
     canAnonymize: true,
     firstOptionalField: undefined,
   },
+  StartsUsingExtra: {
+    type: '263',
+    name: 'StartsUsingExtra',
+    source: 'OverlayPlugin',
+    messageType: '263',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      sourceId: 2,
+      id: 3,
+      x: 4,
+      y: 5,
+      z: 6,
+      heading: 7,
+    },
+    playerIds: {
+      2: null,
+    },
+    canAnonymize: true,
+    firstOptionalField: 7,
+  },
+  AbilityExtra: {
+    type: '264',
+    name: 'AbilityExtra',
+    source: 'OverlayPlugin',
+    messageType: '264',
+    fields: {
+      type: 0,
+      timestamp: 1,
+      sourceId: 2,
+      id: 3,
+      globalEffectCounter: 4,
+      dataFlag: 5,
+      x: 6,
+      y: 7,
+      z: 8,
+      heading: 9,
+    },
+    blankFields: [6],
+    playerIds: {
+      2: null,
+    },
+    canAnonymize: true,
+    firstOptionalField: 9,
+  },
 } as const;
 
 export const logDefinitionsVersions = {
