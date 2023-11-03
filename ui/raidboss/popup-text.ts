@@ -358,6 +358,79 @@ class TriggerOutputProxy {
     });
   }
 
+  evaluateOutputParam(
+    id: string,
+    key: string,
+    val: unknown,
+    prop?: string,
+    isNestedArray?: boolean,
+  ): string {
+    if (typeof val === 'string' || typeof val === 'number')
+      return val.toString();
+    if (typeof val !== 'object') {
+      console.error(`Trigger ${id} has non-string param value ${key}.`);
+      return this.unknownValue;
+    }
+
+    if (Array.isArray(val)) {
+      // Don't allow nesting arrays here, e.g. [player1, [player2, player3]].
+      if (isNestedArray) {
+        console.error(`Trigger ${id} passed nested arrays to param value ${key}.`);
+        return this.unknownValue;
+      }
+
+      // If a trigger passes in [player1, player2, player3] as a value,
+      // and a user specifies `${players.job}`, then return:
+      // `${players[0].job}, ${players[1].job}, ${players[2].job}`.
+      // In general, this means that all array elements must either be simple
+      // strings/numbers or all share the same prop, or there will be errors below
+      // about non-existent properties. In practice, this likely will never happen.
+      //
+      // Also, this assumes that all locales are ok with ", " as a separator.
+      // This seems to be true in practice.
+      return val.map((p) => this.evaluateOutputParam(id, key, p, prop, true)).join(', ');
+    }
+
+    // Appease TypeScript, this shouldn't happen.
+    if (!isObject(val))
+      return this.unknownValue;
+
+    if (prop !== undefined) {
+      const retVal = val[prop];
+      if (typeof retVal === 'string' || typeof retVal === 'number')
+        return retVal.toString();
+
+      if (retVal === undefined || retVal === null) {
+        console.error(
+          `Trigger ${id} is referencing non-existent object property ${key}.${prop}.`,
+        );
+      } else {
+        console.error(
+          `Trigger ${id} is referencing object property ${key}.${prop} with incorrect type ${typeof retVal}.`,
+        );
+      }
+    }
+
+    // At this point, we're going to try to return a default value if we can,
+    // either from an error or because `prop` was unspecified.
+    const toStringFunc = val['toString'];
+    if (typeof toStringFunc !== 'function') {
+      console.error(
+        `Trigger ${id} has non-func ${key}.toString property.`,
+      );
+      return this.unknownValue;
+    }
+
+    const toStringVal: unknown = toStringFunc();
+    if (typeof toStringVal !== 'string' && typeof toStringVal !== 'number') {
+      console.error(
+        `Trigger ${id} returned non-string ${typeof toStringVal} from ${key}.toString().`,
+      );
+      return this.unknownValue;
+    }
+    return toStringVal.toString();
+  }
+
   getReplacement(
     // Can't use optional modifier for this arg since the others aren't optional
     template: { [lang: string]: unknown } | string | undefined,
@@ -400,53 +473,7 @@ class TriggerOutputProxy {
 
         if (key in params) {
           const val = params[key];
-          switch (typeof val) {
-            case 'string':
-              return val;
-            case 'number':
-              return val.toString();
-            case 'object': {
-              if (!isObject(val))
-                break;
-
-              if (prop !== undefined) {
-                const retVal = val[prop];
-                if (typeof retVal === 'string' || typeof retVal === 'number')
-                  return retVal.toString();
-
-                if (retVal === undefined || retVal === null) {
-                  console.error(
-                    `Trigger ${id} is referencing non-existent object property ${key}.${prop}.`,
-                  );
-                } else {
-                  console.error(
-                    `Trigger ${id} is referencing object property ${key}.${prop} with incorrect type ${typeof retVal}.`,
-                  );
-                }
-              }
-
-              // At this point, we're going to try to return a default value if we can,
-              // either from an error or because `prop` was unspecified.
-              const toStringFunc = val['toString'];
-              if (typeof toStringFunc !== 'function') {
-                console.error(
-                  `Trigger ${id} has non-func ${key}.toString property.`,
-                );
-                return this.unknownValue;
-              }
-
-              const toStringVal: unknown = toStringFunc();
-              if (typeof toStringVal !== 'string') {
-                console.error(
-                  `Trigger ${id} returned non-string ${typeof toStringVal} from ${key}.toString().`,
-                );
-                return this.unknownValue;
-              }
-              return toStringVal;
-            }
-          }
-          console.error(`Trigger ${id} has non-string param value ${key}.`);
-          return this.unknownValue;
+          return this.evaluateOutputParam(id, key, val, prop);
         }
       }
 

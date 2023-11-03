@@ -43,8 +43,9 @@ export type OutputStringsParamObject = {
   toString: () => string;
 };
 
+export type OutputStringsParam = string | number | OutputStringsParamObject;
 export type OutputStringsParams = {
-  [param: string]: string | number | OutputStringsParamObject | undefined;
+  [param: string]: OutputStringsParam | OutputStringsParam[] | undefined;
 };
 
 // TODO: is it awkward to have Outputs the static class and Output the unrelated type?
