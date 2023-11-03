@@ -40,18 +40,22 @@ Options.Triggers.push({
       outputStrings: {
         first: {
           en: 'Outside of between Orbs',
+          de: 'Außen zwichen den Orbs',
           ja: 'ハンマー、玉の間の外側へ',
         },
         second: {
           en: 'Under Orbs',
+          de: 'Unter einen Orbs',
           ja: 'ドーナツ、玉の下へ',
         },
         third: {
           en: 'Under Donut Orbs',
+          de: 'Unter Donut Orbs',
           ja: 'ドーナツ玉の下へ',
         },
         text: {
           en: 'Under Donut Far From Axe',
+          de: 'Unter Donut und weit weg von der Axt',
           ja: '玉に気を付けて',
         },
       },
@@ -65,6 +69,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to safe NOW!',
+          de: 'Geh zum sicheren Bereich JETZT!',
           ja: '安置へ移動',
         },
       },
@@ -77,6 +82,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '3x Knockback',
+          de: '3x Rückstoß',
           ja: '3x ノックバック',
         },
       },
@@ -89,6 +95,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '4x Charge',
+          de: '4x Ansturm',
           ja: '4x 突進',
         },
       },
@@ -101,6 +108,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Outside between tridents',
+          de: 'Außen zwichen den Dreizack',
           ja: '槍の間の外側へ',
         },
       },
@@ -119,6 +127,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Adds',
+          de: 'Adds',
           ja: 'ざこギミック',
         },
       },
@@ -167,6 +176,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Adds',
+          de: 'Adds',
           ja: 'ざこギミック',
         },
       },
@@ -179,6 +189,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bubbles 2 tiles knockback',
+          de: 'Blasen 2 Flächen Rückstoß',
           ja: '泡のみ2マスのノックバック',
         },
       },
@@ -191,6 +202,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bubbles float',
+          de: 'Blasen schweben',
           ja: '泡のみ浮上',
         },
       },
@@ -203,6 +215,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bubbles 2 tiles knockback + Puddles',
+          de: 'Blasen 2 Flächen Rückstoß + Flächen',
           ja: '泡のみ2マスのノックバック + ゆか',
         },
       },
@@ -288,6 +301,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Go to safe zone',
+          de: 'Geh in den sicheren Bereich',
           ja: '安置へ移動',
         },
         front: Outputs.goFront,
@@ -338,19 +352,22 @@ Options.Triggers.push({
         front: Outputs.lookTowardsBoss,
         back: {
           en: 'Look behind',
+          de: 'Schau nach Hinten',
           ja: '後ろ見て',
         },
         left: {
           en: 'Look right',
+          de: 'Schau nach Rechts',
           ja: '右見て',
         },
         right: {
           en: 'Look left',
+          de: 'Schau nach Links',
           ja: '左見て',
         },
         text: {
           en: 'Point opening at Boss',
-          de: 'Richte Öffnung auf Boss',
+          de: 'Zeige Öffnung zum Boss',
           fr: 'Pointez l\'ouverture vers Boss',
           ja: '未解析の方角をボスに向ける',
           cn: '脚下光环缺口对准boss',
@@ -366,6 +383,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Seed adds => Donut AOEs',
+          de: 'Samen Adds => Donut AoEs',
           ja: '種 => ドーナツAOE',
         },
       },
@@ -378,6 +396,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Bat adds => Big AOEs',
+          de: 'Fledermaus Adds => Große AoEs',
           ja: 'コウモリ => ゆかAOE',
         },
       },
@@ -389,7 +408,8 @@ Options.Triggers.push({
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Tree Add => Line AOEs',
+          en: 'Tree adds => Line AOEs',
+          de: 'Baum Adds => Linien AoEs',
           ja: '木 => 直線AOE',
         },
       },
@@ -493,6 +513,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid 4-tons',
+          de: 'Weiche 4-Tonnen aus',
           ja: '4トン回避',
         },
       },
@@ -505,6 +526,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid fire lines',
+          de: 'Weiche Feuer-Linien aus',
           ja: 'ぐるぐる火を回避',
         },
       },
@@ -544,6 +566,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Safe: ${safe}',
+          de: 'Sicher: ${safe}',
           ja: '安置: ${safe}',
         },
       },
@@ -570,6 +593,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid shimmering adds',
+          de: 'Weiche leuchtenden Adds aus',
           ja: '光ってる物に注意',
         },
       },
@@ -583,6 +607,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Birds charge',
+          de: 'Vogel ansturm',
           ja: '鳥の突進',
         },
       },
@@ -596,6 +621,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid AOEs',
+          de: 'Weiche AoEs aus',
           ja: 'AOE回避',
         },
       },
@@ -615,6 +641,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Avoid tethers',
+          de: 'Weiche Verbindungen aus',
           ja: '縮む線を回避',
         },
       },
@@ -634,6 +661,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Last bloom => Go to safe',
+          de: 'Letzte Blüte => Geh zum sicheren Bereich',
           ja: '最後の花畑 => 安置へ移動',
         },
       },
@@ -647,6 +675,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Crush! Go to corner',
+          de: 'Crush! Geh in eine Ecke',
           ja: 'クラッシュ！隅へ移動',
         },
       },
@@ -660,8 +689,70 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '4x Knockback',
+          de: '4x Rückstoß',
           ja: '4x ノックバック',
         },
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Kairimai Loquloqai': 'Kairimai Loquloqai',
+        'Ketuduke': 'Ketuduke',
+        'Ketulu Cove': 'Ketulu-Bucht',
+        'Lala': 'Lala',
+        'Loquloqui': 'Loquloqui',
+        'Quaqua': 'Quaqua',
+        'Repuruba Loqua': 'Repuruba Loqua',
+        'Seasong\'s Rest': 'Ruh der Seesänger',
+        'Statice': 'Statice',
+        'The Elder Stump': 'Altenstumpf',
+        'The Origin Spring': 'Urquell',
+        'The Slumbering Canopy': 'Schlafende Krone',
+        'The ancient forum': 'Altes Forum',
+        'Uolosapa Loqua': 'Uolosapa Loqua',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Kairimai Loquloqai': 'Kairimai Loquloqai',
+        'Ketuduke': 'Ketuduke',
+        'Ketulu Cove': 'Baie de Ketulu',
+        'Lala': 'Lala',
+        'Loquloqui': 'Loquloqui',
+        'Quaqua': 'Quaqua',
+        'Repuruba Loqua': 'repuruba loqua',
+        'Seasong\'s Rest': 'Repos du Chant marin',
+        'Statice': 'Statice',
+        'The Elder Stump': 'Souche du Doyen',
+        'The Origin Spring': 'Fontaine de l\'Origine',
+        'The Slumbering Canopy': 'Voûte apaisée',
+        'The ancient forum': 'Ancienne grand-place',
+        'Uolosapa Loqua': 'uolosapa loqua',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Kairimai Loquloqai': '神子の祭壇',
+        'Ketuduke': 'ケトゥドゥケ',
+        'Ketulu Cove': 'ケトゥルの江湾',
+        'Lala': 'ララ',
+        'Loquloqui': 'ロクロクイ',
+        'Quaqua': 'クアクア',
+        'Repuruba Loqua': 'レプルバ・ロクア',
+        'Seasong\'s Rest': '鯨の還る地',
+        'Statice': 'スターチス',
+        'The Elder Stump': '老樹の切り株',
+        'The Origin Spring': '大樹の命泉',
+        'The Slumbering Canopy': '昏き微睡の間',
+        'The ancient forum': '古き広場',
+        'Uolosapa Loqua': 'オーロサパ・ロクア',
       },
     },
   ],
