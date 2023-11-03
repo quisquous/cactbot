@@ -95,10 +95,12 @@ const triggerSet: TriggerSet<Data> = {
         goFront: Outputs.goFront,
         backRight: {
           en: 'Get behind and right',
+          de: 'Nach Hinten und Rechts',
           ko: '오른쪽 뒤로',
         },
         backLeft: {
           en: 'Get behind and left',
+          de: 'Nach Hinten und Links',
           ko: '왼쪽 뒤로',
         },
       },
