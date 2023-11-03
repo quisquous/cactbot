@@ -579,6 +579,24 @@ export default class Regexes {
   }
 
   /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-263-0x107-startsusingextra
+   */
+  static startsUsingExtra(
+    params?: NetParams['StartsUsingExtra'],
+  ): CactbotBaseRegExp<'StartsUsingExtra'> {
+    return buildRegex('StartsUsingExtra', params);
+  }
+
+  /**
+   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-264-0x108-abilityextra
+   */
+  static abilityExtra(
+    params?: NetParams['AbilityExtra'],
+  ): CactbotBaseRegExp<'AbilityExtra'> {
+    return buildRegex('AbilityExtra', params);
+  }
+
+  /**
    * Helper function for building named capture group
    */
   static maybeCapture(

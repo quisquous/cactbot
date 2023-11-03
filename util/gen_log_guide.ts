@@ -520,6 +520,33 @@ const lineDocs: LineDocs = {
       ],
     },
   },
+  // These examples are pairs of 263/264 lines showing the three cases
+  StartsUsingExtra: {
+    examples: {
+      'en-US': [
+        // Case 1, no actual ground target info, so the values sent in the packet correspond
+        // to the actor's position and heading
+        '263|2023-11-02T20:53:52.1900000-04:00|10001234|0005|-98.697|-102.359|10.010|1.524|dd76513d3dd59f5a',
+        // Case 2, no actual ground target info, but has a heading for some reason
+        '263|2023-11-02T21:39:18.6200000-04:00|10001234|0085|-6.653|747.154|130.009|2.920|39e0326a5ee47b77',
+        // Case 3, valid position and heading
+        '263|2023-11-02T21:39:12.6940000-04:00|40000D6E|8C45|-14.344|748.558|130.009|-3.142|9c7e421d4e93de7c',
+      ],
+    },
+  },
+  AbilityExtra: {
+    examples: {
+      'en-US': [
+        // Case 1, because there was no ground target info and no heading,
+        // the ability target info is blank
+        '264|2023-11-02T20:53:56.6450000-04:00|10001234|0005|000003EF|0|||||9f7371fa0e3a42c8',
+        // Case 2, because the ability has a heading, `0` gets sent for x/y/z with a proper heading
+        '264|2023-11-02T21:39:20.0910000-04:00|10001234|0085|0000533E|1|0.000|0.000|0.000|2.920|2e9ae29c1b65f930',
+        // Case 3, valid position and heading
+        '264|2023-11-02T21:39:15.6790000-04:00|40000D6E|8C45|000052DD|1|-14.344|748.558|130.009|2.483|f6b3ffa6c97f0540',
+      ],
+    },
+  },
 } as const;
 
 type LogGuideOptions = {
