@@ -175,7 +175,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.tankbusterOnYouStretchTethers!();
 
         if (data.role === 'healer' || data.job === 'BLU')
-          return output.tankbusterOn!({ player: data.ShortName(matches.target) });
+          return output.tankbusterOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         tankbusterOnYouStretchTethers: {

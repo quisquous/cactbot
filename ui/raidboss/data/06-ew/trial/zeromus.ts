@@ -57,7 +57,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '8AEF', source: 'Zeromus' },
       alertText: (data, matches, output) => {
-        return output.lineStackOn!({ player: data.ShortName(matches.target) });
+        return output.lineStackOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         lineStackOn: {
