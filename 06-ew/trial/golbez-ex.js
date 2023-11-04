@@ -178,7 +178,7 @@ Options.Triggers.push({
           en: 'Back => Front => Under => Spread',
           de: 'Hinten => Vorne => Unter ihn => Verteilen',
           cn: '后 => 前 => 月环 => 分散',
-          ko: '뒤 => 앞 => 안 => 쉐어',
+          ko: '뒤 => 앞 => 안 => 산개',
         },
       },
     },
