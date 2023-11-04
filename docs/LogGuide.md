@@ -2605,10 +2605,15 @@ Parsed Log Line Examples:
 
 This line contains extra data for ActorCast/StartsUsing network data.
 
-This line is always output for a given StartsUsing cast. If the ability does not target the
-ground then `x`/`y`/`z`/`heading` will be the source actor's position data. If the ability
-does target the ground, then `x`/`y`/`z`/`heading` be the position data for the target
-location.
+This line is always output for a given StartsUsing cast. 
+
+If the ability is non-targeted or actor-targeted, then `x`/`y`/`z`/`heading` will be 
+the source actor's position data. 
+
+If the ability targets the ground, then `x`/`y`/`z`/`heading` be the position data for the 
+target location. If the ability starts at the caster and targets a direction (such as
+line/cone AoEs), then the `x/y/z` will be the source actor's position, while `heading` is 
+the direction in which the ability was cast.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsingExtra&lang=en-US) -->
 
@@ -2660,9 +2665,8 @@ a corresponding StartsUsing line.
 If the ability was entirely actor-based with no heading, the `dataFlag` value will be `0`,
 and the `x`/`y`/`z`/`heading` fields will be blank.
 
-If the ability was actor-based but had a heading, for example ranged LB, the `dataFlag`
-value will be `1`, `x`/`y`/`z` will be `0.000`, and the `heading` will correspond to the
-direction/heading that the ability was used in.
+If the ability targets a direction (cone/line AoEs), then the `x/y/z` will be the source 
+actor's position, while `heading` is the direction that the ability is casting towards.
 
 If the ability was ground-targetted, for example `Asylum`/`Sacred Soil`/caster LB3, the
 `dataFlag` value will be `1` and the `x`/`y`/`z`/`heading` fields will correspond to the
