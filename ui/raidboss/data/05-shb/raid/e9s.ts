@@ -186,7 +186,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.tankSwap!();
 
         if (data.role === 'healer')
-          return output.tankBusters!({ player: data.ShortName(matches.target) });
+          return output.tankBusters!({ player: data.party.member(matches.target) });
       },
       infoText: (data, _matches, output) => {
         if (data.role !== 'tank' && data.role !== 'healer')

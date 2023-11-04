@@ -36,7 +36,7 @@ const boundOfFaithFireTetherResponse = (data: Data, _matches: unknown, output: O
     return { alertText: output.stackOnYou!() };
   if (targets.length === 0)
     return { alertText: output.stackOnPlayer!({ player: output.unknownTarget!() }) };
-  return { alertText: output.stackOnPlayer!({ player: data.ShortName(targets[0]) }) };
+  return { alertText: output.stackOnPlayer!({ player: data.party.member(targets[0]) }) };
 };
 
 const boundOfFaithLightningTetherResponse = (data: Data, _matches: unknown, output: Output) => {
@@ -65,7 +65,7 @@ const boundOfFaithLightningTetherResponse = (data: Data, _matches: unknown, outp
   if (targets.includes(data.me))
     return { alarmText: output.onYou!() };
 
-  const target = targets.length === 1 ? data.ShortName(targets[0]) : output.unknownTarget!();
+  const target = targets.length === 1 ? data.party.member(targets[0]) : output.unknownTarget!();
   return { infoText: output.tetherInfo!({ player: target }) };
 };
 
@@ -82,7 +82,7 @@ const boundOfFaithHolyTetherResponse = (data: Data, _matches: unknown, output: O
     return { alarmText: output.awayFromGroup!() };
   if (targets.length === 0)
     return { infoText: output.awayFromPlayer!({ player: output.unknownTarget!() }) };
-  return { infoText: output.awayFromPlayer!({ player: data.ShortName(targets[0]) }) };
+  return { infoText: output.awayFromPlayer!({ player: data.party.member(targets[0]) }) };
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -283,8 +283,8 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const tetherInfo = output.tetherInfo!({
-          player1: data.ShortName(lightningTarget),
-          player2: data.ShortName(fireTarget),
+          player1: data.party.member(lightningTarget),
+          player2: data.party.member(fireTarget),
         });
         const response = { infoText: tetherInfo };
         if (lightningTarget === data.me)
@@ -346,8 +346,8 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const tetherInfo = output.tetherInfo!({
-          player1: data.ShortName(holyTarget),
-          player2: data.ShortName(fireTarget),
+          player1: data.party.member(holyTarget),
+          player2: data.party.member(fireTarget),
         });
         const response = { infoText: tetherInfo };
         if (holyTarget === data.me)

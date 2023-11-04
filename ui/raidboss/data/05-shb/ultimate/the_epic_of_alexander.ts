@@ -289,7 +289,7 @@ const namedNisiPass = (data: Data, output: Output) => {
 
     // The common case.  Hopefully there's only one person in the names list,
     // but you never know.
-    const players = namesWithoutNisi.map((x) => data.ShortName(x)).join(', ');
+    const players = namesWithoutNisi.map((x) => data.party.member(x));
     return output.passNisiTo!({ type: nisiToString(myNisi, output), players: players });
   }
 
@@ -304,7 +304,7 @@ const namedNisiPass = (data: Data, output: Output) => {
 
   return output.getNisiFrom!({
     type: nisiToString(myNisi, output),
-    player: data.ShortName(names[0]),
+    player: data.party.member(names[0]),
   });
 };
 
@@ -390,7 +390,7 @@ const triggerSet: TriggerSet<Data> = {
             return output.tankBusters!();
 
           if (data.liquidTank !== undefined)
-            return output.tankBusterOn!({ player: data.ShortName(data.liquidTank) });
+            return output.tankBusterOn!({ player: data.party.member(data.liquidTank) });
 
           return output.tankBuster!();
         }
@@ -963,7 +963,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.enumerations?.length !== 2)
           return;
         const names = data.enumerations.sort();
-        return output.text!({ players: names.map((x) => data.ShortName(x)).join(', ') });
+        return output.text!({ players: names.map((x) => data.party.member(x)) });
       },
       outputStrings: {
         text: {
@@ -1189,7 +1189,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.sharedTankbusterOnYou!();
 
         if (data.role === 'tank' || data.role === 'healer')
-          return output.sharedTankbusterOn!({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn!({ player: data.party.member(matches.target) });
       },
       infoText: (data, _matches, output) => {
         if (data.role === 'tank' || data.role === 'healer')
@@ -1340,7 +1340,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: '462' },
       condition: (data) => data.phase === 'inception',
       delaySeconds: 3,
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Shared Sentence on ${player}',
@@ -1379,7 +1380,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.tankBusterOnYou!();
 
         if (data.role === 'healer')
-          return output.busterOn!({ player: data.ShortName(matches.target) });
+          return output.busterOn!({ player: data.party.member(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
@@ -1389,7 +1390,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.role !== 'tank')
           return;
 
-        return output.busterOn!({ player: data.ShortName(matches.target) });
+        return output.busterOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         busterOn: Outputs.tankBusterOnPlayer,
@@ -1789,8 +1790,8 @@ const triggerSet: TriggerSet<Data> = {
         data.opticalStack ??= [];
         if (data.opticalStack.length === 1)
           return;
-        const names = data.opticalStack.map((x) => data.ShortName(x)).sort();
-        return output.opticalStackPlayers!({ players: names.join(', ') });
+        const names = data.opticalStack.map((x) => data.party.member(x)).sort();
+        return output.opticalStackPlayers!({ players: names });
       },
       outputStrings: {
         opticalStackPlayers: {
@@ -2458,9 +2459,9 @@ const triggerSet: TriggerSet<Data> = {
           return output.opticalStack!();
 
         const names = data.betaBait.map((x) =>
-          x !== undefined ? data.ShortName(x) : output.unknown!()
+          x !== undefined ? data.party.member(x) : output.unknown!()
         ).sort();
-        return output.opticalStackPlayers!({ players: names.join(', ') });
+        return output.opticalStackPlayers!({ players: names });
       },
       outputStrings: {
         unknown: Outputs.unknown,
