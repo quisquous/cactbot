@@ -53,7 +53,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
+          return output.awayFromPlayer!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         awayFromPlayer: {
@@ -135,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.chainOn!({ player: data.ShortName(matches.target) });
+          return output.chainOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         chainOn: {

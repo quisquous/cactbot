@@ -181,6 +181,14 @@ This guide was last updated for:
     - [Structure](#structure-33)
     - [Regexes](#regexes-33)
     - [Examples](#examples-33)
+  - [Line 263 (0x107): StartsUsingExtra](#line-263-0x107-startsusingextra)
+    - [Structure](#structure-34)
+    - [Regexes](#regexes-34)
+    - [Examples](#examples-34)
+  - [Line 264 (0x108): AbilityExtra](#line-264-0x108-abilityextra)
+    - [Structure](#structure-35)
+    - [Regexes](#regexes-35)
+    - [Examples](#examples-35)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -2590,3 +2598,113 @@ Parsed Log Line Examples:
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END (logLines:type=RSVData&lang=en-US) -->
+
+<a name="line263"></a>
+
+### Line 263 (0x107): StartsUsingExtra
+
+This line contains extra data for ActorCast/StartsUsing network data.
+
+This line is always output for a given StartsUsing cast. If the ability does not target the
+ground then `x`/`y`/`z`/`heading` will be the source actor's position data. If the ability
+does target the ground, then `x`/`y`/`z`/`heading` be the position data for the target
+location.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsingExtra&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+263|[timestamp]|[sourceId]|[id]|[x]|[y]|[z]|[heading]
+
+Parsed Log Line Structure:
+[timestamp] 263 107:[sourceId]:[id]:[x]:[y]:[z]:[heading]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>263)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<id>[^|]*)\|(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) 263 (?<type>107):(?<sourceId>[^:]*):(?<id>[^:]*):(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+263|2023-11-02T20:53:52.1900000-04:00|10001234|0005|-98.697|-102.359|10.010|1.524|dd76513d3dd59f5a
+263|2023-11-02T21:39:18.6200000-04:00|10001234|0085|-6.653|747.154|130.009|2.920|39e0326a5ee47b77
+263|2023-11-02T21:39:12.6940000-04:00|40000D6E|8C45|-14.344|748.558|130.009|-3.142|9c7e421d4e93de7c
+
+Parsed Log Line Examples:
+[20:53:52.190] 263 107:10001234:0005:-98.697:-102.359:10.010:1.524
+[21:39:18.620] 263 107:10001234:0085:-6.653:747.154:130.009:2.920
+[21:39:12.694] 263 107:40000D6E:8C45:-14.344:748.558:130.009:-3.142
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=StartsUsingExtra&lang=en-US) -->
+
+<a name="line264"></a>
+
+### Line 264 (0x108): AbilityExtra
+
+This line contains extra data for Ability/NetworkAOEAbility network data.
+
+This line is always output for a given Ability hit, regardless of if that Ability hit had
+a corresponding StartsUsing line.
+
+If the ability was entirely actor-based with no heading, the `dataFlag` value will be `0`,
+and the `x`/`y`/`z`/`heading` fields will be blank.
+
+If the ability was actor-based but had a heading, for example ranged LB, the `dataFlag`
+value will be `1`, `x`/`y`/`z` will be `0.000`, and the `heading` will correspond to the
+direction/heading that the ability was used in.
+
+If the ability was ground-targetted, for example `Asylum`/`Sacred Soil`/caster LB3, the
+`dataFlag` value will be `1` and the `x`/`y`/`z`/`heading` fields will correspond to the
+ground target location and heading of the ability target.
+
+If there is some sort of error related to parsing this data from the network packet,
+`dataFlag` will be `256`, and the `x`/`y`/`z`/`heading` fields will be blank.
+
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=AbilityExtra&lang=en-US) -->
+
+#### Structure
+
+```log
+Network Log Line Structure:
+264|[timestamp]|[sourceId]|[id]|[globalEffectCounter]|[dataFlag]|[x]|[y]|[z]|[heading]
+
+Parsed Log Line Structure:
+[timestamp] 264 108:[sourceId]:[id]:[globalEffectCounter]:[dataFlag]:[x]:[y]:[z]:[heading]
+```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>264)\|(?<timestamp>[^|]*)\|(?<sourceId>[^|]*)\|(?<id>[^|]*)\|(?<globalEffectCounter>[^|]*)\|(?<dataFlag>[^|]*)\|(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) 264 (?<type>108):(?<sourceId>[^:]*):(?<id>[^:]*):(?<globalEffectCounter>[^:]*):(?<dataFlag>[^:]*):(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+264|2023-11-02T20:53:56.6450000-04:00|10001234|0005|000003EF|0|||||9f7371fa0e3a42c8
+264|2023-11-02T21:39:20.0910000-04:00|10001234|0085|0000533E|1|0.000|0.000|0.000|2.920|2e9ae29c1b65f930
+264|2023-11-02T21:39:15.6790000-04:00|40000D6E|8C45|000052DD|1|-14.344|748.558|130.009|2.483|f6b3ffa6c97f0540
+
+Parsed Log Line Examples:
+[20:53:56.645] 264 108:10001234:0005:000003EF:0::::
+[21:39:20.091] 264 108:10001234:0085:0000533E:1:0.000:0.000:0.000:2.920
+[21:39:15.679] 264 108:40000D6E:8C45:000052DD:1:-14.344:748.558:130.009:2.483
+```
+
+<!-- AUTO-GENERATED-CONTENT:END (logLines:type=AbilityExtra&lang=en-US) -->

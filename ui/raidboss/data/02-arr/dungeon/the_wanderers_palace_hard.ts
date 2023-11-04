@@ -21,7 +21,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'D2' },
       alertText: (data, matches, output) =>
-        output.text!({ player: data.ShortName(matches.target) }),
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} to full',

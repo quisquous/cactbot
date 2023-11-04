@@ -53,7 +53,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: '9A3' },
       condition: Conditions.targetIsNotYou(),
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => {
+        return output.text!({ player: data.party.member(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Free ${player}',

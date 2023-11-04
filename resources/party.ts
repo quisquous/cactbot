@@ -159,7 +159,17 @@ export default class PartyTracker {
     return this.idToName_[id];
   }
 
-  member(name: string): PartyMemberParamObject | undefined {
+  member(name?: string): PartyMemberParamObject {
+    // For boilerplate convenience in triggers, handle undefined names.
+    if (name === undefined) {
+      const unknown = '???';
+      return {
+        name: unknown,
+        nick: unknown,
+        toString: () => unknown,
+      };
+    }
+
     const partyMember = this.details.find((member) => member.name === name);
     let ret: PartyMemberParamObject;
     const nick = Util.shortName(name, this.options.PlayerNicks);

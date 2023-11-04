@@ -32,7 +32,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.chargeOn!({ player: data.ShortName(matches.target) });
+          return output.chargeOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         chargeOn: {
@@ -69,7 +69,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.cyclonicOn!({ player: data.ShortName(matches.target) });
+          return output.cyclonicOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         cyclonicOn: {

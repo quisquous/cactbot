@@ -1,0 +1,35 @@
+### ALOALO ISLAND
+# ZoneId: 498
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+
+# Left Quaqua
+1000.0 "--sync--" sync / 00:0839::Ketulu Cove will be sealed off/ window 10000,0
+
+
+# Ketuduke
+2000.0 "--sync--" sync / 00:0839::Seasong's Rest will be sealed off/ window 10000,0
+
+
+# Center Quaqua
+3000.0 "--sync--" sync / 00:0839::The Elder Stump will be sealed off/ window 10000,0
+
+
+# Lala
+4000.0 "--sync--" sync / 00:0839::The Origin Spring will be sealed off/ window 10000,0
+
+
+# Right Quaqua
+5000.0 "--sync--" sync / 00:0839::The ancient forum will be sealed off/ window 10000,0
+
+
+# Statice
+6000.0 "--sync--" sync / 00:0839::The Slumbering Canopy will be sealed off/ window 10000,0
+
+
+# Loquloqui
+7000.0 "--sync--" sync / 00:0839::Kairimai Loquloqai will be sealed off/ window 10000,0
