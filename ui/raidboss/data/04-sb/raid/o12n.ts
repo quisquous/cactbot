@@ -130,7 +130,7 @@ const triggerSet: TriggerSet<Data> = {
         // since it's stack, but also get away from Ground Zero purple marker.
         if (data.me === matches.target)
           return output.stackOnYou!();
-        return output.stackOnPlayer!({ player: data.ShortName(matches.target) });
+        return output.stackOnPlayer!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,

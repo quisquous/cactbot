@@ -197,7 +197,7 @@ const triggerSet: TriggerSet<Data> = {
         const partner = data.dischord?.[partnerId];
         if (partner === undefined)
           return;
-        return output.text!({ player: data.ShortName(partner) });
+        return output.text!({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: {

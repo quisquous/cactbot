@@ -46,7 +46,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       alertText: (data, matches, output) => {
         if (!(data.me === matches.target))
-          return output.avoidWaveCannon!({ target: data.ShortName(matches.target) });
+          return output.avoidWaveCannon!({ target: data.party.member(matches.target) });
       },
       outputStrings: {
         waveCannonTarget: {
@@ -76,7 +76,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.waveTarget === undefined)
           return output.unknownStackTarget!();
-        return output.stackOn!({ player: data.ShortName(data.waveTarget) });
+        return output.stackOn!({ player: data.party.member(data.waveTarget) });
       },
       outputStrings: {
         unknownStackTarget: Outputs.stackMarker,
@@ -126,7 +126,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (matches.target === data.me)
           return output.stackYou!();
-        return output.stackOn!({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackYou: Outputs.stackOnYou,
@@ -234,7 +234,7 @@ const triggerSet: TriggerSet<Data> = {
         data.tetherBuddy ??= buddy;
       },
       alertText: (data, _matches, output) => {
-        return output.tetherBuddy!({ buddy: data.ShortName(data.tetherBuddy) });
+        return output.tetherBuddy!({ buddy: data.party.member(data.tetherBuddy) });
       },
       outputStrings: {
         tetherBuddy: {
@@ -301,7 +301,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.infiniteElement === 'ice')
           element = output.ice!();
         const buddy = data.tetherBuddy;
-        return output.sealTowers!({ element: element, buddy: data.ShortName(buddy) });
+        return output.sealTowers!({ element: element, buddy: data.party.member(buddy) });
       },
       outputStrings: {
         sealTowers: {
