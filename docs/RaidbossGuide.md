@@ -510,7 +510,7 @@ A simple example using `outputStrings` and `Outputs` as below:
       return output.tankSwap();
 
     if (data.role === 'healer')
-      return output.tankBusters({ player: data.ShortName(matches.target) });
+      return output.tankBusters({ player: data.party.member(matches.target) });
   },
   infoText: function(data, _matches, output) {
     if (data.role !== 'tank' && data.role !== 'healer')

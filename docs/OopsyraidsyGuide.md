@@ -172,8 +172,8 @@ Current hp/mp/tp values are not 100% precise.  ACT polls these values periodical
 * `data.job`: string, the player's job, e.g. WAR.
 * `data.role`: string, the role of the player's job: tank, healer, dps-melee, dps-ranged, dps-caster, crafting, gathering.
 * `data.inCombat`: bool, whether or not the game thinks the player is in combat.  This is different than whether ACT thinks the player is in combat.
-* `data.ShortName`: helper function to turn full player names into shorter names or nicknames.
 * `data.IsPlayerId`: helper function to check if a target or attacker id represents a player (vs a pet or a mob).
+* `data.party`: the PartyTracker object, you can use this to check names and roles of players in the party, or to call `data.party.member(name).toString()` to get a shorter nickname or job name.
 
 `data` is something that triggers can and should store state on, if state is needed to be tracked across multiple triggers.
 
