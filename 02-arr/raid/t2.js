@@ -27,7 +27,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.rotOn({ player: data.ShortName(matches.target) });
+          return output.rotOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         rotOn: {

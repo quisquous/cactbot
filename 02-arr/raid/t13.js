@@ -50,7 +50,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
-        return output.flattenOn({ player: data.ShortName(matches.target) });
+        return output.flattenOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         flattenOn: {
@@ -122,7 +122,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.akhMornOn({ player: data.ShortName(matches.target) });
+          return output.akhMornOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         akhMornOn: {

@@ -8,7 +8,7 @@ Options.Triggers.push({
       type: 'Ability',
       netRegex: { source: 'Kaliya', id: 'B73' },
       alertText: (data, matches, output) => {
-        return output.text({ player: data.ShortName(matches.target) });
+        return output.text({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -149,7 +149,7 @@ Options.Triggers.push({
           partner = player0;
         if (partner === undefined)
           return;
-        return output.text({ player: data.ShortName(partner) });
+        return output.text({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: {
@@ -178,7 +178,7 @@ Options.Triggers.push({
           partner = player0;
         if (partner === undefined)
           return;
-        return output.text({ player: data.ShortName(partner) });
+        return output.text({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: {

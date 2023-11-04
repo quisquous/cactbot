@@ -37,14 +37,15 @@ Options.Triggers.push({
       condition: Conditions.targetIsYou(),
       infoText: (data, _matches, output) => {
         const partners = data.thornMap?.[data.me] ?? [];
+        const [partner1, partner2] = partners;
         if (partners.length === 0)
           return output.thornsOnYou();
-        if (partners.length === 1)
-          return output.oneTether({ player: data.ShortName(partners[0]) });
-        if (partners.length === 2) {
+        if (partners.length === 1 && partner1 !== undefined)
+          return output.oneTether({ player: data.party.member(partner1) });
+        if (partners.length === 2 && partner1 !== undefined && partner2 !== undefined) {
           return output.twoTethers({
-            player1: data.ShortName(partners[0]),
-            player2: data.ShortName(partners[1]),
+            player1: data.party.member(partner1),
+            player2: data.party.member(partner2),
           });
         }
         return output.threeOrMoreTethers({ num: partners.length });
@@ -188,7 +189,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.swarmOn({ player: data.ShortName(matches.target) });
+          return output.swarmOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         swarmOn: {
@@ -216,7 +217,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.shareLaserOnYou();
-        return output.shareLaserOn({ player: data.ShortName(matches.target) });
+        return output.shareLaserOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         shareLaserOnYou: {

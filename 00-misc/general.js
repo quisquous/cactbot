@@ -18,7 +18,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Provoke: ${player}',
@@ -45,8 +46,8 @@ Options.Triggers.push({
       suppressSeconds: 0.5,
       infoText: (data, matches, output) => {
         if (matches.targetId === 'E0000000')
-          return output.noTarget({ player: data.ShortName(matches.source) });
-        return output.text({ player: data.ShortName(matches.source) });
+          return output.noTarget({ player: data.party.member(matches.source) });
+        return output.text({ player: data.party.member(matches.source) });
       },
       outputStrings: {
         text: {
@@ -79,7 +80,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Shirk: ${player}',
@@ -103,7 +105,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Holmgang: ${player}',
@@ -127,7 +130,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Hallowed: ${player}',
@@ -151,7 +155,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Bolide: ${player}',
@@ -175,7 +180,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Living: ${player}',
@@ -199,7 +205,8 @@ Options.Triggers.push({
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.source) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.source) }),
       outputStrings: {
         text: {
           en: 'Walking: ${player}',

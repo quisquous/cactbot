@@ -32,7 +32,7 @@ Options.Triggers.push({
         const names = data.pelicanPoisons.sort();
         if (names.length === 1 && names[0] === data.me)
           return output.esunaYourPoison();
-        return output.esunaPoisonOn({ players: names.map((x) => data.ShortName(x)).join(', ') });
+        return output.esunaPoisonOn({ players: names.map((x) => data.party.member(x)) });
       },
       run: (data) => data.pelicanPoisons = [],
       outputStrings: {
@@ -93,7 +93,7 @@ Options.Triggers.push({
       netRegex: { id: '3D3', source: 'Hellbender' },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.breakBubbleOn({ player: data.ShortName(matches.target) });
+          return output.breakBubbleOn({ player: data.party.member(matches.target) });
         if (matches.target === data.me)
           return output.breakYourBubble();
       },
@@ -151,7 +151,7 @@ Options.Triggers.push({
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.esunaPoisonOn({ player: data.ShortName(matches.target) });
+          return output.esunaPoisonOn({ player: data.party.member(matches.target) });
         return output.esunaYourPoison();
       },
       outputStrings: {

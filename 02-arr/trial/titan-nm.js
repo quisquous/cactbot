@@ -26,7 +26,7 @@ Options.Triggers.push({
       netRegex: { effectId: '124' },
       alertText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.breakGaolOn({ player: data.ShortName(matches.target) });
+          return output.breakGaolOn({ player: data.party.member(matches.target) });
         return output.gaolOnYou();
       },
       outputStrings: {
