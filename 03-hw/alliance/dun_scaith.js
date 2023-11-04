@@ -574,7 +574,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.gazeStackOnYou();
-        return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
+        return output.stackOnAndLookAway({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         gazeStackOnYou: {

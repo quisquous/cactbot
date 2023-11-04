@@ -64,7 +64,7 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         if (data.hydro.length === 0)
           return;
-        return output.text({ players: data.hydro.map((x) => data.ShortName(x)).join(', ') });
+        return output.text({ players: data.hydro.map((x) => data.party.member(x)) });
       },
       outputStrings: {
         text: {

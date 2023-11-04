@@ -238,7 +238,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.thunderOn({ player: data.ShortName(matches.target) });
+          return output.thunderOn({ player: data.party.member(matches.target) });
       },
       run: (data, matches) => data.lightning = matches.target,
       outputStrings: {
@@ -273,7 +273,7 @@ Options.Triggers.push({
       condition: (data) => data.lightning !== undefined,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        return output.text({ player: data.ShortName(data.lightning) });
+        return output.text({ player: data.party.member(data.lightning) });
       },
       outputStrings: {
         text: {
@@ -293,7 +293,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return output.text({ player: data.ShortName(matches.target), count: count });
+        return output.text({ player: data.party.member(matches.target), count: count });
       },
       outputStrings: {
         text: {
@@ -314,7 +314,7 @@ Options.Triggers.push({
         if (data.me === matches.target)
           return output.sharedTankbusterOnYou();
         if (data.role === 'tank' || data.role === 'healer')
-          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         sharedTankbusterOnYou: {
@@ -369,7 +369,7 @@ Options.Triggers.push({
         const target = data.longNeedleStack;
         if (target === data.me)
           return output.stackOnYou();
-        return output.stackOn({ player: data.ShortName(target) });
+        return output.stackOn({ player: data.party.member(target) });
       },
       run: (data) => {
         delete data.longNeedleStack;
@@ -400,7 +400,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.superJumpOn({ player: data.ShortName(matches.target) });
+        return output.superJumpOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         superJumpOn: {
@@ -739,7 +739,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.waterOn({ player: data.ShortName(matches.target) });
+          return output.waterOn({ player: data.party.member(matches.target) });
       },
       run: (data, matches) => data.water = matches.target,
       outputStrings: {
@@ -777,7 +777,7 @@ Options.Triggers.push({
       condition: (data) => data.water !== undefined,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       infoText: (data, _matches, output) => {
-        return output.text({ player: data.ShortName(data.water) });
+        return output.text({ player: data.party.member(data.water) });
       },
       outputStrings: {
         text: {

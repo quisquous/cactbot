@@ -253,7 +253,9 @@ Options.Triggers.push({
       type: 'HeadMarker',
       netRegex: { id: '001E' },
       condition: (data) => data.role === 'healer',
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => {
+        return output.text({ player: data.party.member(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Shield ${player}',

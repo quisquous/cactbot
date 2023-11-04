@@ -150,7 +150,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         // 0040 = 2, 0041 = 3, 0042 = 4
         const count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
-        return output.text({ player: data.ShortName(matches.target), count: count });
+        return output.text({ player: data.party.member(matches.target), count: count });
       },
       outputStrings: {
         text: {
@@ -234,7 +234,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.superJumpOn({ player: data.ShortName(matches.target) });
+        return output.superJumpOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         superJumpOn: {

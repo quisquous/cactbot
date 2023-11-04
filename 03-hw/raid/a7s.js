@@ -62,7 +62,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me)
-          return output.sizzlebeamOn({ player: data.ShortName(matches.target) });
+          return output.sizzlebeamOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         sizzlebeamOn: {

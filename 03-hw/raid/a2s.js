@@ -50,7 +50,8 @@ Options.Triggers.push({
       netRegex: { source: 'Magitek Gobwidow G-IX', id: '1413' },
       condition: (data) => data.role === 'healer' || data.job === 'BLU',
       suppressSeconds: 10,
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Keep ${player} topped',
