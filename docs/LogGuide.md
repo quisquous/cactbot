@@ -2607,13 +2607,25 @@ This line contains extra data for ActorCast/StartsUsing network data.
 
 This line is always output for a given StartsUsing cast. 
 
-If the ability is non-targeted or actor-targeted, then `x`/`y`/`z`/`heading` will be 
-the source actor's position data. 
+If the ability is non-targeted, `x`/`y`/`z`/`heading` will be the source actor's position
+and heading data.
 
-If the ability targets the ground, then `x`/`y`/`z`/`heading` be the position data for the 
-target location. If the ability starts at the caster and targets a direction (such as
-line/cone AoEs), then the `x/y/z` will be the source actor's position, while `heading` is 
-the direction in which the ability was cast.
+If the ability is actor-targeted, then `x`/`y`/`z` will be the target actor's current 
+position, and `heading` will be the angle from the source actor to the target actor.
+
+If the ability purely targets the ground (such as BLU Bomb Toss), then 
+`x`/`y`/`z`/`heading` be the position data for the target location. 
+
+If the ability purely targets a direction (such as BLU Aqua Breath), then  `x`/`y`/`z` 
+will be the source actor's position, while `heading` is the direction in which the 
+ability was cast.
+
+Note that the important part is how the ability is *targeted*, not its actual AoE
+type. For example, Pneuma hits everything in a line, as if it were targeting a direction.
+However, it is targeted on an actor, and if said actor moves during the cast, then the
+cast will "follow" the target. Thus, if the ability has a target (and the target is 
+neither the caster nor the environment), then the actual location of the target is a 
+better indication of where it will hit. 
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=StartsUsingExtra&lang=en-US) -->
 
@@ -2662,18 +2674,27 @@ This line contains extra data for Ability/NetworkAOEAbility network data.
 This line is always output for a given Ability hit, regardless of if that Ability hit had
 a corresponding StartsUsing line.
 
-If the ability was entirely actor-based with no heading, the `dataFlag` value will be `0`,
+If the ability has no target, or is single-target, the `dataFlag` value will be `0`,
 and the `x`/`y`/`z`/`heading` fields will be blank.
 
-If the ability targets a direction (cone/line AoEs), then the `x/y/z` will be the source 
-actor's position, while `heading` is the direction that the ability is casting towards.
-
-If the ability was ground-targetted, for example `Asylum`/`Sacred Soil`/caster LB3, the
+If the ability targets the ground, for example `Asylum`/`Sacred Soil`/caster LB3, the
 `dataFlag` value will be `1` and the `x`/`y`/`z`/`heading` fields will correspond to the
 ground target location and heading of the ability target.
 
+If the ability targets a direction (such as line/cone AoEs), then the `x/y/z` will be the 
+source actor's position, while `heading` is the direction that the ability is casting 
+towards.
+
 If there is some sort of error related to parsing this data from the network packet,
 `dataFlag` will be `256`, and the `x`/`y`/`z`/`heading` fields will be blank.
+
+`globalEffectCounter` is equivalent to `sequence` field in 
+[NetworkAbility](#line-21-0x15-networkability) and
+[NetworkAOEAbility](#line-22-0x16-networkaoeability).
+
+Note that unlike [StartsUsingExtra](#line-263-0x107-startsusingextra), you do not need
+to worry about whether or not there is an actor target, as this represents the final
+snapshotted location of the Ability.
 
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=AbilityExtra&lang=en-US) -->
 
