@@ -5,9 +5,9 @@ const ArcaneBlightMap = {
   '8872': 'front',
 };
 Options.Triggers.push({
-  id: 'Aloalo',
+  id: 'AloaloIsland',
   zoneId: ZoneId.AloaloIsland,
-  timelineFile: 'aloalo.txt',
+  timelineFile: 'aloalo_island.txt',
   initData: () => {
     return {
       quaArmamentsCount: 0,
