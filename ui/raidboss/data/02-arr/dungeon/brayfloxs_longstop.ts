@@ -39,17 +39,11 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
         const names = data.pelicanPoisons.sort();
-        const [player] = names;
-        if (names.length === 0 || player === undefined)
+        if (names.length === 0)
           return;
-        if (names.length === 1) {
-          if (player === data.me)
-            return output.esunaYourPoison!();
-          return output.esunaPoisonOn!({ player: data.party.member(player) });
-        }
-
-        // Don't bother trying to name everybody here.
-        return output.esunaPoisons!();
+        if (names.includes(data.me))
+          return output.esunaYourPoison!();
+        return output.esunaPoisonOn!({ players: names.map((x) => data.party.member(x)) });
       },
       run: (data) => data.pelicanPoisons = [],
       outputStrings: {
@@ -62,15 +56,12 @@ const triggerSet: TriggerSet<Data> = {
           ko: '독 에스나 하기',
         },
         esunaPoisonOn: {
-          en: 'Esuna Poison on ${player}',
-          de: 'Entferne Gift von ${player}', // FIXME
-          fr: 'Purifiez le poison sur ${player}', // FIXME
-          ja: '${player}の毒をエスナ', // FIXME
-          cn: '康复${player}', // FIXME
-          ko: '"${player}" 독 에스나', // FIXME
-        },
-        esunaPoisons: {
-          en: 'Esuna Poisons',
+          en: 'Esuna Poison on ${players}',
+          de: 'Entferne Gift von ${players}',
+          fr: 'Purifiez le poison sur ${players}',
+          ja: '${players}の毒をエスナ',
+          cn: '康复${players}',
+          ko: '"${players}" 독 에스나',
         },
       },
     },
