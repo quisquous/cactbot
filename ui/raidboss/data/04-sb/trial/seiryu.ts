@@ -91,7 +91,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (matches.target === data.me)
           return output.stackOnYou!();
-        return output.stackOnPlayer!({ player: data.ShortName(matches.target) });
+        return output.stackOnPlayer!({ player: data.party.member(matches.target) });
       },
       run: (data) => delete data.redRush,
       outputStrings: {

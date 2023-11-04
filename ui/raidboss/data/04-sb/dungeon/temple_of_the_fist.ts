@@ -116,7 +116,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '1FE6', source: 'Ivon Coeurlfist' },
       condition: (data) => data.role === 'healer' || data.job === 'BLU',
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} soon',

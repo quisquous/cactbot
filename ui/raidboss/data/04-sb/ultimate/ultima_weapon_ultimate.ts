@@ -792,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.target === data.me || matches.source === data.me,
       infoText: (data, matches, output) => {
         const otherPlayer = matches.target === data.me ? matches.source : matches.target;
-        return output.fetters!({ player: data.ShortName(otherPlayer) });
+        return output.fetters!({ player: data.party.member(otherPlayer) });
       },
       outputStrings: {
         fetters: {
@@ -1158,9 +1158,9 @@ const triggerSet: TriggerSet<Data> = {
         if (data.titanGaols.length !== 3)
           return;
         return output.text!({
-          player1: data.ShortName(data.titanGaols[0]),
-          player2: data.ShortName(data.titanGaols[1]),
-          player3: data.ShortName(data.titanGaols[2]),
+          player1: data.party.member(data.titanGaols[0]),
+          player2: data.party.member(data.titanGaols[1]),
+          player3: data.party.member(data.titanGaols[2]),
         });
       },
       outputStrings: {
@@ -1188,7 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
         if (idx === -1)
           return;
         const numStr = output[`num${idx + 1}`]!();
-        return output.text!({ num: numStr, player: data.ShortName(matches.target) });
+        return output.text!({ num: numStr, player: data.party.member(matches.target) });
       },
       outputStrings: {
         // In case people want to replace 1/2/3 with front/mid/back or something.
