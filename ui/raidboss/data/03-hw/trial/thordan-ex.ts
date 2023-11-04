@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => data.me === matches.source || data.me === matches.target,
       alertText: (data, matches, output) => {
         const partner = data.me === matches.source ? matches.target : matches.source;
-        return output.breakChains!({ partner: data.ShortName(partner) });
+        return output.breakChains!({ partner: data.party.member(partner) });
       },
       outputStrings: {
         breakChains: {
@@ -336,8 +336,8 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.swordTarget === undefined || data.shieldTarget === undefined)
           return output.unknownDance!();
-        const swordTarget = data.ShortName(data.swordTarget);
-        const shieldTarget = data.ShortName(data.shieldTarget);
+        const swordTarget = data.party.member(data.swordTarget);
+        const shieldTarget = data.party.member(data.shieldTarget);
         if (data.swordTarget === data.shieldTarget)
           return output.singleDance!({ target: swordTarget });
         return output.doubleDance!({ sword: swordTarget, shield: shieldTarget });

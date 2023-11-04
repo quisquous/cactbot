@@ -172,8 +172,8 @@ const triggerSet: TriggerSet<Data> = {
           return `${matches.ability} (???)`;
 
         if (marker1 === marker2)
-          return output.repel!({ player: data.ShortName(partner) });
-        return output.attract!({ player: data.ShortName(partner) });
+          return output.repel!({ player: data.party.member(partner) });
+        return output.attract!({ player: data.party.member(partner) });
       },
       outputStrings: {
         repel: {
