@@ -321,7 +321,7 @@ Options.Triggers.push({
             if (data.weightTargets.includes(data.me)) {
               const partner = data.weightTargets[data.weightTargets[0] === data.me ? 1 : 0];
               return {
-                alarmText: output.titanBlueWithPartner({ player: data.ShortName(partner) }),
+                alarmText: output.titanBlueWithPartner({ player: data.party.member(partner) }),
               };
             }
           }
@@ -1270,15 +1270,15 @@ Options.Triggers.push({
         if (player1 !== data.me && player2 !== data.me) {
           // Call out both player names if you don't have eye
           return output.lookAwayFromPlayers({
-            player1: data.ShortName(player1),
-            player2: data.ShortName(player2),
+            player1: data.party.member(player1),
+            player2: data.party.member(player2),
           });
         } else if (player1 === data.me && player2 !== undefined) {
           // Call out second player name if exists and you have eye
-          return output.lookAwayFromPlayer({ player: data.ShortName(player2) });
+          return output.lookAwayFromPlayer({ player: data.party.member(player2) });
         } else if (player2 === data.me) {
           // Call out first player name if you have eye
-          return output.lookAwayFromPlayer({ player: data.ShortName(player1) });
+          return output.lookAwayFromPlayer({ player: data.party.member(player1) });
         }
         // Return empty when only you have eye
         return;
@@ -1494,11 +1494,11 @@ Options.Triggers.push({
       condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
       infoText: (data, matches, output) => {
         data.doubleAero ??= [];
-        data.doubleAero.push(data.ShortName(matches.target));
+        data.doubleAero.push(matches.target);
         if (data.doubleAero.length !== 2)
           return;
-        data.doubleAero.sort();
-        return output.text({ name1: data.doubleAero[0], name2: data.doubleAero[1] });
+        const [name1, name2] = data.doubleAero.sort().map((x) => data.party.member(x));
+        return output.text({ name1: name1, name2: name2 });
       },
       // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
       tts: null,

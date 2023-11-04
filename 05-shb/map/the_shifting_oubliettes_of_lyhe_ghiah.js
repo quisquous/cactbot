@@ -219,7 +219,7 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '5500', source: 'Daen Ose the Avaricious' },
       alertText: (data, matches, output) => {
-        return output.stackOnAndLookAway({ player: data.ShortName(matches.target) });
+        return output.stackOnAndLookAway({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackOnAndLookAway: {

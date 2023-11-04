@@ -618,7 +618,7 @@ Options.Triggers.push({
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text({ player: data.ShortName(partner) });
+        return output.text({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: Outputs.farTethersWithPlayer,
@@ -631,7 +631,7 @@ Options.Triggers.push({
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text({ player: data.ShortName(partner) });
+        return output.text({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: Outputs.closeTethersWithPlayer,

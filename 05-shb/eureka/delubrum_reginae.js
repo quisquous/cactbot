@@ -1055,7 +1055,9 @@ Options.Triggers.push({
       netRegex: { source: 'The Queen', id: '59C5' },
       condition: (data) => data.CanCleanse(),
       delaySeconds: 5,
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => {
+        return output.text({ player: data.party.member(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Esuna ${player}',

@@ -129,7 +129,7 @@ Options.Triggers.push({
           return output.tankBusterOnYou();
         if (data.role === 'dps' && data.job !== 'BLU')
           return output.avoidTankCleave();
-        return output.tankBusterOn({ player: data.ShortName(target) });
+        return output.tankBusterOn({ player: data.party.member(target) });
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,

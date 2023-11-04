@@ -356,7 +356,7 @@ Options.Triggers.push({
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
-        const players = data.akhMornTargets.map((x) => data.ShortName(x)).join(', ');
+        const players = data.akhMornTargets.map((x) => data.party.member(x));
         return { infoText: output.akhMornOn({ players: players }) };
       },
     },
@@ -374,7 +374,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.mornAfahOnYou();
-        return output.mornAfahOn({ player: data.ShortName(matches.target) });
+        return output.mornAfahOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         mornAfahOnYou: {

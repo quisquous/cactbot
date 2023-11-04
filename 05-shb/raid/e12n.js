@@ -183,8 +183,8 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         if (!data.stacks || data.stacks.length === 1)
           return;
-        const names = data.stacks.map((x) => data.ShortName(x)).sort();
-        return output.stacks({ players: names.join(', ') });
+        const names = data.stacks.map((x) => data.party.member(x)).sort();
+        return output.stacks({ players: names });
       },
       outputStrings: {
         stacks: {

@@ -544,7 +544,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.stackOnYou?.();
         if (!data.deluge)
-          return output.stackOnTarget?.({ player: data.ShortName(matches.target) });
+          return output.stackOnTarget?.({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,

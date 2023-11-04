@@ -289,7 +289,7 @@ Options.Triggers.push({
           return;
         if (matches.target === data.me)
           return output.stackOnYou();
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn({ player: data.party.member(matches.target) });
       },
       run: (data) => delete data.seedTargets,
       outputStrings: {

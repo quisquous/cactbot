@@ -323,8 +323,8 @@ Options.Triggers.push({
       condition: (data, matches) => data.me === matches.target || data.me === matches.source,
       alertText: (data, matches, output) => {
         if (data.me === matches.source)
-          return output.tetheredToPlayer({ player: data.ShortName(matches.target) });
-        return output.tetheredToPlayer({ player: data.ShortName(matches.source) });
+          return output.tetheredToPlayer({ player: data.party.member(matches.target) });
+        return output.tetheredToPlayer({ player: data.party.member(matches.source) });
       },
       outputStrings: {
         tetheredToPlayer: {

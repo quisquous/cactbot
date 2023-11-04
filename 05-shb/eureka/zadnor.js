@@ -1028,7 +1028,7 @@ Options.Triggers.push({
         if (data.me === matches.target)
           return output.stackOnYou();
         if (data.sartauvoirPyrocrisis && !data.sartauvoirPyrocrisis.includes(data.me))
-          return output.stackOnTarget({ player: data.ShortName(matches.target) });
+          return output.stackOnTarget({ player: data.party.member(matches.target) });
       },
       run: (data) => delete data.sartauvoirPyrocrisis,
       outputStrings: {
