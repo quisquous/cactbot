@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.bomb && data.bomb[data.me])
           return;
 
-        return output.stackOn!({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,

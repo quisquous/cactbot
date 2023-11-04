@@ -48,7 +48,7 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.stackOnYou!() };
         if (data.allergen)
           return { alarmText: output.avoidStack!() };
-        return { infoText: output.stackOnPlayer!({ player: data.ShortName(matches.target) }) };
+        return { infoText: output.stackOnPlayer!({ player: data.party.member(matches.target) }) };
       },
     },
     {

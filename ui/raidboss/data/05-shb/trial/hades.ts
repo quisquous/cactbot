@@ -31,12 +31,12 @@ const triggerSet: TriggerSet<Data> = {
           return output.tankBusterOnYou!();
 
         if (data.role === 'healer')
-          return output.busterOn!({ player: data.ShortName(matches.target) });
+          return output.busterOn!({ player: data.party.member(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
-        return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
+        return output.awayFromPlayer!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         awayFromPlayer: {
@@ -296,7 +296,7 @@ const triggerSet: TriggerSet<Data> = {
         if (!data.ancient || data.ancient[data.me] === undefined)
           return;
         const name = Object.keys(data.ancient).find((key) => data.ancient?.[key] === '003E');
-        return output.text!({ player: data.ShortName(name) });
+        return output.text!({ player: data.party.member(name) });
       },
       outputStrings: {
         text: Outputs.stackOnPlayer,

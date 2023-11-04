@@ -378,7 +378,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.akhMornTargets.includes(data.me))
           return;
-        const players = data.akhMornTargets.map((x) => data.ShortName(x)).join(', ');
+        const players = data.akhMornTargets.map((x) => data.party.member(x));
         return { infoText: output.akhMornOn!({ players: players }) };
       },
     },
@@ -397,7 +397,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.mornAfahOnYou!();
 
-        return output.mornAfahOn!({ player: data.ShortName(matches.target) });
+        return output.mornAfahOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         mornAfahOnYou: {
