@@ -39,9 +39,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 2,
       alertText: (data, _matches, output) => {
         const names = data.pelicanPoisons.sort();
-        if (names.length === 0)
-          return;
-        if (names.includes(data.me))
+        if (names.length === 1 && names[0] === data.me)
           return output.esunaYourPoison!();
         return output.esunaPoisonOn!({ players: names.map((x) => data.party.member(x)) });
       },
