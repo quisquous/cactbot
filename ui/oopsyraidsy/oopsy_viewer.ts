@@ -1,5 +1,6 @@
 import { UnreachableCode } from '../../resources/not_reached';
 import { callOverlayHandler } from '../../resources/overlay_plugin_api';
+import PartyTracker from '../../resources/party';
 import UserConfig from '../../resources/user_config';
 import { LocaleText } from '../../types/trigger';
 
@@ -56,22 +57,24 @@ const initViewer = (options: OopsyOptions, _isConnected: boolean) => {
   // TODO: fix early pulls from logs (and also make them more accurate <_<)
   (options.DisabledTriggers ??= {})[earlyPullTriggerId] = true;
 
+  // TODO: should we fake this out for the viewer so that it knows jobs?
+  const partyTracker = new PartyTracker(options);
   const mistakeCollector = new MistakeCollector(options, false);
   const summaryElement = document.getElementById('summary');
 
   if (!summaryElement)
     throw new UnreachableCode();
 
-  const listView = new OopsySummaryList(options, summaryElement);
+  const listView = new OopsySummaryList(options, summaryElement, partyTracker);
   mistakeCollector.AddObserver(listView);
 
   const tableElement = document.getElementById('mistake-table');
   if (!tableElement)
     throw new UnreachableCode();
-  const table = new OopsySummaryTable(options, tableElement);
+  const table = new OopsySummaryTable(tableElement, partyTracker);
   mistakeCollector.AddObserver(table);
 
-  const damageTracker = new DamageTracker(options, mistakeCollector, oopsyFileData);
+  const damageTracker = new DamageTracker(options, mistakeCollector, partyTracker, oopsyFileData);
 
   const fileDrop = document.getElementById('filedrop');
   if (!fileDrop)

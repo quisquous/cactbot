@@ -1,5 +1,6 @@
 import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
+import PartyTracker from '../../resources/party';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -125,6 +126,7 @@ export class DamageTracker {
   constructor(
     private options: OopsyOptions,
     private collector: MistakeCollector,
+    partyTracker: PartyTracker,
     private dataFiles: OopsyFileData,
   ) {
     const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
@@ -132,6 +134,7 @@ export class DamageTracker {
     this.playerStateTracker = new PlayerStateTracker(
       this.options,
       this.collector,
+      partyTracker,
       timestampCallback,
     );
 
@@ -170,7 +173,7 @@ export class DamageTracker {
           return true;
         return false;
       },
-      ShortName: (name?: string) => Util.shortName(name, this.options.PlayerNicks),
+      ShortName: (name?: string) => this.playerStateTracker.partyTracker.member(name).toString(),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
       options: this.options,

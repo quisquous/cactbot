@@ -1040,10 +1040,6 @@ export class PopupText {
       this.Reset();
   }
 
-  ShortNamify(name?: string): string {
-    return Util.shortName(name, this.options.PlayerNicks);
-  }
-
   Reset(): void {
     Util.clearWatchCombatants();
     this.data = this.getDataObject();
