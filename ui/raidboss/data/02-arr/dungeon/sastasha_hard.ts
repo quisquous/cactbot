@@ -14,7 +14,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: '239' },
       condition: (data) => data.CanCleanse(),
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Esuna ${player}',
@@ -35,7 +36,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.stun!({ name: matches.source });
       },
       infoText: (data, matches, output) => {
-        return output.tailScrewOn!({ player: data.ShortName(matches.target) });
+        return output.tailScrewOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stun: Outputs.stunTarget,

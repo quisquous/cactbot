@@ -43,7 +43,8 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Pharos Sirius Doom',
       type: 'GainsEffect',
       netRegex: { effectId: '172' },
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Heal ${player} to full',

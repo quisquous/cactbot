@@ -108,7 +108,8 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsNotYou(),
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
       durationSeconds: 5,
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Blight on ${player}',
@@ -142,7 +143,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.thermoOnYou!();
 
-        return output.stackOn!({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         thermoOnYou: {
@@ -378,8 +379,8 @@ const triggerSet: TriggerSet<Data> = {
           return;
         // Out, In, Out, In
         if (data.tetherCount % 2)
-          return output.fireOutOn!({ player: data.ShortName(matches.target) });
-        return output.fireInOn!({ player: data.ShortName(matches.target) });
+          return output.fireOutOn!({ player: data.party.member(matches.target) });
+        return output.fireInOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         fireOutOnYou: {
