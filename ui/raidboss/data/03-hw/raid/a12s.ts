@@ -85,10 +85,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.scourge.length > 2)
           return false;
 
-        const names = data.scourge.map((x) => data.ShortName(x)).sort();
+        const names = data.scourge.map((x) => data.party.member(x)).sort();
         if (names.length === 0)
           return;
-        return output.text!({ players: names.join(', ') });
+        return output.text!({ players: names });
       },
       outputStrings: {
         text: {
@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       infoText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text!({ player: data.ShortName(partner) });
+        return output.text!({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: {
@@ -162,7 +162,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.source === data.me || matches.target === data.me,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.text!({ player: data.ShortName(partner) });
+        return output.text!({ player: data.party.member(partner) });
       },
       outputStrings: {
         text: {

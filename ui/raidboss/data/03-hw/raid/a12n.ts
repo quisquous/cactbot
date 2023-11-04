@@ -92,7 +92,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.stackOnYou!();
 
-        return output.stackOn!({ player: data.ShortName(matches.target) });
+        return output.stackOn!({ player: data.party.member(matches.target) });
       },
       run: (data) => delete data.assault,
       outputStrings: {
