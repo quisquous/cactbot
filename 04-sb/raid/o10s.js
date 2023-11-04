@@ -26,7 +26,7 @@ Options.Triggers.push({
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.fireOn({ player: data.ShortName(matches.target) });
+          return output.fireOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         fireOnYou: {

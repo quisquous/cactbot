@@ -29,7 +29,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.tankBusterOnYou();
         if (data.role === 'healer')
-          return output.busterOn({ player: data.ShortName(matches.target) });
+          return output.busterOn({ player: data.party.member(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me || data.role === 'tank' || data.role === 'healer')

@@ -335,7 +335,7 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         if (!data.hatch)
           return;
-        const hatches = data.hatch.map((n) => data.ShortName(n)).join(', ');
+        const hatches = data.hatch.map((n) => data.party.member(n));
         delete data.hatch;
         return output.text({ players: hatches });
       },
@@ -723,9 +723,7 @@ Options.Triggers.push({
       },
       infoText: (data, _matches, output) => {
         if (!data.thunderOnYou) {
-          const thunderPlayers = data.thunderDebuffs.map((p) => data.ShortName(p));
-          const thunder1 = thunderPlayers[0] ?? '???';
-          const thunder2 = thunderPlayers[1] ?? '???';
+          const [thunder1, thunder2] = data.thunderDebuffs.map((p) => data.party.member(p));
           return output.thunderOnOthers({ player1: thunder1, player2: thunder2 });
         }
       },
@@ -854,7 +852,7 @@ Options.Triggers.push({
           name = data.dooms[data.doomCount];
         data.doomCount++;
         if (typeof name === 'string')
-          return output.text({ num: data.doomCount, player: data.ShortName(name) });
+          return output.text({ num: data.doomCount, player: data.party.member(name) });
       },
       outputStrings: {
         text: {
@@ -944,7 +942,7 @@ Options.Triggers.push({
         if (tookTwo?.includes(data.me))
           return;
         if (tookTwo && tookTwo.length > 0) {
-          const players = tookTwo.map((name) => data.ShortName(name)).join(', ');
+          const players = tookTwo.map((name) => data.party.member(name));
           return output.fireInPlayersOut({ players: players });
         }
         return output.fireIn();
@@ -1128,7 +1126,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return;
         const num = data.naelDiveMarkerCount + 1;
-        return output.text({ num: num, player: data.ShortName(matches.target) });
+        return output.text({ num: num, player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -1200,7 +1198,7 @@ Options.Triggers.push({
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
-        return output.text({ num: num, player: data.ShortName(matches.target) });
+        return output.text({ num: num, player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -1220,7 +1218,7 @@ Options.Triggers.push({
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
-        return output.text({ num: num, player: data.ShortName(matches.target) });
+        return output.text({ num: num, player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -1240,7 +1238,7 @@ Options.Triggers.push({
       condition: (data) => data.trio === 'octet',
       infoText: (data, matches, output) => {
         const num = data.octetMarker.length;
-        return output.text({ num: num, player: data.ShortName(matches.target) });
+        return output.text({ num: num, player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -1269,7 +1267,7 @@ Options.Triggers.push({
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
         if (data.lastOctetMarker !== data.me)
-          return output.twinOnPlayer({ player: data.ShortName(data.lastOctetMarker) });
+          return output.twinOnPlayer({ player: data.party.member(data.lastOctetMarker) });
       },
       tts: (data, _matches, output) => {
         if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
@@ -1523,7 +1521,7 @@ Options.Triggers.push({
           return;
         if (data.lastOctetMarker === undefined || data.lastOctetMarker === data.me)
           return;
-        const twin = data.ShortName(data.lastOctetMarker);
+        const twin = data.party.member(data.lastOctetMarker);
         if (data.megaStack.includes(data.lastOctetMarker))
           return output.twinHasMegaflare({ player: twin });
         return output.twinHasTower({ player: twin });
@@ -1767,7 +1765,7 @@ Options.Triggers.push({
           return output.mornAfahYou({ num: data.mornAfahCount });
         return output.mornAfahPlayer({
           num: data.mornAfahCount,
-          player: data.ShortName(matches.target),
+          player: data.party.member(matches.target),
         });
       },
       outputStrings: {

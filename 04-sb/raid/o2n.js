@@ -33,7 +33,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.stackMarkerOnYou();
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackMarkerOnYou: {

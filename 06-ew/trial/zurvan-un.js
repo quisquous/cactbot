@@ -33,7 +33,7 @@ Options.Triggers.push({
       },
       alertText: (data, matches, output) => {
         if (!(data.me === matches.target))
-          return output.avoidWaveCannon({ target: data.ShortName(matches.target) });
+          return output.avoidWaveCannon({ target: data.party.member(matches.target) });
       },
       outputStrings: {
         waveCannonTarget: {
@@ -63,7 +63,7 @@ Options.Triggers.push({
           return;
         if (data.waveTarget === undefined)
           return output.unknownStackTarget();
-        return output.stackOn({ player: data.ShortName(data.waveTarget) });
+        return output.stackOn({ player: data.party.member(data.waveTarget) });
       },
       outputStrings: {
         unknownStackTarget: Outputs.stackMarker,
@@ -113,7 +113,7 @@ Options.Triggers.push({
           return;
         if (matches.target === data.me)
           return output.stackYou();
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackYou: Outputs.stackOnYou,
@@ -221,7 +221,7 @@ Options.Triggers.push({
         data.tetherBuddy ??= buddy;
       },
       alertText: (data, _matches, output) => {
-        return output.tetherBuddy({ buddy: data.ShortName(data.tetherBuddy) });
+        return output.tetherBuddy({ buddy: data.party.member(data.tetherBuddy) });
       },
       outputStrings: {
         tetherBuddy: {
@@ -288,7 +288,7 @@ Options.Triggers.push({
         if (data.infiniteElement === 'ice')
           element = output.ice();
         const buddy = data.tetherBuddy;
-        return output.sealTowers({ element: element, buddy: data.ShortName(buddy) });
+        return output.sealTowers({ element: element, buddy: data.party.member(buddy) });
       },
       outputStrings: {
         sealTowers: {

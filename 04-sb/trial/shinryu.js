@@ -12,7 +12,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.akhMornOnYou();
         else if (data.role === 'tank')
-          return output.akhMornOn({ player: data.ShortName(matches.target) });
+          return output.akhMornOn({ player: data.party.member(matches.target) });
       },
       infoText: (data, matches, output) => {
         // Nobody with Akh Morn is a direct target for Akh Rai,

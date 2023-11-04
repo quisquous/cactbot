@@ -100,7 +100,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.blueMarkerOn({ player: data.ShortName(matches.target) });
+        return output.blueMarkerOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         blueMarkerOn: {
@@ -159,7 +159,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return output.rotOnYou();
-        return output.rotOn({ player: data.ShortName(matches.target) });
+        return output.rotOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         rotOnYou: {

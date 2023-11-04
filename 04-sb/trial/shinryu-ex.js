@@ -45,7 +45,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.akhMornOnYou();
         else if (data.role === 'tank')
-          return output.akhMornOn({ player: data.ShortName(matches.target) });
+          return output.akhMornOn({ player: data.party.member(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target === data.me || data.role === 'tank')
@@ -371,11 +371,11 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.deathSentenceOnYou();
         else if (data.role === 'healer')
-          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
+          return output.deathSentenceOn({ player: data.party.member(matches.target) });
       },
       infoText: (data, matches, output) => {
         if (matches.target !== data.me && data.role !== 'healer')
-          return output.deathSentenceOn({ player: data.ShortName(matches.target) });
+          return output.deathSentenceOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         deathSentenceOn: {

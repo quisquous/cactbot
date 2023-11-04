@@ -256,7 +256,7 @@ Options.Triggers.push({
       infoText: (data, matches, output) => {
         if (matches.target === data.me)
           return;
-        return output.embraceOn({ player: data.ShortName(matches.target) });
+        return output.embraceOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         embraceOn: {

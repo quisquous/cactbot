@@ -514,7 +514,7 @@ Options.Triggers.push({
           return;
         if (data.role !== 'tank' && data.job !== 'BLU')
           return;
-        return output.vulnOn({ player: data.ShortName(matches.target) });
+        return output.vulnOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         vulnOn: {
@@ -654,7 +654,7 @@ Options.Triggers.push({
           // might need an extra shield.  However, common blu strats have
           // folks diamondback this, so it's just noise.
           if (data.job !== 'BLU')
-            return output.shortStackOn({ player: data.ShortName(matches.target) });
+            return output.shortStackOn({ player: data.party.member(matches.target) });
         }
         return;
       },
@@ -769,7 +769,7 @@ Options.Triggers.push({
         for (const player in data.archiveMarkers) {
           if (data.archiveMarkers[player] !== '003E')
             continue;
-          return output.text({ player: data.ShortName(player) });
+          return output.text({ player: data.party.member(player) });
         }
       },
       outputStrings: {
