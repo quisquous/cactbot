@@ -35,7 +35,8 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: 'B95' },
       condition: (data) => data.CanCleanse(),
-      infoText: (data, matches, output) => output.text({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Esuna ${player}',
@@ -132,9 +133,9 @@ Options.Triggers.push({
           return { alertText: output.tankLaserOnYou() };
         if (data.role === 'healer')
           return {
-            alertText: output.tankLaserOnPlayer({ player: data.ShortName(matches.target) }),
+            alertText: output.tankLaserOnPlayer({ player: data.party.member(matches.target) }),
           };
-        return { info: output.avoidLaserOnPlayer({ player: data.ShortName(matches.target) }) };
+        return { info: output.avoidLaserOnPlayer({ player: data.party.member(matches.target) }) };
       },
     },
     {
@@ -196,7 +197,7 @@ Options.Triggers.push({
       netRegex: { effectId: '6E9' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) =>
-        output.cleanse({ player: data.ShortName(matches.target) }),
+        output.cleanse({ player: data.party.member(matches.target) }),
       outputStrings: {
         cleanse: {
           en: 'Heal ${player} to Full',

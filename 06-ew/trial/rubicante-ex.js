@@ -201,7 +201,7 @@ Options.Triggers.push({
       alertText: (data, _matches, output) => {
         if (data.flamespireBrandStack === data.me)
           return output.stackOnYou();
-        return output.stackOnPlayer({ player: data.ShortName(data.flamespireBrandStack) });
+        return output.stackOnPlayer({ player: data.party.member(data.flamespireBrandStack) });
       },
       outputStrings: {
         stackOnPlayer: Outputs.stackOnPlayer,

@@ -934,7 +934,9 @@ Options.Triggers.push({
           console.error(`Act 2 Tether: missing headmarker: ${JSON.stringify(data.actHeadmarkers)}`);
           return;
         }
-        const other = data.ShortName(matches.target === data.me ? matches.source : matches.target);
+        const other = data.party.member(
+          matches.target === data.me ? matches.source : matches.target,
+        );
         return {
           '012D': output.purpleTether({ player: other }),
           '012E': output.greenTether({ player: other }),

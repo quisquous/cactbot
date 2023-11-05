@@ -290,7 +290,7 @@ Options.Triggers.push({
           // Does not happen on first or third Slippery Soap
           if (matches.target === data.me)
             return output.getBehindPartyKnockback();
-          return output.getInFrontOfPlayerKnockback({ player: data.ShortName(matches.target) });
+          return output.getInFrontOfPlayerKnockback({ player: data.party.member(matches.target) });
         }
         if (matches.target === data.me) {
           if (data.soapCounter === 1)
@@ -299,7 +299,7 @@ Options.Triggers.push({
             return output.getBehindPuffs();
           return output.getBehindParty();
         }
-        return output.getInFrontOfPlayer({ player: data.ShortName(matches.target) });
+        return output.getInFrontOfPlayer({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         getBehindPuff: {
@@ -420,7 +420,7 @@ Options.Triggers.push({
         }
         if (data.role !== 'tank' && data.role !== 'healer')
           return;
-        return { infoText: output.busterOnTarget({ player: data.ShortName(matches.target) }) };
+        return { infoText: output.busterOnTarget({ player: data.party.member(matches.target) }) };
       },
     },
     {
@@ -979,7 +979,7 @@ Options.Triggers.push({
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.chargeOnYou();
-        return output.chargeOn({ player: data.ShortName(matches.target) });
+        return output.chargeOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         chargeOn: {
@@ -1044,7 +1044,9 @@ Options.Triggers.push({
             return output.spreadThenStackOnYou();
           if (data.thunderousEchoPlayer === undefined)
             return output.spreadThenStack();
-          return output.spreadThenStackOn({ player: data.ShortName(data.thunderousEchoPlayer) });
+          return output.spreadThenStackOn({
+            player: data.party.member(data.thunderousEchoPlayer),
+          });
         }
         if (data.hasLingering)
           return output.baitThenSpread();
@@ -1052,7 +1054,7 @@ Options.Triggers.push({
           return output.stackOnYouThenSpread();
         if (data.thunderousEchoPlayer === undefined)
           return output.stackThenSpread();
-        return output.stackOnThenSpread({ player: data.ShortName(data.thunderousEchoPlayer) });
+        return output.stackOnThenSpread({ player: data.party.member(data.thunderousEchoPlayer) });
       },
       outputStrings: {
         stackThenSpread: Outputs.stackThenSpread,
@@ -1163,7 +1165,7 @@ Options.Triggers.push({
           return output.baitPuddle();
         if (matches.target === data.me)
           return output.stackOnYou();
-        return output.stackOn({ player: data.ShortName(matches.target) });
+        return output.stackOn({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         // TODO: should this also say "In", e.g. "In + Spread" or "Spread (In)"?
@@ -1522,7 +1524,7 @@ Options.Triggers.push({
           if (name === data.me)
             continue;
           if (id === myBuff) {
-            partner = data.ShortName(name);
+            partner = data.party.member(name);
             break;
           }
         }

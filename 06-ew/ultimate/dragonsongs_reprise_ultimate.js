@@ -130,7 +130,7 @@ Options.Triggers.push({
         if (data.me === data.mortalVowPlayer)
           return output.vowOnYou();
         if (data.mortalVowPlayer !== undefined)
-          return output.vowOn({ player: data.mortalVowPlayer });
+          return output.vowOn({ player: data.party.member(data.mortalVowPlayer) });
         return output.vowSoon();
       },
       outputStrings: {
@@ -828,8 +828,8 @@ Options.Triggers.push({
           return;
         if (data.sanctitySword1 === undefined || data.sanctitySword2 === undefined)
           return;
-        const name1 = data.ShortName(data.sanctitySword1);
-        const name2 = data.ShortName(data.sanctitySword2);
+        const name1 = data.party.member(data.sanctitySword1);
+        const name2 = data.party.member(data.sanctitySword2);
         return output.text({ name1: name1, name2: name2 });
       },
       // Don't collide with the more important 1/2 call.
@@ -869,13 +869,19 @@ Options.Triggers.push({
         const p1dps = data.party.isDPS(p1);
         const p2dps = data.party.isDPS(p2);
         if (p1dps && p2dps)
-          return output.dpsMeteors({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
+          return output.dpsMeteors({
+            player1: data.party.member(p1),
+            player2: data.party.member(p2),
+          });
         if (!p1dps && !p2dps)
           return output.tankHealerMeteors({
-            player1: data.ShortName(p1),
-            player2: data.ShortName(p2),
+            player1: data.party.member(p1),
+            player2: data.party.member(p2),
           });
-        return output.unknownMeteors({ player1: data.ShortName(p1), player2: data.ShortName(p2) });
+        return output.unknownMeteors({
+          player1: data.party.member(p1),
+          player2: data.party.member(p2),
+        });
       },
       outputStrings: {
         tankHealerMeteors: {
@@ -1789,8 +1795,8 @@ Options.Triggers.push({
       infoText: (data, _matches, output) => {
         // In case somebody wants to do some "go in the order cactbot tells you" sort of strat.
         const [fullName1, fullName2] = data.thunderstruck.sort();
-        const name1 = fullName1 !== undefined ? data.ShortName(fullName1) : output.unknown();
-        const name2 = fullName2 !== undefined ? data.ShortName(fullName2) : output.unknown();
+        const name1 = data.party.member(fullName1);
+        const name2 = data.party.member(fullName2);
         return output.text({ name1: name1, name2: name2 });
       },
       // Sorry tts players, but "Thunder on YOU" and "Thunder: names" are too similar.
@@ -2101,9 +2107,9 @@ Options.Triggers.push({
         if (data.hasDoom[data.me] || data.hasDoom[partner])
           return;
         if (myMarker === 'triangle')
-          return output.doubleTriangle({ player: data.ShortName(partner) });
+          return output.doubleTriangle({ player: data.party.member(partner) });
         if (myMarker === 'square')
-          return output.doubleSquare({ player: data.ShortName(partner) });
+          return output.doubleSquare({ player: data.party.member(partner) });
       },
       outputStrings: {
         // In case users want to have triangle vs square say something different.
@@ -2228,7 +2234,7 @@ Options.Triggers.push({
       type: 'GainsEffect',
       netRegex: { effectId: 'B50' },
       suppressSeconds: 1,
-      run: (data, matches) => data.mortalVowPlayer = data.ShortName(matches.target),
+      run: (data, matches) => data.mortalVowPlayer = matches.target,
     },
     {
       id: 'DSR Akh Afah',

@@ -116,7 +116,7 @@ Options.Triggers.push({
           return;
         if (data.target === data.me)
           return output.busterOnYou();
-        return output.busterOnTarget({ player: data.ShortName(data.target) });
+        return output.busterOnTarget({ player: data.party.member(data.target) });
       },
       outputStrings: {
         busterOnYou: Outputs.tankBusterOnYou,

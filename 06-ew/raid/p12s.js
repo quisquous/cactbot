@@ -1424,7 +1424,7 @@ Options.Triggers.push({
           towerColor = data.engravement3TowerType === 'lightTower'
             ? output.light()
             : output.dark();
-        const partner = data.ShortName(data.engravement3TowerPlayers.find((name) =>
+        const partner = data.party.member(data.engravement3TowerPlayers.find((name) =>
           name !== data.me
         )) ??
           output.unknown();
@@ -3220,7 +3220,7 @@ Options.Triggers.push({
         const myBuddy = Object.keys(data.pangenesisRole).find((x) => {
           return data.pangenesisRole[x] === myRole && x !== data.me;
         });
-        const player = myBuddy === undefined ? output.unknown() : data.ShortName(myBuddy);
+        const player = myBuddy === undefined ? output.unknown() : data.party.member(myBuddy);
         if (myRole === 'not') {
           if (strat === 'not')
             return output.nothingWithTower({ player: player, tower: output.firstTower() });
@@ -3579,10 +3579,10 @@ Options.Triggers.push({
           return;
         const partner = matches.source === data.me ? matches.target : matches.source;
         if (data.phase === 'gaiaochos1')
-          return output.uav1({ partner: data.ShortName(partner) });
+          return output.uav1({ partner: data.party.member(partner) });
         data.seenSecondTethers = true;
         return output.uav2({
-          partner: data.ShortName(partner),
+          partner: data.party.member(partner),
           geocentrism: data.geocentrism2OutputStr ?? output.unknown(),
         });
       },
@@ -3719,13 +3719,13 @@ Options.Triggers.push({
         if (index < 0)
           return {
             infoText: output.noBeacon({
-              player1: data.ShortName(data.caloric1First[0]),
-              player2: data.ShortName(data.caloric1First[1]),
+              player1: data.party.member(data.caloric1First[0]),
+              player2: data.party.member(data.caloric1First[1]),
             }),
           };
         const partner = index === 0 ? 1 : 0;
         return {
-          alertText: output.beacon({ partner: data.ShortName(data.caloric1First[partner]) }),
+          alertText: output.beacon({ partner: data.party.member(data.caloric1First[partner]) }),
         };
       },
     },
@@ -3828,18 +3828,22 @@ Options.Triggers.push({
           const myTeam = [];
           for (const [name, stat] of Object.entries(data.caloric1Buff)) {
             if (stat === myBuff && name !== data.me)
-              myTeam.push(data.ShortName(name));
+              myTeam.push(name);
           }
-          return { alertText: output.fire({ team: myTeam.sort().join(', ') }) };
+          return {
+            alertText: output.fire({ team: myTeam.sort().map((x) => data.party.member(x)) }),
+          };
         }
         if (data.caloric1First.includes(data.me))
           return { infoText: output.windBeacon() };
         const myTeam = [];
         for (const [name, stat] of Object.entries(data.caloric1Buff)) {
           if (stat === myBuff && name !== data.me && !data.caloric1First.includes(name))
-            myTeam.push(data.ShortName(name));
+            myTeam.push(name);
         }
-        return { alertText: output.wind({ team: myTeam.sort().join(', ') }) };
+        return {
+          alertText: output.wind({ team: myTeam.sort().map((x) => data.party.member(x)) }),
+        };
       },
       run: (data) => {
         data.caloric1First = [];
@@ -3877,7 +3881,7 @@ Options.Triggers.push({
           return;
         if (data.me === matches.target)
           return { alarmText: output.fireOnMe() };
-        return { infoText: output.fireOn({ player: data.ShortName(matches.target) }) };
+        return { infoText: output.fireOn({ player: data.party.member(matches.target) }) };
       },
     },
     {

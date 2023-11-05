@@ -781,7 +781,7 @@ Options.Triggers.push({
             continue;
           const theirNumber = data.firstSnakeOrder[name];
           if (myNumber === theirNumber) {
-            partner = data.ShortName(name);
+            partner = data.party.member(name);
             break;
           }
         }
@@ -878,7 +878,7 @@ Options.Triggers.push({
         const friends = [];
         for (const [name, theirDebuff] of Object.entries(data.secondSnakeDebuff)) {
           if (myDebuff === theirDebuff && name !== data.me)
-            friends.push(data.ShortName(name));
+            friends.push(data.party.member(name));
         }
         const gazeAlert = isGazeFirst ? output.firstGaze() : output.secondGaze();
         if (myDebuff === 'nothing') {
@@ -1649,7 +1649,7 @@ Options.Triggers.push({
       netRegex: { effectId: 'D15' },
       infoText: (data, matches, output) => {
         if (!data.inverseMagics[matches.target])
-          return output.reversed({ player: data.ShortName(matches.target) });
+          return output.reversed({ player: data.party.member(matches.target) });
       },
       run: (data, matches) => data.inverseMagics[matches.target] = true,
       outputStrings: {
@@ -1692,7 +1692,10 @@ Options.Triggers.push({
       sound: '',
       infoText: (data, _matches, output) => {
         const [name1, name2] = data.alignmentTargets.sort();
-        return output.text({ player1: data.ShortName(name1), player2: data.ShortName(name2) });
+        return output.text({
+          player1: data.party.member(name1),
+          player2: data.party.member(name2),
+        });
       },
       tts: null,
       run: (data) => data.alignmentTargets = [],
@@ -2257,7 +2260,7 @@ Options.Triggers.push({
           const [otherConcept] = [...concepts].filter((x) => x !== myConcept);
           if (otherConcept === undefined)
             throw new UnreachableCode();
-          const [name1, name2] = conceptToPlayers[otherConcept].map((x) => data.ShortName(x));
+          const [name1, name2] = conceptToPlayers[otherConcept].map((x) => data.party.member(x));
           if (name1 === undefined)
             return {
               alertText: output.colorTowerMergeLetter({
@@ -2285,7 +2288,7 @@ Options.Triggers.push({
           if (concept1 === undefined || concept2 === undefined)
             throw new UnreachableCode();
           const [name1, name2] = [...conceptToPlayers[concept1], ...conceptToPlayers[concept2]].map(
-            (x) => data.ShortName(x),
+            (x) => data.party.member(x),
           );
           if (name1 === undefined || name2 === undefined)
             return {
@@ -2297,7 +2300,7 @@ Options.Triggers.push({
           return { alertText: output.towerMergePlayers({ player1: name1, player2: name2 }) };
         }
         // If not doubled, merge with one of the doubled folks (because they can't merge together).
-        const [name1, name2] = conceptToPlayers[doubled].map((x) => data.ShortName(x));
+        const [name1, name2] = conceptToPlayers[doubled].map((x) => data.party.member(x));
         const [tower] = towerColors.filter((x) => towerToConcept[x].includes(myConcept));
         if (tower === undefined)
           throw new UnreachableCode();
@@ -2395,6 +2398,7 @@ Options.Triggers.push({
         data.deformationHit = [];
         data.deformationNotHit = [...data.party.partyNames];
         data.deformationOnMe = false;
+        // TODO: should this be undefined and not empty string??
         data.deformationPartner = '';
       },
     },
@@ -2427,15 +2431,15 @@ Options.Triggers.push({
           const pRole = data.party.isDPS(p) ? 'dps' : 'support';
           if (pRole === myRole) {
             partnerCount++;
-            data.deformationPartner = data.ShortName(p);
+            data.deformationPartner = p;
           }
         }
         if (data.deformationHit.length === 3 && partnerCount !== 1) {
           // non-standard party comp with multiple possible role partners - show all hit
           return output.multiple({
-            player1: data.ShortName(data.deformationHit[0]),
-            player2: data.ShortName(data.deformationHit[1]),
-            player3: data.ShortName(data.deformationHit[2]),
+            player1: data.party.member(data.deformationHit[0]),
+            player2: data.party.member(data.deformationHit[1]),
+            player3: data.party.member(data.deformationHit[2]),
           });
         } else if (partnerCount === 1) {
           return output.partner({ player: data.deformationPartner });
@@ -2487,18 +2491,18 @@ Options.Triggers.push({
             const pRole = data.party.isDPS(p) ? 'dps' : 'support';
             if (pRole === myRole) {
               partnerCount++;
-              data.deformationPartner = data.ShortName(p);
+              data.deformationPartner = p;
             }
           }
           if (data.deformationNotHit.length === 3 && partnerCount !== 1) {
             // non-standard party comp with multiple possible role partners - show all not hit
             return output.multiple({
-              player1: data.ShortName(data.deformationNotHit[0]),
-              player2: data.ShortName(data.deformationNotHit[1]),
-              player3: data.ShortName(data.deformationNotHit[2]),
+              player1: data.party.member(data.deformationNotHit[0]),
+              player2: data.party.member(data.deformationNotHit[1]),
+              player3: data.party.member(data.deformationNotHit[2]),
             });
           } else if (partnerCount === 1) {
-            return output.partner({ player: data.deformationPartner });
+            return output.partner({ player: data.party.member(data.deformationPartner) });
           }
           return output.unknown();
         }

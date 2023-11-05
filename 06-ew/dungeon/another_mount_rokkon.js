@@ -231,7 +231,7 @@ const stackSpreadResponse = (data, output, collect, stackId, spreadId, hideStack
   const isStackFirst = stackTime < spreadTime;
   const stackType = findStackPartners(data, stack1.target, stack2.target);
   const stacks = [stack1, stack2].map((x) => x.target).sort();
-  const [player1, player2] = stacks.map((x) => data.ShortName(x));
+  const [player1, player2] = stacks.map((x) => data.party.member(x));
   const stackInfo = hideStackList
     ? {}
     : { infoText: output.stacks({ player1: player1, player2: player2 }) };
@@ -409,7 +409,7 @@ Options.Triggers.push({
         };
         if (matches.target === data.me)
           return { alarmText: output.chargeOnYou() };
-        return { alertText: output.chargeOn({ player: data.ShortName(matches.target) }) };
+        return { alertText: output.chargeOn({ player: data.party.member(matches.target) }) };
       },
     },
     {
@@ -644,7 +644,7 @@ Options.Triggers.push({
         const outIn = isInFirst ? output.out() : output.in();
         const args = { inOut: inOut, outIn: outIn };
         const stacks = [stack1, stack2].map((x) => x.target).sort();
-        const [player1, player2] = stacks.map((x) => data.ShortName(x));
+        const [player1, player2] = stacks.map((x) => data.party.member(x));
         const stackInfo = { infoText: output.stacks({ player1: player1, player2: player2 }) };
         data.vortexSecondMechanic = isInFirst ? 'out' : 'in';
         data.stackSpreadFirstMechanic = isStackFirst ? stackType : 'spread';
@@ -862,11 +862,11 @@ Options.Triggers.push({
         if (spread.includes(data.me)) {
           data.ghostMechanic = 'spread';
           const otherPlayer = spread.find((x) => x !== data.me) ?? output.unknown();
-          return output.spread({ player: data.ShortName(otherPlayer) });
+          return output.spread({ player: data.party.member(otherPlayer) });
         }
         data.ghostMechanic = 'tower';
         const otherPlayer = towers.find((x) => x !== data.me) ?? output.unknown();
-        return output.tower({ player: data.ShortName(otherPlayer) });
+        return output.tower({ player: data.party.member(otherPlayer) });
       },
       outputStrings: {
         tower: {
@@ -1027,7 +1027,7 @@ Options.Triggers.push({
           return;
         const stackType = findStackPartners(data, stack1.target, stack2.target);
         const stacks = [stack1, stack2].map((x) => x.target).sort();
-        const [player1, player2] = stacks.map((x) => data.ShortName(x));
+        const [player1, player2] = stacks.map((x) => data.party.member(x));
         const stackInfo = { infoText: output.stacks({ player1: player1, player2: player2 }) };
         if (stackType === 'melee') {
           return { alertText: output.meleeStack(), ...stackInfo };
@@ -1123,7 +1123,7 @@ Options.Triggers.push({
         if (matches.target === data.me)
           return output.beBehindTank();
         if (data.role === 'tank')
-          return output.blockLaser({ player: data.ShortName(matches.target) });
+          return output.blockLaser({ player: data.party.member(matches.target) });
         return output.avoidLaser();
       },
       outputStrings: {
@@ -1327,7 +1327,7 @@ Options.Triggers.push({
         let partner = output.unknown();
         for (const [name, color] of Object.entries(firstColor)) {
           if (name !== data.me && color === color1) {
-            partner = data.ShortName(name);
+            partner = data.party.member(name);
             break;
           }
         }
@@ -1738,7 +1738,7 @@ Options.Triggers.push({
           return { alarmText: output[outputKey]() };
         }
         const outputKey = `${thisAbility}OnPlayer`;
-        return { infoText: output[outputKey]({ player: data.ShortName(player) }) };
+        return { infoText: output[outputKey]({ player: data.party.member(player) }) };
       },
     },
     {
@@ -1793,7 +1793,7 @@ Options.Triggers.push({
             return x !== data.me && x !== player1 && x !== player2;
           }) ?? output.unknown();
           return {
-            alertText: output.unmarkedWithPlayer({ player: data.ShortName(remainingPlayer) }),
+            alertText: output.unmarkedWithPlayer({ player: data.party.member(remainingPlayer) }),
           };
         }
         const otherPlayer = data.me === player1 ? player2 : player1;
@@ -1802,7 +1802,7 @@ Options.Triggers.push({
         if (thisAbility === undefined)
           return;
         const outputKey = `${thisAbility}OnYou`;
-        return { alarmText: output[outputKey]({ player: data.ShortName(otherPlayer) }) };
+        return { alarmText: output[outputKey]({ player: data.party.member(otherPlayer) }) };
       },
     },
     {

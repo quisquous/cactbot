@@ -301,7 +301,7 @@ Options.Triggers.push({
             break;
           }
         }
-        return output.text({ num: myNum, player: data.ShortName(partner) });
+        return output.text({ num: myNum, player: data.party.member(partner) });
       },
       outputStrings: {
         text: {
@@ -657,10 +657,10 @@ Options.Triggers.push({
           }
         }
         return {
-          circle: output.circle({ glitch: glitch, player: data.ShortName(partner) }),
-          triangle: output.triangle({ glitch: glitch, player: data.ShortName(partner) }),
-          square: output.square({ glitch: glitch, player: data.ShortName(partner) }),
-          cross: output.cross({ glitch: glitch, player: data.ShortName(partner) }),
+          circle: output.circle({ glitch: glitch, player: data.party.member(partner) }),
+          triangle: output.triangle({ glitch: glitch, player: data.party.member(partner) }),
+          square: output.square({ glitch: glitch, player: data.party.member(partner) }),
+          cross: output.cross({ glitch: glitch, player: data.party.member(partner) }),
         }[myMarker];
       },
       outputStrings: {
@@ -793,8 +793,8 @@ Options.Triggers.push({
           : output.unknown();
         const stacksOn = output.stacksOn({
           glitch: glitch,
-          player1: data.ShortName(p1),
-          player2: data.ShortName(p2),
+          player1: data.party.member(p1),
+          player2: data.party.member(p2),
         });
         if (!data.spotlightStacks.includes(data.me))
           return { infoText: stacksOn };
@@ -917,8 +917,8 @@ Options.Triggers.push({
           if (data.cannonFodder[name] === oppositeBuff)
             opposites.push(name);
         }
-        const partnerText = output.sameDebuffPartner({ player: data.ShortName(partner) });
-        const [p1, p2] = opposites.sort().map((x) => data.ShortName(x));
+        const partnerText = output.sameDebuffPartner({ player: data.party.member(partner) });
+        const [p1, p2] = opposites.sort().map((x) => data.party.member(x));
         if (myBuff === 'stack')
           return { alertText: output.stack({ player1: p1, player2: p2 }), infoText: partnerText };
         return {
@@ -1320,7 +1320,7 @@ Options.Triggers.push({
         const players = data.monitorPlayers.map((x) => x.target).sort();
         data.monitorPlayers = [];
         if (players.includes(data.me)) {
-          const [p1, p2] = players.filter((x) => x !== data.me).map((x) => data.ShortName(x));
+          const [p1, p2] = players.filter((x) => x !== data.me).map((x) => data.party.member(x));
           return { alertText: output.monitorOnYou({ player1: p1, player2: p2 }) };
         }
         return { infoText: output.unmarked() };
@@ -1365,10 +1365,13 @@ Options.Triggers.push({
         const onYou = p1 === data.me || p2 === data.me;
         if (onYou) {
           const otherPerson = p1 === data.me ? p2 : p1;
-          return { alertText: output.stackOnYou({ player: data.ShortName(otherPerson) }) };
+          return { alertText: output.stackOnYou({ player: data.party.member(otherPerson) }) };
         }
         return {
-          infoText: output.stacks({ player1: data.ShortName(p1), player2: data.ShortName(p2) }),
+          infoText: output.stacks({
+            player1: data.party.member(p1),
+            player2: data.party.member(p2),
+          }),
         };
       },
       run: (data, _matches) => data.waveCannonStacks = [],

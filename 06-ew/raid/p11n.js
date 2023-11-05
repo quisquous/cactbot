@@ -155,7 +155,7 @@ Options.Triggers.push({
       netRegex: { id: '01CF' },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.avoidCleave({ target: data.ShortName(matches.target) });
+          return output.avoidCleave({ target: data.party.member(matches.target) });
         return output.cleaveOnYou();
       },
       outputStrings: {
@@ -181,7 +181,9 @@ Options.Triggers.push({
       id: 'P11N Upheld Ruling Chariot',
       type: 'HeadMarker',
       netRegex: { id: '013E' },
-      infoText: (data, matches, output) => output.text({ target: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => {
+        return output.text({ target: data.party.member(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Stack on ${target} -> get out',

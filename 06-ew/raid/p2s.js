@@ -130,8 +130,8 @@ Options.Triggers.push({
         };
         if (data.avarice === undefined)
           return;
-        const name1 = data.avarice[0] ? data.ShortName(data.avarice[0]?.target) : output.unknown();
-        const name2 = data.avarice[1] ? data.ShortName(data.avarice[1]?.target) : output.unknown();
+        const name1 = data.party.member(data.avarice[0]?.target);
+        const name2 = data.party.member(data.avarice[1]?.target);
         const markText = output.marks({ player1: name1, player2: name2 });
         const isOnYou = data.avarice.find((m) => m.target === data.me);
         if (isOnYou) {

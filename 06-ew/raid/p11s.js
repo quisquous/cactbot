@@ -247,7 +247,7 @@ Options.Triggers.push({
           return { alertText: output.upheldNotOnYou() };
         if (tether.target === data.me)
           return { alarmText: output.upheldOnYou() };
-        return { alertText: output.upheldOnPlayer({ player: data.ShortName(tether.target) }) };
+        return { alertText: output.upheldOnPlayer({ player: data.party.member(tether.target) }) };
       },
       run: (data) => data.upheldTethers = [],
     },
@@ -313,7 +313,7 @@ Options.Triggers.push({
         if (tether.target === data.me)
           return { alarmText: output.tankTether() };
         return {
-          alertText: output.partyStackPlayerOut({ player: data.ShortName(tether.target) }),
+          alertText: output.partyStackPlayerOut({ player: data.party.member(tether.target) }),
         };
       },
       run: (data) => data.upheldTethers = [],
@@ -698,7 +698,7 @@ Options.Triggers.push({
           myBuddyRole = output.healer();
         else
           myBuddyRole = output.unknown();
-        const myBuddyShort = data.ShortName(myBuddy);
+        const myBuddyShort = data.party.member(myBuddy);
         let alertText;
         if (myLength === 'near') {
           if (myColor === 'light')
@@ -715,7 +715,7 @@ Options.Triggers.push({
         const playerNames = Object.keys(data.lightDarkTether);
         const sameLength = playerNames.filter((x) => data.lightDarkTether[x] === myLength);
         const others = sameLength.filter((x) => x !== data.me && x !== myBuddy).sort();
-        const [player1, player2] = others.map((x) => data.ShortName(x));
+        const [player1, player2] = others.map((x) => data.party.member(x));
         if (player1 !== undefined && player2 !== undefined) {
           if (myLength === 'near')
             infoText = output.otherNear({ player1: player1, player2: player2 });
