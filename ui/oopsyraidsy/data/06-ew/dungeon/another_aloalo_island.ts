@@ -1,11 +1,33 @@
 import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
-import { OopsyTriggerSet } from '../../../../../types/oopsy';
+import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: people who missed their 8AC2 Burst tower
 
 export type Data = OopsyData;
+
+// TODO: we could probably move this helper to some oopsy util.
+const nonzeroDamageMistake = (
+  triggerId: string,
+  abilityId: string | string[],
+  type: OopsyMistakeType,
+): OopsyTrigger<OopsyData> => {
+  return {
+    id: triggerId,
+    type: 'Ability',
+    netRegex: NetRegexes.ability({ id: abilityId }),
+    condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+    mistake: (_data, matches) => {
+      return {
+        type: type,
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: matches.ability,
+      };
+    },
+  };
+};
 
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnotherAloaloIsland,
@@ -36,8 +58,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Hydrobullet': '8ABA', // spread debuffs
   },
   soloWarn: {
-    'AAI Hydrofall': '8AB7', // partner stack debuffs
     'AAI Snipper Water III': '8C64', // Snipper stack marker
+    'AAI Hydrofall': '8AB7', // partner stack debuffs
   },
   triggers: [
     {
@@ -60,6 +82,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         };
       },
     },
+    nonzeroDamageMistake('AAI Hundred Lashings', ['8AC9', '8ACB'], 'warn'),
   ],
 };
 
