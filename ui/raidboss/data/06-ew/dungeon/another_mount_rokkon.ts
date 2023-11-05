@@ -8,6 +8,7 @@ import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
 import { Job } from '../../../../../types/job';
 import { NetMatches } from '../../../../../types/net_matches';
+import { PartyMemberParamObject } from '../../../../../types/party';
 import { LocaleText, Output, ResponseOutput, TriggerSet } from '../../../../../types/trigger';
 
 type RousingTower = {
@@ -327,7 +328,7 @@ const stackSpreadResponse = (
   const stackType = findStackPartners(data, stack1.target, stack2.target);
 
   const stacks = [stack1, stack2].map((x) => x.target).sort();
-  const [player1, player2] = stacks.map((x) => data.ShortName(x));
+  const [player1, player2] = stacks.map((x) => data.party.member(x));
   const stackInfo = hideStackList
     ? {}
     : { infoText: output.stacks!({ player1: player1, player2: player2 }) };
@@ -521,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.target === data.me)
           return { alarmText: output.chargeOnYou!() };
-        return { alertText: output.chargeOn!({ player: data.ShortName(matches.target) }) };
+        return { alertText: output.chargeOn!({ player: data.party.member(matches.target) }) };
       },
     },
     {
@@ -763,7 +764,7 @@ const triggerSet: TriggerSet<Data> = {
         const args = { inOut: inOut, outIn: outIn };
 
         const stacks = [stack1, stack2].map((x) => x.target).sort();
-        const [player1, player2] = stacks.map((x) => data.ShortName(x));
+        const [player1, player2] = stacks.map((x) => data.party.member(x));
         const stackInfo = { infoText: output.stacks!({ player1: player1, player2: player2 }) };
 
         data.vortexSecondMechanic = isInFirst ? 'out' : 'in';
@@ -993,12 +994,12 @@ const triggerSet: TriggerSet<Data> = {
         if (spread.includes(data.me)) {
           data.ghostMechanic = 'spread';
           const otherPlayer = spread.find((x) => x !== data.me) ?? output.unknown!();
-          return output.spread!({ player: data.ShortName(otherPlayer) });
+          return output.spread!({ player: data.party.member(otherPlayer) });
         }
 
         data.ghostMechanic = 'tower';
         const otherPlayer = towers.find((x) => x !== data.me) ?? output.unknown!();
-        return output.tower!({ player: data.ShortName(otherPlayer) });
+        return output.tower!({ player: data.party.member(otherPlayer) });
       },
       outputStrings: {
         tower: {
@@ -1162,7 +1163,7 @@ const triggerSet: TriggerSet<Data> = {
         const stackType = findStackPartners(data, stack1.target, stack2.target);
 
         const stacks = [stack1, stack2].map((x) => x.target).sort();
-        const [player1, player2] = stacks.map((x) => data.ShortName(x));
+        const [player1, player2] = stacks.map((x) => data.party.member(x));
         const stackInfo = { infoText: output.stacks!({ player1: player1, player2: player2 }) };
 
         if (stackType === 'melee') {
@@ -1260,7 +1261,7 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.target === data.me)
           return output.beBehindTank!();
         if (data.role === 'tank')
-          return output.blockLaser!({ player: data.ShortName(matches.target) });
+          return output.blockLaser!({ player: data.party.member(matches.target) });
         return output.avoidLaser!();
       },
       outputStrings: {
@@ -1467,10 +1468,10 @@ const triggerSet: TriggerSet<Data> = {
         const isAllMixed = playerCount === mixedCount;
         const mixedType = isAllMixed ? output.mixedTypeFull!() : output.mixedTypeHalf!();
 
-        let partner = output.unknown!();
+        let partner: string | PartyMemberParamObject = output.unknown!();
         for (const [name, color] of Object.entries(firstColor)) {
           if (name !== data.me && color === color1) {
-            partner = data.ShortName(name);
+            partner = data.party.member(name);
             break;
           }
         }
@@ -1890,7 +1891,7 @@ const triggerSet: TriggerSet<Data> = {
         }
 
         const outputKey = `${thisAbility}OnPlayer`;
-        return { infoText: output[outputKey]!({ player: data.ShortName(player) }) };
+        return { infoText: output[outputKey]!({ player: data.party.member(player) }) };
       },
     },
     {
@@ -1950,7 +1951,7 @@ const triggerSet: TriggerSet<Data> = {
           }) ?? output.unknown!();
 
           return {
-            alertText: output.unmarkedWithPlayer!({ player: data.ShortName(remainingPlayer) }),
+            alertText: output.unmarkedWithPlayer!({ player: data.party.member(remainingPlayer) }),
           };
         }
 
@@ -1962,7 +1963,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         const outputKey = `${thisAbility}OnYou`;
-        return { alarmText: output[outputKey]!({ player: data.ShortName(otherPlayer) }) };
+        return { alarmText: output[outputKey]!({ player: data.party.member(otherPlayer) }) };
       },
     },
     {

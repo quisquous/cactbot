@@ -173,7 +173,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'D24', source: 'Galatea Magna' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) =>
-        output.text!({ player: data.ShortName(matches.target) }),
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Esuna ${player}',

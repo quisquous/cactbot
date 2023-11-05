@@ -135,7 +135,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8495', source: 'Golbez' },
       alertText: (data, matches, output) => {
-        const target = data.ShortName(matches.target) ?? '??';
+        const target = data.party.member(matches.target);
         return output.text!({ player: target });
       },
       outputStrings: {
