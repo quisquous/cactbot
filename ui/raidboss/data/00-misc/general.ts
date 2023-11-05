@@ -25,8 +25,9 @@ const triggerSet: TriggerSet<Data> = {
           return false;
         return caresAboutTankStuff(data);
       },
-      infoText: (data, matches, output) =>
-        output.text!({ player: data.party.member(matches.source) }),
+      infoText: (data, matches, output) => {
+        return output.text!({ player: data.party.member(matches.source) });
+      },
       outputStrings: {
         text: {
           en: 'Provoke: ${player}',
