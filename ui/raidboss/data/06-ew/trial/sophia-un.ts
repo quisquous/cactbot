@@ -214,7 +214,7 @@ const triggerSet: TriggerSet<Data> = {
         if (data.me === matches.target)
           return output.infusionOnYou!();
 
-        return output.infusionOn!({ player: data.ShortName(matches.target) });
+        return output.infusionOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         infusionOnYou: {

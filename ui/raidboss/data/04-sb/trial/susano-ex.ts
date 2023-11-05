@@ -205,7 +205,7 @@ const triggerSet: TriggerSet<Data> = {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
         if (data.role === 'tank')
-          return output.text!({ player: data.ShortName(matches.target) });
+          return output.text!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {

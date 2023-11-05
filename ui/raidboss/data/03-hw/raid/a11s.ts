@@ -142,7 +142,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.gaOn!({ player: data.ShortName(matches.target) });
+        return output.gaOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         gaOn: {
@@ -241,7 +241,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.knockbackCharge!();
         }
 
-        return output.facePlayer!({ player: data.ShortName(partner) });
+        return output.facePlayer!({ player: data.party.member(partner) });
       },
       outputStrings: {
         knockbackCleave: {
@@ -290,7 +290,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.sharedTankbusterOnYou!();
 
         if (data.role === 'tank' || data.role === 'healer' || data.job === 'BLU')
-          return output.sharedTankbusterOn!({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         sharedTankbusterOnYou: {
@@ -363,7 +363,7 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, matches, output) => {
         if (data.me === matches.target)
           return;
-        return output.chargeOn!({ player: data.ShortName(matches.target) });
+        return output.chargeOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         chargeOn: {

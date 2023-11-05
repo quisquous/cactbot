@@ -446,9 +446,9 @@ const triggerSet: TriggerSet<Data> = {
           return output.tankBusterOnYou!();
 
         if (data.role === 'healer')
-          return output.busterOn!({ player: data.ShortName(matches.target) });
+          return output.busterOn!({ player: data.party.member(matches.target) });
 
-        return output.awayFromPlayer!({ player: data.ShortName(matches.target) });
+        return output.awayFromPlayer!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         tankBusterOnYou: Outputs.tankBusterOnYou,

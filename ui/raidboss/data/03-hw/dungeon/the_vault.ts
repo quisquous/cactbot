@@ -63,7 +63,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '101F', source: 'Ser Adelphel' },
       condition: (data) => data.role === 'healer',
       alertText: (data, matches, output) => {
-        return output.text!({ player: data.ShortName(matches.target) });
+        return output.text!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {

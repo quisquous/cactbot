@@ -2286,7 +2286,7 @@ const triggerSet: TriggerSet<Data> = {
         if (matches.target === data.me)
           return { alarmText: output.cleaveOnYou!() };
         if (tankBusterOnParty(data, matches))
-          return { alertText: output.cleaveOn!({ player: data.ShortName(matches.target) }) };
+          return { alertText: output.cleaveOn!({ player: data.party.member(matches.target) }) };
         return { infoText: output.avoidCleave!() };
       },
     },
@@ -2449,7 +2449,8 @@ const triggerSet: TriggerSet<Data> = {
       // Each Cleansing Slash applies a cleansable Doom (38E), if damage is taken
       netRegex: { source: 'The Queen', effectId: '38E' },
       condition: (data) => data.CanCleanse(),
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) =>
+        output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
           en: 'Esuna ${player}',

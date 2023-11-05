@@ -203,8 +203,8 @@ const triggerSet: TriggerSet<Data> = {
           return `${matches.ability} (???)`;
 
         if (marker1 === marker2)
-          return output.repel!({ player: data.ShortName(partner) });
-        return output.attract!({ player: data.ShortName(partner) });
+          return output.repel!({ player: data.party.member(partner) });
+        return output.attract!({ player: data.party.member(partner) });
       },
       outputStrings: {
         repel: {
@@ -238,7 +238,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { source: 'Liquid Rage', id: 'F1A' },
       condition: (data) => data.CanCleanse(),
       alertText: (data, matches, output) => {
-        return output.text!({ player: data.ShortName(matches.target) });
+        return output.text!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         text: {
@@ -261,7 +261,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
-          return output.clawOn!({ player: data.ShortName(matches.target) });
+          return output.clawOn!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         clawOn: {

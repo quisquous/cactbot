@@ -3,7 +3,7 @@ import Outputs from '../../../../../resources/outputs';
 import { callOverlayHandler } from '../../../../../resources/overlay_plugin_api';
 import { Responses } from '../../../../../resources/responses';
 import { NamedConfigEntry } from '../../../../../resources/user_config';
-import Util, { Directions } from '../../../../../resources/util';
+import Util, { DirectionOutputCardinal, Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { PluginCombatantState } from '../../../../../types/event';
@@ -68,6 +68,8 @@ export interface Data extends RaidbossData {
   titanGaols: string[];
   seenTitanGaols?: boolean;
   titanBury: NetMatches['AddedCombatant'][];
+  ifritRadiantPlumeLocations: DirectionOutputCardinal[];
+  possibleIfritIDs: string[];
 }
 
 type GaolKey = Extract<keyof Data['triggerSetConfig'], string>;
@@ -147,6 +149,8 @@ const triggerSet: TriggerSet<Data> = {
       ifritUntargetableCount: 0,
       titanGaols: [],
       titanBury: [],
+      ifritRadiantPlumeLocations: [],
+      possibleIfritIDs: [],
     };
   },
   timelineTriggers: [
@@ -528,6 +532,144 @@ const triggerSet: TriggerSet<Data> = {
     },
     // --------- Ifrit ----------
     {
+      id: 'UWU Ifrit Possible ID Locator',
+      type: 'StartsUsing',
+      netRegex: { id: '2B55', source: 'Garuda', capture: false },
+      // Run this after the initial Garuda trigger and just piggyback off its call to `getCombatants`
+      // We're just looking to pluck the four possible IDs from the array pre-emptively to avoid doing
+      // that filter on every `CombatantMemory` line
+      delaySeconds: 25,
+      run: (data) => {
+        data.possibleIfritIDs = data.combatantData
+          .filter((c) => c.BNpcNameID === 0x4A1)
+          .map((c) => c.ID?.toString(16).toUpperCase() ?? '');
+      },
+    },
+    {
+      id: 'UWU Ifrit Initial Dash Collector',
+      type: 'CombatantMemory',
+      // Filter to only enemy actors for performance
+      netRegex: { id: '4[0-9A-Fa-f]{7}', capture: true },
+      condition: (data, matches) => {
+        if (!data.possibleIfritIDs.includes(matches.id))
+          return false;
+        const posXVal = parseFloat(matches.pairPosX ?? '0');
+        const posYVal = parseFloat(matches.pairPosY ?? '0');
+
+        if (posXVal === 0 || posYVal === 0)
+          return false;
+
+        // If the Ifrit actor has jumped to exactly 19.5 out on a cardinal, that's our dash spot
+        if (
+          Math.abs(posXVal - 100) - 19.5 < Number.EPSILON ||
+          Math.abs(posYVal - 100) - 19.5 < Number.EPSILON
+        )
+          return true;
+
+        return false;
+      },
+      suppressSeconds: 9999,
+      infoText: (data, matches, output) => {
+        const posXVal = parseFloat(matches.pairPosX ?? '0');
+        const posYVal = parseFloat(matches.pairPosY ?? '0');
+
+        let ifritDir: DirectionOutputCardinal = 'unknown';
+
+        // Flag both sides that ifrit is dashing through as unsafe, while also tracking where he's actually
+        // jumped to so we can use it for the infoText
+        if (posXVal < 95) {
+          data.ifritRadiantPlumeLocations.push('dirW', 'dirE');
+          ifritDir = 'dirW';
+        } else if (posXVal > 105) {
+          data.ifritRadiantPlumeLocations.push('dirW', 'dirE');
+          ifritDir = 'dirE';
+        } else if (posYVal < 95) {
+          data.ifritRadiantPlumeLocations.push('dirN', 'dirS');
+          ifritDir = 'dirN';
+        } else if (posYVal > 105) {
+          data.ifritRadiantPlumeLocations.push('dirN', 'dirS');
+          ifritDir = 'dirS';
+        }
+
+        // Remove duplicates
+        data.ifritRadiantPlumeLocations = data.ifritRadiantPlumeLocations
+          .filter((pos, index) => data.ifritRadiantPlumeLocations.indexOf(pos) === index);
+
+        return output.text!({ dir: output[ifritDir]!() });
+      },
+      outputStrings: {
+        text: {
+          en: 'Ifrit ${dir}',
+        },
+        unknown: Outputs.unknown,
+        ...Directions.outputStringsCardinalDir,
+      },
+    },
+    {
+      id: 'UWU Ifrit Initial Radiant Plume Collector',
+      type: 'StartsUsingExtra',
+      netRegex: { id: '2B61' },
+      condition: (data, matches) => {
+        const posXVal = parseFloat(matches.x);
+        const posYVal = parseFloat(matches.y);
+
+        // Possible plume locations:
+        // 100.009, 106.998
+        // 100.009, 118.015  = south
+        // 100.009, 92.990
+        // 100.009, 82.003   = north
+        // 106.998, 100.009
+        // 110.996, 110.996
+        // 110.996, 88.992
+        // 118.015, 100.009  = east
+        // 82.003,  100.009  = west
+        // 88.992,  110.996
+        // 88.992,  88.992
+        // 92.990,  100.009
+
+        if (Math.abs(posXVal - 100) < 1) {
+          if (Math.abs(posYVal - 83) < 1) {
+            // North unsafe
+            data.ifritRadiantPlumeLocations.push('dirN');
+          } else if (Math.abs(posYVal - 118) < 1) {
+            // South unsafe
+            data.ifritRadiantPlumeLocations.push('dirS');
+          }
+        } else if (Math.abs(posYVal - 100) < 1) {
+          if (Math.abs(posXVal - 83) < 1) {
+            // West unsafe
+            data.ifritRadiantPlumeLocations.push('dirW');
+          } else if (Math.abs(posXVal - 118) < 1) {
+            // East unsafe
+            data.ifritRadiantPlumeLocations.push('dirE');
+          }
+        }
+
+        // Remove duplicates
+        data.ifritRadiantPlumeLocations = data.ifritRadiantPlumeLocations
+          .filter((pos, index) => data.ifritRadiantPlumeLocations.indexOf(pos) === index);
+
+        // 3 danger spots means we only have one safe spot left
+        return data.ifritRadiantPlumeLocations.length === 3;
+      },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        if (data.ifritRadiantPlumeLocations.length < 3)
+          return;
+
+        const safeDir =
+          Directions.outputCardinalDir.filter((dir) =>
+            !data.ifritRadiantPlumeLocations.includes(dir)
+          )[0];
+
+        return output[safeDir ?? 'unknown']!();
+      },
+      outputStrings: {
+        unknown: Outputs.unknown,
+        ...Directions.outputStringsCardinalDir,
+      },
+    },
+    {
       id: 'UWU Ifrit Vulcan Burst',
       type: 'StartsUsing',
       netRegex: { id: '25B7', source: 'Ifrit', capture: false },
@@ -650,7 +792,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => matches.target === data.me || matches.source === data.me,
       infoText: (data, matches, output) => {
         const otherPlayer = matches.target === data.me ? matches.source : matches.target;
-        return output.fetters!({ player: data.ShortName(otherPlayer) });
+        return output.fetters!({ player: data.party.member(otherPlayer) });
       },
       outputStrings: {
         fetters: {
@@ -1016,9 +1158,9 @@ const triggerSet: TriggerSet<Data> = {
         if (data.titanGaols.length !== 3)
           return;
         return output.text!({
-          player1: data.ShortName(data.titanGaols[0]),
-          player2: data.ShortName(data.titanGaols[1]),
-          player3: data.ShortName(data.titanGaols[2]),
+          player1: data.party.member(data.titanGaols[0]),
+          player2: data.party.member(data.titanGaols[1]),
+          player3: data.party.member(data.titanGaols[2]),
         });
       },
       outputStrings: {
@@ -1046,7 +1188,7 @@ const triggerSet: TriggerSet<Data> = {
         if (idx === -1)
           return;
         const numStr = output[`num${idx + 1}`]!();
-        return output.text!({ num: numStr, player: data.ShortName(matches.target) });
+        return output.text!({ num: numStr, player: data.party.member(matches.target) });
       },
       outputStrings: {
         // In case people want to replace 1/2/3 with front/mid/back or something.
