@@ -9,12 +9,8 @@
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length", "100"],
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": false,
-  "python.linting.pylintArgs": ["--errors-only"],
-  "python.linting.pylintEnabled": true,
+  "pylint.args": ["--errors-only"],
+  "black-formatter.args": ["--line-length", "100"],
   "search.exclude": {
     "**/node_modules": true,
     "dist/**": true
@@ -26,7 +22,8 @@
       * Although format mode could be set as "modification",
       * unfortunately `black` does not support "Format Selection"
       */
-    "editor.formatOnSaveMode": "file"
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "[javascript]": {
     "editor.defaultFormatter": "dprint.dprint"
