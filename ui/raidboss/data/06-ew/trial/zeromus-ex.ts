@@ -109,7 +109,7 @@ const triggerSet: TriggerSet<Data> = {
         data.seenSableThread = true;
         if (matches.target === data.me)
           return output.lineStackOnYou!({ num: num });
-        return output.lineStackOn!({ num: num, player: data.ShortName(matches.target) });
+        return output.lineStackOn!({ num: num, player: data.party.member(matches.target) });
       },
       outputStrings: {
         lineStackOn: {
@@ -377,7 +377,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.me === matches.target)
           return output.stackOnYou!();
-        return output.stackOnTarget!({ player: data.ShortName(matches.target) });
+        return output.stackOnTarget!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         stackOnYou: Outputs.stackOnYou,
@@ -415,7 +415,7 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 10,
       alertText: (data, matches, output) => {
         const partner = matches.source === data.me ? matches.target : matches.source;
-        return output.breakTether!({ partner: data.ShortName(partner) });
+        return output.breakTether!({ partner: data.party.member(partner) });
       },
       outputStrings: {
         breakTether: {

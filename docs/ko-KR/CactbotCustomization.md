@@ -262,16 +262,18 @@ Options.Triggers.push({
         // 내가 탱커가 아닌 경우
         return true;
       },
-      infoText: function(data, matches) {
-        let name = data.ShortName(matches.source);
-        return {
-          en: 'Provoke: ' + name,
-          de: 'Herausforderung: ' + name,
-          fr: 'Provocation: ' + name,
-          ja: '挑発: ' + name,
-          cn: '挑衅: ' + name,
-          ko: '도발: ' + name,
-        };
+      infoText: (data, matches, output) => {
+        return output.text!({ player: data.party.member(matches.source) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Provoke: ${player}',
+          de: 'Herausforderung: ${player}',
+          fr: 'Provocation: ${player}',
+          ja: '挑発: ${player}',
+          cn: '挑衅: ${player}',
+          ko: '도발: ${player}',
+        },
       },
     },
   ],

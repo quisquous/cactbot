@@ -457,15 +457,15 @@ const triggerSet: TriggerSet<Data> = {
         if (duration > data.daemonicBondsTime) {
           data.bondsSecondMechanic = 'stack';
           return output.spreadThenStack!({
-            player1: data.ShortName(data.tetradaemonicTarget[0]),
-            player2: data.ShortName(data.tetradaemonicTarget[1]),
+            player1: data.party.member(data.tetradaemonicTarget[0]),
+            player2: data.party.member(data.tetradaemonicTarget[1]),
           });
         }
 
         data.bondsSecondMechanic = 'spread';
         return output.stackThenSpread!({
-          player1: data.ShortName(data.tetradaemonicTarget[0]),
-          player2: data.ShortName(data.tetradaemonicTarget[1]),
+          player1: data.party.member(data.tetradaemonicTarget[0]),
+          player2: data.party.member(data.tetradaemonicTarget[1]),
         });
       },
       outputStrings: {
@@ -499,8 +499,8 @@ const triggerSet: TriggerSet<Data> = {
         // We can't make this a `condition` as this is not known until after some delay.
         if (data.bondsSecondMechanic === 'stack')
           return output.spreadThenStack!({
-            player1: data.ShortName(data.tetradaemonicTarget[0]),
-            player2: data.ShortName(data.tetradaemonicTarget[1]),
+            player1: data.party.member(data.tetradaemonicTarget[0]),
+            player2: data.party.member(data.tetradaemonicTarget[1]),
           });
         if (data.bondsSecondMechanic === 'partners')
           return output.spreadThenPartners!();
@@ -558,8 +558,8 @@ const triggerSet: TriggerSet<Data> = {
         // If this is undefined, then this is the second mechanic and will be called out elsewhere.
         if (data.bondsSecondMechanic === 'spread')
           return output.stackThenSpread!({
-            player1: data.ShortName(data.tetradaemonicTarget[0]),
-            player2: data.ShortName(data.tetradaemonicTarget[1]),
+            player1: data.party.member(data.tetradaemonicTarget[0]),
+            player2: data.party.member(data.tetradaemonicTarget[1]),
           });
       },
       outputStrings: {
@@ -589,8 +589,8 @@ const triggerSet: TriggerSet<Data> = {
           return output.partners!();
         if (data.bondsSecondMechanic === 'stack')
           return output.stack!({
-            player1: data.ShortName(data.tetradaemonicTarget[0]),
-            player2: data.ShortName(data.tetradaemonicTarget[1]),
+            player1: data.party.member(data.tetradaemonicTarget[0]),
+            player2: data.party.member(data.tetradaemonicTarget[1]),
           });
       },
       run: (data) => delete data.bondsSecondMechanic,

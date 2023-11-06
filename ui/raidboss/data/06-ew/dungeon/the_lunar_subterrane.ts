@@ -71,7 +71,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'D24' },
       condition: (data) => Util.canCleanse(data.job),
       alertText: (data, matches, output) => {
-        return output.cleanse!({ player: data.ShortName(matches.target) });
+        return output.cleanse!({ player: data.party.member(matches.target) });
       },
       outputStrings: {
         cleanse: {
