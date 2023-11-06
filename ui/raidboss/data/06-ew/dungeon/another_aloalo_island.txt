@@ -1,0 +1,395 @@
+### ANOTHER ALOALO ISLAND
+# ZoneId: 49B
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~#
+# KETUDUKE #
+#~~~~~~~~~~#
+
+# -p 8AD4:1015.2
+# -ii 8AA7 8AD5 8AAE 8AB9 8AB6 8AD1 8ABE 8ABF 8AC9 8ACB 8AC0 8AAA 8AA9 8AC6 8AC8 8AC3 8A82 8A83
+
+1000.0 "--sync--" sync / 00:0839::The Dawn Trial will be sealed off/ window 10000,0
+1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:8AD4:/ window 20,20
+1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
+
+1022.0 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+1027.0 "Spring Crystals 1" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1034.0 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1041.0 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1050.0 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1060.0 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1062.0 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1065.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1065.1 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1074.0 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1077.1 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8C6D|8AB5):/
+1084.3 "Blowing Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABD:/
+1091.4 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1096.3 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8AB7|8ABA):/
+1099.6 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1102.5 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1113.6 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1118.9 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1130.3 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8ACC|8ACE):/
+1130.9 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1133.4 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8ACF|8ACD):/
+1134.0 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1134.0 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
+
+1143.7 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB8:/
+1149.7 "Roar" sync / 1[56]:[^:]*:Ketuduke:8AC4:/
+1154.6 "Spring Crystals 2" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1164.6 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AC5:/
+1177.0 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ABA:/
+1177.6 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1182.7 "Updraft" sync / 1[56]:[^:]*:Ketuduke:8AC7:/
+1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:8ACA:/
+
+1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+1199.4 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1202.4 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8C6D|8AB5):/
+1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:8AC1:/
+1211.6 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8C6D|8AB5):/
+1212.2 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:[^:]*:(8ABA|8AB7):/
+1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1216.8 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1227.8 "Fluke Typhoon (cast)" sync / 1[56]:[^:]*:Ketuduke:8AAF:/
+1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:8AB0:/
+1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAB:/
+1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:8AC2:/
+
+1246.8 "Spring Crystals" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1253.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1260.8 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1269.9 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1279.9 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1281.9 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1285.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1285.0 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1294.0 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1299.3 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1310.7 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8ACC|8ACE):/
+1311.3 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1313.7 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8ACF|8ACD):/
+1314.3 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1314.4 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
+
+1324.8 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
+# ???
+
+# ALL ENCOUNTER ABILITIES
+# 8A77 --sync-- Ketuduke repositioning
+# 8A82 Riptide ability on players from Angry Seas Airy Bubble when you step in one
+# 8A83 Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
+# 8AA7 --sync-- auto damage from Ketuduke
+# 8AA8 Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
+# 8AA9 衝撃 self-targeted ability from Spring Crystal orbs
+# 8AAA 衝撃 self-targeted ability from Spring Crystal rupees
+# 8AAB Saturate cast and damage from Spring Crystal orb circle
+# 8AAC Saturate cast and damage from Spring Crystal rupee line laser
+# 8AAD Bubble Net self-targeted cast before Bubbles along with 8AAE during Spring Crystals 1
+# 8AAE Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
+# 8AAF Fluke Typhoon self-targeted cast before 8AB0 knockback during Spring Crystals 3
+# 8AB0 Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
+# 8AB1 Fluke Gale self-targeted cast that adds limit cut winds
+# 8AB2 Fluke Gale cast and ability for limit cut 1 wind
+# 8AB3 Fluke Gale cast and ability for limit cut 2 wind
+# 8AB4 Hydrofall self-targeted cast that adds stack markers
+# 8AB5 Hydrofall ability on players to give "stack second" before Blowing Bubbles
+# 8AB6 Hydrofall ability on players that adds stack debuffs
+# 8AB7 Hydrofall damage from stack debuuffs
+# 8AB8 Hydrobullet self-targeted cast that adds stack markers
+# 8AB9 Hydrobullet ability on players that adds spread debuffs
+# 8ABA Hydrobullet damage from spread debuffs
+# 8ABB Strewn Bubbles self-targeted cast before 8ABC Sphere Shatter moving arches
+# 8ABC Sphere Shatter damage from moving arches
+# 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
+# 8ABE Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+# 8ABF Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
+# 8AC0 Angry Seas cast and self-targeted ability for 8AC1 red line knockback
+# 8AC1 Angry Seas cast and knockback damage from red line
+# 8AC2 Burst tower damage
+# 8AC3 Big Burst tower failure damage
+# 8AC4 Roar self-targeted cast that summons Zaratan adds
+# 8AC5 Bubble Net self-targeted cast before Bubbles along with 8AC6 during Spring Crystals 2
+# 8AC6 Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
+# 8AC7 Updraft self-targeted cast to boost adds and players into the air
+# 8AC8 Updraft ability on players for 8AC7 Updraft
+# 8AC9 Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
+# 8ACA Hundred Lashings cast and self-targeted ability for bubbled Zaratan adds
+# 8ACB Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
+# 8ACC Receding Twintides cast and damage for initial out during out->in
+# 8ACD Near Tide fast cast and damage for second out during in->out with 8ACE Encroaching Twintides
+# 8ACE Encroaching Twintides cast and damage for initial in during in->out
+# 8ACF Far Tide fast cast and damage for second in during out->in with 8ACC Receding Twintides
+# 8AD0 Hydrobomb self-targeted cast for 8AD1 puddles
+# 8AD1 Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
+# 8AD4 Tidal Roar self-targeted cast for raidwide aoe
+# 8AD5 Tidal Roar damage from 8AD4
+# 8C6D Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+
+#~~~~~#
+# LALA #
+#~~~~~#
+
+# -p 88AE:2010.9
+# -ii 888B 888C 888D 888E 8892 8893 889A 889B 8CDF
+
+2000.0 "--sync--" sync / 00:0839::The Dusk Trial will be sealed off/ window 100000,0
+2006.9 "--sync--" sync / 14:[^:]*:Lala:88AE:/ window 20,20
+2011.6 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+
+2013.7 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+2018.8 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8889|8D2E):/
+2026.9 "Arcane Blight" sync / 1[56]:[^:]*:Lala:888F:/
+
+2030.1 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+2035.2 "Analysis" sync / 1[56]:[^:]*:Lala:8895:/
+2040.3 "Arcane Array" sync / 1[56]:[^:]*:Lala:(8890|889F):/
+2045.4 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8889|8D2E):/
+2046.1 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8891:/
+2047.4 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8894:/
+2053.4 "Arcane Blight" sync / 1[56]:[^:]*:Lala:888F:/
+2055.7 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8894:/
+2061.5 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDE:/
+
+2072.6 "Strategic Strike" sync / 1[56]:[^:]*:Lala:88AD:/
+2085.8 "Planar Tactics" sync / 1[56]:[^:]*:Lala:8898:/
+2100.9 "Arcane Mine" sync / 1[56]:[^:]*:Lala:8899:/
+2108.4 "Symmetric Surge" sync / 1[56]:[^:]*:Lala:889E:/
+2112.7 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+2122.8 "Strategic Strike" sync / 1[56]:[^:]*:Lala:88AD:/
+
+2131.0 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+2138.2 "Spatial Tactics" sync / 1[56]:[^:]*:Lala:88A0:/
+2143.3 "Arcane Array" sync / 1[56]:[^:]*:Lala:(8890|889F):/
+2149.1 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8891:/
+2150.4 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8D1F:/
+2157.4 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8889|8D2E):/
+2165.5 "Arcane Blight" sync / 1[56]:[^:]*:Lala:888F:/
+2173.6 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+2184.7 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+
+2196.8 "Symmetric Surge" sync / 1[56]:[^:]*:Lala:88A1:/
+2201.9 "Constructive Figure" sync / 1[56]:[^:]*:Lala:88A3:/
+2207.0 "Arcane Plot" sync / 1[56]:[^:]*:Lala:88A2:/
+2212.8 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8891:/
+2221.1 "Arcane Point" sync / 1[56]:[^:]*:Lala:88A5:/
+2221.9 "Powerful Light" sync / 1[56]:[^:]*:Lala:88A6:/
+2230.2 "Explosive Theorem" sync / 1[56]:[^:]*:Lala:88A7:/
+2230.2 "Explosive Theorem" sync / 1[56]:[^:]*:Lala:88A8:/
+2234.6 "Symmetric Surge" sync / 1[56]:[^:]*:Lala:889E:/
+2235.3 "Telluric Theorem" sync / 1[56]:[^:]*:Lala:88A9:/
+2248.3 "Strategic Strike" sync / 1[56]:[^:]*:Lala:88AD:/
+2256.3 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+
+2263.4 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+2268.5 "Analysis" sync / 1[56]:[^:]*:Lala:8895:/
+2273.6 "Arcane Array" sync / 1[56]:[^:]*:Lala:(8890|889F):/
+2278.7 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8889|8D2E):/
+2279.4 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8891:/
+2280.7 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8894:/
+2286.7 "Arcane Blight" sync / 1[56]:[^:]*:Lala:888F:/
+2289.0 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8894:/
+2294.8 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDE:/
+# ???
+
+# ALL ENCOUNTER ABILITIES
+# 8874 --sync--
+# 8889 Angular Addition / Reverse
+# 888B Arcane Blight
+# 888D Arcane Blight
+# 888E Arcane Blight
+# 888F Arcane Blight
+# 8890 Arcane Array
+# 8891 Bright Pulse
+# 8892 Bright Pulse
+# 8893 Inferno Divide
+# 8894 Radiance
+# 8895 Analysis
+# 8898 Planar Tactics
+# 8899 Arcane Mine
+# 889A Arcane Mine
+# 889B Arcane Combustion
+# 889E Symmetric Surge
+# 889F Arcane Array
+# 88A0 Spatial Tactics
+# 88A1 Symmetric Surge
+# 88A2 Arcane Plot
+# 88A3 Constructive Figure
+# 88A4 Aero II
+# 88A5 Arcane Point
+# 88A6 Powerful Light
+# 88A7 Explosive Theorem
+# 88A8 Explosive Theorem
+# 88A9 Telluric Theorem
+# 88AD Strategic Strike
+# 88AE Inferno Theorem
+# 8CDE Targeted Light
+# 8CDF Targeted Light
+# 8D1F Radiance
+# 8D2E Angular Addition / Actual
+
+#~~~~~~~~#
+# STATICE #
+#~~~~~~~~#
+
+# -ii 8947 894C 894F 8952 8954 895A 895B 895F 8960 8987 89F9 8A6A 8CC2
+# -p 8949:3013.6
+
+3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
+3008.9 "--sync--" sync / 14:[^:]*:Statice:8949:/ window 20,20
+3013.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3017.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3023.2 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3025.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3026.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3027.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3028.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3029.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3030.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3031.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3032.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3037.3 "Trapshooting" sync / 1[56]:[^:]*:Statice:8D1A:/
+3047.7 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3055.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3069.6 "Trapshooting" sync / 1[56]:[^:]*:Statice:8959:/
+3073.6 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+
+3080.6 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3086.0 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3088.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3089.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3090.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3091.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3092.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3093.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3094.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3095.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3099.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3104.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:8CBD:/
+3118.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8959:/
+3120.0 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+
+3130.2 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3135.6 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:894D:/
+3142.7 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8963:/
+3148.6 "Pop" sync / 1[56]:[^:]*:Statice:894E:/
+3150.3 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3153.6 "Pop" sync / 1[56]:[^:]*:Statice:894E:/
+3158.4 "Trapshooting" sync / 1[56]:[^:]*:Statice:8959:/
+3170.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3177.7 "--untargetable--" sync / 1[56]:[^:]*:Statice:8927:/
+3182.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3187.2 "Present Box" sync / 1[56]:[^:]*:Statice:8955:/
+3192.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895E:/
+3202.3 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+3202.4 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8956:/
+
+3208.0 "--targetable--"
+3210.4 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8948:/
+3220.5 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8CBC:/
+3229.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895E:/
+3231.2 "Fire Spread" sync / 1[56]:[^:]*:Ball of Fire:8982:/
+3238.3 "Burning Chains" sync / 1[56]:[^:]*:Statice:8CBE:/
+3250.4 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3257.6 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3263.0 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8963:/
+3270.1 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3272.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3273.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3274.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3275.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3276.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3277.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3278.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3279.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3284.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8D1A:/
+3291.2 "Present Box" sync / 1[56]:[^:]*:Statice:8955:/
+3297.9 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3305.3 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3305.9 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8956:/
+3312.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8959:/
+3316.1 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+3323.3 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+# ???
+
+# ALL ENCOUNTER ABILITIES
+# 8925 Locked and Loaded
+# 8926 Misload
+# 8927 --sync--
+# 8947 --sync--
+# 8948 Shocking Abandon
+# 8949 Aero IV
+# 894A Trick Reload
+# 894B Trigger Happy
+# 894C Trigger Happy
+# 894D Surprise Balloon
+# 894E Pop
+# 894F Surprise Needle
+# 8952 Fire Spread
+# 8954 Uncommon Ground
+# 8955 Present Box
+# 8956 Faerie Ring
+# 8959 Trapshooting
+# 895A Trapshooting
+# 895B Trapshooting
+# 895C Ring a Ring o' Explosions
+# 895D Burst
+# 895E Fireworks
+# 895F Fireworks
+# 8960 Fireworks
+# 8963 Beguiling Glitter
+# 8982 Fire Spread
+# 8987 Trigger Happy
+# 89F9 Fire Spread
+# 8A6A --sync--
+# 8CBC Pinwheeling Dartboard
+# 8CBD Dartboard of Dancing Explosives
+# 8CBE Burning Chains
+# 8CC2 Uncommon Ground
+# 8D1A Trapshooting
+
+#~~~~~~~~~#
+# TRASH 1 #
+#~~~~~~~~~#
+
+# ALL ENCOUNTER ABILITIES
+# 7A56 --sync-- various auto damage (trash 1)
+# 8BC0 --sync-- damage from Twister tornados
+# 8C6E Lead Hook casted damage from Kiwakin 3x tankbuster
+# 8C62 Lead Hook damage from hit 2
+# 8C53 Lead Hook damage from hit 3
+# 8C64 Water III casted damage from Snipper stack marker
+# 8C63 Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
+# 8BB8 Tail Screw casted damage from Kiwakin baited circle
+# 8BB9 Bubble Shower casted damage from Snipper front conal
+# 8BBA Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BB9
+# 8BBD Hydrocannon casted damage from Ray front line
+# 8BBF Expulsion casted damage from Ray "get out"
+# 8BBE Electric Whorl casted damage from Ray "get in"
+# 8C65 Hydroshot casted damage from Monk knockback line with a dot
+# 8BBB Cross Attack casted damage from Monk tankbuster
+
+#~~~~~~~~~#
+# TRASH 2 #
+#~~~~~~~~~#
+
+# ALL ENCOUNTER ABILITIES
+# 8BC1 Ovation
+# 8BC5 Gravity Force
+# 8C4D Tornado
+# 8C4E Ancient Quaga
+# 8C6F Isle Drop
