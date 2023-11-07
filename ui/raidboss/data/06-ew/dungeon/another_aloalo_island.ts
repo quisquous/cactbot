@@ -17,21 +17,47 @@ const ForceMoveStrings = {
   spread: Outputs.spread,
   forward: {
     en: 'Mindhack: Forward => ${aim}',
+    de: 'Geistlenkung: Vorwärts => ${aim}',
+    fr: 'Piratage mental : Vers l\'avant => ${aim}',
+    ja: '強制移動 : 前 => ${aim}',
+    cn: '强制移动 : 前 => ${aim}',
+    ko: '강제이동: 앞 => ${aim}',
   },
   backward: {
     en: 'Mindhack: Back => ${aim}',
+    de: 'Geistlenkung: Rückwärts => ${aim}',
+    fr: 'Piratage mental : Vers l\'arrière => ${aim}',
+    ja: '強制移動 : 後ろ => ${aim}',
+    cn: '强制移动 : 后 => ${aim}',
+    ko: '강제이동: 뒤 => ${aim}',
   },
   left: {
     en: 'Mindhack: Left => ${aim}',
+    de: 'Geistlenkung: Links => ${aim}',
+    fr: 'Piratage mental : Vers la gauche => ${aim}',
+    ja: '強制移動 : 左 => ${aim}',
+    cn: '强制移动 : 左 => ${aim}',
+    ko: '강제이동: 왼쪽 => ${aim}',
   },
   right: {
     en: 'Mindhack: Right => ${aim}',
+    de: 'Geistlenkung: Rechts => ${aim}',
+    fr: 'Piratage mental : Vers la droite => ${aim}',
+    ja: '強制移動 : 右 => ${aim}',
+    cn: '强制移动 : 右 => ${aim}',
+    ko: '강제이동: 오른쪽 => ${aim}',
   },
   move: {
     en: 'Mindhack => ${aim}',
+    de: 'Geistlenkung => ${aim}',
+    fr: 'Piratage mental => ${aim}', // FIXME
+    ja: '強制移動 => ${aim}',
+    cn: '强制移动 => ${aim}', // FIXME
+    ko: '강제이동 => ${aim}', // FIXME
   },
   safety: {
     en: 'Safe zone',
+    ja: '安置へ',
   },
 } as const;
 
@@ -45,14 +71,14 @@ export interface Data extends RaidbossData {
   ketuHydroCount: number;
   ketuHydroStack?: NetMatches['GainsEffect'];
   ketuHydroSpread?: NetMatches['GainsEffect'];
-  ketuEffectId?: string;
+  ketuMyBubbleFetters?: string;
   lalaBlight: MarchDirection;
   lalaRotate: ClockRotate;
-  lalaCount: number;
+  lalaTimes: number;
   lalaSubtractive: number;
   lalaMyMarch: MarchDirection;
   lalaMyRotate: ClockRotate;
-  lalaMyCount: number;
+  lalaMyTimes: number;
   stcReloadCount: number;
   stcReloadFailed: number;
   stcRingRing: number;
@@ -61,9 +87,7 @@ export interface Data extends RaidbossData {
   stcMissiles: string[];
   stcSeenPinwheeling: boolean;
   stcAdjustBullsEye: boolean;
-  stcTether: boolean;
   stcChains: string[];
-  stcBallFire?: number;
   stcPop: number;
   stcMyMarch: MarchDirection;
   stcMyDuration: number;
@@ -138,11 +162,11 @@ const triggerSet: TriggerSet<Data> = {
       ketuHydroCount: 0,
       lalaBlight: 'unknown',
       lalaRotate: 'unknown',
-      lalaCount: 0,
+      lalaTimes: 0,
       lalaSubtractive: 0,
       lalaMyMarch: 'unknown',
       lalaMyRotate: 'unknown',
-      lalaMyCount: 0,
+      lalaMyTimes: 0,
       stcReloadCount: 0,
       stcReloadFailed: 0,
       stcRingRing: 0,
@@ -151,7 +175,6 @@ const triggerSet: TriggerSet<Data> = {
       stcMissiles: [],
       stcSeenPinwheeling: false,
       stcAdjustBullsEye: false,
-      stcTether: false,
       stcChains: [],
       stcPop: 0,
       stcMyMarch: 'unknown',
@@ -171,9 +194,11 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           tankBusterOnYou: {
             en: '3x Tankbuster on YOU',
+            ja: '自分に3xタン強',
           },
           tankBusterOnPlayer: {
             en: '3x Tankbuster on ${player}',
+            ja: '3xタン強: ${player}',
           },
         };
 
@@ -269,12 +294,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AAI Ketuduke Spring Crystal 1 Collect',
-      type: 'AddedCombatant',
-      netRegex: { npcNameId: '12606' },
-      run: (data, matches) => data.ketuCrystalAdd.push(matches),
-    },
-    {
       id: 'AAI Ketuduke Spring Crystal 2 Collect',
       type: 'AddedCombatant',
       netRegex: { npcNameId: '12607' },
@@ -287,7 +306,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, matches, output) => {
         if (data.me !== matches.target)
           return;
-        data.ketuEffectId = matches.effectId;
+        data.ketuMyBubbleFetters = matches.effectId;
         if (matches.effectId === 'E9F')
           return output.bubble!();
         return output.bind!();
@@ -296,9 +315,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         bubble: {
           en: 'Bubble',
+          ja: 'バブル',
         },
         bind: {
           en: 'Bind',
+          ja: 'バインド',
         },
       },
     },
@@ -340,17 +361,19 @@ const triggerSet: TriggerSet<Data> = {
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         data.isStackFirst = isStackFirst(data.ketuHydroStack, data.ketuHydroSpread);
-        if (data.ketuEffectId !== 'E9F' && !data.isStackFirst)
+        if (data.ketuMyBubbleFetters !== 'E9F' && !data.isStackFirst)
           return output.go2!();
         return output.go1!();
       },
-      run: (data) => delete data.ketuEffectId,
+      run: (data) => delete data.ketuMyBubbleFetters,
       outputStrings: {
         go1: {
           en: 'Go to 1 area',
+          ja: '第1区域へ',
         },
         go2: {
           en: 'Go to 2 area',
+          ja: '第2区域へ',
         },
       },
     },
@@ -420,6 +443,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Out => Stack inside',
+          ja: '外 => ボスの下で頭割り',
         },
       },
     },
@@ -431,6 +455,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'In => Stack outside',
+          ja: 'ボスの下 => 外側で頭割り',
         },
       },
     },
@@ -466,12 +491,15 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northSouthSafe: {
           en: 'North/South',
+          ja: '南・北',
         },
         eastWestSafe: {
           en: 'East/West',
+          ja: '東・西',
         },
         cornersSafe: {
           en: 'Corners',
+          ja: '隅へ',
         },
       },
     },
@@ -485,25 +513,27 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 999999,
       alertText: (data, _matches, output) => {
         const [player] = data.gainList.filter((x) =>
-          x.effectId === data.ketuEffectId && x.target !== data.me
+          x.effectId === data.ketuMyBubbleFetters && x.target !== data.me
         ).map((x) => data.party.member(x.target));
         if (player === undefined)
           return output.spread!();
-        if (data.ketuEffectId === 'E9F')
+        if (data.ketuMyBubbleFetters === 'E9F')
           return output.bubble!({ player: player });
         return output.bind!({ player: player });
       },
       run: (data) => {
-        delete data.ketuEffectId;
+        delete data.ketuMyBubbleFetters;
         data.ketuHydroCount = 4;
         data.gainList = [];
       },
       outputStrings: {
         bubble: {
           en: 'Spread (Bubble w/ ${player})',
+          ja: '散会 (バブル: ${player})',
         },
         bind: {
           en: 'Spread (Bind w/ ${player})',
+          ja: '散会 (バインド: ${player})',
         },
         spread: Outputs.spread,
       },
@@ -518,6 +548,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Behind add',
+          ja: 'ざこの後ろに',
         },
       },
     },
@@ -553,6 +584,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Get Tower',
+          ja: '塔踏み',
         },
       },
     },
@@ -575,9 +607,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         itsme: {
           en: 'Tornado on YOU',
+          ja: '自分にトルネド',
         },
         text: {
           en: 'Tornado on ${player}',
+          ja: 'トルネド: ${player}',
         },
       },
     },
@@ -590,7 +624,8 @@ const triggerSet: TriggerSet<Data> = {
         output.text!({ player: data.party.member(matches.target) }),
       outputStrings: {
         text: {
-          en: 'Esuna on ${player}',
+          en: 'Cleanse ${player}',
+          ja: 'エスナ: ${player}',
         },
       },
     },
@@ -618,9 +653,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         itsme: {
           en: 'Gravity on YOU',
+          ja: '自分にグラビデフォース',
         },
         text: {
           en: 'Gravity on ${player}',
+          ja: 'グラビデフォース: ${player}',
         },
       },
     },
@@ -649,7 +686,7 @@ const triggerSet: TriggerSet<Data> = {
       // F62 = Times Three
       // F63 = Times Five
       netRegex: { effectId: ['F62', 'F63'], source: 'Lala', target: 'Lala' },
-      run: (data, matches) => data.lalaCount = matches.effectId === 'F62' ? 3 : 5,
+      run: (data, matches) => data.lalaTimes = matches.effectId === 'F62' ? 3 : 5,
     },
     {
       id: 'AAI Lala Player Rotate',
@@ -665,7 +702,7 @@ const triggerSet: TriggerSet<Data> = {
       // ECE = Times Five
       netRegex: { effectId: ['E89', 'ECE'], source: 'Lala' },
       condition: Conditions.targetIsYou(),
-      run: (data, matches) => data.lalaMyCount = matches.effectId === 'E89' ? 3 : 5,
+      run: (data, matches) => data.lalaMyTimes = matches.effectId === 'E89' ? 3 : 5,
     },
     {
       id: 'AAI LaLa Arcane Blight Drection',
@@ -691,7 +728,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.lalaRotate === 'unknown')
           return output[data.lalaBlight]!();
-        if (isReverseRotate(data.lalaRotate, data.lalaCount)) {
+        if (isReverseRotate(data.lalaRotate, data.lalaTimes)) {
           return {
             'front': output.left!(),
             'back': output.right!(),
@@ -747,6 +784,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         open: {
           en: 'Open: ${unseen}',
+          ja: '開: ${unseen}',
         },
         front: Outputs.front,
         back: Outputs.back,
@@ -765,7 +803,7 @@ const triggerSet: TriggerSet<Data> = {
           return output.text!();
         if (data.lalaMyRotate === 'unknown')
           return output[data.lalaMyMarch]!();
-        if (isReverseRotate(data.lalaMyRotate, data.lalaMyCount))
+        if (isReverseRotate(data.lalaMyRotate, data.lalaMyTimes))
           return {
             'front': output.left!(),
             'back': output.right!(),
@@ -850,6 +888,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${num}',
+          ja: 'カウント: ${num}',
         },
       },
     },
@@ -871,7 +910,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
         if (data.lalaMyRotate === 'unknown')
           return output[map]!();
-        if (isReverseRotate(data.lalaMyRotate, data.lalaMyCount)) {
+        if (isReverseRotate(data.lalaMyRotate, data.lalaMyTimes)) {
           return {
             'front': output.left!(),
             'back': output.right!(),
@@ -943,6 +982,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '${num}',
+          ja: 'カウント: ${num}',
         },
       },
     },
@@ -968,6 +1008,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         swap: {
           en: 'DPS swap partner!',
+          ja: 'DPS同志に入れ替え！',
         },
       },
     },
@@ -1020,6 +1061,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         spread: {
           en: '(Spread, for later)',
+          ja: '(後で散会)',
         },
       },
     },
@@ -1044,9 +1086,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: '(${safe}, for later)',
+          ja: '(後で${safe})',
         },
         stacks: {
           en: '(Stack, for later)',
+          ja: '(後で頭割り)',
         },
       },
     },
@@ -1098,6 +1142,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Go to ${safe}',
+          ja: '${safe}へ',
         },
       },
     },
@@ -1111,18 +1156,23 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           first: {
             en: 'Avoid Bomb!',
+            ja: '爆弾回避！',
           },
           second: {
             en: 'Remember Bomb position!',
+            ja: '爆弾の位置をおぼえて！',
           },
           third: {
             en: 'Avoid Bomb!',
+            ja: '爆弾回避！',
           },
           fourth: {
             en: 'Go to ${safe}, avoid donuts',
+            ja: '${safe}へ、ドーナツ回避',
           },
           forthMove: {
             en: '${safe}',
+            ja: '${safe}へ',
           },
           ...ForceMoveStrings,
         };
@@ -1213,15 +1263,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         blue: {
           en: 'Go to Blue',
+          ja: '青へ',
         },
         yellow: {
           en: 'Go to Yellow',
+          ja: '黄色へ',
         },
         red: {
           en: 'Go to Red',
+          ja: '赤へ',
         },
         redCheck: {
           en: 'Go to Red (Have to check Tank & Healer)',
+          ja: '赤へ (ただしタンクとヒーラの色確認)',
         },
       },
     },
@@ -1250,9 +1304,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         in: {
           en: 'Middle => Spread outside',
+          ja: '真ん中 => 外側で散会',
         },
         out: {
           en: 'Out => Stack in middle',
+          ja: '外 => 真ん中で頭割り',
         },
       },
     },
@@ -1305,6 +1361,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Death Claw on YOU! (w/ ${partner})',
+          ja: '自分にクロウ (${partner})',
         },
         unknown: Outputs.unknown,
       },
@@ -1336,6 +1393,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Missile + Tether on YOU! (w/ ${partner})',
+          ja: '自分にミサイル+チェイン (${partner})',
         },
         unknown: Outputs.unknown,
       },
@@ -1390,9 +1448,11 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         chain: {
           en: 'Tether on YOU!',
+          ja: '自分にチェイン',
         },
         chainWith: {
           en: 'Tether on YOU! (w/ ${partner})',
+          ja: '自分にチェイン (${partner})',
         },
       },
     },
@@ -1406,15 +1466,19 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           cutchain: {
             en: 'Break Tether!',
+            ja: 'チェイン切る',
           },
           deathclaw: {
             en: 'Bait Claw => Stack',
+            ja: 'クロウ誘導 => 頭割り',
           },
           adjustbullseye: {
-            en: 'Go to North! Swap pair position!',
+            en: 'Stack & Swap position!',
+            ja: '北へ！ 席入れ替え',
           },
           bullseye: {
-            en: 'Go to North',
+            en: 'Stack',
+            ja: '北へ',
           },
         };
         if (data.me === matches.source || data.me === matches.target)
