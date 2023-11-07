@@ -9,6 +9,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: use code from AMR to handle cases of "role stacks" when somebody is dead
 // TODO: switch crystals 1 to always tell you what fetters do
+// TODO: say who is your bubble/fetters partner (esp for sc2)
 
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
@@ -92,6 +93,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       // Crab Dribble 8BBA has a fast cast, so trigger on Bubble Shower ability
       netRegex: { id: '8BB9', source: 'Aloalo Snipper', capture: false },
+      suppressSeconds: 5,
       response: Responses.goFront('info'),
     },
     {
@@ -99,6 +101,12 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8BBD', source: 'Aloalo Ray', capture: false },
       response: Responses.getBehind(),
+    },
+    {
+      id: 'AAI Ray Expulsion',
+      type: 'StartsUsing',
+      netRegex: { id: '8BBF', source: 'Aloalo Ray', capture: false },
+      response: Responses.getOut(),
     },
     {
       id: 'AAI Ray Electric Whorl',
