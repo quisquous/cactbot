@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
-      condition: (data) => data.ketuHydroBuffCount === 1,
+      condition: (data) => data.ketuHydroBuffCount === 1 || data.ketuHydroBuffCount === 6,
       durationSeconds: 8,
       alertText: (data, matches, output) => {
         // If somebody died and missed a debuff, good luck.
@@ -325,6 +325,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAI Ketuduke Spring Crystals 2',
       type: 'AddedCombatant',
+      // This calls absurdly early. <_<
       netRegex: { npcNameId: '12607', capture: false },
       condition: (data) => data.ketuSpringCrystalCount === 2 && data.ketuCrystalAdd.length === 4,
       alertText: (data, _matches, output) => {

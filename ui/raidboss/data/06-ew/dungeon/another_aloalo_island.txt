@@ -53,12 +53,11 @@ hideall "--sync--"
 1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:8ACA:/
 
 1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
-# TODO: this is probably either/or
-1199.4 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
-1202.4 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8C6D:/
+1199.4 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1202.4 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8C6D|8AB5):/
 1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:8AC1:/
-1211.6 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
-1212.2 "Hydrobullet" sync / 1[56]:[^:]*:[^:]*:8ABA:/ # this sometimes has the wrong source
+1211.6 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8AB7|8ABA):/
+1212.2 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:[^:]*:(8ABA|8AB7):/ # this sometimes has the wrong source
 1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
 1216.8 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ABA:/
 1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
@@ -66,6 +65,23 @@ hideall "--sync--"
 1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:8AB0:/
 1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAB:/
 1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:8AC2:/
+
+1246.7 "Spring Crystals 4" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1253.7 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1260.7 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1269.8 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1279.9 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1281.9 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1284.9 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8AAC:/
+1285.0 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ABA|8AB7):/
+
+1293.9 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1299.2 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1310.6 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8ACC|8ACE):/
+1311.2 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1313.7 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8ACF|8ACD):/
+1314.3 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8ABC:/
+1314.3 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8AB7:/
 # ???
 
 # ALL ENCOUNTER ABILITIES
