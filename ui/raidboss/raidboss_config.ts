@@ -2139,6 +2139,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Reverse timeline order (bottom-to-top)',
         de: 'Umgekehrte Timeline Reihenfolge (unten-nach-oben)',
+        fr: 'Timeline inversée (de bas en haut)',
         cn: '反转时间轴顺序 (从下到上)',
         ko: '타임라인 순서 반전 (아래에서 위)',
       },
