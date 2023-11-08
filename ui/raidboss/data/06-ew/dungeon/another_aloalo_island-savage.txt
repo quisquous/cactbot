@@ -261,14 +261,7 @@ hideall "--sync--"
 
 3017.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
 3023.2 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3025.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3026.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3027.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3028.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3029.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3030.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3031.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3032.3 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3025.3 "Locked and Loaded/Misload x8" duration 8
 3037.3 "Trapshooting" sync / 1[56]:[^:]*:Statice:8D1C:/
 3047.7 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
 3055.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
@@ -277,14 +270,7 @@ hideall "--sync--"
 
 3080.6 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
 3086.0 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3088.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3089.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3090.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3091.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3092.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3093.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3094.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3095.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3088.1 "Locked and Loaded/Misload x8" duration 8
 3099.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
 3104.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:8CC0:/
 3118.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8976:/
@@ -317,14 +303,7 @@ hideall "--sync--"
 3257.6 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
 3263.0 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8980:/
 3270.1 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3272.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3273.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3274.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3275.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3276.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3277.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3278.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
-3279.1 "Locked and Loaded/Misload" #sync / 1[56]:[^:]*:Statice:(8925|8926):/
+3272.1 "Locked and Loaded/Misload x8" duration 8
 3284.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8D1C:/
 3291.2 "Present Box" sync / 1[56]:[^:]*:Statice:8972:/
 3297.9 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
