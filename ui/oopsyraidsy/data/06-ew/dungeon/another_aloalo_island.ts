@@ -4,6 +4,12 @@ import { OopsyData } from '../../../../../types/data';
 import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
 
 // TODO: people who missed their 8AC2 Burst tower
+// TODO: failing 8894 Radiance orb damage during Analysis
+// TODO: failing 8CDF Targeted Light during Analysis
+// TODO: people who failed Subtractive Suppressor Alpha + Beta
+// TODO: walking over 889B Arcane Combustion when you don't have Suppressor
+// TODO: taking extra 8893 Inferno Divide squares during Spatial Tactics
+// TODO: 01F7(success) and 01F8(fail) check and x markers?
 
 export type Data = OopsyData;
 
@@ -54,18 +60,41 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Trash 2
     'AAI Wood Golem Ovation': '8BC1', // front line aoe
     'AAI Islekeeper Isle Drop': '8C6F', // front circle
+
+    // Lala
+    'AAI Arcane Blight': '888F', // 270 degree rotating cleave
+    'AAI Bright Pulse 1': '8891', // initial blue square
+    'AAI Bright Pulse 2': '8892', // moving blue square
+    'AAI Arcane Mine': '889A', // initial Arcane Mine squares
+    'AAI Golem Aero II': '88A4', // line damage from Aloalo Golem during Symmetric Surge
+    'AAI Telluric Theorem': '88A9', // puddles from Explosive Theorem spreads
   },
   damageFail: {
     'AAI Big Burst': '8AC3', // tower failure damage
+    'AAI Massive Explosion 1': '889C', // failing to resolve Subractive Suppressor Alpha
+    'AAI Massive Explosion 2': '889D', // failing to resolve Subractive Suppressor Beta
+  },
+  gainsEffectFail: {
+    // C03 = 9999 duration, ??? = 15s duration
+    'AAI Dropsy': 'C03', // standing outside Ketuduke
+    // C05 = 9999 duration, C06 = 15s duration
+    'AAI Bleeding': 'C05', // standing in blue square during Lala
+    // BF9 = 9999 duration, BFA??? = 15s duration
+    'AAI Burns': 'BF9', // standing outside Lala
   },
   shareWarn: {
     'AAI Hydrobullet': '8ABA', // spread debuffs
     'AAI Wood Golem Tornado': '8C4D', // headmarker -> bind and heavy aoe
+    'AAI Powerful Light': '88A6', // spread marker during Symmetric Surge that turns squares blue
+    'AAI Explosive Theorem': '88A8', // large spreads with Telluric Theorem puddles
   },
   soloWarn: {
     'AAI Snipper Water III': '8C64', // Snipper stack marker
-    'AAI Hydrofall': '8AB7', // partner stack debuffs
     'AAI Islekeeper Gravity Force': '8BC5', // stack
+  },
+  soloFail: {
+    'AAI Hydrofall': '8AB7', // partner stack debuffs
+    'AAI Symmetric Surge': '889E', // two person stack that gives magic vuln up
   },
   triggers: [
     {

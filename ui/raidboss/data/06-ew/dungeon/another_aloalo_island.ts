@@ -12,6 +12,45 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: say who is your bubble/fetters partner (esp for sc2)
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
 
+// TODO: map effects for Lala
+
+/*
+[21:58:30.784] StatusAdd 1A:E8E:Front Unseen:9999.00:40013A9C:Lala:
+[21:58:30.784] StatusAdd 1A:E90:Right Unseen:9999.00:40013A9C:Lala:
+[21:58:30.784] StatusAdd 1A:E8F:Back Unseen:9999.00:40013A9C:Lala:
+[21:58:30.784] StatusAdd 1A:E91:Left Unseen:9999.00:40013A9C:Lala:
+[21:58:40.884] StatusAdd 1A:E89:Times Three:9999.00:40013A9C:Lala:
+[21:58:40.884] StatusAdd 1A:ECE:Times Five:9999.00:40013A9C:Lala:
+
+[21:58:14.124] StatusAdd 1A:F62:Times Three:9999.00:40013A9C:Lala:40013A9C:Lala:00:10634656:10634656
+[21:58:40.929] StatusAdd 1A:F63:Times Five:9999.00:40013A9C:Lala:40013A9C:Lala:00:10634656:10634656
+
+[21:59:21.680] StatusAdd 1A:E8C:Subtractive Suppressor Alpha:22.00:40013A9C:Lala:
+[22:00:14.578] StatusAdd 1A:E8D:Subtractive Suppressor Beta:23.00:40013A9C:Lala:
+
+[21:59:21.680] StatusAdd 1A:E83:Forward March:16.00:40013A9C:Lala:
+
+// boss counter
+[21:58:15.372] TargetIcon 1B:40013A9C:Lala:0000:0000:01E5:0000:0000:0000
+
+// boss clock
+[21:58:42.181] TargetIcon 1B:40013A9C:Lala:0000:0000:01E4:0000:0000:0000
+
+// player counter
+// player clock
+[21:58:45.757] TargetIcon 1B:_:_:0000:0000:01EE:0000:0000:0000
+
+// player clock
+[21:58:45.757] TargetIcon 1B:_:_:0000:0000:01ED:0000:0000:0000
+*/
+
+/*
+map effects
+// initial edges after raidwide
+[21:58:06.929] 257 101:8003908D:00020001:26:00:0000
+
+*/
+
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
