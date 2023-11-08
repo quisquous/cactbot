@@ -60,7 +60,7 @@ const triggerSet: TriggerSet<Data> = {
 
         if (matches.target === data.me)
           return { alertText: output.tankBusterOnYou!() };
-        const target = data.ShortName(matches.target);
+        const target = data.party.member(matches.target);
         return { infoText: output.tankBusterOnPlayer!({ player: target }) };
       },
     },
@@ -384,7 +384,9 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'EC0' },
       condition: (data) => data.CanCleanse(),
-      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      infoText: (data, matches, output) => {
+        return output.text!({ player: data.party.member(matches.target) });
+      },
       outputStrings: {
         text: {
           en: 'Esuna ${player}',
