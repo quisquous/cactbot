@@ -157,3 +157,19 @@ hideall "--sync--"
 # 8BBE Electric Whorl casted damage from Ray "get in"
 # 8C65 Hydroshot casted damage from Monk knockback line with a dot
 # 8BBB Cross Attack casted damage from Monk tankbuster
+
+#~~~~~~~~~#
+# TRASH 2 #
+#~~~~~~~~~#
+
+# TODO: does Wood Golem have an enrage??
+
+# ALL ENCOUNTER ABILITIES
+# 7A58 --sync-- various auto damage (trash 2)
+# 8BC1 Ovation cast and damage from Wood Golem front line aoe
+# 8BC5 Gravity Force cast and stack damage from Islekeeper
+# 8C2F Ancient Quaga cast and damage for Islekeeper raidwide enrage
+# 8C4C Ancient Aero III interruptable cast and damage for Wood Golem raidwide
+# 8C4D Tornado cast and damage from Wood Golem that binds the initial target and heavies all targets
+# 8C4E Ancient Quaga cast and damage for Islekeeper raidwide
+# 8C6F Isle Drop cast and damage for Islekeeper front circle

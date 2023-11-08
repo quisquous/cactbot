@@ -50,16 +50,22 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Encroaching Twintides': '8ACE', // initial in during in->out
     'AAI Far Tide': '8ACF', // second in during out->in with 8ACC Receding Twintides
     'AAI Hydrobomb': '8AD1', // 3x puddles duruing 8ABD Blowing Bubbles
+
+    // Trash 2
+    'AAI Wood Golem Ovation': '8BC1', // front line aoe
+    'AAI Islekeeper Isle Drop': '8C6F', // front circle
   },
   damageFail: {
     'AAI Big Burst': '8AC3', // tower failure damage
   },
   shareWarn: {
     'AAI Hydrobullet': '8ABA', // spread debuffs
+    'AAI Wood Golem Tornado': '8C4D', // headmarker -> bind and heavy aoe
   },
   soloWarn: {
     'AAI Snipper Water III': '8C64', // Snipper stack marker
     'AAI Hydrofall': '8AB7', // partner stack debuffs
+    'AAI Islekeeper Gravity Force': '8BC5', // stack
   },
   triggers: [
     {

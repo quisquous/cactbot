@@ -10,6 +10,7 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: use code from AMR to handle cases of "role stacks" when somebody is dead
 // TODO: switch crystals 1 to always tell you what fetters do
 // TODO: say who is your bubble/fetters partner (esp for sc2)
+// TODO: sc3 should say which bubble to take to the other side (for everyone)
 
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
@@ -361,6 +362,72 @@ const triggerSet: TriggerSet<Data> = {
         },
         cornersSafe: {
           en: 'Corners',
+        },
+      },
+    },
+    // ---------------- second trash ----------------
+    {
+      id: 'AAI Wood Golem Ancient Aero III',
+      type: 'StartsUsing',
+      netRegex: { id: '8C4C', source: 'Aloalo Wood Golem' },
+      condition: (data) => data.CanSilence(),
+      response: Responses.interrupt('alarm'),
+    },
+    {
+      id: 'AAI Wood Golem Tornado',
+      type: 'StartsUsing',
+      netRegex: { id: '8C4D', source: 'Aloalo Wood Golem' },
+      response: Responses.interrupt('alarm'),
+    },
+    {
+      id: 'AAI Wood Golem Tornado Bind',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'EC0' },
+      condition: (data) => data.CanCleanse(),
+      infoText: (data, matches, output) => output.text!({ player: data.ShortName(matches.target) }),
+      outputStrings: {
+        text: {
+          en: 'Esuna ${player}',
+          de: 'Medica ${player}',
+          fr: 'Guérison sur ${player}',
+          ja: 'エスナ: ${player}',
+          cn: '解除死亡宣告: ${player}',
+          ko: '${player} 에스나',
+        },
+      },
+    },
+    {
+      id: 'AAI Wood Golem Ovation',
+      type: 'StartsUsing',
+      netRegex: { id: '8BC1', source: 'Aloalo Wood Golem', capture: false },
+      response: Responses.getBehind('info'),
+    },
+    {
+      id: 'AAI Islekeeper Gravity Force',
+      type: 'StartsUsing',
+      netRegex: { id: '8BC5', source: 'Aloalo Islekeeper' },
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'AAI Islekeeper Isle Drop',
+      type: 'StartsUsing',
+      netRegex: { id: '8C6F', source: 'Aloalo Islekeeper', capture: false },
+      response: Responses.getBehind('info'),
+    },
+    {
+      id: 'AAI Islekeeper Ancient Quaga',
+      type: 'StartsUsing',
+      netRegex: { id: '8C4E', source: 'Aloalo Islekeeper', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'AAI Islekeeper Ancient Quaga Enrage',
+      type: 'StartsUsing',
+      netRegex: { id: '8C2F', source: 'Aloalo Islekeeper', capture: false },
+      alarmText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Kill Islekeeper!',
         },
       },
     },
