@@ -710,7 +710,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS LaLa Arcane Blight Drection',
       type: 'StartsUsing',
-      netRegex: { id: ['8BE2', '8BE3', '8BE4', '8BE5]'], source: 'Lala' },
+      netRegex: { id: ['8BE2', '8BE3', '8BE4', '8BE5'], source: 'Lala' },
       run: (data, matches) => {
         const blightMap: { [count: string]: MarchDirection } = {
           '8BE2': 'back',
