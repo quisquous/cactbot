@@ -201,7 +201,13 @@ hideall "--sync--"
 2286.7 "Arcane Blight" sync / 1[56]:[^:]*:Lala:888F:/
 2289.0 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8894:/
 2294.8 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDE:/
-# ???
+2306.0 "Strategic Strike" sync / 1[56]:[^:]*:Lala:88AD:/
+
+2316.1 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
+2329.5 "Inferno Theorem (Enrage)" sync / 1[56]:[^:]*:Lala:8C25:/
+2331.5 "Inferno Theorem (Enrage)" #sync / 1[56]:[^:]*:Lala:8C26:/
+2333.5 "Inferno Theorem (Enrage)" #sync / 1[56]:[^:]*:Lala:8C26:/
+2335.5 "Inferno Theorem (Enrage)" #sync / 1[56]:[^:]*:Lala:8C26:/
 
 # ALL ENCOUNTER ABILITIES
 # 8874 --sync--
