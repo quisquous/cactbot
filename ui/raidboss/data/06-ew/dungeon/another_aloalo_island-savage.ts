@@ -1408,6 +1408,26 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'AAIS Statice Ball of Fire Rotate Right',
+      type: 'HeadMarker',
+      netRegex: { id: '009C', target: 'Ball of Fire', capture: false },
+      durationSeconds: 8,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: Outputs.clockwise,
+      },
+    },
+    {
+      id: 'AAIS Statice Ball of Fire Rotate Left',
+      type: 'HeadMarker',
+      netRegex: { id: '009D', target: 'Ball of Fire', capture: false },
+      durationSeconds: 8,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: Outputs.counterclockwise,
+      },
+    },
+    {
       id: 'AAIS Statice Bull\'s-eye 2',
       type: 'GainsEffect',
       netRegex: { effectId: 'E9E', capture: false },
