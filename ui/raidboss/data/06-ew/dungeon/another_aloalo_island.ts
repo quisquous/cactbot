@@ -11,38 +11,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: switch crystals 1 to always tell you what fetters do
 // TODO: say who is your bubble/fetters partner (esp for sc2)
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
-
+// TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
-
-/*
-[21:58:30.784] StatusAdd 1A:E8E:Front Unseen:9999.00:40013A9C:Lala:
-[21:58:30.784] StatusAdd 1A:E90:Right Unseen:9999.00:40013A9C:Lala:
-[21:58:30.784] StatusAdd 1A:E8F:Back Unseen:9999.00:40013A9C:Lala:
-[21:58:30.784] StatusAdd 1A:E91:Left Unseen:9999.00:40013A9C:Lala:
-[21:58:40.884] StatusAdd 1A:E89:Times Three:9999.00:40013A9C:Lala:
-[21:58:40.884] StatusAdd 1A:ECE:Times Five:9999.00:40013A9C:Lala:
-
-[21:58:14.124] StatusAdd 1A:F62:Times Three:9999.00:40013A9C:Lala:40013A9C:Lala:00:10634656:10634656
-[21:58:40.929] StatusAdd 1A:F63:Times Five:9999.00:40013A9C:Lala:40013A9C:Lala:00:10634656:10634656
-
-[21:59:21.680] StatusAdd 1A:E8C:Subtractive Suppressor Alpha:22.00:40013A9C:Lala:
-[22:00:14.578] StatusAdd 1A:E8D:Subtractive Suppressor Beta:23.00:40013A9C:Lala:
-
-[21:59:21.680] StatusAdd 1A:E83:Forward March:16.00:40013A9C:Lala:
-
-// boss counter
-[21:58:15.372] TargetIcon 1B:40013A9C:Lala:0000:0000:01E5:0000:0000:0000
-
-// boss clock
-[21:58:42.181] TargetIcon 1B:40013A9C:Lala:0000:0000:01E4:0000:0000:0000
-
-// player counter
-// player clock
-[21:58:45.757] TargetIcon 1B:_:_:0000:0000:01EE:0000:0000:0000
-
-// player clock
-[21:58:45.757] TargetIcon 1B:_:_:0000:0000:01ED:0000:0000:0000
-*/
 
 /*
 map effects
@@ -60,6 +30,13 @@ export interface Data extends RaidbossData {
   ketuCrystalAdd: NetMatches['AddedCombatant'][];
   ketuHydroBuffCount: number;
   ketuBuff?: 'bubble' | 'fetters';
+  lalaBossRotation?: 'clock' | 'counter';
+  lalaBossTimes?: 3 | 5;
+  lalaBossInitialSafe?: 'north' | 'east' | 'south' | 'west';
+  lalaUnseen?: 'front' | 'left' | 'right' | 'back';
+  lalaPlayerTimes?: 3 | 5;
+  lalaPlayerRotation?: 'clock' | 'counter';
+  lalaSubAlpha: NetMatches['GainsEffect'][];
 }
 
 // Horizontal crystals have a heading of 0, vertical crystals are -pi/2.
@@ -78,8 +55,45 @@ const triggerSet: TriggerSet<Data> = {
       ketuSpringCrystalCount: 0,
       ketuCrystalAdd: [],
       ketuHydroBuffCount: 0,
+      lalaSubAlpha: [],
     };
   },
+  timelineTriggers: [
+    {
+      id: 'AAI Lala Radiance',
+      regex: /^Radiance \d/,
+      beforeSeconds: 4,
+      alertText: (data, _matches, output) => {
+        // TODO: could figure out directions here and say "Point left at NW Orb"
+        const dir = data.lalaUnseen;
+        if (dir === undefined)
+          return output.orbGeneral!();
+        return {
+          front: output.orbDirFront!(),
+          back: output.orbDirBack!(),
+          left: output.orbDirLeft!(),
+          right: output.orbDirRight!(),
+        }[dir];
+      },
+      outputStrings: {
+        orbDirFront: {
+          en: 'Face Towards Orb',
+        },
+        orbDirBack: {
+          en: 'Face Away from Orb',
+        },
+        orbDirLeft: {
+          en: 'Point Left at Orb',
+        },
+        orbDirRight: {
+          en: 'Point Right at Orb',
+        },
+        orbGeneral: {
+          en: 'Point opening at Orb',
+        },
+      },
+    },
+  ],
   triggers: [
     // ---------------- first trash ----------------
     {
@@ -469,6 +483,357 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Kill Islekeeper!',
+        },
+      },
+    },
+    // ---------------- Lala ----------------
+    {
+      id: 'AAI Lala Inferno Theorem',
+      type: 'StartsUsing',
+      netRegex: { id: '88AE', source: 'Lala', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'AAI Lala Rotation Tracker',
+      type: 'HeadMarker',
+      netRegex: { id: ['01E4', '01E5'], target: 'Lala' },
+      run: (data, matches) => data.lalaBossRotation = matches.id === '01E4' ? 'clock' : 'counter',
+    },
+    {
+      id: 'AAI Lala Angular Addition Tracker',
+      type: 'Ability',
+      netRegex: { id: ['8889', '8D2E'], source: 'Lala' },
+      run: (data, matches) => data.lalaBossTimes = matches.id === '8889' ? 3 : 5,
+    },
+    {
+      id: 'AAI Lala Arcane Blight',
+      type: 'StartsUsing',
+      netRegex: { id: ['888B', '888C', '888D', '888E'], source: 'Lala' },
+      alertText: (data, matches, output) => {
+        const initialDir = {
+          '888B': 2, // initial back safe
+          '888C': 0, // initial front safe
+          '888D': 1, // initial right safe
+          '888E': 3, // initial left safe
+        }[matches.id];
+        if (initialDir === undefined)
+          return;
+        if (data.lalaBossTimes === undefined)
+          return;
+        if (data.lalaBossRotation === undefined)
+          return;
+        const rotationFactor = data.lalaBossRotation === 'clock' ? 1 : -1;
+        const finalDir = (initialDir + rotationFactor * data.lalaBossTimes + 8) % 4;
+
+        const diff = (finalDir - initialDir + 4) % 4;
+        if (diff !== 1 && diff !== 3)
+          return;
+        const rotateStr = diff === 1 ? output.dirClock!() : output.dirCounter!();
+        const dirStr = {
+          0: output.front!(),
+          1: output.right!(),
+          2: output.back!(),
+          3: output.left!(),
+        }[finalDir];
+
+        return output.text!({ rotate: rotateStr, dir: dirStr });
+      },
+      run: (data) => {
+        delete data.lalaBossTimes;
+        delete data.lalaBossRotation;
+      },
+      outputStrings: {
+        text: {
+          en: '${rotate} (${dir})',
+        },
+        front: {
+          en: 'in front',
+        },
+        back: {
+          en: 'get behind',
+        },
+        left: {
+          en: 'on left flank',
+        },
+        right: {
+          en: 'on right flank',
+        },
+        dirClock: {
+          en: 'Rotate Left',
+        },
+        dirCounter: {
+          en: 'Rotate Right',
+        },
+      },
+    },
+    {
+      id: 'AAI Lala Analysis Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E8E', 'E8F', 'E90', 'E91'] },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const effectMap: { [effectId: string]: typeof data.lalaUnseen } = {
+          'E8E': 'front',
+          'E8F': 'back',
+          'E90': 'right',
+          'E91': 'left',
+        } as const;
+        data.lalaUnseen = effectMap[matches.effectId];
+      },
+    },
+    {
+      id: 'AAI Lala Times Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: ['E89', 'ECE'] },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const effectMap: { [effectId: string]: typeof data.lalaPlayerTimes } = {
+          'E89': 3,
+          'ECE': 5,
+        } as const;
+        data.lalaPlayerTimes = effectMap[matches.effectId];
+      },
+    },
+    {
+      id: 'AAI Lala Player Rotation Collect',
+      type: 'HeadMarker',
+      netRegex: { id: ['01ED', '01EE'] },
+      condition: Conditions.targetIsYou(),
+      run: (data, matches) => {
+        const idMap: { [id: string]: typeof data.lalaPlayerRotation } = {
+          '01ED': 'counter',
+          '01EE': 'clock',
+        } as const;
+        data.lalaPlayerRotation = idMap[matches.id];
+      },
+    },
+    {
+      id: 'AAI Lala Targeted Light',
+      type: 'StartsUsing',
+      netRegex: { id: '8CDE', source: 'Lala', capture: false },
+      alertText: (data, _matches, output) => {
+        const initialUnseen = data.lalaUnseen;
+        if (initialUnseen === undefined)
+          return;
+
+        const initialDir = {
+          front: 0,
+          right: 1,
+          back: 2,
+          left: 3,
+        }[initialUnseen];
+
+        const rotation = data.lalaPlayerRotation;
+        if (rotation === undefined)
+          return;
+        const times = data.lalaPlayerTimes;
+        if (times === undefined)
+          return;
+
+        // The safe spot rotates, so the player counter-rotates.
+        const rotationFactor = rotation === 'clock' ? -1 : 1;
+        const finalDir = (initialDir + rotationFactor * times + 8) % 4;
+
+        return {
+          0: output.front!(),
+          1: output.right!(),
+          2: output.back!(),
+          3: output.left!(),
+        }[finalDir];
+      },
+      run: (data) => {
+        delete data.lalaUnseen;
+        delete data.lalaPlayerTimes;
+      },
+      outputStrings: {
+        front: {
+          en: 'Face Towards Lala',
+        },
+        back: {
+          en: 'Look Away from Lala',
+        },
+        left: {
+          en: 'Left Flank towards Lala',
+        },
+        right: {
+          en: 'Right Flank towards Lala',
+        },
+      },
+    },
+    {
+      id: 'AAI Lala Strategic Strike',
+      type: 'StartsUsing',
+      netRegex: { id: '88AD', source: 'Lala' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'AAI Lala Planar Tactics',
+      type: 'GainsEffect',
+      // E8B = Surge Vector
+      // E8C = Subtractive Suppressor Alpha
+      netRegex: { effectId: ['E8C', 'E8B'] },
+      condition: (data, matches) => {
+        data.lalaSubAlpha.push(matches);
+        return data.lalaSubAlpha.length === 6;
+      },
+      durationSeconds: 7,
+      // Only run once, as Surge Vector is used again.
+      suppressSeconds: 9999999,
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          one: {
+            en: 'One',
+          },
+          closeTwo: {
+            en: 'Close Two',
+          },
+          farTwo: {
+            en: 'Far Two',
+          },
+          eitherTwo: {
+            en: 'Either Two (w/${player})',
+          },
+          three: {
+            en: 'Three',
+          },
+          farTwoOn: {
+            en: '(far two on ${players})',
+          },
+
+          unknownNum: {
+            en: '${num}',
+          },
+          num1: Outputs.num1,
+          num2: Outputs.num2,
+          num3: Outputs.num3,
+          num4: Outputs.num4,
+        };
+
+        // Assumptions: "close two" and "three" stack+run together, while "far two" and "one"
+        // run towards each other and meet for the stack. Stacks COULD be on both/neither twos,
+        // which makes which two you are ambiguous.
+        const stacks = data.lalaSubAlpha.filter((x) => x.effectId === 'E8B').map((x) => x.target);
+        const nums = data.lalaSubAlpha.filter((x) => x.effectId === 'E8C');
+        const myNumberStr = nums.find((x) => x.target === data.me)?.count;
+        if (myNumberStr === undefined)
+          return;
+        const myNumber = parseInt(myNumberStr);
+        if (myNumber < 1 || myNumber > 4)
+          return;
+
+        const defaultOutput = {
+          alertText: output.unknownNum!({ num: output[`num${myNumber}`]!() }),
+        } as const;
+
+        if (stacks.length !== 2 || nums.length !== 4)
+          return defaultOutput;
+
+        const one = nums.find((x) => parseInt(x.count) === 1)?.target;
+        if (one === undefined)
+          return defaultOutput;
+        const isOneStack = stacks.includes(one);
+        const twos = nums.filter((x) => parseInt(x.count) === 2).map((x) => x.target);
+
+        const farTwos: string[] = [];
+        for (const thisTwo of twos) {
+          // can this two stack with the one?
+          const isThisTwoStack = stacks.includes(thisTwo);
+          if (isThisTwoStack && !isOneStack || !isThisTwoStack && isOneStack)
+            farTwos.push(thisTwo);
+        }
+
+        const [farTwo1, farTwo2] = farTwos;
+        if (farTwos.length === 0 || farTwo1 === undefined)
+          return defaultOutput;
+
+        const isPlayerFarTwo = farTwos.includes(data.me);
+
+        // Worst case adjust
+        if (isPlayerFarTwo && farTwo2 !== undefined) {
+          const otherPlayer = farTwo1 === data.me ? farTwo2 : farTwo1;
+          return { alarmText: output.eitherTwo!({ player: data.party.member(otherPlayer) }) };
+        }
+
+        let playerRole: string;
+        if (one === data.me) {
+          playerRole = output.one!();
+        } else if (twos.includes(data.me)) {
+          playerRole = isPlayerFarTwo ? output.farTwo!() : output.closeTwo!();
+        } else {
+          playerRole = output.three!();
+        }
+
+        if (isPlayerFarTwo)
+          return { alertText: playerRole };
+
+        return {
+          alertText: playerRole,
+          infoText: output.farTwoOn!({ players: farTwos.map((x) => data.party.member(x)) }),
+        };
+      },
+    },
+    {
+      id: 'AAI Lala Forward March',
+      type: 'GainsEffect',
+      // E83 = Forward March
+      netRegex: { effectId: 'E83' },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      durationSeconds: 4,
+      alertText: (data, _matches, output) => {
+        const rotation = data.lalaPlayerRotation;
+        if (rotation === undefined)
+          return;
+        const times = data.lalaPlayerTimes;
+        if (times === undefined)
+          return;
+
+        const rotationFactor = rotation === 'clock' ? 1 : -1;
+        const finalDir = (rotationFactor * times + 8) % 4;
+        if (finalDir === 1)
+          return output.right!();
+        if (finalDir === 3)
+          return output.left!();
+      },
+      run: (data) => {
+        delete data.lalaPlayerRotation;
+        delete data.lalaPlayerTimes;
+      },
+      outputStrings: {
+        // This isn't confusing at all.
+        left: {
+          en: 'Rotate Left (your right is forward)',
+        },
+        right: {
+          en: 'Rotate Right (your left is forward)',
+        },
+      },
+    },
+    {
+      id: 'AAI Lala Spatial Tactics',
+      type: 'GainsEffect',
+      // E8D = Subtractive Suppressor Beta
+      netRegex: { effectId: 'E8D' },
+      condition: Conditions.targetIsYou(),
+      alertText: (_data, matches, output) => {
+        const num = parseInt(matches.count);
+        if (num < 1 || num > 4)
+          return;
+        return output[`num${num}`]!();
+      },
+      outputStrings: {
+        num1: {
+          en: 'One (avoid all)',
+        },
+        num2: {
+          en: 'Two (stay middle)',
+        },
+        num3: {
+          en: 'Three (adjacent to middle)',
+        },
+        num4: {
+          en: 'Four',
         },
       },
     },
