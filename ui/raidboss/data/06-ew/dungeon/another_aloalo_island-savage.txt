@@ -312,7 +312,8 @@ hideall "--sync--"
 3312.1 "Trapshooting" sync / 1[56]:[^:]*:Statice:8976:/
 3316.1 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
 3323.3 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
-# ???
+3331.4 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3344.6 "Aero IV (Enrage)" sync / 1[56]:[^:]*:Statice:8C23:/
 
 # ALL ENCOUNTER ABILITIES
 # 8925 Locked and Loaded

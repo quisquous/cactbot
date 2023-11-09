@@ -705,6 +705,7 @@ const zoneReplace: ZoneReplace[] = [
       '8BC0': '8BC0',
       '8BC1': '8BD4',
       '8BC5': '8C3A',
+      '8C23': '8C23',
       '8C25': '8C25',
       '8C4D': '8BD3',
       '8C4E': '8C39',
