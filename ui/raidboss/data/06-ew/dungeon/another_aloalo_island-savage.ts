@@ -19,44 +19,44 @@ const ForceMoveStrings = {
   stack: Outputs.getTogether,
   spread: Outputs.spread,
   forward: {
-    en: 'Mindhack: Forward => ${aim}',
-    de: 'Geistlenkung: Vorwärts => ${aim}',
-    fr: 'Piratage mental : Vers l\'avant => ${aim}',
+    en: 'Face: Forward => ${aim}', // FIXME
+    de: 'Geistlenkung: Vorwärts => ${aim}', // FIXME
+    fr: 'Piratage mental : Vers l\'avant => ${aim}', // FIXME
     ja: '強制移動 : 前 => ${aim}',
     cn: '强制移动 : 前 => ${aim}',
     ko: '강제이동: 앞 => ${aim}',
   },
   backward: {
-    en: 'Mindhack: Back => ${aim}',
-    de: 'Geistlenkung: Rückwärts => ${aim}',
-    fr: 'Piratage mental : Vers l\'arrière => ${aim}',
+    en: 'Face: Back => ${aim}', // FIXME
+    de: 'Geistlenkung: Rückwärts => ${aim}', // FIXME
+    fr: 'Piratage mental : Vers l\'arrière => ${aim}', // FIXME
     ja: '強制移動 : 後ろ => ${aim}',
     cn: '强制移动 : 后 => ${aim}',
     ko: '강제이동: 뒤 => ${aim}',
   },
   left: {
-    en: 'Mindhack: Left => ${aim}',
-    de: 'Geistlenkung: Links => ${aim}',
-    fr: 'Piratage mental : Vers la gauche => ${aim}',
+    en: 'Face: Left => ${aim}', // FIXME
+    de: 'Geistlenkung: Links => ${aim}', // FIXME
+    fr: 'Piratage mental : Vers la gauche => ${aim}', // FIXME
     ja: '強制移動 : 左 => ${aim}',
     cn: '强制移动 : 左 => ${aim}',
     ko: '강제이동: 왼쪽 => ${aim}',
   },
   right: {
-    en: 'Mindhack: Right => ${aim}',
-    de: 'Geistlenkung: Rechts => ${aim}',
-    fr: 'Piratage mental : Vers la droite => ${aim}',
+    en: 'Face: Right => ${aim}', // FIXME
+    de: 'Geistlenkung: Rechts => ${aim}', // FIXME
+    fr: 'Piratage mental : Vers la droite => ${aim}', // FIXME
     ja: '強制移動 : 右 => ${aim}',
     cn: '强制移动 : 右 => ${aim}',
     ko: '강제이동: 오른쪽 => ${aim}',
   },
   move: {
-    en: 'Mindhack => ${aim}',
-    de: 'Geistlenkung => ${aim}',
+    en: 'Face => ${aim}', // FIXME
+    de: 'Geistlenkung => ${aim}', // FIXME
     fr: 'Piratage mental => ${aim}', // FIXME
     ja: '強制移動 => ${aim}',
-    cn: '强制移动 => ${aim}', // FIXME
-    ko: '강제이동 => ${aim}', // FIXME
+    cn: '强制移动 => ${aim}',
+    ko: '강제이동 => ${aim}',
   },
   safety: {
     en: 'Safe zone',
@@ -67,6 +67,8 @@ const ForceMoveStrings = {
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
+    flukeGaleType: 'spread' | 'pylene' | 'hamukatsu';
+    planarTacticsType: 'count' | 'poshiume' | 'hamukatsu';
   };
   combatantData: PluginCombatantState[];
   ketuCrystalAdd: NetMatches['AddedCombatant'][];
@@ -156,6 +158,38 @@ const forceMove = (
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherAloaloIslandSavage',
   zoneId: ZoneId.AnotherAloaloIslandSavage,
+  config: [
+    {
+      id: 'flukeGaleType',
+      name: {
+        en: 'Fluke Gale Strat',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Spread message': 'spread',
+          'Pylene': 'pylene',
+          'Hamukatsu North/South': 'hamukatsu',
+        },
+      },
+      default: 'spread',
+    },
+    {
+      id: 'planarTacticsType',
+      name: {
+        en: 'Planar Tactics Strat',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Count only': 'count',
+          'Poshiume': 'poshiume',
+          'Hamukatsu': 'hamukatsu',
+        },
+      },
+      default: 'count',
+    },
+  ],
   timelineFile: 'another_aloalo_island-savage.txt',
   initData: () => {
     return {
@@ -321,7 +355,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バブル',
         },
         bind: {
-          en: 'Bind',
+          en: 'Fetters',
           ja: 'バインド',
         },
       },
@@ -358,25 +392,52 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       // Pylene Strat: https://twitter.com/ff14_pylene99/status/1719665676745650610
+      // Hamukatu Nanboku Strat: https://ffxiv.link/0102424
       id: 'AAIS Ketuduke Fluke Gale',
       type: 'Ability',
       netRegex: { id: '8AB1', source: 'Ketuduke', capture: false },
       durationSeconds: 8,
       alertText: (data, _matches, output) => {
         data.isStackFirst = isStackFirst(data.ketuHydroStack, data.ketuHydroSpread);
-        if (data.ketuMyBubbleFetters !== 'E9F' && !data.isStackFirst)
-          return output.go2!();
-        return output.go1!();
+
+        if (data.triggerSetConfig.flukeGaleType === 'spread')
+          return output.goSafeTile!();
+
+        if (data.triggerSetConfig.flukeGaleType === 'pylene') {
+          if (data.ketuMyBubbleFetters !== 'E9F' && !data.isStackFirst)
+            return output.pylene2!();
+          return output.pylene1!();
+        }
+
+        if (data.triggerSetConfig.flukeGaleType === 'hamukatsu') {
+          if (data.ketuMyBubbleFetters === 'E9F')
+            return output.hamukatsu2!();
+          if (data.isStackFirst)
+            return output.hamukatsu1!();
+          return output.hamukatsu2!();
+        }
       },
       run: (data) => delete data.ketuMyBubbleFetters,
       outputStrings: {
-        go1: {
+        pylene1: {
           en: 'Go to 1 area',
           ja: '第1区域へ',
         },
-        go2: {
+        pylene2: {
           en: 'Go to 2 area',
           ja: '第2区域へ',
+        },
+        hamukatsu1: {
+          en: 'Go to 1 area safe tile',
+          ja: '第1区域の安置マスへ',
+        },
+        hamukatsu2: {
+          en: 'Go to 2 area safe tile',
+          ja: '第2区域の安置マスへ',
+        },
+        goSafeTile: {
+          en: 'Go to safe tile',
+          ja: '安置マスへ',
         },
       },
     },
@@ -535,7 +596,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散会 (バブル: ${player})',
         },
         bind: {
-          en: 'Spread (Bind w/ ${player})',
+          en: 'Spread (Fetters w/ ${player})',
           ja: '散会 (バインド: ${player})',
         },
         spread: Outputs.spread,
@@ -655,11 +716,11 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         itsme: {
-          en: 'Gravity on YOU',
+          en: 'Stack on YOU',
           ja: '自分にグラビデフォース',
         },
         text: {
-          en: 'Gravity on ${player}',
+          en: 'Stack on ${player}',
           ja: 'グラビデフォース: ${player}',
         },
       },
@@ -797,7 +858,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AAIS Lala Targeted Light!',
+      id: 'AAIS Lala Targeted Light',
       type: 'StartsUsing',
       netRegex: { id: '8CE1', source: 'Lala' },
       condition: Conditions.targetIsYou(),
@@ -876,6 +937,8 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'E8B', source: 'Lala' },
       run: (data, matches) => data.gainList.push(matches),
     },
+    // Poshiume Strat: https://twitter.com/posiumesan/status/1719545249302008122
+    // Hamukatsu Strat: https://youtu.be/QqLg3DXxCVA?t=298
     {
       id: 'AAIS Lala Planar Tactics',
       type: 'Ability',
@@ -885,14 +948,126 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (data, _matches, output) => {
         if (data.lalaSubtractive === undefined)
           return;
-        return output.text!({ num: data.lalaSubtractive });
+
+        if (data.triggerSetConfig.planarTacticsType === 'count')
+          return output.count!({ num: data.lalaSubtractive });
+
+        if (data.triggerSetConfig.planarTacticsType === 'poshiume') {
+          const mysub = data.lalaSubtractive;
+          const list = data.gainList;
+
+          const [s1, s2] = list.filter((x) => x.effectId === 'E8B').map((x) => x.target);
+          let issame;
+          if (s1 === undefined || s2 === undefined)
+            issame = false;
+          else {
+            const dps1 = data.party.isDPS(s1);
+            const dps2 = data.party.isDPS(s2);
+            issame = (dps1 && dps2) || (!dps1 && !dps2);
+          }
+
+          if (mysub === 1)
+            return issame ? output.poshiume1in!() : output.poshiume1out!();
+          if (mysub === 2)
+            return issame ? output.poshiume2out!() : output.poshiume2in!();
+          if (mysub === 3)
+            return issame ? output.poshiume3right!() : output.poshiume3left!();
+        }
+
+        if (data.triggerSetConfig.planarTacticsType === 'hamukatsu') {
+          const mysub = data.lalaSubtractive;
+          const list = data.gainList;
+
+          if (mysub === 1)
+            return output.hamukatsu1!();
+          if (mysub === 3)
+            return output.hamukatsu3!();
+
+          const mym = data.party.member(data.me);
+          const [ptm] = list.filter((x) => x.target !== data.me && parseInt(x.count) === 2)
+            .map((x) => data.party.member(x.target));
+          if (mym === undefined || ptm === undefined)
+            return output.hamukatsu2!();
+          const [s1, s2] = list.filter((x) => x.effectId === 'E8B').map((x) => x.target);
+          if (s1 === undefined || s2 === undefined)
+            return output.hamukatsu2!();
+
+          if (s1 === data.me || s2 === data.me) {
+            const other = s1 === data.me ? s2 : s1;
+            const [surge] = list.filter((x) => x.target === other && parseInt(x.count) > 0);
+            if (surge === undefined)
+              return output.hamukatsu2!();
+            const count = parseInt(surge.count);
+            if (count === 1)
+              return output.hamukatsu2left!();
+            if (count === 3)
+              return output.hamukatsu2right!();
+          } else if (s1 === ptm.name || s2 === ptm.name) {
+            const other = s1 === ptm.name ? s2 : s1;
+            const [surge] = list.filter((x) => x.target === other && parseInt(x.count) > 0);
+            if (surge === undefined)
+              return output.hamukatsu2!();
+            const count = parseInt(surge.count);
+            if (count === 1)
+              return output.hamukatsu2right!();
+            if (count === 3)
+              return output.hamukatsu2left!();
+          }
+
+          return output.hamukatsu2!();
+        }
       },
       run: (data) => data.gainList = [],
       outputStrings: {
-        text: {
+        count: {
           en: '${num}',
           ja: 'カウント: ${num}',
         },
+        poshiume1out: {
+          en: '1 Outside',
+          ja: '1外、3とペア',
+        },
+        poshiume1in: {
+          en: '1 Inside',
+          ja: '1内、2とペア',
+        },
+        poshiume2out: {
+          en: '2 Outside',
+          ja: '2外、1・3とペア',
+        },
+        poshiume2in: {
+          en: '2 Inside',
+          ja: '2内、2とペア',
+        },
+        poshiume3left: {
+          en: '3 Left',
+          ja: '3左から、1とペア',
+        },
+        poshiume3right: {
+          en: '3 Right',
+          ja: '3右から、2とペア',
+        },
+        hamukatsu1: {
+          en: '1',
+          ja: '1、2とペア',
+        },
+        hamukatsu2: {
+          en: '2',
+          ja: '2、1・3とペア',
+        },
+        hamukatsu2left: {
+          en: '2 Left',
+          ja: '2左、3とペア',
+        },
+        hamukatsu2right: {
+          en: '2 Right',
+          ja: '2右、1とペア',
+        },
+        hamukatsu3: {
+          en: '3',
+          ja: '3、2とペア',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -930,41 +1105,41 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Mindhack',
-          de: 'Geistlenkung',
+          en: 'Face', // FIXME
+          de: 'Geistlenkung', // FIXME
           fr: 'Piratage mental', // FIXME
           ja: '強制移動',
-          cn: '强制移动', // FIXME
-          ko: '강제이동', // FIXME
+          cn: '强制移动',
+          ko: '강제이동',
         },
         front: {
-          en: 'Mindhack: Forward',
-          de: 'Geistlenkung: Vorwärts',
-          fr: 'Piratage mental : Vers l\'avant',
+          en: 'Face: Forward', // FIXME
+          de: 'Geistlenkung: Vorwärts', // FIXME
+          fr: 'Piratage mental : Vers l\'avant', // FIXME
           ja: '強制移動 : 前',
           cn: '强制移动 : 前',
           ko: '강제이동: 앞',
         },
         back: {
-          en: 'Mindhack: Back',
-          de: 'Geistlenkung: Rückwärts',
-          fr: 'Piratage mental : Vers l\'arrière',
+          en: 'Face: Back', // FIXME
+          de: 'Geistlenkung: Rückwärts', // FIXME
+          fr: 'Piratage mental : Vers l\'arrière', // FIXME
           ja: '強制移動 : 後ろ',
           cn: '强制移动 : 后',
           ko: '강제이동: 뒤',
         },
         left: {
-          en: 'Mindhack: Left',
-          de: 'Geistlenkung: Links',
-          fr: 'Piratage mental : Vers la gauche',
+          en: 'Face: Left', // FIXME
+          de: 'Geistlenkung: Links', // FIXME
+          fr: 'Piratage mental : Vers la gauche', // FIXME
           ja: '強制移動 : 左',
           cn: '强制移动 : 左',
           ko: '강제이동: 왼쪽',
         },
         right: {
-          en: 'Mindhack: Right',
-          de: 'Geistlenkung: Rechts',
-          fr: 'Piratage mental : Vers la droite',
+          en: 'Face: Right', // FIXME
+          de: 'Geistlenkung: Rechts', // FIXME
+          fr: 'Piratage mental : Vers la droite', // FIXME
           ja: '強制移動 : 右',
           cn: '强制移动 : 右',
           ko: '강제이동: 오른쪽',
@@ -1025,7 +1200,7 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.gainList = [],
     },
     {
-      id: 'AAIS Lala Arcane Plot Spread',
+      id: 'AAIS Lala Arcane Point Spread',
       type: 'GainsEffect',
       netRegex: { effectId: 'B7D', source: 'Lala' },
       condition: (data, matches) =>
