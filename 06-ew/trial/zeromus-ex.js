@@ -66,6 +66,7 @@ Options.Triggers.push({
         text: {
           en: 'Heal to full',
           de: 'Voll heilen',
+          fr: 'Soin complet',
           cn: '奶满全队',
           ko: '체력 풀피로',
         },
@@ -86,12 +87,14 @@ Options.Triggers.push({
         lineStackOn: {
           en: '${num}x line stack on ${player}',
           de: '${num}x in einer Linie sammeln mit ${player}',
+          fr: 'Package en ligne ${num}x sur ${player}',
           cn: '${num}x 直线分摊 (${player})',
           ko: '${num}x 직선 쉐어 (${player})',
         },
         lineStackOnYou: {
           en: '${num}x line stack on YOU',
           de: '${num}x in einer Linie sammeln mit DIR',
+          fr: 'Package en ligne ${num}x sur VOUS',
           cn: '${num}x 直线分摊点名',
           ko: '${num}x 직선 쉐어 대상자',
         },
@@ -142,6 +145,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
@@ -160,6 +164,7 @@ Options.Triggers.push({
         text: {
           en: '${dir1} / ${dir2}',
           de: '${dir1} / ${dir2}',
+          fr: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
         },
@@ -246,42 +251,49 @@ Options.Triggers.push({
         avoidUnknown: {
           en: 'Avoid Line Cleaves',
           de: 'Weiche den Linien Cleaves aus',
+          fr: 'Évitez les cleaves en ligne',
           cn: '远离十字AOE',
           ko: '직선 장판 피하기',
         },
         dirNNE: {
           en: 'North Wall (NNE/WSW)',
           de: 'Nördliche Wand (NNO/WSW)',
+          fr: 'Mur Nord (NNE/OSO)',
           cn: '右上前方/左下侧边',
           ko: '1시/8시',
         },
         dirNNW: {
           en: 'North Wall (NNW/ESE)',
           de: 'Nördliche Wand (NNW/OSO)',
+          fr: 'Mur Nord (NNO/ESE)',
           cn: '左上前方/右下侧边',
           ko: '11시/4시',
         },
         dirNE: {
           en: 'Corners (NE/SW)',
           de: 'Ecken (NO/SW)',
+          fr: 'Coins (NE/SO)',
           cn: '右上/左下角落',
           ko: '구석 (북동/남서)',
         },
         dirNW: {
           en: 'Corners (NW/SE)',
           de: 'Ecken (NW/SO)',
+          fr: 'Coins (NO/SE)',
           cn: '左上/右下角落',
           ko: '구석 (북서/남동)',
         },
         dirENE: {
           en: 'East Wall (ENE/SSW)',
           de: 'Östliche Wand (ONO/SSW)',
+          fr: 'Mur Est (ENE/SSO)',
           cn: '右上侧边/左下后方',
           ko: '2시/7시',
         },
         dirWNW: {
           en: 'West Wall (WNW/SSE)',
           de: 'Westliche Wand (WNW/SSO)',
+          fr: 'Mur Ouest (ONO/SSE)',
           cn: '左上侧边/右下后方',
           ko: '10시/5시',
         },
@@ -308,6 +320,7 @@ Options.Triggers.push({
         forkedLightning: {
           en: 'Spread (forked lightning)',
           de: 'Verteilen (Gabelblitz)',
+          fr: 'Écartez-vous (Éclair ramifié)',
           cn: '分散（闪电点名）',
           ko: '산개',
         },
@@ -365,6 +378,7 @@ Options.Triggers.push({
         text: {
           en: 'Group middle for tethers',
           de: 'Gruppe in die Mitte für Verbindungen',
+          fr: 'Groupe au centre pour les liens',
           cn: '集合等待连线',
           ko: '중앙에 모여서 사슬 연결 기다리기',
         },
@@ -384,6 +398,7 @@ Options.Triggers.push({
         breakTether: {
           en: 'Break tether (w/ ${partner})',
           de: 'Verbindung brechen (mit ${partner})',
+          fr: 'Cassez le lien (avec ${partner})',
           ja: '線切る (${partner})',
           cn: '拉断连线 (和 ${partner})',
           ko: '선 끊기 (+ ${partner})',
@@ -411,6 +426,7 @@ Options.Triggers.push({
         blackHole: {
           en: 'East Black Hole on Wall',
           de: 'Schwarzes Loch an die östliche Wand',
+          fr: 'Trou noir Est sur Mur',
           cn: '右上放置黑洞',
           ko: '오른쪽 구석에 블랙홀 놓기',
         },
@@ -431,6 +447,7 @@ Options.Triggers.push({
         blackHole: {
           en: 'West Black Hole on Wall',
           de: 'Schwarzes Loch an die westliche Wand',
+          fr: 'Trou noir Ouest sur Mur',
           cn: '左上放置黑洞',
           ko: '왼쪽 구석에 블랙홀 놓기',
         },
@@ -453,6 +470,7 @@ Options.Triggers.push({
         text: {
           en: 'Get Towers => Spread',
           de: 'Türme nehmen => Verteilen',
+          fr: 'Prenez les tours -> Écartez-vous',
           cn: '踩塔 => 分散',
           ko: '기둥 밟기 => 산개',
         },
@@ -469,6 +487,7 @@ Options.Triggers.push({
         text: {
           en: 'Get Towers => Partner Stacks',
           de: 'Türme nehmen => mit Partner sammeln',
+          fr: 'Prenez les tours -> Partenaires',
           cn: '踩塔 => 分摊',
           ko: '기둥 밟기 => 2인 쉐어',
         },
@@ -492,12 +511,14 @@ Options.Triggers.push({
         stackWithNox: {
           en: 'Partner Stack + Chasing Nox',
           de: 'Mit Partner Sammeln + verfolgendes Nox',
+          fr: 'Package partenaires + Nox',
           cn: '分摊 + 步进点名',
           ko: '2인 쉐어 + 따라오는 장판',
         },
         spreadWithNox: {
           en: 'Spread + Chasing Nox',
           de: 'Verteilen + verfolgendes Nox',
+          fr: 'Écartez-vous + Nox',
           cn: '分散 + 步进点名',
           ko: '산개 + 따라오는 장판',
         },
@@ -521,12 +542,14 @@ Options.Triggers.push({
         stack: {
           en: 'Partner Stack',
           de: 'mit Partner sammeln',
+          fr: 'Package avec partenaire',
           cn: '分摊',
           ko: '2인 쉐어',
         },
         spread: {
           en: 'Spread',
           de: 'Verteilen',
+          fr: 'Écartez-vous',
           cn: '分散',
           ko: '산개',
         },
@@ -569,18 +592,21 @@ Options.Triggers.push({
         north: {
           en: 'Out of North',
           de: 'Weg vom Norden',
+          fr: 'En dehors du Nord',
           cn: '远离北边',
           ko: '북쪽 피하기',
         },
         middle: {
           en: 'Out of Middle',
           de: 'Weg von der Mitte',
+          fr: 'En dehors du milieu',
           cn: '远离中间',
           ko: '중앙 피하기',
         },
         south: {
           en: 'Out of South',
           de: 'Weg vom Süden',
+          fr: 'En dehors du Sud',
           cn: '远离南边',
           ko: '남쪽 피하기',
         },
@@ -602,18 +628,21 @@ Options.Triggers.push({
         northSpread: {
           en: 'Spread Middle/South',
           de: 'Verteilen Mitte/Süden',
+          fr: 'Écartez-vous Milieu/Sud',
           cn: '中间/南边 分散',
           ko: '중앙/남쪽으로 산개',
         },
         middleSpread: {
           en: 'Spread North/South',
           de: 'Verteilen Norden/Süden',
+          fr: 'Écartez-vous Nord/Sud',
           cn: '北边/南边 分散',
           ko: '북쪽/남쪽으로 산개',
         },
         southSpread: {
           en: 'Spread North/Middle',
           de: 'Verteilen Norden/Mitte',
+          fr: 'Écartez-vous Nord/Milieu',
           cn: '北边/中间 分散',
           ko: '북쪽/중앙으로 산개',
         },
@@ -649,18 +678,21 @@ Options.Triggers.push({
         northEnumeration: {
           en: 'Enumeration Middle/South',
           de: 'Enumeration Mitte/Süden',
+          fr: 'Énumération Milieu/Sud',
           cn: '中间/南边 蓝圈分摊',
           ko: '2인 장판 중앙/남쪽',
         },
         middleEnumeration: {
           en: 'Enumeration North/South',
           de: 'Enumeration Norden/Süden',
+          fr: 'Énumération Nord/Sud',
           cn: '北边/南边 蓝圈分摊',
           ko: '2인 장판 북쪽/남쪽',
         },
         southEnumeration: {
           en: 'Enumeration North/Middle',
           de: 'Enumeration Norden/Mitte',
+          fr: 'Énumération Nord/Milieu',
           cn: '北边/中间 蓝圈分摊',
           ko: '2인 장판 북쪽/중앙',
         },
@@ -682,18 +714,21 @@ Options.Triggers.push({
         northStack: {
           en: 'Stack Middle',
           de: 'Mittig sammeln',
+          fr: 'Packez-vous au milieu',
           cn: '中间分摊',
           ko: '중앙에서 쉐어',
         },
         middleStack: {
           en: 'Stack North',
           de: 'Nördlich sammeln',
+          fr: 'Packez-vous au Nord',
           cn: '北边分摊',
           ko: '북쪽에서 쉐어',
         },
         southStack: {
           en: 'Stack North/Middle',
           de: 'Nördlich/Mittig sammeln',
+          fr: 'Packez-vous au Nord/milieu',
           cn: '北边/中间 分摊',
           ko: '북쪽/중앙에서 쉐어',
         },
