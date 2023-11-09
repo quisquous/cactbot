@@ -128,12 +128,14 @@ const triggerSet: TriggerSet<Data> = {
         inThenSpread: {
           en: 'In => Spread',
           de: 'Rein => Verteilen',
+          fr: 'Intérieur -> Écartez-vous',
           cn: '靠近 => 分散',
           ko: '안으로 => 산개',
         },
         inAndHealerGroups: {
           en: 'In => Healer Groups',
           de: 'Rein => Heiler Gruppen',
+          fr: 'Intérieur -> Groupes sur les heals',
           cn: '靠近 => 治疗分组分摊',
           ko: '안으로 => 힐러 그룹 쉐어',
         },
@@ -150,6 +152,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread Out',
           de: 'Außen Verteilen',
+          fr: 'Écartez-vous',
           cn: '分散',
           ko: '산개',
         },
@@ -179,12 +182,14 @@ const triggerSet: TriggerSet<Data> = {
         wallAndHealerGroups: {
           en: 'Wall + Healer Groups',
           de: 'Wand + Heiler Gruppen',
+          fr: 'Mur + Groupes sur les heals',
           cn: '去场边 + 治疗分组分摊',
           ko: '벽으로 + 힐러 그룹 쉐어',
         },
         wallThenSpread: {
           en: 'Wall => Spread',
           de: 'Wand => Verteilen',
+          fr: 'Mur -> Écartez-vous',
           cn: '去场边 => 分散',
           ko: '벽으로 => 산개',
         },
@@ -201,6 +206,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Spread Out',
           de: 'Außen Verteilen',
+          fr: 'Écartez-vous',
           cn: '分散',
           ko: '산개',
         },
@@ -265,6 +271,7 @@ const triggerSet: TriggerSet<Data> = {
         protean: {
           en: 'Protean Spread',
           de: 'in Himmelsrichtungen verteilen',
+          fr: 'Positions écartées',
           cn: '八方分散',
           ko: '8방향 산개',
         },
@@ -326,6 +333,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Out + Spread',
           de: 'Raus + Verteilen',
+          fr: 'Extérieur + Écartez-vous',
           cn: '远离 => 分散',
           ko: '밖으로 + 산개',
         },
@@ -489,6 +497,7 @@ const triggerSet: TriggerSet<Data> = {
         stackMiddle: {
           en: 'Bait Middle',
           de: 'Mitte ködern',
+          fr: 'Attirez au milieu',
           cn: '中间诱导',
           ko: '중앙에 유도하기',
         },

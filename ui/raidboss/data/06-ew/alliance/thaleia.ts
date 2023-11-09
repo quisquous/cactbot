@@ -52,6 +52,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Puddle on YOU',
           de: 'Fläche auf DIR',
+          fr: 'Flaque sur VOUS',
           ja: '自分にAOE',
         },
       },
@@ -101,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Bait puddles',
           de: 'Flächen ködern',
+          fr: 'Déposez les flaques',
           ja: 'AOE回避',
         },
       },
@@ -121,6 +123,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Look for knockback position',
           de: 'Nach Rückstoß Position schauen',
+          fr: 'Repérez la zone de poussée',
           ja: 'ノックバック位置へ',
         },
       },
@@ -134,6 +137,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback + Rolling stones',
           de: 'Rückstoß + rollende Steine',
+          fr: 'Poussée + Rocher',
           ja: 'ノックバック + 石AOE',
         },
       },
@@ -147,6 +151,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to safe zone',
           de: 'Geh zum sichere Feld',
+          fr: 'Allez dans une zone sûre',
           ja: '安置へ移動',
         },
       },
@@ -178,6 +183,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback',
           de: 'Rückstoß',
+          fr: 'Poussée',
           ja: 'まもなくノックバック',
         },
       },
@@ -191,6 +197,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Far knockback',
           de: 'Weiter Rückstoß',
+          fr: 'Poussée au loin',
           ja: '遠くノックバック',
         },
       },
@@ -223,6 +230,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Last trident => 1st trident',
           de: 'Letzer Dreizack => erster Dreizack',
+          fr: 'Dernier trident -> 1er trident',
           ja: '最後の槍 => 1番目の槍へ',
         },
       },
@@ -248,6 +256,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to side of the arrow (Boss doesn\'t move)',
           de: 'Geh seitlich des Pfeils (Boss bewegt sich nicht)',
+          fr: 'Allez sur les côtés de la flèche (le boss ne bouge pas)',
           ja: '矢印の横へ (ボスは動かない)',
         },
       },
@@ -265,11 +274,13 @@ const triggerSet: TriggerSet<Data> = {
         one: {
           en: 'Go to side of the arrow',
           de: 'Geh seitlich des Pfeils',
+          fr: 'Allez sur les côtés de la flèche',
           ja: '矢印の横へ',
         },
         two: {
           en: 'Corner between two arrows',
           de: 'Ecke zwichen 2 Pfeilen',
+          fr: 'Coin entre les 2 flèches',
           ja: '2つの矢印の隅',
         },
       },
@@ -305,6 +316,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback to safe corner',
           de: 'Rückstoß in die sichere Ecke',
+          fr: 'Poussée vers un coin sûr',
           ja: 'AOEがないどころへ + ノックバック',
         },
       },
@@ -318,6 +330,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Oschon second phase',
           de: 'Oschon zweite Phase',
+          fr: 'Oshon : deuxième phase',
           ja: 'すぐ大きくなる',
         },
       },
@@ -331,6 +344,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to safe zone',
           de: 'Geh in den sicheren Bereich',
+          fr: 'Allez dans une zone sûre',
           ja: '安置で待機',
         },
       },
@@ -344,6 +358,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Far from Orb',
           de: 'Weit weg vom Orb',
+          fr: 'Loin de l\'orbe',
           ja: '玉からはなれて',
         },
       },
@@ -357,6 +372,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Far from Orb + Knockback',
           de: 'Weit weg vom Orb + Rückstoß',
+          fr: 'Loin de l\'orbe + Poussée',
           ja: '玉からはなれて + ノックバック',
         },
       },
@@ -386,6 +402,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '${form1} => ${form2} => ${form3}',
           de: '${form1} => ${form2} => ${form3}',
+          fr: '${form1} => ${form2} => ${form3}',
         },
         left: Outputs.left,
         right: Outputs.right,
@@ -415,6 +432,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Start from the bright moon',
           de: 'Starte vom hellen Mond',
+          fr: 'Commencez depuis la lune pleine',
           ja: '明るい月から',
         },
       },
@@ -429,6 +447,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: '3 => 1 => 2',
           de: '3 => 1 => 2',
+          fr: '3 -> 1 -> 2',
           ja: '3 => 1 => 2',
         },
       },
@@ -443,6 +462,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go to safe zone',
           de: 'Geh in den sicheren Bereich',
+          fr: 'Allez dans une zone sûre',
           ja: '安置へ移動',
         },
       },
@@ -489,6 +509,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Last trident => 1st trident',
           de: 'Letzer Dreizack => erster Dreizack',
+          fr: 'Dernier trident -> 1er trident',
           ja: '最後の槍 => 1番目の槍へ',
         },
       },
@@ -547,11 +568,13 @@ const triggerSet: TriggerSet<Data> = {
         red: {
           en: 'Blue is safe',
           de: 'Blau ist sicher',
+          fr: 'Bleu est sûr',
           ja: '青安置',
         },
         blue: {
           en: 'Red is safe',
           de: 'Rot ist sicher',
+          fr: 'Rouge est sûr',
           ja: '赤安置',
         },
       },
@@ -565,6 +588,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback to safe corner',
           de: 'Rückstoß in die sichere Ecke',
+          fr: 'Poussée dans un coin sûr',
           ja: '安置へノックバック',
         },
       },
