@@ -198,7 +198,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         }
 
         const owner = owners[0];
-        const ownerNick = data.ShortName(owner);
+        const ownerNick = data.party.member(owner).toString();
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
@@ -255,7 +255,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
       mistake: (data, matches) => {
-        const pillarOwner = data.ShortName(data.pillarIdToOwner?.[matches.sourceId]);
+        const pillarOwner = data.party.member(data.pillarIdToOwner?.[matches.sourceId]).toString();
         return {
           type: 'fail',
           blame: matches.target,
@@ -330,7 +330,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const hasFireDebuff = data.fire && data.fire[matches.target];
 
         if (hasSmallLion || hasFireDebuff) {
-          const ownerNick = data.ShortName(owner);
+          const ownerNick = data.party.member(owner).toString();
 
           const centerY = -75;
           const x = parseFloat(matches.x);
