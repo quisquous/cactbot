@@ -89,7 +89,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // unnamed damage from being hit by Rofocale driving in circles during add phase
       id: 'Rabanastre Rofocale Chariot Ring',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '268C', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '268C', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
           type: 'fail',

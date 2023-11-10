@@ -92,7 +92,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // 332E = Pile Pitch stack
       // 333E = Electric Slide (Omega-M square 1-4 dashes)
       // 333F = Electric Slide (Omega-F triangle 1-4 dashes)
-      netRegex: NetRegexes.abilityFull({ id: ['332E', '333E', '333F'], ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: ['332E', '333E', '333F'], ...playerDamageFields }),
       condition: (data, matches) => data.vuln && data.vuln[matches.target],
       mistake: (_data, matches) => {
         return {

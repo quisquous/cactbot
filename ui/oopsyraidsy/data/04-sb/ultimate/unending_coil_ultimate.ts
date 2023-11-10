@@ -24,7 +24,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Instant death has a special flag value, differentiating
       // from the explosion damage you take when somebody else
       // pops one.
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: '26AB',
         ...playerDamageFields,
         flags: kFlagInstantDeath,
@@ -48,7 +48,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'UCU Thermionic Burst',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '26B9', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '26B9', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -68,7 +68,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'UCU Chain Lightning',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '26C8', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '26C8', ...playerDamageFields }),
       mistake: (_data, matches) => {
         // It's hard to assign blame for lightning.  The debuffs
         // go out and then explode in order, but the attacker is

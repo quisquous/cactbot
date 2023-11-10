@@ -49,6 +49,7 @@ describe('netregex tests', () => {
     assert.equal(matches?.z, '0');
     assert.equal(matches?.heading, '-3.057414');
 
+    /* eslint-disable-next-line deprecation/deprecation */
     assert.equal(NetRegexes.ability().source, NetRegexes.abilityFull().source);
   });
   it('networkDoT', () => {
@@ -105,6 +106,7 @@ describe('netregex tests', () => {
       '03|2020-02-25T00:56:34.2610000-08:00|4000d2dc|Eos|0|50|10696f5f|0||1398|1008|96534|96534|10000|0|0|0|101.266|114.659|0|-4.792213E-05||b7fe3042f22622325af486c0f9c7438b',
     ] as const;
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.addedCombatant(params), lines);
+    /* eslint-disable-next-line deprecation/deprecation */
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.addedCombatantFull(params), lines);
 
     let matches = lines[0].match(NetRegexes.addedCombatant())?.groups;
@@ -112,7 +114,7 @@ describe('netregex tests', () => {
     assert.equal(matches?.id, '1059c805');
     assert.equal(matches?.name, 'Potato Chippy');
 
-    matches = lines[0].match(NetRegexes.addedCombatantFull())?.groups;
+    matches = lines[0].match(NetRegexes.addedCombatant())?.groups;
     assert.equal(matches?.type, '03');
     assert.equal(matches?.id, '1059c805');
     assert.equal(matches?.name, 'Potato Chippy');
@@ -127,7 +129,7 @@ describe('netregex tests', () => {
     assert.equal(matches?.z, '18.00033');
     assert.equal(matches?.heading, '2.118315');
 
-    matches = lines[1].match(NetRegexes.addedCombatantFull())?.groups;
+    matches = lines[1].match(NetRegexes.addedCombatant())?.groups;
     assert.equal(matches?.type, '03');
     assert.equal(matches?.name, 'Earthen Aether');
     assert.equal(matches?.npcNameId, '9321');

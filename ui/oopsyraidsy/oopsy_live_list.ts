@@ -348,6 +348,8 @@ export class OopsyLiveList implements MistakeObserver {
       el.value = str;
       document.body.appendChild(el);
       el.select();
+      // TODO: fix me
+      /* eslint-disable-next-line deprecation/deprecation */
       document.execCommand('copy');
       document.body.removeChild(el);
 

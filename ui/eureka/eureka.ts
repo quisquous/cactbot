@@ -402,7 +402,7 @@ class EurekaTracker {
 
     if (this.zoneInfo.fairy) {
       const fairyName = this.TransByParserLang(this.zoneInfo.fairy);
-      this.fairyRegex = NetRegexes.addedCombatantFull({ name: fairyName });
+      this.fairyRegex = NetRegexes.addedCombatant({ name: fairyName });
     }
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');

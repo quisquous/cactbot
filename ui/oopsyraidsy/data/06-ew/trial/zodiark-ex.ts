@@ -31,7 +31,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'ZodiarkEx Algedon Push',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '67EE', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '67EE', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

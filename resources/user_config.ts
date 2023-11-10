@@ -277,11 +277,14 @@ class UserConfig {
       // If options files want to override it, they can for testing.
 
       // Backward compatibility (language is now separated to three types.)
+      /* eslint-disable deprecation/deprecation */
       if (e.detail.language) {
         options.ParserLanguage = e.detail.language;
         options.ShortLocale = e.detail.language;
         options.DisplayLanguage = e.detail.language;
       }
+      /* eslint-enable deprecation/deprecation */
+
       // Parser Language
       if (e.detail.parserLanguage) {
         options.ParserLanguage = e.detail.parserLanguage;

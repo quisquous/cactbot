@@ -199,8 +199,8 @@ class Radar {
   private lang: Lang;
   private nameToHuntEntry: HuntMap;
   private regexes: {
-    abilityFull: CactbotBaseRegExp<'Ability'>;
-    addedCombatantFull: CactbotBaseRegExp<'AddedCombatant'>;
+    ability: CactbotBaseRegExp<'Ability'>;
+    addedCombatant: CactbotBaseRegExp<'AddedCombatant'>;
     instanceChanged: CactbotBaseRegExp<'GameLog'>;
     wasDefeated: CactbotBaseRegExp<'WasDefeated'>;
   };
@@ -213,8 +213,8 @@ class Radar {
     this.lang = this.options.ParserLanguage ?? 'en';
     this.nameToHuntEntry = {};
     this.regexes = {
-      abilityFull: NetRegexes.abilityFull(),
-      addedCombatantFull: NetRegexes.addedCombatantFull(),
+      ability: NetRegexes.ability(),
+      addedCombatant: NetRegexes.addedCombatant(),
       instanceChanged: instanceChangedRegexes[this.options.ParserLanguage],
       wasDefeated: NetRegexes.wasDefeated(),
     };
@@ -426,7 +426,7 @@ class Radar {
 
     // added new combatant
     if (type === '03') {
-      const m = this.regexes.addedCombatantFull.exec(log);
+      const m = this.regexes.addedCombatant.exec(log);
       const matches = m?.groups;
       if (!matches)
         return;
@@ -441,7 +441,7 @@ class Radar {
 
     // network ability
     if (type === '21' || type === '22') {
-      const m = this.regexes.abilityFull.exec(log);
+      const m = this.regexes.ability.exec(log);
       const matches = m?.groups;
       if (!matches)
         return;

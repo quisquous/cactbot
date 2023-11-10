@@ -27,7 +27,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TitanEx Landslide Pushed Off',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '5BB', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '5BB', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

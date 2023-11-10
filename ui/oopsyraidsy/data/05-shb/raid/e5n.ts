@@ -58,7 +58,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E5N Divine Judgement Volts',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4B9A', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4B9A', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
         return {
@@ -89,7 +89,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5N The Parting Clouds',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4B9D', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4B9D', ...playerDamageFields }),
       suppressSeconds: 30,
       mistake: (data, matches) => {
         for (const name of data.cloudMarkers ?? []) {

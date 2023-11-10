@@ -578,6 +578,8 @@ export class CactbotConfigurator {
     container.appendChild(collapser);
 
     const a = document.createElement('a');
+    // TODO: fix me
+    /* eslint-disable-next-line deprecation/deprecation */
     a.name = group;
     collapser.appendChild(a);
 
@@ -920,6 +922,10 @@ export class CactbotConfigurator {
       let title = '???';
       let zoneId: number | undefined = undefined;
       let zoneLabel: LocaleText | undefined = undefined;
+
+      /* eslint-disable-next-line deprecation/deprecation */
+      const origZoneRegex = triggerSet.zoneRegex;
+
       // if a zoneLabel is set, use for the title
       if (triggerSet.zoneLabel) {
         zoneLabel = triggerSet.zoneLabel;
@@ -932,11 +938,11 @@ export class CactbotConfigurator {
           title = this.translate(zoneInfo.name);
       } else if (triggerSet.zoneId === null) {
         title = this.translate(kPrefixToCategory['00-misc']);
-      } else if (triggerSet.zoneRegex) {
+      } else if (origZoneRegex) {
         // zoneRegex can be a localized object.
-        let zoneRegex = triggerSet.zoneRegex instanceof RegExp
-          ? triggerSet.zoneRegex
-          : triggerSet.zoneRegex[this.lang];
+        let zoneRegex = origZoneRegex instanceof RegExp
+          ? origZoneRegex
+          : origZoneRegex[this.lang];
         if (typeof zoneRegex === 'string')
           zoneRegex = Regexes.parse(zoneRegex);
         if (zoneRegex instanceof RegExp)

@@ -80,7 +80,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Targets with Imp when Thunder III resolves receive a vulnerability stack and brief stun
       id: 'GubalHm Imp Thunder',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '195[AB]', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '195[AB]', ...playerDamageFields }),
       condition: (data, matches) => data.hasImp?.[matches.target],
       mistake: (_data, matches) => {
         return {
@@ -101,7 +101,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'GubalHm Quake',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '1956', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '1956', ...playerDamageFields }),
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
@@ -116,7 +116,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'GubalHm Tornado',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '195[78]', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '195[78]', ...playerDamageFields }),
       // Always hits target, but if correctly resolved will deal 0 damage
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {

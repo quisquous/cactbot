@@ -38,7 +38,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Lookaway mechanic, does no damage on success.
       id: 'Vanaspati Terminus Twitcher Double Hex Eye',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '6C21', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '6C21', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

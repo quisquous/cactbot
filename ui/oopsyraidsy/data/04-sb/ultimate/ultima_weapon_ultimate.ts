@@ -69,7 +69,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // first person listed damage-wise, so they are likely the culprit.
       id: 'UWU Featherlance',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '2B43', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '2B43', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
         return {
