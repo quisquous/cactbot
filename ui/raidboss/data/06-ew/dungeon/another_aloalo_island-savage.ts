@@ -67,7 +67,6 @@ const ForceMoveStrings = {
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
-    flukeGaleType: 'spread' | 'pylene' | 'hamukatsu';
     planarTacticsType: 'count' | 'poshiume' | 'hamukatsu';
   };
   combatantData: PluginCombatantState[];
@@ -91,7 +90,6 @@ export interface Data extends RaidbossData {
   stcClaws: string[];
   stcMissiles: string[];
   stcSeenPinwheeling: boolean;
-  stcAdjustBullsEye: boolean;
   stcChains: string[];
   stcPop: number;
   stcMyMarch: MarchDirection;
@@ -160,21 +158,6 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.AnotherAloaloIslandSavage,
   config: [
     {
-      id: 'flukeGaleType',
-      name: {
-        en: 'Fluke Gale Strat',
-      },
-      type: 'select',
-      options: {
-        en: {
-          'Spread message': 'spread',
-          'Pylene': 'pylene',
-          'Hamukatsu North/South': 'hamukatsu',
-        },
-      },
-      default: 'spread',
-    },
-    {
       id: 'planarTacticsType',
       name: {
         en: 'Planar Tactics Strat',
@@ -211,7 +194,6 @@ const triggerSet: TriggerSet<Data> = {
       stcClaws: [],
       stcMissiles: [],
       stcSeenPinwheeling: false,
-      stcAdjustBullsEye: false,
       stcChains: [],
       stcPop: 0,
       stcMyMarch: 'unknown',
@@ -391,51 +373,14 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Pylene Strat: https://twitter.com/ff14_pylene99/status/1719665676745650610
-      // Hamukatu Nanboku Strat: https://ffxiv.link/0102424
       id: 'AAIS Ketuduke Fluke Gale',
       type: 'Ability',
       netRegex: { id: '8AB1', source: 'Ketuduke', capture: false },
       durationSeconds: 8,
-      alertText: (data, _matches, output) => {
-        data.isStackFirst = isStackFirst(data.ketuHydroStack, data.ketuHydroSpread);
-
-        if (data.triggerSetConfig.flukeGaleType === 'spread')
-          return output.goSafeTile!();
-
-        if (data.triggerSetConfig.flukeGaleType === 'pylene') {
-          if (data.ketuMyBubbleFetters !== 'E9F' && !data.isStackFirst)
-            return output.pylene2!();
-          return output.pylene1!();
-        }
-
-        if (data.triggerSetConfig.flukeGaleType === 'hamukatsu') {
-          if (data.ketuMyBubbleFetters === 'E9F')
-            return output.hamukatsu2!();
-          if (data.isStackFirst)
-            return output.hamukatsu1!();
-          return output.hamukatsu2!();
-        }
-      },
+      alertText: (_data, _matches, output) => output.text!(),
       run: (data) => delete data.ketuMyBubbleFetters,
       outputStrings: {
-        pylene1: {
-          en: 'Go to 1 area',
-          ja: '第1区域へ',
-        },
-        pylene2: {
-          en: 'Go to 2 area',
-          ja: '第2区域へ',
-        },
-        hamukatsu1: {
-          en: 'Go to 1 area safe tile',
-          ja: '第1区域の安置マスへ',
-        },
-        hamukatsu2: {
-          en: 'Go to 2 area safe tile',
-          ja: '第2区域の安置マスへ',
-        },
-        goSafeTile: {
+        text: {
           en: 'Go to safe tile',
           ja: '安置マスへ',
         },
@@ -1603,29 +1548,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AAIS Statice Bull\'s-eye 2',
-      type: 'GainsEffect',
-      netRegex: { effectId: 'E9E', capture: false },
-      condition: (data) => data.stcSeenPinwheeling,
-      delaySeconds: 1,
-      suppressSeconds: 1,
-      run: (data) => {
-        const roles = data.stcBullsEyes.map((x) => x.role);
-        data.stcBullsEyes = [];
-        const dps = roles.filter((x) => x === 'dps');
-        if (dps.length === 2) {
-          data.stcAdjustBullsEye = true;
-          return;
-        }
-        const th = roles.filter((x) => x === 'tank' || x === 'healer');
-        if (th.length === 2) {
-          data.stcAdjustBullsEye = true;
-          return;
-        }
-        data.stcAdjustBullsEye = false;
-      },
-    },
-    {
       id: 'AAIS Statice Burning Chains Collect',
       type: 'HeadMarker',
       netRegex: { id: '0061' },
@@ -1655,7 +1577,6 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      // Pino Strat: https://twitter.com/pino_mujuuryoku/status/1720127076190306359
       id: 'AAIS Statice Burning Chains Tether',
       type: 'Tether',
       netRegex: { id: '0009' },
@@ -1670,25 +1591,18 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Bait Claw => Stack',
             ja: 'クロウ誘導 => 頭割り',
           },
-          adjustbullseye: {
-            en: 'Stack & Swap position!',
-            ja: '北へ！ 席入れ替え',
-          },
-          bullseye: {
-            en: 'Stack',
-            ja: '北へ',
-          },
+          stack: Outputs.getTogether,
         };
         if (data.me === matches.source || data.me === matches.target)
           return { alarmText: output.cutchain!() };
-        if (data.stcSeenPinwheeling) {
-          if (data.stcAdjustBullsEye)
-            return { alertText: output.adjustbullseye!() };
-          return { infoText: output.bullseye!() };
-        }
+        if (data.stcSeenPinwheeling)
+          return { infoText: output.stack!() };
         return { alertText: output.deathclaw!() };
       },
-      run: (data) => data.stcChains = [],
+      run: (data) => {
+        data.stcChains = [];
+        data.stcBullsEyes = [];
+      },
     },
   ],
   timelineReplace: [
