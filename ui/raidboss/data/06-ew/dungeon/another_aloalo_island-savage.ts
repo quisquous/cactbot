@@ -16,7 +16,7 @@ type ClockRotate = 'cw' | 'ccw' | 'unknown';
 type MarchDirection = 'front' | 'back' | 'left' | 'right' | 'unknown';
 
 const ForceMoveStrings = {
-  stack: Outputs.getTogether,
+  stacks: Outputs.getTogether,
   spread: Outputs.spread,
   forward: {
     en: 'Face: Forward => ${aim}', // FIXME
@@ -144,12 +144,12 @@ const forceMove = (
     }[march];
     if (safezone !== undefined)
       return move!({ aim: safezone });
-    return move!({ aim: stackFirst ? output.stack!() : output.spread!() });
+    return move!({ aim: stackFirst ? output.stacks!() : output.spread!() });
   }
   if (safezone !== undefined)
     return safezone;
   if (stackFirst)
-    return output.stack!();
+    return output.stacks!();
   return output.spread!();
 };
 
@@ -398,7 +398,7 @@ const triggerSet: TriggerSet<Data> = {
         data.isStackFirst = isStackFirst(data.ketuHydroStack, data.ketuHydroSpread);
         return data.isStackFirst ? output.stacks!() : output.spread!();
       },
-      run: (data) => data.ketuHydroCount = 2,
+      run: (data) => data.ketuHydroCount++,
       outputStrings: {
         stacks: Outputs.stackThenSpread,
         spread: Outputs.spreadThenStack,
@@ -440,7 +440,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: 'EA3', capture: false },
       condition: (data) => data.ketuHydroCount === 2,
       run: (data) => {
-        data.ketuHydroCount = 3;
+        data.ketuHydroCount++;
         data.gainList = [];
       },
     },
@@ -532,7 +532,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       run: (data) => {
         delete data.ketuMyBubbleFetters;
-        data.ketuHydroCount = 4;
+        data.ketuHydroCount++;
         data.gainList = [];
       },
       outputStrings: {
@@ -562,7 +562,7 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AAIS Ketuduke Angry Seas Hydro',
+      id: 'AAIS Ketuduke Angry Seas',
       type: 'GainsEffect',
       netRegex: { effectId: ['EA3', 'EA4'], capture: false },
       condition: (data) => data.ketuHydroCount === 4,
@@ -570,19 +570,57 @@ const triggerSet: TriggerSet<Data> = {
       suppressSeconds: 999999,
       alertText: (data, _matches, output) => {
         data.isStackFirst = isStackFirst(data.ketuHydroStack, data.ketuHydroSpread);
-        return data.isStackFirst ? output.stack!() : output.spread!();
+        return data.isStackFirst ? output.stacks!() : output.spread!();
       },
-      run: (data) => data.ketuHydroCount = 5,
+      run: (data) => data.ketuHydroCount++,
       outputStrings: {
-        stack: Outputs.stackThenSpread,
-        spread: Outputs.spreadThenStack,
+        stacks: {
+          en: 'Knockback => Stack => Spread',
+          de: 'Rückstoß => Sammeln => Verteilen',
+          fr: 'Poussée => Package => Dispersion',
+          ja: 'ノックバック => 頭割り => 散開',
+          cn: '击退 => 集合 => 分散',
+          ko: '넉백 => 집합 => 산개',
+        },
+        spread: {
+          en: 'Knockback => Spread => Stack',
+          de: 'Rückstoß => Verteilen => Sammeln',
+          fr: 'Poussée => Dispersion => Package',
+          ja: 'ノックバック => 散開 => 頭割り',
+          cn: '击退 => 分散 => 集合',
+          ko: '넉백 => 산개 => 집합',
+        },
       },
     },
     {
-      id: 'AAIS Ketuduke Angry Seas',
-      type: 'StartsUsing',
-      netRegex: { id: '8AE1', source: 'Ketuduke', capture: false },
-      response: Responses.knockback(),
+      id: 'AAIS Ketuduke Angry Seas Stack Reminder',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'EA3' },
+      condition: (data) => data.ketuHydroCount === 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      suppressSeconds: 999999,
+      alertText: (data, _matches, output) => {
+        if (!data.isStackFirst)
+          return output.stacks!();
+      },
+      outputStrings: {
+        stacks: Outputs.getTogether,
+      },
+    },
+    {
+      id: 'AAIS Ketuduke Angry Seas Spread Reminder',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'EA4' },
+      condition: (data) => data.ketuHydroCount === 4,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 5,
+      suppressSeconds: 999999,
+      alertText: (data, _matches, output) => {
+        if (data.isStackFirst)
+          return output.spread!();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+      },
     },
     {
       id: 'AAIS Ketuduke Fluke Typhoon Tower',
@@ -1225,11 +1263,11 @@ const triggerSet: TriggerSet<Data> = {
         const prev = data.isStackFirst;
         data.isStackFirst = !data.isStackFirst;
         if (prev)
-          return output.stack!();
+          return output.stacks!();
         return output.spread!();
       },
       outputStrings: {
-        stack: Outputs.getTogether,
+        stacks: Outputs.getTogether,
         spread: Outputs.spread,
       },
     },
@@ -1240,13 +1278,13 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         let ret;
         if (data.stcMyDuration < 10)
-          ret = data.isStackFirst ? output.stack!() : output.spread!();
+          ret = data.isStackFirst ? output.stacks!() : output.spread!();
         else if (data.stcMyDuration < 20)
           ret = forceMove(output, data.stcMyMarch, data.isStackFirst);
         else if (data.stcMyDuration > 50)
           ret = forceMove(output, data.stcMyMarch, data.isStackFirst);
         else
-          ret = data.isStackFirst ? output.stack!() : output.spread!();
+          ret = data.isStackFirst ? output.stacks!() : output.spread!();
         data.isStackFirst = !data.isStackFirst;
         return ret;
       },
@@ -1591,12 +1629,12 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Bait Claw => Stack',
             ja: 'クロウ誘導 => 頭割り',
           },
-          stack: Outputs.getTogether,
+          stacks: Outputs.getTogether,
         };
         if (data.me === matches.source || data.me === matches.target)
           return { alarmText: output.cutchain!() };
         if (data.stcSeenPinwheeling)
-          return { infoText: output.stack!() };
+          return { infoText: output.stacks!() };
         return { alertText: output.deathclaw!() };
       },
       run: (data) => {
