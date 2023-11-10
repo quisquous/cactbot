@@ -4579,7 +4579,7 @@ const triggerSet: TriggerSet<Data> = {
         'White Flame': '白火',
       },
     },
-   {
+    {
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
