@@ -276,6 +276,22 @@ const templateOptions: OptionsTemplate = {
       default: false,
     },
     {
+      id: 'DefaultPlayerLabel',
+      name: {
+        en: 'Default Player Label',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Nickname (Tini)': 'nick',
+          'Role (Tank)': 'role',
+          'Job (WAR)': 'job',
+          'Full Name (Tini Poutini)': 'name',
+        },
+      },
+      default: 'nick',
+    },
+    {
       id: 'NumLiveListItemsInCombat',
       name: {
         en: 'Number of mistakes to show in combat',
