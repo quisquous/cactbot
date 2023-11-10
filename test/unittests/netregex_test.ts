@@ -109,6 +109,9 @@ describe('netregex tests', () => {
     /* eslint-disable-next-line deprecation/deprecation */
     regexCaptureTest((params?: RegexUtilParams) => NetRegexes.addedCombatantFull(params), lines);
 
+    /* eslint-disable-next-line deprecation/deprecation */
+    assert.equal(NetRegexes.addedCombatant().source, NetRegexes.addedCombatantFull().source);
+
     let matches = lines[0].match(NetRegexes.addedCombatant())?.groups;
     assert.equal(matches?.type, '03');
     assert.equal(matches?.id, '1059c805');

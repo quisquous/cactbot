@@ -124,6 +124,9 @@ describe('regex tests', () => {
     /* eslint-disable-next-line deprecation/deprecation */
     regexCaptureTest((params?: RegexUtilParams) => Regexes.addedCombatantFull(params), lines);
 
+    /* eslint-disable-next-line deprecation/deprecation */
+    assert.equal(Regexes.addedCombatant().source, Regexes.addedCombatantFull().source);
+
     let matches = lines[0].match(Regexes.addedCombatant())?.groups;
     assert.equal(matches?.name, 'Potato Chippy');
 
