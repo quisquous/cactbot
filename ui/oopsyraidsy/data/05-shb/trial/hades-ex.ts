@@ -57,7 +57,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'HadesEx Dark II',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ type: '22', id: '47BA', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ type: '22', id: '47BA', ...playerDamageFields }),
       // Don't blame people who don't have tethers.
       condition: (data, matches) => data.hasDark && data.hasDark.includes(matches.target),
       mistake: (_data, matches) => {
@@ -92,7 +92,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'HadesEx Death Shriek',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '47CB', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '47CB', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

@@ -25,7 +25,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Floating over one is untested.
       id: 'O2S Petrosphere Explosion',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '245D', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '245D', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {
@@ -40,7 +40,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // floating yellow arena circles; only do damage if floating
       id: 'O2S Potent Petrosphere Explosion',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '2362', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '2362', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {
@@ -55,7 +55,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Must be floating to survive; hits everyone but only does damage if not floating.
       id: 'O2S Earthquake',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '247A', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '247A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

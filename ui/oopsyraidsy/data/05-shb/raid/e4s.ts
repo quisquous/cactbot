@@ -51,7 +51,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E4S Fault Line',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '411E', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '411E', ...playerDamageFields }),
       condition: (data, matches) => data.faultLineTarget !== matches.target,
       mistake: (_data, matches) => {
         return {

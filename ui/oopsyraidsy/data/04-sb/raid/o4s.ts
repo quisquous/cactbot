@@ -68,7 +68,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'O4S Blizzard III',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '23F8', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '23F8', ...playerDamageFields }),
       // Ignore unavoidable raid aoe Blizzard III.
       condition: (data) => !data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
@@ -83,7 +83,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'O4S Thunder III',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '23FD', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '23FD', ...playerDamageFields }),
       // Only consider this during random mechanic after decisive battle.
       condition: (data) => data.isDecisiveBattleElement,
       mistake: (_data, matches) => {
@@ -120,7 +120,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'O4S Forked Lightning',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '242E', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '242E', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
           type: 'fail',
@@ -168,7 +168,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'O4S Double Attack Collect',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '241C', ...playerDamageFields }),
       run: (data, matches) => {
         data.doubleAttackMatches = data.doubleAttackMatches || [];
         data.doubleAttackMatches.push(matches);
@@ -177,7 +177,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'O4S Double Attack',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '241C', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '241C', ...playerDamageFields }),
       mistake: (data) => {
         const arr = data.doubleAttackMatches;
         if (!arr)

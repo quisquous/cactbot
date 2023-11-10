@@ -16,6 +16,7 @@ const settings = {
     'eslint:recommended',
     'google',
     'plugin:import/errors',
+    'plugin:deprecation/recommended',
   ],
   'ignorePatterns': [
     // Do not ignore dot files.  /o\
@@ -30,11 +31,13 @@ const settings = {
     'publish/',
     'resources/lib/',
   ],
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
     'ecmaVersion': 2022,
     'sourceType': 'module',
   },
   'plugins': [
+    'deprecation',
     'import',
     'rulesdir',
   ],

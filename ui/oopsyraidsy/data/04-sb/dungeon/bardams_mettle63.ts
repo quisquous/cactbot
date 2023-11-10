@@ -17,7 +17,7 @@ const abilityWarn = (args: { abilityId: string; id: string }): OopsyTrigger<Data
   const trigger: OopsyTrigger<Data> = {
     id: args.id,
     type: 'Ability',
-    netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
+    netRegex: NetRegexes.ability({ id: args.abilityId }),
     condition: (_data, matches) => matches.flags.endsWith('0E'),
     mistake: (_data, matches) => {
       return {

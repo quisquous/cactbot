@@ -775,17 +775,20 @@ export class PopupText {
         continue;
       }
 
+      /* eslint-disable-next-line deprecation/deprecation */
+      const origZoneRegex = set.zoneRegex;
+
       if (set.zoneId !== undefined) {
         if (
           set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId &&
           !(typeof set.zoneId === 'object' && set.zoneId.includes(this.zoneId))
         )
           continue;
-      } else if (set.zoneRegex) {
-        let zoneRegex = set.zoneRegex;
+      } else if (origZoneRegex) {
+        let zoneRegex = origZoneRegex;
         if (typeof zoneRegex !== 'object') {
           console.error(
-            `zoneRegex must be translatable object or regexp: ${JSON.stringify(set.zoneRegex)}`,
+            `zoneRegex must be translatable object or regexp: ${JSON.stringify(origZoneRegex)}`,
           );
           continue;
         } else if (!(zoneRegex instanceof RegExp)) {
@@ -795,12 +798,12 @@ export class PopupText {
           } else if (zoneRegex['en']) {
             zoneRegex = zoneRegex['en'];
           } else {
-            console.error(`unknown zoneRegex parser language: ${JSON.stringify(set.zoneRegex)}`);
+            console.error(`unknown zoneRegex parser language: ${JSON.stringify(origZoneRegex)}`);
             continue;
           }
 
           if (!(zoneRegex instanceof RegExp)) {
-            console.error(`zoneRegex must be regexp: ${JSON.stringify(set.zoneRegex)}`);
+            console.error(`zoneRegex must be regexp: ${JSON.stringify(origZoneRegex)}`);
             continue;
           }
         }

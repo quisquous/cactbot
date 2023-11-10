@@ -87,7 +87,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // This can be mitigated by the whole group, so add a damage condition.
       id: 'E10S Barbs Of Agony',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: ['572A', '5B27'], ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: ['572A', '5B27'], ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

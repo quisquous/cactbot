@@ -66,7 +66,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E5S Divine Judgement Volts',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4BB7', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4BB7', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
         return {
@@ -80,7 +80,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E5S Volt Strike Orb',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4BC3', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4BC3', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
         return {
@@ -94,7 +94,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E5S Deadly Discharge Big Knockback',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4BB2', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4BB2', ...playerDamageFields }),
       condition: (data, matches) => !data.hasOrb || !data.hasOrb[matches.target],
       mistake: (_data, matches) => {
         return {
@@ -108,7 +108,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E5S Lightning Bolt',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4BB9', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4BB9', ...playerDamageFields }),
       condition: (data, matches) => {
         // Having a non-idempotent condition function is a bit <_<
         // Only consider lightning bolt damage if you have a debuff to clear.
@@ -149,7 +149,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5S The Parting Clouds',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4BBA', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4BBA', ...playerDamageFields }),
       suppressSeconds: 30,
       mistake: (data, matches) => {
         for (const name of data.cloudMarkers ?? []) {

@@ -98,7 +98,7 @@ export class DamageTracker {
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
-  private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private abilityRegex: CactbotBaseRegExp<'Ability'>;
   private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
   private wipeEndEcho: CactbotBaseRegExp<'GameLog'>;
   private combatState = new CombatState(this);
@@ -142,7 +142,7 @@ export class DamageTracker {
     this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang];
     this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
-    this.abilityFullRegex = NetRegexes.abilityFull();
+    this.abilityRegex = NetRegexes.ability();
     this.wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
     this.wipeEndEcho = commonNetRegex.userWipeEcho;
 
@@ -334,7 +334,7 @@ export class DamageTracker {
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
     // TODO: use log definitions here??
-    const lineMatches = this.abilityFullRegex.exec(line);
+    const lineMatches = this.abilityRegex.exec(line);
     if (!lineMatches || !lineMatches.groups)
       return;
 
@@ -544,7 +544,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
-        netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
+        netRegex: NetRegexes.ability({ id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
             type: type,
@@ -620,7 +620,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
-        netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
+        netRegex: NetRegexes.ability({ type: '21', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
             type: type,

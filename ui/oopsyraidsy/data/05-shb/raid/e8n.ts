@@ -39,7 +39,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E8N Heavenly Strike',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4DD8', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4DD8', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

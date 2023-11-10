@@ -173,8 +173,8 @@ const lineDocs: LineDocs = {
   },
   AddedCombatant: {
     regexes: {
-      network: NetRegexes.addedCombatantFull({ capture: true }).source,
-      logLine: Regexes.addedCombatantFull({ capture: true }).source,
+      network: NetRegexes.addedCombatant({ capture: true }).source,
+      logLine: Regexes.addedCombatant({ capture: true }).source,
     },
     examples: {
       'en-US': [
@@ -237,8 +237,8 @@ const lineDocs: LineDocs = {
   },
   Ability: {
     regexes: {
-      network: NetRegexes.abilityFull({ capture: true }).source,
-      logLine: Regexes.abilityFull({ capture: true }).source,
+      network: NetRegexes.ability({ capture: true }).source,
+      logLine: Regexes.ability({ capture: true }).source,
     },
     examples: {
       'en-US': [

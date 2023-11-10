@@ -82,7 +82,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7N Light\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
         ...playerDamageFields,
       }),
@@ -108,7 +108,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7N Darks\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: ['4C3D', '4C23', '4C41', '4C43'],
         ...playerDamageFields,
       }),
