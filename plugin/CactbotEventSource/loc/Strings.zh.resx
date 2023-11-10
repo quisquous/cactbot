@@ -120,9 +120,6 @@
   <data name="ACTBaseInfo" xml:space="preserve">
     <value>ACT: {0} {1}</value>
   </data>
-  <data name="BaitSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
-    <value>找到{0}个鱼饵内存签名</value>
-  </data>
   <data name="CactbotBaseInfo" xml:space="preserve">
     <value>cactbot: {0} {1} (目录: {2})</value>
   </data>
@@ -188,9 +185,6 @@
   </data>
   <data name="PresetEureka" xml:space="preserve">
     <value>优雷卡</value>
-  </data>
-  <data name="PresetFisher" xml:space="preserve">
-    <value>捕鱼</value>
   </data>
   <data name="PresetJobs" xml:space="preserve">
     <value>职业量谱</value>

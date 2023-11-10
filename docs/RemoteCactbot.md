@@ -123,7 +123,7 @@ load your own user directory, but not currently.
 Not all overlays are able to be run remotely.
 cactbot, oopsy, pullcounter, and dps overlays are supported.
 
-radar, jobs, and fisher will not work
+radar and jobs will not work
 as they require more information about your player.
 
 ## HALP

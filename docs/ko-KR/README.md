@@ -41,10 +41,6 @@ cactbot은 다음 모듈을 제공합니다:
 
 ![eureka 스크린샷](../../screenshots/promo_eureka.png)
 
-* fisher: 낚시 캐스팅 시간 트래커
-
-![fisher 스크린샷](../../screenshots/promo_fishing.png)
-
 * radar: 마물 방향, 첫 어글자 알림
 
 ![radar 스크린샷](../../screenshots/promo_radar.png)
@@ -411,24 +407,6 @@ oopsy에 경고(:warning:)나 실패(:no_entry_sign:) 로그가 찍혀서 무엇
 `cactbot/user/radar-example.js`에서 더 많은 옵션을 확인할 수 있습니다.
 
 ![radar 스크린샷](../../screenshots/promo_radar.png)
-
-### [fisher](../../ui/fisher) 모듈
-
-이 모듈을 사용하려면,
-**ui/fisher/fisher.html** 파일을 URL 부분에서 선택하거나 `Cactbot Fisher` 프리셋을 사용하세요.
-
-낚싯터에서 낚시를 하면, 이 모듈이 사용자가 낚은 물고기를 추적합니다. 이를 통해 사용자가 물고기를 낚을 때 어떤 물고기를 낚게 될지 예상할 수 있게 해줍니다.
-
-![fishing 스크린샷](../../screenshots/promo_fishing.png)
-
-물고기가 잡히는 낚시 캐스팅 시간 정보는 사용자가 직접 물고기를 낚을 때 기록됩니다.
-따라서 각 물고기를 낚기 전에는 아무런 데이터가 없을 것입니다.
-초록색 바는 입질이 약한 물고기(섬세한 낚아채기 사용)를 의미하며,
-노란색 바는 입질이 중간인 물고기를 의미하고,
-빨간색 바는 전설 물고기 또는 입질이 강한 물고기를 의미합니다.
-*번역자가 낚시에 대해 잘 알지 못해 물고기 종류에 대해 번역을 잘못했을 수 있음*
-
-일반적인 문제 해결 팁은 [여기](../FAQ-Troubleshooting.md#fisher-module)를 확인하세요.
 
 ### [dps](../../ui/dps) 미터기
 

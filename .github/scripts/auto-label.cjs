@@ -42,7 +42,6 @@ const regexLabelMap = {
   '^ui/raidboss/raidboss_config': ['config', 'raidboss'],
   '^ui/dps/': ['dps'],
   '^ui/eureka/': ['eureka'],
-  '^ui/fisher/': ['fishing🎣'],
   '^ui/jobs/': ['jobs'],
   '^ui/oopsyraidsy/': ['oopsy'],
   '^ui/pullcounter/': ['pullcounter'],
