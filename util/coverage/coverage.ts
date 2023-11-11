@@ -146,14 +146,6 @@ const contentTypeToLabel: { [contentType: number]: LocaleText } = {
     cn: '迷宫挑战',
     ko: '던전',
   },
-  [ContentType.Guildhests]: {
-    en: 'Hest',
-    de: 'Gldgh',
-    fr: 'Op. Guilde',
-    ja: 'ギルド',
-    cn: '行会令',
-    ko: '길드작전',
-  },
   [ContentType.VCDungeonFinder]: {
     en: 'V&C',
     de: 'Gewölbesuche',
@@ -168,7 +160,6 @@ const contentTypeLabelOrder = [
   ContentType.Raids,
   ContentType.Trials,
   ContentType.Dungeons,
-  ContentType.Guildhests,
 ] as const;
 
 // This is also the order of the table columns.
