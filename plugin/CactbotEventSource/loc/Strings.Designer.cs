@@ -70,15 +70,6 @@ namespace CactbotEventSource.loc {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bait signature found {0} matches.
-        /// </summary>
-        internal static string BaitSignatureFoundMultipleMatchesErrorMessage {
-            get {
-                return ResourceManager.GetString("BaitSignatureFoundMultipleMatchesErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to cactbot: {0} {1} (dir: {2}).
         /// </summary>
         internal static string CactbotBaseInfo {
@@ -312,15 +303,6 @@ namespace CactbotEventSource.loc {
         internal static string PresetEureka {
             get {
                 return ResourceManager.GetString("PresetEureka", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fisher.
-        /// </summary>
-        internal static string PresetFisher {
-            get {
-                return ResourceManager.GetString("PresetFisher", resourceCulture);
             }
         }
         

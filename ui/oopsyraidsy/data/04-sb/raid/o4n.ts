@@ -50,7 +50,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Short knockback from Exdeath
       id: 'O4N Vacuum Wave',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '24B8', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '24B8', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

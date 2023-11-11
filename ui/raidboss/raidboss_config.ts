@@ -2139,11 +2139,34 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Reverse timeline order (bottom-to-top)',
         de: 'Umgekehrte Timeline Reihenfolge (unten-nach-oben)',
+        fr: 'Timeline inversée (de bas en haut)',
         cn: '反转时间轴顺序 (从下到上)',
         ko: '타임라인 순서 반전 (아래에서 위)',
       },
       type: 'checkbox',
       default: false,
+    },
+    {
+      id: 'DefaultPlayerLabel',
+      comment: {
+        en: `The default way to specify players in trigger output. By default, it will use
+             nicknames/first names. This can be used to print out player jobs instead.
+             If you are not in a party or players are out of a party (or there are bugs),
+             it will default to the player's nickname if there's no other information.`,
+      },
+      name: {
+        en: 'Default Player Label',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Nickname (Tini)': 'nick',
+          'Role (Tank)': 'role',
+          'Job (WAR)': 'job',
+          'Full Name (Tini Poutini)': 'name',
+        },
+      },
+      default: 'nick',
     },
     {
       id: 'ShowTimerBarsAtSeconds',

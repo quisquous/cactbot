@@ -1,5 +1,6 @@
 import logDefinitions from '../../resources/netlog_defs';
 import NetRegexes, { commonNetRegex } from '../../resources/netregexes';
+import PartyTracker from '../../resources/party';
 import { PlayerChangedDetail } from '../../resources/player_override';
 import Regexes from '../../resources/regexes';
 import { LocaleNetRegex } from '../../resources/translations';
@@ -97,7 +98,7 @@ export class DamageTracker {
   private countdownEngageRegex: RegExp;
   private countdownStartRegex: RegExp;
   private countdownCancelRegex: RegExp;
-  private abilityFullRegex: CactbotBaseRegExp<'Ability'>;
+  private abilityRegex: CactbotBaseRegExp<'Ability'>;
   private wipeCactbotEcho: CactbotBaseRegExp<'GameLog'>;
   private wipeEndEcho: CactbotBaseRegExp<'GameLog'>;
   private combatState = new CombatState(this);
@@ -125,6 +126,7 @@ export class DamageTracker {
   constructor(
     private options: OopsyOptions,
     private collector: MistakeCollector,
+    partyTracker: PartyTracker,
     private dataFiles: OopsyFileData,
   ) {
     const timestampCallback = (timestamp: number, callback: (timestamp: number) => void) =>
@@ -132,6 +134,7 @@ export class DamageTracker {
     this.playerStateTracker = new PlayerStateTracker(
       this.options,
       this.collector,
+      partyTracker,
       timestampCallback,
     );
 
@@ -139,7 +142,7 @@ export class DamageTracker {
     this.countdownEngageRegex = LocaleNetRegex.countdownEngage[lang];
     this.countdownStartRegex = LocaleNetRegex.countdownStart[lang];
     this.countdownCancelRegex = LocaleNetRegex.countdownCancel[lang];
-    this.abilityFullRegex = NetRegexes.abilityFull();
+    this.abilityRegex = NetRegexes.ability();
     this.wipeCactbotEcho = commonNetRegex.cactbotWipeEcho;
     this.wipeEndEcho = commonNetRegex.userWipeEcho;
 
@@ -170,7 +173,7 @@ export class DamageTracker {
           return true;
         return false;
       },
-      ShortName: (name?: string) => Util.shortName(name, this.options.PlayerNicks),
+      ShortName: (name?: string) => this.playerStateTracker.partyTracker.member(name).toString(),
       IsPlayerId: IsPlayerId,
       DamageFromMatches: (matches: NetMatches['Ability']) => UnscrambleDamage(matches?.damage),
       options: this.options,
@@ -331,7 +334,7 @@ export class DamageTracker {
     // This is kind of obnoxious to have to regex match every ability line that's already split.
     // But, it turns it into a usable match object.
     // TODO: use log definitions here??
-    const lineMatches = this.abilityFullRegex.exec(line);
+    const lineMatches = this.abilityRegex.exec(line);
     if (!lineMatches || !lineMatches.groups)
       return;
 
@@ -541,7 +544,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
-        netRegex: NetRegexes.abilityFull({ id: id, ...playerDamageFields }),
+        netRegex: NetRegexes.ability({ id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
             type: type,
@@ -617,7 +620,7 @@ export class DamageTracker {
       const trigger: OopsyTrigger<OopsyData> = {
         id: key,
         type: 'Ability',
-        netRegex: NetRegexes.abilityFull({ type: '21', id: id, ...playerDamageFields }),
+        netRegex: NetRegexes.ability({ type: '21', id: id, ...playerDamageFields }),
         mistake: (_data, matches) => {
           return {
             type: type,

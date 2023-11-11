@@ -88,7 +88,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // This can be shielded through as long as that person doesn't stack.
       id: 'E12S Icicle Impact',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4E5A', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4E5A', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {
@@ -122,7 +122,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // use the "Classical Sculpture" ability and end up on the arena for real.
       id: 'E12S Promise Chiseled Sculpture Classical Sculpture',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Chiseled Sculpture', id: '58B2' }),
+      netRegex: NetRegexes.ability({ source: 'Chiseled Sculpture', id: '58B2' }),
       run: (data, matches) => {
         // This will run per person that gets hit by the same sculpture, but that's fine.
         // Record the y position of each sculpture so we can use it for better text later.
@@ -198,7 +198,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         }
 
         const owner = owners[0];
-        const ownerNick = data.ShortName(owner);
+        const ownerNick = data.party.member(owner).toString();
         let text = {
           en: `${matches.ability} (from ${ownerNick}, #${number})`,
           de: `${matches.ability} (von ${ownerNick}, #${number})`,
@@ -255,7 +255,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         return matches.target !== data.pillarIdToOwner[matches.sourceId];
       },
       mistake: (data, matches) => {
-        const pillarOwner = data.ShortName(data.pillarIdToOwner?.[matches.sourceId]);
+        const pillarOwner = data.party.member(data.pillarIdToOwner?.[matches.sourceId]).toString();
         return {
           type: 'fail',
           blame: matches.target,
@@ -308,11 +308,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E12S Promise Small Lion Lionsblaze',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ source: 'Beastly Sculpture', id: '58B9' }),
-      netRegexDe: NetRegexes.abilityFull({ source: 'Abbild Eines Löwen', id: '58B9' }),
-      netRegexFr: NetRegexes.abilityFull({ source: 'Création Léonine', id: '58B9' }),
-      netRegexJa: NetRegexes.abilityFull({ source: '創られた獅子', id: '58B9' }),
-      netRegexCn: NetRegexes.abilityFull({ source: '被创造的狮子', id: '58B9' }),
+      netRegex: NetRegexes.ability({ source: 'Beastly Sculpture', id: '58B9' }),
+      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Löwen', id: '58B9' }),
+      netRegexFr: NetRegexes.ability({ source: 'Création Léonine', id: '58B9' }),
+      netRegexJa: NetRegexes.ability({ source: '創られた獅子', id: '58B9' }),
+      netRegexCn: NetRegexes.ability({ source: '被创造的狮子', id: '58B9' }),
       mistake: (data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
@@ -330,7 +330,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const hasFireDebuff = data.fire && data.fire[matches.target];
 
         if (hasSmallLion || hasFireDebuff) {
-          const ownerNick = data.ShortName(owner);
+          const ownerNick = data.party.member(owner).toString();
 
           const centerY = -75;
           const x = parseFloat(matches.x);
@@ -368,7 +368,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E12S Promise North Big Lion',
       type: 'AddedCombatant',
-      netRegex: NetRegexes.addedCombatantFull({ name: 'Regal Sculpture' }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Regal Sculpture' }),
       run: (data, matches) => {
         const y = parseFloat(matches.y);
         const centerY = -75;
@@ -473,7 +473,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E12S Oracle Shadoweye',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '58D2', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '58D2', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

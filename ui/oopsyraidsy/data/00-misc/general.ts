@@ -171,21 +171,22 @@ const triggerSet: OopsyTriggerSet<Data> = {
         const overwrittenRaise = data.lastRaisedLostTime[matches.targetId] === matches.timestamp;
         // if that's not the case, target doesn't have a raise yet
         if (!overwrittenRaise) {
-          data.originalRaiser[matches.targetId] = data.ShortName(matches.source);
+          data.originalRaiser[matches.targetId] = matches.source;
           return;
         }
         // otherwise, report overwritten raise
         if (originalRaiser !== undefined) {
           delete data.lastRaisedLostTime[matches.targetId];
+          const originalRaiserShort = data.party.member(originalRaiser).toString();
           return {
             type: 'warn',
             blame: matches.source,
             reportId: matches.sourceId,
             text: {
-              en: `overwrote ${originalRaiser}'s raise`,
-              de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
-              cn: `顶掉了${originalRaiser}的复活`,
-              ko: `${originalRaiser}의 부활과 겹침`,
+              en: `overwrote ${originalRaiserShort}'s raise`,
+              de: `überschrieb ${originalRaiserShort}'s Wiederbeleben`,
+              cn: `顶掉了${originalRaiserShort}的复活`,
+              ko: `${originalRaiserShort}의 부활과 겹침`,
             },
           };
         }
@@ -208,15 +209,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
         if (targetId !== undefined) {
           const originalRaiser = data.originalRaiser[targetId];
           if (originalRaiser !== undefined) {
+            const originalRaiserShort = data.party.member(originalRaiser).toString();
             return {
               type: 'warn',
               blame: matches.source,
               reportId: matches.sourceId,
               text: {
-                en: `overwrote ${originalRaiser}'s raise`,
-                de: `überschrieb ${originalRaiser}'s Wiederbeleben`,
-                cn: `顶掉了${originalRaiser}的复活`,
-                ko: `${originalRaiser}의 부활과 겹침`,
+                en: `overwrote ${originalRaiserShort}'s raise`,
+                de: `überschrieb ${originalRaiserShort}'s Wiederbeleben`,
+                cn: `顶掉了${originalRaiserShort}的复活`,
+                ko: `${originalRaiserShort}의 부활과 겹침`,
               },
             };
           }
@@ -241,7 +243,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ? (data.targetMitTracker[matches.targetId] ??= {})
           : data.partyMitTracker;
         const newTime = new Date(matches.timestamp).getTime();
-        const newSource = data.ShortName(matches.source);
+        const newSource = matches.source;
         const lastTime = mitTracker[matches.id]?.time;
         const lastSource = mitTracker[matches.id]?.source;
 
@@ -258,15 +260,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
           const leeway =
             (duration * 1000 - diff) > data.options.MinimumTimeForOverwrittenMit * 1000;
           if (diff < duration * 1000 && leeway) {
+            const lastSourceShort = data.party.member(lastSource).toString();
             return {
               type: 'heal',
               blame: matches.source,
               reportId: matches.sourceId,
               text: {
-                en: `overwrote ${lastSource}'s ${matches.ability}`,
-                de: `überschrieb ${lastSource}'s ${matches.ability}`,
-                cn: `顶掉了${lastSource}的${matches.ability}`,
-                ko: `${lastSource}의 ${matches.ability} 덮어씀`,
+                en: `overwrote ${lastSourceShort}'s ${matches.ability}`,
+                de: `überschrieb ${lastSourceShort}'s ${matches.ability}`,
+                cn: `顶掉了${lastSourceShort}的${matches.ability}`,
+                ko: `${lastSourceShort}의 ${matches.ability} 덮어씀`,
               },
             };
           }

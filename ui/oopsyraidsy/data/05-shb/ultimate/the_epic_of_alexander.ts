@@ -69,7 +69,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // but also themselves.
       id: 'TEA Exhaust',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '481F', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '481F', ...playerDamageFields }),
       condition: (_data, matches) => matches.target === matches.source,
       mistake: (_data, matches) => {
         return {
@@ -107,7 +107,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TEA Reducible Complexity',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4821', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4821', ...playerDamageFields }),
       mistake: (data, matches) => {
         return {
           type: 'fail',
@@ -127,7 +127,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'TEA Drainage',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '4827', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4827', ...playerDamageFields }),
       condition: (data, matches) => !data.party.isTank(matches.target),
       mistake: (_data, matches) => {
         return {
@@ -178,7 +178,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '482A', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '482A', ...playerDamageFields }),
       suppressSeconds: 5,
       mistake: (_data, matches) => {
         return {

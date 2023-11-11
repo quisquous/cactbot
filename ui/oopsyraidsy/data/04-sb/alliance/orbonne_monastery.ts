@@ -81,7 +81,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // castbar that you need to have Heavenly Shield up for, or you get a vuln and knockback.
       id: 'Orbonne Agrias Judgment Blade',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3857', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '3857', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {
@@ -96,7 +96,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // same as Judgment Blade, but from Sword Knight
       id: 'Orbonne Agrias Mortal Blow',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '385E', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '385E', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

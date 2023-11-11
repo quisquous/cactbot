@@ -60,6 +60,7 @@ describe('regex tests', () => {
     assert.equal(matches?.sequence, '0000B2D4');
     assert.equal(matches?.targetIndex, '0');
 
+    /* eslint-disable-next-line deprecation/deprecation */
     assert.equal(Regexes.ability().source, Regexes.abilityFull().source);
   });
   it('networkDoT', () => {
@@ -120,12 +121,16 @@ describe('regex tests', () => {
     ] as const;
 
     regexCaptureTest((params?: RegexUtilParams) => Regexes.addedCombatant(params), lines);
+    /* eslint-disable-next-line deprecation/deprecation */
     regexCaptureTest((params?: RegexUtilParams) => Regexes.addedCombatantFull(params), lines);
+
+    /* eslint-disable-next-line deprecation/deprecation */
+    assert.equal(Regexes.addedCombatant().source, Regexes.addedCombatantFull().source);
 
     let matches = lines[0].match(Regexes.addedCombatant())?.groups;
     assert.equal(matches?.name, 'Potato Chippy');
 
-    matches = lines[0].match(Regexes.addedCombatantFull())?.groups;
+    matches = lines[0].match(Regexes.addedCombatant())?.groups;
     assert.equal(matches?.id, '1059C805');
     assert.equal(matches?.name, 'Potato Chippy');
     assert.equal(matches?.job, '1B');
@@ -139,7 +144,7 @@ describe('regex tests', () => {
     assert.equal(matches?.z, '18.00033');
     assert.equal(matches?.heading, '2.118315');
 
-    matches = lines[1].match(Regexes.addedCombatantFull())?.groups;
+    matches = lines[1].match(Regexes.addedCombatant())?.groups;
     assert.equal(matches?.id, '400264F6');
     assert.equal(matches?.name, 'Earthen Aether');
     assert.equal(matches?.npcNameId, '9321');

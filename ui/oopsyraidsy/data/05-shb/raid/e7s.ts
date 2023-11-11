@@ -110,7 +110,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7S Light\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: ['4C62', '4C63', '4C64', '4C5B', '4C5F'],
         ...playerDamageFields,
       }),
@@ -136,7 +136,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'E7S Darks\'s Course',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: ['4C65', '4C66', '4C67', '4C5A', '4C60'],
         ...playerDamageFields,
       }),
@@ -166,7 +166,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E7S Crusade Knockback',
       type: 'Ability',
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
-      netRegex: NetRegexes.abilityFull({ id: '4C76', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '4C76', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

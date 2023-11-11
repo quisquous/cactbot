@@ -26,7 +26,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     {
       id: 'Suzaku Normal Ruthless Refrain',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '3230', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '3230', ...playerDamageFields }),
       deathReason: (_data, matches) => {
         return {
           id: matches.targetId,

@@ -3,7 +3,6 @@
 1. [General FFXIV ACT Troubleshooting](#general-ffxiv-act-troubleshooting)
 1. [Problems using Cactbot](#problems-using-cactbot)
 1. [Problems during Cactbot installation](#problems-during-cactbot-installation)
-1. [Fisher Module](#fisher-module)
 1. [Places to Get Help](#places-to-get-help)
 1. [How To Find A Network Log](#how-to-find-a-network-log)
 
@@ -48,31 +47,6 @@ then you should make sure that `CactbotOverlay.dll` is listed after `OverlayPlug
 If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.
 
 If you are using cactbot for dps parsing and you don't get any data, make sure that the `DPS update interval seconds` is set to a number higher than zero in your `OverlayPlugin.dll` -> `MiniParse Event Source` config.  Setting it to 3 is a good default.
-
-## Fisher Module
-
-### I can't see the overlay
-
-The overlay is hidden by default until you cast your line at a fishing hole.
-
-### It doesn't show up when fishing
-
-If the overlay doesn't register your casting/catches/reeling in your rod there are a few options you need to check:
-
-- **Ingame chat log filter**
-
-![image](images/troubleshooting_chatlogfilter.png)
-
-You need to have at least one chat log set to show `Own Gathering Messages` You can find this option in
-`Character Configuration` -> `Log Window Settings` -> `Log Filters 1/2/3/4` -> `Announcements`
-
-- **ACT FFXIV Plugin options**
-
-![image](images/troubleshooting_hidechatlog.png)
-
-You must have the `Hide Chat Log (for privacy)` option disabled.
-
-You will need to restart ACT after you change parser language.
 
 ## Places To Get Help
 

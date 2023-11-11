@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.30.4",
+  "version": "0.30.5",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -80,6 +80,7 @@
     "eslint": "^8.26.0",
     "eslint-config-google": "^0.14.0",
     "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-rulesdir": "^0.2.1",

@@ -1,7 +1,6 @@
 import logDefinitions from '../../resources/netlog_defs';
 import { UnreachableCode } from '../../resources/not_reached';
 import PartyTracker from '../../resources/party';
-import Util from '../../resources/util';
 import { Party } from '../../types/event';
 import {
   DeathReportData,
@@ -80,8 +79,6 @@ export type TrackedEventType = TrackedEvent['type'];
 // * Generates some internal mistakes that need extra tracking (missed buffs, deaths)
 // * Tracks events in `trackedEvents` that can be handed to DeathReports for processing.
 export class PlayerStateTracker {
-  public partyTracker: PartyTracker;
-
   private missedBuffCollector;
   private triggerSets: ProcessedOopsyTriggerSet[] = [];
   private partyIds: Set<string> = new Set();
@@ -110,9 +107,9 @@ export class PlayerStateTracker {
   constructor(
     private options: OopsyOptions,
     private collector: MistakeCollector,
+    public partyTracker: PartyTracker,
     requestTimestampCallback: RequestTimestampCallback,
   ) {
-    this.partyTracker = new PartyTracker(this.options);
     this.missedBuffCollector = new MissedBuffCollector(
       requestTimestampCallback,
       (timestamp, buff) => this.OnBuffCollected(timestamp, buff),
@@ -569,7 +566,7 @@ export class PlayerStateTracker {
     // TODO: oopsy could really use mouseover popups for details.
     if (missedNames.length < 4) {
       const nameList = missedNames.map((name) => {
-        return Util.shortName(name, this.options.PlayerNicks);
+        return this.partyTracker.member(name).toString();
       }).join(', ');
 
       // As a TrackedLineEvent has been pushed for each person missed already,

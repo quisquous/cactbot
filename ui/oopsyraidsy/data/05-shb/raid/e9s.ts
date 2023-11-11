@@ -53,7 +53,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // it's ok to still show as a warning??
       id: 'E9S Condensed Anti-Air Particle Beam',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ type: '22', id: '5615', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ type: '22', id: '5615', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {
@@ -68,7 +68,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Anti-air "out".  This can be invulned by a tank along with the spread above.
       id: 'E9S Anti-Air Phaser Unlimited',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '5612', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '5612', ...playerDamageFields }),
       condition: (data, matches) => data.DamageFromMatches(matches) > 0,
       mistake: (_data, matches) => {
         return {

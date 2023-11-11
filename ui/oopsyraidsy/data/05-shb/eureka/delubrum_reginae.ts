@@ -85,7 +85,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // and the first explosion "hits" everyone, although with "1B" flags.
       id: 'Delubrum Lots Cast',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({
+      netRegex: NetRegexes.ability({
         id: ['565A', '565B', '57FD', '57FE', '5B86', '5B87', '59D2', '5D93'],
         ...playerDamageFields,
       }),

@@ -63,7 +63,6 @@ Run all of these scripts in any order and then commit the result.
 python util/gen_zone_id_and_info.py
 python util/gen_weather_rate.py
 python util/gen_hunt_data.py
-python util/gen_fisher_data.py
 
 ts-node util/gen_effect_id.ts
 ts-node util/gen_world_ids.ts
@@ -193,7 +192,6 @@ There are four signatures, which all live in [FFXIVProcessIntl.cs](https://githu
 - Charmap (information about your character)
 - Job Data (gauge info for your job)
 - In Combat (whether the game thinks you are in combat)
-- Bait (what bait you are using when fishing)
 
 OverlayPlugin also duplicates the charmap and in combat signatures,
 so if cactbot is broken please update those as well.
@@ -263,14 +261,6 @@ Hit a target dummy.
 The `game: no` should switch to `game: yes`.
 Reset your aggro, it should switch back to `game: no`.
 If the FFXIV plugin hasn't been updated, it will likely say `act: no`.
-
-#### Verify Bait
-
-Switch to fisher.
-The bait field is not sent unless the job is currently fisher.
-(If this signature or offset ever breaks, consider deleting the fisher overlay.)
-Two baits that you can get from the ocean fishing vendor are
-ragworm (29714) and versatile lure (29717).
 
 ### Verify Job data
 

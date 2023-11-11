@@ -30,7 +30,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       // Pink bubble collision
       id: 'ByaEx Ominous Wind',
       type: 'Ability',
-      netRegex: NetRegexes.abilityFull({ id: '27EC', ...playerDamageFields }),
+      netRegex: NetRegexes.ability({ id: '27EC', ...playerDamageFields }),
       mistake: (_data, matches) => {
         return {
           type: 'warn',
