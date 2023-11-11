@@ -512,6 +512,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Ifrit ${dir}',
+          cn: '火神 ${dir}',
           ko: '이프리트 ${dir}',
         },
         unknown: Outputs.unknown,

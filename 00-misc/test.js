@@ -362,6 +362,7 @@ Options.Triggers.push({
         text: {
           en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           de: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          cn: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           ko: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
         },
       },
@@ -490,7 +491,6 @@ Options.Triggers.push({
     },
     {
       locale: 'cn',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
@@ -499,6 +499,7 @@ Options.Triggers.push({
         'cactbot lang': 'cactbot语言',
         'cactbot test combatant cast': 'cactbot测试战斗员施法',
         'cactbot test config': 'cactbot测试配置',
+        'cactbot test outputStrings': 'cactbot测试输出字符串',
         'cactbot test response': 'cactbot响应测试',
         'cactbot test watch': 'cactbot探测测试',
         'You clap for the striking dummy': '.*向木人送上掌声',

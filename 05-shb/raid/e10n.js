@@ -134,7 +134,7 @@ Options.Triggers.push({
           de: 'Achte auf den verbundenen Hund',
           fr: 'Regardez le chien lié',
           ja: '線で繋がった分身を注視',
-          cn: '找连线的狗',
+          cn: '站在连线狗后',
           ko: '연결된 쫄 뒤로가기',
         },
       },
