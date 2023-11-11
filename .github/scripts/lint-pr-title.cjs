@@ -20,7 +20,6 @@ const validScope = [
   'config',
   'dps',
   'eureka',
-  'fisher',
   'jobs',
   'oopsy',
   'pullcounter',

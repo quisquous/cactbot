@@ -106,12 +106,6 @@ namespace Cactbot {
     // Because this line is a cmp byte line, the signature is not at the end of the line.
     private static int kInCombatRipOffset = 1;
 
-    // Bait integer.
-    // Variable is accessed via a cmp eax,[...] line at offset=0.
-    private static String kBaitSignature = "4883C4305BC3498BC8E8????????3B05";
-    private static int kBaitBaseOffset = 0;
-    private static bool kBaitBaseRIP = true;
-
     // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
     private static String kJobDataSignature = "488B0D????????4885C90F84????????488B05????????3C03";
@@ -154,13 +148,6 @@ namespace Cactbot {
         logger_.Log(LogLevel.Error, Strings.InCombatSignatureFoundMultipleMatchesErrorMessage, p.Count);
       } else {
         in_combat_addr_ = p[0];
-      }
-
-      p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
-      if (p.Count != 1) {
-        logger_.Log(LogLevel.Error, Strings.BaitSignatureFoundMultipleMatchesErrorMessage, p.Count);
-      } else {
-        bait_addr_ = p[0];
       }
     }
 
@@ -229,10 +216,7 @@ namespace Cactbot {
       IntPtr entity_ptr = ReadIntPtr(player_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
-      var data = GetEntityData(entity_ptr);
-      if (data.job == EntityJob.FSH)
-        data.bait = GetBait();
-      return data;
+      return GetEntityData(entity_ptr);
     }
 
     public unsafe override JObject GetJobSpecificData(EntityJob job) {

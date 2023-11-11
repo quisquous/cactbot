@@ -4,7 +4,6 @@ export const cactbotModules = {
   rdmty: 'ui/dps/rdmty/dps',
   xephero: 'ui/dps/xephero/xephero',
   eureka: 'ui/eureka/eureka',
-  fisher: 'ui/fisher/fisher',
   jobs: 'ui/jobs/jobs',
   oopsyraidsyLive: 'ui/oopsyraidsy/oopsy_live',
   oopsyraidsySummary: 'ui/oopsyraidsy/oopsy_summary',
@@ -50,11 +49,6 @@ export const cactbotHtmlChunksMap = {
   'ui/eureka/eureka.html': {
     chunks: [
       cactbotModules.eureka,
-    ],
-  },
-  'ui/fisher/fisher.html': {
-    chunks: [
-      cactbotModules.fisher,
     ],
   },
   'ui/jobs/jobs.html': {

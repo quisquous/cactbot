@@ -41,10 +41,6 @@ cactbot provides these modules:
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
-* fisher: Fishing cast time tracking
-
-![fisher screenshot](screenshots/promo_fishing.png)
-
 * radar: hunt mob directions, puller notifications
 
 ![radar screenshot](screenshots/promo_radar.png)
@@ -435,19 +431,6 @@ or set up custom triggers for any mob name you would like.
 See the `cactbot/user/radar-example.js` for more options.
 
 ![radar screenshot](screenshots/promo_radar.png)
-
-### [fisher](ui/fisher) module
-
-To use this module,
-point cactbot at **ui/fisher/fisher.html** or use the `Cactbot Fisher` preset.
-
-When you cast your line at a fishing hole, this module keeps track of when you reel in particular fish so that you know what you might be getting when you hook it.
-
-![fishing screenshot](screenshots/promo_fishing.png)
-
-Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
-
-Check [here](docs/FAQ-Troubleshooting.md#fisher-module) for common troubleshooting tips.
 
 ### [dps](ui/dps) meters
 

@@ -120,9 +120,6 @@
   <data name="ACTBaseInfo" xml:space="preserve">
     <value>ACT: {0} {1}</value>
   </data>
-  <data name="BaitSignatureFoundMultipleMatchesErrorMessage" xml:space="preserve">
-    <value>Bait signature found {0} matches</value>
-  </data>
   <data name="CactbotBaseInfo" xml:space="preserve">
     <value>cactbot: {0} {1} (dir: {2})</value>
   </data>
@@ -203,10 +200,7 @@ To fix this, you should remove and then re-add all of your cactbot overlays list
   </data>
   <data name="PresetEureka" xml:space="preserve">
     <value>Eureka</value>
-  </data>
-  <data name="PresetFisher" xml:space="preserve">
-    <value>Fisher</value>
-  </data>
+  </data>>
   <data name="PresetJobs" xml:space="preserve">
     <value>Jobs</value>
   </data>

@@ -128,9 +128,6 @@ addOverlayListener('onPlayerChangedEvent', (e) => {
   const rotation = document.getElementById('rotation');
   if (rotation)
     rotation.innerText = e.detail.rotation.toString();
-  const bait = document.getElementById('bait');
-  if (bait)
-    bait.innerText = e.detail.bait.toString();
 });
 
 addOverlayListener('EnmityTargetData', (e) => {
