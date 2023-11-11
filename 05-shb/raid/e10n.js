@@ -135,7 +135,7 @@ Options.Triggers.push({
           fr: 'Regardez le chien lié',
           ja: '線で繋がった分身を注視',
           cn: '找连线的狗',
-          ko: '연결된 쫄 지켜보기', // FIXME
+          ko: '연결된 쫄 뒤로가기',
         },
       },
     },

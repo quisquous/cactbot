@@ -419,7 +419,7 @@ Options.Triggers.push({
           de: '6: 1. Turm, 3. Raus',
           fr: '6: 1ère Tour, 3ème Saut',
           cn: '6麻 1塔3火',
-          ko: '4: 1기둥, 3돌진',
+          ko: '6: 1기둥, 3돌진',
         },
         8: {
           en: '8: Second tower, last dash',
@@ -1046,7 +1046,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ball of Levin': '번개 구체',
         'Comet': '혜성',
@@ -1055,6 +1054,7 @@ Options.Triggers.push({
       },
       'replaceText': {
         '\\(Beast': '(마수',
+        '\\(Chimera': '(합성영혼',
         '\\(Fighter': '(격투가',
         '\\(Final\\)': '(전멸기)',
         '\\(Mage': '(마도사',
@@ -1070,6 +1070,7 @@ Options.Triggers.push({
         'Blizzard III': '블리자가 기둥',
         'Burst': '산산조각',
         'Charybdis': '대소용돌이',
+        'Chimeric Succession': '합성 연격',
         'Comet': '혜성',
         'Disgorge': '영혼 토출',
         'Disintegration': '영혼 분열',
@@ -1080,6 +1081,7 @@ Options.Triggers.push({
         'Fire(?!( |m|s))': '불',
         'Firemeld': '화염 충격',
         'Front Combination': '전방 연속 돌려차기',
+        'Front Firestrikes': '전방 연속 화염격',
         'Gluttony\'s Augur': '폭식의 전조',
         'Ice(?!meld)': '얼음',
         'Icemeld': '빙결 충격',
@@ -1090,6 +1092,7 @@ Options.Triggers.push({
         'Pyremeld': '겹불꽃 충격 ',
         'Ravening': '영혼 포식',
         'Rear Combination': '후방 연속 돌려차기',
+        'Rear Firestrikes': '후방 연속 화염격',
         'Scrambled Succession': '뒤죽박죽 연격',
         'Shock(?!wave)': '방전',
         'Shockwave': '충격파',

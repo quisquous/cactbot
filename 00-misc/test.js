@@ -362,6 +362,7 @@ Options.Triggers.push({
         text: {
           en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           de: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          ko: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
         },
       },
     },
@@ -527,7 +528,6 @@ Options.Triggers.push({
     },
     {
       locale: 'ko',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
@@ -538,6 +538,7 @@ Options.Triggers.push({
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',
         'cactbot test combatant cast': 'cactbot 스킬 시전 테스트',
+        'cactbot test outputStrings': 'cactbot outputStrings 테스트',
         'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
         'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
         'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
