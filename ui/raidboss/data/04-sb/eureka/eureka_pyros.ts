@@ -19,7 +19,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Eureka Pyros Skoll Heavensward Howl',
       type: 'StartsUsing',
-      netRegex: { id: '46BD', source: 'Skoll', capture: false },
+      netRegex: { id: '36DB', source: 'Skoll', capture: false },
       response: Responses.awayFromFront(),
     },
     {
