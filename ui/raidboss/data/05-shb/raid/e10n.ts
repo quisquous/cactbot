@@ -143,8 +143,8 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Achte auf den verbundenen Hund', // FIXME
           fr: 'Regardez le chien lié', // FIXME
           ja: '線で繋がった分身を注視', // FIXME
-          cn: '找连线的狗', // FIXME
-          ko: '연결된 쫄 지켜보기', // FIXME
+          cn: '站在连线狗后',
+          ko: '연결된 쫄 뒤로가기',
         },
       },
     },

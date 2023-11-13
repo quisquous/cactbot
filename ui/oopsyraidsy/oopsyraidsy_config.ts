@@ -279,6 +279,8 @@ const templateOptions: OptionsTemplate = {
       id: 'DefaultPlayerLabel',
       name: {
         en: 'Default Player Label',
+        cn: '默认玩家代称',
+        ko: '플레이어를 언급하는 기본 방법',
       },
       type: 'select',
       options: {
@@ -287,6 +289,18 @@ const templateOptions: OptionsTemplate = {
           'Role (Tank)': 'role',
           'Job (WAR)': 'job',
           'Full Name (Tini Poutini)': 'name',
+        },
+        cn: {
+          '昵称 (Tini)': 'nick',
+          '职能 (坦克)': 'role',
+          '职业 (战士)': 'job',
+          '全名 (Tini Poutini)': 'name',
+        },
+        ko: {
+          '닉네임 (Tini)': 'nick',
+          '역할 (탱커)': 'role',
+          '직업 (전사)': 'job',
+          '이름 전체 (Tini Poutini)': 'name',
         },
       },
       default: 'nick',

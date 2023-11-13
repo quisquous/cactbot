@@ -380,6 +380,8 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           de: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          cn: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          ko: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
         },
       },
     },
@@ -507,7 +509,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'cn',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
@@ -516,6 +517,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot lang': 'cactbot语言',
         'cactbot test combatant cast': 'cactbot测试战斗员施法',
         'cactbot test config': 'cactbot测试配置',
+        'cactbot test outputStrings': 'cactbot测试输出字符串',
         'cactbot test response': 'cactbot响应测试',
         'cactbot test watch': 'cactbot探测测试',
         'You clap for the striking dummy': '.*向木人送上掌声',
@@ -545,7 +547,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
@@ -556,6 +557,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot test response': 'cactbot 응답 테스트',
         'cactbot test watch': 'cactbot 탐지 테스트',
         'cactbot test combatant cast': 'cactbot 스킬 시전 테스트',
+        'cactbot test outputStrings': 'cactbot outputStrings 테스트',
         'You clap for the striking dummy': '.*나무인형에게 박수를 보냅니다',
         'You psych yourself up alongside the striking dummy': '.*나무인형에게 힘을 불어넣습니다',
         'You poke the striking dummy': '.*나무인형을 쿡쿡 찌릅니다',
