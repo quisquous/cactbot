@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
@@ -7,15 +8,24 @@ import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Dark Elf tell people where to go for hidden staves
 // TODO: Antlion tell people which row to be in for landslip + towerfall
-// TODO: Durante initial Forsaken Fount with orbs
-// TODO: Durante Forsaken Fount+Contrapasso explosions (looks to be one pattern rotated?)
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  fountsSeen: number;
+  fountX: number[];
+  fountY: number[];
+}
 
 const triggerSet: TriggerSet<Data> = {
   id: 'TheLunarSubteranne',
   zoneId: ZoneId.TheLunarSubterrane,
   timelineFile: 'the_lunar_subterrane.txt',
+  initData: () => {
+    return {
+      fountsSeen: 0,
+      fountX: [],
+      fountY: [],
+    };
+  },
   triggers: [
     {
       id: 'Lunar Subterrane Dark Elf Abyssal Outburst',
@@ -161,6 +171,111 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '88C2', source: 'Durante' },
       response: Responses.tankBuster(),
+    },
+    {
+      // Round 1 is always a non-splitting line of orbs.
+      id: 'Lunar Subterrane Durante Forsaken Fount 1',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 0,
+      delaySeconds: 1, // This collides with Fount 2 if we don't delay. ???
+      infoText: (_data, _matches, output) => output.avoid!(),
+      run: (data) => data.fountsSeen += 1,
+      outputStrings: {
+        avoid: {
+          en: 'Away from orbs',
+        },
+      },
+    },
+    {
+      // Round 2 is always a splitting line. Center is always safe.
+      id: 'Lunar Subterrane Durante Forsaken Fount 2',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 1,
+      delaySeconds: 1,
+      response: Responses.goMiddle('info'),
+      run: (data) => data.fountsSeen += 1,
+    },
+    {
+      // On round three and subsequently, known  spawn locations for the Aetheric Charge orbs are:
+      // (0,-422)
+      // (0, -434.8)
+      // (0, -409.2)
+      // (3.65, -412.9)
+      // (-3.65, -412.95)
+      // (9.05, -412.8)
+      // (-9.05, -418.35)
+      // (9.15, -425.55)
+      // (9.15, -431.1)
+      // (-9.25, -431.1)
+      // (12.8, -422)
+      // (-12.8, -422)
+      // (Other spawn locations exist for rounds 1/2, but we can ignore those.)
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Collect',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge' },
+      condition: (data) => data.fountsSeen === 2,
+      run: (data, matches) => {
+        // Because the positions are relatively fixed, we don't need a reliable order for coordinates.
+        // Only the values and the count of those values really is important here.
+        data.fountX.push(Math.round(parseFloat(matches.x)));
+        data.fountY.push(Math.round(parseFloat(matches.y)) + 422); // Normalize the Y axis to 0
+      },
+    },
+    {
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Call',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge', capture: false },
+      condition: (data) => data.fountsSeen === 2,
+      delaySeconds: 0.5,
+      infoText: (data, _matches, output) => {
+        if (data.fountX.length < 5 || data.fountY.length < 5)
+          return;
+        // If there are five orbs on the field, three of them will, guaranteed,
+        // have the same X or Y value. Those three are in a straight line.
+        const hCount = data.fountY.filter((n) => n === 0).length;
+        const vCount = data.fountX.filter((n) => n === 0).length;
+
+        if (hCount === 3) {
+          // Horizontal lines are always east/west safe hammer patterns.
+          const xSum = data.fountX.reduce((a, b) => a + b, 0);
+
+          // Don't rely on the rounded sum to be precise, but the sign will be reliable.
+          if (xSum > 5)
+            return output.west!();
+          if (xSum < 5)
+            return output.east!();
+          return output.unknown!();
+        }
+        if (vCount === 3) {
+          // Remember that we're working with 0-normalized values here!
+          // Vertical lines have two possible patterns, one hammer and one hourglass.
+          // If it's hourglass, the rounded  Y positions sum to 0.
+          // If it's hammer, the rounded sums total 13.
+          // (So far we haven't seen a situation where the rounded total is -13,
+          // but handle it anyway just in case.)
+          const ySum = data.fountY.reduce((a, b) => a + b, 0);
+          if (ySum > 10)
+            return output.north!();
+          if (ySum < -10)
+            return output.south!();
+          return output.center!();
+        }
+        return output.unknown!();
+      },
+      run: (data) => {
+        data.fountX = [];
+        data.fountY = [];
+      },
+      outputStrings: {
+        west: Outputs.west,
+        east: Outputs.east,
+        north: Outputs.north,
+        south: Outputs.south,
+        center: Outputs.goIntoMiddle,
+        unknown: '???',
+      },
     },
   ],
   timelineReplace: [
