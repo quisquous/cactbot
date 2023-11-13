@@ -234,8 +234,8 @@ const triggerSet: TriggerSet<Data> = {
           return;
         // If there are five orbs on the field, three of them will, guaranteed,
         // have the same X or Y value. Those three are in a straight line.
-        const hCount = data.fountY.filter((n) => n === 0).length;
-        const vCount = data.fountX.filter((n) => n === 0).length;
+        const hCount = data.fountY.filter((n) => Math.abs(n) < 1).length;
+        const vCount = data.fountX.filter((n) => Math.abs(n) < 1).length;
 
         if (hCount === 3) {
           // Horizontal lines are always east/west safe hammer patterns.
