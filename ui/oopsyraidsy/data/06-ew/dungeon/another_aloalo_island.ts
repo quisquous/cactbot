@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
+import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: people who missed their 8AC2 Burst tower
 // TODO: failing 8894 Radiance orb damage during Analysis
@@ -22,7 +23,7 @@ const nonzeroDamageMistake = (
   return {
     id: triggerId,
     type: 'Ability',
-    netRegex: NetRegexes.ability({ id: abilityId }),
+    netRegex: NetRegexes.ability({ id: abilityId, ...playerDamageFields }),
     condition: (data, matches) => data.DamageFromMatches(matches) > 0,
     mistake: (_data, matches) => {
       return {

@@ -438,7 +438,21 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AAI Wood Golem Tornado',
       type: 'StartsUsing',
       netRegex: { id: '8C4D', source: 'Aloalo Wood Golem' },
-      response: Responses.interrupt('alarm'),
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tornadoOn: {
+            en: 'Away from ${player}',
+          },
+          tornadoOnYou: {
+            en: 'Tornado on YOU',
+          },
+        };
+
+        if (data.me === matches.target)
+          return { alertText: output.tornadoOnYou!() };
+        return { infoText: output.tornadoOn!({ player: data.party.member(matches.target) }) };
+      },
     },
     {
       id: 'AAI Wood Golem Tornado Bind',
@@ -787,7 +801,7 @@ const triggerSet: TriggerSet<Data> = {
       // E83 = Forward March
       netRegex: { effectId: 'E83' },
       condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 6,
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 8,
       durationSeconds: 4,
       alertText: (data, _matches, output) => {
         const rotation = data.lalaPlayerRotation;
@@ -824,6 +838,7 @@ const triggerSet: TriggerSet<Data> = {
       // E8D = Subtractive Suppressor Beta
       netRegex: { effectId: 'E8D' },
       condition: Conditions.targetIsYou(),
+      suppressSeconds: 999999,
       alertText: (_data, matches, output) => {
         const num = parseInt(matches.count);
         if (num < 1 || num > 4)
