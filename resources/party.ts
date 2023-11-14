@@ -27,170 +27,170 @@ const roleLocalized: Record<Role, Partial<Record<Lang, string>>> = {
   none: { ja: 'すっぴん士', cn: '冒险者' },
 };
 
-// TODO: ja(abbr), de, fr, ko
+// TODO: ja de fr ko
 const jobLocalized: Record<Job, Record<'abbr' | 'full', Partial<Record<Lang, string>>>> = {
   NONE: {
-    abbr: { ja: 'すっぴん士', cn: '冒险' },
+    abbr: { cn: '冒险' },
     full: { en: 'Adventurer', ja: 'すっぴん士', cn: '冒险者' },
   },
   GLA: {
-    abbr: { ja: '剣術士', cn: '剑术' },
+    abbr: { cn: '剑术' },
     full: { en: 'Gladiator', ja: '剣術士', cn: '剑术师' },
   },
   PGL: {
-    abbr: { ja: '格闘士', cn: '格斗' },
+    abbr: { cn: '格斗' },
     full: { en: 'Pugilist', ja: '格闘士', cn: '格斗家' },
   },
   MRD: {
-    abbr: { ja: '斧術士', cn: '斧术' },
+    abbr: { cn: '斧术' },
     full: { en: 'Marauder', ja: '斧術士', cn: '斧术师' },
   },
   LNC: {
-    abbr: { ja: '槍術士', cn: '枪术' },
+    abbr: { cn: '枪术' },
     full: { en: 'Lancer', ja: '槍術士', cn: '枪术师' },
   },
   ARC: {
-    abbr: { ja: '弓術士', cn: '弓箭' },
+    abbr: { cn: '弓箭' },
     full: { en: 'Archer', ja: '弓術士', cn: '弓箭手' },
   },
   CNJ: {
-    abbr: { ja: '幻術士', cn: '幻术' },
+    abbr: { cn: '幻术' },
     full: { en: 'Conjurer', ja: '幻術士', cn: '幻术师' },
   },
   THM: {
-    abbr: { ja: '呪術士', cn: '咒术' },
+    abbr: { cn: '咒术' },
     full: { en: 'Thaumaturge', ja: '呪術士', cn: '咒术师' },
   },
   CRP: {
-    abbr: { ja: '木工師', cn: '刻木' },
+    abbr: { cn: '刻木' },
     full: { en: 'Carpenter', ja: '木工師', cn: '刻木匠' },
   },
   BSM: {
-    abbr: { ja: '鍛冶師', cn: '锻铁' },
+    abbr: { cn: '锻铁' },
     full: { en: 'Blacksmith', ja: '鍛冶師', cn: '锻铁匠' },
   },
   ARM: {
-    abbr: { ja: '甲冑師', cn: '铸甲' },
+    abbr: { cn: '铸甲' },
     full: { en: 'Armorer', ja: '甲冑師', cn: '铸甲匠' },
   },
   GSM: {
-    abbr: { ja: '彫金師', cn: '雕金' },
+    abbr: { cn: '雕金' },
     full: { en: 'Goldsmith', ja: '彫金師', cn: '雕金匠' },
   },
   LTW: {
-    abbr: { ja: '革細工師', cn: '制革' },
+    abbr: { cn: '制革' },
     full: { en: 'Leatherworker', ja: '革細工師', cn: '制革匠' },
   },
   WVR: {
-    abbr: { ja: '裁縫師', cn: '裁衣' },
+    abbr: { cn: '裁衣' },
     full: { en: 'Weaver', ja: '裁縫師', cn: '裁衣匠' },
   },
   ALC: {
-    abbr: { ja: '錬金術師', cn: '炼金' },
+    abbr: { cn: '炼金' },
     full: { en: 'Alchemist', ja: '錬金術師', cn: '炼金术士' },
   },
   CUL: {
-    abbr: { ja: '調理師', cn: '烹调' },
+    abbr: { cn: '烹调' },
     full: { en: 'Culinarian', ja: '調理師', cn: '烹调师' },
   },
   MIN: {
-    abbr: { ja: '採掘師', cn: '采矿' },
+    abbr: { cn: '采矿' },
     full: { en: 'Miner', ja: '採掘師', cn: '采矿工' },
   },
   BTN: {
-    abbr: { ja: '園芸師', cn: '园艺' },
+    abbr: { cn: '园艺' },
     full: { en: 'Botanist', ja: '園芸師', cn: '园艺工' },
   },
   FSH: {
-    abbr: { ja: '漁師', cn: '捕鱼' },
+    abbr: { cn: '捕鱼' },
     full: { en: 'Fisher', ja: '漁師', cn: '捕鱼人' },
   },
   PLD: {
-    abbr: { ja: 'ナイト', cn: '骑士' },
+    abbr: { cn: '骑士' },
     full: { en: 'Paladin', ja: 'ナイト', cn: '骑士' },
   },
   MNK: {
-    abbr: { ja: 'モンク', cn: '武僧' },
+    abbr: { cn: '武僧' },
     full: { en: 'Monk', ja: 'モンク', cn: '武僧' },
   },
   WAR: {
-    abbr: { ja: '戦士', cn: '战士' },
+    abbr: { cn: '战士' },
     full: { en: 'Warrior', ja: '戦士', cn: '战士' },
   },
   DRG: {
-    abbr: { ja: '竜騎士', cn: '龙骑' },
+    abbr: { cn: '龙骑' },
     full: { en: 'Dragoon', ja: '竜騎士', cn: '龙骑士' },
   },
   BRD: {
-    abbr: { ja: '吟遊詩人', cn: '诗人' },
+    abbr: { cn: '诗人' },
     full: { en: 'Bard', ja: '吟遊詩人', cn: '吟游诗人' },
   },
   WHM: {
-    abbr: { ja: '白魔道士', cn: '白魔' },
+    abbr: { cn: '白魔' },
     full: { en: 'White Mage', ja: '白魔道士', cn: '白魔法师' },
   },
   BLM: {
-    abbr: { ja: '黒魔道士', cn: '黑魔' },
+    abbr: { cn: '黑魔' },
     full: { en: 'Black Mage', ja: '黒魔道士', cn: '黑魔法师' },
   },
   ACN: {
-    abbr: { ja: '巴術士', cn: '秘术' },
+    abbr: { cn: '秘术' },
     full: { en: 'Arcanist', ja: '巴術士', cn: '秘术师' },
   },
   SMN: {
-    abbr: { ja: '召喚士', cn: '召唤' },
+    abbr: { cn: '召唤' },
     full: { en: 'Summoner', ja: '召喚士', cn: '召唤师' },
   },
   SCH: {
-    abbr: { ja: '学者', cn: '学者' },
+    abbr: { cn: '学者' },
     full: { en: 'Scholar', ja: '学者', cn: '学者' },
   },
   ROG: {
-    abbr: { ja: '双剣士', cn: '双剑' },
+    abbr: { cn: '双剑' },
     full: { en: 'Rogue', ja: '双剣士', cn: '双剑师' },
   },
   NIN: {
-    abbr: { ja: '忍者', cn: '忍者' },
+    abbr: { cn: '忍者' },
     full: { en: 'Ninja', ja: '忍者', cn: '忍者' },
   },
   MCH: {
-    abbr: { ja: '機工士', cn: '机工' },
+    abbr: { cn: '机工' },
     full: { en: 'Machinist', ja: '機工士', cn: '机工士' },
   },
   DRK: {
-    abbr: { ja: '暗黒騎士', cn: '暗骑' },
+    abbr: { cn: '暗骑' },
     full: { en: 'Dark Knight', ja: '暗黒騎士', cn: '暗黑骑士' },
   },
   AST: {
-    abbr: { ja: '占星術師', cn: '占星' },
+    abbr: { cn: '占星' },
     full: { en: 'Astrologian', ja: '占星術師', cn: '占星术士' },
   },
   SAM: {
-    abbr: { ja: '侍', cn: '武士' },
+    abbr: { cn: '武士' },
     full: { en: 'Samurai', ja: '侍', cn: '武士' },
   },
   RDM: {
-    abbr: { ja: '赤魔道士', cn: '赤魔' },
+    abbr: { cn: '赤魔' },
     full: { en: 'Red Mage', ja: '赤魔道士', cn: '赤魔法师' },
   },
   BLU: {
-    abbr: { ja: '青魔道士', cn: '青魔' },
+    abbr: { cn: '青魔' },
     full: { en: 'Blue Mage', ja: '青魔道士', cn: '青魔法师' },
   },
   GNB: {
-    abbr: { ja: 'ガンブレイカー', cn: '绝枪' },
+    abbr: { cn: '绝枪' },
     full: { en: 'Gunbreaker', ja: 'ガンブレイカー', cn: '绝枪战士' },
   },
   DNC: {
-    abbr: { ja: '踊り子', cn: '舞者' },
+    abbr: { cn: '舞者' },
     full: { en: 'Dancer', ja: '踊り子', cn: '舞者' },
   },
   RPR: {
-    abbr: { ja: 'リーパー', cn: '钐镰' },
+    abbr: { cn: '钐镰' },
     full: { en: 'Reaper', ja: 'リーパー', cn: '钐镰客' },
   },
   SGE: {
-    abbr: { ja: '賢者', cn: '贤者' },
+    abbr: { cn: '贤者' },
     full: { en: 'Sage', ja: '賢者', cn: '贤者' },
   },
 };
