@@ -2,8 +2,8 @@ import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
 import { PartyMemberParamObject, PartyTrackerOptions } from '../types/party';
 import Options from '../ui/raidboss/raidboss_options';
-import { Lang } from './languages';
 
+import { Lang } from './languages';
 import Util from './util';
 
 const emptyRoleToPartyNames = () => {
