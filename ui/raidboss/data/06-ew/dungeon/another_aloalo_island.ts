@@ -8,8 +8,6 @@ import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: use code from AMR to handle cases of "role stacks" when somebody is dead
-// TODO: switch crystals 1 to always tell you what fetters do
-// TODO: say who is your bubble/fetters partner (esp for sc2)
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
 // TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
@@ -30,6 +28,7 @@ export interface Data extends RaidbossData {
   ketuCrystalAdd: NetMatches['AddedCombatant'][];
   ketuHydroBuffCount: number;
   ketuBuff?: 'bubble' | 'fetters';
+  ketuBuffCollect: NetMatches['GainsEffect'][];
   lalaBossRotation?: 'clock' | 'counter';
   lalaBossTimes?: 3 | 5;
   lalaBossInitialSafe?: 'north' | 'east' | 'south' | 'west';
@@ -55,6 +54,7 @@ const triggerSet: TriggerSet<Data> = {
       ketuSpringCrystalCount: 0,
       ketuCrystalAdd: [],
       ketuHydroBuffCount: 0,
+      ketuBuffCollect: [],
       lalaSubAlpha: [],
     };
   },
@@ -204,28 +204,40 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.ketuCrystalAdd.push(matches),
     },
     {
-      id: 'AAI Ketuduke Foamy Fetters',
+      id: 'AAI Ketuduke Foamy Fetters Bubble Weave',
       type: 'GainsEffect',
-      netRegex: { effectId: 'ECC' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
-      run: (data) => data.ketuBuff = 'fetters',
-      outputStrings: {
-        text: {
-          en: 'Fetters',
-        },
+      // ECC = Foamy Fetters
+      // E9F = Bubble Weave
+      netRegex: { effectId: ['ECC', 'E9F'] },
+      delaySeconds: (data, matches) => {
+        data.ketuBuffCollect.push(matches);
+        return data.ketuBuffCollect.length === 4 ? 0 : 0.5;
       },
-    },
-    {
-      id: 'AAI Ketuduke Bubble Weave',
-      type: 'GainsEffect',
-      netRegex: { effectId: 'E9F' },
-      condition: Conditions.targetIsYou(),
-      alertText: (_data, _matches, output) => output.text!(),
-      run: (data) => data.ketuBuff = 'bubble',
+      alertText: (data, _matches, output) => {
+        if (data.ketuBuffCollect.length === 0)
+          return;
+
+        const myBuff = data.ketuBuffCollect.find((x) => x.target === data.me)?.effectId;
+        if (myBuff === undefined)
+          return;
+        data.ketuBuff = myBuff === 'ECC' ? 'fetters' : 'bubble';
+
+        const player = data.party.member(
+          data.ketuBuffCollect.find((x) => {
+            return x.target !== data.me && x.effectId === myBuff;
+          })?.target,
+        );
+        if (data.ketuBuff === 'fetters')
+          return output.fetters!({ player: player });
+        return output.bubble!({ player: player });
+      },
+      run: (data) => data.ketuBuffCollect = [],
       outputStrings: {
-        text: {
-          en: 'Bubble',
+        fetters: {
+          en: 'Fetters (w/${player})',
+        },
+        bubble: {
+          en: 'Bubble (w/${player})',
         },
       },
     },
