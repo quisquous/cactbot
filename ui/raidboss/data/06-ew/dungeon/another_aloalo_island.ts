@@ -36,6 +36,10 @@ export interface Data extends RaidbossData {
   lalaPlayerTimes?: 3 | 5;
   lalaPlayerRotation?: 'clock' | 'counter';
   lalaSubAlpha: NetMatches['GainsEffect'][];
+  staticeBullet: NetMatches['Ability'][];
+  staticeTriggerHappy?: number;
+  staticeTrapshooting: ('stack' | 'spread')[];
+  staticeDart: NetMatches['GainsEffect'][];
 }
 
 // Horizontal crystals have a heading of 0, vertical crystals are -pi/2.
@@ -56,6 +60,9 @@ const triggerSet: TriggerSet<Data> = {
       ketuHydroBuffCount: 0,
       ketuBuffCollect: [],
       lalaSubAlpha: [],
+      staticeBullet: [],
+      staticeTrapshooting: [],
+      staticeDart: [],
     };
   },
   timelineTriggers: [
@@ -858,6 +865,183 @@ const triggerSet: TriggerSet<Data> = {
         num4: {
           en: 'Four',
         },
+      },
+    },
+    // ---------------- Statice ----------------
+    {
+      id: 'AAI Statice Aero IV',
+      type: 'StartsUsing',
+      netRegex: { id: '8949', source: 'Statice', capture: false },
+      response: Responses.aoe(),
+    },
+    {
+      id: 'AAI Statice Trick Reload',
+      type: 'Ability',
+      // 8925 = Locked and Loaded
+      // 8926 = Misload
+      netRegex: { id: ['8925', '8926'], source: 'Statice' },
+      preRun: (data, matches) => data.staticeBullet.push(matches),
+      alertText: (data, _matches, output) => {
+        // Statice loads 8 bullets, two are duds.
+        // The first and the last are always opposite, and one of them is a dud.
+        // The first/ last bullets are for Trapshooting and the middle six are for Trigger Happy.
+        const [bullet] = data.staticeBullet;
+        if (data.staticeBullet.length !== 1 || bullet === undefined)
+          return;
+        const isStack = bullet.id === '8926';
+        data.staticeTrapshooting = isStack ? ['stack', 'spread'] : ['spread', 'stack'];
+        return isStack ? output.stackThenSpread!() : output.spreadThenStack!();
+      },
+      infoText: (data, _matches, output) => {
+        const lastBullet = data.staticeBullet[data.staticeBullet.length - 1];
+        if (data.staticeBullet.length < 2 || data.staticeBullet.length > 7)
+          return;
+        if (lastBullet?.id !== '8926')
+          return;
+        data.staticeTriggerHappy = data.staticeBullet.length - 1;
+        return output.numSafeLater!({ num: output[`num${data.staticeTriggerHappy}`]!() });
+      },
+      run: (data) => {
+        if (data.staticeBullet.length === 8)
+          data.staticeBullet = [];
+      },
+      outputStrings: {
+        stackThenSpread: Outputs.stackThenSpread,
+        spreadThenStack: Outputs.spreadThenStack,
+        numSafeLater: {
+          en: '(${num} safe later)',
+        },
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
+      },
+    },
+    {
+      id: 'AAI Statice Trapshooting',
+      type: 'StartsUsing',
+      netRegex: { id: ['8D1A', '8959'], source: 'Statice', capture: false },
+      alertText: (data, _matches, output) => {
+        const mech = data.staticeTrapshooting.shift();
+        if (mech === undefined)
+          return;
+        return output[mech]!();
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+      },
+    },
+    {
+      id: 'AAI Statice Trigger Happy',
+      type: 'StartsUsing',
+      netRegex: { id: '894B', source: 'Statice', capture: false },
+      alertText: (data, _matches, output) => {
+        const num = data.staticeTriggerHappy;
+        if (num === undefined)
+          return;
+        return output[`num${num}`]!();
+      },
+      run: (data) => delete data.staticeTriggerHappy,
+      outputStrings: {
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
+      },
+    },
+    {
+      id: 'AAI Statice Bull\'s-eye',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'E9E' },
+      delaySeconds: (data, matches) => {
+        data.staticeDart.push(matches);
+        return data.staticeDart.length === 3 ? 0 : 0.5;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          dartOnYou: {
+            en: 'Dart on YOU',
+          },
+          noDartOnYou: {
+            en: 'Flex',
+          },
+          flexCall: {
+            en: '(${player} flex)',
+          },
+        };
+
+        if (data.staticeDart.length === 0)
+          return;
+
+        const dartTargets = data.staticeDart.map((x) => x.target);
+
+        if (!dartTargets.includes(data.me))
+          return { alertText: output.noDartOnYou!() };
+
+        const partyNames = data.party.partyNames;
+
+        const flexers = partyNames.filter((x) => !dartTargets.includes(x));
+        const [flex] = flexers;
+        const flexPlayer = flexers.length === 1 ? data.party.member(flex) : undefined;
+
+        return {
+          alertText: output.dartOnYou!(),
+          infoText: output.flexCall!({ player: flexPlayer }),
+        };
+      },
+      run: (data) => data.staticeDart = [],
+    },
+    {
+      id: 'AAI Statice Pop',
+      type: 'StartsUsing',
+      // TODO: this might need a slight delay
+      netRegex: { id: '894E', source: 'Statice', capture: false },
+      suppressSeconds: 20,
+      response: Responses.knockback(),
+    },
+    {
+      id: 'AAI Statice Face',
+      type: 'GainsEffect',
+      // DD2 = Forward March
+      // DD3 = About Face
+      // DD4 = Left Face
+      // DD5 = Right Face
+      netRegex: { effectId: ['DD2', 'DD3', 'DD4', 'DD5'] },
+      condition: Conditions.targetIsYou(),
+      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 7,
+      durationSeconds: 5,
+      alertText: (data, matches, output) => {
+        const mechName = data.staticeTrapshooting[data.staticeTrapshooting.length - 1];
+        const mech = mechName === undefined ? output.unknown!() : output[mechName]!();
+        return {
+          'DD2': output.forward!({ mech: mech }),
+          'DD3': output.backward!({ mech: mech }),
+          'DD4': output.left!({ mech: mech }),
+          'DD5': output.right!({ mech: mech }),
+        }[matches.effectId];
+      },
+      outputStrings: {
+        forward: {
+          en: 'Forward March (${mech})',
+        },
+        backward: {
+          en: 'Backward March (${mech})',
+        },
+        left: {
+          en: 'Left March (${mech})',
+        },
+        right: {
+          en: 'Right March (${mech})',
+        },
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+        unknown: Outputs.unknown,
       },
     },
   ],

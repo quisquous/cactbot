@@ -113,7 +113,7 @@ hideall "--sync--"
 # 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
 # 8ABE Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
 # 8ABF Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
-# 8AC0 Angry Seas cast and self-targeted ability for 8AC1 red line knockback
+# 8AC0 Angry Seas self-targeted cast for 8AC1 red line knockback
 # 8AC1 Angry Seas cast and knockback damage from red line
 # 8AC2 Burst tower damage
 # 8AC3 Big Burst tower failure damage
@@ -123,7 +123,7 @@ hideall "--sync--"
 # 8AC7 Updraft self-targeted cast to boost adds and players into the air
 # 8AC8 Updraft ability on players for 8AC7 Updraft
 # 8AC9 Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
-# 8ACA Hundred Lashings cast and self-targeted ability for bubbled Zaratan adds
+# 8ACA Hundred Lashings self-targeted cast for bubbled Zaratan adds
 # 8ACB Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
 # 8ACC Receding Twintides cast and damage for initial out during out->in
 # 8ACD Near Tide fast cast and damage for second out during in->out with 8ACE Encroaching Twintides
@@ -258,6 +258,85 @@ hideall "--sync--"
 # 8CDF Targeted Light cast and damage on players for 8CDE
 # 8D1F Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
 # 8D2E Angular Addition self-targeted ability to give boss V
+
+
+#~~~~~~~~~~~~~~~~~~~~#
+# STATICE WITH A GUN #
+#~~~~~~~~~~~~~~~~~~~~#
+
+# -p 8949:3013.8
+# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2
+
+3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
+3008.8 "--sync--" sync / 14:[^:]*:Statice:8949:/ window 20,20
+3013.8 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3018.0 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3023.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3038.2 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1A:/
+3048.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3056.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3070.6 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8959:/
+3074.6 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+
+3081.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3087.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3101.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3106.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:8CBD:/
+3120.1 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8959:/
+3122.0 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+3125.3 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8954:/
+
+3132.3 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3137.7 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:894D:/
+3144.8 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8963:/
+3149.8 "Surprise Needle 1" #sync / 1[56]:[^:]*:Needle:894F:/
+3150.7 "Pop 1" sync / 1[56]:[^:]*:Statice:894E:/
+3151.5 "Surprise Needle 2" #sync / 1[56]:[^:]*:Needle:894F:/
+3152.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3153.2 "Surprise Needle 3" #sync / 1[56]:[^:]*:Needle:894F:/
+3154.9 "Surprise Needle 4" #sync / 1[56]:[^:]*:Needle:894F:/
+3155.6 "Pop 2" sync / 1[56]:[^:]*:Statice:894E:/
+3160.4 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8959:/
+
+3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3189.2 "Present Box" sync / 1[56]:[^:]*:Statice:8955:/
+3194.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895E:/
+3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8956:/
+
+
+# ALL ENCOUNTER ABILITIES
+# 8925 Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
+# 8926 Misload ability during 894A Trick Reload when a bullet missed the gun oops
+# 8927 --sync-- repositioning from Statice
+# 8947 --sync-- auto damage from Statice
+# 8949 Aero IV cast and raidwide damage
+# 894A Trick Reload self-targeted cast to load gun with 8925/8926
+# 894B Trigger Happy self-targeted cast for limit cut dart board
+# 894C Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+# 894D Surprise Balloon self-targeted cast
+# 894E Pop knockback from Surprise Balloon being popped
+# 894F Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+# 8954 Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
+# 8955 Present Box self-targeted cast for bombs/donuts/missiles/hands
+# 8956 Faerie Ring cast and damage for donut rings during Present Box
+# 8959 Trapshooting self-targeted cast after Trick Reload (after the first time)
+# 895A Trapshooting stack damage from Trick Reload
+# 895B Trapshooting spread damage from Trick Reload
+# 895C Ring a Ring o' Explosions self-targeted cast for rotating bombs
+# 895D Burst cast and damage from bomb explosion
+# 895E Fireworks self-targeted cast
+# 895F Fireworks ??? spread/stack damage during Present Box
+# 8960 Fireworks ??? spread/stack damage during Present Box
+# 8963 Beguiling Glitter self-targeted cast to give players Face debuffs
+# 8987 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+# 8A6A --sync-- ability on Bomb when rotating
+# 8CBD Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+# 8CC2 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
+# 8D1A Trapshooting self-targeted cast after Trick Reload (first time)
 
 
 #~~~~~~~~~#

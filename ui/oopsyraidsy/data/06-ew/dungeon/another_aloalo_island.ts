@@ -11,10 +11,37 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: walking over 889B Arcane Combustion when you don't have Suppressor
 // TODO: taking extra 8893 Inferno Divide squares during Spatial Tactics
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
+// TODO: players not in Trapshooting stack 895A
 
 export type Data = OopsyData;
 
-// TODO: we could probably move this helper to some oopsy util.
+// TODO: we could probably move these helpers to some oopsy util.
+const pushedIntoWall = (
+  triggerId: string,
+  abilityId: string | string[],
+): OopsyTrigger<OopsyData> => {
+  return {
+    id: triggerId,
+    type: 'Ability',
+    netRegex: NetRegexes.ability({ id: abilityId, ...playerDamageFields }),
+    condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+    deathReason: (_data, matches) => {
+      return {
+        id: matches.targetId,
+        name: matches.target,
+        text: {
+          en: 'Pushed into wall',
+          de: 'Rückstoß in die Wand',
+          fr: 'Poussé(e) dans le mur',
+          ja: '壁へノックバック',
+          cn: '击退至墙',
+          ko: '넉백',
+        },
+      };
+    },
+  };
+};
+
 const nonzeroDamageMistake = (
   triggerId: string,
   abilityId: string | string[],
@@ -69,6 +96,11 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Arcane Mine': '889A', // initial Arcane Mine squares
     'AAI Golem Aero II': '88A4', // line damage from Aloalo Golem during Symmetric Surge
     'AAI Telluric Theorem': '88A9', // puddles from Explosive Theorem spreads
+
+    // Statice
+    'AAI Trigger Happy': '894C', // limit cut dart board
+    'AAI Bomb Burst': '895D', // bomb explosion
+    'AAI Uncommon Ground': '8CC2', // people who are on the same dartboard color with Bull's-eye
   },
   damageFail: {
     'AAI Big Burst': '8AC3', // tower failure damage
@@ -88,36 +120,20 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Wood Golem Tornado': '8C4D', // headmarker -> bind and heavy aoe
     'AAI Powerful Light': '88A6', // spread marker during Symmetric Surge that turns squares blue
     'AAI Explosive Theorem': '88A8', // large spreads with Telluric Theorem puddles
+    'AAI Trapshooting Spread': '895B', // spread damage from Trick Reload
   },
   soloWarn: {
     'AAI Snipper Water III': '8C64', // Snipper stack marker
     'AAI Islekeeper Gravity Force': '8BC5', // stack
+    'AAI Trapshooting Stack': '895A', // stack damage from Trick Reload
   },
   soloFail: {
     'AAI Hydrofall': '8AB7', // partner stack debuffs
     'AAI Symmetric Surge': '889E', // two person stack that gives magic vuln up
   },
   triggers: [
-    {
-      // Getting knocked into a wall from the Angry Seas knockback
-      id: 'AAI Angry Seas Wall',
-      type: 'Ability',
-      netRegex: NetRegexes.ability({ id: '8AC1' }),
-      deathReason: (_data, matches) => {
-        return {
-          id: matches.targetId,
-          name: matches.target,
-          text: {
-            en: 'Pushed into wall',
-            de: 'Rückstoß in die Wand',
-            fr: 'Poussé(e) dans le mur',
-            ja: '壁へノックバック',
-            cn: '击退至墙',
-            ko: '넉백',
-          },
-        };
-      },
-    },
+    pushedIntoWall('AAI Angry Seas', '8AC1'),
+    pushedIntoWall('AAI Pop', '894E'),
     nonzeroDamageMistake('AAI Hundred Lashings', ['8AC9', '8ACB'], 'warn'),
   ],
 };
