@@ -212,6 +212,49 @@ const triggerSet: TriggerSet<Data> = {
       // (12.8, -422)
       // (-12.8, -422)
       // (Other spawn locations exist for rounds 1/2, but we can ignore those.)
+
+      // The primary known configurations for round three onward are:
+      // West Safe
+      // (-12.80,-422.00), (0.00,-422.00), (12.80,-422.00)
+      // (9.15,-431.10)
+      // (3.65,-412.90)
+
+      // North Safe
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (9.05,-412.80)
+      // (-9.05,-418.35)
+
+      // East Safe
+      // (-12.80,-422.00),  (0.00,-422.00), (12.80,-422.00)
+      // (-9.25,-431.05)
+      // (-3.65,-412.95)
+
+      // Hourglass
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (-9.05,-418.35)
+      // (9.15,-425.55)
+      // So far nobody has seen a configuration with South being safe.
+
+      // When the Y axis is normalized to 0, the sets look like this:
+      // West Safe
+      // (-12.80,0), (0,0), (12.8,0)
+      // (9.15,-9.1)
+      // (3.65,9.1)
+
+      // North Safe
+      // (0,12.8), (0,0), (0,-12.8)
+      // (9.05,9.2)
+      // (-9.05,3.65)
+
+      // East Safe
+      // (-12.8,0),  (0,0), (12.8,0)
+      // (-9.25,-9.05)
+      // (-3.65,9.05)
+
+      // Hourglass
+      // (0,12.8), (0,0), (0,-12.8)
+      // (-9.05,3.65)
+      // (9.15,-3.55)
       id: 'Lunar Subterrane Durante Forsaken Fount 3 Collect',
       type: 'AddedCombatant',
       netRegex: { name: 'Aetheric Charge' },
@@ -249,18 +292,20 @@ const triggerSet: TriggerSet<Data> = {
           return output.unknown!();
         }
         if (vCount === 3) {
-          // Remember that we're working with 0-normalized values here!
+          // Remember that we're working with 0-normalized Y values here!
+          // Positive Y values are south.
+
           // Vertical lines have two possible patterns, one hammer and one hourglass.
           // If it's hourglass, the rounded  Y positions sum to 0.
-          // If it's hammer, the rounded sums total 13.
+          // If it's hammer, the absolute value of rounded sums totals 13.
           // (So far we haven't seen a situation where the rounded total is -13,
           // but handle it anyway just in case.)
           const ySum = data.fountY.reduce((a, b) => a + b, 0);
-          if (ySum > 10)
+          if (ySum > 10) // Multiple non-line orbs south.
             return output.north!();
-          if (ySum < -10)
+          if (ySum < -10) // Multiple non-line orbs north. THIS DOES NOT NECESSARILY EXIST.
             return output.south!();
-          return output.center!();
+          return output.center!(); // An hourglass configuration.
         }
         return output.unknown!();
       },
