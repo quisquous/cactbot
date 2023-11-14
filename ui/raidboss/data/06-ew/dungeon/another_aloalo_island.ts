@@ -275,7 +275,6 @@ const triggerSet: TriggerSet<Data> = {
         // Wind doesn't matter, as "1" will always be on the horizontal crystals.
         //
         // STACK FETTERS COLUMNS (kitty to horizontal)
-        // stack, counter_nw2
         //     2                   2
         //   + - - - - +         + - - - - +
         //   | V     f | 1       |     H f | 1
@@ -286,7 +285,6 @@ const triggerSet: TriggerSet<Data> = {
         //           2                   2
         //
         // STACK FETTERS SPLIT (on horizontal)
-        // stack, clock_nw1
         //           2                   2
         //   + - - - - +         + - - - - +
         // 1 |     V   |       1 |   V     |
@@ -297,7 +295,6 @@ const triggerSet: TriggerSet<Data> = {
         //     2                   2
         //
         // SPREAD FETTERS COLUMNS (adjacent to vertical)
-        // spread, counter_nw2
         //     2                   2
         //   + - - - - +         + - - - - +
         //   | V f     | 1       |   f H b | 1
@@ -308,7 +305,6 @@ const triggerSet: TriggerSet<Data> = {
         //           2                   2
         //
         // SPREAD FETTERS SPLIT (kitty to vertical)
-        // spread, counter_nw2
         //     2                   2
         //   + - - - - +         + - - - - +
         //   |   V     | 1       |     V   | 1
