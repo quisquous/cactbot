@@ -2,7 +2,6 @@ import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
 import { PartyMemberParamObject, PartyTrackerOptions } from '../types/party';
 import { LocaleText } from '../types/trigger';
-import Options from '../ui/raidboss/raidboss_options';
 
 import Util from './util';
 
@@ -591,11 +590,12 @@ export default class PartyTracker {
         nick: nick,
       };
     } else {
+      const lang = this.options.DisplayLanguage;
       const job = Util.jobEnumToJob(partyMember.job);
-      const jobAbbr = jobLocalizedAbbr[job]?.[Options.AlertsLanguage ?? 'en'] ?? job;
-      const jobFull = jobLocalizedFull[job]?.[Options.AlertsLanguage ?? 'en'] ?? job;
+      const jobAbbr = jobLocalizedAbbr[job]?.[lang] ?? job;
+      const jobFull = jobLocalizedFull[job]?.[lang] ?? job;
       const role = Util.jobToRole(job);
-      const roleName = roleLocalized[role]?.[Options.AlertsLanguage ?? 'en'] ?? role;
+      const roleName = roleLocalized[role]?.[lang] ?? role;
       ret = {
         id: partyMember.id,
         job: jobAbbr,

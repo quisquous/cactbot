@@ -1,3 +1,4 @@
+import { BaseOptions } from './data';
 import { OutputStringsParamObject } from './trigger';
 
 export type BasePartyMemberParamObject = {
@@ -17,7 +18,7 @@ export interface PartyMemberParamObject
 }
 
 // This is a partial interface of both RaidbossOptions and OopsyOptions.
-export interface PartyTrackerOptions {
+export interface PartyTrackerOptions extends BaseOptions {
   DefaultPlayerLabel: PartyMemberParamObjectKeys;
   PlayerNicks: { [gameName: string]: string };
 }
