@@ -128,67 +128,70 @@ This guide was last updated for:
     - [Regexes](#regexes-21)
     - [Examples](#examples-21)
   - [Line 37 (0x25): NetworkActionSync](#line-37-0x25-networkactionsync)
-  - [Line 38 (0x26): NetworkStatusEffects](#line-38-0x26-networkstatuseffects)
     - [Structure](#structure-22)
     - [Regexes](#regexes-22)
     - [Examples](#examples-22)
-  - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
+  - [Line 38 (0x26): NetworkStatusEffects](#line-38-0x26-networkstatuseffects)
     - [Structure](#structure-23)
     - [Regexes](#regexes-23)
     - [Examples](#examples-23)
-  - [Line 40 (0x28): Map](#line-40-0x28-map)
+  - [Line 39 (0x27): NetworkUpdateHP](#line-39-0x27-networkupdatehp)
     - [Structure](#structure-24)
     - [Regexes](#regexes-24)
     - [Examples](#examples-24)
-  - [Line 41 (0x29): SystemLogMessage](#line-41-0x29-systemlogmessage)
+  - [Line 40 (0x28): Map](#line-40-0x28-map)
     - [Structure](#structure-25)
     - [Regexes](#regexes-25)
     - [Examples](#examples-25)
-  - [Line 42 (0x2A): StatusList3](#line-42-0x2a-statuslist3)
+  - [Line 41 (0x29): SystemLogMessage](#line-41-0x29-systemlogmessage)
     - [Structure](#structure-26)
     - [Regexes](#regexes-26)
     - [Examples](#examples-26)
+  - [Line 42 (0x2A): StatusList3](#line-42-0x2a-statuslist3)
+    - [Structure](#structure-27)
+    - [Regexes](#regexes-27)
+    - [Examples](#examples-27)
   - [Line 251 (0xFB): Debug](#line-251-0xfb-debug)
   - [Line 252 (0xFC): PacketDump](#line-252-0xfc-packetdump)
   - [Line 253 (0xFD): Version](#line-253-0xfd-version)
   - [Line 254 (0xFE): Error](#line-254-0xfe-error)
 - [OverlayPlugin Log Lines](#overlayplugin-log-lines)
   - [Line 256 (0x100): LineRegistration](#line-256-0x100-lineregistration)
-    - [Structure](#structure-27)
-    - [Regexes](#regexes-27)
-    - [Examples](#examples-27)
-  - [Line 257 (0x101): MapEffect](#line-257-0x101-mapeffect)
     - [Structure](#structure-28)
     - [Regexes](#regexes-28)
     - [Examples](#examples-28)
-  - [Line 258 (0x102): FateDirector](#line-258-0x102-fatedirector)
+  - [Line 257 (0x101): MapEffect](#line-257-0x101-mapeffect)
     - [Structure](#structure-29)
     - [Regexes](#regexes-29)
     - [Examples](#examples-29)
-  - [Line 259 (0x103): CEDirector](#line-259-0x103-cedirector)
+  - [Line 258 (0x102): FateDirector](#line-258-0x102-fatedirector)
     - [Structure](#structure-30)
     - [Regexes](#regexes-30)
     - [Examples](#examples-30)
-  - [Line 260 (0x104): InCombat](#line-260-0x104-incombat)
+  - [Line 259 (0x103): CEDirector](#line-259-0x103-cedirector)
     - [Structure](#structure-31)
     - [Regexes](#regexes-31)
     - [Examples](#examples-31)
-  - [Line 261 (0x105): CombatantMemory](#line-261-0x105-combatantmemory)
+  - [Line 260 (0x104): InCombat](#line-260-0x104-incombat)
     - [Structure](#structure-32)
     - [Regexes](#regexes-32)
     - [Examples](#examples-32)
-  - [Line 262 (0x106): RSVData](#line-262-0x106-rsvdata)
+  - [Line 261 (0x105): CombatantMemory](#line-261-0x105-combatantmemory)
     - [Structure](#structure-33)
     - [Regexes](#regexes-33)
     - [Examples](#examples-33)
-  - [Line 263 (0x107): StartsUsingExtra](#line-263-0x107-startsusingextra)
+  - [Line 262 (0x106): RSVData](#line-262-0x106-rsvdata)
     - [Structure](#structure-34)
     - [Regexes](#regexes-34)
     - [Examples](#examples-34)
-  - [Line 264 (0x108): AbilityExtra](#line-264-0x108-abilityextra)
+  - [Line 263 (0x107): StartsUsingExtra](#line-263-0x107-startsusingextra)
     - [Structure](#structure-35)
     - [Regexes](#regexes-35)
     - [Examples](#examples-35)
+  - [Line 264 (0x108): AbilityExtra](#line-264-0x108-abilityextra)
+    - [Structure](#structure-36)
+    - [Regexes](#regexes-36)
+    - [Examples](#examples-36)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Data Flow
@@ -1842,14 +1845,43 @@ at the moment the action is "locked in".
 > It would help though if I did, but ACT doesn't do multi-line parsing very easily,
 > so I would need to do a lot of work-arounds."
 
-Structure:
-`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current Shield Percentage]:0:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
+<!-- AUTO-GENERATED-CONTENT:START (logLines:type=NetworkEffectResult&lang=en-US) -->
 
-Examples:
+#### Structure
 
 ```log
-25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
+Network Log Line Structure:
+37|[timestamp]|[id]|[name]|[sequenceId]|[currentHp]|[maxHp]|[currentMp]|[maxMp]|[currentShield]|[?]|[x]|[y]|[z]|[heading]
+
+Parsed Log Line Structure:
+[timestamp] EffectResult 25:[id]:[name]:[sequenceId]:[currentHp]:[maxHp]:[currentMp]:[maxMp]:[currentShield]:[?]:[x]:[y]:[z]:[heading]
 ```
+
+#### Regexes
+
+```log
+Network Log Line Regex:
+^(?<type>37)\|(?<timestamp>[^|]*)\|(?<id>[^|]*)\|(?<name>[^|]*)\|(?<sequenceId>[^|]*)\|(?<currentHp>[^|]*)\|(?<maxHp>[^|]*)\|(?<currentMp>[^|]*)\|(?<maxMp>[^|]*)\|(?<currentShield>[^|]*)\|(?:[^|]*\|)(?<x>[^|]*)\|(?<y>[^|]*)\|(?<z>[^|]*)\|(?<heading>[^|]*)\|
+
+Parsed Log Line Regex:
+(?<timestamp>^.{14}) EffectResult (?<type>25):(?<id>[^:]*):(?<name>[^:]*):(?<sequenceId>[^:]*):(?<currentHp>[^:]*):(?<maxHp>[^:]*):(?<currentMp>[^:]*):(?<maxMp>[^:]*):(?<currentShield>[^:]*):[^:]*:(?<x>[^:]*):(?<y>[^:]*):(?<z>[^:]*):(?<heading>[^:]*)(?:$|:)
+```
+
+#### Examples
+
+```log
+Network Log Line Examples:
+37|2023-10-31T10:08:51.4080000-07:00|10FF0001|Tini Poutini|0000003A|117941|117941|10000|10000|0||-660.17|-842.23|29.75|-1.61|1500|0|0|01|5B|0|0|10755CA3|19aff167ea86b371
+37|2023-10-31T22:11:04.8350000-07:00|10FF0002|Potato Chippy|00005AE1|0|88095|0|10000|0||8.61|15.22|0.00|2.69|1E00|0|0|01|0400002C|0|0|E0000000|ef1e0399980c0f47
+37|2023-10-31T22:10:49.5860000-07:00|4000C5B2|Ketuduke|00005AD6|7452804||||||-0.02|-0.02|0.00|1.98|27ee18f38f377d5d
+
+Parsed Log Line Examples:
+[10:08:51.408] EffectResult 25:10FF0001:Tini Poutini:0000003A:117941:117941:10000:10000:0::-660.17:-842.23:29.75:-1.61:1500:0:0:01:5B:0:0:10755CA3
+[22:11:04.835] EffectResult 25:10FF0002:Potato Chippy:00005AE1:0:88095:0:10000:0::8.61:15.22:0.00:2.69:1E00:0:0:01:0400002C:0:0:E0000000
+[22:10:49.586] EffectResult 25:4000C5B2:Ketuduke:00005AD6:7452804::::::-0.02:-0.02:0.00:1.98
+```
+
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 <a name="line38"></a>
 
