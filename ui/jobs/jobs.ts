@@ -33,7 +33,11 @@ UserConfig.getUserConfigLocation('jobs', defaultOptions, () => {
 
   const emitter = new JobsEventEmitter();
   // Jobs doesn't have a need for PartyTracker.member support and so just passes in dummy options.
-  const dummyOptions: PartyTrackerOptions = { DefaultPlayerLabel: 'nick', PlayerNicks: {} };
+  const dummyOptions: PartyTrackerOptions = {
+    ...options,
+    DefaultPlayerLabel: 'nick',
+    PlayerNicks: {},
+  };
   const partyTracker = new PartyTracker(dummyOptions);
   const player = new Player(emitter, partyTracker, ffxivVersion);
   const bars = new Bars(options, { emitter, player });

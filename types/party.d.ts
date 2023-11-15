@@ -1,9 +1,10 @@
-import { Job, Role } from './job';
+import { BaseOptions } from './data';
 import { OutputStringsParamObject } from './trigger';
 
 export type BasePartyMemberParamObject = {
-  role?: Role;
-  job?: Job;
+  role?: string;
+  job?: string;
+  jobFull?: string;
   id?: string;
   name: string;
   nick: string;
@@ -17,7 +18,7 @@ export interface PartyMemberParamObject
 }
 
 // This is a partial interface of both RaidbossOptions and OopsyOptions.
-export interface PartyTrackerOptions {
+export interface PartyTrackerOptions extends BaseOptions {
   DefaultPlayerLabel: PartyMemberParamObjectKeys;
   PlayerNicks: { [gameName: string]: string };
 }
