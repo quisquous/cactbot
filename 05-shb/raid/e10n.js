@@ -132,7 +132,7 @@ Options.Triggers.push({
         text: {
           en: 'Stand behind tethered dog',
           de: 'Achte auf den verbundenen Hund',
-          fr: 'Regardez le chien lié',
+          fr: 'Allez derrière le chien lié',
           ja: '線で繋がった分身を注視',
           cn: '站在连线狗后',
           ko: '연결된 쫄 뒤로가기',
