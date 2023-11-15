@@ -2,6 +2,13 @@ Options.Triggers.push({
   id: 'TheLunarSubteranne',
   zoneId: ZoneId.TheLunarSubterrane,
   timelineFile: 'the_lunar_subterrane.txt',
+  initData: () => {
+    return {
+      fountsSeen: 0,
+      fountX: [],
+      fountY: [],
+    };
+  },
   triggers: [
     {
       id: 'Lunar Subterrane Dark Elf Abyssal Outburst',
@@ -147,6 +154,145 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '88C2', source: 'Durante' },
       response: Responses.tankBuster(),
+    },
+    {
+      // Round 1 is always a non-splitting line of orbs.
+      id: 'Lunar Subterrane Durante Forsaken Fount 1',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 0,
+      delaySeconds: 1,
+      infoText: (_data, _matches, output) => output.avoid(),
+      run: (data) => data.fountsSeen += 1,
+      outputStrings: {
+        avoid: {
+          en: 'Away from orbs',
+        },
+      },
+    },
+    {
+      // Round 2 is always a splitting line. Center is always safe.
+      id: 'Lunar Subterrane Durante Forsaken Fount 2',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 1,
+      delaySeconds: 1,
+      response: Responses.goMiddle('info'),
+      run: (data) => data.fountsSeen += 1,
+    },
+    {
+      // On round three and subsequently, known  spawn locations for the Aetheric Charge orbs are:
+      // (0,-422)
+      // (0, -434.8)
+      // (0, -409.2)
+      // (3.65, -412.9)
+      // (-3.65, -412.95)
+      // (9.05, -412.8)
+      // (-9.05, -418.35)
+      // (9.15, -425.55)
+      // (9.15, -431.1)
+      // (-9.25, -431.1)
+      // (12.8, -422)
+      // (-12.8, -422)
+      // (Other spawn locations exist for rounds 1/2, but we can ignore those.)
+      // The primary known configurations for round three onward are:
+      // West Safe
+      // (-12.80,-422.00), (0.00,-422.00), (12.80,-422.00)
+      // (9.15,-431.10)
+      // (3.65,-412.90)
+      // North Safe
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (9.05,-412.80)
+      // (-9.05,-418.35)
+      // East Safe
+      // (-12.80,-422.00),  (0.00,-422.00), (12.80,-422.00)
+      // (-9.25,-431.05)
+      // (-3.65,-412.95)
+      // Hourglass
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (-9.05,-418.35)
+      // (9.15,-425.55)
+      // So far nobody has seen a configuration with South being safe.
+      // When the Y axis is normalized to 0, the sets look like this:
+      // West Safe
+      // (-12.80,0), (0,0), (12.8,0)
+      // (9.15,-9.1)
+      // (3.65,9.1)
+      // North Safe
+      // (0,12.8), (0,0), (0,-12.8)
+      // (9.05,9.2)
+      // (-9.05,3.65)
+      // East Safe
+      // (-12.8,0),  (0,0), (12.8,0)
+      // (-9.25,-9.05)
+      // (-3.65,9.05)
+      // Hourglass
+      // (0,12.8), (0,0), (0,-12.8)
+      // (-9.05,3.65)
+      // (9.15,-3.55)
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Collect',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge' },
+      condition: (data) => data.fountsSeen === 2,
+      run: (data, matches) => {
+        // Because the positions are relatively fixed, we don't need a reliable order for coordinates.
+        // Only the values and the count of those values really is important here.
+        data.fountX.push(Math.round(parseFloat(matches.x)));
+        data.fountY.push(Math.round(parseFloat(matches.y)) + 422); // Normalize the Y axis to 0
+      },
+    },
+    {
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Call',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge', capture: false },
+      condition: (data) => data.fountsSeen === 2,
+      delaySeconds: 0.5,
+      infoText: (data, _matches, output) => {
+        if (data.fountX.length < 5 || data.fountY.length < 5)
+          return;
+        // If there are five orbs on the field, three of them will, guaranteed,
+        // have the same X or Y value. Those three are in a straight line.
+        const hCount = data.fountY.filter((n) => Math.abs(n) < 1).length;
+        const vCount = data.fountX.filter((n) => Math.abs(n) < 1).length;
+        if (hCount === 3) {
+          // Horizontal lines are always east/west safe hammer patterns.
+          const xSum = data.fountX.reduce((a, b) => a + b, 0);
+          // Don't rely on the rounded sum to be precise, but the sign will be reliable.
+          if (xSum > 5)
+            return output.west();
+          if (xSum < 5)
+            return output.east();
+          return output.unknown();
+        }
+        if (vCount === 3) {
+          // Remember that we're working with 0-normalized Y values here!
+          // Positive Y values are south.
+          // Vertical lines have two possible patterns, one hammer and one hourglass.
+          // If it's hourglass, the rounded  Y positions sum to 0.
+          // If it's hammer, the absolute value of rounded sums totals 13.
+          // (So far we haven't seen a situation where the rounded total is -13,
+          // but handle it anyway just in case.)
+          const ySum = data.fountY.reduce((a, b) => a + b, 0);
+          if (ySum > 10) // Multiple non-line orbs south.
+            return output.north();
+          if (ySum < -10) // Multiple non-line orbs north. THIS DOES NOT NECESSARILY EXIST.
+            return output.south();
+          return output.center(); // An hourglass configuration.
+        }
+        return output.unknown();
+      },
+      run: (data) => {
+        data.fountX = [];
+        data.fountY = [];
+      },
+      outputStrings: {
+        west: Outputs.west,
+        east: Outputs.east,
+        north: Outputs.north,
+        south: Outputs.south,
+        center: Outputs.goIntoMiddle,
+        unknown: '???',
+      },
     },
   ],
   timelineReplace: [
