@@ -51,7 +51,7 @@ const roleLocalized: Record<Role, LocaleText> = {
     en: 'none',
     ja: '冒険者',
     cn: '冒险者',
-    ko: '모험자',
+    ko: '모험가',
   },
 };
 
