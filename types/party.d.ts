@@ -1,10 +1,8 @@
-import { Job } from './job';
 import { OutputStringsParamObject } from './trigger';
 
 export type BasePartyMemberParamObject = {
   role?: string;
-  job?: Job;
-  jobAbbr?: string;
+  job?: string;
   jobFull?: string;
   id?: string;
   name: string;
