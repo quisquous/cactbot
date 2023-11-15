@@ -1017,7 +1017,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 7,
       durationSeconds: 5,
       alertText: (data, matches, output) => {
-        const mechName = data.staticeTrapshooting[data.staticeTrapshooting.length - 1];
+        const mechName = data.staticeTrapshooting.shift();
         const mech = mechName === undefined ? output.unknown!() : output[mechName]!();
         return {
           'DD2': output.forward!({ mech: mech }),
@@ -1028,16 +1028,16 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         forward: {
-          en: 'Forward March (${mech})',
+          en: 'Forward March => ${mech}',
         },
         backward: {
-          en: 'Backward March (${mech})',
+          en: 'Backward March => ${mech}',
         },
         left: {
-          en: 'Left March (${mech})',
+          en: 'Left March => ${mech}',
         },
         right: {
-          en: 'Right March (${mech})',
+          en: 'Right March => ${mech}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
