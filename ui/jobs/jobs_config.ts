@@ -295,5 +295,845 @@ UserConfig.registerOptions('jobs', {
       },
       default: 'threshold',
     },
+    {
+      id: 'OptionGLA',
+      name: {
+        en: 'Option GLA',
+        cn: '模块：剑术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionPLD',
+      name: {
+        en: 'Option PLD',
+        cn: '模块：骑士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionMRD',
+      name: {
+        en: 'Option MRD',
+        cn: '模块：斧术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionWAR',
+      name: {
+        en: 'Option WAR',
+        cn: '模块：战士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionDRK',
+      name: {
+        en: 'Option DRK',
+        cn: '模块：暗黑骑士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionGNB',
+      name: {
+        en: 'Option GNB',
+        cn: '模块：绝枪战士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionCNJ',
+      name: {
+        en: 'Option CNJ',
+        cn: '模块：幻术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionWHM',
+      name: {
+        en: 'Option WHM',
+        cn: '模块：白魔法师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionSCH',
+      name: {
+        en: 'Option SCH',
+        cn: '模块：学者',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionAST',
+      name: {
+        en: 'Option AST',
+        cn: '模块：占星术士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionSGE',
+      name: {
+        en: 'Option SGE',
+        cn: '模块：贤者',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionPGL',
+      name: {
+        en: 'Option PGL',
+        cn: '模块：格斗家',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionMNK',
+      name: {
+        en: 'Option MNK',
+        cn: '模块：武僧',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionLNC',
+      name: {
+        en: 'Option LNC',
+        cn: '模块：枪术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionDRG',
+      name: {
+        en: 'Option DRG',
+        cn: '模块：龙骑士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionROG',
+      name: {
+        en: 'Option ROG',
+        cn: '模块：双剑师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionNIN',
+      name: {
+        en: 'Option NIN',
+        cn: '模块：忍者',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionSAM',
+      name: {
+        en: 'Option SAM',
+        cn: '模块：武士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionRPR',
+      name: {
+        en: 'Option RPR',
+        cn: '模块：钐镰客',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionARC',
+      name: {
+        en: 'Option ARC',
+        cn: '模块：弓箭手',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionBRD',
+      name: {
+        en: 'Option BRD',
+        cn: '模块：吟游诗人',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionMCH',
+      name: {
+        en: 'Option MCH',
+        cn: '模块：机工士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionDNC',
+      name: {
+        en: 'Option DNC',
+        cn: '模块：舞者',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionACN',
+      name: {
+        en: 'Option ACN',
+        cn: '模块：秘术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionSMN',
+      name: {
+        en: 'Option SMN',
+        cn: '模块：召唤师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionTHM',
+      name: {
+        en: 'Option THM',
+        cn: '模块：咒术师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionBLM',
+      name: {
+        en: 'Option BLM',
+        cn: '模块：黑魔法师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionRDM',
+      name: {
+        en: 'Option RDM',
+        cn: '模块：赤魔法师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionBLU',
+      name: {
+        en: 'Option BLU',
+        cn: '模块：青魔法师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionCRP',
+      name: {
+        en: 'Option CRP',
+        cn: '模块：刻木匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionBSM',
+      name: {
+        en: 'Option BSM',
+        cn: '模块：锻铁匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionARM',
+      name: {
+        en: 'Option ARM',
+        cn: '模块：铸甲匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionGSM',
+      name: {
+        en: 'Option GSM',
+        cn: '模块：雕金匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionLTW',
+      name: {
+        en: 'Option LTW',
+        cn: '模块：制革匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionWVR',
+      name: {
+        en: 'Option WVR',
+        cn: '模块：裁衣匠',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionALC',
+      name: {
+        en: 'Option ALC',
+        cn: '模块：炼金术士',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionCUL',
+      name: {
+        en: 'Option CUL',
+        cn: '模块：烹调师',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionMIN',
+      name: {
+        en: 'Option MIN',
+        cn: '模块：采矿工',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionBTN',
+      name: {
+        en: 'Option BTN',
+        cn: '模块：园艺工',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
+    {
+      id: 'OptionFSH',
+      name: {
+        en: 'Option FSH',
+        cn: '模块：捕鱼人',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Disabled': 'disabled',
+          'Only Bar': 'onlyBar',
+          'Enabled': 'enabled',
+        },
+        cn: {
+          '禁用': 'disabled',
+          '仅基础': 'onlyBar',
+          '完整显示': 'enabled',
+        },
+      },
+      default: 'enabled',
+    },
   ],
 });

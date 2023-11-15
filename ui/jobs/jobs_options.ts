@@ -25,6 +25,26 @@ export interface JobsNonConfigOptions {
   NotifyExpiredProcsInCombat: number;
   NotifyExpiredProcsInCombatSound: 'disabled' | 'expired' | 'threshold';
   CompactView: boolean;
+  OptionAST: 'disabled' | 'onlyBar' | 'enabled';
+  OptionBLM: 'disabled' | 'onlyBar' | 'enabled';
+  OptionBLU: 'disabled' | 'onlyBar' | 'enabled';
+  OptionBRD: 'disabled' | 'onlyBar' | 'enabled';
+  OptionDNC: 'disabled' | 'onlyBar' | 'enabled';
+  OptionDRG: 'disabled' | 'onlyBar' | 'enabled';
+  OptionDRK: 'disabled' | 'onlyBar' | 'enabled';
+  OptionGNB: 'disabled' | 'onlyBar' | 'enabled';
+  OptionMCH: 'disabled' | 'onlyBar' | 'enabled';
+  OptionMNK: 'disabled' | 'onlyBar' | 'enabled';
+  OptionNIN: 'disabled' | 'onlyBar' | 'enabled';
+  OptionPLD: 'disabled' | 'onlyBar' | 'enabled';
+  OptionRDM: 'disabled' | 'onlyBar' | 'enabled';
+  OptionRPR: 'disabled' | 'onlyBar' | 'enabled';
+  OptionSAM: 'disabled' | 'onlyBar' | 'enabled';
+  OptionSCH: 'disabled' | 'onlyBar' | 'enabled';
+  OptionSGE: 'disabled' | 'onlyBar' | 'enabled';
+  OptionSMN: 'disabled' | 'onlyBar' | 'enabled';
+  OptionWAR: 'disabled' | 'onlyBar' | 'enabled';
+  OptionWHM: 'disabled' | 'onlyBar' | 'enabled';
 }
 
 export interface JobsConfigOptions {
@@ -70,6 +90,26 @@ const defaultJobsNonConfigOptions: JobsNonConfigOptions = {
   NotifyExpiredProcsInCombat: 5,
   NotifyExpiredProcsInCombatSound: 'threshold',
   CompactView: false,
+  OptionAST: 'enabled',
+  OptionBLM: 'enabled',
+  OptionBLU: 'enabled',
+  OptionBRD: 'enabled',
+  OptionDNC: 'enabled',
+  OptionDRG: 'enabled',
+  OptionDRK: 'enabled',
+  OptionGNB: 'enabled',
+  OptionMCH: 'enabled',
+  OptionMNK: 'enabled',
+  OptionNIN: 'enabled',
+  OptionPLD: 'enabled',
+  OptionRDM: 'enabled',
+  OptionRPR: 'enabled',
+  OptionSAM: 'enabled',
+  OptionSCH: 'enabled',
+  OptionSGE: 'enabled',
+  OptionSMN: 'enabled',
+  OptionWAR: 'enabled',
+  OptionWHM: 'enabled',
 };
 
 // See user/jobs-example.js for documentation.

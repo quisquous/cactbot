@@ -192,23 +192,43 @@ export class ComponentManager {
     this.player.on('job', (job) => {
       this.gpAlarmReady = false;
 
-      this.bars._setupJobContainers(job, {
-        buffList: this.shouldShow.buffList ??
-          (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
-        pullBar: this.shouldShow.pullBar ?? true,
-        hpBar: this.shouldShow.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
-        mpBar: this.shouldShow.mpBar ??
-          (!Util.isCraftingJob(job) && !Util.isGatheringJob(job) && doesJobNeedMPBar(job)),
-        cpBar: this.shouldShow.cpBar ?? Util.isCraftingJob(job),
-        gpBar: this.shouldShow.gpBar ?? Util.isGatheringJob(job),
-        mpTicker: this.shouldShow.mpTicker ?? this.options.ShowMPTicker.includes(job),
-      });
+      const jobOption = this.options[`Option${job}`];
+
+      if (jobOption !== 'disabled') {
+        this.bars._setupJobContainers(job, {
+          buffList: this.shouldShow.buffList ??
+            (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
+          pullBar: this.shouldShow.pullBar ?? true,
+          hpBar: this.shouldShow.hpBar ?? (!Util.isCraftingJob(job) && !Util.isGatheringJob(job)),
+          mpBar: this.shouldShow.mpBar ??
+            (!Util.isCraftingJob(job) && !Util.isGatheringJob(job) && doesJobNeedMPBar(job)),
+          cpBar: this.shouldShow.cpBar ?? Util.isCraftingJob(job),
+          gpBar: this.shouldShow.gpBar ?? Util.isGatheringJob(job),
+          mpTicker: this.shouldShow.mpTicker ?? this.options.ShowMPTicker.includes(job),
+        });
+      } else {
+        this.component = undefined;
+        this.bars._setupJobContainers(job, {
+          buffList: false,
+          pullBar: false,
+          hpBar: false,
+          mpBar: false,
+          cpBar: false,
+          gpBar: false,
+          mpTicker: false,
+        });
+        return;
+      }
 
       // hide container html element if the player is a crafter
       this.bars.setJobsContainerVisibility(!Util.isCraftingJob(job));
 
       // initialize components
-      this.component = this.getJobComponents(job);
+      if (jobOption === 'onlyBar') {
+        this.component = undefined;
+      } else {
+        this.component = this.getJobComponents(job);
+      }
 
       // add food buff trigger
       this.player.onYouGainEffect((id, matches) => {
