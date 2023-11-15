@@ -1,9 +1,9 @@
 import { Party } from '../types/event';
 import { Job, Role } from '../types/job';
 import { PartyMemberParamObject, PartyTrackerOptions } from '../types/party';
+import { LocaleText } from '../types/trigger';
 import Options from '../ui/raidboss/raidboss_options';
 
-import { Lang } from './languages';
 import Util from './util';
 
 const emptyRoleToPartyNames = () => {
@@ -17,182 +17,101 @@ const emptyRoleToPartyNames = () => {
   };
 };
 
-// TODO: de fr ko
-const roleLocalized: Record<Role, Partial<Record<Lang, string>>> = {
-  tank: { ja: 'タンク', cn: '坦克' },
-  healer: { ja: 'ヒーラー', cn: '治疗' },
-  dps: { ja: 'DPS', cn: '输出' },
-  crafter: { ja: 'クラフター', cn: '能工巧匠' },
-  gatherer: { ja: 'ギャザラー', cn: '大地使者' },
-  none: { ja: 'すっぴん士', cn: '冒险者' },
+const roleLocalized: Record<Role, LocaleText> = {
+  tank: { en: 'tank', ja: 'タンク', cn: '坦克' },
+  healer: { en: 'healer', ja: 'ヒーラー', cn: '治疗' },
+  dps: { en: 'dps', ja: 'DPS', cn: '输出' },
+  crafter: { en: 'crafter', ja: 'クラフター', cn: '能工巧匠' },
+  gatherer: { en: 'gatherer', ja: 'ギャザラー', cn: '大地使者' },
+  none: { en: 'none', ja: 'すっぴん士', cn: '冒险者' },
 };
 
-// TODO: ja de fr ko
-const jobLocalized: Record<Job, Record<'abbr' | 'full', Partial<Record<Lang, string>>>> = {
-  NONE: {
-    abbr: { cn: '冒险' },
-    full: { en: 'Adventurer', ja: 'すっぴん士', cn: '冒险者' },
-  },
-  GLA: {
-    abbr: { cn: '剑术' },
-    full: { en: 'Gladiator', ja: '剣術士', cn: '剑术师' },
-  },
-  PGL: {
-    abbr: { cn: '格斗' },
-    full: { en: 'Pugilist', ja: '格闘士', cn: '格斗家' },
-  },
-  MRD: {
-    abbr: { cn: '斧术' },
-    full: { en: 'Marauder', ja: '斧術士', cn: '斧术师' },
-  },
-  LNC: {
-    abbr: { cn: '枪术' },
-    full: { en: 'Lancer', ja: '槍術士', cn: '枪术师' },
-  },
-  ARC: {
-    abbr: { cn: '弓箭' },
-    full: { en: 'Archer', ja: '弓術士', cn: '弓箭手' },
-  },
-  CNJ: {
-    abbr: { cn: '幻术' },
-    full: { en: 'Conjurer', ja: '幻術士', cn: '幻术师' },
-  },
-  THM: {
-    abbr: { cn: '咒术' },
-    full: { en: 'Thaumaturge', ja: '呪術士', cn: '咒术师' },
-  },
-  CRP: {
-    abbr: { cn: '刻木' },
-    full: { en: 'Carpenter', ja: '木工師', cn: '刻木匠' },
-  },
-  BSM: {
-    abbr: { cn: '锻铁' },
-    full: { en: 'Blacksmith', ja: '鍛冶師', cn: '锻铁匠' },
-  },
-  ARM: {
-    abbr: { cn: '铸甲' },
-    full: { en: 'Armorer', ja: '甲冑師', cn: '铸甲匠' },
-  },
-  GSM: {
-    abbr: { cn: '雕金' },
-    full: { en: 'Goldsmith', ja: '彫金師', cn: '雕金匠' },
-  },
-  LTW: {
-    abbr: { cn: '制革' },
-    full: { en: 'Leatherworker', ja: '革細工師', cn: '制革匠' },
-  },
-  WVR: {
-    abbr: { cn: '裁衣' },
-    full: { en: 'Weaver', ja: '裁縫師', cn: '裁衣匠' },
-  },
-  ALC: {
-    abbr: { cn: '炼金' },
-    full: { en: 'Alchemist', ja: '錬金術師', cn: '炼金术士' },
-  },
-  CUL: {
-    abbr: { cn: '烹调' },
-    full: { en: 'Culinarian', ja: '調理師', cn: '烹调师' },
-  },
-  MIN: {
-    abbr: { cn: '采矿' },
-    full: { en: 'Miner', ja: '採掘師', cn: '采矿工' },
-  },
-  BTN: {
-    abbr: { cn: '园艺' },
-    full: { en: 'Botanist', ja: '園芸師', cn: '园艺工' },
-  },
-  FSH: {
-    abbr: { cn: '捕鱼' },
-    full: { en: 'Fisher', ja: '漁師', cn: '捕鱼人' },
-  },
-  PLD: {
-    abbr: { cn: '骑士' },
-    full: { en: 'Paladin', ja: 'ナイト', cn: '骑士' },
-  },
-  MNK: {
-    abbr: { cn: '武僧' },
-    full: { en: 'Monk', ja: 'モンク', cn: '武僧' },
-  },
-  WAR: {
-    abbr: { cn: '战士' },
-    full: { en: 'Warrior', ja: '戦士', cn: '战士' },
-  },
-  DRG: {
-    abbr: { cn: '龙骑' },
-    full: { en: 'Dragoon', ja: '竜騎士', cn: '龙骑士' },
-  },
-  BRD: {
-    abbr: { cn: '诗人' },
-    full: { en: 'Bard', ja: '吟遊詩人', cn: '吟游诗人' },
-  },
-  WHM: {
-    abbr: { cn: '白魔' },
-    full: { en: 'White Mage', ja: '白魔道士', cn: '白魔法师' },
-  },
-  BLM: {
-    abbr: { cn: '黑魔' },
-    full: { en: 'Black Mage', ja: '黒魔道士', cn: '黑魔法师' },
-  },
-  ACN: {
-    abbr: { cn: '秘术' },
-    full: { en: 'Arcanist', ja: '巴術士', cn: '秘术师' },
-  },
-  SMN: {
-    abbr: { cn: '召唤' },
-    full: { en: 'Summoner', ja: '召喚士', cn: '召唤师' },
-  },
-  SCH: {
-    abbr: { cn: '学者' },
-    full: { en: 'Scholar', ja: '学者', cn: '学者' },
-  },
-  ROG: {
-    abbr: { cn: '双剑' },
-    full: { en: 'Rogue', ja: '双剣士', cn: '双剑师' },
-  },
-  NIN: {
-    abbr: { cn: '忍者' },
-    full: { en: 'Ninja', ja: '忍者', cn: '忍者' },
-  },
-  MCH: {
-    abbr: { cn: '机工' },
-    full: { en: 'Machinist', ja: '機工士', cn: '机工士' },
-  },
-  DRK: {
-    abbr: { cn: '暗骑' },
-    full: { en: 'Dark Knight', ja: '暗黒騎士', cn: '暗黑骑士' },
-  },
-  AST: {
-    abbr: { cn: '占星' },
-    full: { en: 'Astrologian', ja: '占星術師', cn: '占星术士' },
-  },
-  SAM: {
-    abbr: { cn: '武士' },
-    full: { en: 'Samurai', ja: '侍', cn: '武士' },
-  },
-  RDM: {
-    abbr: { cn: '赤魔' },
-    full: { en: 'Red Mage', ja: '赤魔道士', cn: '赤魔法师' },
-  },
-  BLU: {
-    abbr: { cn: '青魔' },
-    full: { en: 'Blue Mage', ja: '青魔道士', cn: '青魔法师' },
-  },
-  GNB: {
-    abbr: { cn: '绝枪' },
-    full: { en: 'Gunbreaker', ja: 'ガンブレイカー', cn: '绝枪战士' },
-  },
-  DNC: {
-    abbr: { cn: '舞者' },
-    full: { en: 'Dancer', ja: '踊り子', cn: '舞者' },
-  },
-  RPR: {
-    abbr: { cn: '钐镰' },
-    full: { en: 'Reaper', ja: 'リーパー', cn: '钐镰客' },
-  },
-  SGE: {
-    abbr: { cn: '贤者' },
-    full: { en: 'Sage', ja: '賢者', cn: '贤者' },
-  },
+const jobLocalizedAbbr: Record<Job, LocaleText> = {
+  NONE: { en: 'NONE', cn: '冒险' },
+  GLA: { en: 'GLA', cn: '剑术' },
+  PGL: { en: 'PGL', cn: '格斗' },
+  MRD: { en: 'MRD', cn: '斧术' },
+  LNC: { en: 'LNC', cn: '枪术' },
+  ARC: { en: 'ARC', cn: '弓箭' },
+  CNJ: { en: 'CNJ', cn: '幻术' },
+  THM: { en: 'THM', cn: '咒术' },
+  CRP: { en: 'CRP', cn: '刻木' },
+  BSM: { en: 'BSM', cn: '锻铁' },
+  ARM: { en: 'ARM', cn: '铸甲' },
+  GSM: { en: 'GSM', cn: '雕金' },
+  LTW: { en: 'LTW', cn: '制革' },
+  WVR: { en: 'WVR', cn: '裁衣' },
+  ALC: { en: 'ALC', cn: '炼金' },
+  CUL: { en: 'CUL', cn: '烹调' },
+  MIN: { en: 'MIN', cn: '采矿' },
+  BTN: { en: 'BTN', cn: '园艺' },
+  FSH: { en: 'FSH', cn: '捕鱼' },
+  PLD: { en: 'PLD', cn: '骑士' },
+  MNK: { en: 'MNK', cn: '武僧' },
+  WAR: { en: 'WAR', cn: '战士' },
+  DRG: { en: 'DRG', cn: '龙骑' },
+  BRD: { en: 'BRD', cn: '诗人' },
+  WHM: { en: 'WHM', cn: '白魔' },
+  BLM: { en: 'BLM', cn: '黑魔' },
+  ACN: { en: 'ACN', cn: '秘术' },
+  SMN: { en: 'SMN', cn: '召唤' },
+  SCH: { en: 'SCH', cn: '学者' },
+  ROG: { en: 'ROG', cn: '双剑' },
+  NIN: { en: 'NIN', cn: '忍者' },
+  MCH: { en: 'MCH', cn: '机工' },
+  DRK: { en: 'DRK', cn: '暗骑' },
+  AST: { en: 'AST', cn: '占星' },
+  SAM: { en: 'SAM', cn: '武士' },
+  RDM: { en: 'RDM', cn: '赤魔' },
+  BLU: { en: 'BLU', cn: '青魔' },
+  GNB: { en: 'GNB', cn: '绝枪' },
+  DNC: { en: 'DNC', cn: '舞者' },
+  RPR: { en: 'RPR', cn: '钐镰' },
+  SGE: { en: 'SGE', cn: '贤者' },
+};
+
+const jobLocalizedFull: Record<Job, LocaleText> = {
+  NONE: { en: 'Adventurer', ja: 'すっぴん士', cn: '冒险者' },
+  GLA: { en: 'Gladiator', ja: '剣術士', cn: '剑术师' },
+  PGL: { en: 'Pugilist', ja: '格闘士', cn: '格斗家' },
+  MRD: { en: 'Marauder', ja: '斧術士', cn: '斧术师' },
+  LNC: { en: 'Lancer', ja: '槍術士', cn: '枪术师' },
+  ARC: { en: 'Archer', ja: '弓術士', cn: '弓箭手' },
+  CNJ: { en: 'Conjurer', ja: '幻術士', cn: '幻术师' },
+  THM: { en: 'Thaumaturge', ja: '呪術士', cn: '咒术师' },
+  CRP: { en: 'Carpenter', ja: '木工師', cn: '刻木匠' },
+  BSM: { en: 'Blacksmith', ja: '鍛冶師', cn: '锻铁匠' },
+  ARM: { en: 'Armorer', ja: '甲冑師', cn: '铸甲匠' },
+  GSM: { en: 'Goldsmith', ja: '彫金師', cn: '雕金匠' },
+  LTW: { en: 'Leatherworker', ja: '革細工師', cn: '制革匠' },
+  WVR: { en: 'Weaver', ja: '裁縫師', cn: '裁衣匠' },
+  ALC: { en: 'Alchemist', ja: '錬金術師', cn: '炼金术士' },
+  CUL: { en: 'Culinarian', ja: '調理師', cn: '烹调师' },
+  MIN: { en: 'Miner', ja: '採掘師', cn: '采矿工' },
+  BTN: { en: 'Botanist', ja: '園芸師', cn: '园艺工' },
+  FSH: { en: 'Fisher', ja: '漁師', cn: '捕鱼人' },
+  PLD: { en: 'Paladin', ja: 'ナイト', cn: '骑士' },
+  MNK: { en: 'Monk', ja: 'モンク', cn: '武僧' },
+  WAR: { en: 'Warrior', ja: '戦士', cn: '战士' },
+  DRG: { en: 'Dragoon', ja: '竜騎士', cn: '龙骑士' },
+  BRD: { en: 'Bard', ja: '吟遊詩人', cn: '吟游诗人' },
+  WHM: { en: 'White Mage', ja: '白魔道士', cn: '白魔法师' },
+  BLM: { en: 'Black Mage', ja: '黒魔道士', cn: '黑魔法师' },
+  ACN: { en: 'Arcanist', ja: '巴術士', cn: '秘术师' },
+  SMN: { en: 'Summoner', ja: '召喚士', cn: '召唤师' },
+  SCH: { en: 'Scholar', ja: '学者', cn: '学者' },
+  ROG: { en: 'Rogue', ja: '双剣士', cn: '双剑师' },
+  NIN: { en: 'Ninja', ja: '忍者', cn: '忍者' },
+  MCH: { en: 'Machinist', ja: '機工士', cn: '机工士' },
+  DRK: { en: 'Dark Knight', ja: '暗黒騎士', cn: '暗黑骑士' },
+  AST: { en: 'Astrologian', ja: '占星術師', cn: '占星术士' },
+  SAM: { en: 'Samurai', ja: '侍', cn: '武士' },
+  RDM: { en: 'Red Mage', ja: '赤魔道士', cn: '赤魔法师' },
+  BLU: { en: 'Blue Mage', ja: '青魔道士', cn: '青魔法师' },
+  GNB: { en: 'Gunbreaker', ja: 'ガンブレイカー', cn: '绝枪战士' },
+  DNC: { en: 'Dancer', ja: '踊り子', cn: '舞者' },
+  RPR: { en: 'Reaper', ja: 'リーパー', cn: '钐镰客' },
+  SGE: { en: 'Sage', ja: '賢者', cn: '贤者' },
 };
 
 export default class PartyTracker {
@@ -362,14 +281,13 @@ export default class PartyTracker {
       };
     } else {
       const job = Util.jobEnumToJob(partyMember.job);
-      const jobAbbr = jobLocalized[job]?.abbr?.[Options.AlertsLanguage ?? 'en'] ?? job;
-      const jobFull = jobLocalized[job]?.full?.[Options.AlertsLanguage ?? 'en'] ?? job;
+      const jobAbbr = jobLocalizedAbbr[job]?.[Options.AlertsLanguage ?? 'en'] ?? job;
+      const jobFull = jobLocalizedFull[job]?.[Options.AlertsLanguage ?? 'en'] ?? job;
       const role = Util.jobToRole(job);
       const roleName = roleLocalized[role]?.[Options.AlertsLanguage ?? 'en'] ?? role;
       ret = {
         id: partyMember.id,
-        job: job,
-        jobAbbr: jobAbbr,
+        job: jobAbbr,
         jobFull: jobFull,
         role: roleName,
         name: name,
