@@ -351,7 +351,7 @@ const jobLocalizedAbbr: Record<Job, LocaleText> = {
   },
 };
 
-const jobLocalizedFull: Record<Job, LocaleText> = {
+export const jobLocalizedFull: Record<Job, LocaleText> = {
   NONE: {
     en: 'Adventurer',
     fr: 'Aventurier',
