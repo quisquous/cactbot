@@ -2186,8 +2186,9 @@ const templateOptions: OptionsTemplate = {
         },
         ko: {
           '닉네임 (Tini)': 'nick',
-          '역할 (Tank)': 'role',
-          '직업 (WAR)': 'job',
+          '역할 (탱커)': 'role',
+          '직업 (암기)': 'job',
+          '직업 전체 (암흑기사)': 'jobFull',
           '이름 전체 (Tini Poutini)': 'name',
         },
       },
