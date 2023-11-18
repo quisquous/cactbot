@@ -30,34 +30,42 @@ const tripleKasumiFirstOutputStrings = {
   backRedFirst: {
     en: 'Back + Out',
     de: 'Hinten + Raus',
+    ko: '뒤 + 밖',
   },
   leftRedFirst: {
     en: 'Left + Out',
     de: 'Links + Raus',
+    ko: '왼쪽 + 밖',
   },
   frontRedFirst: {
     en: 'Front + Out',
     de: 'Vorne + Raus',
+    ko: '앞 + 밖',
   },
   rightRedFirst: {
     en: 'Right + Out',
     de: 'Rechts + Raus',
+    ko: '오른쪽 + 밖',
   },
   backBlueFirst: {
     en: 'Back + In',
     de: 'Hinten + Rein',
+    ko: '뒤 + 안',
   },
   leftBlueFirst: {
     en: 'Left + In',
     de: 'Links + Rein',
+    ko: '왼쪽 + 안',
   },
   frontBlueFirst: {
     en: 'Front + In',
     de: 'Vorne + Rein',
+    ko: '앞 + 안',
   },
   rightBlueFirst: {
     en: 'Right + In',
     de: 'Rechts + Rein',
+    ko: '오른쪽 + 안',
   },
 };
 // It might be more accurate to say "rotate right" here than "right" (implying right flank)
@@ -66,34 +74,42 @@ const tripleKasumiFollowupOutputStrings = {
   backRed: {
     en: 'Stay + Out',
     de: 'bleib Stehen + Raus',
+    ko: '그대로 + 밖',
   },
   leftRed: {
     en: 'Left + Out',
     de: 'Links + Raus',
+    ko: '왼쪽 + 밖',
   },
   frontRed: {
     en: 'Through + Out',
     de: 'Durch + Raus',
+    ko: '가로지르기 + 밖',
   },
   rightRed: {
     en: 'Right + Out',
     de: 'Rechts + Raus',
+    ko: '오른쪽 + 밖',
   },
   backBlue: {
     en: 'Stay + In',
     de: 'bleib Stehen + Rein',
+    ko: '그대로 + 안',
   },
   leftBlue: {
     en: 'Left + In',
     de: 'Links + Rein',
+    ko: '왼쪽 + 밖',
   },
   frontBlue: {
     en: 'Through + In',
     de: 'Durch + Rein',
+    ko: '가로지르기 + 안',
   },
   rightBlue: {
     en: 'Right + In',
     de: 'Rechts + Rein',
+    ko: '오른쪽 + 안',
   },
 };
 const basicStackSpreadOutputStrings = {
@@ -101,18 +117,22 @@ const basicStackSpreadOutputStrings = {
   melee: {
     en: 'Melees Stack',
     de: 'Nahkämpfer sammeln',
+    ko: '근딜 쉐어',
   },
   role: {
     en: 'Role Stacks',
     de: 'Rollengruppe sammeln',
+    ko: '역할별 쉐어',
   },
   partner: {
     en: 'Partner Stacks',
     de: 'Partner sammeln',
+    ko: '파트너 쉐어',
   },
   unknown: {
     en: 'Stacks',
     de: 'Sammeln',
+    ko: '쉐어',
   },
 };
 const tripleKasumiAbilityIds = [
@@ -194,32 +214,39 @@ const stackSpreadResponse = (data, output, collect, stackId, spreadId, hideStack
     spreadThenMeleeStack: {
       en: 'Spread => Melees Stack',
       de: 'Verteilen => Nahkämpfer sammeln',
+      ko: '산개 => 근딜 쉐어',
     },
     spreadThenRoleStack: {
       en: 'Spread => Role Stacks',
       de: 'Verteilen => Rollengruppe sammeln',
+      ko: '산개 => 역할별 쉐어',
     },
     spreadThenPartnerStack: {
       en: 'Spread => Partner Stacks',
       de: 'Verteilen => Partner sammeln',
+      ko: '산개 => 파트너 쉐어',
     },
     meleeStackThenSpread: {
       en: 'Melees Stack => Spread',
       de: 'Nahkämpfer sammeln => Verteilen',
+      ko: '근딜 쉐어 => 산개',
     },
     roleStackThenSpread: {
       en: 'Role Stacks => Spread',
       de: 'Rollengruppe sammeln => Verteilen',
+      ko: '역할별 쉐어 => 산개',
     },
     partnerStackThenSpread: {
       en: 'Partner Stacks => Spread',
       de: 'Partner sammeln => Verteilen',
+      ko: '파트너 쉐어 => 산개',
     },
     spreadThenStack: Outputs.spreadThenStack,
     stackThenSpread: Outputs.stackThenSpread,
     stacks: {
       en: 'Stacks: ${player1}, ${player2}',
       de: 'Sammeln: ${player1}, ${player2}',
+      ko: '쉐어: ${player1}, ${player2}',
     },
   };
   const [stack1, stack2] = collect.filter((x) => x.effectId === stackId);
@@ -261,22 +288,27 @@ const towerResponse = (data, output) => {
     tetherThenBlueTower: {
       en: 'Tether ${num1} => Blue Tower ${num2}',
       de: 'Verbindung ${num1} => Blauer Turm ${num2}',
+      ko: '선 ${num1} => 파랑 기둥 ${num2}',
     },
     tetherThenOrangeTower: {
       en: 'Tether ${num1} => Orange Tower ${num2}',
       de: 'Verbindung ${num1} => Orangener Turm ${num2}',
+      ko: '선 ${num1} => 주황 기둥 ${num2}',
     },
     tether: {
       en: 'Tether ${num}',
       de: 'Verbindung ${num}',
+      ko: '선 ${num}',
     },
     blueTower: {
       en: 'Blue Tower ${num}',
       de: 'Blauer Turm ${num}',
+      ko: '파랑 기둥 ${num}',
     },
     orangeTower: {
       en: 'Orange Tower ${num}',
       de: 'Orangener Turm ${num}',
+      ko: '주황 기둥 ${num}',
     },
     num1: Outputs.num1,
     num2: Outputs.num2,
@@ -335,10 +367,16 @@ Options.Triggers.push({
            Partner-Stack bedeuten Supporter+Dps und Supporter+Dps (jede Kombination ist möglich).
            Wenn du zwei Fernkampf-DPS oder zwei Nahkampf-DPS hast, wird es nie "Nahkämpfer" nennen, unabhängig von dieser Konfigurationsoption.
            Es gibt keine Unterstützung für Gruppenkombinationen, die nicht aus zwei Supportern und zwei DPS bestehen.`,
+        ko: `2인 쉐어에서, 함께 쉐어를 맞을 사람의 우선 순위를 지정합니다. 근딜과 탱커를 함께 배치하고 싶다면 근딜이 포함된 옵션을 선택하세요.
+           근딜 쉐어는 근딜+탱커와 힐러+원딜을 의미합니다. 역할별 쉐어는 탱커+힐러와 딜러+딜러를 의미합니다.
+           파트너 쉐어는 탱힐+딜러와 탱힐+딜러를 의미합니다(어떤 조합도 가능).
+           원딜이 두 명 또는 근딜이 두 명일 경우, 이 설정 옵션과 상관없이 "근딜"을 호출하지 않습니다.
+           탱힐 둘, 딜러 둘이 아닌 파티 구성은 지원되지 않습니다.`,
       },
       name: {
         en: 'Stack Selection Order',
         de: 'Sammel-Reihenfolge',
+        ko: '쉐어 우선순위',
       },
       type: 'select',
       options: {
@@ -349,6 +387,10 @@ Options.Triggers.push({
         de: {
           'Nahkämpfer > Rollen > Partner': 'meleeRolesPartners',
           'Rollen > Partner': 'rolesPartners',
+        },
+        ko: {
+          '근딜 > 역할군 > 파트너': 'meleeRolesPartners',
+          '역할군 > 파트너': 'rolesPartners',
         },
       },
       default: 'meleeRolesPartners',
@@ -401,10 +443,12 @@ Options.Triggers.push({
           chargeOnYou: {
             en: 'Charge on YOU',
             de: 'Ansturm auf DIR',
+            ko: '돌진 대상자',
           },
           chargeOn: {
             en: 'Charge on ${player}',
             de: 'Ansturm auf ${player}',
+            ko: '돌진 ${player}',
           },
         };
         if (matches.target === data.me)
@@ -597,38 +641,47 @@ Options.Triggers.push({
           spreadThenMeleeStack: {
             en: '${inOut} + Spread => ${outIn} + Melees Stack',
             de: '${inOut} + Verteilen => ${outIn} + Nahkämpfer sammeln',
+            ko: '${inOut} + 산개 => ${outIn} + 근딜 쉐어',
           },
           spreadThenRoleStack: {
             en: '${inOut} + Spread => ${outIn} + Role Stacks',
             de: '${inOut} + Verteilen => ${outIn} + Rollengruppe sammeln',
+            ko: '${inOut} + 산개 => ${outIn} + 역할별 쉐어',
           },
           spreadThenPartnerStack: {
             en: '${inOut} + Spread => ${outIn} + Partner Stacks',
             de: '${inOut} + Verteilen => ${outIn} + Partner sammeln',
+            ko: '${inOut} + 산개 => ${outIn} + 파트너 쉐어',
           },
           meleeStackThenSpread: {
             en: '${inOut} + Melees Stack => ${outIn} + Spread',
             de: '${inOut} + Nahkämpfer sammeln => ${outIn} + Verteilen',
+            ko: '${inOut} + 근딜 쉐어 => ${outIn} + 산개',
           },
           roleStackThenSpread: {
             en: '${inOut} + Role Stacks => ${outIn} + Spread',
             de: '${inOut} + Rollengruppe sammeln => ${outIn} + Verteilen',
+            ko: '${inOut} + 역할별 쉐어 => ${outIn} + 산개',
           },
           partnerStackThenSpread: {
             en: '${inOut} + Partner Stacks => ${outIn} + Spread',
             de: '${inOut} + Partner sammeln => ${outIn} + Verteilen',
+            ko: '${inOut} + 파트너 쉐어 => ${outIn} + 산개',
           },
           spreadThenStack: {
             en: '${inOut} + Spread => ${outIn} + Stack',
             de: '${inOut} + Verteilen => ${outIn} + Sammeln',
+            ko: '${inOut} + 산개 => ${outIn} + 쉐어',
           },
           stackThenSpread: {
             en: '${inOut} + Stack => ${outIn} + Spread',
             de: '${inOut} + Sammeln => ${outIn} + Verteilen',
+            ko: '${inOut} + 쉐어 => ${outIn} + 산개',
           },
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
             de: 'Sammeln: ${player1}, ${player2}',
+            ko: '쉐어: ${player1}, ${player2}',
           },
         };
         const [stack1, stack2] = data.wailingCollect.filter((x) => x.effectId === 'DEC');
@@ -694,6 +747,7 @@ Options.Triggers.push({
         text: {
           en: '${inOut} + ${mechanic}',
           de: '${inOut} + ${mechanic}',
+          ko: '${inOut} + ${mechanic}',
         },
         out: Outputs.out,
         in: Outputs.in,
@@ -784,34 +838,42 @@ Options.Triggers.push({
         north: {
           en: 'North Diamond + ${mechanic}',
           de: 'nördlicher Diamant + ${mechanic}',
+          ko: '북쪽 + ${mechanic}',
         },
         east: {
           en: 'East Diamond + ${mechanic}',
           de: 'östlicher Diamant + ${mechanic}',
+          ko: '동쪽 + ${mechanic}',
         },
         south: {
           en: 'South Diamond + ${mechanic}',
           de: 'südlicher Diamant + ${mechanic}',
+          ko: '남쪽 + ${mechanic}',
         },
         west: {
           en: 'West Diamond + ${mechanic}',
           de: 'westlicher Diamant + ${mechanic}',
+          ko: '서쪽 + ${mechanic}',
         },
         northeast: {
           en: 'Northeast Square + ${mechanic}',
           de: 'nordöstliches Viereck + ${mechanic}',
+          ko: '북동쪽 + ${mechanic}',
         },
         southeast: {
           en: 'Southeast Square + ${mechanic}',
           de: 'südöstliches Viereck + ${mechanic}',
+          ko: '남동쪽 + ${mechanic}',
         },
         southwest: {
           en: 'Southwest Square + ${mechanic}',
           de: 'südwestliches Viereck + ${mechanic}',
+          ko: '남서쪽 + ${mechanic}',
         },
         northwest: {
           en: 'Northwest Square + ${mechanic}',
           de: 'nordwestliches Viereck + ${mechanic}',
+          ko: '북서쪽 + ${mechanic}',
         },
         ...basicStackSpreadOutputStrings,
         unknownMech: Outputs.unknown,
@@ -837,6 +899,7 @@ Options.Triggers.push({
         tower: {
           en: 'Tower',
           de: 'Türme',
+          ko: '기둥',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -872,10 +935,12 @@ Options.Triggers.push({
         tower: {
           en: 'Get Tower (w/${player})',
           de: 'Nimm Turm mit (w/${player})',
+          ko: '기둥 들어가기 (+${player})',
         },
         spread: {
           en: 'Spread (w/${player})',
           de: 'Verteilen (w/${player})',
+          ko: '산개 들어가기 (+${player})',
         },
         unknown: Outputs.unknown,
       },
@@ -891,6 +956,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides (Stay Sides)',
           de: 'Seiten (Seitlich bleiben)',
+          ko: '양 옆 (양 옆에 있기)',
         },
       },
     },
@@ -904,6 +970,7 @@ Options.Triggers.push({
         text: {
           en: 'Right + Behind',
           de: 'Rechts + Hinten',
+          ko: '오른쪽 + 뒤',
         },
       },
     },
@@ -917,6 +984,7 @@ Options.Triggers.push({
         text: {
           en: 'Left + Behind',
           de: 'Links + Hinten',
+          ko: '왼쪽 + 뒤',
         },
       },
     },
@@ -953,6 +1021,7 @@ Options.Triggers.push({
         text: {
           en: 'Dodge 4x Shuriken',
           de: 'Weiche 4x Shuriken aus',
+          ko: '수리검 4개 피하기',
         },
       },
     },
@@ -972,6 +1041,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Expanding Lines',
           de: 'Weiche den größer werdenden Linien aus',
+          ko: '커지는 장판들 피하기',
         },
       },
     },
@@ -984,6 +1054,7 @@ Options.Triggers.push({
         text: {
           en: 'Under Rock + Lines',
           de: 'Unter dem Stein + Linien',
+          ko: '바위 밑으로 + 직선장판',
         },
       },
     },
@@ -1020,6 +1091,7 @@ Options.Triggers.push({
           stacks: {
             en: 'Stacks: ${player1}, ${player2}',
             de: 'Sammeln: ${player1}, ${player2}',
+            ko: '쉐어: ${player1}, ${player2}',
           },
         };
         const [stack1, stack2] = data.sparksCollect.filter((x) => x.effectId === 'E17');
@@ -1108,6 +1180,7 @@ Options.Triggers.push({
         text: {
           en: 'Shrink Lone Orb',
           de: 'Einzel-Orb verkleinern',
+          ko: '혼자 있는 구슬 작아지게 만들기',
         },
       },
     },
@@ -1130,14 +1203,17 @@ Options.Triggers.push({
         beBehindTank: {
           en: 'Stay Behind Tank',
           de: 'Hinter dem Tank stehen',
+          ko: '탱커 뒤에 서기',
         },
         blockLaser: {
           en: 'Block Laser on ${player}',
           de: 'Blockiere Laser auf ${player}',
+          ko: '${player} 대상 레이저 앞에서 맞기',
         },
         avoidLaser: {
           en: 'Avoid Laser',
           de: 'Laser vermeiden',
+          ko: '레이저 피하기',
         },
       },
     },
@@ -1262,6 +1338,8 @@ Options.Triggers.push({
         de:
           `Voll gemischt bedeutet, dass jeder beide Farben hat (zwei von der einen, eine von der anderen).
              Halb gemischt bedeutet, dass zwei Personen beide Farben haben und zwei Personen nur eine Farbe haben`,
+        ko: `완전 혼합은 모든 사람이 두 가지 색을 가지고 있음을 의미합니다 (한 가지 색 두 개, 다른 색 하나).
+             반혼합은 두 사람이 두 가지 종류를 가지고 있고, 다른 두 사람은 모두 같은 색을 가지고 있음을 의미합니다.`,
       },
       type: 'GainsEffect',
       netRegex: { effectId: ['E0D', 'E0E', 'E0F', 'E11', 'E12', 'E13'], capture: false },
@@ -1275,26 +1353,32 @@ Options.Triggers.push({
           alertText: {
             en: '${color1} -> ${color2} -> ${color3} (${mixedType})',
             de: '${color1} -> ${color2} -> ${color3} (${mixedType})',
+            ko: '${color1} -> ${color2} -> ${color3} (${mixedType})',
           },
           infoText: {
             en: '(first ${color} w/${player})',
             de: '(zuerst ${color} mit ${player})',
+            ko: '1번 ${color} +${player}',
           },
           orange: {
             en: 'Orange',
             de: 'Orange',
+            ko: '주황',
           },
           blue: {
             en: 'Blue',
             de: 'Blau',
+            ko: '파랑',
           },
           mixedTypeFull: {
             en: 'full mixed',
             de: 'Voll gemischt',
+            ko: '완전 혼합',
           },
           mixedTypeHalf: {
             en: 'half mixed',
             de: 'Halb gemischt',
+            ko: '반혼합',
           },
           unknown: Outputs.unknown,
         };
@@ -1360,10 +1444,12 @@ Options.Triggers.push({
         blueTower1: {
           en: 'Inside Blue Tower 1',
           de: 'Innerhalb blauer Turm 1',
+          ko: '안쪽 파랑 기둥1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
           de: 'Innerhalb orangener Turm 1',
+          ko: '안쪽 주황 기둥1',
         },
       },
     },
@@ -1389,26 +1475,32 @@ Options.Triggers.push({
         blueTower1: {
           en: 'Inside Blue Tower 1',
           de: 'Mittig blauer Turm 1',
+          ko: '안쪽 파랑 기둥 1',
         },
         orangeTower1: {
           en: 'Inside Orange Tower 1',
           de: 'Mittig orangener Turm 1',
+          ko: '안쪽 주황 기둥 1',
         },
         blueTower2: {
           en: 'Corner Blue Tower 2',
           de: 'Ecke blauer Turm 2',
+          ko: '구석 파랑 기둥 2',
         },
         orangeTower2: {
           en: 'Corner Orange Tower 2',
           de: 'Ecke orangener Turm 2',
+          ko: '구석 주황 기둥 2',
         },
         blueTower3: {
           en: 'Placed Blue Tower 3',
           de: 'Platzierter blauer Turm 3',
+          ko: '설치한 파랑 기둥 3',
         },
         orangeTower3: {
           en: 'Placed Orange Tower 3',
           de: 'Platzierter orangener Turm 3',
+          ko: '설치한 주황 기둥 3',
         },
       },
     },
@@ -1467,6 +1559,7 @@ Options.Triggers.push({
         text: {
           en: '(${text})',
           de: '(${text})',
+          ko: '(${text})',
         },
         ...tripleKasumiFollowupOutputStrings,
       },
@@ -1490,6 +1583,7 @@ Options.Triggers.push({
         text: {
           en: '${text1} => ${text2} => ${text3}',
           de: '${text1} => ${text2} => ${text3}',
+          ko: '${text1} => ${text2} => ${text3}',
         },
         ...tripleKasumiFirstOutputStrings,
         ...tripleKasumiFollowupOutputStrings,
@@ -1526,6 +1620,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides + Out => Stay Out',
           de: 'Seiten + Raus => Bleib drausen',
+          ko: '양 옆 + 밖 => 밖에 있기',
         },
       },
     },
@@ -1538,6 +1633,7 @@ Options.Triggers.push({
         text: {
           en: 'Under => Sides + Out',
           de: 'Unter ihn => Seiten + Geh Raus',
+          ko: '안 => 양 옆 + 밖',
         },
       },
     },
@@ -1551,6 +1647,7 @@ Options.Triggers.push({
         text: {
           en: 'Sides + Out',
           de: 'Seiten + Raus',
+          ko: '양 옆 + 밖',
         },
       },
     },
@@ -1693,34 +1790,42 @@ Options.Triggers.push({
           backOnYou: {
             en: 'Back Tether on YOU',
             de: 'Zurück-Verbindung auf DIR',
+            ko: '선-뒤쪽 대상자',
           },
           leftOnYou: {
             en: 'Left Tether on YOU',
             de: 'Links-Verbindung auf DIR',
+            ko: '선-왼쪽 대상자',
           },
           frontOnYou: {
             en: 'Front Tether on YOU',
             de: 'Vorne-Verbindung auf DIR',
+            ko: '선-앞쪽 대상자',
           },
           rightOnYou: {
             en: 'Right Tether on YOU',
             de: 'Rechts-Verbindung auf DIR',
+            ko: '선-오른쪽 대상자',
           },
           backOnPlayer: {
             en: 'Back Tether on ${player}',
             de: 'Zurück-Verbindung auf ${player}',
+            ko: '선-뒤쪽 ${player}',
           },
           leftOnPlayer: {
             en: 'Left Tether on ${player}',
             de: 'Links-Verbindung auf ${player}',
+            ko: '선-왼쪽 ${player}',
           },
           frontOnPlayer: {
             en: 'Front Tether on ${player}',
             de: 'Vorne-Verbindung auf ${player}',
+            ko: '선-앞쪽 ${player}',
           },
           rightOnPlayer: {
             en: 'Right Tether on ${player}',
             de: 'Rechts-Verbindung auf ${player}',
+            ko: '선-오른쪽 ${player}',
           },
         };
         if (data.iaigiriTether.length !== 1 || data.iaigiriPurple.length !== 1)
@@ -1755,23 +1860,28 @@ Options.Triggers.push({
           backOnYou: {
             en: 'Back Tether (w/${player})',
             de: 'Zurück-Verbindung (w/${player})',
+            ko: '선-뒤쪽 (+${player})',
           },
           // These are probably impossible.
           leftOnYou: {
             en: 'Left Tether (w/${player})',
             de: 'Links-Verbindung (w/${player})',
+            ko: '선-왼쪽 (+${player})',
           },
           frontOnYou: {
             en: 'Front Tether (w/${player})',
             de: 'Vorne-Verbindung (w/${player})',
+            ko: '선-앞쪽 (+${player})',
           },
           rightOnYou: {
             en: 'Right Tether (w/${player})',
             de: 'Rechts-Verbindung (w/${player})',
+            ko: '선-오른쪽 (+${player})',
           },
           unmarkedWithPlayer: {
             en: 'Unmarked (w/${player})',
             de: 'Unmarkiert (w/${player})',
+            ko: '무징 (+${player})',
           },
           unknown: Outputs.unknown,
         };
@@ -1841,10 +1951,12 @@ Options.Triggers.push({
         northSouth: {
           en: 'North/South',
           de: 'Norden/Süden',
+          ko: '북쪽/남쪽',
         },
         eastWest: {
           en: 'East/West',
           de: 'Osten/Westen',
+          ko: '동쪽/서쪽',
         },
       },
     },
@@ -1864,18 +1976,22 @@ Options.Triggers.push({
         baitNear: {
           en: 'Bait Near (Tether Far)',
           de: 'Nah ködern (Verbindung Fern)',
+          ko: '유도 가까이 (선 멀리)',
         },
         baitFar: {
           en: 'Bait Far (Tether Near)',
           de: 'Fern ködern (Verbindung Nah)',
+          ko: '멀리 유도 (선 가까이)',
         },
         tetherNear: {
           en: 'Tether Near (Bait Far)',
           de: 'Verbindung Nahe (Fern ködern)',
+          ko: '선 가까이 (유도 가까이)',
         },
         tetherFar: {
           en: 'Tether Far (Bait Near)',
           de: 'Verbindung Fern (Nahe ködern)',
+          ko: '선 멀리 (유도 멀리)',
         },
       },
     },
@@ -1924,18 +2040,22 @@ Options.Triggers.push({
         back: {
           en: '(then stay)',
           de: '(bleib stehen)',
+          ko: '(이후 그대로)',
         },
         left: {
           en: '(then left)',
           de: '(dann links)',
+          ko: '(이후 왼쪽)',
         },
         front: {
           en: '(then through)',
           de: '(dann durchgehen)',
+          ko: '(이후 가로지르기)',
         },
         right: {
           en: '(then right)',
           de: '(dann rechts)',
+          ko: '(이후 오른쪽)',
         },
       },
     },
@@ -2008,11 +2128,13 @@ Options.Triggers.push({
         back: {
           en: 'Stay',
           de: 'Bleib stehen',
+          ko: '그대로',
         },
         left: Outputs.left,
         front: {
           en: 'Through',
           de: 'Lauf durch',
+          ko: '가로지르기',
         },
         right: Outputs.right,
       },
@@ -2104,22 +2226,27 @@ Options.Triggers.push({
         left: {
           en: 'Left Tether (${partners})',
           de: 'Linke Verbindung (${partners})',
+          ko: '왼쪽 선 (${partners})',
         },
         right: {
           en: 'Right Tether (${partners})',
           de: 'Rechte Verbindung (${partners})',
+          ko: '오른쪽 선 (${partners})',
         },
         melee: {
           en: 'melees together',
           de: 'Nahkämpfer zusammen',
+          ko: '근딜끼리',
         },
         role: {
           en: 'roles together',
           de: 'Rollen zusammen',
+          ko: '역할군끼리',
         },
         partner: {
           en: 'partners together',
           de: 'Partner zusammen',
+          ko: '파트너끼리',
         },
         unknown: Outputs.unknown,
       },
