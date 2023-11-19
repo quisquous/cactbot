@@ -748,6 +748,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'front middle',
           de: 'Vorne Mitte',
           fr: 'Avant centre',
+          ja: '前の中央',
           cn: '前方中间',
           ko: '앞쪽 중앙',
         },

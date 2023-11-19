@@ -242,7 +242,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arkas': 'アルカス',
         'Cyancap Cavern': 'シアンキャップ中継地',
@@ -253,6 +252,10 @@ const triggerSet: TriggerSet<Data> = {
         'The Landfast Floe': '流氷の円庭',
       },
       'replaceText': {
+        '\\(big\\)': '(大)',
+        '\\(small\\)': '(小)',
+        '\\(explosion\\)': '(爆発)',
+        '\\(tether\\)': '(線)',
         'Battle Cry': 'バトルクライ',
         'Body Slam': 'ボディスラム',
         'Breathstroke': 'ブレス&スワイプ',
@@ -273,6 +276,7 @@ const triggerSet: TriggerSet<Data> = {
         'Sonic Bloop': 'ソニックブループ',
         'Spinning Claw': 'スピニングクロウ',
         'Spun Lightning': 'スパンライトニング',
+        'Telekinesis': 'テレキネシス',
         'Tidal Breath': 'タイダルブレス',
         'Tidal Roar': 'タイダルロア',
         'Tidalspout': 'バーストフラッド',
