@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${dir} Crystals first',
           de: 'Kristall im ${dir} zuerst',
           fr: 'Premiers cristaux au ${dir} ',
-          ja: '${dir}のクリスマスから',
+          ja: '${dir}のクリスタルから',
           cn: '先攻击 ${dir} 水晶',
           ko: '${dir} 크리스탈 먼저',
         },
