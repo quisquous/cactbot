@@ -23,7 +23,7 @@ export type ZoneReplace = {
 
 const zoneReplace: ZoneReplace[] = [
   {
-    // Criterion
+    // Sildihn Criterion
     fileMap: {
       'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane.ts':
         'ui/raidboss/data/06-ew/dungeon/another_sildihn_subterrane-savage.ts',
@@ -274,7 +274,7 @@ const zoneReplace: ZoneReplace[] = [
     },
   },
   {
-    // Criterion
+    // Mount Rokkon Criterion
     fileMap: {
       'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts':
         'ui/raidboss/data/06-ew/dungeon/another_mount_rokkon-savage.ts',
@@ -553,6 +553,166 @@ const zoneReplace: ZoneReplace[] = [
       '14B3': '89F2', // Comet Impact
       '14B4': '89F3', // Meteor Impact
       '14B5': '89F4', // Comet
+    },
+  },
+  {
+    // Aloalo Criterion
+    fileMap: {
+      'ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts':
+        'ui/raidboss/data/06-ew/dungeon/another_aloalo_island-savage.ts',
+      'ui/oopsyraidsy/data/06-ew/dungeon/another_aloalo_island.ts':
+        'ui/oopsyraidsy/data/06-ew/dungeon/another_aloalo_island-savage.ts',
+      'ui/raidboss/data/06-ew/dungeon/another_aloalo_island.txt':
+        'ui/raidboss/data/06-ew/dungeon/another_aloalo_island-savage.txt',
+    },
+    prefix: { 'AAI': 'AAIS' },
+    other: {
+      'AnotherAloaloIsland': 'AnotherAloaloIslandSavage',
+      'another_aloalo_island.txt': 'another_aloalo_island-savage.txt',
+      '# Another Aloalo Island': '# Another Aloalo Island (Savage)',
+      '\(\'AAI ': '\(\'AAIS ',
+    },
+    // eslint-disable-next-line max-len
+    // grep "^# [A-F0-9]\{4\} " ui/raidboss/data/06-ew/dungeon/another_aloalo_island.txt | sort | sed "s/^..//" | sed "s/^\(....\) \(.*\)$/    '\1': 'TODO', \/\/ \2/"
+    id: {
+      '7A56': 'TODO', // --sync-- various auto damage (trash 1)
+      '7A58': 'TODO', // --sync-- various auto damage (trash 2)
+      '8874': 'TODO', // --sync-- repositioning for Lala
+      '8889': 'TODO', // Angular Addition self-targeted ability to give boss III
+      '888B': 'TODO1', // Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
+      '888C': 'TODO2', // Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
+      '888D': 'TODO3', // Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
+      '888E': 'TODO4', // Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
+      '888F': 'TODO', // Arcane Blight cast and damage from 270 degree rotating cleave
+      '8890': 'TODO', // Arcane Array self-targeted cast to summon moving blue squares (#1)
+      '8891': 'TODO', // Bright Pulse cast and damage for initial blue square
+      '8892': 'TODO', // Bright Pulse damage from moving blue square
+      '8893': 'TODO', // Inferno Divide orange square cross explosion damage during Spatial Tactics
+      '8894': 'TODO', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #1, #3)
+      '8895': 'TODO', // Analysis self-targeted cast before giving players
+      '8898': 'TODO', // Planar Tactics self-targeted cast before Arcane Mines
+      '8899': 'TODO', // Arcane Mine self-targeted cast to create 8 Arcane Mine squares
+      '889A': 'TODO', // Arcane Mine cast and damage for initial Arcane Mine squares
+      '889B': 'TODO', // Arcane Combustion damage from walking over an Arcane Mine
+      '889C': 'TODO', // Massive Explosion damage from failing to resolve Subractive Suppressor Alpha
+      '889D': 'TODO', // Massive Explosion damage from failing to resolve Subractive Suppressor Beta
+      '889E': 'TODO', // Symmetric Surge damage from two person stack that gives magic vuln up
+      '889F': 'TODO', // Arcane Array self-targeted cast to summon moving blue squares (#2)
+      '88A0': 'TODO', // Spatial Tactics self-targeted cast prior to Arcane Array 2
+      '88A1': 'TODO', // Symmetric Surge self-targeted cast before this mechanic
+      '88A2': 'TODO', // Arcane Plot self-targeted cast to summon blue squares for Symmetric Surge
+      '88A3': 'TODO', // Constructive Figure self-targeted cast that summons Aloalo Golem on edge
+      '88A4': 'TODO', // Aero II cast and line damage from Aloalo Golem during Symmetric Surge
+      '88A5': 'TODO', // Arcane Point self-targeted cast that gives players 88A6 Powerful Light spreads
+      '88A6': 'TODO', // Powerful Light spread damage on players that turn the squares they are on blue
+      '88A7': 'TODO', // Explosive Theorem self-targeted cast for very large spreads
+      '88A8': 'TODO', // Explosive Theorem cast and damage on players for spreads with Telluric Theorem puddles
+      '88A9': 'TODO', // Telluric Theorem cast and damage for large puddles from Explosive Theorem
+      '88AD': 'TODO', // Strategic Strike cast and damage for non-cleaving 3x tankbuster
+      '88AE': 'TODO', // Inferno Theorem cast and raidwide damage
+      '8925': 'TODO', // Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
+      '8926': 'TODO', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
+      '8927': 'TODO', // --sync-- repositioning from Statice
+      '8947': 'TODO', // --sync-- auto damage from Statice
+      '8949': 'TODO', // Aero IV cast and raidwide damage
+      '894A': 'TODO', // Trick Reload self-targeted cast to load gun with 8925/8926
+      '894B': 'TODO', // Trigger Happy self-targeted cast for limit cut dart board
+      '894C': 'TODO', // Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+      '894D': 'TODO', // Surprise Balloon self-targeted cast
+      '894E': 'TODO', // Pop knockback from Surprise Balloon being popped
+      '894F': 'TODO', // Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+      '8954': 'TODO', // Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
+      '8955': 'TODO', // Present Box self-targeted cast for bombs/donuts/missiles/hands
+      '8956': 'TODO', // Faerie Ring cast and damage for donut rings during Present Box
+      '8959': 'TODO', // Trapshooting self-targeted cast after Trick Reload (after the first time)
+      '895A': 'TODO', // Trapshooting stack damage from Trick Reload
+      '895B': 'TODO', // Trapshooting spread damage from Trick Reload
+      '895C': 'TODO', // Ring a Ring o' Explosions self-targeted cast for rotating bombs
+      '895D': 'TODO', // Burst cast and damage from bomb explosion
+      '895E': 'TODO', // Fireworks self-targeted cast
+      '895F': 'TODO', // Fireworks ??? spread/stack damage during Present Box
+      '8960': 'TODO', // Fireworks ??? spread/stack damage during Present Box
+      '8963': 'TODO', // Beguiling Glitter self-targeted cast to give players Face debuffs
+      '8987': 'TODO', // Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+      '8A6A': 'TODO', // --sync-- ability on Bomb when rotating
+      '8A77': 'TODO', // --sync-- Ketuduke repositioning
+      '8A82': 'TODO', // Riptide ability on players from Angry Seas Airy Bubble when you step in one
+      '8A83': 'TODO', // Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
+      '8AA7': 'TODO', // --sync-- auto damage from Ketuduke
+      '8AA8': 'TODO', // Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
+      '8AA9': 'TODO', // 衝撃 self-targeted ability from Spring Crystal orbs
+      '8AAA': 'TODO', // 衝撃 self-targeted ability from Spring Crystal rupees
+      '8AAB': 'TODO', // Saturate cast and damage from Spring Crystal orb circle
+      '8AAC': 'TODO', // Saturate cast and damage from Spring Crystal rupee line laser
+      '8AAD': 'TODO', // Bubble Net self-targeted cast before Bubbles along with 8AAE during Spring Crystals 1
+      '8AAE': 'TODO', // Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
+      '8AAF': 'TODO', // Fluke Typhoon self-targeted cast before 8AB0 knockback during Spring Crystals 3
+      '8AB0': 'TODO', // Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
+      '8AB1': 'TODO', // Fluke Gale self-targeted cast that adds limit cut winds
+      '8AB2': 'TODO', // Fluke Gale cast and ability for limit cut 1 wind
+      '8AB3': 'TODO', // Fluke Gale cast and ability for limit cut 2 wind
+      '8AB4': 'TODO', // Hydrofall self-targeted cast that adds stack markers
+      '8AB5': 'TODO', // Hydrofall ability on players to give "stack second" before Blowing Bubbles
+      '8AB6': 'TODO', // Hydrofall ability on players that adds stack debuffs
+      '8AB7': 'TODO', // Hydrofall damage from stack debuffs
+      '8AB8': 'TODO', // Hydrobullet self-targeted cast that adds stack markers
+      '8AB9': 'TODO', // Hydrobullet ability on players that adds spread debuffs
+      '8ABA': 'TODO', // Hydrobullet damage from spread debuffs
+      '8ABB': 'TODO', // Strewn Bubbles self-targeted cast before 8ABC Sphere Shatter moving arches
+      '8ABC': 'TODO', // Sphere Shatter damage from moving arches
+      '8ABD': 'TODO', // Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
+      '8ABE': 'TODO', // Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+      '8ABF': 'TODO', // Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
+      '8AC0': 'TODO', // Angry Seas self-targeted cast for 8AC1 red line knockback
+      '8AC1': 'TODO', // Angry Seas cast and knockback damage from red line
+      '8AC2': 'TODO', // Burst tower damage
+      '8AC3': 'TODO', // Big Burst tower failure damage
+      '8AC4': 'TODO', // Roar self-targeted cast that summons Zaratan adds
+      '8AC5': 'TODO', // Bubble Net self-targeted cast before Bubbles along with 8AC6 during Spring Crystals 2
+      '8AC6': 'TODO', // Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
+      '8AC7': 'TODO', // Updraft self-targeted cast to boost adds and players into the air
+      '8AC8': 'TODO', // Updraft ability on players for 8AC7 Updraft
+      '8AC9': 'TODO', // Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
+      '8ACA': 'TODO', // Hundred Lashings self-targeted cast for bubbled Zaratan adds
+      '8ACB': 'TODO', // Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
+      '8ACC': 'TODO', // Receding Twintides cast and damage for initial out during out->in
+      '8ACD': 'TODO', // Near Tide fast cast and damage for second out during in->out with 8ACE Encroaching Twintides
+      '8ACE': 'TODO', // Encroaching Twintides cast and damage for initial in during in->out
+      '8ACF': 'TODO', // Far Tide fast cast and damage for second in during out->in with 8ACC Receding Twintides
+      '8AD0': 'TODO', // Hydrobomb self-targeted cast for 8AD1 puddles
+      '8AD1': 'TODO', // Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
+      '8AD4': 'TODO', // Tidal Roar self-targeted cast for raidwide aoe
+      '8AD5': 'TODO', // Tidal Roar damage from 8AD4
+      '8BB8': 'TODO', // Tail Screw casted damage from Kiwakin baited circle
+      '8BB9': 'TODO', // Bubble Shower casted damage from Snipper front conal
+      '8BBA': 'TODO', // Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BB9
+      '8BBB': 'TODO', // Cross Attack casted damage from Monk tankbuster
+      '8BBD': 'TODO', // Hydrocannon casted damage from Ray front line
+      '8BBE': 'TODO', // Electric Whorl casted damage from Ray "get in"
+      '8BBF': 'TODO', // Expulsion casted damage from Ray "get out"
+      '8BC0': 'TODO', // --sync-- damage from Twister tornados
+      '8BC1': 'TODO', // Ovation cast and damage from Wood Golem front line aoe
+      '8BC5': 'TODO', // Gravity Force cast and stack damage from Islekeeper
+      '8C25': 'TODO', // Inferno Theorem cast and enrage damage
+      '8C2F': 'TODO', // Ancient Quaga cast and damage for Islekeeper raidwide enrage
+      '8C4C': 'TODO', // Ancient Aero III interruptable cast and damage for Wood Golem raidwide
+      '8C4D': 'TODO', // Tornado cast and damage from Wood Golem that binds the initial target and heavies all targets
+      '8C4E': 'TODO', // Ancient Quaga cast and damage for Islekeeper raidwide
+      '8C53': 'TODO', // Lead Hook damage from hit 3
+      '8C62': 'TODO', // Lead Hook damage from hit 2
+      '8C63': 'TODO', // Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
+      '8C64': 'TODO', // Water III casted damage from Snipper stack marker
+      '8C65': 'TODO', // Hydroshot casted damage from Monk knockback line with a dot
+      '8C6D': 'TODO', // Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+      '8C6E': 'TODO', // Lead Hook casted damage from Kiwakin 3x tankbuster
+      '8C6F': 'TODO', // Isle Drop cast and damage for Islekeeper front circle
+      '8CBD': 'TODO', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+      '8CC2': 'TODO', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
+      '8CDE': 'TODO', // Targeted Light self-targeted cast for weak spot boss tether
+      '8CDF': 'TODO', // Targeted Light cast and damage on players for 8CDE
+      '8D1A': 'TODO', // Trapshooting self-targeted cast after Trick Reload (first time)
+      '8D1F': 'TODO', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
+      '8D2E': 'TODO', // Angular Addition self-targeted ability to give boss V
     },
   },
 ];
