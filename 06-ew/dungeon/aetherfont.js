@@ -228,7 +228,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arkas': 'アルカス',
         'Cyancap Cavern': 'シアンキャップ中継地',
@@ -239,6 +238,10 @@ Options.Triggers.push({
         'The Landfast Floe': '流氷の円庭',
       },
       'replaceText': {
+        '\\(big\\)': '(大)',
+        '\\(small\\)': '(小)',
+        '\\(explosion\\)': '(爆発)',
+        '\\(tether\\)': '(線)',
         'Battle Cry': 'バトルクライ',
         'Body Slam': 'ボディスラム',
         'Breathstroke': 'ブレス&スワイプ',
@@ -259,6 +262,7 @@ Options.Triggers.push({
         'Sonic Bloop': 'ソニックブループ',
         'Spinning Claw': 'スピニングクロウ',
         'Spun Lightning': 'スパンライトニング',
+        'Telekinesis': 'テレキネシス',
         'Tidal Breath': 'タイダルブレス',
         'Tidal Roar': 'タイダルロア',
         'Tidalspout': 'バーストフラッド',

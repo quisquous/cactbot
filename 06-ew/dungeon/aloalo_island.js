@@ -737,7 +737,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Kairimai Loquloqai': '神子の祭壇',
         'Ketuduke': 'ケトゥドゥケ',

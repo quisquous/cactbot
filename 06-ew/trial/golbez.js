@@ -192,7 +192,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Golbez': 'ゴルベーザ',
         'Golbez\'s Shadow': 'ゴルベーザの幻影',

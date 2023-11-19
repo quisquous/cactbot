@@ -15,6 +15,7 @@ Options.Triggers.push({
   zoneLabel: {
     en: 'Eureka Orthos (All Floors)',
     de: 'Eureka Orthos (Alle Ebenen)',
+    ja: 'オルト・エウレカ (全層)',
     cn: '正统优雷卡 (全楼层)',
     ko: '에우레카 오르토스 (전체 층)',
   },
@@ -249,6 +250,7 @@ Options.Triggers.push({
         duplicate: {
           en: '${demiclone} duplicate',
           de: 'Doppelter ${demiclone}',
+          ja: '${demiclone} 被り',
           cn: '${demiclone} 重复',
           ko: '${demiclone} 중복',
         },

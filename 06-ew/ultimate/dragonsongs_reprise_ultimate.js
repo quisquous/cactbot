@@ -2995,7 +2995,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Darkscale': 'ダークスケール',
         'Dragon-king Thordan': '騎竜神トールダン',
@@ -3118,6 +3117,7 @@ Options.Triggers.push({
         'The Dragon\'s Gaze': '竜の邪眼',
         'The Dragon\'s Glory': '邪竜の眼光',
         'The Dragon\'s Rage': '邪竜の魔炎',
+        'Tower': '塔',
         'Touchdown': 'タッチダウン',
         'Trinity': 'トリニティ',
         'Twisting Dive': 'ツイスターダイブ',

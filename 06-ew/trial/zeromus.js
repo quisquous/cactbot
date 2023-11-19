@@ -275,7 +275,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'コメット',
         'Zeromus': 'ゼロムス',

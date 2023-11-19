@@ -50,6 +50,7 @@ Options.Triggers.push({
           // Telegraphed Killing Paw swipe (81A9) followed by untelegraphed Savage Swipe (7F8E).
           en: 'Get Behind (Stay Behind)',
           de: 'Geh nach hinten (und bleib hinten)',
+          ja: '背面へ (そのまま背面)',
           cn: '去背后 (待在背后)',
           ko: '뒤로 이동 (뒤에 머물기)',
         },

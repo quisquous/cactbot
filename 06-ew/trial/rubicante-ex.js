@@ -558,7 +558,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': '煉獄魔陣',
         '(?<!Greater )Flamesent': '炎妖',

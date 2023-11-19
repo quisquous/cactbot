@@ -868,7 +868,6 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Azeyma(?!\')': 'アーゼマ',
         'Azeyma\'s Heat': 'アーゼマの蜃気楼',
@@ -893,6 +892,7 @@ Options.Triggers.push({
         'The Twin Halls': '二面宮',
       },
       'replaceText': {
+        '--hammer--': '--ハンマー--',
         'Advent of the Eighth': '彗星輪',
         'As Above, So Below': '死生択一の炎',
         'Balance': '魂の清算',
