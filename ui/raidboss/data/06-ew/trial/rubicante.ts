@@ -346,7 +346,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Circle of Purgatory': '煉獄魔陣',
         '(?<!Greater )Flamesent': '炎妖',

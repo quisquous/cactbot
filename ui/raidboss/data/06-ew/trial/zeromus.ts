@@ -292,7 +292,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet': 'コメット',
         'Zeromus': 'ゼロムス',

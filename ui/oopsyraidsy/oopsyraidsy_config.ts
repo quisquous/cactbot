@@ -279,6 +279,7 @@ const templateOptions: OptionsTemplate = {
       id: 'DefaultPlayerLabel',
       name: {
         en: 'Default Player Label',
+        ja: '基本プレイヤーラベル',
         cn: '默认玩家代称',
         ko: '플레이어를 언급하는 기본 방법',
       },
@@ -290,6 +291,13 @@ const templateOptions: OptionsTemplate = {
           'Job (WAR)': 'job',
           'Full Job (Warrior)': 'jobFull',
           'Full Name (Tini Poutini)': 'name',
+        },
+        ja: {
+          'あだ名 (Tini)': 'nick',
+          'ロール (ヒーラー)': 'role',
+          '簡略ジョブ (白魔)': 'job',
+          'ジョブ (白魔導士)': 'jobFull',
+          '名前 (Tini Poutini)': 'name',
         },
         cn: {
           '昵称 (弗雷)': 'nick',
@@ -409,6 +417,7 @@ const templateOptions: OptionsTemplate = {
       name: {
         en: 'Minimum time to show overwritten mit (seconds)',
         de: 'Minimum Zeit überschriebene Mitigation anzuzeigen (Sekunden)',
+        ja: 'バフの上書き通知を表示する時間 (秒)',
         cn: '显示被顶减伤最小时间 (秒)',
         ko: '파티 생존기 덮어씀 경고를 표시할 기준 시간 (초)',
       },

@@ -207,7 +207,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Golbez': 'ゴルベーザ',
         'Golbez\'s Shadow': 'ゴルベーザの幻影',
