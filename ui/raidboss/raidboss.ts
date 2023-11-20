@@ -95,4 +95,8 @@ UserConfig.getUserConfigLocation('raidboss', defaultOptions, () => {
   addOverlayListener('onLogEvent', (e) => {
     timelineController.OnLogEvent(e);
   });
+
+  addOverlayListener('LogLine', (e) => {
+    timelineController.OnNetLog(e);
+  });
 });

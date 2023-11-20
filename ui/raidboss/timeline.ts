@@ -1,7 +1,7 @@
 import { commonNetRegex } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import { LocaleRegex } from '../../resources/translations';
-import { LogEvent } from '../../types/event';
+import { EventResponses, LogEvent } from '../../types/event';
 import { CactbotBaseRegExp } from '../../types/net_trigger';
 import { LooseTimelineTrigger, RaidbossFileData } from '../../types/trigger';
 
@@ -721,6 +721,15 @@ export class TimelineController {
       }
       this.activeTimeline.OnLogLine(log, currentTime);
     }
+  }
+
+  OnNetLog(e: EventResponses['LogLine']): void {
+    this.OnLogEvent({
+      type: 'onLogEvent',
+      detail: {
+        logs: [e.rawLine],
+      },
+    });
   }
 
   public SetActiveTimeline(

@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { LogEvent } from '../../../../types/event';
+import { EventResponses, LogEvent } from '../../../../types/event';
 import { LooseTimelineTrigger } from '../../../../types/trigger';
 import { TimelineController } from '../../timeline';
 import { TimelineReplacement, TimelineStyle } from '../../timeline_parser';
@@ -60,6 +60,10 @@ export default class RaidEmulatorTimelineController extends TimelineController {
 
   // Override
   public override OnLogEvent(_e: LogEvent): void {
+    throw new UnreachableCode();
+  }
+
+  public override OnNetLog(_e: EventResponses['LogLine']): void {
     throw new UnreachableCode();
   }
 
