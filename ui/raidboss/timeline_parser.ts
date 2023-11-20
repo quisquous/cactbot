@@ -22,7 +22,7 @@ const isStringOrStringArray = (value: unknown): value is string | string[] => {
     if (isStringArray(value))
       return true;
     return false;
-  } 
+  }
   return typeof value === 'string';
 };
 
