@@ -17,14 +17,13 @@ const isStringArray = (value: unknown[]): value is string[] => {
   return value.find((v) => typeof v !== 'string') === undefined;
 };
 
-const isStringOrStringArray = (value: unknown): value is number[] | string[] => {
+const isStringOrStringArray = (value: unknown): value is string | string[] => {
   if (Array.isArray(value)) {
     if (isStringArray(value))
       return true;
     return false;
-  } else if (!['string', 'number'].includes(typeof value))
-    return false;
-  return true;
+  } 
+  return typeof value === 'string';
 };
 
 const isValidNetParams = <T extends LogDefinitionTypes>(
