@@ -17,15 +17,9 @@ const isStringArray = (value: unknown[]): value is string[] => {
   return value.find((v) => typeof v !== 'string') === undefined;
 };
 
-const isNumberArray = (value: unknown[]): value is number[] => {
-  return value.find((v) => typeof v !== 'number') === undefined;
-};
-
-const isStringOrNumberOrArray = (value: unknown): value is number[] | string[] => {
+const isStringOrStringArray = (value: unknown): value is number[] | string[] => {
   if (Array.isArray(value)) {
     if (isStringArray(value))
-      return true;
-    else if (isNumberArray(value))
       return true;
     return false;
   } else if (!['string', 'number'].includes(typeof value))
@@ -42,7 +36,7 @@ const isValidNetParams = <T extends LogDefinitionTypes>(
     if (!(key in logDefinitions[type].fields))
       return false;
     // Make sure our value is either a string/int or an array of strings/ints
-    if (!isStringOrNumberOrArray(params[key]))
+    if (!isStringOrStringArray(params[key]))
       return false;
   }
   return true;
@@ -507,6 +501,8 @@ export class TimelineParser {
     return this.buildRegexSync(
       uniqueid,
       `${netRegexType} ${syncCommand.netRegex}`,
+      // TODO: Use `translateRegexBuildParam` instead, store off params for use elsewhere.
+      // See https://github.com/quisquous/cactbot/pull/5939#discussion_r1399453530
       Regexes.parse(this.GetReplacedSync(buildNetRegexForTrigger(netRegexType, params))),
       syncCommand.args,
       seconds,
