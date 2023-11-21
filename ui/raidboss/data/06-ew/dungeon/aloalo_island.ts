@@ -196,7 +196,7 @@ const triggerSet: TriggerSet<Data> = {
       // Path 03
       id: 'Aloalo Ketuduke Zaratan Add',
       type: 'AddedCombatant',
-      netRegex: { npcNameId: '12539', capture: false },
+      netRegex: { npcNameId: '12539', npcBaseId: '16538', capture: false },
       condition: (data) => data.isKetuFight,
       delaySeconds: 16,
       suppressSeconds: 5,
