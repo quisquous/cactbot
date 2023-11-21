@@ -146,8 +146,8 @@ export class TimelineParser {
       durationCommand: /(?:[^#]*?\s)?(?<text>duration\s+(?<seconds>[0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
       ignore: /^hideall\s+\"(?<id>[^"]+)\"(?:\s*#.*)?$/,
       jumpCommand:
-        /(?:[^#]*?\s)?(?<text>(?<command>(?:force|)jump)\s+(?:"(?<label>\w*)"|(?<seconds>[0-9]+(?:\.[0-9]+)?)))(?:\s.*)?$/,
-      label: /^(?<time>[0-9]+(?:\.[0-9]+)?)\s+(?<text>label\s+"(?<label>\w*)")\s*$/,
+        /(?:[^#]*?\s)?(?<text>(?<command>(?:force|)jump)\s+(?:"(?<label>[^"]*)"|(?<seconds>[0-9]+(?:\.[0-9]+)?)))(?:\s.*)?$/,
+      label: /^(?<time>[0-9]+(?:\.[0-9]+)?)\s+(?<text>label\s+"(?<label>[^"]*)")\s*$/,
       line: /^(?<text>(?<time>[0-9]+(?:\.[0-9]+)?)\s+"(?<name>.*?)")(\s+(.*))?/,
       popupText:
         /^(?<type>info|alert|alarm)text\s+\"(?<id>[^"]+)\"\s+before\s+(?<beforeSeconds>-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"(?<text>[^"]+)\")?$/,
