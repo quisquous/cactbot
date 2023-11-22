@@ -485,34 +485,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aloalo Statice Pop',
       type: 'StartsUsing',
       netRegex: { id: '892F', source: 'Statice', capture: false },
-      delaySeconds: 3,
       response: Responses.knockback(),
-    },
-    {
-      id: 'Aloalo Statice 4-tonze Weight',
-      type: 'StartsUsing',
-      netRegex: { id: '8931', source: 'Statice', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Avoid 4-tons',
-          de: 'Weiche 4-Tonnen aus',
-          ja: '4トン回避',
-        },
-      },
-    },
-    {
-      id: 'Aloalo Statice Pinwheel',
-      type: 'StartsUsing',
-      netRegex: { id: '8933', source: 'Statice', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Avoid fire lines',
-          de: 'Weiche Feuer-Linien aus',
-          ja: 'ぐるぐる火を回避',
-        },
-      },
     },
     {
       id: 'Aloalo Statice Trick Reload',
@@ -543,8 +516,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '892B', source: 'Statice', capture: false },
       infoText: (data, _matches, output) => {
-        const safe = data.reloadFailed.join(', ');
-        return output.text!({ safe: safe });
+        return output.text!({ safe: data.reloadFailed });
       },
       outputStrings: {
         text: {
@@ -558,54 +530,43 @@ const triggerSet: TriggerSet<Data> = {
       id: 'Aloalo Statice Aero IV',
       type: 'StartsUsing',
       netRegex: { id: '8929', source: 'Statice', capture: false },
-      response: Responses.aoe('alert'),
+      response: Responses.aoe(),
+    },
+    {
+      id: 'Aloalo Statice Shocking Abandon',
+      type: 'StartsUsing',
+      netRegex: { id: '8928', source: 'Statice' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'Aloalo Statice Fair Flight',
+      type: 'StartsUsing',
+      netRegex: { id: '8946', source: 'Statice', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Stand on cushion',
+        },
+      },
     },
     // ----------------------------------------- Loquloqui
     {
       id: 'Aloalo Loquloqui Long-lost Light',
       type: 'StartsUsing',
       netRegex: { id: '87BC', source: 'Loquloqui', capture: false },
-      response: Responses.aoe('alert'),
+      response: Responses.aoe(),
     },
     {
       id: 'Aloalo Loquloqui O Life, Flourish',
       type: 'StartsUsing',
-      netRegex: { id: '893C', source: 'Loquloqui', capture: false },
+      netRegex: { id: '87C4', source: 'Loquloqui', capture: false },
       durationSeconds: 10,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Avoid shimmering adds', // FIXME (twinkling or blinking?)
+          en: 'Glowing adds get larger',
           de: 'Weiche leuchtenden Adds aus',
           ja: '光ってる物に注意',
-        },
-      },
-    },
-    {
-      id: 'Aloalo Uolosapa Loqua Rush',
-      type: 'StartsUsing',
-      netRegex: { id: ['87C0', '87C1'], source: 'Uolosapa Loqua', capture: false },
-      suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Birds charge',
-          de: 'Vogel ansturm',
-          ja: '鳥の突進',
-        },
-      },
-    },
-    {
-      id: 'Aloalo Repuruba Loqua Turnabout',
-      type: 'StartsUsing',
-      netRegex: { id: ['87C2', '87C3'], source: 'Repuruba Loqua', capture: false },
-      suppressSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Avoid AOEs',
-          de: 'Weiche AoEs aus',
-          ja: 'AOE回避',
         },
       },
     },
@@ -623,7 +584,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Avoid tethers', // FIXME (tethers going to start to shrink)
+          en: 'Away from tether ends',
           de: 'Weiche Verbindungen aus',
           ja: '縮む線を回避',
         },
@@ -643,7 +604,7 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Last bloom => Go to safe',
+          en: 'Last bloom => Walk into Safe',
           de: 'Letzte Blüte => Geh zum sicheren Bereich',
           ja: '最後の花畑 => 安置へ移動',
         },
@@ -654,14 +615,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '87CA', source: 'Loquloqui', capture: false },
       durationSeconds: 4.5,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Crush! Go to corner',
-          de: 'Crush! Geh in eine Ecke',
-          ja: 'クラッシュ！隅へ移動',
-        },
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Aloalo Loquloqui Stirring of Spirits',
@@ -671,9 +625,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: '4x Knockback',
-          de: '4x Rückstoß',
-          ja: '4x ノックバック',
+          en: '5x Knockback',
+          de: '5x Rückstoß',
+          ja: '5x ノックバック',
         },
       },
     },
@@ -684,6 +638,7 @@ const triggerSet: TriggerSet<Data> = {
       replaceText: {
         'Receding Twintides/Encroaching Twintides': 'Receding/Encroaching Twintides',
         'Far Tide/Near Tide': 'Far/Near Tide',
+        'Meteor/Sledgemagic/Hunks of Junk/Happy Surprise': '--dartboard result--',
       },
     },
     {

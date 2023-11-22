@@ -13,7 +13,8 @@ hideall "--sync--"
 # -p 8B94:1012.4
 # -ii 8B89 8B98 8B9C 8B9D 8B93
 
-1000.0 "--sync--" sync / 00:0839::Ketulu Cove will be sealed off/ window 10000,0
+#1000.0 "--sync--" sync / 00:0839::Ketulu Cove will be sealed off/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1128:/ window 10000,0
 1006.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
 1007.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
 1012.4 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
@@ -151,7 +152,8 @@ hideall "--sync--"
 # -p 8AA5:2014
 # -ii 8A78 8AA6 8A7A 8A7B 8A81 8D1D 8AA4 8A89 8A8A 8A82 8A83 8A8C 8D10 8A94 8A98 8A99 8A96
 
-2000.0 "--sync--" sync / 00:0839::Seasong's Rest will be sealed off/ window 10000,0
+#2000.0 "--sync--" sync / 00:0839::Seasong's Rest will be sealed off/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112B:/ window 10000,0
 2009.0 "--sync--" sync / 14:[^:]*:Ketuduke:8AA5:/
 2014.0 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AA5:/
 
@@ -421,21 +423,6 @@ hideall "--sync--"
 # 8BA3 Arcane Armaments self-targeted cast before poison spear Arcane Armaments
 
 
-# ALL ENCOUNTER ABILITIES
-# 1961 attack
-# 8B88 Arcane Armaments
-# 8B89 --sync--
-# 8B8A Ravaging Axe
-# 8B8B Ringing Quoits
-# 8B8F --sync--
-# 8B90 Arcane Armaments
-# 8B91 Rout
-# 8B92 Rout
-# 8B93 --sync--
-# 8B94 Made Magic
-# 8B95 Violet Storm
-
-
 #~~~~~~#
 # Lala #
 #~~~~~~#
@@ -604,14 +591,418 @@ hideall "--sync--"
 # 8D2D Volcanic Coordinates cast and damage for targeted circle puddle
 
 
-# Right Quaqua
-5000.0 "--sync--" sync / 00:0839::The ancient forum will be sealed off/ window 10000,0
+#~~~~~~~~~~~~~~~~~~~~~#
+# Quaqua (right path) #
+#~~~~~~~~~~~~~~~~~~~~~#
+
+# -p 8B94:5014.1
+# -ii 8B89 8B93
+
+#5000.0 "--sync--" sync / 00:0839::The ancient forum will be sealed off/ window 10000,0
+5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112A:/ window 10000,0
+5007.8 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5009.1 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
+5014.1 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+5024.2 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+5026.3 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5029.0 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+5032.8 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+5042.9 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+5047.8 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+
+5053.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5059.3 "Arcane Armaments"
+
+5054.3 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/ window 40,40 jump "quaqua-right-fixed"
+5054.3 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/ window 40,40 jump "quaqua-right-untouched"
 
 
-# Statice
-6000.0 "--sync--" sync / 00:0839::The Slumbering Canopy will be sealed off/ window 10000,0
+5154.3 label "quaqua-right-fixed"
+5154.3 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/
+5159.3 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B8C:/
+5169.4 "Hammer Landing 1" sync / 1[56]:[^:]*:Quaqua:8B8D:/
+5171.4 "Hammer Landing 2" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+5173.4 "Hammer Landing 3" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+
+5181.5 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5188.3 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+5194.4 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5200.8 "Arcane Pursuit" sync / 1[56]:[^:]*:Quaqua:8BA4:/
+5214.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BAD:/
+5216.8 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BAD:/
+
+5214.9 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5221.1 "Arcane Pursuit" sync / 1[56]:[^:]*:Quaqua:8BA4:/
+5237.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+5244.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+
+5248.2 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5254.6 label "quaqua-right-fixed-loop"
+5254.6 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+5264.7 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+5269.6 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+5269.6 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+5274.9 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5281.1 "Arcane Pursuit" sync / 1[56]:[^:]*:Quaqua:8BA4:/
+5297.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+5304.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+
+5297.2 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5303.3 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B8C:/
+5313.6 "Hammer Landing 1" sync / 1[56]:[^:]*:Quaqua:8B8D:/
+5315.7 "Hammer Landing 2" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+5317.7 "Hammer Landing 3" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+
+5325.8 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5332.6 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+5338.7 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5345.0 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/ window 40,40 forcejump "quaqua-right-fixed-loop"
 
 
-# Loquloqui
-7000.0 "--sync--" sync / 00:0839::Kairimai Loquloqai will be sealed off/ window 10000,0
+5454.3 label "quaqua-right-untouched"
+5454.3 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/
+5459.3 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B90:/
+5461.3 "--jump--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5468.0 "Rout 1" sync / 1[56]:[^:]*:Quaqua:8B91:/
+5469.7 "Rout 2" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+5471.3 "Rout 3" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+5473.1 "Rout 4" #sync / 1[56]:[^:]*:Quaqua:8B92:/
 
+5480.2 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5487.0 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+5504.2 "Arcane Intervention 1" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5513.2 "Arcane Intervention 2" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5522.2 "Arcane Intervention 3" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5525.2 "Arcane Intervention 4" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+
+5529.2 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5535.9 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+5542.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5548.3 label "quaqua-right-untouched-loop"
+5548.3 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+5558.4 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+5563.3 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+5563.3 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+5575.6 "Arcane Intervention 1" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5584.6 "Arcane Intervention 2" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5593.6 "Arcane Intervention 3" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+5596.6 "Arcane Intervention 4" sync / 1[56]:[^:]*:Quaqua:8BAE:/
+
+5596.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5602.8 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B90:/
+5604.9 "--jump--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5611.7 "Rout 1" sync / 1[56]:[^:]*:Quaqua:8B91:/
+5613.5 "Rout 2" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+5615.1 "Rout 3" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+5616.7 "Rout 4" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+
+5619.8 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5626.5 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+5633.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+5639.7 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/ window 40,40 forcejump "quaqua-right-untouched-loop"
+
+# ALL ENCOUNTER ABILITIES (right path only)
+# 8BA4 Arcane Pursuit self-targeted cast to summon Aetheric Charge purple orb(s)
+# 8BA5 Fell Forces damage from being too close to Aetheric Charge purple orb
+# 8BA6 --sync-- cast and ability on Aetheric Charge purple orbs for followup player tethered sets
+# 8BAD --sync-- cast and ability on Aetheric Charge purple orbs for initial untethered set
+# 8BAE Arcane Intervention cast and lookaway damage (non-zero if failed)
+# 8D17 Fell Confluence Aetheric Charge purple orb enrage damage from not cleansing it
+
+
+#~~~~~~~~~#
+# Statice #
+#~~~~~~~~~#
+
+# -p 892E:6026.6
+# -ii 8A04 8932 892C 8986 8925 8926 8981 8935 89F6 89F7 8CEB 89FB 8941 8942 8943
+
+#6000.0 "--sync--" sync / 00:0839::The Slumbering Canopy will be sealed off/ window 10000,0
+6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112D:/ window 10000,0
+# Can be triggered by players earlier
+6004.0 "Hidden Mine" #sync / 1[56]:[^:]*:Mine:892D:/
+
+6022.6 "--sync--" sync / 14:[^:]*:Statice:892E:/ window 30,30
+6026.6 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:892E:/
+6034.7 "Surprise Needle" sync / 1[56]:[^:]*:Needle:8930:/
+6035.6 "Pop" sync / 1[56]:[^:]*:Statice:892F:/
+6036.7 "4-tonze Weight" sync / 1[56]:[^:]*:Statice:8931:/
+
+6043.9 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6049.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6063.5 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+6072.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6086.5 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+
+6095.6 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/
+6107.3 "Fire Spread" sync / 1[56]:[^:]*:Statice:8934:/ duration 10
+6116.9 "Aero IV" sync / 1[56]:[^:]*:Statice:8929:/
+
+6124.1 "--sync--" sync / 14:[^:]*:Statice:8945:/ window 40,40 jump "statice-09"
+6128.1 "Whoopee Cushion?" #sync / 1[56]:[^:]*:Statice:8945:/
+
+6124.1 "--sync--" sync / 14:[^:]*:Statice:893E:/ window 40,40 jump "statice-10"
+6128.1 "Present Box?" #sync / 1[56]:[^:]*:Statice:893E:/
+
+6124.1 "--sync--" sync / 14:[^:]*:Statice:8936:/ window 40,40 jump "statice-11"
+6128.1 "Jack-in-the-box?" #sync / 1[56]:[^:]*:Statice:8936:/
+
+
+6224.1 label "statice-09"
+6224.1 "--sync--" sync / 14:[^:]*:Statice:8945:/
+6228.1 "Whoopee Cushion" sync / 1[56]:[^:]*:Statice:8945:/
+6246.2 "Fair Flight" sync / 1[56]:[^:]*:Statice:8946:/
+
+6262.5 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6267.1 "Dartboard" sync / 1[56]:[^:]*:Statice:8938:/
+6275.2 "Thunderstorm 1" sync / 1[56]:[^:]*:Statice:8939:/
+6279.2 "Thunderstorm 2" sync / 1[56]:[^:]*:Statice:8939:/
+6283.2 "Thunderstorm 3" sync / 1[56]:[^:]*:Statice:8939:/
+6300.4 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" sync / 1[56]:[^:]*:Statice:(893A|893B|893C|893D):/
+
+6310.5 label "statice-09-loop"
+6310.5 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/
+6313.6 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6319.2 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6330.1 "Fire Spread" sync / 1[56]:[^:]*:Statice:8934:/ duration 10
+6333.1 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+6343.2 "Aero IV" sync / 1[56]:[^:]*:Statice:8929:/
+
+6350.4 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6355.8 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:892E:/
+6362.9 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6374.5 "Surprise Needle" sync / 1[56]:[^:]*:Needle:8930:/
+6375.4 "Pop" sync / 1[56]:[^:]*:Statice:892F:/
+6377.0 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+
+6388.2 "Whoopee Cushion" sync / 1[56]:[^:]*:Statice:8945:/
+6395.2 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8928:/
+6406.3 "Fair Flight" sync / 1[56]:[^:]*:Statice:8946:/
+
+6419.6 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/ window 40,40 forcejump "statice-09-loop"
+
+
+6424.1 label "statice-10"
+6424.1 "--sync--" sync / 14:[^:]*:Statice:893E:/
+6428.1 "Present Box" sync / 1[56]:[^:]*:Statice:893E:/
+6436.8 "Faerie Ring 1" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6437.4 "Faerie Road 1" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+6442.5 "Faerie Ring 2" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6442.9 "Faerie Road 2" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+6447.9 "Faerie Ring 3" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6448.1 "Faerie Road 3" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+
+6457.1 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6461.7 "Dartboard" sync / 1[56]:[^:]*:Statice:8938:/
+6469.8 "Thunderstorm 1" sync / 1[56]:[^:]*:Statice:8939:/
+6473.8 "Thunderstorm 2" sync / 1[56]:[^:]*:Statice:8939:/
+6477.8 "Thunderstorm 3" sync / 1[56]:[^:]*:Statice:8939:/
+6495.0 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" sync / 1[56]:[^:]*:Statice:(893A|893B|893C|893D):/
+
+6508.1 label "statice-10-loop"
+6508.1 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/
+6511.2 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6516.5 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6527.5 "Fire Spread" sync / 1[56]:[^:]*:Statice:8934:/
+6530.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+6540.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8929:/
+
+6547.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6553.4 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:892E:/
+6560.5 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6572.1 "Surprise Needle" sync / 1[56]:[^:]*:Needle:8930:/
+6573.0 "Pop" sync / 1[56]:[^:]*:Statice:892F:/
+6574.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+
+6585.5 "Present Box" sync / 1[56]:[^:]*:Statice:893E:/
+6594.2 "Faerie Ring 1" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6594.8 "Faerie Road 1" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+6599.9 "Faerie Ring 2" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6600.4 "Faerie Road 2" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+6601.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8928:/
+6605.5 "Faerie Ring 3" sync / 1[56]:[^:]*:Surprising Staff:893F:/
+6606.0 "Faerie Road 3" #sync / 1[56]:[^:]*:Surprising Staff:8940:/
+
+6613.7 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/ window 40,40 forcejump "statice-10-loop"
+
+
+6624.1 label "statice-11"
+6624.1 "--sync--" sync / 14:[^:]*:Statice:8936:/
+6628.1 "Jack-in-the-box" sync / 1[56]:[^:]*:Statice:8936:/
+6647.2 "Burst" sync / 1[56]:[^:]*:Treasure Box:8937:/
+
+6659.6 "--sync--" sync / 1[56]:[^:]*:Statice:8927:/
+6664.0 "Dartboard" sync / 1[56]:[^:]*:Statice:8938:/
+6672.1 "Thunderstorm 1" sync / 1[56]:[^:]*:Statice:8939:/
+6676.1 "Thunderstorm 2" sync / 1[56]:[^:]*:Statice:8939:/
+6680.1 "Thunderstorm 3" sync / 1[56]:[^:]*:Statice:8939:/
+6697.2 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" sync / 1[56]:[^:]*:Statice:(893A|893B|893C|893D):/
+
+6707.3 label "statice-11-loop"
+6707.3 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/
+6710.4 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6715.7 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6726.7 "Fire Spread" sync / 1[56]:[^:]*:Statice:8934:/
+6729.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+6739.7 "Aero IV" sync / 1[56]:[^:]*:Statice:8929:/
+
+6746.9 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+6752.3 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:892E:/
+6759.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:892A:/
+6771.0 "Surprise Needle" sync / 1[56]:[^:]*:Needle:8930:/
+6771.9 "Pop" sync / 1[56]:[^:]*:Statice:892F:/
+6773.5 "Trigger Happy" sync / 1[56]:[^:]*:Statice:892B:/
+
+6784.6 "Jack-in-the-box" sync / 1[56]:[^:]*:Statice:8936:/
+6793.7 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8928:/
+6801.8 "Burst" sync / 1[56]:[^:]*:Treasure Box:8937:/
+
+6817.1 "Pinwheel" sync / 1[56]:[^:]*:Statice:8933:/ window 40,40 forcejump "statice-11-loop"
+
+
+# ALL ENCOUNTER ABILITIES
+# 8925 Locked and Loaded ability during 892A Trick Reload when a bullet is in the gun
+# 8926 Misload ability during 892A Trick Reload when a bullet missed the gun oops
+# 8927 --sync-- reposition
+# 8928 Shocking Abandon cast and tankbuster damage
+# 8929 Aero IV cast and raidwide damage
+# 892A Trick Reload self-targeted cast to load gun with 8925/8926
+# 892B Trigger Happy self-targeted cast for limit cut dart board
+# 892C Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+# 892D Hidden Mine damage from stepping on the hidden mine
+# 892E Surprise Balloon self-targeted cast to summon Balloon
+# 892F Pop knockback from Surprise Balloon being popped
+# 8930 Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+# 8931 4-tonze Weight self-targeted cast for outside circles during Balloon knockback
+# 8932 4-tonze Weight cast and damage from Heavy Weight circles during Balloon knockback
+# 8933 Pinwheel self-targeted cast to summon Ball of Fire rotating fire bars
+# 8934 Fire Spread cast and damage for initial fire bars
+# 8935 Fire Spread cast and damage for initial fire bars
+# 8936 Jack-in-the-box self-targeted cast to generate 4x Treasure Box
+# 8937 Burst fake Treasure Box explosion
+# 8938 Dartboard self-targeted cast for colored dartboard
+# 8939 Thunderstorm cast and damage from circles during Pinwheel
+# 893A Meteor damage and knockback from red Pinwheel slice
+# 893B Sledgemagic damage from yellow Pinwheel slice
+# 893C Hunks of Junk damage from blue Pinwheel slice
+# 893D Happy Surprise full heal from green Pinwheel slice
+# 893E Present Box self-targeted cast to summon Surprising Weapon/Staff/Missile
+# 893F Faerie Ring cast and damage from Surprising Staff donut attack
+# 8940 Faerie Road cast and damage from Surprising Staff line attack
+# 8941 Burst damage on players from hitting Present Box's Surprising Missile
+# 8942 --sync-- knockback ability on players from Surprising Weapon golem
+# 8943 --sync-- knockback ability on players from Surprising Weapon mage
+# 8945 Whoopee Cushion self-targeted cast to summon cushions for Fair Flight
+# 8946 Fair Flight cast and non-zero damage on players to throw them in the air (89F5 is the damage)
+# 8981 Fire Spread self-targeted cast on Ball of Fire for initial fire bars
+# 8986 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+# 89F5 --sync-- damage from failing Fair Flight
+# 89F6 Fire Spread damage for rotating fire bars
+# 89F7 Fire Spread damage for rotating fire bars
+# 8A04 --sync-- auto damage
+# 8CEB Barbed Lightning unknown ability prior to Thunderstorm
+
+
+#~~~~~~~~~~~#
+# Loquloqui #
+#~~~~~~~~~~~#
+
+# -p 87BC:7011.8
+# -ii 87C1 87C3 8C34 8C35 8D38 8E47
+
+#7000.0 "--sync--" sync / 00:0839::Kairimai Loquloqai will be sealed off/ window 10000,0
+7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:11DE:/ window 10000,0
+7006.8 "--sync--" sync / 14:[^:]*:Loquloqui:87BC:/ window 10,10
+7011.8 "Long-lost Light" sync / 1[56]:[^:]*:Loquloqui:87BC:/
+
+7018.0 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7025.4 "Summoning Rite" sync / 1[56]:[^:]*:Loquloqui:87BF:/
+7033.5 "O Life, Flourish" sync / 1[56]:[^:]*:Loquloqui:87C4:/
+7042.1 "Rush" sync / 1[56]:[^:]*:Uolosapa Loqua:87C0:/
+
+7043.7 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7050.8 "Summoning Rite" sync / 1[56]:[^:]*:Loquloqui:87BF:/
+7058.9 "O Life, Flourish" sync / 1[56]:[^:]*:Loquloqui:87C4:/
+7067.6 "Turnabout" sync / 1[56]:[^:]*:Repuruba Loqua:87C2:/
+7075.2 "Protective Will" sync / 1[56]:[^:]*:Loquloqui:87BE:/
+
+7081.3 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7089.5 "O Petals, Unfurl" sync / 1[56]:[^:]*:Loquloqui:87C5:/
+7108.8 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7109.9 "Pliant Petals" sync / 1[56]:[^:]*:Loquloqui:87C6:/
+7118.3 "Land Wave" sync / 1[56]:[^:]*:Loquloqui:87BD:/
+
+7124.5 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7132.6 "O Isle, Bloom" sync / 1[56]:[^:]*:Loquloqui:87C7:/
+7144.0 "Brilliant Blossoms x12" duration 5 #sync / 1[56]:[^:]*:Loquloqui:87C8:/
+7156.7 "Long-lost Light" sync / 1[56]:[^:]*:Loquloqui:87BC:/
+
+7162.9 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7171.1 "O Sky, Be Mine" sync / 1[56]:[^:]*:Loquloqui:87C9:/
+7181.2 "Sanctuary" sync / 1[56]:[^:]*:Loquloqui:87CA:/
+
+7189.3 "Stirring of Spirits 1" sync / 1[56]:[^:]*:Loquloqui:87CB:/
+7191.7 "Islebloom Light" sync / 1[56]:[^:]*:Loquloqui:87CD:/
+7192.1 "Shockwave 2" sync / 1[56]:[^:]*:Loquloqui:87CC:/
+7194.9 "Shockwave 3" sync / 1[56]:[^:]*:Loquloqui:87CC:/
+7197.2 "Islebloom Light" sync / 1[56]:[^:]*:Loquloqui:87CD:/
+7197.6 "Shockwave 4" sync / 1[56]:[^:]*:Loquloqui:87CC:/
+7200.4 "Shockwave 5" sync / 1[56]:[^:]*:Loquloqui:87CC:/
+7202.6 "Islebloom Light" sync / 1[56]:[^:]*:Loquloqui:87CD:/
+
+7206.3 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7213.5 label "loquloqui-loop"
+7213.5 "Summoning Rite" sync / 1[56]:[^:]*:Loquloqui:87BF:/
+7221.6 "O Life, Flourish" sync / 1[56]:[^:]*:Loquloqui:87C4:/
+7230.2 "Turnabout" sync / 1[56]:[^:]*:Repuruba Loqua:87C2:/
+7230.2 "Rush" sync / 1[56]:[^:]*:Uolosapa Loqua:87C0:/
+7235.9 "Protective Will" sync / 1[56]:[^:]*:Loquloqui:87BE:/
+
+7242.0 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7250.1 "O Petals, Unfurl" sync / 1[56]:[^:]*:Loquloqui:87C5:/
+7264.5 "Pliant Petals 1" sync / 1[56]:[^:]*:Loquloqui:87C6:/
+7270.4 "Pliant Petals 2" sync / 1[56]:[^:]*:Loquloqui:87C6:/
+7276.3 "Long-lost Light" sync / 1[56]:[^:]*:Loquloqui:87BC:/
+
+7282.5 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7290.8 "O Isle, Bloom" sync / 1[56]:[^:]*:Loquloqui:87C7:/
+7302.2 "Brilliant Blossoms x12" duration 5 #sync / 1[56]:[^:]*:Loquloqui:87C8:/
+7309.2 "Land Wave" sync / 1[56]:[^:]*:Loquloqui:87BD:/
+
+7315.3 "--middle--" sync / 1[56]:[^:]*:Loquloqui:87BB:/
+7322.4 "Summoning Rite" sync / 1[56]:[^:]*:Loquloqui:87BF:/ window 40,40 forcejump "loquloqui-loop"
+
+
+# ALL ENCOUNTER ABILITIES
+# 1963 attack auto damage
+# 87BB --sync-- repositioning
+# 87BC Long-lost Light cast and raidwide damage
+# 87BD Land Wave cast and 180 cleave damage
+# 87BE Protective Will cast and tankbuster damage
+# 87BF Summoning Rite self-targeted cast to summon Uolosapa Loqua / Repuruba Loqua
+# 87C0 Rush cast and damage from normal bird narrow line
+# 87C1 Rush cast and damage from glowing bird wide line
+# 87C2 Turnabout cast and damage from normal lizard small circle
+# 87C3 Turnabout cast and damage from glowing lizard large circle
+# 87C4 O Life, Flourish self-targeted cast to make summoned adds glow and do larger aoes
+# 87C5 O Petals, Unfurl self-targeted cast to summon plant tether timebombs
+# 87C6 Pliant Petals short cast and damage from 87C5 plant tethers
+# 87C7 O Isle, Bloom self-targeted cast to generate twelve flower squares
+# 87C8 Brilliant Blossoms damage from flower square exploding
+# 87C9 O Sky, Be Mine self-targeted cast to grow
+# 87CA Sanctuary unknown cast and zero damage for proximity attack along with 8D38
+# 87CB Stirring of Spirits cast and initial knockback damage
+# 87CC Shockwave followup 4x knockback damage to 87CB
+# 87CD Islebloom Light cast and damage for ground puddles during 87CB
+# 8C34 --sync-- unknown self-targeted cast for 87C5 plant tether
+# 8C35 --sync-- unknown self-targeted cast for 87C5 plant tether
+# 8D38 Sanctuary cast and proximity damage
+# 8E47 --sync-- unknown ability when fight ends

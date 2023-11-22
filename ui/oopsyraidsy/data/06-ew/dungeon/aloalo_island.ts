@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
+import { LocaleText } from '../../../../../types/trigger';
 import { playerDamageFields } from '../../../oopsy_common';
 
 const nonzeroDamageMistake = (
@@ -20,6 +21,28 @@ const nonzeroDamageMistake = (
         blame: matches.target,
         reportId: matches.targetId,
         text: matches.ability,
+      };
+    },
+  };
+};
+
+const renameMistake = (
+  triggerId: string,
+  abilityId: string | string[],
+  type: OopsyMistakeType,
+  text: LocaleText,
+): OopsyTrigger<OopsyData> => {
+  return {
+    id: triggerId,
+    type: 'Ability',
+    netRegex: NetRegexes.ability({ id: abilityId, ...playerDamageFields }),
+    condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+    mistake: (_data, matches) => {
+      return {
+        type: type,
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: text,
       };
     },
   };
@@ -51,24 +74,35 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Aloalo Susena Rock Throw': '8CEE', // targeted circle
     'Aloalo Wood Golem Ovation': '886A', // line
 
+    // Trash (right)
+    'Aloalo Deadly Coconut Nut Lob': '885C', // targeted circle
+    'Aloalo Asvattha Bad Breath': '885D', // wide front conal
+    'Aloalo Baritine Croc Flatten': '885E', // small front conal
+    'Aloalo Gobbue Moldy Phlegm': '8860', // targeted circle
+    'Aloalo Boar Infusion': '8861', // line aoe
+
     // Quaqua (common)
     'Aloalo Quaqua Ravaging Axe': '8B8A', // circle damage from Arcane Armaments axe
     'Aloalo Quaqua Ringing Quoits': '8B8B', // donut damage from Arcane Armaments ring
     'Aloalo Quaqua Violet Storm': '8B95', // large late telegraph front conal
+    'Aloalo Quaqua Rout 1': '8B91', // initial charge
+    'Aloalo Quaqua Rout 2': '8B92', // followup 3 charges
 
     // Quaqua (left)
     'Aloalo Quaqua Scalding Waves 1': '8B97', // initial fire lines
     'Aloalo Quaqua Scalding Waves 2': '8B98', // bouncing fire lines
-    'Aloalo Quaqua Rout 1': '8B91', // initial charge
-    'Aloalo Quaqua Rout 2': '8B92', // followup 3 charges
     'Aloalo Quaqua Cloud to Ground 1': '8B9C', // initial hit of Drake exaflares
     'Aloalo Quaqua Cloud to Ground 2': '8B9D', // followup hits of Drake exaflares
 
-    // Quaquau (middle)
+    // Quaqua (middle)
     'Aloalo Quaqua Elemental Impact': '8BA0', // initial water spear circles
-    'Aloalo Quauqua Flowing Lance 1': '8BA1', // initial water spear cross
-    'Aloalo Quauqua Flowing Lance 2': '8BA2', // initial water spear cross
-    'Aloalo Quauqua Flowing Lance 3': '8CD1', // followup rotating water spear crosses
+    'Aloalo Quaqua Flowing Lance 1': '8BA1', // initial water spear cross
+    'Aloalo Quaqua Flowing Lance 2': '8BA2', // initial water spear cross
+    'Aloalo Quaqua Flowing Lance 3': '8CD1', // followup rotating water spear crosses
+
+    // Quaqua (right)
+    'Aloalo Quaqua Fell Forces': '8BA5', // being too close to Aetheric Charge purple orb
+    'Aloalo Quaqua Fell Confluence': '8D17', // purple orb enrage damage from not cleansing it
 
     // Ketuduke
     'Aloalo Ketuduke Saturate Orb 1': '8A7C', // Spring Crystal orb circle (no bubbles)
@@ -93,10 +127,36 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'Aloalo Lala Aero II 1': '8885', // Golem line
     'Aloalo Lala Aero II 2': '8A6D', // Golem line during Arcane Plot
     'Aloalo Lala Volcanic Coordinates': '8D2D', // targeted circle puddle
+
+    // Statice
+    'Aloalo Statice Hidden Mine': '892D', // stepping on the hidden mine
+    'Aloalo Statice 4-tonze Weight': '8932', // Heavy Weight circles during Balloon knockback
+    'Aloalo Statice Trigger Happy': '892C', // limit cut dart board (filled pie slice)
+    'Aloalo Statice Fire Spread 1': '8934', // initial fire bars
+    'Aloalo Statice Fire Spread 2': '8935', // initial fire bars
+    'Aloalo Statice Fire Spread 3': '89F6', // rotating fire bars
+    'Aloalo Statice Fire Spread 4': '89F7', // rotating fire bars
+    'Aloalo Statice Surprising Missile Burst': '8941', // hitting Present Box's Surprising Missile
+    'Aloalo Statice Faerie Ring': '893F', // Surprising Staff donut attack
+    'Aloalo Statice Faerie Road': '8940', // Surprising Staff line attack
+    'Aloalo Statice Treasure Box Burst': '8937', // fake Treasure Box explosion
+    'Aloalo Statice Meteor': '893A', // red Pinwheel slice
+    'Aloalo Statice Sledgemagic': '893B', // yellow Pinwheel slice
+    'Aloalo Statice Hunks of Junk': '893C', // blue Pinwheel slice
+
+    // Loquloqui
+    'Aloalo Loquloqui Land Wave': '87BD', // 180 cleave damage
+    'Aloalo Loquloqui Rush 1': '87C0', // normal bird narrow line
+    'Aloalo Loquloqui Rush 2': '87C1', // glowing bird wide line
+    'Aloalo Loquloqui Turnabout 1': '87C2', // normal lizard small circle
+    'Aloalo Loquloqui Turnabout 2': '87C3', // glowing lizard large circle
+    'Aloalo Loquloqui Pliant Petals': '87C6', // plant tether circles
+    'Aloalo Loquloqui Brilliant Blossoms': '87C8', // flower square exploding
+    'Aloalo Loquloqui Islebloom Light': '87CD', // ground puddles during knockback
   },
   gainsEffectWarn: {
     // C05 = 9999 duration, C06 = 15s duration
-    'Aloalo Bleed': 'C05', // standing outside Quaqua or in Lala blue squares
+    'Aloalo Bleed': 'C05', // standing outside Quaqua or in Lala blue squares or outside Loquloqui
     // C03 = 9999 duration, C04 = 15s duration
     'Aloalo Dropsy': 'C03', // standing outside Ketuduke
     // BF9 = 9999 duration, BFA = 15s duration
@@ -107,6 +167,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
   triggers: [
     // Path 04: not being in bubble for Ogrebon
     nonzeroDamageMistake('Aloalo Quaqua Shock', '8A9A', 'warn'),
+    // Right path: look away from statues
+    nonzeroDamageMistake('Aloalo Quaqua Arcane Intervention', '8BAE', 'warn'),
     {
       id: 'Aloalo Lala Targeted Light',
       type: 'HeadMarker',
@@ -125,6 +187,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
         };
       },
     },
+    renameMistake('Aloalo Statice Fair Flight', '89F5', 'warn', {
+      // Corresponds to 0x8946 ability
+      en: 'Fair Flight',
+    }),
   ],
 };
 
