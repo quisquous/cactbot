@@ -16,6 +16,7 @@ const ArcaneBlightMap: { [count: string]: ArcaneBlightMarch } = {
 
 export interface Data extends RaidbossData {
   quaArmamentsCount: number;
+  isKetuFight?: boolean;
   lalaArcaneBlight?: ArcaneBlightMarch;
   lalaRotate?: 'cw' | 'ccw' | 'unknown';
   reloadCount: number;
@@ -51,13 +52,11 @@ const triggerSet: TriggerSet<Data> = {
           return output.first!();
         if (data.quaArmamentsCount === 2)
           return output.second!();
-        if (data.quaArmamentsCount === 3)
-          return output.third!();
-        return output.text!();
+        return output.third!();
       },
       outputStrings: {
         first: {
-          en: 'Outside of between Orbs',
+          en: 'Away from Orbs',
           de: 'Außen zwichen den Orbs',
           ja: 'ハンマー、玉の間の外側へ',
         },
@@ -67,28 +66,9 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ドーナツ、玉の下へ',
         },
         third: {
-          en: 'Under Donut Orbs',
-          de: 'Unter Donut Orbs',
-          ja: 'ドーナツ玉の下へ',
-        },
-        text: {
           en: 'Under Donut Far From Axe',
           de: 'Unter Donut und weit weg von der Axt',
           ja: '玉に気を付けて',
-        },
-      },
-    },
-    {
-      id: 'Aloalo Quaqua Arcane Armaments Action',
-      type: 'Ability',
-      netRegex: { id: '8B88', source: 'Quaqua', capture: false },
-      delaySeconds: 2,
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Go to safe NOW!',
-          de: 'Geh zum sicheren Bereich JETZT!',
-          ja: '安置へ移動',
         },
       },
     },
@@ -138,19 +118,6 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getBehind(),
     },
     {
-      id: 'Aloalo Quaqua Howl',
-      type: 'StartsUsing',
-      netRegex: { id: '8B96', source: 'Quaqua', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Adds',
-          de: 'Adds',
-          ja: 'ざこギミック',
-        },
-      },
-    },
-    {
       id: 'Aloalo Quaqua Arcane Intervention',
       type: 'StartsUsing',
       netRegex: { id: '8BAE', source: 'Quaqua', capture: false },
@@ -173,6 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: '8AA5', source: 'Ketuduke', capture: false },
       response: Responses.aoe(),
+      run: (data) => data.isKetuFight = true,
     },
     {
       id: 'Aloalo Ketuduke Encroaching Twintides',
@@ -187,71 +155,70 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.getOutThenIn(),
     },
     {
-      id: 'Aloalo Ketuduke Roar',
-      type: 'StartsUsing',
-      netRegex: { id: '8A92', source: 'Ketuduke', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Adds',
-          de: 'Adds',
-          ja: 'ざこギミック',
-        },
-      },
-    },
-    {
       id: 'Aloalo Ketuduke Fluke Typhoon',
       type: 'StartsUsing',
       netRegex: { id: '8A84', source: 'Ketuduke', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Bubbles 2 tiles knockback',
+          en: 'Bubbles Move 2 Tiles',
           de: 'Blasen 2 Flächen Rückstoß',
           ja: '泡のみ2マスのノックバック',
         },
       },
     },
     {
-      id: 'Aloalo Ketuduke Updraft',
-      type: 'StartsUsing',
-      netRegex: { id: '8D0F', source: 'Ketuduke', capture: false },
+      // Path 01
+      id: 'Aloalo Ketuduke Water III',
+      type: 'Tether',
+      netRegex: { id: '0001', source: 'Summoned Apa' },
+      condition: Conditions.targetIsYou(),
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Bubbles float',
-          de: 'Blasen schweben',
-          ja: '泡のみ浮上',
+          en: 'Stretch Tether',
         },
       },
     },
     {
-      id: 'Aloalo Ketuduke Hydrobomb',
+      // Path 02
+      id: 'Aloalo Ketuduke Tidal Wave',
       type: 'StartsUsing',
-      netRegex: { id: '8D0F', source: 'Ketuduke', capture: false },
-      infoText: (_data, _matches, output) => output.text!(),
+      netRegex: { id: '8D12', source: 'Ketuduke', capture: false },
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Bubbles 2 tiles knockback + Puddles',
-          de: 'Blasen 2 Flächen Rückstoß + Flächen',
-          ja: '泡のみ2マスのノックバック + ゆか',
+          en: 'Knockback => Get in Bubble',
         },
       },
     },
     {
-      id: 'Aloalo Ketuduke Hydrobomb Chasing',
-      type: 'Ability',
-      netRegex: { id: '8D0F', source: 'Ketuduke', capture: false },
-      delaySeconds: 1.5,
-      infoText: (_data, _matches, output) => output.text!(),
+      // Path 03
+      id: 'Aloalo Ketuduke Zaratan Add',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12539', npcBaseId: '16538', capture: false },
+      condition: (data) => data.isKetuFight,
+      delaySeconds: 16,
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Avoid Chasing AOEs',
-          de: 'Weiche den verfolgenden AoEs aus',
-          fr: 'Évitez les AoEs',
-          ja: 'ついてくるAOE回避',
-          cn: '躲避追踪AOE',
-          ko: '따라오는 장판 피하기',
+          en: 'Get behind non-bubbled Zaratan',
+        },
+      },
+    },
+    {
+      // Path 04
+      id: 'Aloalo Ketuduke Ogrebon Add',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12540', capture: false },
+      condition: (data) => data.isKetuFight,
+      delaySeconds: 18,
+      suppressSeconds: 5,
+      alertText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get in Bubble',
         },
       },
     },
@@ -715,7 +682,15 @@ const triggerSet: TriggerSet<Data> = {
   ],
   timelineReplace: [
     {
+      locale: 'en',
+      replaceText: {
+        'Receding Twintides/Encroaching Twintides': 'Receding/Encroaching Twintides',
+        'Far Tide/Near Tide': 'Far/Near Tide',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Kairimai Loquloqai': 'Kairimai Loquloqai',
         'Ketuduke': 'Ketuduke',
@@ -755,6 +730,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Kairimai Loquloqai': '神子の祭壇',
         'Ketuduke': 'ケトゥドゥケ',
