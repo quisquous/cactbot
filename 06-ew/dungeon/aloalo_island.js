@@ -16,6 +16,13 @@ Options.Triggers.push({
     };
   },
   triggers: [
+    // ----------------------------------------- Trash
+    {
+      id: 'Aloalo Ahool Soundwave',
+      type: 'StartsUsing',
+      netRegex: { id: '8869', source: 'Aloalo Ahool', capture: false },
+      response: Responses.aoe(),
+    },
     // ----------------------------------------- Quaqua
     {
       id: 'Aloalo Quaqua Made Magic',
@@ -80,15 +87,26 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Aloalo Quaqua Arcane Armaments Trident',
+      id: 'Aloalo Quaqua Arcane Armaments Water Spear',
       type: 'StartsUsing',
       netRegex: { id: '8B9F', source: 'Quaqua', capture: false },
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Outside between tridents',
+          en: 'Away from spears',
           de: 'Außen zwichen den Dreizack',
           ja: '槍の間の外側へ',
+        },
+      },
+    },
+    {
+      id: 'Aloalo Quaqua Arcane Armaments Poison Spear',
+      type: 'StartsUsing',
+      netRegex: { id: '8BA3', source: 'Quaqua', capture: false },
+      infoText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid spreading spear puddles',
         },
       },
     },
@@ -270,8 +288,8 @@ Options.Triggers.push({
           de: 'Geh in den sicheren Bereich',
           ja: '安置へ移動',
         },
-        front: Outputs.goFront,
-        back: Outputs.getBehind,
+        front: Outputs.front,
+        back: Outputs.back,
         left: Outputs.left,
         right: Outputs.right,
       },
@@ -296,10 +314,10 @@ Options.Triggers.push({
           'E91': 'left',
         }[matches.effectId];
         if (map === undefined)
-          return output.text();
+          return;
         if (data.lalaRotate === undefined)
           return output[map]();
-        if (data.lalaRotate === 'cw')
+        if (data.lalaRotate === 'ccw')
           return {
             'front': output.left(),
             'back': output.right(),
@@ -315,29 +333,17 @@ Options.Triggers.push({
       },
       run: (data) => delete data.lalaRotate,
       outputStrings: {
-        front: Outputs.lookTowardsBoss,
+        front: {
+          en: 'Face Towards Lala',
+        },
         back: {
-          en: 'Look behind',
-          de: 'Schau nach Hinten',
-          ja: '後ろ見て',
+          en: 'Look Away from Lala',
         },
         left: {
-          en: 'Look right',
-          de: 'Schau nach Rechts',
-          ja: '右見て',
+          en: 'Left Flank towards Lala',
         },
         right: {
-          en: 'Look left',
-          de: 'Schau nach Links',
-          ja: '左見て',
-        },
-        text: {
-          en: 'Point opening at Boss',
-          de: 'Zeige Öffnung zum Boss',
-          fr: 'Pointez l\'ouverture vers Boss',
-          ja: '未解析の方角をボスに向ける',
-          cn: '脚下光环缺口对准boss',
-          ko: '문양이 빈 쪽을 보스쪽으로 향하게 하기', // FIXME
+          en: 'Right Flank towards Lala',
         },
       },
     },
@@ -361,7 +367,7 @@ Options.Triggers.push({
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Bat adds => Big AOEs',
+          en: 'Armadillo adds => Big AOEs',
           de: 'Fledermaus Adds => Große AoEs',
           ja: 'コウモリ => ゆかAOE',
         },
@@ -389,7 +395,7 @@ Options.Triggers.push({
     {
       id: 'Aloalo Lala Calculated Trajectory',
       type: 'GainsEffect',
-      netRegex: { effectId: 'E8[3-6]' },
+      netRegex: { effectId: ['E83', 'E84', 'E85', 'E86'] },
       condition: Conditions.targetIsYou(),
       delaySeconds: 3,
       durationSeconds: 7,
@@ -401,7 +407,7 @@ Options.Triggers.push({
           'E86': 'right',
         }[matches.effectId];
         if (map === undefined)
-          return output.text();
+          return;
         if (data.lalaRotate === undefined)
           return output[map]();
         if (data.lalaRotate === 'cw') {
@@ -421,45 +427,37 @@ Options.Triggers.push({
       },
       run: (data) => delete data.lalaRotate,
       outputStrings: {
-        text: {
-          en: 'Mindhack',
-          de: 'Geistlenkung',
-          fr: 'Piratage mental',
-          ja: '強制移動',
-          cn: '强制移动',
-          ko: '강제이동', // FIXME
-        },
         front: {
-          en: 'Mindhack: Forward',
+          en: 'Forward March (1 square)',
           de: 'Geistlenkung: Vorwärts',
           fr: 'Piratage mental : Vers l\'avant',
           ja: '強制移動 : 前',
           cn: '强制移动 : 前',
-          ko: '강제이동: 앞',
+          ko: '강제이동: 앞', // FIXME
         },
         back: {
-          en: 'Mindhack: Back',
+          en: 'Backwards March (1 square)',
           de: 'Geistlenkung: Rückwärts',
           fr: 'Piratage mental : Vers l\'arrière',
           ja: '強制移動 : 後ろ',
           cn: '强制移动 : 后',
-          ko: '강제이동: 뒤',
+          ko: '강제이동: 뒤', // FIXME
         },
         left: {
-          en: 'Mindhack: Left',
+          en: 'Left March (1 square)',
           de: 'Geistlenkung: Links',
           fr: 'Piratage mental : Vers la gauche',
           ja: '強制移動 : 左',
           cn: '强制移动 : 左',
-          ko: '강제이동: 왼쪽',
+          ko: '강제이동: 왼쪽', // FIXME
         },
         right: {
-          en: 'Mindhack: Right',
+          en: 'Right March (1 square)',
           de: 'Geistlenkung: Rechts',
           fr: 'Piratage mental : Vers la droite',
           ja: '強制移動 : 右',
           cn: '强制移动 : 右',
-          ko: '강제이동: 오른쪽',
+          ko: '강제이동: 오른쪽', // FIXME
         },
       },
     },
