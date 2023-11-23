@@ -193,7 +193,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Inner northeast safe',
         },
         northwest: {
-          en: 'Inner northwest safe'
+          en: 'Inner northwest safe',
         },
         southeast: {
           en: 'Inner southeast safe',
@@ -547,6 +547,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetheric Charge': '魔力球',
         'Damcyan Antlion': 'ダムシアン・アントリオン',
