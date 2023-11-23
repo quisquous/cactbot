@@ -106,26 +106,26 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'Aloalo Quaqua Arcane Armaments Water Trident',
+      id: 'Aloalo Quaqua Arcane Armaments Water Spear',
       type: 'StartsUsing',
       netRegex: { id: '8B9F', source: 'Quaqua', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Away from tridents',
+          en: 'Away from spears',
           de: 'Außen zwichen den Dreizack',
           ja: '槍の間の外側へ',
         },
       },
     },
     {
-      id: 'Aloalo Quaqua Arcane Armaments Poison Trident',
+      id: 'Aloalo Quaqua Arcane Armaments Poison Spear',
       type: 'StartsUsing',
       netRegex: { id: '8BA3', source: 'Quaqua', capture: false },
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Avoid spreading trident puddles',
+          en: 'Avoid spreading spear puddles',
         },
       },
     },
