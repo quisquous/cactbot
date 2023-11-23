@@ -1,9 +1,10 @@
 import Conditions from '../../../../../resources/conditions';
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { Matches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Dark Elf tell people where to go for hidden staves
@@ -13,7 +14,27 @@ export interface Data extends RaidbossData {
   fountsSeen: number;
   fountX: number[];
   fountY: number[];
+  staffMatches: Matches[];
 }
+
+const elfCenterX = -401.02;
+const elfCenterY = -231.01;
+
+const getSafeDirNumberFromMatch = (match: Matches): number | undefined => {
+  if (match.x === undefined || match.y === undefined)
+    return;
+  const x = parseFloat(match.x);
+  const y = parseFloat(match.y);
+  const dangerNumber = Directions.xyTo8DirNum(x, y, elfCenterX, elfCenterY);
+  return (dangerNumber + 4) % 8;
+};
+
+const dirNumberToOutput: { [number: number]: string } = {
+  1: 'northeast',
+  3: 'southeast',
+  5: 'southwest',
+  7: 'northwest',
+};
 
 const triggerSet: TriggerSet<Data> = {
   id: 'TheLunarSubteranne',
@@ -24,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
       fountsSeen: 0,
       fountX: [],
       fountY: [],
+      staffMatches: [],
     };
   },
   triggers: [
@@ -73,6 +95,114 @@ const triggerSet: TriggerSet<Data> = {
           ko: '분홍색 삼각형 안전',
         },
       },
+    },
+    {
+      id: 'Lunar Subterrane Dark Elf Ruinous Hex Collect',
+      type: 'StartsUsing',
+      netRegex: { id: ['89B6', '87DF'], source: 'Hexing Staff' }, // Ruinous Hex cast
+      run: (data, matches) => data.staffMatches.push(matches),
+    },
+    {
+      id: 'Lunar Subterrane Dark Elf Ruinous Hex Call',
+      type: 'StartsUsing',
+      netRegex: { id: '8985', source: 'Dark Elf', capture: false }, // Cue off Ruinous Confluence
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        // The origin for this encounter is -401.02,-231.01
+        // On rounds 1/2, there is almost always a staff in a close square.
+        // The safespot in this situation is always diagonally opposite this close square.
+        // If there's no close staff, the pattern is always south safe or (assumedly) west safe.
+        // On round 3 and later, there is always one staff in a far corner,
+        // while two spawn framing the close square opposite this far one:
+
+        //      |-413|-405|-397|-389|
+        //      |----|----|----|----|
+        // -243 |0000|    |    |    |
+        //      |----|----|----|----|
+        // -235 |    |    |    |0000|
+        //      |----|----|----|----|
+        // -227 |    |    |    |    |
+        //      |----|----|----|----|
+        // -219 |    |0000|    |    |
+        //      |----|----|----|----|
+
+        // (This can also be rotated 180 degrees.)
+
+        // To date, only some squares have been observed to be populated.
+        // Blank squares here indicate locations that never have a staff:
+
+        //      |-413|-405|-397|-389|
+        //      |----|----|----|----|
+        // -243 |0000|    |0000|0000|
+        //      |----|----|----|----|
+        // -235 |    |    |0000|0000|
+        //      |----|----|----|----|
+        // -227 |0000|0000|0000|    |
+        //      |----|----|----|----|
+        // -219 |0000|0000|    |0000|
+        //      |----|----|----|----|
+
+        let safeNumber: number | undefined;
+
+        const closeMatch = data.staffMatches.filter((match) => {
+          if (match.x === undefined || match.y === undefined)
+            return false;
+          const absX = Math.abs(Math.round(parseFloat(match.x)));
+          const absY = Math.abs(Math.round(parseFloat(match.y)));
+          return absX > 395 && absX < 410 && absY > 225 && absY < 240;
+        })[0];
+
+        const farMatch = data.staffMatches.filter((match) => {
+          if (match.x === undefined || match.y === undefined)
+            return false;
+          const absX = Math.abs(Math.round(parseFloat(match.x)));
+          const absY = Math.abs(Math.round(parseFloat(match.y)));
+          return (absX < 395 || absX > 410) && (absY < 225 || absY > 240);
+        })[0];
+
+        // If there's a close staff, check which direction it is,
+        // then call opposite.
+        // If there isn't a close staff, find the one that's far,
+        // determine its direction, then call the close square opposite.
+        // Note that there is one pattern that doesn't fit this!
+        if (closeMatch !== undefined)
+          safeNumber = getSafeDirNumberFromMatch(closeMatch);
+        else if (farMatch !== undefined) {
+          // If there are only two staves and there isn't a close one,
+          // the southwest square will always be safe.
+          // (The far staff always seems to be southwest for this pattern,
+          // with the other next to the opposite corner,
+          // and regardless of whether the other staff is in  row 1 column 3 or row 2 column 4,
+          // this will call it correctly.)
+          if (data.staffMatches.length === 2)
+            return output.southwest!();
+          safeNumber = getSafeDirNumberFromMatch(farMatch);
+        }
+
+        // If we don't have a number, we don't know where to go.
+        if (safeNumber === undefined)
+          return output.unknown!();
+        const outputSelect = dirNumberToOutput[safeNumber];
+        if (outputSelect === undefined)
+          return output.unknown!();
+        return output[outputSelect]!();
+      },
+      run: (data) => data.staffMatches = [],
+      outputStrings: {
+        northeast: {
+          en: 'Inner northeast safe',
+        },
+        northwest: {
+          en: 'Inner northwest safe'
+        },
+        southeast: {
+          en: 'Inner southeast safe',
+        },
+        southwest: {
+          en: 'Inner southwest safe',
+        },
+        unknown: '???',
+      }
     },
     {
       id: 'Lunar Subterrane Dark Elf Doom',
@@ -331,6 +461,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetheric Charge': 'magisch(?:e|er|es|en) Sphäre',
         'Damcyan Antlion': 'damcyanisch(?:e|er|es|en) Ameisenlöwe',
