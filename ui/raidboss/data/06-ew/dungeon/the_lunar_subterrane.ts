@@ -202,7 +202,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Inner southwest safe',
         },
         unknown: '???',
-      }
+      },
     },
     {
       id: 'Lunar Subterrane Dark Elf Doom',
