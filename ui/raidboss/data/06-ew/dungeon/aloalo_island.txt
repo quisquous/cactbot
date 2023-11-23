@@ -15,7 +15,7 @@ hideall "--sync--"
 
 1000.0 "--sync--" sync / 00:0839::Ketulu Cove will be sealed off/ window 10000,0
 1006.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
-1007.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/
+1007.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
 1012.4 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
 1022.5 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
 1024.7 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
@@ -118,7 +118,7 @@ hideall "--sync--"
 1833.1 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/ forcejump "quaqua-left-rainy-loop"
 
 
-# ALL ENCOUNTER ABILITIES
+# ALL ENCOUNTER ABILITIES (all paths)
 # 1961 attack auto damage from Quaqua
 # 8B88 Arcane Armaments self-targeted cast before axe/ring Arcane Armaments
 # 8B89 --sync-- self-targeted ability for orb transforming into armament
@@ -132,8 +132,10 @@ hideall "--sync--"
 # 8B91 Rout cast and damage for initial charge
 # 8B92 Rout damage for followup 3 charges
 # 8B93 --sync-- self-targeted preview casts of Rout
-# 8B94 Made Magic cast and raidwide damage that summons robs
+# 8B94 Made Magic cast and raidwide damage that summons orbs
 # 8B95 Violet Storm cast and damage for large late telegraph front conal
+
+# ALL ENCOUNTER ABILITIES (left path only)
 # 8B96 Howl self-targeted cast to summon Anala Familiar or Drake Familiar
 # 8B97 Scalding Waves cast and damage for initial fire lines
 # 8B98 Scalding Waves damage for bouncing fire lines
@@ -150,7 +152,7 @@ hideall "--sync--"
 # -ii 8A78 8AA6 8A7A 8A7B 8A81 8D1D 8AA4 8A89 8A8A 8A82 8A83 8A8C 8D10 8A94 8A98 8A99 8A96
 
 2000.0 "--sync--" sync / 00:0839::Seasong's Rest will be sealed off/ window 10000,0
-2009.0 "--sync--" sync / 14:[^:]*:Ketuduke:8AA5:/ window 10000,0
+2009.0 "--sync--" sync / 14:[^:]*:Ketuduke:8AA5:/
 2014.0 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AA5:/
 
 2023.0 "Spring Crystals" sync / 1[56]:[^:]*:Ketuduke:8A79:/
@@ -300,13 +302,306 @@ hideall "--sync--"
 # 8D1D Water III damage from Summoned Apa tether
 
 
+#~~~~~~~~~~~~~~~~~~~~~~#
+# Quaqua (middle path) #
+#~~~~~~~~~~~~~~~~~~~~~~#
 
-# Center Quaqua
-3000.0 "--sync--" sync / 00:0839::The Elder Stump will be sealed off/ window 10000,0
+# -p 8B94:3013.4
+# -ii 8B89 8BA2 8CD1 8B93
+
+#3000.0 "--sync--" sync / 00:0839::The Elder Stump will be sealed off/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1129:/ window 10000,0
+
+3007.0 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3008.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
+3013.4 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+3023.5 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+3025.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3028.4 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+3032.0 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+3042.1 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+3047.0 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+
+3052.3 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3058.4 "Arcane Armaments"
+
+3053.4 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/ window 40,40 jump "quaqua-middle-water"
+3053.4 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/ window 40,40 jump "quaqua-middle-poison"
 
 
-# Lala
-4000.0 "--sync--" sync / 00:0839::The Origin Spring will be sealed off/ window 10000,0
+3153.4 label "quaqua-middle-water"
+3153.4 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/
+3158.4 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B8C:/
+3168.7 "Hammer Landing 1" sync / 1[56]:[^:]*:Quaqua:8B8D:/
+3170.7 "Hammer Landing 2" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+3172.7 "Hammer Landing 3" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+
+3180.7 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3187.5 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+3193.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3203.0 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B9F:/
+3210.2 "Elemental Impact" sync / 1[56]:[^:]*:Quaqua:8BA0:/
+3224.3 "Flowing Lance" sync / 1[56]:[^:]*:Quaqua:8BA1:/ duration 12
+
+3253.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3259.2 label "quaqua-middle-water-loop"
+3259.2 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+3269.2 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+3274.1 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+3274.1 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+3279.4 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3288.7 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B9F:/
+3295.9 "Elemental Impact" sync / 1[56]:[^:]*:Quaqua:8BA0:/
+3310.0 "Flowing Lance" sync / 1[56]:[^:]*:Quaqua:8BA1:/ duration 12
+
+3329.8 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3336.1 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B8C:/
+3346.2 "Hammer Landing 1" sync / 1[56]:[^:]*:Quaqua:8B8D:/
+3348.2 "Hammer Landing 2" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+3350.2 "Hammer Landing 3" #sync / 1[56]:[^:]*:Quaqua:8B8E:/
+
+3358.3 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3365.1 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+3371.2 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3377.4 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/ window 40,40 forcejump "quaqua-middle-water-loop"
+
+
+3453.4 label "quaqua-middle-poison"
+3453.4 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/
+3458.4 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B90:/
+3460.4 "--jump--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3467.3 "Rout 1" sync / 1[56]:[^:]*:Quaqua:8B91:/
+3469.1 "Rout 2" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+3470.7 "Rout 3" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+3472.3 "Rout 4" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+
+3479.5 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3486.3 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+3492.4 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3501.5 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8BA3:/
+
+3525.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3532.4 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+3538.6 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3544.7 label "quaqua-middle-poison-loop"
+3544.7 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/
+3554.8 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B88:/
+3559.7 "Ringing Quoits" sync / 1[56]:[^:]*:Aetheric Charge:8B8B:/
+3559.7 "Ravaging Axe" sync / 1[56]:[^:]*:Aetheric Charge:8B8A:/
+
+3565.0 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3574.2 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8BA3:/
+
+3590.3 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3596.6 "Arcane Armaments" sync / 1[56]:[^:]*:Quaqua:8B90:/
+3598.6 "--jump--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3605.4 "Rout 1" sync / 1[56]:[^:]*:Quaqua:8B91:/
+3607.2 "Rout 2" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+3608.8 "Rout 3" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+3610.5 "Rout 4" #sync / 1[56]:[^:]*:Quaqua:8B92:/
+
+3617.7 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3624.4 "Violet Storm" sync / 1[56]:[^:]*:Quaqua:8B95:/
+
+3630.6 "--sync--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
+3636.7 "Made Magic" sync / 1[56]:[^:]*:Quaqua:8B94:/ window 40,40 forcejump "quaqua-middle-poison-loop"
+
+# ALL ENCOUNTER ABILITIES (middle path only)
+# 8B9F Arcane Armaments self-targeted cast before water spear Arcane Armaments
+# 8BA0 Elemental Impact cast and damage for initial water spear circles
+# 8BA1 Flowing Lance cast and damage for initial water spear cross
+# 8BA2 Flowing Lance cast and damage for initial water spear cross
+# 8CD1 Flowing Lance short cast and damage for followup rotating water spear crosses
+# 8BA3 Arcane Armaments self-targeted cast before poison spear Arcane Armaments
+
+
+# ALL ENCOUNTER ABILITIES
+# 1961 attack
+# 8B88 Arcane Armaments
+# 8B89 --sync--
+# 8B8A Ravaging Axe
+# 8B8B Ringing Quoits
+# 8B8F --sync--
+# 8B90 Arcane Armaments
+# 8B91 Rout
+# 8B92 Rout
+# 8B93 --sync--
+# 8B94 Made Magic
+# 8B95 Violet Storm
+
+
+#~~~~~~#
+# Lala #
+#~~~~~~#
+
+# -p 887F:4016.2
+# -ii 8878 8879 8873 8CDD
+
+#4000.0 "--sync--" sync / 00:0839::The Origin Spring will be sealed off/ window 10000,0
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112C:/ window 10000,0
+4011.2 "--sync--" sync / 14:[^:]*:Lala:887F:/ window 10,10
+4016.2 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+
+4019.3 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4027.4 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4040.5 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8875:/
+4062.6 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+
+4069.7 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4077.8 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4088.9 "Analysis" sync / 1[56]:[^:]*:Lala:887B:/
+4102.7 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDC:/
+
+4111.0 "--sync--" sync / 14:[^:]*:Lala:8882:/ window 40,40 jump "lala-05"
+4114.0 "Faunal Figure?" #sync / 1[56]:[^:]*:Lala:8882:/
+
+4111.0 "--sync--" sync / 14:[^:]*:Lala:8880:/ window 40,40 jump "lala-06"
+4114.0 "Floral Figure?" #sync / 1[56]:[^:]*:Lala:8880:/
+
+4111.0 "--sync--"  sync / 14:[^:]*:Lala:8884:/ window 40,40 jump "lala-07"
+4114.0 "Constructive Figure?" #sync / 1[56]:[^:]*:Lala:8884:/
+
+4111.0 "--sync--" sync / 14:[^:]*:Lala:8D2C:/ window 40,40 jump "lala-08"
+4114.0 "Volcanic Coordinates (cast)?" #sync / 1[56]:[^:]*:Lala:8D2C:/
+
+
+4211.0 label "lala-05"
+4211.0 "--sync--" sync / 14:[^:]*:Lala:8882:/
+4214.0 "Faunal Figure" sync / 1[56]:[^:]*:Lala:8882:/
+4227.3 "Flail Smash" sync / 1[56]:[^:]*:Rodiaki:8883:/
+4235.2 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4243.4 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4251.7 label "lala-05-loop"
+4251.7 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4260.8 "Analysis" sync / 1[56]:[^:]*:Lala:887B:/
+4272.5 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDC:/
+
+4283.6 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8876:/
+4299.7 "Calculated Trajectory" sync / 1[56]:[^:]*:Lala:887D:/
+4314.8 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4324.9 "Faunal Figure" sync / 1[56]:[^:]*:Lala:8882:/
+4332.0 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8875:/
+4350.7 "Flail Smash" sync / 1[56]:[^:]*:Rodiaki:8A6C:/
+4353.1 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4363.2 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4371.4 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4379.7 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/ window 40,40 forcejump "lala-05-loop"
+
+
+4411.0 label "lala-06"
+4411.0 "--sync--" sync / 14:[^:]*:Lala:8880:/
+4414.0 "Floral Figure" sync / 1[56]:[^:]*:Lala:8880:/
+4427.8 "Rolling Spout" sync / 1[56]:[^:]*:Kapokapo:8881:/
+4435.2 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4443.4 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4451.7 label "lala-06-loop"
+4451.7 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4460.8 "Analysis" sync / 1[56]:[^:]*:Lala:887B:/
+4472.5 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDC:/
+
+4483.6 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8876:/
+4499.7 "Calculated Trajectory" sync / 1[56]:[^:]*:Lala:887D:/
+4514.8 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4525.0 "Floral Figure" sync / 1[56]:[^:]*:Lala:8880:/
+4532.1 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8875:/
+4553.8 "Rolling Spout" sync / 1[56]:[^:]*:Kapokapo:8A6B:/
+4558.4 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4568.5 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4576.7 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4584.9 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/ window 40,40 forcejump "lala-06-loop"
+
+
+4611.0 label "lala-07"
+4611.0 "--sync--"  sync / 14:[^:]*:Lala:8884:/
+4614.0 "Constructive Figure" sync / 1[56]:[^:]*:Lala:8884:/
+4629.1 "Aero II" sync / 1[56]:[^:]*:Aloalo Golem:8885:/
+4634.9 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4643.1 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4651.3 label "lala-07-loop"
+4651.3 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4660.4 "Analysis" sync / 1[56]:[^:]*:Lala:887B:/
+4672.1 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDC:/
+
+4683.2 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8876:/
+4699.3 "Calculated Trajectory" sync / 1[56]:[^:]*:Lala:887D:/
+4714.4 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4724.6 "Constructive Figure" sync / 1[56]:[^:]*:Lala:8884:/
+4731.5 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8875:/
+4750.5 "Aero II" sync / 1[56]:[^:]*:Aloalo Golem:8A6D:/
+4752.6 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4762.7 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4770.9 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4779.1 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/ window 40,40 forcejump "lala-07-loop"
+
+
+4811.0 label "lala-08"
+4811.0 "--sync--" sync / 14:[^:]*:Lala:8D2C:/
+4814.0 "Volcanic Coordinates (cast)" sync / 1[56]:[^:]*:Lala:8D2C:/
+4824.1 "Volcanic Coordinates 1" sync / 1[56]:[^:]*:Lala:8D2D:/
+4831.1 "Volcanic Coordinates 2" sync / 1[56]:[^:]*:Lala:8D2D:/
+4836.1 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4844.3 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4852.4 label "lala-08-loop"
+4852.4 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/
+4861.5 "Analysis" sync / 1[56]:[^:]*:Lala:887B:/
+4873.2 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CDC:/
+
+4884.3 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8876:/
+4900.4 "Calculated Trajectory" sync / 1[56]:[^:]*:Lala:887D:/
+4915.5 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4925.6 "Volcanic Coordinates (cast)" sync / 1[56]:[^:]*:Lala:8D2C:/
+4933.7 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8875:/
+4935.7 "Volcanic Coordinates 1" sync / 1[56]:[^:]*:Lala:8D2D:/
+4942.7 "Volcanic Coordinates 2" sync / 1[56]:[^:]*:Lala:8D2D:/
+4954.9 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
+4967.0 "Strategic Strike" sync / 1[56]:[^:]*:Lala:887E:/
+
+4975.2 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
+4983.5 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(886F|8870|8871|8872):/ window 40,40 forcejump "lala-08-loop"
+
+
+# ALL ENCOUNTER ABILITIES
+# 368 attack auto damage
+# 886F Arcane Blight self-targeted cast for right-safe 270 degree cleave
+# 8870 Arcane Blight self-targeted cast for left-safe 270 degree cleave
+# 8871 Arcane Blight self-targeted cast for back-safe 270 degree cleave
+# 8872 Arcane Blight self-targeted cast for front-safe 270 degree cleave
+# 8873 Arcane Blight cast and damage for 270 degree cleave
+# 8874 --sync-- repositioning
+# 8875 Arcane Plot self-targeted cast for "disconnected safe squares" blue squares
+# 8876 Arcane Plot self-targeted cast for "one row safe" blue squares
+# 8878 Bright Pulse initial blue square
+# 8879 Bright Pulse followup blue square
+# 887B Analysis self-targeted cast before giving players unseen debuffs
+# 887D Calculated Trajectory self-targeted cast to give players forced march
+# 887E Strategic Strike cast and tankbuster damage
+# 887F Inferno Theorem cast and raidwide damage
+# 8880 Floral Figure self-targeted cast to summon Kapokapo seeds to Rolling Spout
+# 8881 Rolling Spout cast and damage for initial Kapokapo donut
+# 8882 Faunal Figure self-targeted cast to summon Rodiaki armadillos to Flail Smash
+# 8883 Flail Smash cast and proximity damage for Rodiaki center attack
+# 8884 Constructive Figure self-targeted cast to summon Golems to cast Aero II
+# 8885 Aero II cast and damage for Golem line
+# 8A6B Rolling Spout cast and damage for Kapokapo donut during Arcane Plot
+# 8A6C Flail Smash cast and proximity damage for Rodiaki side attack during Arcane Plot
+# 8A6D Aero II cast and damage for Golem line during Arcane Plot
+# 8CDC Targeted Light self-targeted cast for weak spot boss tether
+# 8CDD Targeted Light cast and damage on players for 8CDC
+# 8D2C Volcanic Coordinates self-targeted cast before 2x 82D2 puddles
+# 8D2D Volcanic Coordinates cast and damage for targeted circle puddle
 
 
 # Right Quaqua
