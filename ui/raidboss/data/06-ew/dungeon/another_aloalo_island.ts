@@ -821,21 +821,20 @@ const triggerSet: TriggerSet<Data> = {
         const rotationFactor = rotation === 'clock' ? 1 : -1;
         const finalDir = (rotationFactor * times + 8) % 4;
         if (finalDir === 1)
-          return output.right!();
-        if (finalDir === 3)
           return output.left!();
+        if (finalDir === 3)
+          return output.right!();
       },
       run: (data) => {
         delete data.lalaPlayerRotation;
         delete data.lalaPlayerTimes;
       },
       outputStrings: {
-        // This isn't confusing at all.
         left: {
-          en: 'Rotate Left (your right is forward)',
+          en: 'Leftward March',
         },
         right: {
-          en: 'Rotate Right (your left is forward)',
+          en: 'Rightward March',
         },
       },
     },
