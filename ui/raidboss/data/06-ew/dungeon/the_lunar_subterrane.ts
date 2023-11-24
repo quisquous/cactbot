@@ -20,15 +20,6 @@ export interface Data extends RaidbossData {
 const elfCenterX = -401.02;
 const elfCenterY = -231.01;
 
-const getSafeDirNumberFromMatch = (match: Matches): number | undefined => {
-  if (match.x === undefined || match.y === undefined)
-    return;
-  const x = parseFloat(match.x);
-  const y = parseFloat(match.y);
-  const dangerNumber = Directions.xyTo8DirNum(x, y, elfCenterX, elfCenterY);
-  return (dangerNumber + 4) % 8;
-};
-
 const dirNumberToOutput: { [number: number]: string } = {
   1: 'northeast',
   3: 'southeast',
@@ -129,7 +120,9 @@ const triggerSet: TriggerSet<Data> = {
         // (This can also be rotated 180 degrees.)
 
         // To date, only some squares have been observed to be populated.
-        // Blank squares here indicate locations that never have a staff:
+        // Blank squares here indicate locations that never have a staff.
+        // All coordinates are exact, although the log lines include two digits of precision.
+        // (-413.00, for instance.)
 
         //      |-413|-405|-397|-389|
         //      |----|----|----|----|
@@ -142,46 +135,28 @@ const triggerSet: TriggerSet<Data> = {
         // -219 |0000|0000|    |0000|
         //      |----|----|----|----|
 
-        let safeNumber: number | undefined;
+        // There will *always* be a close safe square.
+        // Don't bother with potential safe outer squares.
+        let safeX = [-405, -397];
+        let safeY = [-235, -227];
 
-        const closeMatch = data.staffMatches.filter((match) => {
-          if (match.x === undefined || match.y === undefined)
-            return false;
-          const absX = Math.abs(Math.round(parseFloat(match.x)));
-          const absY = Math.abs(Math.round(parseFloat(match.y)));
-          return absX > 395 && absX < 410 && absY > 225 && absY < 240;
-        })[0];
-
-        const farMatch = data.staffMatches.filter((match) => {
-          if (match.x === undefined || match.y === undefined)
-            return false;
-          const absX = Math.abs(Math.round(parseFloat(match.x)));
-          const absY = Math.abs(Math.round(parseFloat(match.y)));
-          return (absX < 395 || absX > 410) && (absY < 225 || absY > 240);
-        })[0];
-
-        // If there's a close staff, check which direction it is,
-        // then call opposite.
-        // If there isn't a close staff, find the one that's far,
-        // determine its direction, then call the close square opposite.
-        // Note that there is one pattern that doesn't fit this!
-        if (closeMatch !== undefined)
-          safeNumber = getSafeDirNumberFromMatch(closeMatch);
-        else if (farMatch !== undefined) {
-          // If there are only two staves and there isn't a close one,
-          // the southwest square will always be safe.
-          // (The far staff always seems to be southwest for this pattern,
-          // with the other next to the opposite corner,
-          // and regardless of whether the other staff is in  row 1 column 3 or row 2 column 4,
-          // this will call it correctly.)
-          if (data.staffMatches.length === 2)
-            return output.southwest!();
-          safeNumber = getSafeDirNumberFromMatch(farMatch);
+        for (const staff of data.staffMatches) {
+          if (staff.x === undefined || staff.y === undefined)
+            return output.unknown!();
+          const staffX = Math.round(parseFloat(staff.x));
+          const staffY = Math.round(parseFloat(staff.y));
+          safeX = safeX.filter((col) => col !== staffX);
+          safeY = safeY.filter((col) => col !== staffY);
         }
 
-        // If we don't have a number, we don't know where to go.
-        if (safeNumber === undefined)
+        const finalX = safeX[0];
+        const finalY = safeY[0];
+
+        // We don't really care about the specific safe coordinates,
+        // the important thing is that there's at least one safe in each of row and column.
+        if (finalX === undefined || finalY === undefined)
           return output.unknown!();
+        const safeNumber = Directions.xyTo8DirNum(finalX, finalY, elfCenterX, elfCenterY);
         const outputSelect = dirNumberToOutput[safeNumber];
         if (outputSelect === undefined)
           return output.unknown!();
