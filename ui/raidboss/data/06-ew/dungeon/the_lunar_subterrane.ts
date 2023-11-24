@@ -201,7 +201,7 @@ const triggerSet: TriggerSet<Data> = {
         southwest: {
           en: 'Inner southwest safe',
         },
-        unknown: '???',
+        unknown: Outputs.unknown,
       },
     },
     {
