@@ -403,6 +403,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '${form1} => ${form2} => ${form3}',
           de: '${form1} => ${form2} => ${form3}',
           fr: '${form1} => ${form2} => ${form3}',
+          ja: '${form1} => ${form2} => ${form3}',
         },
         left: Outputs.left,
         right: Outputs.right,

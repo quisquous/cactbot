@@ -73,6 +73,7 @@ UserConfig.registerOptions('jobs', {
         en: 'Countdown sound volume',
         de: 'Countdown Lautstärke',
         fr: 'Volume du compte à rebours',
+        ja: 'カウントダウン音量',
         cn: '倒计时提示音量',
         ko: '초읽기 소리 크기',
       },

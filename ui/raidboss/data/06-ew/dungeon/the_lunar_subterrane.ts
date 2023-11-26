@@ -1,21 +1,44 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
+import Util, { Directions } from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
+import { Matches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
 // TODO: Dark Elf tell people where to go for hidden staves
 // TODO: Antlion tell people which row to be in for landslip + towerfall
-// TODO: Durante initial Forsaken Fount with orbs
-// TODO: Durante Forsaken Fount+Contrapasso explosions (looks to be one pattern rotated?)
 
-export type Data = RaidbossData;
+export interface Data extends RaidbossData {
+  fountsSeen: number;
+  fountX: number[];
+  fountY: number[];
+  staffMatches: Matches[];
+}
+
+const elfCenterX = -401.02;
+const elfCenterY = -231.01;
+
+const dirNumberToOutput: { [number: number]: string } = {
+  1: 'northeast',
+  3: 'southeast',
+  5: 'southwest',
+  7: 'northwest',
+};
 
 const triggerSet: TriggerSet<Data> = {
   id: 'TheLunarSubteranne',
   zoneId: ZoneId.TheLunarSubterrane,
   timelineFile: 'the_lunar_subterrane.txt',
+  initData: () => {
+    return {
+      fountsSeen: 0,
+      fountX: [],
+      fountY: [],
+      staffMatches: [],
+    };
+  },
   triggers: [
     {
       id: 'Lunar Subterrane Dark Elf Abyssal Outburst',
@@ -45,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Blue Square Safe',
           de: 'Blaues Viereck sicher',
+          ja: '安置: 青四角',
           ko: '파란색 네모 안전',
         },
       },
@@ -58,8 +82,101 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Pink Triangle Safe',
           de: 'Pinkes Dreieck sicher',
+          ja: '安置: 赤三角',
           ko: '분홍색 삼각형 안전',
         },
+      },
+    },
+    {
+      id: 'Lunar Subterrane Dark Elf Ruinous Hex Collect',
+      type: 'StartsUsing',
+      netRegex: { id: ['89B6', '87DF'], source: 'Hexing Staff' }, // Ruinous Hex cast
+      run: (data, matches) => data.staffMatches.push(matches),
+    },
+    {
+      id: 'Lunar Subterrane Dark Elf Ruinous Hex Call',
+      type: 'StartsUsing',
+      netRegex: { id: '8985', source: 'Dark Elf', capture: false }, // Cue off Ruinous Confluence
+      delaySeconds: 0.5,
+      alertText: (data, _matches, output) => {
+        // The origin for this encounter is -401.02,-231.01
+        // On rounds 1/2, there is almost always a staff in a close square.
+        // The safespot in this situation is always diagonally opposite this close square.
+        // If there's no close staff, the pattern is always south safe or (assumedly) west safe.
+        // On round 3 and later, there is always one staff in a far corner,
+        // while two spawn framing the close square opposite this far one:
+
+        //      |-413|-405|-397|-389|
+        //      |----|----|----|----|
+        // -243 |0000|    |    |    |
+        //      |----|----|----|----|
+        // -235 |    |    |    |0000|
+        //      |----|----|----|----|
+        // -227 |    |    |    |    |
+        //      |----|----|----|----|
+        // -219 |    |0000|    |    |
+        //      |----|----|----|----|
+
+        // (This can also be rotated 180 degrees.)
+
+        // To date, only some squares have been observed to be populated.
+        // Blank squares here indicate locations that never have a staff.
+        // All coordinates are exact, although the log lines include two digits of precision.
+        // (-413.00, for instance.)
+
+        //      |-413|-405|-397|-389|
+        //      |----|----|----|----|
+        // -243 |0000|    |0000|0000|
+        //      |----|----|----|----|
+        // -235 |    |    |0000|0000|
+        //      |----|----|----|----|
+        // -227 |0000|0000|0000|    |
+        //      |----|----|----|----|
+        // -219 |0000|0000|    |0000|
+        //      |----|----|----|----|
+
+        // There will *always* be a close safe square.
+        // Don't bother with potential safe outer squares.
+        let safeX = [-405, -397];
+        let safeY = [-235, -227];
+
+        for (const staff of data.staffMatches) {
+          if (staff.x === undefined || staff.y === undefined)
+            return output.unknown!();
+          const staffX = Math.round(parseFloat(staff.x));
+          const staffY = Math.round(parseFloat(staff.y));
+          safeX = safeX.filter((col) => col !== staffX);
+          safeY = safeY.filter((col) => col !== staffY);
+        }
+
+        const finalX = safeX[0];
+        const finalY = safeY[0];
+
+        // We don't really care about the specific safe coordinates,
+        // the important thing is that there's at least one safe in each of row and column.
+        if (finalX === undefined || finalY === undefined)
+          return output.unknown!();
+        const safeNumber = Directions.xyTo8DirNum(finalX, finalY, elfCenterX, elfCenterY);
+        const outputSelect = dirNumberToOutput[safeNumber];
+        if (outputSelect === undefined)
+          return output.unknown!();
+        return output[outputSelect]!();
+      },
+      run: (data) => data.staffMatches = [],
+      outputStrings: {
+        northeast: {
+          en: 'Inner northeast safe',
+        },
+        northwest: {
+          en: 'Inner northwest safe',
+        },
+        southeast: {
+          en: 'Inner southeast safe',
+        },
+        southwest: {
+          en: 'Inner southwest safe',
+        },
+        unknown: Outputs.unknown,
       },
     },
     {
@@ -77,6 +194,7 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Cleanse ${player}\'s Doom',
           de: 'Reinige ${player}\'s Verhängnis',
+          ja: 'エスナ: ${player}',
           ko: '${player} 선고 해제하기',
         },
       },
@@ -130,6 +248,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Go Sides on Wall',
           de: 'Geh seitlich an die Wand',
+          ja: '壁の方へ',
           ko: '옆쪽 벽에 붙기',
         },
       },
@@ -162,10 +281,162 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '88C2', source: 'Durante' },
       response: Responses.tankBuster(),
     },
+    {
+      // Round 1 is always a non-splitting line of orbs.
+      id: 'Lunar Subterrane Durante Forsaken Fount 1',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 0,
+      delaySeconds: 1, // This collides with Fount 2 if we don't delay. ???
+      infoText: (_data, _matches, output) => output.avoid!(),
+      run: (data) => data.fountsSeen += 1,
+      outputStrings: {
+        avoid: {
+          en: 'Away from orbs',
+          ja: '玉から離れて',
+        },
+      },
+    },
+    {
+      // Round 2 is always a splitting line. Center is always safe.
+      id: 'Lunar Subterrane Durante Forsaken Fount 2',
+      type: 'Ability',
+      netRegex: { id: '88BB', source: 'Durante', capture: false },
+      condition: (data) => data.fountsSeen === 1,
+      delaySeconds: 1,
+      response: Responses.goMiddle('info'),
+      run: (data) => data.fountsSeen += 1,
+    },
+    {
+      // On round three and subsequently, known  spawn locations for the Aetheric Charge orbs are:
+      // (0,-422)
+      // (0, -434.8)
+      // (0, -409.2)
+      // (3.65, -412.9)
+      // (-3.65, -412.95)
+      // (9.05, -412.8)
+      // (-9.05, -418.35)
+      // (9.15, -425.55)
+      // (9.15, -431.1)
+      // (-9.25, -431.1)
+      // (12.8, -422)
+      // (-12.8, -422)
+      // (Other spawn locations exist for rounds 1/2, but we can ignore those.)
+
+      // The primary known configurations for round three onward are:
+      // West Safe
+      // (-12.80,-422.00), (0.00,-422.00), (12.80,-422.00)
+      // (9.15,-431.10)
+      // (3.65,-412.90)
+
+      // North Safe
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (9.05,-412.80)
+      // (-9.05,-418.35)
+
+      // East Safe
+      // (-12.80,-422.00),  (0.00,-422.00), (12.80,-422.00)
+      // (-9.25,-431.05)
+      // (-3.65,-412.95)
+
+      // Hourglass
+      // (0.00,-409.20), (0.00,-422.00), (0.00,-434.80)
+      // (-9.05,-418.35)
+      // (9.15,-425.55)
+      // So far nobody has seen a configuration with South being safe.
+
+      // When the Y axis is normalized to 0, the sets look like this:
+      // West Safe
+      // (-12.80,0), (0,0), (12.8,0)
+      // (9.15,-9.1)
+      // (3.65,9.1)
+
+      // North Safe
+      // (0,12.8), (0,0), (0,-12.8)
+      // (9.05,9.2)
+      // (-9.05,3.65)
+
+      // East Safe
+      // (-12.8,0),  (0,0), (12.8,0)
+      // (-9.25,-9.05)
+      // (-3.65,9.05)
+
+      // Hourglass
+      // (0,12.8), (0,0), (0,-12.8)
+      // (-9.05,3.65)
+      // (9.15,-3.55)
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Collect',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge' },
+      condition: (data) => data.fountsSeen === 2,
+      run: (data, matches) => {
+        // Because the positions are relatively fixed, we don't need a reliable order for coordinates.
+        // Only the values and the count of those values really is important here.
+        data.fountX.push(Math.round(parseFloat(matches.x)));
+        data.fountY.push(Math.round(parseFloat(matches.y)) + 422); // Normalize the Y axis to 0
+      },
+    },
+    {
+      id: 'Lunar Subterrane Durante Forsaken Fount 3 Call',
+      type: 'AddedCombatant',
+      netRegex: { name: 'Aetheric Charge', capture: false },
+      condition: (data) => data.fountsSeen === 2,
+      delaySeconds: 0.5,
+      infoText: (data, _matches, output) => {
+        if (data.fountX.length < 5 || data.fountY.length < 5)
+          return;
+        // If there are five orbs on the field, three of them will, guaranteed,
+        // have the same X or Y value. Those three are in a straight line.
+        const hCount = data.fountY.filter((n) => Math.abs(n) < 1).length;
+        const vCount = data.fountX.filter((n) => Math.abs(n) < 1).length;
+
+        if (hCount === 3) {
+          // Horizontal lines are always east/west safe hammer patterns.
+          const xSum = data.fountX.reduce((a, b) => a + b, 0);
+
+          // Don't rely on the rounded sum to be precise, but the sign will be reliable.
+          if (xSum > 5)
+            return output.west!();
+          if (xSum < 5)
+            return output.east!();
+          return output.unknown!();
+        }
+        if (vCount === 3) {
+          // Remember that we're working with 0-normalized Y values here!
+          // Positive Y values are south.
+
+          // Vertical lines have two possible patterns, one hammer and one hourglass.
+          // If it's hourglass, the rounded  Y positions sum to 0.
+          // If it's hammer, the absolute value of rounded sums totals 13.
+          // (So far we haven't seen a situation where the rounded total is -13,
+          // but handle it anyway just in case.)
+          const ySum = data.fountY.reduce((a, b) => a + b, 0);
+          if (ySum > 10) // Multiple non-line orbs south.
+            return output.north!();
+          if (ySum < -10) // Multiple non-line orbs north. THIS DOES NOT NECESSARILY EXIST.
+            return output.south!();
+          return output.center!(); // An hourglass configuration.
+        }
+        return output.unknown!();
+      },
+      run: (data) => {
+        data.fountX = [];
+        data.fountY = [];
+      },
+      outputStrings: {
+        west: Outputs.west,
+        east: Outputs.east,
+        north: Outputs.north,
+        south: Outputs.south,
+        center: Outputs.goIntoMiddle,
+        unknown: '???',
+      },
+    },
   ],
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetheric Charge': 'magisch(?:e|er|es|en) Sphäre',
         'Damcyan Antlion': 'damcyanisch(?:e|er|es|en) Ameisenlöwe',
