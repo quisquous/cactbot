@@ -5,25 +5,810 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
 
-# The Way of the Wise
-1000.0 "--sync--" sync / 00:0839::The Way of the Wisewill be sealed off/ window 10000,0
+#~~~~~~~~~#
+# Thaliak #
+#~~~~~~~~~#
+
+# -p 88D1:1010
+# -ii 88DA 88D9 88D5 88D7 88CE 88C8
+# Long pull: https://www.fflogs.com/reports/a:ZBxnrKWpPfdt2gCV#fight=11&type=damage-done
+
+# The River of Knowledge will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1169/ window 10000,0
+1005.0 "--sync--" sync / 14:[^:]*:Thaliak:88D1:/ window 10,10
+1010.0 "Katarraktes" sync / 1[56]:[^:]*:Thaliak:88D1:/
+
+1016.1 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1023.4 "Rheognosis (cast)" sync / 1[56]:[^:]*:Thaliak:88C4:/
+1029.5 "--sync--" sync / 1[56]:[^:]*:Thaliak:88C6:/
+1043.6 "Rheognosis" sync / 1[56]:[^:]*:Thaliak:88C7:/
+
+1051.6 "Thlipsis" sync / 1[56]:[^:]*:Thaliak:88D8:/
+
+1059.7 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1067.0 "Left Bank/Right Bank" sync / 1[56]:[^:]*:Thaliak:(88D2|88D3):/
+1074.1 "Right Bank/Left Bank" sync / 1[56]:[^:]*:Thaliak:(88D3|88D2):/
+
+1080.2 "Hydroptosis" sync / 1[56]:[^:]*:Thaliak:88D4:/
+
+1092.3 "Rhyton" sync / 1[56]:[^:]*:Thaliak:88D6:/
+
+1099.5 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1107.8 "Tetraktys (cast)" sync / 1[56]:[^:]*:Thaliak:88C9:/
+1115.8 "Tetraktys 1" sync / 1[56]:[^:]*:Thaliak:88CA:/
+1118.4 "Tetraktys 2" #sync / 1[56]:[^:]*:Thaliak:88CA:/
+1120.8 "Tetraktys 3" #sync / 1[56]:[^:]*:Thaliak:88CA:/
+1123.2 "Tetraktys 4" #sync / 1[56]:[^:]*:Thaliak:88CB:/
+1125.6 "Tetraktys 5 " #sync / 1[56]:[^:]*:Thaliak:88CB:/
+1128.0 "Tetraktys 6" #sync / 1[56]:[^:]*:Thaliak:88CB:/
+1133.9 "Tetraktuos Kosmos 1 (cast)" sync / 1[56]:[^:]*:Thaliak:88CC:/
+1142.8 "Tetraktuos Kosmos 1" sync / 1[56]:[^:]*:Thaliak:88CD:/
+1145.1 "Tetraktuos Kosmos 2 (cast)" sync / 1[56]:[^:]*:Thaliak:88CC:/
+1154.0 "Tetraktuos Kosmos 2" sync / 1[56]:[^:]*:Thaliak:88CD:/
+
+1164.3 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1171.5 "Rheognosis Petrine" sync / 1[56]:[^:]*:Thaliak:88C5:/
+1177.6 "--sync--" sync / 1[56]:[^:]*:Thaliak:88C6:/
+1191.7 "Rheognosis" sync / 1[56]:[^:]*:Thaliak:88C7:/
+
+1197.7 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1205.1 "Hieroglyphika 1" sync / 1[56]:[^:]*:Thaliak:88CF:/
+1225.1 "--sync--" sync / 1[56]:[^:]*:Thaliak:88D0:/
+1234.5 "Hieroglyphika 2" sync / 1[56]:[^:]*:Thaliak:88CF:/
+1254.5 "--sync--" sync / 1[56]:[^:]*:Thaliak:88D0:/
+1258.6 "Left Bank/Right Bank" sync / 1[56]:[^:]*:Thaliak:(8C2C|8C2D):/
+
+1264.7 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1272.9 label "thaliak-loop"
+1272.9 "Tetraktys (cast)" sync / 1[56]:[^:]*:Thaliak:88C9:/
+1280.9 "Tetraktys 1" sync / 1[56]:[^:]*:Thaliak:88CA:/
+1283.5 "Tetraktys 2" #sync / 1[56]:[^:]*:Thaliak:88CA:/
+1285.9 "Tetraktys 3" #sync / 1[56]:[^:]*:Thaliak:88CA:/
+1288.3 "Tetraktys 4" #sync / 1[56]:[^:]*:Thaliak:88CB:/
+1290.7 "Tetraktys 5" #sync / 1[56]:[^:]*:Thaliak:88CB:/
+1293.1 "Tetraktys 6" #sync / 1[56]:[^:]*:Thaliak:88CB:/
+
+1297.1 "Tetraktuos Kosmos 1 (cast)" sync / 1[56]:[^:]*:Thaliak:88CC:/
+1306.0 "Tetraktuos Kosmos 1" sync / 1[56]:[^:]*:Thaliak:88CD:/
+1308.3 "Tetraktuos Kosmos 2 (cast)" sync / 1[56]:[^:]*:Thaliak:88CC:/
+1317.2 "Tetraktuos Kosmos 2" sync / 1[56]:[^:]*:Thaliak:88CD:/
+
+1331.6 "Rhyton" sync / 1[56]:[^:]*:Thaliak:88D6:/
+
+1337.7 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1344.9 "Rheognosis Petrine" sync / 1[56]:[^:]*:Thaliak:88C5:/
+1351.0 "--sync--" sync / 1[56]:[^:]*:Thaliak:88C6:/
+1365.1 "Rheognosis" sync / 1[56]:[^:]*:Thaliak:88C7:/
+
+1373.1 "Thlipsis" sync / 1[56]:[^:]*:Thaliak:88D8:/
+
+1379.2 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1386.5 "Hieroglyphika" sync / 1[56]:[^:]*:Thaliak:88CF:/
+1406.5 "--sync--" sync / 1[56]:[^:]*:Thaliak:88D0:/
+1410.5 "Left Bank/Right Bank" sync / 1[56]:[^:]*:Thaliak:(8C2C|8C2D):/
+
+1416.6 "Hydroptosis" sync / 1[56]:[^:]*:Thaliak:88D4:/
+1427.7 "Katarraktes" sync / 1[56]:[^:]*:Thaliak:88D1:/
+
+1433.9 "--middle--" sync / 1[56]:[^:]*:Thaliak:88DB:/
+1442.1 "Tetraktys (cast)" sync / 1[56]:[^:]*:Thaliak:88C9:/ window 40,40 forcejump "thaliak-loop"
 
 
-# The River of Knowledge / Thaliak
-2000.0 "--sync--" sync / 00:0839::The River Of Knowledge will be sealed off/ window 10000,0
+# ALL ENCOUNTER ABILITIES
+# 88C4 Rheognosis self-targeted cast to summon clone for knockback
+# 88C5 Rheognosis Petrine self-targeted cast to summon clone for knockback
+# 88C6 --sync-- clone repositioning
+# 88C7 Rheognosis cast and knockback from clone
+# 88C8 Crash damage on players from failing Rheognosis Petrine knockback
+# 88C9 Tetraktys self-targeted cast to bring people to the pyramid dimension
+# 88CA Tetraktys fast cast and damage from small blue triangle
+# 88CB Tetraktys fast cast and damage from large green triangle
+# 88CC Tetraktuos Kosmos self-targeted cast to summon triangle with falling walls
+# 88CD Tetraktuos Kosmos cast and damage for being hit by the falling walls
+# 88CE Tetraktuos Kosmos cast and damage for standing in the initial triangle with falling walls
+# 88CF Hieroglyphika self-targeted cast to summon rotating green squares
+# 88D0 Hieroglyphika cast and damage for rotated green squares
+# 88D1 Katarraktes self-targeted cast for raidwide bleed
+# 88D2 Left Bank cast and damage for 180 left cleave
+# 88D3 Right Bank cast and damage for 180 right cleave
+# 88D4 Hydroptosis self-targeted cast for spread
+# 88D5 Hydroptosis targeted cast and damage for spread
+# 88D6 Rhyton self-targeted cast for triple tankbuster lasers
+# 88D7 Rhyton damage for triple tankbuster lasers
+# 88D8 Thlipsis self-targeted cast for stack
+# 88D9 Thlipsis targeted cast and damage for stack
+# 88DA Katarraktes cast and damage for raidwide bleed
+# 88DB --sync-- repositioning
+# 88DC attack auto damage
+# 8C2C Left Bank cast and damage for 180 left cleave during Hieroglyphika
+# 8C2D Right Bank cast and damage for 180 right cleave during Hieroglyphika
 
 
-# The briny deep / Llymlaen
-3000.0 "--sync--" sync / 00:0839::The Briny Deep will be sealed off/ window 10000,0
+#~~~~~~~~~~#
+# Llymlaen #
+#~~~~~~~~~~#
+
+# -p 880B:2012.1
+# -ii 8CCB 8CD0 882D 880A 8813 8825 8826 8827 8822 8823 8C6C 8816 8CCD 8CCE
+# Long pull: https://www.fflogs.com/reports/qW8TMthAcD1JbmNk#fight=21&type=damage-done
+
+# The Briny Deep will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116A/ window 10000,0
+2007.1 "--sync--" sync / 14:[^:]*:Llymlaen:880B:/ window 10,10
+2012.1 "Tempest" sync / 1[56]:[^:]*:Llymlaen:880B:/
+2023.2 "Seafoam Spiral/Wind Rose" sync / 1[56]:[^:]*:Llymlaen:(880D|880C):/
+2032.3 "Wind Rose/Seafoam Spiral" sync / 1[56]:[^:]*:Llymlaen:(880C|880D):/
+
+2041.6 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2049.4 "Navigator's Trident" sync / 1[56]:[^:]*:Llymlaen:880E:/
+2050.5 "Dire Straits 1" #sync / 1[56]:[^:]*:Llymlaen:(880F|8810):/
+2052.3 "Dire Straits 2" #sync / 1[56]:[^:]*:Llymlaen:(880F|8810):/
+
+2052.7 "--jump--" sync / 1[56]:[^:]*:Llymlaen:8CCF:/
+2060.9 "Navigator's Trident" sync / 1[56]:[^:]*:Llymlaen:8811:/
+
+2064.0 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2073.0 "Seafoam Spiral/Wind Rose" sync / 1[56]:[^:]*:Llymlaen:(880D|880C):/
+
+2084.0 "Surging Wave" sync / 1[56]:[^:]*:Llymlaen:8812:/
+2085.2 "Shockwave" sync / 1[56]:[^:]*:Llymlaen:8814:/
+
+2105.2 "Left Strait/Right Strait" sync / 1[56]:[^:]*:Llymlaen:(8851|8852):/
+2113.4 "Deep Dive" sync / 1[56]:[^:]*:Llymlaen:8819:/
+
+2122.6 "--sync--" sync / 14:[^:]*:Llymlaen:881A:/ window 20,20
+2126.6 "Torrential Tridents" sync / 1[56]:[^:]*:Llymlaen:881A:/
+2129.4 "Landing 1" #sync / 1[56]:[^:]*:Trident:881B:/
+2130.4 "Landing 2" #sync / 1[56]:[^:]*:Trident:881B:/
+2131.4 "Landing 3" #sync / 1[56]:[^:]*:Trident:881B:/
+2132.4 "Landing 4" #sync / 1[56]:[^:]*:Trident:881B:/
+2133.4 "Landing 5" #sync / 1[56]:[^:]*:Trident:881B:/
+2134.4 "Landing 6" #sync / 1[56]:[^:]*:Trident:881B:/
+
+2142.4 "Landing 1" #sync / 1[56]:[^:]*:Trident:881C:/
+2143.4 "Landing 2" #sync / 1[56]:[^:]*:Trident:881C:/
+2144.4 "Landing 3" #sync / 1[56]:[^:]*:Trident:881C:/
+2145.4 "Landing 4" #sync / 1[56]:[^:]*:Trident:881C:/
+2146.4 "Landing 5" #sync / 1[56]:[^:]*:Trident:881C:/
+2147.4 "Landing 6" #sync / 1[56]:[^:]*:Trident:881C:/
+
+2147.8 "Stormy Seas" sync / 1[56]:[^:]*:Llymlaen:881D:/
+2152.6 "Stormwhorl 1" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2154.6 "Stormwhorl 2" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2156.6 "Stormwhorl 3" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2157.6 "Stormwinds" sync / 1[56]:[^:]*:Llymlaen:881F:/
+
+2166.0 "--jump--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2171.3 "Denizens of the Deep" sync / 1[56]:[^:]*:Llymlaen:8820:/
+2178.2 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2185.3 "Wind Rose" sync / 1[56]:[^:]*:Llymlaen:880C:/
+
+2185.4 "Serpents' Tide 1" sync / 1[56]:[^:]*:Thalaos:(8828|8829):/
+2196.5 "Serpents' Tide 2" sync / 1[56]:[^:]*:Thalaos:(8828|8829):/
+2201.3 "  /Right Strait" sync / 1[56]:[^:]*:Llymlaen:(8851|8852):/
+2207.4 "Serpents' Tide 3" sync / 1[56]:[^:]*:Thalaos:(8828|8829):/
+2212.0 "Maelstrom" sync / 1[56]:[^:]*:Llymlaen:882A:/
+
+2213.3 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2217.3 "--sync--" sync / 1[56]:[^:]*:Llymlaen:8824:/
+2220.3 "Godsbane" sync / 1[56]:[^:]*:Llymlaen:8821:/
+
+2230.5 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2238.3 label "llymlaen-loop"
+2238.3 "Navigator's Trident" sync / 1[56]:[^:]*:Llymlaen:880E:/
+2239.3 "Dire Straits 1" #sync / 1[56]:[^:]*:Llymlaen:(880F|8810):/
+2241.1 "Dire Straits 2" #sync / 1[56]:[^:]*:Llymlaen:(880F|8810):/
+
+# TODO: can this be 882B instead of 8CCF?
+2241.5 "--jump--" sync / 1[56]:[^:]*:Llymlaen:8CCF:/
+2249.7 "Navigator's Trident" sync / 1[56]:[^:]*:Llymlaen:8811:/
+2250.8 "Serpents' Tide" sync / 1[56]:[^:]*:Thalaos:(8828|8829):/
+
+2252.8 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2261.8 "Seafoam Spiral/Wind Rose" sync / 1[56]:[^:]*:Llymlaen:(880D|880C):/
+2272.8 "Surging Wave" sync / 1[56]:[^:]*:Llymlaen:8812:/
+2274.0 "Shockwave" sync / 1[56]:[^:]*:Llymlaen:8814:/
+2281.9 "--sync--" sync / 1[56]:[^:]*:Llymlaen:8815:/
+2282.1 "To the Last 1" #sync / 1[56]:[^:]*:Llymlaen:8817:/
+2284.1 "To the Last 2" #sync / 1[56]:[^:]*:Llymlaen:8817:/
+2286.2 "To the Last 3" #sync / 1[56]:[^:]*:Llymlaen:8817:/
+2294.3 "Left Strait/Right Strait" sync / 1[56]:[^:]*:Llymlaen:(8851|8852):/
+
+2297.4 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2304.6 "Hard Water 1" sync / 1[56]:[^:]*:Perykos:8835:/
+2306.6 "Hard Water 2" sync / 1[56]:[^:]*:Thalaos:8836:/
+2308.5 "Deep Dive 3" sync / 1[56]:[^:]*:Llymlaen:8834:/
+
+2314.7 "--sync--" sync / 14:[^:]*:Llymlaen:881A:/ window 20,20
+2318.7 "Torrential Tridents" sync / 1[56]:[^:]*:Llymlaen:881A:/
+2321.5 "Landing 1" #sync / 1[56]:[^:]*:Trident:881B:/
+2322.5 "Landing 2" #sync / 1[56]:[^:]*:Trident:881B:/
+2323.5 "Landing 3" #sync / 1[56]:[^:]*:Trident:881B:/
+2324.5 "Landing 4" #sync / 1[56]:[^:]*:Trident:881B:/
+2325.5 "Landing 5" #sync / 1[56]:[^:]*:Trident:881B:/
+2326.5 "Landing 6" #sync / 1[56]:[^:]*:Trident:881B:/
+2336.5 "Landing 1" #sync / 1[56]:[^:]*:Trident:881C:/
+2337.5 "Landing 2" #sync / 1[56]:[^:]*:Trident:881C:/
+2338.5 "Landing 3" #sync / 1[56]:[^:]*:Trident:881C:/
+2339.5 "Landing 4" #sync / 1[56]:[^:]*:Trident:881C:/
+2340.5 "Landing 5" #sync / 1[56]:[^:]*:Trident:881C:/
+2340.9 "Stormy Seas" sync / 1[56]:[^:]*:Llymlaen:881D:/
+2341.3 "Landing 6" #sync / 1[56]:[^:]*:Trident:881C:/
+2345.5 "Stormwhorl 1" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2347.5 "Stormwhorl 2" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2349.5 "Stormwhorl 3" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2350.7 "Stormwinds" sync / 1[56]:[^:]*:Llymlaen:881F:/
+
+2355.0 "Serpents' Tide" sync / 1[56]:[^:]*:Thalaos:8829:/
+2359.6 "Maelstrom" sync / 1[56]:[^:]*:Llymlaen:882A:/
+2363.9 "Seafoam Spiral/Wind Rose" sync / 1[56]:[^:]*:Llymlaen:(880D|880C):/
+
+2366.0 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2370.0 "--sync--" sync / 1[56]:[^:]*:Llymlaen:8824:/
+2373.0 "Godsbane" sync / 1[56]:[^:]*:Llymlaen:8821:/
+
+2392.2 "Seafoam Spiral/Wind Rose" sync / 1[56]:[^:]*:Llymlaen:(880D|880C):/
+2394.3 "Stormy Seas" sync / 1[56]:[^:]*:Llymlaen:881D:/
+2399.1 "Stormwhorl 1" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2401.1 "Stormwhorl 2" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2403.1 "Stormwhorl 3" #sync / 1[56]:[^:]*:Llymlaen:881E:/
+2404.1 "Stormwinds" #sync / 1[56]:[^:]*:Llymlaen:881F:/
+
+2410.4 "Left Strait/Right Strait" sync / 1[56]:[^:]*:Llymlaen:(8851|8852):/
+2421.5 "Tempest" sync / 1[56]:[^:]*:Llymlaen:880B:/
+
+2431.8 "--middle--" sync / 1[56]:[^:]*:Llymlaen:8809:/
+2439.6 "Navigator's Trident" sync / 1[56]:[^:]*:Llymlaen:880E:/ window 40,40 forcejump "llymlaen-loop"
+
+# ALL ENCOUNTER ABILITIES
+# 367 attack auto damage
+# 8809 --sync-- repositioning
+# 880A Frothing Sea damage from the water afer Shockwave knockback
+# 880B Tempest cast and raidwide damage
+# 880C Wind Rose cast and "get out" damage
+# 880D Seafoam Spiral cast and "get under" damage
+# 880E Navigator's Trident self-targeted cast before Dire Straits 880F/8810 cleaves
+# 880F Dire Straits damage from Navigator's Trident left 180 cleave
+# 8810 Dire Straits damage from Navigator's Trident right 180 cleave
+# 8811 Navigator's Trident cast and red line knockback damage
+# 8812 Surging Wave cast and damage from purple puck along with Shockwave knockback
+# 8813 Surging Wave cast and damage from purple puck along with Shockwave knockback
+# 8814 Shockwave cast and knockback damage from Surging Wave
+# 8815 To the Last self-targeted castbar for To the Last left/right cleaves after Shockwave
+# 8816 --sync-- self-targeted preview ability for To the Last cleaves (no indication on which side)
+# 8817 To the Last self-targeted ability for 8818 left/right cleave after Shockwave
+# 8818 To the Last damage for left/right cleaves after Shockwave (both sides)
+# 8819 Deep Dive cast and jump stack damage
+# 881A Torrential Tridents self-targeted cast to summon tridents for Landing 881B => 881C
+# 881B Landing small damage from tridents landing
+# 881C Landing damage from large trident circles
+# 881D Stormy Seas self-targeted cast before Stormwhorl puddles and Stormwinds spread
+# 881E Stormwhorl cast and damage from ground puddle during 881F Stormwinds spread
+# 881F Stormwinds cast and spread damage during 881E Stormwhorl
+# 8820 Denizens of the Deep self-targeted cast to summon Thalaos and Perykos
+# 8821 Godsbane self-targeted castbar from Llymlaen for raidwide bleed
+# 8822 Godsbane self-targeted castbar from Perykos for raidwide bleed
+# 8823 Godsbane self-targeted castbar from Thalaos for raidwide bleed
+# 8824 Godsbane unknown self-targeted shorter(!) cast started at the same time as other Godsbane casts
+# 8825 --sync-- self-targeted castbar ability prior to Serpents' Tide dash
+# 8826 Serpents' Tide damage from vertical Perykos serpent dash
+# 8827 Serpents' Tide damage from horizontal Perykos serpent dash
+# 8828 Serpents' Tide damage from vertical Thalaos serpent dash
+# 8829 Serpents' Tide damage from horizontal Thalaos serpent dash
+# 882A Maelstrom cast and damage from three puddles on the ground after Serpents' Tide
+# 882B --sync-- unknown ability possibly used in place of 8CCF
+# 882D Sphere Shatter hitting one of the Sea-foam bubbles after Shockwave knockback
+# 8834 Deep Dive cast and damage for hit 3 of triple stack damage from Llymlaen
+# 8835 Hard Water cast and damage for hit 1 of triple stack damage from Perykos
+# 8836 Hard Water cast and damage for hit 2 of triple stack damage from Thalaos
+# 8851 Left Strait cast and damage for 180 left cleave
+# 8852 Right Strait cast and damage for 180 right cleave
+# 8C6C Godsbane cast and damage for raidwide bleed
+# 8CCB Dire Straits self-targeted ability before Dire Straits 880F/8810 cleaves
+# 8CCD --sync-- Navigator's Trident left preview
+# 8CCE --sync-- Navigator's Trident right preview
+# 8CCF --sync-- reposition east before 8CD0/8811 Navigator's Trident knockback
+# 8CD0 Navigator's Trident self-targeted ability before 8811 knockback
 
 
-# The windward pass / Oschon
-4000.0 "--sync--" sync / 00:0839::The Windward Pass will be sealed off/ window 10000,0
+#~~~~~~~~#
+# Oschon #
+#~~~~~~~~#
+
+# -p 8999:3014 89A7:3505
+# -ii 8C42 8CBA 899D 8C43 89B0 89B1 89A5 899E 89B3 89B4 89A6 89AB 899E 8CBB
+# -it Oschon
+# Long pull: https://www.fflogs.com/reports/GzjrkH97xXWFZvAM#fight=4&type=damage-done
+
+# The Windward Pass will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116B/ window 10000,0
+
+# Phase 1
+3010.0 "--sync--" sync / 1[56]:[^:]*:Oschon:8999:/ window 10,10
+3014.0 "Sudden Downpour" sync / 1[56]:[^:]*:Oschon:8999:/
+
+3018.1 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3019.3 "--sync--" sync / 1[56]:[^:]*:Oschon:882F:/
+3025.3 "--sync--" sync / 1[56]:[^:]*:Oschon:898E:/
+3028.9 "Trek Shot" sync / 1[56]:[^:]*:Oschon:8C44:/
+
+3033.6 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3037.7 "Reproduce" sync / 1[56]:[^:]*:Oschon:8989:/
+3040.7 "--sync--" sync / 1[56]:[^:]*:Oschon:(8830|8831):/
+3047.7 "--sync--" sync / 1[56]:[^:]*:Oschon's Avatar:(898A|898B):/
+3053.8 "Swinging Draw" sync / 1[56]:[^:]*:Oschon's Avatar:898C:/
+
+3054.9 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3059.2 "Reproduce" sync / 1[56]:[^:]*:Oschon:8989:/
+3062.2 "--sync--" sync / 1[56]:[^:]*:Oschon:(8830|8831):/
+3069.2 "--sync--" sync / 1[56]:[^:]*:Oschon's Avatar:(898A|898B):/
+3075.3 "Swinging Draw x2" sync / 1[56]:[^:]*:Oschon's Avatar:898C:/
+
+3076.4 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3082.0 "Flinted Foehn x6" sync / 1[56]:[^:]*:Oschon:89A3:/ duration 5.6
+
+3094.2 "Soaring Minuet" sync / 1[56]:[^:]*:Oschon:8D0E:/
+3101.3 "The Arrow" sync / 1[56]:[^:]*:Oschon:899B:/
+
+3109.4 label "oschon-p1-loop"
+3109.4 "Reproduce" sync / 1[56]:[^:]*:Oschon:8989:/
+3112.4 "--sync--" sync / 1[56]:[^:]*:Oschon:(8830|8831):/
+3119.4 "--sync--" sync / 1[56]:[^:]*:Oschon's Avatar:(898A|898B):/
+3125.5 "Swinging Draw x2" sync / 1[56]:[^:]*:Oschon's Avatar:898C:/
+
+3129.5 "Sudden Downpour" sync / 1[56]:[^:]*:Oschon:8999:/
+
+3133.6 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3137.9 "Downhill (cast)" sync / 1[56]:[^:]*:Oschon:899F:/
+3145.0 "Climbing Shot" sync / 1[56]:[^:]*:Oschon:(8990|8991|8992|8993):/
+3146.8 "Downhill" sync / 1[56]:[^:]*:Oschon:89A1:/
+
+3153.1 "Soaring Minuet" sync / 1[56]:[^:]*:Oschon:8994:/
+3160.8 "Flinted Foehn x6" sync / 1[56]:[^:]*:Oschon:89A3:/ duration 5.6
+
+3168.1 "--sync--" sync / 1[56]:[^:]*:Oschon:(882E|882F):/
+3174.1 "--sync--" sync / 1[56]:[^:]*:Oschon:(898D|898E):/
+3177.7 "Trek Shot" sync / 1[56]:[^:]*:Oschon:(898F|8C44):/
+
+3184.4 "Sudden Downpour 1" sync / 1[56]:[^:]*:Oschon:8999:/
+3190.5 "Sudden Downpour 2" sync / 1[56]:[^:]*:Oschon:8999:/
+
+3197.7 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3202.0 "Reproduce" sync / 1[56]:[^:]*:Oschon:8989:/ window 40,40 forcejump "oschon-p1-loop"
 
 
-# The stairway to the seventh
-5000.0 "--sync--" sync / 00:0839::The Stairway To The Seventh will be sealed off/ window 10000,0
+# Intermission
+3493.6 "--middle--" sync / 1[56]:[^:]*:Oschon:8998:/
+3500.0 "--sync--" sync / 14:[^:]*:Oschon:89A7:/ window 500,0
+3505.0 "Lofty Peaks" sync / 1[56]:[^:]*:Oschon:89A7:/
+3505.0 "--untargetable--"
+3506.0 "Moving Mountains 1" #sync / 1[56]:[^:]*:Oschon:8CE3:/
+3507.6 "Moving Mountains 2" #sync / 1[56]:[^:]*:Oschon:8CE3:/
+3509.2 "Moving Mountains 3" #sync / 1[56]:[^:]*:Oschon:8CE3:/
+3513.1 "Peak Peril" sync / 1[56]:[^:]*:Oschon:8CE4:/
+3528.9 "Shockwave" sync / 1[56]:[^:]*:Oschon:89A8:/
+3530.9 "--targetable--"
 
 
-# The Twelve's Embrace / Eulogia
-6000.0 "--sync--" sync / 00:0839::The Twelve's Embrace will be sealed off/ window 10000,0
+# Phase 2
+3544.0 "Piton Pull 1" sync / 1[56]:[^:]*:Oschon:(89A9|89AA):/
+3556.1 "Piton Pull 2" sync / 1[56]:[^:]*:Oschon:(89A9|89AA):/
+3568.2 "Altitude" sync / 1[56]:[^:]*:Oschon:89AF:/
+3578.9 "Flinted Foehn x6" sync / 1[56]:[^:]*:Oschon:89A4:/ duration 5.6
+
+3595.1 "Wandering Shot 1" sync / 1[56]:[^:]*:Oschon:(8CF6|8CF7):/
+3598.8 "Great Whirlwind 1" sync / 1[56]:[^:]*:Oschon:89AE:/
+3609.4 "Wandering Shot 2" sync / 1[56]:[^:]*:Oschon:(8CF6|8CF7):/
+3613.1 "Great Whirlwind 2" sync / 1[56]:[^:]*:Oschon:89AE:/
+
+3622.5 "The Arrow" sync / 1[56]:[^:]*:Oschon:899C:/
+
+3631.7 label "oschon-p2-loop"
+3631.7 "Arrow Trail" sync / 1[56]:[^:]*:Oschon:89B2:/ duration 18
+3642.9 "Downhill 1" sync / 1[56]:[^:]*:Oschon:8C45:/
+3646.9 "Downhill 2" sync / 1[56]:[^:]*:Oschon:8C45:/
+3650.9 "Downhill 3" sync / 1[56]:[^:]*:Oschon:8C45:/
+3657.9 "Piton Pull" sync / 1[56]:[^:]*:Oschon:(89A9|89AA):/
+
+3668.1 "Downhill (cast)" sync / 1[56]:[^:]*:Oschon:89A0:/
+3681.2 "Wandering Volley" sync / 1[56]:[^:]*:Oschon:(89AC|89AD):/
+3682.4 "Downhill" sync / 1[56]:[^:]*:Oschon:89A2:/
+3684.7 "Great Whirlwind" sync / 1[56]:[^:]*:Oschon:89AE:/
+
+3692.1 "Piton Pull" sync / 1[56]:[^:]*:Oschon:(89A9|89AA):/
+
+3702.6 "Flinted Foehn x6" sync / 1[56]:[^:]*:Oschon:89A4:/ duration 5.6
+
+3715.6 "The Arrow" sync / 1[56]:[^:]*:Oschon:899C:/
+3724.7 "Altitude" sync / 1[56]:[^:]*:Oschon:89AF:/
+
+3736.8 "Sudden Downpour 1" sync / 1[56]:[^:]*:Oschon:899A:/
+3746.9 "Sudden Downpour 2" sync / 1[56]:[^:]*:Oschon:899A:/
+
+3758.1 "Arrow Trail" sync / 1[56]:[^:]*:Oschon:89B2:/ window 40,40 forcejump "oschon-p2-loop"
+
+
+# ALL ENCOUNTER ABILITIES
+# 882E --sync-- unknown ability before 898D Trek Shot
+# 8830 --sync-- unknown ability before 898A Swinging Draw
+# 882F --sync-- unknown ability before 898E Trek Shot
+# 8831 --sync-- unknown ability before 898B Swinging Draw
+# 8989 Reproduce self-targeted cast to make 1-2 clones
+# 898A Swinging Draw self-targeted clone cast for move before Swinging Draw
+# 898B Swinging Draw self-targeted clone cast for move before Swinging Draw
+# 898C Swinging Draw cast and damage for clone moving arrow conal
+# 898D Trek Shot self-targeted cast for move before Trek Shot with 898F
+# 898E Trek Shot self-targeted cast for move before Trek Shot with 8C44
+# 898F Trek Shot cast and damage for moving arrow conal from 898D
+# 8990 Climbing Shot cast and knockback damage along with 89A1 Downhill puddles
+# 8991 Climbing Shot cast and knockback damage along with 89A1 Downhill puddles
+# 8992 Climbing Shot cast and knockback damage along with 89A1 Downhill puddles
+# 8993 Climbing Shot cast and knockback damage along with 89A1 Downhill puddles
+# 8994 Soaring Minuet cast and damage for back safe 270 cleave (2nd one)
+# 8998 --sync-- repositioning
+# 8999 Sudden Downpour self-targeted cast for raidwide along with 8CBA (small version)
+# 899A Sudden Downpour self-targeted cast for raidwide along with 8CBB (big version)
+# 899B The Arrow self-targeted cast for 3x tankbusters (small version)
+# 899C The Arrow self-targeted cast for 3x tankbusters (big version)
+# 899D The Arrow damage from 899B 3x tankbusters (small version)
+# 899E The Arrow damage from 899B 3x tankbusters (big version)
+# 899F Downhill self-targeted cast to summon 89A1 orange Downhill puddles (small version)
+# 89A0 Downhill self-targeted cast to sumon 89A2 large red Downhill puddles (big version)
+# 89A1 Downhill cast and damage for orange puddles during Climbing Shot knockback (small version)
+# 89A2 Downhill cast and damage for red puddles during Wandering Volley knockback (big version)
+# 89A3 Flinted Foehn self-targeted cast for 6x hit stack (small version)
+# 89A4 Flinted Foehn self-targeted cast for 6x hit stack (big version)
+# 89A5 Flinted Foehn damage from 6x hit stack (small version)
+# 89A6 Flinted Foehn damage from 6x hit stack (big version)
+# 89A7 Lofty Peaks self-targeted cast before throwing players in air
+# 89A8 Shockwave cast and raidwide damage to grow big
+# 89A9 Piton Pull self-targeted cast for NE/SW safe large circles
+# 89AA Piton Pull self-targeted cast for NW/SE safe large circles
+# 89AB Piton Pull cast and damage from Piton Pull large circles
+# 89AC Wandering Volley cast and zero damage knockback from line with Great Whirlwind orb
+# 89AD Wandering Volley cast and zero damage knockback from line with Great Whirlwind orb
+# 89AE Great Whirlwind cast and damage for Wandering Shot/Volley orb explosion
+# 89AF Altitude untargeted cast before 89B1 Altitude circles
+# 89B0 --sync-- preview ability for Altitude
+# 89B1 Altitude cast and damage for previewed green circles
+# 89B2 Arrow Trail self-targeted cast before multi-line arrow attacks
+# 89B3 --sync-- self-targeted cast for 89B4 Arrow Trail preview
+# 89B4 Arrow Trail damage for line of arrows after 89B3 preview
+# 8C42 --sync-- auto damage (small version)
+# 8C43 --sync-- auto damage (big version)
+# 8C44 Trek Shot cast and damage for moving arrow conal from 898E
+# 8C45 Downhill puddle damage during 89B2 Arrow Trail
+# 8CBA Sudden Downpour cast and raidwide damage (small verison)
+# 8CBB Sudden Downpour cast and raidwide damage (big version)
+# 8CE3 Moving Mountains small raidwide damage before Peak Peril
+# 8CE4 Peak Peril damage from being thrown in the air after Lofty Peaks
+# 8CF6 Wandering Shot self-targeted cast for looping arrows with Great Whirlwind orb
+# 8CF7 Wandering Shot self-targeted cast for looping arrows with Great Whirlwind orb
+# 8D0E Soaring Minuet cast and damage for back safe 270 cleave (1st one)
+
+
+#~~~~~~~~~#
+# Eulogia #
+#~~~~~~~~~#
+
+# -p 8A03:4014.6
+# -ii 8A1D 8A1E 8A1F 8A20 8A21 8A01 8A3C 8A3E 8A3F 8A41 8CFD 8A45 8A46 8A49 8A4A 8A53 8A54 8A59 8A5A 8A65 8A66 8A67 8A68 8CFF 8D00 8D02 8A09 8CE2 8CFB 8A1A 8A1B 8A1C 8CE5 8CE6 8CE7 8CE8 8CE9 8CEA 8CFE 8D01 8D03
+
+# Long pull: https://www.fflogs.com/reports/RDdMfG1PwBKAj69b#fight=137&type=damage-done
+# Long pull: https://www.fflogs.com/reports/cMwXWVBChmR9Gja3#fight=11&type=damage-done
+# Long pull: https://www.fflogs.com/reports/wRA1yPgGx8McNjnf#fight=7&type=damage-done
+
+# The Twelve's Embrace will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116D/ window 10000,0
+4009.6 "--sync--" sync / 14:[^:]*:Eulogia:8A03:/ window 10,10
+4014.6 "Dawn of Time" sync / 1[56]:[^:]*:Eulogia:8A03:/
+
+4019.9 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4022.0 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A08:/
+4031.4 "First Form" sync / 1[56]:[^:]*:Eulogia:(8A0A|8A0D|8A10):/
+4038.5 "Second Form" sync / 1[56]:[^:]*:Eulogia:(8A0B|8A0E|8A11):/
+4045.6 "Third Form" sync / 1[56]:[^:]*:Eulogia:(8A0C|8A0F|8A12):/
+4049.7 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A16:/
+4049.9 "Quintessence 1" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4053.6 "Quintessence 2" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4057.2 "Quintessence 3" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+
+4071.5 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4073.7 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A08:/
+
+4083.1 "First Form" sync / 1[56]:[^:]*:Eulogia:(8A0A|8A0D|8A10):/
+4090.3 "Second Form" sync / 1[56]:[^:]*:Eulogia:(8A0B|8A0E|8A11):/
+4097.4 "Third Form" sync / 1[56]:[^:]*:Eulogia:(8A0C|8A0F|8A12):/
+4101.5 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A16:/
+4101.7 "Quintessence 1" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4105.4 "Quintessence 2" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4109.0 "Quintessence 3" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+
+4122.0 "Sunbeam" sync / 1[56]:[^:]*:Eulogia:8A00:/
+
+4128.2 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4137.4 "The Whorl" sync / 1[56]:[^:]*:Eulogia:8A2F:/
+4144.5 "Love's Light" sync / 1[56]:[^:]*:Eulogia:8A30:/
+
+4152.6 "Full Bright" sync / 1[56]:[^:]*:Eulogia:8A31:/
+4163.7 "First Blush 1" sync / 1[56]:[^:]*:Eulogia:8A33:/
+4165.7 "First Blush 2" sync / 1[56]:[^:]*:Eulogia:8A34:/
+4167.7 "First Blush 3" sync / 1[56]:[^:]*:Eulogia:8A35:/
+4169.7 "First Blush 4" sync / 1[56]:[^:]*:Eulogia:8A36:/
+
+4172.7 "Solar Fans" sync / 1[56]:[^:]*:Eulogia:8A3B:/
+4175.8 "Radiant Rhythm 1" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+4177.9 "Radiant Rhythm 2" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+4180.0 "Radiant Rhythm 3" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+4182.1 "Radiant Rhythm 4" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+4187.6 "Radiant Finish" sync / 1[56]:[^:]*:Eulogia:8A40:/
+
+4193.7 "Hydrostasis (cast)" sync / 1[56]:[^:]*:Eulogia:8A37:/
+4201.7 "Time and Tide" sync / 1[56]:[^:]*:Eulogia:8A32:/
+4204.6 "Hydrostasis 3" sync / 1[56]:[^:]*:Eulogia:8A38:/
+4207.6 "Hydrostasis 1" sync / 1[56]:[^:]*:Eulogia:8A39:/
+4210.6 "Hydrostasis 2" sync / 1[56]:[^:]*:Eulogia:8A3A:/
+4218.9 "Destructive Bolt" sync / 1[56]:[^:]*:Eulogia:8CEC:/
+
+4223.0 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4230.3 "Hieroglyphika" sync / 1[56]:[^:]*:Eulogia:8A43:/
+4247.4 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A44:/
+4252.2 "Hand of the Destroyer" sync / 1[56]:[^:]*:Eulogia:(8A47|8A48):/
+
+4256.3 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4261.4 "Matron's Breath" sync / 1[56]:[^:]*:Eulogia:8A4B:/
+4276.5 "Blueblossoms/Giltblossoms 1" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+4280.1 "Blueblossoms/Giltblossoms 2" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+4283.7 "Blueblossoms/Giltblossoms 3" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+4287.3 "Blueblossoms/Giltblossoms 4" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+
+4290.7 "Torrential Tridents" sync / 1[56]:[^:]*:Eulogia:8A4E:/
+4291.6 "Landing 1" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4292.7 "Landing 2" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4293.8 "Landing 3" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4294.9 "Landing 4" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4295.9 "Landing 5" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4297.0 "Landing 6" #sync / 1[56]:[^:]*:Trident:8A4F:/
+4305.1 "Lightning Bolt 1" #sync / 1[56]:[^:]*:Trident:8A50:/
+4306.1 "Lightning Bolt 2" #sync / 1[56]:[^:]*:Trident:8A50:/
+4307.1 "Lightning Bolt 3" #sync / 1[56]:[^:]*:Trident:8A50:/
+4308.1 "Lightning Bolt 4" #sync / 1[56]:[^:]*:Trident:8A50:/
+4309.1 "Lightning Bolt 5" #sync / 1[56]:[^:]*:Trident:8A50:/
+4310.1 "Lightning Bolt 6" #sync / 1[56]:[^:]*:Trident:8A50:/
+4316.7 "Destructive Bolt" sync / 1[56]:[^:]*:Eulogia:8CEC:/
+
+4327.1 "Byregot's Strike" sync / 1[56]:[^:]*:Eulogia:8A52:/
+4334.0 "Thousandfold Thrust" sync / 1[56]:[^:]*:Eulogia:(8A57|8A58):/ duration 5.4
+
+4343.0 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4350.2 "As Above, So Below" sync / 1[56]:[^:]*:Eulogia:(8A5B|8A5C):/
+4362.3 "Climbing Shot" sync / 1[56]:[^:]*:Eulogia:(8D0A|8D0B):/
+4372.8 "Soaring Minuet" sync / 1[56]:[^:]*:Eulogia:8A69:/
+
+4377.1 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A08:/
+4382.9 "The Builder's Art" sync / 1[56]:[^:]*:Eulogia:8A22:/
+4384.5 "The Destroyer's Might" sync / 1[56]:[^:]*:Eulogia:8A23:/
+4386.1 "The Warden's Radiance" sync / 1[56]:[^:]*:Eulogia:8A24:/
+4387.5 "The Traders' Equity" sync / 1[56]:[^:]*:Eulogia:8A25:/
+4389.1 "The Matron's Plenty" sync / 1[56]:[^:]*:Eulogia:8A26:/
+4390.7 "The Keeper's Gravity" sync / 1[56]:[^:]*:Eulogia:8A27:/
+4392.1 "The Fury's Ambition" sync / 1[56]:[^:]*:Eulogia:8A28:/
+4393.7 "The Lover's Devotion" sync / 1[56]:[^:]*:Eulogia:8A29:/
+4395.3 "The Scholar's Wisdom" sync / 1[56]:[^:]*:Eulogia:8A2A:/
+4396.7 "The Spinner's Cunning" sync / 1[56]:[^:]*:Eulogia:8A2B:/
+4398.3 "The Navigator's Command" sync / 1[56]:[^:]*:Eulogia:8A2D:/
+4399.9 "The Wanderer's Whimsy" sync / 1[56]:[^:]*:Eulogia:8A2E:/
+4402.2 "Eudaimon Eorzea" sync / 1[56]:[^:]*:Eulogia:8A2C:/
+
+4418.0 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4420.3 label "Quintessence"
+4420.3 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A08:/
+4429.7 "First Form" sync / 1[56]:[^:]*:Eulogia:(8A0A|8A0D|8A10):/
+4436.9 "Second Form" sync / 1[56]:[^:]*:Eulogia:(8A0B|8A0E|8A11):/
+4444.1 "Third Form" sync / 1[56]:[^:]*:Eulogia:(8A0C|8A0F|8A12):/
+4448.2 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A16:/
+4448.4 "Quintessence 1" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4452.1 "Quintessence 2" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4455.7 "Quintessence 3" sync / 1[56]:[^:]*:Eulogia:(8A17|8A18|8A19):/
+4468.5 "Sunbeam" sync / 1[56]:[^:]*:Eulogia:8A00:/
+
+4476.9 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+4486.2 "The Whorl" sync / 1[56]:[^:]*:Eulogia:8A2F:/
+
+# Mechanics get a bit random here. There seem to be blocks that it executes all of in
+# some order before returning to Quintessence. There might be some order to it
+# as only some of them have Destructive Bolt stacks attached to them (although
+# it doesn't execute if it is the final mechanic prior to jumping back to Quintessence).
+# This is probably Good Enough (TM).
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A3B:/ window 0,10000 jump "Solar Fans"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A4B:/ window 0,10000 jump "Matron's Breath"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:(8A5B|8A5C):/ window 0,10000 jump "As Above, So Below"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A4E:/ window 0,10000 jump "Torrential Tridents"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A30:/ window 0,10000 jump "Love's Light"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A43:/ window 0,10000 jump "Hieroglyphika"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A37:/ window 0,10000 jump "Hydrostasis"
+4400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A52:/ window 0,10000 jump "Byregot's Strike"
+4400.0 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A08:/ window 0,10000 jump "Quintessence"
+
+5000.0 label "Solar Fans"
+5000.0 "--sync--" sync / 14:[^:]*:Eulogia:8A3B:/
+5003.0 "Solar Fans" sync / 1[56]:[^:]*:Eulogia:8A3B:/
+5006.1 "Radiant Rhythm 1" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+5008.2 "Radiant Rhythm 2" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+5010.3 "Radiant Rhythm 3" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+5012.4 "Radiant Rhythm 4" #sync / 1[56]:[^:]*:Eulogia:8A3D:/
+5017.8 "Radiant Finish" sync / 1[56]:[^:]*:Eulogia:8A40:/
+
+5100.0 label "Matron's Breath"
+5100.0 "--sync--"sync / 14:[^:]*:Eulogia:8A4B:/
+5103.0 "Matron's Breath" sync / 1[56]:[^:]*:Eulogia:8A4B:/
+5118.1 "Blueblossoms/Giltblossoms 1" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+5121.7 "Blueblossoms/Giltblossoms 2" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+5125.3 "Blueblossoms/Giltblossoms 3" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+5128.9 "Blueblossoms/Giltblossoms 4" sync / 1[56]:[^:]*:Eulogia:(8A4C|8A4D):/
+
+5200.0 label "As Above, So Below"
+5200.0 "--sync--" sync / 14:[^:]*:Eulogia:(8A5B|8A5C):/
+5205.0 "As Above, So Below" sync / 1[56]:[^:]*:Eulogia:(8A5B|8A5C):/
+5217.1 "Climbing Shot" sync / 1[56]:[^:]*:Eulogia:(8D0A|8D0B):/
+5227.4 "Soaring Minuet" sync / 1[56]:[^:]*:Eulogia:8A69:/
+5237.6 "Destructive Bolt" sync / 1[56]:[^:]*:Eulogia:8CEC:/
+
+5300.0 label "Torrential Tridents"
+5297.8 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+5300.0 "--sync--" sync / 14:[^:]*:Eulogia:8A4E:/
+5302.0 "Torrential Tridents" sync / 1[56]:[^:]*:Eulogia:8A4E:/
+5302.9 "Landing 1" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5304.0 "Landing 2" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5305.1 "Landing 3" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5306.2 "Landing 4" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5307.2 "Landing 5" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5308.3 "Landing 6" #sync / 1[56]:[^:]*:Trident:8A4F:/
+5316.4 "Lightning Bolt 1" #sync / 1[56]:[^:]*:Trident:8A50:/
+5317.4 "Lightning Bolt 2" #sync / 1[56]:[^:]*:Trident:8A50:/
+5318.4 "Lightning Bolt 3" #sync / 1[56]:[^:]*:Trident:8A50:/
+5319.4 "Lightning Bolt 4" #sync / 1[56]:[^:]*:Trident:8A50:/
+5320.4 "Lightning Bolt 5" #sync / 1[56]:[^:]*:Trident:8A50:/
+5321.4 "Lightning Bolt 6" #sync / 1[56]:[^:]*:Trident:8A50:/
+
+5400.0 label "Love's Light"
+5400.0 "--sync--" sync / 14:[^:]*:Eulogia:8A30:/
+5404.0 "Love's Light" sync / 1[56]:[^:]*:Eulogia:8A30:/
+5412.1 "Full Bright" sync / 1[56]:[^:]*:Eulogia:8A31:/
+5423.2 "First Blush 1" sync / 1[56]:[^:]*:Eulogia:8A33:/
+5425.2 "First Blush 2" sync / 1[56]:[^:]*:Eulogia:8A34:/
+5427.2 "First Blush 3" sync / 1[56]:[^:]*:Eulogia:8A35:/
+5429.2 "First Blush 4" sync / 1[56]:[^:]*:Eulogia:8A36:/
+
+5500.0 label "Hieroglyphika"
+5497.7 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+5500.0 "--sync--" sync / 14:[^:]*:Eulogia:8A43:/
+5505.0 "Hieroglyphika" sync / 1[56]:[^:]*:Eulogia:8A43:/
+5522.1 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A44:/
+5526.8 "Hand of the Destroyer" sync / 1[56]:[^:]*:Eulogia:(8A47|8A48):/
+5537.9 "Destructive Bolt" sync / 1[56]:[^:]*:Eulogia:8CEC:/
+
+5600.0 label "Hydrostasis"
+5597.8 "--middle--" sync / 1[56]:[^:]*:Eulogia:8A02:/
+5600.0 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A37:/
+5604.0 "Hydrostasis" sync / 1[56]:[^:]*:Eulogia:8A37:/
+5612.0 "Time and Tide" sync / 1[56]:[^:]*:Eulogia:8A32:/
+5614.9 "Hydrostasis 3" sync / 1[56]:[^:]*:Eulogia:8A38:/
+5617.9 "Hydrostasis 1" sync / 1[56]:[^:]*:Eulogia:8A39:/
+5620.9 "Hydrostasis 2" sync / 1[56]:[^:]*:Eulogia:8A3A:/
+
+5700.0 label "Byregot's Strike"
+5700.0 "--sync--" sync / 1[56]:[^:]*:Eulogia:8A52:/
+5706.0 "Byregot's Strike" sync / 1[56]:[^:]*:Eulogia:8A52:/
+5712.9 "Thousandfold Thrust" sync / 1[56]:[^:]*:Eulogia:(8A57|8A58):/ duration 5.4
+5727.1 "Destructive Bolt" sync / 1[56]:[^:]*:Eulogia:8CEC:/
+
+
+# ALL ENCOUNTER ABILITIES
+# 89FE attack self-targeted ability prior to 89FF auto damage
+# 89FF attack auto damage on all tanks with aggro
+# 8A00 Sunbeam self-targeted cast for 3x tankbuster
+# 8A01 Sunbeam tank-targeted cast and damage for 3x tankbuster
+# 8A02 --sync-- repositioning 1
+# 8A03 Dawn of Time cast and damage for raidwide
+# 8A08 --sync-- repositioning 2
+# 8A09 --sync-- unknown self-targeted ability before Forms
+# 8A0A First Form self-targeted cast for #1 right cleave preview
+# 8A0B Second Form self-targeted cast for #2 right cleave preview
+# 8A0C Third Form self-targeted cast for #3 right cleave preview
+# 8A0D First Form self-targeted cast for #1 left cleave preview
+# 8A0E Second Form self-targeted cast for #2 left cleave preview
+# 8A0F Third Form self-targeted cast for #3 left cleave preview
+# 8A10 First Form self-targeted cast for #1 under preview
+# 8A11 Second Form self-targeted cast for #2 under preview
+# 8A12 Third Form self-targeted cast for #3 under preview
+# 8A16 Quintessence self-targeted castbar for Form attacks
+# 8A17 Quintessence untargeted ability for Form movement (right cleave)
+# 8A18 Quintessence untargeted ability for Form movement (left cleave)
+# 8A19 Quintessence untargeted ability for Form movement (under)
+# 8A1A Quintessence damage for First Form movement (right cleave)
+# 8A1B Quintessence damage for First Form movement (left cleave)
+# 8A1C Quintessence damage for First Form movement (under)
+# 8A1D --sync-- unknown self-targeted Eulogia's Avatar ability during Form attacks
+# 8A1E --sync-- unknown self-targeted Eulogia's Avatar ability during Form attacks
+# 8A1F --sync-- unknown self-targeted Eulogia's Avatar ability during Form attacks
+# 8A20 --sync-- unknown self-targeted Eulogia's Avatar ability during Form attacks
+# 8A21 --sync-- unknown self-targeted Eulogia's Avatar ability during Form attacks
+# 8A22 The Builder's Art raidwide damage
+# 8A23 The Destroyer's Might raidwide damage
+# 8A24 The Warden's Radiance raidwide damage
+# 8A25 The Traders' Equity raidwide damage
+# 8A26 The Matron's Plenty raidwide damage
+# 8A27 The Keeper's Gravity raidwide damage
+# 8A28 The Fury's Ambition raidwide damage
+# 8A29 The Lover's Devotion raidwide damage
+# 8A2A The Scholar's Wisdom raidwide damage
+# 8A2B The Spinner's Cunning raidwide damage
+# 8A2C Eudaimon Eorzea self-targeted castbar for multi-hit captain planet raidwide
+# 8A2D The Navigator's Command raidwide damage
+# 8A2E The Wanderer's Whimsy raidwide damage
+# 8A2F The Whorl cast and damage for large raidwide
+# 8A30 Love's Light self-targeted cast to summon moons for First Blush
+# 8A31 Full Bright self-targeted cast to make moons wax for First Blush
+# 8A32 Time and Tide self-targeted castbar to tether the 3rd diamond knockback
+# 8A33 First Blush cast and damage for Love's Light moon #1 line
+# 8A34 First Blush cast and damage for Love's Light moon #2 line
+# 8A35 First Blush cast and damage for Love's Light moon #3 line
+# 8A36 First Blush cast and damage for Love's Light moon #4 line
+# 8A37 Hydrostasis self-targeted castbar to summon 1/2/3 diamond knockbacks
+# 8A38 Hydrostasis cast and knockback damage for 3rd (tethered) diamond knockback
+# 8A39 Hydrostasis cast and knockback damage for 1st diamond knockback
+# 8A3A Hydrostasis cast and knockback damage for 2nd diamond knockback
+# 8A3B Solar Fans self-targeted cast to summon rotating Warden's Flame fans
+# 8A3C Solar Fans cast and damage for initial Warden's Flame fan lines
+# 8A3D Radiant Rhythm self-targeted ability for Warden's Flame fans prior to Radiant Flight movement
+# 8A3E --sync-- unknown self-targeted ability for Warden's Flame fans when moving with Radiant Flight
+# 8A3F Radiant Flight cast and damage for Warden's Flame fans when moving with Radiant Flight
+# 8A40 Radiant Finish self-targeted castbar for Radiant Flourish
+# 8A41 Radiant Flourish cast and damage for Warden's Flame fan large circles during Radiant Finish
+# 8A43 Hieroglyphika self-targeted cast to summon rotating green squares
+# 8A44 Hieroglyphika cast and damage for rotated green squares
+# 8A45 --sync-- self-targeted ability from red Fist of Wrath before Hand of the Destroyer
+# 8A46 --sync-- self-targeted ability from blue Fist of Judgment before Hand of the Destroyer
+# 8A47 Hand of the Destroyer self-targeted cast for red fist punch
+# 8A48 Hand of the Destroyer self-targeted castbar for blue fist punch
+# 8A49 Hand of the Destroyer cast and damage from red half room cleave fist punch
+# 8A4A Hand of the Destroyer cast and damage from blue half room cleave fist punch
+# 8A4B Matron's Breath self-targeted castbar to summon blue/yellow flowers
+# 8A4C Blueblossoms damage from blue flower explosion (light damage if in matching flower circle)
+# 8A4D Giltblossoms damage from yellow flower explosion (light damage if in matching flower circle)
+# 8A4E Torrential Tridents self-targeted cast to summon tridents for Landing 8A4F => Lightning Bolt 8A50
+# 8A4F Landing small damage from tridents landing
+# 8A50 Lightning Bolt damage from large trident circles (not called Landing here like in the earlier fight)
+# 8A52 Byregot's Strike casted damage from blue puck that knocks back
+# 8A53 Byregot's Strike casted knockback from blue puck with lightning
+# 8A54 Byregot's Strike casted damage from lightning bolt
+# 8A57 Thousandfold Thrust self-targeted castbar for 180 red shield cleave
+# 8A58 Thousandfold Thrust self-targeted castbar for 180 red shield cleave
+# 8A59 Thousandfold Thrust cast and damage for initial hit of 180 red shield cleave
+# 8A5A Thousandfold Thrust damage for ongoing hits of 180 red shield cleave
+# 8A5B As Above, So Below casted damage for raidwide and then glowing orange
+# 8A5C As Above, So Below casted damage for raidwide and then glowing blue
+# 8A65 Climbing Shot light knockback damage during As Above, So Below
+# 8A66 Climbing Shot light knockback damage during As Above, So Below
+# 8A67 Climbing Shot light knockback damage during As Above, So Below
+# 8A68 Climbing Shot light knockback damage during As Above, So Below
+# 8A69 Soaring Minuet cast and damage for back safe 270 cleave
+# 8CE2 --sync-- unknown self-targeted ability before Forms
+# 8CE5 Quintessence cast and damage for Second Form movement (right cleave)
+# 8CE6 Quintessence cast and damage for Second Form movement (left cleave)
+# 8CE7 Quintessence cast and damage for Second Form movement (under)
+# 8CE8 Quintessence cast and damage for Third Form movement (right cleave)
+# 8CE9 Quintessence cast and damage for Third Form movement (left cleave)
+# 8CEA Quintessence cast and damage for Third Form movement (under)
+# 8CEC Destructive Bolt self-targeted castbar for stack marker
+# 8CFB Eudaimon Eorzea casted raidwide damage after captain planet small raidwides
+# 8CFD Destructive Bolt player-targeted stack damage
+# 8CFE Once Burned casted ability for initial zero damage orange puddles when glowing blue
+# 8CFF Everfire casted ability for initial zero damage blue puddles when glowing orange
+# 8D00 Once Burned casted damage for initial orange puddles
+# 8D01 Everfire casted damage for initial blue puddles
+# 8D02 Once Burned damage for moving orange puddles
+# 8D03 Everfire casted damage moving blue puddles
+# 8D0A Climbing Shot self-targeted castbar for knockback during As Above, So Below
+# 8D0B Climbing Shot self-targeted castbar for knockback during As Above, So Below
