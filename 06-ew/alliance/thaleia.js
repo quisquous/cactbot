@@ -18,51 +18,32 @@ Options.Triggers.push({
   timelineFile: 'thaleia.txt',
   initData: () => {
     return {
-      puddle: false,
+      busterTargets: [],
       soaringMinuet: false,
       eulogiaForms: [],
     };
   },
+  timelineTriggers: [
+    {
+      id: 'Thaleia Thaliak Rheognosis Knockback',
+      regex: /^Rheognosis$/,
+      beforeSeconds: 5,
+      suppressSeconds: 5,
+      response: Responses.knockback(),
+    },
+  ],
   triggers: [
-    {
-      id: 'Thaleia Puddle Target',
-      type: 'HeadMarker',
-      netRegex: { id: '008B' },
-      condition: (data, matches) => data.me === matches.target,
-      alertText: (data, _matches, output) => {
-        data.puddle = true;
-        return output.text();
-      },
-      outputStrings: {
-        text: {
-          en: 'Puddle on YOU',
-          de: 'Fläche auf DIR',
-          fr: 'Flaque sur VOUS',
-          ja: '自分にAOE',
-        },
-      },
-    },
-    {
-      id: 'Thaleia Tank Buster Target',
-      type: 'HeadMarker',
-      netRegex: { id: ['0158', '01F4'] },
-      condition: (data, matches) => data.me === matches.target,
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: Outputs.tankBusterOnYou,
-      },
-    },
     {
       id: 'Thaleia Thaliak Katarraktes',
       type: 'StartsUsing',
       netRegex: { id: '88D1', source: 'Thaliak', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'Thaleia Thaliak Thlipsis',
       type: 'StartsUsing',
-      netRegex: { id: '88D8', source: 'Thaliak', capture: false },
-      response: Responses.getTogether(),
+      netRegex: { id: '88D8', source: 'Thaliak' },
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Thaleia Thaliak Left Bank',
@@ -77,27 +58,49 @@ Options.Triggers.push({
       response: Responses.goLeft(),
     },
     {
+      id: 'Thaleia Thaliak Left Bank Hieroglyphika',
+      type: 'StartsUsing',
+      netRegex: { id: '8C2C', source: 'Thaliak', capture: false },
+      delaySeconds: 12,
+      response: Responses.goRight(),
+    },
+    {
+      id: 'Thaleia Thaliak Right Bank Hieroglyphika',
+      type: 'StartsUsing',
+      netRegex: { id: '8C2D', source: 'Thaliak', capture: false },
+      delaySeconds: 12,
+      response: Responses.goLeft(),
+    },
+    {
       id: 'Thaleia Thaliak Hydroptosis',
       type: 'StartsUsing',
-      netRegex: { id: '88D4', source: 'Thaliak', capture: false },
-      condition: (data) => !data.puddle,
-      infoText: (_data, _matches, output) => output.text(),
-      run: (data) => data.puddle = false,
-      outputStrings: {
-        text: {
-          en: 'Bait puddles',
-          de: 'Flächen ködern',
-          fr: 'Déposez les flaques',
-          ja: 'AOE回避',
-        },
-      },
+      netRegex: { id: '88D5', source: 'Thaliak' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
     },
     {
       id: 'Thaleia Thaliak Rhyton',
-      type: 'StartsUsing',
-      netRegex: { id: ['88D6', '88D7'], source: 'Thaliak' },
-      condition: (data) => data.role === 'tank',
-      response: Responses.tankBuster(),
+      type: 'HeadMarker',
+      netRegex: { id: '01D7' },
+      delaySeconds: (data, matches) => {
+        data.busterTargets.push(matches.target);
+        return data.busterTargets.length === 3 ? 0 : 0.5;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankCleaveOnYou: Outputs.tankCleaveOnYou,
+          tankCleaves: Outputs.tankBusterCleaves,
+        };
+        if (data.busterTargets.length === 0)
+          return;
+        if (!data.busterTargets.includes(data.me))
+          return { infoText: output.tankCleaves() };
+        if (data.role !== 'tank' && data.job !== 'BLU')
+          return { alarmText: output.tankCleaveOnYou() };
+        return { alertText: output.tankCleaveOnYou() };
+      },
+      run: (data) => data.busterTargets = [],
     },
     {
       id: 'Thaleia Thaliak Rheognosis',
@@ -134,10 +137,10 @@ Options.Triggers.push({
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go to safe zone',
+          en: 'Go to rotated safe zone',
           de: 'Geh zum sichere Feld',
           fr: 'Allez dans une zone sûre',
-          ja: '安置へ移動',
+          ja: '安置へ移動', // FIXME
         },
       },
     },
@@ -151,7 +154,7 @@ Options.Triggers.push({
       id: 'Thaleia Llymlaen Seafoam Spiral',
       type: 'StartsUsing',
       netRegex: { id: '880D', source: 'Llymlaen', capture: false },
-      response: Responses.getIn(),
+      response: Responses.getUnder(),
     },
     {
       id: 'Thaleia Llymlaen Wind Rose',
@@ -202,8 +205,15 @@ Options.Triggers.push({
     {
       id: 'Thaleia Llymlaen Deep Dive',
       type: 'StartsUsing',
-      netRegex: { id: ['8819', '8834'], source: 'Llymlaen', capture: false },
-      response: Responses.getTogether(),
+      netRegex: { id: ['8819', '8834'], source: 'Llymlaen' },
+      response: Responses.stackMarkerOn(),
+    },
+    {
+      id: 'Thaleia Llymlaen Stormwinds',
+      type: 'StartsUsing',
+      netRegex: { id: '881F', source: 'Llymlaen' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
     },
     {
       id: 'Thaleia Llymlaen Torrential Tridents',
@@ -272,10 +282,21 @@ Options.Triggers.push({
     },
     {
       id: 'Thaleia Oschon Flinted Foehn',
-      type: 'StartsUsing',
-      netRegex: { id: ['89A3', '89A4'], source: 'Oschon', capture: false },
-      suppressSeconds: 5,
-      response: Responses.aoe(),
+      type: 'HeadMarker',
+      netRegex: { id: '013C' },
+      alertText: (data, matches, output) => {
+        if (data.me === matches.target)
+          return output.stackMarkerOnYou();
+        return output.stackMarkerOn({ player: data.party.member(matches.target) });
+      },
+      outputStrings: {
+        stackMarkerOn: {
+          en: '6x Stack on ${player}',
+        },
+        stackMarkerOnYou: {
+          en: '6x Stack on You',
+        },
+      },
     },
     {
       id: 'Thaleia Oschon Soaring Minuet',
@@ -285,11 +306,31 @@ Options.Triggers.push({
       run: (data) => data.soaringMinuet = true,
     },
     {
-      id: 'Thaleia Oschon the Arrow',
-      type: 'StartsUsing',
-      netRegex: { id: ['899B', '899C', '899D', '899E'], source: 'Oschon' },
-      suppressSeconds: 10,
-      response: Responses.tankBuster(),
+      id: 'Thaleia Oschon The Arrow / Eulogia Sunbeam',
+      // 0158 = The Arrow (small)
+      // 0158 = Eulogia Sunbeam
+      // 01F4 = The Arrow (big)
+      type: 'HeadMarker',
+      netRegex: { id: ['0158', '01F4'] },
+      delaySeconds: (data, matches) => {
+        data.busterTargets.push(matches.target);
+        return data.busterTargets.length === 3 ? 0 : 0.5;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          tankCleaveOnYou: Outputs.tankCleaveOnYou,
+          tankCleaves: Outputs.tankBusterCleaves,
+        };
+        if (data.busterTargets.length === 0)
+          return;
+        if (!data.busterTargets.includes(data.me))
+          return { infoText: output.tankCleaves() };
+        if (data.role !== 'tank' && data.job !== 'BLU')
+          return { alarmText: output.tankCleaveOnYou() };
+        return { alertText: output.tankCleaveOnYou() };
+      },
+      run: (data) => data.busterTargets = [],
     },
     {
       id: 'Thaleia Oschon Climbing Shot',
@@ -310,14 +351,44 @@ Options.Triggers.push({
       id: 'Thaleia Oschon Lofty Peaks',
       type: 'StartsUsing',
       netRegex: { id: '89A7', source: 'Oschon', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
+      infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Oschon second phase',
+          en: '(second phase)',
           de: 'Oschon zweite Phase',
           fr: 'Oshon : deuxième phase',
           ja: 'すぐ大きくなる',
         },
+      },
+    },
+    {
+      id: 'Thaleia Oschon Piton Pull NE/SW',
+      type: 'StartsUsing',
+      netRegex: { id: '89A9', source: 'Oschon', capture: false },
+      alertText: (_data, _matches, output) => {
+        return output.text({ front: output.dirNE(), back: output.dirSW() });
+      },
+      outputStrings: {
+        text: {
+          en: '${front} / ${back}',
+        },
+        dirNE: Outputs.dirNE,
+        dirSW: Outputs.dirSW,
+      },
+    },
+    {
+      id: 'Thaleia Oschon Piton Pull NW/SE',
+      type: 'StartsUsing',
+      netRegex: { id: '89AA', source: 'Oschon', capture: false },
+      alertText: (_data, _matches, output) => {
+        return output.text({ front: output.dirNW(), back: output.dirSE() });
+      },
+      outputStrings: {
+        text: {
+          en: '${front} / ${back}',
+        },
+        dirNW: Outputs.dirNW,
+        dirSE: Outputs.dirSE,
       },
     },
     {
@@ -335,30 +406,46 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'Thaleia Oschon Wandering Shot',
+      id: 'Thaleia Oschon Wandering Shot North',
       type: 'StartsUsing',
-      netRegex: { id: ['8CF6', '8CF7'], source: 'Oschon', capture: false },
+      netRegex: { id: '8CF6', source: 'Oschon', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Far from Orb',
-          de: 'Weit weg vom Orb',
-          fr: 'Loin de l\'orbe',
-          ja: '玉からはなれて',
+          en: 'South (away from orb)',
         },
       },
     },
     {
-      id: 'Thaleia Oschon Wandering Volley',
+      id: 'Thaleia Oschon Wandering Shot South',
       type: 'StartsUsing',
-      netRegex: { id: ['89AC', '89AD'], source: 'Oschon', capture: false },
+      netRegex: { id: '8CF7', source: 'Oschon', capture: false },
       alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Far from Orb + Knockback',
-          de: 'Weit weg vom Orb + Rückstoß',
-          fr: 'Loin de l\'orbe + Poussée',
-          ja: '玉からはなれて + ノックバック',
+          en: 'North (away from orb)',
+        },
+      },
+    },
+    {
+      id: 'Thaleia Oschon Wandering Volley North',
+      type: 'StartsUsing',
+      netRegex: { id: '89AC', source: 'Oschon', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback to south safe spot',
+        },
+      },
+    },
+    {
+      id: 'Thaleia Oschon Wandering Volley South',
+      type: 'StartsUsing',
+      netRegex: { id: '89AD', source: 'Oschon', capture: false },
+      alertText: (_data, _matches, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Knockback to north safe spot',
         },
       },
     },
@@ -395,12 +482,6 @@ Options.Triggers.push({
         inside: Outputs.in,
         unknown: Outputs.unknown,
       },
-    },
-    {
-      id: 'Thaleia Eulogia Sunbeam',
-      type: 'StartsUsing',
-      netRegex: { id: '8A00', source: 'Eulogia' },
-      response: Responses.tankBuster(),
     },
     {
       id: 'Thaleia Eulogia the Whorl',
@@ -446,10 +527,10 @@ Options.Triggers.push({
       infoText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
-          en: 'Go to safe zone',
+          en: 'Go to rotated safe zone',
           de: 'Geh in den sicheren Bereich',
           fr: 'Allez dans une zone sûre',
-          ja: '安置へ移動',
+          ja: '安置へ移動', // FIXME
         },
       },
     },
@@ -457,7 +538,7 @@ Options.Triggers.push({
       id: 'Thaleia Eulogia Hand of the Destroyer Red',
       type: 'StartsUsing',
       netRegex: { id: '8A47', source: 'Eulogia', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Be on blue half',
@@ -473,7 +554,7 @@ Options.Triggers.push({
       id: 'Thaleia Eulogia Hand of the Destroyer Blue',
       type: 'StartsUsing',
       netRegex: { id: '8A48', source: 'Eulogia', capture: false },
-      infoText: (_data, _matches, output) => output.text(),
+      alertText: (_data, _matches, output) => output.text(),
       outputStrings: {
         text: {
           en: 'Be on red half',
@@ -503,8 +584,8 @@ Options.Triggers.push({
     {
       id: 'Thaleia Eulogia Destructive Bolt',
       type: 'StartsUsing',
-      netRegex: { id: '8CEC', source: 'Eulogia', capture: false },
-      response: Responses.getTogether(),
+      netRegex: { id: '8CFD', source: 'Eulogia' },
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Thaleia Eulogia Byregot\'s Strike',
@@ -569,15 +650,7 @@ Options.Triggers.push({
       id: 'Thaleia Eulogia Climbing Shot',
       type: 'StartsUsing',
       netRegex: { id: '8D0B', source: 'Eulogia', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Knockback to safe corner',
-          de: 'Rückstoß in die sichere Ecke',
-          fr: 'Poussée dans un coin sûr',
-          ja: '安置へノックバック',
-        },
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Thaleia Eulogia Soaring Minuet',
@@ -595,7 +668,17 @@ Options.Triggers.push({
   ],
   timelineReplace: [
     {
+      'locale': 'en',
+      'replaceText': {
+        'Left Bank/Right Bank': 'Left/Right Bank',
+        'Right Bank/Left Bank': 'Right/Left Bank',
+        'Left Strait/Right Strait': 'Left/Right Strait',
+        'Blueblossoms/Giltblossoms': 'Blue/Giltblossoms',
+      },
+    },
+    {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Eulogia': 'Eulogia',
         'Llymlaen(?!\')': 'Llymlaen',
