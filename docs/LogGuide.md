@@ -1719,6 +1719,8 @@ This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
 (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
+The `id` parameter is an id into the [Channeling table](https://github.com/xivapi/ffxiv-datamining/blob/master/csv/Channeling.csv).
+
 <!-- AUTO-GENERATED-CONTENT:START (logLines:type=Tether&lang=en-US) -->
 
 #### Structure
