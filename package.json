@@ -41,7 +41,7 @@
     "process-triggers": "ts-node util/process_triggers_folder.ts",
     "generate-log-guide": "ts-node util/gen_log_guide.ts",
     "validate-versions": "ts-node util/validate_versions.ts",
-    "version": "node util/sync_version.cjs && git add -u"
+    "version": "ts-node util/bump_version.ts"
   },
   "devDependencies": {
     "@actions/exec": "^1.1.1",
