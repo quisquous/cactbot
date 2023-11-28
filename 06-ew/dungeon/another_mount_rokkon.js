@@ -186,7 +186,7 @@ const couldStackLooseFunc = (stackJob1, stackJob2, unmarkedJob1, unmarkedJob2, f
 };
 const isMeleeOrTank = (x) => Util.isMeleeDpsJob(x) || Util.isTankJob(x);
 const isSupport = (x) => Util.isHealerJob(x) || Util.isTankJob(x);
-const findStackPartners = (data, stack1, stack2) => {
+const findStackPartners = (data, stack1, stack2, stackOrderOverride) => {
   const party = data.party;
   if (stack1 === undefined || stack2 === undefined)
     return 'unknown';
@@ -203,7 +203,8 @@ const findStackPartners = (data, stack1, stack2) => {
   const couldStack = (func) => {
     return couldStackLooseFunc(stackJob1, stackJob2, unmarkedJob1, unmarkedJob2, func);
   };
-  if (data.triggerSetConfig.stackOrder === 'meleeRolesPartners' && couldStack(isMeleeOrTank))
+  const stackOrder = stackOrderOverride ?? data.triggerSetConfig.stackOrder;
+  if (stackOrder === 'meleeRolesPartners' && couldStack(isMeleeOrTank))
     return 'melee';
   if (couldStack(isSupport))
     return 'role';
@@ -1960,35 +1961,53 @@ Options.Triggers.push({
         // cactbot-builtin-response
         output.responseOutputStrings = {
           backOnYou: {
-            en: 'Back Tether (w/${player})',
-            de: 'Zurück-Verbindung (w/${player})',
-            ja: '後ろの線 (${player})',
-            ko: '선-뒤쪽 (+${player})',
+            en: 'Back Tether (${partners})',
+            de: 'Zurück-Verbindung (${partners}))',
+            ja: '後ろの線 (${partners})',
+            ko: '선-뒤쪽 (${partners})',
           },
           // These are probably impossible.
           leftOnYou: {
-            en: 'Left Tether (w/${player})',
-            de: 'Links-Verbindung (w/${player})',
-            ja: '左の線 (${player})',
-            ko: '선-왼쪽 (+${player})',
+            en: 'Left Tether (${partners})',
+            de: 'Links-Verbindung (${partners})',
+            ja: '左の線 (${partners})',
+            ko: '선-왼쪽 (${partners})',
           },
           frontOnYou: {
-            en: 'Front Tether (w/${player})',
-            de: 'Vorne-Verbindung (w/${player})',
-            ja: '前の線 (${player})',
-            ko: '선-앞쪽 (+${player})',
+            en: 'Front Tether (${partners})',
+            de: 'Vorne-Verbindung (${partners})',
+            ja: '前の線 (${partners})',
+            ko: '선-앞쪽 (${partners})',
           },
           rightOnYou: {
-            en: 'Right Tether (w/${player})',
-            de: 'Rechts-Verbindung (w/${player})',
-            ja: '右の線 (${player})',
-            ko: '선-오른쪽 (+${player})',
+            en: 'Right Tether (${partners})',
+            de: 'Rechts-Verbindung (${partners})',
+            ja: '右の線 (${partners})',
+            ko: '선-오른쪽 (${partners})',
           },
-          unmarkedWithPlayer: {
-            en: 'Unmarked (w/${player})',
-            de: 'Unmarkiert (w/${player})',
-            ja: '線なし (${player})',
-            ko: '무징 (+${player})',
+          unmarked: {
+            en: 'Unmarked (${partners})',
+            de: 'Unmarkiert (${partners})',
+            ja: '線なし (${partners})',
+            ko: '무징 (${partners})',
+          },
+          melee: {
+            en: 'melees together',
+            de: 'Nahkämpfer zusammen',
+            ja: '近接ペア',
+            ko: '근딜끼리',
+          },
+          role: {
+            en: 'roles together',
+            de: 'Rollen zusammen',
+            ja: 'ロールペア',
+            ko: '역할군끼리',
+          },
+          partner: {
+            en: 'partners together',
+            de: 'Partner zusammen',
+            ja: 'ペア',
+            ko: '파트너끼리',
           },
           unknown: Outputs.unknown,
         };
@@ -2003,23 +2022,16 @@ Options.Triggers.push({
           return;
         const player1 = tether1.target;
         const player2 = tether2.target;
-        // Technically if folks are dead you could have both, and this will say "with you" but the pull
-        // will not last much longer, so don't worry about this too much.
-        if (data.myIaigiriTether === undefined) {
-          const remainingPlayer = data.party.partyNames.find((x) => {
-            return x !== data.me && x !== player1 && x !== player2;
-          }) ?? output.unknown();
-          return {
-            alertText: output.unmarkedWithPlayer({ player: data.party.member(remainingPlayer) }),
-          };
-        }
-        const otherPlayer = data.me === player1 ? player2 : player1;
+        const stackType = findStackPartners(data, player1, player2);
+        const stackStr = output[stackType]();
+        if (data.myIaigiriTether === undefined)
+          return { alertText: output.unmarked({ partners: stackStr }) };
         const myMarker = marker1.sourceId === data.myIaigiriTether.sourceId ? marker1 : marker2;
         const thisAbility = looseShadowVfxMap[myMarker.count];
         if (thisAbility === undefined)
           return;
         const outputKey = `${thisAbility}OnYou`;
-        return { alarmText: output[outputKey]({ player: data.party.member(otherPlayer) }) };
+        return { alarmText: output[outputKey]({ partners: stackStr }) };
       },
     },
     {
@@ -2268,8 +2280,6 @@ Options.Triggers.push({
       id: 'AMR Moko Soldiers of Death Blue Add',
       type: 'GainsEffect',
       // The red soldiers get 1E8 effects, and the blue add gets 5E.
-      // TODO: unfortunately there's no information about where casts are being targeted
-      // and so there's no way to know the final safe spot, only which half.
       netRegex: { effectId: '808', count: '5E' },
       promise: async (data, matches) => {
         data.combatantData = [];
@@ -2286,15 +2296,25 @@ Options.Triggers.push({
         const y = combatant.PosY - mokoCenterY;
         // This add is off the edge (far) and then along that edge (less far).
         // We need to look at the "less far" direction and go opposite.
-        if (Math.abs(x) > Math.abs(y))
-          return y < 0 ? output.south() : output.north();
-        return x < 0 ? output.east() : output.west();
+        // Additionally, if the add is north/south it will shoot "short"
+        // and if it is east/west then it will shoot "long".
+        const isShootingLongFromEastWest = Math.abs(x) > Math.abs(y);
+        const isEast = x > 0;
+        const isNorth = y < 0;
+        if (isShootingLongFromEastWest) {
+          if (isNorth)
+            return isEast ? output.dirSE() : output.dirSW();
+          return isEast ? output.dirNE() : output.dirNW();
+        }
+        if (isEast)
+          return isNorth ? output.dirSW() : output.dirNW();
+        return isNorth ? output.dirSE() : output.dirNE();
       },
       outputStrings: {
-        north: Outputs.north,
-        east: Outputs.east,
-        south: Outputs.south,
-        west: Outputs.west,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
       },
     },
     {
@@ -2334,8 +2354,11 @@ Options.Triggers.push({
         });
         if (partnerTether === undefined)
           return;
+        // It's better uptime for melee if the melee stick together if they can,
+        // however it should always be safe to stick roles together here and so
+        // for consistency, ignore the "melee first" option.
         const flexPartner = partnerTether.target;
-        const stackType = findStackPartners(data, data.me, flexPartner);
+        const stackType = findStackPartners(data, data.me, flexPartner, 'rolesPartners');
         const stackStr = output[stackType]();
         if (thisAbility === 'left')
           return output.left({ partners: stackStr });
@@ -2353,12 +2376,6 @@ Options.Triggers.push({
           de: 'Rechte Verbindung (${partners})',
           ja: '右線 (${partners})',
           ko: '오른쪽 선 (${partners})',
-        },
-        melee: {
-          en: 'melees together',
-          de: 'Nahkämpfer zusammen',
-          ja: '近接ペア',
-          ko: '근딜끼리',
         },
         role: {
           en: 'roles together',
