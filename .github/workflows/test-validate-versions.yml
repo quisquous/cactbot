@@ -1,0 +1,26 @@
+name: Validate Versions Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'plugin/**'
+      - '.github/workflows/test-validate-versions.yml'
+      - 'package.json'
+  pull_request:
+    paths:
+      - 'plugin/**'
+      - '.github/workflows/test-validate-versions.yml'
+      - 'package.json'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-js-env
+
+      - name: npm run validate-versions
+        run: |
+          npm run validate-versions
