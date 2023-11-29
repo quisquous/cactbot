@@ -231,10 +231,10 @@ If you get an error in the OverlayPlugin console similar to `System.MissingMetho
 If you get an error that says `Plugin Load Failure` and `The downloaded file did not contain a plugin that could be loaded`,
 there could be several potential issues.
 
-- Make sure you have [installed OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin).
+- Make sure you have [installed OverlayPlugin](https://github.com/quisquous/cactbot#install-overlayplugin).
 - Check your OverlayPlugin version in **Plugins** -> **Plugin Listing** -> **OverlayPlugin.dll**.
-If this is not the same version as [this release](https://github.com/ngld/OverlayPlugin/releases/latest),
-then remove it and re-follow the [installation instructions](https://github.com/quisquous/cactbot#install-ngld-overlayplugin).
+If this is not the same version as [this release](https://github.com/OverlayPlugin/OverlayPlugin/releases/latest),
+then remove it and re-follow the [installation instructions](https://github.com/quisquous/cactbot#install-overlayplugin).
 - Make sure you are running x64 ACT (`Advanced Combat Tracker.exe`) and not x86 ACT (`ACTx86.exe`).
 - Finally, make sure you have reloaded ACT once you have installed OverlayPlugin.
 
@@ -251,7 +251,9 @@ then you should make sure that `CactbotOverlay.dll` is listed after `OverlayPlug
 - open a [github issue](https://github.com/quisquous/cactbot/issues)
 
 It is highly recommended that you ask in the FFXIV ACT discord first for most troubleshooting issues.
-You should also read the #troubleshooting channel pins as well.
+You should also read the #troubleshooting channel pins first.
+Pasting OverlayPlugin's tech support info is also a lot of help in tracking down issues.
+Go to ACT -> Plugins -> OverlayPlugin.dll -> General and click "Copy Tech Support Info to Clipboard" to find it.
 
 ## How To Find A Network Log
 
