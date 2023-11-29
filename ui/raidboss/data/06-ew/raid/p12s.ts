@@ -1896,7 +1896,7 @@ const triggerSet: TriggerSet<Data> = {
         light: {
           en: 'Light',
           de: 'Hellen',
-          fr: 'de lumière'
+          fr: 'de lumière',
           ja: 'ひかり',
           cn: '光',
           ko: '빛',
