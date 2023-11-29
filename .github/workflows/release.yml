@@ -93,14 +93,14 @@ jobs:
         run: |
           mkdir cactbot
           mv publish/cactbot-release/cactbot/ cactbot
-          compress-archive cactbot cactbot-${{ env.RELEASE_VERSION }}.zip
+          compress-archive cactbot cactbot-${{ needs.validate_tag.outputs.version }}.zip
         shell: pwsh
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          name: ${{ env.RELEASE_VERSION }}
+          name: ${{ needs.validate_tag.outputs.version }}
           tag: ${{ github.ref }}
-          artifacts: cactbot-${{ env.RELEASE_VERSION }}.zip
+          artifacts: cactbot-${{ needs.validate_tag.outputs.version }}.zip
           artifactContentType: application/zip
           draft: true
           generateReleaseNotes: true
