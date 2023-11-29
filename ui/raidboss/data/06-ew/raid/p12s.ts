@@ -3123,7 +3123,7 @@ const triggerSet: TriggerSet<Data> = {
           classic2actual: {
             en: 'Actual: ${column}, ${row} => ${intercept}',
             de: 'Tatsächlich: ${column}, ${row} => ${intercept}',
-            en: 'Actuel : ${column}, ${row} => ${intercept}',
+            fr: 'Actuel : ${column}, ${row} => ${intercept}',
             cn: '去 ${column}, ${row} => ${intercept}',
             ko: '실제: ${column}, ${row} => ${intercept}',
           },
