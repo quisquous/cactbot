@@ -2,12 +2,56 @@ name: Create Release Artifact
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+    paths:
+      - 'plugin/CactbotEventSource/Properties/AssemblyInfo.cs'
 
 jobs:
-  create-release:
+  validate_tag:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Determine Version
+        id: determine_version
+        shell: pwsh
+        run: |
+          $text = [System.IO.File]::ReadAllText("plugin/CactbotEventSource/Properties/AssemblyInfo.cs");
+          $regex = [regex]::New('\[assembly: AssemblyVersion\("([0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+"\)');
+          $m = $regex.Match($text);
+          if (-not $m) {
+              echo "Error: Version number not found in the AssemblyInfo.cs!"
+              exit 1
+          }
+          $version = $m.Groups[1]
+          echo "::set-output name=version::$version"
+      - name: Check Tag Exists
+        shell: bash
+        run: |
+          if [ $(git tag -l "v${{ steps.determine_version.outputs.version }}") ]; then
+              echo "Error: Existing git tag found. Exiting..."
+              exit 1
+          fi
+
+  validate_versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-js-env
+      - name: Validate AssemblyInfo Versions
+        run: |
+          npm run validate-versions
+
+  create_release:
     runs-on: windows-latest
+    needs: [validate_tag, validate_versions]
     if: ${{ github.repository == 'quisquous/cactbot' }}
     env:
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -21,11 +65,6 @@ jobs:
 
       - uses: ./.github/actions/setup-js-env
 
-      # Gets the numerical output of the git tag and assigns it to an environment variable
-      - name: Get Tag Version
-        run: |
-          echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
-        shell: bash
       - name: Check dependencies cache
         id: cache-dependencies
         uses: actions/cache@v3
@@ -55,19 +94,20 @@ jobs:
         run: |
           mkdir cactbot
           mv publish/cactbot-release/cactbot/ cactbot
-          compress-archive cactbot cactbot-${{ env.RELEASE_VERSION }}.zip
+          compress-archive cactbot cactbot-${{ needs.validate_tag.outputs.version }}.zip
         shell: pwsh
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          name: ${{ env.RELEASE_VERSION }}
+          name: ${{ needs.validate_tag.outputs.version }}
           tag: ${{ github.ref }}
-          artifacts: cactbot-${{ env.RELEASE_VERSION }}.zip
+          artifacts: cactbot-${{ needs.validate_tag.outputs.version }}.zip
           artifactContentType: application/zip
           draft: true
           generateReleaseNotes: true
 
-  create-npm-package:
+  create_npm_package:
+    needs: [create_release]
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'quisquous/cactbot' }}
     steps:
@@ -82,4 +122,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-
+  create_tag:
+    needs: [validate_tag, create_release]
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    steps:
+      - name: Create Tag
+        shell: bash
+        run: git tag "v${{ needs.validate_tag.outputs.version }}" && git push --tags
