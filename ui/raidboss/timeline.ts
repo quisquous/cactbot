@@ -331,7 +331,6 @@ export class Timeline {
   }
 
   public OnNetLogLine(line: string, currentTime: number): void {
-    console.log(line);
     for (const sync of this.activeNetSyncs) {
       if (sync.regex.test(line)) {
         this.OnLogLineJump(sync, currentTime);
