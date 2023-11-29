@@ -26,7 +26,9 @@ const defaultDriftWarn = 0.2;
 const defaultDriftFail = 1.0;
 
 const maxFieldId = (fields: { [fieldName: string]: number }): number => {
-  return Math.max(...Object.values(fields));
+  // +1 for the 0-indexing
+  // +1 for the always-excluded-from-field-mappings hash
+  return Math.max(...Object.values(fields)) + 2;
 };
 
 const maxAbilityFieldId = maxFieldId(logDefinitionsVersions.latest.Ability.fields);
@@ -116,6 +118,7 @@ const testLineEvents = async (
     testTimeline._OnUpdateTimer(line.timestamp);
     // If this log line matches, it will OnSync and adjust the time as needed.
     testTimeline.OnLogLine(line.convertedLine, line.timestamp);
+    testTimeline.OnNetLogLine(line.networkLine, line.timestamp);
   }
 
   console.log('Timeline:');
