@@ -3152,6 +3152,7 @@ const triggerSet: TriggerSet<Data> = {
           insideEast: {
             en: 'Inside East',
             de: 'Innen Osten',
+            fr: 'Intérieur Est',
             cn: '第3列 (右东 内侧)',
             ko: '3열 (동쪽 안)',
           },
