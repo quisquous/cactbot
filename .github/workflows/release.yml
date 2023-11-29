@@ -11,6 +11,8 @@ jobs:
   validate_tag:
     runs-on: ubuntu-latest
     if: ${{ github.repository == 'quisquous/cactbot' }}
+    outputs:
+      version: ${{ steps.determine_version.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
