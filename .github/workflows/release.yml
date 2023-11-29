@@ -5,10 +5,11 @@ on:
     branches:
       - main
     paths:
-      - '**/AssemblyInfo.cs'
+      - 'plugin/CactbotEventSource/Properties/AssemblyInfo.cs'
 
 jobs:
   validate_tag:
+    runs-on: ubuntu-latest
     if: ${{ github.repository == 'quisquous/cactbot' }}
     steps:
       - name: Checkout Code
@@ -36,7 +37,7 @@ jobs:
               exit 1
           fi
 
-  validate_version:
+  validate_versions:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -50,7 +51,7 @@ jobs:
 
   create_release:
     runs-on: windows-latest
-    needs: [validate_tag, validate_version]
+    needs: [validate_tag, validate_versions]
     if: ${{ github.repository == 'quisquous/cactbot' }}
     env:
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
