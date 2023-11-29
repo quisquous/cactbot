@@ -98,6 +98,9 @@ jobs:
           mv publish/cactbot-release/cactbot/ cactbot
           compress-archive cactbot cactbot-${{ needs.validate_tag.outputs.version }}.zip
         shell: pwsh
+      - name: Create Tag
+        shell: bash
+        run: git tag "v${{ needs.validate_tag.outputs.version }}" && git push --tags
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
@@ -123,12 +126,3 @@ jobs:
         working-directory: npm-package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  create_tag:
-    needs: [validate_tag, create_release]
-    runs-on: ubuntu-latest
-    if: ${{ github.repository == 'quisquous/cactbot' }}
-    steps:
-      - name: Create Tag
-        shell: bash
-        run: git tag "v${{ needs.validate_tag.outputs.version }}" && git push --tags
