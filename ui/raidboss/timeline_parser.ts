@@ -81,6 +81,7 @@ export type Error = {
 export type Sync = {
   id: number;
   origRegexStr: string;
+  regexType: 'parsed' | 'net';
   regex: RegExp;
   start: number;
   end: number;
@@ -479,6 +480,8 @@ export class TimelineParser {
 
     let params: unknown;
     try {
+      // TODO: Use `exec` => `JSON.stringify` => `JSON.parse` instead?
+      // See https://github.com/quisquous/cactbot/pull/5939#issuecomment-1830484703
       params = JSON.parse(syncCommand.netRegex);
     } catch (e) {
       this.errors.push({
@@ -499,6 +502,7 @@ export class TimelineParser {
     }
     return this.buildRegexSync(
       uniqueid,
+      'net',
       `${netRegexType} ${syncCommand.netRegex}`,
       // TODO: Use `translateRegexBuildParam` instead, store off params for use elsewhere.
       // See https://github.com/quisquous/cactbot/pull/5939#discussion_r1399453530
@@ -527,6 +531,7 @@ export class TimelineParser {
     line = line.replace(syncCommand.text, '').trim();
     return this.buildRegexSync(
       uniqueid,
+      'parsed',
       syncCommand.regex,
       Regexes.parse(this.GetReplacedSync(syncCommand.regex)),
       syncCommand.args,
@@ -539,6 +544,7 @@ export class TimelineParser {
 
   private buildRegexSync(
     uniqueid: number,
+    regexType: 'parsed' | 'net',
     regex: string,
     parsedRegex: RegExp,
     args: string | undefined,
@@ -550,6 +556,7 @@ export class TimelineParser {
     const sync: Sync = {
       id: uniqueid,
       origRegexStr: regex,
+      regexType: regexType,
       regex: parsedRegex,
       start: seconds - 2.5,
       end: seconds + 2.5,

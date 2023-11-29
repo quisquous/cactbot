@@ -137,6 +137,7 @@ export class Timeline {
   private activeText: string;
 
   protected activeSyncs: Sync[];
+  protected activeNetSyncs: Sync[];
   private activeEvents: Event[];
   private keepAliveEvents: {
     event: Event;
@@ -184,6 +185,7 @@ export class Timeline {
 
     // Not sorted.
     this.activeSyncs = [];
+    this.activeNetSyncs = [];
     // Sorted by event occurrence time.
     this.activeEvents = [];
     // Events that are no longer active but we are keeping on screen briefly.
@@ -281,10 +283,15 @@ export class Timeline {
 
   private _CollectActiveSyncs(fightNow: number): void {
     this.activeSyncs = [];
+    this.activeNetSyncs = [];
     for (let i = this.nextSyncEnd; i < this.syncEnds.length; ++i) {
       const syncEnd = this.syncEnds[i];
-      if (syncEnd && syncEnd.start <= fightNow)
-        this.activeSyncs.push(syncEnd);
+      if (syncEnd && syncEnd.start <= fightNow) {
+        if (syncEnd.regexType === 'parsed')
+          this.activeSyncs.push(syncEnd);
+        else
+          this.activeNetSyncs.push(syncEnd);
+      }
     }
 
     if (
@@ -292,25 +299,42 @@ export class Timeline {
       this.activeLastForceJumpSync.start <= fightNow &&
       this.activeLastForceJumpSync.end > fightNow
     ) {
-      this.activeSyncs.push(this.activeLastForceJumpSync);
+      if (this.activeLastForceJumpSync.regexType === 'parsed')
+        this.activeSyncs.push(this.activeLastForceJumpSync);
+      else
+        this.activeNetSyncs.push(this.activeLastForceJumpSync);
     } else {
       this.activeLastForceJumpSync = undefined;
+    }
+  }
+
+  public OnLogLineJump(sync: Sync, currentTime: number): void {
+    if ('jump' in sync) {
+      if (!sync.jump) {
+        this.SyncTo(0, currentTime, sync);
+        this.Stop();
+      } else {
+        this.SyncTo(sync.jump, currentTime, sync);
+      }
+    } else {
+      this.SyncTo(sync.time, currentTime, sync);
     }
   }
 
   public OnLogLine(line: string, currentTime: number): void {
     for (const sync of this.activeSyncs) {
       if (sync.regex.test(line)) {
-        if ('jump' in sync) {
-          if (!sync.jump) {
-            this.SyncTo(0, currentTime, sync);
-            this.Stop();
-          } else {
-            this.SyncTo(sync.jump, currentTime, sync);
-          }
-        } else {
-          this.SyncTo(sync.time, currentTime, sync);
-        }
+        this.OnLogLineJump(sync, currentTime);
+        break;
+      }
+    }
+  }
+
+  public OnNetLogLine(line: string, currentTime: number): void {
+    console.log(line);
+    for (const sync of this.activeNetSyncs) {
+      if (sync.regex.test(line)) {
+        this.OnLogLineJump(sync, currentTime);
         break;
       }
     }
@@ -724,12 +748,13 @@ export class TimelineController {
   }
 
   OnNetLog(e: EventResponses['LogLine']): void {
-    this.OnLogEvent({
-      type: 'onLogEvent',
-      detail: {
-        logs: [e.rawLine],
-      },
-    });
+    if (!this.activeTimeline)
+      return;
+
+    const currentTime = Date.now();
+
+    // TODO: Check for the countdown => wipe => engage logic for network lines
+    this.activeTimeline.OnNetLogLine(e.rawLine, currentTime);
   }
 
   public SetActiveTimeline(
