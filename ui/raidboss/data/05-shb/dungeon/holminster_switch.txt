@@ -5,7 +5,7 @@ hideall "--sync--"
 
 ### Forgiven Dissonance
 # -p 3DC5:112
-# The Wound will be sealed off will be sealed off
+# The Wound will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:CD4/ window 100,0
 112.0 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/ window 112,0
 120.4 "Brazen Bull" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC9:/
