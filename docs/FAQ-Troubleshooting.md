@@ -2,26 +2,26 @@
 
 - [General FFXIV ACT Troubleshooting](#general-ffxiv-act-troubleshooting)
 - [Installation Testing](#installation-testing)
-  - [Verify that your plugins are in the correct order](#verify-that-your-plugins-are-in-the-correct-order)
-  - [Verify your language settings match](#verify-your-language-settings-match)
-  - [Verify that you have added the overlays you want](#verify-that-you-have-added-the-overlays-you-want)
-  - [Summerford Farms raidboss test](#summerford-farms-raidboss-test)
-  - [Summerford Farms provoke test](#summerford-farms-provoke-test)
-- [New content isn't working](#new-content-isnt-working)
-  - [Are your cactbot plugin and overlays paths matching](#are-your-cactbot-plugin-and-overlays-paths-matching)
-  - [Has this content been added to cactbot](#has-this-content-been-added-to-cactbot)
-- [Fixing chat log problems](#fixing-chat-log-problems)
-  - [Check game chat log filters](#check-game-chat-log-filters)
-  - [Check FFXIV plugin filters](#check-ffxiv-plugin-filters)
-  - [Check Dalamud plugins](#check-dalamud-plugins)
-  - [Check your network log](#check-your-network-log)
-- [Fixing network data problems](#fixing-network-data-problems)
-  - [Has the game just updated?](#has-the-game-just-updated)
-  - [Test game connection](#test-game-connection)
-  - [cactbot stops working randomly](#cactbot-stops-working-randomly)
-- [Problems during Cactbot installation](#problems-during-cactbot-installation)
-- [Places To Get Help](#places-to-get-help)
-- [How To Find A Network Log](#how-to-find-a-network-log)
+  - [Verify That Your Plugins Are in the Right Order](#verify-that-your-plugins-are-in-the-correct-order)
+  - [Verify Your Language Settings Match](#verify-your-language-settings-match)
+  - [Verify That You Have Added the Overlays You Want](#verify-that-you-have-added-the-overlays-you-want)
+  - [Summerford Farms Raidboss Test](#summerford-farms-raidboss-test)
+  - [Summerford Farms Provoke Test](#summerford-farms-provoke-test)
+- [New Content Isn't Working](#new-content-isnt-working)
+  - [Do Your Cactbot Plugin and Overlay Paths Match](#do-your-cactbot-plugin-and-overlay-paths-match)
+  - [Has This Content Been Added to Cactbot](#has-this-content-been-added-to-cactbot)
+- [Fixing Chat Log Problems](#fixing-chat-log-problems)
+  - [Check Game Chat Log Filters](#check-game-chat-log-filters)
+  - [Check FFXIV Plugin Filters](#check-ffxiv-plugin-filters)
+  - [Check Dalamud Plugins](#check-dalamud-plugins)
+  - [Check Your Network Log](#check-your-network-log)
+- [Fixing network Data Problems](#fixing-network-data-problems)
+  - [Has the Game Just Updated?](#has-the-game-just-updated)
+  - [Test Game Connection](#test-game-connection)
+  - [Cactbot Stops Working Randomly](#cactbot-stops-working-randomly)
+- [Problems During Cactbot Installation](#problems-during-cactbot-installation)
+- [Places to Get Help](#places-to-get-help)
+- [How to Find a Network Log](#how-to-find-a-network-log)
 
 ## General FFXIV ACT Troubleshooting
 
@@ -41,14 +41,14 @@ If so, follow <https://overlayplugin.github.io/OverlayPlugin/fork_update.html>
 First, follow the [installation guide](../README.md#installing) for cactbot from the main readme.
 Once done, check the following steps.
 
-### Verify that your plugins are in the correct order
+### Verify That Your Plugins Are in the Right Order
 
 Open ACT -> Plugins -> Plugin Listing.
 You should have `FFXIV_ACT_Plugin.dll`, `OverlayPlugin.dll`, and `CactbotOverlay.dll` in that order.
 
 See: [this section](../README.md#plugin-load-order) for more information about load order.
 
-### Verify your language settings match
+### Verify Your Language Settings Match
 
 Verify that the game language matches the FFXIV ACT Plugin language.
 You can check the plugin language via ACT -> Plugins -> FFXIV ACT Plugin -> Language.
@@ -58,7 +58,7 @@ Raidboss should pick up the plugin language automatically.
 It does not matter which cactbot display, alerts, or timeline language you have set
 as these are all for display purposes.
 
-### Verify that you have added the overlays you want
+### Verify That You Have Added the Overlays You Want
 
 It is not enough to just add the cactbot plugin,
 you also need to add an overlay for the parts of cactbot you want.
@@ -81,7 +81,7 @@ make sure you have the overlays you need.
 
 See: [this section](../README.md#adding-overlay-modules) for how to add cactbot overlays.
 
-### Summerford Farms raidboss test
+### Summerford Farms Raidboss Test
 
 This test verifies that basic timelines and triggers are working
 and your overlay has been added correctly.
@@ -98,7 +98,7 @@ You can teleport to stop the timeline.
 If this does not work,
 see the [Fixing chat log problems](#fixing-chat-log-problems) section.
 
-### Summerford Farms provoke test
+### Summerford Farms Provoke Test
 
 A second test to do for network data is to switch to a tank job.
 Teleport to Summerford Farms again.
@@ -108,12 +108,12 @@ You should see an alert trigger when you do this.
 If this does not work,
 see the [Fixing network data problems](#fixing-network-data-problems) section.
 
-## New content isn't working
+## New Content Isn't Working
 
 A common complaint that people have is that older content works in cactbot but not newer.
 There are a number of reasons this could be the case:
 
-### Are your cactbot plugin and overlays paths matching
+### Do Your Cactbot Plugin and Overlay Paths Match
 
 Check the cactbot plugin path in ACT -> Plugins -> Plugin Listing -> CactbotOverlay.dll -> Plugin Info -> FileName.
 Then check the overlay URL via ACT -> Plugins -> OverlayPlugin.dll -> (name of a cactbot overlay, e.g. raidboss) -> URL.
@@ -126,7 +126,7 @@ Then hit New at the bottom to re-add it and select the same overlay type that it
 
 Note: This will not remove your settings. Also, this should be a "one time" fix and in the future this won't happen again.
 
-### Has this content been added to cactbot
+### Has This Content Been Added to Cactbot
 
 It takes time and effort to add support for new content to cactbot.
 If it just came out in the last week or few,
@@ -142,7 +142,7 @@ Content that has just been added to cactbot may not have been translated yet
 and so may not work immediately in non-English languages.
 This is usually fixed by the next release.
 
-## Fixing chat log problems
+## Fixing Chat Log Problems
 
 The chat log is currently used by cactbot for a number of things.
 
@@ -152,7 +152,7 @@ The most common things are broken when the chat log has an issue is:
 - UCOB Nael dialog
 - countdown messages (for the jobs countdown timer and Summerford Farms test)
 
-### Check game chat log filters
+### Check Game Chat Log Filters
 
 FFXIV doesn't send chat messages to you that you have turned off due to a filter.
 In game, go to System -> Character Configuration -> Log Window Settings -> Log Filters.
@@ -166,20 +166,20 @@ Verify that these categories are enabled for at least one log:
   - Echo
   - NPC Dialogue (Announcements)
 
-### Check FFXIV plugin filters
+### Check FFXIV Plugin Filters
 
 The FFXIV plugin has a filter as well that is sometimes enabled.
 Go to ACT -> Plugins -> FFXIV ACT Plugin.
 Verify that `Hide Chat Log (for privacy)` is not clicked.
 
-### Check Dalamud plugins
+### Check Dalamud Plugins
 
 There are a number of quicklauncher/Dalamud plugins that can mess with chat output.
 If you are still having issues, try launching the game without quicklauncher.
 If this fixes the issue, then one of your Dalamud plugins is at fault.
 Figure out which one, and disable it or configure it differently.
 
-### Check your network log
+### Check Your Network Log
 
 One final check here is to look at the network log file from ACT.
 You can find your network log [with these steps](#how-to-find-a-network-log).
@@ -200,15 +200,15 @@ In your network log, you should be able to find something like each of the follo
 00|2023-11-29T11:46:08.0000000-08:00|0044|Susano|Let the revels begin!|8cfb1aec4563d935
 ```
 
-## Fixing network data problems
+## Fixing Network Data Problems
 
-### Has the game just updated?
+### Has the Game Just Updated?
 
 If the game has patched recently,
 you need to wait for the ACT FFXIV Plugin to update before anything will work.
 Even if cactbot has done a release, this is not enough.
 
-### Test game connection
+### Test Game Connection
 
 Verify your firewall rules by going to ACT -> Plugins -> FFXIV ACT Plugin -> Test Game Connection.
 You should get a notification that says something like
@@ -216,7 +216,7 @@ You should get a notification that says something like
 
 If you do not get this message, ask in the [FFXIV ACT discord](#places-to-get-help) for help.
 
-### cactbot stops working randomly
+### Cactbot Stops Working Randomly
 
 If cactbot and dps parsing works properly and then stops,
 then you should enable Deucalion via
@@ -224,7 +224,7 @@ ACT -> Plugins -> FFXIV ACT Plugin -> Inject and use Deucalion for network data.
 
 Clicking this option will also allow you to start ACT after the game has started.
 
-## Problems during Cactbot installation
+## Problems During Cactbot Installation
 
 If you get an error in the OverlayPlugin console similar to `System.MissingMethodException: Method not found: '!!0[] System.Array.Empty()` then you have installed the wrong .NET framework version.  Please install the [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6.1 or above.
 
@@ -245,7 +245,7 @@ or
 then you should make sure that `CactbotOverlay.dll` is listed after `OverlayPlugin.dll` in
 **Plugins** -> **Plugin Listing**.
 
-## Places To Get Help
+## Places to Get Help
 
 - ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
 - open a [github issue](https://github.com/quisquous/cactbot/issues)
@@ -255,7 +255,7 @@ You should also read the #troubleshooting channel pins first.
 Pasting OverlayPlugin's tech support info is also a lot of help in tracking down issues.
 Go to ACT -> Plugins -> OverlayPlugin.dll -> General and click "Copy Tech Support Info to Clipboard" to find it.
 
-## How To Find A Network Log
+## How to Find a Network Log
 
 If you are having issues with triggers or timelines,
 it can be useful to attach a network log from ACT
