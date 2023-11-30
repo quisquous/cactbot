@@ -1,6 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -88,12 +87,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'T1 Slime Timer First',
-      type: 'GameLog',
-      netRegex: {
-        line: 'The Allagan megastructure will be sealed off.*?',
-        code: Util.gameLogCodes.message,
-        capture: false,
-      },
+      type: 'SystemLogMessage',
+      // The Allagan megastructure will be sealed off
+      netRegex: { id: '7DC', param1: '379', capture: false },
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: (_data, _matches, output) => output.text!(),
