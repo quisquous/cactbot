@@ -24,6 +24,7 @@ type FightEncInfo = ZoneEncInfo & {
   fightName?: string;
   endType?: string;
   sealName?: string;
+  sealId?: string;
   logLines?: string[];
 };
 
@@ -38,6 +39,8 @@ export class EncounterFinder {
 
   regex: {
     changeZone: CactbotBaseRegExp<'ChangeZone'>;
+    netSeal: CactbotBaseRegExp<'SystemLogMessage'>;
+    netUnseal: CactbotBaseRegExp<'SystemLogMessage'>;
     cactbotWipe: CactbotBaseRegExp<'GameLog'>;
     win: CactbotBaseRegExp<'ActorControl'>;
     wipe: CactbotBaseRegExp<'ActorControl'>;
@@ -61,6 +64,8 @@ export class EncounterFinder {
   constructor() {
     this.regex = {
       changeZone: NetRegexes.changeZone(),
+      netSeal: NetRegexes.systemLogMessage({ id: '7DC' }),
+      netUnseal: NetRegexes.systemLogMessage({ id: '7DE' }),
       cactbotWipe: commonNetRegex.cactbotWipeEcho,
       win: NetRegexes.network6d({ command: '4000000[23]' }),
       wipe: commonNetRegex.wipe,
@@ -108,6 +113,12 @@ export class EncounterFinder {
     ];
 
     return !keepTypes.includes(content);
+  }
+
+  storeStartLine(line: string, store: boolean): void {
+    const previouslyStarted = this.currentFight.startTime !== undefined;
+    if (store && !previouslyStarted)
+      (this.currentFight.logLines ??= []).push(line);
   }
 
   process(line: string, store: boolean): void {
@@ -173,16 +184,29 @@ export class EncounterFinder {
     }
 
     // Once we see a seal, we know that we will be falling through to here throughout the zone.
+    const netSeal = this.regex.netSeal.exec(line)?.groups;
+    if (netSeal) {
+      this.onNetSeal(line, netSeal.param1, netSeal);
+      this.storeStartLine(line, store);
+      return;
+    }
+
     for (const regex of this.sealRegexes) {
       const s = regex.exec(line)?.groups;
       if (s) {
         const seal = s.seal ?? 'UNKNOWN';
-        const previouslyStarted = this.currentFight.startTime !== undefined;
-        this.onSeal(line, seal, s);
-        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
-          (this.currentFight.logLines ??= []).push(line);
+        this.onSeal(seal);
+        this.storeStartLine(line, store);
         return;
       }
+    }
+
+    // Unseal messages will almost always be picked up here.
+    // TODO: Determine whether we need to keep game log unseal functionality.
+    const netUnseal = this.regex.netUnseal.exec(line)?.groups;
+    if (netUnseal) {
+      this.onUnseal(line, netUnseal);
+      return;
     }
 
     for (const regex of this.unsealRegexes) {
@@ -201,10 +225,8 @@ export class EncounterFinder {
         // TODO: This regex catches faerie healing and could potentially give false positives!
         a = this.regex.mobAttackingPlayer.exec(line);
       if (a?.groups) {
-        const previouslyStarted = this.currentFight.startTime !== undefined;
-        this.onStartFight(line, this.currentZone.zoneName, a.groups);
-        if (store && !previouslyStarted && this.currentFight.startTime !== undefined)
-          (this.currentFight.logLines ??= []).push(line);
+        this.onStartFight(line, a.groups, this.currentZone.zoneName);
+        this.storeStartLine(line, store);
         return;
       }
     }
@@ -222,12 +244,19 @@ export class EncounterFinder {
       startTime: TLFuncs.dateFromMatches(matches),
     };
   }
-  onStartFight(line: string, fightName: string, matches: NetMatches['Ability' | 'GameLog']): void {
+  onStartFight(
+    line: string,
+    matches: NetMatches['Ability' | 'GameLog' | 'SystemLogMessage'],
+    fightName?: string,
+    sealId?: string,
+  ): void {
     this.currentFight = {
       fightName: fightName,
-      zoneName: this.currentZone.zoneName, // Sometimes the same as the fight name, but that's fine.
+      sealId: sealId,
+      zoneName: this.currentZone.zoneName,
       startLine: line,
       startTime: TLFuncs.dateFromMatches(matches),
+      zoneId: this.currentZone.zoneId,
     };
   }
 
@@ -236,16 +265,22 @@ export class EncounterFinder {
   }
 
   onEndFight(_line: string, _matches: NetAnyMatches, _endType: string): void {
-    this.initializeFight();
+    if (this.currentFight.startTime !== undefined)
+      this.initializeFight();
   }
 
-  onSeal(line: string, sealName: string, matches: NetMatches['GameLog']): void {
-    this.onStartFight(line, sealName, matches);
+  onNetSeal(line: string, sealId: string, matches: NetMatches['SystemLogMessage']): void {
+    this.onStartFight(line, matches, undefined, sealId);
+    this.haveSeenSeals = true;
+  }
+
+  onSeal(sealName: string): void {
+    this.currentFight.sealName = sealName;
     this.currentSeal = sealName;
     this.haveSeenSeals = true;
   }
 
-  onUnseal(line: string, matches: NetMatches['GameLog']): void {
+  onUnseal(line: string, matches: NetMatches['GameLog' | 'SystemLogMessage']): void {
     this.onEndFight(line, matches, 'Unseal');
     this.currentSeal = undefined;
   }
@@ -254,7 +289,6 @@ export class EncounterFinder {
 class EncounterCollector extends EncounterFinder {
   zones: Array<ZoneEncInfo> = [];
   fights: Array<FightEncInfo> = [];
-  lastSeal?: string;
   constructor() {
     super();
   }
@@ -268,11 +302,13 @@ class EncounterCollector extends EncounterFinder {
 
   override onStartFight(
     line: string,
-    fightName: string,
-    matches: NetMatches['Ability' | 'GameLog'],
+    matches: NetMatches['Ability' | 'GameLog' | 'SystemLogMessage'],
+    fightName?: string,
+    sealId?: string,
   ): void {
     this.currentFight = {
       fightName: fightName,
+      sealId: sealId,
       zoneName: this.currentZone.zoneName,
       startLine: line,
       startTime: TLFuncs.dateFromMatches(matches),
@@ -281,23 +317,28 @@ class EncounterCollector extends EncounterFinder {
   }
 
   override onEndFight(line: string, matches: NetAnyMatches, endType: string): void {
-    this.currentFight.endLine = line;
-    this.currentFight.endTime = TLFuncs.dateFromMatches(matches);
-    this.currentFight.endType = endType;
-    this.fights.push(this.currentFight);
-    this.initializeFight();
+    // This needs to be conditional. Otherwise a game log unseal line could
+    // insert spurious unknown encounters if it occurs after a network unseal line.
+    if (this.currentFight.startTime !== undefined) {
+      this.currentFight.endLine = line;
+      this.currentFight.endTime = TLFuncs.dateFromMatches(matches);
+      this.currentFight.endType = endType;
+      this.fights.push(this.currentFight);
+      this.initializeFight();
+    }
   }
 
-  override onSeal(line: string, sealName: string, matches: NetMatches['GameLog']): void {
-    this.onStartFight(line, sealName, matches);
+  override onNetSeal(line: string, sealId: string, matches: NetMatches['SystemLogMessage']): void {
+    this.onStartFight(line, matches, undefined, sealId);
     this.haveSeenSeals = true;
-    this.lastSeal = sealName;
-    this.currentFight.sealName = this.lastSeal;
   }
 
-  override onUnseal(line: string, matches: NetMatches['GameLog']): void {
+  override onSeal(sealName: string): void {
+    this.currentFight.sealName = sealName;
+  }
+
+  override onUnseal(line: string, matches: NetAnyMatches): void {
     this.onEndFight(line, matches, 'Unseal');
-    this.lastSeal = undefined;
   }
 }
 
