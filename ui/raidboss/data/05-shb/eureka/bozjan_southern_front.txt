@@ -206,7 +206,8 @@ hideall "--sync--"
 # -ii 4F94 4F91 4F8D 504E 504F 5050 5051 5052 4F8B 4F7E 504C 545C 4F90 4F7C 4F84 4F88 4F89 4F82 4F83 4F93
 # note: accursed becoming IV casts have different ability ids the first time through.
 
-50000.0 "--sync--" sync / 00:0839::The airship landing will be sealed off/ window 100000,0
+# The airship landing will be sealed off
+50000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDA/ window 100000,0
 50014.3 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
 
 50021.8 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
