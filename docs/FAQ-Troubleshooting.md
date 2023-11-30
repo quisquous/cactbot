@@ -15,11 +15,12 @@
   - [Check FFXIV Plugin Filters](#check-ffxiv-plugin-filters)
   - [Check Dalamud Plugins](#check-dalamud-plugins)
   - [Check Your Network Log](#check-your-network-log)
-- [Fixing network Data Problems](#fixing-network-data-problems)
+- [Fixing Network Data Problems](#fixing-network-data-problems)
   - [Has the Game Just Updated?](#has-the-game-just-updated)
   - [Test Game Connection](#test-game-connection)
   - [Cactbot Stops Working Randomly](#cactbot-stops-working-randomly)
 - [Problems During Cactbot Installation](#problems-during-cactbot-installation)
+- [My TTS Isn't Working](#my-tts-isnt-working)
 - [Places to Get Help](#places-to-get-help)
 - [How to Find a Network Log](#how-to-find-a-network-log)
 
@@ -96,7 +97,7 @@ and several alert messages should appear.
 You can teleport to stop the timeline.
 
 If this does not work,
-see the [Fixing chat log problems](#fixing-chat-log-problems) section.
+see the [Fixing Chat Log Problems](#fixing-chat-log-problems) section.
 
 ### Summerford Farms Provoke Test
 
@@ -106,7 +107,7 @@ Use Provoke on a Striking Dummy.
 You should see an alert trigger when you do this.
 
 If this does not work,
-see the [Fixing network data problems](#fixing-network-data-problems) section.
+see the [Fixing Network Data Problems](#fixing-network-data-problems) section.
 
 ## New Content Isn't Working
 
@@ -260,6 +261,19 @@ or
 `Load Error: Method 'LoadConfig' in type 'CactbotEventSource' etc etc does not have an implementation`
 then you should make sure that `CactbotOverlay.dll` is listed after `OverlayPlugin.dll` in
 **Plugins** -> **Plugin Listing**.
+
+## My TTS Isn't Working
+
+Cactbot uses ACT for Text to Speech (TTS).
+If your TTS isn't working, then ACT is likely not set up properly.
+If you are not using some custom plugin like yukkuri etc,
+the default ACT TTS settings are in ACT -> Options -> Sound Settings -> Text to Speech.
+
+If you want to test TTS with cactbot, you can use the [test overlay](#test-module).
+If you add this overlay and then in game type `/echo tts:thing to say` it will use TTS to play it.
+
+If this does not work, verify that you see the echo line in game.
+See: [Fixing Chat Log Problems](#fixing-chat-log-problems).
 
 ## Places to Get Help
 
