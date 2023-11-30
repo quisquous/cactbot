@@ -393,7 +393,8 @@ hideall "Fan Flames"
 
 # TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
 
-6000.0 "--sync--" sync / 00:0839::The Twin Halls will be sealed off/ window 10000,0
+# The Twin Halls will be sealed off
+6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1052/ window 10000,0
 6008.2 "--sync--" sync / 14:[^:]*:Nald'thal:70E9:/ window 10,10
 6013.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
 6027.4 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A5:/
