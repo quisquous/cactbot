@@ -194,7 +194,8 @@ hideall "--sync--"
 #                                                                         V                       |
 # Cube opening block ----> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
 
-2000.0 "--sync--" sync / 00:0839::The Gloriole will be sealed off/ window 2000,5
+# The Gloriole will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E5/ window 2000,5
 2015.0 "Meteor Headmarkers"
 2024.0 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
 
