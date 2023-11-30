@@ -216,6 +216,22 @@ You should get a notification that says something like
 
 If you do not get this message, ask in the [FFXIV ACT discord](#places-to-get-help) for help.
 
+### Verify DPS Parsing
+
+Even if the game connection works, that doesn't mean everything is correct.
+If dps parsing isn't working, then cactbot triggers will likely not work either.
+
+Verify dps parsing works.
+Open ACT.
+Go hit a striking dummy for 10 seconds.
+If you have a dps overlay, numbers should appear.
+Regardless of a dps overlay, if you go to ACT -> Main and click on the encounter,
+then you should see a dps chart.
+
+If you don't see dps charts,
+make sure you have enabled Deucalion via
+ACT -> Plugins -> FFXIV ACT Plugin -> Inject and use Deucalion for network data.
+
 ### Cactbot Stops Working Randomly
 
 If cactbot and dps parsing works properly and then stops,
