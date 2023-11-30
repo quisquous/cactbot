@@ -120,7 +120,7 @@ const findMissingTimeline = (
     {
       type: 'replaceSync',
       items: new Set(
-        timeline.syncStarts.map((x) => ({ text: x.regex.source, line: x.lineNumber })),
+        timeline.syncStarts.map((x) => ({ text: x.origInput, line: x.lineNumber })),
       ),
       replace: trans.replaceSync || {},
       label: 'sync',
@@ -185,16 +185,32 @@ const findMissingTimeline = (
 
   for (const testCase of testCases) {
     for (const item of testCase.items) {
-      if (isIgnored(item.text))
-        continue;
-      let matched = false;
-      for (const regex in testCase.replace) {
-        if (item.text.match(Regexes.parse(regex))) {
-          matched = true;
-          break;
+      const origInput = item.text;
+      let errorStr: string | undefined;
+      if (typeof origInput === 'string') {
+        let matched = false;
+        if (isIgnored(origInput))
+          continue;
+        for (const regex in testCase.replace) {
+          if (!origInput.match(Regexes.parse(regex))) {
+            matched = true;
+            break;
+          }
+        }
+        if (!matched)
+          errorStr = `"${origInput}"`;
+      } else {
+        const result = translateRegexBuildParamAnon(origInput, locale, [trans]);
+        const missingFields = result.missingFields;
+        if (!result.wasTranslated && missingFields !== undefined) {
+          const outputObj: { [key: string]: AnonNetRegexParams['string'] } = {};
+          for (const field of missingFields)
+            outputObj[field] = origInput[field];
+          errorStr = JSON.stringify(outputObj);
         }
       }
-      if (!matched) {
+
+      if (errorStr !== undefined) {
         // Because we handle syncs separately from texts, in order to
         // sort them all properly together, create a key to be used with sort().
         const sortKey = String(item.line).padStart(8, '0') + testCase.label;
@@ -203,7 +219,7 @@ const findMissingTimeline = (
           item.line,
           testCase.label,
           locale,
-          `"${item.text}"`,
+          errorStr,
         ];
       }
     }
