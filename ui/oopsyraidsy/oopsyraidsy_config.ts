@@ -279,6 +279,7 @@ const templateOptions: OptionsTemplate = {
       id: 'DefaultPlayerLabel',
       name: {
         en: 'Default Player Label',
+        de: 'Standard Spieler Label',
         ja: '基本プレイヤーラベル',
         cn: '默认玩家代称',
         ko: '플레이어를 언급하는 기본 방법',

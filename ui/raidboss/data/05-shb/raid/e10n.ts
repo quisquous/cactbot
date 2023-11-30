@@ -140,7 +140,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Stand behind tethered dog',
-          de: 'Achte auf den verbundenen Hund', // FIXME
+          de: 'Achte auf den verbundenen Hund',
           fr: 'Allez derrière le chien lié',
           ja: '線で繋がった分身を注視', // FIXME
           cn: '站在连线狗后',
