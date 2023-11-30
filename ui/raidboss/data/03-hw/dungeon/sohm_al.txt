@@ -72,7 +72,8 @@ hideall "--Reset--"
 # -p 1382:1006.1
 # -ic "Chyme Of The Mountain"
 
-1000.0 "Start" sync / 00:0839::The Wound will be sealed off/ window 1000,1
+# The Wound will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:64C/ window 1000,1
 
 1006.1 "Third Leg Forward" sync / 1[56]:[^:]*:Myath:1382:/ window 6.1,5
 1011.2 "Overbite" sync / 1[56]:[^:]*:Myath:EDB:/
