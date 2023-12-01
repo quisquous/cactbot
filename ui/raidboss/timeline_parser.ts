@@ -1,3 +1,5 @@
+import JSON5 from 'json5';
+
 import { Lang } from '../../resources/languages';
 import logDefinitions, { LogDefinitionTypes } from '../../resources/netlog_defs';
 import { buildNetRegexForTrigger } from '../../resources/netregexes';
@@ -485,9 +487,8 @@ export class TimelineParser {
 
     let params: unknown;
     try {
-      // TODO: Use `exec` => `JSON.stringify` => `JSON.parse` instead?
-      // See https://github.com/quisquous/cactbot/pull/5939#issuecomment-1830484703
-      params = JSON.parse(syncCommand.netRegex);
+      // Use json5 here to support bareword keys and different quoting styles.
+      params = JSON5.parse(syncCommand.netRegex);
     } catch (e) {
       this.errors.push({
         lineNumber: lineNumber,
