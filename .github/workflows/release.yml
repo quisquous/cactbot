@@ -105,7 +105,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: ${{ needs.validate_tag.outputs.version }}
-          tag: ${{ github.ref }}
+          tag: v${{ needs.validate_tag.outputs.version }}
           artifacts: cactbot-${{ needs.validate_tag.outputs.version }}.zip
           artifactContentType: application/zip
           draft: true
