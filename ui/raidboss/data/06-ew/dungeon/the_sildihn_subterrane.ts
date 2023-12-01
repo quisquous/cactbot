@@ -1,6 +1,5 @@
 import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
-import Util from '../../../../../resources/util';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
@@ -122,12 +121,9 @@ const triggerSet: TriggerSet<Data> = {
   triggers: [
     {
       id: 'Sildihn Geryon Seal Left Mechs',
-      type: 'GameLog',
-      netRegex: {
-        line: 'The Silt Pump will be sealed off.*?',
-        code: Util.gameLogCodes.message,
-        capture: false,
-      },
+      type: 'SystemLogMessage',
+      // The Silt Pump will be sealed off
+      netRegex: { id: '7DC', param1: '1068', capture: false },
       // May be overwritten by Runaway Sludge below.
       run: (data) => data.catapultMechs = leftDoorYesPump,
     },
@@ -154,12 +150,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'Sildihn Geryon Seal Right Mechs',
-      type: 'GameLog',
-      netRegex: {
-        line: 'The Settling Basin will be sealed off.*?',
-        code: Util.gameLogCodes.message,
-        capture: false,
-      },
+      type: 'SystemLogMessage',
+      // The Settling Basin will be sealed off
+      netRegex: { id: '7DC', param1: '106D', capture: false },
       // May be overwritten by Suddenly Sewage below.
       run: (data) => data.catapultMechs = rightDoorNoCeruleum,
     },
