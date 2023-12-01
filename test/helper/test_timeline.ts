@@ -335,6 +335,8 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
         it('should have proper sealed sync', () => {
           for (const sync of timeline.syncStarts) {
             const regex = sync.regex.source;
+            if (sync.regexType === 'net')
+              continue;
             if (regex.includes('is no longer sealed')) {
               assert.isArray(
                 /00:0839::\.\*is no longer sealed/.exec(regex),
