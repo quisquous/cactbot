@@ -75,22 +75,16 @@ Options.Triggers.push({
     },
     {
       id: 'BA Seal',
-      type: 'GameLog',
-      netRegex: {
-        line: '.* will be sealed off.*?',
-        code: Util.gameLogCodes.message,
-        capture: false,
-      },
+      type: 'SystemLogMessage',
+      // "will be sealed off"
+      netRegex: { id: '7DC', capture: false },
       run: (data) => data.sealed = true,
     },
     {
       id: 'BA Clear Data',
-      type: 'GameLog',
-      netRegex: {
-        line: '.*is no longer sealed.*?',
-        code: Util.gameLogCodes.message,
-        capture: false,
-      },
+      type: 'SystemLogMessage',
+      // "is no longer sealed"
+      netRegex: { id: '7DE', capture: false },
       run: (data) => {
         delete data.side;
         delete data.mythcall;
