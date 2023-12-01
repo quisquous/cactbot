@@ -838,6 +838,9 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 1',
+      // TODO: we could add a config option for the other set of safe spots, as it's also
+      // valid to go SW/NE instead of SE/NW for the first dashes. It would just change
+      // the adjust call.
       comment: {
         en: `If the first nail is SE, this will call SE/NW for both reverse-Z and normal-Z.
              If the first nail is S, this will call SE/NW for reverse-Z and SW/NE for normal-Z.
