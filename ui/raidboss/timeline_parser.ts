@@ -6,7 +6,6 @@ import { buildNetRegexForTrigger } from '../../resources/netregexes';
 import { UnreachableCode } from '../../resources/not_reached';
 import Regexes from '../../resources/regexes';
 import {
-  AnonNetRegexParams,
   translateRegex,
   translateRegexBuildParamAnon,
   translateText,
@@ -33,6 +32,18 @@ const isStringOrStringArray = (value: unknown): value is string | string[] => {
   return typeof value === 'string';
 };
 
+export type TimelineNetParams = { [key: string]: string | string[] };
+const isTimelineNetParams = (value: unknown): value is TimelineNetParams => {
+  if (typeof value !== 'object' || Array.isArray(value))
+    return false;
+  const obj = value as { [key: string]: unknown };
+  for (const innerValue of Object.values(obj)) {
+    if (!isStringOrStringArray(innerValue))
+      return false;
+  }
+  return true;
+};
+
 const isValidNetParams = <T extends LogDefinitionTypes>(
   type: T,
   params: Record<string, unknown>,
@@ -43,6 +54,9 @@ const isValidNetParams = <T extends LogDefinitionTypes>(
       return false;
     // Make sure our value is either a string/int or an array of strings/ints
     if (!isStringOrStringArray(params[key]))
+      return false;
+    // These should never be specified on a timeline net regex.
+    if (key === 'capture' || key === 'timestamp')
       return false;
   }
   return true;
@@ -87,7 +101,7 @@ export type Error = {
 
 export type Sync = {
   id: number;
-  origInput: string | AnonNetRegexParams;
+  origInput: string | TimelineNetParams;
   regexType: 'parsed' | 'net';
   regex: RegExp;
   start: number;
@@ -512,10 +526,15 @@ export class TimelineParser {
       this.options.ParserLanguage,
       this.replacements,
     ).params;
+
+    // The original params should be TimelineNetParams, thus so should the output.
+    if (!isTimelineNetParams(translatedParams))
+      throw new UnreachableCode();
+
     return this.buildRegexSync(
       uniqueid,
       'net',
-      params,
+      translatedParams,
       Regexes.parse(buildNetRegexForTrigger(netRegexType, translatedParams)),
       syncCommand.args,
       seconds,
@@ -555,7 +574,7 @@ export class TimelineParser {
   private buildRegexSync(
     uniqueid: number,
     regexType: 'parsed' | 'net',
-    origInput: string | AnonNetRegexParams,
+    origInput: string | TimelineNetParams,
     parsedRegex: RegExp,
     args: string | undefined,
     seconds: number,
