@@ -949,7 +949,7 @@ const triggerSet: TriggerSet<Data> = {
         const startDir = (firstNailDir + oppositeRotationDir + 8) % 8;
         const ifritDir = Directions.combatantStatePosTo8Dir(combatant, centerX, centerY);
 
-        for (let i = 1; i < 4; ++i) {
+        for (let i = 1; i <= 4; ++i) {
           const dashDir = (startDir + i * rotationDir + 8) % 8;
           if (dashDir % 4 !== ifritDir % 4)
             continue;
