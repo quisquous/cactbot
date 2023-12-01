@@ -15,7 +15,8 @@ hideall "--sync--"
 # to come up with any timeline that will perfectly time both of them.
 # So, give up, and add extra syncs on abilities after.
 
-1000.0 "--sync--" sync / 00:0839::Closed Area A will be sealed off/ window 10000,0
+# Closed Area A will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E46/ window 10000,0
 1012.0 "Roar" sync / 1[56]:[^:]*:Knave Of Hearts:5EB5:/ window 1012,10
 1022.1 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA7:/
 1033.2 "Colossal Impact" sync / 1[56]:[^:]*:Knave Of Hearts:5EA4:/
@@ -96,7 +97,8 @@ hideall "--sync--"
 # -ic "2B"
 # -it "Hansel"
 
-2000.0 "--sync--" sync / 00:0839::Staging Node B will be sealed off/ window 2000,0
+# Staging Node B will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E49/ window 2000,0
 2012.0 "Upgraded Shield" sync / 1[56]:[^:]*:Gretel:5C6[89]:/ window 2012,10
 2012.0 "Upgraded Lance" sync / 1[56]:[^:]*:Hansel:5C6[AB]:/ window 2012,10
 2025.2 "Wail" sync / 1[56]:[^:]*:Hansel:5C77:/
@@ -226,7 +228,8 @@ hideall "--sync--"
 # -it "2P-Operated Flight Unit"
 # -ii 5BFD 5BF7 5BF8 592A
 # -p 5BFE:3513.1
-3000.0 "--sync--" sync / 00:0839::Staging Node C will be sealed off/ window 10000,0
+# Staging Node C will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4A/ window 10000,0
 
 # A bunch of 2P doing 5FB7/5BF8 blade flurry, but hard to sync this.
 # Presumably once they die, then flight units show up.
@@ -259,7 +262,8 @@ hideall "--sync--"
 # -it "Red Girl"
 
 # Phase 1
-4000.0 "--sync--" sync / 00:0839::Staging Node D will be sealed off/ window 4000,0
+# Staging Node D will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4B/ window 4000,0
 4009.0 "--sync--" sync / 14:[^:]*:Red Girl:6012:/ window 4009,10
 4014.0 "Cruelty" sync / 1[56]:[^:]*:Red Girl:6012:/
 4019.9 "Shockwave" sync / 1[56]:[^:]*:Red Girl:600E:/
@@ -357,7 +361,8 @@ hideall "--sync--"
 # -it "Xun-Zi"
 # -p 5C00:5013.3
 # -ii 5CEC 5CED 5CEE 5C02 5C05 5C07 5C08
-5000.0 "--sync--" sync / 00:0839::The Ascension Platform will be sealed off/ window 5000,0
+# Ascension Platform will be sealed off
+5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4C/ window 5000,0
 5013.3 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/ window 5013.3,7
 5023.4 "Deploy Armaments" sync / 1[56]:[^:]*:Xun-Zi:5C0[03]:/
 5036.4 "Universal Assault" sync / 1[56]:[^:]*:Xun-Zi:5C06:/
@@ -396,7 +401,8 @@ hideall "--sync--"
 # -it "False Idol"
 # -p 5BDD:6012.3
 # -ii 5CEC 5CED 5CEE 5CEF 5FFC 5FFF 5BDA 5BDC
-6000.0 "--sync--" sync / 00:0839::Beyond will be sealed off/ window 6000,0
+# Beyond will be sealed off
+6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4D/ window 6000,0
 6007.3 "--sync--" sync / 14:[^:]*:False Idol:5BDD:/ window 6007.3,10
 6012.3 "Screaming Score" sync / 1[56]:[^:]*:False Idol:5BDD:/
 6025.5 "Made Magic" sync / 1[56]:[^:]*:False Idol:5BD[67]:/

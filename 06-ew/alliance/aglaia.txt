@@ -4,7 +4,8 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "Fan Flames"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~#
 # BYREGOT #
@@ -18,7 +19,8 @@ hideall "Fan Flames"
 # Note: 7171 Peal of the Hammer is when the Levinforge hammer drops, and is marked as "--sync--"" instead.
 # Note: "--hammer--" lines are done visually, as there seem to be no log line for them.
 
-1000.0 "--sync--" sync / 00:0839::Ingenuity's Foothold will be sealed off/ window 10000,0
+# Ingenuity's Foothold will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104D/ window 10000,0
 1005.5 "--sync--" sync / 14:[^:]*:Byregot:7176:/ window 10,10
 1010.5 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
 1022.4 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:725A:/
@@ -108,7 +110,8 @@ hideall "Fan Flames"
 # -p 70E0:2012.8
 # -ii 70D8 70E2 70E4 70DC
 
-2000.0 "--sync--" sync / 00:0839::The Path will be sealed off/ window 10000,0
+# The Path will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104E/ window 10000,0
 2004.8 "--sync--" sync / 14:[^:]*:Rhalgr's Emissary:70E0:/ window 10,10
 2012.8 "Destructive Static" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E0:/
 2019.8 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
@@ -138,7 +141,8 @@ hideall "Fan Flames"
 
 # TODO: is the ordering of fake vs real Broken World correct? Every log has been this.
 
-3000.0 "--sync--" sync / 00:0839::The Monument To Destruction will be sealed off/ window 10000,0
+# Monument to Destruction will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104F/ window 10000,0
 3007.5 "--sync--" sync / 14:[^:]*:Rhalgr:70A5:/ window 10,10
 3012.5 "Lightning Reign" sync / 1[56]:[^:]*:Rhalgr:70A5:/
 3023.6 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
@@ -208,7 +212,8 @@ hideall "Fan Flames"
 
 # TODO: These do "Rejuvenating Spark" (71D9) to rebalance health.  Does that adjust timings?
 
-4000.0 "--sync--" sync / 00:0839::The Endless City will be sealed off/ window 10000,0
+# Endless City will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1050/ window 10000,0
 4007.0 "--sync--" sync / 14:[^:]*:Lioness of Aglaia:71D7:/ window 10,10
 4012.0 "Double Immolation" sync / 1[56]:[^:]*:Lioness of Aglaia:71D7:/
 4019.8 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
@@ -261,7 +266,8 @@ hideall "Fan Flames"
 # -p 70A0:5012.2
 # -ii 70A1 7082 7083 709F 708E 72BE 7093 7094 71EE 7089 731C 708C 7092 7087
 
-5000.0 "--sync--" sync / 00:0839::The Circle Of Inquiry will be sealed off/ window 10000,0
+# Circle of Inquiry will be sealed off
+5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1051/ window 10000,0
 5006.2 "--sync--" sync / 14:[^:]*:Azeyma:70A0:/ window 10,10
 5012.2 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
 
@@ -387,7 +393,8 @@ hideall "Fan Flames"
 
 # TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
 
-6000.0 "--sync--" sync / 00:0839::The Twin Halls will be sealed off/ window 10000,0
+# The Twin Halls will be sealed off
+6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1052/ window 10000,0
 6008.2 "--sync--" sync / 14:[^:]*:Nald'thal:70E9:/ window 10,10
 6013.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
 6027.4 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A5:/
