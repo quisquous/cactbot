@@ -164,6 +164,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'Chaos',
         'YOU DARE!': 'Wie könnt ihr es wagen?!',
@@ -188,6 +189,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'Chaos',
         'YOU DARE!': '... Mon cristal !? Impossible !',
@@ -212,6 +214,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'YOU DARE!': 'まさか……黒水晶を……！？',
@@ -236,6 +239,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '卡奥斯',
         'YOU DARE!': '居然……把黑水晶给……',
@@ -260,6 +264,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '카오스',
         'YOU DARE!': '네 이노오오옴',
