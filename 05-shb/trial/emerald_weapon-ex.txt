@@ -3,14 +3,11 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# Use autos instead of InCombat lines to start timelines for each phase
-# as timeline resets out of combat.
-
 ### Phase 1
 # -p 55B0:17.1
 # -ii 55AF 55AE 557B 58D3 557D 557F 5BA6 5BA7 5596 557A 5579 5BD3 5017 559E 55A0 5597 5018 55A4 5BA3 554B 554C 5593 559A 5B03 5598 5B1A
 
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 1.1 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1A:/ window 1.1,0
 17.1 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:55B0:/ window 18,10
 28.2 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B1:/

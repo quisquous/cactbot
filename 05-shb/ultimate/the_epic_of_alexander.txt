@@ -191,7 +191,7 @@ hideall "--sync--"
 982.6 "Fate Calibration α" sync / 1[56]:[^:]*:Perfect Alexander:487C:/
 985.6 "--untargetable--"
 989.8 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:49A[BC]:/
-992.8 "Obloquy, Solidarity and 3x Severity" sync  /:Perfect Alexander:4861:/
+992.8 "Obloquy, Solidarity and 3x Severity" sync / 1[56]:[^:]*:Perfect Alexander:4861:/
 993.8 "Ordained Motion/Stillness" sync / 1[56]:[^:]*:Perfect Alexander:49A[BC]:/
 993.8 "Sacrament x3" duration 1.5
 998.8 "--targetable--"

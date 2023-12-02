@@ -104,7 +104,7 @@ hideall "--sync--"
 402.8 "Splash x3" #sync / 1[56]:[^:]*:Living Liquid:EF4:/ duration 2.2
 418.1 "Digititis" sync / 1[56]:[^:]*:Living Liquid:F00:/
 422.3 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:EFC:/
-426.4 "Splash x6" #sync /:Living Liquid::EF4:/ duration 5.5
+426.4 "Splash x6" #sync / 1[56]:[^:]*:Living Liquid:EF4:/ duration 5.5
 435.0 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:EFC:/
 
 441.1 "Cascade 3" sync / 1[56]:[^:]*:Living Liquid:EFE:/ window 40,40
@@ -153,7 +153,7 @@ hideall "--sync--"
 624.6 "Splash x3" #sync / 1[56]:[^:]*:Living Liquid:EF4:/ duration 2.2
 639.9 "Digititis" sync / 1[56]:[^:]*:Living Liquid:F00:/
 644.0 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:EFC:/
-648.1 "Splash x6" #sync /:Living Liquid::EF4:/ duration 5.5
+648.1 "Splash x6" #sync / 1[56]:[^:]*:Living Liquid:EF4:/ duration 5.5
 656.7 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:EFC:/
 
 662.8 "Cascade 6" sync / 1[56]:[^:]*:Living Liquid:EFE:/ window 40,40

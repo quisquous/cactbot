@@ -16,92 +16,88 @@ hideall "Alluring Arm"
 28.1 "Inner Demons" sync / 1[56]:[^:]*:Dreaming Kshatriya:258D:/
 29.0 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
 
-# infinite loop
-60.0 "--sync--" sync /.*/ window 0,30 jump 30
 
 ### Warmup
 # first auto comes out before rp text.
-107.2 "Hand Of Grace" sync / 1[56]:[^:]*:Lakshmi:214C:/ window 110,0
-114.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-121.4 "Blissful Arrow" sync / 1[56]:[^:]*:Lakshmi:214F:/
-122.0 "Blissful Spear" sync / 1[56]:[^:]*:Lakshmi:2151:/
-124.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-135.8 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-143.1 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-153.2 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-160.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-167.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-170.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-177.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-187.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+500.0 "Hand Of Grace" sync / 1[56]:[^:]*:Lakshmi:214C:/ window 500,0
+507.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+514.2 "Blissful Arrow" sync / 1[56]:[^:]*:Lakshmi:214F:/
+514.8 "Blissful Spear" sync / 1[56]:[^:]*:Lakshmi:2151:/
+517.4 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+528.6 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+535.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+546.0 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+553.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+560.3 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+563.4 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+570.6 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+579.8 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
 
 ### Chanchala #1
-195.2 "Chanchala #1" sync / 1[56]:[^:]*:Lakshmi:2148:/
-209.0 "Divine Denial" sync / 1[56]:[^:]*:Lakshmi:2149:/
-217.2 "Hand Of Beauty" sync / 1[56]:[^:]*:Lakshmi:214D:/
-224.4 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
-231.4 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
-231.7 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
-245.0 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
-247.1 "--chanchala end--"
+588.0 "Chanchala #1" sync / 1[56]:[^:]*:Lakshmi:2148:/
+601.8 "Divine Denial" sync / 1[56]:[^:]*:Lakshmi:2149:/
+610.0 "Hand Of Beauty" sync / 1[56]:[^:]*:Lakshmi:214D:/
+617.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
+624.2 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
+624.5 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
+637.8 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
+639.9 "--chanchala end--"
 
-257.3 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-269.7 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-277.8 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-281.5 "--untargetable--"
+650.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+662.5 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+670.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+674.3 "--untargetable--"
 
 ### More Adds
-287.1 "--targetable--"
-# infinite loop
-335.0 "--sync--" sync /.*/ window 0,50 jump 300
+679.9 "--targetable--"
 
 ### Hugging
-400.0 "Jagadishwari" sync / 1[56]:[^:]*:Lakshmi:2342:/ window 400,0
-421.4 "/dance"
-421.4 "--sync--" sync / 1[56]:[^:]*:Lakshmi:2159:/
-437.1 "Alluring Embrace" sync / 1[56]:[^:]*:Lakshmi:2343:/
-441.5 "--targetable--"
+2000.0 "Jagadishwari" sync / 1[56]:[^:]*:Lakshmi:2342:/ window 2000,0
+2021.4 "/dance"
+2021.4 "--sync--" sync / 1[56]:[^:]*:Lakshmi:2159:/
+2037.1 "Alluring Embrace" sync / 1[56]:[^:]*:Lakshmi:2343:/
+2041.5 "--targetable--"
 
 ### Chanchala #2
-441.7 "--sync--" sync / 14:[^:]*:Lakshmi:2148:/ window 50,10
-444.7 "Chanchala #2" sync / 1[56]:[^:]*:Lakshmi:2148:/
-458.5 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
-473.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
-484.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
-486.0 "--chanchala end--"
-509.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-511.5 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
+2041.7 "--sync--" sync / 14:[^:]*:Lakshmi:2148:/ window 50,10
+2044.7 "Chanchala #2" sync / 1[56]:[^:]*:Lakshmi:2148:/
+2058.5 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
+2073.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
+2084.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
+2086.0 "--chanchala end--"
+2109.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+2111.5 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
 
-525.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-528.8 "Blissful Spear (mid)" sync / 1[56]:[^:]*:Lakshmi:2156:/
-533.1 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-544.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-551.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-558.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-558.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-569.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+2125.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+2128.8 "Blissful Spear (mid)" sync / 1[56]:[^:]*:Lakshmi:2156:/
+2133.1 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+2144.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+2151.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+2158.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+2158.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+2169.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
 
 ### Chanchala #3
-580.3 "Chanchala #3" sync / 1[56]:[^:]*:Lakshmi:2148:/
-595.6 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
-610.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
-636.5 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
-638.2 "Blissful Spear (out)" sync / 1[56]:[^:]*:Lakshmi:2154:/
-650.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
-651.8 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
-664.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:249D:/
-666.1 "--chanchala end--"
-675.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-682.5 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-689.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-689.8 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-697.9 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+2180.3 "Chanchala #3" sync / 1[56]:[^:]*:Lakshmi:2148:/
+2195.6 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
+2210.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
+2236.5 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
+2238.2 "Blissful Spear (out)" sync / 1[56]:[^:]*:Lakshmi:2154:/
+2250.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
+2251.8 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
+2264.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:249D:/
+2266.1 "--chanchala end--"
+2275.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+2282.5 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
+2289.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
+2289.8 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
+2297.9 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
 
-708.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-718.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-732.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
+2308.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+2318.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
+2332.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
 
 ### Chanchala #4
-732.8 "Chanchala #4" sync / 1[56]:[^:]*:Lakshmi:2148:/
-735.0 "--sync--" sync / 14:[^:]*:Lakshmi:2560:/ window 1000,1000
-750.0 "Divine Denial Enrage" sync / 1[56]:[^:]*:Lakshmi:2560:/
+2332.8 "Chanchala #4" sync / 1[56]:[^:]*:Lakshmi:2148:/
+2335.0 "--sync--" sync / 14:[^:]*:Lakshmi:2560:/ window 1000,1000
+2350.0 "Divine Denial Enrage" sync / 1[56]:[^:]*:Lakshmi:2560:/

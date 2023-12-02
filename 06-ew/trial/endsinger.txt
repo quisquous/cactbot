@@ -83,7 +83,7 @@ hideall "--sync--"
 1101.1 "Katastrophe"
 1112.2 "Katastrophe"
 1123.3 "Katastrophe"
-1200.0 "--sync--" sync / 00:0039::10 seconds until oblivion is sealed/ window 200,0
+1200.0 "--sync--" sync / 00:0039:[^:]*:10 seconds until oblivion is sealed/ window 200,0
 1212.2 "Ultimate Fate" sync / 1[56]:[^:]*:The Endsinger:6B59:/ window 10,10
 1218.9 "--targetable--"
 

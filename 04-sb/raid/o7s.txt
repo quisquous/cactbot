@@ -8,7 +8,7 @@ hideall "--sync--"
 31 "Atomic Ray" sync / 1[56]:[^:]*:Guardian:278D:/
 40 "Prey" sync / 1[56]:[^:]*:Guardian:278A:/
 49 "Load?" sync / 1[56]:[^:]*:Guardian:275C:/
-50 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 1050
+50 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 1050
 52 "Shockwave?"
 
 # This is Version A of the encounter, with Bibliotaph first
@@ -92,8 +92,8 @@ hideall "--sync--"
 
 # Divergence point
 509 "Load/Skip?" sync / 1[56]:[^:]*:Guardian:(275C|2773):/
-510 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
-510 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]+:[^:]*:[^:]*:[^:]*:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
+510 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
+510 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
 519 "Demon Simulation?"
 
