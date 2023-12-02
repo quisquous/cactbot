@@ -1293,7 +1293,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Dodge 4x Shuriken',
           de: 'Weiche 4x Shuriken aus',
           ja: '4x 手裏剣',
-          cn: '躲避四次攻击', // FIXME
+          cn: '躲避四次手里剑', // FIXME: 应该是技能名
           ko: '수리검 4개 피하기',
         },
       },
@@ -1497,7 +1497,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Block Laser on ${player}',
           de: 'Blockiere Laser auf ${player}',
           ja: '${player}の前でカバー',
-          cn: '挡枪 ${player}', // FIXME
+          cn: '挡枪 ${player}',
           ko: '${player} 대상 레이저 앞에서 맞기',
         },
         avoidLaser: {
