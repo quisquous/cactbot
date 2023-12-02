@@ -444,16 +444,17 @@ const assembleTimelineStrings = (
     const sealMessage = SFuncs.toProperCase(fight.sealName);
     if (fight.sealId !== undefined) {
       const sealComment = `# ${sealMessage} will be sealed off`;
-      const netLogSeal = `0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:${fight.sealId}/ window 0,1`;
+      const netLogSeal =
+        `0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "${fight.sealId}" } window 0,1`;
       assembled.push(sealComment);
       assembled.push(netLogSeal);
     } else {
       const tlString =
-        `0.0 "--sync--" sync / 00:0839::${sealMessage} will be sealed off/ window 0,1`;
+        `0.0 "--sync--" GameLog { code: "0839", line: "${sealMessage} will be sealed off.*?" } window 0,1`;
       assembled.push(tlString);
     }
   } else {
-    assembled.push('0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1');
+    assembled.push('0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1');
   }
 
   // If the user entered phase information,
@@ -535,7 +536,7 @@ const assembleTimelineStrings = (
       const combatant = entry.combatant ?? 'Unknown';
       const newEntry = `${
         timelinePosition.toFixed(1)
-      } "${ability}" ${commentSync}sync / 1[56]:[^:]*:${combatant}:${abilityId}:/`;
+      } "${ability}" ${commentSync}Ability { id: "${abilityId}", source: "${combatant}" }`;
       assembled.push(newEntry);
     } else {
       const targetable = entry.targetable ? '--targetable--' : '--untargetable--';
