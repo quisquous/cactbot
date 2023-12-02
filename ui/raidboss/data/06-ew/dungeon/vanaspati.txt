@@ -14,7 +14,7 @@ hideall "--sync--"
 # -ii 366 6291 6292
 
 # Trnakiya will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAC/ window 0,1
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAC:/ window 0,1
 7.1 "--sync--" sync / 14:[^:]*:Terminus Snatcher:6238:/ window 10,10
 12.1 "Note of Despair" sync / 1[56]:[^:]*:Terminus Snatcher:6238:/
 19.6 "Mouth Off" sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
@@ -52,7 +52,7 @@ hideall "--sync--"
 # Note: 623F is also called "Poison Heart" but that's when the stack marker appears.
 
 # Insight will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAD/ window 1000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAD:/ window 1000,0
 1006.2 "--sync--" sync / 14:[^:]*:Terminus Wrecker:6241:/ window 1010,10
 1011.2 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/
 1021.4 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
@@ -99,7 +99,7 @@ hideall "--sync--"
 hideall "Crumbling Sky"
 
 # Devatagara will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAE/ window 2000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAE:/ window 2000,0
 2005.1 "--sync--" sync / 14:[^:]*:Svarbhanu:6252:/ window 2020,10
 2010.1 "Flames of Decay" sync / 1[56]:[^:]*:Svarbhanu:6252:/
 2018.0 "Chaotic Pulse" sync / 1[56]:[^:]*:Svarbhanu:6B61:/
