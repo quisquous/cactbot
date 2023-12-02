@@ -99,5 +99,5 @@ hideall "--sync--"
 622 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
 626 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
 
-626 "--sync--" sync / 1[56]:[^:]*:Demon Chadarnook:284D:/
+626 "--sync--" sync / 14:[^:]*:Demon Chadarnook:284D:/
 641 "Enrage"
