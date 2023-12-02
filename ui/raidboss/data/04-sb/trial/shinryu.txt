@@ -8,7 +8,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 20.6 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:1FAA:/ window 20.6,5
 38.8 "Hypernova/Levinbolt" sync / 1[56]:[^:]*:Right Wing:1F9[9B]:/
 49.9 "Akh Morn" sync / 1[56]:[^:]*:Shinryu:1FA4:/

@@ -7,7 +7,7 @@ hideall "--sync--"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 12.3 "Flip" sync / 1[56]:[^:]*:Midgardsormr:31AD:/ window 13,10
 23.5 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AE:/
-27.4 "Cardinals" sync /::31B3:/ # X hit, not sure of sync yet
+27.4 "Cardinals" sync / 1[56]:[^:]*:Midgardsormr:31B3:/ # X hit, not sure of sync yet
 
 35.9 "Spin" sync / 1[56]:[^:]*:Midgardsormr:31AC:/ # drift 0.029
 47.1 "Akh Morn" sync / 1[56]:[^:]*:Midgardsormr:31AB:/

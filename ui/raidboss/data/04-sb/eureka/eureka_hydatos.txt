@@ -136,7 +136,7 @@ hideall "--sync--"
 3124.4 "Streak Lightning" #sync / 1[56]:[^:]*:Streak Lightning:3877:/
 3134.9 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
 
-3154.9 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
+3154.9 "--sync--" sync / 17:[^:]*:Raiden:3878:/ window 40,0
 3164.9 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
 3171.2 "Booming Lament" sync / 1[56]:[^:]*:Raiden:387D:/
 3177.3 "Cloud to Ground" sync / 1[56]:[^:]*:Raiden:3870:/
@@ -158,7 +158,7 @@ hideall "--sync--"
 3316.0 "Lateral Zantetsuken" sync / 1[56]:[^:]*:Raiden:386[BC]:/
 3321.7 "Ultimate Zantetsuken" sync / 14:[^:]*:Raiden:3878:/ duration 20
 
-3341.7 "--sync--" sync / 17:[^:]:Raiden:3878:/ window 40,0
+3341.7 "--sync--" sync / 17:[^:]*:Raiden:3878:/ window 40,0
 3347.7 "Spirits of the Fallen" sync / 1[56]:[^:]*:Raiden:387A:/ window 40,5
 3353.8 "Shingan" sync / 1[56]:[^:]*:Raiden:387B:/
 3365.4 "Ame-no-Sakahoko" sync / 1[56]:[^:]*:Raiden:3868:/
