@@ -8,7 +8,7 @@ hideall "--sync--"
 # -ii 1305 12FA
 
 # Condensate Demineralizer #9 will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:66C/ window 10000,10000
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:66C:/ window 10000,10000
 7.5 "Fluid Swing" sync /:Living Liquid:12EE:/
 11.6 "Splash x3" duration 3 #sync /:Living Liquid:12EF:/
 19.9 "Protean Wave" sync /:Living Liquid:12F0:/

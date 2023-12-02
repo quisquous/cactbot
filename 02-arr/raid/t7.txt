@@ -10,7 +10,7 @@ hideall "--sync--"
 ### Phase 1 (100%)
 
 # Bioweapon Storage will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51E/ window 10,10
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51E:/ window 10,10
 6.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/ window 7,0
 12.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
 14.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/

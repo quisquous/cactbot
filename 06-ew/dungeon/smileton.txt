@@ -14,7 +14,7 @@ hideall "--sync--"
 # -ii 6741 6736 6737 6C5E 673A 673B 673C 673D
 
 # Smileport will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBE/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBE:/ window 10000,0
 1009.0 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
 1018.1 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
 1023.2 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
@@ -56,7 +56,7 @@ hideall "--sync--"
  # -ii 6749 674B
 
 # The Welcome Wheel will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBF/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBF:/ window 10000,0
 2011.0 "Circular Saw" sync / 1[56]:[^:]*:Frameworker:6745:/
 2017.6 "--sync--" sync / 1[56]:[^:]*:Frameworker:674A:/
 2022.8 "Leap Forward" sync / 1[56]:[^:]*:Frameworker:6746:/
@@ -84,7 +84,7 @@ hideall "--sync--"
 # -ii 674C 6755
 
 # The Frame will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EC0/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EC0:/ window 10000,0
 3009.0 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
 3022.2 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
 3028.2 "Piercing Missile" sync / 1[56]:[^:]*:The Big Cheese:6751:/

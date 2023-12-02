@@ -13,7 +13,7 @@ hideall "--sync--"
 # -ii 1961 6258 6E90 -it Lyssa
 
 # Frozen Sphere will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB6/ window 0,1
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB6:/ window 0,1
 10.7 "Skull Dasher" sync / 1[56]:[^:]*:Lyssa:625E:/ window 10.7,10
 21.2 "Frostbite and Seek" sync / 1[56]:[^:]*:Lyssa:6257:/
 23.2 "--untargetable--"
@@ -64,7 +64,7 @@ hideall "--sync--"
 # "Pyric Breath" sync / 1[56]:[^:]*:Ladon Lord:(6486|6487|6488|6489|648A|648B):/
 
 # Concept Review will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB7/ window 1000,5
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB7:/ window 1000,5
 1010.3 "Scratch" sync / 1[56]:[^:]*:Ladon Lord:648F:/ window 1010.3,10
 1019.3 "Inhale" sync / 1[56]:[^:]*:Ladon Lord:6484:/
 1025.5 "--sync--" sync / 1[56]:[^:]*:Ladon Lord:6485:/
@@ -116,7 +116,7 @@ hideall "--sync--"
 # -ii 368
 
 # Celestial Sphere will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB8/ window 2000,10
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB8:/ window 2000,10
 2013.1 "Trismegistos" sync / 1[56]:[^:]*:Hermes:651E:/ window 2013.1,10
 2020.2 "--middle--"
 2024.2 "Hermetica" sync / 1[56]:[^:]*:Hermes:6520:/

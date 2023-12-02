@@ -15,7 +15,7 @@ hideall "--sync--"
 # -ii  87E5 89B6 87DF
 
 # Cloven Crystal Square will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1153/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1153:/ window 10000,0
 1006.0 "--sync--" sync / 14:[^:]*:Dark Elf:87D9:/ window 10,10
 1009.0 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
 1017.1 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
@@ -68,7 +68,7 @@ hideall "--sync--"
 # Note: timing is the same, even once all towers have fallen
 
 # Bloodied Barbican will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1154/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1154:/ window 10000,0
 2009.5 "--sync--" sync / 14:[^:]*:Damcyan Antlion:87FD:/ window 10,10
 2014.5 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
 2023.6 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
@@ -152,7 +152,7 @@ hideall "--sync--"
 # -ii 8CDA 88B2 88B6 8CD8 88C0 88B9 8C20 88B4
 
 # Carnelian Courtyard will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1155/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1155:/ window 10000,0
 3007.3 "--sync--" sync / 14:[^:]*:Durante:88C3:/ window 10,10
 3012.3 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
 3014.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/

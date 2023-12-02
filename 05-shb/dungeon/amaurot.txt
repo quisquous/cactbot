@@ -7,7 +7,7 @@ hideall "--sync--"
 # -p 3CCE:113.5 -ii 3CC6 3CCA 3CC8
 
 # The First Doom will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8B/ window 100,0
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8B:/ window 100,0
 113.5 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/ window 114,9
 122.7 "Meteor Rain" sync / 1[56]:[^:]*:The First Beast:3CC4:/
 132.9 "The Falling Sky" sync / 1[56]:[^:]*:The First Beast:3CC9:/
@@ -38,7 +38,7 @@ hideall "--sync--"
 ### Terminus Bellwether
 # -p 3CCF:523 -ii 465D 3CE4 3CD3 3CD2 3CD5 417D
 # The Second Doom will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8C/ window 500,0
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8C:/ window 500,0
 523.0 "Shrill Shriek" sync / 1[56]:[^:]*:Terminus Bellwether:3CCF:/ window 523,5
 525.0 "--untargetable--"
 525.0 "Adds (N)"
@@ -51,7 +51,7 @@ hideall "--sync--"
 ### Therion
 # -ii 3CD6 3CDD 3CD9 3CDE 3CE1 3CDB 4191 4192 -p 3CE3:1013
 # The Third Doom will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8D/ window 1000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8D:/ window 1000,0
 1013.0 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/ window 1013,10
 1026.2 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
 1042.8 "Therion Charge" sync / 1[56]:[^:]*:Therion:3CDA:/

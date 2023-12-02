@@ -11,7 +11,7 @@ hideall "--start--"
 # -it "Mateus, The Corrupt"
 
 # Crumbling Bridge will be sealed off
-0.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:949/ window 0,1
+0.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:949:/ window 0,1
 # TODO: does this only start when the adds are dead?
 22.6 "--sync--" sync / 14:[^:]*:Mateus, The Corrupt:2633:/ window 30,10
 
@@ -62,7 +62,7 @@ hideall "--start--"
 # -it "Hashmal, Bringer of Order"
 
 # Palace Square will be sealed off
-1000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94C/ window 10000,0
+1000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94C:/ window 10000,0
 1011.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25D8:/ window 20,20
 1015.0 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
 1020.4 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
@@ -174,7 +174,7 @@ hideall "--start--"
 # -it "Rofocale"
 
 # Lesalia Garden Ruins will be sealed off
-2000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94D/ window 10000,0
+2000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94D:/ window 10000,0
 2012.8 "--sync--" sync / 14:[^:]*:Rofocale:2680:/ window 20,20
 2015.8 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/ duration 3.4
 2035.5 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
@@ -290,7 +290,7 @@ hideall "--start--"
 
 ## Phase 1
 # Lesalia Temple Ruins will be sealed off
-4000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94E/ window 10000,0
+4000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94E:/ window 10000,0
 4006.7 "--sync--" sync / 14:[^:]*:Argath Thadalfus:262D:/ window 20,20
 4009.7 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
 4017.9 "Crush Weapon x3" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/

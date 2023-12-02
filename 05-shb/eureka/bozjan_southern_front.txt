@@ -67,9 +67,9 @@ hideall "--sync--"
 
 ### Brionac / 4th Legion Helldiver
 # The Grand Gates will be sealed off
-20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD9/ window 100000,0
+20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD9:/ window 100000,0
 # Eaglesight will be sealed off
-20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8/ window 100000,0
+20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
 # JavaScript will insert a sync to jump to 4th Legion Helldiver if you are on the bottom.
 # Unfortunately, there is nothing in the log to differentiate otherwise.
 
@@ -143,7 +143,7 @@ hideall "--sync--"
 
 # Uncomment this to more easily test this timeline.
 # Eaglesight will be sealed off
-# 30000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8/ window 100000,0
+# 30000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
 
 # Fake intro, where you don't know if you're on the top or the bottom.
 # Don't sync because sometimes these bosses are +/- 3 seconds @_@
@@ -198,7 +198,7 @@ hideall "--sync--"
 
 ### Albeleo the Maleficent
 # Bladesmeet will be sealed off
-40000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD5/ window 100000,0
+40000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD5:/ window 100000,0
 
 
 ### Adrammelech
@@ -207,7 +207,7 @@ hideall "--sync--"
 # note: accursed becoming IV casts have different ability ids the first time through.
 
 # The airship landing will be sealed off
-50000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDA/ window 100000,0
+50000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDA:/ window 100000,0
 50014.3 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
 
 50021.8 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
@@ -285,7 +285,7 @@ hideall "--sync--"
 
 # Phase 1
 # Majesty's Auspice will be sealed off
-60000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDB/ window 100000,0
+60000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDB:/ window 100000,0
 60014.3 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
 60025.9 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
 60033.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/

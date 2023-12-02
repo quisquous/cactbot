@@ -26,7 +26,7 @@ hideall "--sync--"
 # is just a dodge check.
 
 # Trial of Benevolence will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F8/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F8:/ window 10000,0
 1007.0 "--sync--" sync / 14:[^:]*:Shishio:8441:/ window 10000,0
 1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:8441:/
 
@@ -160,7 +160,7 @@ hideall "--sync--"
 # -ii 8502 8504 8555 8504 8545 851D 851E 8584 8585 852F 854B 8257 8549 8554 8628 8544 854E 853E 852B 854C 854A
 
 # Trial of Wisdom will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F9/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F9:/ window 10000,0
 2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8534:/ window 10000,0
 2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
 
@@ -299,7 +299,7 @@ hideall "--sync--"
 # -ii 8507 85EC 85ED 8601 860B 8C28 8607 85FD 8604 8606 8537 8538
 
 # Trial of Responsibility will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10FA/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10FA:/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:860C:/ window 10000,10
 3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:860C:/
 

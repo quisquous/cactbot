@@ -16,7 +16,7 @@ hideall "--sync--"
 # -p 823A:111.3
 
 # Landfast Floe will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CD/ window 100000,0
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CD:/ window 100000,0
 106.3 "--sync--" sync / 14:[^:]*:Lyngbakr:823A:/ window 10,10
 111.3 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
 121.7 "Tidal Breath" sync / 1[56]:[^:]*:Lyngbakr:8240:/
@@ -57,7 +57,7 @@ hideall "--sync--"
 # -p 872D:510
 
 # Cyancap Cavern will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CE/ window 100000,0
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CE:/ window 100000,0
 505.0 "--sync--" sync / 14:[^:]*:Arkas:872D:/ window 10,10
 510.0 "Battle Cry" sync / 1[56]:[^:]*:Arkas:872D:/
 521.3 "Lightning Leap" sync / 1[56]:[^:]*:Arkas:824E:/
@@ -116,7 +116,7 @@ hideall "--sync--"
 # -p 824C:1009.6
 
 # The Deep Below will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CF/ window 100000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CF:/ window 100000,0
 1004.6 "--sync--" sync / 14:[^:]*:Octomammoth:824C:/ window 10,10
 1009.6 "Tidal Roar" sync / 1[56]:[^:]*:Octomammoth:824C:/
 1032.7 "Octostroke" sync / 1[56]:[^:]*:Octomammoth:8243:/
