@@ -2133,7 +2133,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Back Tether on YOU',
             de: 'Zurück-Verbindung auf DIR',
             ja: '自分の後ろに線',
-            cn: '下方连线点名!',
+            cn: '后方连线点名!',
             ko: '선-뒤쪽 대상자',
           },
           leftOnYou: {
@@ -2147,7 +2147,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Front Tether on YOU',
             de: 'Vorne-Verbindung auf DIR',
             ja: '自分の前に線',
-            cn: '上方连线点名!',
+            cn: '前方连线点名!',
             ko: '선-앞쪽 대상자',
           },
           rightOnYou: {
@@ -2161,7 +2161,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Back Tether on ${player}',
             de: 'Zurück-Verbindung auf ${player}',
             ja: '後ろの線: ${player}',
-            cn: '下方连线点 ${player}',
+            cn: '后方连线点 ${player}',
             ko: '선-뒤쪽 ${player}',
           },
           leftOnPlayer: {
@@ -2175,7 +2175,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Front Tether on ${player}',
             de: 'Vorne-Verbindung auf ${player}',
             ja: '前の線: ${player}',
-            cn: '上方连线点 ${player}',
+            cn: '前方连线点 ${player}',
             ko: '선-앞쪽 ${player}',
           },
           rightOnPlayer: {
@@ -2224,7 +2224,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Back Tether (${partners})',
             de: 'Zurück-Verbindung (${partners}))',
             ja: '後ろの線 (${partners})',
-            cn: '下方连线 (和 ${partners})',
+            cn: '后方连线 (和 ${partners})',
             ko: '선-뒤쪽 (${partners})',
           },
           // These are probably impossible.
@@ -2239,7 +2239,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Front Tether (${partners})',
             de: 'Vorne-Verbindung (${partners})',
             ja: '前の線 (${partners})',
-            cn: '上方连线 (和 ${partners})',
+            cn: '前方连线 (和 ${partners})',
             ko: '선-앞쪽 (${partners})',
           },
           rightOnYou: {
