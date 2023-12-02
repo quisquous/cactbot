@@ -7,7 +7,8 @@ hideall "--sync--"
 # -ic "Kamikiri"
 
 # Phase 1: 100% -> 90%, autos + mini busters
-0.0 "Start" sync / 00:0839::The Harutsuge Gate will be sealed off/ window 10000,0
+# Harutsuge Gate will be sealed off
+0.0 "Start" sync / 29:[^:]*:7DC:[^:]*:796:/ window 10000,0
 4.5 "Sharp Strike" sync / 1[56]:[^:]*:Amikiri:1F72:/ window 20,20
 12.7 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
 20.9 "Sharp Strike" #sync / 1[56]:[^:]*:Amikiri:1F72:/
@@ -42,7 +43,8 @@ hideall "--sync--"
 # -ii 1F7E 1F7D
 
 # Phase 1: 100 -> 90%, autos + mini busters
-1000.0 "Start" sync / 00:0839::The Akashio Hall will be sealed off/ window 10000,0
+# Akashio Hall will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:797:/ window 10000,0
 1006.4 "Tornadogenesis" sync / 1[56]:[^:]*:Ruby Princess:1F7F:/ window 20,20
 1013.5 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
 1020.6 "Tornadogenesis" #sync / 1[56]:[^:]*:Ruby Princess:1F7F:/
@@ -116,7 +118,8 @@ hideall "--sync--"
 # -it "Shisui Yohi"
 
 # Phase 1: 100% -> 90%, autos and mini busters
-2000.0 "Start" sync / 00:0839::Shisui Gokagura will be sealed off/ window 10000,0
+# Shisui Gokagura will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:798:/ window 10000,0
 2006.5 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
 2013.6 "Foul Nail" sync / 1[56]:[^:]*:Shisui Yohi:1F87:/
 

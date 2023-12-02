@@ -6,7 +6,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 00:0839::The Excruciationator will be sealed off/ window 0,1
+# The Excruciationator will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:736:/ window 0,1
 7.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/ window 7,3
 10.1 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
 15.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/

@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~~#
 # MINDURUVA #
@@ -12,7 +13,8 @@ hideall "--sync--"
 # -ii 366 6291 6292
 
 ## Fixed-ish opening block
-0.0 "--sync--" sync / 00:0839::Ingenuity's Ingress will be sealed off/ window 0,1
+# Ingenuity's Ingress will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E95:/ window 0,1
 8.9 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/ window 8.9,5
 12.1 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
 17.5 "Manusya Blizzard III" sync / 1[56]:[^:]*:Minduruva:6296:/
@@ -85,7 +87,8 @@ hideall "--sync--"
 # -ii 367
 
 # Opening block
-1000.0 "--sync--" sync / 00:0839::Prosperity's Promise will be sealed off/ window 1000,5
+# Prosperity's Promise will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E96:/ window 1000,5
 1009.3 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 1009.3,5
 1015.7 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
 1019.6 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
@@ -126,7 +129,8 @@ hideall "--sync--"
 # Because we have no idea which sister will die first,
 # we sync aggressively all over the rotation block.
 
-2000.0 "--sync--" sync / 00:0839::Wisdom's Ward will be sealed off/ window 2000,5
+# Wisdom's Ward will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E97:/ window 2000,5
 2002.5 "--sync--" sync / 1[56]:[^:]*:Cinduruva:62BA:/ window 2002.5,2
 2009.8 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/
 2025.6 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/

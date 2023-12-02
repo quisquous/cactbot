@@ -7,7 +7,8 @@
 hideall "Ballistic Missile"
 
 ### Blaster
-0.0 "--sync--" sync / 00:0839::Machinery Bay 67 will be sealed off/ window 1,0
+# Machinery Bay 67 will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B7:/ window 1,0
 7.0 "Brute Force" sync / 1[56]:[^:]*:Blaster:15F2:/ window 10,10
 14.1 "Mind Blast" sync / 1[56]:[^:]*:Blaster:15F3:/
 18.2 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/
@@ -61,7 +62,8 @@ hideall "Ballistic Missile"
 ### Brawler
 # Note: "Brawler Mechanic" drifts relative to attachment depending on type.
 # Brawler Mechanics seem entirely/mostly random?
-1000.0 "--sync--" sync / 00:0839::Machinery Bay 68 will be sealed off/ window 1000,0
+# Machinery Bay 68 will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B8:/ window 1000,0
 1008.8 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:1600:/ window 100,100
 1011.0 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
 1017.2 "Brawler Mechanic" #sync / 1[56]:[^:]*:Brawler:160[2345]:/
@@ -106,7 +108,8 @@ hideall "Ballistic Missile"
 
 
 ### Swindler
-2000.0 "--sync--" sync / 00:0839::Machinery Bay 69 will be sealed off/ window 2000,0
+# Machinery Bay 69 will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B9:/ window 2000,0
 2021.2 "Height" sync / 1[56]:[^:]*:Swindler:160D:/ window 22,7
 2021.2 "Enumeration" sync / 1[56]:[^:]*:Swindler:160F:/
 2029.3 "Bio-Arithmeticks" sync / 1[56]:[^:]*:Swindler:1610:/
@@ -151,7 +154,8 @@ hideall "Ballistic Missile"
 
 
 ### Vortexer
-3000.0 "--sync--" sync / 00:0839::Machinery Bay 70 will be sealed off/ window 3000,0
+# Machinery Bay 70 will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6BA:/ window 3000,0
 3006.7 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1619:/ window 10,10
 3016.8 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:161B:/
 3022.0 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/

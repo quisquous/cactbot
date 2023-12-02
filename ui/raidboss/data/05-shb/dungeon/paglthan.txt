@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 5C52 5C53
 
-0 "Start" sync / 00:0839::The Gathering Ring will be sealed off/ window 0,1
+# Gathering Ring will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:B7B:/ window 0,1
 12.6 "Critical Rip" sync / 1[56]:[^:]*:Amhuluk:5C4E:/ window 12.6,10
 18.8 "--sync--" sync / 1[56]:[^:]*:Amhuluk:5C51:/
 30.2 "Lightning Bolt" sync / 1[56]:[^:]*:Amhuluk:5C4B:/
@@ -49,7 +50,8 @@ hideall "--sync--"
 
 # -ii 5B56 5B50
 
-2000.0 "Start" sync / 00:0839::Sunseat will be sealed off/ window 2000,5
+# Sunseat will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:B7D:/ window 2000,5
 2010.0 "Twisted Scream" sync / 1[56]:[^:]*:Lunar Bahamut:5B47:/ window 2010,10
 2015.0 "Upburst x4" # sync / 1[56]:[^:]*:Lunar Nail:605B:/
 2021.6 "Big Burst x4" # sync / 1[56]:[^:]*:Lunar Nail:5B48:/

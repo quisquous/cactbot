@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~#
 # Albion #
@@ -11,7 +12,8 @@ hideall "--sync--"
 
 # -ii 7A7D 7A7E
 
-0.0 "--sync--" sync / 00:0839::The Silvan Throne will be sealed off/ window 0,1
+# The Silvan Throne will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B2:/ window 0,1
 6.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
 10.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
 
@@ -59,7 +61,8 @@ hideall "--sync--"
 
 # -ii 7F71 7A9D
 
-1000.0 "--sync--" sync / 00:0839::The Forum Messorum will be sealed off/ window 1000,1
+# Forum Messorum will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B3:/ window 1000,1
 1010.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/ # manually added for early sync
 1015.2 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
 1016.8 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F6F:/
@@ -130,7 +133,8 @@ hideall "--sync--"
 # -ii 7FB7 7FB5 7FB8
 # -it "Cagnazzo"
 
-2000.0 "--sync--" sync / 00:0839::Deepspine will be sealed off/ window 2000,1
+# Deepspine will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B4:/ window 2000,1
 2015.6 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
 2025.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
 2038.0 "Antediluvian 1" sync / 1[56]:[^:]*:Cagnazzo:7990:/

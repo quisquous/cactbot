@@ -8,7 +8,8 @@ hideall "--sync--"
 
 # -ii 2655
 
-0 "Start" sync / 00:0839::The Green Screams will be sealed off/ window 0,1
+# The Green Screams will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:93A:/ window 0,1
 7.4 "Torpedo" sync / 1[56]:[^:]*:Kelpie:264F:/ window 7.4,5
 15.0 "Rising Seas" sync / 1[56]:[^:]*:Kelpie:2650:/
 26.7 "Gallop" sync / 1[56]:[^:]*:Kelpie:2653:/
@@ -44,7 +45,8 @@ hideall "--sync--"
 
 
 
-1000.0 "Start" sync / 00:0839::A Door Unopened will be sealed off/ window 1000,5
+# A Door Unopened will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:93C:/ window 1000,5
 1009.2 "Mystic Light" sync / 1[56]:[^:]*:The Old One:2657:/
 1015.0 "Mystic Flame" sync / 1[56]:[^:]*:The Old One:2658:/
 1018.1 "Order To Detonate (cast)" sync / 14:[^:]*:The Old One:265B:/ window 18.1,5 duration 19.7
@@ -95,7 +97,8 @@ hideall "--sync--"
 # Hrodric Poisontongue #
 #~~~~~~~~~~~~~~~~~~~~~~#
 
-2000.0 "Start" sync / 00:0839::The Golden Walls Of Ruin will be sealed off/ window 2000,5
+# The Golden Walls of Ruin will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:93E:/ window 2000,5
 2012.6 "Rusting Claw" sync / 1[56]:[^:]*:Hrodric Poisontongue:2661:/ window 2012.6
 2026.2 "Tail Drive" sync / 1[56]:[^:]*:Hrodric Poisontongue:2663:/
 2035.9 "The Spin" sync / 1[56]:[^:]*:Hrodric Poisontongue:2664:/ window 35.9,5

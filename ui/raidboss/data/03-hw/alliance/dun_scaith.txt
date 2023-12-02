@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 1C90 1ABC -ic "Fierce Wind" "Void Sprite"
 
-0 "--sync--" sync / 00:0839::The main deck will be sealed off/ window 0,5
+# Main Deck will be sealed off
+0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:755:/ window 0,5
 6.7 "Spike Of Darkness" sync / 1[56]:[^:]*:Deathgaze Hollow:1E51:/
 11.8 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C91:/
 16.6 "--sync--" sync / 1[56]:[^:]*:Deathgaze Hollow:1C92:/
@@ -115,7 +116,8 @@ hideall "--sync--"
 # -ii 1C97 1CA8 1CA9 1CAB -ic "Abyssal Scythe"
 # -ic "Ferdiad's Fool"
 
-1000.0 "--sync--" sync / 00:0839::The Rostrum will be sealed off/ window 1000,5
+# The Rostrum will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:758:/ window 1000,5
 1014.2 "Black Wind x3" # sync / 1[56]:[^:]*:Ferdiad Hollow:1CAC:/
 1020.3 "Sleight" sync / 1[56]:[^:]*:Ferdiad Hollow:1C99:/
 1028.0 "Wormhole" sync / 1[56]:[^:]*:Ferdiad Hollow:1C9A:/
@@ -186,7 +188,8 @@ hideall "--sync--"
 # -ii 1D9B
 # -ic "Allagan Dreadnaught" "Proto Bit"
 
-2000.0 "--sync--" sync / 00:0839::The Queen's Pride will be sealed off/ window 2000,5
+# The Queen's Pride will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:759:/ window 2000,5
 
 2007.8 "Aether Bend" sync / 1[56]:[^:]*:Proto Ultima:1D99:/
 2018.4 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:Proto Ultima:1D96:/
@@ -245,7 +248,8 @@ hideall "--sync--"
 # -ii 1D2C 1D2D 1D2E 1D30 1DD4 1DD5 1E50
 # -ic Shadowcourt Jester" "Chimera Poppet"
 
-3000.0 "--sync--" sync / 00:0839::The Queen's Graces will be sealed off/ window 3000,5
+# The Queen's Graces will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:75A:/ window 3000,5
 3013.1 "Thirty Thorns" sync / 1[56]:[^:]*:Scathach:1D2B:/
 3030.2 "Thirty Arrows" sync / 1[56]:[^:]*:Scathach:1D2F:/ window 30,5
 3037.4 "Manos" sync / 1[56]:[^:]*:Scathach:1CD3:/ window 30,5

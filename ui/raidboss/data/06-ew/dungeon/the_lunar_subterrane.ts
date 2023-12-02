@@ -166,15 +166,19 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         northeast: {
           en: 'Inner northeast safe',
+          de: 'Innen nordöstlich sicher',
         },
         northwest: {
           en: 'Inner northwest safe',
+          de: 'Innen nordwestlich sicher',
         },
         southeast: {
           en: 'Inner southeast safe',
+          de: 'Innen südöstlich sicher',
         },
         southwest: {
           en: 'Inner southwest safe',
+          de: 'Innen südwestlich sicher',
         },
         unknown: Outputs.unknown,
       },
@@ -293,6 +297,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         avoid: {
           en: 'Away from orbs',
+          de: 'Weg von den Orbs',
           ja: '玉から離れて',
         },
       },
@@ -436,12 +441,12 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetheric Charge': 'magisch(?:e|er|es|en) Sphäre',
         'Damcyan Antlion': 'damcyanisch(?:e|er|es|en) Ameisenlöwe',
         'Dark Elf': 'Dunkelelf',
         'Durante': 'Durante',
+        'Hexing Staff': 'Stab der Dunkelheit',
         'Stone Pillar': 'Steinsäule',
         'The Bloodied Barbican': 'Schlosspforte',
         'The Carnelian Courtyard': 'Schlossgarten',
@@ -486,6 +491,7 @@ const triggerSet: TriggerSet<Data> = {
         'Damcyan Antlion': 'fourmilion de Damcyan',
         'Dark Elf': 'Elfe noir',
         'Durante': 'Durante',
+        'Hexing Staff': 'canne des ténèbres',
         'Stone Pillar': 'colonne',
         'The Bloodied Barbican': 'Portes du château de Baron',
         'The Carnelian Courtyard': 'Cour du château de Baron',
@@ -528,6 +534,7 @@ const triggerSet: TriggerSet<Data> = {
         'Damcyan Antlion': 'ダムシアン・アントリオン',
         'Dark Elf': 'ダークエルフ',
         'Durante': 'ドゥランテ',
+        'Hexing Staff': '闇の杖',
         'Stone Pillar': '石柱',
         'The Bloodied Barbican': 'バロン城正門',
         'The Carnelian Courtyard': 'バロン城中庭',

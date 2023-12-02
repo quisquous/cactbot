@@ -4,7 +4,8 @@ hideall "--sync--"
 ### Magitek Rearguard
 # -ii 209F 20A0
 # boss will walk center before using 209D Cermet Pile, causes timeline drift
-0 "Start" sync / 00:0839::The Third Armory will be sealed off/
+# The Third Armory will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:7C1:/
 7.4 "Cermet Pile" sync / 1[56]:[^:]*:Magitek Rearguard:209D:/ window 10,10
 15.0 "Garlean Fire" sync / 1[56]:[^:]*:Magitek Rearguard:209E:/
 30.6 "Magitek Ray" sync / 1[56]:[^:]*:Rearguard Bit:20A1:/
@@ -47,7 +48,8 @@ hideall "--sync--"
 ### Magitek Hexadrone
 # -ii 20A4 20A6 20A7 2447
 # boss does not re-center
-1000 "Start" sync / 00:0839::The Training Grounds will be sealed off/ window 1000,0
+# Training Grounds will be sealed off
+1000 "Start" sync / 29:[^:]*:7DC:[^:]*:7C2:/ window 1000,0
 1010.6 "Circle Of Death" sync / 1[56]:[^:]*:Magitek Hexadrone:20A2:/
 1018.9 "2-Tonze Magitek Missile" sync / 1[56]:[^:]*:Magitek Hexadrone:20A3:/
 1024.1 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
@@ -88,7 +90,8 @@ hideall "--sync--"
 ### Hypertuned Grynewaht
 # -ii 20A9 20AB 20AC 20AE 20A7 2447
 # boss will walk center on 20B0 and stay center for 20AA Gunsaw, causes timeline drift
-2000 "Start" sync / 00:0839::The Hall Of The Scarlet Swallow will be sealed off/ window 2000,0
+# Hall of the Scarlet Swallow will be sealed off
+2000 "Start" sync / 29:[^:]*:7DC:[^:]*:7C3:/ window 2000,0
 2009.4 "Chainsaw" duration 5.5 sync / 1[56]:[^:]*:Hypertuned Grynewaht:20A8:/
 2022.7 "--center--"
 2022.7 "Delay-Action Charge" sync / 1[56]:[^:]*:Hypertuned Grynewaht:20AD:/ window 10,10 # boss walks center before using

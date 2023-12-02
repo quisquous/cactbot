@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~~~~~~~~#
 # EVIL DREAMER(s) #
@@ -15,7 +16,8 @@ hideall "--sync--"
 # Phase pushes here push when adds are all dead.
 # Hard to tell if there's a time based push, but have seen it push when some adds still alive?
 
-1000.0 "--sync--" sync / 00:0839::Penitence will be sealed off/ window 10000,0
+# Penitence will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1058:/ window 10000,0
 
 1200.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73B8:/ window 200,0
 1208.0 "Dark Vision" sync / 1[56]:[^:]*:Evil Dreamer:73B8:/
@@ -47,7 +49,8 @@ hideall "--sync--"
 
 # TODO: Beatific Scorn is 747 + 5/8/4/7, or 3/8/6/7, are these directions??
 
-2000.0 "--sync--" sync / 00:0839::The Seat Of The Foremost will be sealed off/ window 10000,0
+# Seat of the Foremost will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1059:/ window 10000,0
 2011.3 "--middle--" sync / 1[56]:[^:]*:Beatrice:747C:/
 2016.5 "Eye of Troia" sync / 1[56]:[^:]*:Beatrice:747A:/
 2022.5 "Death Foreseen" sync / 1[56]:[^:]*:Beatrice:747D:/
@@ -103,7 +106,8 @@ hideall "--sync--"
 # -ii 7632 7634 7618 7619 7637 7627 7628 7629
 # -it "Scarmiglione"
 
-3000.0 "--sync--" sync / 00:0839::The Garden Of Epopts will be sealed off/ window 10000,0
+# The Garden of Epopts will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:105A:/ window 10000,0
 3005.1 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:7631:/ window 10,10
 3009.1 "Cursed Echo" sync / 1[56]:[^:]*:Scarmiglione:7631:/
 3016.3 "--sync--" sync / 1[56]:[^:]*:Scarmiglione:761D:/

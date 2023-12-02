@@ -10,7 +10,8 @@ hideall "--sync--"
 # to have a little bit of leeway on them as the bosses might swim around more.
 # This is maybe like +/- 1-2 seconds?
 
-100.0 "--sync--" sync / 00:0839::Ichthyology will be sealed off/ window 100,0
+# Ichthyology will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BC0:/ window 100,0
 110.5 "Protolithic Puncture" sync / 1[56]:[^:]*:Cladoselache:3E04:/ window 111,8
 119.5 "Tidal Guillotine" sync / 1[56]:[^:]*:Cladoselache:3E08:/
 128.7 "--2x targetable--" sync / 22:........:Doliodus:........:Doliodus:01/
@@ -55,7 +56,8 @@ hideall "--sync--"
 
 ### Morbol Marquis
 # -p 3E16:508.5 -ii 3E11 3E14
-500.0 "--sync--" sync / 00:0839::Phytobiology will be sealed off/ window 500,0
+# Phytobiology will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BC1:/ window 500,0
 505.0 "--sync--" sync / 1[56]:[^:]*:Morbol Marquis:3E14:/ window 505,5
 508.5 "Lash" sync / 1[56]:[^:]*:Morbol Marquis:3E16:/
 516.1 "Sap Shower" sync / 1[56]:[^:]*:Morbol Marquis:3E15:/
@@ -105,7 +107,8 @@ hideall "--sync--"
 
 ### Quetzalcoatl
 # -ii 3E1A 3E1B 3E22 3E20 -p 3E23:1008.2
-1000.0 "--sync--" sync / 00:0839::Phantomology will be sealed off/ window 1000,0
+# Phantomology will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BC2:/ window 1000,0
 1008.2 "Shockbolt" sync / 1[56]:[^:]*:Quetzalcoatl:3E23:/ window 1010,5
 1017.9 "Thunderbolt" sync / 1[56]:[^:]*:Quetzalcoatl:3E24:/
 1031.4 "Thunderstorm" sync / 1[56]:[^:]*:Quetzalcoatl:3E1C:/

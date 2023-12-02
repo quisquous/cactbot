@@ -5,7 +5,8 @@ hideall "--sync--"
 
 ### Forgiven Dissonance
 # -p 3DC5:112
-100.0 "--sync--" sync / 00:0839::The Wound will be sealed off/ window 100,0
+# The Wound will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:CD4:/ window 100,0
 112.0 "The Path Of Light" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC5:/ window 112,0
 120.4 "Brazen Bull" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC9:/
 126.5 "Gibbet Cage" sync / 1[56]:[^:]*:Forgiven Dissonance:3DC8:/
@@ -46,7 +47,8 @@ hideall "--sync--"
 
 ### Tesleen, the Forgiven
 # -ii 3DD6 3DD3 -p 3DCF:513.5
-500.0 "--sync--" sync / 00:0839::The Auction will be sealed off/ window 500,0
+# The Auction will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:CD5:/ window 500,0
 513.5 "The Tickler" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DCF:/ window 514,5
 523.6 "Scold's Bridle" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD0:/
 533.8 "Fevered Flagellation" sync / 1[56]:[^:]*:Tesleen, the Forgiven:3DD5:/
@@ -76,7 +78,8 @@ hideall "--sync--"
 
 ### Philia
 # -ii 3DDD 3DDF 3DDE 3DDC 3DDB 3DE1 3DE0 3DE9 4196 3DE5 4181 -p 3DD8:1012.5
-1000.0 "--sync--" sync / 00:0839::The manor house courtyard will be sealed off/ window 1000,0
+# The Manor House Courtyard will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:CD7:/ window 1000,0
 1012.5 "Scavenger's Daughter" sync / 1[56]:[^:]*:Philia:3DD8:/ window 1012.5,10
 1022.8 "Head Crusher" sync / 1[56]:[^:]*:Philia:3DD7:/
 1032.9 "Pendulum Tank" sync / 1[56]:[^:]*:Philia:4189:/

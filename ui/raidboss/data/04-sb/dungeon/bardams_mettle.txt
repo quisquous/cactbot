@@ -9,7 +9,8 @@ hideall "Reconstruct"
 
 # -ic "Steppe Coeurl" "Steppe Sheep" "Steppe Yamaa"
 
-0 "Start" sync / 00:0839::Bardam's Hunt will be sealed off/
+# Bardam's Hunt will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B8:/
 11.7 "Heave" sync / 1[56]:[^:]*:Garula:1EF7:/ window 11.7,5
 20.9 "--sync--" sync / 1[56]:[^:]*:Garula:1EF8:/
 22.4 "Crumbling Crust" sync / 1[56]:[^:]*:Garula:1F13:/
@@ -32,7 +33,8 @@ hideall "Reconstruct"
 
 # -ii 1EFE 2578 2579 257A 257E 257B
 
-1000.0 "Start" sync / 00:0839::.*Rebirth of Bardam the Brave will be sealed off/ window 1000,5
+# The Rebirth of Bardam the Brave will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B9:/ window 1000,5
 1007.8 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/ window 7.8,5
 1014.1 "Magnetism" sync / 1[56]:[^:]*:Hunter Of Bardam:1F08:/
 1020.3 "Tremblor" sync / 1[56]:[^:]*:Bardam:257C:/
@@ -69,7 +71,8 @@ hideall "Reconstruct"
 
 # -ii 1F0B 1F0E
 
-2000.0 "Start" sync / 00:0839::.*Voiceless Muse will be sealed off/ window 2000,5
+# The Voiceless Muse will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7BA:/ window 2000,5
 2008.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
 2015.2 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/
 2023.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/

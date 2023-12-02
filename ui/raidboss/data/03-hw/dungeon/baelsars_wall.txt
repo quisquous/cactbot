@@ -15,7 +15,8 @@ hideall "--sync--"
 # When solo, the second Missile is skipped and the timeline just keeps on.
 # We sync on Magitek Ray and hope for the best. It's all bad.
 
-0 "Start" sync / 00:0839::Via Praetoria will be sealed off/ window 0,1
+# Via Praetoria will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:746:/ window 0,1
 10.5 "Magitek Claw" sync / 1[56]:[^:]*:Magitek Predator:1CB2:/
 26.8 "Magitek Ray" sync / 1[56]:[^:]*:Magitek Predator:1CB3:/
 34.1 "Magitek Missile" sync / 1[56]:[^:]*:Magitek Predator:1CB4:/
@@ -37,7 +38,8 @@ hideall "--sync--"
 
 # -ii 1CB7 1CBA
 
-1000.0 "Start" sync / 00:0839::The Magitek Installation will be sealed off/ window 1000,5
+# The Magitek Installation will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:747:/ window 1000,5
 1007.1 "Magitek Cannon" sync / 1[56]:[^:]*:Armored Weapon:1CB8:/ window 7.1,5
 1013.2 "Launcher" sync / 1[56]:[^:]*:Armored Weapon:1CBC:/
 1019.4 "Dynamic Sensory Jammer" sync / 1[56]:[^:]*:Armored Weapon:1CB9:/ duration 6
@@ -81,8 +83,8 @@ hideall "--sync--"
 # THE GRIFFIN #
 #~~~~~~~~~~~~~#
 
-
-2000.0 "Start" sync / 00:0839::The Airship Landing will be sealed off/ window 2000,5
+# The Airship Landing will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:748:/ window 2000,5
 2006.1 "Dull Blade" sync / 1[56]:[^:]*:The Griffin:1CC1:/ window 6.1,5
 2012.2 "Beak Of The Griffin" sync / 1[56]:[^:]*:The Griffin:1CC3:/
 2019.3 "Flash Powder" sync / 1[56]:[^:]*:The Griffin:1CC4:/

@@ -6,7 +6,8 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~#
 
 # -ii 10E1
-0.0 "--sync--" sync / 00:0839::Analysis and Proving will be sealed off/
+# Analysis and Proving will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:63E:/
 6.3 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ window 6.3,5
 
 13.4 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/ window 13.4,2.5
@@ -113,7 +114,8 @@ hideall "--sync--"
 # It's not included at phase starts because each start is accompanied
 # by a unique version of the skill as well.
 
-1000.0 "--sync--" sync / 00:0839::Evaluation and Authentication will be sealed off/ window 1000,5
+# Evaluation and Authentication will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:63F:/ window 1000,5
 
 # Cobra is immediate
 1008.6 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:10E8:/ window 9,9

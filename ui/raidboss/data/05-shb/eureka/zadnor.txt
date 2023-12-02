@@ -8,7 +8,8 @@ hideall "--sync--"
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
 0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 # TODO: fill in CEs
 # The idea with each of them is that you have at most two minutes of standing
@@ -73,7 +74,8 @@ hideall "--sync--"
 #
 # -p 5E7C:21016 5E7E:21300
 # -ii 61BE 5E7D 5E75 5E88 5E8A 5E79 5E7B
-#21000.0 "--sync--" sync / 00:0839::The loading dock will be sealed off/ window 100000,0
+# Loading Dock will be sealed off
+#21000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E5C:/ window 100000,0
 21016.0 "Pyrokinesis" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E7C:/ window 100000,0
 21028.2 "--sync--" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6C:/
 21034.3 "Time Eruption 1" sync / 1[56]:[^:]*:Sartauvoir The Inferno:5E6E:/
@@ -123,7 +125,8 @@ hideall "--sync--"
 # -p 5F12:22016 5F1F:22305 5F26:22512
 # -ii 6226 6227 6228 6229 5F13 5F1D 5F20 5F15 5F1C 5F29 5F31
 
-#22000.0 "--sync--" sync / 00:0839::The flagship landing will be sealed off/ window 100000,0
+# Flagship Landing will be sealed off
+#22000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E5B:/ window 100000,0
 
 # Blackburn
 22011.0 "--sync--" sync / 14:[^:]*:4Th Legion Blackburn:5F12:/ window 100000,0
@@ -185,7 +188,8 @@ hideall "--sync--"
 ### Cuchulainn
 # -p 5C8F:23013.3
 # -ii 5C89 5C90 5C83 5C84 5C85 6179 614E 5C8C 5C87
-23000.0 "--sync--" sync / 00:0839::Magitek Development will be sealed off/ window 100000,0
+# Magitek Development will be sealed off
+23000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E5E:/ window 100000,0
 23013.3 "Putrified Soul" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8F:/
 23022.4 "Burgeoning Dread" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C88:/
 23043.7 "Putrified Soul" sync / 1[56]:[^:]*:4Th-Make Cuchulainn:5C8F:/
@@ -231,7 +235,8 @@ hideall "--sync--"
 # -p 5DC5:24022.9 5DC6:24306
 # -it "Saunion"
 # -ii 5DB6 5DB8 6150 5DC7 60C4 5DCF 5DB3 5DD2 61E4 61E5
-24000.0 "--sync--" sync / 00:0839::The greater hold will be sealed off/ window 100000,0
+# The Greater Hold will be sealed off
+24000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E60:/ window 100000,0
 24011.7 "Magitek Halo/Magitek Crossray" sync / 1[56]:[^:]*:Saunion:5DB[57]:/
 24022.9 "High-Powered Magitek Ray" sync / 1[56]:[^:]*:Saunion:5DC5:/
 24034.1 "Magitek Crossray/Magitek Halo" sync / 1[56]:[^:]*:Saunion:5DB[57]:/
@@ -324,7 +329,8 @@ hideall "--sync--"
 ### The Diablo Armament
 # -p 5CC6:25013 5CB7:25805
 # -ii 6143 61A2 5CC7 61C4 5CB2 5CB8 5CC5 6092 6091 6093 5CC3 5CB4 5CB5 5CC1 5CAD 5CA1 5CA2
-25000.0 "--sync--" sync / 00:0839::The fallen ring will be sealed off/ window 100000,0
+# The Fallen Ring will be sealed off
+25000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E61:/ window 100000,0
 25013.0 "Aetheric Explosion" sync / 1[56]:[^:]*:The Diablo Armament:5CC6:/
 25023.4 "Aetherochemical Laser 1" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/
 25027.5 "Aetherochemical Laser 2" sync / 1[56]:[^:]*:The Diablo Armament:5CA[45]:/

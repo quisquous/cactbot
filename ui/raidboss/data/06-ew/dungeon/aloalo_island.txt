@@ -4,7 +4,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~~~~~~~~~~~#
 # Quaqua (left path) #
@@ -13,7 +14,8 @@ hideall "--sync--"
 # -p 8B94:1012.4
 # -ii 8B89 8B98 8B9C 8B9D 8B93
 
-#1000.0 "--sync--" sync / 00:0839::Ketulu Cove will be sealed off/ window 10000,0
+# Ketulu Cove will be sealed off
+#1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1128:/ window 10000,0
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1128:/ window 10000,0
 1006.1 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
 1007.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
@@ -152,7 +154,8 @@ hideall "--sync--"
 # -p 8AA5:2014
 # -ii 8A78 8AA6 8A7A 8A7B 8A81 8D1D 8AA4 8A89 8A8A 8A82 8A83 8A8C 8D10 8A94 8A98 8A99 8A96
 
-#2000.0 "--sync--" sync / 00:0839::Seasong's Rest will be sealed off/ window 10000,0
+# Seasong's Rest will be sealed off
+#2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112B:/ window 10000,0
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112B:/ window 10000,0
 2009.0 "--sync--" sync / 14:[^:]*:Ketuduke:8AA5:/
 2014.0 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AA5:/
@@ -311,7 +314,8 @@ hideall "--sync--"
 # -p 8B94:3013.4
 # -ii 8B89 8BA2 8CD1 8B93
 
-#3000.0 "--sync--" sync / 00:0839::The Elder Stump will be sealed off/ window 10000,0
+# Elder Stump will be sealed off
+#3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1129:/ window 10000,0
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1129:/ window 10000,0
 
 3007.0 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
@@ -430,7 +434,8 @@ hideall "--sync--"
 # -p 887F:4016.2
 # -ii 8878 8879 8873 8CDD
 
-#4000.0 "--sync--" sync / 00:0839::The Origin Spring will be sealed off/ window 10000,0
+# The Origin Spring will be sealed off
+#4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112C:/ window 10000,0
 4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112C:/ window 10000,0
 4011.2 "--sync--" sync / 14:[^:]*:Lala:887F:/ window 10,10
 4016.2 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:887F:/
@@ -598,7 +603,8 @@ hideall "--sync--"
 # -p 8B94:5014.1
 # -ii 8B89 8B93
 
-#5000.0 "--sync--" sync / 00:0839::The ancient forum will be sealed off/ window 10000,0
+# Ancient Forum will be sealed off
+#5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112A:/ window 10000,0
 5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112A:/ window 10000,0
 5007.8 "--middle--" sync / 1[56]:[^:]*:Quaqua:8B8F:/
 5009.1 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
@@ -725,7 +731,8 @@ hideall "--sync--"
 # -p 892E:6026.6
 # -ii 8A04 8932 892C 8986 8925 8926 8981 8935 89F6 89F7 8CEB 89FB 8941 8942 8943
 
-#6000.0 "--sync--" sync / 00:0839::The Slumbering Canopy will be sealed off/ window 10000,0
+# Slumbering Canopy will be sealed off
+#6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112D:/ window 10000,0
 6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112D:/ window 10000,0
 # Can be triggered by players earlier
 6004.0 "Hidden Mine" #sync / 1[56]:[^:]*:Mine:892D:/
@@ -918,7 +925,8 @@ hideall "--sync--"
 # -p 87BC:7011.8
 # -ii 87C1 87C3 8C34 8C35 8D38 8E47
 
-#7000.0 "--sync--" sync / 00:0839::Kairimai Loquloqai will be sealed off/ window 10000,0
+# Kairimai Loquloqai will be sealed off
+#7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112E:/ window 10000,0
 7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:11DE:/ window 10000,0
 7006.8 "--sync--" sync / 14:[^:]*:Loquloqui:87BC:/ window 10,10
 7011.8 "Long-lost Light" sync / 1[56]:[^:]*:Loquloqui:87BC:/

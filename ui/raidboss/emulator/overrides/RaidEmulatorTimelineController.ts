@@ -1,5 +1,5 @@
 import { UnreachableCode } from '../../../../resources/not_reached';
-import { LogEvent } from '../../../../types/event';
+import { EventResponses, LogEvent } from '../../../../types/event';
 import { LooseTimelineTrigger } from '../../../../types/trigger';
 import { TimelineController } from '../../timeline';
 import { TimelineReplacement, TimelineStyle } from '../../timeline_parser';
@@ -63,12 +63,17 @@ export default class RaidEmulatorTimelineController extends TimelineController {
     throw new UnreachableCode();
   }
 
+  public override OnNetLog(_e: EventResponses['LogLine']): void {
+    throw new UnreachableCode();
+  }
+
   public onEmulatorLogEvent(logs: LineEvent[]): void {
     if (!this.activeTimeline)
       return;
 
     for (const line of logs) {
       this.activeTimeline.OnLogLine(line.convertedLine, line.timestamp);
+      this.activeTimeline.OnNetLogLine(line.networkLine, line.timestamp);
       // Only call _OnUpdateTimer if we have a timebase from the previous call to OnLogLine
       // This avoids spamming the console with a ton of messages
       if (this.activeTimeline.timebase)

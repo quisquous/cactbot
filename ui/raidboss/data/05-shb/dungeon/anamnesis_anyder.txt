@@ -6,7 +6,8 @@ hideall "--sync--"
 ### Unknown
 # -p 4B69:1013.5 4E4B:1313
 # -ii 4B78 4B6D 4B6F
-1000.0 "--sync--" sync / 00:0839::Katharsis will be sealed off/ window 1000,0
+# Katharsis will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D86:/ window 1000,0
 1013.5 "Fetid Fang" sync / 1[56]:[^:]*:Unknown:4B69:/ window 1014,10
 1032.3 "Scrutiny" sync / 1[56]:[^:]*:Unknown:4E25:/
 1034.3 "Explosion" sync / 1[56]:[^:]*:Sinister Bubble:4B6E:/
@@ -63,7 +64,8 @@ hideall "--sync--"
 ### Kyklops
 # -p 4B58:2011
 # -ii 4B53 4B5C 4B5B
-2000.0 "--sync--" sync / 00:0839::Doxa will be sealed off/ window 2000,0
+# Doxa will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D87:/ window 2000,0
 2011.0 "The Final Verse" sync / 1[56]:[^:]*:Kyklops:4B58:/ window 2012,5
 2020.6 "Swing/Swipe/Cyclone" sync / 1[56]:[^:]*:Kyklops:4B5[457]:/
 2030.9 "Hammer/Blade Mark" sync / 1[56]:[^:]*:Kyklops:4B5[9A]:/
@@ -94,7 +96,8 @@ hideall "--sync--"
 ### Rukshs Dheem
 # -p 4B8C:3013
 # -ii 4B7C 4B7E 4B8A 4B86 4B85 4B80 4B82 4B87
-3000.0 "--sync--" sync / 00:0839::Noesis will be sealed off/ window 3000,0
+# Noesis will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D89:/ window 3000,0
 3013.0 "Bonebreaker" sync / 1[56]:[^:]*:Rukshs Dheem:4B8C:/ window 3013,10
 3019.2 "Swift Shift" sync / 1[56]:[^:]*:Rukshs Dheem:4B83:/
 3026.5 "Seabed Ceremony" sync / 1[56]:[^:]*:Rukshs Dheem:4B7B:/

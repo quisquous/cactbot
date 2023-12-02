@@ -8,7 +8,8 @@ hideall "--sync--"
 
 ### Faust Z
 # -p 1A2B:1006.5
-1000.0	"--sync--"	sync / 00:0839::The Cranial Plate will be sealed off/ window 10000
+# The Cranial Plate will be sealed off
+1000.0	"--sync--"	sync / 29:[^:]*:7DC:[^:]*:72F:/ window 10000
 1006.5 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/ window 1007,2.5
 1013.6 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
 1020.7 "Kaltstrahl" sync / 1[56]:[^:]*:Faust Z:1A2B:/
@@ -47,7 +48,8 @@ hideall "--sync--"
 # Lava doesn't show up in the log either.
 
 # Phase 1
-2000.0	"--sync--"	sync / 00:0839::Life Support will be sealed off/ window 10000
+# Life Support will be sealed off
+2000.0	"--sync--"	sync / 29:[^:]*:7DC:[^:]*:730:/ window 10000
 2010.0 "Stockpile" sync / 1[56]:[^:]*:Refurbisher 0:1A38:/ window 2010,5
 2012.1 "Right Arm Reassembly" sync / 1[56]:[^:]*:Refurbisher 0:1A2E:/
 2014.3 "Power Generator x2 (NE)"

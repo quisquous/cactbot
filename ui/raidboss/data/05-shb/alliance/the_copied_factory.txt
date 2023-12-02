@@ -6,7 +6,8 @@ hideall "--sync--"
 ### Serial-jointed Command Model
 # -ic 2P -p 48B2:108.5 -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
 
-100.0 "--sync--" sync / 00:0839::Warehouse A will be sealed off/ window 100,0
+# Warehouse A will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D4C:/ window 100,0
 108.5 "Systematic Siege" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B2:/ window 108.5,10
 122.6 "Clanging Blow" sync / 1[56]:[^:]*:Serial-jointed Command Model:48CE:/
 134.1 "Energy Bombardment" sync / 1[56]:[^:]*:Serial-jointed Command Model:48B8:/
@@ -55,7 +56,8 @@ hideall "--sync--"
 
 ### Trash
 # -ic 2P -ii 491D 491C -p 491B:715.5
-600.0 "--sync--" sync / 00:0839::Warehouse B will be sealed off/ window 600,0
+# Warehouse B will be sealed off
+600.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D4D:/ window 600,0
 700.0 "--sync--" sync / 22:........:Small Flyer:........:Small Flyer:01/ window 100,0
 715.5 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/ window 116,2.5
 721.4 "Frontal Somersault" sync / 1[56]:[^:]*:Small Biped:491B:/
@@ -108,7 +110,8 @@ hideall "--sync--"
 # six possibilities you're in, then collapse back to three timelines, and then
 # branch out to six timelines again for the second half, but it'd be, well, a lot.
 
-900.0 "--sync--" sync / 00:0839::Quality assurance will be sealed off/ window 900,0
+# Quality Assurance will be sealed off
+900.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D4E:/ window 900,0
 913.0 "Laser-Resistance Test x3" sync / 1[56]:[^:]*:Hobbes:4805:/ duration 2.3 window 913,10
 
 924.5 "--sync--" sync / 1[56]:[^:]*:Hobbes:480A:/
@@ -195,7 +198,8 @@ hideall "--sync--"
 
 ### Goliath Tank
 # -ic 2P -p 4932:1509 493D:1800 -ii 4937 4934 4938 4935 4939 4936 493A 4933 470D 4943 493E
-1500.0 "--sync--" sync / 00:0839::Warehouse C will be sealed off/ window 1500,0
+# Warehouse C will be sealed off
+1500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D50:/ window 1500,0
 1509.0 "Energy Ring" sync / 1[56]:[^:]*:Goliath Tank:4932:/ duration 15.1 window 1509,10
 1516.9 "Exploding Tethers"
 1526.0 "Convenient Self-Destruction" sync / 1[56]:[^:]*:Medium Exploder:493C:/
@@ -229,7 +233,8 @@ hideall "--sync--"
 # TODO: are the Marx Smashes after the crushers more specific?
 # One log has 472[6,7,7,A] as the four.  Left as all random for now.
 
-2000.0 "--sync--" sync / 00:0839::The forward deck will be sealed off/ window 2000,0
+# Forward Deck will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D52:/ window 2000,0
 2015.7 "Marx Smash L/R" sync / 1[56]:[^:]*:Engels:472[67]:/ window 2015.7,5
 2029.6 "Marx Smash R/L" sync / 1[56]:[^:]*:Engels:472[67]:/
 2044.4 "Precision Guided Missile" sync / 1[56]:[^:]*:Engels:4754:/
@@ -321,7 +326,8 @@ hideall "--sync--"
 
 ### 9S
 # -ic 2P -p 48F5:3013.3 48E7:3310 48EB:3510 -ii 49C4 48F9 48F7 48DC 485E 48E3 48E6 48E0 48EC 48A5 48A7 48D6 4ABE
-3000.0 "--sync--" sync / 00:0839::The rear deck will be sealed off/ window 3000,0
+# Rear Deck will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D53:/ window 3000,0
 3013.3 "Neutralization" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F5:/ window 3013.3,10
 3021.5 "Laser Saturation" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:48F6:/
 3030.2 "Laser Turret" sync / 1[56]:[^:]*:9S-Operated Walking Fortress:4A74:/

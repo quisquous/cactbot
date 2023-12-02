@@ -8,7 +8,8 @@ hideall "Rite Of The Sacrament"
 
 ### Forgiven Cruelty
 # -p 3CFB:113 -ii 3CFE 3CFD 4301 3CFF
-100.0 "--sync--" sync / 00:0839::The Perished Path will be sealed off/ window 100,0
+# The Perished Path will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB6:/ window 100,0
 113.0 "Rake" sync / 1[56]:[^:]*:Forgiven Cruelty:3CFB:/ window 115,5
 121.2 "Lumen Infinitum" sync / 1[56]:[^:]*:Forgiven Cruelty:41B2:/
 138.3 "Typhoon Wing" sync / 1[56]:[^:]*:Forgiven Cruelty:3D00:/
@@ -44,7 +45,8 @@ hideall "Rite Of The Sacrament"
 
 ### Forgiven Whimsy
 # -p 3D0B:514.5 -ii 3D0C 3D07 3D0A
-500.0 "--sync--" sync / 00:0839::The White Gate will be sealed off/ window 500,0
+# The White Gate will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB7:/ window 500,0
 514.5 "Sacrament Of Penance" sync / 1[56]:[^:]*:Forgiven Whimsy:3D0B:/ window 515,5
 518.3 "Reformation" sync / 1[56]:[^:]*:Forgiven Whimsy:3D04:/
 530.4 "Exegesis" sync / 1[56]:[^:]*:Forgiven Whimsy:425C:/
@@ -80,7 +82,8 @@ hideall "Rite Of The Sacrament"
 
 ### Forgiven Obscenity
 # -ii 3D15 4669 3D19 3D19 3D21 3D13 41CE 3D1B 3D20 -p 3D14:1014
-1000.0 "--sync--" sync / 00:0839::The Winding Flare will be sealed off/ window 1000,0
+# The Winding Flare will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB8:/ window 1000,0
 1014.0 "Orison Fortissimo" sync / 1[56]:[^:]*:Forgiven Obscenity:3D14:/ window 1014,5
 1023.2 "Divine Diminuendo" sync / 1[56]:[^:]*:Forgiven Obscenity:3D16:/
 1032.4 "--sync--" sync / 1[56]:[^:]*:Forgiven Obscenity:3D17:/

@@ -10,7 +10,8 @@ hideall "--sync--"
 # -ii 368 1835 1836
 # -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
 
-0 "--sync--" sync / 00:0839::The Queen's Room will be sealed off/
+# The Queen's Room will be sealed off
+0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E0:/
 9.8 "Dark Spike" sync / 1[56]:[^:]*:Arachne Eve:1823:/
 21.6 "Silken Spray" sync / 1[56]:[^:]*:Arachne Eve:1824:/
 30.4 "Arachne Web x3" duration 5 # sync / 1[56]:[^:]*:Arachne Eve:185E:/
@@ -132,7 +133,8 @@ hideall "--sync--"
 
 # -ii 366 17D5 17C1 17D6
 
-1000.0 "--sync--" sync / 00:0839::The Shrine Of The Goetic will be sealed off/ window 1000,5
+# The Shrine of the Goetic will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E3:/ window 1000,5
 1014.2 "Necropurge" sync / 1[56]:[^:]*:Shriveled Talon:17D7:/
 1024.4 "Megiddo Flame" sync / 1[56]:[^:]*:Forgall:17C0:/
 1032.4 "Necropurge" sync / 1[56]:[^:]*:Forgall:17BE:/
@@ -192,7 +194,8 @@ hideall "--sync--"
 #                                                                         V                       |
 # Cube opening block ----> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
 
-2000.0 "--sync--" sync / 00:0839::The Gloriole will be sealed off/ window 2000,5
+# The Gloriole will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E5:/ window 2000,5
 2015.0 "Meteor Headmarkers"
 2024.0 "Meteor Impact" sync / 1[56]:[^:]*:Singularity Fragment:1935:/
 
@@ -322,7 +325,8 @@ hideall "--sync--"
 
 # 1811 and 180D are releasing hair after Haircut and Split End cleaves
 
-4000.0 "--sync--" sync / 00:0839::The Tomb Of The Nullstone will be sealed off/ window 4000,5
+# Tomb of the Nullstone will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E6:/ window 4000,5
 4004.1 "Bloodied Nail x4" # sync / 1[56]:[^:]*:Calofisteri:181F:/
 4018.8 "Coif Change" sync / 1[56]:[^:]*:Calofisteri:180[AE]:/ window 18.8,5
 4027.8 "Haircut" sync / 1[56]:[^:]*:Calofisteri:180[BF]:/

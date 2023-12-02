@@ -5,7 +5,8 @@ hideall "--sync--"
 
 # Use zone-unseal Reset line
 # Trigger set contains 'resetWhenOutOfCombat: false'
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~#
 # ACHAMOTH #
@@ -15,7 +16,8 @@ hideall "--sync--"
 # 15C4 Proboscis does little damage and makes this encounter hard to time, so ignored.
 # Timings seem to get off if the boss moves around, so extra syncs are added.
 
-1000.0 "--sync--" sync / 00:0839::The Tower Of White will be sealed off/ window 10000,0
+# Tower of White will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:541:/ window 10000,0
 1022.7 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
 1044.0 "Psycho Squama" sync / 1[56]:[^:]*:Achamoth:15C6:/
 1055.1 "Neuro Squama" sync / 1[56]:[^:]*:Achamoth:15C5:/
@@ -50,7 +52,8 @@ hideall "--sync--"
 # -it "Winged Lion"
 # -ii 15D1 15D3 15D4 15CF 15CC 15D6 1706 15CD 167B
 
-2000.0 "--sync--" sync / 00:0839::Dark Wings will be sealed off/ window 10000,0
+# Dark Wings will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:698:/ window 10000,0
 2012.0 "Ancient Aero" sync / 1[56]:[^:]*:Winged Lion:15CE:/
 2025.1 "Scratch" sync / 1[56]:[^:]*:Winged Lion:15D5:/
 2033.2 "Ancient Stone" sync / 1[56]:[^:]*:Winged Lion:15D2:/
@@ -115,7 +118,8 @@ hideall "--sync--"
 #~~~~~~~~#
 
 # Phase 1
-3000.0 "--sync--" sync / 00:0839::The Protectorate will be sealed off/ window 10000,0
+# The Protectorate will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:69A:/ window 10000,0
 3007.0 "Glory" sync / 1[56]:[^:]*:Kuribu:15E4:/
 3015.1 "Regen" sync / 1[56]:[^:]*:Kuribu:15DC:/
 3022.2 "Transference" sync / 1[56]:[^:]*:Kuribu:15DE:/

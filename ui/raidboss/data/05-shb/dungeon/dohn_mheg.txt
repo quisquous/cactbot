@@ -5,7 +5,8 @@ hideall "--sync--"
 
 ### Aenc Thon, Lord of the Lingering Gaze
 # -ii 1EDB 22BD -p 2299:112.2
-100.0 "--sync--" sync / 00:0839::Teag Gye will be sealed off/ window 100,0
+# Teag Gye will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B93:/ window 100,0
 
 112.2 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/ window 113,5
 120.4 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/
@@ -33,7 +34,8 @@ hideall "--sync--"
 
 ### Griaule
 # -p 2873:507.5
-500.0 "--sync--" sync / 00:0839::The Atelier will be sealed off/ window 500,0
+# The Atelier will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B96:/ window 500,0
 
 507.5 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/ window 508,5
 518.0 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
@@ -73,7 +75,8 @@ hideall "--sync--"
 
 ### Aenc Thon, Lord of the Lengthsome Gate
 # -p 35A4:1011 34D2:1300 -ii 34EC 3681 3396
-1000.0 "--sync--" sync / 00:0839::The throne room will be sealed off/ window 1000,0
+# The Throne Room will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B98:/ window 1000,0
 
 1011.0 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 1011,5
 1018.2 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/

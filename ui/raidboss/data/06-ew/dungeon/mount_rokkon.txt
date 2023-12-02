@@ -11,7 +11,8 @@ hideall "--sync--"
 # -p 83A9:1011.6 837E:1365.9 838F:1663.8
 # -ii 838A 8391 8382
 
-1000.0 "--sync--" sync / 00:0839::Last Glimpse will be sealed off/ window 10000,0
+# Last Glimpse will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10DC:/ window 10000,0
 1011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
 1021.6 "Art of the Windblossom" sync / 1[56]:[^:]*:Yozakura the Fleeting:8369:/
 1030.7 "Oka Ranman" sync / 1[56]:[^:]*:Yozakura the Fleeting:836E:/
@@ -168,7 +169,8 @@ hideall "--sync--"
 # -p 85AD:2011.9
 # -ii 8597 86D2 878A 85A0 859A 859E 871C 85A4 85A7
 
-2000.0 "--sync--" sync / 00:0839::The Hall Of The Unseen will be sealed off/ window 10000,0
+# Hall of the Unseen will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10DF:/ window 10000,0
 2011.9 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85AD:/
 2022.1 "--middle--" sync / 1[56]:[^:]*:Moko the Restless:85AF:/
 2028.5 "Iai-kasumi-giri" sync / 1[56]:[^:]*:Moko the Restless:8587:/
@@ -418,7 +420,8 @@ hideall "--sync--"
 # -p 83A9:4011.6
 # -ii 8396 8399 839A 839D 839F
 
-4000.0 "--sync--" sync / 00:0839::The Hall Of Temptation will be sealed off/ window 10000,0
+# Hall of Temptation will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10DD:/ window 10000,0
 4011.6 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
 
 # -> door
@@ -536,7 +539,8 @@ hideall "--sync--"
 # -it "Shishu White Baboon"
 # -ii 84D4 8501 84EE 84E6 84E5 84E9 84E0 84FF 84F9 84F7 84F4 84F5
 
-5000.0 "--sync--" sync / 00:0839::The Hall Of Becoming will be sealed off/ window 10000,0
+# Hall of Becoming will be sealed off
+5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10E0:/ window 10000,0
 5012.6 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8500:/
 5017.6 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8500:/
 
@@ -715,7 +719,8 @@ hideall "--sync--"
 # -p 83A9:6012
 # -ii 83A2 83A3 83A8 8382 838A
 
-6000.0 "--sync--" sync / 00:0839::Autumn Rivers' End will be sealed off/ window 10000,0
+# Autumn Rivers' End will be sealed off
+6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10DE:/ window 10000,0
 6012.0 "Glory Neverlasting" sync / 1[56]:[^:]*:Yozakura the Fleeting:83A9:/
 
 # -> no dogu
@@ -838,7 +843,8 @@ hideall "--sync--"
 # -p 83F5:7015.7
 # -ii 86DE 83DA 83DE 83DF 83E0 83E3 83E4 83E5 83E2 87F9 87FB 83DB 87A3 87A4 87A6 87AB 83ED 872B 83F2
 
-7000.0 "--sync--" sync / 00:0839::Stone's Silence will be sealed off/ window 10000,0
+# Stone's Silence will be sealed off
+7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10E1:/ window 10000,0
 7015.7 "Enkyo" sync / 1[56]:[^:]*:Shishio:83F5:/
 7017.8 "--middle--" sync / 1[56]:[^:]*:Shishio:83F7:/
 7022.0 "Stormcloud Summons" sync / 1[56]:[^:]*:Shishio:83D7:/
@@ -1020,7 +1026,8 @@ hideall "--sync--"
 # -p 8042:8013
 # -ii 8058 8049 804A 804B 8047
 
-8000.0 "--sync--" sync / 00:0839::The Pond Of Spring Rain will be sealed off/ window 10000,0
+# Pond of Spring Rain will be sealed off
+8000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10E2:/ window 10000,0
 8013.0 "Flagrant Combustion" sync / 1[56]:[^:]*:Enenra:8042:/
 8016.1 "--jump--" sync / 1[56]:[^:]*:Enenra:84C2:/
 8029.9 "Out of the Smoke" sync / 1[56]:[^:]*:Enenra:804C:/

@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 4FCD 4FCE 4FCF 4FD0 4FD5 5015
 
-0 "Start" sync / 00:0839::The Mount Argai Mines will be sealed off/ window 0,1
+# Mount Argai Mines will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBB:/ window 0,1
 9.8 "Spectral Dream" sync / 1[56]:[^:]*:Spectral Thief:4FCB:/ window 9.8,5
 16.9 "Dash" sync / 1[56]:[^:]*:Spectral Thief:4FD3:/
 26.7 "Vacuum Blade" sync / 1[56]:[^:]*:Spectral Thief:506[12]:/
@@ -51,7 +52,8 @@ hideall "--sync--"
 # -ic Mustardseed "Tupaq Amaro" "Nu Mou" Peaseblossom
 # -ii 4F51 4F62 4F64 53B5 53B6 53B7 53B8 53B9 53BA
 
-1000.0 "Start" sync / 00:0839::The Summer Ballroom will be sealed off/ window 1000,5
+# Summer Ballroom will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBC:/ window 1000,5
 1012.8 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/ window 1012.8,5
 1020.0 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
 1030.2 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/ window 30,30
@@ -95,7 +97,8 @@ hideall "--sync--"
 # -ii 5203 5204 5209
 # -ic "Steelarm Cerigg" "Giott The Aleforged" "Lue-Reeq Of The Gilded Bow" "Granson Of The Mournful Blade"
 
-2000.0 "Start" sync / 00:0839::The Illuminated Plaza will be sealed off/ window 2000,5
+# Illuminated Plaza will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBD:/ window 2000,5
 2012.0 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 2012,5
 2024.4 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
 2036.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/

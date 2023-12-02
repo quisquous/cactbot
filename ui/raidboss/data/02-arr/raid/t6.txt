@@ -9,7 +9,8 @@ hideall "--sync--"
 
 ### Phase 1
 0.0 "Start"
-0.0 "--sync--" sync / 00:0839::Scar's Edge will be sealed off/ window 10,10
+# Scar's Edge will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51C:/ window 10,10
 7.5 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/ window 8,8
 11.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
 18.5 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20

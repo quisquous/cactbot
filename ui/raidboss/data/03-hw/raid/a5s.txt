@@ -8,7 +8,8 @@ hideall "Guzzle"
 hideall "Relaxant"
 
 ### Hummel and Friends
-1000.0 "--sync--" sync / 00:0839::The Clevering will be sealed off/ window 1000,0
+# The Clevering will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6AF:/ window 1000,0
 1009.8 "Kaltstrahl x1" sync / 1[56]:[^:]*:Faust:16CC:/ window 10,5
 1018.9 "Kaltstrahl x2" duration 2.1 sync / 1[56]:[^:]*:Faust:16CC:/ window 5,0.5
 #1021.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:16CC:/

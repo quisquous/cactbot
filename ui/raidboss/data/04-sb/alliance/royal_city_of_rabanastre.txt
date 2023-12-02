@@ -10,7 +10,8 @@ hideall "--start--"
 # -ii 2638 2639 2634 263E 2714 273E 263F 2646 2642
 # -it "Mateus, The Corrupt"
 
-0.0 "--start--" sync / 00:0839::The Crumbling Bridge will be sealed off/ window 0,1
+# Crumbling Bridge will be sealed off
+0.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:949:/ window 0,1
 # TODO: does this only start when the adds are dead?
 22.6 "--sync--" sync / 14:[^:]*:Mateus, The Corrupt:2633:/ window 30,10
 
@@ -60,7 +61,8 @@ hideall "--start--"
 # -ii 25C2 25C6 266E
 # -it "Hashmal, Bringer of Order"
 
-1000.0 "--start--" sync / 00:0839::The Palace Square will be sealed off/ window 10000,0
+# Palace Square will be sealed off
+1000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94C:/ window 10000,0
 1011.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25D8:/ window 20,20
 1015.0 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
 1020.4 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
@@ -171,7 +173,8 @@ hideall "--start--"
 # -ii 2681 2682 2684 2677 2678 2679 267A 267B 267C 267D 267E 267F 268C 2672 2673 268B 2686 2687 367 368
 # -it "Rofocale"
 
-2000.0 "--start--" sync / 00:0839::The Lesalia Garden Ruins will be sealed off/ window 10000,0
+# Lesalia Garden Ruins will be sealed off
+2000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94D:/ window 10000,0
 2012.8 "--sync--" sync / 14:[^:]*:Rofocale:2680:/ window 20,20
 2015.8 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/ duration 3.4
 2035.5 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
@@ -286,7 +289,8 @@ hideall "--start--"
 # Note: Coldblood (2625) is ignored because that's when the boss disappears?
 
 ## Phase 1
-4000.0 "--start--" sync / 00:0839::The Lesalia Temple Ruins will be sealed off/ window 10000,0
+# Lesalia Temple Ruins will be sealed off
+4000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94E:/ window 10000,0
 4006.7 "--sync--" sync / 14:[^:]*:Argath Thadalfus:262D:/ window 20,20
 4009.7 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
 4017.9 "Crush Weapon x3" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/

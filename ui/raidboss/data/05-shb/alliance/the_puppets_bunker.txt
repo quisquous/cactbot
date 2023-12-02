@@ -6,7 +6,8 @@ hideall "--sync--"
 ### 813P-Operated Aegis Unit
 # -p 508D:112.8 -ii 5074 5075 5076 5091 5092 5081 5099 507E 5090 51BC
 
-100.0 "--sync--" sync / 00:0839::The elevated detritus will be sealed off/ window 100,0
+# Elevated Detritus will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB0:/ window 100,0
 112.8 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/ window 112.8,20
 125.1 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
 140.1 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
@@ -103,7 +104,8 @@ hideall "--sync--"
 ### Light Artillery Unit x3 and friends
 # -ic "Yorha Close-Combat Unit: Spear" "Yorha Close-Combat Unit: Blade" "Yorha Close-Combat Unit: Martial"
 # -p 5212:1013.9 -ii 5214
-1000.0 "--sync--" sync / 00:0839::The sunken detritus will be sealed off/ window 1000,0
+# Sunken Detritus will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB1:/ window 1000,0
 1013.9 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/ window 1013.9,20
 1025.7 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
 1036.0 "Authorization: No Restrictions" sync / 1[56]:[^:]*:Light Artillery Unit:520E:/
@@ -136,7 +138,8 @@ hideall "--sync--"
 #   * Sharp Turn has unique ability ids per plane, but they all do it.
 # * however, syncing against multiple planes simultaneously might cause timeline jitter
 
-2000.0 "--sync--" sync / 00:0839::The launch deck will be sealed off/ window 2000,0
+# Launch Deck will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB2:/ window 2000,0
 2005.1 "Apply Shield Protocol" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA6:/ window 2005.1,20
 2018.3 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
 2031.5 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
@@ -220,7 +223,8 @@ hideall "--sync--"
 ### 905P-Operated Heavy Artillery Unit
 # -p 5006:3012.1 -ii 4FF6 4FF7 4FF8 4FF9 4FFC 5004 4FFA 4FFF 4FFE 5002
 
-3000.0 "--sync--" sync / 00:0839::Core Command will be sealed off/ window 3000,0
+# Core Command will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB3:/ window 3000,0
 3012.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/ window 3012.1,20
 3024.5 "Operation: Activate Laser Turret" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FED:/
 3028.2 "Lower Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5086:/ duration 3.5
@@ -295,7 +299,8 @@ hideall "--sync--"
 
 
 ### Heavy Artillery Unit: caster-friendly hallway section
-4000.0 "--sync--" sync / 00:0839::The passage will be sealed off/ window 4000,0
+# Passage will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB4:/ window 4000,0
 
 
 ### The Compound
@@ -304,7 +309,8 @@ hideall "--sync--"
 # * Contusion is 51B5 (cast) 51B6 (ground) 51B7 (headmarker).  Left as 51B5 for simplicity.
 # * Can't use "The Bridge" area sync due to checkpoint with Compound 2P.
 
-#5000.0 "--sync--" sync / 00:0839::The bridge will be sealed off/ window 5000,0
+# The bridge will be sealed off
+#5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB5:/ window 5000,0
 5002.0 "--sync--" sync / 1[56]:[^:]*:The Compound:53CA:/ window 5002,0
 5013.2 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/ window 6000,20
 5024.4 "Mechanical Decapitation/Dissection" sync / 1[56]:[^:]*:The Compound:51B[34]:/

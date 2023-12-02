@@ -9,7 +9,8 @@ hideall "--sync--"
 
 ### Phase 1
 0.0 "Start"
-0.0 "--sync--" sync / 00:0839::The Core Override will be sealed off/ window 10,10
+# Core Override will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:592:/ window 10,10
 9.4 "Resonance" sync / 1[56]:[^:]*:Kaliya:B6B:/ window 10,10
 
 19.7 "Nerve Gas"

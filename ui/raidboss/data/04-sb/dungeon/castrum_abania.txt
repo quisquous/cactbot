@@ -7,7 +7,8 @@ hideall "--sync--"
 # -it "Magna Roader"
 
 # initial
-0.0 "--sync--" sync / 00:0839::Terrestrial Weaponry will be sealed off/ window 0,1
+# Terrestrial Weaponry will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:790:/ window 0,1
 13.5 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
 18.6 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
 25.7 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
@@ -75,7 +76,8 @@ hideall "--sync--"
 # first phase is random, cycle order is always fire > ice > thunder > fire (repeat)
 # -ii 82B1 82B2 83D3 82AE 82AF 82B0 83D4 83D5 83D6 82B9
 
-1000.0 "Start" sync / 00:0839::Project Aegis will be sealed off/ window 10000,0
+# Project Aegis will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:791:/ window 10000,0
 1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A9:/ window 10,10 jump 1095.0 # fire phase first
 1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A8:/ window 10,10 jump 1144.7 # ice phase first
 1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82AA:/ window 10,10 jump 1193.6 # thunder phase first
@@ -140,7 +142,8 @@ hideall "--sync--"
 # * Ketu Wave (1F28): 1, 2, or 3 large circles
 # * Ketu Cutter (1F27): 180/360 degree pinwheel
 # * Ketu Cut (2086) / Rahu Cut (2087) is powering up.
-2000.0 "Start" sync / 00:0839::The Assessment Grounds will be sealed off/ window 10000,0
+# Assessment Grounds will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:792:/ window 10000,0
 2010.4 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:1F26:/
 2017.9 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
 2028.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/

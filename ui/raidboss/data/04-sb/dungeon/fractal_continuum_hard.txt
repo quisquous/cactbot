@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 27A3 27A7 27A9
 
-0 "Start" sync / 00:0839::The reality augmentation bay will be sealed off/
+# Reality Augmentation Bay will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:612:/
 
 10.1 "Electrochemical Transfer" sync / 1[56]:[^:]*:Motherbit:27A4:/ window 11,5
 15.7 "--sync--" sync / 1[56]:[^:]*:Prototype Bit:27AB:/
@@ -49,7 +50,8 @@ hideall "--sync--"
 # That is, for Form X into whatever, the dead time is determined solely by X,
 # regardless of whether X is followed by Y or by Z.
 
-1000.0 "Start" sync / 00:0839::Exhibit level VIII will be sealed off/ window 1000,5
+# Exhibit Level VIII will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:95D:/ window 1000,5
 1008.5 "Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Warrior:2793:/ window 8.5,5
 1018.9 "Citadel Buster" sync / 1[56]:[^:]*:The Ultima Warrior:2792:/
 1029.8 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Warrior:2794:/
@@ -141,7 +143,8 @@ hideall "--sync--"
 
 # -ii 27B9 27BC 27BA 27BB
 
-2000.0 "Start" sync / 00:0839::The Genesis Engine will be sealed off/ window 2000,5
+# Genesis Engine will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:95E:/ window 2000,5
 2012.0 "Death Spin" sync / 1[56]:[^:]*:The Ultima Beast:27AD:/ window 12,5
 2025.6 "Aether Bend" sync / 1[56]:[^:]*:The Ultima Beast:27AF:/
 2035.2 "--sync--" sync / 1[56]:[^:]*:The Ultima Beast:27B6:/

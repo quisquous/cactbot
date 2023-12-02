@@ -8,7 +8,8 @@ hideall "--sync--"
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
 0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 # TODO: fill in CEs
 # The idea with each of them is that you have at most two minutes of standing
@@ -65,8 +66,10 @@ hideall "--sync--"
 #16000.0 "--sync--" sync / 21:........:80000014:1D7:/ window 100000,0
 
 ### Brionac / 4th Legion Helldiver
-20000.0 "--sync--" sync / 00:0839::The grand gates will be sealed off/ window 100000,0
-20000.0 "--sync--" sync / 00:0839::Eaglesight will be sealed off/ window 100000,0
+# The Grand Gates will be sealed off
+20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD9:/ window 100000,0
+# Eaglesight will be sealed off
+20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
 # JavaScript will insert a sync to jump to 4th Legion Helldiver if you are on the bottom.
 # Unfortunately, there is nothing in the log to differentiate otherwise.
 
@@ -139,7 +142,8 @@ hideall "--sync--"
 # Chain Cannon is not a trustworthy sync, even when it's on its own.
 
 # Uncomment this to more easily test this timeline.
-# 30000.0 "--sync--" sync / 00:0839::Eaglesight will be sealed off/ window 100000,0
+# Eaglesight will be sealed off
+# 30000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
 
 # Fake intro, where you don't know if you're on the top or the bottom.
 # Don't sync because sometimes these bosses are +/- 3 seconds @_@
@@ -193,7 +197,8 @@ hideall "--sync--"
 
 
 ### Albeleo the Maleficent
-40000.0 "--sync--" sync / 00:0839::Bladesmeet will be sealed off/ window 100000,0
+# Bladesmeet will be sealed off
+40000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD5:/ window 100000,0
 
 
 ### Adrammelech
@@ -201,7 +206,8 @@ hideall "--sync--"
 # -ii 4F94 4F91 4F8D 504E 504F 5050 5051 5052 4F8B 4F7E 504C 545C 4F90 4F7C 4F84 4F88 4F89 4F82 4F83 4F93
 # note: accursed becoming IV casts have different ability ids the first time through.
 
-50000.0 "--sync--" sync / 00:0839::The airship landing will be sealed off/ window 100000,0
+# The airship landing will be sealed off
+50000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDA:/ window 100000,0
 50014.3 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
 
 50021.8 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
@@ -278,7 +284,8 @@ hideall "--sync--"
 # -ii 5165 5177 51BB 5190 5170 5160
 
 # Phase 1
-60000.0 "--sync--" sync / 00:0839::Majesty's Auspice will be sealed off/ window 100000,0
+# Majesty's Auspice will be sealed off
+60000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDB:/ window 100000,0
 60014.3 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
 60025.9 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
 60033.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/

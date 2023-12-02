@@ -4,7 +4,8 @@
 ### Blaster
 
 # -ii 170E
-0.0 "--sync--" sync / 00:0839::Machinery Bay 67 will be sealed off/ window 1,0
+# Machinery Bay 67 will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B7:/ window 1,0
 6.8 "Brute Force" sync / 1[56]:[^:]*:Blaster:170A:/ window 6.8,5
 10.9 "Mind Blast" sync / 1[56]:[^:]*:Blaster:170B:/
 15.0 "Ballistic Missile" sync / 1[56]:[^:]*:Blaster:15F4:/
@@ -25,7 +26,8 @@
 
 
 ### Brawler
-1000.0 "--sync--" sync / 00:0839::Machinery Bay 68 will be sealed off/ window 1000,0
+# Machinery Bay 68 will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B8:/ window 1000,0
 1008.7 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:1715:/ window 8.7,5
 1010.8 "Attachment" sync / 1[56]:[^:]*:Brawler:1601:/
 1017.0 "Single Buster/Double Buster/Rocket Drill" sync / 1[56]:[^:]*:Brawler:(1717|1718|1719):/
@@ -44,7 +46,8 @@
 
 ### Swindler
 # -ii 171D
-2000.0 "--sync--" sync / 00:0839::Machinery Bay 69 will be sealed off/ window 2000,0
+# Machinery Bay 69 will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B9:/ window 2000,0
 2006.5 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:171B:/
 2015.6 "Height" sync / 1[56]:[^:]*:Swindler:171C:/ window 15.6,20
 2018.8 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:171B:/
@@ -63,7 +66,8 @@
 
 
 ### Vortexer
-3000.0 "--sync--" sync / 00:0839::Machinery Bay 70 will be sealed off/ window 3000,0
+# Machinery Bay 70 will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6BA:/ window 3000,0
 3007.3 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1721:/ window 7.3,5
 3017.4 "Elemental Jammer" sync / 1[56]:[^:]*:Vortexer:161B:/
 3019.5 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1622:/

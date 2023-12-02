@@ -10,7 +10,8 @@ hideall "--sync--"
 # -p 373B:1012 -ii 3744 3742
 
 ### Phase 1
-1000.0 "--sync--" sync / 00:0839::The Realm of the Machinists will be sealed off/ window 1000,0
+# Realm of the Machinists will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B35:/ window 1000,0
 1012.0 "Energy Burst" sync / 1[56]:[^:]*:Mustadio:373B:/
 1022.7 "Arm Shot" sync / 1[56]:[^:]*:Mustadio:3739:/
 1033.2 "L/R Handgonne" sync / 1[56]:[^:]*:Mustadio:373[EF]:/
@@ -92,7 +93,8 @@ hideall "--sync--"
 # -p 3867:2012.8 3861:2504 -ii 3865 3853 3859 3AD2 3851 3860
 
 ### Phase 1
-2000.0 "--sync--" sync / 00:0839::The Realm of the Templars will be sealed off/ window 2000,0
+# Realm of the Templars will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B36:/ window 2000,0
 2012.8 "Divine Light" sync / 1[56]:[^:]*:Agrias:3867:/
 2023.3 "Thunder Slash" sync / 1[56]:[^:]*:Agrias:3866:/
 2043.5 "Judgment Blade" sync / 1[56]:[^:]*:Agrias:3857:/
@@ -152,7 +154,8 @@ hideall "--sync--"
 # Dark Crusader Trash #
 #######################
 # -p 377F:3500 -ii 3780
-3000.0 "--sync--" sync / 00:0839::The lifeless alley will be sealed off/ window 3000,0
+# Lifeless Alley will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B37:/ window 3000,0
 3491.0 "--sync--" sync / 14:[^:]*:Dark Crusader:377F:/ window 500,0
 3500.0 "Dark Rite" sync / 1[56]:[^:]*:Dark Crusader:377F:/
 3509.0 "Noahionto" sync / 1[56]:[^:]*:Dark Crusader:377E:/
@@ -180,7 +183,8 @@ hideall "--sync--"
 #-p 3751:4015 36EB:4400 -ii 375F 3756 3757 3759 376B 3753 3752 375E 374B 3AD4 3AD3 3766 3767 3764 375B 374E
 
 ### Phase 1
-4000.0 "--sync--" sync / 00:0839::The Realm of the Thunder God will be sealed off/ window 4000,0
+# Realm of the Thunder God will be sealed off
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B38:/ window 4000,0
 4015.0 "Cleansing Strike" sync / 1[56]:[^:]*:The Thunder God:3751:/
 4032.5 "Sword L/R" sync / 1[56]:[^:]*:The Thunder God:374[9A]:/
 4042.5 "Sword In/Out" sync / 1[56]:[^:]*:The Thunder God:37(50|4F):/
@@ -236,7 +240,8 @@ hideall "--sync--"
 # -p 3899:5015 38D8:5413 3A79:5800 38C2:6007 -ii 389A 3897 38EA 38CC 3896 3C78 3A9B 38B6 389E 38BC 38B9 38BA 38BB 38BE 38AB 38A8 38A9 389F 38A6 38BD 38AE 38AD 3C78 38CF 38CD
 
 ### Phase 1: Throwbacks
-5000.0 "--sync--" sync / 00:0839::The Crystalline Gaol will be sealed off/ window 5000,0
+# Crystalline Gaol will be sealed off
+5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B39:/ window 5000,0
 5015.0 "Holy IV Ground" sync / 1[56]:[^:]*:Ultima, the High Seraph:3899:/
 5029.2 "Auralight" sync / 1[56]:[^:]*:Ultima, the High Seraph:3898:/
 5035.7 "Holy IV" sync / 1[56]:[^:]*:Ultima, the High Seraph:389B:/

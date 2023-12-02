@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~#
 # ABUJAM #
@@ -11,7 +12,8 @@ hideall "--sync--"
 
 # -ii 71E5
 
-0.0 "--sync--" sync / 00:0839::The Undersea Entrance will be sealed off/ window 0,1
+# Undersea Entrance will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:103E:/ window 0,1
 11.0 "Big Wave" sync / 1[56]:[^:]*:Ambujam:6F60:/ window 11,5
 20.8 "Tentacle Dig" sync / 1[56]:[^:]*:Ambujam:6F55:/ window 20.8
 33.0 "--sync--" sync / 1[56]:[^:]*:Scarlet Tentacle:6F5B:/
@@ -43,7 +45,8 @@ hideall "--sync--"
 
 # -ii 71CC 6F1A 6F1C 6F1D 6F26 6F27
 
-1000.0 "--sync--" sync / 00:0839::The Threshold Of Bounty will be sealed off/ window 1000,1
+# The Threshold of Bounty will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:103F:/ window 1000,1
 1011.0 "Articulated Bits" sync / 1[56]:[^:]*:Armored Chariot:6F19:/ window 1011,0
 1013.2 "Assail" sync / 1[56]:[^:]*:Armored Chariot:6F29:/
 1015.3 "--sync--" sync / 1[56]:[^:]*:Armored Chariot:(6F20|6F21):/
@@ -106,7 +109,8 @@ hideall "--sync--"
 
 # -ii 6F71 6F64 6F65 6F66 6F67 6F6D 6F6F
 
-2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
+# Weaver's Warding will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1040:/ window 2000,1
 2015.2 "Billowing Bolts" sync / 1[56]:[^:]*:Kapikulu:6F70:/ window 2016,5
 2023.4 "--sync--" sync / 1[56]:[^:]*:Kapikulu:6F62:/
 2027.8 "Spin Out" sync / 1[56]:[^:]*:Kapikulu:6F63:/

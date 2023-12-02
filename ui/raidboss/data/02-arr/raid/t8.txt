@@ -12,7 +12,8 @@ hideall "--sync--"
 
 ### Phase 1: introduction to towers
 0.0 "Start"
-0.0 "--sync--" sync / 00:0839::The central bow will be sealed off/ window 10,10
+# Central Bow will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:532:/ window 10,10
 6.1 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/ window 7,10
 26.0 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
 27.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/

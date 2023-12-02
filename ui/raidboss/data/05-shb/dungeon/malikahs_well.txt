@@ -5,7 +5,8 @@ hideall "--sync--"
 
 ### Greater Armadillo
 # -ii 3CEA 3CE8 -p 3CE5:115
-100.0 "--sync--" sync / 00:0839::Terminus will be sealed off/ window 100,0
+# Terminus will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD5:/ window 100,0
 
 115.0 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/ window 115,5
 133.6 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
@@ -42,7 +43,8 @@ hideall "--sync--"
 
 ### Amphibious Talos
 # -ii 3CF0 -p 3CEB:515.5
-500.0 "--sync--" sync / 00:0839::Malikah's Gift will be sealed off/ window 500,0
+# Malikah's Gift will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD6:/ window 500,0
 515.5 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/ window 515.5,10
 527.1 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
 531.3 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
@@ -68,7 +70,8 @@ hideall "--sync--"
 
 ### Storge
 # -ii 3CF7 3CA8 41A8 -p 3CF1:1015
-1000.0 "--sync--" sync / 00:0839::Unquestioned Acceptance will be sealed off/ window 1000,0
+# Unquestioned Acceptance will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD7:/ window 1000,0
 1015.0 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/ window 1015,5
 1028.2 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3CF2:/
 1043.0 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3CF5:/

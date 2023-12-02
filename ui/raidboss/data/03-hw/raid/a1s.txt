@@ -9,7 +9,8 @@ hideall "--sync--"
 
 ### Faust
 # -p E3C:1006 -ii E3E
-1000.0 "--sync--" sync / 00:0839::Machinery Bay 44 will be sealed off/ window 1000,0
+# Machinery Bay 44 will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:65F:/ window 1000,0
 1006.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/ window 1006,5
 1009.7 "Sturm Doll Add"
 1016.0 "Kaltstrahl" sync / 1[56]:[^:]*:Faust:E3C:/
@@ -51,7 +52,8 @@ hideall "--sync--"
 # -ii E44 E53 E50 E4C E54 E47
 # -ic "Oppressor 0.5"
 
-2000.0 "--sync--" sync / 00:0839::Hangar 8 will be sealed off in 15 seconds/ window 2000,0
+# Hangar 8 will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:660:/ window 2000,0
 2007.0 "Royal Fount" sync / 1[56]:[^:]*:Oppressor:E40:/ window 2010,5
 2011.1 "Gunnery Pod" sync / 1[56]:[^:]*:Oppressor:E41:/
 2016.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:Oppressor:E43:/ duration 8

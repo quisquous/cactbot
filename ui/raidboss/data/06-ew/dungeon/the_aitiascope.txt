@@ -5,7 +5,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~~~~~~~~~~~~~#
 # LIVIA THE UNDETERRED #
@@ -14,7 +15,8 @@ hideall "--sync--"
 # -p 6448:1012
 # -ii 60C3 6444 6446
 
-1000.0 "--sync--" sync / 00:0839::The Central Observatory will be sealed off/ window 10000,0
+# Central Observatory will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F98:/ window 10000,0
 1012.0 "Frustration" sync / 1[56]:[^:]*:Livia the Undeterred:6448:/
 1022.2 "Aglaea Bite" sync / 1[56]:[^:]*:Livia the Undeterred:6449:/
 1029.3 "--middle--"
@@ -63,7 +65,8 @@ hideall "--sync--"
 # -p 6455:2012
 # -ii 6454
 
-2000.0 "--sync--" sync / 00:0839::The Saltcrystal Strings will be sealed off/ window 10000,0
+# Saltcrystal Strings will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F99:/ window 10000,0
 2012.0 "Tartarean Impact" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6455:/
 2020.5 "Tartarean Spark" sync / 1[56]:[^:]*:Rhitahtyn the Unshakable:6457:/
 
@@ -111,7 +114,8 @@ hideall "--sync--"
 # -p 6464:3012
 # -ii 6088
 
-3000.0 "--sync--" sync / 00:0839::The Midnight Downwell will be sealed off/ window 10000,0
+# Midnight Downwell will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F9A:/ window 10000,0
 3012.0 "Dark Forte" sync / 1[56]:[^:]*:Amon the Undying:6464:/
 3022.2 "Thundaga Forte (proximity)" sync / 1[56]:[^:]*:Amon the Undying:645A:/
 3028.0 "Thundaga Forte 1" sync / 1[56]:[^:]*:Amon the Undying:645B:/

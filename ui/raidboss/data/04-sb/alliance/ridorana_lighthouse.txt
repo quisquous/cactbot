@@ -7,7 +7,8 @@ hideall "--sync--"
 ###########
 # Famfrit #
 ###########
-0 "Start" sync / 00:0839::Echoes from Time's Garden will be sealed off/ window 0,1
+# Echoes from Time's Garden will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:998:/ window 0,1
 13 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/ window 13,1
 26 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
 35 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
@@ -63,7 +64,8 @@ hideall "--sync--"
 # Belias #
 ##########
 
-1000 "Start" sync / 00:0839::The Spire's Bounds will be sealed off/ window 1000,0
+# The Spire's Bounds will be sealed off
+1000 "Start" sync / 29:[^:]*:7DC:[^:]*:99A:/ window 1000,0
 1012 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/ window 1012,5
 1024 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
 1033 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
@@ -123,7 +125,8 @@ hideall "--sync--"
 ###############
 # Construct 7 #
 ###############
-2000 "Start" sync / 00:0839::The Cleft of Profaning Wind will be sealed off/ window 2000,0
+# The Cleft of Profaning Wind will be sealed off
+2000 "Start" sync / 29:[^:]*:7DC:[^:]*:99C:/ window 2000,0
 2016 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C5A:/ window 2016,0
 2026 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
 2029 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/
@@ -185,7 +188,8 @@ hideall "--sync--"
 
 
 ### Yiazmat
-3000 "Start" sync / 00:0839::The Clockwork Coliseum will be sealed off/ window 3000,0
+# The Clockwork Coliseum will be sealed off
+3000 "Start" sync / 29:[^:]*:7DC:[^:]*:99D:/ window 3000,0
 3016 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/ window 3016,0
 3026 "Gust Front" duration 4
 3034 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/

@@ -10,7 +10,8 @@ hideall "--Reset--"
 
 # -ic "Spore Sac"
 
-0.0 "--sync--" sync / 00:0839::The Wound will be sealed off/ window 0,1
+# The Wound will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:64C:/ window 0,1
 2.4 "--sync--" sync / 1[56]:[^:]*:The Leightonward:5B5:/ window 2.4,1
 6.1 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/ window 6.1,5
 13.2 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
@@ -62,7 +63,8 @@ hideall "--Reset--"
 
 # -ii 1C3F
 
-2000.0 "--sync--" sync / 00:0839::The Lava Tube will be sealed off/ window 2000,1
+# The Lava Tube will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:763:/ window 2000,1
 2012.0 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/ window 12,5
 2022.2 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
 2038.4 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/

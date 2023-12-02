@@ -4,7 +4,8 @@ hideall "--sync--"
 ###Phantom Ray
 #-ii F7D -p F7F:100
 
-0.0 "--sync--" sync / 00:0839::Exhibit level III will be sealed off/ window 0,1
+# Exhibit Level III will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:60D:/ window 0,1
 10.3 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/ window 15,15
 16.6 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
 21.4 "Double Sever 1" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
@@ -47,7 +48,8 @@ hideall "--sync--"
 176.6 "Atmospheric Displacement"
 
 ###Minotaur
-1000.0 "--sync--" sync / 00:0839::The high-level incubation bay will be sealed off/ window 1999,5
+# High-level Incubation Bay will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:60E:/ window 1999,5
 1008.8 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/ window 9,9
 1019.0 "111-Tonze Swing" sync / 1[56]:[^:]*:Minotaur:F82:/ window 20,20
 1028.2 "Disorienting Groan" sync / 1[56]:[^:]*:Minotaur:F84:/
@@ -91,7 +93,8 @@ hideall "--sync--"
 # and there's no way to disambiguate where.
 # Phase length is the same regardless of added abilities.
 
-2000 "--sync--" sync / 00:0839::The reality augmentation bay will be sealed off/ window 2000,0
+# Reality Augmentation Bay will be sealed off
+2000 "--sync--" sync / 29:[^:]*:7DC:[^:]*:612:/ window 2000,0
 2006.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/ window 7,7
 2011.4 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
 2020.6 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/

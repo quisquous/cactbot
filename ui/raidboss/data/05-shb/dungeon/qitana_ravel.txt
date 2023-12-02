@@ -5,7 +5,8 @@ hideall "--sync--"
 
 ### Lozatl
 # -p 3C89:113.7
-100.0 "--sync--" sync / 00:0839::The Divine Threshold will be sealed off/ window 100,0
+# The Divine Threshold will be sealed off
+100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCC:/ window 100,0
 
 113.7 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/ window 114,5
 121.0 "Sun Toss" sync / 1[56]:[^:]*:Lozatl:3C8A:/
@@ -42,7 +43,8 @@ hideall "--sync--"
 
 ### Batsquatch
 # -ii 3C94 3C96 3C97 3C95 -p 3C91:514.5
-500.0 "--sync--" sync / 00:0839::Shadowed Hollow will be sealed off/ window 500,0
+# Shadowed Hollow will be sealed off
+500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCF:/ window 500,0
 
 514.5 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/ window 515,5
 525.7 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
@@ -73,7 +75,8 @@ hideall "--sync--"
 
 ### Eros
 #
-1000.0 "--sync--" sync / 00:0839::The Song of Ox'Gatorl will be sealed off/ window 1000,0
+# The Song of Ox'Gatorl will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD2:/ window 1000,0
 
 1015.0 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/ window 1015,5
 1026.2 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/

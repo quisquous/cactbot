@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~#
 # FACE #
@@ -12,7 +13,8 @@ hideall "--sync--"
 # -p 6735:1009
 # -ii 6741 6736 6737 6C5E 673A 673B 673C 673D
 
-1000.0 "--sync--" sync / 00:0839::Smileport will be sealed off/ window 10000,0
+# Smileport will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBE:/ window 10000,0
 1009.0 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
 1018.1 "Mixed Feelings" sync / 1[56]:[^:]*:Face:6738:/
 1023.2 "Lines of Fire" sync / 1[56]:[^:]*:Face:6735:/
@@ -53,7 +55,8 @@ hideall "--sync--"
  # -p 6745:2011
  # -ii 6749 674B
 
-2000.0 "--sync--" sync / 00:0839::The Welcome Wheel will be sealed off/ window 10000,0
+# The Welcome Wheel will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EBF:/ window 10000,0
 2011.0 "Circular Saw" sync / 1[56]:[^:]*:Frameworker:6745:/
 2017.6 "--sync--" sync / 1[56]:[^:]*:Frameworker:674A:/
 2022.8 "Leap Forward" sync / 1[56]:[^:]*:Frameworker:6746:/
@@ -80,7 +83,8 @@ hideall "--sync--"
 # -p 674E:3009
 # -ii 674C 6755
 
-3000.0 "--sync--" sync / 00:0839::The Frame will be sealed off/ window 10000,0
+# The Frame will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EC0:/ window 10000,0
 3009.0 "Explosives Distribution" sync / 1[56]:[^:]*:The Big Cheese:674E:/
 3022.2 "Iron Kiss" sync / 1[56]:[^:]*:Bomb:674D:/
 3028.2 "Piercing Missile" sync / 1[56]:[^:]*:The Big Cheese:6751:/

@@ -3,14 +3,16 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 
 #~~~~~~~~~~~~~#
 # PROTO-OMEGA #
 #~~~~~~~~~~~~~#
 
-0.0 "--sync--" sync / 00:0839::A-4 Command will be sealed off/ window 0,1
+# A-4 Command will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ECF:/ window 0,1
 12.6 "Side Cannons" sync / 1[56]:[^:]*:Proto-Omega:(6320|6321):/ window 12.6,10
 24.2 "Forward Interceptors/Rear Interceptors" sync / 1[56]:[^:]*:Proto-Omega:(6322|6324):/
 29.3 "Chemical Missile" sync / 1[56]:[^:]*:Proto-Omega:6328:/
@@ -42,7 +44,8 @@ hideall "--sync--"
 
 # -ii 368 63AE 63B2
 
-1000.0 "--sync--" sync / 00:0839::A-4 Conquest will be sealed off/ window 1000,10
+# A-4 Conquest will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ED0:/ window 1000,10
 1010.7 "Wheel" sync / 1[56]:[^:]*:Arch-Lambda:63B5:/ window 1010.7,10
 1021.0 "--sync--" sync / 1[56]:[^:]*:Arch-Lambda:63AA:/
 1028.4 "Auto-mobile Assault Cannon" sync / 1[56]:[^:]*:Arch-Lambda:63AB:/
@@ -81,7 +84,8 @@ hideall "--sync--"
 
 # -ii 6435
 
-2000.0 "--sync--" sync / 00:0839::A-4 Headquarters will be sealed off/ window 2000,1
+# A-4 Headquarters will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ED2:/ window 2000,1
 2010.0 "AI Takeover" sync / 1[56]:[^:]*:Stigma-4:6429:/
 2015.6 "Touchdown?" sync / 1[56]:[^:]*:Hybrid Dragon:68F9:/
 2024.7 "Proto-wave Cannon?" sync / 1[56]:[^:]*:Omega Frame:(642A|642B):/

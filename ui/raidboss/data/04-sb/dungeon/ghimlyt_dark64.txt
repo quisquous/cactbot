@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 394F 3775
 
-0 "Start" sync / 00:0839::The Field Of Dust will be sealed off/ window 0,1
+# The Field of Dust will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:AB8:/ window 0,1
 12.9 "Jarring Blow" sync / 1[56]:[^:]*:Mark III-B Magitek Colossus:376E:/
 15.0 "--sync--" sync / 1[56]:[^:]*:Mark III-B Magitek Colossus:3771:/
 22.1 "Wild Fire Beam" sync / 1[56]:[^:]*:Mark III-B Magitek Colossus:3772:/ window 30,30
@@ -45,7 +46,8 @@ hideall "--sync--"
 # -ic "Lyse" "Pipin Of The Steel Heart" "Schola Centurion" "Schola Laquearius" "Schola Signifer"
 # -ii 3AC6
 
-1000.0 "Start" sync / 00:0839::The Impact Crater will be sealed off/ window 1000,1
+# Impact Crater will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:ABB:/ window 1000,1
 1012.2 "Nitrospin" sync / 1[56]:[^:]*:Prometheus:3455:/
 1023.4 "Needle Gun" sync / 1[56]:[^:]*:Prometheus:345A:/
 1031.1 "--untargetable--"
@@ -74,7 +76,8 @@ hideall "--sync--"
 # SORANUS DUO #
 #~~~~~~~~~~~~~#
 
-2000.0 "Start" sync / 00:0839::The Provisional Imperial Landing will be sealed off/ window 2000,5
+# Provisional Imperial Landing will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:ABD:/ window 2000,5
 2000.4 "--sync--" sync / 1[56]:[^:]*:Annia Quo Soranus:370F:/ jump 2097.0
 2000.4 "--sync--" sync / 1[56]:[^:]*:Julia Quo Soranus:370E:/ jump 2297.0
 2003.4 "Artificial Plasma?"

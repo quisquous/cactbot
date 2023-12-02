@@ -3,7 +3,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 
 #~~~~~~~~~~#
@@ -13,7 +14,8 @@ hideall "--sync--"
 # -ii 6076 61DE
 
 # Common opener
-0.0 "--sync--" sync / 00:0839::Magitek Servicing will be sealed off/ window 0,1
+# Magitek Servicing will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101C:/ window 0,1
 5.7 "--sync--" sync / 14:[^:]*:Barnabas:6247:/ window 5.7,5
 8.9 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:6247:/
 27.3 "Ground and Pound" sync / 1[56]:[^:]*:Barnabas:62EA:/
@@ -86,7 +88,8 @@ hideall "--sync--"
 # DR. LUGAE #
 #~~~~~~~~~~~#
 
-1000.0 "--sync--" sync / 00:0839::Martial Conditioning will be sealed off/ window 1000,5
+# Martial Conditioning will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101D:/ window 1000,5
 1009.7 "Thermal Suppression" sync / 1[56]:[^:]*:Lugae:62FA:/ window 1009.7,10
 1018.2 "Magitek Missile" sync / 1[56]:[^:]*:Lugae:62F6:/
 1022.5 "Surface Missile" sync / 1[56]:[^:]*:Lugae:62F7:/
@@ -139,7 +142,8 @@ hideall "--sync--"
 
 # -ii 52BE 5E68 6305
 
-2000.0 "--sync--" sync / 00:0839::Iron Womb will be sealed off/ window 2000,1
+# The Iron Womb will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101E:/ window 2000,1
 2009.8 "Lunar Nail" sync / 1[56]:[^:]*:Anima:62FE:/ window 2009.8,10
 2020.7 "Phantom Pain" sync / 1[56]:[^:]*:Anima:62FF:/
 2029.8 "Mega Graviton" sync / 1[56]:[^:]*:Anima:6300:/

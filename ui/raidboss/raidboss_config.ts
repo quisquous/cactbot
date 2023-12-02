@@ -2163,6 +2163,10 @@ const templateOptions: OptionsTemplate = {
              nicknames/first names. This can be used to print out player jobs instead.
              If you are not in a party or players are out of a party (or there are bugs),
              it will default to the player's nickname if there's no other information.`,
+        de: `Die Standardmethode zur Angabe von Spielern in der Triggerausgabe. Standardmäßig werden
+             Spitznamen/Vornamen verwendet. Dies kann verwendet werden, um stattdessen Spieler-Jobs darzustellen.
+             Wenn Sie nicht in einer Gruppe sind oder Spieler nicht in einer Gruppe sind (oder es Fehler gibt),
+             wird standardmäßig der Spitzname des Spielers verwendet, wenn es keine anderen Informationen gibt.`,
         ja: `トリガーでプレイヤーの名前を表示する方法です。基本であだ名・ファストネームをつかいます。
              あなたがパティに入ってない場合とパティ以外のプレイヤーはあだ名とファストネームが表示されます。`,
         cn: `在触发器输出中指定玩家的默认方式。默认选项为输出昵称/名字。
@@ -2177,6 +2181,7 @@ const templateOptions: OptionsTemplate = {
       },
       name: {
         en: 'Default Player Label',
+        de: 'Standard Spieler Label',
         ja: '基本プレイヤーラベル',
         cn: '默认玩家代称',
         ko: '플레이어를 언급하는 기본 방법',

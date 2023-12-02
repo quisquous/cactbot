@@ -4,7 +4,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~#
 # SHISHIO #
@@ -19,7 +20,8 @@ hideall "--sync--"
 # skipped. Triggers will probably do a better job for the "circles" case, while "lines"
 # is just a dodge check.
 
-1000.0 "--sync--" sync / 00:0839::The Trial Of Benevolence will be sealed off/ window 10000,0
+# Trial of Benevolence will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F8:/ window 10000,0
 1007.0 "--sync--" sync / 14:[^:]*:Shishio:841A:/ window 10000,0
 1012.0 "Enkyo" sync / 1[56]:[^:]*:Shishio:841A:/
 
@@ -152,7 +154,8 @@ hideall "--sync--"
 # -p 8534:2014.3
 # -ii 8502 8504 8535 8504 851A 851D 851E 8513 8515 852F 8525 8257 8522 8533 8528 8519 852A 852D 852B 8527 8523
 
-2000.0 "--sync--" sync / 00:0839::The Trial Of Wisdom will be sealed off/ window 10000,0
+# Trial of Wisdom will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F9:/ window 10000,0
 2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8534:/ window 10000,0
 2014.3 "Unenlightenment" sync / 1[56]:[^:]*:Gorai the Uncaged:8534:/
 
@@ -290,7 +293,8 @@ hideall "--sync--"
 # -p 85E0:3016.4
 # -ii 8507 85B8 85B9 85D2 85DF 8C27 85DA 85CE 85D5 85D7 8537 8538
 
-3000.0 "--sync--" sync / 00:0839::The Trial Of Responsibility will be sealed off/ window 10000,0
+# Trial of Responsibility will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10FA:/ window 10000,0
 3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:85E0:/ window 10000,10
 3016.4 "Kenki Release" sync / 1[56]:[^:]*:Moko the Restless:85E0:/
 

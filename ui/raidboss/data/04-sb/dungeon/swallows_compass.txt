@@ -9,7 +9,8 @@ hideall "--sync--"
 
 # -ii 2B99
 
-0 "Start" sync / 00:0839::The Heart Of The Dragon will be sealed off/ window 0,1
+# The Heart of the Dragon will be sealed off
+0 "Start" sync / 29:[^:]*:7DC:[^:]*:98B:/ window 0,1
 11.6 "Clout Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B95:/
 22.5 "Yama-Kagura" sync / 1[56]:[^:]*:Otengu:2B96:/ window 22.5,5
 33.1 "Might Of The Tengu" sync / 1[56]:[^:]*:Otengu:2B94:/
@@ -39,7 +40,8 @@ hideall "--sync--"
 
 # -ii 2CD1 2B9B 2B9C 2B9F
 
-1000.0 "Start" sync / 00:0839::The Dragon's Mouth will be sealed off/ window 1000,1
+# The Dragon's Mouth will be sealed off
+1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:98E:/ window 1000,1
 1011.2 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/ window 11.2,5
 1023.1 "Greater Palm" sync / 1[56]:[^:]*:Daidarabotchi:2B9[DE]:/
 1035.3 "Tributary" sync / 1[56]:[^:]*:Daidarabotchi:2BA0:/ window 35,0
@@ -76,7 +78,8 @@ hideall "--sync--"
 
 # The opening block repeats without interrruption above 50% HP.
 # Note that Dasheng's abilities are not the same as those of the shadows!
-2000.0 "Start" sync / 00:0839::Serenity will be sealed off/ window 2000,5
+# Serenity will be sealed off
+2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:98F:/ window 2000,5
 2011.8 "The Short End" sync / 1[56]:[^:]*:Qitian Dasheng:2BA6:/ window 11.8,5
 2025.5 "Both Ends" sync / 1[56]:[^:]*:Qitian Dasheng:2BA[89]:/
 2036.1 "Mount Huaguo" sync / 1[56]:[^:]*:Qitian Dasheng:2BAA:/ window 36.1,5

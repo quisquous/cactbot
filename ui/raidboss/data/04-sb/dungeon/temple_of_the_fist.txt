@@ -4,7 +4,8 @@ hideall "--sync--"
 # Coeurl Twins
 # -ii 1FD2 1FD8
 
-0.0 "--sync--" sync / 00:0839::Tourmaline Pond will be sealed off/
+# Tourmaline Pond will be sealed off
+0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:788:/
 6.4 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/ window 7,7
 17.8 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
 22.0 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
@@ -51,7 +52,8 @@ hideall "--sync--"
 
 # Arbuda
 
-1000.0 "--sync--" sync / 00:0839::Harmony will be sealed off/ window 1000,10
+# Harmony will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:789:/ window 1000,10
 1006.5 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/ window 7,7
 1014.6 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
 1022.6 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
@@ -89,7 +91,8 @@ hideall "--sync--"
 # Ivon Coeurlfist
 # -ii 1FF0 1FE8 1FEC
 
-2000.0 "--sync--" sync / 00:0839::Guidance will be sealed off/ window 2000,10
+# Guidance will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:78A:/ window 2000,10
 2010.9 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
 2018.6 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
 2026.7 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/
