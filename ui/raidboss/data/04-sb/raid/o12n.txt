@@ -183,7 +183,8 @@ hideall "--sync--"
 ### Phase 4: Laser Show Forever
 1800.0 "Enrage" sync / 00:0044:[^:]*:\<blip\> Warning\. Calculations indicate/ window 1800,0
 
-1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:(Omega-M:3311|Omega:3312):/ window 20,20
+1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega-M:3311:/ window 20,20
+1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega:3312:/ window 20,20
 1812.0 "Laser Shower Enrage"
 1818.0 "Laser Shower Enrage"
 1824.0 "Laser Shower Enrage"

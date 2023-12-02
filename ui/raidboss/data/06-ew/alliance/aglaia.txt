@@ -466,7 +466,7 @@ hideall "Fan Flames"
 7097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
 
 7105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-7119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+7119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
 7121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
 7125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
 7131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
@@ -511,7 +511,7 @@ hideall "Fan Flames"
 8097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
 
 8105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+8119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
 8121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
 8125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
 8131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
@@ -539,7 +539,7 @@ hideall "Fan Flames"
 8265.8 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
 
 8274.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8288.2 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+8288.2 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
 8289.4 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
 8294.0 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
 8299.4 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
@@ -565,4 +565,4 @@ hideall "Fan Flames"
 8428.4 "Smelting?" #sync / 1[56]:[^:]*:Nald:7120:/
 
 8436.6 "As Above, So Below" #sync / 1[56]:[^:]*:Nald'thal:70E9:/
-8450.8 "Hearth Above, Flight Below" #sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC)/
+8450.8 "Hearth Above, Flight Below" #sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/

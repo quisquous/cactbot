@@ -66,7 +66,7 @@ hideall "--sync--"
 66 "Jails" #White Prey & Green Tether
 68 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
 69 "Doll"
-84 "Resync" sync / 1A:[^:]*:Pyretic:[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:/ window 20 jump 384
+84 "Resync" sync / 1A:[^:]*:Pyretic:/ window 20 jump 384
 103 "Sizzlespark"
 116 "Uplander Doom"
 130 "Bomb x1"
@@ -130,7 +130,7 @@ hideall "--sync--"
 567 "Jails" #Green Prey & Red Tether
 570 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 60
 570 "Doll"
-582 "Resync" sync / 1A:[^:]*:Frostbite:[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:/ window 20 jump 983
+582 "Resync" sync / 1A:[^:]*:Frostbite:/ window 20 jump 983
 596 "Uplander Doom"
 613 "Sizzlespark"
 621 "Sizzlespark"
@@ -238,8 +238,8 @@ hideall "--sync--"
 1335 "Small Doll"
 1336 "Zoomdoom" sync / 1[56]:[^:]*:Quickthinx Allthoughts:15BE:/ window 55
 1344 "Big Doll"
-1348 "Resync" sync /suffers the effect of Pyretic/ window 20 jump 1548
-1348 "Resync" sync /suffer the effect of Pyretic/ window 20 jump 1548
+1348 "Resync" sync / 1A:[^:]*:Pyretic:/ window 20 jump 1548
+1348 "Resync" sync / 1A:[^:]*:Pyretic:/ window 20 jump 1548
 1362 "Uplander Doom"
 1381 "Sizzlespark"
 1392 "Sizzlebeam"

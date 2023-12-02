@@ -24,7 +24,7 @@ hideall "--sync--"
 130 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
 
 143 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-150 "Easterlies" sync / 03:........:Easterly:/ 
+150 "Easterlies" sync / 03:........:Easterly:/
 153 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
 155 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
 164 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
@@ -57,7 +57,7 @@ hideall "--sync--"
 352 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
 
 365 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-373 "Easterlies" sync / 03:........:Easterly:/ 
+373 "Easterlies" sync / 03:........:Easterly:/
 375 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
 376 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
 384 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
@@ -93,11 +93,11 @@ hideall "--sync--"
 590 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
 
 603 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-611 "Easterlies" sync / 03:........:Easterly:/ 
+611 "Easterlies" sync / 03:........:Easterly:/
 613 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
 614 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
 622 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
 626 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
 
-626 "--sync--" sync / 1[56]:[^:]*:284D:Demon Chadarnook:/
+626 "--sync--" sync / 14:[^:]*:Demon Chadarnook:284D:/
 641 "Enrage"
