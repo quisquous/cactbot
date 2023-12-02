@@ -1293,7 +1293,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Dodge 4x Shuriken',
           de: 'Weiche 4x Shuriken aus',
           ja: '4x 手裏剣',
-          cn: '躲避四次手里剑', // FIXME: 应该是技能名
+          cn: '躲避四次手里剑', // FIXME
           ko: '수리검 4개 피하기',
         },
       },
