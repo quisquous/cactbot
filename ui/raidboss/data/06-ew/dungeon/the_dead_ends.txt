@@ -14,7 +14,7 @@ hideall "--sync--"
 # -ii 6542 6EBC 6544 653E
 
 # Shell Mound will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1008/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1008:/ window 10000,0
 1013.1 "--sync--" sync / 14:[^:]*:Caustic Grebuloff:653C:/
 1018.1 "Miasmata" sync / 1[56]:[^:]*:Caustic Grebuloff:653C:/
 1028.5 "Necrotic Fluid" sync / 1[56]:[^:]*:Weeping Miasma:653F:/ duration 10.6
@@ -46,7 +46,7 @@ hideall "--sync--"
 hideall "Disengage Hatch"
 
 # Deterrence Grounds will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1009/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1009:/ window 10000,0
 2007.0 "--sync--" sync / 14:[^:]*:Peacekeeper:6550:/
 2012.0 "Decimation" sync / 1[56]:[^:]*:Peacekeeper:6550:/
 2018.1 "Electromagnetic Repellant" sync / 1[56]:[^:]*:Peacekeeper:6EC8:/
@@ -97,7 +97,7 @@ hideall "Disengage Hatch"
 # -ii 655A 655C 655F
 
 # The World Tree will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:100A/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:100A:/ window 10000,0
 3008.5 "--sync--" sync / 14:[^:]*:Ra-la:655E:/
 3013.5 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
 3023.7 "Pity" sync / 1[56]:[^:]*:Ra-la:655D:/

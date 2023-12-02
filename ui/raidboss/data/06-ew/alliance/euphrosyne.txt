@@ -15,7 +15,7 @@ hideall "Season's Passing"
 # -ii 7C26 7C09 7C10 7C0F 7C14 7C15 7C23
 
 # Fertile Plains will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10A9/ window 10000,0
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10A9:/ window 10000,0
 1007.0 "--sync--" sync / 14:[^:]*:Nophica:7C24:/ window 20,20
 1012.0 "Abundance" sync / 1[56]:[^:]*:Nophica:7C24:/
 1020.7 "Matron's Plenty" sync / 1[56]:[^:]*:Nophica:7C08:/
@@ -93,7 +93,7 @@ hideall "Season's Passing"
 # This is overall an awkward timeline.  The two bosses can definitely desync by ~1-2s.
 
 # The Bole will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AB/ window 10000,0
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AB:/ window 10000,0
 2009.0 "--sync--" sync / 14:[^:]*:Nymeia:7A38:/ window 10,10
 2013.5 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
 2019.2 "--sync--" sync / 14:[^:]*:Althyk:7A46:/ window 10,10
@@ -180,7 +180,7 @@ hideall "Season's Passing"
 # -it "Glacial Spear"
 
 # The Barbs will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AD/ window 10000,0
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AD:/ window 10000,0
 3009.0 "--sync--" sync / 14:[^:]*:Halone:7D79:/
 3013.0 "Rain of Spears x3" sync / 1[56]:[^:]*:Halone:7D79:/
 
@@ -319,7 +319,7 @@ hideall "Season's Passing"
 # -it "Ceremonial Pillar"
 
 # The Chamber of Revolutions will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10BC/ window 10000,0
+4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10BC:/ window 10000,0
 4013.1 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFA:/
 4020.9 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BB8:/
 4026.6 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BBB:/

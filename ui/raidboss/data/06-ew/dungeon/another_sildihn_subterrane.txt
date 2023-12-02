@@ -13,7 +13,7 @@ hideall "--sync--"
 # -ii 7760 7761 7762 7768 7769 776A 77ED 77EE
 
 # Trial of Knowledge is sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DD:[^:]*:1087/ window 0,1
+0.0 "--sync--" sync / 29:[^:]*:7DD:[^:]*:1087:/ window 0,1
 12.2 "--sync--" sync / 14:[^:]*:Silkie:7759:/ window 15,15
 14.9 "Fizzling Suds" sync / 1[56]:[^:]*:Silkie:7759:/
 21.0 "Soap's Up" sync / 1[56]:[^:]*:Silkie:775A:/
@@ -102,7 +102,7 @@ hideall "--sync--"
 # -ii 766F 7670 7676 7677 77BF 7660 79F3
 
 # Trial of Might will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1088/ window 1000,1
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1088:/ window 1000,1
 1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7671:/ window 1007.3,5
 1011.5 "Flash of Steel" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7671:/
 1023.6 "Specter of Might" sync / 1[56]:[^:]*:Gladiator of Sil'dih:7673:/
@@ -173,7 +173,7 @@ hideall "--sync--"
 # -ii 74B7 74B8
 
 # Trial of Balance will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1089/ window 2000,1
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1089:/ window 2000,1
 2006.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AF:/ window 2007.3,5
 2011.5 "Show of Strength" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:74AF:/
 2023.7 "Infern Brand" sync / 1[56]:[^:]*:Shadowcaster Zeless Gah:7491:/
