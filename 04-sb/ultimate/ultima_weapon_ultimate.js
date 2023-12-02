@@ -739,6 +739,14 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 1',
+      // TODO: we could add a config option for the other set of safe spots, as it's also
+      // valid to go SW/NE instead of SE/NW for the first dashes. It would just change
+      // the adjust call.
+      comment: {
+        en: `If the first nail is SE, this will call SE/NW for both reverse-Z and normal-Z.
+             If the first nail is S, this will call SE/NW for reverse-Z and SW/NE for normal-Z.
+             Other nail orders are also supported, these are just examples.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       condition: (data) => data.ifritUntargetableCount === 1,
@@ -774,6 +782,11 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 2 Adjust',
+      comment: {
+        en: `If the first nail was on an intercard, then the first Ifrit dash is on an intercard
+             and this optional call is to move to be adjacent to that first dash.
+             If you are already safe, this will not be called.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       // Unfortunately no way to know for sure if Ifrit dies before dashes.
@@ -806,6 +819,12 @@ Options.Triggers.push({
     },
     {
       id: 'UWU Ifrit Dash Safe Spot 2',
+      comment: {
+        en: `This is the major movement for the Ifrit dashes starting adjacent to the first dash.
+             Both the party and the healer will move either 45 or 90 degrees.
+             It is a "fast" movement if you need to move fast to avoid the Ifrit follow-up dash.
+             It is a "slow" movement if you have extra time to do this.`,
+      },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
       condition: (data) => data.ifritUntargetableCount === 2 && data.ifritAwoken,
