@@ -165,7 +165,7 @@ The test bars, debug text, dashed red border, and shaded blue background will di
 
     ![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
 
-1. If you want to test the raidboss plugin, teleport to Summerford Farms, and do a `/countdown 5`.
+1. If you want to test the raidboss plugin, see the [Installation Testing guide](docs/FAQ-Troubleshooting.md#installation-testing)]
 
 1. Adding other cactbot overlays is a similar process.
 Follow the same process but select a different cactbot preset.
