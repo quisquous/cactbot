@@ -31,8 +31,17 @@ export interface Data extends RaidbossData {
   lalaSubAlpha: NetMatches['GainsEffect'][];
   staticeBullet: NetMatches['Ability'][];
   staticeTriggerHappy?: number;
-  staticeTrapshooting: ('stack' | 'spread')[];
+  staticeTrapshooting: ('stack' | 'spread' | undefined)[];
   staticeDart: NetMatches['GainsEffect'][];
+  staticeBombRotateCount: number;
+  staticeBomb: NetMatches['AddedCombatant'][];
+  staticeBombTether: NetMatches['SpawnNpcExtra'][];
+  staticeSafeBombIds: string[];
+  staticePresentBoxCount: number;
+  staticePresentBox1StackSpot?: number;
+  staticePresentBox1TopOfTriangleDir?: number;
+  staticeMissileCollect: NetMatches['AddedCombatant'][];
+  staticeMissileIdToDir: { [id: string]: number };
   staticeMissileTether: NetMatches['Tether'][];
   staticeClawTether: NetMatches['Tether'][];
   staticeIsPinwheelingDartboard?: boolean;
@@ -51,6 +60,19 @@ const headmarkerIds = {
   enumeration: '015B',
 } as const;
 
+const xyTo5DirBombNum = (x: number, y: number): number => {
+  // Six bombs are in a pentagram with one in the middle.
+  // N = 0, NE = 1, SE = 2, SW = 3, NW = 4, Center = 5
+  const centerX = -200;
+  const centerY = 0;
+  x = x - centerX;
+  y = y - centerY;
+  if (Math.abs(x) < 1 && Math.abs(y) < 1)
+    return 5;
+  // Find the closest spoke of the pentagram.
+  return Math.round(2.5 - 2.5 * Math.atan2(x, y) / Math.PI) % 5;
+};
+
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherAloaloIsland',
   zoneId: ZoneId.AnotherAloaloIsland,
@@ -67,6 +89,13 @@ const triggerSet: TriggerSet<Data> = {
       staticeBullet: [],
       staticeTrapshooting: [],
       staticeDart: [],
+      staticeBombRotateCount: 0,
+      staticeBomb: [],
+      staticeBombTether: [],
+      staticeSafeBombIds: [],
+      staticePresentBoxCount: 0,
+      staticeMissileCollect: [],
+      staticeMissileIdToDir: {},
       staticeMissileTether: [],
       staticeClawTether: [],
       staticeDartboardTether: [],
@@ -977,6 +1006,141 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AAI Statice Ring a Ring o\' Explosions Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: '895C', source: 'Statice', capture: false },
+      run: (data) => {
+        data.staticeBomb = [];
+        data.staticeBombTether = [];
+        data.staticeSafeBombIds = [];
+      },
+    },
+    {
+      id: 'AAI Statice Bomb Add',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12520' },
+      run: (data, matches) => data.staticeBomb.push(matches),
+    },
+    {
+      id: 'AAI Statice Bomb Tether',
+      type: 'SpawnNpcExtra',
+      netRegex: {},
+      run: (data, matches) => data.staticeBombTether.push(matches),
+    },
+    {
+      id: 'AAI Statice Bomb Activate',
+      type: 'ActorControlExtra',
+      netRegex: { param2: '00000001' },
+      run: (data, matches) => {
+        const activeBombIds: string[] = [];
+
+        const idToNpcSpawnExtra: { [id: string]: NetMatches['SpawnNpcExtra'] } = {};
+        for (const npcSpawnExtra of data.staticeBombTether)
+          idToNpcSpawnExtra[npcSpawnExtra.sourceId] = npcSpawnExtra;
+
+        let currentBomb = matches.sourceId;
+        for (let i = 0; i < 3; ++i) {
+          const npcSpawnExtra = idToNpcSpawnExtra[currentBomb];
+          if (npcSpawnExtra === undefined)
+            break;
+          currentBomb = npcSpawnExtra?.parentActorId;
+          activeBombIds.push(currentBomb);
+        }
+
+        // TODO: validate all bombs are in the add lines too.
+        if (activeBombIds.length !== 3 || !activeBombIds.includes(matches.sourceId)) {
+          console.error('Failed to find active bombs');
+          console.error(JSON.stringify(data.staticeBomb));
+          console.error(JSON.stringify(data.staticeBombTether));
+          console.error(JSON.stringify(activeBombIds));
+        } else {
+          const validBombIds = data.staticeBomb.map((x) => x.id);
+          data.staticeSafeBombIds = validBombIds.filter((id) => !activeBombIds.includes(id));
+        }
+      },
+    },
+    {
+      id: 'AAI Statice Bomb Count',
+      type: 'Ability',
+      netRegex: { id: '8A6A' },
+      run: (data, matches) => {
+        const firstBomb = data.staticeSafeBombIds[0];
+        if (matches.targetId === firstBomb)
+          data.staticeBombRotateCount++;
+      },
+    },
+    {
+      id: 'AAI Statice Bomb Rotate Final',
+      type: 'Ability',
+      netRegex: { id: '8A6A', capture: false },
+      delaySeconds: 4,
+      durationSeconds: 6,
+      suppressSeconds: 10,
+      alertText: (data, _matches, output) => {
+        if (data.staticeSafeBombIds.length !== 3)
+          return;
+
+        const bombToDir: { [id: string]: number } = {};
+        for (const id of data.staticeSafeBombIds) {
+          const addLine = data.staticeBomb.find((x) => x.id === id);
+          if (addLine === undefined)
+            break;
+          const x = parseFloat(addLine.x);
+          const y = parseFloat(addLine.y);
+          bombToDir[id] = xyTo5DirBombNum(x, y);
+        }
+
+        // Sort bomb ids from original north and clockwise to be consistent in callout.
+        // This makes it possible to consistently go to the same place as a group.
+        const sortedIds = [...data.staticeSafeBombIds].sort((a, b) => {
+          return (bombToDir[a] ?? 0) - (bombToDir[b] ?? 0);
+        });
+
+        const safeSpots = sortedIds.map((id) => {
+          const dir = bombToDir[id];
+          if (dir === undefined)
+            return output.unknown!();
+          if (dir === 5)
+            return output.center!();
+          return {
+            0: output.dirN!(),
+            1: output.dirNE!(),
+            2: output.dirSE!(),
+            3: output.dirSW!(),
+            4: output.dirNW!(),
+          }[(dir + data.staticeBombRotateCount) % 5] ?? output.unknown!();
+        });
+
+        const mech = output[data.staticeTrapshooting.shift() ?? 'unknown']!();
+        // This is kinda hacky, but in order to suppress the next trapshooting call,
+        // replace the mech we just shifted off with an undefined.
+        data.staticeTrapshooting.unshift(undefined);
+
+        if (sortedIds.find((id) => bombToDir[id] === 5) !== undefined)
+          return output.middleSafe!({ spots: safeSpots, mech: mech });
+        return output.middleUnsafe!({ spots: safeSpots, mech: mech });
+      },
+      outputStrings: {
+        middleSafe: {
+          en: '${spots} => ${mech}',
+        },
+        middleUnsafe: {
+          en: '${spots} (middle unsafe) => ${mech}',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+        center: {
+          en: 'Center',
+        },
+        spread: Outputs.spread,
+        stack: Outputs.stackMarker,
+        unknown: Outputs.unknown,
+      },
+    },
+    {
       id: 'AAI Statice Bull\'s-eye',
       type: 'GainsEffect',
       netRegex: { effectId: 'E9E' },
@@ -1106,6 +1270,176 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AAI Statice Present Box Counter',
+      // This happens ~1s prior to ActorControlExtra on bomb.
+      type: 'StartsUsing',
+      netRegex: { id: '8955', source: 'Statice', capture: false },
+      run: (data) => data.staticePresentBoxCount++,
+    },
+    {
+      id: 'AAI Statice Present Box One Triangle',
+      type: 'ActorControlExtra',
+      // TODO: we could do this call even before the glow with the tethers by treating
+      // the middle bomb as glowing, but that'd be extra work for little benefit.
+      netRegex: { param2: '00000001', capture: false },
+      condition: (data) => data.staticePresentBoxCount === 1,
+      infoText: (data, _matches, output) => {
+        if (data.staticeSafeBombIds.length !== 3)
+          return;
+
+        const bombToDir: { [id: string]: number } = {};
+        for (const id of data.staticeSafeBombIds) {
+          const addLine = data.staticeBomb.find((x) => x.id === id);
+          if (addLine === undefined)
+            break;
+          const x = parseFloat(addLine.x);
+          const y = parseFloat(addLine.y);
+          bombToDir[id] = xyTo5DirBombNum(x, y);
+        }
+
+        const sortedBombDirs = data.staticeSafeBombIds.map((x) => bombToDir[x]).sort();
+
+        for (const start of [0, 1, 2]) {
+          const dir1 = sortedBombDirs[start];
+          const dir2 = sortedBombDirs[(start + 1) % 3];
+          const dir3 = sortedBombDirs[(start + 2) % 3];
+          if (dir1 === undefined || dir2 === undefined || dir3 === undefined)
+            return;
+
+          if ((dir1 + 1) % 5 !== dir2)
+            continue;
+          if ((dir2 + 1) % 5 !== dir3) {
+            // If we get here, then dir1 and dir2 are adjacent to each other, but not dir3.
+            // Save this work off for the missiles later.
+            data.staticePresentBox1TopOfTriangleDir = (dir2 + 2) % 5;
+            continue;
+          }
+
+          data.staticePresentBox1TopOfTriangleDir = dir2;
+          data.staticePresentBox1StackSpot = dir2;
+
+          // dir2 is in the middle
+          const outputDir = {
+            0: output.dirN!(),
+            1: output.dirNE!(),
+            2: output.dirSE!(),
+            3: output.dirSW!(),
+            4: output.dirNW!(),
+          }[dir2];
+          return output.text!({ dir: outputDir });
+        }
+      },
+      outputStrings: {
+        text: {
+          en: '(stack is at ${dir})',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
+      },
+    },
+    {
+      id: 'AAI Statice Surprising Missile Collect',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12517' },
+      run: (data, matches) => {
+        data.staticeMissileCollect.push(matches);
+        if (data.staticeMissileCollect.length !== 2)
+          return;
+
+        // TODO: this is maybe duplicated too much, but it does extra work here?
+        const bombToDir: { [id: string]: number } = {};
+        const bombToPos: { [id: string]: { x: number; y: number } } = {};
+        let topBombPos: { x: number; y: number } | undefined;
+        for (const id of data.staticeSafeBombIds) {
+          const addLine = data.staticeBomb.find((x) => x.id === id);
+          if (addLine === undefined)
+            break;
+          const x = parseFloat(addLine.x);
+          const y = parseFloat(addLine.y);
+          const dir = xyTo5DirBombNum(x, y);
+          bombToDir[id] = dir;
+          bombToPos[id] = { x, y };
+          if (dir === data.staticePresentBox1TopOfTriangleDir)
+            topBombPos = { x, y };
+        }
+
+        const topBombDir = data.staticePresentBox1TopOfTriangleDir;
+        if (topBombPos === undefined || topBombDir === undefined)
+          return;
+
+        // If we already know the stack spot, eliminate it from the valid safe dirs to avoid any logic errors later.
+        const stackDir = data.staticePresentBox1StackSpot;
+        const nonStackBombIds = data.staticeSafeBombIds.filter((id) => bombToDir[id] !== stackDir);
+
+        // For the intersecting triangle case, find the missile furthest from the top of the triangle
+        // and tell them to go there. It sure seems like missiles need to run north/south along
+        // the long direction of this safe triangle of bombs to break the tether, so even if the
+        // missiles are lateral (relatively) and the furthest two spots are the bottom of the triangle
+        // they need to still go N/S (relative).
+        const missileDirs: number[] = [];
+        if (stackDir === undefined) {
+          let furthestMissileId: string | undefined;
+          let furthestDistanceSqr: number | undefined;
+          for (const missile of data.staticeMissileCollect) {
+            const xDiff = parseFloat(missile.x) - topBombPos.x;
+            const yDiff = parseFloat(missile.y) - topBombPos.y;
+            const distSqr = xDiff * xDiff + yDiff * yDiff;
+            if (furthestDistanceSqr === undefined || distSqr > furthestDistanceSqr) {
+              furthestDistanceSqr = distSqr;
+              furthestMissileId = missile.id;
+            }
+          }
+          if (furthestMissileId === undefined)
+            return;
+          missileDirs.push(topBombDir);
+          data.staticeMissileIdToDir[furthestMissileId] = topBombDir;
+        }
+
+        // Solve for remaining missiles.
+        // For the "disconnected triangle" case, this will solve for both, ignoring the middle stack spot.
+        // For the "intersecting triangle" case, this will solve the remaining missile ignoring the top of the triangle.
+        for (const missile of data.staticeMissileCollect) {
+          // if we already solved this one above, ignore it.
+          if (data.staticeMissileIdToDir[missile.id] !== undefined)
+            continue;
+          let furthestDir: number | undefined;
+          let furthestDistanceSqr: number | undefined;
+          for (const id of nonStackBombIds) {
+            const pos = bombToPos[id];
+            if (pos === undefined)
+              return;
+            const xDiff = parseFloat(missile.x) - pos.x;
+            const yDiff = parseFloat(missile.y) - pos.y;
+            const distSqr = xDiff * xDiff + yDiff * yDiff;
+            if (furthestDistanceSqr === undefined || distSqr > furthestDistanceSqr) {
+              furthestDistanceSqr = distSqr;
+              furthestDir = bombToDir[id];
+            }
+          }
+
+          if (furthestDir !== undefined) {
+            data.staticeMissileIdToDir[missile.id] = furthestDir;
+            missileDirs.push(furthestDir);
+          }
+        }
+
+        if (stackDir !== undefined)
+          return;
+
+        const safeDirs = data.staticeSafeBombIds.map((id) => bombToDir[id]);
+        const maybeStackDirs = safeDirs.filter((dir) =>
+          dir !== undefined && !missileDirs.includes(dir)
+        );
+        const [finalStackDir] = maybeStackDirs;
+
+        if (maybeStackDirs.length === 1 && finalStackDir !== undefined)
+          data.staticePresentBox1StackSpot = finalStackDir;
+      },
+    },
+    {
       id: 'AAI Statice Present Box Missile',
       type: 'Tether',
       netRegex: { source: 'Surprising Missile', id: '0011' },
@@ -1114,18 +1448,54 @@ const triggerSet: TriggerSet<Data> = {
         return data.staticeMissileTether.length === 2 ? 0 : 0.5;
       },
       durationSeconds: 7,
-      alertText: (data, _matches, output) => {
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          missileOnYou: {
+            en: 'Bait Tethers => Missile Spread',
+          },
+          missileOnYouDir: {
+            en: 'Bait Tethers => Missile Spread ${dir}',
+          },
+          stackAt: {
+            en: '(stack is at ${dir})',
+          },
+          dirN: Outputs.dirN,
+          dirNE: Outputs.dirNE,
+          dirSE: Outputs.dirSE,
+          dirSW: Outputs.dirSW,
+          dirNW: Outputs.dirNW,
+        };
+
         if (data.staticeMissileTether.length !== 2)
           return;
-        if (data.staticeMissileTether.map((x) => x.target).includes(data.me))
-          return output.missileOnYou!();
+
+        const missileTether = data.staticeMissileTether.find((x) => x.target === data.me);
+        if (missileTether === undefined)
+          return;
+
+        const dirToStr: { [dir: number]: string } = {
+          0: output.dirN!(),
+          1: output.dirNE!(),
+          2: output.dirSE!(),
+          3: output.dirSW!(),
+          4: output.dirNW!(),
+        } as const;
+
+        let infoText: string | undefined;
+        const stackDir = data.staticePresentBox1StackSpot;
+        if (stackDir !== undefined)
+          infoText = output.stackAt!({ dir: dirToStr[stackDir] });
+
+        const missileDir = data.staticeMissileIdToDir[missileTether.sourceId];
+        if (missileDir === undefined)
+          return { alertText: output.missileOnYou!(), infoText: infoText };
+        return {
+          alertText: output.missileOnYouDir!({ dir: dirToStr[missileDir] }),
+          infoText: infoText,
+        };
       },
       run: (data) => data.staticeMissileTether = [],
-      outputStrings: {
-        missileOnYou: {
-          en: 'Bait Tethers => Missile Spread',
-        },
-      },
     },
     {
       id: 'AAI Statice Present Box Claw',
@@ -1139,14 +1509,35 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.staticeClawTether.length !== 2)
           return;
-        if (data.staticeClawTether.map((x) => x.target).includes(data.me))
-          return output.missileOnYou!();
+        if (!data.staticeClawTether.map((x) => x.target).includes(data.me))
+          return;
+
+        const dirToStr: { [dir: number]: string } = {
+          0: output.dirN!(),
+          1: output.dirNE!(),
+          2: output.dirSE!(),
+          3: output.dirSW!(),
+          4: output.dirNW!(),
+        } as const;
+
+        const stackDir = data.staticePresentBox1StackSpot;
+        if (stackDir !== undefined)
+          return output.stackAt!({ dir: dirToStr[stackDir] });
+        return output.stack!();
       },
       run: (data) => data.staticeClawTether = [],
       outputStrings: {
-        missileOnYou: {
+        stack: {
           en: 'Juke Claw => Stack',
         },
+        stackAt: {
+          en: 'Juke Claw => Stack ${dir}',
+        },
+        dirN: Outputs.dirN,
+        dirNE: Outputs.dirNE,
+        dirSE: Outputs.dirSE,
+        dirSW: Outputs.dirSW,
+        dirNW: Outputs.dirNW,
       },
     },
     {
