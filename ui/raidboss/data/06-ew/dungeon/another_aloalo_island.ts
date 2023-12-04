@@ -40,6 +40,8 @@ export interface Data extends RaidbossData {
   staticeTriggerHappy?: number;
   staticeTrapshooting: ('stack' | 'spread')[];
   staticeDart: NetMatches['GainsEffect'][];
+  staticeMissileTether: NetMatches['Tether'][];
+  staticeClawTether: NetMatches['Tether'][];
   staticeIsPinwheelingDartboard?: boolean;
 }
 
@@ -64,6 +66,8 @@ const triggerSet: TriggerSet<Data> = {
       staticeBullet: [],
       staticeTrapshooting: [],
       staticeDart: [],
+      staticeMissileTether: [],
+      staticeClawTether: [],
     };
   },
   timelineTriggers: [
@@ -969,7 +973,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Dart on YOU',
           },
           noDartOnYou: {
-            en: 'Flex',
+            en: 'No Dart',
           },
           flexCall: {
             en: '(${player} flex)',
@@ -1046,6 +1050,50 @@ const triggerSet: TriggerSet<Data> = {
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
         unknown: Outputs.unknown,
+      },
+    },
+    {
+      id: 'AAI Statice Present Box Missile',
+      type: 'Tether',
+      netRegex: { source: 'Surprising Missile', id: '0011' },
+      delaySeconds: (data, matches) => {
+        data.staticeMissileTether.push(matches);
+        return data.staticeMissileTether.length === 2 ? 0 : 0.5;
+      },
+      durationSeconds: 7,
+      alertText: (data, _matches, output) => {
+        if (data.staticeMissileTether.length !== 2)
+          return;
+        if (data.staticeMissileTether.map((x) => x.target).includes(data.me))
+          return output.missileOnYou!();
+      },
+      run: (data) => data.staticeMissileTether = [],
+      outputStrings: {
+        missileOnYou: {
+          en: 'Bait Tethers => Missile Spread',
+        },
+      },
+    },
+    {
+      id: 'AAI Statice Present Box Claw',
+      type: 'Tether',
+      netRegex: { source: 'Surprising Claw', id: '0011' },
+      delaySeconds: (data, matches) => {
+        data.staticeClawTether.push(matches);
+        return data.staticeClawTether.length === 2 ? 0 : 0.5;
+      },
+      durationSeconds: 7,
+      alertText: (data, _matches, output) => {
+        if (data.staticeClawTether.length !== 2)
+          return;
+        if (data.staticeClawTether.map((x) => x.target).includes(data.me))
+          return output.missileOnYou!();
+      },
+      run: (data) => data.staticeClawTether = [],
+      outputStrings: {
+        missileOnYou: {
+          en: 'Juke Claw => Stack',
+        },
       },
     },
     {

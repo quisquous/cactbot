@@ -43,6 +43,9 @@ export interface Data extends RaidbossData {
   staticeTriggerHappy?: number;
   staticeTrapshooting: ('stack' | 'spread')[];
   staticeDart: NetMatches['GainsEffect'][];
+  staticeMissileTether: NetMatches['Tether'][];
+  staticeClawTether: NetMatches['Tether'][];
+  staticeIsPinwheelingDartboard?: boolean;
 }
 
 // Horizontal crystals have a heading of 0, vertical crystals are -pi/2.
@@ -66,6 +69,8 @@ const triggerSet: TriggerSet<Data> = {
       staticeBullet: [],
       staticeTrapshooting: [],
       staticeDart: [],
+      staticeMissileTether: [],
+      staticeClawTether: [],
     };
   },
   timelineTriggers: [
@@ -824,21 +829,20 @@ const triggerSet: TriggerSet<Data> = {
         const rotationFactor = rotation === 'clock' ? 1 : -1;
         const finalDir = (rotationFactor * times + 8) % 4;
         if (finalDir === 1)
-          return output.right!();
-        if (finalDir === 3)
           return output.left!();
+        if (finalDir === 3)
+          return output.right!();
       },
       run: (data) => {
         delete data.lalaPlayerRotation;
         delete data.lalaPlayerTimes;
       },
       outputStrings: {
-        // This isn't confusing at all.
         left: {
-          en: 'Rotate Left (your right is forward)',
+          en: 'Leftward March',
         },
         right: {
-          en: 'Rotate Right (your left is forward)',
+          en: 'Rightward March',
         },
       },
     },
@@ -972,7 +976,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'Dart on YOU',
           },
           noDartOnYou: {
-            en: 'Flex',
+            en: 'No Dart',
           },
           flexCall: {
             en: '(${player} flex)',
@@ -986,6 +990,10 @@ const triggerSet: TriggerSet<Data> = {
 
         if (!dartTargets.includes(data.me))
           return { alertText: output.noDartOnYou!() };
+
+        // TODO: better callout / separate trigger for this mechanic
+        if (data.staticeIsPinwheelingDartboard)
+          return { alertText: output.dartOnYou!() };
 
         const partyNames = data.party.partyNames;
 
@@ -1046,6 +1054,62 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         unknown: Outputs.unknown,
       },
+    },
+    {
+      id: 'AAIS Statice Present Box Missile',
+      type: 'Tether',
+      netRegex: { source: 'Surprising Missile', id: '0011' },
+      delaySeconds: (data, matches) => {
+        data.staticeMissileTether.push(matches);
+        return data.staticeMissileTether.length === 2 ? 0 : 0.5;
+      },
+      durationSeconds: 7,
+      alertText: (data, _matches, output) => {
+        if (data.staticeMissileTether.length !== 2)
+          return;
+        if (data.staticeMissileTether.map((x) => x.target).includes(data.me))
+          return output.missileOnYou!();
+      },
+      run: (data) => data.staticeMissileTether = [],
+      outputStrings: {
+        missileOnYou: {
+          en: 'Bait Tethers => Missile Spread',
+        },
+      },
+    },
+    {
+      id: 'AAIS Statice Present Box Claw',
+      type: 'Tether',
+      netRegex: { source: 'Surprising Claw', id: '0011' },
+      delaySeconds: (data, matches) => {
+        data.staticeClawTether.push(matches);
+        return data.staticeClawTether.length === 2 ? 0 : 0.5;
+      },
+      durationSeconds: 7,
+      alertText: (data, _matches, output) => {
+        if (data.staticeClawTether.length !== 2)
+          return;
+        if (data.staticeClawTether.map((x) => x.target).includes(data.me))
+          return output.missileOnYou!();
+      },
+      run: (data) => data.staticeClawTether = [],
+      outputStrings: {
+        missileOnYou: {
+          en: 'Juke Claw => Stack',
+        },
+      },
+    },
+    {
+      id: 'AAIS Statice Shocking Abandon',
+      type: 'StartsUsing',
+      netRegex: { id: '8948', source: 'Statice' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'AAIS Statice Pinwheeling Dartboard',
+      type: 'StartsUsing',
+      netRegex: { id: '8CBC', source: 'Statice', capture: false },
+      run: (data) => data.staticeIsPinwheelingDartboard = true,
     },
   ],
   timelineReplace: [

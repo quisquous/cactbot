@@ -15,6 +15,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: taking extra TODO Inferno Divide squares during Spatial Tactics
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
 // TODO: players not in Trapshooting stack TODO
+// TODO: players not in Present Box / Pinwheeling Dartboard two person stack
 
 export type Data = OopsyData;
 
@@ -104,11 +105,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Trigger Happy': 'TODO', // limit cut dart board
     'AAIS Bomb Burst': 'TODO', // bomb explosion
     'AAIS Uncommon Ground': 'TODO', // people who are on the same dartboard color with Bull's-eye
+    'AAIS Faerie Ring': 'TODO', // donut rings during Present Box
+    'AAIS Fire Spread 1': '8982', // initial rotating fire (from Ball of Fire)
+    'AAIS Fire Spread 2': '89F9', // ongoing rotating fire damage (from Statice)
   },
   damageFail: {
     'AAIS Big Burst': 'TODO', // tower failure damage
     'AAIS Massive Explosion 1': 'TODO', // failing to resolve Subractive Suppressor Alpha
     'AAIS Massive Explosion 2': 'TODO', // failing to resolve Subractive Suppressor Beta
+    'AAIS Burning Chains': '8CBE', // damage from not breaking chains
   },
   gainsEffectFail: {
     // C03 = 9999 duration, ??? = 15s duration
@@ -124,6 +129,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Powerful Light': 'TODO', // spread marker during Symmetric Surge that turns squares blue
     'AAIS Explosive Theorem': 'TODO', // large spreads with Telluric Theorem puddles
     'AAIS Trapshooting Spread': 'TODO', // spread damage from Trick Reload
+    'AAIS Firewords Spread': 'TODO', // spread damage during Present Box / Pinwheeling Dartboard
   },
   soloWarn: {
     'AAIS Snipper Water III': 'TODO', // Snipper stack marker
@@ -133,6 +139,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   soloFail: {
     'AAIS Hydrofall': 'TODO', // partner stack debuffs
     'AAIS Symmetric Surge': 'TODO', // two person stack that gives magic vuln up
+    'AAIS Fireworks Stack': 'TODO', // two person stack damage during Present Box / Pinwheeling Dartboard
   },
   triggers: [
     pushedIntoWall('AAIS Angry Seas', 'TODO'),
