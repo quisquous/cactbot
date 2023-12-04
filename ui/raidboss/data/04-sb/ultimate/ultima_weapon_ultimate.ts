@@ -845,6 +845,9 @@ const triggerSet: TriggerSet<Data> = {
         en: `If the first nail is SE, this will call SE/NW for both reverse-Z and normal-Z.
              If the first nail is S, this will call SE/NW for reverse-Z and SW/NE for normal-Z.
              Other nail orders are also supported, these are just examples.`,
+        cn: `如果第一个火神柱在东南，则反向 Z 和正常 Z 都会提示东南/西北
+             如果第一个火神柱在南, 则反向 Z 将提示东南/西北，正常 Z 将提示西南/东北。
+             这些只是示例, 还支持其他火神柱顺序。`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
@@ -887,6 +890,9 @@ const triggerSet: TriggerSet<Data> = {
         en: `If the first nail was on an intercard, then the first Ifrit dash is on an intercard
              and this optional call is to move to be adjacent to that first dash.
              If you are already safe, this will not be called.`,
+        cn: `如果第一个火神柱在对角线上，那么第一次火神冲也在对角线上。
+             这个可选提示会提示你移动到第一次火神冲附近的位置。
+             如果你已在安全区，则不会输出此提示。`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
@@ -927,6 +933,10 @@ const triggerSet: TriggerSet<Data> = {
              Both the party and the healer will move either 45 or 90 degrees.
              It is a "fast" movement if you need to move fast to avoid the Ifrit follow-up dash.
              It is a "slow" movement if you have extra time to do this.`,
+        cn: `这是从第一次火神冲附近开始的火神冲主要移动。
+             人群和奶妈都将移动 45 度或 90 度。
+             "快" 可以让你快速移动，躲避第二次火神冲。
+             "慢" 当你有足够的时间来移动时使用。`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
