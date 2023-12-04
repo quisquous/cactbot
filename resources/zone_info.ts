@@ -1553,6 +1553,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '多变迷宫 六根山',
       'de': 'Der Rokkon',
       'en': 'Mount Rokkon',
       'fr': 'Le mont Rokkon - Donjon à embranchements',
@@ -1835,6 +1836,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '异闻迷宫 异闻六根山',
       'de': 'Der kuriose Rokkon',
       'en': 'Another Mount Rokkon',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif',
@@ -1849,6 +1851,7 @@ const data: ZoneInfoType = {
     'contentType': 30,
     'exVersion': 4,
     'name': {
+      'cn': '异闻迷宫 零式异闻六根山',
       'de': 'Der kuriose Rokkon (episch)',
       'en': 'Another Mount Rokkon (Savage)',
       'fr': 'Le mont Rokkon annexe - Donjon alternatif (sadique)',
