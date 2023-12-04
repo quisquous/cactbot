@@ -497,11 +497,11 @@ Options.Triggers.push({
     },
     {
       locale: 'cn',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*向木人告别',
         'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
         'test sync': 'test sync',
+        'testNetRegexTimeline': 'testNetRegexTimeline',
         'You burst out laughing at the striking dummy': '.*看着木人高声大笑',
         'cactbot lang': 'cactbot语言',
         'cactbot test combatant cast': 'cactbot测试战斗员施法',
