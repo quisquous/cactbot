@@ -12,6 +12,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: taking extra 8893 Inferno Divide squares during Spatial Tactics
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
 // TODO: players not in Trapshooting stack 895A
+// TODO: players not in Present Box / Pinwheeling Dartboard two person stack
 
 export type Data = OopsyData;
 
@@ -101,11 +102,15 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Trigger Happy': '894C', // limit cut dart board
     'AAI Bomb Burst': '895D', // bomb explosion
     'AAI Uncommon Ground': '8CC2', // people who are on the same dartboard color with Bull's-eye
+    'AAI Faerie Ring': '8956', // donut rings during Present Box
+    'AAI Fire Spread 1': '8982', // initial rotating fire (from Ball of Fire)
+    'AAI Fire Spread 2': '89F9', // ongoing rotating fire damage (from Statice)
   },
   damageFail: {
     'AAI Big Burst': '8AC3', // tower failure damage
     'AAI Massive Explosion 1': '889C', // failing to resolve Subractive Suppressor Alpha
     'AAI Massive Explosion 2': '889D', // failing to resolve Subractive Suppressor Beta
+    'AAI Burning Chains': '8CBE', // damage from not breaking chains
   },
   gainsEffectFail: {
     // C03 = 9999 duration, ??? = 15s duration
@@ -121,6 +126,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Powerful Light': '88A6', // spread marker during Symmetric Surge that turns squares blue
     'AAI Explosive Theorem': '88A8', // large spreads with Telluric Theorem puddles
     'AAI Trapshooting Spread': '895B', // spread damage from Trick Reload
+    'AAI Firewords Spread': '8960', // spread damage during Present Box / Pinwheeling Dartboard
   },
   soloWarn: {
     'AAI Snipper Water III': '8C64', // Snipper stack marker
@@ -130,6 +136,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
   soloFail: {
     'AAI Hydrofall': '8AB7', // partner stack debuffs
     'AAI Symmetric Surge': '889E', // two person stack that gives magic vuln up
+    'AAI Fireworks Stack': '895F', // two person stack damage during Present Box / Pinwheeling Dartboard
   },
   triggers: [
     pushedIntoWall('AAI Angry Seas', '8AC1'),

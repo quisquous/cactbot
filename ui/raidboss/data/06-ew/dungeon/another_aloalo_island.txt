@@ -265,7 +265,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~#
 
 # -p 8949:3013.8
-# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2
+# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2 8982 8CBE
 
 3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
 3008.8 "--sync--" sync / 14:[^:]*:Statice:8949:/ window 20,20
@@ -303,16 +303,24 @@ hideall "--sync--"
 3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
 3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
 3189.2 "Present Box" sync / 1[56]:[^:]*:Statice:8955:/
-3194.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895E:/
+3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:895E:/
+3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:895F:/
 3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
 3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8956:/
+3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8948:/
 
+3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8CBC:/
+3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:895E:/
+3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/
+3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895F:/
+3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8954:/
 
 # ALL ENCOUNTER ABILITIES
 # 8925 Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
 # 8926 Misload ability during 894A Trick Reload when a bullet missed the gun oops
 # 8927 --sync-- repositioning from Statice
 # 8947 --sync-- auto damage from Statice
+# 8948 Shocking Abandon cast and tankbuster damage
 # 8949 Aero IV cast and raidwide damage
 # 894A Trick Reload self-targeted cast to load gun with 8925/8926
 # 894B Trigger Happy self-targeted cast for limit cut dart board
@@ -329,12 +337,16 @@ hideall "--sync--"
 # 895C Ring a Ring o' Explosions self-targeted cast for rotating bombs
 # 895D Burst cast and damage from bomb explosion
 # 895E Fireworks self-targeted cast
-# 895F Fireworks ??? spread/stack damage during Present Box
-# 8960 Fireworks ??? spread/stack damage during Present Box
+# 895F Fireworks two person stack damage during Present Box
+# 8960 Fireworks spread damage during Present Box
 # 8963 Beguiling Glitter self-targeted cast to give players Face debuffs
+# 8982 Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
 # 8987 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+# 89F9 Fire Spread ongoing rotating fire damage (from Statice)
 # 8A6A --sync-- ability on Bomb when rotating
+# 8CBC Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
 # 8CBD Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+# 8CBE Burning Chains damage from not breaking chains
 # 8CC2 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
 # 8D1A Trapshooting self-targeted cast after Trick Reload (first time)
 

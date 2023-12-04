@@ -40,6 +40,7 @@ export interface Data extends RaidbossData {
   staticeTriggerHappy?: number;
   staticeTrapshooting: ('stack' | 'spread')[];
   staticeDart: NetMatches['GainsEffect'][];
+  staticeIsPinwheelingDartboard?: boolean;
 }
 
 // Horizontal crystals have a heading of 0, vertical crystals are -pi/2.
@@ -983,6 +984,10 @@ const triggerSet: TriggerSet<Data> = {
         if (!dartTargets.includes(data.me))
           return { alertText: output.noDartOnYou!() };
 
+        // TODO: better callout / separate trigger for this mechanic
+        if (data.staticeIsPinwheelingDartboard)
+          return { alertText: output.dartOnYou!() };
+
         const partyNames = data.party.partyNames;
 
         const flexers = partyNames.filter((x) => !dartTargets.includes(x));
@@ -1042,6 +1047,18 @@ const triggerSet: TriggerSet<Data> = {
         stack: Outputs.stackMarker,
         unknown: Outputs.unknown,
       },
+    },
+    {
+      id: 'AAI Statice Shocking Abandon',
+      type: 'StartsUsing',
+      netRegex: { id: '8948', source: 'Statice' },
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'AAI Statice Pinwheeling Dartboard',
+      type: 'StartsUsing',
+      netRegex: { id: '8CBC', source: 'Statice', capture: false },
+      run: (data) => data.staticeIsPinwheelingDartboard = true,
     },
   ],
   timelineReplace: [
