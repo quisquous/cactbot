@@ -5,9 +5,10 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
+import { LocaleText } from '../../../../../types/trigger';
 import { playerDamageFields } from '../../../oopsy_common';
 
-// TODO: people who missed their TODO Burst tower
+// TODO: people who missed their 8AE2 Burst tower
 // TODO: failing TODO Radiance orb damage during Analysis
 // TODO: failing TODO Targeted Light during Analysis
 // TODO: people who failed Subtractive Suppressor Alpha + Beta
@@ -16,6 +17,28 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
 // TODO: players not in Trapshooting stack TODO
 // TODO: players not in Present Box / Pinwheeling Dartboard two person stack
+
+const renameMistake = (
+  triggerId: string,
+  abilityId: string | string[],
+  type: OopsyMistakeType,
+  text: LocaleText,
+): OopsyTrigger<OopsyData> => {
+  return {
+    id: triggerId,
+    type: 'Ability',
+    netRegex: NetRegexes.ability({ id: abilityId, ...playerDamageFields }),
+    condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+    mistake: (_data, matches) => {
+      return {
+        type: type,
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: text,
+      };
+    },
+  };
+};
 
 export type Data = OopsyData;
 
@@ -71,23 +94,23 @@ const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.AnotherAloaloIslandSavage,
   damageWarn: {
     // Trash 1
-    'AAIS Twister': 'TODO', // Twister tornados
-    'AAIS Kiwakin Tail Screw': 'TODO', // baited circle
-    'AAIS Snipper Bubble Shower': 'TODO', // front conal
-    'AAIS Snipper Crab Dribble': 'TODO', // fast back conal after Bubble Shower
-    'AAIS Ray Hydrocannon': 'TODO', // line aoe
-    'AAIS Ray Expulsion': 'TODO', // "get out"
-    'AAIS Ray Electric Whorl': 'TODO', // "get in"
+    'AAIS Twister': '8BCF', // Twister tornados
+    'AAIS Kiwakin Tail Screw': '8BC9', // baited circle
+    'AAIS Snipper Bubble Shower': '8BCA', // front conal
+    'AAIS Snipper Crab Dribble': '8BCB', // fast back conal after Bubble Shower
+    'AAIS Ray Hydrocannon': '8C4B', // line aoe
+    'AAIS Ray Expulsion': '8BCE', // "get out"
+    'AAIS Ray Electric Whorl': '8BCD', // "get in"
 
     // Ketuduke
-    'AAIS Spring Crystal Saturate 1': 'TODO', // orb circle
-    'AAIS Spring Crystal Saturate 2': 'TODO', // rupee line laser
-    'AAIS Sphere Shatter': 'TODO', // moving arches
-    'AAIS Receding Twintides': 'TODO', // initial out during out->in
-    'AAIS Near Tide': 'TODO', // second out during in->out with TODO Encroaching Twintides
-    'AAIS Encroaching Twintides': 'TODO', // initial in during in->out
-    'AAIS Far Tide': 'TODO', // second in during out->in with TODO Receding Twintides
-    'AAIS Hydrobomb': 'TODO', // 3x puddles duruing TODO Blowing Bubbles
+    'AAIS Spring Crystal Saturate 1': '8ADB', // orb circle
+    'AAIS Spring Crystal Saturate 2': '8ADC', // rupee line laser
+    'AAIS Sphere Shatter': '8AE0', // moving arches
+    'AAIS Receding Twintides': '8AE7', // initial out during out->in
+    'AAIS Near Tide': '8AE8', // second out during in->out with 8AE9 Encroaching Twintides
+    'AAIS Encroaching Twintides': '8AE9', // initial in during in->out
+    'AAIS Far Tide': '8AEA', // second in during out->in with 8AE7 Receding Twintides
+    'AAIS Hydrobomb': '8AEB', // 3x puddles duruing 8ABD Blowing Bubbles
 
     // Trash 2
     'AAIS Wood Golem Ovation': 'TODO', // front line aoe
@@ -106,14 +129,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Bomb Burst': 'TODO', // bomb explosion
     'AAIS Uncommon Ground': 'TODO', // people who are on the same dartboard color with Bull's-eye
     'AAIS Faerie Ring': 'TODO', // donut rings during Present Box
-    'AAIS Fire Spread 1': '8982', // initial rotating fire (from Ball of Fire)
-    'AAIS Fire Spread 2': '89F9', // ongoing rotating fire damage (from Statice)
+    'AAIS Fire Spread 1': 'TODO', // initial rotating fire (from Ball of Fire)
+    'AAIS Fire Spread 2': 'TODO', // ongoing rotating fire damage (from Statice)
   },
   damageFail: {
     'AAIS Big Burst': 'TODO', // tower failure damage
     'AAIS Massive Explosion 1': 'TODO', // failing to resolve Subractive Suppressor Alpha
     'AAIS Massive Explosion 2': 'TODO', // failing to resolve Subractive Suppressor Beta
-    'AAIS Burning Chains': '8CBE', // damage from not breaking chains
+    'AAIS Burning Chains': 'TODO', // damage from not breaking chains
+    'AAIS Surprising Missile Burst': 'TODO', // running into Surprising Missile tethered add
+    'AAIS Surprising Claw Death by Claw': 'TODO', // running into Surprising Claw tethered add
   },
   gainsEffectFail: {
     // C03 = 9999 duration, ??? = 15s duration
@@ -124,27 +149,31 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Burns': 'BF9', // standing outside Lala
   },
   shareWarn: {
-    'AAIS Hydrobullet': 'TODO', // spread debuffs
-    'AAIS Wood Golem Tornado': 'TODO', // headmarker -> bind and heavy aoe
+    'AAIS Hydrobullet': '8ADF', // spread debuffs
+    'AAIS Wood Golem Tornado': '8BD3', // headmarker -> bind and heavy aoe
     'AAIS Powerful Light': 'TODO', // spread marker during Symmetric Surge that turns squares blue
     'AAIS Explosive Theorem': 'TODO', // large spreads with Telluric Theorem puddles
     'AAIS Trapshooting Spread': 'TODO', // spread damage from Trick Reload
     'AAIS Firewords Spread': 'TODO', // spread damage during Present Box / Pinwheeling Dartboard
   },
   soloWarn: {
-    'AAIS Snipper Water III': 'TODO', // Snipper stack marker
+    'AAIS Snipper Water III': '8BCC', // Snipper stack marker
     'AAIS Islekeeper Gravity Force': 'TODO', // stack
     'AAIS Trapshooting Stack': 'TODO', // stack damage from Trick Reload
   },
   soloFail: {
-    'AAIS Hydrofall': 'TODO', // partner stack debuffs
+    'AAIS Hydrofall': '8ADE', // partner stack debuffs
     'AAIS Symmetric Surge': 'TODO', // two person stack that gives magic vuln up
     'AAIS Fireworks Stack': 'TODO', // two person stack damage during Present Box / Pinwheeling Dartboard
   },
   triggers: [
-    pushedIntoWall('AAIS Angry Seas', 'TODO'),
+    renameMistake('AAIS Tornado', '8BCF', 'fail', {
+      // running into a tornado in the initial trash section
+      en: 'Tornado',
+    }),
+    pushedIntoWall('AAIS Angry Seas', '8AE1'),
     pushedIntoWall('AAIS Pop', 'TODO'),
-    nonzeroDamageMistake('AAIS Hundred Lashings', ['TODO', 'TODO'], 'warn'),
+    nonzeroDamageMistake('AAIS Hundred Lashings', ['8AE5', '8AE6'], 'warn'),
   ],
 };
 

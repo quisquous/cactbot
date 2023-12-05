@@ -13,129 +13,129 @@ hideall "--sync--"
 # KETUDUKE #
 #~~~~~~~~~~#
 
-# -p TODO:1015.2
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -p 8AD4:1015.2
+# -ii 8AA7 8AED 8ADD 8AB9 8AB6 8AEB TODO TODO 8AE5 8AE6 8AC0 8ADA 8AD9 8AE4 8AC8 TODO 8A82 8A83
 
 1000.0 "--sync--" sync / 00:0839::The Dawn Trial will be sealed off/ window 10000,0
-1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:TODO:/ window 20,20
-1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:TODO:/
+1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:8AD4:/ window 20,20
+1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
 
-1022.0 "--middle--" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1027.0 "Spring Crystals 1" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1034.0 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1041.0 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1050.0 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1060.0 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1062.0 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1065.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:TODO:/
-1065.1 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
+1022.0 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+1027.0 "Spring Crystals 1" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1034.0 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1041.0 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1050.0 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1060.0 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1062.0 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1065.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
+1065.1 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
 
-1074.0 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1077.1 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1084.3 "Blowing Bubbles" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1091.4 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1096.3 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1099.6 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1102.5 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
+1074.0 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1077.1 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|8AB5):/
+1084.3 "Blowing Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABD:/
+1091.4 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1096.3 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADE|8ADF):/
+1099.6 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
+1102.5 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
 
-1113.6 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1118.9 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1130.3 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1130.9 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1133.4 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1134.0 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1134.0 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:TODO:/
+1113.6 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1118.9 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1130.3 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8AE7|8AE9):/
+1130.9 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
+1133.4 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8AEA|8AE8):/
+1134.0 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
+1134.0 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8ADE:/
 
-1143.7 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1149.7 "Roar" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1154.6 "Spring Crystals 2" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1164.6 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1177.0 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1177.6 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:TODO:/
-1182.7 "Updraft" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:TODO:/
+1143.7 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB8:/
+1149.7 "Roar" sync / 1[56]:[^:]*:Ketuduke:8AC4:/
+1154.6 "Spring Crystals 2" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1164.6 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AC5:/
+1177.0 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ADF:/
+1177.6 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
+1182.7 "Updraft" sync / 1[56]:[^:]*:Ketuduke:8AC7:/
+1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:8ACA:/
 
-1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1199.4 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1202.4 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1211.6 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1212.2 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:[^:]*:(TODO|TODO):/ # this sometimes has the wrong source
-1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1216.8 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1227.8 "Fluke Typhoon (cast)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:TODO:/
-1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:TODO:/
+1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
+1199.4 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
+1202.4 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|8AB5):/
+1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:8AE1:/
+1211.6 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADE|8ADF):/
+1212.2 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:[^:]*:(8ADF|8ADE):/ # this sometimes has the wrong source
+1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1216.8 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ADF:/
+1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1227.8 "Fluke Typhoon (cast)" sync / 1[56]:[^:]*:Ketuduke:8AAF:/
+1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:8AB0:/
+1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADB:/
+1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:8AE2:/
 
-1246.7 "Spring Crystals 4" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1253.7 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1260.7 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1269.8 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1279.9 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1281.9 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1284.9 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:TODO:/
-1285.0 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
+1246.7 "Spring Crystals 4" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
+1253.7 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
+1260.7 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
+1269.8 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
+1279.9 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
+1281.9 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
+1284.9 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
+1285.0 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
 
-1293.9 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1299.2 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1310.6 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1311.2 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1313.7 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(TODO|TODO):/
-1314.3 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:TODO:/
-1314.3 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:TODO:/
+1293.9 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
+1299.2 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
+1310.6 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8AE7|8AE9):/
+1311.2 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
+1313.7 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8AEA|8AE8):/
+1314.3 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
+1314.3 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8ADE:/
 # ???
 
 # ALL ENCOUNTER ABILITIES
-# TODO --sync-- Ketuduke repositioning
-# TODO Riptide ability on players from Angry Seas Airy Bubble when you step in one
-# TODO Fetters ability on players from Angry Seas Airy Bubble when you step in one after TODO Riptide
-# TODO --sync-- auto damage from Ketuduke
-# TODO Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
-# TODO 衝撃 self-targeted ability from Spring Crystal orbs
-# TODO 衝撃 self-targeted ability from Spring Crystal rupees
-# TODO Saturate cast and damage from Spring Crystal orb circle
-# TODO Saturate cast and damage from Spring Crystal rupee line laser
-# TODO Bubble Net self-targeted cast before Bubbles along with TODO during Spring Crystals 1
-# TODO Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
-# TODO Fluke Typhoon self-targeted cast before TODO knockback during Spring Crystals 3
-# TODO Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
-# TODO Fluke Gale self-targeted cast that adds limit cut winds
-# TODO Fluke Gale cast and ability for limit cut 1 wind
-# TODO Fluke Gale cast and ability for limit cut 2 wind
-# TODO Hydrofall self-targeted cast that adds stack markers
-# TODO Hydrofall ability on players to give "stack second" before Blowing Bubbles
-# TODO Hydrofall ability on players that adds stack debuffs
-# TODO Hydrofall damage from stack debuffs
-# TODO Hydrobullet self-targeted cast that adds stack markers
-# TODO Hydrobullet ability on players that adds spread debuffs
-# TODO Hydrobullet damage from spread debuffs
-# TODO Strewn Bubbles self-targeted cast before TODO Sphere Shatter moving arches
-# TODO Sphere Shatter damage from moving arches
-# TODO Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
+# 8A77 --sync-- Ketuduke repositioning
+# 8A82 Riptide ability on players from Angry Seas Airy Bubble when you step in one
+# 8A83 Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
+# 8AA7 --sync-- auto damage from Ketuduke
+# 8AA8 Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
+# 8AD9 衝撃 self-targeted ability from Spring Crystal orbs
+# 8ADA 衝撃 self-targeted ability from Spring Crystal rupees
+# 8ADB Saturate cast and damage from Spring Crystal orb circle
+# 8ADC Saturate cast and damage from Spring Crystal rupee line laser
+# 8AAD Bubble Net self-targeted cast before Bubbles along with 8ADD during Spring Crystals 1
+# 8ADD Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
+# 8AAF Fluke Typhoon self-targeted cast before 8AB0 knockback during Spring Crystals 3
+# 8AB0 Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
+# 8AB1 Fluke Gale self-targeted cast that adds limit cut winds
+# 8AB2 Fluke Gale cast and ability for limit cut 1 wind
+# 8AB3 Fluke Gale cast and ability for limit cut 2 wind
+# 8AB4 Hydrofall self-targeted cast that adds stack markers
+# 8AB5 Hydrofall ability on players to give "stack second" before Blowing Bubbles
+# 8AB6 Hydrofall ability on players that adds stack debuffs
+# 8ADE Hydrofall damage from stack debuffs
+# 8AB8 Hydrobullet self-targeted cast that adds stack markers
+# 8AB9 Hydrobullet ability on players that adds spread debuffs
+# 8ADF Hydrobullet damage from spread debuffs
+# 8ABB Strewn Bubbles self-targeted cast before 8AE0 Sphere Shatter moving arches
+# 8AE0 Sphere Shatter damage from moving arches
+# 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
 # TODO Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
 # TODO Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after TODO Riptide
-# TODO Angry Seas self-targeted cast for TODO red line knockback
-# TODO Angry Seas cast and knockback damage from red line
-# TODO Burst tower damage
+# 8AC0 Angry Seas self-targeted cast for 8AE1 red line knockback
+# 8AE1 Angry Seas cast and knockback damage from red line
+# 8AE2 Burst tower damage
 # TODO Big Burst tower failure damage
-# TODO Roar self-targeted cast that summons Zaratan adds
-# TODO Bubble Net self-targeted cast before Bubbles along with TODO during Spring Crystals 2
-# TODO Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
-# TODO Updraft self-targeted cast to boost adds and players into the air
-# TODO Updraft ability on players for TODO Updraft
-# TODO Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
-# TODO Hundred Lashings self-targeted cast for bubbled Zaratan adds
-# TODO Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
-# TODO Receding Twintides cast and damage for initial out during out->in
-# TODO Near Tide fast cast and damage for second out during in->out with TODO Encroaching Twintides
-# TODO Encroaching Twintides cast and damage for initial in during in->out
-# TODO Far Tide fast cast and damage for second in during out->in with TODO Receding Twintides
-# TODO Hydrobomb self-targeted cast for TODO puddles
-# TODO Hydrobomb cast and damage for 3x puddles duruing TODO Blowing Bubbles
-# TODO Tidal Roar self-targeted cast for raidwide aoe
-# TODO Tidal Roar damage from TODO
+# 8AC4 Roar self-targeted cast that summons Zaratan adds
+# 8AC5 Bubble Net self-targeted cast before Bubbles along with 8AE4 during Spring Crystals 2
+# 8AE4 Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
+# 8AC7 Updraft self-targeted cast to boost adds and players into the air
+# 8AC8 Updraft ability on players for 8AC7 Updraft
+# 8AE5 Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
+# 8ACA Hundred Lashings self-targeted cast for bubbled Zaratan adds
+# 8AE6 Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
+# 8AE7 Receding Twintides cast and damage for initial out during out->in
+# 8AE8 Near Tide fast cast and damage for second out during in->out with 8AE9 Encroaching Twintides
+# 8AE9 Encroaching Twintides cast and damage for initial in during in->out
+# 8AEA Far Tide fast cast and damage for second in during out->in with 8AE7 Receding Twintides
+# 8AD0 Hydrobomb self-targeted cast for 8AEB puddles
+# 8AEB Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
+# 8AD4 Tidal Roar self-targeted cast for raidwide aoe
+# 8AED Tidal Roar damage from 8AD4
 # TODO Hydrobullet ability on players to give "spread second" before Blowing Bubbles
 
 
@@ -268,7 +268,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~#
 
 # -p TODO:3013.8
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 8982 8CBE
+# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
 3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
 3008.8 "--sync--" sync / 14:[^:]*:Statice:TODO:/ window 20,20
@@ -305,25 +305,44 @@ hideall "--sync--"
 3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
 3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
 3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
-3189.2 "Present Box" sync / 1[56]:[^:]*:Statice:TODO:/
+3189.2 "Present Box 1" sync / 1[56]:[^:]*:Statice:TODO:/
 3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:TODO:/
 3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:TODO:/
 3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
 3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:TODO:/
-3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8948:/
+3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:TODO:/
 
-3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8CBC:/
+3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:TODO:/
 3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:TODO:/
-3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/
+3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/ duration 11
 3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:TODO:/
 3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:TODO:/
+3253.6 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+
+3260.8 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
+3266.5 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:TODO:/
+3273.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:TODO:/
+3288.4 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:TODO:/
+3295.5 "Present Box 2" sync / 1[56]:[^:]*:Statice:TODO:/
+3302.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
+3309.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:TODO:/
+3310.2 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:TODO:/
+3316.5 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:TODO:/
+3320.4 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
+
+3327.6 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+3335.7 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+
+3338.8 "--sync--" sync / 14:[^:]*:Statice:TODO:/
+3348.8 "Aero IV Enrage" sync / 1[56]:[^:]*:Statice:TODO:/
+
 
 # ALL ENCOUNTER ABILITIES
 # TODO Locked and Loaded ability during TODO Trick Reload when a bullet is in the gun
 # TODO Misload ability during TODO Trick Reload when a bullet missed the gun oops
 # TODO --sync-- repositioning from Statice
 # TODO --sync-- auto damage from Statice
-# 8948 Shocking Abandon cast and tankbuster damage
+# TODO Shocking Abandon cast and tankbuster damage
 # TODO Aero IV cast and raidwide damage
 # TODO Trick Reload self-targeted cast to load gun with TODO/TODO
 # TODO Trigger Happy self-targeted cast for limit cut dart board
@@ -334,24 +353,28 @@ hideall "--sync--"
 # TODO Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
 # TODO Present Box self-targeted cast for bombs/donuts/missiles/hands
 # TODO Faerie Ring cast and damage for donut rings during Present Box
-# TODO Trapshooting self-targeted cast after Trick Reload (after the first time)
+# TODO Burst high damage from running into Surprising Missile tethered add
+# TODO Death by Claw high damage from running into Surprising Claw tethered add
+# TODO Trapshooting self-targeted cast after Trick Reload (some instances are TODO)
 # TODO Trapshooting stack damage from Trick Reload
 # TODO Trapshooting spread damage from Trick Reload
 # TODO Ring a Ring o' Explosions self-targeted cast for rotating bombs
 # TODO Burst cast and damage from bomb explosion
 # TODO Fireworks self-targeted cast
-# TODO Fireworks two person stack damage during Present Box
-# TODO Fireworks spread damage during Present Box
+# TODO Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+# TODO Fireworks spread damage during Present Box / Pinwheeling Dartboard
 # TODO Beguiling Glitter self-targeted cast to give players Face debuffs
-# 8982 Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
+# TODO Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
 # TODO Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
-# 89F9 Fire Spread ongoing rotating fire damage (from Statice)
+# TODO Fire Spread ongoing rotating fire damage (from Statice)
 # TODO --sync-- ability on Bomb when rotating
-# 8CBC Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+# TODO Aero IV cast and enrage damage
+# TODO Aero IV post-enrage follow-up damage just in case
+# TODO Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
 # TODO Dartboard of Dancing Explosives self-targeted cast for colored dartboard
-# 8CBE Burning Chains damage from not breaking chains
+# TODO Burning Chains damage from not breaking chains
 # TODO Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
-# TODO Trapshooting self-targeted cast after Trick Reload (first time)
+# TODO Trapshooting self-targeted cast after Trick Reload (some instances are TODO)
 
 
 #~~~~~~~~~#
@@ -359,21 +382,21 @@ hideall "--sync--"
 #~~~~~~~~~#
 
 # ALL ENCOUNTER ABILITIES
-# TODO --sync-- various auto damage (trash 1)
-# TODO --sync-- damage from Twister tornados
-# TODO Lead Hook casted damage from Kiwakin 3x tankbuster
-# TODO Lead Hook damage from hit 2
-# TODO Lead Hook damage from hit 3
-# TODO Water III casted damage from Snipper stack marker
-# TODO Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
-# TODO Tail Screw casted damage from Kiwakin baited circle
-# TODO Bubble Shower casted damage from Snipper front conal
-# TODO Crab Dribble fast casted damage from Snipper back conal after Bubble Shower TODO
-# TODO Hydrocannon casted damage from Ray front line
-# TODO Expulsion casted damage from Ray "get out"
-# TODO Electric Whorl casted damage from Ray "get in"
-# TODO Hydroshot casted damage from Monk knockback line with a dot
-# TODO Cross Attack casted damage from Monk tankbuster
+# 7A56 --sync-- various auto damage (trash 1)
+# 8BCF --sync-- damage from Twister tornados
+# 8BC7 Lead Hook casted damage from Kiwakin 3x tankbuster
+# 8BC6 Lead Hook damage from hit 2
+# 8BC4 Lead Hook damage from hit 3
+# 8BCC Water III casted damage from Snipper stack marker
+# 8BC8 Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
+# 8BC9 Tail Screw casted damage from Kiwakin baited circle
+# 8BCA Bubble Shower casted damage from Snipper front conal
+# 8BCB Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BCA
+# 8C4B Hydrocannon casted damage from Ray front line
+# 8BCE Expulsion casted damage from Ray "get out"
+# 8BCD Electric Whorl casted damage from Ray "get in"
+# 8BD1 Hydroshot casted damage from Monk knockback line with a dot
+# 8C4F Cross Attack casted damage from Monk tankbuster
 
 #~~~~~~~~~#
 # TRASH 2 #
@@ -382,11 +405,11 @@ hideall "--sync--"
 # TODO: does Wood Golem have an enrage??
 
 # ALL ENCOUNTER ABILITIES
-# TODO --sync-- various auto damage (trash 2)
+# 7A58 --sync-- various auto damage (trash 2)
 # TODO Ovation cast and damage from Wood Golem front line aoe
 # TODO Gravity Force cast and stack damage from Islekeeper
 # TODO Ancient Quaga cast and damage for Islekeeper raidwide enrage
-# TODO Ancient Aero III interruptable cast and damage for Wood Golem raidwide
-# TODO Tornado cast and damage from Wood Golem that binds the initial target and heavies all targets
-# TODO Ancient Quaga cast and damage for Islekeeper raidwide
+# 8BD2 Ancient Aero III interruptable cast and damage for Wood Golem raidwide
+# 8BD3 Tornado cast and damage from Wood Golem that binds the initial target and heavies all targets
+# 8C39 Ancient Quaga cast and damage for Islekeeper raidwide
 # TODO Isle Drop cast and damage for Islekeeper front circle

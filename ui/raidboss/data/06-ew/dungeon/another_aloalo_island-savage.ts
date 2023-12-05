@@ -114,7 +114,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Kiwakin Lead Hook',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Kiwakin' },
+      netRegex: { id: '8BC7', source: 'Aloalo Kiwakin' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -135,78 +135,78 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Kiwakin Sharp Strike',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Kiwakin' },
+      netRegex: { id: '8BC8', source: 'Aloalo Kiwakin' },
       response: Responses.tankBuster(),
     },
     {
       id: 'AAIS Kiwakin Tail Screw',
       type: 'StartsUsing',
       // This is a baited targeted circle.
-      netRegex: { id: 'TODO', source: 'Aloalo Kiwakin', capture: false },
+      netRegex: { id: '8BC9', source: 'Aloalo Kiwakin', capture: false },
       response: Responses.moveAway(),
     },
     {
       id: 'AAIS Snipper Water III',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Snipper' },
+      netRegex: { id: '8BCC', source: 'Aloalo Snipper' },
       response: Responses.stackMarkerOn(),
     },
     {
       id: 'AAIS Snipper Bubble Shower',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Snipper', capture: false },
+      netRegex: { id: '8BCA', source: 'Aloalo Snipper', capture: false },
       response: Responses.getBackThenFront(),
     },
     {
       id: 'AAIS Snipper Crab Dribble',
       type: 'Ability',
-      // Crab Dribble TODO has a fast cast, so trigger on Bubble Shower ability
-      netRegex: { id: 'TODO', source: 'Aloalo Snipper', capture: false },
+      // Crab Dribble 8BCB has a fast cast, so trigger on Bubble Shower ability
+      netRegex: { id: '8BCA', source: 'Aloalo Snipper', capture: false },
       suppressSeconds: 5,
       response: Responses.goFront('info'),
     },
     {
       id: 'AAIS Ray Hydrocannon',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Ray', capture: false },
+      netRegex: { id: '8C4B', source: 'Aloalo Ray', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'AAIS Ray Expulsion',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Ray', capture: false },
+      netRegex: { id: '8BCE', source: 'Aloalo Ray', capture: false },
       response: Responses.getOut(),
     },
     {
       id: 'AAIS Ray Electric Whorl',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Ray', capture: false },
+      netRegex: { id: '8BCD', source: 'Aloalo Ray', capture: false },
       response: Responses.getUnder(),
     },
     {
       id: 'AAIS Monk Hydroshot',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Monk' },
+      netRegex: { id: '8BCD', source: 'Aloalo Monk' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
     {
       id: 'AAIS Monk Cross Attack',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Monk' },
+      netRegex: { id: '8C4F', source: 'Aloalo Monk' },
       response: Responses.tankBuster(),
     },
     // ---------------- Ketuduke ----------------
     {
       id: 'AAIS Ketuduke Tidal Roar',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Ketuduke', capture: false },
+      netRegex: { id: '8AD4', source: 'Ketuduke', capture: false },
       response: Responses.bleedAoe(),
     },
     {
       id: 'AAIS Ketuduke Spring Crystals',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Ketuduke', capture: false },
+      netRegex: { id: '8AA8', source: 'Ketuduke', capture: false },
       run: (data) => {
         data.ketuSpringCrystalCount++;
         data.ketuCrystalAdd = [];
@@ -259,9 +259,9 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Ketuduke Hydro Buff Counter',
       type: 'StartsUsing',
-      // TODO = Hydrobullet (spread)
-      // TODO = Hydrofall (stack)
-      netRegex: { id: ['TODO', 'TODO'], source: 'Ketuduke', capture: false },
+      // 8AB8 = Hydrobullet (spread)
+      // 8AB4 = Hydrofall (stack)
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke', capture: false },
       run: (data) => data.ketuHydroBuffCount++,
     },
     {
@@ -273,7 +273,7 @@ const triggerSet: TriggerSet<Data> = {
              The number in parentheses is the limit cut wind you should be on.`,
       },
       type: 'StartsUsing',
-      netRegex: { id: ['TODO', 'TODO'], source: 'Ketuduke' },
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
       condition: (data) => data.ketuHydroBuffCount === 1 || data.ketuHydroBuffCount === 6,
       durationSeconds: 8,
       alertText: (data, matches, output) => {
@@ -329,7 +329,7 @@ const triggerSet: TriggerSet<Data> = {
         //   + - - - - +         + - - - - +
         //           2                   2
 
-        const isSpread = matches.id === 'TODO';
+        const isSpread = matches.id === '8AB8';
         const horizontal = data.ketuCrystalAdd.filter((x) => isHorizontalCrystal(x));
         const vertical = data.ketuCrystalAdd.filter((x) => !isHorizontalCrystal(x));
 
@@ -346,7 +346,7 @@ const triggerSet: TriggerSet<Data> = {
         return isSplitLayout ? output.fettersStackSplit!() : output.fettersStackColumn!();
       },
       infoText: (_data, matches, output) => {
-        return matches.id === 'TODO' ? output.spread!() : output.stacks!();
+        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
       },
       outputStrings: {
         spread: Outputs.spread,
@@ -373,10 +373,10 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Ketuduke Hydro Buff 2',
       type: 'StartsUsing',
-      netRegex: { id: ['TODO', 'TODO'], source: 'Ketuduke' },
+      netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
       condition: (data) => data.ketuHydroBuffCount === 2,
       alertText: (_data, matches, output) => {
-        return matches.id === 'TODO' ? output.spread!() : output.stacks!();
+        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
       },
       outputStrings: {
         spread: {
@@ -390,13 +390,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Ketuduke Receding Twintides',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Ketuduke', capture: false },
+      netRegex: { id: '8AE7', source: 'Ketuduke', capture: false },
       response: Responses.getOutThenIn(),
     },
     {
       id: 'AAIS Ketuduke Encroaching Twintides',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Ketuduke', capture: false },
+      netRegex: { id: '8AE9', source: 'Ketuduke', capture: false },
       response: Responses.getInThenOut(),
     },
     {
@@ -445,14 +445,14 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Wood Golem Ancient Aero III',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Wood Golem' },
+      netRegex: { id: '8BD2', source: 'Aloalo Wood Golem' },
       condition: (data) => data.CanSilence(),
       response: Responses.interrupt('alarm'),
     },
     {
       id: 'AAIS Wood Golem Tornado',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Wood Golem' },
+      netRegex: { id: '8BD3', source: 'Aloalo Wood Golem' },
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -509,7 +509,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Islekeeper Ancient Quaga',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Aloalo Islekeeper', capture: false },
+      netRegex: { id: '8C39', source: 'Aloalo Islekeeper', capture: false },
       response: Responses.aoe(),
     },
     {
@@ -1102,13 +1102,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Shocking Abandon',
       type: 'StartsUsing',
-      netRegex: { id: '8948', source: 'Statice' },
+      netRegex: { id: 'TODO', source: 'Statice' },
       response: Responses.tankBuster(),
     },
     {
       id: 'AAIS Statice Pinwheeling Dartboard',
       type: 'StartsUsing',
-      netRegex: { id: '8CBC', source: 'Statice', capture: false },
+      netRegex: { id: 'TODO', source: 'Statice', capture: false },
       run: (data) => data.staticeIsPinwheelingDartboard = true,
     },
   ],
