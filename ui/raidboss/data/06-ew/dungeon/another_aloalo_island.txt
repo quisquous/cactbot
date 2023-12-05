@@ -265,7 +265,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~#
 
 # -p 8949:3013.8
-# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2 8982 8CBE
+# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2 8982 8CBE 89F9 8C24 8957 8958
 
 3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
 3008.8 "--sync--" sync / 14:[^:]*:Statice:8949:/ window 20,20
@@ -302,7 +302,7 @@ hideall "--sync--"
 3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
 3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
 3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
-3189.2 "Present Box" sync / 1[56]:[^:]*:Statice:8955:/
+3189.2 "Present Box 1" sync / 1[56]:[^:]*:Statice:8955:/
 3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:895E:/
 3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:895F:/
 3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
@@ -311,9 +311,28 @@ hideall "--sync--"
 
 3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8CBC:/
 3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:895E:/
-3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/
+3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/ duration 11
 3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:895F:/
 3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8954:/
+3253.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3260.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3266.5 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8963:/
+3273.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:894A:/
+3288.4 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1A:/
+3295.5 "Present Box 2" sync / 1[56]:[^:]*:Statice:8955:/
+3302.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:895C:/
+3309.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:894B:/
+3310.2 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8956:/
+3316.5 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8959:/
+3320.4 "Burst" sync / 1[56]:[^:]*:Bomb:895D:/
+
+3327.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+3335.7 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
+
+3338.8 "--sync--" sync / 14:[^:]*:Statice:8C23:/
+3348.8 "Aero IV Enrage" sync / 1[56]:[^:]*:Statice:8C23:/
+
 
 # ALL ENCOUNTER ABILITIES
 # 8925 Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
@@ -331,24 +350,28 @@ hideall "--sync--"
 # 8954 Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
 # 8955 Present Box self-targeted cast for bombs/donuts/missiles/hands
 # 8956 Faerie Ring cast and damage for donut rings during Present Box
-# 8959 Trapshooting self-targeted cast after Trick Reload (after the first time)
+# 8957 Burst high damage from running into Surprising Missile tethered add
+# 8958 Death by Claw high damage from running into Surprising Claw tethered add
+# 8959 Trapshooting self-targeted cast after Trick Reload (some instances are 8D1A)
 # 895A Trapshooting stack damage from Trick Reload
 # 895B Trapshooting spread damage from Trick Reload
 # 895C Ring a Ring o' Explosions self-targeted cast for rotating bombs
 # 895D Burst cast and damage from bomb explosion
 # 895E Fireworks self-targeted cast
-# 895F Fireworks two person stack damage during Present Box
-# 8960 Fireworks spread damage during Present Box
+# 895F Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+# 8960 Fireworks spread damage during Present Box / Pinwheeling Dartboard
 # 8963 Beguiling Glitter self-targeted cast to give players Face debuffs
 # 8982 Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
 # 8987 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
 # 89F9 Fire Spread ongoing rotating fire damage (from Statice)
 # 8A6A --sync-- ability on Bomb when rotating
+# 8C23 Aero IV cast and enrage damage
+# 8C24 Aero IV post-enrage follow-up damage just in case
 # 8CBC Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
 # 8CBD Dartboard of Dancing Explosives self-targeted cast for colored dartboard
 # 8CBE Burning Chains damage from not breaking chains
 # 8CC2 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
-# 8D1A Trapshooting self-targeted cast after Trick Reload (first time)
+# 8D1A Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
 
 
 #~~~~~~~~~#

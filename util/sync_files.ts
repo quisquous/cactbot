@@ -579,10 +579,10 @@ const zoneReplace: ZoneReplace[] = [
       '7A58': 'TODO', // --sync-- various auto damage (trash 2)
       '8874': 'TODO', // --sync-- repositioning for Lala
       '8889': 'TODO', // Angular Addition self-targeted ability to give boss III
-      '888B': 'TODO1', // Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
-      '888C': 'TODO2', // Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
-      '888D': 'TODO3', // Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
-      '888E': 'TODO4', // Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
+      '888B': 'TODO', // Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
+      '888C': 'TODO', // Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
+      '888D': 'TODO', // Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
+      '888E': 'TODO', // Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
       '888F': 'TODO', // Arcane Blight cast and damage from 270 degree rotating cleave
       '8890': 'TODO', // Arcane Array self-targeted cast to summon moving blue squares (#1)
       '8891': 'TODO', // Bright Pulse cast and damage for initial blue square
@@ -614,6 +614,7 @@ const zoneReplace: ZoneReplace[] = [
       '8926': 'TODO', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
       '8927': 'TODO', // --sync-- repositioning from Statice
       '8947': 'TODO', // --sync-- auto damage from Statice
+      '8948': 'TODO', // Shocking Abandon cast and tankbuster damage
       '8949': 'TODO', // Aero IV cast and raidwide damage
       '894A': 'TODO', // Trick Reload self-targeted cast to load gun with 8925/8926
       '894B': 'TODO', // Trigger Happy self-targeted cast for limit cut dart board
@@ -624,16 +625,20 @@ const zoneReplace: ZoneReplace[] = [
       '8954': 'TODO', // Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
       '8955': 'TODO', // Present Box self-targeted cast for bombs/donuts/missiles/hands
       '8956': 'TODO', // Faerie Ring cast and damage for donut rings during Present Box
-      '8959': 'TODO', // Trapshooting self-targeted cast after Trick Reload (after the first time)
+      '8957': 'TODO', // Burst high damage from running into Surprising Missile tethered add
+      '8958': 'TODO', // Death by Claw high damage from running into Surprising Claw tethered add
+      '8959': 'TODO', // Trapshooting self-targeted cast after Trick Reload (some instances are 8D1A)
       '895A': 'TODO', // Trapshooting stack damage from Trick Reload
       '895B': 'TODO', // Trapshooting spread damage from Trick Reload
       '895C': 'TODO', // Ring a Ring o' Explosions self-targeted cast for rotating bombs
       '895D': 'TODO', // Burst cast and damage from bomb explosion
       '895E': 'TODO', // Fireworks self-targeted cast
-      '895F': 'TODO', // Fireworks ??? spread/stack damage during Present Box
-      '8960': 'TODO', // Fireworks ??? spread/stack damage during Present Box
+      '895F': 'TODO', // Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+      '8960': 'TODO', // Fireworks spread damage during Present Box / Pinwheeling Dartboard
       '8963': 'TODO', // Beguiling Glitter self-targeted cast to give players Face debuffs
+      '8982': 'TODO', // Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
       '8987': 'TODO', // Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+      '89F9': 'TODO', // Fire Spread ongoing rotating fire damage (from Statice)
       '8A6A': 'TODO', // --sync-- ability on Bomb when rotating
       '8A77': 'TODO', // --sync-- Ketuduke repositioning
       '8A82': 'TODO', // Riptide ability on players from Angry Seas Airy Bubble when you step in one
@@ -693,6 +698,8 @@ const zoneReplace: ZoneReplace[] = [
       '8BC0': 'TODO', // --sync-- damage from Twister tornados
       '8BC1': 'TODO', // Ovation cast and damage from Wood Golem front line aoe
       '8BC5': 'TODO', // Gravity Force cast and stack damage from Islekeeper
+      '8C23': 'TODO', // Aero IV cast and enrage damage
+      '8C24': 'TODO', // Aero IV post-enrage follow-up damage just in case
       '8C25': 'TODO', // Inferno Theorem cast and enrage damage
       '8C2F': 'TODO', // Ancient Quaga cast and damage for Islekeeper raidwide enrage
       '8C4C': 'TODO', // Ancient Aero III interruptable cast and damage for Wood Golem raidwide
@@ -706,11 +713,13 @@ const zoneReplace: ZoneReplace[] = [
       '8C6D': 'TODO', // Hydrobullet ability on players to give "spread second" before Blowing Bubbles
       '8C6E': 'TODO', // Lead Hook casted damage from Kiwakin 3x tankbuster
       '8C6F': 'TODO', // Isle Drop cast and damage for Islekeeper front circle
+      '8CBC': 'TODO', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
       '8CBD': 'TODO', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+      '8CBE': 'TODO', // Burning Chains damage from not breaking chains
       '8CC2': 'TODO', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
       '8CDE': 'TODO', // Targeted Light self-targeted cast for weak spot boss tether
       '8CDF': 'TODO', // Targeted Light cast and damage on players for 8CDE
-      '8D1A': 'TODO', // Trapshooting self-targeted cast after Trick Reload (first time)
+      '8D1A': 'TODO', // Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
       '8D1F': 'TODO', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
       '8D2E': 'TODO', // Angular Addition self-targeted ability to give boss V
     },

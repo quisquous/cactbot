@@ -111,6 +111,8 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Massive Explosion 1': '889C', // failing to resolve Subractive Suppressor Alpha
     'AAI Massive Explosion 2': '889D', // failing to resolve Subractive Suppressor Beta
     'AAI Burning Chains': '8CBE', // damage from not breaking chains
+    'AAI Surprising Missile Burst': '8957', // running into Surprising Missile tethered add
+    'AAI Surprising Claw Death by Claw': '8958', // running into Surprising Claw tethered add
   },
   gainsEffectFail: {
     // C03 = 9999 duration, ??? = 15s duration
