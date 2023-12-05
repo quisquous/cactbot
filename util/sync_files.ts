@@ -577,39 +577,39 @@ const zoneReplace: ZoneReplace[] = [
     id: {
       '7A56': '7A56', // --sync-- various auto damage (trash 1)
       '7A58': '7A58', // --sync-- various auto damage (trash 2)
-      '8874': 'TODO', // --sync-- repositioning for Lala
-      '8889': 'TODO', // Angular Addition self-targeted ability to give boss III
-      '888B': 'TODO1', // Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
-      '888C': 'TODO2', // Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
-      '888D': 'TODO3', // Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
-      '888E': 'TODO4', // Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
-      '888F': 'TODO', // Arcane Blight cast and damage from 270 degree rotating cleave
-      '8890': 'TODO', // Arcane Array self-targeted cast to summon moving blue squares (#1)
-      '8891': 'TODO', // Bright Pulse cast and damage for initial blue square
-      '8892': 'TODO', // Bright Pulse damage from moving blue square
-      '8893': 'TODO', // Inferno Divide orange square cross explosion damage during Spatial Tactics
-      '8894': 'TODO', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #1, #3)
-      '8895': 'TODO', // Analysis self-targeted cast before giving players
-      '8898': 'TODO', // Planar Tactics self-targeted cast before Arcane Mines
-      '8899': 'TODO', // Arcane Mine self-targeted cast to create 8 Arcane Mine squares
-      '889A': 'TODO', // Arcane Mine cast and damage for initial Arcane Mine squares
-      '889B': 'TODO', // Arcane Combustion damage from walking over an Arcane Mine
-      '889C': 'TODO', // Massive Explosion damage from failing to resolve Subractive Suppressor Alpha
-      '889D': 'TODO', // Massive Explosion damage from failing to resolve Subractive Suppressor Beta
-      '889E': 'TODO', // Symmetric Surge damage from two person stack that gives magic vuln up
-      '889F': 'TODO', // Arcane Array self-targeted cast to summon moving blue squares (#2)
-      '88A0': 'TODO', // Spatial Tactics self-targeted cast prior to Arcane Array 2
-      '88A1': 'TODO', // Symmetric Surge self-targeted cast before this mechanic
-      '88A2': 'TODO', // Arcane Plot self-targeted cast to summon blue squares for Symmetric Surge
-      '88A3': 'TODO', // Constructive Figure self-targeted cast that summons Aloalo Golem on edge
-      '88A4': 'TODO', // Aero II cast and line damage from Aloalo Golem during Symmetric Surge
-      '88A5': 'TODO', // Arcane Point self-targeted cast that gives players 88A6 Powerful Light spreads
-      '88A6': 'TODO', // Powerful Light spread damage on players that turn the squares they are on blue
-      '88A7': 'TODO', // Explosive Theorem self-targeted cast for very large spreads
-      '88A8': 'TODO', // Explosive Theorem cast and damage on players for spreads with Telluric Theorem puddles
-      '88A9': 'TODO', // Telluric Theorem cast and damage for large puddles from Explosive Theorem
-      '88AD': 'TODO', // Strategic Strike cast and damage for non-cleaving 3x tankbuster
-      '88AE': 'TODO', // Inferno Theorem cast and raidwide damage
+      '8874': '8874', // --sync-- repositioning for Lala
+      '8889': '8BE0', // ??? Angular Addition self-targeted ability to give boss III
+      '888B': '8BE2', // ??? Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
+      '888C': '8BE3', // ??? Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
+      '888D': '8BE4', // ??? Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
+      '888E': '8BE5', // ??? Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
+      '888F': '8BE6', // Arcane Blight cast and damage from 270 degree rotating cleave
+      '8890': '8BE7', // Arcane Array self-targeted cast to summon moving blue squares (#1)
+      '8891': '8BE8', // Bright Pulse cast and damage for initial blue square
+      '8892': '8BE9', // Bright Pulse damage from moving blue square
+      '8893': '8BEA', // Inferno Divide orange square cross explosion damage during Spatial Tactics
+      '8894': '8BEB', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #1, #3)
+      '8895': '8BEC', // Analysis self-targeted cast before giving players
+      '8898': '8BEF', // Planar Tactics self-targeted cast before Arcane Mines
+      '8899': '8BF0', // Arcane Mine self-targeted cast to create 8 Arcane Mine squares
+      '889A': '8BF1', // Arcane Mine cast and damage for initial Arcane Mine squares
+      '889B': '8BF2', // Arcane Combustion damage from walking over an Arcane Mine
+      '889C': '8BF3', // Massive Explosion damage from failing to resolve Subractive Suppressor Alpha
+      '889D': '8BF4', // Massive Explosion damage from failing to resolve Subractive Suppressor Beta
+      '889E': '8BF5', // Symmetric Surge damage from two person stack that gives magic vuln up
+      '889F': '8BF6', // Arcane Array self-targeted cast to summon moving blue squares (#2)
+      '88A0': '8BF7', // Spatial Tactics self-targeted cast prior to Arcane Array 2
+      '88A1': '8BF8', // Symmetric Surge self-targeted cast before this mechanic
+      '88A2': '8BF9', // Arcane Plot self-targeted cast to summon blue squares for Symmetric Surge
+      '88A3': '8BFA', // Constructive Figure self-targeted cast that summons Aloalo Golem on edge
+      '88A4': '8BFB', // Aero II cast and line damage from Aloalo Golem during Symmetric Surge
+      '88A5': '8BFC', // Arcane Point self-targeted cast that gives players 88A6 Powerful Light spreads
+      '88A6': '8BFD', // Powerful Light spread damage on players that turn the squares they are on blue
+      '88A7': '8BFE', // Explosive Theorem self-targeted cast for very large spreads
+      '88A8': '8BFF', // Explosive Theorem cast and damage on players for spreads with Telluric Theorem puddles
+      '88A9': '8C00', // Telluric Theorem cast and damage for large puddles from Explosive Theorem
+      '88AD': '8C04', // Strategic Strike cast and damage for non-cleaving 3x tankbuster
+      '88AE': '8C05', // Inferno Theorem cast and raidwide damage
       '8925': 'TODO', // Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
       '8926': 'TODO', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
       '8927': 'TODO', // --sync-- repositioning from Statice
@@ -671,7 +671,7 @@ const zoneReplace: ZoneReplace[] = [
       '8AC0': '8AC0', // Angry Seas self-targeted cast for 8AC1 red line knockback
       '8AC1': '8AE1', // Angry Seas cast and knockback damage from red line
       '8AC2': '8AE2', // Burst tower damage
-      '8AC3': 'TODO', // Big Burst tower failure damage
+      '8AC3': '8AE3', // Big Burst tower failure damage
       '8AC4': '8AC4', // Roar self-targeted cast that summons Zaratan adds
       '8AC5': '8AC5', // Bubble Net self-targeted cast before Bubbles along with 8AC6 during Spring Crystals 2
       '8AC6': '8AE4', // Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
@@ -696,8 +696,8 @@ const zoneReplace: ZoneReplace[] = [
       '8BBE': '8BCD', // Electric Whorl casted damage from Ray "get in"
       '8BBF': '8BCE', // Expulsion casted damage from Ray "get out"
       '8BC0': '8BCF', // --sync-- damage from Twister tornados
-      '8BC1': 'TODO', // Ovation cast and damage from Wood Golem front line aoe
-      '8BC5': 'TODO', // Gravity Force cast and stack damage from Islekeeper
+      '8BC1': '8BD4', // Ovation cast and damage from Wood Golem front line aoe
+      '8BC5': '8C3A', // Gravity Force cast and stack damage from Islekeeper
       '8C23': 'TODO', // Aero IV cast and enrage damage
       '8C24': 'TODO', // Aero IV post-enrage follow-up damage just in case
       '8C25': 'TODO', // Inferno Theorem cast and enrage damage
@@ -712,16 +712,16 @@ const zoneReplace: ZoneReplace[] = [
       '8C65': '8BD1', // Hydroshot casted damage from Monk knockback line with a dot
       '8C6D': 'TODO', // Hydrobullet ability on players to give "spread second" before Blowing Bubbles
       '8C6E': '8BC7', // Lead Hook casted damage from Kiwakin 3x tankbuster
-      '8C6F': 'TODO', // Isle Drop cast and damage for Islekeeper front circle
+      '8C6F': '8C3C', // Isle Drop cast and damage for Islekeeper front circle
       '8CBC': 'TODO', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
       '8CBD': 'TODO', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
       '8CBE': 'TODO', // Burning Chains damage from not breaking chains
       '8CC2': 'TODO', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
-      '8CDE': 'TODO', // Targeted Light self-targeted cast for weak spot boss tether
-      '8CDF': 'TODO', // Targeted Light cast and damage on players for 8CDE
+      '8CDE': '8CE0', // Targeted Light self-targeted cast for weak spot boss tether
+      '8CDF': '8CE1', // Targeted Light cast and damage on players for 8CDE
       '8D1A': 'TODO', // Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
-      '8D1F': 'TODO', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
-      '8D2E': 'TODO', // Angular Addition self-targeted ability to give boss V
+      '8D1F': '8D20', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
+      '8D2E': '8D2F', // ??? Angular Addition self-targeted ability to give boss V
     },
   },
 ];
