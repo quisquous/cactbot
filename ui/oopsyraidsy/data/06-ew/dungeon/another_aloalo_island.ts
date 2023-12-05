@@ -2,6 +2,7 @@ import NetRegexes from '../../../../../resources/netregexes';
 import ZoneId from '../../../../../resources/zone_id';
 import { OopsyData } from '../../../../../types/data';
 import { OopsyMistakeType, OopsyTrigger, OopsyTriggerSet } from '../../../../../types/oopsy';
+import { LocaleText } from '../../../../../types/trigger';
 import { playerDamageFields } from '../../../oopsy_common';
 
 // TODO: people who missed their 8AC2 Burst tower
@@ -13,6 +14,28 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
 // TODO: players not in Trapshooting stack 895A
 // TODO: players not in Present Box / Pinwheeling Dartboard two person stack
+
+const renameMistake = (
+  triggerId: string,
+  abilityId: string | string[],
+  type: OopsyMistakeType,
+  text: LocaleText,
+): OopsyTrigger<OopsyData> => {
+  return {
+    id: triggerId,
+    type: 'Ability',
+    netRegex: NetRegexes.ability({ id: abilityId, ...playerDamageFields }),
+    condition: (data, matches) => data.DamageFromMatches(matches) > 0,
+    mistake: (_data, matches) => {
+      return {
+        type: type,
+        blame: matches.target,
+        reportId: matches.targetId,
+        text: text,
+      };
+    },
+  };
+};
 
 export type Data = OopsyData;
 
@@ -141,6 +164,10 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAI Fireworks Stack': '895F', // two person stack damage during Present Box / Pinwheeling Dartboard
   },
   triggers: [
+    renameMistake('AAI Tornado', '8BC0', 'fail', {
+      // running into a tornado in the initial trash section
+      en: 'Tornado',
+    }),
     pushedIntoWall('AAI Angry Seas', '8AC1'),
     pushedIntoWall('AAI Pop', '894E'),
     nonzeroDamageMistake('AAI Hundred Lashings', ['8AC9', '8ACB'], 'warn'),
