@@ -369,14 +369,14 @@ Options.Triggers.push({
           en: 'Rotate Left',
           de: 'Links rotieren',
           fr: 'Tournez vers la gauche',
-          cn: '逆时针旋转',
+          cn: '向左旋转',
           ko: '왼쪽으로',
         },
         rotateRight: {
           en: 'Rotate Right',
           de: 'Rechts rotieren',
           fr: 'Tourner vers la droite',
-          cn: '顺时针旋转',
+          cn: '向右旋转',
           ko: '오른쪽으로',
         },
         combo: {
