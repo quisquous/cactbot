@@ -610,36 +610,36 @@ const zoneReplace: ZoneReplace[] = [
       '88A9': '8C00', // Telluric Theorem cast and damage for large puddles from Explosive Theorem
       '88AD': '8C04', // Strategic Strike cast and damage for non-cleaving 3x tankbuster
       '88AE': '8C05', // Inferno Theorem cast and raidwide damage
-      '8925': 'TODO', // Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
-      '8926': 'TODO', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
-      '8927': 'TODO', // --sync-- repositioning from Statice
+      '8925': '8925', // Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
+      '8926': '8926', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
+      '8927': '8927', // --sync-- repositioning from Statice
       '8947': 'TODO', // --sync-- auto damage from Statice
-      '8948': 'TODO', // Shocking Abandon cast and tankbuster damage
-      '8949': 'TODO', // Aero IV cast and raidwide damage
-      '894A': 'TODO', // Trick Reload self-targeted cast to load gun with 8925/8926
-      '894B': 'TODO', // Trigger Happy self-targeted cast for limit cut dart board
-      '894C': 'TODO', // Trigger Happy cast and damage for limit cut dart board (filled pie slice)
-      '894D': 'TODO', // Surprise Balloon self-targeted cast
-      '894E': 'TODO', // Pop knockback from Surprise Balloon being popped
-      '894F': 'TODO', // Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
-      '8954': 'TODO', // Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
-      '8955': 'TODO', // Present Box self-targeted cast for bombs/donuts/missiles/hands
-      '8956': 'TODO', // Faerie Ring cast and damage for donut rings during Present Box
-      '8957': 'TODO', // Burst high damage from running into Surprising Missile tethered add
-      '8958': 'TODO', // Death by Claw high damage from running into Surprising Claw tethered add
-      '8959': 'TODO', // Trapshooting self-targeted cast after Trick Reload (some instances are 8D1A)
-      '895A': 'TODO', // Trapshooting stack damage from Trick Reload
-      '895B': 'TODO', // Trapshooting spread damage from Trick Reload
-      '895C': 'TODO', // Ring a Ring o' Explosions self-targeted cast for rotating bombs
-      '895D': 'TODO', // Burst cast and damage from bomb explosion
-      '895E': 'TODO', // Fireworks self-targeted cast
-      '895F': 'TODO', // Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
-      '8960': 'TODO', // Fireworks spread damage during Present Box / Pinwheeling Dartboard
-      '8963': 'TODO', // Beguiling Glitter self-targeted cast to give players Face debuffs
+      '8948': '8965', // Shocking Abandon cast and tankbuster damage
+      '8949': '8966', // Aero IV cast and raidwide damage
+      '894A': '8967', // Trick Reload self-targeted cast to load gun with 8925/8926
+      '894B': '8968', // Trigger Happy self-targeted cast for limit cut dart board
+      '894C': '8969', // Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+      '894D': '8927', // Surprise Balloon self-targeted cast
+      '894E': '896B', // ??? Pop knockback from Surprise Balloon being popped
+      '894F': '896C', // ??? Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+      '8954': '8971', // Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
+      '8955': '8972', // Present Box self-targeted cast for bombs/donuts/missiles/hands
+      '8956': '8973', // Faerie Ring cast and damage for donut rings during Present Box
+      '8957': '8974', // Burst high damage from running into Surprising Missile tethered add
+      '8958': '8975', // Death by Claw high damage from running into Surprising Claw tethered add
+      '8959': '8976', // Trapshooting self-targeted cast after Trick Reload (some instances are 8D1A)
+      '895A': '8977', // Trapshooting stack damage from Trick Reload
+      '895B': '8978', // Trapshooting spread damage from Trick Reload
+      '895C': '8979', // Ring a Ring o' Explosions self-targeted cast for rotating bombs
+      '895D': '897A', // Burst cast and damage from bomb explosion
+      '895E': '897B', // Fireworks self-targeted cast
+      '895F': '897C', // Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+      '8960': '897D', // Fireworks spread damage during Present Box / Pinwheeling Dartboard
+      '8963': '8980', // Beguiling Glitter self-targeted cast to give players Face debuffs
       '8982': 'TODO', // Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
-      '8987': 'TODO', // Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
-      '89F9': 'TODO', // Fire Spread ongoing rotating fire damage (from Statice)
-      '8A6A': 'TODO', // --sync-- ability on Bomb when rotating
+      '8987': '8988', // Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+      '89F9': '89FB', // Fire Spread ongoing rotating fire damage (from Statice)
+      '8A6A': '8A6A', // --sync-- ability on Bomb when rotating
       '8A77': '8A77', // --sync-- Ketuduke repositioning
       '8A82': '8A82', // Riptide ability on players from Angry Seas Airy Bubble when you step in one
       '8A83': '8A83', // Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
@@ -713,13 +713,13 @@ const zoneReplace: ZoneReplace[] = [
       '8C6D': 'TODO', // Hydrobullet ability on players to give "spread second" before Blowing Bubbles
       '8C6E': '8BC7', // Lead Hook casted damage from Kiwakin 3x tankbuster
       '8C6F': '8C3C', // Isle Drop cast and damage for Islekeeper front circle
-      '8CBC': 'TODO', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
-      '8CBD': 'TODO', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
-      '8CBE': 'TODO', // Burning Chains damage from not breaking chains
+      '8CBC': '8BCF', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+      '8CBD': '8CC0', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+      '8CBE': '8CC1', // ??? Burning Chains damage from not breaking chains
       '8CC2': 'TODO', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
       '8CDE': '8CE0', // Targeted Light self-targeted cast for weak spot boss tether
       '8CDF': '8CE1', // Targeted Light cast and damage on players for 8CDE
-      '8D1A': 'TODO', // Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
+      '8D1A': '8D1C', // Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
       '8D1F': '8D20', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
       '8D2E': '8D2F', // ??? Angular Addition self-targeted ability to give boss V
     },

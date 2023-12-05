@@ -880,15 +880,15 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Aero IV',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Statice', capture: false },
+      netRegex: { id: '8966', source: 'Statice', capture: false },
       response: Responses.aoe(),
     },
     {
       id: 'AAIS Statice Trick Reload',
       type: 'Ability',
-      // TODO = Locked and Loaded
-      // TODO = Misload
-      netRegex: { id: ['TODO', 'TODO'], source: 'Statice' },
+      // 8925 = Locked and Loaded
+      // 8926 = Misload
+      netRegex: { id: ['8925', '8926'], source: 'Statice' },
       preRun: (data, matches) => data.staticeBullet.push(matches),
       alertText: (data, _matches, output) => {
         // Statice loads 8 bullets, two are duds.
@@ -897,7 +897,7 @@ const triggerSet: TriggerSet<Data> = {
         const [bullet] = data.staticeBullet;
         if (data.staticeBullet.length !== 1 || bullet === undefined)
           return;
-        const isStack = bullet.id === 'TODO';
+        const isStack = bullet.id === '8926';
         data.staticeTrapshooting = isStack ? ['stack', 'spread'] : ['spread', 'stack'];
         return isStack ? output.stackThenSpread!() : output.spreadThenStack!();
       },
@@ -905,7 +905,7 @@ const triggerSet: TriggerSet<Data> = {
         const lastBullet = data.staticeBullet[data.staticeBullet.length - 1];
         if (data.staticeBullet.length < 2 || data.staticeBullet.length > 7)
           return;
-        if (lastBullet?.id !== 'TODO')
+        if (lastBullet?.id !== '8926')
           return;
         data.staticeTriggerHappy = data.staticeBullet.length - 1;
         return output.numSafeLater!({ num: output[`num${data.staticeTriggerHappy}`]!() });
@@ -931,7 +931,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Trapshooting',
       type: 'StartsUsing',
-      netRegex: { id: ['TODO', 'TODO'], source: 'Statice', capture: false },
+      netRegex: { id: ['8D1C', '8976'], source: 'Statice', capture: false },
       alertText: (data, _matches, output) => {
         const mech = data.staticeTrapshooting.shift();
         if (mech === undefined)
@@ -946,7 +946,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Trigger Happy',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Statice', capture: false },
+      netRegex: { id: '8968', source: 'Statice', capture: false },
       alertText: (data, _matches, output) => {
         const num = data.staticeTriggerHappy;
         if (num === undefined)
@@ -1014,7 +1014,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AAIS Statice Pop',
       type: 'StartsUsing',
       // TODO: this might need a slight delay
-      netRegex: { id: 'TODO', source: 'Statice', capture: false },
+      netRegex: { id: '896B', source: 'Statice', capture: false },
       suppressSeconds: 20,
       response: Responses.knockback(),
     },
@@ -1104,13 +1104,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Shocking Abandon',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Statice' },
+      netRegex: { id: '8965', source: 'Statice' },
       response: Responses.tankBuster(),
     },
     {
       id: 'AAIS Statice Pinwheeling Dartboard',
       type: 'StartsUsing',
-      netRegex: { id: 'TODO', source: 'Statice', capture: false },
+      netRegex: { id: '8BCF', source: 'Statice', capture: false },
       run: (data) => data.staticeIsPinwheelingDartboard = true,
     },
   ],

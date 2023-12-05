@@ -269,114 +269,114 @@ hideall "--sync--"
 # STATICE WITH A GUN #
 #~~~~~~~~~~~~~~~~~~~~#
 
-# -p TODO:3013.8
-# -ii TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+# -p 8966:3013.8
+# -ii TODO 8925 8926 8977 8978 8969 8988 8A6A 897C 897D TODO TODO 8CC1 89FB TODO 8974 8975
 
 3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
-3008.8 "--sync--" sync / 14:[^:]*:Statice:TODO:/ window 20,20
-3013.8 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+3008.8 "--sync--" sync / 14:[^:]*:Statice:8966:/ window 20,20
+3013.8 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
 
-3018.0 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
-3023.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:TODO:/
-3038.2 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:TODO:/
-3048.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:TODO:/
-3056.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
-3070.6 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:TODO:/
-3074.6 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
+3018.0 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3023.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
+3038.2 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1C:/
+3048.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
+3056.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
+3070.6 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
+3074.6 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
 
-3081.8 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
-3087.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:TODO:/
-3101.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
-3106.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:TODO:/
-3120.1 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:TODO:/
-3122.0 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
-3125.3 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:TODO:/
+3081.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3087.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
+3101.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
+3106.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:8CC0:/
+3120.1 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8976:/
+3122.0 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
+3125.3 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8971:/
 
-3132.3 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
-3137.7 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:TODO:/
-3144.8 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:TODO:/
-3149.8 "Surprise Needle 1" #sync / 1[56]:[^:]*:Needle:TODO:/
-3150.7 "Pop 1" sync / 1[56]:[^:]*:Statice:TODO:/
-3151.5 "Surprise Needle 2" #sync / 1[56]:[^:]*:Needle:TODO:/
-3152.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:TODO:/
-3153.2 "Surprise Needle 3" #sync / 1[56]:[^:]*:Needle:TODO:/
-3154.9 "Surprise Needle 4" #sync / 1[56]:[^:]*:Needle:TODO:/
-3155.6 "Pop 2" sync / 1[56]:[^:]*:Statice:TODO:/
-3160.4 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:TODO:/
+3132.3 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3137.7 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:8927:/
+3144.8 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8980:/
+3149.8 "Surprise Needle 1" #sync / 1[56]:[^:]*:Needle:896C:/
+3150.7 "Pop 1" sync / 1[56]:[^:]*:Statice:896B:/
+3151.5 "Surprise Needle 2" #sync / 1[56]:[^:]*:Needle:896C:/
+3152.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
+3153.2 "Surprise Needle 3" #sync / 1[56]:[^:]*:Needle:896C:/
+3154.9 "Surprise Needle 4" #sync / 1[56]:[^:]*:Needle:896C:/
+3155.6 "Pop 2" sync / 1[56]:[^:]*:Statice:896B:/
+3160.4 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
 
-3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
-3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
-3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
-3189.2 "Present Box 1" sync / 1[56]:[^:]*:Statice:TODO:/
-3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:TODO:/
-3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:TODO:/
-3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
-3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:TODO:/
-3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:TODO:/
+3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
+3189.2 "Present Box 1" sync / 1[56]:[^:]*:Statice:8972:/
+3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:897B:/
+3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:897C:/
+3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
+3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8973:/
+3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8965:/
 
-3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:TODO:/
-3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:TODO:/
+3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8BCF:/
+3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:897B:/
 3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/ duration 11
-3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:TODO:/
-3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:TODO:/
-3253.6 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:897C:/
+3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8971:/
+3253.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
 
-3260.8 "--middle--" sync / 1[56]:[^:]*:Statice:TODO:/
-3266.5 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:TODO:/
-3273.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:TODO:/
-3288.4 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:TODO:/
-3295.5 "Present Box 2" sync / 1[56]:[^:]*:Statice:TODO:/
-3302.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:TODO:/
-3309.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:TODO:/
-3310.2 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:TODO:/
-3316.5 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:TODO:/
-3320.4 "Burst" sync / 1[56]:[^:]*:Bomb:TODO:/
+3260.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
+3266.5 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8980:/
+3273.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
+3288.4 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1C:/
+3295.5 "Present Box 2" sync / 1[56]:[^:]*:Statice:8972:/
+3302.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
+3309.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
+3310.2 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8973:/
+3316.5 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
+3320.4 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
 
-3327.6 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
-3335.7 "Aero IV" sync / 1[56]:[^:]*:Statice:TODO:/
+3327.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3335.7 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
 
 3338.8 "--sync--" sync / 14:[^:]*:Statice:TODO:/
 3348.8 "Aero IV Enrage" sync / 1[56]:[^:]*:Statice:TODO:/
 
 
 # ALL ENCOUNTER ABILITIES
-# TODO Locked and Loaded ability during TODO Trick Reload when a bullet is in the gun
-# TODO Misload ability during TODO Trick Reload when a bullet missed the gun oops
-# TODO --sync-- repositioning from Statice
+# 8925 Locked and Loaded ability during 8967 Trick Reload when a bullet is in the gun
+# 8926 Misload ability during 8967 Trick Reload when a bullet missed the gun oops
+# 8927 --sync-- repositioning from Statice
 # TODO --sync-- auto damage from Statice
-# TODO Shocking Abandon cast and tankbuster damage
-# TODO Aero IV cast and raidwide damage
-# TODO Trick Reload self-targeted cast to load gun with TODO/TODO
-# TODO Trigger Happy self-targeted cast for limit cut dart board
-# TODO Trigger Happy cast and damage for limit cut dart board (filled pie slice)
-# TODO Surprise Balloon self-targeted cast
-# TODO Pop knockback from Surprise Balloon being popped
-# TODO Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
-# TODO Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
-# TODO Present Box self-targeted cast for bombs/donuts/missiles/hands
-# TODO Faerie Ring cast and damage for donut rings during Present Box
-# TODO Burst high damage from running into Surprising Missile tethered add
-# TODO Death by Claw high damage from running into Surprising Claw tethered add
-# TODO Trapshooting self-targeted cast after Trick Reload (some instances are TODO)
-# TODO Trapshooting stack damage from Trick Reload
-# TODO Trapshooting spread damage from Trick Reload
-# TODO Ring a Ring o' Explosions self-targeted cast for rotating bombs
-# TODO Burst cast and damage from bomb explosion
-# TODO Fireworks self-targeted cast
-# TODO Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
-# TODO Fireworks spread damage during Present Box / Pinwheeling Dartboard
-# TODO Beguiling Glitter self-targeted cast to give players Face debuffs
+# 8965 Shocking Abandon cast and tankbuster damage
+# 8966 Aero IV cast and raidwide damage
+# 8967 Trick Reload self-targeted cast to load gun with 8925/8926
+# 8968 Trigger Happy self-targeted cast for limit cut dart board
+# 8969 Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+# 8927 Surprise Balloon self-targeted cast
+# 896B Pop knockback from Surprise Balloon being popped
+# 896C Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+# 8971 Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
+# 8972 Present Box self-targeted cast for bombs/donuts/missiles/hands
+# 8973 Faerie Ring cast and damage for donut rings during Present Box
+# 8974 Burst high damage from running into Surprising Missile tethered add
+# 8975 Death by Claw high damage from running into Surprising Claw tethered add
+# 8976 Trapshooting self-targeted cast after Trick Reload (some instances are 8D1C)
+# 8977 Trapshooting stack damage from Trick Reload
+# 8978 Trapshooting spread damage from Trick Reload
+# 8979 Ring a Ring o' Explosions self-targeted cast for rotating bombs
+# 897A Burst cast and damage from bomb explosion
+# 897B Fireworks self-targeted cast
+# 897C Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+# 897D Fireworks spread damage during Present Box / Pinwheeling Dartboard
+# 8980 Beguiling Glitter self-targeted cast to give players Face debuffs
 # TODO Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
-# TODO Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
-# TODO Fire Spread ongoing rotating fire damage (from Statice)
-# TODO --sync-- ability on Bomb when rotating
+# 8988 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+# 89FB Fire Spread ongoing rotating fire damage (from Statice)
+# 8A6A --sync-- ability on Bomb when rotating
 # TODO Aero IV cast and enrage damage
 # TODO Aero IV post-enrage follow-up damage just in case
-# TODO Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
-# TODO Dartboard of Dancing Explosives self-targeted cast for colored dartboard
-# TODO Burning Chains damage from not breaking chains
+# 8BCF Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+# 8CC0 Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+# 8CC1 Burning Chains damage from not breaking chains
 # TODO Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
-# TODO Trapshooting self-targeted cast after Trick Reload (some instances are TODO)
+# 8D1C Trapshooting self-targeted cast after Trick Reload (some instances are 8976)
 
 
 #~~~~~~~~~#

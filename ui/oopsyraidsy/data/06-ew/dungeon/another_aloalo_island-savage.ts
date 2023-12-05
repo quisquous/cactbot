@@ -17,7 +17,7 @@ import { playerDamageFields } from '../../../oopsy_common';
 // TODO: walking over 8BF2 Arcane Combustion when you don't have Suppressor
 // TODO: taking extra 8BEA Inferno Divide squares during Spatial Tactics
 // TODO: 01F7(success) and 01F8(fail) check and x markers?
-// TODO: players not in Trapshooting stack TODO
+// TODO: players not in Trapshooting stack 8977
 // TODO: players not in Present Box / Pinwheeling Dartboard two person stack
 
 const renameMistake = (
@@ -127,20 +127,20 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Telluric Theorem': '8C00', // puddles from Explosive Theorem spreads
 
     // Statice
-    'AAIS Trigger Happy': 'TODO', // limit cut dart board
-    'AAIS Bomb Burst': 'TODO', // bomb explosion
+    'AAIS Trigger Happy': '8969', // limit cut dart board
+    'AAIS Bomb Burst': '897A', // bomb explosion
     'AAIS Uncommon Ground': 'TODO', // people who are on the same dartboard color with Bull's-eye
-    'AAIS Faerie Ring': 'TODO', // donut rings during Present Box
+    'AAIS Faerie Ring': '8973', // donut rings during Present Box
     'AAIS Fire Spread 1': 'TODO', // initial rotating fire (from Ball of Fire)
-    'AAIS Fire Spread 2': 'TODO', // ongoing rotating fire damage (from Statice)
+    'AAIS Fire Spread 2': '89FB', // ongoing rotating fire damage (from Statice)
   },
   damageFail: {
     'AAIS Big Burst': '8AE3', // tower failure damage
     'AAIS Massive Explosion 1': '8BF3', // failing to resolve Subractive Suppressor Alpha
     'AAIS Massive Explosion 2': '8BF4', // failing to resolve Subractive Suppressor Beta
-    'AAIS Burning Chains': 'TODO', // damage from not breaking chains
-    'AAIS Surprising Missile Burst': 'TODO', // running into Surprising Missile tethered add
-    'AAIS Surprising Claw Death by Claw': 'TODO', // running into Surprising Claw tethered add
+    'AAIS Burning Chains': '8CC1', // damage from not breaking chains
+    'AAIS Surprising Missile Burst': '8974', // running into Surprising Missile tethered add
+    'AAIS Surprising Claw Death by Claw': '8975', // running into Surprising Claw tethered add
   },
   gainsEffectFail: {
     // C03 = 9999 duration, ??? = 15s duration
@@ -155,18 +155,18 @@ const triggerSet: OopsyTriggerSet<Data> = {
     'AAIS Wood Golem Tornado': '8BD3', // headmarker -> bind and heavy aoe
     'AAIS Powerful Light': '8BFD', // spread marker during Symmetric Surge that turns squares blue
     'AAIS Explosive Theorem': '8BFF', // large spreads with Telluric Theorem puddles
-    'AAIS Trapshooting Spread': 'TODO', // spread damage from Trick Reload
-    'AAIS Firewords Spread': 'TODO', // spread damage during Present Box / Pinwheeling Dartboard
+    'AAIS Trapshooting Spread': '8978', // spread damage from Trick Reload
+    'AAIS Firewords Spread': '897D', // spread damage during Present Box / Pinwheeling Dartboard
   },
   soloWarn: {
     'AAIS Snipper Water III': '8BCC', // Snipper stack marker
     'AAIS Islekeeper Gravity Force': '8C3A', // stack
-    'AAIS Trapshooting Stack': 'TODO', // stack damage from Trick Reload
+    'AAIS Trapshooting Stack': '8977', // stack damage from Trick Reload
   },
   soloFail: {
     'AAIS Hydrofall': '8ADE', // partner stack debuffs
     'AAIS Symmetric Surge': '8BF5', // two person stack that gives magic vuln up
-    'AAIS Fireworks Stack': 'TODO', // two person stack damage during Present Box / Pinwheeling Dartboard
+    'AAIS Fireworks Stack': '897C', // two person stack damage during Present Box / Pinwheeling Dartboard
   },
   triggers: [
     renameMistake('AAIS Tornado', '8BCF', 'fail', {
@@ -174,7 +174,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
       en: 'Tornado',
     }),
     pushedIntoWall('AAIS Angry Seas', '8AE1'),
-    pushedIntoWall('AAIS Pop', 'TODO'),
+    pushedIntoWall('AAIS Pop', '896B'),
     nonzeroDamageMistake('AAIS Hundred Lashings', ['8AE5', '8AE6'], 'warn'),
   ],
 };
