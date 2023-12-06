@@ -133,7 +133,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '0012' },
       alertText: (data, matches, output) => {
         const partner = matches.target === data.me ? matches.source : matches.target;
-        return output.breakTether!({ player: data.ShortName(partner) });
+        return output.breakTether!({ player: data.party.member(partner) });
       },
       outputStrings: {
         breakTether: {
