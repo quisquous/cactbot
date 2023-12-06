@@ -12,13 +12,6 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
 
-/*
-map effects
-// initial edges after raidwide
-[21:58:06.929] 257 101:8003908D:00020001:26:00:0000
-
-*/
-
 export interface Data extends RaidbossData {
   readonly triggerSetConfig: {
     stackOrder: 'meleeRolesPartners' | 'rolesPartners';
@@ -43,6 +36,8 @@ export interface Data extends RaidbossData {
   staticeMissileTether: NetMatches['Tether'][];
   staticeClawTether: NetMatches['Tether'][];
   staticeIsPinwheelingDartboard?: boolean;
+  staticeHomingColor?: 'blue' | 'yellow' | 'red';
+  staticeDartboardTether: NetMatches['HeadMarker'][];
 }
 
 // Horizontal crystals have a heading of 0, vertical crystals are -pi/2.
@@ -50,6 +45,11 @@ const isHorizontalCrystal = (line: NetMatches['AddedCombatant']) => {
   const epsilon = 0.1;
   return Math.abs(parseFloat(line.heading)) < epsilon;
 };
+
+const headmarkerIds = {
+  tethers: '0061',
+  enumeration: '015B',
+} as const;
 
 const triggerSet: TriggerSet<Data> = {
   id: 'AnotherAloaloIsland',
@@ -68,6 +68,7 @@ const triggerSet: TriggerSet<Data> = {
       staticeDart: [],
       staticeMissileTether: [],
       staticeClawTether: [],
+      staticeDartboardTether: [],
     };
   },
   timelineTriggers: [
@@ -963,6 +964,7 @@ const triggerSet: TriggerSet<Data> = {
       type: 'GainsEffect',
       netRegex: { effectId: 'E9E' },
       delaySeconds: (data, matches) => {
+        // Note: this collects for the pinwheeling dartboard version too.
         data.staticeDart.push(matches);
         return data.staticeDart.length === 3 ? 0 : 0.5;
       },
@@ -980,6 +982,9 @@ const triggerSet: TriggerSet<Data> = {
           },
         };
 
+        if (data.staticeIsPinwheelingDartboard)
+          return;
+
         if (data.staticeDart.length === 0)
           return;
 
@@ -987,10 +992,6 @@ const triggerSet: TriggerSet<Data> = {
 
         if (!dartTargets.includes(data.me))
           return { alertText: output.noDartOnYou!() };
-
-        // TODO: better callout / separate trigger for this mechanic
-        if (data.staticeIsPinwheelingDartboard)
-          return { alertText: output.dartOnYou!() };
 
         const partyNames = data.party.partyNames;
 
@@ -1011,7 +1012,27 @@ const triggerSet: TriggerSet<Data> = {
       // TODO: this might need a slight delay
       netRegex: { id: '894E', source: 'Statice', capture: false },
       suppressSeconds: 20,
-      response: Responses.knockback(),
+      alertText: (data, _matches, output) => {
+        const num = data.staticeTriggerHappy;
+        if (num === undefined)
+          return output.knockback!();
+
+        const numStr = output[`num${num}`]!();
+        return output.knockbackToNum!({ num: numStr });
+      },
+      run: (data) => delete data.staticeTriggerHappy,
+      outputStrings: {
+        knockbackToNum: {
+          en: 'Knockback => ${num}',
+        },
+        knockback: Outputs.knockback,
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
+      },
     },
     {
       id: 'AAI Statice Face',
@@ -1025,8 +1046,17 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 7,
       durationSeconds: 5,
       alertText: (data, matches, output) => {
-        const mechName = data.staticeTrapshooting.shift();
-        const mech = mechName === undefined ? output.unknown!() : output[mechName]!();
+        let mech = output.unknown!();
+
+        const num = data.staticeTriggerHappy;
+        if (num !== undefined) {
+          mech = output[`num${num}`]!();
+          delete data.staticeTriggerHappy;
+        } else {
+          const mechName = data.staticeTrapshooting.shift();
+          mech = mechName === undefined ? output.unknown!() : output[mechName]!();
+        }
+
         return {
           'DD2': output.forward!({ mech: mech }),
           'DD3': output.backward!({ mech: mech }),
@@ -1049,6 +1079,12 @@ const triggerSet: TriggerSet<Data> = {
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
         unknown: Outputs.unknown,
       },
     },
@@ -1097,16 +1133,125 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
+      id: 'AAI Statice Burning Chains',
+      type: 'GainsEffect',
+      netRegex: { effectId: '301' },
+      condition: Conditions.targetIsYou(),
+      // TODO: add a strategy for dart colors and say where to go here
+      // for the Pinwheeling Dartboard if you have a dart.
+      response: Responses.breakChains(),
+    },
+    {
       id: 'AAI Statice Shocking Abandon',
       type: 'StartsUsing',
       netRegex: { id: '8948', source: 'Statice' },
       response: Responses.tankBuster(),
     },
     {
-      id: 'AAI Statice Pinwheeling Dartboard',
+      id: 'AAI Statice Pinwheeling Dartboard Tracker',
       type: 'StartsUsing',
       netRegex: { id: '8CBC', source: 'Statice', capture: false },
       run: (data) => data.staticeIsPinwheelingDartboard = true,
+    },
+    {
+      id: 'AAI Statice Pinwheeling Dartboard Color',
+      type: 'AddedCombatant',
+      netRegex: { npcNameId: '12507' },
+      response: (data, matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          dartOnYou: {
+            en: 'Dart (w/${player})',
+          },
+          noDartOnYou: {
+            en: 'No Dart',
+          },
+          blue: {
+            en: 'Avoid Blue',
+          },
+          red: {
+            en: 'Avoid Red',
+          },
+          yellow: {
+            en: 'Avoid Yellow',
+          },
+        };
+
+        let infoText: string | undefined;
+
+        const centerX = -200;
+        const centerY = 0;
+        const x = parseFloat(matches.x) - centerX;
+        const y = parseFloat(matches.y) - centerY;
+
+        // 12 pie slices, the edge of the first one is directly north.
+        // It goes in B R Y order repeating 4 times.
+        // The 0.5 subtraction (12 - 0.5 = 11.5) is because the Homing Pattern
+        // lands directly in the middle of a slice.
+        const dir12 = Math.round(6 - 6 * Math.atan2(x, y) / Math.PI + 11.5) % 12;
+
+        const colorOffset = dir12 % 3;
+        const colorMap: { [offset: number]: typeof data.staticeHomingColor } = {
+          0: 'blue',
+          1: 'red',
+          2: 'yellow',
+        } as const;
+
+        data.staticeHomingColor = colorMap[colorOffset];
+        if (data.staticeHomingColor !== undefined)
+          infoText = output[data.staticeHomingColor]!();
+
+        if (data.staticeDart.length !== 2)
+          return { infoText };
+
+        const dartTargets = data.staticeDart.map((x) => x.target);
+        if (!dartTargets.includes(data.me))
+          return { alertText: output.noDartOnYou!(), infoText: infoText };
+
+        const [target1, target2] = dartTargets;
+        if (target1 === undefined || target2 === undefined)
+          return { infoText };
+        const otherTarget = data.party.member(target1 === data.me ? target2 : target1);
+        return { alertText: output.dartOnYou!({ player: otherTarget }), infoText: infoText };
+      },
+    },
+    {
+      id: 'AAI Statice Pinwheeling Dartboard Mech',
+      type: 'HeadMarker',
+      netRegex: { id: headmarkerIds.tethers },
+      condition: (data) => data.staticeIsPinwheelingDartboard,
+      delaySeconds: (data, matches) => {
+        data.staticeDartboardTether.push(matches);
+        return data.staticeDartboardTether.length === 2 ? 0 : 0.5;
+      },
+      alertText: (data, _matches, output) => {
+        if (data.staticeDartboardTether.length !== 2)
+          return;
+
+        const tethers = data.staticeDartboardTether.map((x) => x.target);
+
+        if (tethers.includes(data.me)) {
+          const [tether1, tether2] = tethers;
+          const other = data.party.member(tether1 === data.me ? tether2 : tether1);
+          return output.tether!({ player: other });
+        }
+
+        const partyNames = data.party.partyNames;
+        const nonTethers = partyNames.filter((x) => !tethers.includes(x));
+        const [stack1, stack2] = nonTethers;
+        const other = data.party.member(stack1 === data.me ? stack2 : stack1);
+        return output.stack!({ player: other });
+      },
+      run: (data) => data.staticeDartboardTether = [],
+      outputStrings: {
+        // TODO: maybe this should remind you of dart color
+        tether: {
+          en: 'Tether w/${player}',
+        },
+        stack: {
+          en: 'Stack w/${player}',
+        },
+      },
     },
   ],
   timelineReplace: [
