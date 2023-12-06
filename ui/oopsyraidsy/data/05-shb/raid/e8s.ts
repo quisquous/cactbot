@@ -13,11 +13,6 @@ export type Data = OopsyData;
 // TODO: not being in the tower when you should
 // TODO: picking up too many stacks
 
-// Note: Banish III (4DA8) and Banish Iii Divided (4DA9) both are type=0x16 lines.
-// The same is true for Banish (4DA6) and Banish Divided (4DA7).
-// I'm not sure this makes any sense? But can't tell if the spread was a mistake or not.
-// Maybe we could check for "Magic Vulnerability Up"?
-
 const triggerSet: OopsyTriggerSet<Data> = {
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   damageWarn: {
@@ -58,8 +53,16 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Shared orb, correct is Bright Pulse (4D95)
     'E8S Blinding Pulse': '4D96',
   },
+  shareWarn: {
+    'E8S Banish III Divided': '4DA9', // spread
+    'E8S Banish Divided': '4DA7', // tank spread
+  },
   shareFail: {
     'E8S Path of Light': '4DA1', // Protean
+  },
+  soloWarn: {
+    'E8S Banish III': '4DA8', // stack
+    'E8S Banish': '4DA6', // tank stack
   },
   triggers: [
     {

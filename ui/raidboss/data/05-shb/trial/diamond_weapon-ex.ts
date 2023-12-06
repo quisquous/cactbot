@@ -5,6 +5,8 @@ import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: Auri Arts can now be done with MapEffect lines if somebody wanted.
+
 export interface Data extends RaidbossData {
   decOffset?: number;
   phase?: number;

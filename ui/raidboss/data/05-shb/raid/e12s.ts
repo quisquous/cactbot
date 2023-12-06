@@ -6,11 +6,13 @@ import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { NetMatches } from '../../../../../types/net_matches';
+import { PartyMemberParamObject } from '../../../../../types/party';
 import { LocaleText, Output, TriggerSet } from '../../../../../types/trigger';
 
 export interface Data extends RaidbossData {
   isDoorBoss?: boolean;
   decOffset?: number;
+
   tethers?: string[];
   stockedTethers?: string[];
   castCount?: number;
@@ -19,23 +21,31 @@ export interface Data extends RaidbossData {
   formlessTargets?: string[];
   weightTargets?: string[];
   seenFirstBombs?: boolean;
+  statueStacks: string[];
   statueTetherNumber?: number;
   statueIds?: number[];
   statueDir?: string;
   statueLaserCount?: number;
+  smallLions?: NetMatches['AddedCombatant'][];
+
   phase?: 'basic' | 'intermediate' | 'advanced' | 'terminal';
-  debuffs?: { [name: string]: number };
-  intermediateDebuffs?: string[];
-  safeZone?: string;
-  doubleAero?: string[];
+  // Used across various stacks.
+  waterStacks: string[];
   seenInitialSpread?: boolean;
   seenInitialStacks?: boolean;
-  eyes?: string[];
+  basicDebuffs: NetMatches['GainsEffect'][];
+  myBasicDebuff?: 'eye' | 'shortIce' | 'longIce' | 'shortFire' | 'longFire' | 'water';
+  basicEyes: string[];
+  intermediateDebuffs: { [name: string]: number };
+  intermediateDebuffsOutputKeys: string[];
+  safeZone?: string;
+  advancedDebuffs: NetMatches['GainsEffect'][];
   sorrows?: { [name: string]: number };
-  smallLions?: NetMatches['AddedCombatant'][];
 }
 
 // TODO: double apoc clockwise vs counterclockwise call would be nice
+// TODO: stack partners
+// TODO: shadow eye people on blu need mit
 
 // Each tether ID corresponds to a primal:
 // 008C -- Shiva
@@ -278,6 +288,17 @@ const triggerSet: TriggerSet<Data> = {
   id: 'EdensPromiseEternitySavage',
   zoneId: ZoneId.EdensPromiseEternitySavage,
   timelineFile: 'e12s.txt',
+  initData: () => {
+    return {
+      statueStacks: [],
+      waterStacks: [],
+      basicDebuffs: [],
+      basicEyes: [],
+      intermediateDebuffs: {},
+      intermediateDebuffsOutputKeys: [],
+      advancedDebuffs: [],
+    };
+  },
   triggers: [
     {
       // Headmarkers are randomized, so use a generic headMarker regex with no criteria.
@@ -296,6 +317,9 @@ const triggerSet: TriggerSet<Data> = {
             cn: '死刑 + 换T',
             ko: '탱버 + 교대',
           },
+          formlessBusterBLU: {
+            en: 'Buster on YOU (w/${player})',
+          },
           formlessBusterOnYOU: Outputs.tankBusterOnYou,
         };
 
@@ -303,23 +327,33 @@ const triggerSet: TriggerSet<Data> = {
 
         // Track tankbuster targets, regardless if this is on you or not.
         // Use this to make more intelligent calls when the cast starts.
-        if (id === '00DA') {
-          data.formlessTargets ??= [];
-          data.formlessTargets.push(matches.target);
-        }
+        if (id !== '00DA')
+          return;
+
+        data.formlessTargets ??= [];
+        data.formlessTargets.push(matches.target);
 
         // From here on out, any response is for the current player.
-        if (matches.target !== data.me)
+        if (data.formlessTargets.length !== 2)
+          return;
+        if (!data.formlessTargets.includes(data.me))
           return;
 
         // Formless double tankbuster mechanic.
-        if (id === '00DA') {
-          if (data.role === 'tank')
-            return { alertText: output.formlessBusterAndSwap!() };
-          // Not that you personally can do anything about it, but maybe this
-          // is your cue to yell on voice comms for cover.
-          return { alarmText: output.formlessBusterOnYOU!() };
+        if (data.role === 'tank')
+          return { alertText: output.formlessBusterAndSwap!() };
+
+        // BLU tends to avail here, so call out your friend.
+        if (data.job === 'BLU') {
+          const [otherPlayer] = data.formlessTargets.filter((x) => x !== data.me);
+          return {
+            alertText: output.formlessBusterBLU!({ player: data.party.member(otherPlayer) }),
+          };
         }
+
+        // Not that you personally can do anything about it, but maybe this
+        // is your cue to yell on voice comms for cover.
+        return { alarmText: output.formlessBusterOnYOU!() };
       },
     },
     {
@@ -397,6 +431,38 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.titanYellowSpread!() };
         if (id === '00BA')
           return { infoText: output.titanOrangeStack!() };
+      },
+    },
+    {
+      id: 'E12S Promise Classical Sculpture',
+      type: 'HeadMarker',
+      netRegex: {},
+      condition: (data, matches) => {
+        if (!data.isDoorBoss)
+          return false;
+        if (getHeadmarkerId(data, matches) !== '003E')
+          return false;
+        data.statueStacks.push(matches.target);
+        return data.statueStacks.length === 2;
+      },
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          stackOnYou: {
+            en: 'Stack on YOU (w/${player})',
+          },
+          stacks: {
+            en: 'Stacks: ${players}',
+          },
+        };
+
+        if (!data.statueStacks.includes(data.me)) {
+          const players = data.statueStacks.sort().map((x) => data.party.member(x));
+          return { infoText: output.stacks!({ players: players }) };
+        }
+
+        const [otherPlayer] = data.statueStacks.filter((x) => x !== data.me);
+        return { alertText: output.stackOnYou!({ player: data.party.member(otherPlayer) }) };
       },
     },
     {
@@ -579,7 +645,6 @@ const triggerSet: TriggerSet<Data> = {
       id: 'E12S Promise Statue 2nd/3rd/4th Laser',
       type: 'Ability',
       netRegex: { source: 'Chiseled Sculpture', id: '58B3', capture: false },
-
       condition: (data) => !data.statueLaserCount || data.statueLaserCount < 4,
       durationSeconds: 3,
       suppressSeconds: 1,
@@ -945,6 +1010,7 @@ const triggerSet: TriggerSet<Data> = {
       condition: Conditions.targetIsYou(),
       // Don't collide with reach left/right call.
       delaySeconds: 0.5,
+      durationSeconds: 7,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
@@ -1011,6 +1077,14 @@ const triggerSet: TriggerSet<Data> = {
           return { alertText: output.southEastLion!() };
         return { alertText: output.southWestLion!() };
       },
+    },
+    {
+      id: 'E12S Promise Laser Eye',
+      type: 'StartsUsing',
+      // This has a 14.5 second cast. :eyes:
+      netRegex: { source: 'Eden\'s Promise', id: '58B8', capture: false },
+      delaySeconds: 9.5,
+      response: Responses.knockback(),
     },
     {
       id: 'E12S Oracle Shockwave Pulsar',
@@ -1189,6 +1263,19 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.tankBuster(),
     },
     {
+      id: 'E12S Dark Water Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: '99D' },
+      run: (data, matches) => data.waterStacks.push(matches.target),
+    },
+    {
+      id: 'E12S Dark Water Cleanup',
+      type: 'Ability',
+      netRegex: { source: 'Oracle of Darkness', id: '58CA', capture: false },
+      suppressSeconds: 5,
+      run: (data) => data.waterStacks = [],
+    },
+    {
       id: 'E12S Basic Relativity Debuffs',
       type: 'GainsEffect',
       // 997 Spell-In-Waiting: Dark Fire III
@@ -1196,74 +1283,115 @@ const triggerSet: TriggerSet<Data> = {
       // 99D Spell-In-Waiting: Dark Water III
       // 99E Spell-In-Waiting: Dark Blizzard III
       netRegex: { effectId: '99[78DE]' },
-      condition: (data, matches) => data.phase === 'basic' && matches.target === data.me,
-      response: (_data, matches, output) => {
+      condition: (data, matches) => {
+        if (data.phase !== 'basic')
+          return false;
+        data.basicDebuffs.push(matches);
+        return true;
+      },
+      delaySeconds: 0.5,
+      response: (data, _matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
           shadoweye: {
-            en: 'Eye on YOU',
-            de: 'Auge auf DIR',
-            fr: 'Œil sur VOUS',
-            ja: '自分に目',
-            cn: '石化眼点名',
-            ko: '시선징 대상자',
+            en: 'Eye (w/${player})',
+            de: 'Auge auf DIR (w/${player})', // FIXME
+            fr: 'Œil sur VOUS (w/${player})', // FIXME
+            ja: '自分に目 (w/${player})', // FIXME
+            cn: '石化眼点名 (w/${player})', // FIXME
+            ko: '시선징 대상자 (w/${player})', // FIXME
           },
-          water: intermediateRelativityOutputStrings.stack,
+          water: {
+            en: 'Stack (w/${player})',
+          },
           longFire: {
-            en: 'Long Fire',
-            de: 'langes Feuer',
-            fr: 'Feu long',
-            ja: 'ファイガ(遅い)',
-            cn: '长火',
-            ko: '느린 파이가',
+            en: 'Long Fire (w/${player})',
+            de: 'langes Feuer (w/${player})', // FIXME
+            fr: 'Feu long (w/${player})', // FIXME
+            ja: 'ファイガ(遅い) (w/${player})', // FIXME
+            cn: '长火 (w/${player})', // FIXME
+            ko: '느린 파이가 (w/${player})', // FIXME
           },
           shortFire: {
-            en: 'Short Fire',
-            de: 'kurzes Feuer',
-            fr: 'Feu court',
-            ja: 'ファイガ(早い)',
-            cn: '短火',
-            ko: '빠른 파이가',
+            en: 'Short Fire (w/${player})',
+            de: 'kurzes Feuer (w/${player})', // FIXME
+            fr: 'Feu court (w/${player})', // FIXME
+            ja: 'ファイガ(早い) (w/${player})', // FIXME
+            cn: '短火 (w/${player})', // FIXME
+            ko: '빠른 파이가 (w/${player})', // FIXME
           },
           longIce: {
-            en: 'Long Ice',
-            de: 'langes Eis',
-            fr: 'Glace longue',
-            ja: 'ブリザガ(遅い)',
-            cn: '长冰',
-            ko: '느린 블리자가',
+            en: 'Long Ice (w/${player})',
+            de: 'langes Eis (w/${player})', // FIXME
+            fr: 'Glace longue (w/${player})', // FIXME
+            ja: 'ブリザガ(遅い) (w/${player})', // FIXME
+            cn: '长冰 (w/${player})', // FIXME
+            ko: '느린 블리자가 (w/${player})', // FIXME
           },
           shortIce: {
-            en: 'Short Ice',
-            de: 'kurzes Eis',
-            fr: 'Glace courte',
-            ja: 'ブリザガ(早い)',
-            cn: '短冰',
-            ko: '빠른 블리자가',
+            en: 'Short Ice (w/${player})',
+            de: 'kurzes Eis (w/${player})', // FIXME
+            fr: 'Glace courte (w/${player})', // FIXME
+            ja: 'ブリザガ(早い) (w/${player})', // FIXME
+            cn: '短冰 (w/${player})', // FIXME
+            ko: '빠른 블리자가 (w/${player})', // FIXME
           },
+          unknown: Outputs.unknown,
         };
 
-        if (!matches.effectId)
+        // Because this trigger is both collecting and calling, can't use suppress.
+        // Use this set value to know if we've called anything out yet.
+        if (data.myBasicDebuff !== undefined)
           return;
-        const id = matches.effectId.toUpperCase();
 
-        if (id === '998')
-          return { infoText: output.shadoweye!() };
-        if (id === '99D')
-          return { infoText: output.water!() };
+        const otherPlayer = (names: string[]): PartyMemberParamObject | string => {
+          if (names.length !== 2)
+            return output.unknown!();
+          const [name1, name2] = names;
+          if (!names.includes(data.me) || name1 === undefined || name2 === undefined)
+            return output.unknown!();
+          return data.party.member(name1 === data.me ? name2 : name1);
+        };
 
-        // Long fire/ice is 15 seconds, short fire/ice is 29 seconds.
-        const isLong = parseFloat(matches.duration) > 20;
-
-        if (id === '997') {
-          if (isLong)
-            return { alertText: output.longFire!() };
-          return { alertText: output.shortFire!() };
+        const eyes = data.basicDebuffs.filter((x) => x.effectId === '998').map((x) => x.target);
+        data.basicEyes.push(...eyes);
+        if (eyes.includes(data.me)) {
+          data.myBasicDebuff = 'eye';
+          return { infoText: output.shadoweye!({ player: otherPlayer(eyes) }) };
         }
-        if (id === '99E') {
-          if (isLong)
-            return { alertText: output.longIce!() };
-          return { alertText: output.shortIce!() };
+
+        const waters = data.basicDebuffs.filter((x) => x.effectId === '99D').map((x) => x.target);
+        if (waters.includes(data.me)) {
+          data.myBasicDebuff = 'water';
+          return { infoText: output.water!({ player: otherPlayer(waters) }) };
+        }
+
+        // Short fire/ice is 15 seconds, long fire/ice is 29 seconds.
+        const longBuffs = data.basicDebuffs.filter((x) => parseFloat(x.duration) > 20);
+        const shortBuffs = data.basicDebuffs.filter((x) => parseFloat(x.duration) < 20);
+
+        const shortFires = shortBuffs.filter((x) => x.effectId === '997').map((x) => x.target);
+        if (shortFires.includes(data.me)) {
+          data.myBasicDebuff = 'shortFire';
+          return { alertText: output.shortFire!({ player: otherPlayer(shortFires) }) };
+        }
+
+        const longFires = longBuffs.filter((x) => x.effectId === '997').map((x) => x.target);
+        if (longFires.includes(data.me)) {
+          data.myBasicDebuff = 'longFire';
+          return { infoText: output.longFire!({ player: otherPlayer(longFires) }) };
+        }
+
+        const shortIces = shortBuffs.filter((x) => x.effectId === '99E').map((x) => x.target);
+        if (shortIces.includes(data.me)) {
+          data.myBasicDebuff = 'shortIce';
+          return { alertText: output.shortIce!({ player: otherPlayer(shortIces) }) };
+        }
+
+        const longIces = longBuffs.filter((x) => x.effectId === '99E').map((x) => x.target);
+        if (longIces.includes(data.me)) {
+          data.myBasicDebuff = 'longIce';
+          return { alertText: output.longIce!({ player: otherPlayer(longIces) }) };
         }
       },
     },
@@ -1279,18 +1407,17 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { effectId: ['690', '99[68CEF]'] },
       condition: (data, matches) => data.phase === 'intermediate' && matches.target === data.me,
       preRun: (data, matches) => {
-        data.debuffs ??= {};
-        data.debuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
+        data.intermediateDebuffs[matches.effectId.toUpperCase()] = parseFloat(matches.duration);
       },
       durationSeconds: 20,
       infoText: (data, _matches, output) => {
-        const unsortedIds = Object.keys(data.debuffs ?? {});
+        const unsortedIds = Object.keys(data.intermediateDebuffs);
         if (unsortedIds.length !== 3)
           return;
 
         // Sort effect ids descending by duration.
         const sortedIds = unsortedIds.sort((a, b) =>
-          (data.debuffs?.[b] ?? 0) - (data.debuffs?.[a] ?? 0)
+          (data.intermediateDebuffs?.[b] ?? 0) - (data.intermediateDebuffs?.[a] ?? 0)
         );
         const keys = sortedIds.map((effectId) => effectIdToOutputStringKey[effectId]);
 
@@ -1299,7 +1426,7 @@ const triggerSet: TriggerSet<Data> = {
           throw new UnreachableCode();
 
         // Stash outputstring keys to use later.
-        data.intermediateDebuffs = [key1, key2];
+        data.intermediateDebuffsOutputKeys = [key1, key2];
 
         return output.comboText!({
           effect1: output[key0]!(),
@@ -1347,20 +1474,10 @@ const triggerSet: TriggerSet<Data> = {
         if (data.phase !== 'intermediate')
           return { infoText: output.moveAway!() };
 
-        const key = data.intermediateDebuffs && data.intermediateDebuffs.shift();
+        const key = data.intermediateDebuffsOutputKeys.shift();
         if (key === undefined)
           return { infoText: output.moveAway!() };
         return { alertText: output[key]!() };
-      },
-    },
-    {
-      id: 'E12S Oracle Basic Relativity Shadow Eye Collector',
-      type: 'GainsEffect',
-      netRegex: { effectId: '998' },
-      condition: (data) => data.phase === 'basic',
-      run: (data, matches) => {
-        data.eyes ??= [];
-        data.eyes.push(matches.target);
       },
     },
     {
@@ -1371,8 +1488,7 @@ const triggerSet: TriggerSet<Data> = {
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
       suppressSeconds: 3,
       alertText: (data, _matches, output) => {
-        const [player1, player2] = data.eyes ?? [];
-
+        const [player1, player2] = data.basicEyes;
         if (player1 !== data.me && player2 !== data.me) {
           // Call out both player names if you don't have eye
           return output.lookAwayFromPlayers!({
@@ -1508,16 +1624,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'E12S Initial Dark Water',
       type: 'GainsEffect',
-      netRegex: { effectId: '99D' },
+      netRegex: { effectId: '99D', capture: false },
       condition: (data) => !data.phase,
-      delaySeconds: (data, matches) => {
-        const duration = parseFloat(matches.duration);
-        return data.seenInitialSpread ? duration - 6 : duration - 8;
-      },
-      durationSeconds: 5,
+      durationSeconds: 10,
       suppressSeconds: 5,
       alertText: (data, _matches, output) => {
         data.seenInitialStacks = true;
+
+        if (data.waterStacks.length === 2) {
+          const [player1, player2] = data.waterStacks.sort().map((x) => data.party.member(x));
+          if (data.seenInitialSpread)
+            return output.knockbackIntoStacksOn!({ player1: player1, player2: player2 });
+          return output.stacksOn!({ player1: player1, player2: player2 });
+        }
+
         if (data.seenInitialSpread)
           return output.knockbackIntoStackGroups!();
         return output.stackGroups!();
@@ -1531,6 +1651,9 @@ const triggerSet: TriggerSet<Data> = {
           cn: '集合',
           ko: '쉐어',
         },
+        stacksOn: {
+          en: 'Stacks (${player1}, ${player2})',
+        },
         knockbackIntoStackGroups: {
           en: 'Knockback Into Stack Groups',
           de: 'Rückstoß, dann in Gruppen sammeln',
@@ -1538,6 +1661,9 @@ const triggerSet: TriggerSet<Data> = {
           ja: '頭割り位置に向かってノックバックを',
           cn: '击退分摊',
           ko: '넉백 후 쉐어',
+        },
+        knockbackIntoStacksOn: {
+          en: 'Knockback => Stacks (${player1}, ${player2})',
         },
       },
     },
@@ -1584,9 +1710,15 @@ const triggerSet: TriggerSet<Data> = {
       condition: (data, matches) => data.phase !== undefined && parseFloat(matches.duration) > 13,
       delaySeconds: (_data, matches) => parseFloat(matches.duration) - 4,
       suppressSeconds: 5,
-      alertText: (_data, _matches, output) => output.text!(),
+      alertText: (data, _matches, output) => {
+        if (data.waterStacks.length === 2) {
+          const [player1, player2] = data.waterStacks.sort().map((x) => data.party.member(x));
+          return output.stacksOn!({ player1: player1, player2: player2 });
+        }
+        return output.stackGroups!();
+      },
       outputStrings: {
-        text: {
+        stackGroups: {
           en: 'Stack Groups',
           de: 'In Gruppen sammeln',
           fr: 'Packez-vous en groupe',
@@ -1594,34 +1726,8 @@ const triggerSet: TriggerSet<Data> = {
           cn: '集合',
           ko: '쉐어',
         },
-      },
-    },
-    {
-      id: 'E12S Double Aero Finder',
-      type: 'GainsEffect',
-      netRegex: { effectId: '99F' },
-      // In advanced, Aero comes in ~23 and ~31s flavors
-      condition: (data, matches) => data.phase === 'advanced' && parseFloat(matches.duration) > 28,
-      infoText: (data, matches, output) => {
-        data.doubleAero ??= [];
-        data.doubleAero.push(matches.target);
-
-        if (data.doubleAero.length !== 2)
-          return;
-
-        const [name1, name2] = data.doubleAero.sort().map((x) => data.party.member(x));
-        return output.text!({ name1: name1, name2: name2 });
-      },
-      // This will collide with 'E12S Adv Relativity Buff Collector', sorry.
-      tts: null,
-      outputStrings: {
-        text: {
-          en: 'Double Aero: ${name1}, ${name2}',
-          de: 'Doppel Windga: ${name1}, ${name2}',
-          fr: 'Double Vent : ${name1}, ${name2}',
-          ja: 'エアロガ×2: ${name1}, ${name2}',
-          cn: '双风: ${name1}, ${name2}',
-          ko: '더블 에어로가: ${name1}, ${name2}',
+        stacksOn: {
+          en: 'Stacks (${player1}, ${player2})',
         },
       },
     },
@@ -1632,48 +1738,83 @@ const triggerSet: TriggerSet<Data> = {
       // 998 Spell-In-Waiting: Shadoweye
       // 99F Spell-In-Waiting: Dark Aero III
       netRegex: { effectId: '99[78F]' },
-      condition: (data, matches) => data.phase === 'advanced' && data.me === matches.target,
+      condition: (data, matches) => {
+        if (data.phase !== 'advanced')
+          return false;
+        data.advancedDebuffs.push(matches);
+        return true;
+      },
+      delaySeconds: 0.5,
       durationSeconds: 15,
-      alertText: (_data, matches, output) => {
-        const id = matches.effectId.toUpperCase();
+      response: (data, _matches, output) => {
+        // cactbot-builtin-response
+        output.responseOutputStrings = {
+          shadoweye: {
+            en: 'Eye (w/${player})',
+            de: 'Auge auf DIR (w/${player})', // FIXME
+            fr: 'Œil sur VOUS (w/${player})', // FIXME
+            ja: '自分に目 (w/${player})', // FIXME
+            cn: '石化眼点名 (w/${player})', // FIXME
+            ko: '시선징 대상자 (w/${player})', // FIXME
+          },
+          doubleAero: {
+            en: 'Double Aero (w/${player})',
+            de: 'Doppel Windga auf DIR (w/${player})', // FIXME
+            fr: 'Double Vent sur VOUS (w/${player})', // FIXME
+            ja: '自分にエアロガ×2 (w/${player})', // FIXME
+            cn: '双风点名 (w/${player})', // FIXME
+            ko: '더블 에어로가 대상자 (w/${player})', // FIXME
+          },
+          spread: {
+            en: 'Spread (w/${player1}, ${player2}, ${player3})',
+            de: 'Verteilen auf DIR (w/${player1}, ${player2}, ${player3})', // FIXME
+            fr: 'Dispersion sur VOUS (w/${player1}, ${player2}, ${player3})', // FIXME
+            ja: '自分に散開 (w/${player1}, ${player2}, ${player3})', // FIXME
+            cn: '分散点名 (w/${player1}, ${player2}, ${player3})', // FIXME
+            ko: '산개징 대상자 (w/${player1}, ${player2}, ${player3})', // FIXME
+          },
+          unknown: Outputs.unknown,
+        };
 
-        // The shadoweye and the double aero person gets aero, so only consider the final aero.
-        if (id === '99F') {
-          if (parseFloat(matches.duration) < 28)
-            return;
-          return output.doubleAero!();
+        if (data.advancedDebuffs.length === 0)
+          return;
+
+        const otherPlayer = (names: string[]): PartyMemberParamObject | string => {
+          if (names.length !== 2)
+            return output.unknown!();
+          const [name1, name2] = names;
+          if (!names.includes(data.me) || name1 === undefined || name2 === undefined)
+            return output.unknown!();
+          return data.party.member(name1 === data.me ? name2 : name1);
+        };
+
+        const aeros = data.advancedDebuffs.filter((x) => {
+          if (x.effectId !== '99F')
+            return false;
+          // The shadoweye and the double aero person gets aero, so only consider the final aero.
+          return parseFloat(x.duration) > 28;
+        }).map((x) => x.target);
+        if (aeros.includes(data.me))
+          return { alarmText: output.doubleAero!({ player: otherPlayer(aeros) }) };
+
+        const eyes = data.advancedDebuffs.filter((x) => x.effectId === '998').map((x) => x.target);
+        if (eyes.includes(data.me))
+          return { alertText: output.shadoweye!({ player: otherPlayer(eyes) }) };
+
+        const spreads = data.advancedDebuffs.filter((x) => x.effectId === '997').map((x) =>
+          x.target
+        );
+        if (spreads.includes(data.me)) {
+          const otherSpreads = spreads.filter((x) => x !== data.me).sort().map((x) =>
+            data.party.member(x)
+          );
+          const [player1, player2, player3] = otherSpreads;
+          return {
+            infoText: output.spread!({ player1: player1, player2: player2, player3: player3 }),
+          };
         }
-        if (id === '997')
-          return output.spread!();
-        if (id === '998')
-          return output.shadoweye!();
       },
-      outputStrings: {
-        shadoweye: {
-          en: 'Eye on YOU',
-          de: 'Auge auf DIR',
-          fr: 'Œil sur VOUS',
-          ja: '自分に目',
-          cn: '石化眼点名',
-          ko: '시선징 대상자',
-        },
-        doubleAero: {
-          en: 'Double Aero on YOU',
-          de: 'Doppel Windga auf DIR',
-          fr: 'Double Vent sur VOUS',
-          ja: '自分にエアロガ×2',
-          cn: '双风点名',
-          ko: '더블 에어로가 대상자',
-        },
-        spread: {
-          en: 'Spread on YOU',
-          de: 'Verteilen auf DIR',
-          fr: 'Dispersion sur VOUS',
-          ja: '自分に散開',
-          cn: '分散点名',
-          ko: '산개징 대상자',
-        },
-      },
+      run: (data) => data.advancedDebuffs = [],
     },
   ],
   timelineReplace: [
