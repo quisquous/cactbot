@@ -404,7 +404,7 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (data, _matches, output) => {
         const [first, second] = data.gaolPlayers;
         const other = first === data.me ? second : first;
-        return output.text!({ player: data.ShortName(other) });
+        return output.text!({ player: data.party.member(other) });
       },
       outputStrings: {
         text: {
