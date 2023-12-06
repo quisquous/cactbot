@@ -7,7 +7,6 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO: use code from AMR to handle cases of "role stacks" when somebody is dead
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
 // TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
@@ -22,6 +21,7 @@ export interface Data extends RaidbossData {
   ketuHydroBuffCount: number;
   ketuBuff?: 'bubble' | 'fetters';
   ketuBuffCollect: NetMatches['GainsEffect'][];
+  ketuStackTargets: string[];
   lalaBossRotation?: 'clock' | 'counter';
   lalaBossTimes?: 3 | 5;
   lalaBossInitialSafe?: 'north' | 'east' | 'south' | 'west';
@@ -62,6 +62,7 @@ const triggerSet: TriggerSet<Data> = {
       ketuCrystalAdd: [],
       ketuHydroBuffCount: 0,
       ketuBuffCollect: [],
+      ketuStackTargets: [],
       lalaSubAlpha: [],
       staticeBullet: [],
       staticeTrapshooting: [],
@@ -382,6 +383,42 @@ const triggerSet: TriggerSet<Data> = {
         },
         stacks: {
           en: 'Stacks => Spread',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Hydrofall Role Stack Warning',
+      type: 'GainsEffect',
+      netRegex: { effectId: 'EA3' },
+      delaySeconds: (data, matches) => {
+        data.ketuStackTargets.push(matches.target);
+        return data.ketuStackTargets.length === 2 ? 0 : 0.5;
+      },
+      alarmText: (data, _matches, output) => {
+        const [stack1, stack2] = data.ketuStackTargets;
+        if (data.ketuStackTargets.length !== 2 || stack1 === undefined || stack2 === undefined)
+          return;
+
+        // Sorry, non-standard light party comps.
+        const supports = [...data.party.healerNames, ...data.party.tankNames];
+        const dps = data.party.dpsNames;
+        if (supports.length !== 2 && dps.length !== 2)
+          return;
+
+        const isStack1DPS = data.party.isDPS(stack1);
+        const isStack2DPS = data.party.isDPS(stack2);
+
+        // If both stacks are on dps or neither stack is on a dps, then you have
+        // standard "partner" stacks of one support and one dps. If one is on a dps
+        // and one is on a support (which can happen if somebody dies), then
+        // you (probably) need to have role stacks.
+        if (isStack1DPS !== isStack2DPS)
+          return output.roleStacks!();
+      },
+      run: (data) => data.ketuStackTargets = [],
+      outputStrings: {
+        roleStacks: {
+          en: 'Role Stacks',
         },
       },
     },
