@@ -29,7 +29,7 @@ hideall "--sync--"
 10 "Long Castbar" duration 10
 15 "Final Sting"
 18 "Pentacle Sac (DPS)"
-25 "Super Tankbuster" sync / 00:0038:[^:]*:test sync/ window 30,30
+25 "Super Tankbuster" sync / 00:0038:[^:]*:test sync1/ window 30,30
 30 "Dummy Stands Still"
 40 "Death"
 
