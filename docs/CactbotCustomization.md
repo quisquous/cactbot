@@ -28,7 +28,8 @@ This has options for things like:
 
 - setting triggers to tts
 - disabling triggers
-- changing the output of triggers
+- changing the output text of triggers
+- changing triggers to say a player's job instead of name
 - changing your cactbot language
 - volume settings
 - getting rid of that cheese icon
@@ -66,6 +67,23 @@ You cannot make `tts` to say something different than the `alarmText` in most ca
 You cannot add additional parameters.
 If you want to do any of these more complicated overrides,
 then you will want to look at the [Overriding Raidboss Triggers](#overriding-raidboss-triggers) section.
+
+Any parameter that refers to a player (usually called `${player}` but not always)
+can also be further modified in each individual output string:
+
+- `${player.job}`: job abbreviation, e.g. WHM
+- `${player.jobFull}`: job full name, e.g. White Mage
+- `${player.role}`: role, e.g. support
+- `${player.name}`: player's full name, e.g. Tini Poutini
+- `${player.nick}`: player's nickname / first name, e.g. Tini
+- `${player.id}`: a player's id (for testing purposes), e.g. 1000485F
+
+If there are bugs or a player is not in your party or you use an invalid suffix,
+it may fall back to a default nickname just so something can be printed.
+
+By default, `${player}` implies `${player.nick}`,
+however you can set this default with the "Default Player Label" option
+in the cactbot config UI under the raidboss section.
 
 ## User Directory Overview
 
