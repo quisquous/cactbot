@@ -9,7 +9,8 @@ hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 1.1 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1A:/ window 1.1,0
-17.1 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:55B0:/ window 18,10
+12.1 "--sync--" sync / 14:[^:]*:The Emerald Weapon:55B0:/ window 20,20
+17.1 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:55B0:/
 28.2 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B1:/
 39.4 "Aetheroplasm Production" sync / 1[56]:[^:]*:The Emerald Weapon:55AA:/
 65.6 "Emerald Beam" sync / 1[56]:[^:]*:The Emerald Weapon:557[13]:/
@@ -43,7 +44,8 @@ hideall "--sync--"
 
 1000.0 "Start"
 1001.0 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1C:/ window 1001,0
-1015.0 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:555B:/ window 1015,5
+1010.0 "--sync--" sync / 14:[^:]*:The Emerald Weapon:555B:/ window 1015,20
+1015.0 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:555B:/
 1021.3 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
 1031.3 "Primus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55C3:/
 1046.4 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55CC:/

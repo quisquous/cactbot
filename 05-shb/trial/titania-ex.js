@@ -112,10 +112,17 @@ Options.Triggers.push({
     },
     {
       id: 'TitaniaEx Bramble 2',
-      type: 'StartsUsing',
-      netRegex: { id: '42D7', source: 'Titania', capture: false },
-      delaySeconds: 3,
-      response: Responses.moveAway('alert'),
+      type: 'Tether',
+      netRegex: { id: '0012' },
+      alertText: (data, matches, output) => {
+        const partner = matches.target === data.me ? matches.source : matches.target;
+        return output.breakTether({ player: data.party.member(partner) });
+      },
+      outputStrings: {
+        breakTether: {
+          en: 'Break Tether (w/${player})',
+        },
+      },
     },
     {
       id: 'TitaniaEx Bramble Knockback',

@@ -8,6 +8,8 @@ hideall "--sync--"
 # Can use InCombat line to start timeline since the multiple phases do not
 # change the player's InCombat status.
 
+# TODO: is there a missing bright hunger in icelit? (4DA3?)
+
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 16.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DCC:/ window 17,20
 27.2 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
@@ -36,11 +38,12 @@ hideall "--sync--"
 ### Light Rampant
 131.2 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
 137.4 "Light Rampant" sync / 1[56]:[^:]*:Shiva:4D73:/ window 150,10
-148.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
-148.6 "The Path Of Light" sync / 1[56]:[^:]*:Shiva:4D63:/
-156.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
-159.8 "The Path Of Light" sync / 1[56]:[^:]*:Shiva:4D63:/
-164.7 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+148.6 "Bright Hunger 4x1" sync / 1[56]:[^:]*:Shiva:4DA2:/
+148.6 "The Path Of Light 1" sync / 1[56]:[^:]*:Shiva:4D63:/
+156.6 "Bright Hunger 2x2" sync / 1[56]:[^:]*:Shiva:4DA2:/
+159.8 "The Path Of Light 2" sync / 1[56]:[^:]*:Shiva:4D63:/
+164.7 "Bright Hunger 1x4" sync / 1[56]:[^:]*:Shiva:4DA2:/
+
 173.0 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
 185.2 "Scythe/Axe Kick" sync / 1[56]:[^:]*:Shiva:4D6[DE]:/
 190.2 "Reflected Kick (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB[9A]:/
@@ -70,19 +73,19 @@ hideall "--sync--"
 378.0 "Morn Afah" sync / 1[56]:[^:]*:Shiva:4D7B:/
 389.4 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4D5A:/
 396.9 "--sync--" sync / 1[56]:[^:]*:Shiva:4D58:/
-403.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+403.2 "Hallowed Wings 1" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
 403.2 "Reflected Wings (B)" sync / 1[56]:[^:]*:Frozen Mirror:4D9[01]:/
 408.2 "Reflected Wings (G)" sync / 1[56]:[^:]*:Frozen Mirror:4DB[BC]:/
-413.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+413.2 "Hallowed Wings 2" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
 413.2 "Reflected Wings (R)" sync / 1[56]:[^:]*:Frozen Mirror:4DC[78]:/
 
 ### Wyrm's Lament
 421.7 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
 427.9 "Wyrm's Lament" sync / 1[56]:[^:]*:Shiva:4D7C:/
-441.0 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
-449.1 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
-457.2 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
-465.3 "Hallowed Wings" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+441.0 "Hallowed Wings 1" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+449.1 "Hallowed Wings 2" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+457.2 "Hallowed Wings 3" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
+465.3 "Hallowed Wings 4" sync / 1[56]:[^:]*:Shiva:4D7[56]:/
 473.5 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DD0:/
 481.4 "Twin Silence/Stillness" sync / 1[56]:[^:]*:Shiva:4D6[89]:/
 483.5 "Twin Stillness/Silence" sync / 1[56]:[^:]*:Shiva:4D6[AB]:/
@@ -120,11 +123,11 @@ hideall "--sync--"
 648.8 "--middle--" sync / 1[56]:[^:]*:Shiva:4D58:/
 655.4 "Icelit Dragonsong" sync / 1[56]:[^:]*:Shiva:4D7D:/
 663.6 "Frigid Stone" sync / 1[56]:[^:]*:Shiva:4D9B:/
-666.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+666.6 "Bright Hunger 4x1" sync / 1[56]:[^:]*:Shiva:4DA2:/
 668.6 "Draconic Strike" sync / 1[56]:[^:]*:Shiva:4D62:/
 669.3 "--knockback--"
 672.7 "Frigid Needle" sync / 1[56]:[^:]*:Shiva:4D9D:/
-674.7 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4DA2:/
+674.7 "Bright Hunger 3x1" sync / 1[56]:[^:]*:Shiva:4DA2:/
 676.7 "Frigid Eruption 1" #sync / 1[56]:[^:]*:Shiva:4D9F:/
 676.8 "Banish" sync / 1[56]:[^:]*:Shiva:4D7[EF]:/
 678.7 "Frigid Eruption 2" #sync / 1[56]:[^:]*:Shiva:4D9F:/

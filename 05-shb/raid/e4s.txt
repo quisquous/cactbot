@@ -85,15 +85,15 @@ hideall "Earthen Wheels"
 1053.2 "Weight of the Land" sync / 1[56]:[^:]*:Titan:4108:/
 1061.9 "Dual Earthen Fists" sync / 1[56]:[^:]*:Titan Maximum:4135:/
 1065.9 "Earthen Anguish" sync / 1[56]:[^:]*:Titan:4137:/
-1071.8 "Megalith?" sync / 1[56]:[^:]*:Titan Maximum:4138:/
+1071.8 "Megalith" sync / 1[56]:[^:]*:Titan Maximum:4138:/
 1088.0 "Tectonic Uplift" sync / 1[56]:[^:]*:Titan Maximum:4122:/ window 20,20
 1100.1 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
 1100.1 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
 1108.2 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
 1122.3 "Rock Throw" sync / 1[56]:[^:]*:Titan Maximum:412D:/
-1135.1 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
-1149.2 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
-1162.4 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1135.1 "Plate Fracture 1" sync / 1[56]:[^:]*:Titan:43EA:/
+1149.2 "Plate Fracture 2" sync / 1[56]:[^:]*:Titan:43EA:/
+1162.4 "Plate Fracture 3" sync / 1[56]:[^:]*:Titan:43EA:/
 1171.9 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
 1180.7 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
 1197.4 "Dual Earthen Fists" sync / 1[56]:[^:]*:Titan Maximum:4135:/
@@ -106,9 +106,9 @@ hideall "Earthen Wheels"
 1275.1 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
 1283.4 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/
 1292.2 "Tumult x5" sync / 1[56]:[^:]*:Titan Maximum:412A:/ duration 6
-1314.4 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1314.4 "Plate Fracture 1" sync / 1[56]:[^:]*:Titan:43EA:/
 1324.0 "Megalith" sync / 1[56]:[^:]*:Titan Maximum:4138:/
-1337.7 "Plate Fracture" sync / 1[56]:[^:]*:Titan:43EA:/
+1337.7 "Plate Fracture 2" sync / 1[56]:[^:]*:Titan:43EA:/
 1340.7 "Pulse of the Land" sync / 1[56]:[^:]*:Titan:4106:/
 1340.7 "Force of the Land" sync / 1[56]:[^:]*:Titan:4107:/
 1349.1 "Earthen Fury" sync / 1[56]:[^:]*:Titan Maximum:4124:/

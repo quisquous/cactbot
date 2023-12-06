@@ -7,7 +7,8 @@ hideall "--sync--"
 
 ### Phase 1: single mechanics
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.0 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/ window 15,5
+8.0 "--sync--" sync / 14:[^:]*:Titania:3D4B:/ window 20,20
+12.0 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D4B:/
 26.0 "Phantom Rune Out" sync / 1[56]:[^:]*:Titania:3D4C:/
 37.0 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
 55.5 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
@@ -17,6 +18,8 @@ hideall "--sync--"
 87.6 "Chain Of Brambles" sync / 1[56]:[^:]*:Titania:42D7:/
 103.9 "Phantom Rune In" sync / 1[56]:[^:]*:Titania:3D4D:/
 
+# Mini-phase skip here at least from Divination Rune to here
+110.9 "--sync--" sync / 14:[^:]*:Titania:3D30:/ window 200,10
 114.9 "Midsummer Night's Dream" sync / 1[56]:[^:]*:Titania:3D30:/
 128.2 "--center--" sync / 1[56]:[^:]*:Titania:3D28:/
 133.8 "Thunder Rune 1" sync / 1[56]:[^:]*:Titania:3D29:/ window 5,1
@@ -39,6 +42,7 @@ hideall "--sync--"
 
 
 ### Phase 2a: smol adds
+# Note: this can skip part of the prior phase with enough dps.
 256.4 "--untargetable--" sync / 1[56]:[^:]*:Titania:3D31:/ window 300,0
 258.8 "--targetable--"
 271.0 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/

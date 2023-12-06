@@ -134,27 +134,17 @@ Options.Triggers.push({
       response: Responses.stackMarkerOn(),
     },
     {
-      id: 'Titania Knockback',
-      type: 'Ability',
-      netRegex: { id: '3D42', source: 'Puck', capture: false },
-      alertText: (_data, _matches, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Diagonal Knockback Soon',
-          de: 'diagonaler Knockback bald',
-          fr: 'Poussée en diagonale bientôt',
-          ja: '対角に飛ぶ',
-          cn: '对角击退准备',
-          ko: '곧 대각선 넉백',
-        },
-      },
+      id: 'Titania Puck\'s Rebuke Knockback',
+      type: 'StartsUsing',
+      netRegex: { id: '3D59', capture: false },
+      response: Responses.knockback(),
     },
     {
       id: 'Titania Mini Add Phase',
       type: 'Ability',
       netRegex: { id: '3D31', source: 'Titania', capture: false },
       infoText: (data, _matches, output) => {
-        if (data.role === 'tank')
+        if (data.role === 'tank' || data.job === 'BLU')
           return output.groupAddsEastOnMustardseed();
         return output.killMustardseedEast();
       },
