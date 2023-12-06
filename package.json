@@ -121,7 +121,7 @@
     "webpack-merge": "^5.8.0"
   },
   "engines": {
-    "node": ">=18.10.0"
+    "node": ">=18.10.0 <=18.18.2"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
