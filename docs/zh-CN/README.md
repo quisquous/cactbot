@@ -145,7 +145,7 @@ cactbot 提供以下模块：
 ### 安装依赖：脚本方式
 
 1. 必须先安装 `curl`（用于下载依赖项）
-1. 运行 `ts-node ./util/fetch_deps.ts` 脚本
+1. 运行 `node --import ./loader.js ./util/fetch_deps.ts` 脚本
 1. 下转 **构建步骤**
 
 ### 安装依赖：手动方式

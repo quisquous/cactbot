@@ -178,7 +178,7 @@ To install dependencies there are 2 methods: **per script** and **manually**
 ### Dependencies: Script Method
 
 1. `curl` MUST be installed (this is used to download dependencies)
-1. Execute `ts-node ./util/fetch_deps.ts` script
+1. Execute `node --import ./loader.js util/fetch_deps.ts` script
 1. Continue with **Steps to build**
 
 ### Dependencies: Manual Method

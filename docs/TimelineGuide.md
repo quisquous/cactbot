@@ -412,7 +412,7 @@ For example, in this fight, these are the relevant log lines and times:
 You can then make a timeline from those times by running the following command.
 
 ```bash
-ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
+node --import ./loader.js util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 
 0 "Start"
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -508,7 +508,7 @@ ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18
 (Note that you can also use the `-lf` parameter to list the encounters in the combat log.
 
 ```bash
-ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -lf
+node --import ./loader.js util/logtools/make_timeline.ts -f CapeWestwind.log -lf
 
 ┌───────┬──────────────┬────────────────┬──────────┬─────────────────────────────────────────┬─────────────────────────────────────────┬───────────────┐
 │ Index │  Start Date  │   Start Time   │ Duration │                Zone Name                │             Encounter Name              │   End Type    │
@@ -543,14 +543,14 @@ Most of the time, you can't count on adds to have reliable
 timing relative to the main boss, so it's usually better to
 remove them.
 
-The ts-node util/logtools/make_timeline.ts script has two options to do this.
+The `node --import ./loader.js util/logtools/make_timeline.ts` script has two options to do this.
 One is "ignore combatants" and the other is "ignore id".
 Either `-ic "7Th Cohort Optio"` or `-ii 0A 2CD 2CE 194 14`
 will remove all of these abilities.
 We'll go with ids.
 
 Run the command again with this ignore to have a cleaned up version:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
+`node --import ./loader.js util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
 
 At this point, it may also be worth going through and finding other lines to add.
 Usually, these are [added combatant](LogGuide.md#line-03-0x03-addcombatant) lines
@@ -681,7 +681,7 @@ let's adjust the first usage of `Shrapnel Shell`
 so here we would write it as `-p 474:204.3`.
 
 Here's the new command line we've built up to:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
+`node --import ./loader.js util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
 
 This gets us the following output for phase 2,
 with manually added blank lines to break out the loops.
@@ -881,7 +881,7 @@ Let's start phase 4 at 600 seconds, so we'll adjust the
 first use of `Magitek Missile` (ability id 478) to be t=610.
 
 Here's the final command line, including this second phase:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
+`node --import ./loader.js util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
 
 ```bash
 # manually added in
@@ -1216,7 +1216,7 @@ in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
 (As with `make_timeline`, you can use the `-lf` parameter to list encounters.)
 
 ```bash
-$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -t cape_westwind
+$ node --import ./loader.js util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -t cape_westwind
 0.000: Matched entry: 2.0 Shield Skewer (+2.000s)
 10.556: Matched entry: 10.6 Shield Skewer (+0.044s)
 18.985: Matched entry: 19.0 Shield Skewer (+0.015s)
@@ -1367,7 +1367,7 @@ The new time will be 595 - 10.7 = 584.3.
 Rerunning the tester (most output omitted)
 
 ```bash
-$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
+$ node --import ./loader.js util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
 934 -t cape_westwind
 
 431.400: Matched entry: 584.3 --sync-- (+152.900s)
@@ -1390,7 +1390,7 @@ but `Shrapnel Shell` is now in the right spot.
 It's important to test against multiple fight instances to make sure that the timeline is good.
 Here's an example of running against the **CapeWestwind2.log** file.
 
-If you run `ts-node util/logtools/test_timeline.ts -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
+If you run `node --import ./loader.js util/logtools/test_timeline.ts -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
 
 One minor problem is that this boss is inconsistent:
 

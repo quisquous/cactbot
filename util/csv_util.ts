@@ -1,5 +1,3 @@
-#!/usr/bin/env ts-node-script
-
 import { parseString } from '@fast-csv/parse';
 import fetch from 'node-fetch';
 
