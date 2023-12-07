@@ -21,6 +21,7 @@ export interface Data extends RaidbossData {
   lalaRotate?: 'cw' | 'ccw' | 'unknown';
   reloadCount: number;
   reloadFailed: number[];
+  whatever?: boolean;
 }
 
 const triggerSet: TriggerSet<Data> = {
