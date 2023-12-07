@@ -5,8 +5,9 @@ runs:
   steps:
     - uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '18.18.2'
         cache: 'npm'
+        cache-dependency-path: 'package-lock.json'
 
     - name: Install Dependencies
       shell: bash
