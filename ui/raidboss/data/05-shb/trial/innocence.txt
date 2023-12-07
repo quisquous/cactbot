@@ -7,83 +7,83 @@ hideall "--sync--"
 ### Phase 1
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-15.0 "Realmrazer" sync / 1[56]:[^:]*:Innocence:3E9A:/ window 15,5
-28.2 "Heavenly Host" sync / 1[56]:[^:]*:Innocence:3E95:/
-54.9 "Daybreak" sync / 1[56]:[^:]*:Innocence:3E9D:/
-69.1 "Enthrall" sync / 1[56]:[^:]*:Innocence:3E99:/
-71.1 "Sinsphere" sync / 1[56]:[^:]*:Innocence:3E97:/
-80.3 "Heavenly Host" sync / 1[56]:[^:]*:Innocence:3E95:/
-82.4 "--center--" sync / 1[56]:[^:]*:Innocence:3E91:/
-86.7 "Guiding Light" sync / 1[56]:[^:]*:Innocence:3E96:/
-100.4 "Daybreak" sync / 1[56]:[^:]*:Innocence:3E9D:/
-111.5 "Realmrazer" sync / 1[56]:[^:]*:Innocence:3E9A:/
-123.6 "Enthrall" sync / 1[56]:[^:]*:Innocence:3E99:/
-125.8 "Sinsphere" sync / 1[56]:[^:]*:Innocence:3E97:/
+15.0 "Realmrazer" Ability { id: "3E9A", source: "Innocence" } window 15,5
+28.2 "Heavenly Host" Ability { id: "3E95", source: "Innocence" }
+54.9 "Daybreak" Ability { id: "3E9D", source: "Innocence" }
+69.1 "Enthrall" Ability { id: "3E99", source: "Innocence" }
+71.1 "Sinsphere" Ability { id: "3E97", source: "Innocence" }
+80.3 "Heavenly Host" Ability { id: "3E95", source: "Innocence" }
+82.4 "--center--" Ability { id: "3E91", source: "Innocence" }
+86.7 "Guiding Light" Ability { id: "3E96", source: "Innocence" }
+100.4 "Daybreak" Ability { id: "3E9D", source: "Innocence" }
+111.5 "Realmrazer" Ability { id: "3E9A", source: "Innocence" }
+123.6 "Enthrall" Ability { id: "3E99", source: "Innocence" }
+125.8 "Sinsphere" Ability { id: "3E97", source: "Innocence" }
 
 # aoe spam until low
-200.0 "--north--" sync / 1[56]:[^:]*:Innocence:3E91:/ window 100,0
-205.5 "--sync--" sync / 1[56]:[^:]*:Innocence:3E92:/ window 200,0
-209.2 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-215.6 "Exalted Wing" sync / 1[56]:[^:]*:Innocence:3E93:/ window 0,30
-220.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-225.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-230.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-235.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-240.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-245.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
-250.6 "Exalted Wing" #sync / 1[56]:[^:]*:Innocence:3E93:/
+200.0 "--north--" Ability { id: "3E91", source: "Innocence" } window 100,0
+205.5 "--sync--" Ability { id: "3E92", source: "Innocence" } window 200,0
+209.2 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+215.6 "Exalted Wing" Ability { id: "3E93", source: "Innocence" } window 0,30
+220.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+225.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+230.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+235.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+240.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+245.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
+250.6 "Exalted Wing" #Ability { id: "3E93", source: "Innocence" }
 
 # ye olde cutscene
-300.0 "--sync--" sync / 1[56]:[^:]*:Innocence:4144:/ window 300,0
-302.5 "Exalted Plumes" sync / 1[56]:[^:]*:Innocence:3EF2:/
-306.6 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA1:/
-306.6 "--sync--" sync / 1[56]:[^:]*:Innocence:3E94:/
-363.2 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
-372.4 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
-378.5 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-383.6 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-388.7 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-397.6 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
-403.8 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3EB1:/
-416.7 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-420.9 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EB5:/
-428.2 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
-430.7 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECB:/
-439.3 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
+300.0 "--sync--" Ability { id: "4144", source: "Innocence" } window 300,0
+302.5 "Exalted Plumes" Ability { id: "3EF2", source: "Innocence" }
+306.6 "--sync--" Ability { id: "3EA1", source: "Innocence" }
+306.6 "--sync--" Ability { id: "3E94", source: "Innocence" }
+363.2 "Righteous Bolt" Ability { id: "3EA3", source: "Innocence" }
+372.4 "Winged Reprobation" Ability { id: "40BC", source: "Innocence" }
+378.5 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+383.6 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+388.7 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+397.6 "Winged Reprobation" Ability { id: "40BC", source: "Innocence" }
+403.8 "Soul And Body" Ability { id: "3EB1", source: "Innocence" }
+416.7 "--sync--" Ability { id: "3EA2", source: "Innocence" }
+420.9 "Rightful Reprobation" Ability { id: "3EB5", source: "Innocence" }
+428.2 "Righteous Bolt" Ability { id: "3EA3", source: "Innocence" }
+430.7 "Reprobation" Ability { id: "3ECB", source: "Innocence" }
+439.3 "Shadowreaver" Ability { id: "3EEA", source: "Innocence" }
 
 # add phase with manacles
-449.5 "--add Phase--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-451.9 "--untargetable--" sync / 1[56]:[^:]*:Innocence:42B0:/
+449.5 "--add Phase--" Ability { id: "3EA2", source: "Innocence" }
+451.9 "--untargetable--" Ability { id: "42B0", source: "Innocence" }
 
 # looping final phase
-579.8 "Flaming Sword" sync / 1[56]:[^:]*:Sword of Condemnation:3EC1:/ window 600,0
-588.6 "Flaming Sword" sync / 1[56]:[^:]*:Innocence:4708:/
-600.0 "--targetable--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-605.7 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
-610.8 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
-615.9 "God Ray" #sync / 1[56]:[^:]*:Innocence:3EBE:/
-618.1 "--sync--" sync / 1[56]:[^:]*:Innocence:38FC:/
-623.1 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3F3E:/
-632.6 "Winged Reprobation" sync / 1[56]:[^:]*:Innocence:40BC:/
-638.6 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-638.6 "Soul And Body" sync / 1[56]:[^:]*:Innocence:3EB1:/
-643.7 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-644.6 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
-648.8 "Holy Trinity" #sync / 1[56]:[^:]*:Innocence:3EB3:/
-651.8 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-658.5 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EC7:/
-676.8 "Shadowreaver" sync / 1[56]:[^:]*:Innocence:3EEA:/
-685.0 "--sync--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-689.2 "Rightful Reprobation" sync / 1[56]:[^:]*:Innocence:3EB5:/
-695.8 "Drop Of Light" sync / 1[56]:[^:]*:Innocence:3EC4:/
-697.9 "--sync--" sync / 1[56]:[^:]*:Innocence:38FC:/
-699.1 "Reprobation" sync / 1[56]:[^:]*:Innocence:3ECB:/
-702.9 "Light Pillar" sync / 1[56]:[^:]*:Innocence:3F3E:/
-707.4 "--jump--" sync / 1[56]:[^:]*:Innocence:3EA2:/
-714.2 "Beatific Vision" sync / 1[56]:[^:]*:Innocence:3EC7:/
-730.4 "Righteous Bolt" sync / 1[56]:[^:]*:Innocence:3EA3:/
+579.8 "Flaming Sword" Ability { id: "3EC1", source: "Sword of Condemnation" } window 600,0
+588.6 "Flaming Sword" Ability { id: "4708", source: "Innocence" }
+600.0 "--targetable--" Ability { id: "3EA2", source: "Innocence" }
+605.7 "God Ray" #Ability { id: "3EBE", source: "Innocence" }
+610.8 "God Ray" #Ability { id: "3EBE", source: "Innocence" }
+615.9 "God Ray" #Ability { id: "3EBE", source: "Innocence" }
+618.1 "--sync--" Ability { id: "38FC", source: "Innocence" }
+623.1 "Light Pillar" Ability { id: "3F3E", source: "Innocence" }
+632.6 "Winged Reprobation" Ability { id: "40BC", source: "Innocence" }
+638.6 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+638.6 "Soul And Body" Ability { id: "3EB1", source: "Innocence" }
+643.7 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+644.6 "Righteous Bolt" Ability { id: "3EA3", source: "Innocence" }
+648.8 "Holy Trinity" #Ability { id: "3EB3", source: "Innocence" }
+651.8 "--jump--" Ability { id: "3EA2", source: "Innocence" }
+658.5 "Beatific Vision" Ability { id: "3EC7", source: "Innocence" }
+676.8 "Shadowreaver" Ability { id: "3EEA", source: "Innocence" }
+685.0 "--sync--" Ability { id: "3EA2", source: "Innocence" }
+689.2 "Rightful Reprobation" Ability { id: "3EB5", source: "Innocence" }
+695.8 "Drop Of Light" Ability { id: "3EC4", source: "Innocence" }
+697.9 "--sync--" Ability { id: "38FC", source: "Innocence" }
+699.1 "Reprobation" Ability { id: "3ECB", source: "Innocence" }
+702.9 "Light Pillar" Ability { id: "3F3E", source: "Innocence" }
+707.4 "--jump--" Ability { id: "3EA2", source: "Innocence" }
+714.2 "Beatific Vision" Ability { id: "3EC7", source: "Innocence" }
+730.4 "Righteous Bolt" Ability { id: "3EA3", source: "Innocence" }
 
-738.5 "--targetable--" sync / 1[56]:[^:]*:Innocence:3EA2:/ window 10,10 jump 600
+738.5 "--targetable--" Ability { id: "3EA2", source: "Innocence" } window 10,10 jump 600
 744.2 "God Ray"
 749.3 "God Ray"
 754.4 "God Ray"

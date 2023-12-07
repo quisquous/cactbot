@@ -19,141 +19,141 @@ hideall "--sync--"
 # Initial Merciful Air
 # The Theater of One will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1B:/ window 10000,0
-1012.2 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
-1019.4 "First Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5D:/
-1022.6 "Second Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5E:/
-1025.8 "Third Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5F:/
-1029.0 "Fourth Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B60:/
-1031.4 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1033.3 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1035.2 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1037.1 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1047.4 "Merciful Arc" sync / 1[56]:[^:]*:Trinity Seeker:5AB7:/
+1012.2 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
+1019.4 "First Mercy" Ability { id: "5B5D", source: "Trinity Seeker" }
+1022.6 "Second Mercy" Ability { id: "5B5E", source: "Trinity Seeker" }
+1025.8 "Third Mercy" Ability { id: "5B5F", source: "Trinity Seeker" }
+1029.0 "Fourth Mercy" Ability { id: "5B60", source: "Trinity Seeker" }
+1031.4 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1033.3 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1035.2 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1037.1 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1047.4 "Merciful Arc" Ability { id: "5AB7", source: "Trinity Seeker" }
 
 # Initial Baleful Air
-1056.5 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/ window 80,80
-1064.1 "Baleful Swathe" sync / 1[56]:[^:]*:Trinity Seeker:5AB3:/
-1069.3 "--middle--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1078.4 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AA1:/
-1086.6 "Phantom Edge" sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1096.7 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AA2:/
-1107.8 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
+1056.5 "Verdant Path" Ability { id: "5A98", source: "Trinity Seeker" } window 80,80
+1064.1 "Baleful Swathe" Ability { id: "5AB3", source: "Trinity Seeker" }
+1069.3 "--middle--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1078.4 "Baleful Blade" Ability { id: "5AA1", source: "Trinity Seeker" }
+1086.6 "Phantom Edge" Ability { id: "5AA0", source: "Trinity Seeker" }
+1096.7 "Baleful Blade" Ability { id: "5AA2", source: "Trinity Seeker" }
+1107.8 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
 
 # Initial Iron Air
-1117.0 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A99:/ window 80,80
-1126.6 "Iron Impact" sync / 1[56]:[^:]*:Trinity Seeker:5ADB:/
-1131.6 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1138.5 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AA3:/
-1141.7 "--jump--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1148.6 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AA3:/
-1159.7 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
+1117.0 "Verdant Path" Ability { id: "5A99", source: "Trinity Seeker" } window 80,80
+1126.6 "Iron Impact" Ability { id: "5ADB", source: "Trinity Seeker" }
+1131.6 "--jump--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1138.5 "Iron Splitter" Ability { id: "5AA3", source: "Trinity Seeker" }
+1141.7 "--jump--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1148.6 "Iron Splitter" Ability { id: "5AA3", source: "Trinity Seeker" }
+1159.7 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
 1168.9 "Verdant Path" # -> baleful / merciful jump
 
 # (Baleful jump?)
-1168.9 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/ jump 1300 window 80,80
-1176.5 "Baleful Swathe?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB3:/
-1186.7 "Phantom Edge?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1188.9 "--sync--" #sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1198.0 "Baleful Blade?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA[12]:/
+1168.9 "--sync--" Ability { id: "5A98", source: "Trinity Seeker" } jump 1300 window 80,80
+1176.5 "Baleful Swathe?" #Ability { id: "5AB3", source: "Trinity Seeker" }
+1186.7 "Phantom Edge?" #Ability { id: "5AA0", source: "Trinity Seeker" }
+1188.9 "--sync--" #Ability { id: "5A9A", source: "Trinity Seeker" }
+1198.0 "Baleful Blade?" #Ability { id: "5AA[12]", source: "Trinity Seeker" }
 
 # (Merciful jump?)
-1168.9 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1176.5 "Act Of Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB2:/
-1183.7 "First Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5D:/
-1186.9 "Second Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5E:/
-1190.1 "Third Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5F:/
-1193.3 "Fourth Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B60:/
+1168.9 "--sync--" Ability { id: "5A97", source: "Trinity Seeker" } jump 1500 window 80,80
+1176.5 "Act Of Mercy?" #Ability { id: "5AB2", source: "Trinity Seeker" }
+1183.7 "First Mercy?" #Ability { id: "5B5D", source: "Trinity Seeker" }
+1186.9 "Second Mercy?" #Ability { id: "5B5E", source: "Trinity Seeker" }
+1190.1 "Third Mercy?" #Ability { id: "5B5F", source: "Trinity Seeker" }
+1193.3 "Fourth Mercy?" #Ability { id: "5B60", source: "Trinity Seeker" }
 
 
 # Baleful Air v2 (randomized, with chains)
-1300.0 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/
-1307.6 "Baleful Swathe" sync / 1[56]:[^:]*:Trinity Seeker:5AB3:/
-1317.8 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1320.0 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1329.1 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AA[12]:/
-1339.3 "Phantom Edge?" sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1341.5 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1350.6 "Baleful Blade" sync / 1[56]:[^:]*:Trinity Seeker:5AA[12]:/
-1361.7 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
+1300.0 "Verdant Path" Ability { id: "5A98", source: "Trinity Seeker" }
+1307.6 "Baleful Swathe" Ability { id: "5AB3", source: "Trinity Seeker" }
+1317.8 "Phantom Edge?" Ability { id: "5AA0", source: "Trinity Seeker" }
+1320.0 "--sync--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1329.1 "Baleful Blade" Ability { id: "5AA[12]", source: "Trinity Seeker" }
+1339.3 "Phantom Edge?" Ability { id: "5AA0", source: "Trinity Seeker" }
+1341.5 "--sync--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1350.6 "Baleful Blade" Ability { id: "5AA[12]", source: "Trinity Seeker" }
+1361.7 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
 1370.9 "Verdant Path" # -> iron / merciful jump
 
 # (Iron jump?)
-1370.9 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A99:/ jump 1700 window 80,80
-1380.5 "Iron Impact?" #sync / 1[56]:[^:]*:Trinity Seeker:5ADB:/
-1390.5 "Dead Iron?" #sync / 1[56]:[^:]*:Trinity Seeker:5AAF:/
-1397.7 "Dead Iron?" #sync / 1[56]:[^:]*:Trinity Seeker:5B44:/
+1370.9 "--sync--" Ability { id: "5A99", source: "Trinity Seeker" } jump 1700 window 80,80
+1380.5 "Iron Impact?" #Ability { id: "5ADB", source: "Trinity Seeker" }
+1390.5 "Dead Iron?" #Ability { id: "5AAF", source: "Trinity Seeker" }
+1397.7 "Dead Iron?" #Ability { id: "5B44", source: "Trinity Seeker" }
 
 # (Merciful jump?)
-1370.9 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1378.5 "Act Of Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB2:/
-1385.7 "First Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5D:/
-1388.9 "Second Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5E:/
-1392.1 "Third Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5F:/
-1395.3 "Fourth Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B60:/
+1370.9 "--sync--" Ability { id: "5A97", source: "Trinity Seeker" } jump 1500 window 80,80
+1378.5 "Act Of Mercy?" #Ability { id: "5AB2", source: "Trinity Seeker" }
+1385.7 "First Mercy?" #Ability { id: "5B5D", source: "Trinity Seeker" }
+1388.9 "Second Mercy?" #Ability { id: "5B5E", source: "Trinity Seeker" }
+1392.1 "Third Mercy?" #Ability { id: "5B5F", source: "Trinity Seeker" }
+1395.3 "Fourth Mercy?" #Ability { id: "5B60", source: "Trinity Seeker" }
 
 
 # Merciful Air v2 (with seasons of mercy))
-1500.0 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A97:/
-1507.6 "Act Of Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5AB2:/
-1514.8 "First Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5D:/
-1518.0 "Second Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5E:/
-1521.2 "Third Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B5F:/
-1524.4 "Fourth Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5B60:/
-1526.8 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1528.7 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1530.6 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1532.5 "Mercy Fourfold" #sync / 1[56]:[^:]*:Trinity Seeker:5B34:/
-1540.7 "Seasons Of Mercy" sync / 1[56]:[^:]*:Trinity Seeker:5AAA:/
-1545.2 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AAB:/
-1545.2 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AAB:/
-1547.7 "Merciful Moon" sync / 1[56]:[^:]*:Aetherial Orb:5AAC:/
-1549.3 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AAB:/
-1549.3 "Merciful Breeze" sync / 1[56]:[^:]*:Trinity Seeker:5AAB:/
-1552.7 "Merciful Blooms" sync / 1[56]:[^:]*:Trinity Seeker:5AAD:/
-1559.9 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
-1569.1 "Merciful Arc" sync / 1[56]:[^:]*:Trinity Seeker:5AB7:/
+1500.0 "Verdant Path" Ability { id: "5A97", source: "Trinity Seeker" }
+1507.6 "Act Of Mercy" Ability { id: "5AB2", source: "Trinity Seeker" }
+1514.8 "First Mercy" Ability { id: "5B5D", source: "Trinity Seeker" }
+1518.0 "Second Mercy" Ability { id: "5B5E", source: "Trinity Seeker" }
+1521.2 "Third Mercy" Ability { id: "5B5F", source: "Trinity Seeker" }
+1524.4 "Fourth Mercy" Ability { id: "5B60", source: "Trinity Seeker" }
+1526.8 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1528.7 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1530.6 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1532.5 "Mercy Fourfold" #Ability { id: "5B34", source: "Trinity Seeker" }
+1540.7 "Seasons Of Mercy" Ability { id: "5AAA", source: "Trinity Seeker" }
+1545.2 "Merciful Breeze" Ability { id: "5AAB", source: "Trinity Seeker" }
+1545.2 "Merciful Breeze" Ability { id: "5AAB", source: "Trinity Seeker" }
+1547.7 "Merciful Moon" Ability { id: "5AAC", source: "Aetherial Orb" }
+1549.3 "Merciful Breeze" Ability { id: "5AAB", source: "Trinity Seeker" }
+1549.3 "Merciful Breeze" Ability { id: "5AAB", source: "Trinity Seeker" }
+1552.7 "Merciful Blooms" Ability { id: "5AAD", source: "Trinity Seeker" }
+1559.9 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
+1569.1 "Merciful Arc" Ability { id: "5AB7", source: "Trinity Seeker" }
 1576.2 "Verdant Path" # -> baleful / iron jump
 
 # (Baleful jump?)
-1576.2 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/ jump 1300 window 80,80
-1583.8 "Baleful Swathe?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB3:/
-1594.0 "Phantom Edge?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1596.2 "--sync--" #sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1605.3 "Baleful Blade?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA[12]:/
+1576.2 "--sync--" Ability { id: "5A98", source: "Trinity Seeker" } jump 1300 window 80,80
+1583.8 "Baleful Swathe?" #Ability { id: "5AB3", source: "Trinity Seeker" }
+1594.0 "Phantom Edge?" #Ability { id: "5AA0", source: "Trinity Seeker" }
+1596.2 "--sync--" #Ability { id: "5A9A", source: "Trinity Seeker" }
+1605.3 "Baleful Blade?" #Ability { id: "5AA[12]", source: "Trinity Seeker" }
 
 # (Iron jump?)
-1576.2 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A99:/ jump 1700 window 80,80
-1585.8 "Iron Impact?" #sync / 1[56]:[^:]*:Trinity Seeker:5ADB:/
-1595.8 "Dead Iron?" #sync / 1[56]:[^:]*:Trinity Seeker:5AAF:/
-1603.0 "Dead Iron?" #sync / 1[56]:[^:]*:Trinity Seeker:5B44:/
+1576.2 "--sync--" Ability { id: "5A99", source: "Trinity Seeker" } jump 1700 window 80,80
+1585.8 "Iron Impact?" #Ability { id: "5ADB", source: "Trinity Seeker" }
+1595.8 "Dead Iron?" #Ability { id: "5AAF", source: "Trinity Seeker" }
+1603.0 "Dead Iron?" #Ability { id: "5B44", source: "Trinity Seeker" }
 
 
 # Iron Air v2 (with iron impact / dead iron)
-1700.0 "Verdant Path" sync / 1[56]:[^:]*:Trinity Seeker:5A99:/
-1709.6 "Iron Impact" sync / 1[56]:[^:]*:Trinity Seeker:5ADB:/
-1719.6 "Dead Iron" sync / 1[56]:[^:]*:Trinity Seeker:5AAF:/
-1726.8 "Dead Iron" sync / 1[56]:[^:]*:Trinity Seeker:5B44:/
-1732.0 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1738.7 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AA3:/
-1740.9 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1747.0 "Iron Splitter" sync / 1[56]:[^:]*:Trinity Seeker:5AA3:/
-1758.1 "Verdant Tempest" sync / 1[56]:[^:]*:Trinity Seeker:5AB6:/
+1700.0 "Verdant Path" Ability { id: "5A99", source: "Trinity Seeker" }
+1709.6 "Iron Impact" Ability { id: "5ADB", source: "Trinity Seeker" }
+1719.6 "Dead Iron" Ability { id: "5AAF", source: "Trinity Seeker" }
+1726.8 "Dead Iron" Ability { id: "5B44", source: "Trinity Seeker" }
+1732.0 "--sync--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1738.7 "Iron Splitter" Ability { id: "5AA3", source: "Trinity Seeker" }
+1740.9 "--sync--" Ability { id: "5A9A", source: "Trinity Seeker" }
+1747.0 "Iron Splitter" Ability { id: "5AA3", source: "Trinity Seeker" }
+1758.1 "Verdant Tempest" Ability { id: "5AB6", source: "Trinity Seeker" }
 1767.3 "Verdant Path" # -> baleful / merciful jump
 
 # (Baleful jump?)
-1767.3 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A98:/ jump 1300 window 80,80
-1774.9 "Baleful Swathe?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB3:/
-1785.1 "Phantom Edge?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA0:/
-1787.3 "--sync--" #sync / 1[56]:[^:]*:Trinity Seeker:5A9A:/
-1796.4 "Baleful Blade?" #sync / 1[56]:[^:]*:Trinity Seeker:5AA[12]:/
+1767.3 "--sync--" Ability { id: "5A98", source: "Trinity Seeker" } jump 1300 window 80,80
+1774.9 "Baleful Swathe?" #Ability { id: "5AB3", source: "Trinity Seeker" }
+1785.1 "Phantom Edge?" #Ability { id: "5AA0", source: "Trinity Seeker" }
+1787.3 "--sync--" #Ability { id: "5A9A", source: "Trinity Seeker" }
+1796.4 "Baleful Blade?" #Ability { id: "5AA[12]", source: "Trinity Seeker" }
 
 # (Merciful jump?)
-1767.3 "--sync--" sync / 1[56]:[^:]*:Trinity Seeker:5A97:/ jump 1500 window 80,80
-1774.9 "Act Of Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5AB2:/
-1782.1 "First Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5D:/
-1785.3 "Second Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5E:/
-1788.5 "Third Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B5F:/
-1791.7 "Fourth Mercy?" #sync / 1[56]:[^:]*:Trinity Seeker:5B60:/
+1767.3 "--sync--" Ability { id: "5A97", source: "Trinity Seeker" } jump 1500 window 80,80
+1774.9 "Act Of Mercy?" #Ability { id: "5AB2", source: "Trinity Seeker" }
+1782.1 "First Mercy?" #Ability { id: "5B5D", source: "Trinity Seeker" }
+1785.3 "Second Mercy?" #Ability { id: "5B5E", source: "Trinity Seeker" }
+1788.5 "Third Mercy?" #Ability { id: "5B5F", source: "Trinity Seeker" }
+1791.7 "Fourth Mercy?" #Ability { id: "5B60", source: "Trinity Seeker" }
 
 
 ### Dahu
@@ -162,48 +162,48 @@ hideall "--sync--"
 # The Hall of Supplication will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1D:/ window 10000,0
 2007.0 "--sync--" sync / 14:[^:]*:Dahu:576[12]:/ window 10,2
-2010.0 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2012.6 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2023.0 "Feral Howl" sync / 1[56]:[^:]*:Dahu:5755:/ window 30,10
-2033.4 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5765:/
-2045.7 "--sync--" sync / 1[56]:[^:]*:Marchosias:5758:/
-2051.9 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2058.8 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2065.3 "Feral Howl" sync / 1[56]:[^:]*:Dahu:5755:/
-2068.8 "Hunter's Claw" sync / 1[56]:[^:]*:Marchosias:5757:/
-2075.5 "Firebreathe x5" sync / 1[56]:[^:]*:Dahu:5759:/ duration 8.7
-2091.5 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:575B:/
-2105.0 "Hot Charge" sync / 1[56]:[^:]*:Dahu:5764:/
-2109.8 "Hot Charge" sync / 1[56]:[^:]*:Dahu:5764:/
+2010.0 "Right-Sided Shockwave/Left-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2012.6 "Left-Sided Shockwave/Right-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2023.0 "Feral Howl" Ability { id: "5755", source: "Dahu" } window 30,10
+2033.4 "Firebreathe" Ability { id: "5765", source: "Dahu" }
+2045.7 "--sync--" Ability { id: "5758", source: "Marchosias" }
+2051.9 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2058.8 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2065.3 "Feral Howl" Ability { id: "5755", source: "Dahu" }
+2068.8 "Hunter's Claw" Ability { id: "5757", source: "Marchosias" }
+2075.5 "Firebreathe x5" Ability { id: "5759", source: "Dahu" } duration 8.7
+2091.5 "Reverberating Roar" Ability { id: "575B", source: "Dahu" }
+2105.0 "Hot Charge" Ability { id: "5764", source: "Dahu" }
+2109.8 "Hot Charge" Ability { id: "5764", source: "Dahu" }
 
-2116.6 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5765:/
-2129.8 "--sync--" sync / 1[56]:[^:]*:Marchosias:5758:/
-2130.8 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:575B:/
-2136.1 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2142.8 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2149.0 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2149.5 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2151.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2156.2 "Head Down" sync / 1[56]:[^:]*:Marchosias:5756:/
-2162.7 "Feral Howl" sync / 1[56]:[^:]*:Dahu:5755:/
-2166.2 "Hunter's Claw" sync / 1[56]:[^:]*:Marchosias:5757:/
-2172.9 "Firebreathe x5" sync / 1[56]:[^:]*:Dahu:5759:/
-2195.1 "Heat Breath" sync / 1[56]:[^:]*:Dahu:5766:/
-2205.7 "Tail Swing" sync / 1[56]:[^:]*:Dahu:575F:/
-2217.9 "Reverberating Roar" sync / 1[56]:[^:]*:Dahu:575B:/
-2231.8 "Hot Charge" sync / 1[56]:[^:]*:Dahu:5764:/
-2236.7 "Hot Charge" sync / 1[56]:[^:]*:Dahu:5764:/
+2116.6 "Firebreathe" Ability { id: "5765", source: "Dahu" }
+2129.8 "--sync--" Ability { id: "5758", source: "Marchosias" }
+2130.8 "Reverberating Roar" Ability { id: "575B", source: "Dahu" }
+2136.1 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2142.8 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2149.0 "Right-Sided Shockwave/Left-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2149.5 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2151.5 "Left-Sided Shockwave/Right-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2156.2 "Head Down" Ability { id: "5756", source: "Marchosias" }
+2162.7 "Feral Howl" Ability { id: "5755", source: "Dahu" }
+2166.2 "Hunter's Claw" Ability { id: "5757", source: "Marchosias" }
+2172.9 "Firebreathe x5" Ability { id: "5759", source: "Dahu" }
+2195.1 "Heat Breath" Ability { id: "5766", source: "Dahu" }
+2205.7 "Tail Swing" Ability { id: "575F", source: "Dahu" }
+2217.9 "Reverberating Roar" Ability { id: "575B", source: "Dahu" }
+2231.8 "Hot Charge" Ability { id: "5764", source: "Dahu" }
+2236.7 "Hot Charge" Ability { id: "5764", source: "Dahu" }
 
-2243.6 "Firebreathe" sync / 1[56]:[^:]*:Dahu:5765:/ window 50,50 jump 2116.6
-2256.8 "--sync--" #sync / 1[56]:[^:]*:Marchosias:5758:/
-2257.8 "Reverberating Roar" #sync / 1[56]:[^:]*:Dahu:575B:/
-2263.1 "Head Down" #sync / 1[56]:[^:]*:Marchosias:5756:/
-2269.8 "Head Down" #sync / 1[56]:[^:]*:Marchosias:5756:/
-2276.0 "Right-Sided Shockwave/Left-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2276.5 "Head Down" #sync / 1[56]:[^:]*:#Marchosias:5756:/
-2278.5 "Left-Sided Shockwave/Right-Sided Shockwave" #sync / 1[56]:[^:]*:Dahu:576[12]:/
-2283.2 "Head Down" #sync / 1[56]:[^:]*:Marchosias:5756:/
-2289.7 "Feral Howl" #sync / 1[56]:[^:]*:Dahu:5755:/
+2243.6 "Firebreathe" Ability { id: "5765", source: "Dahu" } window 50,50 jump 2116.6
+2256.8 "--sync--" #Ability { id: "5758", source: "Marchosias" }
+2257.8 "Reverberating Roar" #Ability { id: "575B", source: "Dahu" }
+2263.1 "Head Down" #Ability { id: "5756", source: "Marchosias" }
+2269.8 "Head Down" #Ability { id: "5756", source: "Marchosias" }
+2276.0 "Right-Sided Shockwave/Left-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2276.5 "Head Down" #Ability { id: "5756", source: "#Marchosias" }
+2278.5 "Left-Sided Shockwave/Right-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
+2283.2 "Head Down" #Ability { id: "5756", source: "Marchosias" }
+2289.7 "Feral Howl" #Ability { id: "5755", source: "Dahu" }
 
 
 ### Queen's Guard
@@ -215,7 +215,7 @@ hideall "--sync--"
 # The Hall of Hieromancy will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1E:/ window 10000,0
 # ranged auto should be reasonably timed
-3002.5 "--sync--" sync / 1[56]:[^:]*:Queen's Gunner:5857:/ window 3,1
+3002.5 "--sync--" Ability { id: "5857", source: "Queen's Gunner" } window 3,1
 # can't sync this untargetable as the mobs will hop away sooner if they are damaged enough.
 3025.7 "--untargetable--"
 3028.7 "--targetable--"
@@ -227,16 +227,16 @@ hideall "--sync--"
 # multiple times.  So, 22 lines get huge syncs and ability lines
 # get more local windows here and in each block.
 3036.8 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 50,50 jump 3108.1
-3039.8 "Double Gambit?" #sync / 1[56]:[^:]*:Queen's Soldier:5805:/
+3039.8 "Double Gambit?" #Ability { id: "5805", source: "Queen's Soldier" }
 
 3036.8 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 50,50 jump 3308.1
-3039.8 "Automatic Turret?" #sync / 1[56]:[^:]*:Queen's Gunner:580B:/
+3039.8 "Automatic Turret?" #Ability { id: "580B", source: "Queen's Gunner" }
 
 3036.8 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 50,50 jump 3508.1
-3039.8 "Bombslinger?" #sync / 1[56]:[^:]*:Queen's Warrior:5AFD:/
+3039.8 "Bombslinger?" #Ability { id: "5AFD", source: "Queen's Warrior" }
 
 3036.8 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 50,50 jump 3708.1
-3039.8 "Shield Omen/Sword Omen?" #sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
+3039.8 "Shield Omen/Sword Omen?" #Ability { id: "57F[01]", source: "Queen's Knight" }
 
 # Queen's Soldier
 # (local jumps to other blocks)
@@ -246,23 +246,23 @@ hideall "--sync--"
 
 3100.0 "--targetable--" sync / 22:........:Queen's Soldier:........:Queen's Soldier:01/ window 500,500
 3108.1 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 10,10
-3111.1 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:5805:/
-3119.3 "Secrets Revealed" sync / 1[56]:[^:]*:Queen's Soldier:5B6E:/
-3130.6 "Pawn Off" sync / 1[56]:[^:]*:Soldier Avatar:5807:/
-3142.4 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Soldier:5809:/
+3111.1 "Double Gambit" Ability { id: "5805", source: "Queen's Soldier" }
+3119.3 "Secrets Revealed" Ability { id: "5B6E", source: "Queen's Soldier" }
+3130.6 "Pawn Off" Ability { id: "5807", source: "Soldier Avatar" }
+3142.4 "Rapid Sever" Ability { id: "5809", source: "Queen's Soldier" }
 
-3149.6 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:5805:/
-3157.8 "Secrets Revealed" sync / 1[56]:[^:]*:Queen's Soldier:5B6E:/
-3175.2 "Pawn Off" sync / 1[56]:[^:]*:Soldier Avatar:5807:/
-3187.0 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Soldier:5808:/
-3197.2 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Soldier:5809:/
+3149.6 "Double Gambit" Ability { id: "5805", source: "Queen's Soldier" }
+3157.8 "Secrets Revealed" Ability { id: "5B6E", source: "Queen's Soldier" }
+3175.2 "Pawn Off" Ability { id: "5807", source: "Soldier Avatar" }
+3187.0 "Blood And Bone" Ability { id: "5808", source: "Queen's Soldier" }
+3197.2 "Rapid Sever" Ability { id: "5809", source: "Queen's Soldier" }
 
 # (probably a loop, as this has more jumping)
-3204.5 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:5805:/ window 30,30 jump 3149.6
-3212.7 "Secrets Revealed" #sync / 1[56]:[^:]*:Queen's Soldier:5B6E:/
-3230.1 "Pawn Off" #sync / 1[56]:[^:]*:Soldier Avatar:5807:/
-3241.9 "Blood And Bone" #sync / 1[56]:[^:]*:Queen's Soldier:5808:/
-3252.1 "Rapid Sever" #sync / 1[56]:[^:]*:Queen's Soldier:5809:/
+3204.5 "Double Gambit" Ability { id: "5805", source: "Queen's Soldier" } window 30,30 jump 3149.6
+3212.7 "Secrets Revealed" #Ability { id: "5B6E", source: "Queen's Soldier" }
+3230.1 "Pawn Off" #Ability { id: "5807", source: "Soldier Avatar" }
+3241.9 "Blood And Bone" #Ability { id: "5808", source: "Queen's Soldier" }
+3252.1 "Rapid Sever" #Ability { id: "5809", source: "Queen's Soldier" }
 
 # Queen's Gunner
 # (local jumps to other blocks)
@@ -272,23 +272,23 @@ hideall "--sync--"
 
 3300.0 "--targetable--" sync / 22:........:Queen's Gunner:........:Queen's Gunner:01/ window 500,500
 3308.1 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 10,10
-3311.1 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:580B:/
-3319.2 "Turret's Tour" sync / 1[56]:[^:]*:Queen's Gunner:580C:/
-3319.8 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:580E:/
-3320.3 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:580F:/
+3311.1 "Automatic Turret" Ability { id: "580B", source: "Queen's Gunner" }
+3319.2 "Turret's Tour" Ability { id: "580C", source: "Queen's Gunner" }
+3319.8 "Turret's Tour" Ability { id: "580E", source: "Automatic Turret" }
+3320.3 "Turret's Tour" Ability { id: "580F", source: "Automatic Turret" }
 
-3329.3 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5810:/
-3337.4 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:580B:/
-3345.6 "Turret's Tour" sync / 1[56]:[^:]*:Queen's Gunner:580C:/
-3346.2 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:580E:/
-3355.7 "Shot In The Dark" sync / 1[56]:[^:]*:Queen's Gunner:5811:/
+3329.3 "Queen's Shot" Ability { id: "5810", source: "Queen's Gunner" }
+3337.4 "Automatic Turret" Ability { id: "580B", source: "Queen's Gunner" }
+3345.6 "Turret's Tour" Ability { id: "580C", source: "Queen's Gunner" }
+3346.2 "Turret's Tour" Ability { id: "580E", source: "Automatic Turret" }
+3355.7 "Shot In The Dark" Ability { id: "5811", source: "Queen's Gunner" }
 
 # (probably a loop?)
-3364.9 "Queen's Shot" sync / 1[56]:[^:]*:Queen's Gunner:5810:/ window 20,20 jump 3329.3
-3373.0 "Automatic Turret" #sync / 1[56]:[^:]*:Queen's Gunner:580B:/
-3381.2 "Turret's Tour" #sync / 1[56]:[^:]*:Queen's Gunner:580C:/
-3381.8 "Turret's Tour" #sync / 1[56]:[^:]*:Automatic Turret:580E:/
-3391.3 "Shot In The Dark" #sync / 1[56]:[^:]*:Queen's Gunner:5811:/
+3364.9 "Queen's Shot" Ability { id: "5810", source: "Queen's Gunner" } window 20,20 jump 3329.3
+3373.0 "Automatic Turret" #Ability { id: "580B", source: "Queen's Gunner" }
+3381.2 "Turret's Tour" #Ability { id: "580C", source: "Queen's Gunner" }
+3381.8 "Turret's Tour" #Ability { id: "580E", source: "Automatic Turret" }
+3391.3 "Shot In The Dark" #Ability { id: "5811", source: "Queen's Gunner" }
 
 # Queen's Warrior
 # (local jumps to other blocks)
@@ -298,34 +298,34 @@ hideall "--sync--"
 
 3500.0 "--targetable--" sync / 22:........:Queen's Warrior:........:Queen's Warrior:01/ window 500,500
 3508.1 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 10,10
-3511.1 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5AFD:/
-3520.2 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:57FC:/
+3511.1 "Bombslinger" Ability { id: "5AFD", source: "Queen's Warrior" }
+3520.2 "Above Board" Ability { id: "57FC", source: "Queen's Warrior" }
 3521.2 "--stunned--"
-3523.2 "Lots Cast" sync / 1[56]:[^:]*:Aetherial Burst:5B6B:/
-3526.2 "Lots Cast" sync / 1[56]:[^:]*:Aetherial Bolt:5B6A:/
+3523.2 "Lots Cast" Ability { id: "5B6B", source: "Aetherial Burst" }
+3526.2 "Lots Cast" Ability { id: "5B6A", source: "Aetherial Bolt" }
 3527.9 "--unstunned--"
 
-3536.5 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5AFD:/ window 10,10
-3543.6 "Reversal Of Forces" sync / 1[56]:[^:]*:Queen's Warrior:57FF:/
-3552.7 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:57FC:/
+3536.5 "Bombslinger" Ability { id: "5AFD", source: "Queen's Warrior" } window 10,10
+3543.6 "Reversal Of Forces" Ability { id: "57FF", source: "Queen's Warrior" }
+3552.7 "Above Board" Ability { id: "57FC", source: "Queen's Warrior" }
 3553.7 "--stunned--"
-3555.7 "Lots Cast" sync / 1[56]:[^:]*:Aetherial Bolt:57FE:/
-3558.7 "Lots Cast" sync / 1[56]:[^:]*:Aetherial Burst:57FD:/
+3555.7 "Lots Cast" Ability { id: "57FE", source: "Aetherial Bolt" }
+3558.7 "Lots Cast" Ability { id: "57FD", source: "Aetherial Burst" }
 3559.4 "--unstunned--"
-3567.8 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5800:/
-3578.0 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Warrior:5800:/
+3567.8 "Blood And Bone" Ability { id: "5800", source: "Queen's Warrior" }
+3578.0 "Blood And Bone" Ability { id: "5800", source: "Queen's Warrior" }
 
 # FIXME: is this a loop back to the beginning?
 # The Bombslinger/Above Board timings don't seem like there can fit
 # an optional Reversal Of Forces here, but not clear if this is random.
-3586.2 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5AFD:/ window 30,30 jump 3511.1
-3595.3 "Above Board" #sync / 1[56]:[^:]*:Queen's Warrior:57FC:/
+3586.2 "Bombslinger" Ability { id: "5AFD", source: "Queen's Warrior" } window 30,30 jump 3511.1
+3595.3 "Above Board" #Ability { id: "57FC", source: "Queen's Warrior" }
 3596.3 "--stunned--"
-3598.3 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:5B6B:/
-3601.3 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:5B6A:/
+3598.3 "Lots Cast" #Ability { id: "5B6B", source: "Aetherial Burst" }
+3601.3 "Lots Cast" #Ability { id: "5B6A", source: "Aetherial Bolt" }
 3603.0 "--unstunned--"
-3614.6 "Bombslinger" #sync / 1[56]:[^:]*:Queen's Warrior:5AFD:/
-3621.7 "Reversal Of Forces" #sync / 1[56]:[^:]*:Queen's Warrior:57FF:/
+3614.6 "Bombslinger" #Ability { id: "5AFD", source: "Queen's Warrior" }
+3621.7 "Reversal Of Forces" #Ability { id: "57FF", source: "Queen's Warrior" }
 
 # Queen's Knight
 # (local jumps to other blocks)
@@ -335,34 +335,34 @@ hideall "--sync--"
 
 3700.0 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 500,500
 3708.1 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 10,10
-3711.1 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3719.3 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:57F4:/
-3727.5 "Sword Omen/Shield Omen" sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3735.7 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:57F4:/
+3711.1 "Shield Omen/Sword Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
+3719.3 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }
+3727.5 "Sword Omen/Shield Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
+3735.7 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }
 
-3746.9 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Knight:57FB:/
-3756.1 "Blood And Bone" sync / 1[56]:[^:]*:Queen's Knight:57FA:/
-3764.3 "Shield Omen/Sword Omen" sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3772.5 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:57F4:/
-3780.7 "Sword Omen/Shield Omen" sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3788.9 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:57F4:/
+3746.9 "Rapid Sever" Ability { id: "57FB", source: "Queen's Knight" }
+3756.1 "Blood And Bone" Ability { id: "57FA", source: "Queen's Knight" }
+3764.3 "Shield Omen/Sword Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
+3772.5 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }
+3780.7 "Sword Omen/Shield Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
+3788.9 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }
 
 # (maybe a loop?)
-3800.1 "Rapid Sever" sync / 1[56]:[^:]*:Queen's Knight:57FB:/ window 30,30 jump 3746.9
-3809.3 "Blood And Bone" #sync / 1[56]:[^:]*:Queen's Knight:57FA:/
-3817.5 "Shield Omen/Sword Omen" #sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3825.7 "Optimal Play" #sync / 1[56]:[^:]*:Queen's Knight:57F4:/
-3833.9 "Sword Omen/Shield Omen" #sync / 1[56]:[^:]*:Queen's Knight:57F[01]:/
-3842.1 "Optimal Play" #sync / 1[56]:[^:]*:Queen's Knight:57F4:/
+3800.1 "Rapid Sever" Ability { id: "57FB", source: "Queen's Knight" } window 30,30 jump 3746.9
+3809.3 "Blood And Bone" #Ability { id: "57FA", source: "Queen's Knight" }
+3817.5 "Shield Omen/Sword Omen" #Ability { id: "57F[01]", source: "Queen's Knight" }
+3825.7 "Optimal Play" #Ability { id: "57F4", source: "Queen's Knight" }
+3833.9 "Sword Omen/Shield Omen" #Ability { id: "57F[01]", source: "Queen's Knight" }
+3842.1 "Optimal Play" #Ability { id: "57F4", source: "Queen's Knight" }
 
 # Aetherial Warded Knights
 4000.0 "--sync--" sync / 14:[^:]*:Queen's Knight:57F5:/ window 1000,0
-4005.0 "Strongpoint Defense" sync / 1[56]:[^:]*:Queen's Knight:57F5:/
+4005.0 "Strongpoint Defense" Ability { id: "57F5", source: "Queen's Knight" }
 # 60s enrage cast of 5812, 580A, 5802, 57F9
 4008.0 "Enrage Cast" sync / 14:[^:]*:Queen's Gunner:5812:/ duration 60
-4018.8 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:57F6:/
-4036.0 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:57F6:/
-4053.1 "Coat Of Arms" sync / 1[56]:[^:]*:Aetherial Ward:57F6:/
+4018.8 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
+4036.0 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
+4053.1 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
 4068.0 "Enrage"
 
 
@@ -374,72 +374,72 @@ hideall "--sync--"
 
 # one circle, one square
 5008.3 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57A3:/ window 10,10
-5011.3 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A3:/
-5025.5 "Manipulate Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A4:/
-5026.5 "Swirling Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57A9:/
-5028.1 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5029.7 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5030.5 "Creeping Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A5:/
-5031.3 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5032.9 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5034.5 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5036.1 "Swirling Miasma 7" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5037.7 "Swirling Miasma 8" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
+5011.3 "Weave Miasma" Ability { id: "57A3", source: "Bozjan Phantom" }
+5025.5 "Manipulate Miasma" Ability { id: "57A4", source: "Bozjan Phantom" }
+5026.5 "Swirling Miasma 1" Ability { id: "57A9", source: "Bozjan Phantom" }
+5028.1 "Swirling Miasma 2" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5029.7 "Swirling Miasma 3" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5030.5 "Creeping Miasma" Ability { id: "57A5", source: "Bozjan Phantom" }
+5031.3 "Swirling Miasma 4" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5032.9 "Swirling Miasma 5" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5034.5 "Swirling Miasma 6" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5036.1 "Swirling Miasma 7" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5037.7 "Swirling Miasma 8" #Ability { id: "57AA", source: "Bozjan Phantom" }
 
 # two circles, two squares
-5038.6 "Malediction Of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57AF:/
-5049.8 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A3:/
-5064.0 "Manipulate Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A4:/
-5065.0 "Swirling Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57A9:/
-5066.6 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5068.2 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5069.0 "Creeping Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A5:/
-5069.8 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5071.4 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5073.0 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5074.6 "Swirling Miasma 7" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5076.2 "Swirling Miasma 8" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
+5038.6 "Malediction Of Agony" Ability { id: "57AF", source: "Bozjan Phantom" }
+5049.8 "Weave Miasma" Ability { id: "57A3", source: "Bozjan Phantom" }
+5064.0 "Manipulate Miasma" Ability { id: "57A4", source: "Bozjan Phantom" }
+5065.0 "Swirling Miasma 1" Ability { id: "57A9", source: "Bozjan Phantom" }
+5066.6 "Swirling Miasma 2" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5068.2 "Swirling Miasma 3" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5069.0 "Creeping Miasma" Ability { id: "57A5", source: "Bozjan Phantom" }
+5069.8 "Swirling Miasma 4" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5071.4 "Swirling Miasma 5" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5073.0 "Swirling Miasma 6" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5074.6 "Swirling Miasma 7" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5076.2 "Swirling Miasma 8" #Ability { id: "57AA", source: "Bozjan Phantom" }
 
 # learn about knockbacks
-5083.1 "Summon" sync / 1[56]:[^:]*:Bozjan Phantom:57AB:/
-5095.2 "Undying Hatred" sync / 1[56]:[^:]*:Stuffy Wraith:57AC:/
-5096.3 "Transference" sync / 1[56]:[^:]*:Bozjan Phantom:57AD:/
-5103.5 "Vile Wave" sync / 1[56]:[^:]*:Bozjan Phantom:57B1:/
+5083.1 "Summon" Ability { id: "57AB", source: "Bozjan Phantom" }
+5095.2 "Undying Hatred" Ability { id: "57AC", source: "Stuffy Wraith" }
+5096.3 "Transference" Ability { id: "57AD", source: "Bozjan Phantom" }
+5103.5 "Vile Wave" Ability { id: "57B1", source: "Bozjan Phantom" }
 
 # knockback into weave miasma
-5114.7 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A3:/
-5120.8 "Summon" sync / 1[56]:[^:]*:Bozjan Phantom:57AB:/
-5132.9 "Undying Hatred" sync / 1[56]:[^:]*:Stuffy Wraith:57AC:/
-5137.0 "Manipulate Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A4:/
-5138.0 "Swirling Miasma 1" sync / 1[56]:[^:]*:Bozjan Phantom:57A9:/
-5139.6 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5141.2 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5142.0 "Creeping Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A5:/
-5142.8 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5144.4 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5146.0 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5147.1 "Transference" sync / 1[56]:[^:]*:Bozjan Phantom:57AD:/
-5147.6 "Swirling Miasma 7" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5149.2 "Swirling Miasma 8" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5154.4 "Vile Wave" sync / 1[56]:[^:]*:Bozjan Phantom:57B1:/
+5114.7 "Weave Miasma" Ability { id: "57A3", source: "Bozjan Phantom" }
+5120.8 "Summon" Ability { id: "57AB", source: "Bozjan Phantom" }
+5132.9 "Undying Hatred" Ability { id: "57AC", source: "Stuffy Wraith" }
+5137.0 "Manipulate Miasma" Ability { id: "57A4", source: "Bozjan Phantom" }
+5138.0 "Swirling Miasma 1" Ability { id: "57A9", source: "Bozjan Phantom" }
+5139.6 "Swirling Miasma 2" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5141.2 "Swirling Miasma 3" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5142.0 "Creeping Miasma" Ability { id: "57A5", source: "Bozjan Phantom" }
+5142.8 "Swirling Miasma 4" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5144.4 "Swirling Miasma 5" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5146.0 "Swirling Miasma 6" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5147.1 "Transference" Ability { id: "57AD", source: "Bozjan Phantom" }
+5147.6 "Swirling Miasma 7" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5149.2 "Swirling Miasma 8" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5154.4 "Vile Wave" Ability { id: "57B1", source: "Bozjan Phantom" }
 
-5162.5 "Malediction Of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57AF:/
-5175.7 "Excruciation" sync / 1[56]:[^:]*:Bozjan Phantom:57B0:/
-5184.8 "Malediction Of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57AF:/
-5191.9 "Malediction Of Agony" sync / 1[56]:[^:]*:Bozjan Phantom:57AF:/
+5162.5 "Malediction Of Agony" Ability { id: "57AF", source: "Bozjan Phantom" }
+5175.7 "Excruciation" Ability { id: "57B0", source: "Bozjan Phantom" }
+5184.8 "Malediction Of Agony" Ability { id: "57AF", source: "Bozjan Phantom" }
+5191.9 "Malediction Of Agony" Ability { id: "57AF", source: "Bozjan Phantom" }
 
 # loop
-5205.1 "Weave Miasma" sync / 1[56]:[^:]*:Bozjan Phantom:57A3:/ window 50,50 jump 5114.7
-5211.2 "Summon" #sync / 1[56]:[^:]*:Bozjan Phantom:57AB:/
-5223.3 "Undying Hatred" #sync / 1[56]:[^:]*:Stuffy Wraith:57AC:/
-5227.4 "Manipulate Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57A4:/
-5228.4 "Swirling Miasma 1" #sync / 1[56]:[^:]*:Bozjan Phantom:57A9:/
-5230.0 "Swirling Miasma 2" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5231.6 "Swirling Miasma 3" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5232.4 "Creeping Miasma" #sync / 1[56]:[^:]*:Bozjan Phantom:57A5:/
-5233.2 "Swirling Miasma 4" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5234.8 "Swirling Miasma 5" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
-5236.4 "Swirling Miasma 6" #sync / 1[56]:[^:]*:Bozjan Phantom:57AA:/
+5205.1 "Weave Miasma" Ability { id: "57A3", source: "Bozjan Phantom" } window 50,50 jump 5114.7
+5211.2 "Summon" #Ability { id: "57AB", source: "Bozjan Phantom" }
+5223.3 "Undying Hatred" #Ability { id: "57AC", source: "Stuffy Wraith" }
+5227.4 "Manipulate Miasma" #Ability { id: "57A4", source: "Bozjan Phantom" }
+5228.4 "Swirling Miasma 1" #Ability { id: "57A9", source: "Bozjan Phantom" }
+5230.0 "Swirling Miasma 2" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5231.6 "Swirling Miasma 3" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5232.4 "Creeping Miasma" #Ability { id: "57A5", source: "Bozjan Phantom" }
+5233.2 "Swirling Miasma 4" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5234.8 "Swirling Miasma 5" #Ability { id: "57AA", source: "Bozjan Phantom" }
+5236.4 "Swirling Miasma 6" #Ability { id: "57AA", source: "Bozjan Phantom" }
 
 
 ### Trinity Avowed
@@ -448,85 +448,85 @@ hideall "--sync--"
 # The Vault of Singing Crystal will be sealed off
 7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E20:/ window 10000,0
 7008.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5975:/ window 10,10
-7013.0 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5975:/
-7021.1 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7029.3 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
-7037.5 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5973:/
+7013.0 "Wrath Of Bozja" Ability { id: "5975", source: "Trinity Avowed" }
+7021.1 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7029.3 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
+7037.5 "Fury Of Bozja" Ability { id: "5973", source: "Trinity Avowed" }
 
 # meteors, 1 level of temperature
-7046.8 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
-7053.9 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
-7061.1 "Elemental Impact" sync / 1[56]:[^:]*:Swirling Orb:5960:/
-7070.1 "Elemental Blast" sync / 1[56]:[^:]*:Blazing Orb:5966:/
-7077.0 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
+7046.8 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
+7053.9 "Freedom Of Bozja" Ability { id: "597C", source: "Trinity Avowed" }
+7061.1 "Elemental Impact" Ability { id: "5960", source: "Swirling Orb" }
+7070.1 "Elemental Blast" Ability { id: "5966", source: "Blazing Orb" }
+7077.0 "--sync--" Ability { id: "5984", source: "Trinity Avowed" }
 
-7087.5 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
-7095.7 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:5972:/
+7087.5 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
+7095.7 "Flashvane" Ability { id: "5972", source: "Trinity Avowed" }
 
 # swords, 1 level of temperature
-7103.9 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/ duration 8
-7112.0 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B39:/
-7117.1 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
-7124.9 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
-7139.2 "Elemental Arrow" sync / 1[56]:[^:]*:Frost Arrow:596B:/
-7147.8 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/
+7103.9 "Flames Of Bozja" Ability { id: "597E", source: "Trinity Avowed" } duration 8
+7112.0 "--sync--" Ability { id: "5B39", source: "Trinity Avowed" }
+7117.1 "Hot And Cold" Ability { id: "5BB0", source: "Trinity Avowed" }
+7124.9 "Shimmering Shot" Ability { id: "597F", source: "Trinity Avowed" }
+7139.2 "Elemental Arrow" Ability { id: "596B", source: "Frost Arrow" }
+7147.8 "--sync--" Ability { id: "5983", source: "Trinity Avowed" }
 
-7154.9 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7168.1 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
-7176.3 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:5971:/
+7154.9 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7168.1 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
+7176.3 "Infernal Slash" Ability { id: "5971", source: "Trinity Avowed" }
 
 # cleaves, 2 levels of temperature
-7182.5 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/
-7193.7 "Blade Of Entropy" sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7201.9 "Blade Of Entropy" sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7210.0 "Blade Of Entropy" sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7218.2 "Blade Of Entropy" sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
+7182.5 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
+7193.7 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7201.9 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7210.0 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7218.2 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
 
-7221.3 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5982:/
-7227.4 "Unseen Eye" sync / 1[56]:[^:]*:Trinity Avowed:5980:/
-7238.7 "Gleaming Arrow" sync / 1[56]:[^:]*:Avowed Avatar:5974:/
+7221.3 "--sync--" Ability { id: "5982", source: "Trinity Avowed" }
+7227.4 "Unseen Eye" Ability { id: "5980", source: "Trinity Avowed" }
+7238.7 "Gleaming Arrow" Ability { id: "5974", source: "Avowed Avatar" }
 
-7246.3 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5975:/
-7254.4 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7264.8 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5987:/
-7273.0 "Fury Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5973:/
+7246.3 "Wrath Of Bozja" Ability { id: "5975", source: "Trinity Avowed" }
+7254.4 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7264.8 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
+7273.0 "Fury Of Bozja" Ability { id: "5973", source: "Trinity Avowed" }
 
 # meteors, 2 levels of temperature
-7279.2 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:597B:/
-7286.3 "Freedom Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597C:/
-7293.5 "Elemental Impact" sync / 1[56]:[^:]*:Tempestuous Orb:5960:/
-7302.5 "Heated Blast" sync / 1[56]:[^:]*:Blazing Orb:5966:/
+7279.2 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
+7286.3 "Freedom Of Bozja" Ability { id: "597C", source: "Trinity Avowed" }
+7293.5 "Elemental Impact" Ability { id: "5960", source: "Tempestuous Orb" }
+7302.5 "Heated Blast" Ability { id: "5966", source: "Blazing Orb" }
 
-7304.9 "Unseen Eye" sync / 1[56]:[^:]*:Trinity Avowed:5980:/
-7316.2 "Gleaming Arrow" sync / 1[56]:[^:]*:Avowed Avatar:5974:/
-7318.7 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5984:/
-7325.8 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7334.2 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5975:/
-7345.1 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5986:/
-7353.3 "Flashvane" sync / 1[56]:[^:]*:Trinity Avowed:5972:/
-7359.5 "Unseen Eye" sync / 1[56]:[^:]*:Trinity Avowed:5BB4:/
-7370.8 "Gleaming Arrow" sync / 1[56]:[^:]*:Avowed Avatar:5974:/
-7370.8 "Flames Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:597E:/ duration 8
-7379.0 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5B39:/
+7304.9 "Unseen Eye" Ability { id: "5980", source: "Trinity Avowed" }
+7316.2 "Gleaming Arrow" Ability { id: "5974", source: "Avowed Avatar" }
+7318.7 "--sync--" Ability { id: "5984", source: "Trinity Avowed" }
+7325.8 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7334.2 "Wrath Of Bozja" Ability { id: "5975", source: "Trinity Avowed" }
+7345.1 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
+7353.3 "Flashvane" Ability { id: "5972", source: "Trinity Avowed" }
+7359.5 "Unseen Eye" Ability { id: "5BB4", source: "Trinity Avowed" }
+7370.8 "Gleaming Arrow" Ability { id: "5974", source: "Avowed Avatar" }
+7370.8 "Flames Of Bozja" Ability { id: "597E", source: "Trinity Avowed" } duration 8
+7379.0 "--sync--" Ability { id: "5B39", source: "Trinity Avowed" }
 
 # swords, 2 levels of temperature
-7383.8 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BB0:/
-7391.4 "Shimmering Shot" sync / 1[56]:[^:]*:Trinity Avowed:597F:/
-7405.7 "Elemental Arrow" sync / 1[56]:[^:]*:Frost Arrow:596B:/
-7411.0 "--sync--" sync / 1[56]:[^:]*:Trinity Avowed:5983:/
+7383.8 "Hot And Cold" Ability { id: "5BB0", source: "Trinity Avowed" }
+7391.4 "Shimmering Shot" Ability { id: "597F", source: "Trinity Avowed" }
+7405.7 "Elemental Arrow" Ability { id: "596B", source: "Frost Arrow" }
+7411.0 "--sync--" Ability { id: "5983", source: "Trinity Avowed" }
 
-7418.1 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7426.4 "Wrath Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5975:/
-7434.5 "Glory Of Bozja" sync / 1[56]:[^:]*:Trinity Avowed:5976:/
-7449.7 "Allegiant Arsenal" sync / 1[56]:[^:]*:Trinity Avowed:5985:/
-7457.8 "Infernal Slash" sync / 1[56]:[^:]*:Trinity Avowed:5971:/
+7418.1 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7426.4 "Wrath Of Bozja" Ability { id: "5975", source: "Trinity Avowed" }
+7434.5 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
+7449.7 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
+7457.8 "Infernal Slash" Ability { id: "5971", source: "Trinity Avowed" }
 
 # (probably a loop, back to cleaves, 2 levels of temperature)
-7463.9 "Hot And Cold" sync / 1[56]:[^:]*:Trinity Avowed:5BAF:/ window 100,100 jump 7182.5
-7475.1 "Blade Of Entropy" #sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7483.3 "Blade Of Entropy" #sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7491.4 "Blade Of Entropy" #sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
-7499.6 "Blade Of Entropy" #sync / 1[56]:[^:]*:Trinity Avowed:(5B6[5-8]|596[D-F]|5970):/
+7463.9 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" } window 100,100 jump 7182.5
+7475.1 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7483.3 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7491.4 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7499.6 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
 
 
 ### The Queen
@@ -536,100 +536,100 @@ hideall "--sync--"
 # Queensheart will be sealed off
 9000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E23:/ window 10000,0
 9010.5 "--sync--" sync / 14:[^:]*:The Queen:59C8:/ window 15,15
-9015.5 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59C8:/
-9025.7 "Cleansing Slash" sync / 1[56]:[^:]*:The Queen:59C5:/
-9036.0 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+9015.5 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
+9025.7 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
+9036.0 "--middle--" Ability { id: "5BCB", source: "The Queen" }
 
-9044.2 "Queen's Will" sync / 1[56]:[^:]*:The Queen:59B9:/
-9052.4 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B99:/
-9056.7 "The Means" sync / 1[56]:[^:]*:(Queen's Gunner|Queen's Warrior):59B[BD]:/
-9056.7 "The Ends" sync / 1[56]:[^:]*:(Queen's Soldier|Queen's Knight):59B[AC]:/
+9044.2 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
+9052.4 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
+9056.7 "The Means" Ability { id: "59B[BD]", source: "(Queen's Gunner|Queen's Warrior)" }
+9056.7 "The Ends" Ability { id: "59B[AC]", source: "(Queen's Soldier|Queen's Knight)" }
 
-9066.6 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59C8:/
-9074.8 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
-9081.2 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59C3:/
-9092.0 "--explosion--" sync / 1[56]:[^:]*:The Queen:59C4:/
-9094.4 "Heaven's Wrath" sync / 1[56]:[^:]*:The Queen:59C6:/
-9102.2 "--knockback--" sync / 1[56]:[^:]*:The Queen:59C7:/
-9112.6 "Cleansing Slash" sync / 1[56]:[^:]*:The Queen:59C5:/
-9123.9 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
+9066.6 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
+9074.8 "--middle--" Ability { id: "5BCB", source: "The Queen" }
+9081.2 "Northswain's Glow" Ability { id: "59C3", source: "The Queen" }
+9092.0 "--explosion--" Ability { id: "59C4", source: "The Queen" }
+9094.4 "Heaven's Wrath" Ability { id: "59C6", source: "The Queen" }
+9102.2 "--knockback--" Ability { id: "59C7", source: "The Queen" }
+9112.6 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
+9123.9 "--middle--" Ability { id: "5BCB", source: "The Queen" }
 
-9132.1 "Queen's Will" sync / 1[56]:[^:]*:The Queen:59B9:/
-9140.2 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B99:/
+9132.1 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
+9140.2 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
 9143.3 "--untargetable--"
-9144.5 "The Means" sync / 1[56]:[^:]*:(Queen's Gunner|Queen's Warrior):59B[BD]:/
-9144.5 "The Ends" sync / 1[56]:[^:]*:(Queen's Soldier|Queen's Knight):59B[AC]:/
-9151.5 "Judgment Blade" sync / 1[56]:[^:]*:The Queen:59C[12]:/
+9144.5 "The Means" Ability { id: "59B[BD]", source: "(Queen's Gunner|Queen's Warrior)" }
+9144.5 "The Ends" Ability { id: "59B[AC]", source: "(Queen's Soldier|Queen's Knight)" }
+9151.5 "Judgment Blade" Ability { id: "59C[12]", source: "The Queen" }
 9156.2 "--targetable--"
 
 # HP% push here.
-9160.5 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
-9163.9 "--sync--" sync / 1[56]:[^:]*:The Queen:55A8:/ window 200,10
-9171.0 "Gods Save The Queen" sync / 1[56]:[^:]*:The Queen:59C9:/
-9192.3 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
-9200.7 "Queen's Edict" sync / 1[56]:[^:]*:The Queen:59BE:/
+9160.5 "--middle--" Ability { id: "5BCB", source: "The Queen" }
+9163.9 "--sync--" Ability { id: "55A8", source: "The Queen" } window 200,10
+9171.0 "Gods Save The Queen" Ability { id: "59C9", source: "The Queen" }
+9192.3 "--middle--" Ability { id: "5BCB", source: "The Queen" }
+9200.7 "Queen's Edict" Ability { id: "59BE", source: "The Queen" }
 9223.4 "--stunned--"
-9225.5 "Queen's Justice" sync / 1[56]:[^:]*:The Queen:59BF:/ # only on failure
+9225.5 "Queen's Justice" Ability { id: "59BF", source: "The Queen" } # only on failure
 9229.3 "--unstunned--"
-9239.9 "Cleansing Slash" sync / 1[56]:[^:]*:The Queen:59C5:/
+9239.9 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 
-9253.1 "Relentless Play" sync / 1[56]:[^:]*:The Queen:59FC:/
-9259.3 "Automatic Turret" sync / 1[56]:[^:]*:Queen's Gunner:59DE:/
-9267.3 "Bombslinger" sync / 1[56]:[^:]*:Queen's Warrior:5B3E:/
-9267.4 "Turret's Tour" sync / 1[56]:[^:]*:Queen's Gunner:59DF:/
-9268.0 "Turret's Tour" sync / 1[56]:[^:]*:Automatic Turret:59E1:/
-9271.2 "Heaven's Wrath" sync / 1[56]:[^:]*:The Queen:59C6:/
-9274.3 "Reversal Of Forces?" sync / 1[56]:[^:]*:Queen's Warrior:59D4:/
-9279.0 "--knockback--" sync / 1[56]:[^:]*:The Queen:59C7:/
-9283.5 "Above Board" sync / 1[56]:[^:]*:Queen's Warrior:59D1:/
+9253.1 "Relentless Play" Ability { id: "59FC", source: "The Queen" }
+9259.3 "Automatic Turret" Ability { id: "59DE", source: "Queen's Gunner" }
+9267.3 "Bombslinger" Ability { id: "5B3E", source: "Queen's Warrior" }
+9267.4 "Turret's Tour" Ability { id: "59DF", source: "Queen's Gunner" }
+9268.0 "Turret's Tour" Ability { id: "59E1", source: "Automatic Turret" }
+9271.2 "Heaven's Wrath" Ability { id: "59C6", source: "The Queen" }
+9274.3 "Reversal Of Forces?" Ability { id: "59D4", source: "Queen's Warrior" }
+9279.0 "--knockback--" Ability { id: "59C7", source: "The Queen" }
+9283.5 "Above Board" Ability { id: "59D1", source: "Queen's Warrior" }
 9284.5 "--stunned--"
 # Note: these can be in either order, so can't sync.
-9286.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:(59D3|5B86):/
-9289.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:(59D2|5B87):/
+9286.5 "Lots Cast" #Ability { id: "(59D3|5B86)", source: "Aetherial Bolt" }
+9289.5 "Lots Cast" #Ability { id: "(59D2|5B87)", source: "Aetherial Burst" }
 9291.2 "--unstunned--"
 
-9300.4 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59C8:/
-9308.6 "--middle--" sync / 1[56]:[^:]*:The Queen:5BCB:/
-9316.8 "Queen's Edict" sync / 1[56]:[^:]*:The Queen:59BE:/
-9338.0 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B99:/
+9300.4 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
+9308.6 "--middle--" Ability { id: "5BCB", source: "The Queen" }
+9316.8 "Queen's Edict" Ability { id: "59BE", source: "The Queen" }
+9338.0 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
 9339.5 "--stunned--"
-9341.7 "Queen's Justice" sync / 1[56]:[^:]*:Queen's Warrior:59BF:/ # only on failure
-9342.4 "The Means" sync / 1[56]:[^:]*:(Queen's Gunner|Queen's Warrior):59B[BD]:/
-9342.4 "The Ends" sync / 1[56]:[^:]*:(Queen's Soldier|Queen's Knight):59B[AC]:/
+9341.7 "Queen's Justice" Ability { id: "59BF", source: "Queen's Warrior" } # only on failure
+9342.4 "The Means" Ability { id: "59B[BD]", source: "(Queen's Gunner|Queen's Warrior)" }
+9342.4 "The Ends" Ability { id: "59B[AC]", source: "(Queen's Soldier|Queen's Knight)" }
 9345.4 "--unstunned--"
-9354.5 "Cleansing Slash" sync / 1[56]:[^:]*:The Queen:59C5:/
+9354.5 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 
-9367.7 "Relentless Play" sync / 1[56]:[^:]*:The Queen:59FC:/
-9373.8 "Double Gambit" sync / 1[56]:[^:]*:Queen's Soldier:59D9:/
-9382.0 "Secrets Revealed" sync / 1[56]:[^:]*:Queen's Soldier:5B8A:/
-9382.1 "--sync--" sync / 1[56]:[^:]*:Soldier Avatar:5B8C:/
+9367.7 "Relentless Play" Ability { id: "59FC", source: "The Queen" }
+9373.8 "Double Gambit" Ability { id: "59D9", source: "Queen's Soldier" }
+9382.0 "Secrets Revealed" Ability { id: "5B8A", source: "Queen's Soldier" }
+9382.1 "--sync--" Ability { id: "5B8C", source: "Soldier Avatar" }
 9388.9 "--untargetable--"
-9391.9 "Pawn Off" sync / 1[56]:[^:]*:Soldier Avatar:59DB:/
-9397.1 "Judgment Blade" sync / 1[56]:[^:]*:The Queen:59C[12]:/
-9397.9 "Sword Omen/Shield Omen" sync / 1[56]:[^:]*:Queen's Knight:59C[AB]:/
+9391.9 "Pawn Off" Ability { id: "59DB", source: "Soldier Avatar" }
+9397.1 "Judgment Blade" Ability { id: "59C[12]", source: "The Queen" }
+9397.9 "Sword Omen/Shield Omen" Ability { id: "59C[AB]", source: "Queen's Knight" }
 9401.9 "--targetable--"
-9406.1 "Optimal Play" sync / 1[56]:[^:]*:Queen's Knight:59CE:/
+9406.1 "Optimal Play" Ability { id: "59CE", source: "Queen's Knight" }
 
-9415.0 "Empyrean Iniquity" sync / 1[56]:[^:]*:The Queen:59C8:/
-9423.2 "--sync--" sync / 1[56]:[^:]*:The Queen:5BCB:/
-9429.4 "Northswain's Glow" sync / 1[56]:[^:]*:The Queen:59C3:/
-9437.6 "Queen's Will" sync / 1[56]:[^:]*:The Queen:59B9:/
-9440.2 "--explosion--" sync / 1[56]:[^:]*:The Queen:59C4:/
-9445.7 "Beck And Call To Arms" sync / 1[56]:[^:]*:The Queen:5B99:/
-9450.0 "The Means" sync / 1[56]:[^:]*:(Queen's Gunner|Queen's Warrior):59B[BD]:/
-9450.0 "The Ends" sync / 1[56]:[^:]*:(Queen's Soldier|Queen's Knight):59B[AC]:/
-9459.9 "Cleansing Slash" sync / 1[56]:[^:]*:The Queen:59C5:/
+9415.0 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
+9423.2 "--sync--" Ability { id: "5BCB", source: "The Queen" }
+9429.4 "Northswain's Glow" Ability { id: "59C3", source: "The Queen" }
+9437.6 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
+9440.2 "--explosion--" Ability { id: "59C4", source: "The Queen" }
+9445.7 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
+9450.0 "The Means" Ability { id: "59B[BD]", source: "(Queen's Gunner|Queen's Warrior)" }
+9450.0 "The Ends" Ability { id: "59B[AC]", source: "(Queen's Soldier|Queen's Knight)" }
+9459.9 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 
-9473.1 "Relentless Play" sync / 1[56]:[^:]*:The Queen:59FC:/ window 50,50 jump 9253.1
-9479.3 "Automatic Turret" #sync / 1[56]:[^:]*:Queen's Gunner:59DE:/
-9487.3 "Bombslinger" #sync / 1[56]:[^:]*:Queen's Warrior:5B3E:/
-9487.4 "Turret's Tour" #sync / 1[56]:[^:]*:Queen's Gunner:59DF:/
-9488.0 "Turret's Tour" #sync / 1[56]:[^:]*:Automatic Turret:59E1:/
-9491.2 "Heaven's Wrath" #sync / 1[56]:[^:]*:The Queen:59C6:/
-9494.3 "Reversal Of Forces?" #sync / 1[56]:[^:]*:Queen's Warrior:59D4:/
-9499.0 "--knockback--" #sync / 1[56]:[^:]*:The Queen:59C7:/
-9503.5 "Above Board" #sync / 1[56]:[^:]*:Queen's Warrior:59D1:/
+9473.1 "Relentless Play" Ability { id: "59FC", source: "The Queen" } window 50,50 jump 9253.1
+9479.3 "Automatic Turret" #Ability { id: "59DE", source: "Queen's Gunner" }
+9487.3 "Bombslinger" #Ability { id: "5B3E", source: "Queen's Warrior" }
+9487.4 "Turret's Tour" #Ability { id: "59DF", source: "Queen's Gunner" }
+9488.0 "Turret's Tour" #Ability { id: "59E1", source: "Automatic Turret" }
+9491.2 "Heaven's Wrath" #Ability { id: "59C6", source: "The Queen" }
+9494.3 "Reversal Of Forces?" #Ability { id: "59D4", source: "Queen's Warrior" }
+9499.0 "--knockback--" #Ability { id: "59C7", source: "The Queen" }
+9503.5 "Above Board" #Ability { id: "59D1", source: "Queen's Warrior" }
 9504.5 "--stunned--"
-9506.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Bolt:(59D3|5B86):/
-9509.5 "Lots Cast" #sync / 1[56]:[^:]*:Aetherial Burst:(59D2|5B87):/
+9506.5 "Lots Cast" #Ability { id: "(59D3|5B86)", source: "Aetherial Bolt" }
+9509.5 "Lots Cast" #Ability { id: "(59D2|5B87)", source: "Aetherial Burst" }
 9511.2 "--unstunned--"
