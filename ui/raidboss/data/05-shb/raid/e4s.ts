@@ -72,6 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Yellow Spread',
+          cn: '黄标分散',
         },
       },
     },
@@ -101,6 +102,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Orange Stack',
+          cn: '橙标分摊',
         },
       },
     },
@@ -361,6 +363,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Blue Weight',
+          cn: '蓝标大陆之重',
         },
       },
     },
@@ -409,6 +412,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Gaol on YOU (w/${player})',
+          cn: '石牢点名 (与${player})',
         },
       },
     },
@@ -432,7 +436,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'VON VORNE RECHTS RUNTER', // FIXME
           fr: 'PARTEZ DE L\'AVANT DROITE', // FIXME
           ja: '右前壊れるよ', // FIXME
-          cn: '破坏右前', // FIXME
+          cn: '左 (或 后)',
           ko: '앞 오른쪽 피하기', // FIXME
         },
         left: Outputs.left,
@@ -459,7 +463,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'VON HINTEN RECHTS RUNTER', // FIXME
           fr: 'PARTEZ DE L\'ARRIÈRE DROITE', // FIXME
           ja: '右後ろ壊れるよ', // FIXME
-          cn: '破坏右后', // FIXME
+          cn: '左 (或 前)',
           ko: '뒤 오른쪽 피하기', // FIXME
         },
         left: Outputs.left,
@@ -486,7 +490,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'VON HINTEN LINKS RUNTER', // FIXME
           fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE', // FIXME
           ja: '左後ろ壊れるよ', // FIXME
-          cn: '破坏左后', // FIXME
+          cn: '右 (或 前)',
           ko: '뒤 왼쪽 피하기', // FIXME
         },
         right: Outputs.right,
@@ -513,7 +517,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'VON VORNE LINKS RUNTER', // FIXME
           fr: 'PARTEZ DE L\'AVANT GAUCHE', // FIXME
           ja: '左前壊れるよ', // FIXME
-          cn: '破坏左前', // FIXME
+          cn: '右 (或 后)',
           ko: '앞 왼쪽 피하기', // FIXME
         },
         right: Outputs.right,
