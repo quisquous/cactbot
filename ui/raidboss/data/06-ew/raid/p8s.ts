@@ -967,7 +967,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Später sammeln (mit ${player})',
             fr: 'Package plus tard (avec ${player})',
             ja: '自分に頭割り (+${player})',
-            cn: '稍后分摊 (与 ${player})',
+            cn: '稍后分摊 (与${player})',
             ko: '나중에 쉐어 (+ ${player})',
           },
           noDebuff: {
@@ -2275,7 +2275,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '${color} Turm (mit ${player})',
             fr: 'Tour ${color} (avec ${player})',
             ja: '${color}塔 (+${player})',
-            cn: '${color} 塔 (与 ${player})',
+            cn: '${color} 塔 (与${player})',
             ko: '${color} 기둥 (${player})',
           },
           colorTowerMergeLetter: {
@@ -2291,7 +2291,7 @@ const triggerSet: TriggerSet<Data> = {
             de: '${color} Turm (mit ${player1} oder ${player2})',
             fr: 'Tour ${color} (avec ${player1} ou ${player2})',
             ja: '${color}塔 (+${player1}/${player2})',
-            cn: '${color} 塔 (与 ${player1} 或 ${player2})',
+            cn: '${color} 塔 (与${player1} 或 ${player2})',
             ko: '${color} 기둥 (${player1} 또는 ${player2})',
           },
           towerMergeLetters: {
@@ -2307,7 +2307,7 @@ const triggerSet: TriggerSet<Data> = {
             de: 'Turm (mit ${player1} oder ${player2})',
             fr: 'Tour (avec ${player1} ou ${player2})',
             ja: '塔 (+${player1}/${player2})',
-            cn: '塔 (与 ${player1} 或 ${player2})',
+            cn: '塔 (与${player1} 或 ${player2})',
             ko: '기둥 (${player1} 또는 ${player2})',
           },
           colorTowerAvoid: {
@@ -2625,7 +2625,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Zweite Türme (mit ${player})',
           fr: 'Secondes tours (avec ${player})',
           ja: '2番目で入る (+${player})',
-          cn: '第二轮塔 (与 ${player})',
+          cn: '第二轮塔 (与${player})',
           ko: '두번째 기둥 (+ ${player})',
         },
         unknown: {
@@ -2686,7 +2686,7 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Erste Türme (mit ${player})',
           fr: 'Premières tours (avec ${player})',
           ja: '先に入る (+${player})',
-          cn: '第一轮塔 (与 ${player})',
+          cn: '第一轮塔 (与${player})',
           ko: '첫번째 기둥 (+ ${player})',
         },
         unknown: {
