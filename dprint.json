@@ -9,7 +9,8 @@
     "./dist/",
     "./npm-package/",
     "./plugin/ThirdParty/",
-    "./publish/"
+    "./publish/",
+    "**/*-lock.json"
   ],
   "lineWidth": 100,
   "useTabs": false,
