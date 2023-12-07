@@ -9,67 +9,67 @@ hideall "--sync--"
 # initial
 # Terrestrial Weaponry will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:790:/ window 0,1
-13.5 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-18.6 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-25.7 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
+13.5 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
+18.6 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
+25.7 "Magitek Fire III" Ability { id: "1F16", source: "Magna Roader" }
 
 # Wild Speed Loop (until stunned, max 4 cycles)
 35.5 "--untargetable--"
-35.5 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 5,5 # boss moves south first, can delay timeline
-35.6 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-36.6 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-37.6 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-38.6 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+35.5 "--sync--" Ability { id: "207E", source: "Magna Roader" } window 5,5 # boss moves south first, can delay timeline
+35.6 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+36.6 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+37.6 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+38.6 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
-45.7 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-45.8 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-46.8 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-47.8 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-48.8 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+45.7 "--sync--" Ability { id: "207E", source: "Magna Roader" }
+45.8 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+46.8 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+47.8 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+48.8 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
-55.9 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-56.0 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-57.0 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-58.0 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-59.0 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+55.9 "--sync--" Ability { id: "207E", source: "Magna Roader" }
+56.0 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+57.0 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+58.0 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+59.0 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
-66.1 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/
-66.2 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-67.2 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-68.2 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-69.2 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+66.1 "--sync--" Ability { id: "207E", source: "Magna Roader" }
+66.2 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+67.2 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+68.2 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+69.2 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
 # Post Wild Speed loop -> back into Wild Speed loop
 70.2 "--targetable--"
 70.2 "--sync--" sync / 14:[^:]*:Magna Roader:1F16:/ window 40,10
-73.2 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
-77.3 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/ window 47,10 # can jump here instead after being hit with the cannons
-84.8 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-89.9 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-94.1 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
-101.6 "Magitek Fire III" sync / 1[56]:[^:]*:Magna Roader:1F16:/
-105.7 "Wheel" sync / 1[56]:[^:]*:Magna Roader:1F14:/
-113.2 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
-118.4 "Magitek Fire II" sync / 1[56]:[^:]*:Magna Roader:1F15:/
+73.2 "Magitek Fire III" Ability { id: "1F16", source: "Magna Roader" }
+77.3 "Wheel" Ability { id: "1F14", source: "Magna Roader" } window 47,10 # can jump here instead after being hit with the cannons
+84.8 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
+89.9 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
+94.1 "Wheel" Ability { id: "1F14", source: "Magna Roader" }
+101.6 "Magitek Fire III" Ability { id: "1F16", source: "Magna Roader" }
+105.7 "Wheel" Ability { id: "1F14", source: "Magna Roader" }
+113.2 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
+118.4 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
 
 133.3 "--untargetable--"
-133.3 "--sync--" sync / 1[56]:[^:]*:Magna Roader:207E:/ window 60,60 jump 35.5
-133.4 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-134.4 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-135.4 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-136.4 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+133.3 "--sync--" Ability { id: "207E", source: "Magna Roader" } window 60,60 jump 35.5
+133.4 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+134.4 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+135.4 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+136.4 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
-143.5 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
-143.6 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-144.6 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-145.6 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-146.6 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+143.5 "--sync--" #Ability { id: "207E", source: "Magna Roader" }
+143.6 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+144.6 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+145.6 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+146.6 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
-153.7 "--sync--" #sync / 1[56]:[^:]*:Magna Roader:207E:/
-153.8 "Wild Speed 1" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-154.8 "Wild Speed 2" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-155.8 "Wild Speed 3" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
-156.8 "Wild Speed 4" #sync / 1[56]:[^:]*:Magna Roader:1FF8:/
+153.7 "--sync--" #Ability { id: "207E", source: "Magna Roader" }
+153.8 "Wild Speed 1" #Ability { id: "1FF8", source: "Magna Roader" }
+154.8 "Wild Speed 2" #Ability { id: "1FF8", source: "Magna Roader" }
+155.8 "Wild Speed 3" #Ability { id: "1FF8", source: "Magna Roader" }
+156.8 "Wild Speed 4" #Ability { id: "1FF8", source: "Magna Roader" }
 
 
 ### Subject Number XXIV
@@ -84,42 +84,42 @@ hideall "--sync--"
 1013.2 "Elemental Overload (Random)"
 
 # fire phase
-1100.0 "Elemental Overload (Fire)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(9|C):/
-1112.2 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1118.9 "Fire II" sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
-1130.0 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1132.6 "Triflame" sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1133.6 "Fire II" sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
-1134.6 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
+1100.0 "Elemental Overload (Fire)" Ability { id: "82A(9|C)", source: "Subject Number XXIV" }
+1112.2 "Triflame" Ability { id: "82B7", source: "Subject Number XXIV" }
+1118.9 "Fire II" Ability { id: "82B6", source: "Subject Number XXIV" }
+1130.0 "Triflame" Ability { id: "82B7", source: "Subject Number XXIV" }
+1132.6 "Triflame" Ability { id: "82B7", source: "Subject Number XXIV" }
+1133.6 "Fire II" Ability { id: "82B6", source: "Subject Number XXIV" }
+1134.6 "System Error" Ability { id: "82B3", source: "Subject Number XXIV" }
 
 # ice phase
-1149.7 "Elemental Overload (Ice)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(8|B):/
-1161.1 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
-1167.8 "Blizzard II" sync / 1[56]:[^:]*:Subject Number XXIV:82B5:/
-1178.8 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
-1181.4 "Ice Grid" sync / 1[56]:[^:]*:Subject Number XXIV:82B4:/
-1182.4 "Blizzard II" sync / 1[56]:[^:]*:Subject Number XXIV:82B5:/
-1183.5 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
+1149.7 "Elemental Overload (Ice)" Ability { id: "82A(8|B)", source: "Subject Number XXIV" }
+1161.1 "Ice Grid" Ability { id: "82B4", source: "Subject Number XXIV" }
+1167.8 "Blizzard II" Ability { id: "82B5", source: "Subject Number XXIV" }
+1178.8 "Ice Grid" Ability { id: "82B4", source: "Subject Number XXIV" }
+1181.4 "Ice Grid" Ability { id: "82B4", source: "Subject Number XXIV" }
+1182.4 "Blizzard II" Ability { id: "82B5", source: "Subject Number XXIV" }
+1183.5 "System Error" Ability { id: "82B3", source: "Subject Number XXIV" }
 
 # thunder phase
-1198.6 "Elemental Overload (Thunder)" sync / 1[56]:[^:]*:Subject Number XXIV:82A(A|D):/
-1211.6 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
-1213.1 "--sync--" sync / 1[56]:[^:]*:Subject Number XXIV:82BB:/
-1218.1 "Sparking Current" sync / 1[56]:[^:]*:Subject Number XXIV:82BA:/
-1227.0 "--sync--" sync / 1[56]:[^:]*:Subject Number XXIV:82BB:/
-1230.4 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
-1232.1 "Sparking Current" sync / 1[56]:[^:]*:Subject Number XXIV:82BA:/
-1234.5 "Thunder II" sync / 1[56]:[^:]*:Subject Number XXIV:82B8:/
-1236.1 "System Error" sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
+1198.6 "Elemental Overload (Thunder)" Ability { id: "82A(A|D)", source: "Subject Number XXIV" }
+1211.6 "Thunder II" Ability { id: "82B8", source: "Subject Number XXIV" }
+1213.1 "--sync--" Ability { id: "82BB", source: "Subject Number XXIV" }
+1218.1 "Sparking Current" Ability { id: "82BA", source: "Subject Number XXIV" }
+1227.0 "--sync--" Ability { id: "82BB", source: "Subject Number XXIV" }
+1230.4 "Thunder II" Ability { id: "82B8", source: "Subject Number XXIV" }
+1232.1 "Sparking Current" Ability { id: "82BA", source: "Subject Number XXIV" }
+1234.5 "Thunder II" Ability { id: "82B8", source: "Subject Number XXIV" }
+1236.1 "System Error" Ability { id: "82B3", source: "Subject Number XXIV" }
 
 # loop
-1251.2 "Elemental Overload (Fire)" sync / 1[56]:[^:]*:Subject Number XXIV:82AC:/ jump 1100.0
-1262.5 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1269.2 "Fire II" #sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
-1280.2 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1282.8 "Triflame" #sync / 1[56]:[^:]*:Subject Number XXIV:82B7:/
-1283.8 "Fire II" #sync / 1[56]:[^:]*:Subject Number XXIV:82B6:/
-1284.9 "System Error" #sync / 1[56]:[^:]*:Subject Number XXIV:82B3:/
+1251.2 "Elemental Overload (Fire)" Ability { id: "82AC", source: "Subject Number XXIV" } jump 1100.0
+1262.5 "Triflame" #Ability { id: "82B7", source: "Subject Number XXIV" }
+1269.2 "Fire II" #Ability { id: "82B6", source: "Subject Number XXIV" }
+1280.2 "Triflame" #Ability { id: "82B7", source: "Subject Number XXIV" }
+1282.8 "Triflame" #Ability { id: "82B7", source: "Subject Number XXIV" }
+1283.8 "Fire II" #Ability { id: "82B6", source: "Subject Number XXIV" }
+1284.9 "System Error" #Ability { id: "82B3", source: "Subject Number XXIV" }
 
 
 ### Inferno
@@ -144,61 +144,61 @@ hideall "--sync--"
 # * Ketu Cut (2086) / Rahu Cut (2087) is powering up.
 # Assessment Grounds will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:792:/ window 10000,0
-2010.4 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:1F26:/
-2017.9 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
-2028.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
+2010.4 "Ketu Slash" Ability { id: "1F26", source: "Inferno" }
+2017.9 "Rahu Blaster" Ability { id: "1F29", source: "Inferno" }
+2028.8 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
 
-2045.0 "Ketu Cut 1" sync / 1[56]:[^:]*:Inferno:2086:/ window 50,50
-2054.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
-2062.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
-2069.8 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
-2079.9 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2087.9 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2096.8 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:1F29:/
-2104.3 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2045.0 "Ketu Cut 1" Ability { id: "2086", source: "Inferno" } window 50,50
+2054.7 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
+2062.3 "Rahu Blaster" Ability { id: "1F29", source: "Inferno" }
+2069.8 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
+2079.9 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2087.9 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2096.8 "Rahu Blaster" Ability { id: "1F29", source: "Inferno" }
+2104.3 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
 
-2119.2 "Rahu Cut 1" sync / 1[56]:[^:]*:Inferno:2087:/ window 50,50
+2119.2 "Rahu Cut 1" Ability { id: "2087", source: "Inferno" } window 50,50
 2123.3 "--adds--"
-2128.8 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
-2136.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
-2143.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
-2151.4 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2128.8 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
+2136.3 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
+2143.9 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
+2151.4 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
 # 2159 Quick Charge can go off here, which delays Ketu & Rahu by 30s, throws off timeline.
 # Hopefully the large sync on Rahu Cut below will get it sorted again.
-2159.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2167.8 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2175.6 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
-2183.1 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208B:/
+2159.8 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2167.8 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2175.6 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
+2183.1 "Ketu Slash" Ability { id: "208B", source: "Inferno" }
 
-2197.9 "Ketu Cut 2" sync / 1[56]:[^:]*:Inferno:2086:/ window 50,50
+2197.9 "Ketu Cut 2" Ability { id: "2086", source: "Inferno" } window 50,50
 2201.8 "--adds--"
-2207.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
-2215.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
-2222.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
-2230.4 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
+2207.7 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
+2215.3 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
+2222.9 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
+2230.4 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
 # 2237.5 Quick Charge?
-2238.5 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2246.5 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2254.3 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208E:/
-2261.9 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
+2238.5 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2246.5 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2254.3 "Rahu Blaster" Ability { id: "208E", source: "Inferno" }
+2261.9 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
 
 # Once we get to this Rahu Cut, then it is fully powered.
-2276.8 "Rahu Cut 2" sync / 1[56]:[^:]*:Inferno:2087:/ window 150,150
-2286.4 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
-2294.0 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
-2301.5 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
-2309.0 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
-2317.3 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2325.4 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2333.2 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+2276.8 "Rahu Cut 2" Ability { id: "2087", source: "Inferno" } window 150,150
+2286.4 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
+2294.0 "Rahu Blaster" Ability { id: "208F", source: "Inferno" }
+2301.5 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
+2309.0 "Rahu Blaster" Ability { id: "208F", source: "Inferno" }
+2317.3 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2325.4 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2333.2 "Rahu Blaster" Ability { id: "208F", source: "Inferno" }
 
 # loop
-2340.7 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/
-2351.6 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2359.7 "Ketu & Rahu" sync / 1[56]:[^:]*:Inferno:1F25:/
-2367.6 "Rahu Blaster" sync / 1[56]:[^:]*:Inferno:208F:/
+2340.7 "Ketu Slash" Ability { id: "208C", source: "Inferno" }
+2351.6 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2359.7 "Ketu & Rahu" Ability { id: "1F25", source: "Inferno" }
+2367.6 "Rahu Blaster" Ability { id: "208F", source: "Inferno" }
 
-2375.2 "Ketu Slash" sync / 1[56]:[^:]*:Inferno:208C:/ window 20,200 jump 2340.7
-2386.1 "Ketu & Rahu" #sync / 1[56]:[^:]*:Inferno:1F25:/
-2394.2 "Ketu & Rahu" #sync / 1[56]:[^:]*:Inferno:1F25:/
-2402.1 "Rahu Blaster" #sync / 1[56]:[^:]*:Inferno:208F:/
+2375.2 "Ketu Slash" Ability { id: "208C", source: "Inferno" } window 20,200 jump 2340.7
+2386.1 "Ketu & Rahu" #Ability { id: "1F25", source: "Inferno" }
+2394.2 "Ketu & Rahu" #Ability { id: "1F25", source: "Inferno" }
+2402.1 "Rahu Blaster" #Ability { id: "208F", source: "Inferno" }

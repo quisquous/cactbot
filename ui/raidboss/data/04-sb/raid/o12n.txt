@@ -7,41 +7,41 @@ hideall "--sync--"
 ### Phase 1 (loops until low%)
 0.0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-15.3 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ window 16,3
-20.4 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
-23.5 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
-27.5 "Spotlight" sync / 1[56]:[^:]*:Omega-M:330A:/
-27.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-38.0 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:32F1:/
-50.4 "Discharger" sync / 1[56]:[^:]*:Omega-M:32F6:/
-61.7 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/
-66.9 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
-75.1 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3312:/
-92.5 "Synthetic Blades" sync / 1[56]:[^:]*:Omega-M:3301:/
-100.6 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/
-105.9 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-M:3305:/
-111.0 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
-122.3 "Subject Simulation M" sync / 1[56]:[^:]*:Omega-M:32F4:/
-134.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/
-141.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
-149.1 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
-152.2 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
-156.2 "Spotlight" sync / 1[56]:[^:]*:Omega-M:330A:/
-156.4 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
-162.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-175.9 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
-184.2 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ # drift -0.047
-191.4 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/ # drift 0.045
-196.7 "Subject Simulation F" sync / 1[56]:[^:]*:Omega-M:32F1:/
-209.1 "Discharger" sync / 1[56]:[^:]*:Omega-M:32F6:/
-215.3 "Synthetic Blades" sync / 1[56]:[^:]*:Omega-M:3301:/
-223.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega-M:330D:/ # drift -0.043001
-228.7 "Superliminal Steel" sync / 1[56]:[^:]*:Omega-M:3305:/ # drift -0.046
-233.8 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega-M:3303:/
-246.9 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3312:/
+15.3 "Solar Ray" Ability { id: "330F", source: "Omega-M" } window 16,3
+20.4 "Program Alpha" Ability { id: "3308", source: "Omega-M" }
+23.5 "Floodlight" Ability { id: "3309", source: "Omega-M" }
+27.5 "Spotlight" Ability { id: "330A", source: "Omega-M" }
+27.7 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+38.0 "Subject Simulation F" Ability { id: "32F1", source: "Omega-M" }
+50.4 "Discharger" Ability { id: "32F6", source: "Omega-M" }
+61.7 "Optimized Fire III" Ability { id: "330D", source: "Omega-M" }
+66.9 "Optimized Blizzard III" Ability { id: "3303", source: "Omega-M" }
+75.1 "Laser Shower" Ability { id: "3312", source: "Omega-M" }
+92.5 "Synthetic Blades" Ability { id: "3301", source: "Omega-M" }
+100.6 "Optimized Fire III" Ability { id: "330D", source: "Omega-M" }
+105.9 "Superliminal Steel" Ability { id: "3305", source: "Omega-M" }
+111.0 "Optimized Blizzard III" Ability { id: "3303", source: "Omega-M" }
+122.3 "Subject Simulation M" Ability { id: "32F4", source: "Omega-M" }
+134.7 "Efficient Bladework" Ability { id: "32F3", source: "Omega-M" }
+141.0 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" }
+149.1 "Program Alpha" Ability { id: "3308", source: "Omega-M" }
+152.2 "Floodlight" Ability { id: "3309", source: "Omega-M" }
+156.2 "Spotlight" Ability { id: "330A", source: "Omega-M" }
+156.4 "Beyond Strength" Ability { id: "3300", source: "Omega-M" }
+162.6 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+175.9 "Laser Shower" Ability { id: "3311", source: "Omega-M" }
+184.2 "Solar Ray" Ability { id: "330F", source: "Omega-M" } # drift -0.047
+191.4 "Laser Shower" Ability { id: "3311", source: "Omega-M" } # drift 0.045
+196.7 "Subject Simulation F" Ability { id: "32F1", source: "Omega-M" }
+209.1 "Discharger" Ability { id: "32F6", source: "Omega-M" }
+215.3 "Synthetic Blades" Ability { id: "3301", source: "Omega-M" }
+223.5 "Optimized Fire III" Ability { id: "330D", source: "Omega-M" } # drift -0.043001
+228.7 "Superliminal Steel" Ability { id: "3305", source: "Omega-M" } # drift -0.046
+233.8 "Optimized Blizzard III" Ability { id: "3303", source: "Omega-M" }
+246.9 "Laser Shower" Ability { id: "3312", source: "Omega-M" }
 
 # Fake lookahead window before loop back to beginning
-282.2 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/ window 20,20 jump 15.3
+282.2 "Solar Ray" Ability { id: "330F", source: "Omega-M" } window 20,20 jump 15.3
 287.3 "Program Alpha"
 290.4 "Floodlight"
 294.4 "Spotlight"
@@ -52,27 +52,27 @@ hideall "--sync--"
 
 ### Phase 2: Passage of Arms
 500.0 "--sync--" sync / 00:0044:Omega-M:\<blip\> Limits of single combatant/ window 500,0
-514.0 "Ground Zero" sync / 1[56]:[^:]*:Omega-M:3313:/ # drift 0.045001
-514.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3314:/
-522.0 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/ # drift -0.045
-522.0 "Discharger" sync / 1[56]:[^:]*:Omega:32F6:/
+514.0 "Ground Zero" Ability { id: "3313", source: "Omega-M" } # drift 0.045001
+514.0 "Electric Slide" Ability { id: "3314", source: "Omega" }
+522.0 "Efficient Bladework" Ability { id: "32F3", source: "Omega-M" } # drift -0.045
+522.0 "Discharger" Ability { id: "32F6", source: "Omega" }
 
-526.3 "Optimized Passage of Arms" sync / 1[56]:[^:]*:Omega-M:3316:/ window 550,50
+526.3 "Optimized Passage of Arms" Ability { id: "3316", source: "Omega-M" } window 550,50
 587.5 "Laser Shower Enrage"
 
 
 ### Phase 3: Everyone dies, loops forever
 # Post-passage of arms startup
-700.0 "--sync--" sync / 1[56]:[^:]*:Omega:3319:/ window 700,0
-711.0 "Ground Zero" sync / 1[56]:[^:]*:Omega-M:3313:/
-711.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3314:/
-719.1 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32F3:/ # drift -0.044
-719.1 "Discharger" sync / 1[56]:[^:]*:Omega:32F6:/
-725.1 "Firewall" sync / 1[56]:[^:]*:Omega-M:3392:/ window 100,10
+700.0 "--sync--" Ability { id: "3319", source: "Omega" } window 700,0
+711.0 "Ground Zero" Ability { id: "3313", source: "Omega-M" }
+711.0 "Electric Slide" Ability { id: "3314", source: "Omega" }
+719.1 "Efficient Bladework" Ability { id: "32F3", source: "Omega-M" } # drift -0.044
+719.1 "Discharger" Ability { id: "32F6", source: "Omega" }
+725.1 "Firewall" Ability { id: "3392", source: "Omega-M" } window 100,10
 
 737.1 "Synthetic Blades/Shield" # branching
-737.1 "--sync--" sync / 1[56]:[^:]*:Omega-M:32FD:/ jump 937.1 window 20,20 # shield
-737.1 "--sync--" sync / 1[56]:[^:]*:Omega:3301:/ jump 1137.1 window 20,20 # blades
+737.1 "--sync--" Ability { id: "32FD", source: "Omega-M" } jump 937.1 window 20,20 # shield
+737.1 "--sync--" Ability { id: "3301", source: "Omega" } jump 1137.1 window 20,20 # blades
 739.1 "Laser Shower"
 
 # Two paths here.  The 1st Shield/Blades has a Solar Ray that the others don't.
@@ -81,21 +81,21 @@ hideall "--sync--"
 # PoA -> Firewall -> 1st Blades -> 2nd Shield -> 2nd Blades -> 2nd Shield -> etc
 
 # first time shield loop (with solar ray)
-937.1 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
-939.1 "Laser Shower" sync / 1[56]:[^:]*:Omega:3312:/
-947.1 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
-947.1 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
-952.1 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
-953.1 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-963.1 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/
-985.4 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
-992.5 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/ # drift -0.046001
-1008.6 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/ # drift -0.044999
-1013.6 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
-1016.6 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
-1016.8 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/ # drift -0.044
-1027.7 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
-1035.7 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/ window 20,20 jump 1478.4
+937.1 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" }
+939.1 "Laser Shower" Ability { id: "3312", source: "Omega" }
+947.1 "Optimized Fire III" Ability { id: "330D", source: "Omega" }
+947.1 "Beyond Strength" Ability { id: "3300", source: "Omega-M" }
+952.1 "Optimized Blizzard III" Ability { id: "3303", source: "Omega" }
+953.1 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+963.1 "Solar Ray" Ability { id: "330F", source: "Omega-M" }
+985.4 "Cosmo Memory" Ability { id: "331B", source: "Omega-M" }
+992.5 "Resonance" Ability { id: "3394", source: "Omega-M" } # drift -0.046001
+1008.6 "Suppression" Ability { id: "331E", source: "Omega-M" } # drift -0.044999
+1013.6 "Optical Laser" Ability { id: "3320", source: "Optical Unit" }
+1016.6 "Optimized Meteor" Ability { id: "3325", source: "Omega-M" }
+1016.8 "Optimized Sagittarius Arrow" Ability { id: "3323", source: "Omega-M" } # drift -0.044
+1027.7 "Optimized Blade Dance" Ability { id: "3322", source: "Omega" }
+1035.7 "Synthetic Blades" Ability { id: "3301", source: "Omega" } window 20,20 jump 1478.4
 
 # fake lookahead into 2nd blades loop
 1037.7 "Laser Shower"
@@ -108,24 +108,24 @@ hideall "--sync--"
 1056.1 "Optimized Blizzard III"
 
 # first time blades loop (with solar ray)
-1137.1 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
-1139.1 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
-1146.4 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
-1146.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
-1149.5 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
-1152.9 "Superliminal Steel" sync / 1[56]:[^:]*:Omega:3305:/
-1153.5 "Spotlight" sync / 1[56]:[^:]*:Omega-M:331A:/ # drift -0.049001
-1157.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-1158.1 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
-1168.9 "Solar Ray" sync / 1[56]:[^:]*:Omega-M:330F:/
-1192.0 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
-1199.3 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/
-1215.8 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
-1220.9 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
-1224.1 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
-1224.3 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
-1235.4 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
-1243.6 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ window 20,20 jump 1400
+1137.1 "Synthetic Blades" Ability { id: "3301", source: "Omega" }
+1139.1 "Laser Shower" Ability { id: "3311", source: "Omega-M" }
+1146.4 "Program Alpha" Ability { id: "3308", source: "Omega-M" }
+1146.5 "Optimized Fire III" Ability { id: "330D", source: "Omega" }
+1149.5 "Floodlight" Ability { id: "3309", source: "Omega-M" }
+1152.9 "Superliminal Steel" Ability { id: "3305", source: "Omega" }
+1153.5 "Spotlight" Ability { id: "331A", source: "Omega-M" } # drift -0.049001
+1157.6 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+1158.1 "Optimized Blizzard III" Ability { id: "3303", source: "Omega" }
+1168.9 "Solar Ray" Ability { id: "330F", source: "Omega-M" }
+1192.0 "Cosmo Memory" Ability { id: "331B", source: "Omega-M" }
+1199.3 "Resonance" Ability { id: "3394", source: "Omega-M" }
+1215.8 "Suppression" Ability { id: "331E", source: "Omega-M" }
+1220.9 "Optical Laser" Ability { id: "3320", source: "Optical Unit" }
+1224.1 "Optimized Meteor" Ability { id: "3325", source: "Omega-M" }
+1224.3 "Optimized Sagittarius Arrow" Ability { id: "3323", source: "Omega-M" }
+1235.4 "Optimized Blade Dance" Ability { id: "3322", source: "Omega" }
+1243.6 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" } window 20,20 jump 1400
 
 # fake lookahead into 2nd shield loop
 1245.6 "Laser Shower"
@@ -137,40 +137,40 @@ hideall "--sync--"
 1277.8 "Resonance"
 
 # second time shield loop (no solar ray)
-1400.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/
-1402.0 "Laser Shower" sync / 1[56]:[^:]*:Omega:3312:/
-1410.5 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
-1410.6 "Beyond Strength" sync / 1[56]:[^:]*:Omega-M:3300:/
-1415.7 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
-1416.7 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-1427.0 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
-1434.2 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/ # drift 0.045001
-1450.8 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
-1455.8 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
-1459.0 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
-1459.2 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
-1470.3 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+1400.0 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" }
+1402.0 "Laser Shower" Ability { id: "3312", source: "Omega" }
+1410.5 "Optimized Fire III" Ability { id: "330D", source: "Omega" }
+1410.6 "Beyond Strength" Ability { id: "3300", source: "Omega-M" }
+1415.7 "Optimized Blizzard III" Ability { id: "3303", source: "Omega" }
+1416.7 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+1427.0 "Cosmo Memory" Ability { id: "331B", source: "Omega-M" }
+1434.2 "Resonance" Ability { id: "3394", source: "Omega-M" } # drift 0.045001
+1450.8 "Suppression" Ability { id: "331E", source: "Omega-M" }
+1455.8 "Optical Laser" Ability { id: "3320", source: "Optical Unit" }
+1459.0 "Optimized Meteor" Ability { id: "3325", source: "Omega-M" }
+1459.2 "Optimized Sagittarius Arrow" Ability { id: "3323", source: "Omega-M" }
+1470.3 "Optimized Blade Dance" Ability { id: "3322", source: "Omega" }
 
 # second time blades loop (no solar ray)
-1478.4 "Synthetic Blades" sync / 1[56]:[^:]*:Omega:3301:/
-1480.4 "Laser Shower" sync / 1[56]:[^:]*:Omega-M:3311:/
-1487.6 "Program Alpha" sync / 1[56]:[^:]*:Omega-M:3308:/
-1487.6 "Optimized Fire III" sync / 1[56]:[^:]*:Omega:330D:/
-1490.6 "Floodlight" sync / 1[56]:[^:]*:Omega-M:3309:/
-1493.8 "Superliminal Steel" sync / 1[56]:[^:]*:Omega:3305:/
-1494.6 "Spotlight" sync / 1[56]:[^:]*:Omega-M:331A:/
-1498.6 "Efficient Bladework" sync / 1[56]:[^:]*:Omega-M:32FF:/
-1498.8 "Optimized Blizzard III" sync / 1[56]:[^:]*:Omega:3303:/
-1509.8 "Cosmo Memory" sync / 1[56]:[^:]*:Omega-M:331B:/
-1516.8 "Resonance" sync / 1[56]:[^:]*:Omega-M:3394:/
-1532.9 "Suppression" sync / 1[56]:[^:]*:Omega-M:331E:/
-1537.9 "Optical Laser" sync / 1[56]:[^:]*:Optical Unit:3320:/
-1540.9 "Optimized Meteor" sync / 1[56]:[^:]*:Omega-M:3325:/
-1541.1 "Optimized Sagittarius Arrow" sync / 1[56]:[^:]*:Omega-M:3323:/
-1551.9 "Optimized Blade Dance" sync / 1[56]:[^:]*:Omega:3322:/
+1478.4 "Synthetic Blades" Ability { id: "3301", source: "Omega" }
+1480.4 "Laser Shower" Ability { id: "3311", source: "Omega-M" }
+1487.6 "Program Alpha" Ability { id: "3308", source: "Omega-M" }
+1487.6 "Optimized Fire III" Ability { id: "330D", source: "Omega" }
+1490.6 "Floodlight" Ability { id: "3309", source: "Omega-M" }
+1493.8 "Superliminal Steel" Ability { id: "3305", source: "Omega" }
+1494.6 "Spotlight" Ability { id: "331A", source: "Omega-M" }
+1498.6 "Efficient Bladework" Ability { id: "32FF", source: "Omega-M" }
+1498.8 "Optimized Blizzard III" Ability { id: "3303", source: "Omega" }
+1509.8 "Cosmo Memory" Ability { id: "331B", source: "Omega-M" }
+1516.8 "Resonance" Ability { id: "3394", source: "Omega-M" }
+1532.9 "Suppression" Ability { id: "331E", source: "Omega-M" }
+1537.9 "Optical Laser" Ability { id: "3320", source: "Optical Unit" }
+1540.9 "Optimized Meteor" Ability { id: "3325", source: "Omega-M" }
+1541.1 "Optimized Sagittarius Arrow" Ability { id: "3323", source: "Omega-M" }
+1551.9 "Optimized Blade Dance" Ability { id: "3322", source: "Omega" }
 
 # Loop with fake lookahead window
-1560.0 "Synthetic Shield" sync / 1[56]:[^:]*:Omega-M:32FD:/ window 20,20 jump 1400
+1560.0 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" } window 20,20 jump 1400
 1562.0 "Laser Shower"
 1570.5 "Optimized Fire III"
 1570.6 "Beyond Strength"
@@ -183,8 +183,8 @@ hideall "--sync--"
 ### Phase 4: Laser Show Forever
 1800.0 "Enrage" sync / 00:0044:[^:]*:\<blip\> Warning\. Calculations indicate/ window 1800,0
 
-1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega-M:3311:/ window 20,20
-1806.0 "Laser Shower Enrage" sync / 1[56]:[^:]*:Omega:3312:/ window 20,20
+1806.0 "Laser Shower Enrage" Ability { id: "3311", source: "Omega-M" } window 20,20
+1806.0 "Laser Shower Enrage" Ability { id: "3312", source: "Omega" } window 20,20
 1812.0 "Laser Shower Enrage"
 1818.0 "Laser Shower Enrage"
 1824.0 "Laser Shower Enrage"
