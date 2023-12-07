@@ -7,6 +7,7 @@ runs:
       with:
         node-version: '18.18.2'
         cache: 'npm'
+        cache-dependency-path: 'package-lock.json'
 
     - name: Install Dependencies
       shell: bash
