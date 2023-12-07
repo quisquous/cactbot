@@ -3391,7 +3391,7 @@ Options.Triggers.push({
           en: 'Nothing (w/${player}) - ${tower}',
           de: 'Nichts (mit ${player}) - ${tower}',
           fr: 'Rien (avec ${player}) - ${tower}',
-          cn: '闲人 (和 ${player}) - ${tower}',
+          cn: '闲人 (与${player}) - ${tower}',
           ko: '디버프 없음 (+ ${player}) - ${tower}',
         },
         one: {
@@ -3406,7 +3406,7 @@ Options.Triggers.push({
           en: 'One (w/${player}) - ${tower}',
           de: 'Eins (mit ${player}) - ${tower}',
           fr: 'Un (avec ${player}) - ${tower}',
-          cn: '单因子 (和 ${player}) - ${tower}',
+          cn: '单因子 (与${player}) - ${tower}',
           ko: '1번 (+ ${player}) - ${tower}',
         },
         shortLight: {

@@ -1542,7 +1542,7 @@ Options.Triggers.push({
           de: 'Steh im ersten Turm (mit ${player})',
           fr: 'Prenez les tours (avec ${player})',
           ja: 'さきに塔を踏み (+${player})',
-          cn: '踩 1 塔 (与 ${player})',
+          cn: '踩 1 塔 (与${player})',
           ko: '첫번째 기둥 밟기 (${player})',
         },
         spreadFirst: {
@@ -1550,7 +1550,7 @@ Options.Triggers.push({
           de: 'Zuerst verteilen (mit ${player})',
           fr: 'Écartez-vous d\'abord (avec ${player})',
           ja: 'さきに散会 (+${player})',
-          cn: '先分散 (与 ${player})',
+          cn: '先分散 (与${player})',
           ko: '산개 먼저 (${player})',
         },
         unknown: Outputs.unknown,

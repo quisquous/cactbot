@@ -48,6 +48,14 @@ Options.Triggers.push({
              Tanks adjust to where the Red and Green Mirror are located.
              One tank must be inbetween the party, the other closest to Greem Mirror.
              Once Green Mirror goes off, the tanks adjust for Red Mirror.`,
+        cn: `此选项可让 cactbot 提示第四次镜中奇遇的双击退。
+             会在 BOSS 转身期间或之后播报提示, 需要小于 1.4 秒
+             的反应时间来同时躲避绿镜和红镜击退。
+             示例: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
+             人群在 BOSS 瞬移后分成两组, 分别站在 BOSS 身后。
+             坦克根据红镜和绿镜的位置进行调整。
+             一个坦克必须在分组中间，另一个坦克最靠近绿镜。
+             绿镜熄灭后，坦克调整到红镜位置。`,
       },
       type: 'checkbox',
       default: (options) => {
@@ -158,9 +166,11 @@ Options.Triggers.push({
       outputStrings: {
         scytheNext: {
           en: '(under boss => under mirrors soon)',
+          cn: '(BOSS 下方 => 即将去镜子下方)',
         },
         axeNext: {
           en: '(out => middle soon)',
+          cn: '(外 => 即将去中间)',
         },
       },
     },
@@ -192,9 +202,11 @@ Options.Triggers.push({
       outputStrings: {
         redMirrorWest: {
           en: 'Behind => SW',
+          cn: '后 => 左下 (西南)',
         },
         redMirrorEast: {
           en: 'Behind => SE',
+          cn: '后 => 右下 (东南)',
         },
         getBehind: Outputs.getBehind,
       },
@@ -214,9 +226,11 @@ Options.Triggers.push({
       outputStrings: {
         redMirrorEast: {
           en: 'Front => NW',
+          cn: '前 => 左上 (西北)',
         },
         redMirrorWest: {
           en: 'Front => NE',
+          cn: '前 => 右上 (东北)',
         },
         goFront: Outputs.goFront,
       },
@@ -284,7 +298,7 @@ Options.Triggers.push({
           de: 'Frosthieb als nächstes',
           fr: 'Taillade de givre bientôt',
           ja: '次はフロストスラッシュ',
-          cn: '下次攻击前侧面',
+          cn: '冰霜斩 (去背后)',
           ko: '다음: 서리 참격', // FIXME
         },
         drivingFrostNext: {
@@ -292,7 +306,7 @@ Options.Triggers.push({
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientôt',
           ja: '次はフロストスラスト',
-          cn: '下次攻击后面',
+          cn: '冰霜刺 (去前面)',
           ko: '다음: 서리 일격', // FIXME
         },
       },
@@ -323,6 +337,7 @@ Options.Triggers.push({
       outputStrings: {
         cleanse: {
           en: 'Cleanse: ${players}',
+          cn: '驱散: ${players}',
         },
       },
     },
@@ -335,6 +350,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Star on YOU',
+          cn: '冰针点名',
         },
       },
     },
@@ -425,6 +441,7 @@ Options.Triggers.push({
       outputStrings: {
         outThenMiddle: {
           en: 'Out => Middle',
+          cn: '远离 => 中间',
         },
         out: Outputs.out,
       },
@@ -447,12 +464,15 @@ Options.Triggers.push({
       outputStrings: {
         getUnderCards: {
           en: 'Under => Under Cardinal Mirrors',
+          cn: '下方 => 正点镜下方',
         },
         getUnderIntercards: {
           en: 'Under => Under Intercard Mirrors',
+          cn: '下方 => 斜点镜下方',
         },
         getUnderUnknown: {
           en: 'Under Boss => Under Mirrors',
+          cn: 'BOSS 下方 => 镜下方',
         },
         getUnder: Outputs.getUnder,
       },
@@ -518,9 +538,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           getFinalTower: {
             en: 'Get Final Tower',
+            cn: '踩最后塔',
           },
           avoidFinalTower: {
             en: 'Avoid Final Tower',
+            cn: '躲最后塔',
           },
         };
         const light = data.lightsteepedCount[data.me];
@@ -569,6 +591,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stun Aqueous Aether',
+          cn: '眩晕水以太',
         },
       },
     },
@@ -666,6 +689,9 @@ Options.Triggers.push({
         en: `Fast means you can go from the 1st to the 3rd safe spot directly.
              Slow means you need to go 1 => 2 => 3 without skipping 2.
              This is for casters who may not want to move as much.`,
+        cn: `快指你可以从第 1 个安全点直接到达第 3 个安全点。
+             慢指你需要走 1 => 2 => 3 ,不跳过 2。
+             适用于不想移动太多的读条职业。`,
       },
       type: 'StartsUsing',
       netRegex: { source: 'Shiva', id: ['4D75', '4D76'] },
@@ -717,9 +743,11 @@ Options.Triggers.push({
       outputStrings: {
         slowText: {
           en: '${dir1} => ${dir2} => ${dir3} (slow)',
+          cn: '${dir1} => ${dir2} => ${dir3} (慢)',
         },
         fastText: {
           en: '${dir1} => ${dir2} => ${dir3} (fast)',
+          cn: '${dir1} => ${dir2} => ${dir3} (快)',
         },
         dirNW: Outputs.dirNW,
         dirNE: Outputs.dirNE,
@@ -912,9 +940,11 @@ Options.Triggers.push({
       outputStrings: {
         redDragonHead: {
           en: 'Pop Head #${num}',
+          cn: '撞头 #${num}',
         },
         bluePuddle: {
           en: 'Get Puddle #${num}',
+          cn: '踩圈 #${num}',
         },
       },
     },
@@ -988,6 +1018,7 @@ Options.Triggers.push({
         },
         bluCleanse: {
           en: 'Exuviation',
+          cn: '蜕皮',
         },
       },
     },
@@ -1038,9 +1069,11 @@ Options.Triggers.push({
       outputStrings: {
         proteanGetFinalTower: {
           en: 'Protean => Get Final Tower',
+          cn: '八方分散 => 踩最后塔',
         },
         proteanAvoidFinalTower: {
           en: 'Protean => Avoid Final Tower',
+          cn: '八方分散 => 躲最后塔',
         },
       },
     },
@@ -1241,13 +1274,13 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
-        'Shiva': '希瓦',
+        'Earthen Aether': '土以太',
         'Frozen Mirror': '冰面镜',
-        'Mothercrystal': '母水晶',
-        'Luminous Aether': '光以太',
         'great wyrm': '圣龙',
+        'Luminous Aether': '光以太',
+        'Mothercrystal': '母水晶',
+        'Shiva': '希瓦',
       },
       'replaceText': {
         'Absolute Zero': '绝对零度',

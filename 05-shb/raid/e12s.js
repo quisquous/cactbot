@@ -259,6 +259,7 @@ Options.Triggers.push({
           },
           formlessBusterBLU: {
             en: 'Buster on YOU (w/${player})',
+            cn: '死刑点名 (与${player})',
           },
           formlessBusterOnYOU: Outputs.tankBusterOnYou,
         };
@@ -378,9 +379,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           stackOnYou: {
             en: 'Stack on YOU (w/${player})',
+            cn: '分摊点名 (与${player})',
           },
           stacks: {
             en: 'Stacks: ${players}',
+            cn: '分摊: ${players}',
           },
         };
         if (!data.statueStacks.includes(data.me)) {
@@ -1191,18 +1194,19 @@ Options.Triggers.push({
             de: 'Auge auf DIR (w/${player})',
             fr: 'Œil sur VOUS (w/${player})',
             ja: '自分に目 (w/${player})',
-            cn: '石化眼点名 (w/${player})',
+            cn: '石化眼点名 (与${player})',
             ko: '시선징 대상자 (w/${player})', // FIXME
           },
           water: {
             en: 'Stack (w/${player})',
+            cn: '分摊 (与${player})',
           },
           longFire: {
             en: 'Long Fire (w/${player})',
             de: 'langes Feuer (w/${player})',
             fr: 'Feu long (w/${player})',
             ja: 'ファイガ(遅い) (w/${player})',
-            cn: '长火 (w/${player})',
+            cn: '长火 (与${player})',
             ko: '느린 파이가 (w/${player})', // FIXME
           },
           shortFire: {
@@ -1210,7 +1214,7 @@ Options.Triggers.push({
             de: 'kurzes Feuer (w/${player})',
             fr: 'Feu court (w/${player})',
             ja: 'ファイガ(早い) (w/${player})',
-            cn: '短火 (w/${player})',
+            cn: '短火 (与${player})',
             ko: '빠른 파이가 (w/${player})', // FIXME
           },
           longIce: {
@@ -1218,7 +1222,7 @@ Options.Triggers.push({
             de: 'langes Eis (w/${player})',
             fr: 'Glace longue (w/${player})',
             ja: 'ブリザガ(遅い) (w/${player})',
-            cn: '长冰 (w/${player})',
+            cn: '长冰 (与${player})',
             ko: '느린 블리자가 (w/${player})', // FIXME
           },
           shortIce: {
@@ -1226,7 +1230,7 @@ Options.Triggers.push({
             de: 'kurzes Eis (w/${player})',
             fr: 'Glace courte (w/${player})',
             ja: 'ブリザガ(早い) (w/${player})',
-            cn: '短冰 (w/${player})',
+            cn: '短冰 (与${player})',
             ko: '빠른 블리자가 (w/${player})', // FIXME
           },
           unknown: Outputs.unknown,
@@ -1525,6 +1529,7 @@ Options.Triggers.push({
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          cn: '分摊 (${player1}, ${player2})',
         },
         knockbackIntoStackGroups: {
           en: 'Knockback Into Stack Groups',
@@ -1536,6 +1541,7 @@ Options.Triggers.push({
         },
         knockbackIntoStacksOn: {
           en: 'Knockback => Stacks (${player1}, ${player2})',
+          cn: '击退 => 分摊 (${player1}, ${player2})',
         },
       },
     },
@@ -1600,6 +1606,7 @@ Options.Triggers.push({
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          cn: '分摊 (${player1}, ${player2})',
         },
       },
     },
@@ -1626,7 +1633,7 @@ Options.Triggers.push({
             de: 'Auge auf DIR (w/${player})',
             fr: 'Œil sur VOUS (w/${player})',
             ja: '自分に目 (w/${player})',
-            cn: '石化眼点名 (w/${player})',
+            cn: '石化眼点名 (与${player})',
             ko: '시선징 대상자 (w/${player})', // FIXME
           },
           doubleAero: {
@@ -1634,7 +1641,7 @@ Options.Triggers.push({
             de: 'Doppel Windga auf DIR (w/${player})',
             fr: 'Double Vent sur VOUS (w/${player})',
             ja: '自分にエアロガ×2 (w/${player})',
-            cn: '双风点名 (w/${player})',
+            cn: '双风点名 (与${player})',
             ko: '더블 에어로가 대상자 (w/${player})', // FIXME
           },
           spread: {
@@ -1642,7 +1649,7 @@ Options.Triggers.push({
             de: 'Verteilen auf DIR (w/${player1}, ${player2}, ${player3})',
             fr: 'Dispersion sur VOUS (w/${player1}, ${player2}, ${player3})',
             ja: '自分に散開 (w/${player1}, ${player2}, ${player3})',
-            cn: '分散点名 (w/${player1}, ${player2}, ${player3})',
+            cn: '分散点名 (与${player1}, ${player2}, ${player3})',
             ko: '산개징 대상자 (w/${player1}, ${player2}, ${player3})', // FIXME
           },
           unknown: Outputs.unknown,

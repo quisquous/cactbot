@@ -56,6 +56,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Yellow Spread',
+          cn: '黄标分散',
         },
       },
     },
@@ -85,6 +86,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Orange Stack',
+          cn: '橙标分摊',
         },
       },
     },
@@ -343,6 +345,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Blue Weight',
+          cn: '蓝标大陆之重',
         },
       },
     },
@@ -389,6 +392,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Gaol on YOU (w/${player})',
+          cn: '石牢点名 (与${player})',
         },
       },
     },
@@ -412,7 +416,7 @@ Options.Triggers.push({
           de: 'VON VORNE RECHTS RUNTER',
           fr: 'PARTEZ DE L\'AVANT DROITE',
           ja: '右前壊れるよ',
-          cn: '破坏右前',
+          cn: '左 (或 后)',
           ko: '앞 오른쪽 피하기', // FIXME
         },
         left: Outputs.left,
@@ -439,7 +443,7 @@ Options.Triggers.push({
           de: 'VON HINTEN RECHTS RUNTER',
           fr: 'PARTEZ DE L\'ARRIÈRE DROITE',
           ja: '右後ろ壊れるよ',
-          cn: '破坏右后',
+          cn: '左 (或 前)',
           ko: '뒤 오른쪽 피하기', // FIXME
         },
         left: Outputs.left,
@@ -466,7 +470,7 @@ Options.Triggers.push({
           de: 'VON HINTEN LINKS RUNTER',
           fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE',
           ja: '左後ろ壊れるよ',
-          cn: '破坏左后',
+          cn: '右 (或 前)',
           ko: '뒤 왼쪽 피하기', // FIXME
         },
         right: Outputs.right,
@@ -493,7 +497,7 @@ Options.Triggers.push({
           de: 'VON VORNE LINKS RUNTER',
           fr: 'PARTEZ DE L\'AVANT GAUCHE',
           ja: '左前壊れるよ',
-          cn: '破坏左前',
+          cn: '右 (或 后)',
           ko: '앞 왼쪽 피하기', // FIXME
         },
         right: Outputs.right,
