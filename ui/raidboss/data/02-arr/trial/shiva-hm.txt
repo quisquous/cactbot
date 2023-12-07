@@ -31,138 +31,138 @@ hideall "--Reset--"
 
 # Phase 1: Literally Just Autos (100% -> 95%)
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-2.0 "--sync--" sync / 1[56]:[^:]*:Shiva:99A:/ window 10,10
+2.0 "--sync--" Ability { id: "99A", source: "Shiva" } window 10,10
 
 # jump to staff
-10.0 "--sync--" sync / 1[56]:[^:]*:Shiva:995:/ window 10,100 jump 200
+10.0 "--sync--" Ability { id: "995", source: "Shiva" } window 10,100 jump 200
 
 
 # Phase 2: Staff (95% -> 85%)
-200.0 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
-208.1 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
+200.0 "Frost Staff" Ability { id: "995", source: "Shiva" }
+208.1 "Hailstorm" Ability { id: "997", source: "Shiva" }
 
-221.7 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:99C:/ window 30,30 jump 221.7
-244.7 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:99C:/
-267.7 "Absolute Zero" #sync / 1[56]:[^:]*:Shiva:99C:/
+221.7 "Absolute Zero" Ability { id: "99C", source: "Shiva" } window 30,30 jump 221.7
+244.7 "Absolute Zero" #Ability { id: "99C", source: "Shiva" }
+267.7 "Absolute Zero" #Ability { id: "99C", source: "Shiva" }
 
 
 # Phase 3: Sword (85% -> 65%)
-400.0 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/ window 200,0
-409.2 "Icicle Impact (cross)" sync / 1[56]:[^:]*:Shiva:99E:/
-417.3 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
+400.0 "Melt" Ability { id: "C7F", source: "Shiva" } window 200,0
+409.2 "Icicle Impact (cross)" Ability { id: "99E", source: "Shiva" }
+417.3 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
 
-427.9 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
-433.0 "Icebrand" sync / 1[56]:[^:]*:Shiva:996:/
-439.3 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:9A0:/
+427.9 "Frost Blade" Ability { id: "993", source: "Shiva" }
+433.0 "Icebrand" Ability { id: "996", source: "Shiva" }
+439.3 "Heavenly Strike" Ability { id: "9A0", source: "Shiva" }
 
-451.9 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:9A1:/
-468.7 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:9A0:/
+451.9 "Glacier Bash" Ability { id: "9A1", source: "Shiva" }
+468.7 "Heavenly Strike" Ability { id: "9A0", source: "Shiva" }
 
-481.1 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:9A1:/ window 20,20 jump 451.9
-497.9 "Heavenly Strike" #sync / 1[56]:[^:]*:Shiva:9A0:/
+481.1 "Glacier Bash" Ability { id: "9A1", source: "Shiva" } window 20,20 jump 451.9
+497.9 "Heavenly Strike" #Ability { id: "9A0", source: "Shiva" }
 
 
 # Phase 4: Adds
-800.0 "Melt" sync / 1[56]:[^:]*:Shiva:994:/ window 800,0
+800.0 "Melt" Ability { id: "994", source: "Shiva" } window 800,0
 # If you push *really* fast and skip a weapon phase, you'll miss the melt jump.
 # So, fix that up with a combatant sync here.
 806.2 "--adds targetable--" sync / 03:........:Ice Soldier:/  window 807,2.5
-809.9 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
+809.9 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
 
 # Note: Yes, really.  These times are different.
-823.6 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ window 100,100 jump 1023.6
-825.4 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ window 100,100 jump 1225.4
+823.6 "Frost Staff?" Ability { id: "995", source: "Shiva" } window 100,100 jump 1023.6
+825.4 "Frost Blade?" Ability { id: "993", source: "Shiva" } window 100,100 jump 1225.4
 
 
 # Phase 4a: Adds (Staff)
-1023.6 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
-1031.7 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
-1044.3 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:99C:/
+1023.6 "Frost Staff" Ability { id: "995", source: "Shiva" }
+1031.7 "Hailstorm" Ability { id: "997", source: "Shiva" }
+1044.3 "Absolute Zero" Ability { id: "99C", source: "Shiva" }
 
-1051.6 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/ window 100,10
+1051.6 "Melt" Ability { id: "C7F", source: "Shiva" } window 100,10
 1052.7 "--untargetable--"
-1063.9 "--frozen--" sync / 1[56]:[^:]*:Shiva:C16:/ window 1100,10
-1068.8 "Diamond Dust" sync / 1[56]:[^:]*:Shiva:98A:/
+1063.9 "--frozen--" Ability { id: "C16", source: "Shiva" } window 1100,10
+1068.8 "Diamond Dust" Ability { id: "98A", source: "Shiva" }
 1076.0 "--targetable--"
-1079.1 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-1088.3 "Icicle Impact (circle)" duration 4 #sync / 1[56]:[^:]*:Shiva:99E:/
+1079.1 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+1088.3 "Icicle Impact (circle)" duration 4 #Ability { id: "99E", source: "Shiva" }
 
-1095.3 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1400 window 50,90
-1095.3 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 1600 window 50,90
+1095.3 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1400 window 50,90
+1095.3 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 1600 window 50,90
 
 
 # Phase 4b: Adds (Blade)
-1225.4 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
-1230.5 "Icebrand" sync / 1[56]:[^:]*:Shiva:996:/
-1236.8 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:9A0:/
-1249.2 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:9A1:/
+1225.4 "Frost Blade" Ability { id: "993", source: "Shiva" }
+1230.5 "Icebrand" Ability { id: "996", source: "Shiva" }
+1236.8 "Heavenly Strike" Ability { id: "9A0", source: "Shiva" }
+1249.2 "Glacier Bash" Ability { id: "9A1", source: "Shiva" }
 
 # You get 5 extra seconds to kill the adds if it's Blade.
-1256.6 "Melt" sync / 1[56]:[^:]*:Shiva:994:/ window 100,10
+1256.6 "Melt" Ability { id: "994", source: "Shiva" } window 100,10
 1257.7 "--untargetable--"
-1268.9 "--frozen--" sync / 1[56]:[^:]*:Shiva:C16:/
-1273.8 "Diamond Dust" sync / 1[56]:[^:]*:Shiva:98A:/
+1268.9 "--frozen--" Ability { id: "C16", source: "Shiva" }
+1273.8 "Diamond Dust" Ability { id: "98A", source: "Shiva" }
 1281.0 "--targetable--"
-1284.2 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-1293.4 "Icicle Impact (circle)" duration 4 #sync / 1[56]:[^:]*:Shiva:99E:/
+1284.2 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+1293.4 "Icicle Impact (circle)" duration 4 #Ability { id: "99E", source: "Shiva" }
 
-1300.6 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1400 window 50,90
-1300.6 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 1600 window 50,90
+1300.6 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1400 window 50,90
+1300.6 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 1600 window 50,90
 
 
 # Phase 5a: Staff
 # Note: only one absolute zero here.
-1400.0 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
-1408.1 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
-1421.7 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:99C:/
-1432.2 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/
-1434.3 "Permafrost" sync / 1[56]:[^:]*:Shiva:999:/
-1440.5 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-1450.7 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:99E:/
+1400.0 "Frost Staff" Ability { id: "995", source: "Shiva" }
+1408.1 "Hailstorm" Ability { id: "997", source: "Shiva" }
+1421.7 "Absolute Zero" Ability { id: "99C", source: "Shiva" }
+1432.2 "Melt" Ability { id: "C7F", source: "Shiva" }
+1434.3 "Permafrost" Ability { id: "999", source: "Shiva" }
+1440.5 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+1450.7 "Icicle Impact" Ability { id: "99E", source: "Shiva" }
 
-1454.7 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1800 window 50,90
-1454.7 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 2000 window 50,90
+1454.7 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1800 window 50,90
+1454.7 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 2000 window 50,90
 
 
 # Phase 5b: Blade
 # Note: this has the same abilities as 6b, but slightly different timings,
 # e.g. Heavenly Strike is ~1611 instead of ~1614.
-1600.0 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
-1605.3 "Icebrand" sync / 1[56]:[^:]*:Shiva:996:/
-1611.7 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:9A0:/ window 10,10
-1624.2 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:9A1:/
-1634.8 "Melt" sync / 1[56]:[^:]*:Shiva:994:/
-1636.9 "Permafrost" sync / 1[56]:[^:]*:Shiva:999:/
-1643.1 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-1653.3 "Icicle Impact" #sync / 1[56]:[^:]*:Shiva:99E:/
+1600.0 "Frost Blade" Ability { id: "993", source: "Shiva" }
+1605.3 "Icebrand" Ability { id: "996", source: "Shiva" }
+1611.7 "Heavenly Strike" Ability { id: "9A0", source: "Shiva" } window 10,10
+1624.2 "Glacier Bash" Ability { id: "9A1", source: "Shiva" }
+1634.8 "Melt" Ability { id: "994", source: "Shiva" }
+1636.9 "Permafrost" Ability { id: "999", source: "Shiva" }
+1643.1 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+1653.3 "Icicle Impact" #Ability { id: "99E", source: "Shiva" }
 
-1657.6 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1800 window 90,90
-1657.6 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 2000 window 90,90
+1657.6 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1800 window 90,90
+1657.6 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 2000 window 90,90
 
 
 # Phase 6a: Staff
-1800.0 "Frost Staff" sync / 1[56]:[^:]*:Shiva:995:/
-1808.1 "Hailstorm" sync / 1[56]:[^:]*:Shiva:997:/
-1818.6 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:99C:/
-1823.9 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:99C:/
-1829.2 "Melt" sync / 1[56]:[^:]*:Shiva:C7F:/
-1831.3 "Permafrost" sync / 1[56]:[^:]*:Shiva:999:/
-1837.5 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-1847.8 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:99E:/
+1800.0 "Frost Staff" Ability { id: "995", source: "Shiva" }
+1808.1 "Hailstorm" Ability { id: "997", source: "Shiva" }
+1818.6 "Absolute Zero" Ability { id: "99C", source: "Shiva" }
+1823.9 "Absolute Zero" Ability { id: "99C", source: "Shiva" }
+1829.2 "Melt" Ability { id: "C7F", source: "Shiva" }
+1831.3 "Permafrost" Ability { id: "999", source: "Shiva" }
+1837.5 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+1847.8 "Icicle Impact" Ability { id: "99E", source: "Shiva" }
 
-1851.8 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1800 window 90,90
-1851.8 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 2000 window 90,90
+1851.8 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1800 window 90,90
+1851.8 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 2000 window 90,90
 
 
 # Phase 6b: Blade
-2000.0 "Frost Blade" sync / 1[56]:[^:]*:Shiva:993:/
-2005.1 "Icebrand" sync / 1[56]:[^:]*:Shiva:996:/ window 5,5
-2014.5 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:9A0:/ window 5,5
-2024.9 "Glacier Bash" sync / 1[56]:[^:]*:Shiva:9A1:/
-2030.2 "Melt" sync / 1[56]:[^:]*:Shiva:994:/
-2032.3 "Permafrost" sync / 1[56]:[^:]*:Shiva:999:/
-2038.5 "Dreams Of Ice" sync / 1[56]:[^:]*:Shiva:99D:/
-2048.7 "Icicle Impact" #sync / 1[56]:[^:]*:Shiva:99E:/
+2000.0 "Frost Blade" Ability { id: "993", source: "Shiva" }
+2005.1 "Icebrand" Ability { id: "996", source: "Shiva" } window 5,5
+2014.5 "Heavenly Strike" Ability { id: "9A0", source: "Shiva" } window 5,5
+2024.9 "Glacier Bash" Ability { id: "9A1", source: "Shiva" }
+2030.2 "Melt" Ability { id: "994", source: "Shiva" }
+2032.3 "Permafrost" Ability { id: "999", source: "Shiva" }
+2038.5 "Dreams Of Ice" Ability { id: "99D", source: "Shiva" }
+2048.7 "Icicle Impact" #Ability { id: "99E", source: "Shiva" }
 
-2053.5 "Frost Staff?" sync / 1[56]:[^:]*:Shiva:995:/ jump 1800 window 90,90
-2053.5 "Frost Blade?" sync / 1[56]:[^:]*:Shiva:993:/ jump 2000 window 90,90
+2053.5 "Frost Staff?" Ability { id: "995", source: "Shiva" } jump 1800 window 90,90
+2053.5 "Frost Blade?" Ability { id: "993", source: "Shiva" } jump 2000 window 90,90
