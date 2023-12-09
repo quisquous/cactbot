@@ -57,6 +57,7 @@ Options.Triggers.push({
         text: {
           en: 'Yellow Spread',
           cn: '黄标分散',
+          ko: '노란색 산개',
         },
       },
     },
@@ -87,6 +88,7 @@ Options.Triggers.push({
         text: {
           en: 'Orange Stack',
           cn: '橙标分摊',
+          ko: '주황색 쉐어',
         },
       },
     },
@@ -346,6 +348,7 @@ Options.Triggers.push({
         text: {
           en: 'Blue Weight',
           cn: '蓝标大陆之重',
+          ko: '파란징 대륙의 무게',
         },
       },
     },
@@ -393,6 +396,7 @@ Options.Triggers.push({
         text: {
           en: 'Gaol on YOU (w/${player})',
           cn: '石牢点名 (与${player})',
+          ko: '돌감옥 대상자 (+${player})',
         },
       },
     },
@@ -417,7 +421,7 @@ Options.Triggers.push({
           fr: 'PARTEZ DE L\'AVANT DROITE',
           ja: '右前壊れるよ',
           cn: '左 (或 后)',
-          ko: '앞 오른쪽 피하기', // FIXME
+          ko: '왼쪽 (또는 뒤)',
         },
         left: Outputs.left,
         back: Outputs.back,
@@ -444,7 +448,7 @@ Options.Triggers.push({
           fr: 'PARTEZ DE L\'ARRIÈRE DROITE',
           ja: '右後ろ壊れるよ',
           cn: '左 (或 前)',
-          ko: '뒤 오른쪽 피하기', // FIXME
+          ko: '왼쪽 (또는 앞)',
         },
         left: Outputs.left,
         front: Outputs.front,
@@ -471,7 +475,7 @@ Options.Triggers.push({
           fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE',
           ja: '左後ろ壊れるよ',
           cn: '右 (或 前)',
-          ko: '뒤 왼쪽 피하기', // FIXME
+          ko: '오른쪽 (또는 앞)',
         },
         right: Outputs.right,
         front: Outputs.front,
@@ -498,7 +502,7 @@ Options.Triggers.push({
           fr: 'PARTEZ DE L\'AVANT GAUCHE',
           ja: '左前壊れるよ',
           cn: '右 (或 后)',
-          ko: '앞 왼쪽 피하기', // FIXME
+          ko: '오른쪽 (또는 뒤)',
         },
         right: Outputs.right,
         back: Outputs.back,

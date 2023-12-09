@@ -749,6 +749,9 @@ Options.Triggers.push({
         cn: `如果第一个火神柱在东南，则反向 Z 和正常 Z 都会提示东南/西北
              如果第一个火神柱在南, 则反向 Z 将提示东南/西北，正常 Z 将提示西南/东北。
              这些只是示例, 还支持其他火神柱顺序。`,
+        ko: `첫 번째 기둥이 남동쪽인 경우, 역방향 Z와 일반 Z 모두에 대해 남동/북서를 호출합니다.
+             첫 번째 기둥이 남쪽인 경우, 역방향 Z는 남동/북서를, 일반 Z는 남서/북동를 호출합니다.
+             다른 기둥 순서도 지원되며, 이는 예시일 뿐입니다.`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
@@ -792,6 +795,9 @@ Options.Triggers.push({
         cn: `如果第一个火神柱在对角线上，那么第一次火神冲也在对角线上。
              这个可选提示会提示你移动到第一次火神冲附近的位置。
              如果你已在安全区，则不会输出此提示。`,
+        ko: `첫 번째 기둥이 대각선에 있으면 첫 번째 이프리트 돌진도 대각선에 있으며,
+             이 알람은 첫 번째 돌진 옆으로 이동하라는 것이 됩니다.
+             이미 안전하다면 이 알람은 호출되지 않습니다.`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
@@ -834,6 +840,10 @@ Options.Triggers.push({
              人群和奶妈都将移动 45 度或 90 度。
              "快" 可以让你快速移动，躲避第二次火神冲。
              "慢" 当你有足够的时间来移动时使用。`,
+        ko: `첫 번째 돌진 직후부터 시작되는 이프리트 돌진의 주요 동선입니다.
+             본대와 힐러 모두 45도 또는 90도로 움직입니다.
+             이프리트의 후속 돌진을 피하기 위해 빠르게 이동해야 하는 경우 "빠른" 이동입니다.
+             시간적 여유가 있다면 "느린" 이동입니다.`,
       },
       type: 'NameToggle',
       netRegex: { name: 'Ifrit', toggle: '00', capture: false },
@@ -895,25 +905,25 @@ Options.Triggers.push({
           en: '${rotation} 45° to ${dir} (fast)',
           de: '${rotation} 45° nach ${dir} (schnell)',
           cn: '${rotation} 45° 到 ${dir} (快)',
-          ko: '${rotation} 45° ${dir}까지 (빠르게)',
+          ko: '${rotation} 45° ${dir}까지 (빠름)',
         },
         awokenDash2: {
           en: '${rotation} 90° to ${dir} (fast)',
           de: '${rotation} 90° nach ${dir} (schnell)',
           cn: '${rotation} 90° 到 ${dir} (快)',
-          ko: '${rotation} 90° ${dir}까지 (빠르게)',
+          ko: '${rotation} 90° ${dir}까지 (빠름)',
         },
         awokenDash3: {
           en: '${rotation} 45° to ${dir} (slow)',
           de: '${rotation} 45° nach ${dir} (langsam)',
           cn: '${rotation} 45° 到 ${dir} (慢)',
-          ko: '${rotation} 45° ${dir}까지 (천천히)',
+          ko: '${rotation} 45° ${dir}까지 (느림)',
         },
         awokenDash4: {
           en: '${rotation} 90° to ${dir} (slow)',
           de: '${rotation} 90° nach ${dir} (langsam)',
           cn: '${rotation} 90° 到 ${dir} (慢)',
-          ko: '${rotation} 90° ${dir}까지 (천천히)',
+          ko: '${rotation} 90° ${dir}까지 (느림)',
         },
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,

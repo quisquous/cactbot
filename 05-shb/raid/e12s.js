@@ -260,6 +260,7 @@ Options.Triggers.push({
           formlessBusterBLU: {
             en: 'Buster on YOU (w/${player})',
             cn: '死刑点名 (与${player})',
+            ko: '탱버 대상자 (+${player})',
           },
           formlessBusterOnYOU: Outputs.tankBusterOnYou,
         };
@@ -380,10 +381,12 @@ Options.Triggers.push({
           stackOnYou: {
             en: 'Stack on YOU (w/${player})',
             cn: '分摊点名 (与${player})',
+            ko: '쉐어 대상자 (+${player})',
           },
           stacks: {
             en: 'Stacks: ${players}',
             cn: '分摊: ${players}',
+            ko: '쉐어: ${players}',
           },
         };
         if (!data.statueStacks.includes(data.me)) {
@@ -1195,11 +1198,12 @@ Options.Triggers.push({
             fr: 'Œil sur VOUS (w/${player})',
             ja: '自分に目 (w/${player})',
             cn: '石化眼点名 (与${player})',
-            ko: '시선징 대상자 (w/${player})', // FIXME
+            ko: '시선징 (+${player})',
           },
           water: {
             en: 'Stack (w/${player})',
             cn: '分摊 (与${player})',
+            ko: '쉐어징 (+${player})',
           },
           longFire: {
             en: 'Long Fire (w/${player})',
@@ -1207,7 +1211,7 @@ Options.Triggers.push({
             fr: 'Feu long (w/${player})',
             ja: 'ファイガ(遅い) (w/${player})',
             cn: '长火 (与${player})',
-            ko: '느린 파이가 (w/${player})', // FIXME
+            ko: '느린 파이가 (+${player})',
           },
           shortFire: {
             en: 'Short Fire (w/${player})',
@@ -1215,7 +1219,7 @@ Options.Triggers.push({
             fr: 'Feu court (w/${player})',
             ja: 'ファイガ(早い) (w/${player})',
             cn: '短火 (与${player})',
-            ko: '빠른 파이가 (w/${player})', // FIXME
+            ko: '빠른 파이가 (+${player})',
           },
           longIce: {
             en: 'Long Ice (w/${player})',
@@ -1223,7 +1227,7 @@ Options.Triggers.push({
             fr: 'Glace longue (w/${player})',
             ja: 'ブリザガ(遅い) (w/${player})',
             cn: '长冰 (与${player})',
-            ko: '느린 블리자가 (w/${player})', // FIXME
+            ko: '느린 블리자가 (+${player})',
           },
           shortIce: {
             en: 'Short Ice (w/${player})',
@@ -1231,7 +1235,7 @@ Options.Triggers.push({
             fr: 'Glace courte (w/${player})',
             ja: 'ブリザガ(早い) (w/${player})',
             cn: '短冰 (与${player})',
-            ko: '빠른 블리자가 (w/${player})', // FIXME
+            ko: '빠른 블리자가 (+${player})',
           },
           unknown: Outputs.unknown,
         };
@@ -1530,6 +1534,7 @@ Options.Triggers.push({
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
+          ko: '쉐어 (${player1}, ${player2})',
         },
         knockbackIntoStackGroups: {
           en: 'Knockback Into Stack Groups',
@@ -1542,6 +1547,7 @@ Options.Triggers.push({
         knockbackIntoStacksOn: {
           en: 'Knockback => Stacks (${player1}, ${player2})',
           cn: '击退 => 分摊 (${player1}, ${player2})',
+          ko: '넉백 => 쉐어 (${player1}, ${player2})',
         },
       },
     },
@@ -1607,6 +1613,7 @@ Options.Triggers.push({
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
+          ko: '쉐어 (${player1}, ${player2})',
         },
       },
     },
@@ -1634,7 +1641,7 @@ Options.Triggers.push({
             fr: 'Œil sur VOUS (w/${player})',
             ja: '自分に目 (w/${player})',
             cn: '石化眼点名 (与${player})',
-            ko: '시선징 대상자 (w/${player})', // FIXME
+            ko: '시선징 (+${player})',
           },
           doubleAero: {
             en: 'Double Aero (w/${player})',
@@ -1642,7 +1649,7 @@ Options.Triggers.push({
             fr: 'Double Vent sur VOUS (w/${player})',
             ja: '自分にエアロガ×2 (w/${player})',
             cn: '双风点名 (与${player})',
-            ko: '더블 에어로가 대상자 (w/${player})', // FIXME
+            ko: '더블 에어로가 (+${player})',
           },
           spread: {
             en: 'Spread (w/${player1}, ${player2}, ${player3})',
@@ -1650,7 +1657,7 @@ Options.Triggers.push({
             fr: 'Dispersion sur VOUS (w/${player1}, ${player2}, ${player3})',
             ja: '自分に散開 (w/${player1}, ${player2}, ${player3})',
             cn: '分散点名 (与${player1}, ${player2}, ${player3})',
-            ko: '산개징 대상자 (w/${player1}, ${player2}, ${player3})', // FIXME
+            ko: '산개징 (+${player1}, ${player2}, ${player3})',
           },
           unknown: Outputs.unknown,
         };
