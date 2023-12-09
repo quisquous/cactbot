@@ -167,18 +167,22 @@ const triggerSet: TriggerSet<Data> = {
         northeast: {
           en: 'Inner northeast safe',
           de: 'Innen nordöstlich sicher',
+          ko: '안쪽 북동 안전',
         },
         northwest: {
           en: 'Inner northwest safe',
           de: 'Innen nordwestlich sicher',
+          ko: '안쪽 북서 안전',
         },
         southeast: {
           en: 'Inner southeast safe',
           de: 'Innen südöstlich sicher',
+          ko: '안쪽 남동 안전',
         },
         southwest: {
           en: 'Inner southwest safe',
           de: 'Innen südwestlich sicher',
+          ko: '안쪽 남서 안전',
         },
         unknown: Outputs.unknown,
       },
@@ -299,6 +303,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from orbs',
           de: 'Weg von den Orbs',
           ja: '玉から離れて',
+          ko: '구슬에서 멀리 떨어지기',
         },
       },
     },

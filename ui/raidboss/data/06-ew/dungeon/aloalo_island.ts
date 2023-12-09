@@ -66,16 +66,19 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from Orbs',
           de: 'Außen zwichen den Orbs',
           ja: 'ハンマー、玉の間の外側へ',
+          ko: '구슬에서 멀리 떨어지기',
         },
         second: {
           en: 'Under Orbs',
           de: 'Unter einen Orbs',
           ja: 'ドーナツ、玉の下へ',
+          ko: '구슬 밑으로',
         },
         third: {
           en: 'Under Donut Far From Axe',
           de: 'Unter Donut und weit weg von der Axt',
           ja: '玉に気を付けて',
+          ko: '도끼에서 먼 도넛 밑으로',
         },
       },
     },
@@ -89,6 +92,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '3x Knockback',
           de: '3x Rückstoß',
           ja: '3x ノックバック',
+          ko: '3x 넉백',
         },
       },
     },
@@ -102,6 +106,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '4x Charge',
           de: '4x Ansturm',
           ja: '4x 突進',
+          ko: '4x 돌진',
         },
       },
     },
@@ -115,6 +120,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from spears',
           de: 'Außen zwichen den Dreizack',
           ja: '槍の間の外側へ',
+          ko: '창에서 멀리 떨어지기',
         },
       },
     },
@@ -127,6 +133,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Avoid spreading spear puddles',
           de: 'Weiche den größer werdenen Speerflächen aus',
+          ko: '커지는 창 장판 피하기',
         },
       },
     },
@@ -183,6 +190,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Bubbles Move 2 Tiles',
           de: 'Blasen 2 Flächen Rückstoß',
           ja: '泡のみ2マスのノックバック',
+          ko: '거품은 2칸 이동함',
         },
       },
     },
@@ -197,6 +205,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stretch Tether',
           de: 'Verbindung langziehen',
+          ko: '선 늘이기',
         },
       },
     },
@@ -210,6 +219,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Knockback => Get in Bubble',
           de: 'Rückstoß => Geh in eine Blase',
+          ko: '넉백 => 거품 안으로',
         },
       },
     },
@@ -226,6 +236,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get behind non-bubbled Zaratan',
           de: 'Geh hinter einen Zaratan ohne Blase',
+          ko: '거품 밖에 있는 쫄 뒤로',
         },
       },
     },
@@ -242,6 +253,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Get in Bubble',
           de: 'Geh in eine Blase',
+          ko: '거품 안으로',
         },
       },
     },
@@ -311,6 +323,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Go to safe zone',
           de: 'Geh in den sicheren Bereich',
           ja: '安置へ移動',
+          ko: '안전지대로',
         },
         front: Outputs.front,
         back: Outputs.back,
@@ -360,18 +373,22 @@ const triggerSet: TriggerSet<Data> = {
         front: {
           en: 'Face Towards Lala',
           de: 'Schau Lala an',
+          ko: '보스 쳐다보기',
         },
         back: {
           en: 'Look Away from Lala',
           de: 'Schau von Lala weg',
+          ko: '뒤돌기',
         },
         left: {
           en: 'Left Flank towards Lala',
           de: 'Linke Seite zu Lala drehen',
+          ko: '왼쪽 측면을 보스쪽으로',
         },
         right: {
           en: 'Right Flank towards Lala',
           de: 'Rechte Seite zu Lala drehen',
+          ko: '오른쪽 측면을 보스쪽으로',
         },
       },
     },
@@ -385,6 +402,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Seed adds => Donut AOEs',
           de: 'Samen Adds => Donut AoEs',
           ja: '種 => ドーナツAOE',
+          ko: '씨앗 등장 => 도넛 장판',
         },
       },
     },
@@ -398,6 +416,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Armadillo adds => Big AOEs',
           de: 'Fledermaus Adds => Große AoEs',
           ja: 'コウモリ => ゆかAOE',
+          ko: '아르마딜로 등장 => 거리비례 장판',
         },
       },
     },
@@ -411,6 +430,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Tree adds => Line AOEs',
           de: 'Baum Adds => Linien AoEs',
           ja: '木 => 直線AOE',
+          ko: '나무 등장 => 직선 장판',
         },
       },
     },
@@ -461,7 +481,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Piratage mental : Vers l\'avant', // FIXME
           ja: '強制移動 : 前', // FIXME
           cn: '强制移动 : 前', // FIXME
-          ko: '강제이동: 앞', // FIXME
+          ko: '강제이동: 앞 (1칸)',
         },
         back: {
           en: 'Backwards March (1 square)',
@@ -469,7 +489,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Piratage mental : Vers l\'arrière', // FIXME
           ja: '強制移動 : 後ろ', // FIXME
           cn: '强制移动 : 后', // FIXME
-          ko: '강제이동: 뒤', // FIXME
+          ko: '강제이동: 뒤 (1칸)',
         },
         left: {
           en: 'Left March (1 square)',
@@ -477,7 +497,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Piratage mental : Vers la gauche', // FIXME
           ja: '強制移動 : 左', // FIXME
           cn: '强制移动 : 左', // FIXME
-          ko: '강제이동: 왼쪽', // FIXME
+          ko: '강제이동: 왼쪽 (1칸)',
         },
         right: {
           en: 'Right March (1 square)',
@@ -485,7 +505,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Piratage mental : Vers la droite', // FIXME
           ja: '強制移動 : 右', // FIXME
           cn: '强制移动 : 右', // FIXME
-          ko: '강제이동: 오른쪽', // FIXME
+          ko: '강제이동: 오른쪽 (1칸)',
         },
       },
     },
@@ -532,6 +552,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Safe: ${safe}',
           de: 'Sicher: ${safe}',
           ja: '安置: ${safe}',
+          ko: '안전: ${safe}',
         },
       },
     },
@@ -556,6 +577,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Stand on cushion',
           de: 'Auf einem Kissen stehen',
+          ko: '발판 위에 있기',
         },
       },
     },
@@ -577,6 +599,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Glowing adds get larger',
           de: 'Weiche leuchtenden Adds aus',
           ja: '光ってる物に注意',
+          ko: '빛나는 쫄 장판은 커짐',
         },
       },
     },
@@ -597,6 +620,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Away from tether ends',
           de: 'Weiche Verbindungen aus',
           ja: '縮む線を回避',
+          ko: '선 끝부분 멀리 피하기',
         },
       },
     },
@@ -617,6 +641,7 @@ const triggerSet: TriggerSet<Data> = {
           en: 'Last bloom => Walk into Safe',
           de: 'Letzte Blüte => Geh zum sicheren Bereich',
           ja: '最後の花畑 => 安置へ移動',
+          ko: '마지막 꽃 => 안전지대로',
         },
       },
     },
@@ -638,6 +663,7 @@ const triggerSet: TriggerSet<Data> = {
           en: '5x Knockback',
           de: '5x Rückstoß',
           ja: '5x ノックバック',
+          ko: '5x 넉백',
         },
       },
     },
