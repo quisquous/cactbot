@@ -73,6 +73,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Yellow Spread',
           cn: '黄标分散',
+          ko: '노란색 산개',
         },
       },
     },
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Orange Stack',
           cn: '橙标分摊',
+          ko: '주황색 쉐어',
         },
       },
     },
@@ -364,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Blue Weight',
           cn: '蓝标大陆之重',
+          ko: '파란징 대륙의 무게',
         },
       },
     },
@@ -413,6 +416,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Gaol on YOU (w/${player})',
           cn: '石牢点名 (与${player})',
+          ko: '돌감옥 대상자 (+${player})',
         },
       },
     },
@@ -437,7 +441,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'PARTEZ DE L\'AVANT DROITE', // FIXME
           ja: '右前壊れるよ', // FIXME
           cn: '左 (或 后)',
-          ko: '앞 오른쪽 피하기', // FIXME
+          ko: '왼쪽 (또는 뒤)',
         },
         left: Outputs.left,
         back: Outputs.back,
@@ -464,7 +468,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'PARTEZ DE L\'ARRIÈRE DROITE', // FIXME
           ja: '右後ろ壊れるよ', // FIXME
           cn: '左 (或 前)',
-          ko: '뒤 오른쪽 피하기', // FIXME
+          ko: '왼쪽 (또는 앞)',
         },
         left: Outputs.left,
         front: Outputs.front,
@@ -491,7 +495,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE', // FIXME
           ja: '左後ろ壊れるよ', // FIXME
           cn: '右 (或 前)',
-          ko: '뒤 왼쪽 피하기', // FIXME
+          ko: '오른쪽 (또는 앞)',
         },
         right: Outputs.right,
         front: Outputs.front,
@@ -518,7 +522,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'PARTEZ DE L\'AVANT GAUCHE', // FIXME
           ja: '左前壊れるよ', // FIXME
           cn: '右 (或 后)',
-          ko: '앞 왼쪽 피하기', // FIXME
+          ko: '오른쪽 (또는 뒤)',
         },
         right: Outputs.right,
         back: Outputs.back,
