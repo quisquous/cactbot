@@ -1583,12 +1583,12 @@ Options.Triggers.push({
           }
         }
         const alertText = output.alertText({
-          color1: color1,
-          color2: color2,
-          color3: color3,
+          color1: output[color1](),
+          color2: output[color2](),
+          color3: output[color3](),
           mixedType: mixedType,
         });
-        const infoText = output.infoText({ color: color1, player: partner });
+        const infoText = output.infoText({ color: output[color1](), player: partner });
         return { alertText, infoText };
       },
     },
