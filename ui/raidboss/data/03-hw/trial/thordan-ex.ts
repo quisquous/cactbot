@@ -639,7 +639,6 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Comet Circle': 'sceau de la comète',
         'King Thordan': 'roi Thordan',

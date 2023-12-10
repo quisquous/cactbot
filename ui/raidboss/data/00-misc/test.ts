@@ -383,6 +383,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           de: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          fr: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           ja: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           cn: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           ko: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
