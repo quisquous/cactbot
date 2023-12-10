@@ -12,12 +12,14 @@ const lyheGhiahOutputStrings = {
   spawn: {
     en: '${name} spawned!',
     de: '${name} erscheint!',
+    fr: '${name} vient d\'apparaitre !',
     cn: '已生成 ${name}!',
     ko: '${name} 등장!',
   },
   adds: {
     en: 'Adds soon',
     de: 'Bald Adds',
+    fr: 'Adds bientôt',
     cn: '小怪即将出现',
     ko: '곧 쫄 나옴',
   },
@@ -68,6 +70,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Dungeon Crew spawned, kill in order!',
           de: 'Verlies-Mandragora erscheinen, in Reihenfolge besiegen!',
+          fr: 'L\'équipe du donjon vient d\'apparaitre, tuez les dans l\'ordre !',
           cn: '已生成 宝库蔓德拉战队, 依次击杀!',
           ko: '만드라즈 등장, 순서대로 잡기!',
         },

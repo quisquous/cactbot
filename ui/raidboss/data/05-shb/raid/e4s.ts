@@ -72,6 +72,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Yellow Spread',
+          fr: 'Dispersion des jaunes',
           cn: '黄标分散',
           ko: '노란색 산개',
         },
@@ -103,6 +104,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Orange Stack',
+          fr: 'Package des oranges',
           cn: '橙标分摊',
           ko: '주황색 쉐어',
         },
@@ -365,6 +367,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Blue Weight',
+          fr: 'Poids bleu',
           cn: '蓝标大陆之重',
           ko: '파란징 대륙의 무게',
         },
@@ -415,6 +418,7 @@ const triggerSet: TriggerSet<Data> = {
       outputStrings: {
         text: {
           en: 'Gaol on YOU (w/${player})',
+          fr: 'Geôle sur VOUS (avec ${player})',
           cn: '石牢点名 (与${player})',
           ko: '돌감옥 대상자 (+${player})',
         },
@@ -438,7 +442,7 @@ const triggerSet: TriggerSet<Data> = {
         leftOrBack: {
           en: 'Left (or Back)',
           de: 'VON VORNE RECHTS RUNTER', // FIXME
-          fr: 'PARTEZ DE L\'AVANT DROITE', // FIXME
+          fr: 'Gauche (ou Arrière)',
           ja: '右前壊れるよ', // FIXME
           cn: '左 (或 后)',
           ko: '왼쪽 (또는 뒤)',
@@ -465,7 +469,7 @@ const triggerSet: TriggerSet<Data> = {
         leftOrFront: {
           en: 'Left (or Front)',
           de: 'VON HINTEN RECHTS RUNTER', // FIXME
-          fr: 'PARTEZ DE L\'ARRIÈRE DROITE', // FIXME
+          fr: 'Gauche (ou Devant)',
           ja: '右後ろ壊れるよ', // FIXME
           cn: '左 (或 前)',
           ko: '왼쪽 (또는 앞)',
@@ -492,7 +496,7 @@ const triggerSet: TriggerSet<Data> = {
         frontOrRight: {
           en: 'Right (or Front)',
           de: 'VON HINTEN LINKS RUNTER', // FIXME
-          fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE', // FIXME
+          fr: 'Droite (ou Devant)',
           ja: '左後ろ壊れるよ', // FIXME
           cn: '右 (或 前)',
           ko: '오른쪽 (또는 앞)',
@@ -519,7 +523,7 @@ const triggerSet: TriggerSet<Data> = {
         backOrRight: {
           en: 'Right (or Back)',
           de: 'VON VORNE LINKS RUNTER', // FIXME
-          fr: 'PARTEZ DE L\'AVANT GAUCHE', // FIXME
+          fr: 'Droite (ou Arrière)',
           ja: '左前壊れるよ', // FIXME
           cn: '右 (或 后)',
           ko: '오른쪽 (또는 뒤)',
