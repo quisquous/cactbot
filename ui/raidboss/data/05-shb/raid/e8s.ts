@@ -103,7 +103,8 @@ const triggerSet: TriggerSet<Data> = {
              Tanks adjust to where the Red and Green Mirror are located.
              One tank must be inbetween the party, the other closest to Greem Mirror.
              Once Green Mirror goes off, the tanks adjust for Red Mirror.`,
-        fr: `Si vous voulez que cactbot signale le double knockback de Mirror Mirror 4, activez cette option.
+        fr:
+          `Si vous voulez que cactbot signale le double knockback de Mirror Mirror 4, activez cette option.
              L'annonce se fait pendant/après les tours du boss et nécessite un temps de réaction < à 1.4s
              pour éviter les deux poussées du miroir vert et du miroir rouge.
              Exemple : https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
