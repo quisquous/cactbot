@@ -657,6 +657,8 @@ const triggerSet: TriggerSet<Data> = {
         'Ser Zephirin': 'sire Zéphirin',
       },
       'replaceText': {
+        '--chains appear--': '--Apparition des chaines--',
+        '--towers spawn--': '--Apparition des tours--',
         'Absolute Conviction': 'Conviction absolue',
         'Ancient Quaga': 'Méga Séisme ancien',
         'Ascalon\'s Mercy': 'Grâce d\'Ascalon',

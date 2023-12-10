@@ -277,6 +277,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Lamineur',
@@ -291,10 +292,12 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Bomb': 'Bombe',
         'Flamethrower': 'Lance-flammes',
+        'Hammertime': 'Coup de marteau',
         'Sizzlebeam': 'Gobrayon',
         'Sizzlespark': 'Gobétincelle',
         'Uplander Doom': 'Fusillade',
         'Zoomdoom': 'Gobroquette',
+        'Jails': 'Prison',
       },
     },
     {
