@@ -1312,7 +1312,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           water: {
             en: 'Stack (w/${player})',
-            fr: 'Pack (avec ${players})',
+            fr: 'Pack (avec ${player})',
             cn: '分摊 (与${player})',
             ko: '쉐어징 (+${player})',
           },
