@@ -41,6 +41,7 @@ Options.Triggers.push({
         waveCannonTarget: {
           en: 'Wave Cannon on YOU',
           de: 'Wellenkanone auf DIR',
+          fr: 'Canon plasma sur VOUS',
           ja: '波動砲対象',
           cn: '波动炮点名',
           ko: '파동포 대상자',
@@ -48,6 +49,7 @@ Options.Triggers.push({
         avoidWaveCannon: {
           en: 'Away from ${target} -- Wave Cannon',
           de: 'Weg von ${target} -- Wellenkanone',
+          fr: 'Éloignez-vous de ${target} -- Canon plasma',
           ja: '${target} から離れる -- 波動砲',
           cn: '远离 ${target} -- 波动炮',
           ko: '${target} 피하기 -- 파동포',
@@ -91,6 +93,7 @@ Options.Triggers.push({
         demonClawYou: {
           en: 'Knockback from boss on YOU',
           de: 'Rückstoß vom Boss auf DIR',
+          fr: 'Poussée depuis le boss sur VOUS',
           ja: 'デモンクロー ノックバック対象',
           cn: 'BOSS击退点名',
           ko: '넉백공격 대상자',
@@ -133,6 +136,7 @@ Options.Triggers.push({
         demonicSpread: {
           en: 'Spread -- Don\'t stack!',
           de: 'Verteilen -- Nicht aufeinander!',
+          fr: 'Écartez-vous - Ne vous packez pas !',
           ja: '散開 -- 重ならないで！',
           cn: '分散 -- 不要集合!',
           ko: '산개 -- 쉐어맞으면 안됨!',
@@ -172,6 +176,7 @@ Options.Triggers.push({
         text: {
           en: 'Stay outside hitbox',
           de: 'Auserhalb der Hitbox stehen',
+          fr: 'Restez à l\'extérieur de la hitbox',
           ja: '範囲攻撃を避ける',
           cn: '站在判定圈外',
           ko: '히트박스 밖으로',
@@ -200,6 +205,7 @@ Options.Triggers.push({
         baitSouthernCross: {
           en: 'Bait Ice Puddles',
           de: 'Eisflächen ködern',
+          fr: 'Bait les puddles de glace',
           ja: '氷範囲を捨てる',
           cn: '诱导冰圈',
           ko: '얼음장판 유도',
@@ -229,6 +235,7 @@ Options.Triggers.push({
         tetherBuddy: {
           en: 'Tethered with ${buddy}',
           de: 'Mit ${buddy} verbunden',
+          fr: 'Lié avec ${buddy}',
           ja: '${buddy} とペア',
           cn: '与 ${buddy} 连线',
           ko: '선 연결 ${buddy}',
@@ -258,6 +265,7 @@ Options.Triggers.push({
         infiniteDebuff: {
           en: '${element} on you',
           de: '${element} auf dir',
+          fr: '${element} sur vous',
           ja: '${element} 付与',
           cn: '${element} 点名',
           ko: '${element}',
@@ -265,6 +273,7 @@ Options.Triggers.push({
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          fr: 'Feu',
           ja: '炎',
           cn: '火',
           ko: '불',
@@ -272,6 +281,7 @@ Options.Triggers.push({
         ice: {
           en: 'Ice',
           de: 'Eis',
+          fr: 'Glace',
           ja: '氷',
           cn: '冰',
           ko: '얼음',
@@ -296,6 +306,7 @@ Options.Triggers.push({
         sealTowers: {
           en: '${element} towers with ${buddy}',
           de: '${element} Türme mit ${buddy}',
+          fr: 'Tour de ${element} avec ${buddy}',
           ja: '${buddy} と ${element} の塔に入る',
           cn: '与${buddy}踩${element}塔',
           ko: '${element} 기둥 +${buddy}',
@@ -303,6 +314,7 @@ Options.Triggers.push({
         fire: {
           en: 'Fire',
           de: 'Feuer',
+          fr: 'Feu',
           ja: '炎',
           cn: '火',
           ko: '불',
@@ -310,6 +322,7 @@ Options.Triggers.push({
         ice: {
           en: 'Ice',
           de: 'Eis',
+          fr: 'Glace',
           ja: '氷',
           cn: '冰',
           ko: '얼음',
@@ -367,12 +380,17 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Execrated Wile': 'ruse honnie',
         'Zurvan': 'Zurvan',
       },
       'replaceText': {
+        '\\(circles\\)': '(Cerles)',
+        '\\(explosion\\)': '(Explosion)',
+        '\\(puddle\\)': '(Puddle)',
+        '\\(snapshot\\)': '(Copie)',
+        '\\(avoid\\)': '(Évitez)',
+        '\\(stack\\)': '(Package)',
         'Ahura Mazda': 'Ahura Mazda',
         'Biting Halberd': 'Hallebarde mordante',
         'Broken Seal': 'Marque brisée',

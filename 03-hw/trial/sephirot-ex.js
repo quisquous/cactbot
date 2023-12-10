@@ -30,6 +30,7 @@ Options.Triggers.push({
         text: {
           en: 'Move to safe quadrant',
           de: 'Beweg dich in den sicheren Quadranten',
+          fr: 'Allez dans le quart sur',
           cn: '移动到安全区域',
           ko: '안전한 지역으로 이동',
         },
@@ -43,6 +44,7 @@ Options.Triggers.push({
         text: {
           en: 'Bait toward puddle',
           de: 'In Richtung Fläche ködern',
+          fr: 'Bait vers le puddle',
           cn: '靠近圈圈集合诱导AOE',
           ko: '장판 쪽으로 아인 유도',
         },
@@ -61,12 +63,14 @@ Options.Triggers.push({
         noPillar: {
           en: 'Bait Yesod',
           de: 'Yesod ködern',
+          fr: 'Attirez Yesod',
           cn: '集合诱导基盘碎击',
           ko: '예소드 붕괴 유도',
         },
         withPillar: {
           en: 'Bait Yesod inside puddle',
           de: 'Yesod in die Fläche ködern',
+          fr: 'Attirez Yesod dans le puddle',
           cn: '圈圈内集合诱导基盘碎击',
           ko: '장판 안에 예소드 유도하기',
         },
@@ -127,12 +131,14 @@ Options.Triggers.push({
         noStack: {
           en: 'Don\'t Stack!',
           de: 'Nicht sammeln!',
+          fr: 'Ne vous packez pas !',
           cn: '不要重合！',
           ko: '겹치면 안됨!',
         },
         stack: {
           en: 'Group Stacks',
           de: 'In der Gruppe sammeln',
+          fr: 'Package en groupe',
           cn: '分组集合',
           ko: '그룹 쉐어',
         },
@@ -242,12 +248,14 @@ Options.Triggers.push({
         getTower: {
           en: 'Get a tower',
           de: 'Nimm einen Turm',
+          fr: 'Prenez une tour',
           cn: '踩塔',
           ko: '기둥 밟기',
         },
         avoidTower: {
           en: 'Avoid towers',
           de: 'Turm meiden',
+          fr: 'Évitez les tours',
           cn: '躲塔',
           ko: '기둥 피하기',
         },
@@ -267,12 +275,14 @@ Options.Triggers.push({
         might: {
           en: 'Get Away, Avoid Puddles + Tethers',
           de: 'Geh weg, weiche Flächen und Verbindungen aus',
+          fr: 'Sortez, évitez les puddles et les liens',
           cn: '远离, 躲避圈圈 + 连线',
           ko: '멀리 떨어지고, 장판 + 선 피하기',
         },
         magic: {
           en: 'Go Front; Get Tether',
           de: 'Geh nach Vorne; Nimm eine Verbindung',
+          fr: 'Allez devant, prenez les liens',
           cn: '去前面; 接线',
           ko: '앞으로 가서 선 가져가기',
         },
@@ -308,12 +318,14 @@ Options.Triggers.push({
         shakerTarget: {
           en: 'Earth Shaker (Max Melee)',
           de: 'Erdstoß (Max Nahkampf)',
+          fr: 'Secousse (Max CàC)',
           cn: '大地摇动 (最远近战距离)',
           ko: '어스징 (칼끝딜 거리)',
         },
         shakerAvoid: {
           en: 'Avoid Earth Shakers',
           de: 'Weiche Erdstoß aus',
+          fr: 'Évitez les secousses',
           cn: '躲避大地摇动',
           ko: '어스징 피하기',
         },

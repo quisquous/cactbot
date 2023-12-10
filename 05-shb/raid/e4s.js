@@ -56,6 +56,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Yellow Spread',
+          fr: 'Dispersion des jaunes',
           cn: '黄标分散',
           ko: '노란색 산개',
         },
@@ -87,6 +88,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Orange Stack',
+          fr: 'Package des oranges',
           cn: '橙标分摊',
           ko: '주황색 쉐어',
         },
@@ -347,6 +349,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Blue Weight',
+          fr: 'Poids bleu',
           cn: '蓝标大陆之重',
           ko: '파란징 대륙의 무게',
         },
@@ -395,6 +398,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Gaol on YOU (w/${player})',
+          fr: 'Geôle sur VOUS (avec ${player})',
           cn: '石牢点名 (与${player})',
           ko: '돌감옥 대상자 (+${player})',
         },
@@ -418,7 +422,7 @@ Options.Triggers.push({
         leftOrBack: {
           en: 'Left (or Back)',
           de: 'VON VORNE RECHTS RUNTER',
-          fr: 'PARTEZ DE L\'AVANT DROITE',
+          fr: 'Gauche (ou Arrière)',
           ja: '右前壊れるよ',
           cn: '左 (或 后)',
           ko: '왼쪽 (또는 뒤)',
@@ -445,7 +449,7 @@ Options.Triggers.push({
         leftOrFront: {
           en: 'Left (or Front)',
           de: 'VON HINTEN RECHTS RUNTER',
-          fr: 'PARTEZ DE L\'ARRIÈRE DROITE',
+          fr: 'Gauche (ou Devant)',
           ja: '右後ろ壊れるよ',
           cn: '左 (或 前)',
           ko: '왼쪽 (또는 앞)',
@@ -472,7 +476,7 @@ Options.Triggers.push({
         frontOrRight: {
           en: 'Right (or Front)',
           de: 'VON HINTEN LINKS RUNTER',
-          fr: 'PARTEZ DE L\'ARRIÈRE GAUCHE',
+          fr: 'Droite (ou Devant)',
           ja: '左後ろ壊れるよ',
           cn: '右 (或 前)',
           ko: '오른쪽 (또는 앞)',
@@ -499,7 +503,7 @@ Options.Triggers.push({
         backOrRight: {
           en: 'Right (or Back)',
           de: 'VON VORNE LINKS RUNTER',
-          fr: 'PARTEZ DE L\'AVANT GAUCHE',
+          fr: 'Droite (ou Arrière)',
           ja: '左前壊れるよ',
           cn: '右 (或 后)',
           ko: '오른쪽 (또는 뒤)',

@@ -29,6 +29,7 @@ Options.Triggers.push({
           avoidStack: {
             en: 'Avoid Stack',
             de: 'Vermeide Sammeln',
+            fr: 'Évitez le package',
             cn: '远离分摊',
             ko: '쉐어징 피하기',
           },
@@ -81,6 +82,7 @@ Options.Triggers.push({
         text: {
           en: 'Away from Dash',
           de: 'Weg vom Anstrum',
+          fr: 'Éloignez-vous du dash',
           cn: '躲避冲锋',
           ko: '돌진한 곳 피하기',
         },
@@ -96,6 +98,7 @@ Options.Triggers.push({
         text: {
           en: 'Go Back/Right',
           de: 'Geh nach Hinten/Rechts',
+          fr: 'Allez à l\'arrière/droite',
           cn: '去背后/右侧',
           ko: '뒤/오른쪽으로',
         },
@@ -118,6 +121,7 @@ Options.Triggers.push({
         text: {
           en: 'Go Back/Left',
           de: 'Geh nach Hinten/Links',
+          fr: 'Allez à l\'arrière/gauche',
           cn: '去背后/左侧',
           ko: '뒤/왼쪽으로',
         },
