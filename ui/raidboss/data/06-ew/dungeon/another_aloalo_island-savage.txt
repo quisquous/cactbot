@@ -10,7 +10,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 #~~~~~~~~~~#
 # KETUDUKE #
@@ -20,75 +20,75 @@ hideall "--sync--"
 # -ii 8AA7 8AED 8ADD 8AB9 8AB6 8AEB TODO TODO 8AE5 8AE6 8AC0 8ADA 8AD9 8AE4 8AC8 8AE3 8A82 8A83
 
 # The Dawn Trial will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1146:/ window 10000,0
-1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:8AD4:/ window 20,20
-1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1146" } window 10000,0
+1010.2 "--sync--" StartsUsing { id: "8AD4", source: "Ketuduke" } window 20,20
+1015.2 "Tidal Roar" Ability { id: "8AD4", source: "Ketuduke" }
 
-1022.0 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
-1027.0 "Spring Crystals 1" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
-1034.0 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
-1041.0 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
-1050.0 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
-1060.0 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
-1062.0 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
-1065.0 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
-1065.1 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
+1022.0 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
+1027.0 "Spring Crystals 1" Ability { id: "8AA8", source: "Ketuduke" }
+1034.0 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1041.0 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1050.0 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
+1060.0 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
+1062.0 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
+1065.0 "Saturate" Ability { id: "8ADC", source: "Spring Crystal" }
+1065.1 "Hydrobullet/Hydrofall" Ability { id: "(8ADF|8ADE)", source: "Ketuduke" }
 
-1074.0 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
-1077.1 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|8AB5):/
-1084.3 "Blowing Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABD:/
-1091.4 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
-1096.3 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADE|8ADF):/
-1099.6 "Hydrobomb x3" sync / 1[56]:[^:]*:Ketuduke:8AD0:/
-1102.5 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
+1074.0 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
+1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: "(TODO|8AB5)", source: "Ketuduke" }
+1084.3 "Blowing Bubbles" Ability { id: "8ABD", source: "Ketuduke" }
+1091.4 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
+1096.3 "Hydrofall/Hydrobullet" Ability { id: "(8ADE|8ADF)", source: "Ketuduke" }
+1099.6 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
+1102.5 "Hydrobullet/Hydrobullet" Ability { id: "(8ADF|8ADE)", source: "Ketuduke" }
 
-1113.6 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
-1118.9 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
-1130.3 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8AE7|8AE9):/
-1130.9 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
-1133.4 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8AEA|8AE8):/
-1134.0 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
-1134.0 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8ADE:/
+1113.6 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
+1118.9 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
+1130.3 "Receding Twintides/Encroaching Twintides" Ability { id: "(8AE7|8AE9)", source: "Ketuduke" }
+1130.9 "Sphere Shatter 1" Ability { id: "8AE0", source: "Ketuduke" }
+1133.4 "Far Tide/Near Tide" Ability { id: "(8AEA|8AE8)", source: "Ketuduke" }
+1134.0 "Sphere Shatter 2" Ability { id: "8AE0", source: "Ketuduke" }
+1134.0 "Hydrofall" Ability { id: "8ADE", source: "Ketuduke" }
 
-1143.7 "Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB8:/
-1149.7 "Roar" sync / 1[56]:[^:]*:Ketuduke:8AC4:/
-1154.6 "Spring Crystals 2" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
-1164.6 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AC5:/
-1177.0 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ADF:/
-1177.6 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
-1182.7 "Updraft" sync / 1[56]:[^:]*:Ketuduke:8AC7:/
-1184.1 "Hundred Lashings" sync / 1[56]:[^:]*:Aloalo Zaratan:8ACA:/
+1143.7 "Hydrobullet (buff)" Ability { id: "8AB8", source: "Ketuduke" }
+1149.7 "Roar" Ability { id: "8AC4", source: "Ketuduke" }
+1154.6 "Spring Crystals 2" Ability { id: "8AA8", source: "Ketuduke" }
+1164.6 "Bubble Net" Ability { id: "8AC5", source: "Ketuduke" }
+1177.0 "Hydrobullet" Ability { id: "8ADF", source: "Ketuduke" }
+1177.6 "Saturate" Ability { id: "8ADC", source: "Spring Crystal" }
+1182.7 "Updraft" Ability { id: "8AC7", source: "Ketuduke" }
+1184.1 "Hundred Lashings" Ability { id: "8ACA", source: "Aloalo Zaratan" }
 
-1190.7 "--middle--" sync / 1[56]:[^:]*:Ketuduke:8A77:/
-1199.4 "Hydrofall/Hydrobullet (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB4|8AB8):/
-1202.4 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(TODO|8AB5):/
-1210.4 "Angry Seas" sync / 1[56]:[^:]*:Ketuduke:8AE1:/
-1211.6 "Hydrofall/Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:(8ADE|8ADF):/
-1212.2 "Hydrobullet/Hydrobullet" sync / 1[56]:[^:]*:[^:]*:(8ADF|8ADE):/ # this sometimes has the wrong source
-1214.8 "Spring Crystals 3" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
-1216.8 "Hydrobullet" sync / 1[56]:[^:]*:Ketuduke:8ADF:/
-1221.8 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
-1227.8 "Fluke Typhoon (cast)" sync / 1[56]:[^:]*:Ketuduke:8AAF:/
-1233.8 "Fluke Typhoon" sync / 1[56]:[^:]*:Ketuduke:8AB0:/
-1236.4 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADB:/
-1238.8 "Burst x4" sync / 1[56]:[^:]*:Ketuduke:8AE2:/
+1190.7 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
+1199.4 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
+1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: "(TODO|8AB5)", source: "Ketuduke" }
+1210.4 "Angry Seas" Ability { id: "8AE1", source: "Ketuduke" }
+1211.6 "Hydrofall/Hydrobullet" Ability { id: "(8ADE|8ADF)", source: "Ketuduke" }
+1212.2 "Hydrobullet/Hydrobullet" Ability { id: "(8ADF|8ADE)" } # this sometimes has the wrong source
+1214.8 "Spring Crystals 3" Ability { id: "8AA8", source: "Ketuduke" }
+1216.8 "Hydrobullet" Ability { id: "8ADF", source: "Ketuduke" }
+1221.8 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1227.8 "Fluke Typhoon (cast)" Ability { id: "8AAF", source: "Ketuduke" }
+1233.8 "Fluke Typhoon" Ability { id: "8AB0", source: "Ketuduke" }
+1236.4 "Saturate" Ability { id: "8ADB", source: "Spring Crystal" }
+1238.8 "Burst x4" Ability { id: "8AE2", source: "Ketuduke" }
 
-1246.7 "Spring Crystals 4" sync / 1[56]:[^:]*:Ketuduke:8AA8:/
-1253.7 "Bubble Net" sync / 1[56]:[^:]*:Ketuduke:8AAD:/
-1260.7 "Hydrobullet/Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:(8AB8|8AB4):/
-1269.8 "Fluke Gale (cast)" sync / 1[56]:[^:]*:Ketuduke:8AB1:/
-1279.9 "Fluke Gale 1" sync / 1[56]:[^:]*:Ketuduke:8AB2:/
-1281.9 "Fluke Gale 2" sync / 1[56]:[^:]*:Ketuduke:8AB3:/
-1284.9 "Saturate" sync / 1[56]:[^:]*:Spring Crystal:8ADC:/
-1285.0 "Hydrobullet/Hydrofall" sync / 1[56]:[^:]*:Ketuduke:(8ADF|8ADE):/
+1246.7 "Spring Crystals 4" Ability { id: "8AA8", source: "Ketuduke" }
+1253.7 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1260.7 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1269.8 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
+1279.9 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
+1281.9 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
+1284.9 "Saturate" Ability { id: "8ADC", source: "Spring Crystal" }
+1285.0 "Hydrobullet/Hydrofall" Ability { id: "(8ADF|8ADE)", source: "Ketuduke" }
 
-1293.9 "Hydrofall (buff)" sync / 1[56]:[^:]*:Ketuduke:8AB4:/
-1299.2 "Strewn Bubbles" sync / 1[56]:[^:]*:Ketuduke:8ABB:/
-1310.6 "Receding Twintides/Encroaching Twintides" sync / 1[56]:[^:]*:Ketuduke:(8AE7|8AE9):/
-1311.2 "Sphere Shatter 1" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
-1313.7 "Far Tide/Near Tide" sync / 1[56]:[^:]*:Ketuduke:(8AEA|8AE8):/
-1314.3 "Sphere Shatter 2" sync / 1[56]:[^:]*:Ketuduke:8AE0:/
-1314.3 "Hydrofall" sync / 1[56]:[^:]*:Ketuduke:8ADE:/
+1293.9 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
+1299.2 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
+1310.6 "Receding Twintides/Encroaching Twintides" Ability { id: "(8AE7|8AE9)", source: "Ketuduke" }
+1311.2 "Sphere Shatter 1" Ability { id: "8AE0", source: "Ketuduke" }
+1313.7 "Far Tide/Near Tide" Ability { id: "(8AEA|8AE8)", source: "Ketuduke" }
+1314.3 "Sphere Shatter 2" Ability { id: "8AE0", source: "Ketuduke" }
+1314.3 "Hydrofall" Ability { id: "8ADE", source: "Ketuduke" }
 # ???
 
 # ALL ENCOUNTER ABILITIES
@@ -151,79 +151,79 @@ hideall "--sync--"
 # -ii 8BE6 8BE9 8CE1 8BF1 8BF2 8BFF 8BF3 8BF4
 
 # The Dusk Trial will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1147:/ window 10000,0
-2006.1 "--sync--" sync / 14:[^:]*:Lala:8C05:/ window 20,20
-2011.1 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1147" } window 10000,0
+2006.1 "--sync--" StartsUsing { id: "8C05", source: "Lala" } window 20,20
+2011.1 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
 
-2013.2 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
-2018.3 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8BE0|8D2F):/
-2026.4 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(8BE2|8BE3|8BE4|8BE5):/
+2013.2 "--middle--" Ability { id: "8874", source: "Lala" }
+2018.3 "Angular Addition" Ability { id: "(8BE0|8D2F)", source: "Lala" }
+2026.4 "Arcane Blight" Ability { id: "(8BE2|8BE3|8BE4|8BE5)", source: "Lala" }
 
-2029.6 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
-2034.7 "Analysis" sync / 1[56]:[^:]*:Lala:8BEC:/
-2039.8 "Arcane Array 1" sync / 1[56]:[^:]*:Lala:8BE7:/
-2044.9 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8BE0|8D2F):/
-2045.6 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8BE8:/
-2046.9 "Radiance 1" sync / 1[56]:[^:]*:Arcane Globe:8BEB:/
-2053.0 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(8BE2|8BE3|8BE4|8BE5):/
+2029.6 "--middle--" Ability { id: "8874", source: "Lala" }
+2034.7 "Analysis" Ability { id: "8BEC", source: "Lala" }
+2039.8 "Arcane Array 1" Ability { id: "8BE7", source: "Lala" }
+2044.9 "Angular Addition" Ability { id: "(8BE0|8D2F)", source: "Lala" }
+2045.6 "Bright Pulse" Ability { id: "8BE8", source: "Lala" }
+2046.9 "Radiance 1" Ability { id: "8BEB", source: "Arcane Globe" }
+2053.0 "Arcane Blight" Ability { id: "(8BE2|8BE3|8BE4|8BE5)", source: "Lala" }
 # This can be +1.2s if it's on the final square instead of penultimate.
-2054.1 "Radiance 2" #sync / 1[56]:[^:]*:Arcane Globe:8BEB:/
-2061.2 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CE0:/
+2054.1 "Radiance 2" #Ability { id: "8BEB", source: "Arcane Globe" }
+2061.2 "Targeted Light" Ability { id: "8CE0", source: "Lala" }
 
-2072.5 "Strategic Strike" sync / 1[56]:[^:]*:Lala:8C04:/
+2072.5 "Strategic Strike" Ability { id: "8C04", source: "Lala" }
 
-2085.6 "Planar Tactics" sync / 1[56]:[^:]*:Lala:8BEF:/
-2100.7 "Arcane Mine" sync / 1[56]:[^:]*:Lala:8BF0:/
-2108.6 "Symmetric Surge x2" sync / 1[56]:[^:]*:Lala:8BF5:/
+2085.6 "Planar Tactics" Ability { id: "8BEF", source: "Lala" }
+2100.7 "Arcane Mine" Ability { id: "8BF0", source: "Lala" }
+2108.6 "Symmetric Surge x2" Ability { id: "8BF5", source: "Lala" }
 
-2112.8 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
-2122.9 "Strategic Strike" sync / 1[56]:[^:]*:Lala:8C04:/
+2112.8 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
+2122.9 "Strategic Strike" Ability { id: "8C04", source: "Lala" }
 
-2131.1 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
-2138.3 "Spatial Tactics" sync / 1[56]:[^:]*:Lala:8BF7:/
-2143.4 "Arcane Array 2" sync / 1[56]:[^:]*:Lala:8BF6:/
-2149.2 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8BE8:/
-2150.5 "Inferno Divide 1" sync / 1[56]:[^:]*:Arcane Font:8BEA:/ window 1,1
-2150.5 "Radiance" sync / 1[56]:[^:]*:Arcane Globe:8D20:/
-2152.9 "Inferno Divide 2" sync / 1[56]:[^:]*:Arcane Font:8BEA:/ window 1,1
-2156.6 "Inferno Divide 3" sync / 1[56]:[^:]*:Arcane Font:8BEA:/ window 1,1
-2157.6 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8BE0|8D2F):/
-2157.8 "Inferno Divide 4" sync / 1[56]:[^:]*:Arcane Font:8BEA:/ window 1,1
-2160.2 "Inferno Divide 5" sync / 1[56]:[^:]*:Arcane Font:8BEA:/ window 1,1
-2165.6 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(8BE2|8BE3|8BE4|8BE5):/
+2131.1 "--middle--" Ability { id: "8874", source: "Lala" }
+2138.3 "Spatial Tactics" Ability { id: "8BF7", source: "Lala" }
+2143.4 "Arcane Array 2" Ability { id: "8BF6", source: "Lala" }
+2149.2 "Bright Pulse" Ability { id: "8BE8", source: "Lala" }
+2150.5 "Inferno Divide 1" Ability { id: "8BEA", source: "Arcane Font" } window 1,1
+2150.5 "Radiance" Ability { id: "8D20", source: "Arcane Globe" }
+2152.9 "Inferno Divide 2" Ability { id: "8BEA", source: "Arcane Font" } window 1,1
+2156.6 "Inferno Divide 3" Ability { id: "8BEA", source: "Arcane Font" } window 1,1
+2157.6 "Angular Addition" Ability { id: "(8BE0|8D2F)", source: "Lala" }
+2157.8 "Inferno Divide 4" Ability { id: "8BEA", source: "Arcane Font" } window 1,1
+2160.2 "Inferno Divide 5" Ability { id: "8BEA", source: "Arcane Font" } window 1,1
+2165.6 "Arcane Blight" Ability { id: "(8BE2|8BE3|8BE4|8BE5)", source: "Lala" }
 
-2173.7 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
-2184.8 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
+2173.7 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
+2184.8 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
 
-2196.9 "Symmetric Surge" sync / 1[56]:[^:]*:Lala:8BF8:/
-2202.0 "Constructive Figure" sync / 1[56]:[^:]*:Lala:8BFA:/
-2207.1 "Arcane Plot" sync / 1[56]:[^:]*:Lala:8BF9:/
-2212.9 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8BE8:/
-2221.2 "Arcane Point" sync / 1[56]:[^:]*:Lala:8BFC:/
-2221.8 "Aero II" sync / 1[56]:[^:]*:Aloalo Golem:8BFB:/
-2222.0 "Powerful Light" sync / 1[56]:[^:]*:Lala:8BFD:/
-2230.3 "Explosive Theorem" sync / 1[56]:[^:]*:Lala:8BFE:/
-2234.7 "Symmetric Surge x2" sync / 1[56]:[^:]*:Lala:8BF5:/
-2235.4 "Telluric Theorem" sync / 1[56]:[^:]*:Lala:8C00:/
+2196.9 "Symmetric Surge" Ability { id: "8BF8", source: "Lala" }
+2202.0 "Constructive Figure" Ability { id: "8BFA", source: "Lala" }
+2207.1 "Arcane Plot" Ability { id: "8BF9", source: "Lala" }
+2212.9 "Bright Pulse" Ability { id: "8BE8", source: "Lala" }
+2221.2 "Arcane Point" Ability { id: "8BFC", source: "Lala" }
+2221.8 "Aero II" Ability { id: "8BFB", source: "Aloalo Golem" }
+2222.0 "Powerful Light" Ability { id: "8BFD", source: "Lala" }
+2230.3 "Explosive Theorem" Ability { id: "8BFE", source: "Lala" }
+2234.7 "Symmetric Surge x2" Ability { id: "8BF5", source: "Lala" }
+2235.4 "Telluric Theorem" Ability { id: "8C00", source: "Lala" }
 
-2248.4 "Strategic Strike" sync / 1[56]:[^:]*:Lala:8C04:/
-2256.5 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
+2248.4 "Strategic Strike" Ability { id: "8C04", source: "Lala" }
+2256.5 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
 
-2263.6 "--middle--" sync / 1[56]:[^:]*:Lala:8874:/
-2269.0 "Analysis" sync / 1[56]:[^:]*:Lala:8BEC:/
-2274.1 "Arcane Array 3" sync / 1[56]:[^:]*:Lala:8BE7:/
-2279.2 "Angular Addition" sync / 1[56]:[^:]*:Lala:(8BE0|8D2F):/
-2279.9 "Bright Pulse" sync / 1[56]:[^:]*:Lala:8BE8:/
-2281.2 "Radiance 1" sync / 1[56]:[^:]*:Arcane Globe:8BEB:/
-2287.3 "Arcane Blight" sync / 1[56]:[^:]*:Lala:(8BE2|8BE3|8BE4|8BE5):/
-2290.9 "Radiance 2" sync / 1[56]:[^:]*:Arcane Globe:8BEB:/
-2295.6 "Targeted Light" sync / 1[56]:[^:]*:Lala:8CE0:/
-2306.7 "Strategic Strike" sync / 1[56]:[^:]*:Lala:8C04:/
+2263.6 "--middle--" Ability { id: "8874", source: "Lala" }
+2269.0 "Analysis" Ability { id: "8BEC", source: "Lala" }
+2274.1 "Arcane Array 3" Ability { id: "8BE7", source: "Lala" }
+2279.2 "Angular Addition" Ability { id: "(8BE0|8D2F)", source: "Lala" }
+2279.9 "Bright Pulse" Ability { id: "8BE8", source: "Lala" }
+2281.2 "Radiance 1" Ability { id: "8BEB", source: "Arcane Globe" }
+2287.3 "Arcane Blight" Ability { id: "(8BE2|8BE3|8BE4|8BE5)", source: "Lala" }
+2290.9 "Radiance 2" Ability { id: "8BEB", source: "Arcane Globe" }
+2295.6 "Targeted Light" Ability { id: "8CE0", source: "Lala" }
+2306.7 "Strategic Strike" Ability { id: "8C04", source: "Lala" }
 
-2316.8 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:8C05:/
+2316.8 "Inferno Theorem" Ability { id: "8C05", source: "Lala" }
 
-2319.9 "--sync--" sync / 14:[^:]*:Lala:TODO:/ window 20,20
-2329.9 "Inferno Theorem Enrage" sync / 1[56]:[^:]*:Lala:TODO:/
+2319.9 "--sync--" StartsUsing { id: "TODO", source: "Lala" } window 20,20
+2329.9 "Inferno Theorem Enrage" Ability { id: "TODO", source: "Lala" }
 
 
 # ALL ENCOUNTER ABILITIES
@@ -276,71 +276,71 @@ hideall "--sync--"
 # -ii TODO 8925 8926 8977 8978 8969 8988 8A6A 897C 897D TODO TODO 8CC1 89FB TODO 8974 8975
 
 # Midnight Trial will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1148:/ window 10000,0
-3008.8 "--sync--" sync / 14:[^:]*:Statice:8966:/ window 20,20
-3013.8 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1148" } window 10000,0
+3008.8 "--sync--" StartsUsing { id: "8966", source: "Statice" } window 20,20
+3013.8 "Aero IV" Ability { id: "8966", source: "Statice" }
 
-3018.0 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
-3023.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3038.2 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1C:/
-3048.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
-3056.5 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
-3070.6 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
-3074.6 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
+3018.0 "--middle--" Ability { id: "8927", source: "Statice" }
+3023.4 "Trick Reload" Ability { id: "8967", source: "Statice" }
+3038.2 "Trapshooting 1" Ability { id: "8D1C", source: "Statice" }
+3048.6 "Trigger Happy" Ability { id: "8968", source: "Statice" }
+3056.5 "Ring a Ring o' Explosions" Ability { id: "8979", source: "Statice" }
+3070.6 "Trapshooting 2" Ability { id: "8976", source: "Statice" }
+3074.6 "Burst" Ability { id: "897A", source: "Bomb" }
 
-3081.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
-3087.4 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3101.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
-3106.3 "Dartboard of Dancing Explosives " sync / 1[56]:[^:]*:Statice:8CC0:/
-3120.1 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8976:/
-3122.0 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
-3125.3 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8971:/
+3081.8 "--middle--" Ability { id: "8927", source: "Statice" }
+3087.4 "Trick Reload" Ability { id: "8967", source: "Statice" }
+3101.2 "Ring a Ring o' Explosions" Ability { id: "8979", source: "Statice" }
+3106.3 "Dartboard of Dancing Explosives " Ability { id: "8CC0", source: "Statice" }
+3120.1 "Trapshooting 1" Ability { id: "8976", source: "Statice" }
+3122.0 "Burst" Ability { id: "897A", source: "Bomb" }
+3125.3 "Uncommon Ground" Ability { id: "8971", source: "Statice" }
 
-3132.3 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
-3137.7 "Surprise Balloon" sync / 1[56]:[^:]*:Statice:8927:/
-3144.8 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8980:/
-3149.8 "Surprise Needle 1" #sync / 1[56]:[^:]*:Needle:896C:/
-3150.7 "Pop 1" sync / 1[56]:[^:]*:Statice:896B:/
-3151.5 "Surprise Needle 2" #sync / 1[56]:[^:]*:Needle:896C:/
-3152.4 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
-3153.2 "Surprise Needle 3" #sync / 1[56]:[^:]*:Needle:896C:/
-3154.9 "Surprise Needle 4" #sync / 1[56]:[^:]*:Needle:896C:/
-3155.6 "Pop 2" sync / 1[56]:[^:]*:Statice:896B:/
-3160.4 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
+3132.3 "--middle--" Ability { id: "8927", source: "Statice" }
+3137.7 "Surprise Balloon" Ability { id: "8927", source: "Statice" }
+3144.8 "Beguiling Glitter" Ability { id: "8980", source: "Statice" }
+3149.8 "Surprise Needle 1" #Ability { id: "896C", source: "Needle" }
+3150.7 "Pop 1" Ability { id: "896B", source: "Statice" }
+3151.5 "Surprise Needle 2" #Ability { id: "896C", source: "Needle" }
+3152.4 "Trigger Happy" Ability { id: "8968", source: "Statice" }
+3153.2 "Surprise Needle 3" #Ability { id: "896C", source: "Needle" }
+3154.9 "Surprise Needle 4" #Ability { id: "896C", source: "Needle" }
+3155.6 "Pop 2" Ability { id: "896B", source: "Statice" }
+3160.4 "Trapshooting 2" Ability { id: "8976", source: "Statice" }
 
-3172.5 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
-3179.7 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
-3184.1 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
-3189.2 "Present Box 1" sync / 1[56]:[^:]*:Statice:8972:/
-3194.3 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:897B:/
-3204.0 "Fireworks" sync / 1[56]:[^:]*:Statice:897C:/
-3204.2 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
-3204.3 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8973:/
-3212.5 "Shocking Abandon" sync / 1[56]:[^:]*:Statice:8965:/
+3172.5 "Aero IV" Ability { id: "8966", source: "Statice" }
+3179.7 "--middle--" Ability { id: "8927", source: "Statice" }
+3184.1 "Ring a Ring o' Explosions" Ability { id: "8979", source: "Statice" }
+3189.2 "Present Box 1" Ability { id: "8972", source: "Statice" }
+3194.3 "Fireworks (cast)" Ability { id: "897B", source: "Statice" }
+3204.0 "Fireworks" Ability { id: "897C", source: "Statice" }
+3204.2 "Burst" Ability { id: "897A", source: "Bomb" }
+3204.3 "Faerie Ring" Ability { id: "8973", source: "Surprising Staff" }
+3212.5 "Shocking Abandon" Ability { id: "8965", source: "Statice" }
 
-3222.7 "Pinwheeling Dartboard" sync / 1[56]:[^:]*:Statice:8BCF:/
-3231.4 "Fireworks (cast)" sync / 1[56]:[^:]*:Statice:897B:/
-3233.4 "Fire Spread" sync / 1[56]:[^:]*:Statice:8952:/ duration 11
-3241.3 "Fireworks" sync / 1[56]:[^:]*:Statice:897C:/
-3241.6 "Uncommon Ground" sync / 1[56]:[^:]*:Statice:8971:/
-3253.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3222.7 "Pinwheeling Dartboard" Ability { id: "8BCF", source: "Statice" }
+3231.4 "Fireworks (cast)" Ability { id: "897B", source: "Statice" }
+3233.4 "Fire Spread" Ability { id: "8952", source: "Statice" } duration 11
+3241.3 "Fireworks" Ability { id: "897C", source: "Statice" }
+3241.6 "Uncommon Ground" Ability { id: "8971", source: "Statice" }
+3253.6 "Aero IV" Ability { id: "8966", source: "Statice" }
 
-3260.8 "--middle--" sync / 1[56]:[^:]*:Statice:8927:/
-3266.5 "Beguiling Glitter" sync / 1[56]:[^:]*:Statice:8980:/
-3273.6 "Trick Reload" sync / 1[56]:[^:]*:Statice:8967:/
-3288.4 "Trapshooting 1" sync / 1[56]:[^:]*:Statice:8D1C:/
-3295.5 "Present Box 2" sync / 1[56]:[^:]*:Statice:8972:/
-3302.2 "Ring a Ring o' Explosions" sync / 1[56]:[^:]*:Statice:8979:/
-3309.6 "Trigger Happy" sync / 1[56]:[^:]*:Statice:8968:/
-3310.2 "Faerie Ring" sync / 1[56]:[^:]*:Surprising Staff:8973:/
-3316.5 "Trapshooting 2" sync / 1[56]:[^:]*:Statice:8976:/
-3320.4 "Burst" sync / 1[56]:[^:]*:Bomb:897A:/
+3260.8 "--middle--" Ability { id: "8927", source: "Statice" }
+3266.5 "Beguiling Glitter" Ability { id: "8980", source: "Statice" }
+3273.6 "Trick Reload" Ability { id: "8967", source: "Statice" }
+3288.4 "Trapshooting 1" Ability { id: "8D1C", source: "Statice" }
+3295.5 "Present Box 2" Ability { id: "8972", source: "Statice" }
+3302.2 "Ring a Ring o' Explosions" Ability { id: "8979", source: "Statice" }
+3309.6 "Trigger Happy" Ability { id: "8968", source: "Statice" }
+3310.2 "Faerie Ring" Ability { id: "8973", source: "Surprising Staff" }
+3316.5 "Trapshooting 2" Ability { id: "8976", source: "Statice" }
+3320.4 "Burst" Ability { id: "897A", source: "Bomb" }
 
-3327.6 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
-3335.7 "Aero IV" sync / 1[56]:[^:]*:Statice:8966:/
+3327.6 "Aero IV" Ability { id: "8966", source: "Statice" }
+3335.7 "Aero IV" Ability { id: "8966", source: "Statice" }
 
-3338.8 "--sync--" sync / 14:[^:]*:Statice:TODO:/
-3348.8 "Aero IV Enrage" sync / 1[56]:[^:]*:Statice:TODO:/
+3338.8 "--sync--" StartsUsing { id: "TODO", source: "Statice" }
+3348.8 "Aero IV Enrage" Ability { id: "TODO", source: "Statice" }
 
 
 # ALL ENCOUNTER ABILITIES
