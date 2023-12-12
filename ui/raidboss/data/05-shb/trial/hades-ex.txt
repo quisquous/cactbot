@@ -8,27 +8,28 @@ hideall "--sync--"
 ### Phase 1
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.7 "Ancient Double" sync / 1[56]:[^:]*:Hades:47A5:/ window 11,0
-19.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47A9:/
-22.8 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47AA:/
-30.7 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
-33.8 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
-42.0 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A6:/
-45.2 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A7:/
-51.3 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
-59.4 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
-60.3 "Magic Chakram/Spear" #sync / 1[56]:[^:]*:Arcane Globe:47B5:/
-68.5 "Broken Faith" sync / 1[56]:[^:]*:Hades:47B1:/ duration 35.3
-107.8 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
-115.9 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
-116.8 "Magic Spear/Chakram" #sync / 1[56]:[^:]*:Arcane Font:47B6:/
-130.0 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47A9:/
-133.0 "Shadow Spread" sync / 1[56]:[^:]*:Hades:47AA:/
-140.9 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
-144.0 "Bad Faith" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
-152.2 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A6:/
-155.4 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:47A7:/
-169.7 "Ancient Dark IV" sync / 1[56]:[^:]*:Hades:47B7:/
+6.6 "--sync--" sync / 14:[^:]*:Hades:47A5:/ window 10,10
+9.6 "Ancient Double" sync / 1[56]:[^:]*:Hades:47A5:/
+18.7 "Shadow Spread 1" sync / 1[56]:[^:]*:Hades:47A9:/
+21.7 "Shadow Spread 2" sync / 1[56]:[^:]*:Hades:47AA:/
+29.6 "Bad Faith 1" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
+32.7 "Bad Faith 2" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
+40.9 "Ravenous Assault 1" sync / 1[56]:[^:]*:Hades:47A6:/
+44.1 "Ravenous Assault 2" sync / 1[56]:[^:]*:Hades:47A7:/
+50.2 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
+58.3 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
+59.2 "Magic Chakram/Spear" #sync / 1[56]:[^:]*:Arcane Globe:47B5:/
+67.4 "Broken Faith" sync / 1[56]:[^:]*:Hades:47B1:/ duration 35.3
+106.7 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
+114.8 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
+115.7 "Magic Spear/Chakram" #sync / 1[56]:[^:]*:Arcane Font:47B6:/
+128.9 "Shadow Spread 1" sync / 1[56]:[^:]*:Hades:47A9:/
+131.9 "Shadow Spread 2" sync / 1[56]:[^:]*:Hades:47AA:/
+139.8 "Bad Faith 1" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
+142.9 "Bad Faith 2" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
+151.1 "Ravenous Assault 1" sync / 1[56]:[^:]*:Hades:47A6:/
+154.3 "Ravenous Assault 2" sync / 1[56]:[^:]*:Hades:47A7:/
+168.6 "Ancient Dark IV" sync / 1[56]:[^:]*:Hades:47B7:/
 
 
 ### Phase 2

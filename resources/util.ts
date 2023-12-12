@@ -261,7 +261,7 @@ const output16Dir: DirectionOutput16[] = [
 const outputCardinalDir: DirectionOutputCardinal[] = ['dirN', 'dirE', 'dirS', 'dirW'];
 const outputIntercardDir: DirectionOutputIntercard[] = ['dirNE', 'dirSE', 'dirSW', 'dirNW'];
 
-const outputStrings16Dir: { [outputString: string]: OutputStrings } = {
+const outputStrings16Dir: OutputStrings = {
   dirN: Outputs.dirN,
   dirNNE: Outputs.dirNNE,
   dirNE: Outputs.dirNE,
@@ -281,7 +281,7 @@ const outputStrings16Dir: { [outputString: string]: OutputStrings } = {
   unknown: Outputs.unknown,
 };
 
-const outputStrings8Dir: { [outputString: string]: OutputStrings } = {
+const outputStrings8Dir: OutputStrings = {
   dirN: Outputs.dirN,
   dirNE: Outputs.dirNE,
   dirE: Outputs.dirE,
@@ -293,7 +293,7 @@ const outputStrings8Dir: { [outputString: string]: OutputStrings } = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsCardinalDir: { [outputString: string]: OutputStrings } = {
+const outputStringsCardinalDir: OutputStrings = {
   dirN: Outputs.dirN,
   dirE: Outputs.dirE,
   dirS: Outputs.dirS,
@@ -301,7 +301,7 @@ const outputStringsCardinalDir: { [outputString: string]: OutputStrings } = {
   unknown: Outputs.unknown,
 };
 
-const outputStringsIntercardDir: { [outputString: string]: OutputStrings } = {
+const outputStringsIntercardDir: OutputStrings = {
   dirNE: Outputs.dirNE,
   dirSE: Outputs.dirSE,
   dirSW: Outputs.dirSW,

@@ -33,6 +33,8 @@ hideall "--sync--"
 105.2 "Ruby Sphere 1" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
 108.2 "Ruby Sphere 2" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
 111.2 "Ruby Sphere 3" #sync / 1[56]:[^:]*:The Ruby Weapon:4ACA:/
+# can be slightly delayed
+122.6 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4B02:/ window 10,10
 127.6 "Ruby Ray" sync / 1[56]:[^:]*:The Ruby Weapon:4B02:/
 134.7 "Optimized Ultima" sync / 1[56]:[^:]*:The Ruby Weapon:4ABE:/
 145.4 "Flexiclaw" sync / 1[56]:[^:]*:The Ruby Weapon:4A92:/

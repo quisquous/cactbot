@@ -527,6 +527,11 @@ export class TimelineParser {
       this.replacements,
     ).params;
 
+    const regex = buildNetRegexForTrigger(netRegexType, {
+      ...translatedParams,
+      capture: false,
+    });
+
     // The original params should be TimelineNetParams, thus so should the output.
     if (!isTimelineNetParams(translatedParams))
       throw new UnreachableCode();
@@ -535,7 +540,7 @@ export class TimelineParser {
       uniqueid,
       'net',
       translatedParams,
-      Regexes.parse(buildNetRegexForTrigger(netRegexType, translatedParams)),
+      Regexes.parse(regex),
       syncCommand.args,
       seconds,
       lineNumber,

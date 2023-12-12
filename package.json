@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.30.8",
+  "version": "0.30.9",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
@@ -121,7 +121,7 @@
     "webpack-merge": "^5.8.0"
   },
   "engines": {
-    "node": ">=18.10.0"
+    "node": ">=18.10.0 <18.19"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
