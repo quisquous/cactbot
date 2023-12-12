@@ -605,42 +605,22 @@ const triggerSet: TriggerSet<Data> = {
         const diff = (finalDir - initialDir + 4) % 4;
         if (diff !== 1 && diff !== 3)
           return;
-        const rotateStr = diff === 1 ? output.dirClock!() : output.dirCounter!();
-        const dirStr = {
+        return {
           0: output.front!(),
           1: output.right!(),
           2: output.back!(),
           3: output.left!(),
         }[finalDir];
-
-        return output.text!({ rotate: rotateStr, dir: dirStr });
       },
       run: (data) => {
         delete data.lalaBossTimes;
         delete data.lalaBossRotation;
       },
       outputStrings: {
-        text: {
-          en: '${rotate} (${dir})',
-        },
-        front: {
-          en: 'in front',
-        },
-        back: {
-          en: 'get behind',
-        },
-        left: {
-          en: 'on left flank',
-        },
-        right: {
-          en: 'on right flank',
-        },
-        dirClock: {
-          en: 'Rotate Left',
-        },
-        dirCounter: {
-          en: 'Rotate Right',
-        },
+        front: Outputs.front,
+        back: Outputs.back,
+        left: Outputs.left,
+        right: Outputs.right,
       },
     },
     {
