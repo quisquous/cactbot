@@ -4,7 +4,8 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
+# .*is no longer sealed
+0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
 #~~~~~~~~~~#
 # KETUDUKE #
@@ -13,7 +14,8 @@ hideall "--sync--"
 # -p 8AD4:1015.2
 # -ii 8AA7 8AD5 8AAE 8AB9 8AB6 8AD1 8ABE 8ABF 8AC9 8ACB 8AC0 8AAA 8AA9 8AC6 8AC8 8AC3 8A82 8A83
 
-1000.0 "--sync--" sync / 00:0839::The Dawn Trial will be sealed off/ window 10000,0
+# The Dawn Trial will be sealed off
+1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1146:/ window 10000,0
 1010.2 "--sync--" sync / 14:[^:]*:Ketuduke:8AD4:/ window 20,20
 1015.2 "Tidal Roar" sync / 1[56]:[^:]*:Ketuduke:8AD4:/
 
@@ -143,7 +145,8 @@ hideall "--sync--"
 # -p 88AE:2011.1
 # -ii 888F 8892 8CDF 889A 889B 88A8 889C 889D
 
-2000.0 "--sync--" sync / 00:0839::The Dusk Trial will be sealed off/ window 10000,0
+# The Dusk Trial will be sealed off
+2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1147:/ window 10000,0
 2006.1 "--sync--" sync / 14:[^:]*:Lala:88AE:/ window 20,20
 2011.1 "Inferno Theorem" sync / 1[56]:[^:]*:Lala:88AE:/
 
@@ -267,7 +270,8 @@ hideall "--sync--"
 # -p 8949:3013.8
 # -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2 8982 8CBE 89F9 8C24 8957 8958
 
-3000.0 "--sync--" sync / 00:0839::The Midnight Trial will be sealed off/ window 10000,0
+# Midnight Trial will be sealed off
+3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1148:/ window 10000,0
 3008.8 "--sync--" sync / 14:[^:]*:Statice:8949:/ window 20,20
 3013.8 "Aero IV" sync / 1[56]:[^:]*:Statice:8949:/
 
