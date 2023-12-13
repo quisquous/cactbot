@@ -80,7 +80,7 @@ A common use case is to add one overlay for timeline only and one overlay for al
 If you are seeing timelines but not alerts or vice versa,
 make sure you have the overlays you need.
 
-See: [this section](../README.md#adding-overlay-modules) for how to add cactbot overlays.
+See: [this section](../README.md#adding-overlays) for how to add cactbot overlays.
 
 ### Summerford Farms Raidboss Test
 
