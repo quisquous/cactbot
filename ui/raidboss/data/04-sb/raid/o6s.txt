@@ -99,5 +99,5 @@ hideall "--sync--"
 622 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
 626 "Featherlance" Ability { id: "283E", source: "Easterly" }
 
-626 "--sync--" sync / 14:[^:]*:Demon Chadarnook:284D:/
+626 "--sync--" StartsUsing { id: "284D", source: "Demon Chadarnook" }
 641 "Enrage"

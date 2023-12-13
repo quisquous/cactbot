@@ -53,7 +53,7 @@ hideall "--sync--"
 1041.9 "Tornadogenesis" #Ability { id: "1F7F", source: "Ruby Princess" }
 
 # Phase 2: 90% -> 75%, one seduce, more mini busters
-1100.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7A:/ window 100,0
+1100.0 "--sync--" StartsUsing { id: "1F7A", source: "Ruby Princess" } window 100,0
 1107.0 "Seduce" Ability { id: "1F7A", source: "Ruby Princess" }
 1115.1 "Coriolis Kick" Ability { id: "1F7B", source: "Ruby Princess" }
 1121.3 "Tornadogenesis" Ability { id: "1F7F", source: "Ruby Princess" } window 20,20
@@ -64,7 +64,7 @@ hideall "--sync--"
 1146.8 "Tornadogenesis" #Ability { id: "1F7F", source: "Ruby Princess" }
 
 # Phase 3: 75% -> 60%, introduction to chasing AOE
-1200.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7C:/ window 200,0
+1200.0 "--sync--" StartsUsing { id: "1F7C", source: "Ruby Princess" } window 200,0
 1203.0 "Abyssal Volcano" Ability { id: "1F7C", source: "Ruby Princess" }
 1203.8 "Geothermal Flatulence x11" Ability { id: "24D7", source: "Ruby Princess" } duration 8.1
 1217.2 "Coriolis Kick" Ability { id: "1F7B", source: "Ruby Princess" }
@@ -78,7 +78,7 @@ hideall "--sync--"
 1274.2 "Tornadogenesis" #Ability { id: "1F7F", source: "Ruby Princess" }
 
 # Phase 4: 60% -> 0%, seduce loop
-1400.0 "--sync--" sync / 14:[^:]*:Ruby Princess:1F7A:/ window 290,0
+1400.0 "--sync--" StartsUsing { id: "1F7A", source: "Ruby Princess" } window 290,0
 1407.0 "Seduce" Ability { id: "1F7A", source: "Ruby Princess" }
 1415.1 "Coriolis Kick" Ability { id: "1F7B", source: "Ruby Princess" }
 1423.3 "Tornadogenesis" Ability { id: "1F7F", source: "Ruby Princess" }
@@ -130,7 +130,7 @@ hideall "--sync--"
 2048.2 "Foul Nail" #Ability { id: "1F87", source: "Shisui Yohi" }
 
 # Phase 2: 90% -> 75%, one (1) thick fog
-2100.0 "--sync--" sync / 14:[^:]*:Shisui Yohi:1F80:/ window 100,0
+2100.0 "--sync--" StartsUsing { id: "1F80", source: "Shisui Yohi" } window 100,0
 2105.0 "Thick Fog" Ability { id: "1F80", source: "Shisui Yohi" }
 2108.1 "--untargetable--"
 2128.3 "Black Tide" Ability { id: "1F81", source: "Shisui Yohi" } window 30,30
@@ -162,7 +162,7 @@ hideall "--sync--"
 2350.2 "Foul Nail" #Ability { id: "1F87", source: "Shisui Yohi" }
 
 # Phase 4: 60% -> 0%, thick fog and adds loop
-2400.0 "--sync--" sync / 14:[^:]*:Shisui Yohi:1F80:/ window 100,0
+2400.0 "--sync--" StartsUsing { id: "1F80", source: "Shisui Yohi" } window 100,0
 2405.0 "Thick Fog" Ability { id: "1F80", source: "Shisui Yohi" }
 2408.1 "--untargetable--"
 2428.3 "Black Tide" Ability { id: "1F81", source: "Shisui Yohi" }

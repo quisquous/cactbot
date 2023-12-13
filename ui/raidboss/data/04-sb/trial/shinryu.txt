@@ -23,16 +23,16 @@ hideall "--sync--"
 # Intermission.
 # The given times for Meteor Impact are the latest they can occur.
 119.0 "--sync--" Ability { id: "1F8A", source: "Shinryu" } window 120,5
-125.4 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 10,5
+125.4 "--sync--" StartsUsing { id: "1F96", source: "Cocoon" } window 10,5
 129.1 "Meteor Impact" Ability { id: "1F96", source: "Cocoon" }
 130.6 "--adds spawn--" Ability { id: "2142", source: "Cocoon" }
-146.2 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 15,5
+146.2 "--sync--" StartsUsing { id: "1F96", source: "Cocoon" } window 15,5
 150.9 "Meteor Impact" Ability { id: "1F96", source: "Cocoon" }
 152.5 "--adds spawn--" Ability { id: "2142", source: "Cocoon" }
-176.1 "--sync--" sync / 14:[^:]*:Cocoon:1F96:/ window 25,5
+176.1 "--sync--" StartsUsing { id: "1F96", source: "Cocoon" } window 25,5
 180.8 "Meteor Impact" Ability { id: "1F96", source: "Cocoon" }
 182.4 "--adds spawn--" Ability { id: "2142", source: "Cocoon" }
-219.7 "--sync--" sync / 14:[^:]*:Shinryu:1F95:/ window 220,5
+219.7 "--sync--" StartsUsing { id: "1F95", source: "Shinryu" } window 220,5
 225.2 "Protostar" Ability { id: "1F95", source: "Shinryu" }
 234.3 "Dark Matter" Ability { id: "1F98", source: "Shinryu" }
 240.5 "--sync--" Ability { id: "2128", source: "Shinryu" }

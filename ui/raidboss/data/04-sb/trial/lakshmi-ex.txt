@@ -59,7 +59,7 @@ hideall "Alluring Arm"
 2041.5 "--targetable--"
 
 ### Chanchala #2
-2041.7 "--sync--" sync / 14:[^:]*:Lakshmi:2148:/ window 50,10
+2041.7 "--sync--" StartsUsing { id: "2148", source: "Lakshmi" } window 50,10
 2044.7 "Chanchala #2" Ability { id: "2148", source: "Lakshmi" }
 2058.5 "Divine Doubt" Ability { id: "214A", source: "Lakshmi" }
 2073.9 "The Path Of Light" Ability { id: "215B", source: "Lakshmi" }
@@ -99,5 +99,5 @@ hideall "Alluring Arm"
 
 ### Chanchala #4
 2332.8 "Chanchala #4" Ability { id: "2148", source: "Lakshmi" }
-2335.0 "--sync--" sync / 14:[^:]*:Lakshmi:2560:/ window 1000,1000
+2335.0 "--sync--" StartsUsing { id: "2560", source: "Lakshmi" } window 1000,1000
 2350.0 "Divine Denial Enrage" Ability { id: "2560", source: "Lakshmi" }

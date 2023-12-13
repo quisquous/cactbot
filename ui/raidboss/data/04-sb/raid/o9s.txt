@@ -8,8 +8,8 @@ hideall "--sync--"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 
 ## Branch between Fire/Water paths
-10.7 "--sync--" sync / 14:[^:]*:Chaos:317(2|3):/ window 12,12 jump 2010.1 # Long/lat means water path
-10.7 "--sync--" sync / 14:[^:]*:Chaos:3171:/ window 12,12 jump 1010.7 # Edict means fire path
+10.7 "--sync--" StartsUsing { id: "317(2|3)", source: "Chaos" } window 12,12 jump 2010.1 # Long/lat means water path
+10.7 "--sync--" StartsUsing { id: "3171", source: "Chaos" } window 12,12 jump 1010.7 # Edict means fire path
 
 # Fake water path
 15.7 "Long/Lat Implosion?"

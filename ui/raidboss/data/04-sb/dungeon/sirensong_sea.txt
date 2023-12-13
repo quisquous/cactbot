@@ -44,10 +44,10 @@ hideall "--sync--"
 1042.8 "Enter Night" Ability { id: "1F60", source: "The Governor" } window 10,10
 # Enter Night can take 12-17 seconds.  There is added delay when the mechanic
 # is failed due to Shadowstrike (1F5D) attacks.
-1055.9 "--sync--" sync / 14:[^:]*:The Governor:1F5C:/ window 10,10
+1055.9 "--sync--" StartsUsing { id: "1F5C", source: "The Governor" } window 10,10
 1059.9 "Bloodburst" Ability { id: "1F5C", source: "The Governor" }
 # There is potential delay before Shadow Split due to the boss moving to the middle.
-1065.0 "--sync--" sync / 14:[^:]*:The Governor:1F61:/ window 10,10
+1065.0 "--sync--" StartsUsing { id: "1F61", source: "The Governor" } window 10,10
 1068.0 "Shadow Split" Ability { id: "1F61", source: "The Governor" }
 1076.2 "Shadowflow" Ability { id: "1F5E", source: "The Governor" }
 1076.7 "--sync--" Ability { id: "1F5F", source: "The Governor" }
@@ -55,9 +55,9 @@ hideall "--sync--"
 1093.4 "Bloodburst" Ability { id: "1F5C", source: "The Governor" }
 
 1102.6 "Enter Night" Ability { id: "1F60", source: "The Governor" } window 30,30 jump 1042.8
-1115.7 "--sync--" #sync / 14:[^:]*:The Governor:1F5C:/ window 10,10
+1115.7 "--sync--" #StartsUsing { id: "1F5C", source: "The Governor" } window 10,10
 1119.7 "Bloodburst" #Ability { id: "1F5C", source: "The Governor" }
-1124.8 "--sync--" #sync / 14:[^:]*:The Governor:1F61:/ window 10,10
+1124.8 "--sync--" #StartsUsing { id: "1F61", source: "The Governor" } window 10,10
 1127.8 "Shadow Split" #Ability { id: "1F61", source: "The Governor" }
 1136.0 "Shadowflow" #Ability { id: "1F5E", source: "The Governor" }
 1136.5 "--sync--" #Ability { id: "1F5F", source: "The Governor" }

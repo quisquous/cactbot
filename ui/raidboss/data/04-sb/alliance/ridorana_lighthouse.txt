@@ -150,7 +150,7 @@ hideall "--sync--"
 2230 "Area Lockdown"
 
 # After adds
-2244 "--sync--" sync / 14:[^:]*:Construct 7:2C59:/ window 5000,766
+2244 "--sync--" StartsUsing { id: "2C59", source: "Construct 7" } window 5000,766
 2254 "Annihilation Mode" Ability { id: "2C59", source: "Construct 7" } window 5000,756
 2264 "Destroy" Ability { id: "2C71", source: "Construct 7" }
 2274 "Ignite" Ability { id: "2C67", source: "Construct 7" }
@@ -258,7 +258,7 @@ hideall "--sync--"
 3634 "Dust Storm"
 
 # 9.99% push
-3694 "--sync--" sync / 14:[^:]*:Yiazmat:2C32:/ window 5000,306
+3694 "--sync--" StartsUsing { id: "2C32", source: "Yiazmat" } window 5000,306
 3700 "Growing Threat" Ability { id: "2C32", source: "Yiazmat" } window 5000,300
 3707 "Rake (combo)" duration 14
 3727 "White Breath" Ability { id: "2C31", source: "Yiazmat" }

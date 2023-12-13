@@ -123,7 +123,7 @@ hideall "--sync--"
 2629 "Prey" Ability { id: "278A", source: "Guardian" }
 2635 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 2643 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-2648 "--sync--" sync / 14:[^:]*:Guardian:(275C|2773):/ jump 648          # Load/Skip starts casting, return to A
+2648 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 648          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 2653 "Load Air Force"
@@ -156,7 +156,7 @@ hideall "--sync--"
 3624 "Prey" Ability { id: "278A", source: "Guardian" }
 3633 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 3642 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-3648 "--sync--" sync / 14:[^:]*:Guardian:(275C|2773):/ jump 648 # Load/Skip starts casting, return to A
+3648 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 648 # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 3653 "Load Air Force"
@@ -182,7 +182,7 @@ hideall "--sync--"
 693 "Plane Laser" duration 2
 699 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
-700 "--sync--" sync / 14:[^:]*:Guardian:2791:/ window 100,100
+700 "--sync--" StartsUsing { id: "2791", source: "Guardian" } window 100,100
 715 "Enrage" Ability { id: "2791", source: "Guardian" } jump 0
 
 ######################################
@@ -305,7 +305,7 @@ hideall "--sync--"
 4601 "Prey" Ability { id: "278A", source: "Guardian" }
 4607 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 4615 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-4620 "--sync--" sync / 14:[^:]*:Guardian:(275C|2773):/ jump 1620         # Load/Skip casting, return to B
+4620 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 1620         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 4625 "Load Ultros"
@@ -340,7 +340,7 @@ hideall "--sync--"
 5596 "Prey" Ability { id: "278A", source: "Guardian" }
 5605 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 5614 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-5620 "--sync--" sync / 14:[^:]*:Guardian:(275C|2773):/ jump 1620         # Load/Skip casting, return to B
+5620 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 1620         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 5625 "Load Ultros"
@@ -375,5 +375,5 @@ hideall "--sync--"
 1706 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Enrage
-1711 "--sync--" sync / 14:[^:]*:Guardian:2791:/ window 100,100
+1711 "--sync--" StartsUsing { id: "2791", source: "Guardian" } window 100,100
 1726 "Enrage" Ability { id: "2791", source: "Guardian" } jump 0
