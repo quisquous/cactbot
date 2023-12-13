@@ -9,77 +9,77 @@ hideall "Vice And Virtue"
 ### Phase 1
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.0 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/ window 12,5
-13.5 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
-22.5 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D94:/
-34.1 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E5:/
-34.1 "Vice Of Apathy" sync / 1[56]:[^:]*:Eden Prime:44E8:/
-40.5 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D97:/
-56.1 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/
-56.9 "Vice Of Vanity" sync / 1[56]:[^:]*:Eden Prime:44E7:/
-66.7 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/
-68.2 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
-73.2 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-86.5 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
-92.4 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-101.6 "Delta Attack" sync / 1[56]:[^:]*:Eden Prime:44EA:/
-102.2 "Eden's Thunder III" sync / 1[56]:[^:]*:Eden Prime:44ED:/
-102.2 "Eden's Blizzard III" sync / 1[56]:[^:]*:Eden Prime:44EC:/
-102.2 "Eden's Fire III" sync / 1[56]:[^:]*:Eden Prime:44EB:/
-108.3 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-114.8 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
-123.3 "Pure Beam x6" sync / 1[56]:[^:]*:Eden Prime:3D9D:/ duration 17.3
-128.7 "Paradise Lost x3" sync / 1[56]:[^:]*:Eden Prime:3D9F:/ duration 11.2
-131.2 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-144.5 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
-147.3 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-153.9 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
+12.0 "Spear Of Paradise" Ability { id: "3DA1", source: "Eden Prime" } window 12,5
+13.5 "Heavensunder" Ability { id: "3DA2", source: "Eden Prime" }
+22.5 "Eden's Gravity" Ability { id: "3D94", source: "Eden Prime" }
+34.1 "Vice And Virtue" Ability { id: "44E5", source: "Eden Prime" }
+34.1 "Vice Of Apathy" Ability { id: "44E8", source: "Eden Prime" }
+40.5 "Eden's Flare" Ability { id: "3D97", source: "Eden Prime" }
+56.1 "Vice And Virtue" Ability { id: "44E4", source: "Eden Prime" }
+56.9 "Vice Of Vanity" Ability { id: "44E7", source: "Eden Prime" }
+66.7 "Spear Of Paradise" Ability { id: "3DA1", source: "Eden Prime" }
+68.2 "Heavensunder" Ability { id: "3DA2", source: "Eden Prime" }
+73.2 "--corner--" Ability { id: "4683", source: "Eden Prime" }
+86.5 "Pure Light" Ability { id: "3DA3", source: "Eden Prime" }
+92.4 "--center--" Ability { id: "4683", source: "Eden Prime" }
+101.6 "Delta Attack" Ability { id: "44EA", source: "Eden Prime" }
+102.2 "Eden's Thunder III" Ability { id: "44ED", source: "Eden Prime" }
+102.2 "Eden's Blizzard III" Ability { id: "44EC", source: "Eden Prime" }
+102.2 "Eden's Fire III" Ability { id: "44EB", source: "Eden Prime" }
+108.3 "--sync--" Ability { id: "4683", source: "Eden Prime" }
+114.8 "Dimensional Shift" Ability { id: "3D9C", source: "Eden Prime" }
+123.3 "Pure Beam x6" Ability { id: "3D9D", source: "Eden Prime" } duration 17.3
+128.7 "Paradise Lost x3" Ability { id: "3D9F", source: "Eden Prime" } duration 11.2
+131.2 "--corner--" Ability { id: "4683", source: "Eden Prime" }
+144.5 "Pure Light" Ability { id: "3DA3", source: "Eden Prime" }
+147.3 "--center--" Ability { id: "4683", source: "Eden Prime" }
+153.9 "Dimensional Shift" Ability { id: "3D9C", source: "Eden Prime" }
 
 
 ### Phase 2: cleavy adds
 166.5 "--untargetable--"
-166.5 "Fragor Maximus" sync / 1[56]:[^:]*:Eden Prime:3DA4:/ window 200,5
+166.5 "Fragor Maximus" Ability { id: "3DA4", source: "Eden Prime" } window 200,5
 182.7 "--targetable--"
-182.7 "Paradisal Dive" sync / 1[56]:[^:]*:Guardian of Paradise:3DA9:/
-193.8 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
-203.0 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3DA7:/
-209.1 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
-218.3 "Mana Burst" sync / 1[56]:[^:]*:Guardian of Paradise:3DA7:/
-223.5 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
-228.7 "Mana Slice" sync / 1[56]:[^:]*:Guardian of Paradise:3DA6:/
-242.7 "Unto Dust Enrage" sync / 1[56]:[^:]*:Guardian of Paradise:3DA8:/
+182.7 "Paradisal Dive" Ability { id: "3DA9", source: "Guardian of Paradise" }
+193.8 "Mana Slice" Ability { id: "3DA6", source: "Guardian of Paradise" }
+203.0 "Mana Burst" Ability { id: "3DA7", source: "Guardian of Paradise" }
+209.1 "Mana Slice" Ability { id: "3DA6", source: "Guardian of Paradise" }
+218.3 "Mana Burst" Ability { id: "3DA7", source: "Guardian of Paradise" }
+223.5 "Mana Slice" Ability { id: "3DA6", source: "Guardian of Paradise" }
+228.7 "Mana Slice" Ability { id: "3DA6", source: "Guardian of Paradise" }
+242.7 "Unto Dust Enrage" Ability { id: "3DA8", source: "Guardian of Paradise" }
 
 
 ### Phase 3: more of the same
-300.0 "Primeval Stasis" sync / 1[56]:[^:]*:Eden:3E3A:/ window 300,0
-343.6 "Eternal Breath" sync / 1[56]:[^:]*:Eden Prime:3DA5:/
+300.0 "Primeval Stasis" Ability { id: "3E3A", source: "Eden" } window 300,0
+343.6 "Eternal Breath" Ability { id: "3DA5", source: "Eden Prime" }
 
 354.0 "--targetable--"
-360.0 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/
-360.8 "Vice Of Vanity" sync / 1[56]:[^:]*:Eden Prime:44E7:/
-370.6 "Spear Of Paradise" sync / 1[56]:[^:]*:Eden Prime:3DA1:/
-372.1 "Heavensunder" sync / 1[56]:[^:]*:Eden Prime:3DA2:/
-377.0 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-390.3 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
-396.2 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-405.5 "Delta Attack" sync / 1[56]:[^:]*:Eden Prime:44EA:/
-406.1 "Eden's Thunder III" sync / 1[56]:[^:]*:Eden Prime:44ED:/
-406.1 "Eden's Blizzard III" sync / 1[56]:[^:]*:Eden Prime:44EC:/
-406.1 "Eden's Fire III" sync / 1[56]:[^:]*:Eden Prime:44EB:/
-412.1 "--sync--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-418.7 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
-427.1 "Pure Beam x6" sync / 1[56]:[^:]*:Eden Prime:3D9D:/ duration 17.3
-432.6 "Paradise Lost x3" sync / 1[56]:[^:]*:Eden Prime:3D9F:/ duration 11.2
-435.1 "--corner--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-448.4 "Pure Light" sync / 1[56]:[^:]*:Eden Prime:3DA3:/
-451.2 "--center--" sync / 1[56]:[^:]*:Eden Prime:4683:/
-457.8 "Dimensional Shift" sync / 1[56]:[^:]*:Eden Prime:3D9C:/
-470.3 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E5:/
-470.4 "Vice Of Apathy" sync / 1[56]:[^:]*:Eden Prime:44E8:/
-476.9 "Eden's Flare" sync / 1[56]:[^:]*:Eden Prime:3D97:/
-488.4 "Eden's Gravity" sync / 1[56]:[^:]*:Eden Prime:3D94:/
+360.0 "Vice And Virtue" Ability { id: "44E4", source: "Eden Prime" }
+360.8 "Vice Of Vanity" Ability { id: "44E7", source: "Eden Prime" }
+370.6 "Spear Of Paradise" Ability { id: "3DA1", source: "Eden Prime" }
+372.1 "Heavensunder" Ability { id: "3DA2", source: "Eden Prime" }
+377.0 "--corner--" Ability { id: "4683", source: "Eden Prime" }
+390.3 "Pure Light" Ability { id: "3DA3", source: "Eden Prime" }
+396.2 "--center--" Ability { id: "4683", source: "Eden Prime" }
+405.5 "Delta Attack" Ability { id: "44EA", source: "Eden Prime" }
+406.1 "Eden's Thunder III" Ability { id: "44ED", source: "Eden Prime" }
+406.1 "Eden's Blizzard III" Ability { id: "44EC", source: "Eden Prime" }
+406.1 "Eden's Fire III" Ability { id: "44EB", source: "Eden Prime" }
+412.1 "--sync--" Ability { id: "4683", source: "Eden Prime" }
+418.7 "Dimensional Shift" Ability { id: "3D9C", source: "Eden Prime" }
+427.1 "Pure Beam x6" Ability { id: "3D9D", source: "Eden Prime" } duration 17.3
+432.6 "Paradise Lost x3" Ability { id: "3D9F", source: "Eden Prime" } duration 11.2
+435.1 "--corner--" Ability { id: "4683", source: "Eden Prime" }
+448.4 "Pure Light" Ability { id: "3DA3", source: "Eden Prime" }
+451.2 "--center--" Ability { id: "4683", source: "Eden Prime" }
+457.8 "Dimensional Shift" Ability { id: "3D9C", source: "Eden Prime" }
+470.3 "Vice And Virtue" Ability { id: "44E5", source: "Eden Prime" }
+470.4 "Vice Of Apathy" Ability { id: "44E8", source: "Eden Prime" }
+476.9 "Eden's Flare" Ability { id: "3D97", source: "Eden Prime" }
+488.4 "Eden's Gravity" Ability { id: "3D94", source: "Eden Prime" }
 
-502.0 "Vice And Virtue" sync / 1[56]:[^:]*:Eden Prime:44E4:/ window 100,100 jump 360.0
+502.0 "Vice And Virtue" Ability { id: "44E4", source: "Eden Prime" } window 100,100 jump 360.0
 502.7 "Vice Of Vanity"
 512.5 "Spear Of Paradise"
 514.0 "Heavensunder"

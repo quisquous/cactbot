@@ -8,87 +8,87 @@ hideall "--sync--"
 
 # Opening Block. Introduces Fire/Lightning in a random order.
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.0 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 11,5
-21.8 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:562[CE]:/
-23.5 "Blastburn/Burnout" # sync / 1[56]:[^:]*:Fatebreaker:562[DF]:/
-39.3 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
-41.4 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:563[24]:/
-42.7 "Sinsmite/Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:563[35]:/
-54.5 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/ window 54.5,5
-65.0 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:564E:/
-67.5 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/ window 30,30
-78.7 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:562[CE]:/
-78.9 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:564F:/
-80.4 "Blastburn/Burnout" # sync / 1[56]:[^:]*:Fatebreaker:562[DF]:/
-88.8 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-103.6 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
-105.6 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:563[24]:/
-106.9 "Sinsmite/Sinsmoke" sync / 1[56]:[^:]*:Fatebreaker:563[35]:/
+11.0 "--center--" Ability { id: "5908", source: "Fatebreaker" } window 11,5
+21.8 "Burnt Strike" Ability { id: "562[CE]", source: "Fatebreaker" }
+23.5 "Blastburn/Burnout" # Ability { id: "562[DF]", source: "Fatebreaker" }
+39.3 "Floating Fetters" Ability { id: "58F4", source: "Fatebreaker" }
+41.4 "Solemn Charge" Ability { id: "563[24]", source: "Fatebreaker" }
+42.7 "Sinsmite/Sinsmoke" Ability { id: "563[35]", source: "Fatebreaker" }
+54.5 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" } window 54.5,5
+65.0 "Powder Mark" Ability { id: "564E", source: "Fatebreaker" }
+67.5 "--center--" Ability { id: "5908", source: "Fatebreaker" } window 30,30
+78.7 "Burnt Strike" Ability { id: "562[CE]", source: "Fatebreaker" }
+78.9 "Burn Mark" Ability { id: "564F", source: "Fatebreaker" }
+80.4 "Blastburn/Burnout" # Ability { id: "562[DF]", source: "Fatebreaker" }
+88.8 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+103.6 "Floating Fetters" Ability { id: "58F4", source: "Fatebreaker" }
+105.6 "Solemn Charge" Ability { id: "563[24]", source: "Fatebreaker" }
+106.9 "Sinsmite/Sinsmoke" Ability { id: "563[35]", source: "Fatebreaker" }
 
 # Turn of the Heavens introduced, random element.
-121.7 "Turn Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:563[9A]:/ window 121.7,5
-133.5 "Brightfire" # sync / 1[56]:[^:]*:Halo Of Flame:563[BC]:/
-146.2 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-159.7 "Shifting Sky" sync / 1[56]:[^:]*:Fatebreaker:563F:/ window 159.7,5
+121.7 "Turn Of The Heavens" Ability { id: "563[9A]", source: "Fatebreaker" } window 121.7,5
+133.5 "Brightfire" # Ability { id: "563[BC]", source: "Halo Of Flame" }
+146.2 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+159.7 "Shifting Sky" Ability { id: "563F", source: "Fatebreaker" } window 159.7,5
 162.1 "--untargetable--"
 
 # Single serpent intermission. Lightning Burnt Strike is always first.
-167.2 "--sync--" sync / 1[56]:[^:]*:Demi-Gukumatz:564B:/
-167.3 "Ageless Serpent" sync / 1[56]:[^:]*:Demi-Gukumatz:564C:/ window 167.3,5
-174.7 "Resounding Crack" sync / 1[56]:[^:]*:Demi-Gukumatz:564D:/
-183.9 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker's Image:5645:/
-185.6 "Burnout" sync / 1[56]:[^:]*:Fatebreaker's Image:5646:/
-187.9 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker's Image:5643:/
-189.9 "Blastburn" sync / 1[56]:[^:]*:Fatebreaker's Image:5644:/
+167.2 "--sync--" Ability { id: "564B", source: "Demi-Gukumatz" }
+167.3 "Ageless Serpent" Ability { id: "564C", source: "Demi-Gukumatz" } window 167.3,5
+174.7 "Resounding Crack" Ability { id: "564D", source: "Demi-Gukumatz" }
+183.9 "Burnt Strike" Ability { id: "5645", source: "Fatebreaker's Image" }
+185.6 "Burnout" Ability { id: "5646", source: "Fatebreaker's Image" }
+187.9 "Burnt Strike" Ability { id: "5643", source: "Fatebreaker's Image" }
+189.9 "Blastburn" Ability { id: "5644", source: "Fatebreaker's Image" }
 195.7 "--targetable--"
 
 # Holy introduction block.
-201.9 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/ window 40,5
-213.5 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
-224.5 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:5630:/
-229.5 "Shining Blade" sync / 1[56]:[^:]*:Fatebreaker:5631:/
-236.6 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-250.4 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/ window 50,30
-252.4 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:5636:/
-253.7 "Sinsight" sync / 1[56]:[^:]*:Fatebreaker:5637:/
-259.3 "Mortal Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:5638:/
-260.5 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
-269.1 "Prismatic Deception" sync / 1[56]:[^:]*:Fatebreaker:563D:/ window 269.1,5
+201.9 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" } window 40,5
+213.5 "--center--" Ability { id: "5908", source: "Fatebreaker" }
+224.5 "Burnt Strike" Ability { id: "5630", source: "Fatebreaker" }
+229.5 "Shining Blade" Ability { id: "5631", source: "Fatebreaker" }
+236.6 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+250.4 "Floating Fetters" Ability { id: "58F4", source: "Fatebreaker" } window 50,30
+252.4 "Solemn Charge" Ability { id: "5636", source: "Fatebreaker" }
+253.7 "Sinsight" Ability { id: "5637", source: "Fatebreaker" }
+259.3 "Mortal Burn Mark" Ability { id: "5638", source: "Fatebreaker" }
+260.5 "--center--" Ability { id: "5908", source: "Fatebreaker" }
+269.1 "Prismatic Deception" Ability { id: "563D", source: "Fatebreaker" } window 269.1,5
 272.2 "--untargetable--"
 
 # Clone intermission.
-294.5 "Blasting Zone" sync / 1[56]:[^:]*:Fatebreaker's Image:563E:/
+294.5 "Blasting Zone" Ability { id: "563E", source: "Fatebreaker's Image" }
 300.4 "--targetable--"
 
 # Multi-Strike rotation block
-306.5 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-319.1 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:564E:/
-329.6 "Turn Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:563[9A]:/ window 30,30
-333.0 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:564F:/
-341.4 "Brightfire" # sync / 1[56]:[^:]*:Halo Of Flame:563[BC]:/
-346.1 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
-356.8 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:56(2C|2E|30):/
-358.5 "Blastburn/Burnout" # sync / 1[56]:[^:]*:Fatebreaker:(2D|2F|31):/
-369.2 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:56(2C|2E|30):/
-370.9 "Blastburn/Burnout" # sync / 1[56]:[^:]*:Fatebreaker:(2D|2F|31):/
-381.2 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
+306.5 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+319.1 "Powder Mark" Ability { id: "564E", source: "Fatebreaker" }
+329.6 "Turn Of The Heavens" Ability { id: "563[9A]", source: "Fatebreaker" } window 30,30
+333.0 "Burn Mark" Ability { id: "564F", source: "Fatebreaker" }
+341.4 "Brightfire" # Ability { id: "563[BC]", source: "Halo Of Flame" }
+346.1 "--center--" Ability { id: "5908", source: "Fatebreaker" }
+356.8 "Burnt Strike" Ability { id: "56(2C|2E|30)", source: "Fatebreaker" }
+358.5 "Blastburn/Burnout" # Ability { id: "(2D|2F|31)", source: "Fatebreaker" }
+369.2 "Burnt Strike" Ability { id: "56(2C|2E|30)", source: "Fatebreaker" }
+370.9 "Blastburn/Burnout" # Ability { id: "(2D|2F|31)", source: "Fatebreaker" }
+381.2 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
 
 # Fetters rotation block
-391.7 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-404.2 "Powder Mark" sync / 1[56]:[^:]*:Fatebreaker:564E:/
-414.7 "Turn Of The Heavens" sync / 1[56]:[^:]*:Fatebreaker:563[9A]:/ window 30,30
-418.1 "Burn Mark" sync / 1[56]:[^:]*:Fatebreaker:564F:/
-426.5 "Brightfire" # sync / 1[56]:[^:]*:Halo Of Flame:563[BC]:/
-431.2 "--center--" sync / 1[56]:[^:]*:Fatebreaker:5908:/
-442.1 "Burnt Strike" sync / 1[56]:[^:]*:Fatebreaker:56(2C|2E|30):/
-446.9 "Shining Blade" # sync / 1[56]:[^:]*:Fatebreaker:5631:/
-454.2 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/
-466.9 "Floating Fetters" sync / 1[56]:[^:]*:Fatebreaker:58F4:/
-469.0 "Solemn Charge" sync / 1[56]:[^:]*:Fatebreaker:563[246]:/
-470.3 "Sinsmite/Sinsmoke/Sinsight" sync / 1[56]:[^:]*:Fatebreaker:563[357]:/
-475.9 "Mortal Burn Mark?" sync / 1[56]:[^:]*:Fatebreaker:5638:/
+391.7 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+404.2 "Powder Mark" Ability { id: "564E", source: "Fatebreaker" }
+414.7 "Turn Of The Heavens" Ability { id: "563[9A]", source: "Fatebreaker" } window 30,30
+418.1 "Burn Mark" Ability { id: "564F", source: "Fatebreaker" }
+426.5 "Brightfire" # Ability { id: "563[BC]", source: "Halo Of Flame" }
+431.2 "--center--" Ability { id: "5908", source: "Fatebreaker" }
+442.1 "Burnt Strike" Ability { id: "56(2C|2E|30)", source: "Fatebreaker" }
+446.9 "Shining Blade" # Ability { id: "5631", source: "Fatebreaker" }
+454.2 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
+466.9 "Floating Fetters" Ability { id: "58F4", source: "Fatebreaker" }
+469.0 "Solemn Charge" Ability { id: "563[246]", source: "Fatebreaker" }
+470.3 "Sinsmite/Sinsmoke/Sinsight" Ability { id: "563[357]", source: "Fatebreaker" }
+475.9 "Mortal Burn Mark?" Ability { id: "5638", source: "Fatebreaker" }
 
-480.1 "Burnished Glory" sync / 1[56]:[^:]*:Fatebreaker:5650:/ jump 306.5
+480.1 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" } jump 306.5
 492.7 "Powder Mark"
 503.2 "Turn Of The Heavens"
 506.6 "Burn Mark"

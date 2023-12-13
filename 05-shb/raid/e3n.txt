@@ -6,80 +6,80 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.5 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/ window 13,5
-23.5 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/
-37.7 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-47.0 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FC8:/
-51.1 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FCA:/
-55.1 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FCB:/
-60.2 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-70.4 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/ window 30,30
-77.4 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/
-98.7 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FD3:/
+12.5 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" } window 13,5
+23.5 "Rip Current" Ability { id: "3FC6", source: "Leviathan" }
+37.7 "Temporary Current" Ability { id: "3FC[DE]", source: "Leviathan" }
+47.0 "Drenching Pulse" Ability { id: "3FC8", source: "Leviathan" }
+51.1 "Monster Wave" Ability { id: "3FCA", source: "Leviathan" }
+55.1 "Freak Wave" Ability { id: "3FCB", source: "Leviathan" }
+60.2 "Temporary Current" Ability { id: "3FC[DE]", source: "Leviathan" }
+70.4 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" } window 30,30
+77.4 "Rip Current" Ability { id: "3FC6", source: "Leviathan" }
+98.7 "Tidal Wave" Ability { id: "3FD3", source: "Leviathan" }
 
-105.6 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FD0:/ window 105.6,10
-114.8 "Crashing Pulse" sync / 1[56]:[^:]*:Leviathan:3FC9:/
-118.9 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FCA:/
-122.9 "Killer Wave" sync / 1[56]:[^:]*:Leviathan:3FCC:/
-128.9 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-140.0 "Temporary Current" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/ window 30,30
-162.3 "Tsunami" sync / 1[56]:[^:]*:Leviathan:441B:/
-171.9 "Surging Tsunami" sync / 1[56]:[^:]*:Leviathan:4011:/
-178.9 "Smothering Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD7:/
-184.9 "Splashing Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD6:/
-185.8 "Swirling Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD5:/
-192.8 "Surging Tsunami" sync / 1[56]:[^:]*:Leviathan:4011:/
-203.5 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/ window 20,20
+105.6 "Undersea Quake" Ability { id: "3FD0", source: "Leviathan" } window 105.6,10
+114.8 "Crashing Pulse" Ability { id: "3FC9", source: "Leviathan" }
+118.9 "Monster Wave" Ability { id: "3FCA", source: "Leviathan" }
+122.9 "Killer Wave" Ability { id: "3FCC", source: "Leviathan" }
+128.9 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+140.0 "Temporary Current" Ability { id: "3FC[DE]", source: "Leviathan" } window 30,30
+162.3 "Tsunami" Ability { id: "441B", source: "Leviathan" }
+171.9 "Surging Tsunami" Ability { id: "4011", source: "Leviathan" }
+178.9 "Smothering Tsunami" Ability { id: "3FD7", source: "Leviathan" }
+184.9 "Splashing Tsunami" Ability { id: "3FD6", source: "Leviathan" }
+185.8 "Swirling Tsunami" Ability { id: "3FD5", source: "Leviathan" }
+192.8 "Surging Tsunami" Ability { id: "4011", source: "Leviathan" }
+203.5 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" } window 20,20
 
-216.7 "Maelstrom" sync / 1[56]:[^:]*:Leviathan:3FD8:/ window 216.7,2.5 duration 30
+216.7 "Maelstrom" Ability { id: "3FD8", source: "Leviathan" } window 216.7,2.5 duration 30
 218.7 "--untargetable--"
-222.0 "--sync--" sync / 1[56]:[^:]*:Leviathan:3F7E:/
-226.9 "Spinning Dive 1" sync / 1[56]:[^:]*:Leviathan:3FDB:/
-229.1 "--sync--" sync / 1[56]:[^:]*:Leviathan:3F7E:/
-234.0 "Spinning Dive 2" sync / 1[56]:[^:]*:Leviathan:3FDB:/
+222.0 "--sync--" Ability { id: "3F7E", source: "Leviathan" }
+226.9 "Spinning Dive 1" Ability { id: "3FDB", source: "Leviathan" }
+229.1 "--sync--" Ability { id: "3F7E", source: "Leviathan" }
+234.0 "Spinning Dive 2" Ability { id: "3FDB", source: "Leviathan" }
 240.4 "--targetable--"
-248.4 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-255.4 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/ window 30,30
-276.8 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FD3:/
+248.4 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+255.4 "Rip Current" Ability { id: "3FC6", source: "Leviathan" } window 30,30
+276.8 "Tidal Wave" Ability { id: "3FD3", source: "Leviathan" }
 
-283.8 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FCF:/ window 300,100
-293.0 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FC8:/
-297.1 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FCA:/
-301.1 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FCB:/
-308.2 "Temporary Current 1" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-317.3 "Temporary Current 2" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-332.5 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-338.6 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-348.8 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/ window 30,30
-360.0 "Drenching Pulse" sync / 1[56]:[^:]*:Leviathan:3FC8:/
-364.1 "Monster Wave" sync / 1[56]:[^:]*:Leviathan:3FCA:/
-368.1 "Freak Wave" sync / 1[56]:[^:]*:Leviathan:3FCB:/
+283.8 "Undersea Quake" Ability { id: "3FCF", source: "Leviathan" } window 300,100
+293.0 "Drenching Pulse" Ability { id: "3FC8", source: "Leviathan" }
+297.1 "Monster Wave" Ability { id: "3FCA", source: "Leviathan" }
+301.1 "Freak Wave" Ability { id: "3FCB", source: "Leviathan" }
+308.2 "Temporary Current 1" Ability { id: "3FC[DE]", source: "Leviathan" }
+317.3 "Temporary Current 2" Ability { id: "3FC[DE]", source: "Leviathan" }
+332.5 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+338.6 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+348.8 "Rip Current" Ability { id: "3FC6", source: "Leviathan" } window 30,30
+360.0 "Drenching Pulse" Ability { id: "3FC8", source: "Leviathan" }
+364.1 "Monster Wave" Ability { id: "3FCA", source: "Leviathan" }
+368.1 "Freak Wave" Ability { id: "3FCB", source: "Leviathan" }
 
-372.1 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FD0:/ window 30,30
-386.3 "Tsunami" sync / 1[56]:[^:]*:Leviathan:441B:/
-395.9 "Surging Tsunami" sync / 1[56]:[^:]*:Leviathan:4011:/
-402.9 "Smothering Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD7:/
-408.8 "Splashing Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD6:/
-409.8 "Swirling Tsunami" sync / 1[56]:[^:]*:Leviathan:3FD5:/
-416.8 "Surging Tsunami" sync / 1[56]:[^:]*:Leviathan:4011:/
-429.4 "Temporary Current 1" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-438.4 "Temporary Current 2" sync / 1[56]:[^:]*:Leviathan:3FC[DE]:/
-449.4 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/ window 30,30
-455.4 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-461.4 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
+372.1 "Undersea Quake" Ability { id: "3FD0", source: "Leviathan" } window 30,30
+386.3 "Tsunami" Ability { id: "441B", source: "Leviathan" }
+395.9 "Surging Tsunami" Ability { id: "4011", source: "Leviathan" }
+402.9 "Smothering Tsunami" Ability { id: "3FD7", source: "Leviathan" }
+408.8 "Splashing Tsunami" Ability { id: "3FD6", source: "Leviathan" }
+409.8 "Swirling Tsunami" Ability { id: "3FD5", source: "Leviathan" }
+416.8 "Surging Tsunami" Ability { id: "4011", source: "Leviathan" }
+429.4 "Temporary Current 1" Ability { id: "3FC[DE]", source: "Leviathan" }
+438.4 "Temporary Current 2" Ability { id: "3FC[DE]", source: "Leviathan" }
+449.4 "Rip Current" Ability { id: "3FC6", source: "Leviathan" } window 30,30
+455.4 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+461.4 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
 
-476.4 "Maelstrom" sync / 1[56]:[^:]*:Leviathan:3FD8:/ duration 30
+476.4 "Maelstrom" Ability { id: "3FD8", source: "Leviathan" } duration 30
 478.4 "--untargetable--"
-481.4 "--sync--" sync / 1[56]:[^:]*:Leviathan:3F7E:/
-486.4 "Spinning Dive 1" sync / 1[56]:[^:]*:Leviathan:3FDB:/
-488.4 "--sync--" sync / 1[56]:[^:]*:Leviathan:3F7E:/
-493.4 "Spinning Dive 2" sync / 1[56]:[^:]*:Leviathan:3FDB:/
+481.4 "--sync--" Ability { id: "3F7E", source: "Leviathan" }
+486.4 "Spinning Dive 1" Ability { id: "3FDB", source: "Leviathan" }
+488.4 "--sync--" Ability { id: "3F7E", source: "Leviathan" }
+493.4 "Spinning Dive 2" Ability { id: "3FDB", source: "Leviathan" }
 499.9 "--targetable--"
-507.9 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:3FC4:/
-515.0 "Rip Current" sync / 1[56]:[^:]*:Leviathan:3FC6:/ window 30,30
-536.4 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:3FD3:/
+507.9 "Tidal Roar" Ability { id: "3FC4", source: "Leviathan" }
+515.0 "Rip Current" Ability { id: "3FC6", source: "Leviathan" } window 30,30
+536.4 "Tidal Wave" Ability { id: "3FD3", source: "Leviathan" }
 
-543.4 "Undersea Quake" sync / 1[56]:[^:]*:Leviathan:3FCF:/ window 100,100 jump 283.8
+543.4 "Undersea Quake" Ability { id: "3FCF", source: "Leviathan" } window 100,100 jump 283.8
 552.6 "Drenching Pulse"
 556.7 "Monster Wave"
 560.7 "Freak Wave"

@@ -7,108 +7,108 @@ hideall "--sync--"
 
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.0 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/ window 12,20
-22.2 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
-27.1 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
-35.6 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4BA6:/
-42.7 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
-52.2 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-63.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-69.5 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
-73.4 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-79.7 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4BB8:/
-84.8 "Chaos Strike" sync / 1[56]:[^:]*:Ramuh:4BBB:/
-89.2 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-89.9 "Lightning Bolt" duration 24.5 # sync / 1[56]:[^:]*:Stormcloud:4BB9:/
-96.2 "Levinforce" sync / 1[56]:[^:]*:Ramuh:4BCC:/
+12.0 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" } window 12,20
+22.2 "Stratospear Summons" Ability { id: "4BA5", source: "Ramuh" }
+27.1 "Impact" Ability { id: "4E3B", source: "Ramuh" }
+35.6 "Judgment Jolt" Ability { id: "4BA6", source: "Ramuh" }
+42.7 "Executor Summons" Ability { id: "4BBC", source: "Ramuh" }
+52.2 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+63.3 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+69.5 "Shock Blast" Ability { id: "4BBE", source: "Raiden" }
+73.4 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+79.7 "Stormcloud Summons" Ability { id: "4BB8", source: "Ramuh" }
+84.8 "Chaos Strike" Ability { id: "4BBB", source: "Ramuh" }
+89.2 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+89.9 "Lightning Bolt" duration 24.5 # Ability { id: "4BB9", source: "Stormcloud" }
+96.2 "Levinforce" Ability { id: "4BCC", source: "Ramuh" }
 
-110.6 "Fury's Bolt?" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-117.7 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
-128.6 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
-138.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-148.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-155.5 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-163.6 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BBF:/
-174.5 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
-182.6 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
-189.1 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
-198.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-210.1 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
-215.9 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
-221.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+110.6 "Fury's Bolt?" Ability { id: "4BAA", source: "Ramuh" }
+117.7 "Tribunal Summons" Ability { id: "4BAC", source: "Ramuh" }
+128.6 "Gallop" Ability { id: "4BB3", source: "Will Of Ixion" }
+138.1 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+148.3 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+155.5 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+163.6 "Thunderstorm" Ability { id: "4BBF", source: "Ramuh" }
+174.5 "Volt Strike" Ability { id: "4BC3", source: "Ramuh" }
+182.6 "Volt Strike" Ability { id: "4BC3", source: "Ramuh" }
+189.1 "Executor Summons" Ability { id: "4BBC", source: "Ramuh" }
+198.5 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+210.1 "Stepped Leader" Ability { id: "4BC7", source: "Ramuh" }
+215.9 "Shock Blast" Ability { id: "4BBE", source: "Raiden" }
+221.2 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
 
-230.5 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
-244.6 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
-249.5 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
-253.0 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
-255.4 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-262.3 "Centaur's Charge" sync / 1[56]:[^:]*:Ramuh:4BAD:/
-267.3 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
+230.5 "Fury's Fourteen" Ability { id: "4BAB", source: "Ramuh" }
+244.6 "Stratospear Summons" Ability { id: "4BA5", source: "Ramuh" }
+249.5 "Impact" Ability { id: "4E3B", source: "Ramuh" }
+253.0 "Tribunal Summons" Ability { id: "4BAC", source: "Ramuh" }
+255.4 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+262.3 "Centaur's Charge" Ability { id: "4BAD", source: "Ramuh" }
+267.3 "Gallop" Ability { id: "4BB3", source: "Will Of Ixion" }
 
-267.5 "Judgment Jolt" sync / 1[56]:[^:]*:Will Of Ramuh:4BA9:/
-279.1 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-287.9 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC8:/
-297.8 "Chain Lightning" sync / 1[56]:[^:]*:Ramuh:4BC4:/
-301.6 "Chain Lightning 1" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-305.2 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-305.3 "Chain Lightning 2" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-309.0 "Chain Lightning 3" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-312.7 "Chain Lightning 4" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-316.4 "Chain Lightning 5" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-317.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-320.1 "Chain Lightning 6" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-323.8 "Chain Lightning 7" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-327.5 "Chain Lightning 8" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+267.5 "Judgment Jolt" Ability { id: "4BA9", source: "Will Of Ramuh" }
+279.1 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+287.9 "Stepped Leader" Ability { id: "4BC8", source: "Ramuh" }
+297.8 "Chain Lightning" Ability { id: "4BC4", source: "Ramuh" }
+301.6 "Chain Lightning 1" #Ability { id: "4BC5", source: "Ramuh" }
+305.2 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+305.3 "Chain Lightning 2" #Ability { id: "4BC5", source: "Ramuh" }
+309.0 "Chain Lightning 3" #Ability { id: "4BC5", source: "Ramuh" }
+312.7 "Chain Lightning 4" #Ability { id: "4BC5", source: "Ramuh" }
+316.4 "Chain Lightning 5" #Ability { id: "4BC5", source: "Ramuh" }
+317.4 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+320.1 "Chain Lightning 6" #Ability { id: "4BC5", source: "Ramuh" }
+323.8 "Chain Lightning 7" #Ability { id: "4BC5", source: "Ramuh" }
+327.5 "Chain Lightning 8" #Ability { id: "4BC5", source: "Ramuh" }
 
-329.6 "Executor Summons" sync / 1[56]:[^:]*:Ramuh:4BBC:/
-337.0 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-346.2 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BBF:/
-356.4 "Shock Blast" sync / 1[56]:[^:]*:Raiden:4BBE:/
-357.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
-365.2 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4BC3:/
-368.0 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
-380.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-388.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+329.6 "Executor Summons" Ability { id: "4BBC", source: "Ramuh" }
+337.0 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+346.2 "Thunderstorm" Ability { id: "4BBF", source: "Ramuh" }
+356.4 "Shock Blast" Ability { id: "4BBE", source: "Raiden" }
+357.1 "Volt Strike" Ability { id: "4BC3", source: "Ramuh" }
+365.2 "Volt Strike" Ability { id: "4BC3", source: "Ramuh" }
+368.0 "Stepped Leader" Ability { id: "4BC7", source: "Ramuh" }
+380.1 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+388.3 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
 
-395.6 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
-411.7 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
-416.6 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3B:/
-420.1 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4BAC:/
-422.5 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-429.4 "Centaur's Charge" sync / 1[56]:[^:]*:Ramuh:4BAD:/
-434.4 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4BB3:/
+395.6 "Fury's Fourteen" Ability { id: "4BAB", source: "Ramuh" }
+411.7 "Stratospear Summons" Ability { id: "4BA5", source: "Ramuh" }
+416.6 "Impact" Ability { id: "4E3B", source: "Ramuh" }
+420.1 "Tribunal Summons" Ability { id: "4BAC", source: "Ramuh" }
+422.5 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+429.4 "Centaur's Charge" Ability { id: "4BAD", source: "Ramuh" }
+434.4 "Gallop" Ability { id: "4BB3", source: "Will Of Ixion" }
 
-434.6 "Judgment Jolt" sync / 1[56]:[^:]*:Will Of Ramuh:4BA9:/
-440.2 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-450.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-460.5 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4BB8:/
-465.6 "Chaos Strike" sync / 1[56]:[^:]*:Ramuh:4BBB:/
-470.7 "Lightning Bolt" duration 24.5 # sync / 1[56]:[^:]*:Stormcloud:4BB9:/
-470.0 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-477.0 "Levinforce" sync / 1[56]:[^:]*:Ramuh:4BCC:/
-487.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-502.6 "Chain Lightning" sync / 1[56]:[^:]*:Ramuh:4BC4:/
-506.4 "Chain Lightning 1" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-510.0 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BCA:/
-510.1 "Chain Lightning 2" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-513.8 "Chain Lightning 3" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-517.5 "Chain Lightning 4" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-521.2 "Chain Lightning 5" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-523.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-524.8 "Chain Lightning 6" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-528.5 "Chain Lightning 7" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
-532.2 "Chain Lightning 8" #sync / 1[56]:[^:]*:Ramuh:4BC5:/
+434.6 "Judgment Jolt" Ability { id: "4BA9", source: "Will Of Ramuh" }
+440.2 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+450.4 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+460.5 "Stormcloud Summons" Ability { id: "4BB8", source: "Ramuh" }
+465.6 "Chaos Strike" Ability { id: "4BBB", source: "Ramuh" }
+470.7 "Lightning Bolt" duration 24.5 # Ability { id: "4BB9", source: "Stormcloud" }
+470.0 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+477.0 "Levinforce" Ability { id: "4BCC", source: "Ramuh" }
+487.4 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+502.6 "Chain Lightning" Ability { id: "4BC4", source: "Ramuh" }
+506.4 "Chain Lightning 1" #Ability { id: "4BC5", source: "Ramuh" }
+510.0 "Crippling Blow" Ability { id: "4BCA", source: "Ramuh" }
+510.1 "Chain Lightning 2" #Ability { id: "4BC5", source: "Ramuh" }
+513.8 "Chain Lightning 3" #Ability { id: "4BC5", source: "Ramuh" }
+517.5 "Chain Lightning 4" #Ability { id: "4BC5", source: "Ramuh" }
+521.2 "Chain Lightning 5" #Ability { id: "4BC5", source: "Ramuh" }
+523.2 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+524.8 "Chain Lightning 6" #Ability { id: "4BC5", source: "Ramuh" }
+528.5 "Chain Lightning 7" #Ability { id: "4BC5", source: "Ramuh" }
+532.2 "Chain Lightning 8" #Ability { id: "4BC5", source: "Ramuh" }
 
-539.7 "Stepped Leader" sync / 1[56]:[^:]*:Ramuh:4BC7:/
-545.8 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-554.9 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-566.0 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-574.1 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4BAA:/
-583.2 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-594.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
-605.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4BB5:/
+539.7 "Stepped Leader" Ability { id: "4BC7", source: "Ramuh" }
+545.8 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+554.9 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+566.0 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+574.1 "Fury's Bolt" Ability { id: "4BAA", source: "Ramuh" }
+583.2 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+594.3 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
+605.4 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" }
 
-612.3 "Fury's Fourteen" sync / 1[56]:[^:]*:Ramuh:4BAB:/
-628.4 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4BA5:/
+612.3 "Fury's Fourteen" Ability { id: "4BAB", source: "Ramuh" }
+628.4 "Stratospear Summons" Ability { id: "4BA5", source: "Ramuh" }
 
 #??? "Judgment Volts Enrage"

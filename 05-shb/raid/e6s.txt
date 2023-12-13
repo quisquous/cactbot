@@ -9,131 +9,131 @@ hideall "--sync--"
 ### Phase 1: Garuda
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-18.0 "Superstorm" sync / 1[56]:[^:]*:Garuda:4BF7:/ window 18,20
-27.1 "Occluded Front" sync / 1[56]:[^:]*:Garuda:4BD2:/
-36.2 "Wind Cutter" sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-39.2 "Storm Of Fury" sync / 1[56]:[^:]*:Garuda:4C01:/
-46.8 "Air Bump" sync / 1[56]:[^:]*:Garuda:4BF9:/
-64.0 "Ferostorm" sync / 1[56]:[^:]*:Garuda:4BFD:/
-73.6 "Downburst" sync / 1[56]:[^:]*:Garuda:4BFB:/
-76.1 "Air Bump" sync / 1[56]:[^:]*:Garuda:4BF9:/
-88.0 "Vacuum Slice" sync / 1[56]:[^:]*:Garuda:4BF5:/
-95.2 "Occluded Front" sync / 1[56]:[^:]*:Garuda:4BD2:/
-103.3 "Storm Of Fury" sync / 1[56]:[^:]*:Garuda:4C01:/
-104.7 "Irresistible Pull" sync / 1[56]:[^:]*:Garuda:4BF6:/
-105.5 "Explosions" #sync / 1[56]:[^:]*:Tumultuous Nexus:4C03:/
-110.8 "Ferostorm" sync / 1[56]:[^:]*:Garuda:4BFD:/
+18.0 "Superstorm" Ability { id: "4BF7", source: "Garuda" } window 18,20
+27.1 "Occluded Front" Ability { id: "4BD2", source: "Garuda" }
+36.2 "Wind Cutter" Ability { id: "4C02", source: "Tumultuous Nexus" }
+39.2 "Storm Of Fury" Ability { id: "4C01", source: "Garuda" }
+46.8 "Air Bump" Ability { id: "4BF9", source: "Garuda" }
+64.0 "Ferostorm" Ability { id: "4BFD", source: "Garuda" }
+73.6 "Downburst" Ability { id: "4BFB", source: "Garuda" }
+76.1 "Air Bump" Ability { id: "4BF9", source: "Garuda" }
+88.0 "Vacuum Slice" Ability { id: "4BF5", source: "Garuda" }
+95.2 "Occluded Front" Ability { id: "4BD2", source: "Garuda" }
+103.3 "Storm Of Fury" Ability { id: "4C01", source: "Garuda" }
+104.7 "Irresistible Pull" Ability { id: "4BF6", source: "Garuda" }
+105.5 "Explosions" #Ability { id: "4C03", source: "Tumultuous Nexus" }
+110.8 "Ferostorm" Ability { id: "4BFD", source: "Garuda" }
 119.0 "--untargetable--"
 
 ### Phase 2: Ifrit
-122.0 "Touchdown" sync / 1[56]:[^:]*:Ifrit:4C09:/
-135.3 "Hands Of Flame" sync / 1[56]:[^:]*:Ifrit:4C0A:/
-139.6 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-143.5 "Instant Incineration" sync / 1[56]:[^:]*:Ifrit:4C0E:/
-147.1 "Meteor Strike" sync / 1[56]:[^:]*:Ifrit:4C0F:/
-159.2 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:4C14:/
-172.3 "Hands Of Hell" sync / 1[56]:[^:]*:Ifrit:4D01:/
-176.9 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-184.7 "Strike Spark" sync / 1[56]:[^:]*:Ifrit:4BD3:/
-187.9 "Call Of The Inferno" sync / 1[56]:[^:]*:Ifrit:4C12:/
-197.1 "Hot Foot" sync / 1[56]:[^:]*:Ifrit:4C11:/
-198.5 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-215.1 "Hands Of Hell" sync / 1[56]:[^:]*:Ifrit:4D01:/
-219.8 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-223.9 "Hands Of Flame" sync / 1[56]:[^:]*:Ifrit:4C0A:/
-228.2 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-232.1 "Instant Incineration" sync / 1[56]:[^:]*:Ifrit:4C0E:/
-235.7 "Meteor Strike" sync / 1[56]:[^:]*:Ifrit:4C0F:/
+122.0 "Touchdown" Ability { id: "4C09", source: "Ifrit" }
+135.3 "Hands Of Flame" Ability { id: "4C0A", source: "Ifrit" }
+139.6 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+143.5 "Instant Incineration" Ability { id: "4C0E", source: "Ifrit" }
+147.1 "Meteor Strike" Ability { id: "4C0F", source: "Ifrit" }
+159.2 "Inferno Howl" Ability { id: "4C14", source: "Ifrit" }
+172.3 "Hands Of Hell" Ability { id: "4D01", source: "Ifrit" }
+176.9 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+184.7 "Strike Spark" Ability { id: "4BD3", source: "Ifrit" }
+187.9 "Call Of The Inferno" Ability { id: "4C12", source: "Ifrit" }
+197.1 "Hot Foot" Ability { id: "4C11", source: "Ifrit" }
+198.5 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+215.1 "Hands Of Hell" Ability { id: "4D01", source: "Ifrit" }
+219.8 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+223.9 "Hands Of Flame" Ability { id: "4C0A", source: "Ifrit" }
+228.2 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+232.1 "Instant Incineration" Ability { id: "4C0E", source: "Ifrit" }
+235.7 "Meteor Strike" Ability { id: "4C0F", source: "Ifrit" }
 241.1 "--untargetable--"
 
 ### Phase 3: Garuda and Ifrit
 245.4 "--targetable--"
-248.4 "Hated Of Embers/Vortex" sync / 1[56]:[^:]*:Ifrit:4FA0:/
-253.6 "Occluded Front" sync / 1[56]:[^:]*:Garuda:4BD2:/
-262.7 "Wind Cutter" sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-265.1 "Hands Of Flame" sync / 1[56]:[^:]*:Ifrit:4C0A:/
-269.4 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-273.3 "Instant Incineration" sync / 1[56]:[^:]*:Ifrit:4C0E:/
-276.9 "Meteor Strike" sync / 1[56]:[^:]*:Ifrit:4C0F:/
-277.0 "Vacuum Slice" sync / 1[56]:[^:]*:Garuda:4BF5:/
-280.1 "Call Of The Inferno" sync / 1[56]:[^:]*:Ifrit:4C12:/
-284.2 "Occluded Front" sync / 1[56]:[^:]*:Garuda:4BD2:/
-291.8 "Hot Foot" sync / 1[56]:[^:]*:Ifrit:4C11:/
-293.7 "Irresistible Pull" sync / 1[56]:[^:]*:Garuda:4BF6:/
-293.7 "Eruption" sync / 1[56]:[^:]*:Ifrit:4C17:/
-294.5 "Explosion" sync / 1[56]:[^:]*:Tumultuous Nexus:4C03:/
-294.5 "Explosion" sync / 1[56]:[^:]*:Tumultuous Nexus:4C03:/
-294.5 "Explosion" sync / 1[56]:[^:]*:Tumultuous Nexus:4C03:/
-294.5 "Explosion" sync / 1[56]:[^:]*:Tumultuous Nexus:4C03:/
-298.6 "Ferostorm" sync / 1[56]:[^:]*:Garuda:4BFD:/
+248.4 "Hated Of Embers/Vortex" Ability { id: "4FA0", source: "Ifrit" }
+253.6 "Occluded Front" Ability { id: "4BD2", source: "Garuda" }
+262.7 "Wind Cutter" Ability { id: "4C02", source: "Tumultuous Nexus" }
+265.1 "Hands Of Flame" Ability { id: "4C0A", source: "Ifrit" }
+269.4 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+273.3 "Instant Incineration" Ability { id: "4C0E", source: "Ifrit" }
+276.9 "Meteor Strike" Ability { id: "4C0F", source: "Ifrit" }
+277.0 "Vacuum Slice" Ability { id: "4BF5", source: "Garuda" }
+280.1 "Call Of The Inferno" Ability { id: "4C12", source: "Ifrit" }
+284.2 "Occluded Front" Ability { id: "4BD2", source: "Garuda" }
+291.8 "Hot Foot" Ability { id: "4C11", source: "Ifrit" }
+293.7 "Irresistible Pull" Ability { id: "4BF6", source: "Garuda" }
+293.7 "Eruption" Ability { id: "4C17", source: "Ifrit" }
+294.5 "Explosion" Ability { id: "4C03", source: "Tumultuous Nexus" }
+294.5 "Explosion" Ability { id: "4C03", source: "Tumultuous Nexus" }
+294.5 "Explosion" Ability { id: "4C03", source: "Tumultuous Nexus" }
+294.5 "Explosion" Ability { id: "4C03", source: "Tumultuous Nexus" }
+298.6 "Ferostorm" Ability { id: "4BFD", source: "Garuda" }
 303.2 "--untargetable--"
 
 ### Phase 4: Raktapaksa
-309.6 "--sync--" sync / 1[56]:[^:]*:Raktapaksa:4D55:/
-320.4 "Firestorm" sync / 1[56]:[^:]*:Raktapaksa:4BF8:/ window 350,5
+309.6 "--sync--" Ability { id: "4D55", source: "Raktapaksa" }
+320.4 "Firestorm" Ability { id: "4BF8", source: "Raktapaksa" } window 350,5
 324.5 "--targetable--"
-343.8 "Hands Of Hell" sync / 1[56]:[^:]*:Raktapaksa:4D01:/
-348.1 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-348.3 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-361.1 "Hands Of Hell" sync / 1[56]:[^:]*:Raktapaksa:4D01:/
-365.5 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-365.7 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-376.5 "Inferno Howl" sync / 1[56]:[^:]*:Raktapaksa:4C14:/
-384.1 "Air Bump" sync / 1[56]:[^:]*:Raktapaksa:4BF9:/
-387.1 "Ferostorm" sync / 1[56]:[^:]*:Raktapaksa:4C06:/
+343.8 "Hands Of Hell" Ability { id: "4D01", source: "Raktapaksa" }
+348.1 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+348.3 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+361.1 "Hands Of Hell" Ability { id: "4D01", source: "Raktapaksa" }
+365.5 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+365.7 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+376.5 "Inferno Howl" Ability { id: "4C14", source: "Raktapaksa" }
+384.1 "Air Bump" Ability { id: "4BF9", source: "Raktapaksa" }
+387.1 "Ferostorm" Ability { id: "4C06", source: "Raktapaksa" }
 
-394.8 "Strike Spark" sync / 1[56]:[^:]*:Raktapaksa:4BD3:/
-398.0 "Call Of The Inferno" sync / 1[56]:[^:]*:Raktapaksa:4C12:/
-407.2 "Hot Foot" sync / 1[56]:[^:]*:Raktapaksa:4C11:/
-408.6 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-411.0 "Hands Of Flame" sync / 1[56]:[^:]*:Raktapaksa:4C0A:/
-415.0 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-415.3 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-419.2 "Instant Incineration" sync / 1[56]:[^:]*:Raktapaksa:4C0E:/
-423.0 "Meteor Strike" sync / 1[56]:[^:]*:Raktapaksa:4C0F:/
-436.7 "Downburst" sync / 1[56]:[^:]*:Raktapaksa:4BFC:/
+394.8 "Strike Spark" Ability { id: "4BD3", source: "Raktapaksa" }
+398.0 "Call Of The Inferno" Ability { id: "4C12", source: "Raktapaksa" }
+407.2 "Hot Foot" Ability { id: "4C11", source: "Raktapaksa" }
+408.6 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+411.0 "Hands Of Flame" Ability { id: "4C0A", source: "Raktapaksa" }
+415.0 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+415.3 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+419.2 "Instant Incineration" Ability { id: "4C0E", source: "Raktapaksa" }
+423.0 "Meteor Strike" Ability { id: "4C0F", source: "Raktapaksa" }
+436.7 "Downburst" Ability { id: "4BFC", source: "Raktapaksa" }
 436.7 "--untargetable--"
 
 441.0 "--targetable--"
-445.2 "--sync--" sync / 1[56]:[^:]*:Raktapaksa:4C19:/
-449.2 "Radiant Plume" sync / 1[56]:[^:]*:Raktapaksa:4C15:/
-457.3 "Blaze 1" #sync / 1[56]:[^:]*:Twisting Blaze:4C1B:/
-459.4 "Blaze 2" #sync / 1[56]:[^:]*:Twisting Blaze:4C1B:/
-459.8 "Wind Cutter" #sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-461.5 "Blaze 3" #sync / 1[56]:[^:]*:Twisting Blaze:4C1B:/
-462.8 "Wind Cutter" #sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-463.6 "Blaze 4" #sync / 1[56]:[^:]*:Twisting Blaze:4C1B:/
-465.7 "Blaze 5" #sync / 1[56]:[^:]*:Twisting Blaze:4C1B:/
-465.8 "Wind Cutter" #sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-472.3 "Spread Of Fire" sync / 1[56]:[^:]*:Raktapaksa:4C18:/
-472.8 "Air Bump" sync / 1[56]:[^:]*:Raktapaksa:4BF9:/
-476.0 "Conflag Strike" sync / 1[56]:[^:]*:Raktapaksa:4C10:/
+445.2 "--sync--" Ability { id: "4C19", source: "Raktapaksa" }
+449.2 "Radiant Plume" Ability { id: "4C15", source: "Raktapaksa" }
+457.3 "Blaze 1" #Ability { id: "4C1B", source: "Twisting Blaze" }
+459.4 "Blaze 2" #Ability { id: "4C1B", source: "Twisting Blaze" }
+459.8 "Wind Cutter" #Ability { id: "4C02", source: "Tumultuous Nexus" }
+461.5 "Blaze 3" #Ability { id: "4C1B", source: "Twisting Blaze" }
+462.8 "Wind Cutter" #Ability { id: "4C02", source: "Tumultuous Nexus" }
+463.6 "Blaze 4" #Ability { id: "4C1B", source: "Twisting Blaze" }
+465.7 "Blaze 5" #Ability { id: "4C1B", source: "Twisting Blaze" }
+465.8 "Wind Cutter" #Ability { id: "4C02", source: "Tumultuous Nexus" }
+472.3 "Spread Of Fire" Ability { id: "4C18", source: "Raktapaksa" }
+472.8 "Air Bump" Ability { id: "4BF9", source: "Raktapaksa" }
+476.0 "Conflag Strike" Ability { id: "4C10", source: "Raktapaksa" }
 
-490.2 "Occluded Front" sync / 1[56]:[^:]*:Raktapaksa:4E4C:/
-494.7 "Air Bump" sync / 1[56]:[^:]*:Raktapaksa:4BF9:/
-499.2 "Wind Cutter" sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
-502.2 "Storm Of Fury" sync / 1[56]:[^:]*:Raktapaksa:4C08:/
-509.4 "Inferno Howl" sync / 1[56]:[^:]*:Raktapaksa:4C14:/
-520.5 "Occluded Front" sync / 1[56]:[^:]*:Raktapaksa:4E4C:/
-529.6 "Wind Cutter" sync / 1[56]:[^:]*:Tumultuous Nexus:4C02:/
+490.2 "Occluded Front" Ability { id: "4E4C", source: "Raktapaksa" }
+494.7 "Air Bump" Ability { id: "4BF9", source: "Raktapaksa" }
+499.2 "Wind Cutter" Ability { id: "4C02", source: "Tumultuous Nexus" }
+502.2 "Storm Of Fury" Ability { id: "4C08", source: "Raktapaksa" }
+509.4 "Inferno Howl" Ability { id: "4C14", source: "Raktapaksa" }
+520.5 "Occluded Front" Ability { id: "4E4C", source: "Raktapaksa" }
+529.6 "Wind Cutter" Ability { id: "4C02", source: "Tumultuous Nexus" }
 
-530.6 "Hands Of Hell" sync / 1[56]:[^:]*:Raktapaksa:4D01:/
-535.0 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-535.2 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-546.6 "Air Bump" sync / 1[56]:[^:]*:Raktapaksa:4BF9:/
+530.6 "Hands Of Hell" Ability { id: "4D01", source: "Raktapaksa" }
+535.0 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+535.2 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+546.6 "Air Bump" Ability { id: "4BF9", source: "Raktapaksa" }
 
-548.1 "Hands Of Hell" sync / 1[56]:[^:]*:Raktapaksa:4D01:/
-552.4 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-552.6 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-556.7 "Hands Of Flame" sync / 1[56]:[^:]*:Raktapaksa:4C0A:/
-560.7 "Heat Burst" sync / 1[56]:[^:]*:Raktapaksa:4C0D:/
-561.0 "Eruption" sync / 1[56]:[^:]*:Raktapaksa:4C17:/
-565.0 "Instant Incineration" sync / 1[56]:[^:]*:Raktapaksa:4C0E:/
-568.7 "Meteor Strike" sync / 1[56]:[^:]*:Raktapaksa:4C0F:/
-586.4 "Ferostorm" sync / 1[56]:[^:]*:Raktapaksa:4C06:/
-594.5 "Ferostorm" sync / 1[56]:[^:]*:Raktapaksa:4C06:/
+548.1 "Hands Of Hell" Ability { id: "4D01", source: "Raktapaksa" }
+552.4 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+552.6 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+556.7 "Hands Of Flame" Ability { id: "4C0A", source: "Raktapaksa" }
+560.7 "Heat Burst" Ability { id: "4C0D", source: "Raktapaksa" }
+561.0 "Eruption" Ability { id: "4C17", source: "Raktapaksa" }
+565.0 "Instant Incineration" Ability { id: "4C0E", source: "Raktapaksa" }
+568.7 "Meteor Strike" Ability { id: "4C0F", source: "Raktapaksa" }
+586.4 "Ferostorm" Ability { id: "4C06", source: "Raktapaksa" }
+594.5 "Ferostorm" Ability { id: "4C06", source: "Raktapaksa" }
 
-603.3 "Downburst" sync / 1[56]:[^:]*:Raktapaksa:4BFC:/
+603.3 "Downburst" Ability { id: "4BFC", source: "Raktapaksa" }
 603.3 "--untargetable--"
 607.6 "--targetable--"
-619.6 "Conflag Strike Enrage" sync / 1[56]:[^:]*:Raktapaksa:4C1C:/
+619.6 "Conflag Strike Enrage" Ability { id: "4C1C", source: "Raktapaksa" }

@@ -7,21 +7,21 @@ hideall "--sync--"
 # -p 3D65:108.5 -ii 3D66 3D67 3D68 3D69 3D6A 41CA 3D6C
 # Repurposing will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B9F:/ window 100,0
-108.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/ window 109,9
-117.6 "Beastly Roar" sync / 1[56]:[^:]*:Alpha Zaghnal:3D64:/
-122.9 "Beast Rampant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D60:/
+108.5 "Augurium" Ability { id: "3D65", source: "Alpha Zaghnal" } window 109,9
+117.6 "Beastly Roar" Ability { id: "3D64", source: "Alpha Zaghnal" }
+122.9 "Beast Rampant" Ability { id: "3D60", source: "Alpha Zaghnal" }
 
-136.4 "Forlorn Impact x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D61:/ duration 4
-141.3 "Beast Passant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D62:/
-149.3 "Beastly Roar" sync / 1[56]:[^:]*:Alpha Zaghnal:3D64:/
-158.3 "Pounce Errant x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D5F:/ duration 5.2
+136.4 "Forlorn Impact x4" Ability { id: "3D61", source: "Alpha Zaghnal" } duration 4
+141.3 "Beast Passant" Ability { id: "3D62", source: "Alpha Zaghnal" }
+149.3 "Beastly Roar" Ability { id: "3D64", source: "Alpha Zaghnal" }
+158.3 "Pounce Errant x4" Ability { id: "3D5F", source: "Alpha Zaghnal" } duration 5.2
 # I've seen this Augurium skipped??
-170.5 "Augurium" sync / 1[56]:[^:]*:Alpha Zaghnal:3D65:/
-178.8 "Charge Eradicated" sync / 1[56]:[^:]*:Alpha Zaghnal:3D63:/ window 50,5
-185.9 "Charge Eradicated" sync / 1[56]:[^:]*:Alpha Zaghnal:3D63:/
-195.2 "Beast Rampant" sync / 1[56]:[^:]*:Alpha Zaghnal:3D60:/
+170.5 "Augurium" Ability { id: "3D65", source: "Alpha Zaghnal" }
+178.8 "Charge Eradicated" Ability { id: "3D63", source: "Alpha Zaghnal" } window 50,5
+185.9 "Charge Eradicated" Ability { id: "3D63", source: "Alpha Zaghnal" }
+195.2 "Beast Rampant" Ability { id: "3D60", source: "Alpha Zaghnal" }
 
-208.6 "Forlorn Impact x4" sync / 1[56]:[^:]*:Alpha Zaghnal:3D61:/ duration 4 jump 136.4
+208.6 "Forlorn Impact x4" Ability { id: "3D61", source: "Alpha Zaghnal" } duration 4 jump 136.4
 213.5 "Beast Passant"
 221.5 "Beastly Roar"
 230.5 "Pounce Errant x4"
@@ -36,19 +36,19 @@ hideall "--sync--"
 # Aetherial Observation will be sealed off
 500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BA0:/ window 500,0
 
-512.0 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/ window 512,10
-522.2 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/
-531.1 "Shock" sync / 1[56]:[^:]*:Levinball:3DF1:/
-543.8 "Laserblade" sync / 1[56]:[^:]*:Mithridates:3DEB:/
-555.9 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
-569.5 "Allagan Thunder" sync / 1[56]:[^:]*:Mithridates:3DEE:/
+512.0 "Thunder Beam" Ability { id: "3DED", source: "Mithridates" } window 512,10
+522.2 "Electric Discharge" Ability { id: "3DF0", source: "Mithridates" }
+531.1 "Shock" Ability { id: "3DF1", source: "Levinball" }
+543.8 "Laserblade" Ability { id: "3DEB", source: "Mithridates" }
+555.9 "Thunder Beam" Ability { id: "3DED", source: "Mithridates" }
+569.5 "Allagan Thunder" Ability { id: "3DEE", source: "Mithridates" }
 
-582.1 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/
-590.2 "Laserblade" sync / 1[56]:[^:]*:Mithridates:3DEB:/
-591.0 "Shock" sync / 1[56]:[^:]*:Levinball:3DF1:/
-602.4 "Thunder Beam" sync / 1[56]:[^:]*:Mithridates:3DED:/
+582.1 "Electric Discharge" Ability { id: "3DF0", source: "Mithridates" }
+590.2 "Laserblade" Ability { id: "3DEB", source: "Mithridates" }
+591.0 "Shock" Ability { id: "3DF1", source: "Levinball" }
+602.4 "Thunder Beam" Ability { id: "3DED", source: "Mithridates" }
 
-617.5 "Electric Discharge" sync / 1[56]:[^:]*:Mithridates:3DF0:/ window 20,20 jump 582.1
+617.5 "Electric Discharge" Ability { id: "3DF0", source: "Mithridates" } window 20,20 jump 582.1
 625.6 "Laserblade"
 626.4 "Shock"
 637.8 "Thunder Beam"
@@ -68,33 +68,33 @@ hideall "Temporal Flow"
 # The Cornice will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BA2:/ window 1000,0
 
-1013.8 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/ window 1013.8,5
-1016.2 "Temporal Paradox" sync / 1[56]:[^:]*:The Tycoon:3DF7:/
-1023.1 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-1024.4 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+1013.8 "Magitek Crossray" Ability { id: "3DF8", source: "The Tycoon" } window 1013.8,5
+1016.2 "Temporal Paradox" Ability { id: "3DF7", source: "The Tycoon" }
+1023.1 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+1024.4 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
 
-1034.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
-1042.3 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-1043.4 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
-1049.6 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
-1056.3 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
-1065.9 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/
+1034.2 "Defensive Array" Ability { id: "3DF2", source: "The Tycoon" }
+1042.3 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+1043.4 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
+1049.6 "Artificial Gravity" Ability { id: "3DF9", source: "The Tycoon" }
+1056.3 "High Gravity" Ability { id: "3DFA", source: "The Tycoon" }
+1065.9 "Rail Cannon" Ability { id: "3DFB", source: "The Tycoon" }
 
-1079.1 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
-1086.3 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
-1093.0 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
-1093.6 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-1094.9 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+1079.1 "Defensive Array" Ability { id: "3DF2", source: "The Tycoon" }
+1086.3 "Magicrystal" Ability { id: "3E0C", source: "The Tycoon" }
+1093.0 "Shattered Crystal" Ability { id: "439A", source: "The Tycoon" }
+1093.6 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+1094.9 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
 
-1105.9 "High-Tension Discharger" sync / 1[56]:[^:]*:The Tycoon:3DFC:/
-1119.2 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
-1129.3 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
-1135.5 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-1136.0 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
-1136.6 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
-1147.7 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/
+1105.9 "High-Tension Discharger" Ability { id: "3DFC", source: "The Tycoon" }
+1119.2 "Magitek Crossray" Ability { id: "3DF8", source: "The Tycoon" }
+1129.3 "Artificial Gravity" Ability { id: "3DF9", source: "The Tycoon" }
+1135.5 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+1136.0 "High Gravity" Ability { id: "3DFA", source: "The Tycoon" }
+1136.6 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
+1147.7 "Rail Cannon" Ability { id: "3DFB", source: "The Tycoon" }
 
-1161.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
+1161.2 "Defensive Array" Ability { id: "3DF2", source: "The Tycoon" }
 1167.3 "Gravity/Crossray??"
 # ???
 
@@ -105,19 +105,19 @@ hideall "Temporal Flow"
 # and then possibly another discharger??
 
 # Path A?
-#1161.2 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
-#1167.3 "Artificial Gravity" sync / 1[56]:[^:]*:The Tycoon:3DF9:/
-#1170.5 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
-#1174.0 "High Gravity" sync / 1[56]:[^:]*:The Tycoon:3DFA:/
-#1176.7 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-#1177.2 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
-#1178.0 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
+#1161.2 "Defensive Array" Ability { id: "3DF2", source: "The Tycoon" }
+#1167.3 "Artificial Gravity" Ability { id: "3DF9", source: "The Tycoon" }
+#1170.5 "Magicrystal" Ability { id: "3E0C", source: "The Tycoon" }
+#1174.0 "High Gravity" Ability { id: "3DFA", source: "The Tycoon" }
+#1176.7 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+#1177.2 "Shattered Crystal" Ability { id: "439A", source: "The Tycoon" }
+#1178.0 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
 
 # Path B?
-#1161.0 "Defensive Array" sync / 1[56]:[^:]*:The Tycoon:3DF2:/
-#1172.2 "Magitek Crossray" sync / 1[56]:[^:]*:The Tycoon:3DF8:/
-#1179.5 "Magicrystal" sync / 1[56]:[^:]*:The Tycoon:3E0C:/
-#1186.2 "Shattered Crystal" sync / 1[56]:[^:]*:The Tycoon:439A:/
-#1186.7 "Temporal Flow" sync / 1[56]:[^:]*:The Tycoon:3DF5:/
-#1188.0 "Magitek Ray" sync / 1[56]:[^:]*:The Tycoon:3DF3:/
-#1199.0 "Rail Cannon" sync / 1[56]:[^:]*:The Tycoon:3DFB:/
+#1161.0 "Defensive Array" Ability { id: "3DF2", source: "The Tycoon" }
+#1172.2 "Magitek Crossray" Ability { id: "3DF8", source: "The Tycoon" }
+#1179.5 "Magicrystal" Ability { id: "3E0C", source: "The Tycoon" }
+#1186.2 "Shattered Crystal" Ability { id: "439A", source: "The Tycoon" }
+#1186.7 "Temporal Flow" Ability { id: "3DF5", source: "The Tycoon" }
+#1188.0 "Magitek Ray" Ability { id: "3DF3", source: "The Tycoon" }
+#1199.0 "Rail Cannon" Ability { id: "3DFB", source: "The Tycoon" }

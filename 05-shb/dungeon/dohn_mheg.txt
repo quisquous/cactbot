@@ -8,22 +8,22 @@ hideall "--sync--"
 # Teag Gye will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B93:/ window 100,0
 
-112.2 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/ window 113,5
-120.4 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/
-128.7 "Laughing Leap" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2294:/
-133.8 "Landsblood" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:1E8E:/
+112.2 "Candy Cane" Ability { id: "2299", source: "Aenc Thon, Lord of the Lingering Gaze" } window 113,5
+120.4 "Hydrofall" Ability { id: "22A7", source: "Aenc Thon, Lord of the Lingering Gaze" }
+128.7 "Laughing Leap" Ability { id: "2294", source: "Aenc Thon, Lord of the Lingering Gaze" }
+133.8 "Landsblood" Ability { id: "1E8E", source: "Aenc Thon, Lord of the Lingering Gaze" }
 139.6 "Geyser x6" duration 12.5
-161.1 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
+161.1 "Candy Cane" Ability { id: "2299", source: "Aenc Thon, Lord of the Lingering Gaze" }
 
-170.4 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/
-179.7 "Laughing Leap Stack" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2288:/
-189.9 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
-201.1 "Laughing Leap" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2294:/
-206.2 "Landsblood" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:1E8E:/
+170.4 "Hydrofall" Ability { id: "22A7", source: "Aenc Thon, Lord of the Lingering Gaze" }
+179.7 "Laughing Leap Stack" Ability { id: "2288", source: "Aenc Thon, Lord of the Lingering Gaze" }
+189.9 "Candy Cane" Ability { id: "2299", source: "Aenc Thon, Lord of the Lingering Gaze" }
+201.1 "Laughing Leap" Ability { id: "2294", source: "Aenc Thon, Lord of the Lingering Gaze" }
+206.2 "Landsblood" Ability { id: "1E8E", source: "Aenc Thon, Lord of the Lingering Gaze" }
 212.0 "Geyser x6" duration 12.5
-233.4 "Candy Cane" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:2299:/
+233.4 "Candy Cane" Ability { id: "2299", source: "Aenc Thon, Lord of the Lingering Gaze" }
 
-242.6 "Hydrofall" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lingering Gaze:22A7:/ window 50,50 jump 170.4
+242.6 "Hydrofall" Ability { id: "22A7", source: "Aenc Thon, Lord of the Lingering Gaze" } window 50,50 jump 170.4
 251.9 "Laughing Leap Stack"
 262.1 "Candy Cane"
 273.3 "Laughing Leap"
@@ -37,30 +37,30 @@ hideall "--sync--"
 # The Atelier will be sealed off
 500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B96:/ window 500,0
 
-507.5 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/ window 508,5
-518.0 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
-525.4 "Fodder" sync / 1[56]:[^:]*:Griaule:22C1:/
-533.5 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-538.6 "Feeding Time" sync / 1[56]:[^:]*:Painted Sapling:22C3:/
-541.7 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-554.0 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
-568.3 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-573.5 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
-580.7 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
+507.5 "Rake" Ability { id: "2873", source: "Griaule" } window 508,5
+518.0 "Swinge" Ability { id: "22CA", source: "Griaule" }
+525.4 "Fodder" Ability { id: "22C1", source: "Griaule" }
+533.5 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+538.6 "Feeding Time" Ability { id: "22C3", source: "Painted Sapling" }
+541.7 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+554.0 "Swinge" Ability { id: "22CA", source: "Griaule" }
+568.3 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+573.5 "Coiling Ivy" Ability { id: "22C5", source: "Griaule" }
+580.7 "Rake" Ability { id: "2873", source: "Griaule" }
 
-591.1 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
-605.4 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-614.5 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
-623.9 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
-631.1 "Fodder" sync / 1[56]:[^:]*:Griaule:22C1:/
-639.4 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-644.6 "Feeding Time" sync / 1[56]:[^:]*:Painted Sapling:22C3:/
-647.6 "Tiiimbeeer" sync / 1[56]:[^:]*:Griaule:22D3:/
-658.1 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/
-665.4 "Coiling Ivy" sync / 1[56]:[^:]*:Griaule:22C5:/
-672.6 "Rake" sync / 1[56]:[^:]*:Griaule:2873:/
+591.1 "Swinge" Ability { id: "22CA", source: "Griaule" }
+605.4 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+614.5 "Rake" Ability { id: "2873", source: "Griaule" }
+623.9 "Coiling Ivy" Ability { id: "22C5", source: "Griaule" }
+631.1 "Fodder" Ability { id: "22C1", source: "Griaule" }
+639.4 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+644.6 "Feeding Time" Ability { id: "22C3", source: "Painted Sapling" }
+647.6 "Tiiimbeeer" Ability { id: "22D3", source: "Griaule" }
+658.1 "Swinge" Ability { id: "22CA", source: "Griaule" }
+665.4 "Coiling Ivy" Ability { id: "22C5", source: "Griaule" }
+672.6 "Rake" Ability { id: "2873", source: "Griaule" }
 
-682.8 "Swinge" sync / 1[56]:[^:]*:Griaule:22CA:/ window 10,10 jump 591.1
+682.8 "Swinge" Ability { id: "22CA", source: "Griaule" } window 10,10 jump 591.1
 697.1 "Tiiimbeeer"
 706.2 "Rake"
 715.6 "Coiling Ivy"
@@ -78,35 +78,35 @@ hideall "--sync--"
 # The Throne Room will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B98:/ window 1000,0
 
-1011.0 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 1011,5
-1018.2 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/
-1027.5 "Imp Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34F0:/
-1033.9 "Toad Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EF:/
-1044.1 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/
+1011.0 "Crippling Blow" Ability { id: "35A4", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 1011,5
+1018.2 "Virtuosic Capriccio" Ability { id: "358C", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1027.5 "Imp Choir" Ability { id: "34F0", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1033.9 "Toad Choir" Ability { id: "34EF", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1044.1 "Crippling Blow" Ability { id: "35A4", source: "Aenc Thon, Lord of the Lengthsome Gait" }
 
-1052.7 "Funambulist's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34BA:/
-1052.7 "--stun--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34CF:/
+1052.7 "Funambulist's Fantasia" Ability { id: "34BA", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1052.7 "--stun--" Ability { id: "34CF", source: "Aenc Thon, Lord of the Lengthsome Gait" }
 1112.7 "Enrage"
 
-1300.0 "--sync--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D2:/ window 300,0
+1300.0 "--sync--" Ability { id: "34D2", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 300,0
 
-1302.1 "Changeling's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D1:/
-1312.4 "Malaise" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34ED:/
-1318.5 "Bile Bombardment" sync / 1[56]:[^:]*:Shade of Fear:34EE:/
-1326.7 "Corrosive Bile" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EB:/
-1338.0 "Malaise" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34ED:/
-1344.1 "Bile Bombardment" sync / 1[56]:[^:]*:Shade of Fear:34EE:/
-1345.1 "Flailing Tentacles" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:3680:/
-1354.4 "Corrosive Bile" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EB:/
+1302.1 "Changeling's Fantasia" Ability { id: "34D1", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1312.4 "Malaise" Ability { id: "34ED", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1318.5 "Bile Bombardment" Ability { id: "34EE", source: "Shade of Fear" }
+1326.7 "Corrosive Bile" Ability { id: "34EB", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1338.0 "Malaise" Ability { id: "34ED", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1344.1 "Bile Bombardment" Ability { id: "34EE", source: "Shade of Fear" }
+1345.1 "Flailing Tentacles" Ability { id: "3680", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1354.4 "Corrosive Bile" Ability { id: "34EB", source: "Aenc Thon, Lord of the Lengthsome Gait" }
 
-1375.7 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/
-1389.0 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
-1396.1 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
-1403.2 "Virtuosic Capriccio" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:358C:/ window 3,3
-1414.5 "Imp Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34F0:/
-1420.9 "Toad Choir" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34EF:/
+1375.7 "Crippling Blow" Ability { id: "35A4", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1389.0 "Virtuosic Capriccio" Ability { id: "358C", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 3,3
+1396.1 "Virtuosic Capriccio" Ability { id: "358C", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 3,3
+1403.2 "Virtuosic Capriccio" Ability { id: "358C", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 3,3
+1414.5 "Imp Choir" Ability { id: "34F0", source: "Aenc Thon, Lord of the Lengthsome Gait" }
+1420.9 "Toad Choir" Ability { id: "34EF", source: "Aenc Thon, Lord of the Lengthsome Gait" }
 
-1438.3 "Crippling Blow" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 20,20 jump 1375.7
+1438.3 "Crippling Blow" Ability { id: "35A4", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 20,20 jump 1375.7
 1451.6 "Virtuosic Capriccio"
 1458.7 "Virtuosic Capriccio"
 1465.8 "Virtuosic Capriccio"
@@ -114,5 +114,5 @@ hideall "--sync--"
 1483.5 "Toad Choir"
 
 
-1800.0 "--sync--" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D2:/ window 590,0
-1802.0 "Changeling's Fantasia" sync / 1[56]:[^:]*:Aenc Thon, Lord of the Lengthsome Gait:34D1:/
+1800.0 "--sync--" Ability { id: "34D2", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 590,0
+1802.0 "Changeling's Fantasia" Ability { id: "34D1", source: "Aenc Thon, Lord of the Lengthsome Gait" }

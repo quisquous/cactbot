@@ -9,60 +9,60 @@ hideall "--sync--"
 # Opening block
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-13.6 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 15,15
-20.9 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-26.8 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/ window 30,30
-31.7 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
-38.7 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/
-47.8 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/
-63.3 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4B98:/
-75.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30
-84.8 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
-93.9 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
-107.1 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
-114.6 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
-123.7 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
-131.2 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
+13.6 "Crippling Blow" Ability { id: "4BA3", source: "Ramuh" } window 15,15
+20.9 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+26.8 "Stratospear Summons" Ability { id: "4B8D", source: "Ramuh" } window 30,30
+31.7 "Impact" Ability { id: "4E3A", source: "Ramuh" }
+38.7 "Judgment Jolt" Ability { id: "4B8E", source: "Ramuh" }
+47.8 "Stormcloud Summons" Ability { id: "4B9B", source: "Ramuh" }
+63.3 "Judgment Volts" Ability { id: "4B98", source: "Ramuh" }
+75.5 "Crippling Blow" Ability { id: "4BA3", source: "Ramuh" } window 30,30
+84.8 "Fury's Bolt" Ability { id: "4B90", source: "Ramuh" }
+93.9 "Divine Judgment Volts" Ability { id: "4E62", source: "Ramuh" }
+107.1 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" }
+114.6 "Deadly Discharge" Ability { id: "4B92", source: "Will Of Ramuh" }
+123.7 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" }
+131.2 "Gallop" Ability { id: "4B96", source: "Will Of Ixion" }
 
 #Training block
-137.3 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/
-143.3 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/
-148.2 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
-155.2 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/ window 30,30
-164.4 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
-173.5 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
-181.7 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
-192.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-199.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-211.1 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/ window 30,30
-221.6 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
-229.0 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
-244.1 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
-251.5 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
-254.5 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-261.0 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
-261.6 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-272.0 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30
+137.3 "--sync--" Ability { id: "4BCB", source: "Ramuh" }
+143.3 "Stratospear Summons" Ability { id: "4B8D", source: "Ramuh" }
+148.2 "Impact" Ability { id: "4E3A", source: "Ramuh" }
+155.2 "Judgment Jolt" Ability { id: "4B8E", source: "Ramuh" } window 30,30
+164.4 "Fury's Bolt" Ability { id: "4B90", source: "Ramuh" }
+173.5 "Divine Judgment Volts" Ability { id: "4E62", source: "Ramuh" }
+181.7 "Thunderstorm" Ability { id: "4BA0", source: "Ramuh" } window 30,30
+192.1 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+199.1 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+211.1 "Stormcloud Summons" Ability { id: "4B9B", source: "Ramuh" } window 30,30
+221.6 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" }
+229.0 "Deadly Discharge" Ability { id: "4B92", source: "Will Of Ramuh" }
+244.1 "Thunderstorm" Ability { id: "4BA0", source: "Ramuh" } window 30,30
+251.5 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" }
+254.5 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+261.0 "Gallop" Ability { id: "4B96", source: "Will Of Ixion" }
+261.6 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+272.0 "Crippling Blow" Ability { id: "4BA3", source: "Ramuh" } window 30,30
 
 #Rotation block
-279.3 "--sync--" sync / 1[56]:[^:]*:Ramuh:4BCB:/ window 30,30
-285.2 "Stratospear Summons" sync / 1[56]:[^:]*:Ramuh:4B8D:/
-290.1 "Impact" sync / 1[56]:[^:]*:Ramuh:4E3A:/
-293.6 "Stormcloud Summons" sync / 1[56]:[^:]*:Ramuh:4B9B:/
-303.1 "Judgment Jolt" sync / 1[56]:[^:]*:Ramuh:4B8E:/
-311.3 "Fury's Bolt" sync / 1[56]:[^:]*:Ramuh:4B90:/
-320.4 "Divine Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4E62:/
-331.6 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/ window 30,30
-339.1 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
-339.1 "Deadly Discharge" sync / 1[56]:[^:]*:Will Of Ramuh:4B92:/
-350.1 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/
-362.4 "Judgment Volts" sync / 1[56]:[^:]*:Ramuh:4B98:/
-371.6 "Thunderstorm" sync / 1[56]:[^:]*:Ramuh:4BA0:/ window 30,30
-379.0 "Tribunal Summons" sync / 1[56]:[^:]*:Ramuh:4B91:/
-382.0 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-388.5 "Gallop" sync / 1[56]:[^:]*:Will Of Ixion:4B96:/
-389.1 "Volt Strike" sync / 1[56]:[^:]*:Ramuh:4CF2:/
-399.5 "Crippling Blow" sync / 1[56]:[^:]*:Ramuh:4BA3:/ window 30,30 jump 272.0
+279.3 "--sync--" Ability { id: "4BCB", source: "Ramuh" } window 30,30
+285.2 "Stratospear Summons" Ability { id: "4B8D", source: "Ramuh" }
+290.1 "Impact" Ability { id: "4E3A", source: "Ramuh" }
+293.6 "Stormcloud Summons" Ability { id: "4B9B", source: "Ramuh" }
+303.1 "Judgment Jolt" Ability { id: "4B8E", source: "Ramuh" }
+311.3 "Fury's Bolt" Ability { id: "4B90", source: "Ramuh" }
+320.4 "Divine Judgment Volts" Ability { id: "4E62", source: "Ramuh" }
+331.6 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" } window 30,30
+339.1 "Gallop" Ability { id: "4B96", source: "Will Of Ixion" }
+339.1 "Deadly Discharge" Ability { id: "4B92", source: "Will Of Ramuh" }
+350.1 "Crippling Blow" Ability { id: "4BA3", source: "Ramuh" }
+362.4 "Judgment Volts" Ability { id: "4B98", source: "Ramuh" }
+371.6 "Thunderstorm" Ability { id: "4BA0", source: "Ramuh" } window 30,30
+379.0 "Tribunal Summons" Ability { id: "4B91", source: "Ramuh" }
+382.0 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+388.5 "Gallop" Ability { id: "4B96", source: "Will Of Ixion" }
+389.1 "Volt Strike" Ability { id: "4CF2", source: "Ramuh" }
+399.5 "Crippling Blow" Ability { id: "4BA3", source: "Ramuh" } window 30,30 jump 272.0
 
 412.7 "Stratospear Summons"
 417.6 "Impact"
