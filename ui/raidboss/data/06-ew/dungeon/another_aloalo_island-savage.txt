@@ -274,6 +274,7 @@ hideall "--sync--"
 
 # -p 8966:3013.8
 # -ii TODO 8925 8926 8977 8978 8969 8988 8A6A 897C 897D TODO TODO 8CC1 89FB TODO 8974 8975
+# -it Statice
 
 # Midnight Trial will be sealed off
 3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1148" } window 10000,0
@@ -307,8 +308,9 @@ hideall "--sync--"
 3154.9 "Surprise Needle 4" #Ability { id: "896C", source: "Needle" }
 3155.6 "Pop 2" Ability { id: "896B", source: "Statice" }
 3160.4 "Trapshooting 2" Ability { id: "8976", source: "Statice" }
-
 3172.5 "Aero IV" Ability { id: "8966", source: "Statice" }
+
+3179.7 "--untargetable--"
 3179.7 "--middle--" Ability { id: "8927", source: "Statice" }
 3184.1 "Ring a Ring o' Explosions" Ability { id: "8979", source: "Statice" }
 3189.2 "Present Box 1" Ability { id: "8972", source: "Statice" }
@@ -316,6 +318,8 @@ hideall "--sync--"
 3204.0 "Fireworks" Ability { id: "897C", source: "Statice" }
 3204.2 "Burst" Ability { id: "897A", source: "Bomb" }
 3204.3 "Faerie Ring" Ability { id: "8973", source: "Surprising Staff" }
+
+3206.3 "--targetable--"
 3212.5 "Shocking Abandon" Ability { id: "8965", source: "Statice" }
 
 3222.7 "Pinwheeling Dartboard" Ability { id: "8BCF", source: "Statice" }
