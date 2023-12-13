@@ -11,268 +11,268 @@ hideall "--sync--"
 
 # Bioweapon Storage will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51E:/ window 10,10
-6.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/ window 7,0
-12.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-14.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-24.8 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-26.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-30.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-36.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-42.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-48.8 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-50.5 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-60.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-61.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-66.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-72.7 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-77.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-82.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-86.6 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-93.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-97.1 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-99.1 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-110.7 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-111.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-114.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-121.2 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-127.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-130.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-135.1 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-145.3 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-147.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-148.4 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-159.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-163.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-164.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-169.1 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-179.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-180.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-184.5 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-193.3 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-195.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-196.6 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+6.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" } window 7,0
+12.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+14.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+24.8 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+26.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+30.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+36.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+42.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+48.8 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+50.5 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+60.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+61.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+66.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+72.7 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+77.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+82.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+86.6 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+93.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+97.1 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+99.1 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+110.7 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+111.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+114.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+121.2 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+127.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+130.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+135.1 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+145.3 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+147.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+148.4 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+159.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+163.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+164.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+169.1 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+179.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+180.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+184.5 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+193.3 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+195.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+196.6 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
 ### Phase 2 (80%): shriek, 3 adds 30 seconds apart
 # Note: This used to be synced from a HP% log line that is no longer present.
-306.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/ window 10,10
-345.6 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/ window 155,10
-314.6 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-319.0 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/ window 319,30 duration 11
-322.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-328.2 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
+306.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" } window 10,10
+345.6 "Cursed Voice" Ability { id: "7AC", source: "Melusine" } window 155,10
+314.6 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+319.0 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" } window 319,30 duration 11
+322.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+328.2 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
 330.0 "Deathdancer Add (NE)"
-330.7 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-336.6 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-338.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-346.7 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+330.7 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+336.6 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+338.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+346.7 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-354.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
+354.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
 360.0 "Deathdancer Add (NW)"
-360.8 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-362.6 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-366.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/ duration 11
-370.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-374.5 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-378.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-384.8 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-386.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-394.7 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+360.8 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+362.6 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+366.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" } duration 11
+370.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+374.5 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+378.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+384.8 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+386.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+394.7 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-402.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-408.8 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-410.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-415.0 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/ duration 11
-420.3 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-422.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-426.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-432.8 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-438.0 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-442.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+402.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+408.8 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+410.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+415.0 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" } duration 11
+420.3 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+422.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+426.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+432.8 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+438.0 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+442.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-454.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-457.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-459.0 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-463.2 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/ duration 11
-466.9 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-470.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-475.0 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-481.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-486.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-491.1 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+454.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+457.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+459.0 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+463.2 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" } duration 11
+466.9 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+470.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+475.0 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+481.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+486.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+491.1 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-502.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-505.5 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-507.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-511.4 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/ duration 11
-515.1 "Circle Blade" sync / 1[56]:[^:]*:Melusine:7AB:/
-518.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-523.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-529.5 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-534.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-539.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+502.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+505.5 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+507.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+511.4 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" } duration 11
+515.1 "Circle Blade" Ability { id: "7AB", source: "Melusine" }
+518.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+523.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+529.5 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+534.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+539.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
 
 ### Phase 3 (59%): 4 archer adds, exploding floor
 # Note: This used to be synced from a HP% log line that is no longer present.
-812.0 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/ window 12,10
-814.0 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+812.0 "Cursed Voice" Ability { id: "7AC", source: "Melusine" } window 12,10
+814.0 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-820.1 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/ window 820,20
-822.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-830.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-836.1 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-840.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-843.3 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-846.3 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+820.1 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" } window 820,20
+822.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+830.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+836.1 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+840.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+843.3 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+846.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-852.2 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-854.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-860.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-862.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-870.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-878.4 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-884.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
+852.2 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+854.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+860.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+862.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+870.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+878.4 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+884.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
 
-885.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-886.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-890.5 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-894.4 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-902.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-908.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-910.5 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+885.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+886.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+890.5 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+894.4 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+902.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+908.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+910.5 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-917.5 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-918.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-926.6 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-932.5 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-934.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-937.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-942.7 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+917.5 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+918.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+926.6 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+932.5 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+934.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+937.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+942.7 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-949.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-950.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-956.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-958.4 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-966.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-974.4 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-980.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
+949.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+950.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+956.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+958.4 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+966.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+974.4 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+980.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
 
-981.5 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-982.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-985.7 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-990.4 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-998.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1004.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1006.4 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
+981.5 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+982.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+985.7 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+990.4 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+998.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1004.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1006.4 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
 
-1013.3 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1014.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1022.5 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1028.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1030.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1033.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1038.5 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
+1013.3 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1014.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1022.5 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1028.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1030.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1033.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1038.5 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
 
-1045.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1046.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1052.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1054.5 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1062.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1070.5 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1076.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
+1045.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1046.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1052.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1054.5 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1062.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1070.5 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1076.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
 
-1077.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1078.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1081.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1086.7 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1094.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1100.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1102.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
+1077.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1078.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1081.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1086.7 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1094.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1100.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1102.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
 
-1109.5 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1110.9 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1118.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1124.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1126.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1129.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1134.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
+1109.5 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1110.9 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1118.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1124.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1126.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1129.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1134.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
 
-1141.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1142.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1148.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1150.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1158.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1166.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1172.3 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
+1141.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1142.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1148.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1150.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1158.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1166.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1172.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
 
-1173.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1174.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1177.8 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1182.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
-1190.9 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1196.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1198.6 "Circle Of Flames x2" #sync sync / 1[56]:[^:]*:Melusine:7AA:/
+1173.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1174.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1177.8 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1182.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
+1190.9 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1196.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1198.6 "Circle Of Flames x2" #sync Ability { id: "7AA", source: "Melusine" }
 
 
 ### Phase 5 (post-prosecutor): venomous tail
-1600.0 "Sacrifice" sync / 1[56]:[^:]*:Lamia Prosector:86E:/ window 1600,0
-1601.0 "Frenzy" sync / 1[56]:[^:]*:Melusine:86D:/
+1600.0 "Sacrifice" Ability { id: "86E", source: "Lamia Prosector" } window 1600,0
+1601.0 "Frenzy" Ability { id: "86D", source: "Melusine" }
 
-1608.1 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/ window 1610,5
-1611.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1617.9 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1624.0 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1627.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1630.1 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1634.1 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1638.9 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1643.0 "Venomous Tail" sync / 1[56]:[^:]*:Melusine:7B2:/
-1644.1 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1647.9 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1650.1 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+1608.1 "Petrifaction" Ability { id: "7B1", source: "Melusine" } window 1610,5
+1611.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1617.9 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1624.0 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1627.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1630.1 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1634.1 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1638.9 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1643.0 "Venomous Tail" Ability { id: "7B2", source: "Melusine" }
+1644.1 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1647.9 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1650.1 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-1655.3 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/
-1660.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1666.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1672.1 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1673.3 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1677.2 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1678.5 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1682.2 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1690.2 "Venomous Tail" sync / 1[56]:[^:]*:Melusine:7B2:/
-1696.1 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1697.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1698.4 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+1655.3 "Petrifaction" Ability { id: "7B1", source: "Melusine" }
+1660.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1666.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1672.1 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1673.3 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1677.2 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1678.5 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1682.2 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1690.2 "Venomous Tail" Ability { id: "7B2", source: "Melusine" }
+1696.1 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1697.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1698.4 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-1703.5 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/
-1705.3 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1713.3 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1714.4 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1720.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1724.1 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1729.2 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1730.5 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1737.2 "Venomous Tail" sync / 1[56]:[^:]*:Melusine:7B2:/
-1740.4 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1744.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1746.8 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1747.9 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+1703.5 "Petrifaction" Ability { id: "7B1", source: "Melusine" }
+1705.3 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1713.3 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1714.4 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1720.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1724.1 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1729.2 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1730.5 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1737.2 "Venomous Tail" Ability { id: "7B2", source: "Melusine" }
+1740.4 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1744.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1746.8 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1747.9 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-1752.9 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/
-1761.4 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1763.8 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1768.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1771.5 "Cursed Shriek" sync / 1[56]:[^:]*:Melusine:7AF:/
-1772.8 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1777.6 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1780.0 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1785.2 "Venomous Tail" sync / 1[56]:[^:]*:Melusine:7B2:/
-1792.4 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
-1795.9 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1796.9 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
+1752.9 "Petrifaction" Ability { id: "7B1", source: "Melusine" }
+1761.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1763.8 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1768.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1771.5 "Cursed Shriek" Ability { id: "7AF", source: "Melusine" }
+1772.8 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1777.6 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1780.0 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1785.2 "Venomous Tail" Ability { id: "7B2", source: "Melusine" }
+1792.4 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
+1795.9 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1796.9 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
 
-1802.1 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/
-1804.9 "Red Lotus Blade" sync / 1[56]:[^:]*:Melusine:7A9:/
-1809.7 "Tail Slap" sync / 1[56]:[^:]*:Melusine:7A8:/
-1813.0 "Circle Of Flames x2" #sync / 1[56]:[^:]*:Melusine:7AA:/
-1817.2 "Cursed Voice" sync / 1[56]:[^:]*:Melusine:7AC:/
+1802.1 "Petrifaction" Ability { id: "7B1", source: "Melusine" }
+1804.9 "Red Lotus Blade" Ability { id: "7A9", source: "Melusine" }
+1809.7 "Tail Slap" Ability { id: "7A8", source: "Melusine" }
+1813.0 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }
+1817.2 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }

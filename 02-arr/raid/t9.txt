@@ -8,98 +8,98 @@ hideall "--sync--"
 # This phase really doesn't seem to loop anywhere.
 0.0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-5.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/ window 6,5
-16.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+5.5 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" } window 6,5
+16.6 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-21.8 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-30.8 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-30.9 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
-36.2 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-40.8 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-42.6 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-43.6 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-44.0 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
-48.3 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+21.8 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+30.8 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+30.9 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
+36.2 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+40.8 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+42.6 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+43.6 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+44.0 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
+48.3 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-58.6 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-63.4 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-67.6 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-69.4 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-71.8 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-74.9 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-83.7 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
-89.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+58.6 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+63.4 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+67.6 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+69.4 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+71.8 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+74.9 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+83.7 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
+89.5 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-95.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-96.6 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
-104.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-107.2 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-112.3 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-115.4 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-119.7 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-130.2 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+95.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+96.6 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
+104.0 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+107.2 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
+112.3 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
+115.4 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+119.7 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+130.2 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
 
-135.5 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-140.0 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-143.2 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
-144.6 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-146.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-150.7 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-152.6 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-153.6 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-162.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+135.5 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+140.0 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+143.2 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
+144.6 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+146.1 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+150.7 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+152.6 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+153.6 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+162.6 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-168.6 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-177.4 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
-177.7 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-183.9 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-186.2 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-189.3 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-190.4 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
-192.9 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+168.6 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+177.4 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
+177.7 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+183.9 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+186.2 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+189.3 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+190.4 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
+192.9 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-203.9 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-208.0 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-213.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-217.5 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-222.6 "Meteor Stream" #sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-225.8 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-234.2 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
-239.6 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+203.9 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+208.0 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+213.0 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+217.5 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
+222.6 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
+225.8 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+234.2 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
+239.6 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-245.8 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-254.8 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-255.5 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-260.1 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-262.1 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-263.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-266.4 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-277.3 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/ duration 13
+245.8 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+254.8 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+255.5 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+260.1 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+262.1 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+263.1 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+266.4 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+277.3 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
 
-283.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-286.8 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-292.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-294.3 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-296.7 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-299.9 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-307.9 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+283.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+286.8 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+292.0 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+294.3 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+296.7 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+299.9 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+307.9 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-314.3 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-322.8 "Ravensbeak" sync / 1[56]:[^:]*:Nael deus Darnus:7D6:/
-323.3 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-332.0 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-335.9 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:7D7:/
-337.0 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-340.2 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
-343.2 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
+314.3 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+322.8 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" }
+323.3 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+332.0 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+335.9 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
+337.0 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+340.2 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
+343.2 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
-355.0 "Stardust" sync / 1[56]:[^:]*:Nael deus Darnus:877:/ duration 9
-358.5 "Ravensclaw" sync / 1[56]:[^:]*:Nael deus Darnus:7D5:/
-364.0 "--sync--" sync / 1[56]:[^:]*:(Astral Debris|Umbral Debris):7E9:/
-366.0 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-370.5 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-372.7 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-373.7 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
+355.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
+358.5 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
+364.0 "--sync--" Ability { id: "7E9", source: "(Astral Debris|Umbral Debris)" }
+366.0 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+370.5 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+372.7 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+373.7 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
 
 # Meteors just start exploding here no matter how far away you put them.
 
@@ -107,7 +107,7 @@ hideall "--sync--"
 ### Phase 2: Golem Adds
 500.0 "--untargetable--"
 503.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 505,0
-514.3 "--sync--" sync / 1[56]:[^:]*:Dalamud Fragment:7EB:/
+514.3 "--sync--" Ability { id: "7EB", source: "Dalamud Fragment" }
 582.3 "Meteor 1/6" duration 7 sync / 1B:........:[^:]*:....:....:000[9A]:/ window 83,0
 584.3 "Meteor 2/6" duration 7
 586.3 "Meteor 3/6" duration 7
@@ -115,51 +115,51 @@ hideall "--sync--"
 590.5 "Meteor 5/6" duration 7
 592.5 "Meteor 6/6" duration 7
 598.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 80,80
-609.3 "--sync--" sync / 1[56]:[^:]*:Dalamud Fragment:7EB:/
-683.5 "Megaflare" sync / 1[56]:[^:]*:Nael deus Darnus:7E7:/ window 700,700
+609.3 "--sync--" Ability { id: "7EB", source: "Dalamud Fragment" }
+683.5 "Megaflare" Ability { id: "7E7", source: "Nael deus Darnus" } window 700,700
 
 
 ### Phase 3: Heavensfall
 # Phase 3 is on a 54 second nael rotation and a 60 second dragon rotation.
 # This unrolls the loop for the first few dragons.
-693.6 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/ window 300,300
+693.6 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" } window 300,300
 695.6 "--targetable--"
 
-699.2 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
-701.9 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 702,10
-714.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+699.2 "--sync--" Ability { id: "83B", source: "Nael deus Darnus" }
+701.9 "Heavensfall" Ability { id: "7E4", source: "Ragnarok" } window 702,10
+714.3 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
 716.0 "Ghost Add 1 (North)"
-721.8 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
-737.0 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-744.4 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+721.8 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
+737.0 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+744.4 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 
-749.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
-752.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
-755.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-768.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-775.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+749.5 "--sync--" Ability { id: "83B", source: "Nael deus Darnus" }
+752.2 "Heavensfall" Ability { id: "7E4", source: "Ragnarok" } window 40,40
+755.9 "Super Nova x2" duration 2.3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+768.7 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+775.9 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 776.0 "Ghost Add 2 (East)"
-791.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-798.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+791.3 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+798.5 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 
-803.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
-806.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
-809.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-822.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-829.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+803.5 "--sync--" Ability { id: "83B", source: "Nael deus Darnus" }
+806.2 "Heavensfall" Ability { id: "7E4", source: "Ragnarok" } window 40,40
+809.9 "Super Nova x2" duration 2.3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+822.7 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+829.9 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 836.0 "Ghost Add 3 (South)"
-845.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-852.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+845.3 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+852.5 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 
-857.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/
-860.2 "Heavensfall" sync / 1[56]:[^:]*:Ragnarok:7E4:/ window 40,40
-863.9 "Super Nova x2" duration 2.3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-876.7 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-883.9 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
-899.3 "Bahamut's Claw x2" #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-906.5 "Binding Coil" sync / 1[56]:[^:]*:Nael deus Darnus:7E2:/
+857.5 "--sync--" Ability { id: "83B", source: "Nael deus Darnus" }
+860.2 "Heavensfall" Ability { id: "7E4", source: "Ragnarok" } window 40,40
+863.9 "Super Nova x2" duration 2.3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+876.7 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+883.9 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
+899.3 "Bahamut's Claw x2" #Ability { id: "871", source: "Nael deus Darnus" }
+906.5 "Binding Coil" Ability { id: "7E2", source: "Nael deus Darnus" }
 
-911.5 "--sync--" sync / 1[56]:[^:]*:Nael deus Darnus:83B:/ window 40,40 jump 857.5
+911.5 "--sync--" Ability { id: "83B", source: "Nael deus Darnus" } window 40,40 jump 857.5
 914.2 "Heavensfall"
 917.9 "Super Nova x2"
 930.7 "Bahamut's Claw x2"
@@ -169,79 +169,79 @@ hideall "--sync--"
 
 
 ### Phase 4: Divebombs and Dances
-1000.0 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 1000,80
-1003.1 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-1013.9 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1014.4 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-1014.9 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1019.0 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-1025.9 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1026.9 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1038.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1039.0 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1040.2 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-1041.9 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-1047.4 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-1050.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1051.2 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1054.2 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1000.0 "Bahamut's Favor" Ability { id: "7E6", source: "Nael deus Darnus" } window 1000,80
+1003.1 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
+1013.9 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1014.4 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+1014.9 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1019.0 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+1025.9 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1026.9 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1038.0 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1039.0 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1040.2 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+1041.9 "Super Nova x3" duration 3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+1047.4 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+1050.0 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1051.2 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1054.2 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
 1061.2 "Divebomb Mark A" duration 5
 1067.3 "Divebomb Mark B" duration 5
-1070.5 "Cauterize x2" sync / 1[56]:[^:]*:Thunderwing:801:/
-1070.6 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-1076.6 "Cauterize x1" sync / 1[56]:[^:]*:Firehorn:7FF:/
-1076.7 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-1080.8 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+1070.5 "Cauterize x2" Ability { id: "801", source: "Thunderwing" }
+1070.6 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+1076.6 "Cauterize x1" Ability { id: "7FF", source: "Firehorn" }
+1076.7 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+1080.8 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
 
-1096.6 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,80
-1099.7 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-1110.4 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-1110.4 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1111.3 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1114.9 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-1122.5 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1123.4 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1134.4 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1135.5 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1136.0 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-1137.8 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-1143.8 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-1146.6 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1147.7 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1150.6 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1096.6 "Bahamut's Favor" Ability { id: "7E6", source: "Nael deus Darnus" } window 80,80
+1099.7 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
+1110.4 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+1110.4 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1111.3 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1114.9 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+1122.5 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1123.4 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1134.4 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1135.5 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1136.0 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+1137.8 "Super Nova x3" duration 3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+1143.8 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+1146.6 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1147.7 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1150.6 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
 1157.8 "Divebomb Mark A" duration 5
 1163.9 "Divebomb Mark B" duration 5
-1164.3 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-1167.1 "Cauterize x2" sync / 1[56]:[^:]*:Firehorn:7FF:/
-1168.1 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-1172.7 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-1173.2 "Cauterize x1" sync / 1[56]:[^:]*:Iceclaw:800:/
+1164.3 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+1167.1 "Cauterize x2" Ability { id: "7FF", source: "Firehorn" }
+1168.1 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+1172.7 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+1173.2 "Cauterize x1" Ability { id: "800", source: "Iceclaw" }
 
-1193.1 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,80
-1196.1 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
-1206.9 "Raven Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DD:/
-1207.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1207.9 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1211.4 "Lunar Dynamo" sync / 1[56]:[^:]*:Nael deus Darnus:7DA:/
-1219.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1219.9 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1231.0 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1232.1 "Fireball (Out)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1232.6 "Iron Chariot" sync / 1[56]:[^:]*:Nael deus Darnus:7D8:/
-1234.4 "Super Nova x3" duration 3 #sync / 1[56]:[^:]*:Nael deus Darnus:7E0:/
-1240.5 "Thermionic Beam" sync / 1[56]:[^:]*:Nael deus Darnus:7DF:/
-1243.1 "Chain Lightning" sync / 1[56]:[^:]*:Thunderwing:7FD:/ duration 6
-1244.4 "Fireball (In)" sync / 1[56]:[^:]*:Firehorn:7FB:/
-1247.4 "Bahamut's Claw x5" duration 2.9 #sync / 1[56]:[^:]*:Nael deus Darnus:871:/
+1193.1 "Bahamut's Favor" Ability { id: "7E6", source: "Nael deus Darnus" } window 80,80
+1196.1 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
+1206.9 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
+1207.0 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1207.9 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1211.4 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
+1219.0 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1219.9 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1231.0 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1232.1 "Fireball (Out)" Ability { id: "7FB", source: "Firehorn" }
+1232.6 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
+1234.4 "Super Nova x3" duration 3 #Ability { id: "7E0", source: "Nael deus Darnus" }
+1240.5 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
+1243.1 "Chain Lightning" Ability { id: "7FD", source: "Thunderwing" } duration 6
+1244.4 "Fireball (In)" Ability { id: "7FB", source: "Firehorn" }
+1247.4 "Bahamut's Claw x5" duration 2.9 #Ability { id: "871", source: "Nael deus Darnus" }
 1254.4 "Divebomb Mark A" duration 5
 1260.3 "Divebomb Mark B" duration 5
-1263.7 "Cauterize x2" sync / 1[56]:[^:]*:Thunderwing:801:/
-1263.8 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-1269.6 "Cauterize x1" sync / 1[56]:[^:]*:Firehorn:7FF:/
-1269.9 "Meteor Stream" sync / 1[56]:[^:]*:Nael Geminus:7DE:/
-1274.5 "Dalamud Dive" sync / 1[56]:[^:]*:Nael deus Darnus:7DC:/
+1263.7 "Cauterize x2" Ability { id: "801", source: "Thunderwing" }
+1263.8 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+1269.6 "Cauterize x1" Ability { id: "7FF", source: "Firehorn" }
+1269.9 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
+1274.5 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
 
-1289.7 "Bahamut's Favor" sync / 1[56]:[^:]*:Nael deus Darnus:7E6:/ window 80,800 jump 1096.6
+1289.7 "Bahamut's Favor" Ability { id: "7E6", source: "Nael deus Darnus" } window 80,800 jump 1096.6
 1292.8 "Bahamut's Claw x5"
 1303.5 "Raven Dive"
 1303.5 "Chain Lightning"
@@ -267,7 +267,7 @@ hideall "--sync--"
 
 
 ### Phase 5: What Took You So Long
-2000.0 "Megaflare Enrage" sync / 1[56]:[^:]*:Nael deus Darnus:7E8:/ window 2000,2000
+2000.0 "Megaflare Enrage" Ability { id: "7E8", source: "Nael deus Darnus" } window 2000,2000
 2008.5 "Megaflare Enrage"
 2017.0 "Megaflare Enrage"
 2025.5 "Megaflare Enrage"

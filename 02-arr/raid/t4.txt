@@ -22,7 +22,7 @@
 303.0 "Rook (NE)"
 303.0 "2x Bug (SE/NW)"
 
-423.0 "Emergency Override" sync / 1[56]:[^:]*:Drive Cylinder:4EA:/ window 500,500
+423.0 "Emergency Override" Ability { id: "4EA", source: "Drive Cylinder" } window 500,500
 427.0 "Emergency Override"
 431.0 "Emergency Override"
 435.0 "Emergency Override"
