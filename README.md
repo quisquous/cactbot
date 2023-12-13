@@ -2,7 +2,7 @@
 
 <img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png">
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/quisquous/cactbot/Test/main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
 
 🌎 [**English**] [[简体中文](docs/zh-CN/README.md)] [[한국어](docs/ko-KR/README.md)]
@@ -10,19 +10,20 @@
 1. [About](#about)
 1. [Installing](#installing)
 1. [Building From Source](#building-from-source)
-1. [UI Module Overview](#ui-module-overview)
+1. [Overlay Overview](#overlay-overview)
 1. [Troubleshooting](#troubleshooting)
 1. [Cactbot Customization](#cactbot-customization)
 1. [Supported Languages](#supported-languages)
 
 ## About
 
-cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/). This project is an overlay plugin for
+cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/).
+This project depends on
 [OverlayPlugin](https://github.com/OverlayPlugin/OverlayPlugin)
-which itself is a plugin for
+and is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
-cactbot provides these modules:
+cactbot provides these overlays:
 
 * raidboss: built-in timelines and triggers:
 
@@ -113,12 +114,6 @@ This will download the cactbot into
 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot`
 and enable `CactbotOverlay.dll` in the list of plugins.
 
-**Note**: Due to a difference in how ACT expects archives to be
-and how cactbot generates its zip files,
-there will be something like a `cactbot-0.15.2` folder
-that corresponds to the initial version that you downloaded cactbot.
-This folder name does not matter and is cosmetic.
-
 ### Plugin Load Order
 
 Because of cactbot’s dependencies,
@@ -133,9 +128,9 @@ Verify that your plugins are in this order:
 
 Finally, restart ACT.
 
-## Adding overlay modules
+## Adding overlays
 
-Here's an example of how to set up the raidboss overlay module.
+Here's an example of how to set up the raidboss overlay.
 Setting up other cactbot overlays works identically.
 
 1. Open ACT.
@@ -243,30 +238,29 @@ To install npm and start Webpack, follow these steps:
 1. Run `npm run build` or `npm start`.
 
 Cactbot should always work with the latest LTS release.
-
 If this is not the case, file an issue.
 
 See the [contributing](CONTRIBUTING.md#validating-changes-via-webpack) documentation
 for more details about using Webpack.
 
-## UI module overview
+## Overlay Overview
 
-The [ui/](ui/) directory contains cactbot's ui modules.
+The [ui/](ui/) directory contains cactbot's overlays.
 If you installed cactbot following the instructions above,
 this will most likely be `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\ui\`.
 
-Each cactbot ui module should be added as a separate overlay.
-See the [Adding Overlay Modules](#adding-overlay-modules) section for more details about setup.
+Each cactbot overlay should be added as a separate overlay.
+See the [Adding Overlays](#adding-overlays) section for more details about setup.
 
-### [raidboss](ui/raidboss) module
+### [raidboss](ui/raidboss) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/raidboss/raidboss.html** or use the `Cactbot Raidboss` preset.
 
-This module provides a visual timeline of upcoming events in a fight, as well as text and audio
+This overlay provides a visual timeline of upcoming events in a fight, as well as text and audio
 notifications to help increase raid awareness. Text and sound alerts can be based on the fight
 timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
-The module is designed to look and feel similar to the
+The overlay is designed to look and feel similar to the
 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) addon for World of Warcraft.
 
 [This page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) lists
@@ -283,7 +277,7 @@ Text messages will be in one of these, and more important levels are larger and 
 
 Timeline files and triggers for text and sound alerts are found in [ui/raidboss/data](ui/raidboss/data), timeline files with `.txt` extension and trigger files with `.ts` extension.
 
-In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
+In this screenshot, the raidboss overlay is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow, with an `alert`-level text message visible.
 
 ![raidboss screenshot](screenshots/Raidboss.png)
@@ -323,12 +317,15 @@ If the emulator is not working, check the console log in the inspector for error
 
 ![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
 
-### [oopsyraidsy](ui/oopsyraidsy) module
+### [oopsyraidsy](ui/oopsyraidsy) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/oopsyraidsy/oopsyraidsy.html** or use the `Cactbot OopsyRaidsy` preset.
 
-This module provides mistake tracking and death reporting.  Oopsy raidsy is meant to reduce the time wasted understanding what went wrong on fights and how people died.  During the fight, only a limited number of mistakes are shown (to avoid clutter), but afterwards a full scrollable list is displayed.
+This overlay provides mistake tracking and death reporting.
+Oopsy raidsy is meant to reduce the time wasted understanding what went wrong on fights and how people died.
+During the fight, only a limited number of mistakes are shown (to avoid clutter),
+but afterwards a full scrollable list is displayed.
 
 When somebody dies, the last thing they took damage from is listed in the log.  For example, if the log specifies: ":skull: Poutine: Iron Chariot (82173/23703)" this means that Poutine most likely died to Iron Chariot, taking 82173 damage and having 23703 health at the time.  The health value itself is not perfect and may be slightly out of date by a ~second due to a hot tick or multiple simultaneous damage sources.
 
@@ -341,12 +338,12 @@ Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data
 You can copy oopsy lines to the clipboard by clicking them.
 (You may need to uncheck `Enable Clickthrough` checkbox from the OverlayPlugin option.)
 
-### [jobs](ui/jobs) module
+### [jobs](ui/jobs) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/jobs/jobs.html** or use the `Cactbot Jobs` preset.
 
-This module includes 3 parts: a resource zone at top middle, a raidbuff zone at top right, and a tracking zone at bottom.
+This overlay includes 3 parts: a resource zone at top middle, a raidbuff zone at top right, and a tracking zone at bottom.
 
 * **resource zone**: HP bars and job-specific resource, along with some special counters for some jobs.
 * **tracking zone**: job-specific important buff/debuff duration, cooldowns and procs.
@@ -357,7 +354,7 @@ You can change some of the behavior or appearance via the user panel, e.g. only 
 However, customization of some behavior like cooldown alert thresholds and element order is not available for now.
 
 In this screenshot, the RDM jobs UI is shown as an example.
-The in-game UI is shown at top and the jobs module is shown at bottom.
+The in-game UI is shown at top and the jobs overlay is shown at bottom.
 HP & MP bar, White Mana and Black Mana are shown in purple.
 The right yellow is raidbuff icon.
 Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte cooldown are shown in red.
@@ -394,12 +391,12 @@ Verstone Ready duration, Verfire Ready duration, Fleche cooldown, Contre Sixte c
 
 </details>
 
-### [eureka](ui/eureka) module
+### [eureka](ui/eureka) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/eureka/eureka.html** or use the `Cactbot Eureka` preset.
 
-This module provides automatic tracking of NMs that are popped or have
+This overlay provides automatic tracking of NMs that are popped or have
 been killed.  It shows gales/night timers and any local tracker link
 that has been pasted in chat.  Any flags in chat are also temporarily
 included on the map.
@@ -413,12 +410,12 @@ If you do not see the emoji, make sure you have installed [this Windows update](
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
-### [radar](ui/radar) module
+### [radar](ui/radar) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/radar/radar.html** or use the `Cactbot Radar` preset.
 
-This module lets you know about nearby hunt mobs (S-rank, A-rank, etc).
+This overlay lets you know about nearby hunt mobs (S-rank, A-rank, etc).
 When one pops, it gives you an arrow (based on your character's heading)
 and a distance to the mob.
 
@@ -432,16 +429,12 @@ See the `cactbot/user/radar-example.js` for more options.
 
 ![radar screenshot](screenshots/promo_radar.png)
 
-### [dps](ui/dps) meters
+### [dps](ui/dps) meter overlays
 
-cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
-addon, with the option to build out more features through cactbot's additional Javascript
-APIs.  cactbot also auto-stops fights on wipes, so you can configure ACT's fight time to
-infinity.
+cactbot has a couple of dps meters as well with a few extra features.
+They hide when you change zones, so it's not something you need to manually hide or show.
 
-The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
-with the additional ability to do per-phase dps tracking, displayed in additional columns.
-In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
+The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse.
 
 ![xephero screenshot](screenshots/xephero.png)
 
@@ -450,9 +443,9 @@ recolored to match [fflogs](http://fflogs.com).
 
 ![rdmty screenshot](screenshots/rdmty.png)
 
-### [pull counter](ui/pullcounter) module
+### [pull counter](ui/pullcounter) overlay
 
-This small module sticks the current pull count for raiding bosses on screen.
+This small overlay sticks the current pull count for raiding bosses on screen.
 This is primarily for folks who stream a lot and want to review video footage.
 Having a number on screen makes it easy to scrub through video and find
 particular pulls to review.
@@ -465,12 +458,12 @@ file.
 
 ![pull counter screenshot](screenshots/pullcounter.png)
 
-### [test](ui/test) module
+### [test](ui/test) overlay
 
-To use this module,
+To use this overlay,
 point cactbot at **ui/test/test.html** or use the `Cactbot Test` preset.
 
-This module is just an onscreen test of cactbot variables and is not meant to be used while playing.
+This overlay is just an onscreen test of cactbot variables and is not meant to be used while playing.
 It can be useful to try out to make sure everything is working as expected or to use to help debug overlay issues.
 
 ![test screenshot](screenshots/test.png)
@@ -525,6 +518,7 @@ international (English, German, French, Japanese) version,
 the current Chinese version,
 and the current Korean version.
 Some translations are still a work in progress.
+See the [cactbot coverage page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) for more details.
 
 ## Licensing, Trademarks, Copyright
 
