@@ -6,34 +6,34 @@ hideall "--sync--"
 
 # Hall of Magicks will be sealed off
 0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:657:/
-6.1 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/ window 6.1,5
-17.3 "Folio" sync / 1[56]:[^:]*:Demon of the Tome:193C:/
-23.4 "--sync--" sync / 1[56]:[^:]*:Top Shelf Tome:193D:/
-24.0 "Book Drop" sync / 1[56]:[^:]*:Top Shelf Tome:193E:/
+6.1 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 6.1,5
+17.3 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
+23.4 "--sync--" Ability { id: "193D", source: "Top Shelf Tome" }
+24.0 "Book Drop" Ability { id: "193E", source: "Top Shelf Tome" }
 
-29.5 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/ window 15,15
-38.7 "Folio" sync / 1[56]:[^:]*:Demon of the Tome:193C:/
-44.8 "--sync--" sync / 1[56]:[^:]*:Top Shelf Tome:193D:/
-45.4 "Book Drop" sync / 1[56]:[^:]*:Top Shelf Tome:193E:/
-47.0 "Issue" sync / 1[56]:[^:]*:Middle Shelf Tome:193F:/ window 15,15
-52.6 "Discontinue" sync / 1[56]:[^:]*:Middle Shelf Tome:1940:/
-58.3 "Frightful Roar" sync / 1[56]:[^:]*:Demon of the Tome:193B:/
-63.5 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/ window 15,15
-71.5 "Folio" sync / 1[56]:[^:]*:Demon of the Tome:193C:/
+29.5 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 15,15
+38.7 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
+44.8 "--sync--" Ability { id: "193D", source: "Top Shelf Tome" }
+45.4 "Book Drop" Ability { id: "193E", source: "Top Shelf Tome" }
+47.0 "Issue" Ability { id: "193F", source: "Middle Shelf Tome" } window 15,15
+52.6 "Discontinue" Ability { id: "1940", source: "Middle Shelf Tome" }
+58.3 "Frightful Roar" Ability { id: "193B", source: "Demon of the Tome" }
+63.5 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 15,15
+71.5 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
 77.6 "Issue"
 82.2 "Discontinue"
 83.6 "Issue"
 84.2 "Discontinue x3"
 
-102.7 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/ window 15,15
-111.9 "Folio" sync / 1[56]:[^:]*:Demon of the Tome:193C:/
-118.0 "--sync--" sync / 1[56]:[^:]*:Top Shelf Tome:193D:/
-118.6 "Book Drop" sync / 1[56]:[^:]*:Top Shelf Tome:193E:/
-120.2 "Issue" sync / 1[56]:[^:]*:Middle Shelf Tome:193F:/ window 15,15
-125.8 "Discontinue" sync / 1[56]:[^:]*:Middle Shelf Tome:1940:/
-131.5 "Frightful Roar" sync / 1[56]:[^:]*:Demon of the Tome:193B:/
-136.7 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/
-144.7 "Folio" sync / 1[56]:[^:]*:Demon of the Tome:193C:/
+102.7 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 15,15
+111.9 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
+118.0 "--sync--" Ability { id: "193D", source: "Top Shelf Tome" }
+118.6 "Book Drop" Ability { id: "193E", source: "Top Shelf Tome" }
+120.2 "Issue" Ability { id: "193F", source: "Middle Shelf Tome" } window 15,15
+125.8 "Discontinue" Ability { id: "1940", source: "Middle Shelf Tome" }
+131.5 "Frightful Roar" Ability { id: "193B", source: "Demon of the Tome" }
+136.7 "Triclip" Ability { id: "193A", source: "Demon of the Tome" }
+144.7 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
 150.8 "Issue"
 155.4 "Discontinue"
 156.8 "Issue"
@@ -41,7 +41,7 @@ hideall "--sync--"
 
 # Ordinarily we would sync from the end of the last block
 # However, this tends to break due to multiple identical mechanics close together
-175.9 "Triclip" sync / 1[56]:[^:]*:Demon of the Tome:193A:/ window 15,15 jump 102.7
+175.9 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 15,15 jump 102.7
 185.1 "Folio"
 191.8 "Book Drop"
 193.4 "Issue"
@@ -55,48 +55,48 @@ hideall "--sync--"
 
 # Astrology and Astromancy Camera will be sealed off
 1000.0 "--sync--"  sync / 29:[^:]*:7DC:[^:]*:658:/ window 1000,0
-1007.3 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/ window 7.3,5
-1014.3 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
+1007.3 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" } window 7.3,5
+1014.3 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1025.7 "Sea Of Flames x3"
-1030.5 "Slosh" sync / 1[56]:[^:]*:Liquid Flame:1947:/ window 10,10
-1034.6 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/
-1042.7 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
+1030.5 "Slosh" Ability { id: "1947", source: "Liquid Flame" } window 10,10
+1034.6 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" }
+1042.7 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1054.3 "Hand/Tornado?"
 
 # Hand Form
 1100.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Chiromorph/ window 100,250
-1108.4 "Seal Of Night And Day" sync / 1[56]:[^:]*:Liquid Flame:1949:/ window 10,10
-1112.5 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
-1116.4 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
-1126.5 "Seal Of Night And Day" sync / 1[56]:[^:]*:Liquid Flame:1949:/ window 10,10
-1130.6 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
-1134.7 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
-1138.9 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1948:/
+1108.4 "Seal Of Night And Day" Ability { id: "1949", source: "Liquid Flame" } window 10,10
+1112.5 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
+1116.4 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
+1126.5 "Seal Of Night And Day" Ability { id: "1949", source: "Liquid Flame" } window 10,10
+1130.6 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
+1134.7 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
+1138.9 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
 1149.1 "Form Shift"
 
 # Tornado Form
 1200.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anemomorph/ window 200,0
-1204.5 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/ window 10,10
-1215.4 "Magnetism/Repel?" sync / 1[56]:[^:]*:Liquid Flame:194[CD]:/
-1226.9 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
-1237.8 "Magnetism/Repel" sync / 1[56]:[^:]*:Liquid Flame:194[CD]:/
+1204.5 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" } window 10,10
+1215.4 "Magnetism/Repel?" Ability { id: "194[CD]", source: "Liquid Flame" }
+1226.9 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
+1237.8 "Magnetism/Repel" Ability { id: "194[CD]", source: "Liquid Flame" }
 1246.1 "Form Shift"
 
 # Human Form
 1300.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anthropomorph/ window 300,10
-1307.5 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/ window 10,20
-1314.7 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
+1307.5 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" } window 10,20
+1314.7 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1326.0 "Sea Of Flames x3"
-1331.3 "Slosh" sync / 1[56]:[^:]*:Liquid Flame:1947:/ window 10,10
-1335.5 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/
-1343.8 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
+1331.3 "Slosh" Ability { id: "1947", source: "Liquid Flame" } window 10,10
+1335.5 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" }
+1343.8 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 
-1355.2 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/ window 10,20
-1362.4 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/
+1355.2 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" } window 10,20
+1362.4 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1373.8 "Sea Of Flames x3"
-1379.0 "Slosh" sync / 1[56]:[^:]*:Liquid Flame:1947:/ window 10,10
-1383.2 "Searing Wind" sync / 1[56]:[^:]*:Liquid Flame:1944:/
-1391.5 "Bibliocide" sync / 1[56]:[^:]*:Liquid Flame:1945:/ jump 1343.8
+1379.0 "Slosh" Ability { id: "1947", source: "Liquid Flame" } window 10,10
+1383.2 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" }
+1391.5 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" } jump 1343.8
 
 1402.9 "Searing Wind"
 1410.1 "Bibliocide"
@@ -109,47 +109,47 @@ hideall "--sync--"
 
 # Rare Tomes Room will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:706:/ window 2000,5
-2009.2 "Check Out" sync / 1[56]:[^:]*:Strix:194E:/ window 9.2,10
-2017.5 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2029.6 "Properties Of Quakes" sync / 1[56]:[^:]*:Strix:1956:/
-2033.8 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2040.1 "Check Out" sync / 1[56]:[^:]*:Strix:194E:/ window 10,10
-2048.4 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2056.7 "Properties Of Darkness II" sync / 1[56]:[^:]*:Strix:1955:/
-2069.9 "Properties Of Tornados" sync / 1[56]:[^:]*:Strix:1957:/
-2074.2 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2082.4 "Properties Of Imps" sync / 1[56]:[^:]*:Strix:1959:/ window 30,30
-2085.5 "Properties Of Darkness" sync / 1[56]:[^:]*:Strix:1954:/
-2094.7 "Properties Of Thunder III" sync / 1[56]:[^:]*:Strix:195A:/
+2009.2 "Check Out" Ability { id: "194E", source: "Strix" } window 9.2,10
+2017.5 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2029.6 "Properties Of Quakes" Ability { id: "1956", source: "Strix" }
+2033.8 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2040.1 "Check Out" Ability { id: "194E", source: "Strix" } window 10,10
+2048.4 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2056.7 "Properties Of Darkness II" Ability { id: "1955", source: "Strix" }
+2069.9 "Properties Of Tornados" Ability { id: "1957", source: "Strix" }
+2074.2 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2082.4 "Properties Of Imps" Ability { id: "1959", source: "Strix" } window 30,30
+2085.5 "Properties Of Darkness" Ability { id: "1954", source: "Strix" }
+2094.7 "Properties Of Thunder III" Ability { id: "195A", source: "Strix" }
 
 # Intermission
-2109.2 "Check Out" sync / 1[56]:[^:]*:Strix:194E:/
-2125.6 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2126.1 "--sync--" sync / 1[56]:[^:]*:Meteor:1A6A:/
-2126.7 "Meteor Impact" sync / 1[56]:[^:]*:Behemoth Ward:195E:/
-2133.8 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2135.1 "--sync--" sync / 1[56]:[^:]*:Meteor:1A6A:/
-2135.6 "Meteor Impact" sync / 1[56]:[^:]*:Behemoth Ward:195E:/
-2143.7 "Ecliptic Meteor" sync / 1[56]:[^:]*:Behemoth Ward:195D:/
-2144.7 "--sync--" sync / 1[56]:[^:]*:Behemoth Ward:195C:/
+2109.2 "Check Out" Ability { id: "194E", source: "Strix" }
+2125.6 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2126.1 "--sync--" Ability { id: "1A6A", source: "Meteor" }
+2126.7 "Meteor Impact" Ability { id: "195E", source: "Behemoth Ward" }
+2133.8 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2135.1 "--sync--" Ability { id: "1A6A", source: "Meteor" }
+2135.6 "Meteor Impact" Ability { id: "195E", source: "Behemoth Ward" }
+2143.7 "Ecliptic Meteor" Ability { id: "195D", source: "Behemoth Ward" }
+2144.7 "--sync--" Ability { id: "195C", source: "Behemoth Ward" }
 
-2155.0 "Check Out" sync / 1[56]:[^:]*:Strix:194E:/ window 20,20
-2172.3 "Quakes/Tornados" sync / 1[56]:[^:]*:Strix:195[67]:/
-2178.6 "Properties Of Darkness II" sync / 1[56]:[^:]*:Strix:1955:/
-2181.8 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2188.1 "Properties Of Imps" sync / 1[56]:[^:]*:Strix:1959:/ window 30,25
-2196.3 "Properties Of Thunder III" sync / 1[56]:[^:]*:Strix:195A:/
-2203.5 "Properties Of Darkness II" sync / 1[56]:[^:]*:Strix:1955:/
-2207.7 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
+2155.0 "Check Out" Ability { id: "194E", source: "Strix" } window 20,20
+2172.3 "Quakes/Tornados" Ability { id: "195[67]", source: "Strix" }
+2178.6 "Properties Of Darkness II" Ability { id: "1955", source: "Strix" }
+2181.8 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2188.1 "Properties Of Imps" Ability { id: "1959", source: "Strix" } window 30,25
+2196.3 "Properties Of Thunder III" Ability { id: "195A", source: "Strix" }
+2203.5 "Properties Of Darkness II" Ability { id: "1955", source: "Strix" }
+2207.7 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
 
-2214.9 "Check Out" sync / 1[56]:[^:]*:Strix:194E:/ window 20,20
-2232.3 "Quakes/Tornados" sync / 1[56]:[^:]*:Strix:195[67]:/
-2238.6 "Properties Of Darkness II" sync / 1[56]:[^:]*:Strix:1955:/
-2241.8 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/
-2248.1 "Properties Of Imps" sync / 1[56]:[^:]*:Strix:1959:/ window 30,25
-2256.3 "Properties Of Thunder III" sync / 1[56]:[^:]*:Strix:195A:/
-2263.5 "Properties Of Darkness II" sync / 1[56]:[^:]*:Strix:1955:/
-2267.7 "Properties Of Darkness (buster)" sync / 1[56]:[^:]*:Strix:1954:/ jump 2207.7
+2214.9 "Check Out" Ability { id: "194E", source: "Strix" } window 20,20
+2232.3 "Quakes/Tornados" Ability { id: "195[67]", source: "Strix" }
+2238.6 "Properties Of Darkness II" Ability { id: "1955", source: "Strix" }
+2241.8 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
+2248.1 "Properties Of Imps" Ability { id: "1959", source: "Strix" } window 30,25
+2256.3 "Properties Of Thunder III" Ability { id: "195A", source: "Strix" }
+2263.5 "Properties Of Darkness II" Ability { id: "1955", source: "Strix" }
+2267.7 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" } jump 2207.7
 
 2274.9 "Check Out"
 2292.2 "Quakes/Tornados"

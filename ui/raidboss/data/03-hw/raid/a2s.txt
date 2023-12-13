@@ -22,7 +22,7 @@ hideall "--sync--"
 20.3 "Sniper, Soldier x2 (NW)"
 20.3 "Hardmind (SW)"
 
-42.0 "Brainhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardmind:FCC:/
+42.0 "Brainhurt Breakblock" Ability { id: "FCC", source: "Gordian Hardmind" }
 
 
 # Wave 3 (timed push)
@@ -30,8 +30,8 @@ hideall "--sync--"
 80.2 "Hardhelm, Soldier (SW)"
 80.2 "Hardmind, Sniper, Soldier 2x (N)"
 
-101.9 "Brainhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardmind:FCC:/
-101.9 "Bodyhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardhelm:FCB:/
+101.9 "Brainhurt Breakblock" Ability { id: "FCC", source: "Gordian Hardmind" }
+101.9 "Bodyhurt Breakblock" Ability { id: "FCB", source: "Gordian Hardhelm" }
 
 
 # Wave 4 (triggered push)
@@ -39,10 +39,10 @@ hideall "--sync--"
 2000.0 "Gobwalker (NE)"
 2000.0 "Sniper x2, Soldier x2 (mid)"
 
-2012.3 "Carpet Bomb 1" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2032.5 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-2040.8 "Carpet Bomb 2" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2061.0 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
+2012.3 "Carpet Bomb 1" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2032.5 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+2040.8 "Carpet Bomb 2" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2061.0 "Explosion" #Ability { id: "FDC", source: "Bomb" }
 
 
 # Wave 5 (timed push)
@@ -51,14 +51,14 @@ hideall "--sync--"
 2095.5 "Gobwidow (S)"
 2095.5 "Soldier x2 (SW)"
 
-2105.1 "Carpet Bomb 1" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2107.0 "--sync--" sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-2114.6 "Boomcannon" sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
-2125.3 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-2126.2 "Carpet Bomb 2" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2138.3 "--sync--" sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-2146.0 "Boomcannon" sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
-2146.5 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
+2105.1 "Carpet Bomb 1" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2107.0 "--sync--" Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+2114.6 "Boomcannon" Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
+2125.3 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+2126.2 "Carpet Bomb 2" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2138.3 "--sync--" Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+2146.0 "Boomcannon" Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
+2146.5 "Explosion" #Ability { id: "FDC", source: "Bomb" }
 
 
 # Wave 6 (timed push)
@@ -67,20 +67,20 @@ hideall "--sync--"
 2168.0 "Gobwalker (N)"
 2168.0 "Hardhelm (SW)"
 
-2176.3 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-2177.3 "Carpet Bomb" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2187.4 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-2190.0 "Bodyhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardhelm:FCB:/
-2195.7 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-2196.5 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-2198.3 "Carpet Bomb" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-2218.3 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
+2176.3 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+2177.3 "Carpet Bomb" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2187.4 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+2190.0 "Bodyhurt Breakblock" Ability { id: "FCB", source: "Gordian Hardhelm" }
+2195.7 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+2196.5 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+2198.3 "Carpet Bomb" Ability { id: "FDA", source: "King Gobtank G-IV" }
+2218.3 "Explosion" #Ability { id: "FDC", source: "Bomb" }
 
-2227.7 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-2230.9 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-2239.1 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
+2227.7 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+2230.9 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+2239.1 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
 
-2250.2 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/ window 10,10 jump 2227.7
+2250.2 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" } window 10,10 jump 2227.7
 2253.4 "Kaltstrahl"
 2261.6 "Kaltstrahl"
 
@@ -97,17 +97,17 @@ hideall "--sync--"
 3000.0 "--Wave 7--" sync / 03:........:Jagd Doll:/  window 825,0
 3000.0 "Jagd Doll x4 (mid)"
 
-3006.2 "Kaltstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-3010.8 "Carpet Bomb 1" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-3017.4 "Blitzstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-3029.1 "Kaltstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-3029.5 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-3033.8 "Carpet Bomb 2" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-3040.1 "Blitzstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-3043.3 "Kaltstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-3051.5 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-3062.6 "Blitzstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-3065.8 "Kaltstrahl" #sync / 1[56]:[^:]*:Jagd Doll:FD4:/
+3006.2 "Kaltstrahl" #Ability { id: "FD4", source: "Jagd Doll" }
+3010.8 "Carpet Bomb 1" Ability { id: "FDA", source: "King Gobtank G-IV" }
+3017.4 "Blitzstrahl" #Ability { id: "FD6", source: "Jagd Doll" }
+3029.1 "Kaltstrahl" #Ability { id: "FD4", source: "Jagd Doll" }
+3029.5 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+3033.8 "Carpet Bomb 2" Ability { id: "FDA", source: "King Gobtank G-IV" }
+3040.1 "Blitzstrahl" #Ability { id: "FD6", source: "Jagd Doll" }
+3043.3 "Kaltstrahl" #Ability { id: "FD4", source: "Jagd Doll" }
+3051.5 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+3062.6 "Blitzstrahl" #Ability { id: "FD6", source: "Jagd Doll" }
+3065.8 "Kaltstrahl" #Ability { id: "FD4", source: "Jagd Doll" }
 
 
 # Wave 8 (timed push)
@@ -117,12 +117,12 @@ hideall "--sync--"
 3080.7 "Hardmind (N)"
 3080.7 "Hardhelm (SE)"
 
-3090.8 "Carpet Bomb 1" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-3104.0 "Bodyhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardhelm:FCB:/
-3104.0 "Brainhurt Breakblock" sync / 1[56]:[^:]*:Gordian Hardmind:FCC:/
-3111.0 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
-3113.9 "Carpet Bomb 2" sync / 1[56]:[^:]*:King Gobtank G-IV:FDA:/
-3134.2 "Explosion" #sync / 1[56]:[^:]*:Bomb:FDC:/
+3090.8 "Carpet Bomb 1" Ability { id: "FDA", source: "King Gobtank G-IV" }
+3104.0 "Bodyhurt Breakblock" Ability { id: "FCB", source: "Gordian Hardhelm" }
+3104.0 "Brainhurt Breakblock" Ability { id: "FCC", source: "Gordian Hardmind" }
+3111.0 "Explosion" #Ability { id: "FDC", source: "Bomb" }
+3113.9 "Carpet Bomb 2" Ability { id: "FDA", source: "King Gobtank G-IV" }
+3134.2 "Explosion" #Ability { id: "FDC", source: "Bomb" }
 
 
 # Wave 9 (triggered push)
@@ -132,41 +132,41 @@ hideall "--sync--"
 4000.0 "Gobwalker (NE)"
 4000.0 "Sniper x2, Soldier x2 (SE)"
 
-4014.4 "--sync--" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-4016.3 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-4019.4 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4022.1 "Boomcannon" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
-4027.6 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
+4014.4 "--sync--" #Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+4016.3 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+4019.4 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4022.1 "Boomcannon" #Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
+4027.6 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
 
-4042.6 "--sync--" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-4038.8 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-4041.9 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4050.1 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4050.3 "Boomcannon" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
+4042.6 "--sync--" #Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+4038.8 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+4041.9 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4050.1 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4050.3 "Boomcannon" #Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
 
-4061.3 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-4064.4 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4070.8 "--sync--" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-4072.6 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4078.5 "Boomcannon" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
+4061.3 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+4064.4 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4070.8 "--sync--" #Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+4072.6 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4078.5 "Boomcannon" #Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
 
-4083.8 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-4086.9 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4095.1 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4099.0 "--sync--" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-4106.3 "Blitzstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD6:/
-4106.7 "Boomcannon" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
+4083.8 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+4086.9 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4095.1 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4099.0 "--sync--" #Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+4106.3 "Blitzstrahl" Ability { id: "FD6", source: "Jagd Doll" }
+4106.7 "Boomcannon" #Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
 
-4109.4 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4117.6 "Kaltstrahl" sync / 1[56]:[^:]*:Jagd Doll:FD4:/
-4127.2 "--sync--" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:1413:/
-4134.9 "Boomcannon" #sync / 1[56]:[^:]*:Magitek Gobwidow G-IX:FD8:/
+4109.4 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4117.6 "Kaltstrahl" Ability { id: "FD4", source: "Jagd Doll" }
+4127.2 "--sync--" #Ability { id: "1413", source: "Magitek Gobwidow G-IX" }
+4134.9 "Boomcannon" #Ability { id: "FD8", source: "Magitek Gobwidow G-IX" }
 
 
 
 # Enrage
 5000.0 "--sync--" sync / 03:........:Giant Bomb:/  window 5000,0
-5010.0 "Massive Explosion Enrage" sync / 1[56]:[^:]*:Giant Bomb:FDD:/
+5010.0 "Massive Explosion Enrage" Ability { id: "FDD", source: "Giant Bomb" }
 
 # Technically this loops, and has a special dialog where Quickthinx says:
 # "Uplanders are stubborn, need lesson teachings! Illuminati─reload and fire!"

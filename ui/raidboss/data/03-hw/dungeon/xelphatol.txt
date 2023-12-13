@@ -12,26 +12,26 @@ hideall "--sync--"
 
 # The Cage will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:6FD:/ window 0,1
-7.0 "Short Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C6:/ window 7,5
-15.1 "Wind Blast" sync / 1[56]:[^:]*:Nuzal Hueloc:19C7:/
-19.2 "Short Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C6:/
-24.3 "Lift" sync / 1[56]:[^:]*:Nuzal Hueloc:19C9:/ window 24.3,5
+7.0 "Short Burst" Ability { id: "19C6", source: "Nuzal Hueloc" } window 7,5
+15.1 "Wind Blast" Ability { id: "19C7", source: "Nuzal Hueloc" }
+19.2 "Short Burst" Ability { id: "19C6", source: "Nuzal Hueloc" }
+24.3 "Lift" Ability { id: "19C9", source: "Nuzal Hueloc" } window 24.3,5
 24.8 "--untargetable--"
 
-28.5 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/ window 5,6
-36.6 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/
-48.1 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/
-59.6 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/ jump 36.6
+28.5 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" } window 5,6
+36.6 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }
+48.1 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }
+59.6 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" } jump 36.6
 71.1 "Air Raid" 
 82.6 "Air Raid"
 94.1 "Air Raid"
 
 100.0 "--sync--" sync / 22:........:Nuzal Hueloc:........:Nuzal Hueloc:01/ window 100,5
-121.3 "Wind Blast" sync / 1[56]:[^:]*:Nuzal Hueloc:19C7:/ window 21.3,5
-129.5 "Long Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C8:/
-132.7 "Short Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C6:/
+121.3 "Wind Blast" Ability { id: "19C7", source: "Nuzal Hueloc" } window 21.3,5
+129.5 "Long Burst" Ability { id: "19C8", source: "Nuzal Hueloc" }
+132.7 "Short Burst" Ability { id: "19C6", source: "Nuzal Hueloc" }
 
-139.8 "Wind Blast" sync / 1[56]:[^:]*:Nuzal Hueloc:19C7:/ jump 121.3
+139.8 "Wind Blast" Ability { id: "19C7", source: "Nuzal Hueloc" } jump 121.3
 148.0 "Long Burst"
 151.2 "Short Burst"
 158.3 "Wind Blast"
@@ -40,23 +40,23 @@ hideall "--sync--"
 
 # syncing to a 14/20 line to give the user a little extra warning.
 200.0 "--sync--" sync / 14:[^:]*:Nuzal Hueloc:19C9:/ window 100,5
-202.7 "Lift" sync / 1[56]:[^:]*:Nuzal Hueloc:19C9:/
+202.7 "Lift" Ability { id: "19C9", source: "Nuzal Hueloc" }
 203.2 "--untargetable--"
-206.9 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/
-214.6 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/
-226.1 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/
-237.6 "Air Raid" sync / 1[56]:[^:]*:Nuzal Hueloc:19CA:/ jump 206.9
+206.9 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }
+214.6 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }
+226.1 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }
+237.6 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" } jump 206.9
 249.1 "Air Raid"
 260.6 "Air Raid"
 272.1 "Air Raid"
 
 
 300.0 "--sync--" sync / 22:........:Nuzal Hueloc:........:Nuzal Hueloc:01/ window 100,5
-305.3 "Short Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C6:/ window 5,10
-314.4 "Wind Blast" sync / 1[56]:[^:]*:Nuzal Hueloc:19C7:/
-323.5 "Long Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C8:/
+305.3 "Short Burst" Ability { id: "19C6", source: "Nuzal Hueloc" } window 5,10
+314.4 "Wind Blast" Ability { id: "19C7", source: "Nuzal Hueloc" }
+323.5 "Long Burst" Ability { id: "19C8", source: "Nuzal Hueloc" }
 
-330.7 "Short Burst" sync / 1[56]:[^:]*:Nuzal Hueloc:19C6:/ jump 305.3
+330.7 "Short Burst" Ability { id: "19C6", source: "Nuzal Hueloc" } jump 305.3
 339.8 "Wind Blast"
 348.9 "Long Burst"
 356.1 "Short Burst"
@@ -72,18 +72,18 @@ hideall "--sync--"
 
 # The Tlachtli will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:6FE:/ window 1000,5
-1012.4 "On Low" sync / 1[56]:[^:]*:Dotoli Ciloc:19CE:/
-1024.5 "On High" sync / 1[56]:[^:]*:Dotoli Ciloc:19CF:/ window 24.5,10
+1012.4 "On Low" Ability { id: "19CE", source: "Dotoli Ciloc" }
+1024.5 "On High" Ability { id: "19CF", source: "Dotoli Ciloc" } window 24.5,10
 
-1036.7 "On Low" sync / 1[56]:[^:]*:Dotoli Ciloc:19CE:/
-1045.2 "Dark Wings" sync / 1[56]:[^:]*:Dotoli Ciloc:19D0:/
-1055.2 "Swiftfeather" sync / 1[56]:[^:]*:Dotoli Ciloc:19D1:/
-1057.6 "On Low" sync / 1[56]:[^:]*:Dotoli Ciloc:19CE:/
-1068.0 "Dark Wings" sync / 1[56]:[^:]*:Dotoli Ciloc:19D0:/
-1074.6 "On High" sync / 1[56]:[^:]*:Dotoli Ciloc:19CF:/ window 20,20
-1076.8 "Dark Wings" sync / 1[56]:[^:]*:Dotoli Ciloc:19D0:/
+1036.7 "On Low" Ability { id: "19CE", source: "Dotoli Ciloc" }
+1045.2 "Dark Wings" Ability { id: "19D0", source: "Dotoli Ciloc" }
+1055.2 "Swiftfeather" Ability { id: "19D1", source: "Dotoli Ciloc" }
+1057.6 "On Low" Ability { id: "19CE", source: "Dotoli Ciloc" }
+1068.0 "Dark Wings" Ability { id: "19D0", source: "Dotoli Ciloc" }
+1074.6 "On High" Ability { id: "19CF", source: "Dotoli Ciloc" } window 20,20
+1076.8 "Dark Wings" Ability { id: "19D0", source: "Dotoli Ciloc" }
 
-1091.8 "On Low" sync / 1[56]:[^:]*:Dotoli Ciloc:19CE:/ jump 1036.7
+1091.8 "On Low" Ability { id: "19CE", source: "Dotoli Ciloc" } jump 1036.7
 1100.3 "Dark Wings"
 1110.3 "Swiftfeather"
 1112.7 "On Low"
@@ -98,40 +98,40 @@ hideall "--sync--"
 
 # The Vortex will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:6FF:/ window 2000,5
-2007.1 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/ window 7.1,5
-2014.2 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2023.7 "Bill" sync / 1[56]:[^:]*:Abalathian Hornbill:19DA:/
-2028.5 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
-2035.6 "Ixali Aero II (line)" sync / 1[56]:[^:]*:Tozol Huatotl:19D4:/
-2045.3 "Ingurgitate" sync / 1[56]:[^:]*:Abalathian Hornbill:19D9:/ window 10,10
-2050.9 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2055.0 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
+2007.1 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" } window 7.1,5
+2014.2 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2023.7 "Bill" Ability { id: "19DA", source: "Abalathian Hornbill" }
+2028.5 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
+2035.6 "Ixali Aero II (line)" Ability { id: "19D4", source: "Tozol Huatotl" }
+2045.3 "Ingurgitate" Ability { id: "19D9", source: "Abalathian Hornbill" } window 10,10
+2050.9 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2055.0 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
 
-2063.1 "Summon Garuda" sync / 1[56]:[^:]*:Tozol Huatotl:19D7:/ window 63.1,10
-2072.7 "Bill" sync / 1[56]:[^:]*:Abalathian Hornbill:19DA:/
-2072.9 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:19DB:/
-2074.8 "Mistral Song" sync / 1[56]:[^:]*:Garuda:19DC:/ window 20,20
-2078.5 "Ixali Aero II (line)" sync / 1[56]:[^:]*:Tozol Huatotl:19D4:/
-2084.7 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
-2091.8 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2102.5 "Ingurgitate" sync / 1[56]:[^:]*:Abalathian Hornbill:19D9:/
-2107.1 "Ixali Aero II (line)" sync / 1[56]:[^:]*:Tozol Huatotl:19D4:/
-2112.2 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2115.4 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
-2127.3 "Summon Garuda" sync / 1[56]:[^:]*:Tozol Huatotl:19D7:/ window 30,30
-2136.7 "Bill" sync / 1[56]:[^:]*:Abalathian Hornbill:19DA:/
-2139.0 "Eye Of The Storm" sync / 1[56]:[^:]*:Garuda:19DB:/
-2139.0 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:19DD:/
-2145.2 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:19DE:/
-2150.7 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2161.0 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
-2168.1 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2178.8 "Ingurgitate" sync / 1[56]:[^:]*:Abalathian Hornbill:19D9:/ window 30,30
-2183.4 "Ixali Aero II (line)" sync / 1[56]:[^:]*:Tozol Huatotl:19D4:/
-2188.5 "Ixali Aero III (aoe)" sync / 1[56]:[^:]*:Tozol Huatotl:19D5:/
-2191.7 "Ixali Aero (buster)" sync / 1[56]:[^:]*:Tozol Huatotl:19D3:/
+2063.1 "Summon Garuda" Ability { id: "19D7", source: "Tozol Huatotl" } window 63.1,10
+2072.7 "Bill" Ability { id: "19DA", source: "Abalathian Hornbill" }
+2072.9 "Eye Of The Storm" Ability { id: "19DB", source: "Garuda" }
+2074.8 "Mistral Song" Ability { id: "19DC", source: "Garuda" } window 20,20
+2078.5 "Ixali Aero II (line)" Ability { id: "19D4", source: "Tozol Huatotl" }
+2084.7 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
+2091.8 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2102.5 "Ingurgitate" Ability { id: "19D9", source: "Abalathian Hornbill" }
+2107.1 "Ixali Aero II (line)" Ability { id: "19D4", source: "Tozol Huatotl" }
+2112.2 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2115.4 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
+2127.3 "Summon Garuda" Ability { id: "19D7", source: "Tozol Huatotl" } window 30,30
+2136.7 "Bill" Ability { id: "19DA", source: "Abalathian Hornbill" }
+2139.0 "Eye Of The Storm" Ability { id: "19DB", source: "Garuda" }
+2139.0 "Wicked Wheel" Ability { id: "19DD", source: "Garuda" }
+2145.2 "Aerial Blast" Ability { id: "19DE", source: "Garuda" }
+2150.7 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2161.0 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
+2168.1 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2178.8 "Ingurgitate" Ability { id: "19D9", source: "Abalathian Hornbill" } window 30,30
+2183.4 "Ixali Aero II (line)" Ability { id: "19D4", source: "Tozol Huatotl" }
+2188.5 "Ixali Aero III (aoe)" Ability { id: "19D5", source: "Tozol Huatotl" }
+2191.7 "Ixali Aero (buster)" Ability { id: "19D3", source: "Tozol Huatotl" }
 
-2202.5 "Summon Garuda" sync / 1[56]:[^:]*:Tozol Huatotl:19D7:/ jump 2063.1
+2202.5 "Summon Garuda" Ability { id: "19D7", source: "Tozol Huatotl" } jump 2063.1
 2212.1 "Bill"
 2212.3 "Eye Of The Storm"
 2214.2 "Mistral Song"
