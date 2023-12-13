@@ -26,12 +26,12 @@ hideall "--sync--"
 89.0 "Spike Flail"
 
 # 85% push into Adds Phase #1
-196.0 "--sync--" sync / 14:[^:]*:Imdugud:B5D:/ window 200,0
+196.0 "--sync--" StartsUsing { id: "B5D", source: "Imdugud" } window 200,0
 200.0 "Electrocharge" Ability { id: "B5D", source: "Imdugud" } window 200,0
 201.0 "2x Son / 2x Daughter Adds"
 
 # Mid Phase: Alternates Heat Lightning, Heat Lightning+Charge, Tankbuster, Repeat
-497.0 "--sync--" sync / 14:[^:]*:Imdugud:B5E:/ window 500,0
+497.0 "--sync--" StartsUsing { id: "B5E", source: "Imdugud" } window 500,0
 500.0 "Electric Burst" Ability { id: "B5E", source: "Imdugud" } window 500,0
 509.2 "Heat Lightning" Ability { id: "B5F", source: "Imdugud" }
 528.1 "Crackle Hiss" Ability { id: "B55", source: "Imdugud" }
@@ -47,13 +47,13 @@ hideall "--sync--"
 602.5 "Wild Charge"
 
 # 53% push into Adds Phase #2
-696.0 "--sync--" sync / 14:[^:]*:Imdugud:B5D:/ window 200,0
+696.0 "--sync--" StartsUsing { id: "B5D", source: "Imdugud" } window 200,0
 700.0 "Electrocharge" Ability { id: "B5D", source: "Imdugud" } window 400,0
 701.0 "2x Son / 2x Daughter Adds"
 736.0 "1x Son / 1x Daughter Adds"
 
 # Final Phase: Heat+Tether, Buster, Random Mechanic, Repeat
-997.0 "--sync--" sync / 14:[^:]*:Imdugud:B5E:/ window 400,0
+997.0 "--sync--" StartsUsing { id: "B5E", source: "Imdugud" } window 400,0
 1000.0 "Electric Burst" Ability { id: "B5E", source: "Imdugud" } window 400,0
 
 1009.3 "Heat Lightning" Ability { id: "B5F", source: "Imdugud" }

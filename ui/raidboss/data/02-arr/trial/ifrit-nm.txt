@@ -47,7 +47,7 @@ hideall "--sync--"
 335.1 "Incinerate" Ability { id: "1C5", source: "Ifrit" }
 
 341.7 "--untargetable--"
-344.3 "--sync--" sync / 14:[^:]*:Ifrit:1CA:/ window 500,0
+344.3 "--sync--" StartsUsing { id: "1CA", source: "Ifrit" } window 500,0
 346.3 "Hellfire" Ability { id: "1CA", source: "Ifrit" }
 350.7 "--targetable--"
 

@@ -31,7 +31,7 @@ hideall "--sync--"
 
 
 ### Phase 2 (75%): Flare Star, Rage of Bahamut, Dragons
-195.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BB9:/ window 200,0
+195.0 "--sync--" StartsUsing { id: "BB9", source: "Bahamut Prime" } window 200,0
 200.0 "Gigaflare" Ability { id: "BB9", source: "Bahamut Prime" } window 200,5
 
 203.0 "Shadow Add (N)"
@@ -100,7 +100,7 @@ hideall "--sync--"
 
 
 ### Phase 3 (52%): adds, adds, adds
-495.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BB9:/ window 290,0
+495.0 "--sync--" StartsUsing { id: "BB9", source: "Bahamut Prime" } window 290,0
 500.0 "Gigaflare" Ability { id: "BB9", source: "Bahamut Prime" }
 505.4 "--sync--" Ability { id: "BBE", source: "Bahamut Prime" }
 508.5 "--sync--" Ability { id: "BBF", source: "Bahamut Prime" }
@@ -230,7 +230,7 @@ hideall "--sync--"
 
 
 ### Enrage
-2000.0 "--sync--" sync / 14:[^:]*:Bahamut Prime:BBA:/ window 2000,2000
+2000.0 "--sync--" StartsUsing { id: "BBA", source: "Bahamut Prime" } window 2000,2000
 2010.0 "Gigaflare Enrage"
 2025.2 "Gigaflare Enrage"
 2037.4 "Gigaflare Enrage"

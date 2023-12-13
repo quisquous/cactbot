@@ -59,7 +59,7 @@ hideall "--sync--"
 ### Phase 4 (nodes defeated)
 # this phase has different timings if you are soloing, sorry.
 # it's possible resonance timings are not reliable either.
-595.0 "--sync--" sync / 14:[^:]*:Kaliya:B78:/ window 600,600
+595.0 "--sync--" StartsUsing { id: "B78", source: "Kaliya" } window 600,600
 600.0 "Emergency Mode" Ability { id: "B78", source: "Kaliya" }
 
 606.1 "Nerve Cloud" Ability { id: "B79", source: "Kaliya" } window 100,100

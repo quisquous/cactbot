@@ -29,7 +29,7 @@ hideall "--sync--"
 
 
 # Phase 2: 90%->80%
-200.0 "--sync--" sync / 14:[^:]*:Titan:555:/ window 200,0
+200.0 "--sync--" StartsUsing { id: "555", source: "Titan" } window 200,0
 203.0 "Geocrush" Ability { id: "555", source: "Titan" }
 
 211.4 "Weight Of The Land" Ability { id: "552", source: "Titan" }
@@ -49,7 +49,7 @@ hideall "--sync--"
 
 
 # Phase 3: 80%->60%
-400.0 "--sync--" sync / 14:[^:]*:Titan:555:/ window 199,0
+400.0 "--sync--" StartsUsing { id: "555", source: "Titan" } window 199,0
 403.0 "Geocrush" Ability { id: "555", source: "Titan" }
 411.9 "Landslide" Ability { id: "554", source: "Titan" }
 420.0 "Weight Of The Land" Ability { id: "552", source: "Titan" }
@@ -92,7 +92,7 @@ hideall "--sync--"
 
 
 # Phase 4: Heart
-800.0 "--sync--" sync / 14:[^:]*:Titan:555:/ window 399,0
+800.0 "--sync--" StartsUsing { id: "555", source: "Titan" } window 399,0
 803.0 "Geocrush" Ability { id: "555", source: "Titan" }
 805.3 "--targetable--"
 

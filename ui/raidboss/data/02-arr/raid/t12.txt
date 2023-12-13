@@ -55,7 +55,7 @@ hideall "Scorched Pinion"
 
 
 ### Phase 4: Fountains of Life and Death
-996.0 "--sync--" sync / 14:[^:]*:Phoenix:C88:/ window 1000,0
+996.0 "--sync--" StartsUsing { id: "C88", source: "Phoenix" } window 1000,0
 1000.0 "Rebirth" Ability { id: "C88", source: "Phoenix" }
 1005.8 "Brand Of Purgatory" Ability { id: "B88", source: "Phoenix" }
 
