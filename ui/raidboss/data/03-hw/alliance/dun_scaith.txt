@@ -149,7 +149,7 @@ hideall "--sync--"
 
 
 
-1300.0 "--sync--" sync / 14:[^:]*:Ferdiad Hollow:1CA4:/ window 300,5
+1300.0 "--sync--" StartsUsing { id: "1CA4", source: "Ferdiad Hollow" } window 300,5
 1304.7 "Jester's Jig" Ability { id: "1CA4", source: "Ferdiad Hollow" }
 1306.7 "--sync--" Ability { id: "1CA5", source: "Ferdiad Hollow" }
 
@@ -237,7 +237,7 @@ hideall "--sync--"
 2220.5 "Light Pillar x10"
 
 # Enrage is a LOOOONG cast alongside Aether Collectors.
-2500.0 "--sync--" sync / 14:[^:]*:Proto Ultima:1DA9:/ window 2500,5
+2500.0 "--sync--" StartsUsing { id: "1DA9", source: "Proto Ultima" } window 2500,5
 2559.7 "Supernova Enrage" Ability { id: "1DA9", source: "Proto Ultima" }
 
 
@@ -296,7 +296,7 @@ hideall "--sync--"
 3333.6 "Particle Beam" Ability { id: "1D2[78]", source: "Scathach" }
 
 
-3400.5 "--sync--" sync / 14:[^:]*:Scathach:1D34:/ window 100,5
+3400.5 "--sync--" StartsUsing { id: "1D34", source: "Scathach" } window 100,5
 # 3405.2 "Blinding Shadow" Ability { id: "1D34", source: "Scathach" }
 3409.2 "Blinding Shadow" Ability { id: "1DAE", source: "Scathach" }
 
@@ -376,7 +376,7 @@ hideall "--sync--"
 4103.1 "Noctoshield"
 4108.1 "Nightmare"
 
-4149.0 "--sync--" sync / 14:[^:]*:Diabolos:1C10:/ window 150,5
+4149.0 "--sync--" StartsUsing { id: "1C10", source: "Diabolos" } window 150,5
 4163.7 "Ruinous Omen" Ability { id: "1C10", source: "Diabolos" }
 4164.7 "Ruinous Omen" Ability { id: "1C11", source: "Diabolos" }
 

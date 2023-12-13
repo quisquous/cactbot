@@ -39,7 +39,7 @@ hideall "--sync--"
 169.7 "Short Burst"
 
 # syncing to a 14/20 line to give the user a little extra warning.
-200.0 "--sync--" sync / 14:[^:]*:Nuzal Hueloc:19C9:/ window 100,5
+200.0 "--sync--" StartsUsing { id: "19C9", source: "Nuzal Hueloc" } window 100,5
 202.7 "Lift" Ability { id: "19C9", source: "Nuzal Hueloc" }
 203.2 "--untargetable--"
 206.9 "Air Raid" Ability { id: "19CA", source: "Nuzal Hueloc" }

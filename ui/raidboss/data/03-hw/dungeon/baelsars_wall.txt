@@ -26,7 +26,7 @@ hideall "--sync--"
 68.7 "Magitek Missile" Ability { id: "1CB4", source: "Magitek Predator" }
 70.8 "Magitek Missile" Ability { id: "1CB4", source: "Magitek Predator" }
 
-73.2 "--sync--"   sync / 14:[^:]*:Magitek Predator:1CB3:/ window 10,10
+73.2 "--sync--"   StartsUsing { id: "1CB3", source: "Magitek Predator" } window 10,10
 75.9 "Magitek Ray" Ability { id: "1CB3", source: "Magitek Predator" } jump 44.4
 89.0 "Magitek Claw"
 98.4 "Magitek Missile"

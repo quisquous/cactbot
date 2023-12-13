@@ -224,7 +224,7 @@ hideall "--sync--"
 
 
 # Enrage at 12 minutes
-1989.7 "--sync--" sync / 14:[^:]*:Zurvan:8592:/ window 2000,100
+1989.7 "--sync--" StartsUsing { id: "8592", source: "Zurvan" } window 2000,100
 1998.8 "Flame Halberd Enrage" Ability { id: "8592", source: "Zurvan" }
 1998.8 "--untargetable--"
 2000.0 "--sync--" Ability { id: "8591", source: "Zurvan" }

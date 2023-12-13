@@ -20,7 +20,7 @@ hideall "Relaxant"
 #1045.5 "Kaltstrahl" Ability { id: "16CC", source: "Faust" }
 #1047.6 "Kaltstrahl" Ability { id: "16CC", source: "Faust" }
 
-1051.6 "--sync--" sync / 14:[^:]*:Hummelfaust:16D2:/ window 52,10
+1051.6 "--sync--" StartsUsing { id: "16D2", source: "Hummelfaust" } window 52,10
 1056.6 "Panzer Vor" Ability { id: "16D2", source: "Hummelfaust" }
 
 # Note: if previous Fausts haven't been destroyed,
@@ -49,7 +49,7 @@ hideall "Relaxant"
 # FIXME: maybe more abilities if Fausts are pushed quickly?
 
 # Time-based enrage.
-1150.7 "--sync--" sync / 14:[^:]*:Hummelfaust:16D1:/ window 151,20
+1150.7 "--sync--" StartsUsing { id: "16D1", source: "Hummelfaust" } window 151,20
 1154.7 "Panzerschreck Enrage" Ability { id: "16D1", source: "Hummelfaust" }
 
 
@@ -170,5 +170,5 @@ hideall "Relaxant"
 ### Enrage (time-based)
 # We could sync down here on an 16A4 ability, which is the damage,
 # but that point you're dead.
-2700.0 "--sync--" sync / 14:[^:]*:Ratfinx Twinkledinks:159C:/ window 200,200
+2700.0 "--sync--" StartsUsing { id: "159C", source: "Ratfinx Twinkledinks" } window 200,200
 2703.0 "Shock Therapy Enrage" Ability { id: "159C", source: "Ratfinx Twinkledinks" }

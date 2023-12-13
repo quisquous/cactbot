@@ -181,5 +181,5 @@ hideall "--sync--"
 748.0 "Ferrofluid" Ability { id: "F01", source: "Living Liquid" }
 749.2 "Magnetism/Repel" Ability { id: "F1[35]", source: "Living Liquid" }
 
-751.2 "--sync--" sync / 14:[^:]*:Living Liquid:EFF:/ window 1000,1000
+751.2 "--sync--" StartsUsing { id: "EFF", source: "Living Liquid" } window 1000,1000
 761.2 "Cascade Enrage" Ability { id: "EFF", source: "Living Liquid" }

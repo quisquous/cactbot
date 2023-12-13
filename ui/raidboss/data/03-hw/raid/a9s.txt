@@ -186,7 +186,7 @@ hideall "--sync--"
 2654.4 "Scrap Bomb" Ability { id: "1A3E", source: "Refurbisher 0" }
 
 # 11 minute less soft enrage, in case you weren't killed by previous enrage.
-2659.2 "--sync--" sync / 14:[^:]*:Refurbisher 0:1A3B:/ window 50,10000
+2659.2 "--sync--" StartsUsing { id: "1A3B", source: "Refurbisher 0" } window 50,10000
 2659.5 "Scrap Storm Enrage" Ability { id: "1A3B", source: "Refurbisher 0" }
 2659.5 "Scrap Storm Enrage" #Ability { id: "1A3B", source: "Refurbisher 0" }
 2667.7 "Scrap Storm Enrage" #Ability { id: "1A3B", source: "Refurbisher 0" }

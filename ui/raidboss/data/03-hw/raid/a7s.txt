@@ -78,11 +78,11 @@ hideall "--sync--"
 
 ################# Version 1 - Phase 2
 194 "Uplander Doom" Ability { id: "15F0", source: "Quickthinx Allthoughts" } window 65,0
-204 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 145,10
+204 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 145,10
 219 "Stun Heart"
 219 "Sizzlespark"
 229 "Flamethrower" Ability { id: "1CFA", source: "Quickthinx Allthoughts" } window 20
-234 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 20
+234 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 20
 249 "Stun Heart"
 249 "Sizzlebeam"
 258 "Sizzlespark" #can be skipped
@@ -115,11 +115,11 @@ hideall "--sync--"
 
 ################# Version 2 - Phase 2
 489 "Uplander Doom" Ability { id: "15F0", source: "Quickthinx Allthoughts" } window 78,0
-499 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 130,10
+499 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 130,10
 514 "Stun Heart"
 514 "Sizzlespark"
 524 "Flamethrower" Ability { id: "1CFA", source: "Quickthinx Allthoughts" } window 20
-529 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+529 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 10
 544 "Stun Heart"
 544 "Sizzlebeam"
 553 "Sizzlespark" #can be skipped
@@ -161,12 +161,12 @@ hideall "--sync--"
 
 ################# Phase 5
 854 "Flamethrower" Ability { id: "1CFA", source: "Quickthinx Allthoughts" } window 60,10
-858 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 200,10
+858 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 200,10
 865 "Uplander Doom"
 873 "Stun Heart"
 879 "Sizzlebeam"
 888 "Flamethrower"
-888 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+888 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 10
 901 "Sizzlespark"
 903 "Stun Heart"
 909 "Sizzlespark"
@@ -220,12 +220,12 @@ hideall "--sync--"
 ############################################
 ################# Phase 5
 1253 "Flamethrower" Ability { id: "1CFA", source: "Quickthinx Allthoughts" } window 60,10
-1258 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 200,10
+1258 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 200,10
 1263 "Uplander Doom"
 1273 "Stun Heart"
 1280 "Sizzlebeam"
 1288 "Flamethrower"
-1288 "Kill Heart" sync / 14:[^:]*:Shanoa:15EC:/ window 10
+1288 "Kill Heart" StartsUsing { id: "15EC", source: "Shanoa" } window 10
 1301 "Sizzlespark"
 1303 "Stun Heart"
 1308 "Sizzlespark"
