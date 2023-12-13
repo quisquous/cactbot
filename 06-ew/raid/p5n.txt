@@ -7,65 +7,65 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.3 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/ window 11,10
-19.1 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76D7:/
-28.2 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
-31.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/
-39.7 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76D8:/
-51.9 "Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F0:/
-59.1 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-59.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-75.3 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
-81.4 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-81.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-97.6 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:76F2:/
-101.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/
-110.4 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76D7:/
-117.6 "Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F0:/
-126.7 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:76F2:/
-128.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76E3:/
-138.9 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:78EA:/
-144.2 "--untargetable--" sync / 1[56]:[^:]*:Proto-Carbuncle:78EB:/ # Acidic Slaver
+10.3 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" } window 11,10
+19.1 "Searing Ray" Ability { id: "76D7", source: "Proto-Carbuncle" }
+28.2 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
+31.4 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" }
+39.7 "Searing Ray" Ability { id: "76D8", source: "Proto-Carbuncle" }
+51.9 "Crunch" Ability { id: "76F0", source: "Proto-Carbuncle" }
+59.1 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+59.1 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+75.3 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
+81.4 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+81.4 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+97.6 "Sonic Howl" Ability { id: "76F2", source: "Proto-Carbuncle" }
+101.8 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" }
+110.4 "Searing Ray" Ability { id: "76D7", source: "Proto-Carbuncle" }
+117.6 "Crunch" Ability { id: "76F0", source: "Proto-Carbuncle" }
+126.7 "Sonic Howl" Ability { id: "76F2", source: "Proto-Carbuncle" }
+128.8 "--sync--" Ability { id: "76E3", source: "Proto-Carbuncle" }
+138.9 "--sync--" Ability { id: "78EA", source: "Proto-Carbuncle" }
+144.2 "--untargetable--" Ability { id: "78EB", source: "Proto-Carbuncle" } # Acidic Slaver
 
 189.2 "--targetable--"
-199.7 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/ window 20,20
-205.8 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-205.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-220.9 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F1:/
-238.0 "Venom Squall" sync / 1[56]:[^:]*:Proto-Carbuncle:76EC:/
-245.8 "Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:76ED:/
-252.8 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:76EF:/
-261.2 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:76F2:/
-272.3 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-272.3 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-281.4 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F1:/
-300.6 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76E3:/
-311.8 "--untargetable--" sync / 1[56]:[^:]*:Proto-Carbuncle:76E5:/
-311.8 "Starving Stampede" sync / 1[56]:[^:]*:Proto-Carbuncle:76E5:/ duration 6
+199.7 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" } window 20,20
+205.8 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+205.8 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+220.9 "Toxic Crunch" Ability { id: "76F1", source: "Proto-Carbuncle" }
+238.0 "Venom Squall" Ability { id: "76EC", source: "Proto-Carbuncle" }
+245.8 "Venom Rain" Ability { id: "76ED", source: "Proto-Carbuncle" }
+252.8 "Venom Pool" Ability { id: "76EF", source: "Proto-Carbuncle" }
+261.2 "Sonic Howl" Ability { id: "76F2", source: "Proto-Carbuncle" }
+272.3 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+272.3 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+281.4 "Toxic Crunch" Ability { id: "76F1", source: "Proto-Carbuncle" }
+300.6 "--sync--" Ability { id: "76E3", source: "Proto-Carbuncle" }
+311.8 "--untargetable--" Ability { id: "76E5", source: "Proto-Carbuncle" }
+311.8 "Starving Stampede" Ability { id: "76E5", source: "Proto-Carbuncle" } duration 6
 317.8 "--targetable--"
-324.8 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:7A21:/ window 5,5
-325.9 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/
-334.1 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
+324.8 "--sync--" Ability { id: "7A21", source: "Proto-Carbuncle" } window 5,5
+325.9 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" }
+334.1 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
 
-340.2 "Topaz Cluster" sync / 1[56]:[^:]*:Proto-Carbuncle:76E6:/ window 5,5
-342.2 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76E8:/
-344.2 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76E9:/
-346.2 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76EA:/
-359.3 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/
-368.1 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76D7:/
-382.3 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
-388.4 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-388.4 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-394.5 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76D6:/
-402.8 "Searing Ray" sync / 1[56]:[^:]*:Proto-Carbuncle:76D8:/
-415.9 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F1:/
-425.0 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
-431.1 "Topaz Stones" sync / 1[56]:[^:]*:Proto-Carbuncle:76DE:/
-431.1 "--sync--" sync / 1[56]:[^:]*:Proto-Carbuncle:76DF:/
-438.2 "Venom Squall" sync / 1[56]:[^:]*:Proto-Carbuncle:76EC:/
-446.0 "Venom Rain" sync / 1[56]:[^:]*:Proto-Carbuncle:76ED:/
-453.0 "Venom Pool" sync / 1[56]:[^:]*:Proto-Carbuncle:76EF:/
-463.3 "Sonic Howl" sync / 1[56]:[^:]*:Proto-Carbuncle:76F2:/
-475.5 "Toxic Crunch" sync / 1[56]:[^:]*:Proto-Carbuncle:76F1:/
-482.6 "Ruby Glow" sync / 1[56]:[^:]*:Proto-Carbuncle:76D4:/
-488.7 "Topaz Cluster" sync / 1[56]:[^:]*:Proto-Carbuncle:76E6:/ window 5,5 jump 340.2
+340.2 "Topaz Cluster" Ability { id: "76E6", source: "Proto-Carbuncle" } window 5,5
+342.2 "--sync--" Ability { id: "76E8", source: "Proto-Carbuncle" }
+344.2 "--sync--" Ability { id: "76E9", source: "Proto-Carbuncle" }
+346.2 "--sync--" Ability { id: "76EA", source: "Proto-Carbuncle" }
+359.3 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" }
+368.1 "Searing Ray" Ability { id: "76D7", source: "Proto-Carbuncle" }
+382.3 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
+388.4 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+388.4 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+394.5 "--sync--" Ability { id: "76D6", source: "Proto-Carbuncle" }
+402.8 "Searing Ray" Ability { id: "76D8", source: "Proto-Carbuncle" }
+415.9 "Toxic Crunch" Ability { id: "76F1", source: "Proto-Carbuncle" }
+425.0 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
+431.1 "Topaz Stones" Ability { id: "76DE", source: "Proto-Carbuncle" }
+431.1 "--sync--" Ability { id: "76DF", source: "Proto-Carbuncle" }
+438.2 "Venom Squall" Ability { id: "76EC", source: "Proto-Carbuncle" }
+446.0 "Venom Rain" Ability { id: "76ED", source: "Proto-Carbuncle" }
+453.0 "Venom Pool" Ability { id: "76EF", source: "Proto-Carbuncle" }
+463.3 "Sonic Howl" Ability { id: "76F2", source: "Proto-Carbuncle" }
+475.5 "Toxic Crunch" Ability { id: "76F1", source: "Proto-Carbuncle" }
+482.6 "Ruby Glow" Ability { id: "76D4", source: "Proto-Carbuncle" }
+488.7 "Topaz Cluster" Ability { id: "76E6", source: "Proto-Carbuncle" } window 5,5 jump 340.2

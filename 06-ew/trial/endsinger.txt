@@ -15,88 +15,88 @@ hideall "--sync--"
 # P1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 8.7 "--sync--" sync / 14:[^:]*:The Endsinger:662C:/ window 15,15
-13.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
-36.9 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
-56.1 "Galaxias" sync / 1[56]:[^:]*:The Endsinger:6C69:/
-69.3 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
-87.6 "--sync--" sync / 1[56]:[^:]*:The Endsinger:664A:/
-93.6 "Death's Embrace" sync / 1[56]:[^:]*:The Endsinger:6649:/
-105.8 "Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:663D:/
-115.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:663E:/
-120.0 "Hubris" sync / 1[56]:[^:]*:The Endsinger:6652:/
-132.2 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6682:/
-158.4 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6632:/
-185.6 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6682:/
-211.7 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6632:/
-223.9 "Galaxias" sync / 1[56]:[^:]*:The Endsinger:6C69:/
-238.1 "Ekstasis" sync / 1[56]:[^:]*:The Endsinger:6645:/
-241.9 "Epigonoi" sync / 1[56]:[^:]*:The Endsinger:6646:/
-244.4 "--sync--" sync / 1[56]:[^:]*:The Endsinger:6647:/
-262.1 "--sync--" sync / 1[56]:[^:]*:The Endsinger:6692:/
+13.7 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
+36.9 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
+56.1 "Galaxias" Ability { id: "6C69", source: "The Endsinger" }
+69.3 "Elenchos" Ability { id: "6644", source: "The Endsinger" }
+87.6 "--sync--" Ability { id: "664A", source: "The Endsinger" }
+93.6 "Death's Embrace" Ability { id: "6649", source: "The Endsinger" }
+105.8 "Aporrhoia" Ability { id: "663D", source: "The Endsinger" }
+115.4 "Elenchos" Ability { id: "663E", source: "The Endsinger" }
+120.0 "Hubris" Ability { id: "6652", source: "The Endsinger" }
+132.2 "Elegeia Unforgotten" Ability { id: "6682", source: "The Endsinger" }
+158.4 "Fatalism" Ability { id: "6632", source: "The Endsinger" }
+185.6 "Elegeia Unforgotten" Ability { id: "6682", source: "The Endsinger" }
+211.7 "Fatalism" Ability { id: "6632", source: "The Endsinger" }
+223.9 "Galaxias" Ability { id: "6C69", source: "The Endsinger" }
+238.1 "Ekstasis" Ability { id: "6645", source: "The Endsinger" }
+241.9 "Epigonoi" Ability { id: "6646", source: "The Endsinger" }
+244.4 "--sync--" Ability { id: "6647", source: "The Endsinger" }
+262.1 "--sync--" Ability { id: "6692", source: "The Endsinger" }
 265.1 "--untargetable--"
-274.4 "Interstellar" sync / 1[56]:[^:]*:The Endsinger:664D:/
-276.6 "Nemesis" sync / 1[56]:[^:]*:The Endsinger:664E:/
+274.4 "Interstellar" Ability { id: "664D", source: "The Endsinger" }
+276.6 "Nemesis" Ability { id: "664E", source: "The Endsinger" }
 282.6 "--targetable--"
-285.7 "Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:663D:/
-295.3 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:663E:/
-313.1 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6682:/
-332.3 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6682:/
-357.5 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6632:/
-369.7 "Galaxias" sync / 1[56]:[^:]*:The Endsinger:6C69:/
-375.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6632:/
-388.0 "Nemesis" sync / 1[56]:[^:]*:The Endsinger:6654:/
-401.2 "--sync--" sync / 1[56]:[^:]*:The Endsinger:664A:/
-407.2 "Death's Embrace" sync / 1[56]:[^:]*:The Endsinger:6649:/
-417.3 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
-426.4 "Hubris" sync / 1[56]:[^:]*:The Endsinger:6652:/
-436.6 "Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:663D:/
-446.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:663E:/
-450.8 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
-464.0 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
-483.2 "Nemesis" sync / 1[56]:[^:]*:The Endsinger:6654:/
+285.7 "Aporrhoia" Ability { id: "663D", source: "The Endsinger" }
+295.3 "Elenchos" Ability { id: "663E", source: "The Endsinger" }
+313.1 "Elegeia Unforgotten" Ability { id: "6682", source: "The Endsinger" }
+332.3 "Elegeia Unforgotten" Ability { id: "6682", source: "The Endsinger" }
+357.5 "Fatalism" Ability { id: "6632", source: "The Endsinger" }
+369.7 "Galaxias" Ability { id: "6C69", source: "The Endsinger" }
+375.9 "Fatalism" Ability { id: "6632", source: "The Endsinger" }
+388.0 "Nemesis" Ability { id: "6654", source: "The Endsinger" }
+401.2 "--sync--" Ability { id: "664A", source: "The Endsinger" }
+407.2 "Death's Embrace" Ability { id: "6649", source: "The Endsinger" }
+417.3 "Elenchos" Ability { id: "6644", source: "The Endsinger" }
+426.4 "Hubris" Ability { id: "6652", source: "The Endsinger" }
+436.6 "Aporrhoia" Ability { id: "663D", source: "The Endsinger" }
+446.2 "Elenchos" Ability { id: "663E", source: "The Endsinger" }
+450.8 "Elenchos" Ability { id: "6644", source: "The Endsinger" }
+464.0 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
+483.2 "Nemesis" Ability { id: "6654", source: "The Endsinger" }
 490.3 "--untargetable--"
-499.6 "Interstellar" sync / 1[56]:[^:]*:The Endsinger:664D:/
-501.8 "Nemesis" sync / 1[56]:[^:]*:The Endsinger:664E:/
+499.6 "Interstellar" Ability { id: "664D", source: "The Endsinger" }
+501.8 "Nemesis" Ability { id: "664E", source: "The Endsinger" }
 507.8 "--targetable--"
-513.9 "--sync--" sync / 1[56]:[^:]*:The Endsinger:664A:/
-519.9 "Death's Embrace" sync / 1[56]:[^:]*:The Endsinger:6649:/
-539.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:6652:/
-549.4 "Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:663D:/
-559.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:663E:/
-563.5 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:6644:/
-576.7 "Elegeia" sync / 1[56]:[^:]*:The Endsinger:662C:/
+513.9 "--sync--" Ability { id: "664A", source: "The Endsinger" }
+519.9 "Death's Embrace" Ability { id: "6649", source: "The Endsinger" }
+539.2 "Hubris" Ability { id: "6652", source: "The Endsinger" }
+549.4 "Aporrhoia" Ability { id: "663D", source: "The Endsinger" }
+559.0 "Elenchos" Ability { id: "663E", source: "The Endsinger" }
+563.5 "Elenchos" Ability { id: "6644", source: "The Endsinger" }
+576.7 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
 
 # Phase 2, add spawns
-1000.0 "Planetes" sync / 1[56]:[^:]*:The Endsinger:6B58:/ window 1000,0
+1000.0 "Planetes" Ability { id: "6B58", source: "The Endsinger" } window 1000,0
 1000.0 "--untargetable--"
 1014.3 "--targetable--"
-1023.4 "Meteor Radiant" sync / 1[56]:[^:]*:Kakodaimon:6656:/
-1035.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
-1040.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
-1045.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
-1050.2 "Crash" sync / 1[56]:[^:]*:Kakodaimon:6657:/
-1056.6 "Meteor Outburst" sync / 1[56]:[^:]*:Kakodaimon:665C:/
+1023.4 "Meteor Radiant" Ability { id: "6656", source: "Kakodaimon" }
+1035.2 "Crash" Ability { id: "6657", source: "Kakodaimon" }
+1040.2 "Crash" Ability { id: "6657", source: "Kakodaimon" }
+1045.2 "Crash" Ability { id: "6657", source: "Kakodaimon" }
+1050.2 "Crash" Ability { id: "6657", source: "Kakodaimon" }
+1056.6 "Meteor Outburst" Ability { id: "665C", source: "Kakodaimon" }
 # Loop Katastrophe raidwide until enrage
-1067.8 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/
-1078.9 "Katastrophe" sync / 1[56]:[^:]*:Kakodaimon:665B:/ jump 1067.8
+1067.8 "Katastrophe" Ability { id: "665B", source: "Kakodaimon" }
+1078.9 "Katastrophe" Ability { id: "665B", source: "Kakodaimon" } jump 1067.8
 1090.0 "Katastrophe"
 1101.1 "Katastrophe"
 1112.2 "Katastrophe"
 1123.3 "Katastrophe"
 1200.0 "--sync--" sync / 00:0039:[^:]*:10 seconds until oblivion is sealed/ window 200,0
-1212.2 "Ultimate Fate" sync / 1[56]:[^:]*:The Endsinger:6B59:/ window 10,10
+1212.2 "Ultimate Fate" Ability { id: "6B59", source: "The Endsinger" } window 10,10
 1218.9 "--targetable--"
 
 # Phase 3, loops until soft enrage
-2000.0 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6B5B:/ window 1000,0
+2000.0 "Fatalism" Ability { id: "6B5B", source: "The Endsinger" } window 1000,0
 2036.0 "--untargetable--"
 2074.0 "--targetable--"
-2086.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:665E:/
-2099.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/
-2103.6 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
-2114.6 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:6661:/
-2120.1 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/
-2124.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:665F:/ window 10,30 jump 2099.3
-2128.8 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:6660:/
-2139.8 "Telomania (big)" #sync / 1[56]:[^:]*:The Endsinger:6661:/
-2145.3 "Dead Star x3" duration 6 #sync / 1[56]:[^:]*:The Endsinger:5E4E:/
+2086.1 "Telos" Ability { id: "665E", source: "The Endsinger" }
+2099.3 "Telomania (cast)" Ability { id: "665F", source: "The Endsinger" }
+2103.6 "Telomania (small) x4" duration 5 #Ability { id: "6660", source: "The Endsinger" }
+2114.6 "Telomania (big)" Ability { id: "6661", source: "The Endsinger" }
+2120.1 "Dead Star x3" duration 6 #Ability { id: "5E4E", source: "The Endsinger" }
+2124.5 "Telomania (cast)" Ability { id: "665F", source: "The Endsinger" } window 10,30 jump 2099.3
+2128.8 "Telomania (small) x4" duration 5 #Ability { id: "6660", source: "The Endsinger" }
+2139.8 "Telomania (big)" #Ability { id: "6661", source: "The Endsinger" }
+2145.3 "Dead Star x3" duration 6 #Ability { id: "5E4E", source: "The Endsinger" }

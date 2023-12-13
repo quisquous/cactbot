@@ -16,24 +16,24 @@ hideall "--sync--"
 # Shell Mound will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1008:/ window 10000,0
 1013.1 "--sync--" sync / 14:[^:]*:Caustic Grebuloff:653C:/
-1018.1 "Miasmata" sync / 1[56]:[^:]*:Caustic Grebuloff:653C:/
-1028.5 "Necrotic Fluid" sync / 1[56]:[^:]*:Weeping Miasma:653F:/ duration 10.6
+1018.1 "Miasmata" Ability { id: "653C", source: "Caustic Grebuloff" }
+1028.5 "Necrotic Fluid" Ability { id: "653F", source: "Weeping Miasma" } duration 10.6
 
-1050.2 "Cough Up x3" sync / 1[56]:[^:]*:Caustic Grebuloff:653D:/
-1055.4 "Certain Solitude" sync / 1[56]:[^:]*:Caustic Grebuloff:6EBD:/
-1067.5 "Wave of Nausea" sync / 1[56]:[^:]*:Caustic Grebuloff:6EBB:/
-1080.8 "Miasmata" sync / 1[56]:[^:]*:Caustic Grebuloff:653C:/
-1090.9 "Wave of Nausea" sync / 1[56]:[^:]*:Caustic Grebuloff:6EBB:/
-1091.1 "Necrotic Fluid" sync / 1[56]:[^:]*:Weeping Miasma:653F:/ duration 10.6
-1114.9 "Pox Flail" sync / 1[56]:[^:]*:Caustic Grebuloff:6540:/
-1125.0 "Blighted Water" sync / 1[56]:[^:]*:Caustic Grebuloff:6541:/
-1135.2 "Befoulment" sync / 1[56]:[^:]*:Caustic Grebuloff:6543:/
+1050.2 "Cough Up x3" Ability { id: "653D", source: "Caustic Grebuloff" }
+1055.4 "Certain Solitude" Ability { id: "6EBD", source: "Caustic Grebuloff" }
+1067.5 "Wave of Nausea" Ability { id: "6EBB", source: "Caustic Grebuloff" }
+1080.8 "Miasmata" Ability { id: "653C", source: "Caustic Grebuloff" }
+1090.9 "Wave of Nausea" Ability { id: "6EBB", source: "Caustic Grebuloff" }
+1091.1 "Necrotic Fluid" Ability { id: "653F", source: "Weeping Miasma" } duration 10.6
+1114.9 "Pox Flail" Ability { id: "6540", source: "Caustic Grebuloff" }
+1125.0 "Blighted Water" Ability { id: "6541", source: "Caustic Grebuloff" }
+1135.2 "Befoulment" Ability { id: "6543", source: "Caustic Grebuloff" }
 
-1150.4 "Cough Up x3" sync / 1[56]:[^:]*:Caustic Grebuloff:653D:/ window 50,50 jump 1050.2
-1155.6 "Certain Solitude" #sync / 1[56]:[^:]*:Caustic Grebuloff:6EBD:/
-1167.7 "Wave of Nausea" #sync / 1[56]:[^:]*:Caustic Grebuloff:6EBB:/
-1181.0 "Miasmata" #sync / 1[56]:[^:]*:Caustic Grebuloff:653C:/
-1191.1 "Wave of Nausea" #sync / 1[56]:[^:]*:Caustic Grebuloff:6EBB:/
+1150.4 "Cough Up x3" Ability { id: "653D", source: "Caustic Grebuloff" } window 50,50 jump 1050.2
+1155.6 "Certain Solitude" #Ability { id: "6EBD", source: "Caustic Grebuloff" }
+1167.7 "Wave of Nausea" #Ability { id: "6EBB", source: "Caustic Grebuloff" }
+1181.0 "Miasmata" #Ability { id: "653C", source: "Caustic Grebuloff" }
+1191.1 "Wave of Nausea" #Ability { id: "6EBB", source: "Caustic Grebuloff" }
 
 
 #~~~~~~~~~~~~~#
@@ -48,45 +48,45 @@ hideall "Disengage Hatch"
 # Deterrence Grounds will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1009:/ window 10000,0
 2007.0 "--sync--" sync / 14:[^:]*:Peacekeeper:6550:/
-2012.0 "Decimation" sync / 1[56]:[^:]*:Peacekeeper:6550:/
-2018.1 "Electromagnetic Repellant" sync / 1[56]:[^:]*:Peacekeeper:6EC8:/
-2021.0 "Disengage Hatch" sync / 1[56]:[^:]*:Peacekeeper:6EC4:/
-2026.3 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6EC5:/
-2028.6 "Infantry Deterrent" sync / 1[56]:[^:]*:Peacekeeper:6EC6:/
-2036.7 "Small-bore Laser" sync / 1[56]:[^:]*:Perpetual War Machine:6EC0:/
-2036.7 "Order to Fire" sync / 1[56]:[^:]*:Peacekeeper:6EBF:/
-2038.6 "Infantry Deterrent" sync / 1[56]:[^:]*:Peacekeeper:6EC7:/
-2041.0 "Disengage Hatch" sync / 1[56]:[^:]*:Peacekeeper:6EC4:/
-2046.7 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6EC5:/
+2012.0 "Decimation" Ability { id: "6550", source: "Peacekeeper" }
+2018.1 "Electromagnetic Repellant" Ability { id: "6EC8", source: "Peacekeeper" }
+2021.0 "Disengage Hatch" Ability { id: "6EC4", source: "Peacekeeper" }
+2026.3 "--sync--" Ability { id: "6EC5", source: "Peacekeeper" }
+2028.6 "Infantry Deterrent" Ability { id: "6EC6", source: "Peacekeeper" }
+2036.7 "Small-bore Laser" Ability { id: "6EC0", source: "Perpetual War Machine" }
+2036.7 "Order to Fire" Ability { id: "6EBF", source: "Peacekeeper" }
+2038.6 "Infantry Deterrent" Ability { id: "6EC7", source: "Peacekeeper" }
+2041.0 "Disengage Hatch" Ability { id: "6EC4", source: "Peacekeeper" }
+2046.7 "--sync--" Ability { id: "6EC5", source: "Peacekeeper" }
 
-2051.9 "No Future (circles)" sync / 1[56]:[^:]*:Peacekeeper:6545:/ duration 12.4
-2064.9 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6546:/
-2065.8 "No Future (spread)" sync / 1[56]:[^:]*:Peacekeeper:6548:/
+2051.9 "No Future (circles)" Ability { id: "6545", source: "Peacekeeper" } duration 12.4
+2064.9 "--sync--" Ability { id: "6546", source: "Peacekeeper" }
+2065.8 "No Future (spread)" Ability { id: "6548", source: "Peacekeeper" }
 
-2077.3 "Peacefire" sync / 1[56]:[^:]*:Peacekeeper:654D:/ duration 38.7
-2083.4 "Electromagnetic Repellant" sync / 1[56]:[^:]*:Peacekeeper:6EC8:/
-2085.6 "Disengage Hatch" sync / 1[56]:[^:]*:Peacekeeper:6EC4:/
-2090.8 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6EC5:/
-2098.0 "Small-bore Laser" sync / 1[56]:[^:]*:Perpetual War Machine:6EC0:/
-2098.0 "Order to Fire" sync / 1[56]:[^:]*:Peacekeeper:6EBF:/
-2102.2 "Disengage Hatch" sync / 1[56]:[^:]*:Peacekeeper:6EC4:/
-2107.9 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6EC5:/
-2114.0 "Eclipsing Exhaust" sync / 1[56]:[^:]*:Peacekeeper:654B:/
-2123.3 "Elimination" sync / 1[56]:[^:]*:Peacekeeper:654F:/
+2077.3 "Peacefire" Ability { id: "654D", source: "Peacekeeper" } duration 38.7
+2083.4 "Electromagnetic Repellant" Ability { id: "6EC8", source: "Peacekeeper" }
+2085.6 "Disengage Hatch" Ability { id: "6EC4", source: "Peacekeeper" }
+2090.8 "--sync--" Ability { id: "6EC5", source: "Peacekeeper" }
+2098.0 "Small-bore Laser" Ability { id: "6EC0", source: "Perpetual War Machine" }
+2098.0 "Order to Fire" Ability { id: "6EBF", source: "Peacekeeper" }
+2102.2 "Disengage Hatch" Ability { id: "6EC4", source: "Peacekeeper" }
+2107.9 "--sync--" Ability { id: "6EC5", source: "Peacekeeper" }
+2114.0 "Eclipsing Exhaust" Ability { id: "654B", source: "Peacekeeper" }
+2123.3 "Elimination" Ability { id: "654F", source: "Peacekeeper" }
 
-2134.0 "No Future (circles)" sync / 1[56]:[^:]*:Peacekeeper:6545:/
-2151.4 "No Future (spread)" sync / 1[56]:[^:]*:Peacekeeper:6548:/
-2153.1 "--sync--" sync / 1[56]:[^:]*:Peacekeeper:6546:/
-2171.3 "Decimation" sync / 1[56]:[^:]*:Peacekeeper:6550:/
-2182.5 "Elimination" sync / 1[56]:[^:]*:Peacekeeper:654F:/
-2194.6 "Decimation" sync / 1[56]:[^:]*:Peacekeeper:6550:/
+2134.0 "No Future (circles)" Ability { id: "6545", source: "Peacekeeper" }
+2151.4 "No Future (spread)" Ability { id: "6548", source: "Peacekeeper" }
+2153.1 "--sync--" Ability { id: "6546", source: "Peacekeeper" }
+2171.3 "Decimation" Ability { id: "6550", source: "Peacekeeper" }
+2182.5 "Elimination" Ability { id: "654F", source: "Peacekeeper" }
+2194.6 "Decimation" Ability { id: "6550", source: "Peacekeeper" }
 
-2203.9 "Peacefire" sync / 1[56]:[^:]*:Peacekeeper:654D:/ duration 38.7 window 50,50 jump 2077.3
-2210.0 "Electromagnetic Repellant" #sync / 1[56]:[^:]*:Peacekeeper:6EC8:/
-2212.2 "Disengage Hatch" #sync / 1[56]:[^:]*:Peacekeeper:6EC4:/
-2217.4 "--sync--" #sync / 1[56]:[^:]*:Peacekeeper:6EC5:/
-2224.6 "Small-bore Laser" #sync / 1[56]:[^:]*:Perpetual War Machine:6EC0:/
-2224.6 "Order to Fire" #sync / 1[56]:[^:]*:Peacekeeper:6EBF:/
+2203.9 "Peacefire" Ability { id: "654D", source: "Peacekeeper" } duration 38.7 window 50,50 jump 2077.3
+2210.0 "Electromagnetic Repellant" #Ability { id: "6EC8", source: "Peacekeeper" }
+2212.2 "Disengage Hatch" #Ability { id: "6EC4", source: "Peacekeeper" }
+2217.4 "--sync--" #Ability { id: "6EC5", source: "Peacekeeper" }
+2224.6 "Small-bore Laser" #Ability { id: "6EC0", source: "Perpetual War Machine" }
+2224.6 "Order to Fire" #Ability { id: "6EBF", source: "Peacekeeper" }
 
 
 #~~~~~~~#
@@ -99,59 +99,59 @@ hideall "Disengage Hatch"
 # The World Tree will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:100A:/ window 10000,0
 3008.5 "--sync--" sync / 14:[^:]*:Ra-la:655E:/
-3013.5 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
-3023.7 "Pity" sync / 1[56]:[^:]*:Ra-la:655D:/
-3035.9 "Prance 1" sync / 1[56]:[^:]*:Ra-la:6551:/
-3037.8 "Prance 2" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3039.6 "Prance 3" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3041.4 "Prance 4" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3043.1 "Lamellar Light 1" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3045.0 "Lamellar Light 2" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3046.8 "Lamellar Light 3" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3048.6 "Lamellar Light 4" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3055.2 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
-3061.4 "--jump--" sync / 1[56]:[^:]*:Ra-la:6555:/
-3067.8 "Lifesbreath" sync / 1[56]:[^:]*:Ra-la:6554:/
-3071.9 "--jump--" sync / 1[56]:[^:]*:Ra-la:6555:/
-3074.7 "Lamellar Light" sync / 1[56]:[^:]*:Golden Wings:6556:/
+3013.5 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
+3023.7 "Pity" Ability { id: "655D", source: "Ra-la" }
+3035.9 "Prance 1" Ability { id: "6551", source: "Ra-la" }
+3037.8 "Prance 2" #Ability { id: "6552", source: "Ra-la" }
+3039.6 "Prance 3" #Ability { id: "6552", source: "Ra-la" }
+3041.4 "Prance 4" #Ability { id: "6552", source: "Ra-la" }
+3043.1 "Lamellar Light 1" #Ability { id: "6553", source: "Ra-la" }
+3045.0 "Lamellar Light 2" #Ability { id: "6553", source: "Ra-la" }
+3046.8 "Lamellar Light 3" #Ability { id: "6553", source: "Ra-la" }
+3048.6 "Lamellar Light 4" #Ability { id: "6553", source: "Ra-la" }
+3055.2 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
+3061.4 "--jump--" Ability { id: "6555", source: "Ra-la" }
+3067.8 "Lifesbreath" Ability { id: "6554", source: "Ra-la" }
+3071.9 "--jump--" Ability { id: "6555", source: "Ra-la" }
+3074.7 "Lamellar Light" Ability { id: "6556", source: "Golden Wings" }
 
-3082.0 "Benevolence" sync / 1[56]:[^:]*:Ra-la:6559:/
-3095.2 "Loving Embrace" sync / 1[56]:[^:]*:Ra-la:(6557|6558):/
-3103.3 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
-3117.5 "Prance 1" sync / 1[56]:[^:]*:Ra-la:6551:/
-3119.4 "Prance 2" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3121.2 "Prance 3" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3123.0 "Prance 4" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3124.7 "Lamellar Light 1" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3126.6 "Lamellar Light 2" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3128.4 "Lamellar Light 3" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3130.2 "Lamellar Light 4" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3135.8 "Still Embrace" sync / 1[56]:[^:]*:Ra-la:655B:/
+3082.0 "Benevolence" Ability { id: "6559", source: "Ra-la" }
+3095.2 "Loving Embrace" Ability { id: "(6557|6558)", source: "Ra-la" }
+3103.3 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
+3117.5 "Prance 1" Ability { id: "6551", source: "Ra-la" }
+3119.4 "Prance 2" #Ability { id: "6552", source: "Ra-la" }
+3121.2 "Prance 3" #Ability { id: "6552", source: "Ra-la" }
+3123.0 "Prance 4" #Ability { id: "6552", source: "Ra-la" }
+3124.7 "Lamellar Light 1" #Ability { id: "6553", source: "Ra-la" }
+3126.6 "Lamellar Light 2" #Ability { id: "6553", source: "Ra-la" }
+3128.4 "Lamellar Light 3" #Ability { id: "6553", source: "Ra-la" }
+3130.2 "Lamellar Light 4" #Ability { id: "6553", source: "Ra-la" }
+3135.8 "Still Embrace" Ability { id: "655B", source: "Ra-la" }
 
-3143.0 "--jump--" sync / 1[56]:[^:]*:Ra-la:6555:/
-3149.4 "Lifesbreath" sync / 1[56]:[^:]*:Ra-la:6554:/
-3156.4 "Lamellar Light" sync / 1[56]:[^:]*:Golden Wings:6556:/
-3160.6 "Loving Embrace" sync / 1[56]:[^:]*:Ra-la:(6557|6558):/
-3163.8 "--jump--" sync / 1[56]:[^:]*:Ra-la:6555:/
-3170.9 "Benevolence" sync / 1[56]:[^:]*:Ra-la:6559:/
-3183.1 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
-3194.3 "Warm Glow" sync / 1[56]:[^:]*:Ra-la:655E:/
-3205.6 "Pity" sync / 1[56]:[^:]*:Ra-la:655D:/
-3218.8 "Prance 1" sync / 1[56]:[^:]*:Ra-la:6551:/
-3220.7 "Prance 2" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3222.5 "Prance 3" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3224.3 "Prance 4" #sync / 1[56]:[^:]*:Ra-la:6552:/
-3226.0 "Lamellar Light 1" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3227.9 "Lamellar Light 2" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3229.7 "Lamellar Light 3" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3231.5 "Lamellar Light 4" #sync / 1[56]:[^:]*:Ra-la:6553:/
-3237.1 "Still Embrace" sync / 1[56]:[^:]*:Ra-la:655B:/
+3143.0 "--jump--" Ability { id: "6555", source: "Ra-la" }
+3149.4 "Lifesbreath" Ability { id: "6554", source: "Ra-la" }
+3156.4 "Lamellar Light" Ability { id: "6556", source: "Golden Wings" }
+3160.6 "Loving Embrace" Ability { id: "(6557|6558)", source: "Ra-la" }
+3163.8 "--jump--" Ability { id: "6555", source: "Ra-la" }
+3170.9 "Benevolence" Ability { id: "6559", source: "Ra-la" }
+3183.1 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
+3194.3 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
+3205.6 "Pity" Ability { id: "655D", source: "Ra-la" }
+3218.8 "Prance 1" Ability { id: "6551", source: "Ra-la" }
+3220.7 "Prance 2" #Ability { id: "6552", source: "Ra-la" }
+3222.5 "Prance 3" #Ability { id: "6552", source: "Ra-la" }
+3224.3 "Prance 4" #Ability { id: "6552", source: "Ra-la" }
+3226.0 "Lamellar Light 1" #Ability { id: "6553", source: "Ra-la" }
+3227.9 "Lamellar Light 2" #Ability { id: "6553", source: "Ra-la" }
+3229.7 "Lamellar Light 3" #Ability { id: "6553", source: "Ra-la" }
+3231.5 "Lamellar Light 4" #Ability { id: "6553", source: "Ra-la" }
+3237.1 "Still Embrace" Ability { id: "655B", source: "Ra-la" }
 
-3244.3 "--jump--" sync / 1[56]:[^:]*:Ra-la:6555:/
-3250.7 "Lifesbreath" sync / 1[56]:[^:]*:Ra-la:6554:/ window 50,50 jump 3149.4
-3257.7 "Lamellar Light" #sync / 1[56]:[^:]*:Golden Wings:6556:/
-3261.9 "Loving Embrace" #sync / 1[56]:[^:]*:Ra-la:(6557|6558):/
-3265.1 "--jump--" #sync / 1[56]:[^:]*:Ra-la:6555:/
-3272.2 "Benevolence" #sync / 1[56]:[^:]*:Ra-la:6559:/
-3284.4 "Warm Glow" #sync / 1[56]:[^:]*:Ra-la:655E:/
-3295.6 "Warm Glow" #sync / 1[56]:[^:]*:Ra-la:655E:/
+3244.3 "--jump--" Ability { id: "6555", source: "Ra-la" }
+3250.7 "Lifesbreath" Ability { id: "6554", source: "Ra-la" } window 50,50 jump 3149.4
+3257.7 "Lamellar Light" #Ability { id: "6556", source: "Golden Wings" }
+3261.9 "Loving Embrace" #Ability { id: "(6557|6558)", source: "Ra-la" }
+3265.1 "--jump--" #Ability { id: "6555", source: "Ra-la" }
+3272.2 "Benevolence" #Ability { id: "6559", source: "Ra-la" }
+3284.4 "Warm Glow" #Ability { id: "655E", source: "Ra-la" }
+3295.6 "Warm Glow" #Ability { id: "655E", source: "Ra-la" }

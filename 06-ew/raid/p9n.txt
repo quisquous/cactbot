@@ -13,136 +13,136 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 1[56]:[^:]*:Kokytos:8115:/ window 10,10
-18.2 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/ window 15,15
+7.0 "--sync--" Ability { id: "8115", source: "Kokytos" } window 10,10
+18.2 "Gluttony's Augur" Ability { id: "8116", source: "Kokytos" } window 15,15
 
 
 
 # Mage Phase 1
-26.4 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
-41.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
-48.4 "Fire III (cast)" sync / 1[56]:[^:]*:Kokytos:814E:/
-51.7 "--sync--" sync / 1[56]:[^:]*:Kokytos:8122:/
-56.3 "Fire III (resolve)" sync / 1[56]:[^:]*:Kokytos:8120:/
-68.1 "Blizzard III (cast)" sync / 1[56]:[^:]*:Kokytos:814F:/
-71.4 "--sync--" sync / 1[56]:[^:]*:Kokytos:8123:/
-76.0 "Blizzard III (resolve)" sync / 1[56]:[^:]*:Kokytos:8121:/
-82.6 "Dualspell" sync / 1[56]:[^:]*:Kokytos:811D:/
-85.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-90.3 "Fire III" sync / 1[56]:[^:]*:Kokytos:(8120|811E):/
-90.3 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
-99.8 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
-103.0 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
+26.4 "Ravening (Mage)" Ability { id: "8118", source: "Kokytos" }
+41.7 "--sync--" Ability { id: "8144", source: "Kokytos" }
+48.4 "Fire III (cast)" Ability { id: "814E", source: "Kokytos" }
+51.7 "--sync--" Ability { id: "8122", source: "Kokytos" }
+56.3 "Fire III (resolve)" Ability { id: "8120", source: "Kokytos" }
+68.1 "Blizzard III (cast)" Ability { id: "814F", source: "Kokytos" }
+71.4 "--sync--" Ability { id: "8123", source: "Kokytos" }
+76.0 "Blizzard III (resolve)" Ability { id: "8121", source: "Kokytos" }
+82.6 "Dualspell" Ability { id: "811D", source: "Kokytos" }
+85.9 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
+90.3 "Fire III" Ability { id: "(8120|811E)", source: "Kokytos" }
+90.3 "Blizzard III" Ability { id: "(811F|8121)", source: "Kokytos" }
+99.8 "Global Spell" Ability { id: "8141", source: "Kokytos" }
+103.0 "Disgorge" Ability { id: "8124", source: "Kokytos" }
 
 
 
 # Fighter phase 1
-115.2 "Ravening (Fighter)" sync / 1[56]:[^:]*:Kokytos:8119:/
-136.6 "Archaic Rockbreaker" sync / 1[56]:[^:]*:Kokytos:8128:/
-138.2 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8129:/
-145.1 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
-150.1 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
-156.7 "Archaic Demolish" sync / 1[56]:[^:]*:Kokytos:812F:/
-163.8 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
-170.9 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
-183.2 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[8A]:/
-183.4 "Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812C:/
-186.4 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
-190.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
-198.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+115.2 "Ravening (Fighter)" Ability { id: "8119", source: "Kokytos" }
+136.6 "Archaic Rockbreaker" Ability { id: "8128", source: "Kokytos" }
+138.2 "Shockwave" Ability { id: "8129", source: "Kokytos" }
+145.1 "Archaic Rockbreaker 1" Ability { id: "812A", source: "Kokytos" }
+150.1 "Archaic Rockbreaker 2" Ability { id: "812A", source: "Kokytos" }
+156.7 "Archaic Demolish" Ability { id: "812F", source: "Kokytos" }
+163.8 "Gluttony's Augur" Ability { id: "8116", source: "Kokytos" }
+170.9 "Ascendant Fist" Ability { id: "8131", source: "Kokytos" }
+183.2 "Front Combination/Rear Combination" Ability { id: "814[8A]", source: "Kokytos" }
+183.4 "Outside Roundhouse" Ability { id: "812C", source: "Kokytos" }
+186.4 "Swinging Kick" Ability { id: "812[DE]", source: "Kokytos" }
+190.5 "Disgorge" Ability { id: "8125", source: "Kokytos" }
+198.8 "--sync--" Ability { id: "8144", source: "Kokytos" }
 
 
 
 # Behemoth phase 1
-203.5 "Ravening (Behemoth)" sync / 1[56]:[^:]*:Kokytos:811A:/
-220.8 "Charybdis" sync / 1[56]:[^:]*:Kokytos:8132:/
-221.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:8133:/
-226.9 "Beastly Roar" sync / 1[56]:[^:]*:Kokytos:8138:/
-229.0 "Beastly Bile" sync / 1[56]:[^:]*:Kokytos:813D:/
-238.1 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
-253.4 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
-253.6 "Ravenous Bite 1" #sync / 1[56]:[^:]*:Kokytos:813A:/
-255.7 "Ravenous Bite 2" #sync / 1[56]:[^:]*:Kokytos:813A:/
-257.9 "Touchdown" sync / 1[56]:[^:]*:Kokytos:8137:/
-258.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:8146:/
-268.8 "Comet" sync / 1[56]:[^:]*:Kokytos:8134:/
-269.8 "--sync--" sync / 1[56]:[^:]*:Comet:8135:/
-277.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:813B:/
-278.8 "--sync--" sync / 1[56]:[^:]*:Kokytos:813C:/
-279.8 "Ecliptic Meteor" sync / 1[56]:[^:]*:Kokytos:8188:/
-279.9 "--sync--" sync / 1[56]:[^:]*:Comet:8143:/
-285.9 "Burst" sync / 1[56]:[^:]*:Comet:8136:/
-286.0 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
-288.8 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
+203.5 "Ravening (Behemoth)" Ability { id: "811A", source: "Kokytos" }
+220.8 "Charybdis" Ability { id: "8132", source: "Kokytos" }
+221.8 "--sync--" Ability { id: "8133", source: "Kokytos" }
+226.9 "Beastly Roar" Ability { id: "8138", source: "Kokytos" }
+229.0 "Beastly Bile" Ability { id: "813D", source: "Kokytos" }
+238.1 "Pulverizing Pounce" Ability { id: "813F", source: "Kokytos" }
+253.4 "Gluttonous Rampage" Ability { id: "8139", source: "Kokytos" }
+253.6 "Ravenous Bite 1" #Ability { id: "813A", source: "Kokytos" }
+255.7 "Ravenous Bite 2" #Ability { id: "813A", source: "Kokytos" }
+257.9 "Touchdown" Ability { id: "8137", source: "Kokytos" }
+258.1 "--sync--" Ability { id: "8146", source: "Kokytos" }
+268.8 "Comet" Ability { id: "8134", source: "Kokytos" }
+269.8 "--sync--" Ability { id: "8135", source: "Comet" }
+277.8 "--sync--" Ability { id: "813B", source: "Kokytos" }
+278.8 "--sync--" Ability { id: "813C", source: "Kokytos" }
+279.8 "Ecliptic Meteor" Ability { id: "8188", source: "Kokytos" }
+279.9 "--sync--" Ability { id: "8143", source: "Comet" }
+285.9 "Burst" Ability { id: "8136", source: "Comet" }
+286.0 "Pulverizing Pounce" Ability { id: "813F", source: "Kokytos" }
+288.8 "Disgorge" Ability { id: "8126", source: "Kokytos" }
 
 
 
 # Mage phase 2
-304.3 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/
-318.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
-325.2 "Iceflame Summoning" sync / 1[56]:[^:]*:Kokytos:86E1:/
-330.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-336.1 "--sync--" sync / 1[56]:[^:]*:Ice Sphere:872[9A]:/
-336.1 "--sync--" sync / 1[56]:[^:]*:Fire Sphere:872[78]:/
-336.1 "Sphere Shatter" sync / 1[56]:[^:]*:Ice Sphere:86E[45]:/
-336.1 "Explosion" sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
-340.7 "Iceflame Summoning" sync / 1[56]:[^:]*:Kokytos:86E1:/
-345.6 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-351.6 "--sync--" sync / 1[56]:[^:]*:Ice Sphere:872[9A]:/
-351.6 "--sync--" sync / 1[56]:[^:]*:Fire Sphere:872[78]:/
-351.6 "Sphere Shatter" sync / 1[56]:[^:]*:Ice Sphere:86E[45]:/
-351.6 "Explosion" sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
-356.0 "Dualspell" sync / 1[56]:[^:]*:Kokytos:811D:/
-359.3 "--sync--" sync / 1[56]:[^:]*:Kokytos:812[23]:/
-363.8 "Blizzard III" sync / 1[56]:[^:]*:Kokytos:(811F|8121):/
-363.8 "Fire III" sync / 1[56]:[^:]*:Kokytos:(811E|8120):/
-370.5 "Global Spell" sync / 1[56]:[^:]*:Kokytos:8141:/
-372.7 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8124:/
+304.3 "Ravening (Mage)" Ability { id: "8118", source: "Kokytos" }
+318.6 "--sync--" Ability { id: "8144", source: "Kokytos" }
+325.2 "Iceflame Summoning" Ability { id: "86E1", source: "Kokytos" }
+330.1 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
+336.1 "--sync--" Ability { id: "872[9A]", source: "Ice Sphere" }
+336.1 "--sync--" Ability { id: "872[78]", source: "Fire Sphere" }
+336.1 "Sphere Shatter" Ability { id: "86E[45]", source: "Ice Sphere" }
+336.1 "Explosion" Ability { id: "86E[23]", source: "Fire Sphere" }
+340.7 "Iceflame Summoning" Ability { id: "86E1", source: "Kokytos" }
+345.6 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
+351.6 "--sync--" Ability { id: "872[9A]", source: "Ice Sphere" }
+351.6 "--sync--" Ability { id: "872[78]", source: "Fire Sphere" }
+351.6 "Sphere Shatter" Ability { id: "86E[45]", source: "Ice Sphere" }
+351.6 "Explosion" Ability { id: "86E[23]", source: "Fire Sphere" }
+356.0 "Dualspell" Ability { id: "811D", source: "Kokytos" }
+359.3 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
+363.8 "Blizzard III" Ability { id: "(811F|8121)", source: "Kokytos" }
+363.8 "Fire III" Ability { id: "(811E|8120)", source: "Kokytos" }
+370.5 "Global Spell" Ability { id: "8141", source: "Kokytos" }
+372.7 "Disgorge" Ability { id: "8124", source: "Kokytos" }
 
 
 
 # Fighter phase 2
-385.0 "Ravening (Fighter)" sync / 1[56]:[^:]*:Kokytos:8119:/
-403.2 "Archaic Rockbreaker" sync / 1[56]:[^:]*:Kokytos:8128:/
-404.8 "Shockwave" sync / 1[56]:[^:]*:Kokytos:8129:/
-411.7 "Archaic Rockbreaker 1" sync / 1[56]:[^:]*:Kokytos:812A:/
-416.7 "Archaic Rockbreaker 2" sync / 1[56]:[^:]*:Kokytos:812A:/
-421.8 "Front Combination/Rear Combination" sync / 1[56]:[^:]*:Kokytos:814[789A]:/
-422.0 "Inside Roundhouse/Outside Roundhouse" sync / 1[56]:[^:]*:Kokytos:812[BC]:/
-425.0 "Swinging Kick" sync / 1[56]:[^:]*:Kokytos:812[DE]:/
-433.1 "Gluttony's Augur" sync / 1[56]:[^:]*:Kokytos:8116:/
-445.4 "Ascendant Fist" sync / 1[56]:[^:]*:Kokytos:8131:/
-447.5 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8125:/
-457.9 "--sync--" sync / 1[56]:[^:]*:Kokytos:8144:/
+385.0 "Ravening (Fighter)" Ability { id: "8119", source: "Kokytos" }
+403.2 "Archaic Rockbreaker" Ability { id: "8128", source: "Kokytos" }
+404.8 "Shockwave" Ability { id: "8129", source: "Kokytos" }
+411.7 "Archaic Rockbreaker 1" Ability { id: "812A", source: "Kokytos" }
+416.7 "Archaic Rockbreaker 2" Ability { id: "812A", source: "Kokytos" }
+421.8 "Front Combination/Rear Combination" Ability { id: "814[789A]", source: "Kokytos" }
+422.0 "Inside Roundhouse/Outside Roundhouse" Ability { id: "812[BC]", source: "Kokytos" }
+425.0 "Swinging Kick" Ability { id: "812[DE]", source: "Kokytos" }
+433.1 "Gluttony's Augur" Ability { id: "8116", source: "Kokytos" }
+445.4 "Ascendant Fist" Ability { id: "8131", source: "Kokytos" }
+447.5 "Disgorge" Ability { id: "8125", source: "Kokytos" }
+457.9 "--sync--" Ability { id: "8144", source: "Kokytos" }
 
 
 
 # Behemoth phase 2
-462.5 "Ravening (Behemoth)" sync / 1[56]:[^:]*:Kokytos:811A:/
-486.1 "Comet" sync / 1[56]:[^:]*:Kokytos:8134:/
-487.1 "--sync--" sync / 1[56]:[^:]*:Comet:8135:/
-495.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:813B:/
-496.1 "--sync--" sync / 1[56]:[^:]*:Kokytos:813C:/
-497.1 "Ecliptic Meteor" sync / 1[56]:[^:]*:Kokytos:8188:/
-497.2 "--sync--" sync / 1[56]:[^:]*:Comet:8143:/
-501.2 "Beastly Bile" sync / 1[56]:[^:]*:Kokytos:813D:/
-503.1 "Burst" sync / 1[56]:[^:]*:Comet:8136:/
-510.3 "Pulverizing Pounce" sync / 1[56]:[^:]*:Kokytos:813F:/
-523.7 "Gluttonous Rampage" sync / 1[56]:[^:]*:Kokytos:8139:/
-523.9 "Ravenous Bite 1" #sync / 1[56]:[^:]*:Kokytos:813A:/
-526.1 "Ravenous Bite 2" #sync / 1[56]:[^:]*:Kokytos:813A:/
-528.1 "Touchdown" sync / 1[56]:[^:]*:Kokytos:8137:/
-528.5 "--sync--" sync / 1[56]:[^:]*:Kokytos:8146:/
-531.3 "Disgorge" sync / 1[56]:[^:]*:Kokytos:8126:/
+462.5 "Ravening (Behemoth)" Ability { id: "811A", source: "Kokytos" }
+486.1 "Comet" Ability { id: "8134", source: "Kokytos" }
+487.1 "--sync--" Ability { id: "8135", source: "Comet" }
+495.1 "--sync--" Ability { id: "813B", source: "Kokytos" }
+496.1 "--sync--" Ability { id: "813C", source: "Kokytos" }
+497.1 "Ecliptic Meteor" Ability { id: "8188", source: "Kokytos" }
+497.2 "--sync--" Ability { id: "8143", source: "Comet" }
+501.2 "Beastly Bile" Ability { id: "813D", source: "Kokytos" }
+503.1 "Burst" Ability { id: "8136", source: "Comet" }
+510.3 "Pulverizing Pounce" Ability { id: "813F", source: "Kokytos" }
+523.7 "Gluttonous Rampage" Ability { id: "8139", source: "Kokytos" }
+523.9 "Ravenous Bite 1" #Ability { id: "813A", source: "Kokytos" }
+526.1 "Ravenous Bite 2" #Ability { id: "813A", source: "Kokytos" }
+528.1 "Touchdown" Ability { id: "8137", source: "Kokytos" }
+528.5 "--sync--" Ability { id: "8146", source: "Kokytos" }
+531.3 "Disgorge" Ability { id: "8126", source: "Kokytos" }
 
 
 
 # Mage phase 3, loops back to mage phase 2
-549.8 "Ravening (Mage)" sync / 1[56]:[^:]*:Kokytos:8118:/ window 50,50 jump 304.3
-570.7 "Iceflame Summoning" #sync / 1[56]:[^:]*:Kokytos:86E1:/
-581.6 "Sphere Shatter" #sync / 1[56]:[^:]*:Ice Sphere:86E[45]:/
-581.6 "Explosion" #sync / 1[56]:[^:]*:Fire Sphere:86E[23]:/
-586.2 "Iceflame Summoning" #sync / 1[56]:[^:]*:Kokytos:86E1:/
+549.8 "Ravening (Mage)" Ability { id: "8118", source: "Kokytos" } window 50,50 jump 304.3
+570.7 "Iceflame Summoning" #Ability { id: "86E1", source: "Kokytos" }
+581.6 "Sphere Shatter" #Ability { id: "86E[45]", source: "Ice Sphere" }
+581.6 "Explosion" #Ability { id: "86E[23]", source: "Fire Sphere" }
+586.2 "Iceflame Summoning" #Ability { id: "86E1", source: "Kokytos" }
 
 # Ability IDs that appear in this instance:
 # UMFB = Unaspected, Mage, Fighter, Behemoth

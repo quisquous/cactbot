@@ -15,65 +15,65 @@ hideall "--sync--"
 ## Fixed-ish opening block
 # Ingenuity's Ingress will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E95:/ window 0,1
-8.9 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/ window 8.9,5
-12.1 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-17.5 "Manusya Blizzard III" sync / 1[56]:[^:]*:Minduruva:6296:/
-22.6 "Manusya Fire III" sync / 1[56]:[^:]*:Minduruva:6295:/
-27.8 "Manusya Thunder III x7" sync / 1[56]:[^:]*:Minduruva:6293:/
-32.9 "Manusya Bio III" sync / 1[56]:[^:]*:Minduruva:6298:/
-34.1 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-38.0 "Transmute Element III" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-38.9 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-42.3 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:6463:/
-47.7 "Manusya Element III" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-51.8 "Delayed Element III" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-61.9 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/
-69.0 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:629C:/ window 30,30
+8.9 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" } window 8.9,5
+12.1 "--sync--" Ability { id: "6299", source: "Minduruva" }
+17.5 "Manusya Blizzard III" Ability { id: "6296", source: "Minduruva" }
+22.6 "Manusya Fire III" Ability { id: "6295", source: "Minduruva" }
+27.8 "Manusya Thunder III x7" Ability { id: "6293", source: "Minduruva" }
+32.9 "Manusya Bio III" Ability { id: "6298", source: "Minduruva" }
+34.1 "--sync--" Ability { id: "6299", source: "Minduruva" }
+38.0 "Transmute Element III" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+38.9 "--sync--" Ability { id: "629B", source: "Minduruva" }
+42.3 "Manusya Fire" Ability { id: "6463", source: "Minduruva" }
+47.7 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+51.8 "Delayed Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+61.9 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" }
+69.0 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
 # Transmute block, no initial Bio
-70.3 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:629D:/
-71.4 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:629E:/
-72.5 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:629F:/
-75.7 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-79.9 "Transmute Element III #1" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-80.8 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-84.0 "Transmute Element III #2" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-84.9 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-89.3 "Manusya Element III" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-93.4 "Delayed Element III #1" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-97.5 "Delayed Element III #2" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-107.6 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:629C:/ window 30,30
+70.3 "Manusya Fire" Ability { id: "629D", source: "Minduruva" }
+71.4 "Manusya Blizzard" Ability { id: "629E", source: "Minduruva" }
+72.5 "Manusya Thunder" Ability { id: "629F", source: "Minduruva" }
+75.7 "--sync--" Ability { id: "6299", source: "Minduruva" }
+79.9 "Transmute Element III #1" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+80.8 "--sync--" Ability { id: "629B", source: "Minduruva" }
+84.0 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+84.9 "--sync--" Ability { id: "629B", source: "Minduruva" }
+89.3 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+93.4 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+97.5 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+107.6 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
 # Rotation block with Bio
-108.8 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:629D:/
-109.9 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:629E:/
-111.0 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:629F:/
-117.1 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/
-127.3 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-131.5 "Transmute Element III #1" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-132.4 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-135.5 "Transmute Element III #2" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-136.4 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-140.8 "Manusya Element III" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-144.9 "Delayed Element III #1" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-148.9 "Delayed Element III #2" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-159.0 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:629C:/ window 30,30
+108.8 "Manusya Fire" Ability { id: "629D", source: "Minduruva" }
+109.9 "Manusya Blizzard" Ability { id: "629E", source: "Minduruva" }
+111.0 "Manusya Thunder" Ability { id: "629F", source: "Minduruva" }
+117.1 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" }
+127.3 "--sync--" Ability { id: "6299", source: "Minduruva" }
+131.5 "Transmute Element III #1" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+132.4 "--sync--" Ability { id: "629B", source: "Minduruva" }
+135.5 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+136.4 "--sync--" Ability { id: "629B", source: "Minduruva" }
+140.8 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+144.9 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+148.9 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+159.0 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
-160.1 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:629D:/
-161.2 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:629E:/
-162.3 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:629F:/
-168.4 "Manusya Bio" sync / 1[56]:[^:]*:Minduruva:62A0:/
-178.6 "--sync--" sync / 1[56]:[^:]*:Minduruva:6299:/
-182.8 "Transmute Element III #1" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-183.7 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-186.8 "Transmute Element III #2" sync / 1[56]:[^:]*:Minduruva:6(29A|31[BCD]):/
-187.7 "--sync--" sync / 1[56]:[^:]*:Minduruva:629B:/
-192.1 "Manusya Element III" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-196.2 "Delayed Element III #1" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-200.2 "Delayed Element III #2" #sync / 1[56]:[^:]*:Minduruva:(6295|6296|6297|6298):/
-210.3 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:629C:/ window 30,30
+160.1 "Manusya Fire" Ability { id: "629D", source: "Minduruva" }
+161.2 "Manusya Blizzard" Ability { id: "629E", source: "Minduruva" }
+162.3 "Manusya Thunder" Ability { id: "629F", source: "Minduruva" }
+168.4 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" }
+178.6 "--sync--" Ability { id: "6299", source: "Minduruva" }
+182.8 "Transmute Element III #1" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+183.7 "--sync--" Ability { id: "629B", source: "Minduruva" }
+186.8 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
+187.7 "--sync--" Ability { id: "629B", source: "Minduruva" }
+192.1 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+196.2 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+200.2 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+210.3 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
-211.4 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:629D:/ jump 160.1
+211.4 "Manusya Fire" Ability { id: "629D", source: "Minduruva" } jump 160.1
 212.5 "Manusya Blizzard"
 213.6 "Manusya Thunder"
 219.7 "Manusya Bio"
@@ -89,30 +89,30 @@ hideall "--sync--"
 # Opening block
 # Prosperity's Promise will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E96:/ window 1000,5
-1009.3 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 1009.3,5
-1015.7 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1019.6 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1023.4 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1027.4 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1032.3 "Manusya Berserk" sync / 1[56]:[^:]*:Sanduruva:62A1:/ window 15,15
-1041.5 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
-1043.5 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
-1050.6 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
+1009.3 "Isitva Siddhi" Ability { id: "62A9", source: "Sanduruva" } window 1009.3,5
+1015.7 "Prapti Siddhi #1" Ability { id: "62A8", source: "Sanduruva" }
+1019.6 "Prapti Siddhi #2" #Ability { id: "62A8", source: "Sanduruva" }
+1023.4 "Prapti Siddhi #3" #Ability { id: "62A8", source: "Sanduruva" }
+1027.4 "Prapti Siddhi #4" #Ability { id: "62A8", source: "Sanduruva" }
+1032.3 "Manusya Berserk" Ability { id: "62A1", source: "Sanduruva" } window 15,15
+1041.5 "Explosive Force" Ability { id: "62A2", source: "Sanduruva" }
+1043.5 "Sphere Shatter" Ability { id: "62A4", source: "Berserker Sphere" }
+1050.6 "Prakamya Siddhi" Ability { id: "62A3", source: "Sanduruva" }
 
 # Rotation block
-1055.8 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 1055.8,10
-1059.9 "Manusya Stop" sync / 1[56]:[^:]*:Sanduruva:62A7:/
-1067.1 "Prapti Siddhi #1" sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1070.9 "Prapti Siddhi #2" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1074.8 "Prapti Siddhi #3" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1078.7 "Prapti Siddhi #4" #sync / 1[56]:[^:]*:Sanduruva:62A8:/
-1087.7 "Manusya Confuse" sync / 1[56]:[^:]*:Sanduruva:62A5:/
-1102.8 "Explosive Force" sync / 1[56]:[^:]*:Sanduruva:62A2:/
-1104.9 "Sphere Shatter" sync / 1[56]:[^:]*:Berserker Sphere:62A4:/
-1112.0 "Prakamya Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A3:/
-1120.2 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62A9:/ window 30,30
+1055.8 "--sync--" Ability { id: "62A6", source: "Sanduruva" } window 1055.8,10
+1059.9 "Manusya Stop" Ability { id: "62A7", source: "Sanduruva" }
+1067.1 "Prapti Siddhi #1" Ability { id: "62A8", source: "Sanduruva" }
+1070.9 "Prapti Siddhi #2" #Ability { id: "62A8", source: "Sanduruva" }
+1074.8 "Prapti Siddhi #3" #Ability { id: "62A8", source: "Sanduruva" }
+1078.7 "Prapti Siddhi #4" #Ability { id: "62A8", source: "Sanduruva" }
+1087.7 "Manusya Confuse" Ability { id: "62A5", source: "Sanduruva" }
+1102.8 "Explosive Force" Ability { id: "62A2", source: "Sanduruva" }
+1104.9 "Sphere Shatter" Ability { id: "62A4", source: "Berserker Sphere" }
+1112.0 "Prakamya Siddhi" Ability { id: "62A3", source: "Sanduruva" }
+1120.2 "Isitva Siddhi" Ability { id: "62A9", source: "Sanduruva" } window 30,30
 
-1127.3 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ jump 1055.8
+1127.3 "--sync--" Ability { id: "62A6", source: "Sanduruva" } jump 1055.8
 1131.4 "Manusya Stop"
 1138.6 "Prapti Siddhi #1"
 1142.4 "Prapti Siddhi #2"
@@ -131,47 +131,47 @@ hideall "--sync--"
 
 # Wisdom's Ward will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E97:/ window 2000,5
-2002.5 "--sync--" sync / 1[56]:[^:]*:Cinduruva:62BA:/ window 2002.5,2
-2009.8 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/
-2025.6 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/
-2025.8 "Manusya Reflect" sync / 1[56]:[^:]*:Cinduruva:62AB:/
-2026.7 "Delta Attack" sync / 1[56]:[^:]*:Minduruva:62A[CDE]:/
-2034.9 "Delta Blizzard/Fire/Thunder III" duration 10 #sync / 1[56]:[^:]*:Cinduruva:62B[37]:/
-2056.2 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:62C1:/
-2056.3 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62C0:/
-2057.3 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:62C2:/
-2058.4 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C3:/
-2059.5 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C4:/
-2063.6 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:62C7:/
-2064.6 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/
-2067.0 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/
-2067.8 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C8:/
-2068.5 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/
-2071.9 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C9:/
+2002.5 "--sync--" Ability { id: "62BA", source: "Cinduruva" } window 2002.5,2
+2009.8 "Samsara" Ability { id: "62B9", source: "Cinduruva" }
+2025.6 "Manusya Faith" Ability { id: "62AA", source: "Sanduruva" }
+2025.8 "Manusya Reflect" Ability { id: "62AB", source: "Cinduruva" }
+2026.7 "Delta Attack" Ability { id: "62A[CDE]", source: "Minduruva" }
+2034.9 "Delta Blizzard/Fire/Thunder III" duration 10 #Ability { id: "62B[37]", source: "Cinduruva" }
+2056.2 "Dhrupad" Ability { id: "62C1", source: "Minduruva" }
+2056.3 "Isitva Siddhi" Ability { id: "62C0", source: "Sanduruva" }
+2057.3 "Manusya Fire" Ability { id: "62C2", source: "Minduruva" }
+2058.4 "Manusya Blizzard" Ability { id: "62C3", source: "Minduruva" }
+2059.5 "Manusya Thunder" Ability { id: "62C4", source: "Minduruva" }
+2063.6 "Manusya Fire" Ability { id: "62C7", source: "Minduruva" }
+2064.6 "Prapti Siddhi" Ability { id: "62BB", source: "Sanduruva" }
+2067.0 "Samsara" Ability { id: "62B9", source: "Cinduruva" }
+2067.8 "Manusya Blizzard" Ability { id: "62C8", source: "Minduruva" }
+2068.5 "Prapti Siddhi" Ability { id: "62BB", source: "Sanduruva" }
+2071.9 "Manusya Thunder" Ability { id: "62C9", source: "Minduruva" }
 
-2075.1 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 100,30
-2080.3 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/ window 30,30
-2080.4 "Manusya Reflect" sync / 1[56]:[^:]*:Cinduruva:62AB:/ window 30,30
-2081.2 "Delta Attack" sync / 1[56]:[^:]*:Minduruva:62A[CDE]:/
-2089.4 "Delta Blizzard/Fire/Thunder III" duration 10 #sync / 1[56]:[^:]*:Cinduruva:62B[37]:/
-2110.6 "Dhrupad" sync / 1[56]:[^:]*:Minduruva:62C1:/ window 30,30
-2110.7 "Isitva Siddhi" sync / 1[56]:[^:]*:Sanduruva:62C0:/ window 30,30
-2111.7 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:62C2:/
-2112.8 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C3:/
-2113.9 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C4:/
-2118.0 "Manusya Fire" sync / 1[56]:[^:]*:Minduruva:62C7:/
-2118.9 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/ window 30,2.5
-2121.3 "Samsara" sync / 1[56]:[^:]*:Cinduruva:62B9:/ window 30,30
-2122.1 "Manusya Blizzard" sync / 1[56]:[^:]*:Minduruva:62C8:/
-2122.7 "Prapti Siddhi" sync / 1[56]:[^:]*:Sanduruva:62BB:/
-2126.2 "Manusya Thunder" sync / 1[56]:[^:]*:Minduruva:62C9:/
+2075.1 "--sync--" Ability { id: "62A6", source: "Sanduruva" } window 100,30
+2080.3 "Manusya Faith" Ability { id: "62AA", source: "Sanduruva" } window 30,30
+2080.4 "Manusya Reflect" Ability { id: "62AB", source: "Cinduruva" } window 30,30
+2081.2 "Delta Attack" Ability { id: "62A[CDE]", source: "Minduruva" }
+2089.4 "Delta Blizzard/Fire/Thunder III" duration 10 #Ability { id: "62B[37]", source: "Cinduruva" }
+2110.6 "Dhrupad" Ability { id: "62C1", source: "Minduruva" } window 30,30
+2110.7 "Isitva Siddhi" Ability { id: "62C0", source: "Sanduruva" } window 30,30
+2111.7 "Manusya Fire" Ability { id: "62C2", source: "Minduruva" }
+2112.8 "Manusya Blizzard" Ability { id: "62C3", source: "Minduruva" }
+2113.9 "Manusya Thunder" Ability { id: "62C4", source: "Minduruva" }
+2118.0 "Manusya Fire" Ability { id: "62C7", source: "Minduruva" }
+2118.9 "Prapti Siddhi" Ability { id: "62BB", source: "Sanduruva" } window 30,2.5
+2121.3 "Samsara" Ability { id: "62B9", source: "Cinduruva" } window 30,30
+2122.1 "Manusya Blizzard" Ability { id: "62C8", source: "Minduruva" }
+2122.7 "Prapti Siddhi" Ability { id: "62BB", source: "Sanduruva" }
+2126.2 "Manusya Thunder" Ability { id: "62C9", source: "Minduruva" }
 
 # We can't rely on any given sister being alive,
 # so sync + jump for all.
-2129.5 "--sync--" sync / 1[56]:[^:]*:Sanduruva:62A6:/ window 30,30
-2134.7 "Manusya Faith" sync / 1[56]:[^:]*:Sanduruva:62AA:/ window 30,30 jump 2080.3
-2134.8 "Manusya Reflect" sync / 1[56]:[^:]*:Cinduruva:62AB:/ window 30,30 jump 2080.4
-2135.6 "Delta Attack" sync / 1[56]:[^:]*:Minduruva:62A[CDE]:/ window 30,30 jump 2081.2
+2129.5 "--sync--" Ability { id: "62A6", source: "Sanduruva" } window 30,30
+2134.7 "Manusya Faith" Ability { id: "62AA", source: "Sanduruva" } window 30,30 jump 2080.3
+2134.8 "Manusya Reflect" Ability { id: "62AB", source: "Cinduruva" } window 30,30 jump 2080.4
+2135.6 "Delta Attack" Ability { id: "62A[CDE]", source: "Minduruva" } window 30,30 jump 2081.2
 2143.8 "Delta Blizzard/Fire/Thunder III"
 2165.0 "Dhrupad"
 2165.1 "Isitva Siddhi"

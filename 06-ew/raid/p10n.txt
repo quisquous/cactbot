@@ -27,55 +27,55 @@ hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 7.9 "--sync--" sync / 14:[^:]*:Pand\u00e6monium:8259:/ window 15,15
-10.9 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
-23.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
-35.4 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
-43.4 "Imprisonment" sync / 1[56]:[^:]*:Pand\u00e6monium:8262:/
-50.1 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
-59.9 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
-67.8 "Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:8264:/
-74.6 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
-80.0 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
-90.1 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
-101.3 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
-114.7 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
-126.7 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
-140.4 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
-150.6 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
-165.2 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
-170.5 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
-179.7 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
-191.0 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
-210.5 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
-224.6 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
-233.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
-245.7 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
-253.5 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
-259.3 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
-264.7 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
-272.8 "Harrowing Hell (x8)" sync / 1[56]:[^:]*:Pand\u00e6monium:826A:/ duration 12
-289.0 "Harrowing Hell (knockback)" sync / 1[56]:[^:]*:Pand\u00e6monium:826F:/
-304.2 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
-322.7 "Wicked Step" sync / 1[56]:[^:]*:Pand\u00e6monium:8272:/
+10.9 "Silkspit (marked)" Ability { id: "8259", source: "Pand\\u00e6monium" }
+23.0 "Silkspit (resolves)" Ability { id: "825A", source: "Pand\\u00e6monium" }
+35.4 "Pandaemoniac Pillars" Ability { id: "825D", source: "Pand\\u00e6monium" }
+43.4 "Imprisonment" Ability { id: "8262", source: "Pand\\u00e6monium" }
+50.1 "Ultima" Ability { id: "827B", source: "Pand\\u00e6monium" }
+59.9 "Pandaemoniac Pillars" Ability { id: "825D", source: "Pand\\u00e6monium" }
+67.8 "Cannonspawn" Ability { id: "8264", source: "Pand\\u00e6monium" }
+74.6 "--sync--" Ability { id: "87A2", source: "Pand\\u00e6monium" }
+80.0 "Pandaemoniac Meltdown" Ability { id: "8276", source: "Pand\\u00e6monium" }
+90.1 "Soul Grasp" Ability { id: "8278", source: "Pand\\u00e6monium" }
+101.3 "Entangling Web" Ability { id: "8721", source: "Pand\\u00e6monium" }
+114.7 "Silkspit (marked)" Ability { id: "8259", source: "Pand\\u00e6monium" }
+126.7 "Silkspit (resolves)" Ability { id: "825A", source: "Pand\\u00e6monium" }
+140.4 "Pandaemoniac Ray" Ability { id: "826[57]", source: "Pand\\u00e6monium" }
+150.6 "Parted Plumes" Ability { id: "8270", source: "Pand\\u00e6monium" } duration 11
+165.2 "--sync--" Ability { id: "87A2", source: "Pand\\u00e6monium" }
+170.5 "Pandaemoniac Meltdown" Ability { id: "8276", source: "Pand\\u00e6monium" }
+179.7 "Soul Grasp" Ability { id: "8278", source: "Pand\\u00e6monium" }
+191.0 "Entangling Web" Ability { id: "8721", source: "Pand\\u00e6monium" }
+210.5 "Pandaemoniac Ray" Ability { id: "826[57]", source: "Pand\\u00e6monium" }
+224.6 "Touchdown" Ability { id: "8268", source: "Pand\\u00e6monium" }
+233.8 "Ultima" Ability { id: "827B", source: "Pand\\u00e6monium" }
+245.7 "Pandaemoniac Pillars" Ability { id: "825D", source: "Pand\\u00e6monium" }
+253.5 "Imprisonment/Cannonspawn" Ability { id: "826[24]", source: "Pand\\u00e6monium" }
+259.3 "--sync--" Ability { id: "87A2", source: "Pand\\u00e6monium" }
+264.7 "Pandaemoniac Meltdown" Ability { id: "8276", source: "Pand\\u00e6monium" }
+272.8 "Harrowing Hell (x8)" Ability { id: "826A", source: "Pand\\u00e6monium" } duration 12
+289.0 "Harrowing Hell (knockback)" Ability { id: "826F", source: "Pand\\u00e6monium" }
+304.2 "Parted Plumes" Ability { id: "8270", source: "Pand\\u00e6monium" } duration 11
+322.7 "Wicked Step" Ability { id: "8272", source: "Pand\\u00e6monium" }
 
 # Loop begins here
-339.5 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/
-347.4 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
-353.2 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
-374.4 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
-380.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
-385.8 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
-392.0 "Silkspit (marked)" sync / 1[56]:[^:]*:Pand\u00e6monium:8259:/
-404.0 "Silkspit (resolves)" sync / 1[56]:[^:]*:Pand\u00e6monium:825A:/
-417.7 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:826[57]:/
-423.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8270:/ duration 11
-442.4 "Soul Grasp" sync / 1[56]:[^:]*:Pand\u00e6monium:8278:/
-457.6 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:827B:/
+339.5 "Pandaemoniac Pillars" Ability { id: "825D", source: "Pand\\u00e6monium" }
+347.4 "Imprisonment/Cannonspawn" Ability { id: "826[24]", source: "Pand\\u00e6monium" }
+353.2 "Entangling Web" Ability { id: "8721", source: "Pand\\u00e6monium" }
+374.4 "Touchdown" Ability { id: "8268", source: "Pand\\u00e6monium" }
+380.5 "--sync--" Ability { id: "87A2", source: "Pand\\u00e6monium" }
+385.8 "Pandaemoniac Meltdown" Ability { id: "8276", source: "Pand\\u00e6monium" }
+392.0 "Silkspit (marked)" Ability { id: "8259", source: "Pand\\u00e6monium" }
+404.0 "Silkspit (resolves)" Ability { id: "825A", source: "Pand\\u00e6monium" }
+417.7 "Pandaemoniac Ray" Ability { id: "826[57]", source: "Pand\\u00e6monium" }
+423.8 "Parted Plumes" Ability { id: "8270", source: "Pand\\u00e6monium" } duration 11
+442.4 "Soul Grasp" Ability { id: "8278", source: "Pand\\u00e6monium" }
+457.6 "Ultima" Ability { id: "827B", source: "Pand\\u00e6monium" }
 
 # Repeat
-485.0 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:825D:/ window 50,50 jump 339.5
-492.9 "Imprisonment/Cannonspawn" sync / 1[56]:[^:]*:Pand\u00e6monium:826[24]:/
-498.7 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:8721:/
-519.9 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8268:/
-525.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:87A2:/
-531.3 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:8276:/
+485.0 "Pandaemoniac Pillars" Ability { id: "825D", source: "Pand\\u00e6monium" } window 50,50 jump 339.5
+492.9 "Imprisonment/Cannonspawn" Ability { id: "826[24]", source: "Pand\\u00e6monium" }
+498.7 "Entangling Web" Ability { id: "8721", source: "Pand\\u00e6monium" }
+519.9 "Touchdown" Ability { id: "8268", source: "Pand\\u00e6monium" }
+525.9 "--sync--" Ability { id: "87A2", source: "Pand\\u00e6monium" }
+531.3 "Pandaemoniac Meltdown" Ability { id: "8276", source: "Pand\\u00e6monium" }

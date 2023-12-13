@@ -14,46 +14,46 @@ hideall "--sync--"
 
 # The Silvan Throne will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B2:/ window 0,1
-6.0 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-10.6 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+6.0 "--sync--" Ability { id: "802C", source: "Albion" }
+10.6 "Call of the Mountain" Ability { id: "7A7C", source: "Albion" }
 
 12.9 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
 26.9 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
-41.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
-48.4 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-55.1 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-65.7 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
-72.0 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
-75.0 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
-81.2 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
-81.6 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-86.2 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+41.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
+48.4 "--sync--" Ability { id: "802C", source: "Albion" }
+55.1 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
+65.7 "Knock on Ice" Ability { id: "7A7F", source: "Albion" }
+72.0 "Icebreaker" Ability { id: "7A81", source: "Albion" }
+75.0 "--sync--" Ability { id: "7A82", source: "Albion" }
+81.2 "Icy Throes" Ability { id: "(800F|7A83)", source: "Albion" }
+81.6 "--sync--" Ability { id: "802C", source: "Albion" }
+86.2 "Icy Throes" Ability { id: "7FB9", source: "Albion" }
 
-90.2 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/
-103.3 "Call of the Mountain" sync / 1[56]:[^:]*:Albion:7A7C:/
+90.2 "Roar of Albion" Ability { id: "7A84", source: "Albion" }
+103.3 "Call of the Mountain" Ability { id: "7A7C", source: "Albion" }
 106.1 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
-108.7 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-115.5 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
+108.7 "--sync--" Ability { id: "802C", source: "Albion" }
+115.5 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
 120.0 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
-123.9 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-130.8 "Left Slam/Right Slam" sync / 1[56]:[^:]*:Albion:(802E|802D):/
-141.4 "Albion's Embrace" sync / 1[56]:[^:]*:Albion:7A85:/
-151.5 "Knock on Ice" sync / 1[56]:[^:]*:Albion:7A7F:/
-157.6 "Icebreaker" sync / 1[56]:[^:]*:Albion:7A81:/
-160.6 "--sync--" sync / 1[56]:[^:]*:Albion:7A82:/
-166.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:(800F|7A83):/
-167.2 "--sync--" sync / 1[56]:[^:]*:Albion:802C:/
-171.8 "Icy Throes" sync / 1[56]:[^:]*:Albion:7FB9:/
+123.9 "--sync--" Ability { id: "802C", source: "Albion" }
+130.8 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
+141.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
+151.5 "Knock on Ice" Ability { id: "7A7F", source: "Albion" }
+157.6 "Icebreaker" Ability { id: "7A81", source: "Albion" }
+160.6 "--sync--" Ability { id: "7A82", source: "Albion" }
+166.8 "Icy Throes" Ability { id: "(800F|7A83)", source: "Albion" }
+167.2 "--sync--" Ability { id: "802C", source: "Albion" }
+171.8 "Icy Throes" Ability { id: "7FB9", source: "Albion" }
 
 # loop
-175.8 "Roar of Albion" sync / 1[56]:[^:]*:Albion:7A84:/ window 30,30 jump 90.2
-188.9 "Call of the Mountain" #sync / 1[56]:[^:]*:Albion:7A7C:/
+175.8 "Roar of Albion" Ability { id: "7A84", source: "Albion" } window 30,30 jump 90.2
+188.9 "Call of the Mountain" #Ability { id: "7A7C", source: "Albion" }
 191.7 "Wildlife Crossing 1" #sync / 257 101:........:00020001:/ window 5,5 duration 15
-194.3 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
-201.1 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
+194.3 "--sync--" #Ability { id: "802C", source: "Albion" }
+201.1 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
 205.6 "Wildlife Crossing 2" #sync / 257 101:........:00020001:/ window 5,5 duration 15
-209.5 "--sync--" #sync / 1[56]:[^:]*:Albion:802C:/
-216.4 "Left Slam/Right Slam" #sync / 1[56]:[^:]*:Albion:(802E|802D):/
+209.5 "--sync--" #Ability { id: "802C", source: "Albion" }
+216.4 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
 
 #~~~~~~~~~~~~~~~#
 # Galatea Magna #
@@ -63,67 +63,67 @@ hideall "--sync--"
 
 # Forum Messorum will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B3:/ window 1000,1
-1010.2 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F71:/ # manually added for early sync
-1015.2 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
-1016.8 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F6F:/
-1017.2 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
-1028.3 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
-1037.4 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
-1049.1 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
-1051.1 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1054.1 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1064.1 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
-1071.1 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1073.1 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1075.1 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1077.1 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1079.1 "Stony Gaze x4" sync / 1[56]:[^:]*:Galatea Magna:7A99:/
-1091.1 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
-1092.7 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A92:/
-1093.9 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
-1103.1 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
-1111.1 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
-1122.8 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
-1124.8 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1127.8 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1130.8 "Scarecrow Chase 3" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1133.8 "Scarecrow Chase 4" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1140.8 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
-1147.8 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1149.8 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1151.8 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1153.8 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1155.8 "Stony Gaze x4" sync / 1[56]:[^:]*:Galatea Magna:7A99:/
-1162.9 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
-1164.5 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A92:/
-1165.6 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
-1174.3 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/
-1182.3 "Soul Nebula" sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
-1194.0 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
-1196.0 "Scarecrow Chase 1" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1199.0 "Scarecrow Chase 2" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1202.0 "Scarecrow Chase 3" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1205.1 "Scarecrow Chase 4" sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1212.0 "Tenebrism" sync / 1[56]:[^:]*:Galatea Magna:7A96:/
-1219.0 "Burst 1" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1221.0 "Burst 2" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1223.0 "Burst 3" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1225.0 "Burst 4" #sync / 1[56]:[^:]*:Galatea Magna:7A97:/
-1227.0 "Stony Gaze x4" #sync / 1[56]:[^:]*:Galatea Magna:7A99:/
-1232.0 "Dark Harvest" sync / 1[56]:[^:]*:Galatea Magna:7A9F:/ # first time tankbuster is used
-1244.1 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A91|7F6E):/
-1245.7 "--sync--" sync / 1[56]:[^:]*:Galatea Magna:7F6F:/
-1246.1 "Waxing Cycle/Waning Cycle" sync / 1[56]:[^:]*:Galatea Magna:(7A93|7F70):/
+1010.2 "--sync--" Ability { id: "7F71", source: "Galatea Magna" } # manually added for early sync
+1015.2 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1016.8 "--sync--" Ability { id: "7F6F", source: "Galatea Magna" }
+1017.2 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1028.3 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
+1037.4 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
+1049.1 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
+1051.1 "Scarecrow Chase 1" Ability { id: "7FBF", source: "Galatea Magna" }
+1054.1 "Scarecrow Chase 2" Ability { id: "7FBF", source: "Galatea Magna" }
+1064.1 "Tenebrism" Ability { id: "7A96", source: "Galatea Magna" }
+1071.1 "Burst 1" #Ability { id: "7A97", source: "Galatea Magna" }
+1073.1 "Burst 2" #Ability { id: "7A97", source: "Galatea Magna" }
+1075.1 "Burst 3" #Ability { id: "7A97", source: "Galatea Magna" }
+1077.1 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
+1079.1 "Stony Gaze x4" Ability { id: "7A99", source: "Galatea Magna" }
+1091.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1092.7 "--sync--" Ability { id: "7A92", source: "Galatea Magna" }
+1093.9 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1103.1 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
+1111.1 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
+1122.8 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
+1124.8 "Scarecrow Chase 1" Ability { id: "7FBF", source: "Galatea Magna" }
+1127.8 "Scarecrow Chase 2" Ability { id: "7FBF", source: "Galatea Magna" }
+1130.8 "Scarecrow Chase 3" Ability { id: "7FBF", source: "Galatea Magna" }
+1133.8 "Scarecrow Chase 4" Ability { id: "7FBF", source: "Galatea Magna" }
+1140.8 "Tenebrism" Ability { id: "7A96", source: "Galatea Magna" }
+1147.8 "Burst 1" #Ability { id: "7A97", source: "Galatea Magna" }
+1149.8 "Burst 2" #Ability { id: "7A97", source: "Galatea Magna" }
+1151.8 "Burst 3" #Ability { id: "7A97", source: "Galatea Magna" }
+1153.8 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
+1155.8 "Stony Gaze x4" Ability { id: "7A99", source: "Galatea Magna" }
+1162.9 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1164.5 "--sync--" Ability { id: "7A92", source: "Galatea Magna" }
+1165.6 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1174.3 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
+1182.3 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
+1194.0 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
+1196.0 "Scarecrow Chase 1" Ability { id: "7FBF", source: "Galatea Magna" }
+1199.0 "Scarecrow Chase 2" Ability { id: "7FBF", source: "Galatea Magna" }
+1202.0 "Scarecrow Chase 3" Ability { id: "7FBF", source: "Galatea Magna" }
+1205.1 "Scarecrow Chase 4" Ability { id: "7FBF", source: "Galatea Magna" }
+1212.0 "Tenebrism" Ability { id: "7A96", source: "Galatea Magna" }
+1219.0 "Burst 1" #Ability { id: "7A97", source: "Galatea Magna" }
+1221.0 "Burst 2" #Ability { id: "7A97", source: "Galatea Magna" }
+1223.0 "Burst 3" #Ability { id: "7A97", source: "Galatea Magna" }
+1225.0 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
+1227.0 "Stony Gaze x4" #Ability { id: "7A99", source: "Galatea Magna" }
+1232.0 "Dark Harvest" Ability { id: "7A9F", source: "Galatea Magna" } # first time tankbuster is used
+1244.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1245.7 "--sync--" Ability { id: "7F6F", source: "Galatea Magna" }
+1246.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
 
 # loop
-1256.0 "Soul Scythe" sync / 1[56]:[^:]*:Galatea Magna:7A9A:/ window 30,30 jump 1174.3
-1264.0 "Soul Nebula" #sync / 1[56]:[^:]*:Galatea Magna:7A9E:/
-1275.7 "--sync--" #sync / 1[56]:[^:]*:Galatea Magna:7A9B:/
-1277.7 "Scarecrow Chase 1" #sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1280.7 "Scarecrow Chase 2" #sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1283.7 "Scarecrow Chase 3" #sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1286.7 "Scarecrow Chase 4" #sync / 1[56]:[^:]*:Galatea Magna:7FBF:/
-1293.6 "Tenebrism" #sync / 1[56]:[^:]*:Galatea Magna:7A96:/
+1256.0 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" } window 30,30 jump 1174.3
+1264.0 "Soul Nebula" #Ability { id: "7A9E", source: "Galatea Magna" }
+1275.7 "--sync--" #Ability { id: "7A9B", source: "Galatea Magna" }
+1277.7 "Scarecrow Chase 1" #Ability { id: "7FBF", source: "Galatea Magna" }
+1280.7 "Scarecrow Chase 2" #Ability { id: "7FBF", source: "Galatea Magna" }
+1283.7 "Scarecrow Chase 3" #Ability { id: "7FBF", source: "Galatea Magna" }
+1286.7 "Scarecrow Chase 4" #Ability { id: "7FBF", source: "Galatea Magna" }
+1293.6 "Tenebrism" #Ability { id: "7A96", source: "Galatea Magna" }
 
 #~~~~~~~~~~#
 # Cagnazzo #
@@ -135,72 +135,72 @@ hideall "--sync--"
 
 # Deepspine will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10B4:/ window 2000,1
-2015.6 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
-2025.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
-2038.0 "Antediluvian 1" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2042.0 "Antediluvian 2" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2043.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
-2044.3 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
-2046.0 "Antediluvian 3" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2051.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2060.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
-2062.8 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2069.4 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
-2073.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2084.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7A8F:/
-2085.2 "Hydrofall" sync / 1[56]:[^:]*:Cagnazzo:7A90:/
-2095.9 "Cursed Tide" sync / 1[56]:[^:]*:Cagnazzo:799A:/
+2015.6 "Stygian Deluge" Ability { id: "79A3", source: "Cagnazzo" }
+2025.4 "--sync--" Ability { id: "798F", source: "Cagnazzo" }
+2038.0 "Antediluvian 1" Ability { id: "7990", source: "Cagnazzo" }
+2042.0 "Antediluvian 2" Ability { id: "7990", source: "Cagnazzo" }
+2043.3 "--sync--" Ability { id: "7991", source: "Cagnazzo" }
+2044.3 "Body Slam" Ability { id: "(7992|7993)", source: "Cagnazzo" }
+2046.0 "Antediluvian 3" Ability { id: "7990", source: "Cagnazzo" }
+2051.1 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2060.9 "--sync--" Ability { id: "7FB4", source: "Cagnazzo" }
+2062.8 "Hydraulic Ram" duration 6 #Ability { id: "7FB6", source: "Cagnazzo" }
+2069.4 "--sync--" Ability { id: "7996", source: "Cagnazzo" }
+2073.5 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2084.6 "--sync--" Ability { id: "7A8F", source: "Cagnazzo" }
+2085.2 "Hydrofall" Ability { id: "7A90", source: "Cagnazzo" }
+2095.9 "Cursed Tide" Ability { id: "799A", source: "Cagnazzo" }
 
 # add phase
 2099.5 "--untargetable--"
-2099.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2102.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799C:/
-2113.7 "Neap Tide" sync / 1[56]:[^:]*:Cagnazzo:799E:/
-2118.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
-2124.7 "Spring Tide" sync / 1[56]:[^:]*:Cagnazzo:799F:/
-2134.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
-2145.1 "Hydrovent" sync / 1[56]:[^:]*:Cagnazzo:79A0:/
+2099.5 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2102.9 "--sync--" Ability { id: "799C", source: "Cagnazzo" }
+2113.7 "Neap Tide" Ability { id: "799E", source: "Cagnazzo" }
+2118.1 "Hydrovent" Ability { id: "79A0", source: "Cagnazzo" }
+2124.7 "Spring Tide" Ability { id: "799F", source: "Cagnazzo" }
+2134.1 "Hydrovent" Ability { id: "79A0", source: "Cagnazzo" }
+2145.1 "Hydrovent" Ability { id: "79A0", source: "Cagnazzo" }
 # probably more Hydrovent spam here until phase end or enrage
 
 2500.0 "--sync--" sync / 00:0044:Cagnazzo:No more games!/ window 500,0
-2513.0 "Tsunami" sync / 1[56]:[^:]*:Cagnazzo:79A1:/ window 500,1 # if we miss the chatline sync we'll still resync here
+2513.0 "Tsunami" Ability { id: "79A1", source: "Cagnazzo" } window 500,1 # if we miss the chatline sync we'll still resync here
 2516.9 "--targetable--"
-2523.0 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2530.1 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
-2531.0 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
-2540.0 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2546.0 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2546.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
-2547.3 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
-2552.0 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2556.7 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
-2564.5 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2574.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/
-2576.2 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2582.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7996:/
-2586.8 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2597.9 "Stygian Deluge" sync / 1[56]:[^:]*:Cagnazzo:79A3:/
-2609.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:798F:/
-2622.3 "Antediluvian 1" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2626.3 "Antediluvian 2" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2627.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7991:/
-2628.6 "Body Slam" sync / 1[56]:[^:]*:Cagnazzo:(7992|7993):/
-2630.3 "Antediluvian 3" sync / 1[56]:[^:]*:Cagnazzo:7990:/
-2635.3 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2642.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7986:/
-2643.5 "Voidcleaver" sync / 1[56]:[^:]*:Cagnazzo:7987:/
-2652.5 "Void Miasma 1" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2658.5 "Void Miasma 2" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2658.7 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7988:/
-2659.7 "Lifescleaver x8" sync / 1[56]:[^:]*:Cagnazzo:7989:/
-2664.5 "Void Miasma 3" sync / 1[56]:[^:]*:Cagnazzo:7FB3:/
-2669.1 "Void Torrent" sync / 1[56]:[^:]*:Cagnazzo:798E:/
-2676.9 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:799B:/
+2523.0 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2530.1 "--sync--" Ability { id: "7986", source: "Cagnazzo" }
+2531.0 "Voidcleaver" Ability { id: "7987", source: "Cagnazzo" }
+2540.0 "Void Miasma 1" Ability { id: "7FB3", source: "Cagnazzo" }
+2546.0 "Void Miasma 2" Ability { id: "7FB3", source: "Cagnazzo" }
+2546.3 "--sync--" Ability { id: "7988", source: "Cagnazzo" }
+2547.3 "Lifescleaver x8" Ability { id: "7989", source: "Cagnazzo" }
+2552.0 "Void Miasma 3" Ability { id: "7FB3", source: "Cagnazzo" }
+2556.7 "Void Torrent" Ability { id: "798E", source: "Cagnazzo" }
+2564.5 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2574.3 "--sync--" Ability { id: "7FB4", source: "Cagnazzo" }
+2576.2 "Hydraulic Ram" duration 6 #Ability { id: "7FB6", source: "Cagnazzo" }
+2582.8 "--sync--" Ability { id: "7996", source: "Cagnazzo" }
+2586.8 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2597.9 "Stygian Deluge" Ability { id: "79A3", source: "Cagnazzo" }
+2609.7 "--sync--" Ability { id: "798F", source: "Cagnazzo" }
+2622.3 "Antediluvian 1" Ability { id: "7990", source: "Cagnazzo" }
+2626.3 "Antediluvian 2" Ability { id: "7990", source: "Cagnazzo" }
+2627.6 "--sync--" Ability { id: "7991", source: "Cagnazzo" }
+2628.6 "Body Slam" Ability { id: "(7992|7993)", source: "Cagnazzo" }
+2630.3 "Antediluvian 3" Ability { id: "7990", source: "Cagnazzo" }
+2635.3 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
+2642.6 "--sync--" Ability { id: "7986", source: "Cagnazzo" }
+2643.5 "Voidcleaver" Ability { id: "7987", source: "Cagnazzo" }
+2652.5 "Void Miasma 1" Ability { id: "7FB3", source: "Cagnazzo" }
+2658.5 "Void Miasma 2" Ability { id: "7FB3", source: "Cagnazzo" }
+2658.7 "--sync--" Ability { id: "7988", source: "Cagnazzo" }
+2659.7 "Lifescleaver x8" Ability { id: "7989", source: "Cagnazzo" }
+2664.5 "Void Miasma 3" Ability { id: "7FB3", source: "Cagnazzo" }
+2669.1 "Void Torrent" Ability { id: "798E", source: "Cagnazzo" }
+2676.9 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
 
 # loop
-2686.6 "--sync--" sync / 1[56]:[^:]*:Cagnazzo:7FB4:/ window 30,30 jump 2574.3
-2688.5 "Hydraulic Ram" duration 6 #sync / 1[56]:[^:]*:Cagnazzo:7FB6:/
-2695.1 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:7996:/
-2699.2 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:799B:/
-2710.3 "Stygian Deluge" #sync / 1[56]:[^:]*:Cagnazzo:79A3:/
-2722.0 "--sync--" #sync / 1[56]:[^:]*:Cagnazzo:798F:/
+2686.6 "--sync--" Ability { id: "7FB4", source: "Cagnazzo" } window 30,30 jump 2574.3
+2688.5 "Hydraulic Ram" duration 6 #Ability { id: "7FB6", source: "Cagnazzo" }
+2695.1 "--sync--" #Ability { id: "7996", source: "Cagnazzo" }
+2699.2 "--sync--" #Ability { id: "799B", source: "Cagnazzo" }
+2710.3 "Stygian Deluge" #Ability { id: "79A3", source: "Cagnazzo" }
+2722.0 "--sync--" #Ability { id: "798F", source: "Cagnazzo" }
