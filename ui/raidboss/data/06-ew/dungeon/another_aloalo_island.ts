@@ -12,16 +12,17 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: map effects for Lala
 
 export interface Data extends RaidbossData {
-  readonly triggerSetConfig: {
-    stackOrder: 'meleeRolesPartners' | 'rolesPartners';
-  };
   combatantData: PluginCombatantState[];
   ketuSpringCrystalCount: number;
   ketuCrystalAdd: NetMatches['AddedCombatant'][];
   ketuHydroBuffCount: number;
+  ketuHydroBuffIsSpreadFirst?: boolean;
+  ketuHydroBuffIsRoleStacks?: boolean;
   ketuBuff?: 'bubble' | 'fetters';
+  ketuBuffPartner?: string;
   ketuBuffCollect: NetMatches['GainsEffect'][];
   ketuStackTargets: string[];
+  ketuTwintidesNext?: 'out' | 'in';
   lalaBossRotation?: 'clock' | 'counter';
   lalaBossTimes?: 3 | 5;
   lalaBossInitialSafe?: 'north' | 'east' | 'south' | 'west';
@@ -72,6 +73,13 @@ const xyTo5DirBombNum = (x: number, y: number): number => {
     return 5;
   // Find the closest spoke of the pentagram.
   return Math.round(2.5 - 2.5 * Math.atan2(x, y) / Math.PI) % 5;
+};
+
+// TODO: this maybe should be a method on party?
+const isStandardLightParty = (data: Data): boolean => {
+  const supports = [...data.party.healerNames, ...data.party.tankNames];
+  const dps = data.party.dpsNames;
+  return supports.length === 2 && dps.length === 2;
 };
 
 const triggerSet: TriggerSet<Data> = {
@@ -248,6 +256,12 @@ const triggerSet: TriggerSet<Data> = {
       run: (data, matches) => data.ketuCrystalAdd.push(matches),
     },
     {
+      id: 'AAI Ketuduke Bubble Net',
+      type: 'StartsUsing',
+      netRegex: { id: '8AAD', source: 'Ketuduke', capture: false },
+      response: Responses.aoe(),
+    },
+    {
       id: 'AAI Ketuduke Foamy Fetters Bubble Weave',
       type: 'GainsEffect',
       // ECC = Foamy Fetters
@@ -265,12 +279,16 @@ const triggerSet: TriggerSet<Data> = {
         if (myBuff === undefined)
           return;
         data.ketuBuff = myBuff === 'ECC' ? 'fetters' : 'bubble';
+        data.ketuBuffPartner = data.ketuBuffCollect.find((x) => {
+          return x.target !== data.me && x.effectId === myBuff;
+        })?.target;
+        const player = data.party.member(data.ketuBuffPartner);
 
-        const player = data.party.member(
-          data.ketuBuffCollect.find((x) => {
-            return x.target !== data.me && x.effectId === myBuff;
-          })?.target,
-        );
+        // To avoid too many calls, we'll call this out later for the Fluke Gale
+        // versions of this.
+        if (data.ketuSpringCrystalCount === 1 || data.ketuSpringCrystalCount === 4)
+          return;
+
         if (data.ketuBuff === 'fetters')
           return output.fetters!({ player: player });
         return output.bubble!({ player: player });
@@ -291,7 +309,11 @@ const triggerSet: TriggerSet<Data> = {
       // 8AB8 = Hydrobullet (spread)
       // 8AB4 = Hydrofall (stack)
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke', capture: false },
-      run: (data) => data.ketuHydroBuffCount++,
+      run: (data) => {
+        data.ketuHydroBuffCount++;
+        delete data.ketuHydroBuffIsSpreadFirst;
+        delete data.ketuHydroBuffIsRoleStacks;
+      },
     },
     {
       id: 'AAI Ketuduke Hydro Buff 1',
@@ -299,24 +321,55 @@ const triggerSet: TriggerSet<Data> = {
         en: `These directions assume that you always pick a square in the same
              quadrant as the crystal specified.
              For brevity, "next to" always means horizontal east/west of something.
-             The number in parentheses is the limit cut wind you should be on.`,
+             The number in parentheses is the limit cut wind you should be on.
+             See trigger source for diagrams in comments.`,
       },
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
       condition: (data) => data.ketuHydroBuffCount === 1 || data.ketuHydroBuffCount === 6,
       durationSeconds: 8,
       alertText: (data, matches, output) => {
+        if (data.ketuBuff === undefined)
+          return;
+
+        const isPlayerDPS = data.party.isDPS(data.me);
+        const isPartnerDPS = data.ketuBuffPartner !== undefined
+          ? data.party.isDPS(data.ketuBuffPartner)
+          : undefined;
+        const isBubbleNetPartnerSameRole = isPlayerDPS === isPartnerDPS &&
+          isStandardLightParty(data);
+
+        // Simplify callout in vast majority of cases where there's a normal light party setup
+        // and you and the two dps and two supports get the same debuff, so no need to list
+        // your partner.
+        //
+        // Otherwise, if you're doing this nonstandard for some reason or somebody is dead
+        // you can know if you need to flex.
+        const isSpread = matches.id === '8AB8';
+        const bubbleStr = data.ketuBuff === 'bubble' ? output.bubbleBuff!() : output.fettersBuff!();
+        // We don't know about role stacks at this point, as this is just the initial cast bar.
+        const stackStr = isSpread ? output.spread!() : output.stacks!();
+        if (isBubbleNetPartnerSameRole || data.ketuBuffPartner === undefined)
+          return output.bubbleNetMech!({ fettersBubble: bubbleStr, spreadStack: stackStr });
+        return output.bubbleNetMechPartner!({
+          fettersBubble: bubbleStr,
+          spreadStack: stackStr,
+          player: data.party.member(data.ketuBuffPartner),
+        });
+      },
+      infoText: (data, matches, output) => {
         // If somebody died and missed a debuff, good luck.
         if (data.ketuBuff === undefined)
           return;
 
         // Bubble always does the same thing.
         if (data.ketuBuff === 'bubble')
-          return output.bubble!();
+          return output.bubbleAnything!();
 
         // Two layouts, one with each crystal in its own column ("split")
         // and one with two columns that have an H and a V in that same column ("columns").
         // Wind doesn't matter, as "1" will always be on the horizontal crystals.
+        // These can be flipped somewhat, but the solution is always the same.
         //
         // STACK FETTERS COLUMNS (kitty to horizontal)
         //     2                   2
@@ -374,15 +427,24 @@ const triggerSet: TriggerSet<Data> = {
           return isSplitLayout ? output.fettersSpreadSplit!() : output.fettersSpreadColumn!();
         return isSplitLayout ? output.fettersStackSplit!() : output.fettersStackColumn!();
       },
-      infoText: (_data, matches, output) => {
-        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
-      },
       outputStrings: {
+        bubbleNetMech: {
+          en: '${fettersBubble} + ${spreadStack}',
+        },
+        bubbleNetMechPartner: {
+          en: '${fettersBubble} + ${spreadStack} (w/${player})',
+        },
+        bubbleBuff: {
+          en: 'Bubble',
+        },
+        fettersBuff: {
+          en: 'Fetters',
+        },
         spread: Outputs.spread,
         stacks: {
           en: 'Stacks',
         },
-        bubble: {
+        bubbleAnything: {
           en: 'Next to Horizontal (1)',
         },
         fettersSpreadSplit: {
@@ -400,12 +462,13 @@ const triggerSet: TriggerSet<Data> = {
       },
     },
     {
-      id: 'AAI Ketuduke Hydro Buff 2',
+      id: 'AAI Ketuduke Hydro Buff Double',
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
-      condition: (data) => data.ketuHydroBuffCount === 2,
-      alertText: (_data, matches, output) => {
-        return matches.id === '8AB8' ? output.spread!() : output.stacks!();
+      condition: (data) => data.ketuHydroBuffCount === 2 || data.ketuHydroBuffCount === 5,
+      alertText: (data, matches, output) => {
+        data.ketuHydroBuffIsSpreadFirst = matches.id === '8AB8';
+        return data.ketuHydroBuffIsSpreadFirst ? output.spread!() : output.stacks!();
       },
       outputStrings: {
         spread: {
@@ -413,6 +476,31 @@ const triggerSet: TriggerSet<Data> = {
         },
         stacks: {
           en: 'Stacks => Spread',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Hydro Buff Double Followup',
+      type: 'Ability',
+      netRegex: { id: ['8ABA', '8AB7'], source: 'Ketuduke' },
+      suppressSeconds: 10,
+      infoText: (data, matches, output) => {
+        const wasSpread = matches.id === '8ABA';
+        if (wasSpread && data.ketuHydroBuffIsSpreadFirst === true) {
+          if (data.ketuHydroBuffIsRoleStacks)
+            return output.roleStacks!();
+          return output.stacks!();
+        } else if (!wasSpread && data.ketuHydroBuffIsSpreadFirst === false) {
+          return output.spread!();
+        }
+      },
+      outputStrings: {
+        spread: Outputs.spread,
+        stacks: {
+          en: 'Stacks',
+        },
+        roleStacks: {
+          en: 'Role Stacks',
         },
       },
     },
@@ -430,9 +518,7 @@ const triggerSet: TriggerSet<Data> = {
           return;
 
         // Sorry, non-standard light party comps.
-        const supports = [...data.party.healerNames, ...data.party.tankNames];
-        const dps = data.party.dpsNames;
-        if (supports.length !== 2 && dps.length !== 2)
+        if (!isStandardLightParty(data))
           return;
 
         const isStack1DPS = data.party.isDPS(stack1);
@@ -442,13 +528,28 @@ const triggerSet: TriggerSet<Data> = {
         // standard "partner" stacks of one support and one dps. If one is on a dps
         // and one is on a support (which can happen if somebody dies), then
         // you (probably) need to have role stacks.
-        if (isStack1DPS !== isStack2DPS)
-          return output.roleStacks!();
+        if (isStack1DPS === isStack2DPS)
+          return;
+
+        data.ketuHydroBuffIsRoleStacks = true;
+
+        // Handle Blowing Bubbles/Angry Seas spread+stack combo.
+        if (data.ketuHydroBuffIsSpreadFirst === true)
+          return output.spreadThenRoleStacks!();
+        else if (data.ketuHydroBuffIsSpreadFirst === false)
+          return output.roleStacksThenSpread!();
+        return output.roleStacks!();
       },
       run: (data) => data.ketuStackTargets = [],
       outputStrings: {
         roleStacks: {
           en: 'Role Stacks',
+        },
+        spreadThenRoleStacks: {
+          en: 'Spread => Role Stacks',
+        },
+        roleStacksThenSpread: {
+          en: 'Role Stacks => Spread',
         },
       },
     },
@@ -456,20 +557,80 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AAI Ketuduke Receding Twintides',
       type: 'StartsUsing',
       netRegex: { id: '8ACC', source: 'Ketuduke', capture: false },
-      response: Responses.getOutThenIn(),
+      alertText: (data, _matches, output) => {
+        if (data.ketuHydroBuffIsRoleStacks)
+          return output.outInRoleStacks!();
+        return output.outInStacks!();
+      },
+      run: (data) => data.ketuTwintidesNext = 'in',
+      outputStrings: {
+        outInStacks: {
+          en: 'Out => In + Stacks',
+        },
+        outInRoleStacks: {
+          en: 'Out => In + Role Stacks',
+        },
+      },
     },
     {
       id: 'AAI Ketuduke Encroaching Twintides',
       type: 'StartsUsing',
       netRegex: { id: '8ACE', source: 'Ketuduke', capture: false },
-      response: Responses.getInThenOut(),
+      alertText: (data, _matches, output) => {
+        if (data.ketuHydroBuffIsRoleStacks)
+          return output.inOutRoleStacks!();
+        return output.inOutStacks!();
+      },
+      run: (data) => data.ketuTwintidesNext = 'out',
+      outputStrings: {
+        inOutStacks: {
+          en: 'In => Out + Stacks',
+        },
+        inOutRoleStacks: {
+          en: 'In => Out + Role Stacks',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Twintides Followup',
+      type: 'Ability',
+      // 8ABC = Sphere Shatter, which happens slightly after the Twintides hit.
+      // You can technically start moving along the safe Sphere Shatter side 0.5s earlier
+      // after the initial out/in, but this is hard to explain.
+      netRegex: { id: '8ABC', source: 'Ketuduke', capture: false },
+      suppressSeconds: 5,
+      infoText: (data, _matches, output) => {
+        const mech = data.ketuTwintidesNext;
+        if (mech === undefined)
+          return;
+        const mechStr = output[mech]!();
+        const stackStr = data.ketuHydroBuffIsRoleStacks ? output.roleStacks!() : output.stack!();
+        return output.text!({ inOut: mechStr, stack: stackStr });
+      },
+      run: (data) => delete data.ketuTwintidesNext,
+      outputStrings: {
+        text: {
+          en: '${inOut} + ${stack}',
+        },
+        in: Outputs.in,
+        out: Outputs.out,
+        stack: {
+          en: 'Stacks',
+        },
+        roleStacks: {
+          en: 'Role Stacks',
+        },
+      },
     },
     {
       id: 'AAI Ketuduke Spring Crystals 2',
       type: 'AddedCombatant',
-      // This calls absurdly early. <_<
       netRegex: { npcNameId: '12607', capture: false },
       condition: (data) => data.ketuSpringCrystalCount === 2 && data.ketuCrystalAdd.length === 4,
+      // We could call this absurdly early, but knowing this doesn't help with anything
+      // until you know what your debuff is, so move it later both so it is less absurd
+      // futuresight and so you don't have to remember it as long.
+      delaySeconds: 5,
       alertText: (data, _matches, output) => {
         const horizontal = data.ketuCrystalAdd.filter((x) => isHorizontalCrystal(x));
         const vertical = data.ketuCrystalAdd.filter((x) => !isHorizontalCrystal(x));
@@ -503,6 +664,29 @@ const triggerSet: TriggerSet<Data> = {
         },
         cornersSafe: {
           en: 'Corners',
+        },
+      },
+    },
+    {
+      id: 'AAI Ketuduke Angry Seas',
+      type: 'StartsUsing',
+      netRegex: { id: '8AC1', source: 'Ketuduke', capture: false },
+      alertText: (data, _matches, output) => {
+        if (data.ketuHydroBuffIsSpreadFirst)
+          return output.knockbackSpread!();
+        if (data.ketuHydroBuffIsRoleStacks)
+          return output.knockbackRoleStacks!();
+        return output.knockbackStacks!();
+      },
+      outputStrings: {
+        knockbackSpread: {
+          en: 'Knockback => Spread',
+        },
+        knockbackStacks: {
+          en: 'Knockback => Stacks',
+        },
+        knockbackRoleStacks: {
+          en: 'Knockback => Role Stacks',
         },
       },
     },
@@ -569,13 +753,18 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AAI Islekeeper Isle Drop',
       type: 'StartsUsing',
       netRegex: { id: '8C6F', source: 'Aloalo Islekeeper', capture: false },
-      response: Responses.getBehind('info'),
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Get Behind + Out',
+        },
+      },
     },
     {
       id: 'AAI Islekeeper Ancient Quaga',
       type: 'StartsUsing',
       netRegex: { id: '8C4E', source: 'Aloalo Islekeeper', capture: false },
-      response: Responses.aoe(),
+      response: Responses.bleedAoe(),
     },
     {
       id: 'AAI Islekeeper Ancient Quaga Enrage',
