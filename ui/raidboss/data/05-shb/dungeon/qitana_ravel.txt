@@ -8,31 +8,31 @@ hideall "--sync--"
 # The Divine Threshold will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCC:/ window 100,0
 
-113.7 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/ window 114,5
-121.0 "Sun Toss" sync / 1[56]:[^:]*:Lozatl:3C8A:/
-127.2 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
-137.5 "Sun Toss" sync / 1[56]:[^:]*:Lozatl:3C8A:/
-137.5 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
-145.1 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
-151.5 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
+113.7 "Stonefist" Ability { id: "3C89", source: "Lozatl" } window 114,5
+121.0 "Sun Toss" Ability { id: "3C8A", source: "Lozatl" }
+127.2 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
+137.5 "Sun Toss" Ability { id: "3C8A", source: "Lozatl" }
+137.5 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+145.1 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
+151.5 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
 
-161.2 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/
-168.1 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
-173.2 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
-182.7 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
-183.4 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
-191.4 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
-196.7 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+161.2 "Stonefist" Ability { id: "3C89", source: "Lozatl" }
+168.1 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
+173.2 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
+182.7 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
+183.4 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+191.4 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
+196.7 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 
-207.9 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/
-222.9 "Heat Up" sync / 1[56]:[^:]*:Lozatl:3C8[DE]:/
-228.1 "Lozatl's Scorn" sync / 1[56]:[^:]*:Lozatl:3C8B:/
-237.4 "Lozatl's Fury" sync / 1[56]:[^:]*:Lozatl:(3C8F|3C90):/
-238.5 "Ronkan Light" sync / 1[56]:[^:]*:Lozatl:(3D6D|3C8C):/
-246.2 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
-251.5 "Sun Toss" #sync / 1[56]:[^:]*:Lozatl:3C8A:/
+207.9 "Stonefist" Ability { id: "3C89", source: "Lozatl" }
+222.9 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
+228.1 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
+237.4 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
+238.5 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+246.2 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
+251.5 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 
-262.9 "Stonefist" sync / 1[56]:[^:]*:Lozatl:3C89:/ window 50,50 jump 207.9
+262.9 "Stonefist" Ability { id: "3C89", source: "Lozatl" } window 50,50 jump 207.9
 277.9 "Heat Up"
 283.1 "Lozatl's Scorn"
 292.4 "Lozatl's Fury"
@@ -46,23 +46,23 @@ hideall "--sync--"
 # Shadowed Hollow will be sealed off
 500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCF:/ window 500,0
 
-514.5 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/ window 515,5
-525.7 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
-542.2 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
-559.8 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
-563.6 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+514.5 "Ripper Fang" Ability { id: "3C91", source: "Batsquatch" } window 515,5
+525.7 "Soundwave" Ability { id: "3C92", source: "Batsquatch" }
+542.2 "Subsonics" Ability { id: "3C93", source: "Batsquatch" } duration 6.1
+559.8 "Soundwave" Ability { id: "3C92", source: "Batsquatch" }
+563.6 "Towerfall" Ability { id: "3C98", source: "Batsquatch" }
 
-571.4 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/
-588.0 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
-605.6 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
-609.4 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+571.4 "Ripper Fang" Ability { id: "3C91", source: "Batsquatch" }
+588.0 "Subsonics" Ability { id: "3C93", source: "Batsquatch" } duration 6.1
+605.6 "Soundwave" Ability { id: "3C92", source: "Batsquatch" }
+609.4 "Towerfall" Ability { id: "3C98", source: "Batsquatch" }
 
-616.5 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/
-636.9 "Subsonics" sync / 1[56]:[^:]*:Batsquatch:3C93:/ duration 6.1
-654.5 "Soundwave" sync / 1[56]:[^:]*:Batsquatch:3C92:/
-658.3 "Towerfall" sync / 1[56]:[^:]*:Batsquatch:3C98:/
+616.5 "Ripper Fang" Ability { id: "3C91", source: "Batsquatch" }
+636.9 "Subsonics" Ability { id: "3C93", source: "Batsquatch" } duration 6.1
+654.5 "Soundwave" Ability { id: "3C92", source: "Batsquatch" }
+658.3 "Towerfall" Ability { id: "3C98", source: "Batsquatch" }
 
-666.1 "Ripper Fang" sync / 1[56]:[^:]*:Batsquatch:3C91:/ window 20,20 jump 571.4
+666.1 "Ripper Fang" Ability { id: "3C91", source: "Batsquatch" } window 20,20 jump 571.4
 682.7 "Subsonics"
 700.3 "Soundwave"
 704.1 "Towerfall"
@@ -78,32 +78,32 @@ hideall "--sync--"
 # The Song of Ox'Gatorl will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD2:/ window 1000,0
 
-1015.0 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/ window 1015,5
-1026.2 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
-1036.1 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
-1048.3 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/
-1050.9 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
-1057.6 "Inhale" sync / 1[56]:[^:]*:Eros:4310:/
-1063.2 "Heaving Breath" sync / 1[56]:[^:]*:Eros:3CA0:/
-1075.9 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
-1083.3 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
-1092.0 "Confession Of Faith" sync / 1[56]:[^:]*:Eros:3CA[14]:/
-1107.8 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
+1015.0 "Rend" Ability { id: "3C99", source: "Eros" } window 1015,5
+1026.2 "Hound Out Of Heaven" Ability { id: "3C9A", source: "Eros" }
+1036.1 "Glossolalia" Ability { id: "3C9B", source: "Eros" }
+1048.3 "Viper Poison" Ability { id: "3C9C", source: "Eros" }
+1050.9 "Jump" Ability { id: "3C9F", source: "Eros" }
+1057.6 "Inhale" Ability { id: "4310", source: "Eros" }
+1063.2 "Heaving Breath" Ability { id: "3CA0", source: "Eros" }
+1075.9 "Rend" Ability { id: "3C99", source: "Eros" }
+1083.3 "Jump" Ability { id: "3C9F", source: "Eros" }
+1092.0 "Confession Of Faith" Ability { id: "3CA[14]", source: "Eros" }
+1107.8 "Hound Out Of Heaven" Ability { id: "3C9A", source: "Eros" }
 
-1122.6 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/
-1125.5 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
-1132.1 "Inhale" sync / 1[56]:[^:]*:Eros:4310:/
-1137.7 "Heaving Breath" sync / 1[56]:[^:]*:Eros:3CA0:/
-1150.5 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
-1162.8 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
-1170.7 "Jump" sync / 1[56]:[^:]*:Eros:3C9F:/
-1179.3 "Confession Of Faith" sync / 1[56]:[^:]*:Eros:3CA[14]:/
-1193.1 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
-1202.3 "Glossolalia" sync / 1[56]:[^:]*:Eros:3C9B:/
-1213.5 "Hound Out Of Heaven" sync / 1[56]:[^:]*:Eros:3C9A:/
-1224.4 "Rend" sync / 1[56]:[^:]*:Eros:3C99:/
+1122.6 "Viper Poison" Ability { id: "3C9C", source: "Eros" }
+1125.5 "Jump" Ability { id: "3C9F", source: "Eros" }
+1132.1 "Inhale" Ability { id: "4310", source: "Eros" }
+1137.7 "Heaving Breath" Ability { id: "3CA0", source: "Eros" }
+1150.5 "Rend" Ability { id: "3C99", source: "Eros" }
+1162.8 "Hound Out Of Heaven" Ability { id: "3C9A", source: "Eros" }
+1170.7 "Jump" Ability { id: "3C9F", source: "Eros" }
+1179.3 "Confession Of Faith" Ability { id: "3CA[14]", source: "Eros" }
+1193.1 "Glossolalia" Ability { id: "3C9B", source: "Eros" }
+1202.3 "Glossolalia" Ability { id: "3C9B", source: "Eros" }
+1213.5 "Hound Out Of Heaven" Ability { id: "3C9A", source: "Eros" }
+1224.4 "Rend" Ability { id: "3C99", source: "Eros" }
 
-1237.6 "Viper Poison" sync / 1[56]:[^:]*:Eros:3C9C:/ window 100,100 jump 1122.6
+1237.6 "Viper Poison" Ability { id: "3C9C", source: "Eros" } window 100,100 jump 1122.6
 1240.5 "Jump"
 1247.1 "Inhale"
 1252.7 "Heaving Breath"
