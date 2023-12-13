@@ -31,6 +31,7 @@ export interface Data extends RaidbossData {
   lalaSubAlpha: NetMatches['GainsEffect'][];
   staticeBullet: NetMatches['Ability'][];
   staticeTriggerHappy?: number;
+  staticePopTriggerHappyNum?: number;
   staticeTrapshooting: ('stack' | 'spread' | undefined)[];
   staticeDart: NetMatches['GainsEffect'][];
   staticeBombRotateCount: number;
@@ -1188,20 +1189,49 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.staticeDart = [],
     },
     {
+      id: 'AAI Statice Surprise Balloon Reminder',
+      // This is an early reminder for the following Trigger Happy with knockback.
+      // However, because there's a tight window to immuune both knockbacks,
+      // call this ~15s early (in case anybody forgot).
+      type: 'StartsUsing',
+      netRegex: { id: '894D', source: 'Statice', capture: false },
+      infoText: (data, _matches, output) => {
+        const num = data.staticeTriggerHappy;
+        if (num === undefined)
+          return;
+        // We'll re-call this out with the knockback warning.
+        // However, also clear `data.staticeTriggerHappy` to avoid double callouts.
+        data.staticePopTriggerHappyNum = num;
+        return output.numSafeSoon!({ num: output[`num${num}`]!() });
+      },
+      run: (data) => delete data.staticeTriggerHappy,
+      outputStrings: {
+        numSafeSoon: {
+          en: '(${num} safe soon)',
+        },
+        num1: Outputs.num1,
+        num2: Outputs.num2,
+        num3: Outputs.num3,
+        num4: Outputs.num4,
+        num5: Outputs.num5,
+        num6: Outputs.num6,
+      },
+    },
+    {
       id: 'AAI Statice Pop',
       type: 'StartsUsing',
       // TODO: this might need a slight delay
       netRegex: { id: '894E', source: 'Statice', capture: false },
       suppressSeconds: 20,
       alertText: (data, _matches, output) => {
-        const num = data.staticeTriggerHappy;
+        const num = data.staticePopTriggerHappyNum;
         if (num === undefined)
           return output.knockback!();
 
         const numStr = output[`num${num}`]!();
         return output.knockbackToNum!({ num: numStr });
       },
-      run: (data) => delete data.staticeTriggerHappy,
+      run: (data) => delete data.staticePopTriggerHappyNum,
       outputStrings: {
         knockbackToNum: {
           en: 'Knockback => ${num}',
@@ -1565,6 +1595,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'AAI Statice Pinwheeling Dartboard Color',
       type: 'AddedCombatant',
       netRegex: { npcNameId: '12507' },
+      durationSeconds: 6,
       response: (data, matches, output) => {
         // cactbot-builtin-response
         output.responseOutputStrings = {
