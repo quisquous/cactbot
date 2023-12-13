@@ -11,115 +11,115 @@ hideall "Flame"
 # spread: knockback => in => spread+lightning
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/ window 7,3
-13.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-20.1 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
+6.9 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" } window 7,3
+13.0 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+20.1 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
 
-34.6 "Classical (spread)" sync / 1[56]:[^:]*:Alte Roite:1EDC:/ window 80,80
-37.7 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-41.8 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:1ED7:/
-51.9 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-57.2 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-60.5 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-66.6 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-72.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-78.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-90.0 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
-96.1 "Clamp" sync / 1[56]:[^:]*:Alte Roite:1EDE:/
-98.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-103.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-109.4 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-117.4 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-120.5 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-122.5 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-127.6 "Blaze" sync / 1[56]:[^:]*:Alte Roite:1EDD:/
-134.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-140.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-148.0 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
-158.1 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-164.2 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-170.4 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-177.5 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:1ED3:/
-184.7 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
+34.6 "Classical (spread)" Ability { id: "1EDC", source: "Alte Roite" } window 80,80
+37.7 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+41.8 "Flash Freeze" Ability { id: "1ED7", source: "Alte Roite" }
+51.9 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+57.2 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+60.5 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+66.6 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+72.8 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+78.9 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+90.0 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
+96.1 "Clamp" Ability { id: "1EDE", source: "Alte Roite" }
+98.2 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+103.3 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+109.4 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+117.4 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+120.5 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+122.5 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+127.6 "Blaze" Ability { id: "1EDD", source: "Alte Roite" }
+134.8 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+140.9 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+148.0 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
+158.1 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+164.2 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+170.4 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+177.5 "Charybdis" Ability { id: "1ED3", source: "Alte Roite" }
+184.7 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
 
 
 ###### 2nd Classical Elements
 # safe: knockback safe spot => spread+lightning
 
-195.1 "Classical (safe)" sync / 1[56]:[^:]*:Alte Roite:1EDC:/ window 80,80
-198.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-204.8 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:1ED7:/
-213.9 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-217.7 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-223.0 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-225.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-230.3 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:1ED7:/
-240.7 "Breath Wing" sync / 1[56]:[^:]*:Alte Roite:1ED6:/
-244.8 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-248.6 "Clamp" sync / 1[56]:[^:]*:Alte Roite:1EDE:/
-255.7 "Blaze" sync / 1[56]:[^:]*:Alte Roite:1EDD:/
-262.8 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-269.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-275.1 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-286.2 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:1ED3:/
-294.3 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
-300.5 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-308.6 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-317.7 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-319.7 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-327.4 "Clamp" sync / 1[56]:[^:]*:Alte Roite:1EDE:/
-327.8 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-333.5 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-339.6 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
+195.1 "Classical (safe)" Ability { id: "1EDC", source: "Alte Roite" } window 80,80
+198.2 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+204.8 "Flash Freeze" Ability { id: "1ED7", source: "Alte Roite" }
+213.9 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+217.7 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+223.0 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+225.2 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+230.3 "Flash Freeze" Ability { id: "1ED7", source: "Alte Roite" }
+240.7 "Breath Wing" Ability { id: "1ED6", source: "Alte Roite" }
+244.8 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+248.6 "Clamp" Ability { id: "1EDE", source: "Alte Roite" }
+255.7 "Blaze" Ability { id: "1EDD", source: "Alte Roite" }
+262.8 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+269.0 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+275.1 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+286.2 "Charybdis" Ability { id: "1ED3", source: "Alte Roite" }
+294.3 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
+300.5 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+308.6 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+317.7 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+319.7 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+327.4 "Clamp" Ability { id: "1EDE", source: "Alte Roite" }
+327.8 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+333.5 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+339.6 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
 
 
 ###### 3rd Classical Elements
 # stack: knockback => in => blaze stack
 
-350.0 "Classical (stack)" sync / 1[56]:[^:]*:Alte Roite:1EDC:/ window 80,80
-353.1 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-356.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-361.3 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:1ED7:/
-371.4 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-372.3 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-375.8 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-380.6 "Blaze" sync / 1[56]:[^:]*:Alte Roite:1EDD:/
-387.7 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-393.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-400.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-411.1 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
-417.2 "Clamp" sync / 1[56]:[^:]*:Alte Roite:1EDE:/
-419.4 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-424.5 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-430.6 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-438.6 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-441.7 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-443.7 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-448.9 "Blaze" sync / 1[56]:[^:]*:Alte Roite:1EDD:/
+350.0 "Classical (stack)" Ability { id: "1EDC", source: "Alte Roite" } window 80,80
+353.1 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+356.2 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+361.3 "Flash Freeze" Ability { id: "1ED7", source: "Alte Roite" }
+371.4 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+372.3 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+375.8 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+380.6 "Blaze" Ability { id: "1EDD", source: "Alte Roite" }
+387.7 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+393.9 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+400.0 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+411.1 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
+417.2 "Clamp" Ability { id: "1EDE", source: "Alte Roite" }
+419.4 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+424.5 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+430.6 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+438.6 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+441.7 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+443.7 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+448.9 "Blaze" Ability { id: "1EDD", source: "Alte Roite" }
 
 
 ##### 4th Classical Elements
 # spread: knockback => in => spread+lightning
 
-460.3 "Classical (spread)" sync / 1[56]:[^:]*:Alte Roite:1EDC:/ window 80,80
-463.4 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-467.5 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:1ED7:/
-477.6 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-483.0 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-486.3 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-492.4 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-498.6 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-504.7 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:1ECE:/
-515.8 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:1ED3:/
-523.9 "Twin Bolt" sync / 1[56]:[^:]*:Alte Roite:1ECF:/
-530.1 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-538.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-547.4 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:1ED1:/
-549.4 "Inner Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-557.1 "Clamp" sync / 1[56]:[^:]*:Alte Roite:1EDE:/
-557.6 "Outer Fireballs" sync / 1[56]:[^:]*:Ball Of Fire:1ECB:/
-563.3 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
-569.5 "Roar" sync / 1[56]:[^:]*:Alte Roite:1ED4:/
+460.3 "Classical (spread)" Ability { id: "1EDC", source: "Alte Roite" } window 80,80
+463.4 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+467.5 "Flash Freeze" Ability { id: "1ED7", source: "Alte Roite" }
+477.6 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+483.0 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+486.3 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+492.4 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+498.6 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+504.7 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
+515.8 "Charybdis" Ability { id: "1ED3", source: "Alte Roite" }
+523.9 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }
+530.1 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+538.3 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+547.4 "Levinbolt" Ability { id: "1ED1", source: "Alte Roite" }
+549.4 "Inner Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+557.1 "Clamp" Ability { id: "1EDE", source: "Alte Roite" }
+557.6 "Outer Fireballs" Ability { id: "1ECB", source: "Ball Of Fire" }
+563.3 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
+569.5 "Roar" Ability { id: "1ED4", source: "Alte Roite" }
 
-571.7 "Flame" sync / 1[56]:[^:]*:Alte Roite:1ED5:/
-589.0 "Enrage" sync / 1[56]:[^:]*:Ball Of Fire:23E4:/
+571.7 "Flame" Ability { id: "1ED5", source: "Alte Roite" }
+589.0 "Enrage" Ability { id: "23E4", source: "Ball Of Fire" }

@@ -11,23 +11,23 @@ hideall "--sync--"
 
 # The Scorpion's Den will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:9B7:/ window 0,1
-10.4 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/
-25.8 "Hailfire" sync / 1[56]:[^:]*:Hedetet:3194:/ window 25,30
-29.8 "Resonant Frequency" sync / 1[56]:[^:]*:Dim Crystal:3198:/
-39.8 "Shardstrike" sync / 1[56]:[^:]*:Hedetet:3195:/
-53.9 "Shardfall" sync / 1[56]:[^:]*:Hedetet:3191:/
-62.0 "Dissonance" sync / 1[56]:[^:]*:Hedetet:3192:/ window 30,30
-69.1 "Crystalline Fracture" sync / 1[56]:[^:]*:Dim Crystal:3197:/
+10.4 "Crystal Needle" Ability { id: "3193", source: "Hedetet" }
+25.8 "Hailfire" Ability { id: "3194", source: "Hedetet" } window 25,30
+29.8 "Resonant Frequency" Ability { id: "3198", source: "Dim Crystal" }
+39.8 "Shardstrike" Ability { id: "3195", source: "Hedetet" }
+53.9 "Shardfall" Ability { id: "3191", source: "Hedetet" }
+62.0 "Dissonance" Ability { id: "3192", source: "Hedetet" } window 30,30
+69.1 "Crystalline Fracture" Ability { id: "3197", source: "Dim Crystal" }
 
-74.2 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/ window 20,20
-83.4 "--jump--" sync / 1[56]:[^:]*:Hedetet:3196:/
-92.8 "Hailfire" sync / 1[56]:[^:]*:Hedetet:3194:/ window 30,30
-103.9 "Shardstrike" sync / 1[56]:[^:]*:Hedetet:3195:/
-118.1 "Shardfall" sync / 1[56]:[^:]*:Hedetet:3191:/
-126.1 "Dissonance" sync / 1[56]:[^:]*:Hedetet:3192:/ window 30,30
-133.2 "Crystalline Fracture" sync / 1[56]:[^:]*:Dim Crystal:3197:/
+74.2 "Crystal Needle" Ability { id: "3193", source: "Hedetet" } window 20,20
+83.4 "--jump--" Ability { id: "3196", source: "Hedetet" }
+92.8 "Hailfire" Ability { id: "3194", source: "Hedetet" } window 30,30
+103.9 "Shardstrike" Ability { id: "3195", source: "Hedetet" }
+118.1 "Shardfall" Ability { id: "3191", source: "Hedetet" }
+126.1 "Dissonance" Ability { id: "3192", source: "Hedetet" } window 30,30
+133.2 "Crystalline Fracture" Ability { id: "3197", source: "Dim Crystal" }
 
-138.3 "Crystal Needle" sync / 1[56]:[^:]*:Hedetet:3193:/ window 20,20 jump 74.2
+138.3 "Crystal Needle" Ability { id: "3193", source: "Hedetet" } window 20,20 jump 74.2
 147.5 "--jump--"
 156.9 "Hailfire"
 168.0 "Shardstrike"
@@ -41,23 +41,23 @@ hideall "--sync--"
 
 # The Gamma Segregate will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:9BA:/ window 1000,5
-1012.7 "Aetherochemical Flame" sync / 1[56]:[^:]*:Defective Drone:2D73:/
-1026.7 "Aetherochemical Residue" sync / 1[56]:[^:]*:Defective Drone:2D74:/
+1012.7 "Aetherochemical Flame" Ability { id: "2D73", source: "Defective Drone" }
+1026.7 "Aetherochemical Residue" Ability { id: "2D74", source: "Defective Drone" }
 1030.9 "--untargetable--"
-1039.1 "Full Throttle" sync / 1[56]:[^:]*:Defective Drone:2D75:/ window 39,30
+1039.1 "Full Throttle" Ability { id: "2D75", source: "Defective Drone" } window 39,30
 1042.2 "--targetable--"
 
-1059.3 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/ window 30,15
-1074.5 "Adit Driver" # sync / 1[56]:[^:]*:Rock Biter:2D78:/
-1080.4 "Aetherochemical Flame" sync / 1[56]:[^:]*:Defective Drone:2D73:/
-1094.5 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/
-1111.7 "Aetherochemical Residue" sync / 1[56]:[^:]*:Defective Drone:2D74:/
+1059.3 "Aetherochemical Coil" Ability { id: "2D72", source: "Defective Drone" } window 30,15
+1074.5 "Adit Driver" # Ability { id: "2D78", source: "Rock Biter" }
+1080.4 "Aetherochemical Flame" Ability { id: "2D73", source: "Defective Drone" }
+1094.5 "Aetherochemical Coil" Ability { id: "2D72", source: "Defective Drone" }
+1111.7 "Aetherochemical Residue" Ability { id: "2D74", source: "Defective Drone" }
 1115.6 "--untargetable--"
-1123.8 "Full Throttle" sync / 1[56]:[^:]*:Defective Drone:2D75:/ window 30,30
-1123.8 "Adit Driver" # sync / 1[56]:[^:]*:Rock Biter:2D78:/
+1123.8 "Full Throttle" Ability { id: "2D75", source: "Defective Drone" } window 30,30
+1123.8 "Adit Driver" # Ability { id: "2D78", source: "Rock Biter" }
 1126.9 "--targetable--"
 
-1144.0 "Aetherochemical Coil" sync / 1[56]:[^:]*:Defective Drone:2D72:/ window 30,15 jump 1059.3
+1144.0 "Aetherochemical Coil" Ability { id: "2D72", source: "Defective Drone" } window 30,15 jump 1059.3
 1159.2 "Adit Driver"
 1165.1 "Aetherochemical Flame"
 1179.2 "Aetherochemical Coil"
@@ -70,42 +70,42 @@ hideall "--sync--"
 
 # The Aspersory will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:9BD:/ window 2000,5
-2013.2 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2021.4 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
-2030.7 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
-2050.9 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2013.2 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2021.4 "Frost Breath" Ability { id: "314C", source: "Mist Dragon" }
+2030.7 "Fog Plume" Ability { id: "3144", source: "Mist Dragon" }
+2050.9 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
 
 
-2061.9 "Vaporize" sync / 1[56]:[^:]*:Mist Dragon:3140:/ window 62,30
+2061.9 "Vaporize" Ability { id: "3140", source: "Mist Dragon" } window 62,30
 2064.1 "--untargetable--"
 2073.1 "--targetable--"
-2093.1 "Cold Fog" sync / 1[56]:[^:]*:Mist Dragon:3141:/
-2104.4 "Chilling Aspiration" sync / 1[56]:[^:]*:Mist Dragon:314D:/
-2111.6 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
-2119.7 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
-2137.9 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2152.2 "Deep Fog" sync / 1[56]:[^:]*:Mist Dragon:3147:/ window 150,30
+2093.1 "Cold Fog" Ability { id: "3141", source: "Mist Dragon" }
+2104.4 "Chilling Aspiration" Ability { id: "314D", source: "Mist Dragon" }
+2111.6 "Frost Breath" Ability { id: "314C", source: "Mist Dragon" }
+2119.7 "Fog Plume" Ability { id: "3144", source: "Mist Dragon" }
+2137.9 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2152.2 "Deep Fog" Ability { id: "3147", source: "Mist Dragon" } window 150,30
 2157.3 "--untargetable--"
-2167.4 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
-2178.0 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
-2187.0 "--targetable--" sync / 1[56]:[^:]*:Mist Dragon:314A:/
-2196.2 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2205.4 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2214.6 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2224.8 "Chilling Aspiration" sync / 1[56]:[^:]*:Mist Dragon:314D:/ window 30,30
-2232.0 "Frost Breath" sync / 1[56]:[^:]*:Mist Dragon:314C:/
-2240.1 "Fog Plume" sync / 1[56]:[^:]*:Mist Dragon:3144:/
-2254.3 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2263.5 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
-2273.7 "Deep Fog" sync / 1[56]:[^:]*:Mist Dragon:3147:/ window 30,30
+2167.4 "Cauterize" Ability { id: "3148", source: "Mist Dragon" }
+2178.0 "Cauterize" Ability { id: "3148", source: "Mist Dragon" }
+2187.0 "--targetable--" Ability { id: "314A", source: "Mist Dragon" }
+2196.2 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2205.4 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2214.6 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2224.8 "Chilling Aspiration" Ability { id: "314D", source: "Mist Dragon" } window 30,30
+2232.0 "Frost Breath" Ability { id: "314C", source: "Mist Dragon" }
+2240.1 "Fog Plume" Ability { id: "3144", source: "Mist Dragon" }
+2254.3 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2263.5 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
+2273.7 "Deep Fog" Ability { id: "3147", source: "Mist Dragon" } window 30,30
 2278.8 "--untargetable--"
-2288.9 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
-2299.5 "Cauterize" sync / 1[56]:[^:]*:Mist Dragon:3148:/
-2308.5 "--targetable--" sync / 1[56]:[^:]*:Mist Dragon:314A:/
-2317.7 "Rime Wreath" sync / 1[56]:[^:]*:Mist Dragon:314B:/
+2288.9 "Cauterize" Ability { id: "3148", source: "Mist Dragon" }
+2299.5 "Cauterize" Ability { id: "3148", source: "Mist Dragon" }
+2308.5 "--targetable--" Ability { id: "314A", source: "Mist Dragon" }
+2317.7 "Rime Wreath" Ability { id: "314B", source: "Mist Dragon" }
 
 
-2329.8 "Vaporize" sync / 1[56]:[^:]*:Mist Dragon:3140:/ window 30,30 jump 2061.9
+2329.8 "Vaporize" Ability { id: "3140", source: "Mist Dragon" } window 30,30 jump 2061.9
 2332.0 "--untargetable--"
 2341.0 "--targetable--"
 2361.0 "Cold Fog"
