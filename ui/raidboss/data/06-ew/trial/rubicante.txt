@@ -12,7 +12,7 @@ hideall "Infernal Slaughter"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 14:[^:]*:Rubicante:7CEA:/ window 10,10
+7.0 "--sync--" StartsUsing { id: "7CEA", source: "Rubicante" } window 10,10
 12.0 "Inferno" Ability { id: "7CEA", source: "Rubicante" }
 
 # Phase 1 (Purgations & Arch Inferno)
@@ -54,7 +54,7 @@ hideall "Infernal Slaughter"
 1022.2 "Shattering Heat" Ability { id: "7CD5", source: "Flamesent" }
 
 # Phase 2 (Flamerake & Sweeping Immolation)
-1986.4 "--sync--"  sync / 14:[^:]*:Rubicante:7CD2:/ window 1000,0
+1986.4 "--sync--"  StartsUsing { id: "7CD2", source: "Rubicante" } window 1000,0
 1986.4 "--targetable--"
 2000.0 "Blazing Rapture" Ability { id: "7CD2", source: "Rubicante" }
 2013.4 "--untargetable--"

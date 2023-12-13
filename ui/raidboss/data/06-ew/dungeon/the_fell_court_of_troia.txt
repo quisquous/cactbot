@@ -19,25 +19,25 @@ hideall "--sync--"
 # Penitence will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1058:/ window 10000,0
 
-1200.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73B8:/ window 200,0
+1200.0 "--sync--" StartsUsing { id: "73B8", source: "Evil Dreamer" } window 200,0
 1208.0 "Dark Vision" Ability { id: "73B8", source: "Evil Dreamer" }
 
-1200.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73B8:/ window 200,0
+1200.0 "--sync--" StartsUsing { id: "73B8", source: "Evil Dreamer" } window 200,0
 1408.0 "Dark Vision" Ability { id: "73B8", source: "Evil Dreamer" }
 1408.0 "Void Gravity" Ability { id: "73BA", source: "Evil Dreamer" }
 
-1600.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73BB:/ window 200,0
+1600.0 "--sync--" StartsUsing { id: "73BB", source: "Evil Dreamer" } window 200,0
 1608.0 "Dark Vision" Ability { id: "73BB", source: "Evil Dreamer" }
 1608.0 "Unite Mare" Ability { id: "73BC", source: "Evil Dreamer" }
 
-1800.0 "--sync--" sync / 14:[^:]*:Evil Dreamer:73BE:/ window 200,0
+1800.0 "--sync--" StartsUsing { id: "73BE", source: "Evil Dreamer" } window 200,0
 1817.0 "Unite Mare" Ability { id: "73B6", source: "Evil Dreamer" }
 1828.0 "Unite Mare" Ability { id: "73B6", source: "Evil Dreamer" }
 # guessing at these
 1839.0 "Unite Mare" Ability { id: "73B6", source: "Evil Dreamer" }
 1850.0 "Unite Mare" Ability { id: "73B6", source: "Evil Dreamer" }
 
-1860.0 "Endless Nightmare Enrage" sync / 14:[^:]*:Evil Dreamer:73BE:/
+1860.0 "Endless Nightmare Enrage" StartsUsing { id: "73BE", source: "Evil Dreamer" }
 
 
 #~~~~~~~~~~#

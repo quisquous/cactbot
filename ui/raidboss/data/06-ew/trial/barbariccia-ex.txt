@@ -9,13 +9,13 @@ hideall "Brush with Death"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.1 "--sync--" sync / 14:[^:]*:Barbariccia:7570:/ window 11,10
+10.1 "--sync--" StartsUsing { id: "7570", source: "Barbariccia" } window 11,10
 15.1 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 22.3 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
 
 # Pattern 1a, linked with pattern 2a through 757A+7575 and 757A+757B
 # 6? Possible Spell Ids
-25.7 "--sync--" sync / 14:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/ window 10,10
+25.7 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
 31.7 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
 32.7 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
 34.8 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
@@ -29,7 +29,7 @@ hideall "Brush with Death"
 51.0 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
 
 # Pattern 2a
-54.4 "--sync--" sync / 14:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/ window 10,10
+54.4 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
 60.4 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
 61.4 "Savage Barbery (donut/line)" Ability { id: "(757A|7574)", source: "Barbariccia" }
 63.5 "Savage Barbery (out)" Ability { id: "(757B|7575)", source: "Barbariccia" }
@@ -129,7 +129,7 @@ hideall "Brush with Death"
 338.2 "Secret Breeze (protean)" #Ability { id: "7581", source: "Barbariccia" }
 
 # Pattern 3a, linked with pattern 4a through 757A+7575 and 757A+757B
-341.4 "--sync--" sync / 14:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/ window 10,10
+341.4 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
 347.4 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
 348.4 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
 350.5 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
@@ -153,7 +153,7 @@ hideall "Brush with Death"
 409.2 "Upbraid" Ability { id: "75A8", source: "Barbariccia" }
 
 # Pattern 4a
-410.7 "--sync--" sync / 14:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/ window 10,10
+410.7 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
 416.7 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
 417.7 "Savage Barbery (donut/line)" Ability { id: "(757A|7574)", source: "Barbariccia" }
 419.8 "Savage Barbery (out)" Ability { id: "(757B|7575)", source: "Barbariccia" }
@@ -224,7 +224,7 @@ hideall "Brush with Death"
 622.9 "Secret Breeze (protean)" #Ability { id: "7581", source: "Barbariccia" }
 
 # Pattern 5a
-626.2 "--sync--" sync / 14:[^:]*:Barbariccia:(7573|7464|7465|7466|7489|748B):/ window 10,10
+626.2 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
 632.2 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
 633.2 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
 635.3 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
@@ -239,5 +239,5 @@ hideall "Brush with Death"
 658.6 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 660.7 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
 
-664.0 "--sync--" sync / 14:[^:]*:Barbariccia:75BE:/ window 700,10
+664.0 "--sync--" StartsUsing { id: "75BE", source: "Barbariccia" } window 700,10
 673.0 "Maelstrom (enrage)" Ability { id: "75BE", source: "Barbariccia" }

@@ -19,7 +19,7 @@ hideall "--sync--"
 
 # Trial of Knowledge is sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DD:[^:]*:1087:/ window 0,1
-12.2 "--sync--" sync / 14:[^:]*:Silkie:777C:/ window 15,15
+12.2 "--sync--" StartsUsing { id: "777C", source: "Silkie" } window 15,15
 14.9 "Fizzling Suds" Ability { id: "777C", source: "Silkie" }
 21.0 "Soap's Up" Ability { id: "777D", source: "Silkie" }
 22.0 "Fizzling Duster" Ability { id: "7780", source: "Silkie" }
@@ -95,7 +95,7 @@ hideall "--sync--"
 316.1 "Slippery Soap" Ability { id: "7781", source: "Silkie" }
 320.0 "Bracing Duster / Chilling Duster / Fizzling Duster" Ability { id: "(7787|7786|7788)", source: "Silkie" }
 
-322.9 "--sync--" sync / 14:[^:]*:Silkie:79E1:/ window 15,5
+322.9 "--sync--" StartsUsing { id: "79E1", source: "Silkie" } window 15,5
 332.9 "Total Wash (enrage)" Ability { id: "79E1", source: "Silkie" }
 338.1 "Total Wash (enrage)" Ability { id: "79F9", source: "Silkie" }
 
@@ -108,7 +108,7 @@ hideall "--sync--"
 
 # Trial of Might will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1088:/ window 1000,1
-1006.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:77B3:/ window 1007.3,5
+1006.8 "--sync--" StartsUsing { id: "77B3", source: "Gladiator of Sil'dih" } window 1007.3,5
 1011.5 "Flash of Steel" Ability { id: "77B3", source: "Gladiator of Sil'dih" }
 1023.6 "Specter of Might" Ability { id: "77B5", source: "Gladiator of Sil'dih" }
 1038.3 "Rush of Might 1" Ability { id: "779D", source: "Gladiator of Sil'dih" }
@@ -166,7 +166,7 @@ hideall "--sync--"
 
 1311.5 "--middle--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 1318.9 "Flash of Steel" Ability { id: "77B3", source: "Gladiator of Sil'dih" }
-1321.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:77BB:/ window 15,5
+1321.0 "--sync--" StartsUsing { id: "77BB", source: "Gladiator of Sil'dih" } window 15,5
 1331.0 "Flash of Steel (enrage)" Ability { id: "77BB", source: "Gladiator of Sil'dih" }
 # There's probably a second, instant cast enrage version of the enrage after
 
@@ -179,7 +179,7 @@ hideall "--sync--"
 
 # Trial of Balance will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1089:/ window 2000,1
-2006.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:76C5:/ window 2007.3,5
+2006.8 "--sync--" StartsUsing { id: "76C5", source: "Shadowcaster Zeless Gah" } window 2007.3,5
 2011.5 "Show of Strength" Ability { id: "76C5", source: "Shadowcaster Zeless Gah" }
 2023.7 "Infern Brand" Ability { id: "7491", source: "Shadowcaster Zeless Gah" }
 2030.8 "Cryptic Portal" Ability { id: "7494", source: "Shadowcaster Zeless Gah" }
@@ -241,6 +241,6 @@ hideall "--sync--"
 
 2314.5 "Firesteel Fracture" Ability { id: "76C4", source: "Shadowcaster Zeless Gah" }
 2323.6 "Show of Strength" Ability { id: "76C5", source: "Shadowcaster Zeless Gah" }
-2328.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74BF:/ window 15,5
+2328.6 "--sync--" StartsUsing { id: "74BF", source: "Shadowcaster Zeless Gah" } window 15,5
 2338.6 "Show of Strength (enrage)" Ability { id: "74BF", source: "Shadowcaster Zeless Gah" }
 2341.7 "Show of Strength (enrage)" Ability { id: "73C9", source: "Shadowcaster Zeless Gah" }

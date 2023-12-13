@@ -18,7 +18,7 @@ hideall "--sync--"
 #1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1128:/ window 10000,0
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1128:/ window 10000,0
 1006.1 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
-1007.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
+1007.4 "--sync--" StartsUsing { id: "8B94", source: "Quaqua" } window 10,10
 1012.4 "Made Magic" Ability { id: "8B94", source: "Quaqua" }
 1022.5 "Arcane Armaments" Ability { id: "8B88", source: "Quaqua" }
 1024.7 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
@@ -31,12 +31,12 @@ hideall "--sync--"
 1051.5 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 1057.6 "Arcane Armaments"
 
-1052.6 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/ window 40,40 jump "quaqua-left-sunny"
-1052.6 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/ window 40,40 jump "quaqua-left-rainy"
+1052.6 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" } window 40,40 jump "quaqua-left-sunny"
+1052.6 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" } window 40,40 jump "quaqua-left-rainy"
 
 
 1252.6 label "quaqua-left-sunny"
-1252.6 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/
+1252.6 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" }
 1257.6 "Arcane Armaments" Ability { id: "8B8C", source: "Quaqua" }
 1267.7 "Hammer Landing 1" Ability { id: "8B8D", source: "Quaqua" }
 1269.7 "Hammer Landing 2" #Ability { id: "8B8E", source: "Quaqua" }
@@ -76,7 +76,7 @@ hideall "--sync--"
 
 
 1652.6 label "quaqua-left-rainy"
-1652.6 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/
+1652.6 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" }
 1657.6 "Arcane Armaments" Ability { id: "8B90", source: "Quaqua" }
 
 1659.7 "--jump--" Ability { id: "8B8F", source: "Quaqua" }
@@ -157,7 +157,7 @@ hideall "--sync--"
 # Seasong's Rest will be sealed off
 #2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112B:/ window 10000,0
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112B:/ window 10000,0
-2009.0 "--sync--" sync / 14:[^:]*:Ketuduke:8AA5:/
+2009.0 "--sync--" StartsUsing { id: "8AA5", source: "Ketuduke" }
 2014.0 "Tidal Roar" Ability { id: "8AA5", source: "Ketuduke" }
 
 2023.0 "Spring Crystals" Ability { id: "8A79", source: "Ketuduke" }
@@ -180,14 +180,14 @@ hideall "--sync--"
 2127.5 "Far Tide/Near Tide" Ability { id: "(8AA0|8A9E)", source: "Ketuduke" }
 
 2134.2 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
-2146.4 "--sync--" sync / 14:[^:]*:Ketuduke:8A79:/ jump "ketuduke-01"
-2137.0 "--sync--" sync / 14:[^:]*:Ketuduke:8D11:/ jump "ketuduke-02"
-2137.0 "--sync--" sync / 14:[^:]*:Ketuduke:8A92:/ jump "ketuduke-0304"
+2146.4 "--sync--" StartsUsing { id: "8A79", source: "Ketuduke" } jump "ketuduke-01"
+2137.0 "--sync--" StartsUsing { id: "8D11", source: "Ketuduke" } jump "ketuduke-02"
+2137.0 "--sync--" StartsUsing { id: "8A92", source: "Ketuduke" } jump "ketuduke-0304"
 
 # path 01
 2234.2 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
 2246.4 label "ketuduke-01"
-2246.4 "--sync--" sync / 14:[^:]*:Ketuduke:8A79:/
+2246.4 "--sync--" StartsUsing { id: "8A79", source: "Ketuduke" }
 2248.6 "Spring Crystals" Ability { id: "8A79", source: "Ketuduke" }
 2254.3 "Summon" Ability { id: "8A8E", source: "Zeal-blind Zozone" }
 2258.7 "Bubble Net" Ability { id: "8A80", source: "Ketuduke" }
@@ -200,7 +200,7 @@ hideall "--sync--"
 # path 02
 2334.2 "--sync--" Ability { id: "8A77", source: "Ketuduke" }
 2337.0 label "ketuduke-02"
-2337.0 "--sync--" sync / 14:[^:]*:Ketuduke:8D11:/
+2337.0 "--sync--" StartsUsing { id: "8D11", source: "Ketuduke" }
 2339.2 "Tidal Wave (cast)" Ability { id: "8D11", source: "Ketuduke" }
 2346.2 "Tidal Wave" Ability { id: "8D12", source: "Ketuduke" }
 2347.3 "Hydrosurge" Ability { id: "8A8B", source: "Ketuduke" }
@@ -214,7 +214,7 @@ hideall "--sync--"
 # path 03 / path 04
 2434.2 "--sync--" Ability { id: "8A77", source: "Ketuduke" }
 2437.0 label "ketuduke-0304"
-2437.0 "--sync--" sync / 14:[^:]*:Ketuduke:8A92:/
+2437.0 "--sync--" StartsUsing { id: "8A92", source: "Ketuduke" }
 2442.0 "Roar" Ability { id: "8A92", source: "Ketuduke" }
 # 2142.7 "--sync--" sync / 03:[^:]*:Aloalo Zaratan:/ # path 03
 # 2142.7 "--sync--" sync / 03:[^:]*:Aloalo Ogrebon:/ # path 04
@@ -319,7 +319,7 @@ hideall "--sync--"
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1129:/ window 10000,0
 
 3007.0 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
-3008.4 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
+3008.4 "--sync--" StartsUsing { id: "8B94", source: "Quaqua" } window 10,10
 3013.4 "Made Magic" Ability { id: "8B94", source: "Quaqua" }
 3023.5 "Arcane Armaments" Ability { id: "8B88", source: "Quaqua" }
 3025.6 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
@@ -332,12 +332,12 @@ hideall "--sync--"
 3052.3 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 3058.4 "Arcane Armaments"
 
-3053.4 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/ window 40,40 jump "quaqua-middle-water"
-3053.4 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/ window 40,40 jump "quaqua-middle-poison"
+3053.4 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" } window 40,40 jump "quaqua-middle-water"
+3053.4 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" } window 40,40 jump "quaqua-middle-poison"
 
 
 3153.4 label "quaqua-middle-water"
-3153.4 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/
+3153.4 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" }
 3158.4 "Arcane Armaments" Ability { id: "8B8C", source: "Quaqua" }
 3168.7 "Hammer Landing 1" Ability { id: "8B8D", source: "Quaqua" }
 3170.7 "Hammer Landing 2" #Ability { id: "8B8E", source: "Quaqua" }
@@ -377,7 +377,7 @@ hideall "--sync--"
 
 
 3453.4 label "quaqua-middle-poison"
-3453.4 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/
+3453.4 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" }
 3458.4 "Arcane Armaments" Ability { id: "8B90", source: "Quaqua" }
 3460.4 "--jump--" Ability { id: "8B8F", source: "Quaqua" }
 3467.3 "Rout 1" Ability { id: "8B91", source: "Quaqua" }
@@ -437,7 +437,7 @@ hideall "--sync--"
 # The Origin Spring will be sealed off
 #4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112C:/ window 10000,0
 4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112C:/ window 10000,0
-4011.2 "--sync--" sync / 14:[^:]*:Lala:887F:/ window 10,10
+4011.2 "--sync--" StartsUsing { id: "887F", source: "Lala" } window 10,10
 4016.2 "Inferno Theorem" Ability { id: "887F", source: "Lala" }
 
 4019.3 "--middle--" Ability { id: "8874", source: "Lala" }
@@ -450,21 +450,21 @@ hideall "--sync--"
 4088.9 "Analysis" Ability { id: "887B", source: "Lala" }
 4102.7 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
-4111.0 "--sync--" sync / 14:[^:]*:Lala:8882:/ window 40,40 jump "lala-05"
+4111.0 "--sync--" StartsUsing { id: "8882", source: "Lala" } window 40,40 jump "lala-05"
 4114.0 "Faunal Figure?" #Ability { id: "8882", source: "Lala" }
 
-4111.0 "--sync--" sync / 14:[^:]*:Lala:8880:/ window 40,40 jump "lala-06"
+4111.0 "--sync--" StartsUsing { id: "8880", source: "Lala" } window 40,40 jump "lala-06"
 4114.0 "Floral Figure?" #Ability { id: "8880", source: "Lala" }
 
-4111.0 "--sync--"  sync / 14:[^:]*:Lala:8884:/ window 40,40 jump "lala-07"
+4111.0 "--sync--"  StartsUsing { id: "8884", source: "Lala" } window 40,40 jump "lala-07"
 4114.0 "Constructive Figure?" #Ability { id: "8884", source: "Lala" }
 
-4111.0 "--sync--" sync / 14:[^:]*:Lala:8D2C:/ window 40,40 jump "lala-08"
+4111.0 "--sync--" StartsUsing { id: "8D2C", source: "Lala" } window 40,40 jump "lala-08"
 4114.0 "Volcanic Coordinates (cast)?" #Ability { id: "8D2C", source: "Lala" }
 
 
 4211.0 label "lala-05"
-4211.0 "--sync--" sync / 14:[^:]*:Lala:8882:/
+4211.0 "--sync--" StartsUsing { id: "8882", source: "Lala" }
 4214.0 "Faunal Figure" Ability { id: "8882", source: "Lala" }
 4227.3 "Flail Smash" Ability { id: "8883", source: "Rodiaki" }
 4235.2 "Strategic Strike" Ability { id: "887E", source: "Lala" }
@@ -489,7 +489,7 @@ hideall "--sync--"
 
 
 4411.0 label "lala-06"
-4411.0 "--sync--" sync / 14:[^:]*:Lala:8880:/
+4411.0 "--sync--" StartsUsing { id: "8880", source: "Lala" }
 4414.0 "Floral Figure" Ability { id: "8880", source: "Lala" }
 4427.8 "Rolling Spout" Ability { id: "8881", source: "Kapokapo" }
 4435.2 "Strategic Strike" Ability { id: "887E", source: "Lala" }
@@ -514,7 +514,7 @@ hideall "--sync--"
 
 
 4611.0 label "lala-07"
-4611.0 "--sync--"  sync / 14:[^:]*:Lala:8884:/
+4611.0 "--sync--"  StartsUsing { id: "8884", source: "Lala" }
 4614.0 "Constructive Figure" Ability { id: "8884", source: "Lala" }
 4629.1 "Aero II" Ability { id: "8885", source: "Aloalo Golem" }
 4634.9 "Strategic Strike" Ability { id: "887E", source: "Lala" }
@@ -539,7 +539,7 @@ hideall "--sync--"
 
 
 4811.0 label "lala-08"
-4811.0 "--sync--" sync / 14:[^:]*:Lala:8D2C:/
+4811.0 "--sync--" StartsUsing { id: "8D2C", source: "Lala" }
 4814.0 "Volcanic Coordinates (cast)" Ability { id: "8D2C", source: "Lala" }
 4824.1 "Volcanic Coordinates 1" Ability { id: "8D2D", source: "Lala" }
 4831.1 "Volcanic Coordinates 2" Ability { id: "8D2D", source: "Lala" }
@@ -607,7 +607,7 @@ hideall "--sync--"
 #5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112A:/ window 10000,0
 5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112A:/ window 10000,0
 5007.8 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
-5009.1 "--sync--" sync / 14:[^:]*:Quaqua:8B94:/ window 10,10
+5009.1 "--sync--" StartsUsing { id: "8B94", source: "Quaqua" } window 10,10
 5014.1 "Made Magic" Ability { id: "8B94", source: "Quaqua" }
 5024.2 "Arcane Armaments" Ability { id: "8B88", source: "Quaqua" }
 5026.3 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
@@ -620,12 +620,12 @@ hideall "--sync--"
 5053.1 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5059.3 "Arcane Armaments"
 
-5054.3 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/ window 40,40 jump "quaqua-right-fixed"
-5054.3 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/ window 40,40 jump "quaqua-right-untouched"
+5054.3 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" } window 40,40 jump "quaqua-right-fixed"
+5054.3 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" } window 40,40 jump "quaqua-right-untouched"
 
 
 5154.3 label "quaqua-right-fixed"
-5154.3 "--sync--" sync / 14:[^:]*:Quaqua:8B8C:/
+5154.3 "--sync--" StartsUsing { id: "8B8C", source: "Quaqua" }
 5159.3 "Arcane Armaments" Ability { id: "8B8C", source: "Quaqua" }
 5169.4 "Hammer Landing 1" Ability { id: "8B8D", source: "Quaqua" }
 5171.4 "Hammer Landing 2" #Ability { id: "8B8E", source: "Quaqua" }
@@ -670,7 +670,7 @@ hideall "--sync--"
 
 
 5454.3 label "quaqua-right-untouched"
-5454.3 "--sync--" sync / 14:[^:]*:Quaqua:8B90:/
+5454.3 "--sync--" StartsUsing { id: "8B90", source: "Quaqua" }
 5459.3 "Arcane Armaments" Ability { id: "8B90", source: "Quaqua" }
 5461.3 "--jump--" Ability { id: "8B8F", source: "Quaqua" }
 5468.0 "Rout 1" Ability { id: "8B91", source: "Quaqua" }
@@ -737,7 +737,7 @@ hideall "--sync--"
 # Can be triggered by players earlier
 6004.0 "Hidden Mine" #Ability { id: "892D", source: "Mine" }
 
-6022.6 "--sync--" sync / 14:[^:]*:Statice:892E:/ window 30,30
+6022.6 "--sync--" StartsUsing { id: "892E", source: "Statice" } window 30,30
 6026.6 "Surprise Balloon" Ability { id: "892E", source: "Statice" }
 6034.7 "Surprise Needle" Ability { id: "8930", source: "Needle" }
 6035.6 "Pop" Ability { id: "892F", source: "Statice" }
@@ -753,18 +753,18 @@ hideall "--sync--"
 6107.3 "Fire Spread" Ability { id: "8934", source: "Statice" } duration 10
 6116.9 "Aero IV" Ability { id: "8929", source: "Statice" }
 
-6124.1 "--sync--" sync / 14:[^:]*:Statice:8945:/ window 40,40 jump "statice-09"
+6124.1 "--sync--" StartsUsing { id: "8945", source: "Statice" } window 40,40 jump "statice-09"
 6128.1 "Whoopee Cushion?" #Ability { id: "8945", source: "Statice" }
 
-6124.1 "--sync--" sync / 14:[^:]*:Statice:893E:/ window 40,40 jump "statice-10"
+6124.1 "--sync--" StartsUsing { id: "893E", source: "Statice" } window 40,40 jump "statice-10"
 6128.1 "Present Box?" #Ability { id: "893E", source: "Statice" }
 
-6124.1 "--sync--" sync / 14:[^:]*:Statice:8936:/ window 40,40 jump "statice-11"
+6124.1 "--sync--" StartsUsing { id: "8936", source: "Statice" } window 40,40 jump "statice-11"
 6128.1 "Jack-in-the-box?" #Ability { id: "8936", source: "Statice" }
 
 
 6224.1 label "statice-09"
-6224.1 "--sync--" sync / 14:[^:]*:Statice:8945:/
+6224.1 "--sync--" StartsUsing { id: "8945", source: "Statice" }
 6228.1 "Whoopee Cushion" Ability { id: "8945", source: "Statice" }
 6246.2 "Fair Flight" Ability { id: "8946", source: "Statice" }
 
@@ -798,7 +798,7 @@ hideall "--sync--"
 
 
 6424.1 label "statice-10"
-6424.1 "--sync--" sync / 14:[^:]*:Statice:893E:/
+6424.1 "--sync--" StartsUsing { id: "893E", source: "Statice" }
 6428.1 "Present Box" Ability { id: "893E", source: "Statice" }
 6436.8 "Faerie Ring 1" Ability { id: "893F", source: "Surprising Staff" }
 6437.4 "Faerie Road 1" #Ability { id: "8940", source: "Surprising Staff" }
@@ -842,7 +842,7 @@ hideall "--sync--"
 
 
 6624.1 label "statice-11"
-6624.1 "--sync--" sync / 14:[^:]*:Statice:8936:/
+6624.1 "--sync--" StartsUsing { id: "8936", source: "Statice" }
 6628.1 "Jack-in-the-box" Ability { id: "8936", source: "Statice" }
 6647.2 "Burst" Ability { id: "8937", source: "Treasure Box" }
 
@@ -928,7 +928,7 @@ hideall "--sync--"
 # Kairimai Loquloqai will be sealed off
 #7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:112E:/ window 10000,0
 7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:11DE:/ window 10000,0
-7006.8 "--sync--" sync / 14:[^:]*:Loquloqui:87BC:/ window 10,10
+7006.8 "--sync--" StartsUsing { id: "87BC", source: "Loquloqui" } window 10,10
 7011.8 "Long-lost Light" Ability { id: "87BC", source: "Loquloqui" }
 
 7018.0 "--middle--" Ability { id: "87BB", source: "Loquloqui" }

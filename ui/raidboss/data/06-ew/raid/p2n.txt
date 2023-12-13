@@ -8,7 +8,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.3 "--sync--" sync / 14:[^:]*:Hippokampos:680F:/ window 20,20
+9.3 "--sync--" StartsUsing { id: "680F", source: "Hippokampos" } window 20,20
 14.3 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
 26.6 "Doubled Impact" Ability { id: "680E", source: "Hippokampos" }
 32.8 "--middle--" Ability { id: "6835", source: "Hippokampos" }

@@ -15,7 +15,7 @@ hideall "--sync--"
 
 # No engage sync, due to checkpoint.
 0.0 "Start"
-6.0 "--sync--" sync / 14:[^:]*:Ser Adelphel:62D4:/ window 10,10
+6.0 "--sync--" StartsUsing { id: "62D4", source: "Ser Adelphel" } window 10,10
 10.0 "Holiest of Holy" Ability { id: "62D4", source: "Ser Adelphel" }
 23.2 "Empty Dimension" Ability { id: "62DA", source: "Ser Grinnaux" }
 23.2 "Holy Shield Bash" Ability { id: "62D1", source: "Ser Adelphel" }
@@ -50,7 +50,7 @@ hideall "--sync--"
 
 ### Phase 1.5: Haurchefant v1, a time loop better suits a hero
 500.0 "Planar Prison" Ability { id: "62E1", source: "Ser Grinnaux" } window 500,0
-500.0 "Pure of Heart" sync / 14:[^:]*:Ser Charibert:62E4:/ duration 36
+500.0 "Pure of Heart" StartsUsing { id: "62E4", source: "Ser Charibert" } duration 36
 500.0 "Brightwinged Flight" Ability { id: "6316", source: "Ser Adelphel" }
 510.0 "Spear of the Fury" Ability { id: "62E2", source: "Ser Zephirin" }
 515.9 "Brightwing 1" Ability { id: "6319", source: "Ser Charibert" }
@@ -68,7 +68,7 @@ hideall "--sync--"
 
 ### Phase 2: King Thordan
 541.5 "--targetable--"
-550.0 "--sync--" sync / 14:[^:]*:King Thordan:63C8:/ window 600,10
+550.0 "--sync--" StartsUsing { id: "63C8", source: "King Thordan" } window 600,10
 553.0 "Ascalon's Mercy Concealed" Ability { id: "63C8", source: "King Thordan" }
 554.6 "--sync--" Ability { id: "63C9", source: "King Thordan" }
 556.2 "Ascalon's Might 1" #Ability { id: "63C5", source: "King Thordan" }
@@ -140,7 +140,7 @@ hideall "--sync--"
 711.8 "--sync--" Ability { id: "63BF", source: "King Thordan" }
 718.4 "Broad Swing 1" Ability { id: "63C[01]", source: "King Thordan" }
 726.9 "Broad Swing 2" Ability { id: "63C[01]", source: "King Thordan" }
-732.0 "--sync--" sync / 14:[^:]*:King Thordan:63C3:/ window 30,10
+732.0 "--sync--" StartsUsing { id: "63C3", source: "King Thordan" } window 30,10
 738.0 "Aetheric Burst Enrage" Ability { id: "63C3", source: "King Thordan" }
 
 
@@ -216,18 +216,18 @@ hideall "--sync--"
 2036.3 "Pure of Heart" Ability { id: "62E4", source: "Ser Charibert" }
 2038.3 "--targetable--"
 2039.3 "Skyblind 4" Ability { id: "631A", source: "Ser Charibert" }
-2041.0 "--sync--" sync / 14:[^:]*:Spear of the Fury:69B5:/ window 10,10
+2041.0 "--sync--" StartsUsing { id: "69B5", source: "Spear of the Fury" } window 10,10
 2052.0 "Pierce Enrage" Ability { id: "69B5", source: "Spear of the Fury" }
 
 # Ascalon's Mercy Concealed cast from King Thordan if Haurchefant dies and it loops.
-2055.9 "--sync--" sync / 14:[^:]*:King Thordan:63C8:/ window 60,200 jump 550
+2055.9 "--sync--" StartsUsing { id: "63C8", source: "King Thordan" } window 60,200 jump 550
 
 
 
 ### Phase 5: King Thordan II
 2980.8 "--sync--" Ability { id: "6317", source: "Haurchefant" } window 1000,0
 2995.9 "--targetable--"
-2996.0 "--sync--" sync / 14:[^:]*:King Thordan:6B86:/ window 1000,10
+2996.0 "--sync--" StartsUsing { id: "6B86", source: "King Thordan" } window 1000,10
 3000.0 "Incarnation" Ability { id: "6B86", source: "King Thordan" }
 3006.2 "The Dragon's Eye" Ability { id: "6B87", source: "King Thordan" }
 3016.7 "--sync--" Ability { id: "63C4", source: "King Thordan" }
@@ -287,13 +287,13 @@ hideall "--sync--"
 
 # skip to here when meteors are killed
 3200.0 "--targetable--"
-3202.1 "--sync--" sync / 14:[^:]*:King Thordan:63C6:/ window 80,10
+3202.1 "--sync--" StartsUsing { id: "63C6", source: "King Thordan" } window 80,10
 3208.1 "Ancient Quaga" Ability { id: "63C6", source: "King Thordan" }
 3218.3 "Heavenly Heel" Ability { id: "63C7", source: "King Thordan" }
 3221.4 "Ascalon's Might 1" #Ability { id: "63C5", source: "King Thordan" }
 3223.0 "Ascalon's Might 2" #Ability { id: "63C5", source: "King Thordan" }
 3224.6 "Ascalon's Might 3" #Ability { id: "63C5", source: "King Thordan" }
-3229.5 "--sync--" sync / 14:[^:]*:King Thordan:6B88:/
+3229.5 "--sync--" StartsUsing { id: "6B88", source: "King Thordan" }
 3235.5 "Aetheric Burst Enrage" Ability { id: "6B88", source: "King Thordan" }
 
 

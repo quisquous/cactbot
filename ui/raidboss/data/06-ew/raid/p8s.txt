@@ -17,7 +17,7 @@ hideall "--sync--"
 
 # instant auto @_@;;
 0.0 "--sync--" Ability { id: "7947", source: "Hephaistos" } window 1,0
-7.1 "--sync--" sync / 14:[^:]*:Hephaistos:7944:/ window 20,20
+7.1 "--sync--" StartsUsing { id: "7944", source: "Hephaistos" } window 20,20
 12.1 "Genesis of Flame" Ability { id: "7944", source: "Hephaistos" }
 18.2 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: "(7914|7915)", source: "Hephaistos" }
 24.4 "Volcanic Torches" Ability { id: "78F7", source: "Hephaistos" }
@@ -291,7 +291,7 @@ hideall "--sync--"
 5005.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
 5008.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
 5011.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
-5011.0 "--sync--" sync / 14:[^:]*:Hephaistos:79DF:/ window 6000,10
+5011.0 "--sync--" StartsUsing { id: "79DF", source: "Hephaistos" } window 6000,10
 5016.0 "Aioniopyr" Ability { id: "79DF", source: "Hephaistos" }
 5019.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
 5022.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
@@ -399,5 +399,5 @@ hideall "--sync--"
 
 5483.0 "Aionagonia 3" Ability { id: "7A22", source: "Hephaistos" } window 20,20
 
-5490.3 "--sync--" sync / 14:[^:]*:Hephaistos:79E4:/ window 50,50
+5490.3 "--sync--" StartsUsing { id: "79E4", source: "Hephaistos" } window 50,50
 5506.3 "Ego Death (enrage)" Ability { id: "79E4", source: "Hephaistos" }

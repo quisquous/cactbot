@@ -7,7 +7,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.0 "--sync--" sync / 14:[^:]*:Themis:822B:/ window 12,10
+11.0 "--sync--" StartsUsing { id: "822B", source: "Themis" } window 12,10
 16.0 "Eunomia" Ability { id: "822B", source: "Themis" }
 26.1 "Dike 1" Ability { id: "822D", source: "Themis" }
 29.2 "Dike 2" Ability { id: "822E", source: "Themis" }
@@ -116,7 +116,7 @@ hideall "--sync--"
 644.7 "Inevitable Law/Inevitable Sentence" Ability { id: "(81FC|81FD)", source: "Themis" }
 655.8 "Eunomia" Ability { id: "822B", source: "Themis" }
 
-662.5 "--sync--" sync / 14:[^:]*:Themis:822C:/ window 30,10
+662.5 "--sync--" StartsUsing { id: "822C", source: "Themis" } window 30,10
 672.5 "Ultimate Verdict (enrage)" Ability { id: "822C", source: "Themis" }
 
 
