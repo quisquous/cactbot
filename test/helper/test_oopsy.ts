@@ -155,6 +155,9 @@ const testOopsyFile = (file: string, info: OopsyTriggerSetInfo) => {
     const abilityIdToId: { [abilityid: string]: string } = {};
     for (const field of oopsyMistakeMapKeys) {
       for (const [id, abilityId] of Object.entries(triggerSet[field] ?? {})) {
+        // Ignore TODOs from `util/sync_files.ts` that haven't been filled out.
+        if (abilityId.startsWith('TODO'))
+          continue;
         const prevId = abilityIdToId[abilityId];
         if (prevId === undefined) {
           abilityIdToId[abilityId] = id;
