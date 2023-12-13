@@ -16,30 +16,30 @@ hideall "--sync--"
 # Trnakiya will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAC:/ window 0,1
 7.1 "--sync--" sync / 14:[^:]*:Terminus Snatcher:6238:/ window 10,10
-12.1 "Note of Despair" sync / 1[56]:[^:]*:Terminus Snatcher:6238:/
-19.6 "Mouth Off" sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
-31.4 "Vitriol" sync / 1[56]:[^:]*:Terminus Snatcher:6232:/
-41.0 "Last Gasp" sync / 1[56]:[^:]*:Terminus Snatcher:6235:/
-48.7 "Mouth Off" sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
-59.8 "What Is Left/What Is Right" sync / 1[56]:[^:]*:Terminus Snatcher:623[34]:/
-60.5 "Vitriol" sync / 1[56]:[^:]*:Terminus Snatcher:6232:/
+12.1 "Note of Despair" Ability { id: "6238", source: "Terminus Snatcher" }
+19.6 "Mouth Off" Ability { id: "6231", source: "Terminus Snatcher" }
+31.4 "Vitriol" Ability { id: "6232", source: "Terminus Snatcher" }
+41.0 "Last Gasp" Ability { id: "6235", source: "Terminus Snatcher" }
+48.7 "Mouth Off" Ability { id: "6231", source: "Terminus Snatcher" }
+59.8 "What Is Left/What Is Right" Ability { id: "623[34]", source: "Terminus Snatcher" }
+60.5 "Vitriol" Ability { id: "6232", source: "Terminus Snatcher" }
 
-72.1 "Note of Despair" sync / 1[56]:[^:]*:Terminus Snatcher:6238:/
-80.4 "Lost Hope" sync / 1[56]:[^:]*:Terminus Snatcher:6237:/
-85.5 "Mouth Off" sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
-97.3 "Vitriol" sync / 1[56]:[^:]*:Terminus Snatcher:6232:/
-107.0 "Last Gasp" sync / 1[56]:[^:]*:Terminus Snatcher:6235:/
-114.8 "Mouth Off" sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
-125.9 "What Is Left/What Is Right" sync / 1[56]:[^:]*:Terminus Snatcher:623[34]:/
-126.6 "Vitriol" sync / 1[56]:[^:]*:Terminus Snatcher:6232:/
-137.1 "What Is Left/What Is Right" sync / 1[56]:[^:]*:Terminus Snatcher:623[34]:/
-138.2 "Wallow" sync / 1[56]:[^:]*:Terminus Snatcher:6236:/
+72.1 "Note of Despair" Ability { id: "6238", source: "Terminus Snatcher" }
+80.4 "Lost Hope" Ability { id: "6237", source: "Terminus Snatcher" }
+85.5 "Mouth Off" Ability { id: "6231", source: "Terminus Snatcher" }
+97.3 "Vitriol" Ability { id: "6232", source: "Terminus Snatcher" }
+107.0 "Last Gasp" Ability { id: "6235", source: "Terminus Snatcher" }
+114.8 "Mouth Off" Ability { id: "6231", source: "Terminus Snatcher" }
+125.9 "What Is Left/What Is Right" Ability { id: "623[34]", source: "Terminus Snatcher" }
+126.6 "Vitriol" Ability { id: "6232", source: "Terminus Snatcher" }
+137.1 "What Is Left/What Is Right" Ability { id: "623[34]", source: "Terminus Snatcher" }
+138.2 "Wallow" Ability { id: "6236", source: "Terminus Snatcher" }
 
-149.3 "Note of Despair" sync / 1[56]:[^:]*:Terminus Snatcher:6238:/ window 40,40 jump 72.1
-157.6 "Lost Hope" #sync / 1[56]:[^:]*:Terminus Snatcher:6237:/
-162.7 "Mouth Off" #sync / 1[56]:[^:]*:Terminus Snatcher:6231:/
-174.5 "Vitriol" #sync / 1[56]:[^:]*:Terminus Snatcher:6232:/
-184.2 "Last Gasp" #sync / 1[56]:[^:]*:Terminus Snatcher:6235:/
+149.3 "Note of Despair" Ability { id: "6238", source: "Terminus Snatcher" } window 40,40 jump 72.1
+157.6 "Lost Hope" #Ability { id: "6237", source: "Terminus Snatcher" }
+162.7 "Mouth Off" #Ability { id: "6231", source: "Terminus Snatcher" }
+174.5 "Vitriol" #Ability { id: "6232", source: "Terminus Snatcher" }
+184.2 "Last Gasp" #Ability { id: "6235", source: "Terminus Snatcher" }
 
 
 #~~~~~~~~~~~~~~~~~~#
@@ -54,36 +54,36 @@ hideall "--sync--"
 # Insight will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAD:/ window 1000,0
 1006.2 "--sync--" sync / 14:[^:]*:Terminus Wrecker:6241:/ window 1010,10
-1011.2 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/
-1021.4 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1026.8 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1036.2 "Aether Spray (Knockback)" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
-1048.5 "Total Wreck" sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
-1053.8 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1059.2 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1068.5 "Aether Spray (Bubble)" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1011.2 "Meaningless Destruction" Ability { id: "6241", source: "Terminus Wrecker" }
+1021.4 "Unholy Water" Ability { id: "6CCC", source: "Terminus Wrecker" }
+1026.8 "Aether Siphon" Ability { id: "623A", source: "Terminus Wrecker" }
+1036.2 "Aether Spray (Knockback)" Ability { id: "623C", source: "Terminus Wrecker" }
+1048.5 "Total Wreck" Ability { id: "6242", source: "Terminus Wrecker" }
+1053.8 "Unholy Water" Ability { id: "6CCC", source: "Terminus Wrecker" }
+1059.2 "Aether Siphon" Ability { id: "6239", source: "Terminus Wrecker" }
+1068.5 "Aether Spray (Bubble)" Ability { id: "623B", source: "Terminus Wrecker" }
 
-1080.7 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/
-1091.0 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1096.4 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1105.8 "Aether Spray (Knockback)" sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
-1112.9 "--sync--" sync / 1[56]:[^:]*:Terminus Wrecker:623F:/
-1118.0 "Poison Heart" sync / 1[56]:[^:]*:Terminus Wrecker:6CCB:/
-1125.2 "Total Wreck" sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
-1135.5 "Unholy Water" sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1140.9 "Aether Siphon" sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1150.2 "Aether Spray (Bubble)" sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1080.7 "Meaningless Destruction" Ability { id: "6241", source: "Terminus Wrecker" }
+1091.0 "Unholy Water" Ability { id: "6CCC", source: "Terminus Wrecker" }
+1096.4 "Aether Siphon" Ability { id: "623A", source: "Terminus Wrecker" }
+1105.8 "Aether Spray (Knockback)" Ability { id: "623C", source: "Terminus Wrecker" }
+1112.9 "--sync--" Ability { id: "623F", source: "Terminus Wrecker" }
+1118.0 "Poison Heart" Ability { id: "6CCB", source: "Terminus Wrecker" }
+1125.2 "Total Wreck" Ability { id: "6242", source: "Terminus Wrecker" }
+1135.5 "Unholy Water" Ability { id: "6CCC", source: "Terminus Wrecker" }
+1140.9 "Aether Siphon" Ability { id: "6239", source: "Terminus Wrecker" }
+1150.2 "Aether Spray (Bubble)" Ability { id: "623B", source: "Terminus Wrecker" }
 
-1162.4 "Meaningless Destruction" sync / 1[56]:[^:]*:Terminus Wrecker:6241:/ window 40,40 jump 1080.7
-1172.7 "Unholy Water" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1178.1 "Aether Siphon" #sync / 1[56]:[^:]*:Terminus Wrecker:623A:/
-1187.5 "Aether Spray (Knockback)" #sync / 1[56]:[^:]*:Terminus Wrecker:623C:/
-1194.6 "--sync--" #sync / 1[56]:[^:]*:Terminus Wrecker:623F:/
-1199.7 "Poison Heart" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCB:/
-1206.9 "Total Wreck" #sync / 1[56]:[^:]*:Terminus Wrecker:6242:/
-1217.2 "Unholy Water" #sync / 1[56]:[^:]*:Terminus Wrecker:6CCC:/
-1222.6 "Aether Siphon" #sync / 1[56]:[^:]*:Terminus Wrecker:6239:/
-1231.9 "Aether Spray (Bubble)" #sync / 1[56]:[^:]*:Terminus Wrecker:623B:/
+1162.4 "Meaningless Destruction" Ability { id: "6241", source: "Terminus Wrecker" } window 40,40 jump 1080.7
+1172.7 "Unholy Water" #Ability { id: "6CCC", source: "Terminus Wrecker" }
+1178.1 "Aether Siphon" #Ability { id: "623A", source: "Terminus Wrecker" }
+1187.5 "Aether Spray (Knockback)" #Ability { id: "623C", source: "Terminus Wrecker" }
+1194.6 "--sync--" #Ability { id: "623F", source: "Terminus Wrecker" }
+1199.7 "Poison Heart" #Ability { id: "6CCB", source: "Terminus Wrecker" }
+1206.9 "Total Wreck" #Ability { id: "6242", source: "Terminus Wrecker" }
+1217.2 "Unholy Water" #Ability { id: "6CCC", source: "Terminus Wrecker" }
+1222.6 "Aether Siphon" #Ability { id: "6239", source: "Terminus Wrecker" }
+1231.9 "Aether Spray (Bubble)" #Ability { id: "623B", source: "Terminus Wrecker" }
 
 
 #~~~~~~~~~~~#
@@ -101,54 +101,54 @@ hideall "Crumbling Sky"
 # Devatagara will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAE:/ window 2000,0
 2005.1 "--sync--" sync / 14:[^:]*:Svarbhanu:6252:/ window 2020,10
-2010.1 "Flames of Decay" sync / 1[56]:[^:]*:Svarbhanu:6252:/
-2018.0 "Chaotic Pulse" sync / 1[56]:[^:]*:Svarbhanu:6B61:/
-2020.1 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:624C:/
-2027.0 "Aetherial Disruption" sync / 1[56]:[^:]*:Svarbhanu:6248:/
-2027.9 "Chaotic Undercurrent" sync / 1[56]:[^:]*:Svarbhanu:624A:/
-2034.6 "Chaotic Pulse" sync / 1[56]:[^:]*:Svarbhanu:6B61:/
-2039.7 "Crumbling Sky" sync / 1[56]:[^:]*:Svarbhanu:624E:/
-2041.9 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:624D:/
-2048.8 "Aetherial Disruption" sync / 1[56]:[^:]*:Svarbhanu:6248:/
-2049.3 "Cosmic Kiss (Spread)" sync / 1[56]:[^:]*:Svarbhanu:6250:/
-2049.7 "Chaotic Undercurrent" sync / 1[56]:[^:]*:Svarbhanu:624B:/
-2061.1 "Gnashing of Teeth" sync / 1[56]:[^:]*:Svarbhanu:6253:/
-2068.2 "Chaotic Pulse" sync / 1[56]:[^:]*:Svarbhanu:6B61:/
-2073.3 "Crumbling Sky" sync / 1[56]:[^:]*:Svarbhanu:624E:/
-2075.5 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:624C:/
-2080.4 "Cosmic Kiss (Knockback)" sync / 1[56]:[^:]*:Svarbhanu:6251:/
-2082.4 "Aetherial Disruption" sync / 1[56]:[^:]*:Svarbhanu:6248:/
-2083.3 "Chaotic Undercurrent" sync / 1[56]:[^:]*:Svarbhanu:624A:/
-2094.4 "Crumbling Sky" sync / 1[56]:[^:]*:Svarbhanu:624E:/
+2010.1 "Flames of Decay" Ability { id: "6252", source: "Svarbhanu" }
+2018.0 "Chaotic Pulse" Ability { id: "6B61", source: "Svarbhanu" }
+2020.1 "--sync--" Ability { id: "624C", source: "Svarbhanu" }
+2027.0 "Aetherial Disruption" Ability { id: "6248", source: "Svarbhanu" }
+2027.9 "Chaotic Undercurrent" Ability { id: "624A", source: "Svarbhanu" }
+2034.6 "Chaotic Pulse" Ability { id: "6B61", source: "Svarbhanu" }
+2039.7 "Crumbling Sky" Ability { id: "624E", source: "Svarbhanu" }
+2041.9 "--sync--" Ability { id: "624D", source: "Svarbhanu" }
+2048.8 "Aetherial Disruption" Ability { id: "6248", source: "Svarbhanu" }
+2049.3 "Cosmic Kiss (Spread)" Ability { id: "6250", source: "Svarbhanu" }
+2049.7 "Chaotic Undercurrent" Ability { id: "624B", source: "Svarbhanu" }
+2061.1 "Gnashing of Teeth" Ability { id: "6253", source: "Svarbhanu" }
+2068.2 "Chaotic Pulse" Ability { id: "6B61", source: "Svarbhanu" }
+2073.3 "Crumbling Sky" Ability { id: "624E", source: "Svarbhanu" }
+2075.5 "--sync--" Ability { id: "624C", source: "Svarbhanu" }
+2080.4 "Cosmic Kiss (Knockback)" Ability { id: "6251", source: "Svarbhanu" }
+2082.4 "Aetherial Disruption" Ability { id: "6248", source: "Svarbhanu" }
+2083.3 "Chaotic Undercurrent" Ability { id: "624A", source: "Svarbhanu" }
+2094.4 "Crumbling Sky" Ability { id: "624E", source: "Svarbhanu" }
 
 2096.4 "--untargetable--"
-2105.2 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:6249:/
-2110.3 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:6249:/
-2110.7 "--meteor 1--" sync / 1[56]:[^:]*:Svarbhanu:631E:/
-2114.5 "Cosmic Kiss" sync / 1[56]:[^:]*:Svarbhanu:624F:/
-2115.4 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:6249:/
-2115.8 "--meteor 2--" sync / 1[56]:[^:]*:Svarbhanu:631E:/
-2119.5 "Cosmic Kiss" sync / 1[56]:[^:]*:Svarbhanu:624F:/
-2120.9 "--meteor 3--" sync / 1[56]:[^:]*:Svarbhanu:631E:/
-2123.5 "Cosmic Kiss" sync / 1[56]:[^:]*:Svarbhanu:624F:/
+2105.2 "--sync--" Ability { id: "6249", source: "Svarbhanu" }
+2110.3 "--sync--" Ability { id: "6249", source: "Svarbhanu" }
+2110.7 "--meteor 1--" Ability { id: "631E", source: "Svarbhanu" }
+2114.5 "Cosmic Kiss" Ability { id: "624F", source: "Svarbhanu" }
+2115.4 "--sync--" Ability { id: "6249", source: "Svarbhanu" }
+2115.8 "--meteor 2--" Ability { id: "631E", source: "Svarbhanu" }
+2119.5 "Cosmic Kiss" Ability { id: "624F", source: "Svarbhanu" }
+2120.9 "--meteor 3--" Ability { id: "631E", source: "Svarbhanu" }
+2123.5 "Cosmic Kiss" Ability { id: "624F", source: "Svarbhanu" }
 2125.1 "--targetable--"
 
-2136.2 "Flames of Decay" sync / 1[56]:[^:]*:Svarbhanu:6252:/ window 100,10
-2143.4 "Chaotic Pulse" sync / 1[56]:[^:]*:Svarbhanu:6B61:/
-2148.5 "Crumbling Sky" sync / 1[56]:[^:]*:Svarbhanu:624E:/
-2150.7 "--sync--" sync / 1[56]:[^:]*:Svarbhanu:624C:/
-2155.6 "Cosmic Kiss (Knockback)" sync / 1[56]:[^:]*:Svarbhanu:6251:/
-2157.6 "Aetherial Disruption" sync / 1[56]:[^:]*:Svarbhanu:6248:/
-2158.5 "Chaotic Undercurrent" sync / 1[56]:[^:]*:Svarbhanu:624A:/
-2159.6 "Cosmic Kiss (Spread)" sync / 1[56]:[^:]*:Svarbhanu:6250:/
-2169.8 "Gnashing of Teeth" sync / 1[56]:[^:]*:Svarbhanu:6253:/
+2136.2 "Flames of Decay" Ability { id: "6252", source: "Svarbhanu" } window 100,10
+2143.4 "Chaotic Pulse" Ability { id: "6B61", source: "Svarbhanu" }
+2148.5 "Crumbling Sky" Ability { id: "624E", source: "Svarbhanu" }
+2150.7 "--sync--" Ability { id: "624C", source: "Svarbhanu" }
+2155.6 "Cosmic Kiss (Knockback)" Ability { id: "6251", source: "Svarbhanu" }
+2157.6 "Aetherial Disruption" Ability { id: "6248", source: "Svarbhanu" }
+2158.5 "Chaotic Undercurrent" Ability { id: "624A", source: "Svarbhanu" }
+2159.6 "Cosmic Kiss (Spread)" Ability { id: "6250", source: "Svarbhanu" }
+2169.8 "Gnashing of Teeth" Ability { id: "6253", source: "Svarbhanu" }
 
-2187.7 "Flames of Decay" sync / 1[56]:[^:]*:Svarbhanu:6252:/ window 30,30 jump 2136.2
-2194.9 "Chaotic Pulse" #sync / 1[56]:[^:]*:Svarbhanu:6B61:/
-2200.0 "Crumbling Sky" #sync / 1[56]:[^:]*:Svarbhanu:624E:/
-2202.2 "--sync--" #sync / 1[56]:[^:]*:Svarbhanu:624C:/
-2207.1 "Cosmic Kiss (Knockback)" #sync / 1[56]:[^:]*:Svarbhanu:6251:/
-2209.1 "Aetherial Disruption" #sync / 1[56]:[^:]*:Svarbhanu:6248:/
-2210.0 "Chaotic Undercurrent" #sync / 1[56]:[^:]*:Svarbhanu:624A:/
-2211.1 "Cosmic Kiss (Spread)" #sync / 1[56]:[^:]*:Svarbhanu:6250:/
-2221.3 "Gnashing of Teeth" #sync / 1[56]:[^:]*:Svarbhanu:6253:/
+2187.7 "Flames of Decay" Ability { id: "6252", source: "Svarbhanu" } window 30,30 jump 2136.2
+2194.9 "Chaotic Pulse" #Ability { id: "6B61", source: "Svarbhanu" }
+2200.0 "Crumbling Sky" #Ability { id: "624E", source: "Svarbhanu" }
+2202.2 "--sync--" #Ability { id: "624C", source: "Svarbhanu" }
+2207.1 "Cosmic Kiss (Knockback)" #Ability { id: "6251", source: "Svarbhanu" }
+2209.1 "Aetherial Disruption" #Ability { id: "6248", source: "Svarbhanu" }
+2210.0 "Chaotic Undercurrent" #Ability { id: "624A", source: "Svarbhanu" }
+2211.1 "Cosmic Kiss (Spread)" #Ability { id: "6250", source: "Svarbhanu" }
+2221.3 "Gnashing of Teeth" #Ability { id: "6253", source: "Svarbhanu" }

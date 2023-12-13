@@ -17,28 +17,28 @@ hideall "--sync--"
 # Cloven Crystal Square will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1153:/ window 10000,0
 1006.0 "--sync--" sync / 14:[^:]*:Dark Elf:87D9:/ window 10,10
-1009.0 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
-1017.1 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
-1027.1 "Shadowy Sigil" sync / 1[56]:[^:]*:Dark Elf:87D[BC]:/
-1027.5 "Explosion" sync / 1[56]:[^:]*:Dark Elf:87E3:/
-1034.2 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
-1044.3 "Sorcerous Shroud" sync / 1[56]:[^:]*:Dark Elf:87DA:/
-1051.0 "Void Dark II (cast)" sync / 1[56]:[^:]*:Dark Elf:87DD:/
-1056.6 "Void Dark II (spread)" sync / 1[56]:[^:]*:Dark Elf:87E4:/
-1060.3 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
+1009.0 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" }
+1017.1 "Ruinous Confluence" Ability { id: "8985", source: "Dark Elf" }
+1027.1 "Shadowy Sigil" Ability { id: "87D[BC]", source: "Dark Elf" }
+1027.5 "Explosion" Ability { id: "87E3", source: "Dark Elf" }
+1034.2 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" }
+1044.3 "Sorcerous Shroud" Ability { id: "87DA", source: "Dark Elf" }
+1051.0 "Void Dark II (cast)" Ability { id: "87DD", source: "Dark Elf" }
+1056.6 "Void Dark II (spread)" Ability { id: "87E4", source: "Dark Elf" }
+1060.3 "Ruinous Confluence" Ability { id: "8985", source: "Dark Elf" }
 
-1067.2 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/
-1077.3 "Sorcerous Shroud" sync / 1[56]:[^:]*:Dark Elf:87DA:/
-1084.0 "Void Dark II (cast)" sync / 1[56]:[^:]*:Dark Elf:87DD:/
-1091.6 "Void Dark II (spread)" sync / 1[56]:[^:]*:Dark Elf:87E4:/
-1092.2 "Shadowy Sigil" sync / 1[56]:[^:]*:Dark Elf:87D[BC]:/
-1092.8 "Explosion" sync / 1[56]:[^:]*:Dark Elf:87E3:/
-1099.4 "Ruinous Confluence" sync / 1[56]:[^:]*:Dark Elf:8985:/
-1109.6 "Staff Smite" sync / 1[56]:[^:]*:Dark Elf:8984:/
-1120.6 "Abyssal Outburst" sync / 1[56]:[^:]*:Dark Elf:87DE:/
-1129.7 "Abyssal Outburst" sync / 1[56]:[^:]*:Dark Elf:87DE:/
+1067.2 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" }
+1077.3 "Sorcerous Shroud" Ability { id: "87DA", source: "Dark Elf" }
+1084.0 "Void Dark II (cast)" Ability { id: "87DD", source: "Dark Elf" }
+1091.6 "Void Dark II (spread)" Ability { id: "87E4", source: "Dark Elf" }
+1092.2 "Shadowy Sigil" Ability { id: "87D[BC]", source: "Dark Elf" }
+1092.8 "Explosion" Ability { id: "87E3", source: "Dark Elf" }
+1099.4 "Ruinous Confluence" Ability { id: "8985", source: "Dark Elf" }
+1109.6 "Staff Smite" Ability { id: "8984", source: "Dark Elf" }
+1120.6 "Abyssal Outburst" Ability { id: "87DE", source: "Dark Elf" }
+1129.7 "Abyssal Outburst" Ability { id: "87DE", source: "Dark Elf" }
 
-1140.4 "Hexing Staves" sync / 1[56]:[^:]*:Dark Elf:87D9:/ window 50,50 forcejump 1067.2
+1140.4 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" } window 50,50 forcejump 1067.2
 
 # ALL ENCOUNTER ABILITIES
 # 368 Attack ye olde auto
@@ -70,60 +70,60 @@ hideall "--sync--"
 # Bloodied Barbican will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1154:/ window 10000,0
 2009.5 "--sync--" sync / 14:[^:]*:Damcyan Antlion:87FD:/ window 10,10
-2014.5 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
-2023.6 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2014.5 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
+2023.6 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
 
-2028.8 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2037.0 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
-2049.6 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
-2052.9 "Towerfall 1" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+2028.8 "--north--" Ability { id: "8808", source: "Damcyan Antlion" }
+2037.0 "Antlion March" Ability { id: "8800", source: "Damcyan Antlion" } duration 4.1
+2049.6 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
+2052.9 "Towerfall 1" Ability { id: "8804", source: "Stone Pillar" }
 
-2056.7 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2062.8 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
-2073.9 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
-2083.0 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2056.7 "--middle--" Ability { id: "8808", source: "Damcyan Antlion" }
+2062.8 "Earthen Geyser" Ability { id: "8805", source: "Damcyan Antlion" }
+2073.9 "Pound Sand" Ability { id: "868B", source: "Damcyan Antlion" }
+2083.0 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 
 # note: we cooould just loop here
-2089.1 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2097.3 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
-2109.9 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
-2113.2 "Towerfall 2" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+2089.1 "--north--" Ability { id: "8808", source: "Damcyan Antlion" }
+2097.3 "Antlion March" Ability { id: "8800", source: "Damcyan Antlion" } duration 4.1
+2109.9 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
+2113.2 "Towerfall 2" Ability { id: "8804", source: "Stone Pillar" }
 
-2117.0 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2123.1 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
-2134.2 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
-2143.3 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2117.0 "--middle--" Ability { id: "8808", source: "Damcyan Antlion" }
+2123.1 "Earthen Geyser" Ability { id: "8805", source: "Damcyan Antlion" }
+2134.2 "Pound Sand" Ability { id: "868B", source: "Damcyan Antlion" }
+2143.3 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 
-2149.4 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2157.6 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
-2170.2 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
-2173.5 "Towerfall 3" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+2149.4 "--north--" Ability { id: "8808", source: "Damcyan Antlion" }
+2157.6 "Antlion March" Ability { id: "8800", source: "Damcyan Antlion" } duration 4.1
+2170.2 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
+2173.5 "Towerfall 3" Ability { id: "8804", source: "Stone Pillar" }
 
-2177.3 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2183.4 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
-2194.5 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
-2203.6 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2177.3 "--middle--" Ability { id: "8808", source: "Damcyan Antlion" }
+2183.4 "Earthen Geyser" Ability { id: "8805", source: "Damcyan Antlion" }
+2194.5 "Pound Sand" Ability { id: "868B", source: "Damcyan Antlion" }
+2203.6 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 
-2209.7 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2217.9 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
-2230.5 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
-2233.8 "Towerfall 4" sync / 1[56]:[^:]*:Stone Pillar:8804:/
+2209.7 "--north--" Ability { id: "8808", source: "Damcyan Antlion" }
+2217.9 "Antlion March" Ability { id: "8800", source: "Damcyan Antlion" } duration 4.1
+2230.5 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
+2233.8 "Towerfall 4" Ability { id: "8804", source: "Stone Pillar" }
 
-2237.6 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2243.7 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
-2254.8 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
-2263.9 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2237.6 "--middle--" Ability { id: "8808", source: "Damcyan Antlion" }
+2243.7 "Earthen Geyser" Ability { id: "8805", source: "Damcyan Antlion" }
+2254.8 "Pound Sand" Ability { id: "868B", source: "Damcyan Antlion" }
+2263.9 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 
-2270.0 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2278.2 "Antlion March" sync / 1[56]:[^:]*:Damcyan Antlion:8800:/ duration 4.1
-2290.8 "Landslip" sync / 1[56]:[^:]*:Damcyan Antlion:8802:/
+2270.0 "--north--" Ability { id: "8808", source: "Damcyan Antlion" }
+2278.2 "Antlion March" Ability { id: "8800", source: "Damcyan Antlion" } duration 4.1
+2290.8 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
 
-2297.9 "--middle--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/
-2304.0 "Earthen Geyser" sync / 1[56]:[^:]*:Damcyan Antlion:8805:/
-2315.1 "Pound Sand" sync / 1[56]:[^:]*:Damcyan Antlion:868B:/
-2324.2 "Sandblast" sync / 1[56]:[^:]*:Damcyan Antlion:87FD:/
+2297.9 "--middle--" Ability { id: "8808", source: "Damcyan Antlion" }
+2304.0 "Earthen Geyser" Ability { id: "8805", source: "Damcyan Antlion" }
+2315.1 "Pound Sand" Ability { id: "868B", source: "Damcyan Antlion" }
+2324.2 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 
-2330.3 "--north--" sync / 1[56]:[^:]*:Damcyan Antlion:8808:/ window 50,50 forcejump 2270.0
+2330.3 "--north--" Ability { id: "8808", source: "Damcyan Antlion" } window 50,50 forcejump 2270.0
 
 
 # ALL ENCOUNTER ABILITIES
@@ -154,64 +154,64 @@ hideall "--sync--"
 # Carnelian Courtyard will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1155:/ window 10000,0
 3007.3 "--sync--" sync / 14:[^:]*:Durante:88C3:/ window 10,10
-3012.3 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
-3014.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3022.7 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/ duration 2.5
-3035.5 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
-3044.3 "Explosion" sync / 1[56]:[^:]*:Aetheric Charge:88BE:/
+3012.3 "Old Magic" Ability { id: "88C3", source: "Durante" }
+3014.4 "--middle--" Ability { id: "88AF", source: "Durante" }
+3022.7 "Duplicitous Battery" Ability { id: "8CD9", source: "Durante" } duration 2.5
+3035.5 "Forsaken Fount" Ability { id: "88BB", source: "Durante" }
+3044.3 "Explosion" Ability { id: "88BE", source: "Aetheric Charge" }
 
-3048.6 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3058.0 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/ duration 2.5
-3064.6 "Fallen Grace" sync / 1[56]:[^:]*:Durante:8C2A:/
+3048.6 "--middle--" Ability { id: "88AF", source: "Durante" }
+3058.0 "Duplicitous Battery" Ability { id: "8CD9", source: "Durante" } duration 2.5
+3064.6 "Fallen Grace" Ability { id: "8C2A", source: "Durante" }
 
-3070.7 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
-3076.1 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
-3081.2 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
-3082.1 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
-3094.1 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
+3070.7 "--north--" Ability { id: "88AF", source: "Durante" }
+3076.1 "Forsaken Fount" Ability { id: "88BB", source: "Durante" }
+3081.2 "Contrapasso" Ability { id: "8C41", source: "Durante" }
+3082.1 "Splinter" Ability { id: "88BC", source: "Aetheric Charge" }
+3094.1 "Explosion" Ability { id: "88BD", source: "Durante" }
 
-3094.5 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
-3099.8 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
-3104.9 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
-3105.8 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
-3117.8 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
-3123.2 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
+3094.5 "--north--" Ability { id: "88AF", source: "Durante" }
+3099.8 "Forsaken Fount" Ability { id: "88BB", source: "Durante" }
+3104.9 "Contrapasso" Ability { id: "8C41", source: "Durante" }
+3105.8 "Splinter" Ability { id: "88BC", source: "Aetheric Charge" }
+3117.8 "Explosion" Ability { id: "88BD", source: "Durante" }
+3123.2 "Old Magic" Ability { id: "88C3", source: "Durante" }
 
-3128.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3130.4 "--sync--" sync / 1[56]:[^:]*:Durante:38FC:/
-3135.4 "Antipodal Assault" sync / 1[56]:[^:]*:Durante:88BF:/
-3142.9 "Hard Slash" sync / 1[56]:[^:]*:Durante:88C1:/
+3128.4 "--middle--" Ability { id: "88AF", source: "Durante" }
+3130.4 "--sync--" Ability { id: "38FC", source: "Durante" }
+3135.4 "Antipodal Assault" Ability { id: "88BF", source: "Durante" }
+3142.9 "Hard Slash" Ability { id: "88C1", source: "Durante" }
 
-3145.2 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3154.4 "Twilight Phase" sync / 1[56]:[^:]*:Durante:8CD7:/
-3165.6 "Dark Impact" sync / 1[56]:[^:]*:Durante:88BA:/
+3145.2 "--middle--" Ability { id: "88AF", source: "Durante" }
+3154.4 "Twilight Phase" Ability { id: "8CD7", source: "Durante" }
+3165.6 "Dark Impact" Ability { id: "88BA", source: "Durante" }
 
-3172.3 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3180.6 "Death's Journey" sync / 1[56]:[^:]*:Durante:88B3:/
+3172.3 "--middle--" Ability { id: "88AF", source: "Durante" }
+3180.6 "Death's Journey" Ability { id: "88B3", source: "Durante" }
 
-3185.7 "--north--" sync / 1[56]:[^:]*:Durante:88AF:/
-3191.0 "Forsaken Fount" sync / 1[56]:[^:]*:Durante:88BB:/
-3196.1 "Contrapasso" sync / 1[56]:[^:]*:Durante:8C41:/
-3197.0 "Splinter" sync / 1[56]:[^:]*:Aetheric Charge:88BC:/
-3209.0 "Explosion" sync / 1[56]:[^:]*:Durante:88BD:/
-3212.3 "Old Magic" sync / 1[56]:[^:]*:Durante:88C3:/
+3185.7 "--north--" Ability { id: "88AF", source: "Durante" }
+3191.0 "Forsaken Fount" Ability { id: "88BB", source: "Durante" }
+3196.1 "Contrapasso" Ability { id: "8C41", source: "Durante" }
+3197.0 "Splinter" Ability { id: "88BC", source: "Aetheric Charge" }
+3209.0 "Explosion" Ability { id: "88BD", source: "Durante" }
+3212.3 "Old Magic" Ability { id: "88C3", source: "Durante" }
 
-3217.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3226.8 "Duplicitous Battery" sync / 1[56]:[^:]*:Durante:8CD9:/
-3233.2 "Fallen Grace" sync / 1[56]:[^:]*:Durante:8C2A:/
+3217.4 "--middle--" Ability { id: "88AF", source: "Durante" }
+3226.8 "Duplicitous Battery" Ability { id: "8CD9", source: "Durante" }
+3233.2 "Fallen Grace" Ability { id: "8C2A", source: "Durante" }
 
-3241.3 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3243.4 "--sync--" sync / 1[56]:[^:]*:Durante:38FC:/
-3248.4 "Antipodal Assault" sync / 1[56]:[^:]*:Durante:88BF:/
-3255.8 "Hard Slash" sync / 1[56]:[^:]*:Durante:88C1:/
+3241.3 "--middle--" Ability { id: "88AF", source: "Durante" }
+3243.4 "--sync--" Ability { id: "38FC", source: "Durante" }
+3248.4 "Antipodal Assault" Ability { id: "88BF", source: "Durante" }
+3255.8 "Hard Slash" Ability { id: "88C1", source: "Durante" }
 
-3257.9 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3267.1 "Twilight Phase" sync / 1[56]:[^:]*:Durante:8CD7:/
-3278.3 "Dark Impact" sync / 1[56]:[^:]*:Durante:88BA:/
-3287.2 "Arcane Edge" sync / 1[56]:[^:]*:Durante:88C2:/
+3257.9 "--middle--" Ability { id: "88AF", source: "Durante" }
+3267.1 "Twilight Phase" Ability { id: "8CD7", source: "Durante" }
+3278.3 "Dark Impact" Ability { id: "88BA", source: "Durante" }
+3287.2 "Arcane Edge" Ability { id: "88C2", source: "Durante" }
 
-3295.4 "--middle--" sync / 1[56]:[^:]*:Durante:88AF:/
-3303.7 "Death's Journey" sync / 1[56]:[^:]*:Durante:88B3:/ window 100,100 forcejump 3180.6
+3295.4 "--middle--" Ability { id: "88AF", source: "Durante" }
+3303.7 "Death's Journey" Ability { id: "88B3", source: "Durante" } window 100,100 forcejump 3180.6
 
 # ALL ENCOUNTER ABILITIES
 # 366 attack
