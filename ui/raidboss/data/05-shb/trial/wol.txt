@@ -11,7 +11,7 @@ hideall "--Reset--"
 
 0.0 "Start"
 5.2 "--sync--" Ability { id: "4F45", source: "Warrior Of Light" } window 20,20 jump 475.4
-6.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F27:/ window 10,10
+6.3 "--sync--" StartsUsing { id: "4F27", source: "Warrior Of Light" } window 10,10
 9.3 "Terror Unleashed" Ability { id: "4F27", source: "Warrior Of Light" }
 25.1 "Solemn Confiteor" Ability { id: "4F2A", source: "Warrior Of Light" }
 31.6 "Coruscant Saber (In)" Ability { id: "4F11", source: "Warrior Of Light" }
@@ -36,7 +36,7 @@ hideall "--Reset--"
 
 ### Cutscene: 50%
 300.0 "--sync--" Ability { id: "4F45", source: "Warrior Of Light" }
-302.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:5331:/ window 400,100
+302.3 "--sync--" StartsUsing { id: "5331", source: "Warrior Of Light" } window 400,100
 308.3 "Ascendance" Ability { id: "5331", source: "Warrior Of Light" }
 311.4 "--untargetable--"
 311.5 "--sync--" Ability { id: "5071", source: "Warrior Of Light" }

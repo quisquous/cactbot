@@ -128,7 +128,7 @@ hideall "Soul And Body"
 740.4 "--sync--" Ability { id: "3EA2", source: "Innocence" }
 743.9 "Holy Trinity" #Ability { id: "3EDB", source: "Innocence" }
 
-741.7 "--sync--" sync / 14:[^:]*:Innocence:3EEF:/ window 10,10
+741.7 "--sync--" StartsUsing { id: "3EEF", source: "Innocence" } window 10,10
 744.7 "Starbirth Final" Ability { id: "3EEF", source: "Innocence" }
 764.7 "Beatific Vision" Ability { id: "3EF1", source: "Innocence" }
 765.6 "Explosion Enrage" Ability { id: "3EF0", source: "Innocence" }

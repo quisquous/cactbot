@@ -12,7 +12,7 @@ hideall "--sync--"
 
 0 "Start"
 0.8 "--sync--" Ability { id: "4B1E", source: "Eden's Promise" } window 1,0
-11.0 "--sync--" sync / 14:[^:]*:Eden's Promise:58A8:/ window 11,20
+11.0 "--sync--" StartsUsing { id: "58A8", source: "Eden's Promise" } window 11,20
 16.0 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 23.2 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
 25.8 "Initialize Recall" Ability { id: "588C", source: "Eden's Promise" }
@@ -119,7 +119,7 @@ hideall "--sync--"
 # -ii 4B1F 58C5 58C6 58D7 58BF 58C9 58CB 58CC 58CE
 
 1000.0 "Start"
-1011.0 "--sync--" sync / 14:[^:]*:Oracle Of Darkness:58EF:/ window 1011,0
+1011.0 "--sync--" StartsUsing { id: "58EF", source: "Oracle Of Darkness" } window 1011,0
 1015.0 "Hell's Judgment" Ability { id: "58EF", source: "Oracle Of Darkness" }
 1023.2 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 

@@ -83,7 +83,7 @@ hideall "--sync--"
 20014.7 "Electric Anvil" Ability { id: "51DC", source: "Brionac" }
 20026.8 "False Thunder" Ability { id: "51C[EF]", source: "Brionac" }
 20035.0 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
-20135.0 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
+20135.0 "--sync--" StartsUsing { id: "53C4", source: "Brionac" } window 100,50
 20139.0 "Lightning Shower" Ability { id: "53C4", source: "Brionac" }
 
 20146.1 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
@@ -106,7 +106,7 @@ hideall "--sync--"
 20254.9 "Lightburst" Ability { id: "51D1", source: "Lightsphere" }
 
 20263.2 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
-20363.2 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
+20363.2 "--sync--" StartsUsing { id: "53C4", source: "Brionac" } window 100,50
 20367.2 "Lightning Shower" Ability { id: "53C4", source: "Brionac" }
 20374.3 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
 20384.4 "Magitek Magnetism" Ability { id: "51D5", source: "Brionac" }
@@ -119,7 +119,7 @@ hideall "--sync--"
 20411.7 "Voltstream" Ability { id: "51DB", source: "Brionac" }
 20418.6 "False Thunder" Ability { id: "51CF", source: "Brionac" }
 20427.9 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
-20527.9 "--sync--" sync / 14:[^:]*:Brionac:51DC:/ window 100,50
+20527.9 "--sync--" StartsUsing { id: "51DC", source: "Brionac" } window 100,50
 20531.9 "Electric Anvil" Ability { id: "51DC", source: "Brionac" }
 
 20539.0 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
@@ -237,7 +237,7 @@ hideall "--sync--"
 50168.7 "Meteor" Ability { id: "4F92", source: "Adrammelech" } duration 20.7
 
 # HP push? I have seen Meteor and Tornado->Meteor all skipped.
-50194.3 "--sync--" sync / 14:[^:]*:Adrammelech:4F7A:/ window 70,20
+50194.3 "--sync--" StartsUsing { id: "4F7A", source: "Adrammelech" } window 70,20
 50197.3 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
 50204.4 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
 50211.6 "Orb 1" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
@@ -334,7 +334,7 @@ hideall "--sync--"
 60275.7 "Raging Winds Enrage" #Ability { id: "5164", source: "Lyon The Beast King" }
 
 # Phase 3
-61000.0 "--sync--" sync / 14:[^:]*:Dawon:517D:/ window 1000,0
+61000.0 "--sync--" StartsUsing { id: "517D", source: "Dawon" } window 1000,0
 61002.0 "Ready x4" duration 6.1 #Ability { id: "5191", source: "Lyon The Beast King" }
 61012.0 "Obey" Ability { id: "517D", source: "Dawon" }
 61014.1 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }

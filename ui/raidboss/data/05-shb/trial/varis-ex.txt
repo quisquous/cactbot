@@ -49,9 +49,9 @@ hideall "--sync--"
 ### Phase 3: Random Groups
 # Note: all three of these blocks occur, but can occur in any order
 269.1 "--targetable--"
-274.3 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD8:/ window 100,100 jump 500
-274.3 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD9:/ window 100,100 jump 700
-274.3 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD7:/ window 100,100 jump 900
+274.3 "--sync--" StartsUsing { id: "4CD8", source: "Varis Yae Galvus" } window 100,100 jump 500
+274.3 "--sync--" StartsUsing { id: "4CD9", source: "Varis Yae Galvus" } window 100,100 jump 700
+274.3 "--sync--" StartsUsing { id: "4CD7", source: "Varis Yae Galvus" } window 100,100 jump 900
 
 # loaded lookahead window
 279.3 "Loaded Gunshield?" #Ability { id: "4CD8", source: "Varis Yae Galvus" }
@@ -88,7 +88,7 @@ hideall "--sync--"
 
 
 ## Phase 3: Loaded Gunshield, Spread
-500.0 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD8:/
+500.0 "--sync--" StartsUsing { id: "4CD8", source: "Varis Yae Galvus" }
 505.0 "Loaded Gunshield" Ability { id: "4CD8", source: "Varis Yae Galvus" }
 513.9 "--sync--" Ability { id: "4CB5", source: "Varis Yae Galvus" }
 518.2 "--sync--" Ability { id: "4CDE", source: "Varis Yae Galvus" }
@@ -99,8 +99,8 @@ hideall "--sync--"
 529.5 "Festina Lente" Ability { id: "4CC9", source: "Varis Yae Galvus" }
 540.7 "Citius" Ability { id: "4CF0", source: "Varis Yae Galvus" }
 
-554.3 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD9:/ window 10,10 jump 700
-554.3 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD7:/ window 10,10 jump 900
+554.3 "--sync--" StartsUsing { id: "4CD9", source: "Varis Yae Galvus" } window 10,10 jump 700
+554.3 "--sync--" StartsUsing { id: "4CD7", source: "Varis Yae Galvus" } window 10,10 jump 900
 
 # reinforced lookahead window
 559.3 "Reinforced Gunshield?" #Ability { id: "4CD9", source: "Varis Yae Galvus" }
@@ -127,7 +127,7 @@ hideall "--sync--"
 
 
 ## Phase 3: Reinforced Gunshield, Block
-700.0 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD9:/
+700.0 "--sync--" StartsUsing { id: "4CD9", source: "Varis Yae Galvus" }
 705.0 "Reinforced Gunshield" Ability { id: "4CD9", source: "Varis Yae Galvus" }
 714.1 "Altius" Ability { id: "4CCA", source: "Varis Yae Galvus" }
 723.0 "--sync--" Ability { id: "4CC6", source: "Varis Yae Galvus" }
@@ -136,8 +136,8 @@ hideall "--sync--"
 731.1 "Ventus Est" Ability { id: "4CC7", source: "Ventus Est" }
 741.5 "Citius" Ability { id: "4CF0", source: "Varis Yae Galvus" }
 
-752.8 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD8:/ window 10,10 jump 500
-752.8 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD7:/ window 10,10 jump 900
+752.8 "--sync--" StartsUsing { id: "4CD8", source: "Varis Yae Galvus" } window 10,10 jump 500
+752.8 "--sync--" StartsUsing { id: "4CD7", source: "Varis Yae Galvus" } window 10,10 jump 900
 
 # loaded lookahead window
 757.8 "Loaded Gunshield?" #Ability { id: "4CD8", source: "Varis Yae Galvus" }
@@ -166,7 +166,7 @@ hideall "--sync--"
 
 
 ## Phase 3: Electrified Gunshield, Knockback
-900.0 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD7:/
+900.0 "--sync--" StartsUsing { id: "4CD7", source: "Varis Yae Galvus" }
 905.0 "Electrified Gunshield" Ability { id: "4CD7", source: "Varis Yae Galvus" }
 910.1 "Reinforcements" Ability { id: "4CEA", source: "Varis Yae Galvus" }
 916.0 "--clones appear--" Ability { id: "4CB3", source: "Phantom Varis" }
@@ -179,8 +179,8 @@ hideall "--sync--"
 944.5 "--sync--" Ability { id: "4CD5", source: "Varis Yae Galvus" }
 947.2 "--sync--" Ability { id: "4CD6", source: "Varis Yae Galvus" }
 
-958.7 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD8:/ window 10,10 jump 500
-958.7 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CD9:/ window 10,10 jump 700
+958.7 "--sync--" StartsUsing { id: "4CD8", source: "Varis Yae Galvus" } window 10,10 jump 500
+958.7 "--sync--" StartsUsing { id: "4CD9", source: "Varis Yae Galvus" } window 10,10 jump 700
 
 # loaded lookahead window
 963.7 "Loaded Gunshield?" #Ability { id: "4CD8", source: "Varis Yae Galvus" }
@@ -267,5 +267,5 @@ hideall "--sync--"
 1571.3 "Terminus Est" Ability { id: "4CB4", source: "Terminus Est" }
 1573.6 "Magitek Shock" Ability { id: "4CDA", source: "Varis Yae Galvus" }
 
-1579.7 "--sync--" sync / 14:[^:]*:Varis Yae Galvus:4CA9:/ window 30,30
+1579.7 "--sync--" StartsUsing { id: "4CA9", source: "Varis Yae Galvus" } window 30,30
 1589.7 "Altius Enrage" Ability { id: "4CA9", source: "Varis Yae Galvus" }

@@ -16,7 +16,7 @@ hideall "--sync--"
 
 # Two Adds (hp push???)
 # hopefully there's not an inscrutability cast before the one preceding the add?
-1047.4 "--sync--" sync / 14:[^:]*:Unknown:4B6A:/ window 50,0
+1047.4 "--sync--" StartsUsing { id: "4B6A", source: "Unknown" } window 50,0
 1051.4 "Inscrutability" Ability { id: "4B6A", source: "Unknown" }
 1059.8 "Unknown Add" Ability { id: "4B77", source: "Unknown" } window 60,60
 1064.8 "Ectoplasmic Ray" Ability { id: "4B7A", source: "Unknown" }
@@ -47,7 +47,7 @@ hideall "--sync--"
 
 # One add (???)
 # starts 3 second cast 10 seconds after other add dies?
-1310.0 "--sync--"  sync / 14:[^:]*:Unknown:4E4B:/ window 310,0
+1310.0 "--sync--"  StartsUsing { id: "4E4B", source: "Unknown" } window 310,0
 1313.0 "Plain Weirdness" Ability { id: "4E4B", source: "Unknown" }
 1319.2 "Inscrutability" Ability { id: "4B73", source: "Unknown" }
 1329.4 "--sync--" Ability { id: "4B77", source: "Unknown" }

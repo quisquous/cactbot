@@ -46,7 +46,7 @@ hideall "--sync--"
 
 
 # Post-intermission initial block.
-500.0 "--sync--" sync / 14:[^:]*:Eden's Promise:4B48:/ window 500,10
+500.0 "--sync--" StartsUsing { id: "4B48", source: "Eden's Promise" } window 500,10
 504.9 "Paradise Lost" Ability { id: "4B48", source: "Eden's Promise" }
 511.9 "--targetable--"
 522.0 "Initialize Recall" Ability { id: "5859", source: "Eden's Promise" } window 30,30
