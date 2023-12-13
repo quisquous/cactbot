@@ -9,38 +9,38 @@ hideall "--sync--"
 
 # Condensate Demineralizer #9 will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:66C:/ window 10000,10000
-7.5 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12EE:/
-11.6 "Splash x3" duration 3 #sync / 1[56]:[^:]*:Living Liquid:12EF:/
-19.9 "Protean Wave" sync / 1[56]:[^:]*:Living Liquid:12F0:/
-23.5 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12EE:/
-27.6 "Splash x3" duration 3 #sync / 1[56]:[^:]*:Living Liquid:12EF:/
-32.9 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12EE:/
-39.0 "Sluice" sync / 1[56]:[^:]*:Living Liquid:12F2:/
-42.0 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F3:/
-44.0 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F4:/
-47.2 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12EE:/
-53.3 "Splash x3" duration 3 #sync / 1[56]:[^:]*:Living Liquid:12EF:/
+7.5 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" }
+11.6 "Splash x3" duration 3 #Ability { id: "12EF", source: "Living Liquid" }
+19.9 "Protean Wave" Ability { id: "12F0", source: "Living Liquid" }
+23.5 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" }
+27.6 "Splash x3" duration 3 #Ability { id: "12EF", source: "Living Liquid" }
+32.9 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" }
+39.0 "Sluice" Ability { id: "12F2", source: "Living Liquid" }
+42.0 "--sync--" Ability { id: "12F3", source: "Living Liquid" }
+44.0 "--sync--" Ability { id: "12F4", source: "Living Liquid" }
+47.2 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" }
+53.3 "Splash x3" duration 3 #Ability { id: "12EF", source: "Living Liquid" }
 
 # Hand phase
 57.5 "--untargetable--"
-59.5 "--sync--" sync / 1[56]:[^:]*:Hydrate Core:F28:/
-60.6 "--sync--" sync / 1[56]:[^:]*:Living Liquid:F22:/ window 60.6,10
-61.0 "Hydromorph" sync / 1[56]:[^:]*:Hydrate Core:F29:/
-63.0 "--sync--" sync / 1[56]:[^:]*:Hydrate Core:1040:/
+59.5 "--sync--" Ability { id: "F28", source: "Hydrate Core" }
+60.6 "--sync--" Ability { id: "F22", source: "Living Liquid" } window 60.6,10
+61.0 "Hydromorph" Ability { id: "F29", source: "Hydrate Core" }
+63.0 "--sync--" Ability { id: "1040", source: "Hydrate Core" }
 64.5 "--targetable--"
-70.6 "Fluid Strike" sync / 1[56]:[^:]*:Living Liquid:12FD:/
-77.7 "Wash Away" sync / 1[56]:[^:]*:Living Liquid:12FF:/
-87.9 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FD:/
-91.0 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FD:/
-94.1 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FD:/
+70.6 "Fluid Strike" Ability { id: "12FD", source: "Living Liquid" }
+77.7 "Wash Away" Ability { id: "12FF", source: "Living Liquid" }
+87.9 "Fluid Strike" #Ability { id: "12FD", source: "Living Liquid" }
+91.0 "Fluid Strike" #Ability { id: "12FD", source: "Living Liquid" }
+94.1 "Fluid Strike" #Ability { id: "12FD", source: "Living Liquid" }
 98.1 "--Liquid Limb spawns--"
-104.2 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-109.3 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-111.4 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-116.5 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-118.6 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-123.7 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
-125.8 "Fluid Strike" #sync / 1[56]:[^:]*:Living Liquid:12FE:/
+104.2 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+109.3 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+111.4 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+116.5 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+118.6 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+123.7 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
+125.8 "Fluid Strike" #Ability { id: "12FE", source: "Living Liquid" }
 
 # Tornado phase
 # There are several add waves here, but the timing is dependent on kill times,
@@ -48,20 +48,20 @@ hideall "--sync--"
 # Drainage is the only consistent thing through the phase.
 
 128.8 "--untargetable--"
-132.1 "--sync--" sync / 1[56]:[^:]*:Hydrate Core:F28:/ window 68,5
-133.2 "--sync--" sync / 1[56]:[^:]*:Living Liquid:F24:/
-133.6 "Hydromorph" sync / 1[56]:[^:]*:Hydrate Core:F29:/
-135.7 "--sync--" sync / 1[56]:[^:]*:Hydrate Core:1040:/
-157.9 "Drainage" sync / 1[56]:[^:]*:Living Liquid:1304:/
-178.6 "Drainage" sync / 1[56]:[^:]*:Living Liquid:1304:/
+132.1 "--sync--" Ability { id: "F28", source: "Hydrate Core" } window 68,5
+133.2 "--sync--" Ability { id: "F24", source: "Living Liquid" }
+133.6 "Hydromorph" Ability { id: "F29", source: "Hydrate Core" }
+135.7 "--sync--" Ability { id: "1040", source: "Hydrate Core" }
+157.9 "Drainage" Ability { id: "1304", source: "Living Liquid" }
+178.6 "Drainage" Ability { id: "1304", source: "Living Liquid" }
 
 # And back we go to the first phase, which repeats *identically from the beginning*(!!)
 
-200.2 "--sync--" sync / 1[56]:[^:]*:Hydrate Core:F28:/ window 71.4,5
-201.3 "--sync--" sync / 1[56]:[^:]*:Living Liquid:F26:/
-201.7 "Hydromorph" sync / 1[56]:[^:]*:Hydrate Core:F29:/
+200.2 "--sync--" Ability { id: "F28", source: "Hydrate Core" } window 71.4,5
+201.3 "--sync--" Ability { id: "F26", source: "Living Liquid" }
+201.7 "Hydromorph" Ability { id: "F29", source: "Hydrate Core" }
 205.2 "--targetable--"
-211.3 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12EE:/ jump 7.5
+211.3 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" } jump 7.5
 215.4 "Splash x3"
 223.7 "Protean Wave"
 227.3 "Fluid Swing"
@@ -76,26 +76,26 @@ hideall "--sync--"
 # Under certain circumstances, Ferrofluid/Magnetism can be skipped.
 # Fluid Swing after is synced to account for that.
 
-300.0 "Valve" sync / 1[56]:[^:]*:Living Liquid:12F6:/ window 300,5
-310.1 "Cascade" sync / 1[56]:[^:]*:Living Liquid:12F7:/
-316.3 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/
-319.5 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/
-326.6 "Sluice" sync / 1[56]:[^:]*:Living Liquid:12F2:/
-329.6 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F3:/
-331.6 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F4:/
-335.9 "Magnetism/Repel" sync / 1[56]:[^:]*:Living Liquid:(1307|1309):/
-344.0 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/ window 17.4,2.5
-346.1 "Splash x4" # sync / 1[56]:[^:]*:Living Liquid:12EF:/
-350.5 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/
-359.8 "Magnetism/Repel" sync / 1[56]:[^:]*:Living Liquid:(1307|1309):/
-365.9 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/ window 10,2.5
-372.0 "Sluice" sync / 1[56]:[^:]*:Living Liquid:12F2:/
-375.0 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F3:/
-377.0 "--sync--" sync / 1[56]:[^:]*:Living Liquid:12F4:/
-378.7 "Protean Wave" sync / 1[56]:[^:]*:Living Liquid:12F0:/
-381.4 "Fluid Swing" sync / 1[56]:[^:]*:Living Liquid:12F5:/
+300.0 "Valve" Ability { id: "12F6", source: "Living Liquid" } window 300,5
+310.1 "Cascade" Ability { id: "12F7", source: "Living Liquid" }
+316.3 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" }
+319.5 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" }
+326.6 "Sluice" Ability { id: "12F2", source: "Living Liquid" }
+329.6 "--sync--" Ability { id: "12F3", source: "Living Liquid" }
+331.6 "--sync--" Ability { id: "12F4", source: "Living Liquid" }
+335.9 "Magnetism/Repel" Ability { id: "(1307|1309)", source: "Living Liquid" }
+344.0 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" } window 17.4,2.5
+346.1 "Splash x4" # Ability { id: "12EF", source: "Living Liquid" }
+350.5 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" }
+359.8 "Magnetism/Repel" Ability { id: "(1307|1309)", source: "Living Liquid" }
+365.9 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" } window 10,2.5
+372.0 "Sluice" Ability { id: "12F2", source: "Living Liquid" }
+375.0 "--sync--" Ability { id: "12F3", source: "Living Liquid" }
+377.0 "--sync--" Ability { id: "12F4", source: "Living Liquid" }
+378.7 "Protean Wave" Ability { id: "12F0", source: "Living Liquid" }
+381.4 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" }
 
-387.5 "Cascade" sync / 1[56]:[^:]*:Living Liquid:12F7:/ window 60,30 jump 310.1
+387.5 "Cascade" Ability { id: "12F7", source: "Living Liquid" } window 60,30 jump 310.1
 393.7 "Fluid Swing"
 396.9 "Fluid Swing"
 404.0 "Sluice"

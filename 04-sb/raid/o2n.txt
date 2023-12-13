@@ -8,103 +8,103 @@ hideall "--sync--"
 # -ii 24E8 24FC 2500 2501 2505 2514 2515 2516
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-5.6 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/ window 5.6,2
-9.2 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/
-17.8 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2512:/
-25.0 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-32.1 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:250F:/
-37.3 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:250A:/
-53.4 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-65.5 "Gravitational Manipulation" sync / 1[56]:[^:]*:Catastrophe:2504:/
-72.7 "Gravitational Explosion" sync / 1[56]:[^:]*:Catastrophe:2506:/
-79.7 "Paranormal Wave" sync / 1[56]:[^:]*:Catastrophe:250E:/
-87.8 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-98.0 "Maniacal Probe" sync / 1[56]:[^:]*:Catastrophe:258F:/
-104.1 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:2590:/ window 30,30
-108.2 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:24A2:/
-116.3 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/
-126.3 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:24A5:/
-133.4 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-141.5 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-153.6 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/
-154.6 "Explosion" sync / 1[56]:[^:]*:Petrosphere:2513:/
-156.8 "Paranormal Wave" sync / 1[56]:[^:]*:Catastrophe:250E:/
-165.9 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:250F:/
-171.1 "Paranormal Wave" sync / 1[56]:[^:]*:Catastrophe:250E:/
-179.3 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-189.4 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-# 192.5 "Explosion" sync / 1[56]:[^:]*:Petrosphere:2513:/
-192.5 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-199.6 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/
-207.8 "Maniacal Probe" sync / 1[56]:[^:]*:Catastrophe:258F:/
-213.9 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:2590:/ window 30,30
-218.0 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:24A2:/
-236.2 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:24A5:/
-243.1 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-257.3 " -100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FF:/
-# 264.8 "Explosion" sync / 1[56]:[^:]*:Petrosphere:2513:/
-264.8 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
+5.6 "Tremblor" Ability { id: "2511", source: "Catastrophe" } window 5.6,2
+9.2 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
+17.8 "Earthquake" Ability { id: "2512", source: "Catastrophe" }
+25.0 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+32.1 "Evilsphere" Ability { id: "250F", source: "Catastrophe" }
+37.3 "Gravitational Distortion" Ability { id: "250A", source: "Catastrophe" }
+53.4 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+65.5 "Gravitational Manipulation" Ability { id: "2504", source: "Catastrophe" }
+72.7 "Gravitational Explosion" Ability { id: "2506", source: "Catastrophe" }
+79.7 "Paranormal Wave" Ability { id: "250E", source: "Catastrophe" }
+87.8 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+98.0 "Maniacal Probe" Ability { id: "258F", source: "Catastrophe" }
+104.1 "Erosion" Ability { id: "2590", source: "Fleshy Member" } window 30,30
+108.2 "Epicenter" Ability { id: "24A2", source: "Catastrophe" }
+116.3 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" }
+126.3 "Main Quake" Ability { id: "24A5", source: "Catastrophe" }
+133.4 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+141.5 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+153.6 "Demon Eye" Ability { id: "250D", source: "Catastrophe" }
+154.6 "Explosion" Ability { id: "2513", source: "Petrosphere" }
+156.8 "Paranormal Wave" Ability { id: "250E", source: "Catastrophe" }
+165.9 "Evilsphere" Ability { id: "250F", source: "Catastrophe" }
+171.1 "Paranormal Wave" Ability { id: "250E", source: "Catastrophe" }
+179.3 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+189.4 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+# 192.5 "Explosion" Ability { id: "2513", source: "Petrosphere" }
+192.5 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+199.6 "Demon Eye" Ability { id: "250D", source: "Catastrophe" }
+207.8 "Maniacal Probe" Ability { id: "258F", source: "Catastrophe" }
+213.9 "Erosion" Ability { id: "2590", source: "Fleshy Member" } window 30,30
+218.0 "Epicenter" Ability { id: "24A2", source: "Catastrophe" }
+236.2 "Main Quake" Ability { id: "24A5", source: "Catastrophe" }
+243.1 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+257.3 " -100 Gs" Ability { id: "24FF", source: "Catastrophe" }
+# 264.8 "Explosion" Ability { id: "2513", source: "Petrosphere" }
+264.8 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
 
 # A short intermission block after -100Gs
-268.4 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/ window 30,30
-280.5 "Evilsphere" sync / 1[56]:[^:]*:Catastrophe:250F:/
-290.7 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-298.8 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-308.0 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:250A:/
-312.0 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-329.1 "Maniacal Probe" sync / 1[56]:[^:]*:Catastrophe:258F:/
-335.2 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:2590:/
-339.2 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:24A2:/
-344.3 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-354.5 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/
-357.4 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:24A5:/
+268.4 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" } window 30,30
+280.5 "Evilsphere" Ability { id: "250F", source: "Catastrophe" }
+290.7 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+298.8 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+308.0 "Gravitational Distortion" Ability { id: "250A", source: "Catastrophe" }
+312.0 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+329.1 "Maniacal Probe" Ability { id: "258F", source: "Catastrophe" }
+335.2 "Erosion" Ability { id: "2590", source: "Fleshy Member" }
+339.2 "Epicenter" Ability { id: "24A2", source: "Catastrophe" }
+344.3 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+354.5 "Demon Eye" Ability { id: "250D", source: "Catastrophe" }
+357.4 "Main Quake" Ability { id: "24A5", source: "Catastrophe" }
 
 # Rotation block
-362.7 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/ window 30,30
-372.8 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-379.9 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/
-383.6 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/
-386.0 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-392.3 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2512:/ window 30,30
-400.5 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/
-410.6 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-415.7 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-# 423.7 "Explosion" sync / 1[56]:[^:]*:Petrosphere:2513:/
-423.7 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-425.8 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/ window 30,30
-441.0 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-449.1 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-458.3 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:250A:/
-462.3 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-479.4 "Maniacal Probe" sync / 1[56]:[^:]*:Catastrophe:258F:/
-485.5 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:2590:/
-489.5 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:24A2:/
-494.7 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-504.9 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/
-507.8 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:24A5:/ window 30,30
+362.7 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" } window 30,30
+372.8 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+379.9 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
+383.6 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
+386.0 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+392.3 "Earthquake" Ability { id: "2512", source: "Catastrophe" } window 30,30
+400.5 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" }
+410.6 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+415.7 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+# 423.7 "Explosion" Ability { id: "2513", source: "Petrosphere" }
+423.7 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+425.8 "Demon Eye" Ability { id: "250D", source: "Catastrophe" } window 30,30
+441.0 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+449.1 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+458.3 "Gravitational Distortion" Ability { id: "250A", source: "Catastrophe" }
+462.3 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+479.4 "Maniacal Probe" Ability { id: "258F", source: "Catastrophe" }
+485.5 "Erosion" Ability { id: "2590", source: "Fleshy Member" }
+489.5 "Epicenter" Ability { id: "24A2", source: "Catastrophe" }
+494.7 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+504.9 "Demon Eye" Ability { id: "250D", source: "Catastrophe" }
+507.8 "Main Quake" Ability { id: "24A5", source: "Catastrophe" } window 30,30
 
-513.1 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/ window 30,30
-523.2 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-530.3 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/
-534.0 "Tremblor" sync / 1[56]:[^:]*:Catastrophe:2511:/
-536.4 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-542.7 "Earthquake" sync / 1[56]:[^:]*:Catastrophe:2512:/ window 30,30
-550.9 "Gravitational Wave" sync / 1[56]:[^:]*:Catastrophe:2510:/
-561.0 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-566.1 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-# 574.1 "Explosion" sync / 1[56]:[^:]*:Petrosphere:2513:/
-574.1 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-576.2 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/ window 30,30
-591.4 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-599.5 "Antilight" sync / 1[56]:[^:]*:Catastrophe:2502:/
-608.7 "Gravitational Distortion" sync / 1[56]:[^:]*:Catastrophe:250A:/ window 30,30
-612.7 "Explosion" sync / 1[56]:[^:]*:Potent Petrosphere:2503:/
-629.8 "Maniacal Probe" sync / 1[56]:[^:]*:Catastrophe:258F:/
-635.9 "Erosion" sync / 1[56]:[^:]*:Fleshy Member:2590:/
-639.9 "Epicenter" sync / 1[56]:[^:]*:Catastrophe:24A2:/
-645.1 "100 Gs" sync / 1[56]:[^:]*:Catastrophe:24FB:/
-655.3 "Demon Eye" sync / 1[56]:[^:]*:Catastrophe:250D:/ window 30,30
-658.2 "Main Quake" sync / 1[56]:[^:]*:Catastrophe:24A5:/ jump 507.8
+513.1 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" } window 30,30
+523.2 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+530.3 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
+534.0 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
+536.4 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+542.7 "Earthquake" Ability { id: "2512", source: "Catastrophe" } window 30,30
+550.9 "Gravitational Wave" Ability { id: "2510", source: "Catastrophe" }
+561.0 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+566.1 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+# 574.1 "Explosion" Ability { id: "2513", source: "Petrosphere" }
+574.1 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+576.2 "Demon Eye" Ability { id: "250D", source: "Catastrophe" } window 30,30
+591.4 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+599.5 "Antilight" Ability { id: "2502", source: "Catastrophe" }
+608.7 "Gravitational Distortion" Ability { id: "250A", source: "Catastrophe" } window 30,30
+612.7 "Explosion" Ability { id: "2503", source: "Potent Petrosphere" }
+629.8 "Maniacal Probe" Ability { id: "258F", source: "Catastrophe" }
+635.9 "Erosion" Ability { id: "2590", source: "Fleshy Member" }
+639.9 "Epicenter" Ability { id: "24A2", source: "Catastrophe" }
+645.1 "100 Gs" Ability { id: "24FB", source: "Catastrophe" }
+655.3 "Demon Eye" Ability { id: "250D", source: "Catastrophe" } window 30,30
+658.2 "Main Quake" Ability { id: "24A5", source: "Catastrophe" } jump 507.8
 
 663.5 "Gravitational Wave"
 673.6 "Antilight"

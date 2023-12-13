@@ -8,17 +8,17 @@ hideall "--sync--"
 # -ii 10E1
 # Analysis and Proving will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:63E:/
-6.3 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ window 6.3,5
+6.3 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" } window 6.3,5
 
-13.4 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/ window 13.4,2.5
-18.6 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DE:/
-25.5 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-37.8 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
+13.4 "Judgment" Ability { id: "10DD", source: "Regula van Hydrus" } window 13.4,2.5
+18.6 "Judgment" Ability { id: "10DE", source: "Regula van Hydrus" }
+25.5 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+37.8 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
 
-44.9 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/ window 15,3
-50.1 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DE:/
-57.0 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-69.3 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ jump 37.8
+44.9 "Judgment" Ability { id: "10DD", source: "Regula van Hydrus" } window 15,3
+50.1 "Judgment" Ability { id: "10DE", source: "Regula van Hydrus" }
+57.0 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+69.3 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" } jump 37.8
 
 76.4 "Judgment"
 81.6 "Judgment"
@@ -26,32 +26,32 @@ hideall "--sync--"
 100.8 "Bastardbluss"
 
 # First turrets at HP < 80%
-150.0 "Magitek Turret" sync / 1[56]:[^:]*:Regula van Hydrus:10E0:/ window 150,5
-152.4 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-157.8 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-161.4 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-165.1 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-166.4 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-171.6 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-175.5 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-179.2 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-180.5 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-185.4 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-188.8 "Self-detonate?" sync / 1[56]:[^:]*:Magitek Turret I:10E3:/
-189.2 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-193.0 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
+150.0 "Magitek Turret" Ability { id: "10E0", source: "Regula van Hydrus" } window 150,5
+152.4 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+157.8 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+161.4 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+165.1 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+166.4 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+171.6 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+175.5 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+179.2 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+180.5 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+185.4 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+188.8 "Self-detonate?" Ability { id: "10E3", source: "Magitek Turret I" }
+189.2 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+193.0 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
 
 # Rotation resumes here whether or not turrets are successful
-199.3 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ window 50,1
-202.4 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-209.7 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/ window 15,2.5
-215.0 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DE:/
+199.3 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" } window 50,1
+202.4 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+209.7 "Judgment" Ability { id: "10DD", source: "Regula van Hydrus" } window 15,2.5
+215.0 "Judgment" Ability { id: "10DE", source: "Regula van Hydrus" }
 
-221.9 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/ window 10,10
-234.2 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-237.5 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-244.7 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/
-249.9 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DE:/ jump 215.0
+221.9 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" } window 10,10
+234.2 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+237.5 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+244.7 "Judgment" Ability { id: "10DD", source: "Regula van Hydrus" }
+249.9 "Judgment" Ability { id: "10DE", source: "Regula van Hydrus" } jump 215.0
 
 256.8 "Bastardbluss"
 269.1 "Bastardbluss"
@@ -60,40 +60,40 @@ hideall "--sync--"
 284.8 "Judgment"
 
 # Second turrets at HP < 50%
-330.1 "Magitek Turret" sync / 1[56]:[^:]*:Regula van Hydrus:10E0:/ window 130,5
-332.5 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-337.8 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-340.7 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Magitek Turret II:10E2:/
-341.4 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-345.0 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-345.7 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Magitek Turret II:10E2:/
-346.2 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-350.9 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Magitek Turret II:10E2:/
-351.4 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-355.1 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-356.1 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Magitek Turret II:10E2:/
-358.8 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-360.0 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
-361.3 "Aetherochemical Grenado" sync / 1[56]:[^:]*:Magitek Turret II:10E2:/
-365.0 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-368.0 "Self-detonate?" sync / 1[56]:[^:]*:(Magitek Turret I|Magitek Turret II):10E3:/
-368.7 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-372.5 "Magitek Slug" sync / 1[56]:[^:]*:Regula van Hydrus:10DB:/
-373.7 "--sync--" sync / 1[56]:[^:]*:Regula van Hydrus:10DF:/
+330.1 "Magitek Turret" Ability { id: "10E0", source: "Regula van Hydrus" } window 130,5
+332.5 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+337.8 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+340.7 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
+341.4 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+345.0 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+345.7 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
+346.2 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+350.9 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
+351.4 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+355.1 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+356.1 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
+358.8 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+360.0 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
+361.3 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
+365.0 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+368.0 "Self-detonate?" Ability { id: "10E3", source: "(Magitek Turret I|Magitek Turret II)" }
+368.7 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+372.5 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
+373.7 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
 
 # Brief rotation block
-379.3 "Magitek Spread" sync / 1[56]:[^:]*:Regula van Hydrus:10DC:/ window 150,5
-386.5 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-389.6 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-392.7 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
-399.8 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DD:/
-405.0 "Judgment" sync / 1[56]:[^:]*:Regula van Hydrus:10DE:/
-414.9 "Magitek Spread" sync / 1[56]:[^:]*:Regula van Hydrus:10DC:/ window 15,15
-422.0 "Bastardbluss" sync / 1[56]:[^:]*:Regula van Hydrus:10DA:/
+379.3 "Magitek Spread" Ability { id: "10DC", source: "Regula van Hydrus" } window 150,5
+386.5 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+389.6 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+392.7 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
+399.8 "Judgment" Ability { id: "10DD", source: "Regula van Hydrus" }
+405.0 "Judgment" Ability { id: "10DE", source: "Regula van Hydrus" }
+414.9 "Magitek Spread" Ability { id: "10DC", source: "Regula van Hydrus" } window 15,15
+422.0 "Bastardbluss" Ability { id: "10DA", source: "Regula van Hydrus" }
 
 # More turrets, same as the second set
 # Clean loop to HP = 0
-429.1 "Magitek Turret" sync / 1[56]:[^:]*:Regula van Hydrus:10E0:/ window 50,5 jump 330.1
+429.1 "Magitek Turret" Ability { id: "10E0", source: "Regula van Hydrus" } window 50,5 jump 330.1
 436.8 "Magitek Slug"
 439.7 "Aetherochemical Grenado"
 440.4 "Magitek Slug"
@@ -118,40 +118,40 @@ hideall "--sync--"
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:63F:/ window 1000,5
 
 # Cobra is immediate
-1008.6 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:10E8:/ window 9,9
-1011.7 "Steel Scales" sync / 1[56]:[^:]*:Harmachis:10EA:/
-1014.8 "Hood Swing" sync / 1[56]:[^:]*:Harmachis:10E9:/
-1019.0 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/
+1008.6 "Weighing of the Heart" Ability { id: "10E8", source: "Harmachis" } window 9,9
+1011.7 "Steel Scales" Ability { id: "10EA", source: "Harmachis" }
+1014.8 "Hood Swing" Ability { id: "10E9", source: "Harmachis" }
+1019.0 "Weighing of the Heart" Ability { id: "138F", source: "Harmachis" }
 
 # Base rotation after Cobra
-1024.6 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/
-1033.3 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
-1040.3 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/
-1049.0 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
+1024.6 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" }
+1033.3 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
+1040.3 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" }
+1049.0 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
 
-1056.0 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/
-1064.7 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
-1071.7 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/
-1080.4 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/ jump 1049.0
+1056.0 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" }
+1064.7 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
+1071.7 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" }
+1080.4 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" } jump 1049.0
 
 1087.4 "Chthonic Hush"
 1096.1 "Riddle of The Sphinx"
 1103.1 "Chthonic Hush"
 
 # Naga form at HP < 80%
-1133.5 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:ECE:/ window 130,5
-1139.6 "Petrifaction" sync / 1[56]:[^:]*:Harmachis:10EB:/
+1133.5 "Weighing of the Heart" Ability { id: "ECE", source: "Harmachis" } window 130,5
+1139.6 "Petrifaction" Ability { id: "10EB", source: "Harmachis" }
 1142.8 "Circle of Flames x2" # Same ID for both, syncing breaks things
-1145.9 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/
+1145.9 "Weighing of the Heart" Ability { id: "138F", source: "Harmachis" }
 
 # Modified rotation after Naga
-1151.5 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/ window 10,10
-1160.1 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
-1169.4 "Ka" sync / 1[56]:[^:]*:Harmachis:10E6:/
+1151.5 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" } window 10,10
+1160.1 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
+1169.4 "Ka" Ability { id: "10E6", source: "Harmachis" }
 
-1177.0 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/ window 10,10
-1185.6 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
-1194.9 "Ka" sync / 1[56]:[^:]*:Harmachis:10E6:/ jump 1169.4
+1177.0 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" } window 10,10
+1185.6 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
+1194.9 "Ka" Ability { id: "10E6", source: "Harmachis" } jump 1169.4
 
 1202.5 "Chthonic Hush"
 1211.1 "Riddle of The Sphinx"
@@ -159,33 +159,33 @@ hideall "--sync--"
 1228.0 "Chthonic Hush"
 
 # Machina at HP < 50%
-1250.0 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:ED0:/ window 250,5
-1253.2 "Inertia Stream" sync / 1[56]:[^:]*:Harmachis:10ED:/
-1258.3 "Ballistic Missile 1" sync / 1[56]:[^:]*:Harmachis:10EE:/
-1259.3 "Ballistic Missile 2" sync / 1[56]:[^:]*:Harmachis:12A3:/
-1260.4 "Ballistic Missile 3" sync / 1[56]:[^:]*:Harmachis:10EF:/
-1265.6 "Gaseous Bomb" sync / 1[56]:[^:]*:Harmachis:10F0:/ window 10,10
-1269.7 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/
+1250.0 "Weighing of the Heart" Ability { id: "ED0", source: "Harmachis" } window 250,5
+1253.2 "Inertia Stream" Ability { id: "10ED", source: "Harmachis" }
+1258.3 "Ballistic Missile 1" Ability { id: "10EE", source: "Harmachis" }
+1259.3 "Ballistic Missile 2" Ability { id: "12A3", source: "Harmachis" }
+1260.4 "Ballistic Missile 3" Ability { id: "10EF", source: "Harmachis" }
+1265.6 "Gaseous Bomb" Ability { id: "10F0", source: "Harmachis" } window 10,10
+1269.7 "Weighing of the Heart" Ability { id: "138F", source: "Harmachis" }
 
 # Rotation resumes to HP = 0
 # Single rotation block is alternated with random form shift blocks
-1275.2 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/
-1283.8 "Riddle of The Sphinx" sync / 1[56]:[^:]*:Harmachis:10E4:/
-1293.1 "Ka" sync / 1[56]:[^:]*:Harmachis:10E6:/
+1275.2 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" }
+1283.8 "Riddle of The Sphinx" Ability { id: "10E4", source: "Harmachis" }
+1293.1 "Ka" Ability { id: "10E6", source: "Harmachis" }
 1300.4 "Weighing of the Heart"
-1300.4 "--sync--" sync / 1[56]:[^:]*:Harmachis:ED0:/ jump 1250.0 # Machina
-1300.4 "--sync--" sync / 1[56]:[^:]*:Harmachis:10E8:/ jump 1350.0 # Cobra
-1300.4 "--sync--" sync / 1[56]:[^:]*:Harmachis:ECE:/ jump 1400.0 # Naga
+1300.4 "--sync--" Ability { id: "ED0", source: "Harmachis" } jump 1250.0 # Machina
+1300.4 "--sync--" Ability { id: "10E8", source: "Harmachis" } jump 1350.0 # Cobra
+1300.4 "--sync--" Ability { id: "ECE", source: "Harmachis" } jump 1400.0 # Naga
 1303.5 "Steel Scales?"
 1303.6 "Inertia Stream?"
 1306.5 "Petrifaction?"
 
 # Random shift Cobra
-1350.0 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:10E8:/
-1353.3 "Steel Scales" sync / 1[56]:[^:]*:Harmachis:10EA:/ window 10,10
-1356.5 "Hood Swing" sync / 1[56]:[^:]*:Harmachis:10E9:/
-1360.5 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/
-1366.2 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E7:/ window 10,10 jump 1275.2
+1350.0 "Weighing of the Heart" Ability { id: "10E8", source: "Harmachis" }
+1353.3 "Steel Scales" Ability { id: "10EA", source: "Harmachis" } window 10,10
+1356.5 "Hood Swing" Ability { id: "10E9", source: "Harmachis" }
+1360.5 "Weighing of the Heart" Ability { id: "138F", source: "Harmachis" }
+1366.2 "Chthonic Hush" Ability { id: "10E7", source: "Harmachis" } window 10,10 jump 1275.2
 1374.8 "Riddle of The Sphinx"
 1384.1 "Ka"
 1391.4 "Weighing of the Heart"
@@ -194,11 +194,11 @@ hideall "--sync--"
 1397.5 "Petrifaction?"
 
 # Random shift Naga
-1400.0 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:ECE:/
-1406.1 "Petrifaction" sync / 1[56]:[^:]*:Harmachis:10EB:/
+1400.0 "Weighing of the Heart" Ability { id: "ECE", source: "Harmachis" }
+1406.1 "Petrifaction" Ability { id: "10EB", source: "Harmachis" }
 1409.3 "Circle of Flames x2" # Same ID for both, syncing breaks things
-1412.4 "Weighing of the Heart" sync / 1[56]:[^:]*:Harmachis:138F:/
-1418.0 "Chthonic Hush" sync / 1[56]:[^:]*:Harmachis:10E8:/ window 10,10 jump 1275.2
+1412.4 "Weighing of the Heart" Ability { id: "138F", source: "Harmachis" }
+1418.0 "Chthonic Hush" Ability { id: "10E8", source: "Harmachis" } window 10,10 jump 1275.2
 1426.6 "Riddle of The Sphinx"
 1435.9 "Ka"
 1443.2 "Weighing of the Heart"
@@ -213,23 +213,23 @@ hideall "--sync--"
 # -ii 10F1 10F3 10F6 10F8 10F9 12DE
 # We can't sync to the zone seal message because it's a two-part battle
 
-2000.5 "--sync--" sync / 1[56]:[^:]*:Igeyorhm:10F1:/ window 2000.5,0
-2008.6 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/ window 9,5
+2000.5 "--sync--" Ability { id: "10F1", source: "Igeyorhm" } window 2000.5,0
+2008.6 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" } window 9,5
 
-2009.0 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2015.8 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2020.9 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 15,15
-2023.4 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2024.5 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:12DE:/
-2029.0 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2037.2 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
+2009.0 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2015.8 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2020.9 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 15,15
+2023.4 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2024.5 "Sea Of Pitch" Ability { id: "12DE", source: "Igeyorhm" }
+2029.0 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2037.2 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
 
-2037.7 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2044.3 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2049.5 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 15,15
-2052.2 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2057.7 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2066.0 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/ jump 2037.2
+2037.7 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2044.3 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2049.5 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 15,15
+2052.2 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2057.7 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2066.0 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" } jump 2037.2
 
 2066.5 "End Of Days"
 2073.1 "Dark Orb"
@@ -239,67 +239,67 @@ hideall "--sync--"
 2094.8 "Dark Orb"
 
 # Special attack at HP < 75%
-2100.0 "Blizzard Sphere" sync / 1[56]:[^:]*:Igeyorhm:10F5:/ window 100,5
-2105.2 "Blizzard Burst" sync / 1[56]:[^:]*:Blizzardsphere:10FE:/
-2108.3 "Fire Burst" sync / 1[56]:[^:]*:Firesphere:10FF:/
-2115.4 "Blizzard Burst" sync / 1[56]:[^:]*:Blizzardsphere:10FE:/
-2118.5 "Fire Burst" sync / 1[56]:[^:]*:Firesphere:10FF:/
+2100.0 "Blizzard Sphere" Ability { id: "10F5", source: "Igeyorhm" } window 100,5
+2105.2 "Blizzard Burst" Ability { id: "10FE", source: "Blizzardsphere" }
+2108.3 "Fire Burst" Ability { id: "10FF", source: "Firesphere" }
+2115.4 "Blizzard Burst" Ability { id: "10FE", source: "Blizzardsphere" }
+2118.5 "Fire Burst" Ability { id: "10FF", source: "Firesphere" }
 
 # Modified rotation to HP < 50%
 # The two Ascians de-sync here. This section
 # is super-long to avoid any possibility of choppiness.
 
-2122.6 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 20,20
-2123.8 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2131.7 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2137.4 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2142.9 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2148.1 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 20,20
-2151.9 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2156.3 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2163.5 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 20,20
-2165.3 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2172.5 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2179.7 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2183.6 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2188.8 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 20,20
-2193.0 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2197.0 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
+2122.6 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 20,20
+2123.8 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2131.7 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2137.4 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2142.9 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2148.1 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 20,20
+2151.9 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2156.3 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2163.5 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 20,20
+2165.3 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2172.5 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2179.7 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2183.6 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2188.8 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 20,20
+2193.0 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2197.0 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
 
-2204.2 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 20,20
-2207.4 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2213.2 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2220.8 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2224.4 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2229.6 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 20,20
-2235.3 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2237.9 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2245.0 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 20,20
-2248.7 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2254.1 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2263.0 "End Of Days" sync / 1[56]:[^:]*:Lahabrea:10FD:/
-2265.5 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2270.6 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/ window 20,20
-2276.4 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2278.8 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
+2204.2 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 20,20
+2207.4 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2213.2 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2220.8 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2224.4 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2229.6 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 20,20
+2235.3 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2237.9 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2245.0 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 20,20
+2248.7 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2254.1 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2263.0 "End Of Days" Ability { id: "10FD", source: "Lahabrea" }
+2265.5 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2270.6 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" } window 20,20
+2276.4 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2278.8 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
 
 #Lahabrea de-syncs from here, so we just sync to Igeyorhm now
-2285.9 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 15,15
-2295.0 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2306.2 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2311.3 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/
-2319.6 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2326.7 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 15,15
-2335.8 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2346.9 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2352.1 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/
-2360.3 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
+2285.9 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 15,15
+2295.0 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2306.2 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2311.3 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" }
+2319.6 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2326.7 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 15,15
+2335.8 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2346.9 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2352.1 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" }
+2360.3 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
 
-2367.4 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/ window 15,15
-2376.6 "Shadow Flare" sync / 1[56]:[^:]*:Igeyorhm:10FA:/
-2387.8 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/
-2392.9 "Sea Of Pitch" sync / 1[56]:[^:]*:Igeyorhm:10FB:/
-2401.2 "Dark Orb" sync / 1[56]:[^:]*:Igeyorhm:10FC:/ jump 2360.3
+2367.4 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" } window 15,15
+2376.6 "Shadow Flare" Ability { id: "10FA", source: "Igeyorhm" }
+2387.8 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" }
+2392.9 "Sea Of Pitch" Ability { id: "10FB", source: "Igeyorhm" }
+2401.2 "Dark Orb" Ability { id: "10FC", source: "Igeyorhm" } jump 2360.3
 # Jump here and hope for the best. This should never happen
 2408.4 "Dark Blizzard II"
 2417.5 "Shadow Flare"
@@ -309,19 +309,19 @@ hideall "--sync--"
 
 # Ascians swap roles at Igeyorhm HP <= 50%
 
-2500.0 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/ window 400,5
-2505.1 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2510.2 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/
-2514.5 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2517.3 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/ window 20,20
-2524.4 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
+2500.0 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" } window 400,5
+2505.1 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2510.2 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" }
+2514.5 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2517.3 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" } window 20,20
+2524.4 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
 
-2528.9 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2534.0 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2539.1 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/
-2543.4 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2546.2 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/ window 20,20
-2553.3 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/ jump 2274.4
+2528.9 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2534.0 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2539.1 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" }
+2543.4 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2546.2 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" } window 20,20
+2553.3 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" } jump 2274.4
 
 2557.8 "End Of Days"
 2562.9 "Dark Orb"
@@ -331,59 +331,59 @@ hideall "--sync--"
 2582.2 "Dark Orb"
 
 # Special attack at HP < 75%
-2600.0 "Permafrost" sync / 1[56]:[^:]*:Igeyorhm:10F4:/ window 500,5
-2604.0 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2609.1 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2614.2 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
-2623.4 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
+2600.0 "Permafrost" Ability { id: "10F4", source: "Igeyorhm" } window 500,5
+2604.0 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2609.1 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2614.2 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
+2623.4 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
 
 # Modified rotation to HP < 50%
-2624.6 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2632.4 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/ window 20,20
-2638.0 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2643.5 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2648.7 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2652.8 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2657.0 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2664.1 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/ window 20,20
-2666.3 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2673.4 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/
-2680.9 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2684.5 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2689.8 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2694.3 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2697.9 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2705.1 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
+2624.6 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2632.4 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" } window 20,20
+2638.0 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2643.5 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2648.7 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2652.8 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2657.0 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2664.1 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" } window 20,20
+2666.3 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2673.4 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" }
+2680.9 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2684.5 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2689.8 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2694.3 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2697.9 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2705.1 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
 
-2708.8 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2714.3 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/ window 20,20
-2722.3 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2725.4 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2730.5 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2736.9 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2738.7 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2745.9 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/ window 20,20
-2750.4 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2755.1 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/
-2765.1 "End Of Days" sync / 1[56]:[^:]*:Igeyorhm:10FD:/
-2766.4 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2771.5 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2778.6 "Dark Blizzard II" sync / 1[56]:[^:]*:Igeyorhm:10F2:/
-2779.6 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2786.8 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
+2708.8 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2714.3 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" } window 20,20
+2722.3 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2725.4 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2730.5 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2736.9 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2738.7 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2745.9 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" } window 20,20
+2750.4 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2755.1 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" }
+2765.1 "End Of Days" Ability { id: "10FD", source: "Igeyorhm" }
+2766.4 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2771.5 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2778.6 "Dark Blizzard II" Ability { id: "10F2", source: "Igeyorhm" }
+2779.6 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2786.8 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
 
 # Same as before, just sync to Lahabrea now
-2795.9 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/
-2807.2 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2812.3 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2820.7 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2827.8 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/
+2795.9 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" }
+2807.2 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2812.3 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2820.7 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2827.8 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" }
 
-2837.0 "Shadow Flare" sync / 1[56]:[^:]*:Lahabrea:1381:/
-2848.3 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2853.4 "Sea Of Pitch" sync / 1[56]:[^:]*:Lahabrea:10FB:/ window 20,20
-2861.8 "Dark Orb" sync / 1[56]:[^:]*:Lahabrea:10FC:/
-2868.9 "Dark Fire II" sync / 1[56]:[^:]*:Lahabrea:10F7:/ jump 2827.8
+2837.0 "Shadow Flare" Ability { id: "1381", source: "Lahabrea" }
+2848.3 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2853.4 "Sea Of Pitch" Ability { id: "10FB", source: "Lahabrea" } window 20,20
+2861.8 "Dark Orb" Ability { id: "10FC", source: "Lahabrea" }
+2868.9 "Dark Fire II" Ability { id: "10F7", source: "Lahabrea" } jump 2827.8
 
 2878.1 "Shadow Flare"
 2889.4 "Dark Orb"
@@ -398,16 +398,16 @@ hideall "--sync--"
 # -ii 1104 1108 -ic "Aetherial Tear" "Chaosphere"
 # We can't sync to the zone seal message because it's a two-part battle
 
-3002.3 "--sync--" sync / 1[56]:[^:]*:Ascian Prime:1100:/ window 3003,2
-3005.8 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/ window 5.8,5
-3013.0 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/
-3022.1 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/ window 15,15
-3028.2 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
+3002.3 "--sync--" Ability { id: "1100", source: "Ascian Prime" } window 3003,2
+3005.8 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" } window 5.8,5
+3013.0 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" }
+3022.1 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" } window 15,15
+3028.2 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
 
-3038.0 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3045.2 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/
-3054.3 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/ window 15,15
-3060.4 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/ jump 3028.2
+3038.0 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3045.2 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" }
+3054.3 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" } window 15,15
+3060.4 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" } jump 3028.2
 
 3070.2 "Height Of Chaos"
 3077.4 "Ancient Eruption"
@@ -418,22 +418,22 @@ hideall "--sync--"
 3100.0 "--sync--" sync / 03:........:Firesphere:/  window 100,5
 
 3110.0 "Ancient Circle Appears"
-3115.1 "Ancient Circle" sync / 1[56]:[^:]*:Ascian Prime:1102:/
-3123.1 "Annihilation" sync / 1[56]:[^:]*:Ascian Prime:110A:/ window 25,5
-3132.1 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/
-3147.3 "Universal Manipulation" sync / 1[56]:[^:]*:Ascian Prime:1105:/
+3115.1 "Ancient Circle" Ability { id: "1102", source: "Ascian Prime" }
+3123.1 "Annihilation" Ability { id: "110A", source: "Ascian Prime" } window 25,5
+3132.1 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" }
+3147.3 "Universal Manipulation" Ability { id: "1105", source: "Ascian Prime" }
 
-3156.4 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/ window 50,5
-3163.5 "Entropic Flame" sync / 1[56]:[^:]*:Ascian Prime:1107:/
-3168.6 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3175.7 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/ window 15,15
-3184.8 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/
+3156.4 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" } window 50,5
+3163.5 "Entropic Flame" Ability { id: "1107", source: "Ascian Prime" }
+3168.6 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3175.7 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" } window 15,15
+3184.8 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" }
 
-3194.0 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3201.1 "Entropic Flame" sync / 1[56]:[^:]*:Ascian Prime:1107:/ window 30,30
-3206.2 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3213.3 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/
-3222.4 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/ window 15,15 jump 3184.8
+3194.0 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3201.1 "Entropic Flame" Ability { id: "1107", source: "Ascian Prime" } window 30,30
+3206.2 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3213.3 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" }
+3222.4 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" } window 15,15 jump 3184.8
 
 3231.6 "Height Of Chaos"
 3238.7 "Entropic Flame"
@@ -445,29 +445,29 @@ hideall "--sync--"
 3300.0 "--sync--" sync / 03:........:Firesphere:/  window 200,5
 
 3304.6 "Ancient Circle Appears"
-3309.7 "Ancient Circle" sync / 1[56]:[^:]*:Ascian Prime:1102:/
+3309.7 "Ancient Circle" Ability { id: "1102", source: "Ascian Prime" }
 3314.7 "Ancient Circle Appears"
-3319.8 "Ancient Circle" sync / 1[56]:[^:]*:Ascian Prime:1102:/
-3322.8 "Annihilation" sync / 1[56]:[^:]*:Ascian Prime:110A:/ window 30,30
-3331.8 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/
-3347.0 "Universal Manipulation" sync / 1[56]:[^:]*:Ascian Prime:1105:/
+3319.8 "Ancient Circle" Ability { id: "1102", source: "Ascian Prime" }
+3322.8 "Annihilation" Ability { id: "110A", source: "Ascian Prime" } window 30,30
+3331.8 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" }
+3347.0 "Universal Manipulation" Ability { id: "1105", source: "Ascian Prime" }
 
-3356.2 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/ window 50,5
-3363.3 "Entropic Flame" sync / 1[56]:[^:]*:Ascian Prime:1107:/
-3368.5 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3375.6 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/ window 15,15
-3384.8 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/
+3356.2 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" } window 50,5
+3363.3 "Entropic Flame" Ability { id: "1107", source: "Ascian Prime" }
+3368.5 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3375.6 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" } window 15,15
+3384.8 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" }
 3390.9 "Height Of Chaos x3" duration 5.0
 
-3402.7 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3409.8 "Entropic Flame" sync / 1[56]:[^:]*:Ascian Prime:1107:/
-3415.0 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/
-3422.1 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime:1103:/ window 15,15
-3431.3 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime:1109:/
+3402.7 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3409.8 "Entropic Flame" Ability { id: "1107", source: "Ascian Prime" }
+3415.0 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" }
+3422.1 "Ancient Eruption" Ability { id: "1103", source: "Ascian Prime" } window 15,15
+3431.3 "Shadow Flare" Ability { id: "1109", source: "Ascian Prime" }
 3437.4 "Height Of Chaos x3" duration 5.0
 
 # Jumping from a following block to avoid sync issues with Height Of Chaos x3
-3449.2 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime:1101:/ jump 3402.7
+3449.2 "Height Of Chaos" Ability { id: "1101", source: "Ascian Prime" } jump 3402.7
 3456.3 "Entropic Flame"
 3461.5 "Height Of Chaos"
 3468.6 "Ancient Eruption"

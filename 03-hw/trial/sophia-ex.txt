@@ -13,104 +13,104 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.0 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/ window 12,5
-22.4 "Gnosis" sync / 1[56]:[^:]*:Barbelo:19C2:/
-41.4 "Arms Of Wisdom?" sync / 1[56]:[^:]*:Sophia:19C4:/ # May be skipped depending on DPS
+12.0 "Thunder II" Ability { id: "19B0", source: "Sophia" } window 12,5
+22.4 "Gnosis" Ability { id: "19C2", source: "Barbelo" }
+41.4 "Arms Of Wisdom?" Ability { id: "19C4", source: "Sophia" } # May be skipped depending on DPS
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
 56.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 56,5
-63.6 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
-63.6 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/ window 30,2.5
-69.7 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/
-69.7 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
-79.8 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/
-#79.8 "Execute" sync / 1[56]:[^:]*:Aion Teleos:19AF:/
-90.2 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
+63.6 "Thunder II/III" Ability { id: "(19AC|19B0)", source: "Sophia" }
+63.6 "--sync--" Ability { id: "19AB", source: "Aion Teleos" } window 30,2.5
+69.7 "Aero III" Ability { id: "19AE", source: "Sophia" }
+69.7 "--sync--" Ability { id: "19AB", source: "Aion Teleos" }
+79.8 "Execute" Ability { id: "19AA", source: "Sophia" }
+#79.8 "Execute" Ability { id: "19AF", source: "Aion Teleos" }
+90.2 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
 
 # Intermission.
 # Divine Spark can be pushed and thus is not synced.
 # Gnostic Rant and Infusion are purely HP-based pushes.
-110.6 "Cloudy Heavens" sync / 1[56]:[^:]*:Sophia:19BE:/ window 110.6
+110.6 "Cloudy Heavens" Ability { id: "19BE", source: "Sophia" } window 110.6
 111.6 "--untargetable--"
 111.6 "--adds spawn--"
-120.9 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
-121.9 "Gnostic Spear" sync / 1[56]:[^:]*:The Third Demiurge:19B9:/
-125.9 "Divine Spark" # sync / 1[56]:[^:]*:The Second Demiurge:19B6:/
-129.0 "Ring Of Pain" sync / 1[56]:[^:]*:The Third Demiurge:19BA:/
-135.1 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
-147.3 "Gnostic Spear?" sync / 1[56]:[^:]*:The Third Demiurge:19B9:/
-149.2 "Horizontal Kenoma/Vertical Kenoma" sync / 1[56]:[^:]*:The First Demiurge:(19BB|19BC):/
+120.9 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(19BB|19BC)", source: "The First Demiurge" }
+121.9 "Gnostic Spear" Ability { id: "19B9", source: "The Third Demiurge" }
+125.9 "Divine Spark" # Ability { id: "19B6", source: "The Second Demiurge" }
+129.0 "Ring Of Pain" Ability { id: "19BA", source: "The Third Demiurge" }
+135.1 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(19BB|19BC)", source: "The First Demiurge" }
+147.3 "Gnostic Spear?" Ability { id: "19B9", source: "The Third Demiurge" }
+149.2 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(19BB|19BC)", source: "The First Demiurge" }
 191.6 "Zombification Enrage?"
 
 # There's an introductory block leading into a rotation.
-250.0 "The Scales Of Wisdom" sync / 1[56]:[^:]*:Sophia:1981:/ window 250,5
-267.5 "The Scales Of Wisdom" sync / 1[56]:[^:]*:Sophia:1AE1:/
+250.0 "The Scales Of Wisdom" Ability { id: "1981", source: "Sophia" } window 250,5
+267.5 "The Scales Of Wisdom" Ability { id: "1AE1", source: "Sophia" }
 272.9 "--targetable--"
-280.8 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:(196E|19A7):/
-286.8 "Quasar (Meteor Detonate)" sync / 1[56]:[^:]*:Sophia:1A87:/
-291.3 "Aero III/Thunder II/Thunder III" sync / 1[56]:[^:]*:Sophia:(19AC|19AE|19B0):/ window 41.3,5
-297.1 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
-305.7 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
-310.7 "Cintamani x2" duration 3 # sync / 1[56]:[^:]*:Sophia:19C5:/
-318.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
+280.8 "Quasar (Snapshot)" Ability { id: "(196E|19A7)", source: "Sophia" }
+286.8 "Quasar (Meteor Detonate)" Ability { id: "1A87", source: "Sophia" }
+291.3 "Aero III/Thunder II/Thunder III" Ability { id: "(19AC|19AE|19B0)", source: "Sophia" } window 41.3,5
+297.1 "Quasar Tethers" Ability { id: "196E", source: "Sophia" }
+305.7 "Quasar (Tilt)" Ability { id: "1A4C", source: "Sophia" }
+310.7 "Cintamani x2" duration 3 # Ability { id: "19C5", source: "Sophia" }
+318.8 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
 
  # Potential landing point if DPS is high. Push seems to be 70%?
-328.3 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/ window 35.8,5
-334.0 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:19A7:/
+328.3 "Thunder II" Ability { id: "19B0", source: "Sophia" } window 35.8,5
+334.0 "Quasar Tethers" Ability { id: "19A7", source: "Sophia" }
 335.0 "--untargetable--"
-341.2 "Onrush" sync / 1[56]:[^:]*:Sophia:19C1:/
-341.8 "Quasar (Tilt)" # sync / 1[56]:[^:]*:Sophia:1A4C:/
+341.2 "Onrush" Ability { id: "19C1", source: "Sophia" }
+341.8 "Quasar (Tilt)" # Ability { id: "1A4C", source: "Sophia" }
 345.4 "--targetable--"
-361.5 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
-361.5 "Cintamani x2" duration 3 # sync / 1[56]:[^:]*:Sophia:19C5:/
-370.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/ window 30,5
+361.5 "Dischordant Cleansing" # Ability { id: "(19B3|19B5)", source: "Sophia" }
+361.5 "Cintamani x2" duration 3 # Ability { id: "19C5", source: "Sophia" }
+370.8 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" } window 30,5
 379.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,20
-382.0 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
-393.3 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
-393.3 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
-399.4 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
-399.4 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/ window 30,5
-408.5 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-419.8 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19BF:/
-420.5 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/ window 30,30
+382.0 "Cintamani x3" duration 6 # Ability { id: "19C5", source: "Sophia" }
+393.3 "--sync--" Ability { id: "19AB", source: "Aion Teleos" }
+393.3 "Thunder II/III" Ability { id: "(19AC|19B0)", source: "Sophia" }
+399.4 "--sync--" Ability { id: "19AB", source: "Aion Teleos" }
+399.4 "Aero III" Ability { id: "19AE", source: "Sophia" } window 30,5
+408.5 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+419.8 "Light Dew" Ability { id: "19BF", source: "Barbelo" }
+420.5 "Execute" Ability { id: "19AA", source: "Sophia" } window 30,30
 
 # Rotation block.
 # Technically it can loop, but unless party DPS is VERY high,
 # enrage will occur long before the second loop completes.
-429.3 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/ duration 5
-440.7 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-446.5 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
-455.2 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
-457.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19BF:/ window 30,30
-470.0 "Thunder III" sync / 1[56]:[^:]*:Sophia:19AC:/
-478.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-484.5 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:19A7:/
+429.3 "Cintamani x3" duration 6 # Ability { id: "19C5", source: "Sophia" } duration 5
+440.7 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+446.5 "Quasar Tethers" Ability { id: "196E", source: "Sophia" }
+455.2 "Quasar (Tilt)" Ability { id: "1A4C", source: "Sophia" }
+457.7 "Light Dew" Ability { id: "19BF", source: "Barbelo" } window 30,30
+470.0 "Thunder III" Ability { id: "19AC", source: "Sophia" }
+478.3 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+484.5 "Quasar Tethers" Ability { id: "19A7", source: "Sophia" }
 485.5 "--untargetable--"
-493.2 "Quasar (Tilt)" sync / 1[56]:[^:]*:Sophia:1A4C:/
-494.7 "Onrush" sync / 1[56]:[^:]*:Sophia:19C1:/
-495.7 "Light Dew" sync / 1[56]:[^:]*:Barbelo:19C0:/ window 30,30
+493.2 "Quasar (Tilt)" Ability { id: "1A4C", source: "Sophia" }
+494.7 "Onrush" Ability { id: "19C1", source: "Sophia" }
+495.7 "Light Dew" Ability { id: "19C0", source: "Barbelo" } window 30,30
 499.0 "--targetable--"
-507.1 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
-518.3 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-525.4 "Thunder II" sync / 1[56]:[^:]*:Sophia:19B0:/
-535.9 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
-539.7 "Gnosis" sync / 1[56]:[^:]*:Barbelo:19C2:/ window 30,5
-552.2 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-567.0 "Quasar Tethers" sync / 1[56]:[^:]*:Sophia:196E:/
-568.3 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
-575.7 "Quasar (Tilt)" # sync / 1[56]:[^:]*:Sophia:1A4C:/
-581.5 "Cintamani x3" duration 6 # sync / 1[56]:[^:]*:Sophia:19C5:/
+507.1 "Cintamani x3" duration 6 # Ability { id: "19C5", source: "Sophia" }
+518.3 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+525.4 "Thunder II" Ability { id: "19B0", source: "Sophia" }
+535.9 "Dischordant Cleansing" # Ability { id: "(19B3|19B5)", source: "Sophia" }
+539.7 "Gnosis" Ability { id: "19C2", source: "Barbelo" } window 30,5
+552.2 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+567.0 "Quasar Tethers" Ability { id: "196E", source: "Sophia" }
+568.3 "Dischordant Cleansing" # Ability { id: "(19B3|19B5)", source: "Sophia" }
+575.7 "Quasar (Tilt)" # Ability { id: "1A4C", source: "Sophia" }
+581.5 "Cintamani x3" duration 6 # Ability { id: "19C5", source: "Sophia" }
 577.5 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,5
-592.8 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-599.9 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/ window 10,2.5
-599.9 "Thunder II/III" sync / 1[56]:[^:]*:Sophia:(19AC|19B0):/
-606.1 "--sync--" sync / 1[56]:[^:]*:Aion Teleos:19AB:/
-606.1 "Aero III" sync / 1[56]:[^:]*:Sophia:19AE:/
-611.9 "Quasar (Snapshot)" sync / 1[56]:[^:]*:Sophia:(196E|19A7):/
-617.9 "Quasar (Meteor Detonate)" sync / 1[56]:[^:]*:Sophia:1A87:/
-624.4 "Arms Of Wisdom" sync / 1[56]:[^:]*:Sophia:19C4:/
-636.6 "Dischordant Cleansing" # sync / 1[56]:[^:]*:Sophia:(19B3|19B5):/
-639.0 "Execute" sync / 1[56]:[^:]*:Sophia:19AA:/ window 30,30 jump 420.5
+592.8 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+599.9 "--sync--" Ability { id: "19AB", source: "Aion Teleos" } window 10,2.5
+599.9 "Thunder II/III" Ability { id: "(19AC|19B0)", source: "Sophia" }
+606.1 "--sync--" Ability { id: "19AB", source: "Aion Teleos" }
+606.1 "Aero III" Ability { id: "19AE", source: "Sophia" }
+611.9 "Quasar (Snapshot)" Ability { id: "(196E|19A7)", source: "Sophia" }
+617.9 "Quasar (Meteor Detonate)" Ability { id: "1A87", source: "Sophia" }
+624.4 "Arms Of Wisdom" Ability { id: "19C4", source: "Sophia" }
+636.6 "Dischordant Cleansing" # Ability { id: "(19B3|19B5)", source: "Sophia" }
+639.0 "Execute" Ability { id: "19AA", source: "Sophia" } window 30,30 jump 420.5
 
 650.9 "Cintamani x3"
 662.3 "Arms Of Wisdom"

@@ -10,35 +10,35 @@ hideall "--sync--"
 
 # Zymology will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:68D:/ window 0,1
-9.7 "Odious Air" sync / 1[56]:[^:]*:Nullchu:2E49:/ window 9.7,5
-21.8 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
-33.9 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
-36.9 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
-42.4 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/
+9.7 "Odious Air" Ability { id: "2E49", source: "Nullchu" } window 9.7,5
+21.8 "Vine Whip" Ability { id: "2E48", source: "Nullchu" }
+33.9 "--sync--" Ability { id: "2E4D", source: "Nullchu" }
+36.9 "Sludge Bomb" Ability { id: "2E4E", source: "Nullchu" }
+42.4 "Fault Warren" Ability { id: "2E4A", source: "Nullchu" }
 
-53.9 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 53.9,10
-57.8 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
-74.3 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
-84.8 "Taproot" sync / 1[56]:[^:]*:Nullchu:2E4B:/
-95.3 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 15,15
-99.2 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
-116.7 "Vine Whip" sync / 1[56]:[^:]*:Nullchu:2E48:/
-122.7 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
-125.7 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
-130.2 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 15,15
-134.1 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
-146.9 "Odious Air" sync / 1[56]:[^:]*:Nullchu:2E49:/
-157.6 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
-160.6 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
-166.1 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/ window 30,30
-174.6 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/
-178.3 "Odious Atmosphere" sync / 1[56]:[^:]*:Nullchu:2E50:/ duration 6
-190.8 "Taproot" sync / 1[56]:[^:]*:Nullchu:2E4B:/
-205.9 "--sync--" sync / 1[56]:[^:]*:Nullchu:2E4D:/
-208.9 "Sludge Bomb" sync / 1[56]:[^:]*:Nullchu:2E4E:/
-214.3 "Fault Warren" sync / 1[56]:[^:]*:Nullchu:2E4A:/
+53.9 "Devour" Ability { id: "2E4F", source: "Nullchu" } window 53.9,10
+57.8 "Odious Atmosphere" Ability { id: "2E50", source: "Nullchu" } duration 6
+74.3 "Vine Whip" Ability { id: "2E48", source: "Nullchu" }
+84.8 "Taproot" Ability { id: "2E4B", source: "Nullchu" }
+95.3 "Devour" Ability { id: "2E4F", source: "Nullchu" } window 15,15
+99.2 "Odious Atmosphere" Ability { id: "2E50", source: "Nullchu" } duration 6
+116.7 "Vine Whip" Ability { id: "2E48", source: "Nullchu" }
+122.7 "--sync--" Ability { id: "2E4D", source: "Nullchu" }
+125.7 "Sludge Bomb" Ability { id: "2E4E", source: "Nullchu" }
+130.2 "Devour" Ability { id: "2E4F", source: "Nullchu" } window 15,15
+134.1 "Odious Atmosphere" Ability { id: "2E50", source: "Nullchu" } duration 6
+146.9 "Odious Air" Ability { id: "2E49", source: "Nullchu" }
+157.6 "--sync--" Ability { id: "2E4D", source: "Nullchu" }
+160.6 "Sludge Bomb" Ability { id: "2E4E", source: "Nullchu" }
+166.1 "Fault Warren" Ability { id: "2E4A", source: "Nullchu" } window 30,30
+174.6 "Devour" Ability { id: "2E4F", source: "Nullchu" }
+178.3 "Odious Atmosphere" Ability { id: "2E50", source: "Nullchu" } duration 6
+190.8 "Taproot" Ability { id: "2E4B", source: "Nullchu" }
+205.9 "--sync--" Ability { id: "2E4D", source: "Nullchu" }
+208.9 "Sludge Bomb" Ability { id: "2E4E", source: "Nullchu" }
+214.3 "Fault Warren" Ability { id: "2E4A", source: "Nullchu" }
 
-225.8 "Devour" sync / 1[56]:[^:]*:Nullchu:2E4F:/ window 30,30 jump 53.9
+225.8 "Devour" Ability { id: "2E4F", source: "Nullchu" } window 30,30 jump 53.9
 229.7 "Odious Atmosphere"
 246.2 "Vine Whip"
 256.7 "Taproot"
@@ -54,53 +54,53 @@ hideall "--sync--"
 
 # The Soil Bed will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:AAA:/ window 1000,5
-1008.9 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/ window 1008.9,10
-1019.5 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/
-1039.1 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/
-1041.1 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/ window 1041.1,10
-1049.2 "Earthquake (inner)" sync / 1[56]:[^:]*:Lakhamu:312E:/
-1051.8 "Earthquake (outer)" sync / 1[56]:[^:]*:Lakhamu:312F:/
-1062.3 "Earth Shaker" sync / 1[56]:[^:]*:Lakhamu:3130:/
-1074.0 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/ window 1074.0,10
-1086.1 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/
-1088.2 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+1008.9 "Stone II" Ability { id: "312A", source: "Lakhamu" } window 1008.9,10
+1019.5 "Tectonics" Ability { id: "312C", source: "Lakhamu" }
+1039.1 "Landslip" Ability { id: "3132", source: "Lakhamu" }
+1041.1 "Rockslide" Ability { id: "3134", source: "Silt Golem" } window 1041.1,10
+1049.2 "Earthquake (inner)" Ability { id: "312E", source: "Lakhamu" }
+1051.8 "Earthquake (outer)" Ability { id: "312F", source: "Lakhamu" }
+1062.3 "Earth Shaker" Ability { id: "3130", source: "Lakhamu" }
+1074.0 "Empty Gaze" Ability { id: "312B", source: "Lakhamu" } window 1074.0,10
+1086.1 "Landslip" Ability { id: "3132", source: "Lakhamu" }
+1088.2 "Rockslide" Ability { id: "3134", source: "Silt Golem" }
 
-1091.3 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1091.3 "Earthquake (inner)?" Ability { id: "312E", source: "Lakhamu" } jump 1200
 1093.8 "Earthquake (outer)?"
-1094.8 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1094.8 "Earth Shaker?" Ability { id: "3130", source: "Lakhamu" } jump 1400
 1110.9 "Tectonics"
 1120.0 "Stone II"
 1132.7 "Empty Gaze"
 1144.8 "Landslip"
 
 
-1200.0 "Earthquake (inner)" sync / 1[56]:[^:]*:Lakhamu:312E:/
-1202.5 "Earthquake (outer)" sync / 1[56]:[^:]*:Lakhamu:312F:/
-1219.6 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/ window 30,30
-1228.7 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/
-1241.4 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/
-1253.5 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/ window 30,30
-1255.6 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+1200.0 "Earthquake (inner)" Ability { id: "312E", source: "Lakhamu" }
+1202.5 "Earthquake (outer)" Ability { id: "312F", source: "Lakhamu" }
+1219.6 "Tectonics" Ability { id: "312C", source: "Lakhamu" } window 30,30
+1228.7 "Stone II" Ability { id: "312A", source: "Lakhamu" }
+1241.4 "Empty Gaze" Ability { id: "312B", source: "Lakhamu" }
+1253.5 "Landslip" Ability { id: "3132", source: "Lakhamu" } window 30,30
+1255.6 "Rockslide" Ability { id: "3134", source: "Silt Golem" }
 
-1258.7 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1258.7 "Earthquake (inner)?" Ability { id: "312E", source: "Lakhamu" } jump 1200
 1261.3 "Earthquake (outer)?"
-1261.3 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1261.3 "Earth Shaker?" Ability { id: "3130", source: "Lakhamu" } jump 1400
 1278.4 "Tectonics"
 1287.4 "Stone II"
 1300.1 "Empty Gaze"
 1312.2 "Landslip"
 
 
-1400.0 "Earth Shaker" sync / 1[56]:[^:]*:Lakhamu:3130:/
-1414.7 "Tectonics" sync / 1[56]:[^:]*:Lakhamu:312C:/ window 30,30
-1423.8 "Stone II" sync / 1[56]:[^:]*:Lakhamu:312A:/
-1436.5 "Empty Gaze" sync / 1[56]:[^:]*:Lakhamu:312B:/
-1448.7 "Landslip" sync / 1[56]:[^:]*:Lakhamu:3132:/ window 30,30
-1450.7 "Rockslide" sync / 1[56]:[^:]*:Silt Golem:3134:/
+1400.0 "Earth Shaker" Ability { id: "3130", source: "Lakhamu" }
+1414.7 "Tectonics" Ability { id: "312C", source: "Lakhamu" } window 30,30
+1423.8 "Stone II" Ability { id: "312A", source: "Lakhamu" }
+1436.5 "Empty Gaze" Ability { id: "312B", source: "Lakhamu" }
+1448.7 "Landslip" Ability { id: "3132", source: "Lakhamu" } window 30,30
+1450.7 "Rockslide" Ability { id: "3134", source: "Silt Golem" }
 
-1453.8 "Earthquake (inner)?" sync / 1[56]:[^:]*:Lakhamu:312E:/ jump 1200
+1453.8 "Earthquake (inner)?" Ability { id: "312E", source: "Lakhamu" } jump 1200
 1455.8 "Earthquake (outer)?"
-1455.8 "Earth Shaker?" sync / 1[56]:[^:]*:Lakhamu:3130:/ jump 1400
+1455.8 "Earth Shaker?" Ability { id: "3130", source: "Lakhamu" } jump 1400
 1469.5 "Tectonics"
 1478.6 "Stone II"
 1491.2 "Empty Gaze"
@@ -115,30 +115,30 @@ hideall "--sync--"
 
 # Kingsloam will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:AAF:/ window 2000,5
-2008.6 "Mudsling" sync / 1[56]:[^:]*:Tokkapchi:3135:/
-2021.8 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2028.8 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
-2042.4 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2043.7 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 2043.7,10
-2048.5 "Mud Pie" sync / 1[56]:[^:]*:Tokkapchi:3137:/
-2060.7 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2068.7 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
-2084.3 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2091.3 "Bog Bequest" sync / 1[56]:[^:]*:Tokkapchi:313B:/ window 2091.3,30
-2098.9 "From Mud" sync / 1[56]:[^:]*:Tokkapchi:313D:/
+2008.6 "Mudsling" Ability { id: "3135", source: "Tokkapchi" }
+2021.8 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2028.8 "Quagmire" Ability { id: "3138", source: "Tokkapchi" }
+2042.4 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2043.7 "--center--" Ability { id: "313E", source: "Tokkapchi" } window 2043.7,10
+2048.5 "Mud Pie" Ability { id: "3137", source: "Tokkapchi" }
+2060.7 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2068.7 "Quagmire" Ability { id: "3138", source: "Tokkapchi" }
+2084.3 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2091.3 "Bog Bequest" Ability { id: "313B", source: "Tokkapchi" } window 2091.3,30
+2098.9 "From Mud" Ability { id: "313D", source: "Tokkapchi" }
 
-2106.3 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 30,30
-2111.1 "Mud Pie" sync / 1[56]:[^:]*:Tokkapchi:3137:/
-2123.2 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2133.2 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
-2147.4 "Feculent Flood" sync / 1[56]:[^:]*:Tokkapchi:313C:/ window 30,30
-2157.5 "Quagmire" sync / 1[56]:[^:]*:Tokkapchi:3138:/
-2169.1 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2174.1 "Bog Bequest" sync / 1[56]:[^:]*:Tokkapchi:313B:/ window 30,30
-2187.7 "Quickmire" sync / 1[56]:[^:]*:Tokkapchi:3136:/
-2190.7 "Mudsling" sync / 1[56]:[^:]*:Tokkapchi:3135:/
+2106.3 "--center--" Ability { id: "313E", source: "Tokkapchi" } window 30,30
+2111.1 "Mud Pie" Ability { id: "3137", source: "Tokkapchi" }
+2123.2 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2133.2 "Quagmire" Ability { id: "3138", source: "Tokkapchi" }
+2147.4 "Feculent Flood" Ability { id: "313C", source: "Tokkapchi" } window 30,30
+2157.5 "Quagmire" Ability { id: "3138", source: "Tokkapchi" }
+2169.1 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2174.1 "Bog Bequest" Ability { id: "313B", source: "Tokkapchi" } window 30,30
+2187.7 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
+2190.7 "Mudsling" Ability { id: "3135", source: "Tokkapchi" }
 
-2195.0 "--center--" sync / 1[56]:[^:]*:Tokkapchi:313E:/ window 30,30 jump 2106.3
+2195.0 "--center--" Ability { id: "313E", source: "Tokkapchi" } window 30,30 jump 2106.3
 2199.8 "Mud Pie"
 2211.9 "Quickmire"
 2221.9 "Quagmire"

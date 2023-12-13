@@ -8,42 +8,42 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.1 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/ window 7.1,5
-11.2 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-17.4 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
+7.1 "Triple Trial" Ability { id: "1566", source: "Sephirot" } window 7.1,5
+11.2 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+17.4 "Tiferet" Ability { id: "1568", source: "Sephirot" }
 
 # Phase 1 rotation block, 76.3 seconds
-21.6 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-25.6 "Ein Sof (4 puddles)" sync / 1[56]:[^:]*:Sephirot:156E:/
-29.7 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-38.3 "Fiendish Rage 1" sync / 1[56]:[^:]*:Sephirot:156D:/
-42.0 "Fiendish Rage 2" sync / 1[56]:[^:]*:Sephirot:156D:/
-49.2 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-53.3 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-59.4 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
-61.6 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-67.7 "Ein Sof (1 puddle)" sync / 1[56]:[^:]*:Sephirot:156E:/
-70.9 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-81.3 "Ratzon" # sync / 1[56]:[^:]*:Sephirot:156B:/
-85.5 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-89.6 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-95.7 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
+21.6 "Triple Trial" Ability { id: "1566", source: "Sephirot" }
+25.6 "Ein Sof (4 puddles)" Ability { id: "156E", source: "Sephirot" }
+29.7 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+38.3 "Fiendish Rage 1" Ability { id: "156D", source: "Sephirot" }
+42.0 "Fiendish Rage 2" Ability { id: "156D", source: "Sephirot" }
+49.2 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+53.3 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+59.4 "Chesed" Ability { id: "1567", source: "Sephirot" } window 20,20
+61.6 "Triple Trial" Ability { id: "1566", source: "Sephirot" }
+67.7 "Ein Sof (1 puddle)" Ability { id: "156E", source: "Sephirot" }
+70.9 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+81.3 "Ratzon" # Ability { id: "156B", source: "Sephirot" }
+85.5 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+89.6 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+95.7 "Chesed" Ability { id: "1567", source: "Sephirot" } window 20,20
 
-97.9 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-101.9 "Ein Sof (4 puddles)" sync / 1[56]:[^:]*:Sephirot:156E:/
-106.0 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-114.6 "Fiendish Rage 1" sync / 1[56]:[^:]*:Sephirot:156D:/
-118.3 "Fiendish Rage 2" sync / 1[56]:[^:]*:Sephirot:156D:/
-125.5 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-129.6 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-135.7 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20
-137.9 "Triple Trial" sync / 1[56]:[^:]*:Sephirot:1566:/
-144.0 "Ein Sof (1 puddle)" sync / 1[56]:[^:]*:Sephirot:156E:/
-147.2 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-157.6 "Ratzon" # sync / 1[56]:[^:]*:Sephirot:156B:/
-161.8 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-165.9 "Tiferet" sync / 1[56]:[^:]*:Sephirot:1568:/
-172.0 "Chesed" sync / 1[56]:[^:]*:Sephirot:1567:/ window 20,20 jump 95.7
+97.9 "Triple Trial" Ability { id: "1566", source: "Sephirot" }
+101.9 "Ein Sof (4 puddles)" Ability { id: "156E", source: "Sephirot" }
+106.0 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+114.6 "Fiendish Rage 1" Ability { id: "156D", source: "Sephirot" }
+118.3 "Fiendish Rage 2" Ability { id: "156D", source: "Sephirot" }
+125.5 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+129.6 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+135.7 "Chesed" Ability { id: "1567", source: "Sephirot" } window 20,20
+137.9 "Triple Trial" Ability { id: "1566", source: "Sephirot" }
+144.0 "Ein Sof (1 puddle)" Ability { id: "156E", source: "Sephirot" }
+147.2 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+157.6 "Ratzon" # Ability { id: "156B", source: "Sephirot" }
+161.8 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+165.9 "Tiferet" Ability { id: "1568", source: "Sephirot" }
+172.0 "Chesed" Ability { id: "1567", source: "Sephirot" } window 20,20 jump 95.7
 
 174.2 "Triple Trial"
 178.2 "Ein Sof (4 puddles)"
@@ -59,85 +59,85 @@ hideall "--sync--"
 # However, we don't want timeline triggers firing during the intermission.
 
 500.0 "--sync--" sync / 22:........:Sephirot:........:Sephirot:00/ window 500,0
-1000.0 "Ein Sof Ohr" sync / 1[56]:[^:]*:Sephirot:1571:/ window 1000,5
+1000.0 "Ein Sof Ohr" Ability { id: "1571", source: "Sephirot" } window 1000,5
 
 # Phase 2 rotation block, 197.3 seconds
-1013.2 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 30,30
-1016.2 "Force Field" sync / 1[56]:[^:]*:Sephirot:1587:/
-1028.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1029.0 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1034.6 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1042.7 "Da'at Tethers" duration 5 #sync / 1[56]:[^:]*:Sephirot:1574:/
-1053.3 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1060.3 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1060.9 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1068.4 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1070.1 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1077.7 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
-1085.1 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1092.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1092.9 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1101.0 "Pillar of Mercy 1" sync / 1[56]:[^:]*:Sephirot:1580:/
-1101.3 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1106.2 "Pillar of Mercy 2" sync / 1[56]:[^:]*:Sephirot:1580:/
-1110.1 "Pillar of Mercy 3" sync / 1[56]:[^:]*:Sephirot:1580:/
-1119.3 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1128.8 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
-1129.7 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1136.1 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1143.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1143.8 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1149.4 "Malkuth" sync / 1[56]:[^:]*:Sephirot:1582:/ window 30,30
+1013.2 "Yesod" Ability { id: "157E", source: "Sephirot" } window 30,30
+1016.2 "Force Field" Ability { id: "1587", source: "Sephirot" }
+1028.4 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1029.0 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1034.6 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1042.7 "Da'at Tethers" duration 5 #Ability { id: "1574", source: "Sephirot" }
+1053.3 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1060.3 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1060.9 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1068.4 "Earth Shaker" Ability { id: "157D", source: "Sephirot" }
+1070.1 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1077.7 "Da'at spread" duration 3.2 #Ability { id: "1573", source: "Sephirot" }
+1085.1 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1092.2 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1092.9 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1101.0 "Pillar of Mercy 1" Ability { id: "1580", source: "Sephirot" }
+1101.3 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1106.2 "Pillar of Mercy 2" Ability { id: "1580", source: "Sephirot" }
+1110.1 "Pillar of Mercy 3" Ability { id: "1580", source: "Sephirot" }
+1119.3 "Earth Shaker" Ability { id: "157D", source: "Sephirot" }
+1128.8 "Da'at spread" duration 3.2 #Ability { id: "1573", source: "Sephirot" }
+1129.7 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1136.1 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1143.2 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1143.8 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1149.4 "Malkuth" Ability { id: "1582", source: "Sephirot" } window 30,30
 1150.5 "Adds Spawn" sync / 03:........:Storm Of Words:/
-1158.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1159.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1164.9 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1166.5 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1172.2 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1172.8 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1185.8 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1188.4 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1189.0 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1191.6 "Pillar of Severity" sync / 1[56]:[^:]*:Sephirot:1585:/
-1195.3 "Impact of Hod" sync / 1[56]:[^:]*:Sephirot:172C:/
-1199.7 "Ascension" sync / 1[56]:[^:]*:Coronal Wind:1584:/
+1158.7 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1159.3 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1164.9 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1166.5 "Yesod" Ability { id: "157E", source: "Sephirot" }
+1172.2 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1172.8 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1185.8 "Yesod" Ability { id: "157E", source: "Sephirot" }
+1188.4 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1189.0 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1191.6 "Pillar of Severity" Ability { id: "1585", source: "Sephirot" }
+1195.3 "Impact of Hod" Ability { id: "172C", source: "Sephirot" }
+1199.7 "Ascension" Ability { id: "1584", source: "Coronal Wind" }
 
-1210.4 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 30,30
-1213.5 "Force Field" sync / 1[56]:[^:]*:Sephirot:1587:/
-1225.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1226.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1231.9 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1240.0 "Da'at Tethers" duration 5 #sync / 1[56]:[^:]*:Sephirot:1574:/
-1250.6 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1257.6 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1258.2 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1265.7 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1267.4 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1275.0 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
-1282.4 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1289.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1290.2 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1298.3 "Pillar of Mercy 1" sync / 1[56]:[^:]*:Sephirot:1580:/
-1298.6 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1303.5 "Pillar of Mercy 2" sync / 1[56]:[^:]*:Sephirot:1580:/
-1307.4 "Pillar of Mercy 3" sync / 1[56]:[^:]*:Sephirot:1580:/
-1316.6 "Earth Shaker" sync / 1[56]:[^:]*:Sephirot:157D:/
-1326.1 "Da'at spread" duration 3.2 #sync / 1[56]:[^:]*:Sephirot:1573:/
-1327.0 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/ window 20,20
-1333.4 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1340.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1341.1 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1346.7 "Malkuth" sync / 1[56]:[^:]*:Sephirot:1582:/
+1210.4 "Yesod" Ability { id: "157E", source: "Sephirot" } window 30,30
+1213.5 "Force Field" Ability { id: "1587", source: "Sephirot" }
+1225.7 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1226.3 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1231.9 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1240.0 "Da'at Tethers" duration 5 #Ability { id: "1574", source: "Sephirot" }
+1250.6 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1257.6 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1258.2 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1265.7 "Earth Shaker" Ability { id: "157D", source: "Sephirot" }
+1267.4 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1275.0 "Da'at spread" duration 3.2 #Ability { id: "1573", source: "Sephirot" }
+1282.4 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1289.5 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1290.2 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1298.3 "Pillar of Mercy 1" Ability { id: "1580", source: "Sephirot" }
+1298.6 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1303.5 "Pillar of Mercy 2" Ability { id: "1580", source: "Sephirot" }
+1307.4 "Pillar of Mercy 3" Ability { id: "1580", source: "Sephirot" }
+1316.6 "Earth Shaker" Ability { id: "157D", source: "Sephirot" }
+1326.1 "Da'at spread" duration 3.2 #Ability { id: "1573", source: "Sephirot" }
+1327.0 "Yesod" Ability { id: "157E", source: "Sephirot" } window 20,20
+1333.4 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1340.5 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1341.1 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1346.7 "Malkuth" Ability { id: "1582", source: "Sephirot" }
 1347.8 "Adds Spawn" sync / 03:........:Storm Of Words:/
-1356.0 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1356.6 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1362.2 "Fiendish Wail" sync / 1[56]:[^:]*:Sephirot:1576:/
-1363.8 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1369.5 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1370.1 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1382.9 "Yesod" sync / 1[56]:[^:]*:Sephirot:157E:/
-1385.7 "Chesed Gevurah" sync / 1[56]:[^:]*:Sephirot:(1578|1579):/
-1386.3 "Life Force + Spirit" sync / 1[56]:[^:]*:Sephirot:(157A|157B):/
-1388.9 "Pillar of Severity" sync / 1[56]:[^:]*:Sephirot:1585:/
-1392.6 "Impact of Hod" sync / 1[56]:[^:]*:Sephirot:172C:/
-1397.0 "Pillar of Severity Enrage" sync / 1[56]:[^:]*:Sephirot:1585:/
+1356.0 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1356.6 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1362.2 "Fiendish Wail" Ability { id: "1576", source: "Sephirot" }
+1363.8 "Yesod" Ability { id: "157E", source: "Sephirot" }
+1369.5 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1370.1 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1382.9 "Yesod" Ability { id: "157E", source: "Sephirot" }
+1385.7 "Chesed Gevurah" Ability { id: "(1578|1579)", source: "Sephirot" }
+1386.3 "Life Force + Spirit" Ability { id: "(157A|157B)", source: "Sephirot" }
+1388.9 "Pillar of Severity" Ability { id: "1585", source: "Sephirot" }
+1392.6 "Impact of Hod" Ability { id: "172C", source: "Sephirot" }
+1397.0 "Pillar of Severity Enrage" Ability { id: "1585", source: "Sephirot" }

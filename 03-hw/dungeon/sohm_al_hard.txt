@@ -12,35 +12,35 @@ hideall "--Reset--"
 
 # The Wound will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:64C:/ window 0,1
-2.4 "--sync--" sync / 1[56]:[^:]*:The Leightonward:5B5:/ window 2.4,1
-6.1 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/ window 6.1,5
-13.2 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
-17.2 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
-22.4 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-27.5 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
-33.6 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
-37.6 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
-40.7 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
-44.9 "Excretion" sync / 1[56]:[^:]*:The Leightonward:1C2E:/
-49.0 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-55.1 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-60.2 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
-66.3 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
-70.3 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
-73.3 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
-84.6 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
+2.4 "--sync--" Ability { id: "5B5", source: "The Leightonward" } window 2.4,1
+6.1 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" } window 6.1,5
+13.2 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
+17.2 "Inflammable Fumes" Ability { id: "1C31", source: "The Leightonward" } window 15,15
+22.4 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+27.5 "Spore Sac" Ability { id: "1C2F", source: "The Leightonward" }
+33.6 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
+37.6 "Inflammable Fumes" Ability { id: "1C31", source: "The Leightonward" } window 15,15
+40.7 "Glorious Blaze" Ability { id: "1C33", source: "Small Spore Sac" }
+44.9 "Excretion" Ability { id: "1C2E", source: "The Leightonward" }
+49.0 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+55.1 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+60.2 "Spore Sac" Ability { id: "1C2F", source: "The Leightonward" }
+66.3 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
+70.3 "Inflammable Fumes" Ability { id: "1C31", source: "The Leightonward" } window 15,15
+73.3 "Glorious Blaze" Ability { id: "1C33", source: "Small Spore Sac" }
+84.6 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
 
-92.9 "Excretion" sync / 1[56]:[^:]*:The Leightonward:1C2E:/
-98.0 "Spore Sac" sync / 1[56]:[^:]*:The Leightonward:1C2F:/
-104.2 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
-108.2 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
-111.2 "Glorious Blaze" sync / 1[56]:[^:]*:Small Spore Sac:1C33:/
-124.4 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-130.5 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-137.6 "Inflammable Fumes (Readies)" sync / 1[56]:[^:]*:The Leightonward:1C30:/
-141.6 "Inflammable Fumes" sync / 1[56]:[^:]*:The Leightonward:1C31:/ window 15,15
-143.8 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/
-150.0 "Wild Horn" sync / 1[56]:[^:]*:The Leightonward:1C2D:/ jump 84.6
+92.9 "Excretion" Ability { id: "1C2E", source: "The Leightonward" }
+98.0 "Spore Sac" Ability { id: "1C2F", source: "The Leightonward" }
+104.2 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
+108.2 "Inflammable Fumes" Ability { id: "1C31", source: "The Leightonward" } window 15,15
+111.2 "Glorious Blaze" Ability { id: "1C33", source: "Small Spore Sac" }
+124.4 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+130.5 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+137.6 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
+141.6 "Inflammable Fumes" Ability { id: "1C31", source: "The Leightonward" } window 15,15
+143.8 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" }
+150.0 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" } jump 84.6
 
 # The timing from Wild Horn to Excretion is the same no matter
 # whether the lead block is the opener or the rotation block.
@@ -65,40 +65,40 @@ hideall "--Reset--"
 
 # The Lava Tube will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:763:/ window 2000,1
-2012.0 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/ window 12,5
-2022.2 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
-2038.4 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2045.6 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/ window 15,15
-2068.8 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/
-2079.4 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
-2091.6 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2101.8 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
-2106.9 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
-2118.6 "Hiss (Adds x4)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/ window 15,15
-2123.7 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
-2129.8 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2150.0 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
-2156.1 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
-2167.3 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
-2172.4 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
-2182.0 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2187.1 "Flying Press" sync / 1[56]:[^:]*:Lava Scorpion:1C3E:/
+2012.0 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" } window 12,5
+2022.2 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
+2038.4 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2045.6 "Hiss (Adds x2)" Ability { id: "1C45", source: "Lava Scorpion" } window 15,15
+2068.8 "Realm Shaker" Ability { id: "1C41", source: "Lava Scorpion" }
+2079.4 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
+2091.6 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2101.8 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" }
+2106.9 "Molten Silk (Back)" Ability { id: "1C44", source: "Lava Scorpion" }
+2118.6 "Hiss (Adds x4)" Ability { id: "1C45", source: "Lava Scorpion" } window 15,15
+2123.7 "Molten Silk (Ring)" Ability { id: "1C42", source: "Lava Scorpion" }
+2129.8 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2150.0 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
+2156.1 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
+2167.3 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" }
+2172.4 "Molten Silk (Back)" Ability { id: "1C44", source: "Lava Scorpion" }
+2182.0 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2187.1 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
 
-2196.3 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/ window 15,15
-2202.0 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
-2211.2 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/
-2221.3 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2231.5 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
-2237.1 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
-2246.3 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
+2196.3 "Realm Shaker" Ability { id: "1C41", source: "Lava Scorpion" } window 15,15
+2202.0 "Molten Silk (Ring)" Ability { id: "1C42", source: "Lava Scorpion" }
+2211.2 "Hiss (Adds x2)" Ability { id: "1C45", source: "Lava Scorpion" }
+2221.3 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2231.5 "Molten Silk (Back)" Ability { id: "1C44", source: "Lava Scorpion" }
+2237.1 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" }
+2246.3 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
 
-2254.5 "Realm Shaker" sync / 1[56]:[^:]*:Lava Scorpion:1C41:/ window 15,15
-2260.2 "Molten Silk (Ring)" sync / 1[56]:[^:]*:Lava Scorpion:1C42:/
-2269.4 "Hiss (Adds x2)" sync / 1[56]:[^:]*:Lava Scorpion:1C45:/
-2279.5 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/
-2289.7 "Molten Silk (Back)" sync / 1[56]:[^:]*:Lava Scorpion:1C44:/
-2295.3 "Molten Silk (Front)" sync / 1[56]:[^:]*:Lava Scorpion:1C43:/
-2304.5 "Deadly Thrust" sync / 1[56]:[^:]*:Lava Scorpion:1C40:/ jump 2246.3
+2254.5 "Realm Shaker" Ability { id: "1C41", source: "Lava Scorpion" } window 15,15
+2260.2 "Molten Silk (Ring)" Ability { id: "1C42", source: "Lava Scorpion" }
+2269.4 "Hiss (Adds x2)" Ability { id: "1C45", source: "Lava Scorpion" }
+2279.5 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }
+2289.7 "Molten Silk (Back)" Ability { id: "1C44", source: "Lava Scorpion" }
+2295.3 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" }
+2304.5 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" } jump 2246.3
 
 2312.7 "Realm Shaker"
 2318.4 "Molten Silk (Ring)"

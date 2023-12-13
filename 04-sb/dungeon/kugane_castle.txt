@@ -13,21 +13,21 @@ hideall "--sync--"
 
 # Keisen Garden will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:7AF:/ window 0,1
-9.6 "Clearout" sync / 1[56]:[^:]*:Zuiko-Maru:1E92:/ window 9.6,5
-21.8 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/ window 21.8,10
-30.9 "Clearout" sync / 1[56]:[^:]*:Zuiko-Maru:1E92:/
+9.6 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" } window 9.6,5
+21.8 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" } window 21.8,10
+30.9 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" }
 
-40.0 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/
-50.2 "Clearout" sync / 1[56]:[^:]*:Zuiko-Maru:1E92:/
-60.4 "Helm Crack" sync / 1[56]:[^:]*:Zuiko-Maru:1E94:/ window 15,15
-65.5 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/
-75.8 "Clearout" sync / 1[56]:[^:]*:Zuiko-Maru:1E92:/
-86.0 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/
-98.2 "Helm Crack" sync / 1[56]:[^:]*:Zuiko-Maru:1E94:/ window 15,15
-103.4 "Clearout" sync / 1[56]:[^:]*:Zuiko-Maru:1E92:/
-113.6 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/
+40.0 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" }
+50.2 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" }
+60.4 "Helm Crack" Ability { id: "1E94", source: "Zuiko-Maru" } window 15,15
+65.5 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" }
+75.8 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" }
+86.0 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" }
+98.2 "Helm Crack" Ability { id: "1E94", source: "Zuiko-Maru" } window 15,15
+103.4 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" }
+113.6 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" }
 
-121.7 "Kenki Release" sync / 1[56]:[^:]*:Zuiko-Maru:1E93:/ jump 40
+121.7 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" } jump 40
 131.9 "Clearout"
 142.1 "Helm Crack"
 147.2 "Kenki Release"
@@ -43,31 +43,31 @@ hideall "--sync--"
 
 # Budokan Training Grounds will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B3:/ window 1000,5
-1006.5 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/ window 1006.5,5
-1016.6 "Clockwork Medium" sync / 1[56]:[^:]*:Dojun-Maru:1E99:/
-1019.8 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/
-1025.5 "Tatami-Gaeshi" sync / 1[56]:[^:]*:Elite Onmitsu:1E9D:/
-1027.6 "--sync--" sync / 1[56]:[^:]*:Elite Onmitsu:1E9A:/
-1028.9 "Clockwork Raiton" sync / 1[56]:[^:]*:Dojun-Maru:1E9B:/ window 1028.9,10
+1006.5 "Issen" Ability { id: "1E97", source: "Dojun-Maru" } window 1006.5,5
+1016.6 "Clockwork Medium" Ability { id: "1E99", source: "Dojun-Maru" }
+1019.8 "Issen" Ability { id: "1E97", source: "Dojun-Maru" }
+1025.5 "Tatami-Gaeshi" Ability { id: "1E9D", source: "Elite Onmitsu" }
+1027.6 "--sync--" Ability { id: "1E9A", source: "Elite Onmitsu" }
+1028.9 "Clockwork Raiton" Ability { id: "1E9B", source: "Dojun-Maru" } window 1028.9,10
 
-1036.1 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/
-1042.2 "Clockwork Medium" sync / 1[56]:[^:]*:Dojun-Maru:1E99:/
-1051.0 "Juji Shuriken" sync / 1[56]:[^:]*:Dojun-Maru:1E98:/
-1056.7 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/
-1061.8 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/
-1068.2 "Harakiri?" # sync / 1[56]:[^:]*:Elite Onmitsu:1E9F:/
-1070.1 "Juji Shuriken" sync / 1[56]:[^:]*:Dojun-Maru:1E98:/
-1079.3 "Clockwork Medium" sync / 1[56]:[^:]*:Dojun-Maru:1E99:/ window 15,15
-1088.1 "Tatami-Gaeshi 1" sync / 1[56]:[^:]*:Elite Onmitsu:1E9D:/
-1091.5 "Clockwork Raiton" sync / 1[56]:[^:]*:Dojun-Maru:1E9B:/
-1092.1 "Tatami-Gaeshi 2" sync / 1[56]:[^:]*:Elite Onmitsu:1E9D:/
-1093.4 "Juji Shuriken" sync / 1[56]:[^:]*:Elite Onmitsu:1EA0:/
-1095.5 "--adds spawn--" sync / 1[56]:[^:]*:Elite Onmitsu:1E9A:/
-1096.7 "Juji Shuriken" sync / 1[56]:[^:]*:Dojun-Maru:1E98:/
-1099.4 "--sync--" sync / 1[56]:[^:]*:Elite Onmitsu:1E9A:/
-1103.8 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/ window 30,2.5
+1036.1 "Issen" Ability { id: "1E97", source: "Dojun-Maru" }
+1042.2 "Clockwork Medium" Ability { id: "1E99", source: "Dojun-Maru" }
+1051.0 "Juji Shuriken" Ability { id: "1E98", source: "Dojun-Maru" }
+1056.7 "Issen" Ability { id: "1E97", source: "Dojun-Maru" }
+1061.8 "Issen" Ability { id: "1E97", source: "Dojun-Maru" }
+1068.2 "Harakiri?" # Ability { id: "1E9F", source: "Elite Onmitsu" }
+1070.1 "Juji Shuriken" Ability { id: "1E98", source: "Dojun-Maru" }
+1079.3 "Clockwork Medium" Ability { id: "1E99", source: "Dojun-Maru" } window 15,15
+1088.1 "Tatami-Gaeshi 1" Ability { id: "1E9D", source: "Elite Onmitsu" }
+1091.5 "Clockwork Raiton" Ability { id: "1E9B", source: "Dojun-Maru" }
+1092.1 "Tatami-Gaeshi 2" Ability { id: "1E9D", source: "Elite Onmitsu" }
+1093.4 "Juji Shuriken" Ability { id: "1EA0", source: "Elite Onmitsu" }
+1095.5 "--adds spawn--" Ability { id: "1E9A", source: "Elite Onmitsu" }
+1096.7 "Juji Shuriken" Ability { id: "1E98", source: "Dojun-Maru" }
+1099.4 "--sync--" Ability { id: "1E9A", source: "Elite Onmitsu" }
+1103.8 "Issen" Ability { id: "1E97", source: "Dojun-Maru" } window 30,2.5
 
-1111.1 "Issen" sync / 1[56]:[^:]*:Dojun-Maru:1E97:/ jump 1036.1
+1111.1 "Issen" Ability { id: "1E97", source: "Dojun-Maru" } jump 1036.1
 1117.2 "Clockwork Medium"
 1126.0 "Juji Shuriken"
 1131.7 "Issen"
@@ -83,70 +83,70 @@ hideall "--sync--"
 # Short opener
 # Noh Theater will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B5:/ window 2000,5
-2009.5 "Iai-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA2:/ window 2009.5,5
-2012.7 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2018.9 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
+2009.5 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" } window 2009.5,5
+2012.7 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2018.9 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
 2024.9 "--untargetable--"
 
 # Intermission 1
-2028.9 "--sync--" sync / 1[56]:[^:]*:Kageyama:2517:/ window 2028.9,5
-2031.0 "Gratuity" sync / 1[56]:[^:]*:Kageyama:1EAE:/
-2037.1 "Gratuity" sync / 1[56]:[^:]*:Kageyama:1EAE:/
-2039.1 "Zeni Masshigura x4" sync / 1[56]:[^:]*:Daigoro:1EA7:/
-2043.1 "--sync--" sync / 1[56]:[^:]*:Kageyama:2517:/
-2047.7 "Zeni Masshigura x4" sync / 1[56]:[^:]*:Daigoro:1EA7:/
-2059.2 "Zanmato" sync / 1[56]:[^:]*:Yojimbo:2072:/ window 2059.2,10
+2028.9 "--sync--" Ability { id: "2517", source: "Kageyama" } window 2028.9,5
+2031.0 "Gratuity" Ability { id: "1EAE", source: "Kageyama" }
+2037.1 "Gratuity" Ability { id: "1EAE", source: "Kageyama" }
+2039.1 "Zeni Masshigura x4" Ability { id: "1EA7", source: "Daigoro" }
+2043.1 "--sync--" Ability { id: "2517", source: "Kageyama" }
+2047.7 "Zeni Masshigura x4" Ability { id: "1EA7", source: "Daigoro" }
+2059.2 "Zanmato" Ability { id: "2072", source: "Yojimbo" } window 2059.2,10
 
 # Bridge
 2062.2 "--targetable--"
-2074.7 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2079.8 "Metta-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA3:/
-2091.0 "Inoshikacho" sync / 1[56]:[^:]*:Yojimbo:1EA5:/ window 30,30
-2096.2 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2100.2 "Fragility (inner)" # sync / 1[56]:[^:]*:Inoshikacho:1EAA:/
-2104.2 "Fragility (outer)" # sync / 1[56]:[^:]*:Inoshikacho:1EAA:/
-2106.2 "Iai-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA2:/
-2115.1 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:1EA6:/
+2074.7 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2079.8 "Metta-Giri" Ability { id: "1EA3", source: "Yojimbo" }
+2091.0 "Inoshikacho" Ability { id: "1EA5", source: "Yojimbo" } window 30,30
+2096.2 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2100.2 "Fragility (inner)" # Ability { id: "1EAA", source: "Inoshikacho" }
+2104.2 "Fragility (outer)" # Ability { id: "1EAA", source: "Inoshikacho" }
+2106.2 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" }
+2115.1 "Dragon's Lair" Ability { id: "1EA6", source: "Yojimbo" }
 2117.2 "--untargetable--"
 
 # Intermission 2
-2121.2 "--sync--" sync / 1[56]:[^:]*:Kageyama:2517:/
-2123.3 "Gratuity" sync / 1[56]:[^:]*:Kageyama:1EAE:/
-2125.3 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2129.4 "Gratuity" sync / 1[56]:[^:]*:Kageyama:1EAE:/
-2131.4 "Zeni Masshigura x4" sync / 1[56]:[^:]*:Daigoro:1EA7:/ window 30,2.5
-2135.4 "Gratuity" sync / 1[56]:[^:]*:Kageyama:1EAE:/
-2135.8 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2138.6 "--sync--" sync / 1[56]:[^:]*:Kageyama:2517:/
-2140.1 "Zeni Masshigura x4" sync / 1[56]:[^:]*:Daigoro:1EA7:/
-2146.2 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2148.8 "Zeni Masshigura x4" sync / 1[56]:[^:]*:Daigoro:1EA7:/
-2155.1 "Dragonstrike?" # sync / 1[56]:[^:]*:Dragon's Head:1EAD:/
-2159.5 "Zanmato" sync / 1[56]:[^:]*:Yojimbo:2072:/ window 90,10 # Making sure of no overlap with previous use.
+2121.2 "--sync--" Ability { id: "2517", source: "Kageyama" }
+2123.3 "Gratuity" Ability { id: "1EAE", source: "Kageyama" }
+2125.3 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2129.4 "Gratuity" Ability { id: "1EAE", source: "Kageyama" }
+2131.4 "Zeni Masshigura x4" Ability { id: "1EA7", source: "Daigoro" } window 30,2.5
+2135.4 "Gratuity" Ability { id: "1EAE", source: "Kageyama" }
+2135.8 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2138.6 "--sync--" Ability { id: "2517", source: "Kageyama" }
+2140.1 "Zeni Masshigura x4" Ability { id: "1EA7", source: "Daigoro" }
+2146.2 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2148.8 "Zeni Masshigura x4" Ability { id: "1EA7", source: "Daigoro" }
+2155.1 "Dragonstrike?" # Ability { id: "1EAD", source: "Dragon's Head" }
+2159.5 "Zanmato" Ability { id: "2072", source: "Yojimbo" } window 90,10 # Making sure of no overlap with previous use.
 
 # Rotation
 2162.4 "--targetable--"
-2176.9 "Metta-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA3:/
-2184.1 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2189.2 "Inoshikacho" sync / 1[56]:[^:]*:Yojimbo:1EA5:/ window 30,30
-2194.3 "Metta-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA3:/
-2198.4 "Fragility (inner)" # sync / 1[56]:[^:]*:Inoshikacho:1EAA:/
-2202.4 "Fragility (outer)" # sync / 1[56]:[^:]*:Inoshikacho:1EAA:/
-2205.5 "Iai-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA2:/
-2215.7 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:1EA6:/
-2224.9 "Iai-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA2:/
-2225.9 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2232.0 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2236.4 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2238.0 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2245.1 "Iai-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA2:/ window 15,15
-2247.2 "Dragonfire" # sync / 1[56]:[^:]*:Dragon's Head:1EAB:/
-2255.2 "Metta-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA3:/
-2255.8 "Dragonstrike?" # sync / 1[56]:[^:]*:Dragon's Head:1EAD:/
-2262.4 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
-2268.5 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:1EA1:/
+2176.9 "Metta-Giri" Ability { id: "1EA3", source: "Yojimbo" }
+2184.1 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2189.2 "Inoshikacho" Ability { id: "1EA5", source: "Yojimbo" } window 30,30
+2194.3 "Metta-Giri" Ability { id: "1EA3", source: "Yojimbo" }
+2198.4 "Fragility (inner)" # Ability { id: "1EAA", source: "Inoshikacho" }
+2202.4 "Fragility (outer)" # Ability { id: "1EAA", source: "Inoshikacho" }
+2205.5 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" }
+2215.7 "Dragon's Lair" Ability { id: "1EA6", source: "Yojimbo" }
+2224.9 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" }
+2225.9 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2232.0 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2236.4 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2238.0 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2245.1 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" } window 15,15
+2247.2 "Dragonfire" # Ability { id: "1EAB", source: "Dragon's Head" }
+2255.2 "Metta-Giri" Ability { id: "1EA3", source: "Yojimbo" }
+2255.8 "Dragonstrike?" # Ability { id: "1EAD", source: "Dragon's Head" }
+2262.4 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
+2268.5 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
 
-2278.7 "Metta-Giri" sync / 1[56]:[^:]*:Yojimbo:1EA3:/ jump 2176.9
+2278.7 "Metta-Giri" Ability { id: "1EA3", source: "Yojimbo" } jump 2176.9
 2285.9 "Wakizashi"
 2291.0 "Inoshikacho"
 2296.1 "Metta-Giri"

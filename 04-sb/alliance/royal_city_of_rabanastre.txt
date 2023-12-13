@@ -16,44 +16,44 @@ hideall "--start--"
 22.6 "--sync--" sync / 14:[^:]*:Mateus, The Corrupt:2633:/ window 30,10
 
 # Ice phase
-27.6 "Unbind" sync / 1[56]:[^:]*:Mateus, The Corrupt:2633:/
-33.6 "--sync--" sync / 1[56]:[^:]*:Mateus, The Corrupt:26A2:/
+27.6 "Unbind" Ability { id: "2633", source: "Mateus, The Corrupt" }
+33.6 "--sync--" Ability { id: "26A2", source: "Mateus, The Corrupt" }
 34.3 "--Aqua Sphere Adds--" sync / 03:........:Aqua Sphere:/ 
-57.5 "Flash-Freeze" sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
-66.7 "--sync--" sync / 1[56]:[^:]*:Mateus, The Corrupt:2637:/
-74.6 "Flash-Freeze" sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
-91.8 "Flash-Freeze" sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
+57.5 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
+66.7 "--sync--" Ability { id: "2637", source: "Mateus, The Corrupt" }
+74.6 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
+91.8 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
 
 # Frog phase
-114.1 "Rebind" sync / 1[56]:[^:]*:Mateus, The Corrupt:2635:/ window 120,20
-124.5 "Dualcast" sync / 1[56]:[^:]*:Mateus, The Corrupt:263C:/
-127.8 "--sync--" sync / 1[56]:[^:]*:Mateus, The Corrupt:263B:/
-139.9 "Blizzard IV" sync / 1[56]:[^:]*:Mateus, The Corrupt:263D:/
-152.1 "Flash-Freeze" sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
+114.1 "Rebind" Ability { id: "2635", source: "Mateus, The Corrupt" } window 120,20
+124.5 "Dualcast" Ability { id: "263C", source: "Mateus, The Corrupt" }
+127.8 "--sync--" Ability { id: "263B", source: "Mateus, The Corrupt" }
+139.9 "Blizzard IV" Ability { id: "263D", source: "Mateus, The Corrupt" }
+152.1 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
 165.4 "--Flume Toad Adds--" sync / 03:........:Flume Toad:/ 
-192.5 "Snowpierce 1" sync / 1[56]:[^:]*:Icicle:2640:/
+192.5 "Snowpierce 1" Ability { id: "2640", source: "Icicle" }
 # ??? More flume toads, hard to tell from logs
-214.6 "Snowpierce 2" sync / 1[56]:[^:]*:Icicle:2640:/
-225.6 "Dendrite" sync / 1[56]:[^:]*:Mateus, The Corrupt:2645:/
+214.6 "Snowpierce 2" Ability { id: "2640", source: "Icicle" }
+225.6 "Dendrite" Ability { id: "2645", source: "Mateus, The Corrupt" }
 227.5 "--Blizzard Sphere Adds--"
 
 # Adds
 259.2 "--untargetable--" # ??? from video
-259.8 "--sync--" sync / 1[56]:[^:]*:Mateus, The Corrupt:266C:/ window 260,20
+259.8 "--sync--" Ability { id: "266C", source: "Mateus, The Corrupt" } window 260,20
 262.9 "--Azure Guard Adds--" sync / 03:........:Azure Guard:/ 
 333.2 "--enrage--" # ??? estimating from video
 
 # End of add phase aoe
-500.0 "Frostwave" sync / 1[56]:[^:]*:Mateus, The Corrupt:2641:/
+500.0 "Frostwave" Ability { id: "2641", source: "Mateus, The Corrupt" }
 
 # loop
-524.3 "Unbind" sync / 1[56]:[^:]*:Mateus, The Corrupt:2633:/ window 200,200 jump 27.6
-530.3 "--sync--" #sync / 1[56]:[^:]*:Mateus, The Corrupt:26A2:/
+524.3 "Unbind" Ability { id: "2633", source: "Mateus, The Corrupt" } window 200,200 jump 27.6
+530.3 "--sync--" #Ability { id: "26A2", source: "Mateus, The Corrupt" }
 531.0 "--Aqua Sphere Adds--" #sync / 03:........:Aqua Sphere:/ 
-554.2 "Flash-Freeze" #sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
-563.4 "--sync--" #sync / 1[56]:[^:]*:Mateus, The Corrupt:2637:/
-571.3 "Flash-Freeze" #sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
-588.5 "Flash-Freeze" #sync / 1[56]:[^:]*:Mateus, The Corrupt:2647:/
+554.2 "Flash-Freeze" #Ability { id: "2647", source: "Mateus, The Corrupt" }
+563.4 "--sync--" #Ability { id: "2637", source: "Mateus, The Corrupt" }
+571.3 "Flash-Freeze" #Ability { id: "2647", source: "Mateus, The Corrupt" }
+588.5 "Flash-Freeze" #Ability { id: "2647", source: "Mateus, The Corrupt" }
 
 
 ### Hashmal, Bringer of Order
@@ -64,107 +64,107 @@ hideall "--start--"
 # Palace Square will be sealed off
 1000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94C:/ window 10000,0
 1011.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25D8:/ window 20,20
-1015.0 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
-1020.4 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1022.5 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1024.6 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1015.0 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
+1020.4 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1022.5 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1024.6 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 
-1028.6 "Control Tower x1" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C1:/
-1031.8 "Sanction" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C3:/
+1028.6 "Control Tower x1" Ability { id: "25C1", source: "Hashmal, Bringer of Order" }
+1031.8 "Sanction" Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
 1038.1 "--untargetable--" # ??? from video
-1039.4 "Towerfall" sync / 1[56]:[^:]*:Control Tower:25C4:/
-1046.2 "Extreme Edge" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/
+1039.4 "Towerfall" Ability { id: "25C4", source: "Control Tower" }
+1046.2 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
 1050.1 "--targetable--" # ??? from video
 
-1056.1 "Earth Hammer" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CB:/
-1064.3 "Hammerfall" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CC:/
-1073.3 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
-1082.6 "Rock Cutter" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D7:/
+1056.1 "Earth Hammer" Ability { id: "25CB", source: "Hashmal, Bringer of Order" }
+1064.3 "Hammerfall" Ability { id: "25CC", source: "Hashmal, Bringer of Order" }
+1073.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
+1082.6 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
 
 # This can push early.
 1087.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25BC:/ window 100,20
-1090.0 "Command Tower" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25BC:/
-1101.3 "Earth Shaker" sync / 1[56]:[^:]*:Command Tower:25C8:/
-1106.2 "Earth Shaker" sync / 1[56]:[^:]*:Command Tower:25C8:/
-1106.6 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1108.4 "Impact" sync / 1[56]:[^:]*:Command Tower:25C7:/ window 30,3
-1108.7 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1110.7 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1090.0 "Command Tower" Ability { id: "25BC", source: "Hashmal, Bringer of Order" }
+1101.3 "Earth Shaker" Ability { id: "25C8", source: "Command Tower" }
+1106.2 "Earth Shaker" Ability { id: "25C8", source: "Command Tower" }
+1106.6 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1108.4 "Impact" Ability { id: "25C7", source: "Command Tower" } window 30,3
+1108.7 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1110.7 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1113.2 "--Sand Sphere Adds--"
-1128.5 "Falling Boulder" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D2:/
-1135.8 "Impact" sync / 1[56]:[^:]*:Command Tower:25C7:/ window 24,3 # can push early and skip Sand Spheres
-1145.7 "Earth Shaker" #sync / 1[56]:[^:]*:Command Tower:25C8:/
-1147.8 "Earth Shaker" #sync / 1[56]:[^:]*:Command Tower:25C8:/
-1149.8 "Falling Rock" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D3:/
+1128.5 "Falling Boulder" Ability { id: "25D2", source: "Hashmal, Bringer of Order" }
+1135.8 "Impact" Ability { id: "25C7", source: "Command Tower" } window 24,3 # can push early and skip Sand Spheres
+1145.7 "Earth Shaker" #Ability { id: "25C8", source: "Command Tower" }
+1147.8 "Earth Shaker" #Ability { id: "25C8", source: "Command Tower" }
+1149.8 "Falling Rock" Ability { id: "25D3", source: "Hashmal, Bringer of Order" }
 # ??? more earth shaker, more jagged edge (seen on video, but no logs)
 
 1300.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25C5:/ window 300,0
-1305.0 "Landwaster" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C5:/
+1305.0 "Landwaster" Ability { id: "25C5", source: "Hashmal, Bringer of Order" }
 
-1314.4 "Control Tower x2" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C1:/
-1317.6 "Sanction" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C3:/
-1325.1 "Towerfall" sync / 1[56]:[^:]*:Control Tower:25C4:/
-1326.0 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1328.1 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1330.2 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1314.4 "Control Tower x2" Ability { id: "25C1", source: "Hashmal, Bringer of Order" }
+1317.6 "Sanction" Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
+1325.1 "Towerfall" Ability { id: "25C4", source: "Control Tower" }
+1326.0 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1328.1 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1330.2 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 
-1330.9 "Control Tower x2" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C1:/
-1334.1 "Sanction" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C3:/
-1341.7 "Towerfall" sync / 1[56]:[^:]*:Control Tower:25C4:/
+1330.9 "Control Tower x2" Ability { id: "25C1", source: "Hashmal, Bringer of Order" }
+1334.1 "Sanction" Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
+1341.7 "Towerfall" Ability { id: "25C4", source: "Control Tower" }
 1343.9 "--untargetable--" # ??? from video
-1348.2 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1348.5 "Extreme Edge" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/
-1350.3 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1352.3 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1348.2 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1348.5 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1350.3 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1352.3 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1355.4 "--targetable--" # ??? from video
 
-1360.3 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
-1369.5 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
-1378.9 "Rock Cutter" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D7:/
-1387.1 "Earth Hammer" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CB:/
-1395.3 "Hammerfall x3" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CC:/
+1360.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
+1369.5 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
+1378.9 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
+1387.1 "Earth Hammer" Ability { id: "25CB", source: "Hashmal, Bringer of Order" }
+1395.3 "Hammerfall x3" Ability { id: "25CC", source: "Hashmal, Bringer of Order" }
 
-1398.3 "Summon" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D4:/
+1398.3 "Summon" Ability { id: "25D4", source: "Hashmal, Bringer of Order" }
 1399.1 "--Golem Adds--"
-1398.6 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1400.7 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1402.8 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1411.3 "Demolish" sync / 1[56]:[^:]*:Pennantstone Golem:25D6:/
-1414.5 "Might" sync / 1[56]:[^:]*:Pennantstone Golem:25D5:/
-1415.8 "Rock Cutter" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D7:/
-1428.2 "Rock Cutter" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D7:/
-1437.3 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
+1398.6 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1400.7 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1402.8 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1411.3 "Demolish" Ability { id: "25D6", source: "Pennantstone Golem" }
+1414.5 "Might" Ability { id: "25D5", source: "Pennantstone Golem" }
+1415.8 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
+1428.2 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
+1437.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
 
-1447.8 "Submission Tower" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:266D:/
-1451.0 "Sanction" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:2703:/
+1447.8 "Submission Tower" Ability { id: "266D", source: "Hashmal, Bringer of Order" }
+1451.0 "Sanction" Ability { id: "2703", source: "Hashmal, Bringer of Order" }
 1454.1 "--Sand Sphere Adds--"
 # 1459.1 "--sync--" sync / 14:[^:]*:Sand Sphere:25C9:/ # To Dust starts casting, probably the phase over when 20s cast complete
-1460.9 "Towerfall" sync / 1[56]:[^:]*:Submission Tower:25CA:/
-1469.7 "Falling Boulder" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D2:/
+1460.9 "Towerfall" Ability { id: "25CA", source: "Submission Tower" }
+1469.7 "Falling Boulder" Ability { id: "25D2", source: "Hashmal, Bringer of Order" }
 
 # Starts roughly after Sand Sphere adds are dead, guessing at this natural time if To Dust goes off
 1480.6 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/ window 40,40
-1486.6 "Extreme Edge" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/
-1489.1 "Falling Rock" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D3:/
-1499.3 "Quake IV" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D8:/
-1508.5 "Rock Cutter" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25D7:/
+1486.6 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1489.1 "Falling Rock" Ability { id: "25D3", source: "Hashmal, Bringer of Order" }
+1499.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
+1508.5 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
 
 # loop
-1515.8 "Control Tower x2" sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C1:/ window 100,100 jump 1314.4
-1519.0 "Sanction" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C3:/
-1526.5 "Towerfall" #sync / 1[56]:[^:]*:Control Tower:25C4:/
-1527.4 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1529.5 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1531.6 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1515.8 "Control Tower x2" Ability { id: "25C1", source: "Hashmal, Bringer of Order" } window 100,100 jump 1314.4
+1519.0 "Sanction" #Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
+1526.5 "Towerfall" #Ability { id: "25C4", source: "Control Tower" }
+1527.4 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1529.5 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1531.6 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 
-1532.3 "Control Tower x2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C1:/
-1535.5 "Sanction" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25C3:/
-1543.1 "Towerfall" #sync / 1[56]:[^:]*:Control Tower:25C4:/
+1532.3 "Control Tower x2" #Ability { id: "25C1", source: "Hashmal, Bringer of Order" }
+1535.5 "Sanction" #Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
+1543.1 "Towerfall" #Ability { id: "25C4", source: "Control Tower" }
 1545.3 "--untargetable--" # ??? from video
-1549.6 "Jagged Edge 1" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1549.9 "Extreme Edge" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/
-1551.7 "Jagged Edge 2" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
-1553.7 "Jagged Edge 3" #sync / 1[56]:[^:]*:Hashmal, Bringer of Order:25CD:/
+1549.6 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1549.9 "Extreme Edge" #Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1551.7 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
+1553.7 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1556.8 "--targetable--" # ??? from video
 
 
@@ -176,21 +176,21 @@ hideall "--start--"
 # Lesalia Garden Ruins will be sealed off
 2000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94D:/ window 10000,0
 2012.8 "--sync--" sync / 14:[^:]*:Rofocale:2680:/ window 20,20
-2015.8 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/ duration 3.4
-2035.5 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-2040.8 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-2052.5 "Crush Weapon x3" sync / 1[56]:[^:]*:Rofocale:2683:/
-2073.4 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/ duration 3.2
-2093.9 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-2104.8 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/ duration 3.4
-2117.7 "Crush Weapon x3" sync / 1[56]:[^:]*:Rofocale:2683:/
-2124.5 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-2142.5 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-2147.8 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-2154.6 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/ duration 3.2
-2165.8 "Crush Weapon x3" sync / 1[56]:[^:]*:Rofocale:2683:/
-2178.5 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-2189.4 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/ duration 3.4
+2015.8 "Crush Helm" Ability { id: "2680", source: "Rofocale" } duration 3.4
+2035.5 "Chariot" Ability { id: "2674", source: "Rofocale" }
+2040.8 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
+2052.5 "Crush Weapon x3" Ability { id: "2683", source: "Rofocale" }
+2073.4 "Trample" Ability { id: "2676", source: "Rofocale" } duration 3.2
+2093.9 "Maverick" Ability { id: "2689", source: "Rofocale" }
+2104.8 "Crush Helm" Ability { id: "2680", source: "Rofocale" } duration 3.4
+2117.7 "Crush Weapon x3" Ability { id: "2683", source: "Rofocale" }
+2124.5 "Trample" Ability { id: "2676", source: "Rofocale" }
+2142.5 "Chariot" Ability { id: "2674", source: "Rofocale" }
+2147.8 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
+2154.6 "Trample" Ability { id: "2676", source: "Rofocale" } duration 3.2
+2165.8 "Crush Weapon x3" Ability { id: "2683", source: "Rofocale" }
+2178.5 "Maverick" Ability { id: "2689", source: "Rofocale" }
+2189.4 "Crush Helm" Ability { id: "2680", source: "Rofocale" } duration 3.4
 
 2199.3 "--invulnerable--" # ??? from video, no debuff in logs, can push to this by hp%
 2201.3 "Archaeodemon Adds" sync / 03:........:Archaeodemon:/  window 300,300
@@ -200,81 +200,81 @@ hideall "--start--"
 2400.0 "--sync--" sync / 00:0044:[^:]*:The heavens tremble in my wake/ window 500,0
 2417.6 "--sync--" sync / 14:[^:]*:Rofocale:268A:/ window 500,10
 2421.1 "Heavenly Subjugation"
-2433.5 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-2450.8 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-2456.0 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-2466.7 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/ duration 3.2
-2473.5 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-2484.6 "Pomp And Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-2492.8 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-2500.4 "Crush Weapon x4" sync / 1[56]:[^:]*:Rofocale:2683:/
-2512.6 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/ # targetable Maverick
-2519.6 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-2531.0 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-2539.2 "Pomp And Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-2545.4 "Dark Geas" sync / 1[56]:[^:]*:Rofocale:2688:/
+2433.5 "Embrace" Ability { id: "2685", source: "Rofocale" }
+2450.8 "Chariot" Ability { id: "2674", source: "Rofocale" }
+2456.0 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
+2466.7 "Trample" Ability { id: "2676", source: "Rofocale" } duration 3.2
+2473.5 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
+2484.6 "Pomp And Circumstance" Ability { id: "268D", source: "Rofocale" }
+2492.8 "Embrace" Ability { id: "2685", source: "Rofocale" }
+2500.4 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
+2512.6 "Maverick" Ability { id: "2689", source: "Rofocale" } # targetable Maverick
+2519.6 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+2531.0 "Embrace" Ability { id: "2685", source: "Rofocale" }
+2539.2 "Pomp And Circumstance" Ability { id: "268D", source: "Rofocale" }
+2545.4 "Dark Geas" Ability { id: "2688", source: "Rofocale" }
 # => variable time turning off the lights
 
 # Seen 2734 only once in the loop fflogs link below.
 2700.0 "--sync--" sync / 14:[^:]*:Rofocale:(2734|2726):/ window 160,0
-2706.0 "Maverick" sync / 1[56]:[^:]*:Rofocale:(2734|2726):/
-2716.9 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-2726.3 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-2735.5 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-2736.5 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-2741.7 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-2751.0 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-2753.5 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-2760.3 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-2774.0 "Crush Weapon x4" sync / 1[56]:[^:]*:Rofocale:2683:/
-2779.1 "Dark Geas" sync / 1[56]:[^:]*:Rofocale:2688:/
+2706.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
+2716.9 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+2726.3 "Embrace" Ability { id: "2685", source: "Rofocale" }
+2735.5 "Maverick" Ability { id: "2689", source: "Rofocale" }
+2736.5 "Chariot" Ability { id: "2674", source: "Rofocale" }
+2741.7 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
+2751.0 "Maverick" Ability { id: "2689", source: "Rofocale" }
+2753.5 "Trample" Ability { id: "2676", source: "Rofocale" }
+2760.3 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
+2774.0 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
+2779.1 "Dark Geas" Ability { id: "2688", source: "Rofocale" }
 # => variable time turning off the lights
 
 2900.0 "--sync--" sync / 14:[^:]*:Rofocale:(2734|2726):/ window 160,0
-2906.0 "Maverick" sync / 1[56]:[^:]*:Rofocale:(2734|2726):/
-2917.3 "Crush Weapon x4" sync / 1[56]:[^:]*:Rofocale:2683:/
-2924.2 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-2931.0 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-2937.2 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-2948.6 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-2958.9 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-2964.3 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-2971.4 "Pomp And Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-2983.0 "Crush Weapon x4" sync / 1[56]:[^:]*:Rofocale:2683:/
-2990.1 "Pomp And Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-3006.3 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-3015.8 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-3022.7 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-3029.5 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-3036.4 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-3043.1 "Cry Of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-3056.8 "Crush Weapon x3" sync / 1[56]:[^:]*:Rofocale:2683:/
+2906.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
+2917.3 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
+2924.2 "Trample" Ability { id: "2676", source: "Rofocale" }
+2931.0 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
+2937.2 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+2948.6 "Embrace" Ability { id: "2685", source: "Rofocale" }
+2958.9 "Chariot" Ability { id: "2674", source: "Rofocale" }
+2964.3 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
+2971.4 "Pomp And Circumstance" Ability { id: "268D", source: "Rofocale" }
+2983.0 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
+2990.1 "Pomp And Circumstance" Ability { id: "268D", source: "Rofocale" }
+3006.3 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+3015.8 "Embrace" Ability { id: "2685", source: "Rofocale" }
+3022.7 "Trample" Ability { id: "2676", source: "Rofocale" }
+3029.5 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
+3036.4 "Trample" Ability { id: "2676", source: "Rofocale" }
+3043.1 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
+3056.8 "Crush Weapon x3" Ability { id: "2683", source: "Rofocale" }
 
 # begin loop
 # Thanks to https://www.fflogs.com/reports/zpg2CQNMqFBmawcW#fight=8 for this loop.  @_@;;;
-3068.0 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-3069.2 "Chariot" sync / 1[56]:[^:]*:Rofocale:2674:/
-3074.5 "Cry of Victory" sync / 1[56]:[^:]*:Rofocale:2675:/
-3083.6 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-3094.8 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-3102.8 "Pomp and Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-3104.8 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/
-3119.3 "Crush Weapon" sync / 1[56]:[^:]*:Rofocale:2683:/
-3126.3 "Pomp and Circumstance" sync / 1[56]:[^:]*:Rofocale:268D:/
-3142.3 "Crush Helm" sync / 1[56]:[^:]*:Rofocale:2680:/
-3149.5 "Embrace" sync / 1[56]:[^:]*:Rofocale:2685:/
-3156.1 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-3162.9 "Cry of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-3169.6 "Trample" sync / 1[56]:[^:]*:Rofocale:2676:/
-3176.4 "Cry of Victory" sync / 1[56]:[^:]*:Rofocale:274C:/
-3189.9 "Crush Weapon" sync / 1[56]:[^:]*:Rofocale:2683:/
+3068.0 "Maverick" Ability { id: "2689", source: "Rofocale" }
+3069.2 "Chariot" Ability { id: "2674", source: "Rofocale" }
+3074.5 "Cry of Victory" Ability { id: "2675", source: "Rofocale" }
+3083.6 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+3094.8 "Embrace" Ability { id: "2685", source: "Rofocale" }
+3102.8 "Pomp and Circumstance" Ability { id: "268D", source: "Rofocale" }
+3104.8 "Maverick" Ability { id: "2689", source: "Rofocale" }
+3119.3 "Crush Weapon" Ability { id: "2683", source: "Rofocale" }
+3126.3 "Pomp and Circumstance" Ability { id: "268D", source: "Rofocale" }
+3142.3 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
+3149.5 "Embrace" Ability { id: "2685", source: "Rofocale" }
+3156.1 "Trample" Ability { id: "2676", source: "Rofocale" }
+3162.9 "Cry of Victory" Ability { id: "274C", source: "Rofocale" }
+3169.6 "Trample" Ability { id: "2676", source: "Rofocale" }
+3176.4 "Cry of Victory" Ability { id: "274C", source: "Rofocale" }
+3189.9 "Crush Weapon" Ability { id: "2683", source: "Rofocale" }
 
 # loop
-3200.9 "Maverick" sync / 1[56]:[^:]*:Rofocale:2689:/ window 80,80 jump 3068
-3202.1 "Chariot" #sync / 1[56]:[^:]*:Rofocale:2674:/
-3207.4 "Cry of Victory" #sync / 1[56]:[^:]*:Rofocale:2675:/
-3216.5 "Crush Helm" #sync / 1[56]:[^:]*:Rofocale:2680:/
-3227.7 "Embrace" #sync / 1[56]:[^:]*:Rofocale:2685:/
+3200.9 "Maverick" Ability { id: "2689", source: "Rofocale" } window 80,80 jump 3068
+3202.1 "Chariot" #Ability { id: "2674", source: "Rofocale" }
+3207.4 "Cry of Victory" #Ability { id: "2675", source: "Rofocale" }
+3216.5 "Crush Helm" #Ability { id: "2680", source: "Rofocale" }
+3227.7 "Embrace" #Ability { id: "2685", source: "Rofocale" }
 
 
 ### Argath Thadalfus
@@ -292,141 +292,141 @@ hideall "--start--"
 # Lesalia Temple Ruins will be sealed off
 4000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94E:/ window 10000,0
 4006.7 "--sync--" sync / 14:[^:]*:Argath Thadalfus:262D:/ window 20,20
-4009.7 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-4017.9 "Crush Weapon x3" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-4023.9 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-4030.0 "Mask Of Truth" sync / 1[56]:[^:]*:Argath Thadalfus:261A:/
-4038.0 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-4049.8 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-4058.1 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
+4009.7 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+4017.9 "Crush Weapon x3" Ability { id: "2628", source: "Argath Thadalfus" }
+4023.9 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+4030.0 "Mask Of Truth" Ability { id: "261A", source: "Argath Thadalfus" }
+4038.0 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+4049.8 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+4058.1 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # Note: adding a larger sync in case there's a push here just to be safe.
 4064.3 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2622:/ window 100,10
-4067.3 "Trepidation" sync / 1[56]:[^:]*:Argath Thadalfus:2622:/
-4075.8 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-4077.3 "Rail Of The Rat 1" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-4080.3 "Rail Of The Rat 2" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-4083.5 "Rail Of The Rat 3" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-4084.1 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-4086.8 "Mask Of Truth" sync / 1[56]:[^:]*:Argath Thadalfus:261A:/
-4094.9 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
+4067.3 "Trepidation" Ability { id: "2622", source: "Argath Thadalfus" }
+4075.8 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+4077.3 "Rail Of The Rat 1" Ability { id: "2624", source: "Argath Thadalfus" }
+4080.3 "Rail Of The Rat 2" Ability { id: "2624", source: "Argath Thadalfus" }
+4083.5 "Rail Of The Rat 3" Ability { id: "2624", source: "Argath Thadalfus" }
+4084.1 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+4086.8 "Mask Of Truth" Ability { id: "261A", source: "Argath Thadalfus" }
+4094.9 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
 
 # Can early push (before Trepidation) to Judgment Blade.
 # TODO: is this an HP push? or is this a bug? I see this in <5% of logs atmost.
 4099.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2629:/ window 100,10
-4102.0 "Judgment Blade" sync / 1[56]:[^:]*:Argath Thadalfus:2629:/
-4108.3 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-4110.4 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:2625:/
-4117.7 "Heartless" sync / 1[56]:[^:]*:Heartless:2632:/
-4120.4 "Coldblood" sync / 1[56]:[^:]*:Argath Thadalfus:2627:/
-4129.2 "Royal Blood" #sync / 1[56]:[^:]*:Argath Thadalfus:261E:/
+4102.0 "Judgment Blade" Ability { id: "2629", source: "Argath Thadalfus" }
+4108.3 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+4110.4 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
+4117.7 "Heartless" Ability { id: "2632", source: "Heartless" }
+4120.4 "Coldblood" Ability { id: "2627", source: "Argath Thadalfus" }
+4129.2 "Royal Blood" #Ability { id: "261E", source: "Argath Thadalfus" }
 
 ## Phase 2: Shades and Shards (percentage push to this, 72%?)
 4500.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:261E:/ window 500,0
-4505.0 "Royal Blood" sync / 1[56]:[^:]*:Argath Thadalfus:261E:/
+4505.0 "Royal Blood" Ability { id: "261E", source: "Argath Thadalfus" }
 4505.3 "--Shade Adds--"
-4515.2 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-4525.4 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
+4515.2 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+4525.4 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
 # => variable amount of time until all shades are dead or explode
 
 4600.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:261F:/ window 600,0
-4605.0 "Empty Soul" sync / 1[56]:[^:]*:Argath Thadalfus:261F:/
+4605.0 "Empty Soul" Ability { id: "261F", source: "Argath Thadalfus" }
 4605.9 "--Shard Adds--"
-4607.1 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:270B:/
+4607.1 "--sync--" Ability { id: "270B", source: "Argath Thadalfus" }
 # => variable amount of time until all shards are dead or you wipe
 
 4700.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2620:/ window 700,0
-4702.5 "Dark Ultima" sync / 1[56]:[^:]*:Argath Thadalfus:2620:/
-4715.4 "Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:2619:/
-4723.4 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-4732.5 "Gnawing Dread" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/
-4740.7 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-4746.6 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-4756.5 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-4762.7 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-4771.9 "Crush Weapon" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-4777.2 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-4786.4 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
+4702.5 "Dark Ultima" Ability { id: "2620", source: "Argath Thadalfus" }
+4715.4 "Mask Of Lies" Ability { id: "2619", source: "Argath Thadalfus" }
+4723.4 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+4732.5 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
+4740.7 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+4746.6 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+4756.5 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+4762.7 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+4771.9 "Crush Weapon" Ability { id: "2628", source: "Argath Thadalfus" }
+4777.2 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+4786.4 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
 # => natural push into phase 3
 # (probably, based on https://www.fflogs.com/reports/8Wmfp6FZ72DtcjKn#fight=last at hp=67%)
 
 ## Phase 3: ~45% (can push early)
-4795.0 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/ window 100,10
-4803.0 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-4813.6 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-4821.8 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-4828.8 "Judgment Blade?" sync / 1[56]:[^:]*:Argath Thadalfus:2629:/ window 100,100 jump 5000
-4830.7 "Gnawing Dread?" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/ window 100,100 jump 5300
+4795.0 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,10
+4803.0 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+4813.6 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+4821.8 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+4828.8 "Judgment Blade?" Ability { id: "2629", source: "Argath Thadalfus" } window 100,100 jump 5000
+4830.7 "Gnawing Dread?" Ability { id: "2621", source: "Argath Thadalfus" } window 100,100 jump 5300
 
 ## Phase 4a: Judgment blade first
-5000.0 "Judgment Blade" sync / 1[56]:[^:]*:Argath Thadalfus:2629:/
-5006.1 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-5008.2 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:2625:/
-5015.9 "Heartless" sync / 1[56]:[^:]*:Heartless:2632:/
-5018.2 "Coldblood" sync / 1[56]:[^:]*:Argath Thadalfus:2627:/
-5032.2 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5040.4 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-5045.5 "Trepidation" sync / 1[56]:[^:]*:Argath Thadalfus:2622:/
-5050.6 "Crush Weapon" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-5055.6 "Rail Of The Rat 1" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5058.6 "Rail Of The Rat 2" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5061.6 "Rail Of The Rat 3" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5065.8 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-5076.4 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5084.5 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5095.0 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5103.1 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5112.0 "Gnawing Dread" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/
-5114.1 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:2625:/
-5128.1 "Coldblood (Hole In One)" sync / 1[56]:[^:]*:Argath Thadalfus:2626:/
-5135.3 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-5148.2 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-5159.5 "Gnawing Dread" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/
-5168.7 "Crush Weapon" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-5173.9 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-5180.0 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5189.1 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5197.1 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
+5000.0 "Judgment Blade" Ability { id: "2629", source: "Argath Thadalfus" }
+5006.1 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+5008.2 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
+5015.9 "Heartless" Ability { id: "2632", source: "Heartless" }
+5018.2 "Coldblood" Ability { id: "2627", source: "Argath Thadalfus" }
+5032.2 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5040.4 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+5045.5 "Trepidation" Ability { id: "2622", source: "Argath Thadalfus" }
+5050.6 "Crush Weapon" Ability { id: "2628", source: "Argath Thadalfus" }
+5055.6 "Rail Of The Rat 1" Ability { id: "2624", source: "Argath Thadalfus" }
+5058.6 "Rail Of The Rat 2" Ability { id: "2624", source: "Argath Thadalfus" }
+5061.6 "Rail Of The Rat 3" Ability { id: "2624", source: "Argath Thadalfus" }
+5065.8 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+5076.4 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5084.5 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+5095.0 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5103.1 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+5112.0 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
+5114.1 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
+5128.1 "Coldblood (Hole In One)" Ability { id: "2626", source: "Argath Thadalfus" }
+5135.3 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+5148.2 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+5159.5 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
+5168.7 "Crush Weapon" Ability { id: "2628", source: "Argath Thadalfus" }
+5173.9 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+5180.0 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5189.1 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5197.1 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # loop
-5207.2 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/ window 100,100 jump 4795
-5215.3 "The Word" #sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5225.6 "Mask Of Truth/Mask Of Lies" #sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5233.7 "The Word" #sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
+5207.2 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,100 jump 4795
+5215.3 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
+5225.6 "Mask Of Truth/Mask Of Lies" #Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5233.7 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
 
 
 ## Phase 4b: Putt Putt first
-5300.0 "Gnawing Dread" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/
-5302.1 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:2625:/
-5316.0 "Coldblood (Hole In One)" sync / 1[56]:[^:]*:Argath Thadalfus:2626:/
-5323.2 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-5337.2 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5345.5 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-5350.7 "Trepidation" sync / 1[56]:[^:]*:Argath Thadalfus:2622:/
-5355.8 "Crush Weapon" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-5360.8 "Rail Of The Rat 1" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5363.8 "Rail Of The Rat 2" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5366.9 "Rail Of The Rat 3" sync / 1[56]:[^:]*:Argath Thadalfus:2624:/
-5371.1 "Soulfix" sync / 1[56]:[^:]*:Argath Thadalfus:262A:/
-5384.3 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5392.3 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5402.9 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5411.1 "The Word" sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5418.0 "Judgment Blade" sync / 1[56]:[^:]*:Argath Thadalfus:2629:/
-5424.4 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-5426.5 "--sync--" sync / 1[56]:[^:]*:Argath Thadalfus:2625:/
-5433.9 "Heartless" sync / 1[56]:[^:]*:Heartless:2632:/
-5436.6 "Coldblood" sync / 1[56]:[^:]*:Argath Thadalfus:2627:/
-5449.5 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
-5460.7 "Gnawing Dread" sync / 1[56]:[^:]*:Argath Thadalfus:2621:/
-5469.9 "Crush Weapon" sync / 1[56]:[^:]*:Argath Thadalfus:2628:/
-5475.1 "Unrelenting" sync / 1[56]:[^:]*:Argath Thadalfus:262B:/
-5481.2 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5490.3 "Fire IV" sync / 1[56]:[^:]*:Argath Thadalfus:262E:/
-5498.3 "Crippling Blow" sync / 1[56]:[^:]*:Argath Thadalfus:262D:/
+5300.0 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
+5302.1 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
+5316.0 "Coldblood (Hole In One)" Ability { id: "2626", source: "Argath Thadalfus" }
+5323.2 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+5337.2 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5345.5 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+5350.7 "Trepidation" Ability { id: "2622", source: "Argath Thadalfus" }
+5355.8 "Crush Weapon" Ability { id: "2628", source: "Argath Thadalfus" }
+5360.8 "Rail Of The Rat 1" Ability { id: "2624", source: "Argath Thadalfus" }
+5363.8 "Rail Of The Rat 2" Ability { id: "2624", source: "Argath Thadalfus" }
+5366.9 "Rail Of The Rat 3" Ability { id: "2624", source: "Argath Thadalfus" }
+5371.1 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
+5384.3 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5392.3 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+5402.9 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5411.1 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
+5418.0 "Judgment Blade" Ability { id: "2629", source: "Argath Thadalfus" }
+5424.4 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+5426.5 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
+5433.9 "Heartless" Ability { id: "2632", source: "Heartless" }
+5436.6 "Coldblood" Ability { id: "2627", source: "Argath Thadalfus" }
+5449.5 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
+5460.7 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
+5469.9 "Crush Weapon" Ability { id: "2628", source: "Argath Thadalfus" }
+5475.1 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
+5481.2 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5490.3 "Fire IV" Ability { id: "262E", source: "Argath Thadalfus" }
+5498.3 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # loop
-5508.4 "Mask Of Truth/Mask Of Lies" sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/ window 100,100 jump 4795
-5516.5 "The Word" #sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
-5526.8 "Mask Of Truth/Mask Of Lies" #sync / 1[56]:[^:]*:Argath Thadalfus:(2619|261A):/
-5534.9 "The Word" #sync / 1[56]:[^:]*:Argath Thadalfus:24A0:/
+5508.4 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,100 jump 4795
+5516.5 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
+5526.8 "Mask Of Truth/Mask Of Lies" #Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5534.9 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }

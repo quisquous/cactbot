@@ -6,20 +6,20 @@ hideall "--sync--"
 
 # Tourmaline Pond will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:788:/
-6.4 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/ window 7,7
-17.8 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
-22.0 "Pounce" sync / 1[56]:[^:]*:Coeurl Sruti:1FD1:/
+6.4 "Pounce" Ability { id: "1FD1", source: "Coeurl Sruti" } window 7,7
+17.8 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
+22.0 "Pounce" Ability { id: "1FD1", source: "Coeurl Sruti" }
 
 38.5 "--Smriti Appears--" sync / 03:........:Coeurl Smriti:/  window 10,10
-46.5 "Wide Blaster" sync / 1[56]:[^:]*:Coeurl Smriti:1FD4:/ window 15,15
-46.5 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
-52.6 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
-60.7 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
+46.5 "Wide Blaster" Ability { id: "1FD4", source: "Coeurl Smriti" } window 15,15
+46.5 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
+52.6 "Pounce x2" Ability { id: "1FD1", source: "Coeurl Smriti" }
+60.7 "Pounce x2" Ability { id: "1FD1", source: "Coeurl Smriti" }
 
-72.3 "Wide Blaster" sync / 1[56]:[^:]*:Coeurl Smriti:1FD4:/ window 15,15
-72.3 "Radial Blaster" sync / 1[56]:[^:]*:Coeurl Sruti:1FD3:/
-78.4 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/
-86.5 "Pounce x2" sync / 1[56]:[^:]*:Coeurl Smriti:1FD1:/ jump 60.7
+72.3 "Wide Blaster" Ability { id: "1FD4", source: "Coeurl Smriti" } window 15,15
+72.3 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
+78.4 "Pounce x2" Ability { id: "1FD1", source: "Coeurl Smriti" }
+86.5 "Pounce x2" Ability { id: "1FD1", source: "Coeurl Smriti" } jump 60.7
 
 98.1 "Wide Blaster"
 98.1 "Radial Blaster"
@@ -29,19 +29,19 @@ hideall "--sync--"
 123.9 "Radial Blaster"
 
 # Phase change after one dies
-150.0 "Basic Instinct" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD5:/ window 150,10
+150.0 "Basic Instinct" Ability { id: "1FD5", source: "(Coeurl Sruti|Coeurl Smriti)" } window 150,10
 
-156.2 "Electric Burst" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD6:/
-160.3 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
-167.8 "Heat Lightning" sync / 1[56]:[^:]*:Coeurl Sruti:1FD7:/
-175.2 "Radial/Wide Blaster" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
-180.4 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
+156.2 "Electric Burst" Ability { id: "1FD6", source: "(Coeurl Sruti|Coeurl Smriti)" }
+160.3 "Pounce" Ability { id: "1FD1", source: "(Coeurl Sruti|Coeurl Smriti)" }
+167.8 "Heat Lightning" Ability { id: "1FD7", source: "Coeurl Sruti" }
+175.2 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: "(Coeurl Sruti|Coeurl Smriti)" }
+180.4 "Pounce" Ability { id: "1FD1", source: "(Coeurl Sruti|Coeurl Smriti)" }
 
-191.6 "Electric Burst" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD6:/ window 20,20
-195.7 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/
-203.2 "Heat Lightning" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD7:/
-210.6 "Radial/Wide Blaster" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
-215.8 "Pounce" sync / 1[56]:[^:]*:(Coeurl Sruti|Coeurl Smriti):1FD1:/ jump 180.4
+191.6 "Electric Burst" Ability { id: "1FD6", source: "(Coeurl Sruti|Coeurl Smriti)" } window 20,20
+195.7 "Pounce" Ability { id: "1FD1", source: "(Coeurl Sruti|Coeurl Smriti)" }
+203.2 "Heat Lightning" Ability { id: "1FD7", source: "(Coeurl Sruti|Coeurl Smriti)" }
+210.6 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: "(Coeurl Sruti|Coeurl Smriti)" }
+215.8 "Pounce" Ability { id: "1FD1", source: "(Coeurl Sruti|Coeurl Smriti)" } jump 180.4
 
 227.0 "Electric Burst"
 231.1 "Pounce"
@@ -54,32 +54,32 @@ hideall "--sync--"
 
 # Harmony will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:789:/ window 1000,10
-1006.5 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/ window 7,7
-1014.6 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
-1022.6 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1026.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1033.8 "Killer Instinct" sync / 1[56]:[^:]*:Arbuda:1FDE:/
-1046.8 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1055.0 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
-1064.9 "Hellseal" sync / 1[56]:[^:]*:Arbuda:1FE1:/
-1071.5 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1075.6 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1079.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1088.9 "Tapas" sync / 1[56]:[^:]*:Arbuda:1FE3:/
+1006.5 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" } window 7,7
+1014.6 "Fourfold Shear" Ability { id: "1FD9", source: "Arbuda" }
+1022.6 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1026.7 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1033.8 "Killer Instinct" Ability { id: "1FDE", source: "Arbuda" }
+1046.8 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1055.0 "Fourfold Shear" Ability { id: "1FD9", source: "Arbuda" }
+1064.9 "Hellseal" Ability { id: "1FE1", source: "Arbuda" }
+1071.5 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1075.6 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1079.7 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1088.9 "Tapas" Ability { id: "1FE3", source: "Arbuda" }
 
-1094.9 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1099.0 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1107.2 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
-1115.2 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1119.3 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1126.4 "Killer Instinct" sync / 1[56]:[^:]*:Arbuda:1FDE:/
-1139.4 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1147.7 "Fourfold Shear" sync / 1[56]:[^:]*:Arbuda:1FD9:/
-1157.4 "Hellseal" sync / 1[56]:[^:]*:Arbuda:1FE1:/
-1163.5 "Front/Back?Sides?" sync / 1[56]:[^:]*:Arbuda:1FD[BC]:/
-1167.6 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1171.7 "Cardinal Shift" sync / 1[56]:[^:]*:Arbuda:1FDA:/
-1180.9 "Tapas" sync / 1[56]:[^:]*:Arbuda:1FE3:/
+1094.9 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1099.0 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1107.2 "Fourfold Shear" Ability { id: "1FD9", source: "Arbuda" }
+1115.2 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1119.3 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1126.4 "Killer Instinct" Ability { id: "1FDE", source: "Arbuda" }
+1139.4 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1147.7 "Fourfold Shear" Ability { id: "1FD9", source: "Arbuda" }
+1157.4 "Hellseal" Ability { id: "1FE1", source: "Arbuda" }
+1163.5 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
+1167.6 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1171.7 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" }
+1180.9 "Tapas" Ability { id: "1FE3", source: "Arbuda" }
 
 1186.9 "Front/Back?Sides?"
 1191.0 "Cardinal Shift"
@@ -93,41 +93,41 @@ hideall "--sync--"
 
 # Guidance will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:78A:/ window 2000,10
-2010.9 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
-2018.6 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
-2026.7 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/
-2030.9 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
-2042.0 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
-2062.0 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
-2069.1 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/ window 20,20
-2073.7 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
+2010.9 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" }
+2018.6 "Hurricane Kick" Ability { id: "1FE5", source: "Ivon Coeurlfist" }
+2026.7 "Touch of Slaughter" Ability { id: "1FE6", source: "Ivon Coeurlfist" }
+2030.9 "Coeurl Whisper" Ability { id: "1FE9", source: "Ivon Coeurlfist" }
+2042.0 "Silent Roar" Ability { id: "1FEB", source: "Ivon Coeurlfist" }
+2062.0 "Rhalgr's Piece" Ability { id: "1FED", source: "Ivon Coeurlfist" }
+2069.1 "The Rose Of Destruction" Ability { id: "1FEE", source: "Ivon Coeurlfist" } window 20,20
+2073.7 "Hurricane Kick" Ability { id: "1FE5", source: "Ivon Coeurlfist" }
 
 # Intermission happens here naturally, or at HP < 50%
-2086.1 "--sync--" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEC:/ window 80,5
-2106.2 "Furious Fists" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEF:/
-2114.6 "Impact" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FF1:/ window 120,20
+2086.1 "--sync--" Ability { id: "1FEC", source: "Ivon Coeurlfist" } window 80,5
+2106.2 "Furious Fists" Ability { id: "1FEF", source: "Ivon Coeurlfist" }
+2114.6 "Impact" Ability { id: "1FF1", source: "Ivon Coeurlfist" } window 120,20
 
-2125.3 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
-2127.5 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
-2137.4 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
-2142.8 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
-2156.9 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/ window 30,30
-2161.6 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
-2175.8 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
-2178.0 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
-2187.2 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/
-2192.3 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
+2125.3 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" }
+2127.5 "Coeurl Whisper" Ability { id: "1FE9", source: "Ivon Coeurlfist" }
+2137.4 "Rhalgr's Piece" Ability { id: "1FED", source: "Ivon Coeurlfist" }
+2142.8 "Silent Roar" Ability { id: "1FEB", source: "Ivon Coeurlfist" }
+2156.9 "Touch of Slaughter" Ability { id: "1FE6", source: "Ivon Coeurlfist" } window 30,30
+2161.6 "Hurricane Kick" Ability { id: "1FE5", source: "Ivon Coeurlfist" }
+2175.8 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" }
+2178.0 "Coeurl Whisper" Ability { id: "1FE9", source: "Ivon Coeurlfist" }
+2187.2 "The Rose Of Destruction" Ability { id: "1FEE", source: "Ivon Coeurlfist" }
+2192.3 "Silent Roar" Ability { id: "1FEB", source: "Ivon Coeurlfist" }
 
-2210.5 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/ window 30,30
-2212.7 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
-2222.6 "Rhalgr's Piece" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FED:/
-2228.0 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/
-2242.1 "Touch of Slaughter" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE6:/ window 30,30
-2246.8 "Hurricane Kick" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE5:/
-2261.0 "Spirit Wave" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE7:/
-2263.2 "Coeurl Whisper" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FE9:/
-2272.4 "The Rose Of Destruction" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEE:/
-2277.5 "Silent Roar" sync / 1[56]:[^:]*:Ivon Coeurlfist:1FEB:/ jump 2192.3
+2210.5 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" } window 30,30
+2212.7 "Coeurl Whisper" Ability { id: "1FE9", source: "Ivon Coeurlfist" }
+2222.6 "Rhalgr's Piece" Ability { id: "1FED", source: "Ivon Coeurlfist" }
+2228.0 "Silent Roar" Ability { id: "1FEB", source: "Ivon Coeurlfist" }
+2242.1 "Touch of Slaughter" Ability { id: "1FE6", source: "Ivon Coeurlfist" } window 30,30
+2246.8 "Hurricane Kick" Ability { id: "1FE5", source: "Ivon Coeurlfist" }
+2261.0 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" }
+2263.2 "Coeurl Whisper" Ability { id: "1FE9", source: "Ivon Coeurlfist" }
+2272.4 "The Rose Of Destruction" Ability { id: "1FEE", source: "Ivon Coeurlfist" }
+2277.5 "Silent Roar" Ability { id: "1FEB", source: "Ivon Coeurlfist" } jump 2192.3
 
 2295.7 "Spirit Wave"
 2297.9 "Coeurl Whisper"

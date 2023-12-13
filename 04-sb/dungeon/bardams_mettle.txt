@@ -11,17 +11,17 @@ hideall "Reconstruct"
 
 # Bardam's Hunt will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B8:/
-11.7 "Heave" sync / 1[56]:[^:]*:Garula:1EF7:/ window 11.7,5
-20.9 "--sync--" sync / 1[56]:[^:]*:Garula:1EF8:/
-22.4 "Crumbling Crust" sync / 1[56]:[^:]*:Garula:1F13:/
-34.1 "Rush" sync / 1[56]:[^:]*:Garula:1EF9:/
-36.2 "War Cry" sync / 1[56]:[^:]*:Garula:1EFA:/
-38.9 "Earthquake" sync / 1[56]:[^:]*:Garula:1EFB:/ window 15,15
-49.5 "Heave" sync / 1[56]:[^:]*:Garula:1EF7:/
-58.7 "--sync--" sync / 1[56]:[^:]*:Garula:1EF8:/
-60.2 "Crumbling Crust" sync / 1[56]:[^:]*:Garula:1F13:/
+11.7 "Heave" Ability { id: "1EF7", source: "Garula" } window 11.7,5
+20.9 "--sync--" Ability { id: "1EF8", source: "Garula" }
+22.4 "Crumbling Crust" Ability { id: "1F13", source: "Garula" }
+34.1 "Rush" Ability { id: "1EF9", source: "Garula" }
+36.2 "War Cry" Ability { id: "1EFA", source: "Garula" }
+38.9 "Earthquake" Ability { id: "1EFB", source: "Garula" } window 15,15
+49.5 "Heave" Ability { id: "1EF7", source: "Garula" }
+58.7 "--sync--" Ability { id: "1EF8", source: "Garula" }
+60.2 "Crumbling Crust" Ability { id: "1F13", source: "Garula" }
 
-66.6 "Heave" sync / 1[56]:[^:]*:Garula:1EF7:/ jump 11.7
+66.6 "Heave" Ability { id: "1EF7", source: "Garula" } jump 11.7
 77.3 "Crumbling Crust"
 89.0 "Rush"
 91.1 "War Cry"
@@ -35,35 +35,35 @@ hideall "Reconstruct"
 
 # The Rebirth of Bardam the Brave will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B9:/ window 1000,5
-1007.8 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/ window 7.8,5
-1014.1 "Magnetism" sync / 1[56]:[^:]*:Hunter Of Bardam:1F08:/
-1020.3 "Tremblor" sync / 1[56]:[^:]*:Bardam:257C:/
-1022.8 "Empty Gaze" sync / 1[56]:[^:]*:Hunter Of Bardam:1F04:/
-1025.0 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1029.8 "Charge x3" # sync / 1[56]:[^:]*:Throwing Spear:257F:/
-1038.8 "Empty Gaze" sync / 1[56]:[^:]*:Hunter Of Bardam:1F04:/
-1038.9 "Charge" sync / 1[56]:[^:]*:Throwing Spear:257F:/
-1044.6 "--sync--" sync / 1[56]:[^:]*:Bardam:24EA:/ window 15,15
-1052.3 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1060.5 "Sacrifice" sync / 1[56]:[^:]*:Bardam:1F01:/
-1060.7 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1065.5 "Bardam's Ring" sync / 1[56]:[^:]*:Bardam:2581:/
-1066.2 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1076.4 "Comet x8" duration 12 # sync / 1[56]:[^:]*:Bardam:257D:/
-1093.4 "Heavy Strike x3" sync / 1[56]:[^:]*:Hunter Of Bardam:2577:/ duration 4
-1099.0 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1105.3 "Comet Impact" sync / 1[56]:[^:]*:Star Shard:2580:/
-1109.3 "--sync--" sync / 1[56]:[^:]*:Bardam:24EA:/ window 15,15
-1116.9 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1125.3 "Reconstruct" sync / 1[56]:[^:]*:Bardam:1EFD:/
-1126.7 "--sync--" sync / 1[56]:[^:]*:Star Shard:258B:/
-1128.3 "Travail" sync / 1[56]:[^:]*:Bardam:1EFF:/
-1133.1 "Charge" sync / 1[56]:[^:]*:Throwing Spear:257F:/
-1133.9 "Magnetism" sync / 1[56]:[^:]*:Hunter Of Bardam:1F08:/
-1139.5 "Tremblor" sync / 1[56]:[^:]*:Hunter Of Bardam:2585:/
-1140.0 "Heavy Strike x3" sync / 1[56]:[^:]*:Warrior Of Bardam:2577:/ duration 4
-1153.0 "Meteor Impact" sync / 1[56]:[^:]*:Looming Shadow:2582:/
-1153.4 "--sync--" sync / 1[56]:[^:]*:Star Shard:258B:/
+1007.8 "Travail" Ability { id: "1EFF", source: "Bardam" } window 7.8,5
+1014.1 "Magnetism" Ability { id: "1F08", source: "Hunter Of Bardam" }
+1020.3 "Tremblor" Ability { id: "257C", source: "Bardam" }
+1022.8 "Empty Gaze" Ability { id: "1F04", source: "Hunter Of Bardam" }
+1025.0 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1029.8 "Charge x3" # Ability { id: "257F", source: "Throwing Spear" }
+1038.8 "Empty Gaze" Ability { id: "1F04", source: "Hunter Of Bardam" }
+1038.9 "Charge" Ability { id: "257F", source: "Throwing Spear" }
+1044.6 "--sync--" Ability { id: "24EA", source: "Bardam" } window 15,15
+1052.3 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1060.5 "Sacrifice" Ability { id: "1F01", source: "Bardam" }
+1060.7 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1065.5 "Bardam's Ring" Ability { id: "2581", source: "Bardam" }
+1066.2 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1076.4 "Comet x8" duration 12 # Ability { id: "257D", source: "Bardam" }
+1093.4 "Heavy Strike x3" Ability { id: "2577", source: "Hunter Of Bardam" } duration 4
+1099.0 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1105.3 "Comet Impact" Ability { id: "2580", source: "Star Shard" }
+1109.3 "--sync--" Ability { id: "24EA", source: "Bardam" } window 15,15
+1116.9 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1125.3 "Reconstruct" Ability { id: "1EFD", source: "Bardam" }
+1126.7 "--sync--" Ability { id: "258B", source: "Star Shard" }
+1128.3 "Travail" Ability { id: "1EFF", source: "Bardam" }
+1133.1 "Charge" Ability { id: "257F", source: "Throwing Spear" }
+1133.9 "Magnetism" Ability { id: "1F08", source: "Hunter Of Bardam" }
+1139.5 "Tremblor" Ability { id: "2585", source: "Hunter Of Bardam" }
+1140.0 "Heavy Strike x3" Ability { id: "2577", source: "Warrior Of Bardam" } duration 4
+1153.0 "Meteor Impact" Ability { id: "2582", source: "Looming Shadow" }
+1153.4 "--sync--" Ability { id: "258B", source: "Star Shard" }
 
 #~~~~~#
 # YOL #
@@ -73,27 +73,27 @@ hideall "Reconstruct"
 
 # The Voiceless Muse will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7BA:/ window 2000,5
-2008.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2015.2 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/
-2023.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2025.8 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2027.2 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2033.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2034.7 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2042.2 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/ window 15,15
-2046.4 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2050.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2054.0 "Eye Of The Fierce" sync / 1[56]:[^:]*:Yol:1F0D:/
-2059.2 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2060.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2069.3 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/
+2008.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2015.2 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
+2023.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2025.8 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2027.2 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2033.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2034.7 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2042.2 "Wind Unbound" Ability { id: "1F0A", source: "Yol" } window 15,15
+2046.4 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2050.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2054.0 "Eye Of The Fierce" Ability { id: "1F0D", source: "Yol" }
+2059.2 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2060.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2069.3 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
 2071.4 "--untargetable--"
 2071.4 "--adds spawn--" sync / 03:........:Corpsecleaner Eagle:/  window 71.4,5
-2078.0 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2088.0 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2098.0 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2108.0 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2118.0 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/ jump 2078.0
+2078.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2088.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2098.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2108.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2118.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" } jump 2078.0
 2128.0 "Pinion"
 2138.0 "Pinion"
 2148.0 "Pinion"
@@ -101,32 +101,32 @@ hideall "Reconstruct"
 # Unfortunately, because there are two Corpsecleaner Eagles,
 # we can't just sync to a 04 log line.
 2189.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 120,5
-2196.8 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/ window 125,5
-2204.0 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/
-2212.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2214.5 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2215.8 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2222.6 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2223.3 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2230.7 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/ window 15,15
-2234.9 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2239.4 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2242.5 "Eye Of The Fierce" sync / 1[56]:[^:]*:Yol:1F0D:/
-2247.7 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2249.4 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
+2196.8 "Feathercut" Ability { id: "1F09", source: "Yol" } window 125,5
+2204.0 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
+2212.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2214.5 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2215.8 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2222.6 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2223.3 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2230.7 "Wind Unbound" Ability { id: "1F0A", source: "Yol" } window 15,15
+2234.9 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2239.4 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2242.5 "Eye Of The Fierce" Ability { id: "1F0D", source: "Yol" }
+2247.7 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2249.4 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 
 2253.8 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ window 60,5
-2260.3 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F10:/ window 60,5
-2267.5 "Wingbeat" sync / 1[56]:[^:]*:Yol:1F0F:/
-2276.9 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2284.3 "Wingbeat" sync / 1[56]:[^:]*:Yol:1F0F:/
-2284.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:2593:/
-2293.8 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2301.2 "Wingbeat" sync / 1[56]:[^:]*:Yol:1F0F:/
-2301.6 "Pinion" sync / 1[56]:[^:]*:Yol Feather:2593:/
-2310.7 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2318.2 "Wingbeat" sync / 1[56]:[^:]*:Yol:1F0F:/
-2318.6 "Pinion" sync / 1[56]:[^:]*:Yol Feather:2593:/ jump 2284.7
+2260.3 "Flutterfall" Ability { id: "1F10", source: "Yol" } window 60,5
+2267.5 "Wingbeat" Ability { id: "1F0F", source: "Yol" }
+2276.9 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2284.3 "Wingbeat" Ability { id: "1F0F", source: "Yol" }
+2284.7 "Pinion" Ability { id: "2593", source: "Yol Feather" }
+2293.8 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2301.2 "Wingbeat" Ability { id: "1F0F", source: "Yol" }
+2301.6 "Pinion" Ability { id: "2593", source: "Yol Feather" }
+2310.7 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2318.2 "Wingbeat" Ability { id: "1F0F", source: "Yol" }
+2318.6 "Pinion" Ability { id: "2593", source: "Yol Feather" } jump 2284.7
 2327.7 "Flutterfall"
 2335.1 "Wingbeat"
 2335.5 "Pinion"
@@ -136,32 +136,32 @@ hideall "Reconstruct"
 
 
 2361.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 110,5
-2368.8 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/ window 110,5
-2376.0 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/
-2384.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2386.6 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2388.0 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2394.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2395.5 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2402.9 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/ window 15,15
-2407.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2411.6 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2414.7 "Eye Of The Fierce" sync / 1[56]:[^:]*:Yol:1F0D:/
-2419.9 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2421.5 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2433.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2440.2 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/ window 15,15
-2448.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2450.7 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2452.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2458.9 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2459.6 "Flutterfall" sync / 1[56]:[^:]*:Yol:1F0C:/
-2467.0 "Wind Unbound" sync / 1[56]:[^:]*:Yol:1F0A:/ window 15,15
-2471.1 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2475.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
-2478.7 "Eye Of The Fierce" sync / 1[56]:[^:]*:Yol:1F0D:/
-2483.9 "Feathercut" sync / 1[56]:[^:]*:Yol:1F09:/
-2485.7 "Pinion" sync / 1[56]:[^:]*:Yol Feather:1F11:/
+2368.8 "Feathercut" Ability { id: "1F09", source: "Yol" } window 110,5
+2376.0 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
+2384.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2386.6 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2388.0 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2394.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2395.5 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2402.9 "Wind Unbound" Ability { id: "1F0A", source: "Yol" } window 15,15
+2407.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2411.6 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2414.7 "Eye Of The Fierce" Ability { id: "1F0D", source: "Yol" }
+2419.9 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2421.5 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2433.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2440.2 "Wind Unbound" Ability { id: "1F0A", source: "Yol" } window 15,15
+2448.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2450.7 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2452.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2458.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2459.6 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
+2467.0 "Wind Unbound" Ability { id: "1F0A", source: "Yol" } window 15,15
+2471.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2475.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
+2478.7 "Eye Of The Fierce" Ability { id: "1F0D", source: "Yol" }
+2483.9 "Feathercut" Ability { id: "1F09", source: "Yol" }
+2485.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 2490.0 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ jump 2253.8 window 130,5
 
 2496.5 "Flutterfall"

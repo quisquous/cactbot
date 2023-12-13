@@ -9,14 +9,14 @@ hideall "--sync--"
 
 # The Quire will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:622:/ window 0,1
-5.4 "Fast Blade" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:2CD:/ window 5.4,5
-12.5 "Bloodstain" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:44B:/
-15.8 "Fast Blade" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:2CD:/
-26.5 "Fast Blade" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:2CD:/
+5.4 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" } window 5.4,5
+12.5 "Bloodstain" Ability { id: "44B", source: "Ser Adelphel Brightblade" }
+15.8 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" }
+26.5 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" }
 
-33.6 "Bloodstain" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:44B:/ window 10,10
-36.8 "Fast Blade" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:2CD:/
-47.5 "Fast Blade" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:2CD:/ jump 26.5
+33.6 "Bloodstain" Ability { id: "44B", source: "Ser Adelphel Brightblade" } window 10,10
+36.8 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" }
+47.5 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" } jump 26.5
 
 54.7 "Bloodstain"
 57.8 "Fast Blade"
@@ -24,20 +24,20 @@ hideall "--sync--"
 
 # Phase 1
 
-100.0 "Advent" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:1373:/ window 100,30
-102.1 "Advent" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:101A:/
+100.0 "Advent" Ability { id: "1373", source: "Ser Adelphel Brightblade" } window 100,30
+102.1 "Advent" Ability { id: "101A", source: "Ser Adelphel Brightblade" }
 
-110.3 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-114.5 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
-122.8 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:101F:/ window 10,10
-123.9 "Solid Ascension x2" sync / 1[56]:[^:]*:Ser Adelphel:1020:/
-131.8 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
+110.3 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+114.5 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
+122.8 "Holy Shield Bash" Ability { id: "101F", source: "Ser Adelphel" } window 10,10
+123.9 "Solid Ascension x2" Ability { id: "1020", source: "Ser Adelphel" }
+131.8 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
 
-140.0 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-144.2 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
-152.5 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:101F:/ window 10,10
-153.6 "Solid Ascension x2" sync / 1[56]:[^:]*:Ser Adelphel:1020:/
-161.5 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/ window 10,5 jump 131.8
+140.0 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+144.2 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
+152.5 "Holy Shield Bash" Ability { id: "101F", source: "Ser Adelphel" } window 10,10
+153.6 "Solid Ascension x2" Ability { id: "1020", source: "Ser Adelphel" }
+161.5 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" } window 10,5 jump 131.8
 
 169.7 "Holiest Of Holy"
 173.9 "Heavenly Slash"
@@ -47,33 +47,33 @@ hideall "--sync--"
 
 # Phase 2 at < 70% HP
 
-300.0 "Shining Blade 1" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 300,0
-302.4 "Shining Blade 2" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
-304.6 "Shining Blade 3" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
-307.0 "Shining Blade 4" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
+300.0 "Shining Blade 1" Ability { id: "1022", source: "Ser Adelphel" } window 300,0
+302.4 "Shining Blade 2" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
+304.6 "Shining Blade 3" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
+307.0 "Shining Blade 4" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
 309.0 "--Untargetable--"
 311.7 "--Targetable--"
-311.7 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:1023:/
-322.8 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-328.0 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
-337.2 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:101F:/ window 15,15
-338.3 "Solid Ascension x2" sync / 1[56]:[^:]*:Ser Adelphel:1020:/
-349.1 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-353.3 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
+311.7 "Execution" Ability { id: "1023", source: "Ser Adelphel" }
+322.8 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+328.0 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
+337.2 "Holy Shield Bash" Ability { id: "101F", source: "Ser Adelphel" } window 15,15
+338.3 "Solid Ascension x2" Ability { id: "1020", source: "Ser Adelphel" }
+349.1 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+353.3 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
 
-357.4 "Shining Blade 1" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
-359.8 "Shining Blade 2" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
-362.0 "Shining Blade 3" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2 
-364.4 "Shining Blade 4" sync / 1[56]:[^:]*:Ser Adelphel:1022:/ window 2,2
+357.4 "Shining Blade 1" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
+359.8 "Shining Blade 2" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
+362.0 "Shining Blade 3" Ability { id: "1022", source: "Ser Adelphel" } window 2,2 
+364.4 "Shining Blade 4" Ability { id: "1022", source: "Ser Adelphel" } window 2,2
 366.4 "--Untargetable--"
 369.0 "--Targetable--"
-369.1 "Execution" sync / 1[56]:[^:]*:Ser Adelphel:1023:/
-380.2 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-385.4 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/
-394.6 "Holy Shield Bash" sync / 1[56]:[^:]*:Ser Adelphel:101F:/ window 15,15
-395.7 "Solid Ascension x2" sync / 1[56]:[^:]*:Ser Adelphel:1020:/
-406.5 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Adelphel:101E:/
-410.7 "Heavenly Slash" sync / 1[56]:[^:]*:Ser Adelphel:101D:/ window 15,15 jump 353.3
+369.1 "Execution" Ability { id: "1023", source: "Ser Adelphel" }
+380.2 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+385.4 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" }
+394.6 "Holy Shield Bash" Ability { id: "101F", source: "Ser Adelphel" } window 15,15
+395.7 "Solid Ascension x2" Ability { id: "1020", source: "Ser Adelphel" }
+406.5 "Holiest Of Holy" Ability { id: "101E", source: "Ser Adelphel" }
+410.7 "Heavenly Slash" Ability { id: "101D", source: "Ser Adelphel" } window 15,15 jump 353.3
 
 414.8 "Shining Blade 1"
 417.2 "Shining Blade 2"
@@ -83,9 +83,9 @@ hideall "--sync--"
 437.6 "Holiest Of Holy"
 
 # Closing sequence
-441.9 "--sync--" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:10A0:/ window 450,0
+441.9 "--sync--" Ability { id: "10A0", source: "Ser Adelphel Brightblade" } window 450,0
 442.0 "Retreating" duration 8.0
-450 "Retreat" sync / 1[56]:[^:]*:Ser Adelphel Brightblade:10A1:/
+450 "Retreat" Ability { id: "10A1", source: "Ser Adelphel Brightblade" }
 
 ###Ser Grinneaux the Bull
 # -ii 101A
@@ -93,82 +93,82 @@ hideall "--sync--"
 # Pre-phase
 # Chapter House will be sealed off
 1000 "--sync--" sync / 29:[^:]*:7DC:[^:]*:623:/ window 1000,1
-1006.7 "Overpower" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:88C:/ window 6.7,5
-1015.6 "Rive" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:46F:/
-1018.9 "Overpower" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:88C:/
-1031.2 "Overpower" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:88C:/
-1039.9 "Rive" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:46F:/
+1006.7 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" } window 6.7,5
+1015.6 "Rive" Ability { id: "46F", source: "Ser Grinnaux the Bull" }
+1018.9 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" }
+1031.2 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" }
+1039.9 "Rive" Ability { id: "46F", source: "Ser Grinnaux the Bull" }
 
-1043.2 "Overpower" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:88C:/
-1055.5 "Overpower" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:88C:/
-1064.2 "Rive" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:46F:/ window 15,15 jump 1039.9
+1043.2 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" }
+1055.5 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" }
+1064.2 "Rive" Ability { id: "46F", source: "Ser Grinnaux the Bull" } window 15,15 jump 1039.9
 
 1067.5 "Overpower"
 1079.8 "Overpower"
 1088.5 "Rive"
 
 # Phase transition
-1100.0 "Advent" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:1373:/ window 100,5
-1101.0 "Advent" sync / 1[56]:[^:]*:Ser Grinnaux:1374:/
-1101.9 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:101B:/
+1100.0 "Advent" Ability { id: "1373", source: "Ser Grinnaux the Bull" } window 100,5
+1101.0 "Advent" Ability { id: "1374", source: "Ser Grinnaux" }
+1101.9 "--sync--" Ability { id: "101B", source: "Ser Grinnaux" }
 
 # Main Phase
-1109.6 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1028:/
-1113.7 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1118.0 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1125.1 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1130.3 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1134.4 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1139.4 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:1027:/ window 15,15
+1109.6 "Dimensional Collapse" Ability { id: "1028", source: "Ser Grinnaux" }
+1113.7 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1118.0 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1125.1 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1130.3 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1134.4 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1139.4 "Faith Unmoving" Ability { id: "1027", source: "Ser Grinnaux" } window 15,15
 
-1144.1 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1028:/
-1152.3 "Dimensional Rip" sync / 1[56]:[^:]*:Ser Grinnaux:102C:/
-1155.5 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1161.6 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1166.8 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1170.8 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1177.4 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1028:/ window 15,15
-1182.5 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:1027:/ 
+1144.1 "Dimensional Collapse" Ability { id: "1028", source: "Ser Grinnaux" }
+1152.3 "Dimensional Rip" Ability { id: "102C", source: "Ser Grinnaux" }
+1155.5 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1161.6 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1166.8 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1170.8 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1177.4 "Dimensional Collapse" Ability { id: "1028", source: "Ser Grinnaux" } window 15,15
+1182.5 "Faith Unmoving" Ability { id: "1027", source: "Ser Grinnaux" } 
 
-1192.7 "Dimensional Rip" sync / 1[56]:[^:]*:Ser Grinnaux:102C:/ window 15,15
-1195.9 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1202.1 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1207.9 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1212.1 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1218.7 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1028:/ window 15,15
-1223.8 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:1027:/
+1192.7 "Dimensional Rip" Ability { id: "102C", source: "Ser Grinnaux" } window 15,15
+1195.9 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1202.1 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1207.9 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1212.1 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1218.7 "Dimensional Collapse" Ability { id: "1028", source: "Ser Grinnaux" } window 15,15
+1223.8 "Faith Unmoving" Ability { id: "1027", source: "Ser Grinnaux" }
 
-1234.0 "Dimensional Rip" sync / 1[56]:[^:]*:Ser Grinnaux:102C:/ window 15,15
-1237.1 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1243.3 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1248.8 "Hyperdimensional Slash" sync / 1[56]:[^:]*:Ser Grinnaux:1026:/
-1253.0 "Heavy Swing" sync / 1[56]:[^:]*:Ser Grinnaux:1025:/
-1259.6 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1028:/ window 15,15
-1264.7 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:1027:/ jump 1182.5
+1234.0 "Dimensional Rip" Ability { id: "102C", source: "Ser Grinnaux" } window 15,15
+1237.1 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1243.3 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1248.8 "Hyperdimensional Slash" Ability { id: "1026", source: "Ser Grinnaux" }
+1253.0 "Heavy Swing" Ability { id: "1025", source: "Ser Grinnaux" }
+1259.6 "Dimensional Collapse" Ability { id: "1028", source: "Ser Grinnaux" } window 15,15
+1264.7 "Faith Unmoving" Ability { id: "1027", source: "Ser Grinnaux" } jump 1182.5
 
 # Closing sequence
-1441.9 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:10A0:/ window 500,10
+1441.9 "--sync--" Ability { id: "10A0", source: "Ser Grinnaux the Bull" } window 500,10
 1442.0 "Retreating" duration 8
-1450.0 "Retreat" sync / 1[56]:[^:]*:Ser Grinnaux the Bull:10A1:/
+1450.0 "Retreat" Ability { id: "10A1", source: "Ser Grinnaux the Bull" }
 
 
 ###Ser Charibert
 
 # The Chancel will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:624:/ window 2000,0
-2006.3 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/ window 6.3,5
-2015.0 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:1031:/
-2019.2 "Holy Chain" sync / 1[56]:[^:]*:Ser Charibert:1033:/ window 15,15
-2024.4 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/
+2006.3 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" } window 6.3,5
+2015.0 "Heavensflame" Ability { id: "1031", source: "Ser Charibert" }
+2019.2 "Holy Chain" Ability { id: "1033", source: "Ser Charibert" } window 15,15
+2024.4 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" }
 2028.7 "Knights Appear"
-2037.6 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/ window 15,15
+2037.6 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" } window 15,15
 
-2046.6 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/
-2055.3 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:1031:/
-2059.5 "Holy Chain" sync / 1[56]:[^:]*:Ser Charibert:1033:/ window 15,15
-2064.7 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/
+2046.6 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" }
+2055.3 "Heavensflame" Ability { id: "1031", source: "Ser Charibert" }
+2059.5 "Holy Chain" Ability { id: "1033", source: "Ser Charibert" } window 15,15
+2064.7 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" }
 2068.8 "Knights Appear"
-2077.9 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/ window 15,15 jump 2037.6
+2077.9 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" } window 15,15 jump 2037.6
 
 2086.9 "Altar Candle"
 2095.6 "Heavensflame"
@@ -177,36 +177,36 @@ hideall "--sync--"
 
 # Intermission at < 60% HP
 
-2200.0 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1019:/ window 200,5
-2205.1 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1018:/
-2207.2 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1036:/
-2218.4 "Black Knight's Tour" sync / 1[56]:[^:]*:Dusk Knight:1039:/
-2218.5 "White Knight's Tour" sync / 1[56]:[^:]*:Dawn Knight:1038:/
-2231.7 "Black Knight's Tour" sync / 1[56]:[^:]*:Dusk Knight:1039:/
-2231.9 "White Knight's Tour" sync / 1[56]:[^:]*:Dawn Knight:1038:/
-2245.0 "Black Knight's Tour" sync / 1[56]:[^:]*:Dusk Knight:1039:/
-2245.2 "White Knight's Tour" sync / 1[56]:[^:]*:Dawn Knight:1038:/
+2200.0 "--sync--" Ability { id: "1019", source: "Ser Charibert" } window 200,5
+2205.1 "--sync--" Ability { id: "1018", source: "Ser Charibert" }
+2207.2 "--sync--" Ability { id: "1036", source: "Ser Charibert" }
+2218.4 "Black Knight's Tour" Ability { id: "1039", source: "Dusk Knight" }
+2218.5 "White Knight's Tour" Ability { id: "1038", source: "Dawn Knight" }
+2231.7 "Black Knight's Tour" Ability { id: "1039", source: "Dusk Knight" }
+2231.9 "White Knight's Tour" Ability { id: "1038", source: "Dawn Knight" }
+2245.0 "Black Knight's Tour" Ability { id: "1039", source: "Dusk Knight" }
+2245.2 "White Knight's Tour" Ability { id: "1038", source: "Dawn Knight" }
 2254.5 "Sacred Flame Enrage?"
 
-2294.0 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1037:/ window 2294,0
+2294.0 "--sync--" Ability { id: "1037", source: "Ser Charibert" } window 2294,0
 
 # The party might survive an intermission enrage.
 # This wide window on Candle allows for that.
-2300.0 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/ window 100,20
-2309.0 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/
+2300.0 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" } window 100,20
+2309.0 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" }
 2316.3 "Knights Appear"
-2318.6 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:1031:/ window 15,15
-2322.8 "Holy Chain" sync / 1[56]:[^:]*:Ser Charibert:1033:/
-2332.0 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/
-2336.1 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/
+2318.6 "Heavensflame" Ability { id: "1031", source: "Ser Charibert" } window 15,15
+2322.8 "Holy Chain" Ability { id: "1033", source: "Ser Charibert" }
+2332.0 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" }
+2336.1 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" }
 
-2345.3 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/
-2354.3 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/
+2345.3 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" }
+2354.3 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" }
 2356.6 "Knights Appear"
-2363.9 "Heavensflame" sync / 1[56]:[^:]*:Ser Charibert:1031:/ window 15,15
-2368.1 "Holy Chain" sync / 1[56]:[^:]*:Ser Charibert:1033:/
-2377.3 "Altar Pyre" sync / 1[56]:[^:]*:Ser Charibert:1035:/
-2381.4 "Altar Candle" sync / 1[56]:[^:]*:Ser Charibert:1030:/ window 15,5 jump 2336.1
+2363.9 "Heavensflame" Ability { id: "1031", source: "Ser Charibert" } window 15,15
+2368.1 "Holy Chain" Ability { id: "1033", source: "Ser Charibert" }
+2377.3 "Altar Pyre" Ability { id: "1035", source: "Ser Charibert" }
+2381.4 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" } window 15,5 jump 2336.1
 
 2390.6 "Altar Candle"
 2399.6 "Altar Pyre"
