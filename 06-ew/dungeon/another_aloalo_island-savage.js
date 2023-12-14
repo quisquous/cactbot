@@ -61,18 +61,23 @@ Options.Triggers.push({
       outputStrings: {
         orbDirFront: {
           en: 'Face Towards Orb',
+          de: 'Den Orb anschauen',
         },
         orbDirBack: {
           en: 'Face Away from Orb',
+          de: 'Weg vom Orb schauen',
         },
         orbDirLeft: {
           en: 'Point Left at Orb',
+          de: 'Zeige links auf den Orb',
         },
         orbDirRight: {
           en: 'Point Right at Orb',
+          de: 'Zeige Rechts auf den Orb',
         },
         orbGeneral: {
           en: 'Point opening at Orb',
+          de: 'Zeige die Öffnung auf den Orb',
         },
       },
     },
@@ -88,9 +93,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           tankBusterOnYou: {
             en: '3x Tankbuster on YOU',
+            de: '3x Tankbuster auf DIR',
           },
           tankBusterOnPlayer: {
             en: '3x Tankbuster on ${player}',
+            de: '3x Tankbuster auf ${player}',
           },
         };
         if (matches.target === data.me)
@@ -224,9 +231,11 @@ Options.Triggers.push({
       outputStrings: {
         fetters: {
           en: 'Fetters (w/${player})',
+          de: 'Fesseln (mit ${player})',
         },
         bubble: {
           en: 'Bubble (w/${player})',
+          de: 'Blase (mit ${player})',
         },
       },
     },
@@ -250,6 +259,11 @@ Options.Triggers.push({
              For brevity, "next to" always means horizontal east/west of something.
              The number in parentheses is the limit cut wind you should be on.
              See trigger source for diagrams in comments.`,
+        de: `Diese Anweisungen gehen davon aus, dass Sie immer ein Quadrat im gleichen
+             Quadranten wie der angegebene Kristall liegt.
+             Der Einfachheit halber bedeutet "neben" immer horizontal östlich/westlich von etwas.
+             Die Zahl in Klammern ist der Grenzwert für den Wind-Rückstoß, auf dem Sie sich befinden sollten.
+             Siehe Triggerquelle für Diagramme in den Kommentaren.`,
       },
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
@@ -351,34 +365,44 @@ Options.Triggers.push({
       outputStrings: {
         bubbleNetMech: {
           en: '${fettersBubble} + ${spreadStack}',
+          de: '${fettersBubble} + ${spreadStack}',
         },
         bubbleNetMechPartner: {
           en: '${fettersBubble} + ${spreadStack} (w/${player})',
+          de: '${fettersBubble} + ${spreadStack} (mit ${player})',
         },
         bubbleBuff: {
           en: 'Bubble',
+          de: 'Blase',
         },
         fettersBuff: {
           en: 'Fetters',
+          de: 'Ketten',
         },
         spread: Outputs.spread,
         stacks: {
           en: 'Stacks',
+          de: 'Sammeln',
         },
         bubbleAnything: {
           en: 'Next to Horizontal (1)',
+          de: 'Neben Horizontal (1)',
         },
         fettersSpreadSplit: {
           en: 'Diagonal of Vertical (2)',
+          de: 'Diagonale der Vertikalen (2)',
         },
         fettersSpreadColumn: {
           en: 'Next to Vertical (2)',
+          de: 'Neben Vertikal (2)',
         },
         fettersStackSplit: {
           en: 'On Horizontal (1)',
+          de: 'Auf Horizontal (1)',
         },
         fettersStackColumn: {
           en: 'Diagonal of Horizontal (1)',
+          de: 'Diagonale der Horizontalen (1)',
         },
       },
     },
@@ -394,9 +418,11 @@ Options.Triggers.push({
       outputStrings: {
         spread: {
           en: 'Spread => Stacks',
+          de: 'Verteilen => Sammeln',
         },
         stacks: {
           en: 'Stacks => Spread',
+          de: 'Sammeln => Verteilen',
         },
       },
     },
@@ -419,9 +445,11 @@ Options.Triggers.push({
         spread: Outputs.spread,
         stacks: {
           en: 'Stacks',
+          de: 'Sammeln',
         },
         roleStacks: {
           en: 'Role Stacks',
+          de: 'Rollengruppe sammeln',
         },
       },
     },
@@ -460,12 +488,15 @@ Options.Triggers.push({
       outputStrings: {
         roleStacks: {
           en: 'Role Stacks',
+          de: 'Rollengruppe sammeln',
         },
         spreadThenRoleStacks: {
           en: 'Spread => Role Stacks',
+          de: 'Verteilen => Rollengruppe sammeln',
         },
         roleStacksThenSpread: {
           en: 'Role Stacks => Spread',
+          de: 'Rollengruppe sammeln => Verteilen',
         },
       },
     },
@@ -482,9 +513,11 @@ Options.Triggers.push({
       outputStrings: {
         outInStacks: {
           en: 'Out => In + Stacks',
+          de: 'Raus => Rein + sammeln',
         },
         outInRoleStacks: {
           en: 'Out => In + Role Stacks',
+          de: 'Raus => Rein + Rollengruppe sammeln',
         },
       },
     },
@@ -501,9 +534,11 @@ Options.Triggers.push({
       outputStrings: {
         inOutStacks: {
           en: 'In => Out + Stacks',
+          de: 'Rein => Raus + sammeln',
         },
         inOutRoleStacks: {
           en: 'In => Out + Role Stacks',
+          de: 'Rein => Raus + Rollengruppe sammeln',
         },
       },
     },
@@ -527,14 +562,17 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: '${inOut} + ${stack}',
+          de: '${inOut} + ${stack}',
         },
         in: Outputs.in,
         out: Outputs.out,
         stack: {
           en: 'Stacks',
+          de: 'Sammeln',
         },
         roleStacks: {
           en: 'Role Stacks',
+          de: 'Rollengruppe sammeln',
         },
       },
     },
@@ -570,12 +608,15 @@ Options.Triggers.push({
       outputStrings: {
         northSouthSafe: {
           en: 'North/South',
+          de: 'Norden/Süden',
         },
         eastWestSafe: {
           en: 'East/West',
+          de: 'Osten/Westen',
         },
         cornersSafe: {
           en: 'Corners',
+          de: 'Ecken',
         },
       },
     },
@@ -593,12 +634,15 @@ Options.Triggers.push({
       outputStrings: {
         knockbackSpread: {
           en: 'Knockback => Spread',
+          de: 'Rückstoß => verteilen',
         },
         knockbackStacks: {
           en: 'Knockback => Stacks',
+          de: 'Rückstoß => sammeln',
         },
         knockbackRoleStacks: {
           en: 'Knockback => Role Stacks',
+          de: 'Rückstoß => Rollengruppe sammeln',
         },
       },
     },
@@ -619,9 +663,11 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           tornadoOn: {
             en: 'Away from ${player}',
+            de: 'Weg von ${player}',
           },
           tornadoOnYou: {
             en: 'Tornado on YOU',
+            de: 'Tornado auf DIR',
           },
         };
         if (data.me === matches.target)
@@ -640,6 +686,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Cleanse ${player}',
+          de: 'Reinige ${player}',
         },
       },
     },
@@ -663,6 +710,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Get Behind + Out',
+          de: 'Geh nach Hinten + Raus',
         },
       },
     },
@@ -680,6 +728,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Kill Islekeeper!',
+          de: 'Wächter besiegen!',
         },
       },
     },
@@ -820,15 +869,19 @@ Options.Triggers.push({
       outputStrings: {
         front: {
           en: 'Face Towards Lala',
+          de: 'Lala anschauen',
         },
         back: {
           en: 'Look Away from Lala',
+          de: 'Von Lala weg schauen',
         },
         left: {
           en: 'Left Flank towards Lala',
+          de: 'Linke Seite zu Lala zeigen',
         },
         right: {
           en: 'Right Flank towards Lala',
+          de: 'Rechte Seite zu Lala zeigen',
         },
       },
     },
@@ -856,25 +909,32 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           one: {
             en: 'One',
+            de: 'Eins',
           },
           bigTwo: {
             en: 'Two (stack with three)',
+            de: 'Zwei (sammeln mit Drei)',
           },
           smallTwo: {
             en: 'Two (stack with one)',
+            de: 'Zwei (sammeln mit Eins)',
           },
           eitherTwo: {
             en: 'Either Two (w/${player})',
+            de: 'Eine Zwei (mit ${player})',
           },
           three: {
             en: 'Three',
+            de: 'Drei',
           },
           // This is just a raidcall so you can direct your friends.
           smallTwoOn: {
             en: '(Two with one: ${players})',
+            de: '(Zwei mit Eins: ${players})',
           },
           unknownNum: {
             en: '${num}',
+            de: '${num}',
           },
           num1: Outputs.num1,
           num2: Outputs.num2,
@@ -962,9 +1022,11 @@ Options.Triggers.push({
       outputStrings: {
         left: {
           en: 'Leftward March',
+          de: 'Linker March',
         },
         right: {
           en: 'Rightward March',
+          de: 'Rechter March',
         },
       },
     },
@@ -984,15 +1046,19 @@ Options.Triggers.push({
       outputStrings: {
         num1: {
           en: 'One (avoid all)',
+          de: 'Eins (alles ausweichen)',
         },
         num2: {
           en: 'Two (stay middle)',
+          de: 'Zwei (steh in der Mitte)',
         },
         num3: {
           en: 'Three (adjacent to middle)',
+          de: 'Drei (steh neben der Mitte)',
         },
         num4: {
           en: 'Four',
+          de: 'Vier',
         },
       },
     },
@@ -1039,6 +1105,7 @@ Options.Triggers.push({
         spreadThenStack: Outputs.spreadThenStack,
         numSafeLater: {
           en: '(${num} safe later)',
+          de: '(${num} später sicher)',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -1097,12 +1164,15 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           dartOnYou: {
             en: 'Dart on YOU',
+            de: 'Dart auf DIR',
           },
           noDartOnYou: {
             en: 'No Dart',
+            de: 'Kein Dart',
           },
           flexCall: {
             en: '(${player} unmarked)',
+            de: '(${player} unmarkiert)',
           },
         };
         if (data.staticeIsPinwheelingDartboard)
@@ -1143,6 +1213,7 @@ Options.Triggers.push({
       outputStrings: {
         numSafeSoon: {
           en: '(${num} safe soon)',
+          de: '(${num} gleich sicher)',
         },
         num1: Outputs.num1,
         num2: Outputs.num2,
@@ -1169,6 +1240,7 @@ Options.Triggers.push({
       outputStrings: {
         knockbackToNum: {
           en: 'Knockback => ${num}',
+          de: 'Rückstoß => ${num}',
         },
         knockback: Outputs.knockback,
         num1: Outputs.num1,
@@ -1210,15 +1282,19 @@ Options.Triggers.push({
       outputStrings: {
         forward: {
           en: 'Forward March => ${mech}',
+          de: 'Vorwärtsmarsch => ${mech}',
         },
         backward: {
           en: 'Backward March => ${mech}',
+          de: 'Rückwärtsmarsch => ${mech}',
         },
         left: {
           en: 'Left March => ${mech}',
+          de: 'Marsch Links => ${mech}',
         },
         right: {
           en: 'Right March => ${mech}',
+          de: 'Marsch Rechts => ${mech}',
         },
         spread: Outputs.spread,
         stack: Outputs.stackMarker,
@@ -1252,6 +1328,7 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           missileOnYou: {
             en: 'Bait Tethers => Missile Spread',
+            de: 'Verbindungen ködern => Verteilen mit Raketen',
           },
         };
         if (data.staticeMissileTether.length !== 2)
@@ -1283,6 +1360,7 @@ Options.Triggers.push({
       outputStrings: {
         stack: {
           en: 'Juke Claw => Stack',
+          de: 'Zieh Klaue => Sammeln',
         },
       },
     },
@@ -1317,18 +1395,23 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           dartOnYou: {
             en: 'Dart (w/${player})',
+            de: 'Dart (mit ${player})',
           },
           noDartOnYou: {
             en: 'No Dart',
+            de: 'Kein Dart',
           },
           blue: {
             en: 'Avoid Blue',
+            de: 'Vermeide Blau',
           },
           red: {
             en: 'Avoid Red',
+            de: 'Vermeide Rot',
           },
           yellow: {
             en: 'Avoid Yellow',
+            de: 'Vermeide Gelb',
           },
         };
         let infoText;
@@ -1391,21 +1474,303 @@ Options.Triggers.push({
         // TODO: maybe this should remind you of dart color
         tether: {
           en: 'Tether w/${player}',
+          de: 'Verbindung mit ${player}',
         },
         stack: {
           en: 'Stack w/${player}',
+          de: 'Sammeln mit ${player}',
         },
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'en',
-      replaceText: {
+      'locale': 'en',
+      'replaceText': {
+        'Far Tide/Near Tide': 'Far/Near Tide',
         'Hydrobullet/Hydrofall': 'Hydrobullet/fall',
         'Hydrofall/Hydrobullet': 'Hydrofall/bullet',
         'Receding Twintides/Encroaching Twintides': 'Receding/Encroaching Twintides',
-        'Far Tide/Near Tide': 'Far/Near Tide',
+      },
+    },
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Aloalo Golem': 'Aloalo-Holzgolem',
+        'Aloalo Islekeeper': 'Aloalo-Wächter',
+        'Aloalo Kiwakin': 'Aloalo-Kiwakin',
+        'Aloalo Monk': 'Aloalo-Mönch',
+        'Aloalo Ray': 'Aloalo-Rochen',
+        'Aloalo Snipper': 'Aloalo-Schnippler',
+        'Aloalo Wood Golem': 'Aloalo-Holzgolem',
+        'Aloalo Zaratan': 'Aloalo-Zaratan',
+        'Arcane Font': 'arkan(?:e|er|es|en) Körper',
+        'Arcane Globe': 'arkan(?:e|er|es|en) Kugel',
+        'Ball of Fire': 'Feuerkugel',
+        'Bomb': 'Bombe',
+        'Ketuduke': 'Ketuduke',
+        'Lala': 'Lala',
+        'Needle': 'Nadel',
+        'Spring Crystal': 'Wasserquell-Kristall',
+        'Statice': 'Statice',
+        'Surprising Claw': 'Überraschungsklaue',
+        'Surprising Missile': 'Überraschungsrakete',
+        'Surprising Staff': 'Überraschungsstab',
+        'The Dawn Trial': 'Morgenrot-Probe',
+        'The Dusk Trial': 'Abendrot-Probe',
+        'The Midnight Trial': 'Vollmond-Probe',
+      },
+      'replaceText': {
+        '\\(buff\\)': '(Statusveränderung)',
+        '\\(cast\\)': '(wirken)',
+        'Aero II': 'Windra',
+        'Aero IV': 'Windka',
+        'Analysis': 'Analyse',
+        'Angry Seas': 'Zornige Fluten',
+        'Angular Addition': 'Winkeladdition',
+        'Arcane Array': 'Arkanes Spektrum',
+        'Arcane Blight': 'Arkane Fäule',
+        'Arcane Mine': 'Arkane Mine',
+        'Arcane Plot': 'Arkane Flur',
+        'Arcane Point': 'Arkane Stätte',
+        'Beguiling Glitter': 'Irrleuchten',
+        'Blowing Bubbles': 'Pusteblasen',
+        'Bright Pulse': 'Glühen',
+        'Bubble Net': 'Blasennetz',
+        'Burning Chains': 'Brennende Ketten',
+        'Burst': 'Explosion',
+        'Constructive Figure': 'Ruf der Schöpfer',
+        'Dartboard of Dancing Explosives': 'Darts und Drehung',
+        'Encroaching Twintides': 'Ring der Zwiegezeiten',
+        'Explosive Theorem': 'Arkane Fäule',
+        'Faerie Ring': 'Feenring',
+        'Far Tide': 'Ring der Gezeiten',
+        'Fire Spread': 'Brandstiftung',
+        'Fireworks': 'Feuerwerk',
+        'Fluke Gale': 'Flossensturm',
+        'Fluke Typhoon': 'Flossentaifun',
+        'Hundred Lashings': 'Auspeitschung',
+        'Hydrobomb': 'Hydro-Bombe',
+        'Hydrobullet': 'Hydro-Kugel',
+        'Hydrofall': 'Hydro-Sturz',
+        'Inferno Divide': 'Infernale Teilung',
+        'Inferno Theorem': 'Infernales Theorem',
+        'Locked and Loaded': 'Geladen und entsichert',
+        'Misload': 'Fehlladung',
+        'Near Tide': 'Kreis der Gezeiten',
+        'Pinwheeling Dartboard': 'Darts und Rad',
+        'Planar Tactics': 'Flächentaktiken',
+        'Pop': 'Platzen',
+        'Powerful Light': 'Entladenes Licht',
+        'Present Box': 'Geschenkschachtel',
+        'Radiance': 'Radiation',
+        'Receding Twintides': 'Kreis der Zwiegezeiten',
+        'Ring a Ring o\' Explosions': 'Ringel-Ringel-Bombe',
+        '(?<! )Roar': 'Brüllen',
+        'Saturate': 'Wasserfontäne',
+        'Shocking Abandon': 'Schockende Hingabe',
+        'Spatial Tactics': 'Raumtaktiken',
+        'Sphere Shatter': 'Sphärensplitterung',
+        'Spring Crystals': 'Quellkristalle',
+        'Strategic Strike': 'Schwere Attacke',
+        'Strewn Bubbles': 'Streublasen',
+        'Surprise Balloon': 'Überraschungsballon',
+        'Surprise Needle': 'Überraschungsnadel',
+        'Symmetric Surge': 'Symmetrischer Schub',
+        'Targeted Light': 'Gezieltes Licht',
+        'Telluric Theorem': 'Tellurisches Theorem',
+        'Tidal Roar': 'Schrei der Gezeiten',
+        'Trapshooting': 'Tontaubenschuss',
+        'Trick Reload': 'Trickladung',
+        'Trigger Happy': 'Schießwut',
+        'Uncommon Ground': 'Voll ins Schwarze',
+        'Updraft': 'Aufwind',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Aloalo Golem': 'golem sylvestre d\'Aloalo',
+        'Aloalo Islekeeper': 'gardien d\'Aloalo',
+        'Aloalo Kiwakin': 'kiwakin d\'Aloalo',
+        'Aloalo Monk': 'moine d\'Aloalo',
+        'Aloalo Ray': 'raie rayée d\'Aloalo',
+        'Aloalo Snipper': 'cisailleur d\'Aloalo',
+        'Aloalo Wood Golem': 'golem sylvestre d\'Aloalo',
+        'Aloalo Zaratan': 'zaratan d\'Aloalo',
+        'Arcane Font': 'sphère arcanique',
+        'Arcane Globe': 'globe arcanique',
+        'Ball of Fire': 'orbe de feu',
+        'Bomb': 'bombe',
+        'Ketuduke': 'Ketuduke',
+        'Lala': 'Lala',
+        'Needle': 'aiguille',
+        'Spring Crystal': 'cristal de source',
+        'Statice': 'Statice',
+        'Surprising Claw': 'griffe surprise',
+        'Surprising Missile': 'missile surprise',
+        'Surprising Staff': 'sceptre surprise',
+        'The Dawn Trial': 'Épreuve de Dilumu',
+        'The Dusk Trial': 'Épreuve de Qurupe',
+        'The Midnight Trial': 'Épreuve de Nokosero',
+      },
+      'replaceText': {
+        'Aero II': 'Extra Vent',
+        'Aero IV': 'Giga Vent',
+        'Analysis': 'Analyse',
+        'Angry Seas': 'Mer agitée',
+        'Angular Addition': 'Calcul angulaire',
+        'Arcane Array': 'Assemblement arcanique',
+        'Arcane Blight': 'Canon arcanique',
+        'Arcane Mine': 'Mine arcanique',
+        'Arcane Plot': 'Modulateur arcanique',
+        'Arcane Point': 'Pointe arcanique',
+        'Beguiling Glitter': 'Paillettes aveuglantes',
+        'Blowing Bubbles': 'Bulles soufflées',
+        'Bright Pulse': 'Éclat',
+        'Bubble Net': 'Filet de bulles',
+        'Burning Chains': 'Chaînes brûlantes',
+        'Burst': 'Explosion',
+        'Constructive Figure': 'Icône articulée',
+        'Dartboard of Dancing Explosives': 'Duo fléchettes-tourbillon',
+        'Encroaching Twintides': 'Double marée débordante',
+        'Explosive Theorem': 'Théorème explosif',
+        'Faerie Ring': 'Cercle féérique',
+        'Far Tide': 'Marée lointaine',
+        'Fire Spread': 'Nappe de feu',
+        'Fireworks': 'Feu d\'artifice',
+        'Fluke Gale': 'Bourrasque hasardeuse',
+        'Fluke Typhoon': 'Typhon hasardeux',
+        'Hundred Lashings': 'Cent coups de fouet',
+        'Hydrobomb': 'Hydrobombe',
+        'Hydrobullet': 'Barillet hydrique',
+        'Hydrofall': 'Pilonnage hydrique',
+        'Inferno Divide': 'Division infernale',
+        'Inferno Theorem': 'Théorème infernal',
+        'Locked and Loaded': 'Rechargement réussi',
+        'Misload': 'Rechargement raté',
+        'Near Tide': 'Marée proche',
+        'Pinwheeling Dartboard': 'Duo fléchettes-moulinette',
+        'Planar Tactics': 'Tactique planaire',
+        'Pop': 'Rupture',
+        'Powerful Light': 'Explosion sacrée',
+        'Present Box': 'Boîtes cadeaux',
+        'Radiance': 'Irradiation',
+        'Receding Twintides': 'Double marée fuyante',
+        'Ring a Ring o\' Explosions': 'Tempérament explosif',
+        '(?<! )Roar': 'Rugissement',
+        'Saturate': 'Jet d\'eau',
+        'Shocking Abandon': 'Choc renonciateur',
+        'Spatial Tactics': 'Tactique spatiale',
+        'Sphere Shatter': 'Rupture glacée',
+        'Spring Crystals': 'Cristaux de source',
+        'Strategic Strike': 'Coup violent',
+        'Strewn Bubbles': 'Bulles éparpillées',
+        'Surprise Balloon': 'Ballons surprises',
+        'Surprise Needle': 'Aiguille surprise',
+        'Symmetric Surge': 'Déferlement symétrique',
+        'Targeted Light': 'Rayon ciblé',
+        'Telluric Theorem': 'Théorème tellurique',
+        'Tidal Roar': 'Vague rugissante',
+        'Trapshooting': 'Tir au pigeon',
+        'Trick Reload': 'Rechargement habile',
+        'Trigger Happy': 'Gâchette impulsive',
+        'Uncommon Ground': 'Terrain de mésentente',
+        'Updraft': 'Courants ascendants',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Aloalo Golem': 'アロアロ・ウッドゴーレム',
+        'Aloalo Islekeeper': 'アロアロ・キーパー',
+        'Aloalo Kiwakin': 'アロアロ・キワキン',
+        'Aloalo Monk': 'アロアロ・モンク',
+        'Aloalo Ray': 'アロアロ・ストライプレイ',
+        'Aloalo Snipper': 'アロアロ・スニッパー',
+        'Aloalo Wood Golem': 'アロアロ・ウッドゴーレム',
+        'Aloalo Zaratan': 'アロアロ・ザラタン',
+        'Arcane Font': '立体魔法陣',
+        'Arcane Globe': '球体魔法陣',
+        'Ball of Fire': '火球',
+        'Bomb': '爆弾',
+        'Ketuduke': 'ケトゥドゥケ',
+        'Lala': 'ララ',
+        'Needle': 'ニードル',
+        'Spring Crystal': '湧水のクリスタル',
+        'Statice': 'スターチス',
+        'Surprising Claw': 'サプライズ・クロー',
+        'Surprising Missile': 'サプライズ・ミサイル',
+        'Surprising Staff': 'サプライズ・ロッド',
+        'The Dawn Trial': 'ディルムの試練',
+        'The Dusk Trial': 'クルペの試練',
+        'The Midnight Trial': 'ノコセロの試練',
+      },
+      'replaceText': {
+        'Aero II': 'エアロラ',
+        'Aero IV': 'エアロジャ',
+        'Analysis': 'アナライズ',
+        'Angry Seas': 'アングリーシーズ',
+        'Angular Addition': '回転角乗算',
+        'Arcane Array': '複合魔紋',
+        'Arcane Blight': '魔紋砲',
+        'Arcane Mine': '地雷魔紋',
+        'Arcane Plot': '変光魔紋',
+        'Arcane Point': '変光起爆',
+        'Beguiling Glitter': '惑わしの光',
+        'Blowing Bubbles': 'バブルブロワー',
+        'Bright Pulse': '閃光',
+        'Bubble Net': 'バブルネットフィーディング',
+        'Burning Chains': '炎の鎖',
+        'Burst': '爆発',
+        'Constructive Figure': '人形召喚',
+        'Dartboard of Dancing Explosives': 'ダーツ＆ローテーション',
+        'Encroaching Twintides': 'リング・ダブルタイド',
+        'Explosive Theorem': '魔爆法',
+        'Faerie Ring': 'フェアリーリング',
+        'Far Tide': 'リングタイド',
+        'Fire Spread': '放火',
+        'Fireworks': 'ファイアワークフェスティバル',
+        'Fluke Gale': 'フリッパーゲイル',
+        'Fluke Typhoon': 'フリッパータイフーン',
+        'Hundred Lashings': 'めった打ち',
+        'Hydrobomb': 'ハイドロボム',
+        'Hydrobullet': 'ハイドロバレット',
+        'Hydrofall': 'ハイドロフォール',
+        'Inferno Divide': '十火法',
+        'Inferno Theorem': '散火法',
+        'Locked and Loaded': 'リロード成功',
+        'Misload': 'リロード失敗',
+        'Near Tide': 'ラウンドタイド',
+        'Pinwheeling Dartboard': 'ダーツ＆ウィール',
+        'Planar Tactics': '爆雷戦術：面',
+        'Pop': '破裂',
+        'Powerful Light': '光爆',
+        'Present Box': 'プレゼントボックス',
+        'Radiance': '光球爆散',
+        'Receding Twintides': 'ラウンド・ダブルタイド',
+        'Ring a Ring o\' Explosions': 'リンクリンクボム',
+        '(?<! )Roar': '咆哮',
+        'Saturate': '放水',
+        'Shocking Abandon': 'アバンドンショック',
+        'Spatial Tactics': '爆雷戦術：立体',
+        'Sphere Shatter': '破裂',
+        'Spring Crystals': '湧水のクリスタル',
+        'Strategic Strike': '強撃',
+        'Strewn Bubbles': 'バブルストゥルー',
+        'Surprise Balloon': 'サプライズバルーン',
+        'Surprise Needle': 'サプライズニードル',
+        'Symmetric Surge': '双数爆撃',
+        'Targeted Light': '高精度光弾',
+        'Telluric Theorem': '地隆法',
+        'Tidal Roar': 'タイダルロア',
+        'Trapshooting': 'トラップシューティング',
+        'Trick Reload': 'トリックリロード',
+        'Trigger Happy': 'トリガーハッピー',
+        'Uncommon Ground': 'グラウンドシアー',
+        'Updraft': '上昇気流',
       },
     },
   ],
