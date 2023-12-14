@@ -8,7 +8,7 @@ hideall "--sync--"
 
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.5 "--sync--" sync / 14:[^:]*:Hegemone:7860:/ window 10,5
+9.5 "--sync--" StartsUsing { id: "7860", source: "Hegemone" } window 10,5
 14.2 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
 28.0 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
 35.1 "--sync--" Ability { id: "784C", source: "Hegemone" }
@@ -129,5 +129,5 @@ hideall "--sync--"
 621.8 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
 
 # Enrage
-631.0 "--sync--" sync / 14:[^:]*:Hegemone:7893:/ window 1000,10
+631.0 "--sync--" StartsUsing { id: "7893", source: "Hegemone" } window 1000,10
 640.7 "Hemitheos's Dark IV (enrage)" Ability { id: "7893", source: "Hegemone" }

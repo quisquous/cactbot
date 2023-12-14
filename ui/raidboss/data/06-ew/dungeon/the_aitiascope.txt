@@ -136,20 +136,20 @@ hideall "--sync--"
 # 4/4 pulls that saw this all had the same, but that's not quite enough confidence.
 
 # -> Strophe first, then Thundaga?
-3119.2 "--sync--" sync / 14:[^:]*:Amon the Undying:645D:/ jump 4119.2 window 50,50
+3119.2 "--sync--" StartsUsing { id: "645D", source: "Amon the Undying" } jump 4119.2 window 50,50
 3122.2 "Strophe?" #Ability { id: "645D", source: "Amon the Undying" }
 3128.3 "Antistrophe?" #Ability { id: "645E", source: "Amon the Undying" }
 3137.1 "Epode?" #Ability { id: "645F", source: "Amon the Undying" }
 
 # -> Thundaga first, then Strophe?
-3119.2 "--sync--" sync / 14:[^:]*:Amon the Undying:645A:/ jump 5119.2 window 50,50
+3119.2 "--sync--" StartsUsing { id: "645A", source: "Amon the Undying" } jump 5119.2 window 50,50
 3124.2 "Thundaga Forte (proximity)?" #Ability { id: "645A", source: "Amon the Undying" }
 3130.0 "Thundaga Forte 1?" #Ability { id: "645B", source: "Amon the Undying" }
 3136.0 "Thundaga Forte 2?" #Ability { id: "645C", source: "Amon the Undying" }
 
 
 ### Strophe -> Thundaga -> shared Eruption section -> (Strophe or Thundaga)
-4119.2 "--sync--" sync / 14:[^:]*:Amon the Undying:645D:/
+4119.2 "--sync--" StartsUsing { id: "645D", source: "Amon the Undying" }
 4122.2 "Strophe" Ability { id: "645D", source: "Amon the Undying" }
 4128.3 "Antistrophe" Ability { id: "645E", source: "Amon the Undying" }
 4137.1 "Epode" Ability { id: "645F", source: "Amon the Undying" }
@@ -170,20 +170,20 @@ hideall "--sync--"
 4255.1 "Entr'acte" Ability { id: "6465", source: "Amon the Undying" }
 
 # -> Strophe first, then Thundaga?
-4267.3 "--sync--" sync / 14:[^:]*:Amon the Undying:645D:/ jump 4119.2 window 50,50
+4267.3 "--sync--" StartsUsing { id: "645D", source: "Amon the Undying" } jump 4119.2 window 50,50
 4270.3 "Strophe?" #Ability { id: "645D", source: "Amon the Undying" }
 4276.4 "Antistrophe?" #Ability { id: "645E", source: "Amon the Undying" }
 4285.2 "Epode?" #Ability { id: "645F", source: "Amon the Undying" }
 
 # -> Thundaga first, then Strophe?
-4267.3 "--sync--" sync / 14:[^:]*:Amon the Undying:645A:/ jump 5119.2 window 50,50
+4267.3 "--sync--" StartsUsing { id: "645A", source: "Amon the Undying" } jump 5119.2 window 50,50
 4272.3 "Thundaga Forte (proximity)?" #Ability { id: "645A", source: "Amon the Undying" }
 4278.1 "Thundaga Forte 1?" #Ability { id: "645B", source: "Amon the Undying" }
 4284.1 "Thundaga Forte 2?" #Ability { id: "645C", source: "Amon the Undying" }
 
 
 ### Thundaga -> Strophe -> shared Eruption section -> (Strophe or Thundaga)
-5119.2 "--sync--" sync / 14:[^:]*:Amon the Undying:645A:/
+5119.2 "--sync--" StartsUsing { id: "645A", source: "Amon the Undying" }
 5124.2 "Thundaga Forte" Ability { id: "645A", source: "Amon the Undying" }
 5130.0 "Thundaga Forte" Ability { id: "645B", source: "Amon the Undying" }
 5136.0 "Thundaga Forte" Ability { id: "645C", source: "Amon the Undying" }
@@ -204,13 +204,13 @@ hideall "--sync--"
 5255.1 "Entr'acte" Ability { id: "6465", source: "Amon the Undying" }
 
 # -> Strophe first, then Thundaga?
-5267.3 "--sync--" sync / 14:[^:]*:Amon the Undying:645D:/ jump 4119.2 window 50,50
+5267.3 "--sync--" StartsUsing { id: "645D", source: "Amon the Undying" } jump 4119.2 window 50,50
 5270.3 "Strophe?" #Ability { id: "645D", source: "Amon the Undying" }
 5276.4 "Antistrophe?" #Ability { id: "645E", source: "Amon the Undying" }
 5285.2 "Epode?" #Ability { id: "645F", source: "Amon the Undying" }
 
 # -> Thundaga first, then Strophe?
-5267.3 "--sync--" sync / 14:[^:]*:Amon the Undying:645A:/ jump 5119.2 window 50,50
+5267.3 "--sync--" StartsUsing { id: "645A", source: "Amon the Undying" } jump 5119.2 window 50,50
 5272.3 "Thundaga Forte (proximity)?" #Ability { id: "645A", source: "Amon the Undying" }
 5278.1 "Thundaga Forte 1?" #Ability { id: "645B", source: "Amon the Undying" }
 5284.1 "Thundaga Forte 2?" #Ability { id: "645C", source: "Amon the Undying" }

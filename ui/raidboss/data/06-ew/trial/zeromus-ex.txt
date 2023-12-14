@@ -12,7 +12,7 @@ hideall "--sync--"
 
 # Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.1 "--sync--" sync / 14:[^:]*:Zeromus:8B3F:/ window 10,10
+6.1 "--sync--" StartsUsing { id: "8B3F", source: "Zeromus" } window 10,10
 11.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
 27.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
 32.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
@@ -34,7 +34,7 @@ hideall "--sync--"
 134.1 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
 143.1 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
 
-148.1 "--sync--" sync / 14:[^:]*:Zeromus:8B4C:/ window 10,10
+148.1 "--sync--" StartsUsing { id: "8B4C", source: "Zeromus" } window 10,10
 153.1 "--spread--" #Ability { id: "8BDE", source: "Zeromus" }
 158.1 "Big Bang" Ability { id: "8B4C", source: "Zeromus" }
 
@@ -54,7 +54,7 @@ hideall "--sync--"
 247.7 "Black Hole" Ability { id: "8B69", source: "Zeromus" }
 259.8 "Fractured Eventide" Ability { id: "8B3[CD]", source: "Zeromus" }
 
-278.0 "--sync--" sync / 14:[^:]*:Zeromus:8B4D:/ window 10,10
+278.0 "--sync--" StartsUsing { id: "8B4D", source: "Zeromus" } window 10,10
 282.1 "--spread--" #Ability { id: "8D32", source: "Zeromus" }
 288.0 "Big Crunch" Ability { id: "8B4D", source: "Zeromus" }
 
@@ -107,12 +107,12 @@ hideall "--sync--"
 653.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
 
 # Note that this enrage can happen at any time in P2, because it always happens at roughly 11m into the pull regardless of when you hit P2
-658.2 "--sync--" sync / 14:[^:]*:Zeromus:8C1E:/ window 1000,1000
+658.2 "--sync--" StartsUsing { id: "8C1E", source: "Zeromus" } window 1000,1000
 668.2 "Big Bang (Enrage)" Ability { id: "8C1E", source: "Zeromus" }
 
 
 # Phase 2: ~25% push
-1000.0 "--sync--" sync / 14:[^:]*:Zeromus:8C0D:/ window 1000,0
+1000.0 "--sync--" StartsUsing { id: "8C0D", source: "Zeromus" } window 1000,0
 1006.0 "Rend the Rift" Ability { id: "8C0D", source: "Zeromus" }
 1023.1 "Nostalgia" Ability { id: "8B6B", source: "Zeromus" }
 1023.9 "Bury 1" Ability { id: "8B6D", source: "Zeromus" }

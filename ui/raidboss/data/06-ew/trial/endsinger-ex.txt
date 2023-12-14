@@ -9,7 +9,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 14:[^:]*:The Endsinger:6FF6:/ window 10,10
+7.0 "--sync--" StartsUsing { id: "6FF6", source: "The Endsinger" } window 10,10
 11.7 "Elegeia Unforgotten" Ability { id: "6FF6", source: "The Endsinger" }
 25.1 "Star Collision" Ability { id: "6FF[AB]", source: "(Fiery Star|Azure Star)" }
 26.7 "Diairesis" Ability { id: "6FFC", source: "The Endsinger" }

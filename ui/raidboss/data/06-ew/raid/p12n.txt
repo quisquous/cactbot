@@ -11,7 +11,7 @@ hideall "--sync--"
 
 # Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 14:[^:]*:Athena:82D9:/ window 20,20
+7.0 "--sync--" StartsUsing { id: "82D9", source: "Athena" } window 20,20
 12.0 "On the Soul" Ability { id: "82D9", source: "Athena" }
 29.1 "Trinity of Souls 1" Ability { id: "82C[12]", source: "Athena" }
 31.8 "Trinity of Souls 2" Ability { id: "82C[34]", source: "Athena" }
@@ -70,9 +70,9 @@ hideall "--sync--"
 # ??? this is ~90% on the enrage
 
 # Final Phase
-500.0 "--sync--" sync / 14:[^:]*:Athena:82D1:/ window 500,0
+500.0 "--sync--" StartsUsing { id: "82D1", source: "Athena" } window 500,0
 505.8 "Palladion" Ability { id: "82D1", source: "Athena" }
-510.8 "--sync--" sync / 14:[^:]*:Athena:82D2:/
+510.8 "--sync--" StartsUsing { id: "82D2", source: "Athena" }
 517.8 "Theos's Ultima" Ability { id: "82D2", source: "Athena" } window 20,20
 525.8 "--targetable--"
 

@@ -14,7 +14,7 @@ hideall "--sync--"
 
 # P1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.7 "--sync--" sync / 14:[^:]*:The Endsinger:662C:/ window 15,15
+8.7 "--sync--" StartsUsing { id: "662C", source: "The Endsinger" } window 15,15
 13.7 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
 36.9 "Elegeia" Ability { id: "662C", source: "The Endsinger" }
 56.1 "Galaxias" Ability { id: "6C69", source: "The Endsinger" }

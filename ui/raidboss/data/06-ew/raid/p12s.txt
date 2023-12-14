@@ -106,7 +106,7 @@ hideall "--sync--"
 435.4 "Sample" Ability { id: "82E0", source: "Athena" }
 442.4 "On the Soul" Ability { id: "8304", source: "Athena" }
 450.5 "On the Soul" Ability { id: "8304", source: "Athena" }
-459.0 "--untargetable--" sync / 14:[^:]*:Athena:8556:/
+459.0 "--untargetable--" StartsUsing { id: "8556", source: "Athena" }
 466.0 "Theos's Ultima (enrage)" Ability { id: "8556", source: "Athena" }
 
 
@@ -114,7 +114,7 @@ hideall "--sync--"
 # -p 8682:1012.1
 # -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341 8332 8335
 
-1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
+1007.1 "--sync--" StartsUsing { id: "8682", source: "Pallas Athena" } window 1100,10
 1012.1 "Ultima 1" Ability { id: "8682", source: "Pallas Athena" }
 1024.2 "Palladian Grasp 1" Ability { id: "831A", source: "Pallas Athena" }
 1027.4 "Palladian Grasp 2" Ability { id: "831B", source: "Pallas Athena" }
@@ -204,7 +204,7 @@ hideall "--sync--"
 1490.1 "Ultima Blow" #Ability { id: "8348", source: "Hemitheos" }
 1494.6 "Ultima 8" Ability { id: "86F6", source: "Pallas Athena" }
 
-1508.4 "--sync--" sync / 14:[^:]*:Pallas Athena:8349:/ window 30,30
+1508.4 "--sync--" StartsUsing { id: "8349", source: "Pallas Athena" } window 30,30
 1523.4 "Ignorabimus" Ability { id: "8349", source: "Pallas Athena" }
 
 

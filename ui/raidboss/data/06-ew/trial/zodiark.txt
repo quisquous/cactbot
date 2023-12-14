@@ -19,7 +19,7 @@ hideall "Triple Esoteric Ray"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.1 "--sync--" sync / 14:[^:]*:Zodiark:6C27:/ window 10,10
+7.1 "--sync--" StartsUsing { id: "6C27", source: "Zodiark" } window 10,10
 11.1 "Kokytos" Ability { id: "6C27", source: "Zodiark" }
 20.2 "Exoterikos" Ability { id: "6C36", source: "Zodiark" }
 27.5 "Esoteric Sect" Ability { id: "67CC", source: "Arcane Sigil" }
@@ -38,7 +38,7 @@ hideall "Triple Esoteric Ray"
 129.4 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
 
 # Cutscene
-144.6 "--sync--" sync / 14:[^:]*:Zodiark:6734:/ window 150,10
+144.6 "--sync--" StartsUsing { id: "6734", source: "Zodiark" } window 150,10
 149.6 "Complete Control" Ability { id: "6734", source: "Zodiark" }
 150.2 "--untargetable--"
 150.3 "--sync--" Ability { id: "67DD", source: "Zodiark" }
@@ -59,7 +59,7 @@ hideall "Triple Esoteric Ray"
 274.6 "Opheos Eidolon" Ability { id: "67C7", source: "(Python|Behemoth|Zodiark)" } window 10,10
 
 # Star tethers
-280.9 "--sync--" sync / 14:[^:]*:Zodiark:67C3:/ window 300,10
+280.9 "--sync--" StartsUsing { id: "67C3", source: "Zodiark" } window 300,10
 285.9 "Astral Eclipse" Ability { id: "67C3", source: "Zodiark" }
 285.9 "--untargetable--"
 298.0 "--targetable--"
@@ -77,7 +77,7 @@ hideall "Triple Esoteric Ray"
 386.8 "Adikia" Ability { id: "67D8", source: "Zodiark" }
 388.0 "Esoteric Dyad" Ability { id: "67CB", source: "Arcane Sigil" }
 
-391.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
+391.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
 401.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 405.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 409.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
@@ -92,7 +92,7 @@ hideall "Triple Esoteric Ray"
 468.8 "Esoteric Ray 2" Ability { id: "67CA", source: "Arcane Sigil" }
 472.8 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
-479.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
+479.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
 489.8 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 493.8 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 497.1 "Phlegethon x3" Ability { id: "67CF", source: "Zodiark" } duration 4.6
@@ -110,7 +110,7 @@ hideall "Triple Esoteric Ray"
 583.4 "Esoteric Ray 2" Ability { id: "67CA", source: "Arcane Sigil" }
 587.4 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
-593.5 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/ window 50,50 jump 479
+593.5 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" } window 50,50 jump 479
 604.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 608.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 611.6 "Phlegethon x3" #Ability { id: "67CF", source: "Zodiark" } duration 4.6

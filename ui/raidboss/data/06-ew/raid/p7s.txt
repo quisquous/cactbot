@@ -139,5 +139,5 @@ hideall "--sync--"
 643.1 "Spark of Life" Ability { id: "7839", source: "Agdistis" }
 656.3 "Spark of Life" Ability { id: "7839", source: "Agdistis" }
 
-663.5 "--sync--" sync / 14:[^:]*:Agdistis:783F:/ window 50,50
+663.5 "--sync--" StartsUsing { id: "783F", source: "Agdistis" } window 50,50
 673.5 "Light of Life (enrage)" Ability { id: "783F", source: "Agdistis" }

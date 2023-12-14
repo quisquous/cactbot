@@ -16,7 +16,7 @@ hideall "--sync--"
 
 # Cloven Crystal Square will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1153:/ window 10000,0
-1006.0 "--sync--" sync / 14:[^:]*:Dark Elf:87D9:/ window 10,10
+1006.0 "--sync--" StartsUsing { id: "87D9", source: "Dark Elf" } window 10,10
 1009.0 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" }
 1017.1 "Ruinous Confluence" Ability { id: "8985", source: "Dark Elf" }
 1027.1 "Shadowy Sigil" Ability { id: "87D[BC]", source: "Dark Elf" }
@@ -69,7 +69,7 @@ hideall "--sync--"
 
 # Bloodied Barbican will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1154:/ window 10000,0
-2009.5 "--sync--" sync / 14:[^:]*:Damcyan Antlion:87FD:/ window 10,10
+2009.5 "--sync--" StartsUsing { id: "87FD", source: "Damcyan Antlion" } window 10,10
 2014.5 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 2023.6 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
 
@@ -153,7 +153,7 @@ hideall "--sync--"
 
 # Carnelian Courtyard will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1155:/ window 10000,0
-3007.3 "--sync--" sync / 14:[^:]*:Durante:88C3:/ window 10,10
+3007.3 "--sync--" StartsUsing { id: "88C3", source: "Durante" } window 10,10
 3012.3 "Old Magic" Ability { id: "88C3", source: "Durante" }
 3014.4 "--middle--" Ability { id: "88AF", source: "Durante" }
 3022.7 "Duplicitous Battery" Ability { id: "8CD9", source: "Durante" } duration 2.5

@@ -11,7 +11,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.7 "--sync--" sync / 14:[^:]*:Phoinix:6706:/ window 10,10
+8.7 "--sync--" StartsUsing { id: "6706", source: "Phoinix" } window 10,10
 13.7 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 22.8 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
 
@@ -68,7 +68,7 @@ hideall "--sync--"
 
 502.0 "--targetable--"
 509.1 "--sync--" Ability { id: "66AC", source: "Phoinix" }
-511.2 "--sync--" sync / 14:[^:]*:Phoinix:66E4:/ window 600,20
+511.2 "--sync--" StartsUsing { id: "66E4", source: "Phoinix" } window 600,20
 521.2 "Dead Rebirth" Ability { id: "66E4", source: "Phoinix" }
 
 536.4 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
@@ -148,5 +148,5 @@ hideall "--sync--"
 876.5 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 883.6 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 
-885.8 "--sync--" sync / 14:[^:]*:Phoinix:6C2B:/ window 20,20
+885.8 "--sync--" StartsUsing { id: "6C2B", source: "Phoinix" } window 20,20
 895.8 "Final Exaltation (enrage)" Ability { id: "6C2B", source: "Phoinix" }

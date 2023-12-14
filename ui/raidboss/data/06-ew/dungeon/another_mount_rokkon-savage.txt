@@ -27,7 +27,7 @@ hideall "--sync--"
 
 # Trial of Benevolence will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F8:/ window 10000,0
-1007.0 "--sync--" sync / 14:[^:]*:Shishio:8441:/ window 10000,0
+1007.0 "--sync--" StartsUsing { id: "8441", source: "Shishio" } window 10000,0
 1012.0 "Enkyo" Ability { id: "8441", source: "Shishio" }
 
 1014.1 "--middle--" Ability { id: "8444", source: "Shishio" }
@@ -36,7 +36,7 @@ hideall "--sync--"
 1026.2 "Smokeater 2?" #Ability { id: "8421", source: "Shishio" }
 1028.3 "Smokeater 3?" #Ability { id: "8421", source: "Shishio" }
 
-1046.5 "--sync--" sync / 14:[^:]*:Shishio:8442:/ window 10,10
+1046.5 "--sync--" StartsUsing { id: "8442", source: "Shishio" } window 10,10
 1051.5 "Splitting Cry" Ability { id: "8442", source: "Shishio" }
 1055.5 "Slither" Ability { id: "8443", source: "Shishio" }
 
@@ -106,7 +106,7 @@ hideall "--sync--"
 1323.8 "Vortex of the Thunder Eye/Eye of the Thunder Vortex" Ability { id: "(843B|843D)", source: "Shishio" }
 1324.4 "Unnatural Force/Unnatural Ailment 2" Ability { id: "(8440|843F)", source: "Shishio" }
 
-1329.4 "--sync--" sync / 14:[^:]*:Shishio:841E:/ window 20,20
+1329.4 "--sync--" StartsUsing { id: "841E", source: "Shishio" } window 20,20
 1339.4 "Enkyo Enrage" Ability { id: "841E", source: "Shishio" }
 
 # ALL ENCOUNTER ABILITIES
@@ -161,7 +161,7 @@ hideall "--sync--"
 
 # Trial of Wisdom will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10F9:/ window 10000,0
-2009.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8534:/ window 10000,0
+2009.3 "--sync--" StartsUsing { id: "8534", source: "Gorai the Uncaged" } window 10000,0
 2014.3 "Unenlightenment" Ability { id: "8534", source: "Gorai the Uncaged" }
 
 2021.7 "--middle--" Ability { id: "84D3", source: "Gorai the Uncaged" }
@@ -228,7 +228,7 @@ hideall "--sync--"
 2309.1 "Greater Ball of Fire" Ability { id: "8539", source: "Gorai the Uncaged" }
 2318.3 "Unenlightenment" Ability { id: "8534", source: "Gorai the Uncaged" }
 
-2325.4 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8536:/
+2325.4 "--sync--" StartsUsing { id: "8536", source: "Gorai the Uncaged" }
 2335.4 "Living Hell Enrage" Ability { id: "8536", source: "Gorai the Uncaged" }
 #2336.0 "Living Hell" #Ability { id: "8538", source: "Gorai the Uncaged" }
 #2337.8 "Living Hell" #Ability { id: "8537", source: "Gorai the Uncaged" }
@@ -300,7 +300,7 @@ hideall "--sync--"
 
 # Trial of Responsibility will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10FA:/ window 10000,0
-3011.4 "--sync--" sync / 14:[^:]*:Moko the Restless:860C:/ window 10000,10
+3011.4 "--sync--" StartsUsing { id: "860C", source: "Moko the Restless" } window 10000,10
 3016.4 "Kenki Release" Ability { id: "860C", source: "Moko the Restless" }
 
 3035.6 "Triple Kasumi-giri 1" Ability { id: "(85E4|85E5|85E6|85E7|85EE|85EF|85F0|85F1)", source: "Moko the Restless" }
@@ -383,7 +383,7 @@ hideall "--sync--"
 3328.8 "Lateral Slice" Ability { id: "860D", source: "Moko the Restless" }
 3336.8 "Kenki Release" Ability { id: "860C", source: "Moko the Restless" }
 
-3342.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85E2:/ window 10,10
+3342.0 "--sync--" StartsUsing { id: "85E2", source: "Moko the Restless" } window 10,10
 3352.0 "Kenki Release Enrage" Ability { id: "85E2", source: "Moko the Restless" }
 
 

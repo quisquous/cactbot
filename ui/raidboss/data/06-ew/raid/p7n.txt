@@ -33,9 +33,9 @@ hideall "--sync--"
 246.1 "Bough of Attis (left/right)" Ability { id: "77FB", source: "Agdistis" }
 
 # Forbidden Fruit pre-cast
-249.5 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
+249.5 "--sync--" StartsUsing { id: "7800", source: "Agdistis" } window 30,30 jump 400
 # Hemitheos' Holy pre-cast
-250.6 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+250.6 "--sync--" StartsUsing { id: "7807", source: "Agdistis" } window 30,30 jump 1000
 258.2 "Forbidden Fruit?"
 260.4 "Hemitheos's Holy?"
 266.8 "Hemitheos's Glare III?"
@@ -47,7 +47,7 @@ hideall "--sync--"
 
 
 # Forbidden Fruit block
-400.0 "--sync--" sync / 14:[^:]*:Agdistis:7800:/
+400.0 "--sync--" StartsUsing { id: "7800", source: "Agdistis" }
 408.7 "Forbidden Fruit" Ability { id: "7801", source: "Agdistis" }
 420.8 "Static Moon" Ability { id: "7802", source: "Immature Io" }
 420.8 "Hemitheos's Holy" Ability { id: "7808", source: "Agdistis" }
@@ -78,8 +78,8 @@ hideall "--sync--"
 658.0 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
 665.6 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
 
-669.1 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
-670.2 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+669.1 "--sync--" StartsUsing { id: "7800", source: "Agdistis" } window 30,30 jump 400
+670.2 "--sync--" StartsUsing { id: "7807", source: "Agdistis" } window 30,30 jump 1000
 677.8 "Forbidden Fruit?"
 680.0 "Hemitheos's Holy?"
 686.4 "Hemitheos's Glare III?"
@@ -91,7 +91,7 @@ hideall "--sync--"
 
 
 # Hemitheos' Holy block
-1000.0 "--sync--" sync / 14:[^:]*:Agdistis:7807:/
+1000.0 "--sync--" StartsUsing { id: "7807", source: "Agdistis" }
 1009.8 "Hemitheos's Holy" Ability { id: "7808", source: "Agdistis" }
 1016.2 "Hemitheos's Glare III" Ability { id: "77F8", source: "Agdistis" } window 30,30
 1026.3 "Bough of Attis (in)"  Ability { id: "77FE", source: "Agdistis" }
@@ -112,8 +112,8 @@ hideall "--sync--"
 1211.7 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
 1219.3 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
 
-1222.5 "--sync--" sync / 14:[^:]*:Agdistis:7800:/ window 30,30 jump 400
-1223.6 "--sync--" sync / 14:[^:]*:Agdistis:7807:/ window 30,30 jump 1000
+1222.5 "--sync--" StartsUsing { id: "7800", source: "Agdistis" } window 30,30 jump 400
+1223.6 "--sync--" StartsUsing { id: "7807", source: "Agdistis" } window 30,30 jump 1000
 1231.2 "Forbidden Fruit?"
 1233.4 "Hemitheos's Holy?"
 1239.8 "Hemitheos's Glare III?"
