@@ -32,7 +32,7 @@ hideall "--sync--"
 
 
 # Phase 2: 85%->55%
-200.0 "--sync--" sync / 14:[^:]*:Titan:5C0:/ window 200,0
+200.0 "--sync--" StartsUsing { id: "5C0", source: "Titan" } window 200,0
 203.0 "Geocrush" Ability { id: "5C0", source: "Titan" }
 
 212.6 "Landslide" Ability { id: "5BB", source: "Titan" }
@@ -78,7 +78,7 @@ hideall "--sync--"
 
 
 ### Phase 3: Heart Phase (at 55%)
-500.0 "--sync--" sync / 14:[^:]*:Titan:5C0:/ window 299,0
+500.0 "--sync--" StartsUsing { id: "5C0", source: "Titan" } window 299,0
 503.0 "Geocrush" Ability { id: "5C0", source: "Titan" }
 515.6 "Weight Of The Land" Ability { id: "5BE", source: "Titan" }
 521.2 "Rock Throw" Ability { id: "285", source: "Titan" } duration 21.5
@@ -155,7 +155,7 @@ hideall "--sync--"
 
 
 ### Enrage
-1000.0 "--sync--" sync / 14:[^:]*:Titan:5C2:/ window 1000,1000
+1000.0 "--sync--" StartsUsing { id: "5C2", source: "Titan" } window 1000,1000
 1010.0 "Upheaval Enrage" #Ability { id: "5C2", source: "Titan" }
 1022.0 "Upheaval Enrage" #Ability { id: "5C2", source: "Titan" }
 1034.0 "Upheaval Enrage" #Ability { id: "5C2", source: "Titan" }

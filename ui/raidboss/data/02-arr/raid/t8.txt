@@ -80,7 +80,7 @@ hideall "--sync--"
 # can instead be the 380/460 pattern, with a different diffusion ray.
 # The field/missile/bomb/surge timings are all roughly the same, so this
 # just removes the ray syncs and hopes for the best.
-377.0 "--sync--" sync / 14:[^:]*:The Avatar:7C4:/ window 400,0
+377.0 "--sync--" StartsUsing { id: "7C4", source: "The Avatar" } window 400,0
 380.0 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31 window 400,10
 386.3 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
 387.6 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
