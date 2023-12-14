@@ -376,7 +376,6 @@ Options.Triggers.push({
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -389,6 +388,7 @@ Options.Triggers.push({
         'cactbot test config': 'cactbot test konfig',
         'cactbot test outputStrings': 'cactbot test outputStrings',
         'cactbot test combatant cast': 'cactbot test gegner wirken',
+        'testNetRegexTimeline': 'testNetRegexTimeline',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',

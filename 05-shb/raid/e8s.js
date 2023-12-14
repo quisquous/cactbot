@@ -48,6 +48,15 @@ Options.Triggers.push({
              Tanks adjust to where the Red and Green Mirror are located.
              One tank must be inbetween the party, the other closest to Greem Mirror.
              Once Green Mirror goes off, the tanks adjust for Red Mirror.`,
+        de:
+          `Wenn du möchten, dass Cactbot den doppelten Knockback von Spiegelland 4 auslöst, aktivieren Sie diese Option.
+             Die Anzeige erfolgt während/nach den Drehungen des Bosses und erfordert <1,4s Reaktionszeit
+             um sowohl den grünen als auch den roten Spiegel-Rückstoß zu vermeiden.
+             Beispiel: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
+             Die Gruppe teilt sich nach dem Sprung hinter dem Boss in zwei Gruppen auf.
+             Die Tanks passen sich danach an, wo sich der rote und der grüne Spiegel befinden.
+             Ein Tank muss sich in der Mitte der Gruppe befinden, der andere in der Nähe des grünen Spiegels.
+             Sobald der grüne Spiegel ausgelöst wird, passen sich die Tanks auf den roten Spiegel an.`,
         fr:
           `Si vous voulez que cactbot signale le double knockback de Mirror Mirror 4, activez cette option.
              L'annonce se fait pendant/après les tours du boss et nécessite un temps de réaction < à 1.4s
@@ -183,12 +192,14 @@ Options.Triggers.push({
       outputStrings: {
         scytheNext: {
           en: '(under boss => under mirrors soon)',
+          de: '(unter den Boss => gleich unter den Spiegel)',
           fr: '(sous le boss => sous les miroirs bientôt',
           cn: '(BOSS 下方 => 即将去镜子下方)',
           ko: '(보스 밑 => 이후 거울 밑)',
         },
         axeNext: {
           en: '(out => middle soon)',
+          de: '(raus => gleich Mitte)',
           cn: '(外 => 即将去中间)',
           ko: '(밖 => 이후 중앙)',
         },
@@ -222,12 +233,14 @@ Options.Triggers.push({
       outputStrings: {
         redMirrorWest: {
           en: 'Behind => SW',
+          de: 'Hinten => SW',
           fr: 'Derrière => SO',
           cn: '后 => 左下 (西南)',
           ko: '뒤 => 남서',
         },
         redMirrorEast: {
           en: 'Behind => SE',
+          de: 'Hinten => SO',
           fr: 'Derrière => SE',
           cn: '后 => 右下 (东南)',
           ko: '뒤 => 남동',
@@ -250,12 +263,14 @@ Options.Triggers.push({
       outputStrings: {
         redMirrorEast: {
           en: 'Front => NW',
+          de: 'Vorne => NW',
           fr: 'Devant => NO',
           cn: '前 => 左上 (西北)',
           ko: '앞 => 북서',
         },
         redMirrorWest: {
           en: 'Front => NE',
+          de: 'Vorne => NO',
           fr: 'Devant => NE',
           cn: '前 => 右上 (东北)',
           ko: '앞 => 북동',
@@ -323,7 +338,7 @@ Options.Triggers.push({
       outputStrings: {
         bitingFrostNext: {
           en: 'Biting Next (face outward)',
-          de: 'Frosthieb als nächstes',
+          de: 'Frosthieb als nächstes (nach außen drehen)',
           fr: 'Taillade de givre (pointez vers l\'extérieur)',
           ja: '次はフロストスラッシュ',
           cn: '冰霜斩 (去背后)',
@@ -331,7 +346,7 @@ Options.Triggers.push({
         },
         drivingFrostNext: {
           en: 'Driving Next (face inward)',
-          de: 'Froststoß als nächstes',
+          de: 'Froststoß als nächstes (nach innen drehen)',
           fr: 'Percée de givre (pointez vers l\'intérieur)',
           ja: '次はフロストスラスト',
           cn: '冰霜刺 (去前面)',
@@ -365,6 +380,7 @@ Options.Triggers.push({
       outputStrings: {
         cleanse: {
           en: 'Cleanse: ${players}',
+          de: 'Reinige: ${players}',
           fr: 'Guérison : ${players}',
           cn: '驱散: ${players}',
           ko: '에스나: ${players}',
@@ -380,6 +396,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Star on YOU',
+          de: 'Stern auf DIR',
           fr: 'Étoile sur VOUS',
           cn: '冰针点名',
           ko: '별 징 대상자',
@@ -473,6 +490,7 @@ Options.Triggers.push({
       outputStrings: {
         outThenMiddle: {
           en: 'Out => Middle',
+          de: 'Raus => Mitte',
           fr: 'Extérieur => Milieu',
           cn: '远离 => 中间',
           ko: '밖 => 중앙',
@@ -498,18 +516,21 @@ Options.Triggers.push({
       outputStrings: {
         getUnderCards: {
           en: 'Under => Under Cardinal Mirrors',
+          de: 'Unter den Boss => Unter Kardinal-Spiegel',
           fr: 'Dessous => Sous les miroirs cardinaux',
           cn: '下方 => 正点镜下方',
           ko: '보스 밑 => 십자 방향 거울 밑',
         },
         getUnderIntercards: {
           en: 'Under => Under Intercard Mirrors',
+          de: 'Unter den Boss => Unter Interkardinal-Spiegel',
           fr: 'Dessous => Sous les miroirs intercardinaux',
           cn: '下方 => 斜点镜下方',
           ko: '보스 밑 => 대각선 방향 거울 밑',
         },
         getUnderUnknown: {
           en: 'Under Boss => Under Mirrors',
+          de: 'Unter den Boss => Unter Spiegel',
           fr: 'Sous le boss => Sous les miroirs',
           cn: 'BOSS 下方 => 镜下方',
           ko: '보스 밑 => 거울 밑',
@@ -578,12 +599,14 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           getFinalTower: {
             en: 'Get Final Tower',
+            de: 'Nimm letzten Turm',
             fr: 'Prenez la tour finale',
             cn: '踩最后塔',
             ko: '마지막 기둥 들어가기',
           },
           avoidFinalTower: {
             en: 'Avoid Final Tower',
+            de: 'Vermeide letzten Turm',
             fr: 'Évitez la tour finale',
             cn: '躲最后塔',
             ko: '마지막 기둥 피하기',
@@ -635,6 +658,7 @@ Options.Triggers.push({
       outputStrings: {
         text: {
           en: 'Stun Aqueous Aether',
+          de: 'Wasseräther unterbrechen',
           fr: 'Étourdissez l\'ether aqueux',
           cn: '眩晕水以太',
           ko: '물 에테르 기절',
@@ -735,6 +759,9 @@ Options.Triggers.push({
         en: `Fast means you can go from the 1st to the 3rd safe spot directly.
              Slow means you need to go 1 => 2 => 3 without skipping 2.
              This is for casters who may not want to move as much.`,
+        de: `Schnell bedeutet, dass man direkt vom 1. zum 3. sicheren Punkt gehen kann.
+             Langsam bedeutet, dass man 1 => 2 => 3 gehen muss, ohne 2 zu überspringen.
+             Dies ist für Magier, die sich vielleicht nicht so viel bewegen wollen.`,
         fr: `Rapide signifie que vous pouvez passer directement du premier au troisième point sûr.
              Lent signifie que vous devez aller de 1 => 2 => 3 sans omettre 2.
              C'est pour les lanceurs de sorts qui ne veulent pas se déplacer autant.`,
@@ -795,12 +822,14 @@ Options.Triggers.push({
       outputStrings: {
         slowText: {
           en: '${dir1} => ${dir2} => ${dir3} (slow)',
+          de: '${dir1} => ${dir2} => ${dir3} (langsam)',
           fr: '${dir1} => ${dir2} => ${dir3} (lent)',
           cn: '${dir1} => ${dir2} => ${dir3} (慢)',
           ko: '${dir1} => ${dir2} => ${dir3} (느림)',
         },
         fastText: {
           en: '${dir1} => ${dir2} => ${dir3} (fast)',
+          de: '${dir1} => ${dir2} => ${dir3} (schnell)',
           fr: '${dir1} => ${dir2} => ${dir3} (rapide)',
           cn: '${dir1} => ${dir2} => ${dir3} (快)',
           ko: '${dir1} => ${dir2} => ${dir3} (빠름)',
@@ -996,12 +1025,14 @@ Options.Triggers.push({
       outputStrings: {
         redDragonHead: {
           en: 'Pop Head #${num}',
+          de: 'Nimm Kopf #${num}',
           fr: 'Tête #${num}',
           cn: '撞头 #${num}',
           ko: '${num}번 머리 부딪히기',
         },
         bluePuddle: {
           en: 'Get Puddle #${num}',
+          de: 'Nimm Fläche #${num}',
           fr: 'Prenez le puddle #${num}',
           cn: '踩圈 #${num}',
           ko: '${num}번 장판 밟기',
@@ -1078,6 +1109,7 @@ Options.Triggers.push({
         },
         bluCleanse: {
           en: 'Exuviation',
+          de: 'Exuviation',
           fr: 'Exuviation',
           cn: '蜕皮',
           ko: '허물 벗기',
@@ -1131,12 +1163,14 @@ Options.Triggers.push({
       outputStrings: {
         proteanGetFinalTower: {
           en: 'Protean => Get Final Tower',
+          de: 'Himmelsrichtung => Nimm letzten Turm',
           fr: 'Positions => Prenez la tour finale',
           cn: '八方分散 => 踩最后塔',
           ko: '8방향 산개 => 마지막 기둥 들어가기',
         },
         proteanAvoidFinalTower: {
           en: 'Protean => Avoid Final Tower',
+          de: 'Himmelsrichtung => Vermeide letzten Turm',
           fr: 'Position => Évitez la tour finale',
           cn: '八方分散 => 躲最后塔',
           ko: '8방향 산개 => 마지막 기둥 피하기',

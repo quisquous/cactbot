@@ -259,6 +259,7 @@ Options.Triggers.push({
           },
           formlessBusterBLU: {
             en: 'Buster on YOU (w/${player})',
+            de: 'Tankbuster auf DIR (mit ${player})',
             fr: 'Tankbuster sur VOUS (avec ${player})',
             cn: '死刑点名 (与${player})',
             ko: '탱버 대상자 (+${player})',
@@ -381,12 +382,14 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           stackOnYou: {
             en: 'Stack on YOU (w/${player})',
+            de: 'Auf DIR sammeln (mit ${player})',
             fr: 'Package sur VOUS (avec ${player})',
             cn: '分摊点名 (与${player})',
             ko: '쉐어 대상자 (+${player})',
           },
           stacks: {
             en: 'Stacks: ${players}',
+            de: 'Sammeln: ${players}',
             fr: 'Package: ${players}',
             cn: '分摊: ${players}',
             ko: '쉐어: ${players}',
@@ -1197,7 +1200,7 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           shadoweye: {
             en: 'Eye (w/${player})',
-            de: 'Auge auf DIR (w/${player})',
+            de: 'Auge (mit ${player})',
             fr: 'Œil (avec ${player})',
             ja: '自分に目 (w/${player})',
             cn: '石化眼点名 (与${player})',
@@ -1205,6 +1208,7 @@ Options.Triggers.push({
           },
           water: {
             en: 'Stack (w/${player})',
+            de: 'Sammeln (mit ${player})',
             fr: 'Pack (avec ${player})',
             cn: '分摊 (与${player})',
             ko: '쉐어징 (+${player})',
@@ -1537,6 +1541,7 @@ Options.Triggers.push({
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          de: 'Sammeln (${player1}, ${player2})',
           fr: 'Packages (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
           ko: '쉐어 (${player1}, ${player2})',
@@ -1551,6 +1556,7 @@ Options.Triggers.push({
         },
         knockbackIntoStacksOn: {
           en: 'Knockback => Stacks (${player1}, ${player2})',
+          de: 'Rückstoß => Sammeln (${player1}, ${player2})',
           fr: 'Poussée => Package (${player1}, ${player2})',
           cn: '击退 => 分摊 (${player1}, ${player2})',
           ko: '넉백 => 쉐어 (${player1}, ${player2})',
@@ -1618,6 +1624,7 @@ Options.Triggers.push({
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          de: 'Sammeln (${player1}, ${player2})',
           fr: 'Packages (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
           ko: '쉐어 (${player1}, ${player2})',
@@ -1644,7 +1651,7 @@ Options.Triggers.push({
         output.responseOutputStrings = {
           shadoweye: {
             en: 'Eye (w/${player})',
-            de: 'Auge auf DIR (w/${player})',
+            de: 'Auge (mit ${player})',
             fr: 'Œil(avec ${player})',
             ja: '自分に目 (w/${player})',
             cn: '石化眼点名 (与${player})',
@@ -1652,7 +1659,7 @@ Options.Triggers.push({
           },
           doubleAero: {
             en: 'Double Aero (w/${player})',
-            de: 'Doppel Windga auf DIR (w/${player})',
+            de: 'Doppel Windga (mit ${player})',
             fr: 'Double Vent(avec ${player})',
             ja: '自分にエアロガ×2 (w/${player})',
             cn: '双风点名 (与${player})',
@@ -1660,7 +1667,7 @@ Options.Triggers.push({
           },
           spread: {
             en: 'Spread (w/${player1}, ${player2}, ${player3})',
-            de: 'Verteilen auf DIR (w/${player1}, ${player2}, ${player3})',
+            de: 'Verteilen (mit ${player1}, ${player2}, ${player3})',
             fr: 'Dispersion (avec ${player1}, ${player2}, ${player3})',
             ja: '自分に散開 (w/${player1}, ${player2}, ${player3})',
             cn: '分散点名 (与${player1}, ${player2}, ${player3})',
