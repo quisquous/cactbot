@@ -16,6 +16,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'Test Bow',
       type: 'GameLog',
       netRegex: NetRegexes.gameNameLog({ line: 'You bow courteously to the striking dummy.*?' }),
+      netRegexDe: NetRegexes.gameNameLog({
+        line: 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe.*?',
+      }),
       netRegexFr: NetRegexes.gameNameLog({
         line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?',
       }),
