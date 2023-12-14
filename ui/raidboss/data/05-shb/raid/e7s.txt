@@ -67,7 +67,7 @@ hideall "--sync--"
 205.6 "--targetable--"
 224.9 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
 231.8 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }
-239.5 "Advent Of Light" sync / 14:[^:]*:Idolatry:4C6E:/ # use start of cast for this interrupt
+239.5 "Advent Of Light" StartsUsing { id: "4C6E", source: "Idolatry" } # use start of cast for this interrupt
 243.6 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
 253.7 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
 254.5 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }

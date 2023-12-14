@@ -9,7 +9,7 @@ hideall "--sync--"
 
 ### Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-16.3 "--sync--" sync / 14:[^:]*:The Diamond Weapon:5FA7:/ window 17,10
+16.3 "--sync--" StartsUsing { id: "5FA7", source: "The Diamond Weapon" } window 17,10
 21.3 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" } window 25,10
 
 # 5FA2 = Spread (Homing Laser, 5FA0)

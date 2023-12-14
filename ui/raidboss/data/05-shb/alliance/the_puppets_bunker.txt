@@ -161,9 +161,9 @@ hideall "--sync--"
 2159.0 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2161.3 "--targetable--"
 
-2172.7 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/ window 70,20
-2172.7 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FC4:/ window 70,20
-2172.7 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FC4:/ window 70,20
+2172.7 "--sync--" StartsUsing { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 70,20
+2172.7 "--sync--" StartsUsing { id: "4FC4", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" } window 70,20
+2172.7 "--sync--" StartsUsing { id: "4FC4", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" } window 70,20
 2176.7 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 10,10
 2191.0 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
 2206.2 "Maneuver: High-Powered Laser" Ability { id: "4FB4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
@@ -193,9 +193,9 @@ hideall "--sync--"
 2408.6 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2410.9 "--targetable--"
 
-2427.2 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/ window 70,20
-2427.2 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FBD:/ window 70,20
-2427.2 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FBD:/ window 70,20
+2427.2 "--sync--" StartsUsing { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 70,20
+2427.2 "--sync--" StartsUsing { id: "4FBD", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" } window 70,20
+2427.2 "--sync--" StartsUsing { id: "4FBD", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" } window 70,20
 2431.2 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 10,10
 2447.4 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2467.7 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
@@ -398,11 +398,11 @@ hideall "--sync--"
 
 
 # Random Three Parts/ Four Parts
-6391.8 "--sync--" sync / 14:[^:]*:Compound 2P:519E:/ window 50,50
+6391.8 "--sync--" StartsUsing { id: "519E", source: "Compound 2P" } window 50,50
 6399.8 "Four Parts Resolve?" Ability { id: "519E", source: "Compound 2P" }
 
 # This is adjusted 9 seconds ahead so that Compound Pod: R012 lines up.  @_@;;
-6400.7 "--sync--" sync / 14:[^:]*:Compound 2P:519B:/ window 50,50
+6400.7 "--sync--" StartsUsing { id: "519B", source: "Compound 2P" } window 50,50
 6406.7 "Three Parts Disdain?" Ability { id: "519B", source: "Compound 2P" }
 
 

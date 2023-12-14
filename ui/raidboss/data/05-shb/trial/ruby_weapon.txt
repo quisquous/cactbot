@@ -56,7 +56,7 @@ hideall "--sync--"
 311.8 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 
 # FIXME: does this push at a percent like extreme?
-314.0 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4AA9:/ window 500,500
+314.0 "--sync--" StartsUsing { id: "4AA9", source: "The Ruby Weapon" } window 500,500
 329.0 "Optimized Ultima Enrage" Ability { id: "4AA9", source: "The Ruby Weapon" }
 
 ### Cutscene

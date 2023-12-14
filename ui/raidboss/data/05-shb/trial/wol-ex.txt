@@ -100,30 +100,30 @@ hideall "Limit Break"
 517.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 1519.5
+519.6 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 1519.5
 522.6 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-527.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 1527.8
+527.8 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 1527.8
 
 # DRK/BRD
-519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 2519.6
+519.6 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 2519.6
 522.6 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-534.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 2534.0
+534.0 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 2534.0
 
 # NIN
-519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 3519.6
+519.6 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 3519.6
 522.6 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 # SMN/WAR
-519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 4519.7
+519.6 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 4519.7
 522.6 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 ### Phase 3a: BLM/WHM
 1517.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-1519.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F37:/
+1519.5 "--sync--" StartsUsing { id: "4F37", source: "Warrior Of Light" }
 1522.5 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
-1525.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[56]:/
-1527.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/
+1525.6 "--sync--" StartsUsing { id: "4F3[56]", source: "Warrior Of Light" }
+1527.8 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" }
 1528.6 "To The Limit" Ability { id: "4F3[456]", source: "Warrior Of Light" }
 1530.8 "Twincast" Ability { id: "4F3D", source: "Spectral Black Mage" }
 1533.2 "--sync--" Ability { id: "531E", source: "Spectral White Mage" }
@@ -141,7 +141,7 @@ hideall "Limit Break"
 1568.0 "Cauterize" Ability { id: "4F07", source: "Wyrm Of Light" }
 1580.2 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
 ### TODO: bitter end gets moved up 0.5s if it's meteor???
-1593.1 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+1593.1 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 1598.1 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 
 1605.4 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
@@ -156,26 +156,26 @@ hideall "Limit Break"
 1661.7 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # DRK/BRD
-1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+1664.0 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 1667.0 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-1678.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+1678.3 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # NIN
-1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+1664.0 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 1667.0 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 # SMN/WAR
-1664.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+1664.0 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 1667.0 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 
 ### Phase 3a: DRK/BRD
 2517.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-2519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[46]:/
+2519.6 "--sync--" StartsUsing { id: "4F3[46]", source: "Warrior Of Light" }
 2522.6 "To The Limit" Ability { id: "4F3[456]", source: "Warrior Of Light" }
 2530.8 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
-2534.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/
+2534.0 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" }
 2537.0 "--sync--" Ability { id: "4F43", source: "Warrior Of Light" }
 2540.6 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 2544.1 "Brimstone Earth" Ability { id: "4F3A", source: "Spectral Dark Knight" }
@@ -186,7 +186,7 @@ hideall "Limit Break"
 2556.6 "Deluge Of Death" Ability { id: "4F02", source: "Spectral Bard" }
 2563.6 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 2571.8 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
-2584.1 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+2584.1 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 2589.1 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 
 2596.4 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
@@ -201,23 +201,23 @@ hideall "Limit Break"
 2652.7 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+2655.0 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 2658.0 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-2663.4 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+2663.4 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # NIN
-2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+2655.0 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 2658.0 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 # SMN/WAR
-2655.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+2655.0 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 2658.0 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 
 ### Phase 3a: NIN
 3517.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-3519.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/
+3519.6 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" }
 3522.6 "Imbued Stone/Holy" Ability { id: "4EF[56]", source: "Warrior Of Light" }
 3531.7 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 3540.0 "--sync--" Ability { id: "4F38", source: "Spectral Ninja" }
@@ -243,23 +243,23 @@ hideall "Limit Break"
 3652.6 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+3654.9 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 3657.9 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-3663.3 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+3663.3 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # DRK/BRD
-3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+3654.9 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 3657.9 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-3669.2 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+3669.2 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # SMN/WAR
-3654.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+3654.9 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 3657.9 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 ### Phase 3a: SMN/WAR
 4517.4 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-4519.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/
+4519.7 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" }
 4522.7 "Imbued Fire/Ice" Ability { id: "4EF[34]", source: "Warrior Of Light" }
 4531.9 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 4540.2 "Summon" Ability { id: "4F3F", source: "Spectral Summoner" }
@@ -290,27 +290,27 @@ hideall "Limit Break"
 4671.2 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+4673.5 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 4676.5 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-4681.9 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+4681.9 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # DRK/BRD
-4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+4673.5 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 4676.5 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-4687.8 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+4687.8 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # NIN
-4673.5 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+4673.5 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 4676.5 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 
 
 ### Phase 3b: BLM/WHM
 6000.0 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-6002.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F37:/
+6002.4 "--sync--" StartsUsing { id: "4F37", source: "Warrior Of Light" }
 6005.4 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
-6008.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[56]:/
-6010.7 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/
+6008.6 "--sync--" StartsUsing { id: "4F3[56]", source: "Warrior Of Light" }
+6010.7 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" }
 6011.6 "To The Limit" Ability { id: "4F3[456]", source: "Warrior Of Light" }
 6013.7 "Twincast" Ability { id: "4F3D", source: "Spectral Black Mage" }
 6016.2 "--sync--" Ability { id: "531E", source: "Spectral White Mage" }
@@ -327,30 +327,30 @@ hideall "Limit Break"
 6051.0 "Cauterize" Ability { id: "4F07", source: "Wyrm Of Light" }
 ### TODO: This is random (note: bitter end gets moved up 0.5s if it's meteor)
 6063.1 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
-6075.9 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+6075.9 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 6080.9 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 6084.1 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # DRK/BRD
-6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+6086.4 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 6089.4 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-6100.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+6100.7 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # NIN
-6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+6086.4 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 6089.4 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 # SMN/WAR
-6086.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+6086.4 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 6089.4 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 ### Phase 3b: DRK/BRD
 7000.0 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-7002.2 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[46]:/
+7002.2 "--sync--" StartsUsing { id: "4F3[46]", source: "Warrior Of Light" }
 7005.2 "To The Limit" Ability { id: "4F3[456]", source: "Warrior Of Light" }
 7013.4 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
-7016.6 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/
+7016.6 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" }
 7019.6 "--sync--" Ability { id: "4F43", source: "Warrior Of Light" }
 7023.2 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 7026.8 "Brimstone Earth" Ability { id: "4F3A", source: "Spectral Dark Knight" }
@@ -362,27 +362,27 @@ hideall "Limit Break"
 7046.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 7054.6 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
 # TODO: guessing here
-7066.8 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F0A:/ window 10,10
+7066.8 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 7071.8 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 7079.1 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+7081.4 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 7084.4 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-7089.8 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+7089.8 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # NIN
-7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+7081.4 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 7084.4 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }
 
 # SMN/WAR
-7081.4 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+7081.4 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 7084.4 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 ### Phase 3b: NIN
 8000.0 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-8002.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/
+8002.3 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" }
 8005.3 "Imbued Stone/Holy" Ability { id: "4EF[56]", source: "Warrior Of Light" }
 8014.4 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 8022.7 "--sync--" Ability { id: "4F38", source: "Spectral Ninja" }
@@ -398,23 +398,23 @@ hideall "Limit Break"
 8074.7 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+8077.0 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 8080.0 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-8085.4 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+8085.4 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # DRK/BRD
-8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+8077.0 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 8080.0 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-8091.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+8091.3 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # SMN/WAR
-8077.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/ window 40,40 jump 9002.3
+8077.0 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" } window 40,40 jump 9002.3
 8080.0 "Fire/Ice -> SMN/WAR" #Ability { id: "4EF[34]", source: "Warrior Of Light" }
 
 
 ### Phase 3b: SMN/WAR
 9000.0 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-9002.3 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[34]:/
+9002.3 "--sync--" StartsUsing { id: "4EF[34]", source: "Warrior Of Light" }
 9005.3 "Imbued Fire/Ice" Ability { id: "4EF[34]", source: "Warrior Of Light" }
 9014.3 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 9022.6 "Summon" Ability { id: "4F3F", source: "Spectral Summoner" }
@@ -435,15 +435,15 @@ hideall "Limit Break"
 9093.4 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
 
 # BLM/WHM
-9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F73:/ window 5,5 jump 6002.4
+9095.7 "--sync--" StartsUsing { id: "4F73", source: "Warrior Of Light" } window 5,5 jump 6002.4
 9098.7 "Specter -> BLM/WHM" #Ability { id: "4F73", source: "Warrior Of Light" }
-9104.1 "--sync--" sync / 14:[^:]*:Spectral Black Mage:4F3D:/ window 40,40 jump 6010.7
+9104.1 "--sync--" StartsUsing { id: "4F3D", source: "Spectral Black Mage" } window 40,40 jump 6010.7
 
 # DRK/BRD
-9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F3[456]:/ window 5,5 jump 7002.2
+9095.7 "--sync--" StartsUsing { id: "4F3[456]", source: "Warrior Of Light" } window 5,5 jump 7002.2
 9098.7 "Limit -> DRK/BRD" #Ability { id: "4F3[456]", source: "Warrior Of Light" }
-9110.0 "--sync--" sync / 14:[^:]*:Warrior Of Light:4F43:/ window 40,40 jump 7016.6
+9110.0 "--sync--" StartsUsing { id: "4F43", source: "Warrior Of Light" } window 40,40 jump 7016.6
 
 # NIN
-9095.7 "--sync--" sync / 14:[^:]*:Warrior Of Light:4EF[56]:/ window 40,40 jump 8002.3
+9095.7 "--sync--" StartsUsing { id: "4EF[56]", source: "Warrior Of Light" } window 40,40 jump 8002.3
 9098.7 "Stone/Holy -> NIN" #Ability { id: "4EF[56]", source: "Warrior Of Light" }

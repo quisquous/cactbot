@@ -68,7 +68,7 @@ hideall "--sync--"
 
 ### Wing Mirrors
 350.5 "--targetable--"
-364.2 "--sync--" sync / 14:[^:]*:Shiva:4D79:/ window 370,10
+364.2 "--sync--" StartsUsing { id: "4D79", source: "Shiva" } window 370,10
 368.6 "Akh Morn x3" Ability { id: "4D79", source: "Shiva" } duration 3.1
 378.0 "Morn Afah" Ability { id: "4D7B", source: "Shiva" }
 389.4 "Mirror, Mirror" Ability { id: "4D5A", source: "Shiva" }
