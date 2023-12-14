@@ -49,12 +49,12 @@ hideall "--sync--"
 570.6 "Executable 2" Ability { id: "35A8", source: "Level Checker" }
 574.6 "Reset" Ability { id: "35AA", source: "Level Checker" }
 578.6 "Reformat" Ability { id: "35A9", source: "Level Checker" }
-587.6 "--sync--" sync / 14:[^:]*:Level Checker:327A:/
+587.6 "--sync--" StartsUsing { id: "327A", source: "Level Checker" }
 611.6 "Force Quit" Ability { id: "327A", source: "Level Checker" }
 
 ## Delta Attack
 1000.0 "--sync--" sync / 00:0044:Omega:Program failure detected/ window 1500,100
-1007.0 "--sync--" sync / 14:[^:]*:Omega:327B:/ window 1500,100
+1007.0 "--sync--" StartsUsing { id: "327B", source: "Omega" } window 1500,100
 1037.0 "Delta Attack" Ability { id: "327B", source: "Omega" } window 1500,100
 1048.4 "--targetable--"
 

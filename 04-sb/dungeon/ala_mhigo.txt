@@ -51,7 +51,7 @@ hideall "--sync--"
 1099.8 "Order to Charge" #Ability { id: "2057", source: "Aulus mal Asina" }
 
 # Intermission at <= 60% HP
-1500.0 "--sync--" sync / 14:[^:]*:Aulus Mal Asina:2050:/ window 500,1
+1500.0 "--sync--" StartsUsing { id: "2050", source: "Aulus Mal Asina" } window 500,1
 1503.0 "Magitek Disruptor" Ability { id: "2050", source: "Aulus mal Asina" }
 1508.0 "Mindjack" Ability { id: "204E", source: "Aulus mal Asina" }
 1509.2 "--sync--" Ability { id: "2053", source: "Prototype Bit" }

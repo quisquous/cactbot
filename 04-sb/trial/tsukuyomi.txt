@@ -8,7 +8,7 @@ hideall "--Reset--"
 
 ### Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.2 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BE3:/ window 20,20
+10.2 "--sync--" StartsUsing { id: "2BE3", source: "Tsukuyomi" } window 20,20
 14.2 "Torment Unto Death" Ability { id: "2BE3", source: "Tsukuyomi" }
 24.3 "Zashiki-Asobi" Ability { id: "2BEC", source: "Tsukuyomi" }
 30.4 "Nightfall" Ability { id: "2BE5", source: "Tsukuyomi" }
@@ -44,7 +44,7 @@ hideall "--Reset--"
 
 
 ### Phase 3: Selenomancy
-500.0 "--sync--" sync / 14:[^:]*:Tsukuyomi:2CB0:/ window 500,0
+500.0 "--sync--" StartsUsing { id: "2CB0", source: "Tsukuyomi" } window 500,0
 504.0 "Nightbloom" Ability { id: "2CB0", source: "Tsukuyomi" }
 509.9 "--targetable--"
 524.4 "Selenomancy" Ability { id: "2BF1", source: "Tsukuyomi" }

@@ -22,7 +22,7 @@ hideall "--sync--"
 
 ### Twintania P2: 75% -> 45%
 47.5 "Liquid Hell x5" duration 4.5 Ability { id: "26AD", source: "Twintania" } window 50,0
-53.0 "--sync--" sync / 14:[^:]*:Twintania:26AE:/ window 53,10
+53.0 "--sync--" StartsUsing { id: "26AE", source: "Twintania" } window 53,10
 56.0 "Generate" Ability { id: "26AE", source: "Twintania" }
 59.1 "Liquid Hell x5" duration 4.5 #Ability { id: "26AD", source: "Twintania" }
 70.6 "Death Sentence" Ability { id: "26A9", source: "Twintania" }
@@ -35,7 +35,7 @@ hideall "--sync--"
 
 ### Twintania P3: 45% -> 0%
 106.4 "Liquid Hell x5" duration 4.5 #Ability { id: "26AD", source: "Twintania" }
-111.9 "--sync--" sync / 14:[^:]*:Twintania:26AE:/ window 30,10
+111.9 "--sync--" StartsUsing { id: "26AE", source: "Twintania" } window 30,10
 114.9 "Generate x2" Ability { id: "26AE", source: "Twintania" }
 118.0 "Targeted Fire x5" duration 4.5 #Ability { id: "26AD", source: "Twintania" }
 124.6 "Fireball" Ability { id: "26AC", source: "Twintania" } window 70,10

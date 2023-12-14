@@ -36,7 +36,7 @@ hideall "--sync--"
 123.8 "1x Numa-No-Shiki"
 
 ### Final Phase
-200.0 "--sync--" sync / 14:[^:]*:Seiryu:37C9:/ window 200,0
+200.0 "--sync--" StartsUsing { id: "37C9", source: "Seiryu" } window 200,0
 205.0 "Strength Of Spirit" Ability { id: "37C9", source: "Seiryu" }
 208.1 "--sync--" Ability { id: "37CA", source: "Seiryu" }
 232.1 "Dragon's Wake" Ability { id: "3800", source: "Seiryu" }

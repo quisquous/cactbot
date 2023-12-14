@@ -79,7 +79,7 @@ hideall "--sync--"
 229.1 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
 # ???
 
-296.0 "--sync--" sync / 14:[^:]*:Gilgamesh:383D:/ window 100,0
+296.0 "--sync--" StartsUsing { id: "383D", source: "Gilgamesh" } window 100,0
 300.0 "Ame-no-Murakumo" Ability { id: "383D", source: "Gilgamesh" } window 300,300
 316.4 "Giga Jump" Ability { id: "383E", source: "Yojimbo" } # drift -0.048
 316.4 "--targetable--"

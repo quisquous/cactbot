@@ -15,7 +15,7 @@ hideall "--Reset--"
 
 ### Phase 1: Garuda ###
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.3 "--sync--" sync / 14:[^:]*:Garuda:2B53:/ window 10,10
+6.3 "--sync--" StartsUsing { id: "2B53", source: "Garuda" } window 10,10
 8.8 "Slipstream" Ability { id: "2B53", source: "Garuda" }
 11.4 "Mistral Song" Ability { id: "2B42", source: "Garuda" }
 17.5 "Great Whirlwind" Ability { id: "2B41", source: "Garuda" }
@@ -55,7 +55,7 @@ hideall "--Reset--"
 
 
 ### Phase 2: Ifrit ###
-300.0 "--sync--" sync / 14:[^:]*:Ifrit:2B5F:/ window 300,0
+300.0 "--sync--" StartsUsing { id: "2B5F", source: "Ifrit" } window 300,0
 303.0 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
 304.0 "Radiant Plume" Ability { id: "2B61", source: "Ifrit" }
 307.1 "--targetable--"
@@ -73,7 +73,7 @@ hideall "--Reset--"
 354.8 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
 365.7 "--untargetable--"
 369.9 "--targetable--"
-369.9 "--sync--" sync / 14:[^:]*:Ifrit:2B5E:/ window 10,10
+369.9 "--sync--" StartsUsing { id: "2B5E", source: "Ifrit" } window 10,10
 372.9 "Hellfire" Ability { id: "2B5E", source: "Ifrit" }
 381.2 "Inferno Howl 1" Ability { id: "2B5B", source: "Ifrit" } duration 30
 387.3 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
@@ -102,7 +102,7 @@ hideall "--Reset--"
 
 
 ### Phase 3: Titan ###
-600.0 "--sync--" sync / 14:[^:]*:Titan:2CFD:/ window 600,0
+600.0 "--sync--" StartsUsing { id: "2CFD", source: "Titan" } window 600,0
 603.0 "Geocrush" Ability { id: "2CFD", source: "Titan" }
 605.3 "--targetable--"
 608.3 "Earthen Fury" Ability { id: "2B90", source: "Titan" }
@@ -157,25 +157,25 @@ hideall "--Reset--"
 ### Phase 4: Snacks ###
 800.0 "Freefire" sync / 1[56]:[^:]*:[^:]*:2CF5:/ window 800,0
 802.0 "--targetable--"
-803.0 "--sync--" sync / 14:[^:]*:Magitek Bit:2B72:/
+803.0 "--sync--" StartsUsing { id: "2B72", source: "Magitek Bit" }
 815.0 "Self-detonate" Ability { id: "2B72", source: "Magitek Bit" }
 815.2 "Blight" Ability { id: "2B73", source: "Lahabrea" } window 50,10
-824.2 "--sync--" sync / 14:[^:]*:Lahabrea:2B74:/ window 50,10
+824.2 "--sync--" StartsUsing { id: "2B74", source: "Lahabrea" } window 50,10
 841.2 "Dark IV" Ability { id: "2B74", source: "Lahabrea" } window 50,10
-845.4 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2B8B:/ window 50,10
+845.4 "--sync--" StartsUsing { id: "2B8B", source: "The Ultima Weapon" } window 50,10
 850.4 "Ultima" Ability { id: "2B8B", source: "The Ultima Weapon" } window 50,10 forcejump 960.3
 
 
 ### Phase 5: Ultima ###
 960.3 "Ultima" Ability { id: "2B8B", source: "The Ultima Weapon" }
-1000 "--targetable--" sync / 14:[^:]*:The Ultima Weapon:2B87:/ window 1000,100
+1000 "--targetable--" StartsUsing { id: "2B87", source: "The Ultima Weapon" } window 1000,100
 1004.0 "Tank Purge" Ability { id: "2B87", source: "The Ultima Weapon" }
 1006.3 "--apply viscous--" Ability { id: "2B79", source: "The Ultima Weapon" }
 1012.4 "Homing Lasers" Ability { id: "2B7B", source: "The Ultima Weapon" }
 1017.4 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "The Ultima Weapon" }
 
 ## Ultimate Predation
-1020.5 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2B76:/ window 30,30
+1020.5 "--sync--" StartsUsing { id: "2B76", source: "The Ultima Weapon" } window 30,30
 1023.5 "Ultimate Predation" Ability { id: "2B76", source: "The Ultima Weapon" }
 1027.9 "--untargetable--"
 1038.2 "Landslide" Ability { id: "2B70", source: "Titan" }
@@ -209,7 +209,7 @@ hideall "--Reset--"
 1096.2 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 
 ## Ultimate Annihilation
-1098.8 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2D4C:/ window 30,30
+1098.8 "--sync--" StartsUsing { id: "2D4C", source: "The Ultima Weapon" } window 30,30
 1101.8 "Ultimate Annihilation" Ability { id: "2D4C", source: "The Ultima Weapon" }
 1106.2 "--untargetable--"
 1110.4 "--targetable--"
@@ -250,7 +250,7 @@ hideall "--Reset--"
 1190 "Diffractive Laser"
 
 ## Ultimate Suppression (50%)
-1192.0 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2D4D:/ window 1200,100
+1192.0 "--sync--" StartsUsing { id: "2D4D", source: "The Ultima Weapon" } window 1200,100
 1195.0 "Ultimate Suppression" Ability { id: "2D4D", source: "The Ultima Weapon" }
 1199.4 "--untargetable--"
 1205.7 "Rock Throw" Ability { id: "2B6B", source: "Titan" }

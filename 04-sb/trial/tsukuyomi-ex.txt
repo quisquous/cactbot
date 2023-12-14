@@ -10,7 +10,7 @@ hideall "--Reset--"
 
 # Timings get slightly off if there's lead or steel first, so do a split.
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.8 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BBA:/ window 30,30
+10.8 "--sync--" StartsUsing { id: "2BBA", source: "Tsukuyomi" } window 30,30
 14.8 "Reprimand" Ability { id: "2BBA", source: "Tsukuyomi" }
 25.0 "Nightfall (gun/spear)" Ability { id: "2BB[CD]", source: "Tsukuyomi" }
 25.0 "--sync--" Ability { id: "2BBC", source: "Tsukuyomi" } window 30,30 jump 225
@@ -92,7 +92,7 @@ hideall "--Reset--"
 1246.3 "Lead Of The Underworld/Steel Of The Underworld" Ability { id: "2BBE", source: "Tsukuyomi" }
 
 # Torment Unto Death can be delayed by ~2s if it's Steel
-1257.5 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BBB:/ window 10,10
+1257.5 "--sync--" StartsUsing { id: "2BBB", source: "Tsukuyomi" } window 10,10
 1262.5 "Torment Unto Death" Ability { id: "2BBB", source: "Tsukuyomi" }
 1273.8 "Supreme Selenomancy" Ability { id: "2EB0", source: "Tsukuyomi" }
 1282.8 "Lunar Halo" Ability { id: "2BD6", source: "Moonlight" }

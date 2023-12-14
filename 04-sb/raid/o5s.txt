@@ -95,5 +95,5 @@ hideall "--sync--"
 828 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 
 # 10:00 enrage, final phase length depends on add phase time
-821 "--sync--" sync / 14:[^:]*:Phantom Train:2A87:/ window 821,500
+821 "--sync--" StartsUsing { id: "2A87", source: "Phantom Train" } window 821,500
 831 "Saintly Beam" Ability { id: "2A87", source: "Phantom Train" }

@@ -119,7 +119,7 @@ hideall "--sync--"
 2196.6 "--sync--" Ability { id: "385D", source: "Agrias" }
 2222.3 "Mortal Blow" Ability { id: "385E", source: "Sword Knight" }
 2262.6 "Enrage"
-2500.0 "--sync--" sync / 14:[^:]*:Agrias:3861:/ window 500,0
+2500.0 "--sync--" StartsUsing { id: "3861", source: "Agrias" } window 500,0
 2508.0 "Heavenly Judgment" Ability { id: "3861", source: "Agrias" } window 10,10
 
 ### Phase 3 Loop
@@ -156,7 +156,7 @@ hideall "--sync--"
 # -p 377F:3500 -ii 3780
 # Lifeless Alley will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B37:/ window 3000,0
-3491.0 "--sync--" sync / 14:[^:]*:Dark Crusader:377F:/ window 500,0
+3491.0 "--sync--" StartsUsing { id: "377F", source: "Dark Crusader" } window 500,0
 3500.0 "Dark Rite" Ability { id: "377F", source: "Dark Crusader" }
 3509.0 "Noahionto" Ability { id: "377E", source: "Dark Crusader" }
 3520.0 "Infernal Wave" #Ability { id: "3781", source: "Dark Crusader" }
@@ -301,7 +301,7 @@ hideall "--sync--"
 #################
 
 ### Phase 1: March
-6004.0 "--sync--" sync / 14:[^:]*:Ultima, the High Seraph:38C2:/ window 1000,0
+6004.0 "--sync--" StartsUsing { id: "38C2", source: "Ultima, the High Seraph" } window 1000,0
 6007.0 "Demi-Virgo Line" Ability { id: "38C2", source: "Ultima, the High Seraph" }
 6016.0 "East/West March" Ability { id: "38A[01]", source: "Ultima, the High Seraph" }
 6018.0 "Ray of Light" Ability { id: "38B7", source: "Dominion" }
