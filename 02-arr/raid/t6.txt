@@ -42,7 +42,7 @@ hideall "--sync--"
 ### Phase 2
 # There is a Bloody Caress (often?) right at the start of this phase before blighted.
 # But it's hard to sync to it properly, sorry.
-200.0 "--sync--" sync / 14:[^:]*:Rafflesia:79D:/ window 200,0
+200.0 "--sync--" StartsUsing { id: "79D", source: "Rafflesia" } window 200,0
 204.0 "Blighted Bouquet" Ability { id: "79D", source: "Rafflesia" }
 209.0 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20
 214.1 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
@@ -76,7 +76,7 @@ hideall "--sync--"
 ### Phase 3
 # This ignores dinky leafstorms that do like 200 damage.
 
-400.0 "--sync--" sync / 14:[^:]*:Rafflesia:79E:/ window 400,0
+400.0 "--sync--" StartsUsing { id: "79E", source: "Rafflesia" } window 400,0
 403.0 "Leafstorm" Ability { id: "79E", source: "Rafflesia" }
 413.1 "Acid Rain" Ability { id: "86C", source: "Rafflesia" }
 420.3 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
@@ -120,7 +120,7 @@ hideall "--sync--"
 # This does like 60k damage so probably will kill you
 # if you are so slow to see it, but just for completeness
 # it repeats every five seconds.
-1000.0 "--sync--" sync / 14:[^:]*:Rafflesia:87A:/ window 1000,1000
+1000.0 "--sync--" StartsUsing { id: "87A", source: "Rafflesia" } window 1000,1000
 1003.0 "Leafstorm" Ability { id: "87A", source: "Rafflesia" }
 1008.0 "Leafstorm"
 1013.0 "Leafstorm"
