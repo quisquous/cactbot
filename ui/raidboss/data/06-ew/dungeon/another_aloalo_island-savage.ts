@@ -1350,7 +1350,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'No Dart',
           },
           flexCall: {
-            en: '(${player} flex)',
+            en: '(${player} unmarked)',
           },
         };
 
@@ -1778,7 +1778,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAIS Statice Pinwheeling Dartboard Tracker',
       type: 'StartsUsing',
-      netRegex: { id: '8BCF', source: 'Statice', capture: false },
+      netRegex: { id: '8CBF', source: 'Statice', capture: false },
       run: (data) => data.staticeIsPinwheelingDartboard = true,
     },
     {

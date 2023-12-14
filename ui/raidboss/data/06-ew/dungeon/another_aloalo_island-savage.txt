@@ -326,7 +326,7 @@ hideall "--sync--"
 3206.3 "--targetable--"
 3212.5 "Shocking Abandon" Ability { id: "8965", source: "Statice" }
 
-3222.7 "Pinwheeling Dartboard" Ability { id: "8BCF", source: "Statice" }
+3222.7 "Pinwheeling Dartboard" Ability { id: "8CBF", source: "Statice" }
 3231.4 "Fireworks (cast)" Ability { id: "897B", source: "Statice" }
 3233.4 "Fire Spread" Ability { id: "8952", source: "Statice" } duration 11
 3241.3 "Fireworks" Ability { id: "897C", source: "Statice" }
@@ -384,7 +384,7 @@ hideall "--sync--"
 # 8A6A --sync-- ability on Bomb when rotating
 # TODO Aero IV cast and enrage damage
 # TODO Aero IV post-enrage follow-up damage just in case
-# 8BCF Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+# 8CBF Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
 # 8CC0 Dartboard of Dancing Explosives self-targeted cast for colored dartboard
 # 8CC1 Burning Chains damage from not breaking chains
 # 8CC3 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye

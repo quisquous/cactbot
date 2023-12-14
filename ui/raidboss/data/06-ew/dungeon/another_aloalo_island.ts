@@ -1345,7 +1345,7 @@ const triggerSet: TriggerSet<Data> = {
             en: 'No Dart',
           },
           flexCall: {
-            en: '(${player} flex)',
+            en: '(${player} unmarked)',
           },
         };
 

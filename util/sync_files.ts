@@ -715,7 +715,7 @@ const zoneReplace: ZoneReplace[] = [
       '8C6D': '8C6D', // Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
       '8C6E': '8BC7', // Lead Hook casted damage from Kiwakin 3x tankbuster
       '8C6F': '8C3C', // Isle Drop cast and damage for Islekeeper front circle
-      '8CBC': '8BCF', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+      '8CBC': '8CBF', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
       '8CBD': '8CC0', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
       '8CBE': '8CC1', // Burning Chains damage from not breaking chains
       '8CC2': '8CC3', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
