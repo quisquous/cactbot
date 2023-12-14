@@ -34,7 +34,7 @@ hideall "--sync--"
 105.4 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" } window 20,20
 110.7 "--targetable--"
 
-111.1 "--sync--"  sync / 14:[^:]*:Gobpress R-VI:1AC9:/ window 112,10
+111.1 "--sync--"  StartsUsing { id: "1AC9", source: "Gobpress R-VI" } window 112,10
 112.8 "--sync--" Ability { id: "1A9C", source: "Lamebrix Strikebocks" }
 117.8 "Critical Wrath" Ability { id: "1ACD", source: "Lamebrix Strikebocks" }
 122.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
