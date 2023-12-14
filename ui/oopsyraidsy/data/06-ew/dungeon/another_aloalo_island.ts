@@ -167,6 +167,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
     renameMistake('AAI Tornado', '8BC0', 'fail', {
       // running into a tornado in the initial trash section
       en: 'Tornado',
+      de: 'Tornado',
     }),
     pushedIntoWall('AAI Angry Seas', '8AC1'),
     pushedIntoWall('AAI Pop', '894E'),
