@@ -1,0 +1,424 @@
+### ANOTHER ALOALO ISLAND
+# ZoneId: 49B
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# .*is no longer sealed
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
+
+#~~~~~~~~~~#
+# KETUDUKE #
+#~~~~~~~~~~#
+
+# -p 8AD4:1015.2
+# -ii 8AA7 8AD5 8AAE 8AB9 8AB6 8AD1 8ABE 8ABF 8AC9 8ACB 8AC0 8AAA 8AA9 8AC6 8AC8 8AC3 8A82 8A83
+
+# The Dawn Trial will be sealed off
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1146" } window 10000,0
+1010.2 "--sync--" StartsUsing { id: "8AD4", source: "Ketuduke" } window 20,20
+1015.2 "Tidal Roar" Ability { id: "8AD4", source: "Ketuduke" }
+
+1022.0 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
+1027.0 "Spring Crystals 1" Ability { id: "8AA8", source: "Ketuduke" }
+1034.0 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1041.0 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1050.0 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
+1060.0 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
+1062.0 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
+1065.0 "Saturate" Ability { id: "8AAC", source: "Spring Crystal" }
+1065.1 "Hydrobullet/Hydrofall" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+
+1074.0 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
+1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
+1084.3 "Blowing Bubbles" Ability { id: "8ABD", source: "Ketuduke" }
+1091.4 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
+1096.3 "Hydrofall/Hydrobullet" Ability { id: "(8AB7|8ABA)", source: "Ketuduke" }
+1099.6 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
+1102.5 "Hydrobullet/Hydrobullet" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+
+1113.6 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
+1118.9 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
+1130.3 "Receding Twintides/Encroaching Twintides" Ability { id: "(8ACC|8ACE)", source: "Ketuduke" }
+1130.9 "Sphere Shatter 1" Ability { id: "8ABC", source: "Ketuduke" }
+1133.4 "Far Tide/Near Tide" Ability { id: "(8ACF|8ACD)", source: "Ketuduke" }
+1134.0 "Sphere Shatter 2" Ability { id: "8ABC", source: "Ketuduke" }
+1134.0 "Hydrofall" Ability { id: "8AB7", source: "Ketuduke" }
+
+1143.7 "Hydrobullet (buff)" Ability { id: "8AB8", source: "Ketuduke" }
+1149.7 "Roar" Ability { id: "8AC4", source: "Ketuduke" }
+1154.6 "Spring Crystals 2" Ability { id: "8AA8", source: "Ketuduke" }
+1164.6 "Bubble Net" Ability { id: "8AC5", source: "Ketuduke" }
+1177.0 "Hydrobullet" Ability { id: "8ABA", source: "Ketuduke" }
+1177.6 "Saturate" Ability { id: "8AAC", source: "Spring Crystal" }
+1182.7 "Updraft" Ability { id: "8AC7", source: "Ketuduke" }
+1184.1 "Hundred Lashings" Ability { id: "8ACA", source: "Aloalo Zaratan" }
+
+1190.7 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
+1199.4 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
+1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
+1210.4 "Angry Seas" Ability { id: "8AC1", source: "Ketuduke" }
+1211.6 "Hydrofall/Hydrobullet" Ability { id: "(8AB7|8ABA)", source: "Ketuduke" }
+1212.2 "Hydrobullet/Hydrobullet" Ability { id: "(8ABA|8AB7)" } # this sometimes has the wrong source
+1214.8 "Spring Crystals 3" Ability { id: "8AA8", source: "Ketuduke" }
+1216.8 "Hydrobullet" Ability { id: "8ABA", source: "Ketuduke" }
+1221.8 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1227.8 "Fluke Typhoon (cast)" Ability { id: "8AAF", source: "Ketuduke" }
+1233.8 "Fluke Typhoon" Ability { id: "8AB0", source: "Ketuduke" }
+1236.4 "Saturate" Ability { id: "8AAB", source: "Spring Crystal" }
+1238.8 "Burst x4" Ability { id: "8AC2", source: "Ketuduke" }
+
+1246.7 "Spring Crystals 4" Ability { id: "8AA8", source: "Ketuduke" }
+1253.7 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
+1260.7 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1269.8 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
+1279.9 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
+1281.9 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
+1284.9 "Saturate" Ability { id: "8AAC", source: "Spring Crystal" }
+1285.0 "Hydrobullet/Hydrofall" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+
+1293.9 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
+1299.2 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
+1310.6 "Receding Twintides/Encroaching Twintides" Ability { id: "(8ACC|8ACE)", source: "Ketuduke" }
+1311.2 "Sphere Shatter 1" Ability { id: "8ABC", source: "Ketuduke" }
+1313.7 "Far Tide/Near Tide" Ability { id: "(8ACF|8ACD)", source: "Ketuduke" }
+1314.3 "Sphere Shatter 2" Ability { id: "8ABC", source: "Ketuduke" }
+1314.3 "Hydrofall" Ability { id: "8AB7", source: "Ketuduke" }
+1325.0 "Tidal Roar" Ability { id: "8AD4", source: "Ketuduke" }
+
+1331.8 "--sync--" StartsUsing { id: "8AD6", source: "Ketuduke" }
+1341.8 "Tidal Roar Enrage" Ability { id: "8AD6", source: "Ketuduke" }
+
+# ALL ENCOUNTER ABILITIES
+# 8A77 --sync-- Ketuduke repositioning
+# 8A82 Riptide ability on players from Angry Seas Airy Bubble when you step in one
+# 8A83 Fetters ability on players from Angry Seas Airy Bubble when you step in one after 8A82 Riptide
+# 8AA7 --sync-- auto damage from Ketuduke
+# 8AA8 Spring Crystals cast and ability to summon Spring Crystal adds (all flavors)
+# 8AA9 衝撃 self-targeted ability from Spring Crystal orbs
+# 8AAA 衝撃 self-targeted ability from Spring Crystal rupees
+# 8AAB Saturate cast and damage from Spring Crystal orb circle
+# 8AAC Saturate cast and damage from Spring Crystal rupee line laser
+# 8AAD Bubble Net self-targeted cast before Bubbles along with 8AAE during Spring Crystals 1
+# 8AAE Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 1
+# 8AAF Fluke Typhoon self-targeted cast before 8AB0 knockback during Spring Crystals 3
+# 8AB0 Fluke Typhoon cast and knockback ability on Spring Crystal and players during Spring Crystals 3
+# 8AB1 Fluke Gale self-targeted cast that adds limit cut winds
+# 8AB2 Fluke Gale cast and ability for limit cut 1 wind
+# 8AB3 Fluke Gale cast and ability for limit cut 2 wind
+# 8AB4 Hydrofall self-targeted cast that adds stack markers
+# 8AB5 Hydrofall self-targeted "stack second" ability before Blowing Bubbles
+# 8AB6 Hydrofall ability on players that adds stack debuffs
+# 8AB7 Hydrofall damage from stack debuffs
+# 8AB8 Hydrobullet self-targeted cast that adds stack markers
+# 8AB9 Hydrobullet ability on players that adds spread debuffs
+# 8ABA Hydrobullet damage from spread debuffs
+# 8ABB Strewn Bubbles self-targeted cast before 8ABC Sphere Shatter moving arches
+# 8ABC Sphere Shatter damage from moving arches
+# 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
+# 8ABE Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+# 8ABF Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
+# 8AC0 Angry Seas self-targeted cast for 8AC1 red line knockback
+# 8AC1 Angry Seas cast and knockback damage from red line
+# 8AC2 Burst tower damage
+# 8AC3 Big Burst tower failure damage
+# 8AC4 Roar self-targeted cast that summons Zaratan adds
+# 8AC5 Bubble Net self-targeted cast before Bubbles along with 8AC6 during Spring Crystals 2
+# 8AC6 Bubble Net cast and ability on players that adds Bubbles/Fetters debuffs during Spring Crystals 2
+# 8AC7 Updraft self-targeted cast to boost adds and players into the air
+# 8AC8 Updraft ability on players for 8AC7 Updraft
+# 8AC9 Hundred Lashings cast and damage for non-bubbled Zaratan 180 cleave (no damage on bubbled players)
+# 8ACA Hundred Lashings self-targeted cast for bubbled Zaratan adds
+# 8ACB Hundred Lashings cast and damage for bubbled Zaratan 180 cleave (no damage on non-bubbled players)
+# 8ACC Receding Twintides cast and damage for initial out during out->in
+# 8ACD Near Tide fast cast and damage for second out during in->out with 8ACE Encroaching Twintides
+# 8ACE Encroaching Twintides cast and damage for initial in during in->out
+# 8ACF Far Tide fast cast and damage for second in during out->in with 8ACC Receding Twintides
+# 8AD0 Hydrobomb self-targeted cast for 8AD1 puddles
+# 8AD1 Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
+# 8AD4 Tidal Roar self-targeted cast for raidwide aoe
+# 8AD5 Tidal Roar damage from 8AD4
+# 8AD6 Tidal Roar cast and enrage damage
+# 8C6D Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
+
+
+#~~~~~~#
+# LALA #
+#~~~~~~#
+
+# -p 88AE:2011.1
+# -ii 888F 8892 8CDF 889A 889B 88A8 889C 889D
+
+# The Dusk Trial will be sealed off
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1147" } window 10000,0
+2006.1 "--sync--" StartsUsing { id: "88AE", source: "Lala" } window 20,20
+2011.1 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+
+2013.2 "--middle--" Ability { id: "8874", source: "Lala" }
+2018.3 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2026.4 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+
+2029.6 "--middle--" Ability { id: "8874", source: "Lala" }
+2034.7 "Analysis" Ability { id: "8895", source: "Lala" }
+2039.8 "Arcane Array 1" Ability { id: "8890", source: "Lala" }
+2044.9 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2045.6 "Bright Pulse" Ability { id: "8891", source: "Lala" }
+2046.9 "Radiance 1" Ability { id: "8894", source: "Arcane Globe" }
+2053.0 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+# This can be +1.2s if it's on the final square instead of penultimate.
+2054.1 "Radiance 2" #Ability { id: "8894", source: "Arcane Globe" }
+2061.2 "Targeted Light" Ability { id: "8CDE", source: "Lala" }
+
+2072.5 "Strategic Strike" Ability { id: "88AD", source: "Lala" }
+
+2085.6 "Planar Tactics" Ability { id: "8898", source: "Lala" }
+2100.7 "Arcane Mine" Ability { id: "8899", source: "Lala" }
+2108.6 "Symmetric Surge x2" Ability { id: "889E", source: "Lala" }
+
+2112.8 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+2122.9 "Strategic Strike" Ability { id: "88AD", source: "Lala" }
+
+2131.1 "--middle--" Ability { id: "8874", source: "Lala" }
+2138.3 "Spatial Tactics" Ability { id: "88A0", source: "Lala" }
+2143.4 "Arcane Array 2" Ability { id: "889F", source: "Lala" }
+2149.2 "Bright Pulse" Ability { id: "8891", source: "Lala" }
+2150.5 "Inferno Divide 1" Ability { id: "8893", source: "Arcane Font" } window 1,1
+2150.5 "Radiance" Ability { id: "8D1F", source: "Arcane Globe" }
+2152.9 "Inferno Divide 2" Ability { id: "8893", source: "Arcane Font" } window 1,1
+2156.6 "Inferno Divide 3" Ability { id: "8893", source: "Arcane Font" } window 1,1
+2157.6 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2157.8 "Inferno Divide 4" Ability { id: "8893", source: "Arcane Font" } window 1,1
+2160.2 "Inferno Divide 5" Ability { id: "8893", source: "Arcane Font" } window 1,1
+2165.6 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+
+2173.7 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+2184.8 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+
+2196.9 "Symmetric Surge" Ability { id: "88A1", source: "Lala" }
+2202.0 "Constructive Figure" Ability { id: "88A3", source: "Lala" }
+2207.1 "Arcane Plot" Ability { id: "88A2", source: "Lala" }
+2212.9 "Bright Pulse" Ability { id: "8891", source: "Lala" }
+2221.2 "Arcane Point" Ability { id: "88A5", source: "Lala" }
+2221.8 "Aero II" Ability { id: "88A4", source: "Aloalo Golem" }
+2222.0 "Powerful Light" Ability { id: "88A6", source: "Lala" }
+2230.3 "Explosive Theorem" Ability { id: "88A7", source: "Lala" }
+2234.7 "Symmetric Surge x2" Ability { id: "889E", source: "Lala" }
+2235.4 "Telluric Theorem" Ability { id: "88A9", source: "Lala" }
+
+2248.4 "Strategic Strike" Ability { id: "88AD", source: "Lala" }
+2256.5 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+
+2263.6 "--middle--" Ability { id: "8874", source: "Lala" }
+2269.0 "Analysis" Ability { id: "8895", source: "Lala" }
+2274.1 "Arcane Array 3" Ability { id: "8890", source: "Lala" }
+2279.2 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2279.9 "Bright Pulse" Ability { id: "8891", source: "Lala" }
+2281.2 "Radiance 1" Ability { id: "8894", source: "Arcane Globe" }
+2287.3 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+2290.9 "Radiance 2" Ability { id: "8894", source: "Arcane Globe" }
+2295.6 "Targeted Light" Ability { id: "8CDE", source: "Lala" }
+2306.7 "Strategic Strike" Ability { id: "88AD", source: "Lala" }
+
+2316.8 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
+
+2319.9 "--sync--" StartsUsing { id: "8C25", source: "Lala" } window 20,20
+2329.9 "Inferno Theorem Enrage" Ability { id: "8C25", source: "Lala" }
+
+
+# ALL ENCOUNTER ABILITIES
+# 368 attack auto damage from Lala
+# 8874 --sync-- repositioning for Lala
+# 8889 Angular Addition self-targeted ability to give boss III
+# 888B Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
+# 888C Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
+# 888D Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
+# 888E Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
+# 888F Arcane Blight cast and damage from 270 degree rotating cleave
+# 8890 Arcane Array self-targeted cast to summon moving blue squares (#1)
+# 8891 Bright Pulse cast and damage for initial blue square
+# 8892 Bright Pulse damage from moving blue square
+# 8893 Inferno Divide orange square cross explosion damage during Spatial Tactics
+# 8894 Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #1, #3)
+# 8895 Analysis self-targeted cast before giving players
+# 8898 Planar Tactics self-targeted cast before Arcane Mines
+# 8899 Arcane Mine self-targeted cast to create 8 Arcane Mine squares
+# 889A Arcane Mine cast and damage for initial Arcane Mine squares
+# 889B Arcane Combustion damage from walking over an Arcane Mine
+# 889C Massive Explosion damage from failing to resolve Subractive Suppressor Alpha
+# 889D Massive Explosion damage from failing to resolve Subractive Suppressor Beta
+# 889E Symmetric Surge damage from two person stack that gives magic vuln up
+# 889F Arcane Array self-targeted cast to summon moving blue squares (#2)
+# 88A0 Spatial Tactics self-targeted cast prior to Arcane Array 2
+# 88A1 Symmetric Surge self-targeted cast before this mechanic
+# 88A2 Arcane Plot self-targeted cast to summon blue squares for Symmetric Surge
+# 88A3 Constructive Figure self-targeted cast that summons Aloalo Golem on edge
+# 88A4 Aero II cast and line damage from Aloalo Golem during Symmetric Surge
+# 88A5 Arcane Point self-targeted cast that gives players 88A6 Powerful Light spreads
+# 88A6 Powerful Light spread damage on players that turn the squares they are on blue
+# 88A7 Explosive Theorem self-targeted cast for very large spreads
+# 88A8 Explosive Theorem cast and damage on players for spreads with Telluric Theorem puddles
+# 88A9 Telluric Theorem cast and damage for large puddles from Explosive Theorem
+# 88AD Strategic Strike cast and damage for non-cleaving 3x tankbuster
+# 88AE Inferno Theorem cast and raidwide damage
+# 8C25 Inferno Theorem cast and enrage damage
+# 8CDE Targeted Light self-targeted cast for weak spot boss tether
+# 8CDF Targeted Light cast and damage on players for 8CDE
+# 8D1F Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
+# 8D2E Angular Addition self-targeted ability to give boss V
+
+
+#~~~~~~~~~~~~~~~~~~~~#
+# STATICE WITH A GUN #
+#~~~~~~~~~~~~~~~~~~~~#
+
+# -p 8949:3013.8
+# -ii 8947 8925 8926 895A 895B 894C 8987 8A6A 895F 8960 8CC2 8982 8CBE 89F9 8C24 8957 8958
+# -it Statice
+
+# Midnight Trial will be sealed off
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1148" } window 10000,0
+3008.8 "--sync--" StartsUsing { id: "8949", source: "Statice" } window 20,20
+3013.8 "Aero IV" Ability { id: "8949", source: "Statice" }
+
+3018.0 "--middle--" Ability { id: "8927", source: "Statice" }
+3023.4 "Trick Reload" Ability { id: "894A", source: "Statice" }
+3038.2 "Trapshooting 1" Ability { id: "8D1A", source: "Statice" }
+3048.6 "Trigger Happy" Ability { id: "894B", source: "Statice" }
+3056.5 "Ring a Ring o' Explosions" Ability { id: "895C", source: "Statice" }
+3070.6 "Trapshooting 2" Ability { id: "8959", source: "Statice" }
+3074.6 "Burst" Ability { id: "895D", source: "Bomb" }
+
+3081.8 "--middle--" Ability { id: "8927", source: "Statice" }
+3087.4 "Trick Reload" Ability { id: "894A", source: "Statice" }
+3101.2 "Ring a Ring o' Explosions" Ability { id: "895C", source: "Statice" }
+3106.3 "Dartboard of Dancing Explosives " Ability { id: "8CBD", source: "Statice" }
+3120.1 "Trapshooting 1" Ability { id: "8959", source: "Statice" }
+3122.0 "Burst" Ability { id: "895D", source: "Bomb" }
+3125.3 "Uncommon Ground" Ability { id: "8954", source: "Statice" }
+
+3132.3 "--middle--" Ability { id: "8927", source: "Statice" }
+3137.7 "Surprise Balloon" Ability { id: "894D", source: "Statice" }
+3144.8 "Beguiling Glitter" Ability { id: "8963", source: "Statice" }
+3149.8 "Surprise Needle 1" #Ability { id: "894F", source: "Needle" }
+3150.7 "Pop 1" Ability { id: "894E", source: "Statice" }
+3151.5 "Surprise Needle 2" #Ability { id: "894F", source: "Needle" }
+3152.4 "Trigger Happy" Ability { id: "894B", source: "Statice" }
+3153.2 "Surprise Needle 3" #Ability { id: "894F", source: "Needle" }
+3154.9 "Surprise Needle 4" #Ability { id: "894F", source: "Needle" }
+3155.6 "Pop 2" Ability { id: "894E", source: "Statice" }
+3160.4 "Trapshooting 2" Ability { id: "8959", source: "Statice" }
+3172.5 "Aero IV" Ability { id: "8949", source: "Statice" }
+
+3179.7 "--untargetable--"
+3179.7 "--middle--" Ability { id: "8927", source: "Statice" }
+3184.1 "Ring a Ring o' Explosions" Ability { id: "895C", source: "Statice" }
+3189.2 "Present Box 1" Ability { id: "8955", source: "Statice" }
+3194.3 "Fireworks (cast)" Ability { id: "895E", source: "Statice" }
+3204.0 "Fireworks" Ability { id: "895F", source: "Statice" }
+3204.2 "Burst" Ability { id: "895D", source: "Bomb" }
+3204.3 "Faerie Ring" Ability { id: "8956", source: "Surprising Staff" }
+
+3206.3 "--targetable--"
+3212.5 "Shocking Abandon" Ability { id: "8948", source: "Statice" }
+
+3222.7 "Pinwheeling Dartboard" Ability { id: "8CBC", source: "Statice" }
+3231.4 "Fireworks (cast)" Ability { id: "895E", source: "Statice" }
+3233.4 "Fire Spread" Ability { id: "8952", source: "Statice" } duration 11
+3241.3 "Fireworks" Ability { id: "895F", source: "Statice" }
+3241.6 "Uncommon Ground" Ability { id: "8954", source: "Statice" }
+3253.6 "Aero IV" Ability { id: "8949", source: "Statice" }
+
+3260.8 "--middle--" Ability { id: "8927", source: "Statice" }
+3266.5 "Beguiling Glitter" Ability { id: "8963", source: "Statice" }
+3273.6 "Trick Reload" Ability { id: "894A", source: "Statice" }
+3288.4 "Trapshooting 1" Ability { id: "8D1A", source: "Statice" }
+3295.5 "Present Box 2" Ability { id: "8955", source: "Statice" }
+3302.2 "Ring a Ring o' Explosions" Ability { id: "895C", source: "Statice" }
+3309.6 "Trigger Happy" Ability { id: "894B", source: "Statice" }
+3310.2 "Faerie Ring" Ability { id: "8956", source: "Surprising Staff" }
+3316.5 "Trapshooting 2" Ability { id: "8959", source: "Statice" }
+3320.4 "Burst" Ability { id: "895D", source: "Bomb" }
+
+3327.6 "Aero IV" Ability { id: "8949", source: "Statice" }
+3335.7 "Aero IV" Ability { id: "8949", source: "Statice" }
+
+3338.8 "--sync--" StartsUsing { id: "8C23", source: "Statice" }
+3348.8 "Aero IV Enrage" Ability { id: "8C23", source: "Statice" }
+
+
+# ALL ENCOUNTER ABILITIES
+# 8925 Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
+# 8926 Misload ability during 894A Trick Reload when a bullet missed the gun oops
+# 8927 --sync-- repositioning from Statice
+# 8947 --sync-- auto damage from Statice
+# 8948 Shocking Abandon cast and tankbuster damage
+# 8949 Aero IV cast and raidwide damage
+# 894A Trick Reload self-targeted cast to load gun with 8925/8926
+# 894B Trigger Happy self-targeted cast for limit cut dart board
+# 894C Trigger Happy cast and damage for limit cut dart board (filled pie slice)
+# 894D Surprise Balloon self-targeted cast
+# 894E Pop knockback from Surprise Balloon being popped
+# 894F Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+# 8954 Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
+# 8955 Present Box self-targeted cast for bombs/donuts/missiles/hands
+# 8956 Faerie Ring cast and damage for donut rings during Present Box
+# 8957 Burst high damage from running into Surprising Missile tethered add
+# 8958 Death by Claw high damage from running into Surprising Claw tethered add
+# 8959 Trapshooting self-targeted cast after Trick Reload (some instances are 8D1A)
+# 895A Trapshooting stack damage from Trick Reload
+# 895B Trapshooting spread damage from Trick Reload
+# 895C Ring a Ring o' Explosions self-targeted cast for rotating bombs
+# 895D Burst cast and damage from bomb explosion
+# 895E Fireworks self-targeted cast
+# 895F Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
+# 8960 Fireworks spread damage during Present Box / Pinwheeling Dartboard
+# 8963 Beguiling Glitter self-targeted cast to give players Face debuffs
+# 8982 Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
+# 8987 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
+# 89F9 Fire Spread ongoing rotating fire damage (from Statice)
+# 8A6A --sync-- ability on Bomb when rotating
+# 8C23 Aero IV cast and enrage damage
+# 8C24 Aero IV post-enrage follow-up damage just in case
+# 8CBC Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
+# 8CBD Dartboard of Dancing Explosives self-targeted cast for colored dartboard
+# 8CBE Burning Chains damage from not breaking chains
+# 8CC2 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
+# 8D1A Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
+
+
+#~~~~~~~~~#
+# TRASH 1 #
+#~~~~~~~~~#
+
+# ALL ENCOUNTER ABILITIES
+# 7A56 --sync-- various auto damage (trash 1)
+# 8BC0 --sync-- damage from Twister tornados
+# 8C6E Lead Hook casted damage from Kiwakin 3x tankbuster
+# 8C62 Lead Hook damage from hit 2
+# 8C53 Lead Hook damage from hit 3
+# 8C64 Water III casted damage from Snipper stack marker
+# 8C63 Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
+# 8BB8 Tail Screw casted damage from Kiwakin baited circle
+# 8BB9 Bubble Shower casted damage from Snipper front conal
+# 8BBA Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BB9
+# 8BBD Hydrocannon casted damage from Ray front line
+# 8BBF Expulsion casted damage from Ray "get out"
+# 8BBE Electric Whorl casted damage from Ray "get in"
+# 8C65 Hydroshot casted damage from Monk knockback line with a dot
+# 8BBB Cross Attack casted damage from Monk tankbuster
+
+#~~~~~~~~~#
+# TRASH 2 #
+#~~~~~~~~~#
+
+# TODO: does Wood Golem have an enrage??
+
+# ALL ENCOUNTER ABILITIES
+# 7A58 --sync-- various auto damage (trash 2)
+# 8BC1 Ovation cast and damage from Wood Golem front line aoe
+# 8BC5 Gravity Force cast and stack damage from Islekeeper
+# 8C2F Ancient Quaga cast and damage for Islekeeper raidwide enrage
+# 8C4C Ancient Aero III interruptable cast and damage for Wood Golem raidwide
+# 8C4D Tornado cast and damage from Wood Golem that binds the initial target and heavies all targets
+# 8C4E Ancient Quaga cast and damage for Islekeeper raidwide
+# 8C6F Isle Drop cast and damage for Islekeeper front circle
