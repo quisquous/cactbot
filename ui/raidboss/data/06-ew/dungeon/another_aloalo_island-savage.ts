@@ -16,6 +16,8 @@ import { TriggerSet } from '../../../../../types/trigger';
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
 // TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
+// TODO: Lala Planar Tactics could add config strats and tell you who to stack with
+// TODO: Statice colors could add config strats for role-based colors + melee flex
 
 export interface Data extends RaidbossData {
   combatantData: PluginCombatantState[];
@@ -934,11 +936,11 @@ const triggerSet: TriggerSet<Data> = {
           one: {
             en: 'One',
           },
-          closeTwo: {
-            en: 'Close Two',
+          bigTwo: {
+            en: 'Two (stack with three)',
           },
-          farTwo: {
-            en: 'Far Two',
+          smallTwo: {
+            en: 'Two (stack with one)',
           },
           eitherTwo: {
             en: 'Either Two (w/${player})',
@@ -946,10 +948,10 @@ const triggerSet: TriggerSet<Data> = {
           three: {
             en: 'Three',
           },
-          farTwoOn: {
-            en: '(far two on ${players})',
+          // This is just a raidcall so you can direct your friends.
+          smallTwoOn: {
+            en: '(Two with one: ${players})',
           },
-
           unknownNum: {
             en: '${num}',
           },
@@ -959,9 +961,8 @@ const triggerSet: TriggerSet<Data> = {
           num4: Outputs.num4,
         };
 
-        // Assumptions: "close two" and "three" stack+run together, while "far two" and "one"
-        // run towards each other and meet for the stack. Stacks COULD be on both/neither twos,
-        // which makes which two you are ambiguous.
+        // For brevity, this code calls "small two" the two that stacks with one
+        // and the "big two" the two that stacks with three.
         const stacks = data.lalaSubAlpha.filter((x) => x.effectId === 'E8B').map((x) => x.target);
         const nums = data.lalaSubAlpha.filter((x) => x.effectId === 'E8C');
         const myNumberStr = nums.find((x) => x.target === data.me)?.count;
@@ -984,23 +985,23 @@ const triggerSet: TriggerSet<Data> = {
         const isOneStack = stacks.includes(one);
         const twos = nums.filter((x) => parseInt(x.count) === 2).map((x) => x.target);
 
-        const farTwos: string[] = [];
+        const smallTwos: string[] = [];
         for (const thisTwo of twos) {
           // can this two stack with the one?
           const isThisTwoStack = stacks.includes(thisTwo);
           if (isThisTwoStack && !isOneStack || !isThisTwoStack && isOneStack)
-            farTwos.push(thisTwo);
+            smallTwos.push(thisTwo);
         }
 
-        const [farTwo1, farTwo2] = farTwos;
-        if (farTwos.length === 0 || farTwo1 === undefined)
+        const [smallTwo1, smallTwo2] = smallTwos;
+        if (smallTwos.length === 0 || smallTwo1 === undefined)
           return defaultOutput;
 
-        const isPlayerFarTwo = farTwos.includes(data.me);
+        const isPlayerSmallTwo = smallTwos.includes(data.me);
 
         // Worst case adjust
-        if (isPlayerFarTwo && farTwo2 !== undefined) {
-          const otherPlayer = farTwo1 === data.me ? farTwo2 : farTwo1;
+        if (isPlayerSmallTwo && smallTwo2 !== undefined) {
+          const otherPlayer = smallTwo1 === data.me ? smallTwo2 : smallTwo1;
           return { alarmText: output.eitherTwo!({ player: data.party.member(otherPlayer) }) };
         }
 
@@ -1008,17 +1009,17 @@ const triggerSet: TriggerSet<Data> = {
         if (one === data.me) {
           playerRole = output.one!();
         } else if (twos.includes(data.me)) {
-          playerRole = isPlayerFarTwo ? output.farTwo!() : output.closeTwo!();
+          playerRole = isPlayerSmallTwo ? output.smallTwo!() : output.bigTwo!();
         } else {
           playerRole = output.three!();
         }
 
-        if (isPlayerFarTwo)
+        if (isPlayerSmallTwo)
           return { alertText: playerRole };
 
         return {
           alertText: playerRole,
-          infoText: output.farTwoOn!({ players: farTwos.map((x) => data.party.member(x)) }),
+          infoText: output.smallTwoOn!({ players: smallTwos.map((x) => data.party.member(x)) }),
         };
       },
     },
