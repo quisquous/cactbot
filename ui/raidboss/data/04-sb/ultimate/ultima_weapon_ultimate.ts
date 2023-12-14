@@ -845,6 +845,10 @@ const triggerSet: TriggerSet<Data> = {
         en: `If the first nail is SE, this will call SE/NW for both reverse-Z and normal-Z.
              If the first nail is S, this will call SE/NW for reverse-Z and SW/NE for normal-Z.
              Other nail orders are also supported, these are just examples.`,
+        de:
+          `Wenn der erste Nagel SO ist, wird dies SO/NW sowohl für Umgekehrtes-Z als auch für Normal-Z aufgerufen.
+             Wenn der erste Nagel S ist, wird dies SO/NW für Umgekehrtes-Z und SW/NO für Normal-Z aufgerufen.
+             Andere Nagelreihenfolgen werden ebenfalls unterstützt, dies sind nur Beispiele.`,
         cn: `如果第一个火神柱在东南，则反向 Z 和正常 Z 都会提示东南/西北
              如果第一个火神柱在南, 则反向 Z 将提示东南/西北，正常 Z 将提示西南/东北。
              这些只是示例, 还支持其他火神柱顺序。`,
@@ -893,6 +897,10 @@ const triggerSet: TriggerSet<Data> = {
         en: `If the first nail was on an intercard, then the first Ifrit dash is on an intercard
              and this optional call is to move to be adjacent to that first dash.
              If you are already safe, this will not be called.`,
+        de:
+          `Wenn der erste Nagel Interkardinal war, dann ist der erste Ifrit-Ansturm auf einer Interkardinalen
+             und dieser optionale Aufruf besteht darin, sich in die Nähe dieses ersten Ansturms zu bewegen.
+             Wenn man bereits in Sicherheit ist, wird dies nicht aufgerufen.`,
         cn: `如果第一个火神柱在对角线上，那么第一次火神冲也在对角线上。
              这个可选提示会提示你移动到第一次火神冲附近的位置。
              如果你已在安全区，则不会输出此提示。`,
@@ -939,6 +947,11 @@ const triggerSet: TriggerSet<Data> = {
              Both the party and the healer will move either 45 or 90 degrees.
              It is a "fast" movement if you need to move fast to avoid the Ifrit follow-up dash.
              It is a "slow" movement if you have extra time to do this.`,
+        de:
+          `Dies ist die Hauptbewegung für die Ifrit-Anstürme, die in der Nähe des ersten Ansturms beginnt.
+             Sowohl die Gruppe als auch der Heiler bewegen sich entweder um 45 oder 90 Grad.
+             Es ist eine "schnelle" Bewegung, wenn man sich schnell bewegen muss, um dem Ifrit-Folgeschlag auszuweichen.
+             Es ist eine "langsame" Bewegung, wenn man mehr Zeit hat, dies zu tun.`,
         cn: `这是从第一次火神冲附近开始的火神冲主要移动。
              人群和奶妈都将移动 45 度或 90 度。
              "快" 可以让你快速移动，躲避第二次火神冲。

@@ -319,6 +319,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           formlessBusterBLU: {
             en: 'Buster on YOU (w/${player})',
+            de: 'Tankbuster auf DIR (mit ${player})',
             fr: 'Tankbuster sur VOUS (avec ${player})',
             cn: '死刑点名 (与${player})',
             ko: '탱버 대상자 (+${player})',
@@ -453,12 +454,14 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           stackOnYou: {
             en: 'Stack on YOU (w/${player})',
+            de: 'Auf DIR sammeln (mit ${player})',
             fr: 'Package sur VOUS (avec ${player})',
             cn: '分摊点名 (与${player})',
             ko: '쉐어 대상자 (+${player})',
           },
           stacks: {
             en: 'Stacks: ${players}',
+            de: 'Sammeln: ${players}',
             fr: 'Package: ${players}',
             cn: '分摊: ${players}',
             ko: '쉐어: ${players}',
@@ -1304,7 +1307,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           shadoweye: {
             en: 'Eye (w/${player})',
-            de: 'Auge auf DIR (w/${player})', // FIXME
+            de: 'Auge (mit ${player})',
             fr: 'Œil (avec ${player})',
             ja: '自分に目 (w/${player})', // FIXME
             cn: '石化眼点名 (与${player})',
@@ -1312,13 +1315,14 @@ const triggerSet: TriggerSet<Data> = {
           },
           water: {
             en: 'Stack (w/${player})',
+            de: 'Sammeln (mit ${player})',
             fr: 'Pack (avec ${player})',
             cn: '分摊 (与${player})',
             ko: '쉐어징 (+${player})',
           },
           longFire: {
             en: 'Long Fire (w/${player})',
-            de: 'langes Feuer (w/${player})', // FIXME
+            de: 'langes Feuer (w/${player})',
             fr: 'Feu long (avec ${player})',
             ja: 'ファイガ(遅い) (w/${player})', // FIXME
             cn: '长火 (与${player})',
@@ -1326,7 +1330,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           shortFire: {
             en: 'Short Fire (w/${player})',
-            de: 'kurzes Feuer (w/${player})', // FIXME
+            de: 'kurzes Feuer (w/${player})',
             fr: 'Feu court (avec ${player})',
             ja: 'ファイガ(早い) (w/${player})', // FIXME
             cn: '短火 (与${player})',
@@ -1334,7 +1338,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           longIce: {
             en: 'Long Ice (w/${player})',
-            de: 'langes Eis (w/${player})', // FIXME
+            de: 'langes Eis (w/${player})',
             fr: 'Glace longue (avec ${player})',
             ja: 'ブリザガ(遅い) (w/${player})', // FIXME
             cn: '长冰 (与${player})',
@@ -1342,7 +1346,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           shortIce: {
             en: 'Short Ice (w/${player})',
-            de: 'kurzes Eis (w/${player})', // FIXME
+            de: 'kurzes Eis (w/${player})',
             fr: 'Glace courte (avec ${player})',
             ja: 'ブリザガ(早い) (w/${player})', // FIXME
             cn: '短冰 (与${player})',
@@ -1665,6 +1669,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          de: 'Sammeln (${player1}, ${player2})',
           fr: 'Packages (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
           ko: '쉐어 (${player1}, ${player2})',
@@ -1679,6 +1684,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         knockbackIntoStacksOn: {
           en: 'Knockback => Stacks (${player1}, ${player2})',
+          de: 'Rückstoß => Sammeln (${player1}, ${player2})',
           fr: 'Poussée => Package (${player1}, ${player2})',
           cn: '击退 => 分摊 (${player1}, ${player2})',
           ko: '넉백 => 쉐어 (${player1}, ${player2})',
@@ -1746,6 +1752,7 @@ const triggerSet: TriggerSet<Data> = {
         },
         stacksOn: {
           en: 'Stacks (${player1}, ${player2})',
+          de: 'Sammeln (${player1}, ${player2})',
           fr: 'Packages (${player1}, ${player2})',
           cn: '分摊 (${player1}, ${player2})',
           ko: '쉐어 (${player1}, ${player2})',
@@ -1772,7 +1779,7 @@ const triggerSet: TriggerSet<Data> = {
         output.responseOutputStrings = {
           shadoweye: {
             en: 'Eye (w/${player})',
-            de: 'Auge auf DIR (w/${player})', // FIXME
+            de: 'Auge (mit ${player})',
             fr: 'Œil(avec ${player})',
             ja: '自分に目 (w/${player})', // FIXME
             cn: '石化眼点名 (与${player})',
@@ -1780,7 +1787,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           doubleAero: {
             en: 'Double Aero (w/${player})',
-            de: 'Doppel Windga auf DIR (w/${player})', // FIXME
+            de: 'Doppel Windga (mit ${player})',
             fr: 'Double Vent(avec ${player})',
             ja: '自分にエアロガ×2 (w/${player})', // FIXME
             cn: '双风点名 (与${player})',
@@ -1788,7 +1795,7 @@ const triggerSet: TriggerSet<Data> = {
           },
           spread: {
             en: 'Spread (w/${player1}, ${player2}, ${player3})',
-            de: 'Verteilen auf DIR (w/${player1}, ${player2}, ${player3})', // FIXME
+            de: 'Verteilen (mit ${player1}, ${player2}, ${player3})',
             fr: 'Dispersion (avec ${player1}, ${player2}, ${player3})',
             ja: '自分に散開 (w/${player1}, ${player2}, ${player3})', // FIXME
             cn: '分散点名 (与${player1}, ${player2}, ${player3})',
