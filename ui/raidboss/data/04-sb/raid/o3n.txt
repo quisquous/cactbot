@@ -6,130 +6,130 @@
 # -ii 230C 2470 2472 2473
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.7 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/ window 9.7,10
-17.3 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-22.4 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-31.4 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/ window 30,30
-36.5 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-41.6 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-49.8 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-61.9 "The Queen's Waltz (Sword Dance)" sync / 1[56]:[^:]*:Halicarnassus:246F:/ window 30,30
-62.2 "Cross Reaper" sync / 1[56]:[^:]*:Soul Reaper:246B:/
-70.0 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-80.2 "The Game (symbols)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
+9.7 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" } window 9.7,10
+17.3 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+22.4 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+31.4 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" } window 30,30
+36.5 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+41.6 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+49.8 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+61.9 "The Queen's Waltz (Sword Dance)" Ability { id: "246F", source: "Halicarnassus" } window 30,30
+62.2 "Cross Reaper" Ability { id: "246B", source: "Soul Reaper" }
+70.0 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+80.2 "The Game (symbols)" Ability { id: "246D", source: "Halicarnassus" }
 
 # Cave phase
-89.4 "Panel Swap" sync / 1[56]:[^:]*:Halicarnassus:2304:/
-100.5 "The Queen's Waltz" sync / 1[56]:[^:]*:Halicarnassus:2471:/
-110.7 "Place Token" sync / 1[56]:[^:]*:Halicarnassus:22FB:/ window 30,30
-126.7 "Frost Breath?" # sync / 1[56]:[^:]*:Great Dragon:2476:/
-128.8 "The Queen's Waltz (Uplift)" sync / 1[56]:[^:]*:Halicarnassus:2471:/
-133.9 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-134.7 "Frost Breath?" # sync / 1[56]:[^:]*:Great Dragon:2476:/
-139.0 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-142.8 "Frost Breath?" # sync / 1[56]:[^:]*:Great Dragon:2476:/
-143.7 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-150.9 "Frost Breath?" # sync / 1[56]:[^:]*:Great Dragon:2476:/
-151.8 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:246[789A]:/ window 30,30
-158.9 "The Queen's Waltz (Uplift)" sync / 1[56]:[^:]*:Halicarnassus:2471:/
-165.1 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/
-172.2 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-177.3 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-184.6 "Cross Reaper" sync / 1[56]:[^:]*:Soul Reaper:246B:/
-186.3 "Holy Edge" sync / 1[56]:[^:]*:Halicarnassus:2463:/
-190.4 "The Queen's Waltz (Uplift)" sync / 1[56]:[^:]*:Halicarnassus:2471:/
-202.4 "Aetherial Tear" sync / 1[56]:[^:]*:Halicarnassus:2474:/ window 202.4,5
+89.4 "Panel Swap" Ability { id: "2304", source: "Halicarnassus" }
+100.5 "The Queen's Waltz" Ability { id: "2471", source: "Halicarnassus" }
+110.7 "Place Token" Ability { id: "22FB", source: "Halicarnassus" } window 30,30
+126.7 "Frost Breath?" # Ability { id: "2476", source: "Great Dragon" }
+128.8 "The Queen's Waltz (Uplift)" Ability { id: "2471", source: "Halicarnassus" }
+133.9 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+134.7 "Frost Breath?" # Ability { id: "2476", source: "Great Dragon" }
+139.0 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+142.8 "Frost Breath?" # Ability { id: "2476", source: "Great Dragon" }
+143.7 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+150.9 "Frost Breath?" # Ability { id: "2476", source: "Great Dragon" }
+151.8 "Mindjack" Ability { id: "246[789A]", source: "Halicarnassus" } window 30,30
+158.9 "The Queen's Waltz (Uplift)" Ability { id: "2471", source: "Halicarnassus" }
+165.1 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" }
+172.2 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+177.3 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+184.6 "Cross Reaper" Ability { id: "246B", source: "Soul Reaper" }
+186.3 "Holy Edge" Ability { id: "2463", source: "Halicarnassus" }
+190.4 "The Queen's Waltz (Uplift)" Ability { id: "2471", source: "Halicarnassus" }
+202.4 "Aetherial Tear" Ability { id: "2474", source: "Halicarnassus" } window 202.4,5
 206.5 "--untargetable--"
 
 # Intermission. Nothing of import happens here.
-216.6 "Aetherial Pull" sync / 1[56]:[^:]*:Aetherial Tear:2475:/
-272.9 "Ultimum (Starry End)" # sync / 1[56]:[^:]*:Halicarnassus:2477:/
+216.6 "Aetherial Pull" Ability { id: "2475", source: "Aetherial Tear" }
+272.9 "Ultimum (Starry End)" # Ability { id: "2477", source: "Halicarnassus" }
 # There is unfortunately no way to continue to display
 # Ultimum if another player escapes before the user
 # We also haven't got a good way to display exactly when
 # Halicarnassus is targetable again.
 
 # Post-intermission.
-300.0 "Panel Swap" sync / 1[56]:[^:]*:Halicarnassus:2304:/ window 150.10
-305.1 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-313.3 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/
-320.5 "The Game (symbols)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-329.6 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-334.7 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:246[789A]:/ window 30,30
-338.6 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-340.4 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-347.6 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-360.0 "Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:246C:/
-361.7 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-368.9 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-377.1 "Ribbit (take)" sync / 1[56]:[^:]*:Halicarnassus:2466:/ window 30,30
-384.2 "The Game (toad)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-394.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
-403.5 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-407.6 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-412.5 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-412.7 "The Queen's Waltz (Sword Dance)" sync / 1[56]:[^:]*:Halicarnassus:246F:/ window 30,30
-421.8 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
+300.0 "Panel Swap" Ability { id: "2304", source: "Halicarnassus" } window 150.10
+305.1 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+313.3 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" }
+320.5 "The Game (symbols)" Ability { id: "246D", source: "Halicarnassus" }
+329.6 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+334.7 "Mindjack" Ability { id: "246[789A]", source: "Halicarnassus" } window 30,30
+338.6 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+340.4 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+347.6 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+360.0 "Gusting Gouge" Ability { id: "246C", source: "Soul Reaper" }
+361.7 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+368.9 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+377.1 "Ribbit (take)" Ability { id: "2466", source: "Halicarnassus" } window 30,30
+384.2 "The Game (toad)" Ability { id: "246D", source: "Halicarnassus" }
+394.3 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
+403.5 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+407.6 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+412.5 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+412.7 "The Queen's Waltz (Sword Dance)" Ability { id: "246F", source: "Halicarnassus" } window 30,30
+421.8 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
 
 # The blocks don't change, but if we don't track them we can't note the enrage.
-430.0 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-438.2 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/
-445.3 "The Game (symbols)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-454.4 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-459.6 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:246[789A]:/ window 30,30
-463.5 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-465.3 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-472.4 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-484.8 "Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:246C:/
-486.5 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-493.7 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-501.9 "Ribbit (take)" sync / 1[56]:[^:]*:Halicarnassus:2466:/ window 30,30
-509.1 "The Game (toad)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-519.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
-528.5 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-532.6 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-537.5 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-537.7 "The Queen's Waltz (Sword Dance)" sync / 1[56]:[^:]*:Halicarnassus:246F:/ window 30,30
-546.8 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
+430.0 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+438.2 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" }
+445.3 "The Game (symbols)" Ability { id: "246D", source: "Halicarnassus" }
+454.4 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+459.6 "Mindjack" Ability { id: "246[789A]", source: "Halicarnassus" } window 30,30
+463.5 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+465.3 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+472.4 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+484.8 "Gusting Gouge" Ability { id: "246C", source: "Soul Reaper" }
+486.5 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+493.7 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+501.9 "Ribbit (take)" Ability { id: "2466", source: "Halicarnassus" } window 30,30
+509.1 "The Game (toad)" Ability { id: "246D", source: "Halicarnassus" }
+519.3 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
+528.5 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+532.6 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+537.5 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+537.7 "The Queen's Waltz (Sword Dance)" Ability { id: "246F", source: "Halicarnassus" } window 30,30
+546.8 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
 
-555.0 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-563.2 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/
-570.3 "The Game (symbols)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-579.5 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-584.6 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:246[789A]:/ window 30,30
-588.5 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-590.3 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-597.4 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-609.9 "Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:246C:/
-611.6 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-618.8 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-626.9 "Ribbit (take)" sync / 1[56]:[^:]*:Halicarnassus:2466:/ window 30,30
-634.0 "The Game (toad)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-644.1 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
-653.3 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-657.4 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-662.3 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-662.5 "The Queen's Waltz (Sword Dance)" sync / 1[56]:[^:]*:Halicarnassus:246F:/ window 30,30
-671.7 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
+555.0 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+563.2 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" }
+570.3 "The Game (symbols)" Ability { id: "246D", source: "Halicarnassus" }
+579.5 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+584.6 "Mindjack" Ability { id: "246[789A]", source: "Halicarnassus" } window 30,30
+588.5 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+590.3 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+597.4 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+609.9 "Gusting Gouge" Ability { id: "246C", source: "Soul Reaper" }
+611.6 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+618.8 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+626.9 "Ribbit (take)" Ability { id: "2466", source: "Halicarnassus" } window 30,30
+634.0 "The Game (toad)" Ability { id: "246D", source: "Halicarnassus" }
+644.1 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
+653.3 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+657.4 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+662.3 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+662.5 "The Queen's Waltz (Sword Dance)" Ability { id: "246F", source: "Halicarnassus" } window 30,30
+671.7 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
 
-679.9 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-688.0 "Ribbit (avoid)" sync / 1[56]:[^:]*:Halicarnassus:2466:/
-695.1 "The Game (symbols)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-704.3 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-709.4 "Mindjack" sync / 1[56]:[^:]*:Halicarnassus:246[789A]:/ window 30,30
-713.3 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-715.0 "Spellblade Thunder III" sync / 1[56]:[^:]*:Halicarnassus:2462:/
-722.1 "Place Dark Token" sync / 1[56]:[^:]*:Halicarnassus:22FC:/
-734.6 "Gusting Gouge" sync / 1[56]:[^:]*:Soul Reaper:246C:/
-736.3 "Spellblade Blizzard III" sync / 1[56]:[^:]*:Halicarnassus:2461:/
-743.5 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-751.6 "Ribbit (take)" sync / 1[56]:[^:]*:Halicarnassus:2466:/ window 30,30
-758.7 "The Game (toad)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
-768.8 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
-777.9 "Spellblade Holy" sync / 1[56]:[^:]*:Halicarnassus:22EF:/
-782.1 "Spellblade Fire III" sync / 1[56]:[^:]*:Halicarnassus:2460:/
-787.0 "Holy Blur" sync / 1[56]:[^:]*:Halicarnassus:2464:/
-787.2 "The Queen's Waltz (Sword Dance)" sync / 1[56]:[^:]*:Halicarnassus:246F:/ window 30,30
-796.3 "Dimensional Wave" sync / 1[56]:[^:]*:Halicarnassus:2465:/
-804.5 "The Playing Field" sync / 1[56]:[^:]*:Halicarnassus:2300:/
-811.6 "The Game (enrage)" sync / 1[56]:[^:]*:Halicarnassus:246D:/
+679.9 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+688.0 "Ribbit (avoid)" Ability { id: "2466", source: "Halicarnassus" }
+695.1 "The Game (symbols)" Ability { id: "246D", source: "Halicarnassus" }
+704.3 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+709.4 "Mindjack" Ability { id: "246[789A]", source: "Halicarnassus" } window 30,30
+713.3 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+715.0 "Spellblade Thunder III" Ability { id: "2462", source: "Halicarnassus" }
+722.1 "Place Dark Token" Ability { id: "22FC", source: "Halicarnassus" }
+734.6 "Gusting Gouge" Ability { id: "246C", source: "Soul Reaper" }
+736.3 "Spellblade Blizzard III" Ability { id: "2461", source: "Halicarnassus" }
+743.5 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+751.6 "Ribbit (take)" Ability { id: "2466", source: "Halicarnassus" } window 30,30
+758.7 "The Game (toad)" Ability { id: "246D", source: "Halicarnassus" }
+768.8 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
+777.9 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
+782.1 "Spellblade Fire III" Ability { id: "2460", source: "Halicarnassus" }
+787.0 "Holy Blur" Ability { id: "2464", source: "Halicarnassus" }
+787.2 "The Queen's Waltz (Sword Dance)" Ability { id: "246F", source: "Halicarnassus" } window 30,30
+796.3 "Dimensional Wave" Ability { id: "2465", source: "Halicarnassus" }
+804.5 "The Playing Field" Ability { id: "2300", source: "Halicarnassus" }
+811.6 "The Game (enrage)" Ability { id: "246D", source: "Halicarnassus" }

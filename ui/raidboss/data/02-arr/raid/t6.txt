@@ -11,27 +11,27 @@ hideall "--sync--"
 0.0 "Start"
 # Scar's Edge will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51C:/ window 10,10
-7.5 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/ window 8,8
-11.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-18.5 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
-20.6 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-28.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-35.3 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
-37.4 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
-42.5 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
-46.6 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-55.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-58.7 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-63.6 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
-70.8 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-73.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-80.5 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
-82.5 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
-87.6 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
+7.5 "Bloody Caress" Ability { id: "797", source: "Rafflesia" } window 8,8
+11.5 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+18.5 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20
+20.6 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+28.6 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+35.3 "Floral Trap" Ability { id: "799", source: "Rafflesia" }
+37.4 "Devour" Ability { id: "79A", source: "Rafflesia" }
+42.5 "Spit" Ability { id: "79B", source: "Rafflesia" }
+46.6 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+55.6 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+58.7 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+63.6 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20
+70.8 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+73.7 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+80.5 "Floral Trap" Ability { id: "799", source: "Rafflesia" }
+82.5 "Devour" Ability { id: "79A", source: "Rafflesia" }
+87.6 "Spit" Ability { id: "79B", source: "Rafflesia" }
 
-96.9 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-100.9 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-107.9 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20 jump 18.5
+96.9 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+100.9 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+107.9 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20 jump 18.5
 110.0 "Bloody Caress"
 118.0 "Thorn Whip"
 124.7 "Floral Trap"
@@ -43,28 +43,28 @@ hideall "--sync--"
 # There is a Bloody Caress (often?) right at the start of this phase before blighted.
 # But it's hard to sync to it properly, sorry.
 200.0 "--sync--" sync / 14:[^:]*:Rafflesia:79D:/ window 200,0
-204.0 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/
-209.0 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
-214.1 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-219.0 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-225.8 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
-227.8 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
-232.8 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
-235.8 "Viscid Emission" sync / 1[56]:[^:]*:Rafflesia:79C:/
-240.9 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-244.9 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-254.0 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/
-258.2 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-260.1 "Briary Growth" sync / 1[56]:[^:]*:Rafflesia:884:/ window 20,20
-269.2 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-275.5 "Floral Trap" sync / 1[56]:[^:]*:Rafflesia:799:/
-277.5 "Devour" sync / 1[56]:[^:]*:Rafflesia:79A:/
-282.5 "Spit" sync / 1[56]:[^:]*:Rafflesia:79B:/
-285.3 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
-294.2 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-297.5 "Bloody Caress" sync / 1[56]:[^:]*:Rafflesia:797:/
+204.0 "Blighted Bouquet" Ability { id: "79D", source: "Rafflesia" }
+209.0 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20
+214.1 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+219.0 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+225.8 "Floral Trap" Ability { id: "799", source: "Rafflesia" }
+227.8 "Devour" Ability { id: "79A", source: "Rafflesia" }
+232.8 "Spit" Ability { id: "79B", source: "Rafflesia" }
+235.8 "Viscid Emission" Ability { id: "79C", source: "Rafflesia" }
+240.9 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+244.9 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+254.0 "Blighted Bouquet" Ability { id: "79D", source: "Rafflesia" }
+258.2 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+260.1 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20
+269.2 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+275.5 "Floral Trap" Ability { id: "799", source: "Rafflesia" }
+277.5 "Devour" Ability { id: "79A", source: "Rafflesia" }
+282.5 "Spit" Ability { id: "79B", source: "Rafflesia" }
+285.3 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
+294.2 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+297.5 "Bloody Caress" Ability { id: "797", source: "Rafflesia" }
 
-304.4 "Blighted Bouquet" sync / 1[56]:[^:]*:Rafflesia:79D:/ window 30,30 jump 204
+304.4 "Blighted Bouquet" Ability { id: "79D", source: "Rafflesia" } window 30,30 jump 204
 309.4 "Briary Growth"
 314.5 "Bloody Caress"
 319.4 "Thorn Whip"
@@ -77,31 +77,31 @@ hideall "--sync--"
 # This ignores dinky leafstorms that do like 200 damage.
 
 400.0 "--sync--" sync / 14:[^:]*:Rafflesia:79E:/ window 400,0
-403.0 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:79E:/
-413.1 "Acid Rain" sync / 1[56]:[^:]*:Rafflesia:86C:/
-420.3 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-432.4 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-445.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-450.3 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
-465.5 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-478.5 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-490.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-495.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-500.1 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+403.0 "Leafstorm" Ability { id: "79E", source: "Rafflesia" }
+413.1 "Acid Rain" Ability { id: "86C", source: "Rafflesia" }
+420.3 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+432.4 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+445.5 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+450.3 "Rotten Stench" Ability { id: "7A2", source: "Rafflesia" }
+465.5 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+478.5 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+490.7 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+495.6 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+500.1 "Rotten Stench" Ability { id: "7A2", source: "Rafflesia" }
 
 # looping leafstorm (the first one has swarm later)
-523.2 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:79E:/ window 100,300
-528.4 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-537.3 "Acid Rain" sync / 1[56]:[^:]*:Rafflesia:86C:/
-544.4 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-556.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-569.6 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-574.4 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
-589.7 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-602.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-614.8 "Swarm" sync / 1[56]:[^:]*:Rafflesia:7A0:/
-619.7 "Thorn Whip" sync / 1[56]:[^:]*:Rafflesia:879:/
-624.5 "Rotten Stench" sync / 1[56]:[^:]*:Rafflesia:7A2:/
+523.2 "Leafstorm" Ability { id: "79E", source: "Rafflesia" } window 100,300
+528.4 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+537.3 "Acid Rain" Ability { id: "86C", source: "Rafflesia" }
+544.4 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+556.7 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+569.6 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+574.4 "Rotten Stench" Ability { id: "7A2", source: "Rafflesia" }
+589.7 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+602.7 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+614.8 "Swarm" Ability { id: "7A0", source: "Rafflesia" }
+619.7 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
+624.5 "Rotten Stench" Ability { id: "7A2", source: "Rafflesia" }
 
 647.6 "Leafstorm"
 652.8 "Swarm"
@@ -121,7 +121,7 @@ hideall "--sync--"
 # if you are so slow to see it, but just for completeness
 # it repeats every five seconds.
 1000.0 "--sync--" sync / 14:[^:]*:Rafflesia:87A:/ window 1000,1000
-1003.0 "Leafstorm" sync / 1[56]:[^:]*:Rafflesia:87A:/
+1003.0 "Leafstorm" Ability { id: "87A", source: "Rafflesia" }
 1008.0 "Leafstorm"
 1013.0 "Leafstorm"
 1018.0 "Leafstorm"

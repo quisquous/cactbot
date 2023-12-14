@@ -7,26 +7,26 @@ hideall "--sync--"
 # -ii 4768 49A4 476C 476F 4771 4770 -p 4769:111.7
 # The Martial Court will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D2F:/ window 100,0
-111.7 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/ window 112,5
-119.4 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+111.7 "Shadowbolt" Ability { id: "4769", source: "Seeker of Solitude" } window 112,5
+119.4 "Immortal Anathema" Ability { id: "49A3", source: "Seeker of Solitude" }
 
-126.8 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/
-135.5 "Dark Shock" sync / 1[56]:[^:]*:Seeker of Solitude:476E:/
-155.4 "Dark Pulse" sync / 1[56]:[^:]*:Seeker of Solitude:476A:/
-162.1 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
-172.9 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/
-183.6 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+126.8 "Tribulation" Ability { id: "476B", source: "Seeker of Solitude" }
+135.5 "Dark Shock" Ability { id: "476E", source: "Seeker of Solitude" }
+155.4 "Dark Pulse" Ability { id: "476A", source: "Seeker of Solitude" }
+162.1 "Dark Well" Ability { id: "476D", source: "Seeker of Solitude" }
+172.9 "Shadowbolt" Ability { id: "4769", source: "Seeker of Solitude" }
+183.6 "Immortal Anathema" Ability { id: "49A3", source: "Seeker of Solitude" }
 
-190.5 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/
-199.2 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
-214.0 "Dark Shock" sync / 1[56]:[^:]*:Seeker of Solitude:476E:/
-224.6 "Shadowbolt" sync / 1[56]:[^:]*:Seeker of Solitude:4769:/
-236.4 "Dark Pulse" sync / 1[56]:[^:]*:Seeker of Solitude:476A:/
-243.1 "Dark Well" sync / 1[56]:[^:]*:Seeker of Solitude:476D:/
-252.9 "Immortal Anathema" sync / 1[56]:[^:]*:Seeker of Solitude:49A3:/
+190.5 "Tribulation" Ability { id: "476B", source: "Seeker of Solitude" }
+199.2 "Dark Well" Ability { id: "476D", source: "Seeker of Solitude" }
+214.0 "Dark Shock" Ability { id: "476E", source: "Seeker of Solitude" }
+224.6 "Shadowbolt" Ability { id: "4769", source: "Seeker of Solitude" }
+236.4 "Dark Pulse" Ability { id: "476A", source: "Seeker of Solitude" }
+243.1 "Dark Well" Ability { id: "476D", source: "Seeker of Solitude" }
+252.9 "Immortal Anathema" Ability { id: "49A3", source: "Seeker of Solitude" }
 
 # TODO: not 100% sure this is the loop
-262.7 "Tribulation" sync / 1[56]:[^:]*:Seeker of Solitude:476B:/ window 50,50 jump 190.5
+262.7 "Tribulation" Ability { id: "476B", source: "Seeker of Solitude" } window 50,50 jump 190.5
 271.4 "Dark Well"
 286.2 "Dark Shock"
 296.8 "Shadowbolt"
@@ -39,32 +39,32 @@ hideall "--sync--"
 # -ii 4724 471F -p 471B:512
 # The Font of Quintessence will be sealed off
 500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D30:/ window 500,0 
-512.0 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/ window 512,10
-522.3 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+512.0 "Storm Of Color" Ability { id: "471B", source: "Leannan Sith" } window 512,10
+522.3 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
 
-529.9 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/
-546.4 "Gardener's Hymn" sync / 1[56]:[^:]*:Leannan Sith:471E:/
-552.9 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
-562.1 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
-572.3 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
-577.4 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
-583.4 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
-594.5 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+529.9 "Direct Seeding" Ability { id: "471D", source: "Leannan Sith" }
+546.4 "Gardener's Hymn" Ability { id: "471E", source: "Leannan Sith" }
+552.9 "Storm Of Color" Ability { id: "471B", source: "Leannan Sith" }
+562.1 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
+572.3 "Ode To Far Winds" Ability { id: "4722", source: "Leannan Sith" }
+577.4 "Far Wind" Ability { id: "4723", source: "Leannan Sith" }
+583.4 "Ode To Fallen Petals" Ability { id: "4950", source: "Leannan Sith" }
+594.5 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
 
-601.2 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/
-616.7 "Ireful Wind" sync / 1[56]:[^:]*:Enslaved Love:4721:/
-617.6 "Gardener's Hymn" sync / 1[56]:[^:]*:Leannan Sith:471E:/
-623.1 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
-628.2 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
-634.1 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
-646.5 "Storm Of Color" sync / 1[56]:[^:]*:Leannan Sith:471B:/
-653.7 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
-668.8 "Ode To Far Winds" sync / 1[56]:[^:]*:Leannan Sith:4722:/
-673.9 "Far Wind" sync / 1[56]:[^:]*:Leannan Sith:4723:/
-679.9 "Ode To Fallen Petals" sync / 1[56]:[^:]*:Leannan Sith:4950:/
-691.1 "Ode To Lost Love" sync / 1[56]:[^:]*:Leannan Sith:471C:/
+601.2 "Direct Seeding" Ability { id: "471D", source: "Leannan Sith" }
+616.7 "Ireful Wind" Ability { id: "4721", source: "Enslaved Love" }
+617.6 "Gardener's Hymn" Ability { id: "471E", source: "Leannan Sith" }
+623.1 "Ode To Far Winds" Ability { id: "4722", source: "Leannan Sith" }
+628.2 "Far Wind" Ability { id: "4723", source: "Leannan Sith" }
+634.1 "Ode To Fallen Petals" Ability { id: "4950", source: "Leannan Sith" }
+646.5 "Storm Of Color" Ability { id: "471B", source: "Leannan Sith" }
+653.7 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
+668.8 "Ode To Far Winds" Ability { id: "4722", source: "Leannan Sith" }
+673.9 "Far Wind" Ability { id: "4723", source: "Leannan Sith" }
+679.9 "Ode To Fallen Petals" Ability { id: "4950", source: "Leannan Sith" }
+691.1 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
 
-697.7 "Direct Seeding" sync / 1[56]:[^:]*:Leannan Sith:471D:/ window 50,50 jump 601.2
+697.7 "Direct Seeding" Ability { id: "471D", source: "Leannan Sith" } window 50,50 jump 601.2
 713.2 "Ireful Wind"
 714.1 "Gardener's Hymn"
 719.6 "Ode To Far Winds"
@@ -82,51 +82,51 @@ hideall "--sync--"
 # -ii 475B 4766 475A 475E -p 475D:1026.8
 # The Chamber of Celestial Song will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D31:/ window 1000,0
-1015.3 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/ window 1015.3,10
-1026.8 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
-1030.3 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
-1037.8 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/
-1048.2 "Mortal Flame" sync / 1[56]:[^:]*:Lugus:4759:/ window 30,0
-1077.1 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1080.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1081.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1084.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1086.2 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1089.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1090.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1093.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1106.4 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
+1015.3 "Scorching Left/Right" Ability { id: "476[23]", source: "Lugus" } window 1015.3,10
+1026.8 "Black Flame" Ability { id: "475D", source: "Lugus" }
+1030.3 "Otherworldly Heat" Ability { id: "475C", source: "Lugus" }
+1037.8 "Captive Bolt" Ability { id: "4764", source: "Lugus" }
+1048.2 "Mortal Flame" Ability { id: "4759", source: "Lugus" } window 30,0
+1077.1 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1080.2 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1081.7 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1084.7 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1086.2 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1089.2 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1090.7 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1093.7 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1106.4 "Scorching Left/Right" Ability { id: "476[23]", source: "Lugus" }
 
-1122.9 "Culling Blade" sync / 1[56]:[^:]*:Lugus:4765:/ window 25,20
-1126.2 "Plummet" sync / 1[56]:[^:]*:Lugus:4767:/
-1133.3 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
-1136.7 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
-1142.4 "Mortal Flame" sync / 1[56]:[^:]*:Lugus:4759:/
-1169.1 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
-1181.8 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1184.9 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1186.4 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1189.4 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1190.9 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1193.9 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1195.4 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1198.4 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1122.9 "Culling Blade" Ability { id: "4765", source: "Lugus" } window 25,20
+1126.2 "Plummet" Ability { id: "4767", source: "Lugus" }
+1133.3 "Black Flame" Ability { id: "475D", source: "Lugus" }
+1136.7 "Otherworldly Heat" Ability { id: "475C", source: "Lugus" }
+1142.4 "Mortal Flame" Ability { id: "4759", source: "Lugus" }
+1169.1 "Scorching Left/Right" Ability { id: "476[23]", source: "Lugus" }
+1181.8 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1184.9 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1186.4 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1189.4 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1190.9 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1193.9 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1195.4 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1198.4 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
 
-1205.9 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/ window 20,20
-1215.0 "Black Flame" sync / 1[56]:[^:]*:Lugus:475D:/
-1218.5 "Otherworldly Heat" sync / 1[56]:[^:]*:Lugus:475C:/
-1226.1 "Culling Blade" sync / 1[56]:[^:]*:Lugus:4765:/
-1238.9 "Scorching Left/Right" sync / 1[56]:[^:]*:Lugus:476[23]:/
-1251.6 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1254.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1256.2 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1259.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1260.7 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1263.7 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
-1265.0 "Fire's Domain" sync / 1[56]:[^:]*:Lugus:47(5F|60):/
-1268.2 "Fire's Ire" sync / 1[56]:[^:]*:Lugus:4761:/
+1205.9 "Captive Bolt" Ability { id: "4764", source: "Lugus" } window 20,20
+1215.0 "Black Flame" Ability { id: "475D", source: "Lugus" }
+1218.5 "Otherworldly Heat" Ability { id: "475C", source: "Lugus" }
+1226.1 "Culling Blade" Ability { id: "4765", source: "Lugus" }
+1238.9 "Scorching Left/Right" Ability { id: "476[23]", source: "Lugus" }
+1251.6 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1254.7 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1256.2 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1259.2 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1260.7 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1263.7 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
+1265.0 "Fire's Domain" Ability { id: "47(5F|60)", source: "Lugus" }
+1268.2 "Fire's Ire" Ability { id: "4761", source: "Lugus" }
 
-1275.7 "Captive Bolt" sync / 1[56]:[^:]*:Lugus:4764:/ window 50,50 jump 1205.9
+1275.7 "Captive Bolt" Ability { id: "4764", source: "Lugus" } window 50,50 jump 1205.9
 1284.8 "Black Flame"
 1288.3 "Otherworldly Heat"
 1295.9 "Culling Blade"

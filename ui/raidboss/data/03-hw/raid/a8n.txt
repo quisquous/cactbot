@@ -15,28 +15,28 @@ hideall "Brute Force"
 
 # ONSLAUGHTER
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-5.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/ window 5.4,5
-12.6 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:1732:/
+5.4 "Hydrothermal Missile" Ability { id: "172F", source: "Onslaughter" } window 5.4,5
+12.6 "Mega Beam" Ability { id: "1732", source: "Onslaughter" }
 
-18.8 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:1730:/
-24.0 "Hydrothermal Missile" # sync / 1[56]:[^:]*:Onslaughter:172F:/
-27.1 "Hydrothermal Missile" # sync / 1[56]:[^:]*:Onslaughter:172F:/
-33.2 "Execution" sync / 1[56]:[^:]*:Onslaughter:1632:/
-37.3 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/
-45.5 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:1731:/
-52.5 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:1732:/
-55.2 "--regulator check--" # sync / 1[56]:[^:]*:Steam Regulator B:1735:/
-55.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/
-61.8 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:1730:/
-67.0 "Hydrothermal Missile" # sync / 1[56]:[^:]*:Onslaughter:172F:/
-70.1 "Hydrothermal Missile" # sync / 1[56]:[^:]*:Onslaughter:172F:/
-75.2 "Discoid" sync / 1[56]:[^:]*:Onslaughter:162F:/
-79.3 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/
-90.5 "Seed Of The Sky" sync / 1[56]:[^:]*:Onslaughter:1731:/
-95.5 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:1732:/
-98.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:Onslaughter:172F:/
+18.8 "Perpetual Ray" Ability { id: "1730", source: "Onslaughter" }
+24.0 "Hydrothermal Missile" # Ability { id: "172F", source: "Onslaughter" }
+27.1 "Hydrothermal Missile" # Ability { id: "172F", source: "Onslaughter" }
+33.2 "Execution" Ability { id: "1632", source: "Onslaughter" }
+37.3 "Hydrothermal Missile" Ability { id: "172F", source: "Onslaughter" }
+45.5 "Seed Of The Sky" Ability { id: "1731", source: "Onslaughter" }
+52.5 "Mega Beam" Ability { id: "1732", source: "Onslaughter" }
+55.2 "--regulator check--" # Ability { id: "1735", source: "Steam Regulator B" }
+55.6 "Hydrothermal Missile" Ability { id: "172F", source: "Onslaughter" }
+61.8 "Perpetual Ray" Ability { id: "1730", source: "Onslaughter" }
+67.0 "Hydrothermal Missile" # Ability { id: "172F", source: "Onslaughter" }
+70.1 "Hydrothermal Missile" # Ability { id: "172F", source: "Onslaughter" }
+75.2 "Discoid" Ability { id: "162F", source: "Onslaughter" }
+79.3 "Hydrothermal Missile" Ability { id: "172F", source: "Onslaughter" }
+90.5 "Seed Of The Sky" Ability { id: "1731", source: "Onslaughter" }
+95.5 "Mega Beam" Ability { id: "1732", source: "Onslaughter" }
+98.6 "Hydrothermal Missile" Ability { id: "172F", source: "Onslaughter" }
 
-104.7 "Perpetual Ray" sync / 1[56]:[^:]*:Onslaughter:1730:/ jump 18.8
+104.7 "Perpetual Ray" Ability { id: "1730", source: "Onslaughter" } jump 18.8
 109.9 "Hydrothermal Missile"
 113.0 "Hydrothermal Missile"
 119.1 "Execution"
@@ -50,34 +50,34 @@ hideall "Brute Force"
 200.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 200,0
 203.8 "--sync--" sync / 03:........:Brawler:/  window 150,30
 206.2 "--targetable--"
-214.3 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:173B:/
-214.3 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
-218.5 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/ window 18,10
-223.7 "Ice Missile" sync / 1[56]:[^:]*:Vortexer:1746:/
-224.5 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1745:/
-226.5 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:173B:/
-226.6 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
+214.3 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
+214.3 "Brute Force" Ability { id: "1744", source: "Vortexer" }
+218.5 "Ballistic Missile" Ability { id: "1650", source: "Vortexer" } window 18,10
+223.7 "Ice Missile" Ability { id: "1746", source: "Vortexer" }
+224.5 "Earth Missile" Ability { id: "1745", source: "Vortexer" }
+226.5 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
+226.6 "Brute Force" Ability { id: "1744", source: "Vortexer" }
 
-229.6 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
-235.7 "Single Buster/Double Buster" sync / 1[56]:[^:]*:Brawler:173D:/ window 30,30
-238.7 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
-241.8 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/ window 15,15
-242.8 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:173B:/
-246.8 "Ice Missile" sync / 1[56]:[^:]*:Vortexer:1746:/
-247.8 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1745:/
-253.9 "Super Cyclone" sync / 1[56]:[^:]*:Vortexer:1747:/
-255.9 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
-258.0 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
-262.4 "Single Buster/Double Buster" sync / 1[56]:[^:]*:Brawler:173C:/ window 30,30
-269.1 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
-269.5 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:173B:/
-273.2 "Ballistic Missile" sync / 1[56]:[^:]*:Vortexer:1650:/ window 15,15
-278.2 "Ice Missile" sync / 1[56]:[^:]*:Vortexer:1746:/
-279.2 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1745:/
-281.3 "Brute Force" sync / 1[56]:[^:]*:Vortexer:1744:/
-281.7 "Magicked Mark" sync / 1[56]:[^:]*:Brawler:173B:/
+229.6 "Attachment" Ability { id: "163C", source: "Brawler" }
+235.7 "Single Buster/Double Buster" Ability { id: "173D", source: "Brawler" } window 30,30
+238.7 "Brute Force" Ability { id: "1744", source: "Vortexer" }
+241.8 "Ballistic Missile" Ability { id: "1650", source: "Vortexer" } window 15,15
+242.8 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
+246.8 "Ice Missile" Ability { id: "1746", source: "Vortexer" }
+247.8 "Earth Missile" Ability { id: "1745", source: "Vortexer" }
+253.9 "Super Cyclone" Ability { id: "1747", source: "Vortexer" }
+255.9 "Attachment" Ability { id: "163C", source: "Brawler" }
+258.0 "Brute Force" Ability { id: "1744", source: "Vortexer" }
+262.4 "Single Buster/Double Buster" Ability { id: "173C", source: "Brawler" } window 30,30
+269.1 "Brute Force" Ability { id: "1744", source: "Vortexer" }
+269.5 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
+273.2 "Ballistic Missile" Ability { id: "1650", source: "Vortexer" } window 15,15
+278.2 "Ice Missile" Ability { id: "1746", source: "Vortexer" }
+279.2 "Earth Missile" Ability { id: "1745", source: "Vortexer" }
+281.3 "Brute Force" Ability { id: "1744", source: "Vortexer" }
+281.7 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
 
-284.9 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
+284.9 "Attachment" Ability { id: "163C", source: "Brawler" }
 291.0 "Single Buster/Double Buster"
 297.1 "Ballistic Missile"
 302.1 "Ice Missile"
@@ -89,30 +89,30 @@ hideall "Brute Force"
 # One full rotation plus a tail again, for the same reasons. Don't be slow!
 500.0 "--sync--" sync / 03:........:Blaster:/  window 300,30
 502.1 "--targetable--"
-510.3 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-510.3 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-520.4 "Height" sync / 1[56]:[^:]*:Swindler:1740:/ window 20.4,20
-523.4 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-523.6 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-526.5 "Mind Blast" sync / 1[56]:[^:]*:Blaster:1739:/
+510.3 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+510.3 "Brute Force" Ability { id: "1738", source: "Blaster" }
+520.4 "Height" Ability { id: "1740", source: "Swindler" } window 20.4,20
+523.4 "Brute Force" Ability { id: "1738", source: "Blaster" }
+523.6 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+526.5 "Mind Blast" Ability { id: "1739", source: "Blaster" }
 
-537.7 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:1748:/
-543.8 "Supercharge" # sync / 1[56]:[^:]*:Blaster Mirage:1749:/
-545.7 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-546.0 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-549.2 "Mind Blast" sync / 1[56]:[^:]*:Blaster:1739:/
-555.9 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-556.3 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-558.8 "Enumeration" sync / 1[56]:[^:]*:Swindler:1742:/
-563.4 "Mind Blast" sync / 1[56]:[^:]*:Blaster:1739:/
-565.0 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-565.5 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-575.1 "Height" sync / 1[56]:[^:]*:Swindler:1740:/
-578.3 "Magicked Mark" sync / 1[56]:[^:]*:Swindler:173F:/
-578.7 "Brute Force" sync / 1[56]:[^:]*:Blaster:1738:/
-581.8 "Mind Blast" sync / 1[56]:[^:]*:Blaster:1739:/
+537.7 "Mirage" Ability { id: "1748", source: "Blaster Mirage" }
+543.8 "Supercharge" # Ability { id: "1749", source: "Blaster Mirage" }
+545.7 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+546.0 "Brute Force" Ability { id: "1738", source: "Blaster" }
+549.2 "Mind Blast" Ability { id: "1739", source: "Blaster" }
+555.9 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+556.3 "Brute Force" Ability { id: "1738", source: "Blaster" }
+558.8 "Enumeration" Ability { id: "1742", source: "Swindler" }
+563.4 "Mind Blast" Ability { id: "1739", source: "Blaster" }
+565.0 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+565.5 "Brute Force" Ability { id: "1738", source: "Blaster" }
+575.1 "Height" Ability { id: "1740", source: "Swindler" }
+578.3 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
+578.7 "Brute Force" Ability { id: "1738", source: "Blaster" }
+581.8 "Mind Blast" Ability { id: "1739", source: "Blaster" }
 
-593.0 "Mirage" sync / 1[56]:[^:]*:Blaster Mirage:1748:/
+593.0 "Mirage" Ability { id: "1748", source: "Blaster Mirage" }
 599.1 "Supercharge"
 604.5 "Mind Blast"
 614.1 "Enumeration"
@@ -120,57 +120,57 @@ hideall "Brute Force"
 
 # GO, GO, MEGAZORD MODE (BRUTE JUSTICE)
 800.0 "--sync--" sync / 03:........:Brute Justice:/  window 300,30
-810.3 "--sync--" sync / 1[56]:[^:]*:Brute Justice:1758:/ window 610.3,30
+810.3 "--sync--" Ability { id: "1758", source: "Brute Justice" } window 610.3,30
 813.0 "--targetable--"
-826.9 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:174E:/ window 26,30
-829.0 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-832.4 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-833.0 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:1754:/
-840.5 "Apocalyptic Ray" sync / 1[56]:[^:]*:Brute Justice:1751:/ window 30,30 duration 5
-852.4 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1750:/
-858.6 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-863.7 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-865.7 "Short Needle x3" duration 6 # sync / 1[56]:[^:]*:Brute Justice:1753:/
-871.8 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:174E:/ window 30,30
-879.0 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-885.1 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-889.1 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:1754:/
-897.1 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:174F:/ window 30,30
+826.9 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } window 26,30
+829.0 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+832.4 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+833.0 "Long Needle" Ability { id: "1754", source: "Brute Justice" }
+840.5 "Apocalyptic Ray" Ability { id: "1751", source: "Brute Justice" } window 30,30 duration 5
+852.4 "Super Jump" Ability { id: "1750", source: "Brute Justice" }
+858.6 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+863.7 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+865.7 "Short Needle x3" duration 6 # Ability { id: "1753", source: "Brute Justice" }
+871.8 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } window 30,30
+879.0 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+885.1 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+889.1 "Long Needle" Ability { id: "1754", source: "Brute Justice" }
+897.1 "Mega Beam" Ability { id: "174F", source: "Brute Justice" } window 30,30
 899.2 "--untargetable--"
 
 # ABBREVIATED INTERMISSION
-902.4 "J Kick" sync / 1[56]:[^:]*:Brute Justice:1756:/
-914.7 "Minefield" sync / 1[56]:[^:]*:Hidden Mine:174A:/
-915.7 "Ice Missile" sync / 1[56]:[^:]*:Vortexer:1746:/
-916.7 "Earth Missile" sync / 1[56]:[^:]*:Vortexer:1745:/
-919.9 "Attachment" sync / 1[56]:[^:]*:Brawler:163C:/
-926.1 "Single Buster/Double Buster" sync / 1[56]:[^:]*:Brawler:173D:/
-932.0 "--sync--" sync / 1[56]:[^:]*:Brute Justice:1636:/
-933.1 "100-Megatonze Shock" sync / 1[56]:[^:]*:Onslaughter:1736:/
-936.9 "Height" sync / 1[56]:[^:]*:Swindler:1740:/
-939.4 "Mega Beam" sync / 1[56]:[^:]*:Onslaughter:1732:/
+902.4 "J Kick" Ability { id: "1756", source: "Brute Justice" }
+914.7 "Minefield" Ability { id: "174A", source: "Hidden Mine" }
+915.7 "Ice Missile" Ability { id: "1746", source: "Vortexer" }
+916.7 "Earth Missile" Ability { id: "1745", source: "Vortexer" }
+919.9 "Attachment" Ability { id: "163C", source: "Brawler" }
+926.1 "Single Buster/Double Buster" Ability { id: "173D", source: "Brawler" }
+932.0 "--sync--" Ability { id: "1636", source: "Brute Justice" }
+933.1 "100-Megatonze Shock" Ability { id: "1736", source: "Onslaughter" }
+936.9 "Height" Ability { id: "1740", source: "Swindler" }
+939.4 "Mega Beam" Ability { id: "1732", source: "Onslaughter" }
 
 # FOR GREAT JUSTICE
 947.8 "--targetable--"
-957.9 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:174E:/ window 30,30
-960.1 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-964.0 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-964.0 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:1754:/
-972.2 "Apocalyptic Ray" sync / 1[56]:[^:]*:Brute Justice:1751:/ duration 5 window 30,30
-984.1 "Super Jump" sync / 1[56]:[^:]*:Brute Justice:1750:/
-990.3 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-995.4 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-997.4 "Short Needle x3" duration 6 # sync / 1[56]:[^:]*:Brute Justice:1753:/
-1003.4 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:174E:/ window 30,30
-1010.6 "Flarethrower" sync / 1[56]:[^:]*:Brute Justice:174D:/
-1016.7 "Missile Command" sync / 1[56]:[^:]*:Brute Justice:1668:/
-1020.7 "Long Needle" sync / 1[56]:[^:]*:Brute Justice:1754:/
-1028.8 "Mega Beam" sync / 1[56]:[^:]*:Brute Justice:174F:/ window 30,30
+957.9 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } window 30,30
+960.1 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+964.0 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+964.0 "Long Needle" Ability { id: "1754", source: "Brute Justice" }
+972.2 "Apocalyptic Ray" Ability { id: "1751", source: "Brute Justice" } duration 5 window 30,30
+984.1 "Super Jump" Ability { id: "1750", source: "Brute Justice" }
+990.3 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+995.4 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+997.4 "Short Needle x3" duration 6 # Ability { id: "1753", source: "Brute Justice" }
+1003.4 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } window 30,30
+1010.6 "Flarethrower" Ability { id: "174D", source: "Brute Justice" }
+1016.7 "Missile Command" Ability { id: "1668", source: "Brute Justice" }
+1020.7 "Long Needle" Ability { id: "1754", source: "Brute Justice" }
+1028.8 "Mega Beam" Ability { id: "174F", source: "Brute Justice" } window 30,30
 1030.9 "--untargetable--"
-1034.1 "J Kick" sync / 1[56]:[^:]*:Brute Justice:1756:/
+1034.1 "J Kick" Ability { id: "1756", source: "Brute Justice" }
 
 1037.1 "--targetable--"
-1047.2 "Double Rocket Punch" sync / 1[56]:[^:]*:Brute Justice:174E:/ jump 957.9
+1047.2 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } jump 957.9
 1049.4 "Missile Command"
 1053.3 "Flarethrower"
 1053.3 "Long Needle"

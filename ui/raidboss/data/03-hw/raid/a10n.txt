@@ -8,100 +8,100 @@ hideall "--sync--"
 
 # The Excruciationator will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:736:/ window 0,1
-7.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/ window 7,3
-10.1 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-15.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-22.2 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-34.4 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
-37.5 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-45.6 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
-49.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-56.7 "Trap" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/ window 56.7,5
-58.0 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
-61.1 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-61.7 "Frostbite/Impact" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
-69.0 "Trap" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/
-70.3 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
-74.0 "Impact/Frostbite" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
-74.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-78.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-87.1 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
-90.2 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-98.3 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
-102.4 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+7.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" } window 7,3
+10.1 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+15.2 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+22.2 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+34.4 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
+37.5 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+45.6 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
+49.7 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+56.7 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 56.7,5
+58.0 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
+61.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+61.7 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: "(Blizzard Arrow|Weight of the World)" }
+69.0 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
+70.3 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
+74.0 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: "(Blizzard Arrow|Weight of the World)" }
+74.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+78.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+87.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
+90.2 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+98.3 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
+102.4 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 
 105.4 "--untargetable--"
-105.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/ window 20,20
+105.4 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" } window 20,20
 110.7 "--targetable--"
 
 111.1 "--sync--"  sync / 14:[^:]*:Gobpress R-VI:1AC9:/ window 112,10
-112.8 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A9C:/
-117.8 "Critical Wrath" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACD:/
-122.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-126.2 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
-132.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-136.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-142.3 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-145.5 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
-156.2 "Bomb Toss" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACE:/
-161.4 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-165.0 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
-170.2 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-174.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-180.4 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-184.3 "Steam Roller" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+112.8 "--sync--" Ability { id: "1A9C", source: "Lamebrix Strikebocks" }
+117.8 "Critical Wrath" Ability { id: "1ACD", source: "Lamebrix Strikebocks" }
+122.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+126.2 "Steam Roller" Ability { id: "1ACA", source: "Gobpress R-VI" }
+132.2 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+136.2 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+142.3 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+145.5 "Steam Roller" Ability { id: "1ACA", source: "Gobpress R-VI" }
+156.2 "Bomb Toss" Ability { id: "1ACE", source: "Lamebrix Strikebocks" }
+161.4 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+165.0 "Steam Roller" Ability { id: "1ACA", source: "Gobpress R-VI" }
+170.2 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+174.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+180.4 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+184.3 "Steam Roller" Ability { id: "1ACA", source: "Gobpress R-VI" }
 
 # The Gobpress gains a damage up buff here. The intermission continues and loops if unsynced.
-189.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-194.8 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-199.9 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-203.6 "Steam Roller Enrage?" sync / 1[56]:[^:]*:Gobpress R-VI:1ACA:/
+189.7 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+194.8 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+199.9 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+203.6 "Steam Roller Enrage?" Ability { id: "1ACA", source: "Gobpress R-VI" }
 
 # This targetable entry is the earliest we can re-sync the timeline.
 300.0 "--targetable--" sync /22:[^:]*:Lamebrix Strikebocks:[^:]*:Lamebrix Strikebocks:01/ window 190,10
-309.2 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/ window 200,10
-317.3 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
+309.2 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" } window 200,10
+317.3 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
 
-321.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
-324.6 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
-325.5 "Gobspin Whooshdrops/Gobswipe Conklops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 25,10
-331.6 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-335.6 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-339.7 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-344.7 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/
-347.9 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A97:/
-348.8 "Gobswipe Conklops/Gobspin Whooshdrops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1ACB|1ACC):/ window 10,10
-355.9 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-360.0 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-368.1 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
-372.3 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-377.3 "Laceration #1" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/ window 30,2.5
-380.3 "Laceration #2" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
-383.3 "Laceration #3" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
-385.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-389.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-393.3 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-398.2 "Trap #1" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/ window 100,2.5
-402.3 "Trap #2" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB0|1AB1):/
-403.2 "Frostbite/Impact" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
-403.6 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AA2:/
-407.3 "Impact/Frostbite" sync / 1[56]:[^:]*:(Blizzard Arrow|Weight of the World):(1AC7|1AC6):/
-408.9 "Illuminati Hand Cannon" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD2:/
-418.1 "Gobslash Slicetops" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD1:/
-422.1 "Goblin Rush" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A17:/
-430.2 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
-434.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
-440.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1A9C:/ window 30,30
-444.4 "Laceration #1" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
-445.4 "Critical Wrath" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACD:/
-447.4 "Laceration #2" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
-450.4 "Laceration #3" sync / 1[56]:[^:]*:Buzzsaw:1AC8:/
-453.1 "Bomb Toss" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACE:/
-465.1 "Gobbieboom?" sync / 1[56]:[^:]*:Goblin of Fortune:1AD3:/
-467.2 "Gobrush Rushgob" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1ACF:/
-470.3 "Gobsway Rumblerocks" sync / 1[56]:[^:]*:Lamebrix Strikebocks:1AD0:/
+321.4 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" }
+324.6 "--sync--" Ability { id: "1A97", source: "Lamebrix Strikebocks" }
+325.5 "Gobspin Whooshdrops/Gobswipe Conklops" Ability { id: "(1ACB|1ACC)", source: "Lamebrix Strikebocks" } window 25,10
+331.6 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+335.6 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+339.7 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+344.7 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" }
+347.9 "--sync--" Ability { id: "1A97", source: "Lamebrix Strikebocks" }
+348.8 "Gobswipe Conklops/Gobspin Whooshdrops" Ability { id: "(1ACB|1ACC)", source: "Lamebrix Strikebocks" } window 10,10
+355.9 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+360.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+368.1 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
+372.3 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+377.3 "Laceration #1" Ability { id: "1AC8", source: "Buzzsaw" } window 30,2.5
+380.3 "Laceration #2" Ability { id: "1AC8", source: "Buzzsaw" }
+383.3 "Laceration #3" Ability { id: "1AC8", source: "Buzzsaw" }
+385.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+389.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+393.3 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+398.2 "Trap #1" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 100,2.5
+402.3 "Trap #2" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
+403.2 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: "(Blizzard Arrow|Weight of the World)" }
+403.6 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
+407.3 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: "(Blizzard Arrow|Weight of the World)" }
+408.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
+418.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
+422.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
+430.2 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
+434.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
+440.4 "--sync--" Ability { id: "1A9C", source: "Lamebrix Strikebocks" } window 30,30
+444.4 "Laceration #1" Ability { id: "1AC8", source: "Buzzsaw" }
+445.4 "Critical Wrath" Ability { id: "1ACD", source: "Lamebrix Strikebocks" }
+447.4 "Laceration #2" Ability { id: "1AC8", source: "Buzzsaw" }
+450.4 "Laceration #3" Ability { id: "1AC8", source: "Buzzsaw" }
+453.1 "Bomb Toss" Ability { id: "1ACE", source: "Lamebrix Strikebocks" }
+465.1 "Gobbieboom?" Ability { id: "1AD3", source: "Goblin of Fortune" }
+467.2 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
+470.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 
-474.4 "--sync--" sync / 1[56]:[^:]*:Lamebrix Strikebocks:(1AB8|1AB9):/ window 30,10 jump 321.4
+474.4 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" } window 30,10 jump 321.4
 477.6 "Single Charge"
 478.5 "Gobspin Whooshdrops/Gobswipe Conklops"
 484.6 "Gobsway Rumblerocks"

@@ -8,97 +8,97 @@ hideall "--sync--"
 
 # Elevated Detritus will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB0:/ window 100,0
-112.8 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/ window 112.8,20
-125.1 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-140.1 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-158.4 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
-170.6 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-177.7 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
-187.8 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
-197.9 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
-206.2 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-220.2 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-239.6 "Aerial Support: Bombardment" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D3:/
+112.8 "Firing Order: Anti-Personnel Laser" Ability { id: "508D", source: "813P-Operated Aegis Unit" } window 112.8,20
+125.1 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+140.1 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+158.4 "Maneuver: Collider Cannons" Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
+170.6 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+177.7 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
+187.8 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
+197.9 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+206.2 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+220.2 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+239.6 "Aerial Support: Bombardment" Ability { id: "50D3", source: "813P-Operated Aegis Unit" }
 244.4 "--adds targetable--"
-249.8 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-256.0 "Firing Order: High-Powered Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508F:/
-263.3 "High-Powered Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5093:/
-269.5 "Maneuver: Saturation Bombing?" sync / 1[56]:[^:]*:Flight Unit:5097:/
+249.8 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+256.0 "Firing Order: High-Powered Laser" Ability { id: "508F", source: "813P-Operated Aegis Unit" }
+263.3 "High-Powered Laser" Ability { id: "5093", source: "813P-Operated Aegis Unit" }
+269.5 "Maneuver: Saturation Bombing?" Ability { id: "5097", source: "Flight Unit" }
 
 # Singing Rotation 1
-280.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-287.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-288.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-295.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-296.3 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-303.8 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-309.3 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
-317.4 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
-319.4 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
-328.5 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-330.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-345.7 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-349.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+280.3 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+287.8 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+288.3 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+295.8 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+296.3 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+303.8 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+309.3 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
+317.4 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+319.4 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
+328.5 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+330.7 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+345.7 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+349.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
 
 # Singing Rotation 2
-354.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-357.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-359.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-362.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-364.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-367.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-369.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-372.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-377.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-382.8 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
-392.9 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
-394.4 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
-411.7 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
-422.3 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
-441.6 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-443.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-458.8 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-462.9 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+354.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+357.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+359.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+362.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+364.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+367.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+369.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+372.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+377.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+382.8 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
+392.9 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
+394.4 "Maneuver: Collider Cannons" Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
+411.7 "Firing Order: Anti-Personnel Laser" Ability { id: "508D", source: "813P-Operated Aegis Unit" }
+422.3 "Maneuver: Collider Cannons" Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
+441.6 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+443.8 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+458.8 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+462.9 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
 
 # Singing Rotation Loop
-467.9 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-470.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-472.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-475.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-477.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-480.3 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-482.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-485.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-490.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-495.7 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/
-503.8 "Maneuver: Refraction Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
-505.8 "Flight Path" sync / 1[56]:[^:]*:Flight Unit:508C:/
-521.1 "Firing Order: Anti-Personnel Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
-531.1 "Maneuver: Collider Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
-550.5 "Firing Order: Surface Laser" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-552.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-566.7 "Maneuver: Beam Cannons" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-570.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+467.9 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+470.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+472.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+475.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+477.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+480.3 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+482.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+485.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+490.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+495.7 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
+503.8 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+505.8 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
+521.1 "Firing Order: Anti-Personnel Laser" Ability { id: "508D", source: "813P-Operated Aegis Unit" }
+531.1 "Maneuver: Collider Cannons" Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
+550.5 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+552.7 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+566.7 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+570.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
 
 # lookahead loop
-575.8 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-578.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-580.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-583.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-585.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-588.2 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-590.7 "--sync--" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
-593.1 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-598.1 "Life's Last Song" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B3:/
-603.6 "Aerial Support: Swoop" sync / 1[56]:[^:]*:813P-Operated Aegis Unit:50D2:/ window 100,100 jump 495.7
-611.7 "Maneuver: Refraction Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:(507F|5080):/
-613.7 "Flight Path" #sync / 1[56]:[^:]*:Flight Unit:508C:/
-629.0 "Firing Order: Anti-Personnel Laser" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508D:/
-639.0 "Maneuver: Collider Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[BCD]:/
-658.4 "Firing Order: Surface Laser" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:508E:/
-660.6 "--sync--" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:507[789A]:/
-674.6 "Maneuver: Beam Cannons" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:5073:/
-678.7 "--sync--" #sync / 1[56]:[^:]*:813P-Operated Aegis Unit:53B2:/
+575.8 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+578.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+580.7 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+583.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+585.7 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+588.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+590.7 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
+593.1 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+598.1 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
+603.6 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" } window 100,100 jump 495.7
+611.7 "Maneuver: Refraction Cannons" #Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+613.7 "Flight Path" #Ability { id: "508C", source: "Flight Unit" }
+629.0 "Firing Order: Anti-Personnel Laser" #Ability { id: "508D", source: "813P-Operated Aegis Unit" }
+639.0 "Maneuver: Collider Cannons" #Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
+658.4 "Firing Order: Surface Laser" #Ability { id: "508E", source: "813P-Operated Aegis Unit" }
+660.6 "--sync--" #Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
+674.6 "Maneuver: Beam Cannons" #Ability { id: "5073", source: "813P-Operated Aegis Unit" }
+678.7 "--sync--" #Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
 
 
 ### Light Artillery Unit x3 and friends
@@ -106,26 +106,26 @@ hideall "--sync--"
 # -p 5212:1013.9 -ii 5214
 # Sunken Detritus will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB1:/ window 1000,0
-1013.9 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/ window 1013.9,20
-1025.7 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
-1036.0 "Authorization: No Restrictions" sync / 1[56]:[^:]*:Light Artillery Unit:520E:/
-1041.7 "Surface Missile Impact" sync / 1[56]:[^:]*:Light Artillery Unit:520F:/
-1043.7 "Homing Missile Impact" sync / 1[56]:[^:]*:Light Artillery Unit:5210:/
+1013.9 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" } window 1013.9,20
+1025.7 "Maneuver: Volt Array" Ability { id: "5211", source: "Light Artillery Unit" }
+1036.0 "Authorization: No Restrictions" Ability { id: "520E", source: "Light Artillery Unit" }
+1041.7 "Surface Missile Impact" Ability { id: "520F", source: "Light Artillery Unit" }
+1043.7 "Homing Missile Impact" Ability { id: "5210", source: "Light Artillery Unit" }
 
-1052.7 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
-1059.5 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
-1070.2 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
-1086.7 "Maneuver: Martial Arm" sync / 1[56]:[^:]*:Light Artillery Unit:5213:/
-1097.1 "Maneuver: Martial Arm" sync / 1[56]:[^:]*:Light Artillery Unit:5213:/
-1103.5 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
+1052.7 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" }
+1059.5 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" }
+1070.2 "Maneuver: Volt Array" Ability { id: "5211", source: "Light Artillery Unit" }
+1086.7 "Maneuver: Martial Arm" Ability { id: "5213", source: "Light Artillery Unit" }
+1097.1 "Maneuver: Martial Arm" Ability { id: "5213", source: "Light Artillery Unit" }
+1103.5 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" }
 
-1103.7 "Maneuver: Long-Barreled Laser" sync / 1[56]:[^:]*:Light Artillery Unit:5212:/
-1119.6 "Maneuver: Volt Array" sync / 1[56]:[^:]*:Light Artillery Unit:5211:/
-1129.9 "Authorization: No Restrictions" sync / 1[56]:[^:]*:Light Artillery Unit:520E:/ window 50,50 jump 1036.0
-1135.6 "Surface Missile Impact" #sync / 1[56]:[^:]*:Light Artillery Unit:520F:/
-1137.6 "Homing Missile Impact" #sync / 1[56]:[^:]*:Light Artillery Unit:5210:/
-1153.7 "Initiate Self-Destruct" #sync / 1[56]:[^:]*:Light Artillery Unit:5215:/
-1153.7 "Initiate Self-Destruct" #sync / 1[56]:[^:]*:Light Artillery Unit:5215:/
+1103.7 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" }
+1119.6 "Maneuver: Volt Array" Ability { id: "5211", source: "Light Artillery Unit" }
+1129.9 "Authorization: No Restrictions" Ability { id: "520E", source: "Light Artillery Unit" } window 50,50 jump 1036.0
+1135.6 "Surface Missile Impact" #Ability { id: "520F", source: "Light Artillery Unit" }
+1137.6 "Homing Missile Impact" #Ability { id: "5210", source: "Light Artillery Unit" }
+1153.7 "Initiate Self-Destruct" #Ability { id: "5215", source: "Light Artillery Unit" }
+1153.7 "Initiate Self-Destruct" #Ability { id: "5215", source: "Light Artillery Unit" }
 
 
 ### Superior Flight Unit Swordy Boi Trio
@@ -140,83 +140,83 @@ hideall "--sync--"
 
 # Launch Deck will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB2:/ window 2000,0
-2005.1 "Apply Shield Protocol" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA6:/ window 2005.1,20
-2018.3 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
-2031.5 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
-2040.7 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
+2005.1 "Apply Shield Protocol" Ability { id: "4FA6", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 2005.1,20
+2018.3 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2031.5 "Maneuver: Incendiary Bombing" Ability { id: "4FC3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2040.7 "Maneuver: High-Powered Laser" Ability { id: "4FB4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2060.4 "Formation: Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
-2073.6 "Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
+2060.4 "Formation: Sharp Turn" Ability { id: "4FAB", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2073.6 "Sharp Turn" Ability { id: "4FA[9A]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2090.4 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
-2104.7 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
+2090.4 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2104.7 "Formation: Air Raid" Ability { id: "4FB0", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 # Technically 2 missiles (4FB1/4FB2) come out during the 2.2s before this cast??
-2114.0 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
+2114.0 "Lethal Revolution" Ability { id: "4FB3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 5.8
 
-2142.4 "Formation: Sliding Swipe" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+2142.4 "Formation: Sliding Swipe" Ability { id: "4FAE", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2144.4 "--untargetable--"
-2153.5 "Incendiary Barrage" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAF:/
-2155.0 "Sliding Swipe 1" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[CD]:/
-2157.0 "Sliding Swipe 2" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):550[DE]:/
-2159.0 "Sliding Swipe 3" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):(550F|5510):/
+2153.5 "Incendiary Barrage" Ability { id: "4FAF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2155.0 "Sliding Swipe 1" Ability { id: "4FA[CD]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2157.0 "Sliding Swipe 2" Ability { id: "550[DE]", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" }
+2159.0 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2161.3 "--targetable--"
 
 2172.7 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/ window 70,20
 2172.7 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FC4:/ window 70,20
 2172.7 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FC4:/ window 70,20
-2176.7 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/ window 10,10
-2191.0 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
-2206.2 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
-2224.8 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+2176.7 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 10,10
+2191.0 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
+2206.2 "Maneuver: High-Powered Laser" Ability { id: "4FB4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2224.8 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2243.1 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
-2252.5 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
+2243.1 "Formation: Air Raid" Ability { id: "4FB0", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2252.5 "Lethal Revolution" Ability { id: "4FB3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 5.8
 
-2273.8 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
+2273.8 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
 
-2304.1 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
-2315.3 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
+2304.1 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2315.3 "Maneuver: Incendiary Bombing" Ability { id: "4FC3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
 # Loop begins roughly here:
-2321.5 "Maneuver: High-Order Explosive Blast" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/
-2339.8 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
+2321.5 "Maneuver: High-Order Explosive Blast" Ability { id: "4FBF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2339.8 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2356.1 "Formation: Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
-2369.2 "Sharp Turn" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
+2356.1 "Formation: Sharp Turn" Ability { id: "4FAB", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2369.2 "Sharp Turn" Ability { id: "4FA[9A]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2392.0 "Formation: Sliding Swipe" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+2392.0 "Formation: Sliding Swipe" Ability { id: "4FAE", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2394.0 "--untargetable--"
-2400.0 "Anti-Personnel Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBB:/
-2403.1 "Incendiary Barrage" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAF:/
-2404.6 "Sliding Swipe 1" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[CD]:/
-2406.6 "Sliding Swipe 2" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):550[DE]:/
-2408.6 "Sliding Swipe 3" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):(550F|5510):/
+2400.0 "Anti-Personnel Missile" Ability { id: "4FBB", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2403.1 "Incendiary Barrage" Ability { id: "4FAF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2404.6 "Sliding Swipe 1" Ability { id: "4FA[CD]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2406.6 "Sliding Swipe 2" Ability { id: "550[DE]", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" }
+2408.6 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2410.9 "--targetable--"
 
 2427.2 "--sync--" sync / 14:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/ window 70,20
 2427.2 "--sync--" sync / 14:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FBD:/ window 70,20
 2427.2 "--sync--" sync / 14:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FBD:/ window 70,20
-2431.2 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/ window 10,10
-2447.4 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
-2467.7 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
-2482.9 "Maneuver: High-Powered Laser" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB4:/
-2501.5 "Maneuver: Missile Command" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
-2519.8 "Formation: Air Raid" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB0:/
-2529.0 "Lethal Revolution" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB3:/ duration 5.8
-2550.5 "Maneuver: Area Bombardment" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FB7:/ duration 15
-2565.6 "Anti-Personnel Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBB:/
-2580.8 "Maneuver: Precision Guided Missile" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC4:/
-2592.0 "Maneuver: Incendiary Bombing" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FC3:/
+2431.2 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 10,10
+2447.4 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2467.7 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
+2482.9 "Maneuver: High-Powered Laser" Ability { id: "4FB4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2501.5 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2519.8 "Formation: Air Raid" Ability { id: "4FB0", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2529.0 "Lethal Revolution" Ability { id: "4FB3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 5.8
+2550.5 "Maneuver: Area Bombardment" Ability { id: "4FB7", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } duration 15
+2565.6 "Anti-Personnel Missile" Ability { id: "4FBB", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2580.8 "Maneuver: Precision Guided Missile" Ability { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2592.0 "Maneuver: Incendiary Bombing" Ability { id: "4FC3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
-2598.2 "--sync--" sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/ window 90,90 jump 2321.5
-2598.2 "--sync--" sync / 1[56]:[^:]*:767P-Operated Superior Flight Unit \(B-Eta\):4FBF:/ window 90,90 jump 2321.5
-2598.2 "--sync--" sync / 1[56]:[^:]*:772P-Operated Superior Flight Unit \(C-Hi\):4FBF:/ window 90,90 jump 2321.5
+2598.2 "--sync--" Ability { id: "4FBF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 90,90 jump 2321.5
+2598.2 "--sync--" Ability { id: "4FBF", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" } window 90,90 jump 2321.5
+2598.2 "--sync--" Ability { id: "4FBF", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" } window 90,90 jump 2321.5
 
-2598.2 "Maneuver: High-Order Explosive Blast" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBF:/ jump 2321.5
-2616.5 "Maneuver: Missile Command" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FBD:/
-2632.8 "Formation: Sharp Turn" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAB:/
-2645.9 "Sharp Turn" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FA[9A]:/
-2668.7 "Formation: Sliding Swipe" #sync / 1[56]:[^:]*:724P-Operated Superior Flight Unit \(A-Lpha\):4FAE:/
+2598.2 "Maneuver: High-Order Explosive Blast" #Ability { id: "4FBF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } jump 2321.5
+2616.5 "Maneuver: Missile Command" #Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2632.8 "Formation: Sharp Turn" #Ability { id: "4FAB", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2645.9 "Sharp Turn" #Ability { id: "4FA[9A]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
+2668.7 "Formation: Sliding Swipe" #Ability { id: "4FAE", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 
 
 
@@ -225,77 +225,77 @@ hideall "--sync--"
 
 # Core Command will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB3:/ window 3000,0
-3012.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/ window 3012.1,20
-3024.5 "Operation: Activate Laser Turret" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FED:/
-3028.2 "Lower Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5086:/ duration 3.5
-3028.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5087:/ duration 2.5
-3031.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5088:/ duration 2.5
-3034.2 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5089:/ duration 2.5
-3038.5 "Maneuver: High-Powered Laser x2" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5001:/ duration 2.3
-3048.3 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
-3054.3 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
-3061.4 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ duration 9.2
-3072.5 "Maneuver: Impact Crusher x3" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFD:/ duration 3.3
+3012.1 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" } window 3012.1,20
+3024.5 "Operation: Activate Laser Turret" Ability { id: "4FED", source: "905P-Operated Heavy Artillery Unit" }
+3028.2 "Lower Laser" Ability { id: "5086", source: "905P-Operated Heavy Artillery Unit" } duration 3.5
+3028.2 "Upper Laser" Ability { id: "5087", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
+3031.2 "Upper Laser" Ability { id: "5088", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
+3034.2 "Upper Laser" Ability { id: "5089", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
+3038.5 "Maneuver: High-Powered Laser x2" Ability { id: "5001", source: "905P-Operated Heavy Artillery Unit" } duration 2.3
+3048.3 "--sync--" Ability { id: "5005", source: "905P-Operated Heavy Artillery Unit" }
+3054.3 "Maneuver: Unconventional Voltage" Ability { id: "5003", source: "905P-Operated Heavy Artillery Unit" }
+3061.4 "Energy Bombardment" Ability { id: "4FFB", source: "905P-Operated Heavy Artillery Unit" } duration 9.2
+3072.5 "Maneuver: Impact Crusher x3" Ability { id: "4FFD", source: "905P-Operated Heavy Artillery Unit" } duration 3.3
 
-3078.8 "Maneuver: Revolving Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5000:/
-3087.9 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3109.9 "Operation: Access Self-Consciousness Data" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEF:/
-3126.2 "Operation: Activate Suppressive Unit" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEE:/ duration 30
+3078.8 "Maneuver: Revolving Laser" Ability { id: "5000", source: "905P-Operated Heavy Artillery Unit" }
+3087.9 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3109.9 "Operation: Access Self-Consciousness Data" Ability { id: "4FEF", source: "905P-Operated Heavy Artillery Unit" }
+3126.2 "Operation: Activate Suppressive Unit" Ability { id: "4FEE", source: "905P-Operated Heavy Artillery Unit" } duration 30
 
-3156.2 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3172.4 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
-3182.7 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
-3194.6 "R010: Laser / R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF[01]:/
-3199.6 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
-3210.8 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
-3222.7 "R030: Hammer / R010: Laser" sync / 1[56]:[^:]*:Pod:4FF[01]:/
-3232.8 "Operation: Synthesize Compound" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEC:/
-3249.8 "Chemical Burn" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FF4:/
-3254.8 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3156.2 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3172.4 "Support: Pod" Ability { id: "4FE9", source: "905P-Operated Heavy Artillery Unit" }
+3182.7 "Operation: Pod Program" Ability { id: "4FEA", source: "905P-Operated Heavy Artillery Unit" }
+3194.6 "R010: Laser / R030: Hammer" Ability { id: "4FF[01]", source: "Pod" }
+3199.6 "Support: Pod" Ability { id: "4FE9", source: "905P-Operated Heavy Artillery Unit" }
+3210.8 "Operation: Pod Program" Ability { id: "4FEA", source: "905P-Operated Heavy Artillery Unit" }
+3222.7 "R030: Hammer / R010: Laser" Ability { id: "4FF[01]", source: "Pod" }
+3232.8 "Operation: Synthesize Compound" Ability { id: "4FEC", source: "905P-Operated Heavy Artillery Unit" }
+3249.8 "Chemical Burn" Ability { id: "4FF4", source: "905P-Operated Heavy Artillery Unit" }
+3254.8 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
 
-3266.1 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
-3272.1 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
-3276.2 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ duration 9.2
-3297.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3309.3 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3313.4 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
-3323.7 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
-3335.6 "R010: Laser" sync / 1[56]:[^:]*:Pod:4FF0:/
-3335.6 "R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF1:/
-3340.6 "Support: Pod" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
-3351.9 "Operation: Pod Program" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
-3363.9 "R010: Laser" sync / 1[56]:[^:]*:Pod:4FF0:/
-3363.9 "R030: Hammer" sync / 1[56]:[^:]*:Pod:4FF1:/
-3370.4 "Operation: Activate Laser Turret" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FED:/
-3374.1 "Lower Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5086:/ duration 3.5
-3374.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5087:/ duration 2.5
-3377.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5088:/ duration 2.5
-3380.1 "Upper Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5089:/ duration 2.5
+3266.1 "--sync--" Ability { id: "5005", source: "905P-Operated Heavy Artillery Unit" }
+3272.1 "Maneuver: Unconventional Voltage" Ability { id: "5003", source: "905P-Operated Heavy Artillery Unit" }
+3276.2 "Energy Bombardment" Ability { id: "4FFB", source: "905P-Operated Heavy Artillery Unit" } duration 9.2
+3297.1 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3309.3 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3313.4 "Support: Pod" Ability { id: "4FE9", source: "905P-Operated Heavy Artillery Unit" }
+3323.7 "Operation: Pod Program" Ability { id: "4FEA", source: "905P-Operated Heavy Artillery Unit" }
+3335.6 "R010: Laser" Ability { id: "4FF0", source: "Pod" }
+3335.6 "R030: Hammer" Ability { id: "4FF1", source: "Pod" }
+3340.6 "Support: Pod" Ability { id: "4FE9", source: "905P-Operated Heavy Artillery Unit" }
+3351.9 "Operation: Pod Program" Ability { id: "4FEA", source: "905P-Operated Heavy Artillery Unit" }
+3363.9 "R010: Laser" Ability { id: "4FF0", source: "Pod" }
+3363.9 "R030: Hammer" Ability { id: "4FF1", source: "Pod" }
+3370.4 "Operation: Activate Laser Turret" Ability { id: "4FED", source: "905P-Operated Heavy Artillery Unit" }
+3374.1 "Lower Laser" Ability { id: "5086", source: "905P-Operated Heavy Artillery Unit" } duration 3.5
+3374.1 "Upper Laser" Ability { id: "5087", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
+3377.1 "Upper Laser" Ability { id: "5088", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
+3380.1 "Upper Laser" Ability { id: "5089", source: "905P-Operated Heavy Artillery Unit" } duration 2.5
 
-3381.3 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3395.5 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3404.7 "Operation: Synthesize Compound" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEC:/
-3421.7 "Chemical Conflagration" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FF5:/
+3381.3 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3395.5 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3404.7 "Operation: Synthesize Compound" Ability { id: "4FEC", source: "905P-Operated Heavy Artillery Unit" }
+3421.7 "Chemical Conflagration" Ability { id: "4FF5", source: "905P-Operated Heavy Artillery Unit" }
 
-3424.7 "Maneuver: Impact Crusher x3" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFD:/ duration 3.3
-3431.0 "Maneuver: Revolving Laser" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5000:/
-3439.1 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3456.4 "Operation: Activate Suppressive Unit" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEE:/ duration 30
+3424.7 "Maneuver: Impact Crusher x3" Ability { id: "4FFD", source: "905P-Operated Heavy Artillery Unit" } duration 3.3
+3431.0 "Maneuver: Revolving Laser" Ability { id: "5000", source: "905P-Operated Heavy Artillery Unit" }
+3439.1 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3456.4 "Operation: Activate Suppressive Unit" Ability { id: "4FEE", source: "905P-Operated Heavy Artillery Unit" } duration 30
 
-3480.4 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
-3486.4 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
-3495.5 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3503.6 "Maneuver: Volt Array" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
+3480.4 "--sync--" Ability { id: "5005", source: "905P-Operated Heavy Artillery Unit" }
+3486.4 "Maneuver: Unconventional Voltage" Ability { id: "5003", source: "905P-Operated Heavy Artillery Unit" }
+3495.5 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3503.6 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
 
 # loop back to the first hammer+laser combo deal pod program
-3515.8 "--sync--" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5005:/
-3521.8 "Maneuver: Unconventional Voltage" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5003:/
-3525.9 "Energy Bombardment" sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FFB:/ window 100,100 jump 3276.2
-3538.1 "Maneuver: High-Powered Laser" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5001:/
-3546.9 "Maneuver: Volt Array" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3559.1 "Maneuver: Volt Array" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:5006:/
-3563.2 "Support: Pod" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FE9:/
-3573.5 "Operation: Pod Program" #sync / 1[56]:[^:]*:905P-Operated Heavy Artillery Unit:4FEA:/
+3515.8 "--sync--" Ability { id: "5005", source: "905P-Operated Heavy Artillery Unit" }
+3521.8 "Maneuver: Unconventional Voltage" Ability { id: "5003", source: "905P-Operated Heavy Artillery Unit" }
+3525.9 "Energy Bombardment" Ability { id: "4FFB", source: "905P-Operated Heavy Artillery Unit" } window 100,100 jump 3276.2
+3538.1 "Maneuver: High-Powered Laser" #Ability { id: "5001", source: "905P-Operated Heavy Artillery Unit" }
+3546.9 "Maneuver: Volt Array" #Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3559.1 "Maneuver: Volt Array" #Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" }
+3563.2 "Support: Pod" #Ability { id: "4FE9", source: "905P-Operated Heavy Artillery Unit" }
+3573.5 "Operation: Pod Program" #Ability { id: "4FEA", source: "905P-Operated Heavy Artillery Unit" }
 
 
 ### Heavy Artillery Unit: caster-friendly hallway section
@@ -311,34 +311,34 @@ hideall "--sync--"
 
 # The bridge will be sealed off
 #5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB5:/ window 5000,0
-5002.0 "--sync--" sync / 1[56]:[^:]*:The Compound:53CA:/ window 5002,0
-5013.2 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/ window 6000,20
-5024.4 "Mechanical Decapitation/Dissection" sync / 1[56]:[^:]*:The Compound:51B[34]:/
-5034.9 "Mechanical Dissection/Decapitation" sync / 1[56]:[^:]*:The Compound:51B[34]:/
-5043.9 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
+5002.0 "--sync--" Ability { id: "53CA", source: "The Compound" } window 5002,0
+5013.2 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" } window 6000,20
+5024.4 "Mechanical Decapitation/Dissection" Ability { id: "51B[34]", source: "The Compound" }
+5034.9 "Mechanical Dissection/Decapitation" Ability { id: "51B[34]", source: "The Compound" }
+5043.9 "Mechanical Contusion" Ability { id: "51B5", source: "The Compound" }
 
 5058.0 "--untargetable--"
-5068.7 "Incongruous Spin x2" #sync / 1[56]:[^:]*:The Compound:51B2:/
+5068.7 "Incongruous Spin x2" #Ability { id: "51B2", source: "The Compound" }
 5073.9 "--targetable--"
 
-5088.0 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
-5099.1 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
-5105.1 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
-5115.3 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
-5125.6 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
-5141.7 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
-5147.7 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
-5157.9 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
+5088.0 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" }
+5099.1 "Mechanical Decapitation" Ability { id: "51B4", source: "The Compound" }
+5105.1 "Mechanical Contusion" Ability { id: "51B5", source: "The Compound" }
+5115.3 "Mechanical Dissection" Ability { id: "51B3", source: "The Compound" }
+5125.6 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" }
+5141.7 "Mechanical Decapitation" Ability { id: "51B4", source: "The Compound" }
+5147.7 "Mechanical Contusion" Ability { id: "51B5", source: "The Compound" }
+5157.9 "Mechanical Dissection" Ability { id: "51B3", source: "The Compound" }
 
-5168.2 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/
-5184.5 "Mechanical Dissection" sync / 1[56]:[^:]*:The Compound:51B3:/
-5190.8 "Mechanical Contusion" sync / 1[56]:[^:]*:The Compound:51B5:/
-5200.9 "Mechanical Decapitation" sync / 1[56]:[^:]*:The Compound:51B4:/
+5168.2 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" }
+5184.5 "Mechanical Dissection" Ability { id: "51B3", source: "The Compound" }
+5190.8 "Mechanical Contusion" Ability { id: "51B5", source: "The Compound" }
+5200.9 "Mechanical Decapitation" Ability { id: "51B4", source: "The Compound" }
 
-5210.9 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:51B8:/ window 30,30 jump 5168.2
-5227.2 "Mechanical Dissection" #sync / 1[56]:[^:]*:The Compound:51B3:/
-5233.5 "Mechanical Contusion" #sync / 1[56]:[^:]*:The Compound:51B5:/
-5243.6 "Mechanical Decapitation" #sync / 1[56]:[^:]*:The Compound:51B4:/
+5210.9 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" } window 30,30 jump 5168.2
+5227.2 "Mechanical Dissection" #Ability { id: "51B3", source: "The Compound" }
+5233.5 "Mechanical Contusion" #Ability { id: "51B5", source: "The Compound" }
+5243.6 "Mechanical Decapitation" #Ability { id: "51B4", source: "The Compound" }
 
 
 ### Compound 2P
@@ -349,84 +349,84 @@ hideall "--sync--"
 # * 53D0 / 53D1 are included here as stand-ins for "Forced Transfer" when there is no ability.
 # * However, 53D0 / 53D1 are noisy so they're not included everywhere.
 
-6000.0 "Mechanical Laceration" sync / 1[56]:[^:]*:The Compound:53D5:/ window 6000,0
+6000.0 "Mechanical Laceration" Ability { id: "53D5", source: "The Compound" } window 6000,0
 6051.1 "--targetable--"
-6068.3 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/ window 7000,0
-6080.1 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
-6099.9 "Prime Blade (Out)" sync / 1[56]:[^:]*:Compound 2P:541F:/
-6110.5 "Prime Blade (Behind)" sync / 1[56]:[^:]*:Compound 2P:5420:/
-6121.0 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:5421:/
+6068.3 "Centrifugal Slice" Ability { id: "51B0", source: "Compound 2P" } window 7000,0
+6080.1 "Relentless Spiral x3" Ability { id: "51A9", source: "Compound 2P" } duration 4.1
+6099.9 "Prime Blade (Out)" Ability { id: "541F", source: "Compound 2P" }
+6110.5 "Prime Blade (Behind)" Ability { id: "5420", source: "Compound 2P" }
+6121.0 "Prime Blade (In)" Ability { id: "5421", source: "Compound 2P" }
 
-6131.5 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6140.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D0:/
-6143.6 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:519A:/
-6153.1 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/
+6131.5 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6140.1 "Forced Transfer" Ability { id: "53D0", source: "Compound 2P" }
+6143.6 "Prime Blade (In)" Ability { id: "519A", source: "Compound 2P" }
+6153.1 "Centrifugal Slice" Ability { id: "51B0", source: "Compound 2P" }
 
-6166.6 "Three Parts Disdain" sync / 1[56]:[^:]*:Compound 2P:519B:/ duration 3.6
+6166.6 "Three Parts Disdain" Ability { id: "519B", source: "Compound 2P" } duration 3.6
 
-6179.5 "Compound Pod: R012" sync / 1[56]:[^:]*:Compound 2P:51AB:/
-6183.3 "R012: Laser" sync / 1[56]:[^:]*:Compound Pod:51AC:/
+6179.5 "Compound Pod: R012" Ability { id: "51AB", source: "Compound 2P" }
+6183.3 "R012: Laser" Ability { id: "51AC", source: "Compound Pod" }
 
-6204.6 "Four Parts Resolve" sync / 1[56]:[^:]*:Compound 2P:519E:/ duration 9.4
+6204.6 "Four Parts Resolve" Ability { id: "519E", source: "Compound 2P" } duration 9.4
 
-6224.4 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6230.6 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/
-6240.3 "Prime Blade (In)" sync / 1[56]:[^:]*:Compound 2P:5421:/
-6250.7 "Prime Blade (In)" sync / 1[56]:[^:]*:Puppet 2P:5421:/
+6224.4 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6230.6 "Reproduce" Ability { id: "51A1", source: "Compound 2P" }
+6240.3 "Prime Blade (In)" Ability { id: "5421", source: "Compound 2P" }
+6250.7 "Prime Blade (In)" Ability { id: "5421", source: "Puppet 2P" }
 
-6255.8 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6261.9 "Energy Compression" sync / 1[56]:[^:]*:Compound 2P:51A6:/
-6272.9 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
-6287.4 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
-6291.2 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+6255.8 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6261.9 "Energy Compression" Ability { id: "51A6", source: "Compound 2P" }
+6272.9 "Explosion" Ability { id: "51A7", source: "Compound 2P" }
+6287.4 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
+6291.2 "Explosion" Ability { id: "51A7", source: "Compound 2P" }
 
-6299.2 "Compound Pod: R011" sync / 1[56]:[^:]*:Compound 2P:51A4:/
-6315.6 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:543A:/
-6318.5 "R011: Laser" sync / 1[56]:[^:]*:Compound Pod:51A5:/
-6329.9 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
+6299.2 "Compound Pod: R011" Ability { id: "51A4", source: "Compound 2P" }
+6315.6 "Forced Transfer" Ability { id: "543A", source: "Compound 2P" }
+6318.5 "R011: Laser" Ability { id: "51A5", source: "Compound Pod" }
+6329.9 "Relentless Spiral x3" Ability { id: "51A9", source: "Compound 2P" } duration 4.1
 
-6332.7 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6341.3 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D1:/
-6344.7 "Prime Blade (Out/Behind)" sync / 1[56]:[^:]*:Compound 2P:519[89]:/
+6332.7 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6341.3 "Forced Transfer" Ability { id: "53D1", source: "Compound 2P" }
+6344.7 "Prime Blade (Out/Behind)" Ability { id: "519[89]", source: "Compound 2P" }
 
 # beginning of loop
-6350.2 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6356.3 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/
-6366.0 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(541F|5421):/
-6375.9 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
-6379.4 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Puppet 2P:(5198|519A):/
+6350.2 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6356.3 "Reproduce" Ability { id: "51A1", source: "Compound 2P" }
+6366.0 "Prime Blade (In/Out)" Ability { id: "(541F|5421)", source: "Compound 2P" }
+6375.9 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
+6379.4 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Puppet 2P" }
 
 
 # Random Three Parts/ Four Parts
 6391.8 "--sync--" sync / 14:[^:]*:Compound 2P:519E:/ window 50,50
-6399.8 "Four Parts Resolve?" sync / 1[56]:[^:]*:Compound 2P:519E:/
+6399.8 "Four Parts Resolve?" Ability { id: "519E", source: "Compound 2P" }
 
 # This is adjusted 9 seconds ahead so that Compound Pod: R012 lines up.  @_@;;
 6400.7 "--sync--" sync / 14:[^:]*:Compound 2P:519B:/ window 50,50
-6406.7 "Three Parts Disdain?" sync / 1[56]:[^:]*:Compound 2P:519B:/
+6406.7 "Three Parts Disdain?" Ability { id: "519B", source: "Compound 2P" }
 
 
-6420.5 "Compound Pod: R012" sync / 1[56]:[^:]*:Compound 2P:51AB:/
-6423.4 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6424.3 "R012: Laser" sync / 1[56]:[^:]*:Compound Pod:51AC:/
-6429.6 "Energy Compression" sync / 1[56]:[^:]*:Compound 2P:51A6:/
-6440.6 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+6420.5 "Compound Pod: R012" Ability { id: "51AB", source: "Compound 2P" }
+6423.4 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6424.3 "R012: Laser" Ability { id: "51AC", source: "Compound Pod" }
+6429.6 "Energy Compression" Ability { id: "51A6", source: "Compound 2P" }
+6440.6 "Explosion" Ability { id: "51A7", source: "Compound 2P" }
 
-6455.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
-6458.9 "Explosion" sync / 1[56]:[^:]*:Compound 2P:51A7:/
+6455.1 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
+6458.9 "Explosion" Ability { id: "51A7", source: "Compound 2P" }
 
-6471.9 "Centrifugal Slice" sync / 1[56]:[^:]*:Compound 2P:51B0:/
-6490.2 "Compound Pod: R011" sync / 1[56]:[^:]*:Compound 2P:51A4:/
-6506.6 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:543A:/
-6509.5 "R011: Laser" sync / 1[56]:[^:]*:Compound Pod:51A5:/
-6520.9 "Relentless Spiral x3" sync / 1[56]:[^:]*:Compound 2P:51A9:/ duration 4.1
+6471.9 "Centrifugal Slice" Ability { id: "51B0", source: "Compound 2P" }
+6490.2 "Compound Pod: R011" Ability { id: "51A4", source: "Compound 2P" }
+6506.6 "Forced Transfer" Ability { id: "543A", source: "Compound 2P" }
+6509.5 "R011: Laser" Ability { id: "51A5", source: "Compound Pod" }
+6520.9 "Relentless Spiral x3" Ability { id: "51A9", source: "Compound 2P" } duration 4.1
 
-6523.7 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6532.5 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:53D[01]:/
-6535.8 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(5198|519A):/
+6523.7 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6532.5 "Forced Transfer" Ability { id: "53D[01]", source: "Compound 2P" }
+6535.8 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Compound 2P" }
 
-6541.3 "--sync--" sync / 1[56]:[^:]*:Compound 2P:51A3:/
-6547.4 "Reproduce" sync / 1[56]:[^:]*:Compound 2P:51A1:/ window 100,100 jump 6356.3
-6557.2 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Compound 2P:(541F|5421):/
-6567.1 "Forced Transfer" sync / 1[56]:[^:]*:Compound 2P:51A2:/
-6570.6 "Prime Blade (In/Out)" sync / 1[56]:[^:]*:Puppet 2P:(5198|519A):/
+6541.3 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
+6547.4 "Reproduce" Ability { id: "51A1", source: "Compound 2P" } window 100,100 jump 6356.3
+6557.2 "Prime Blade (In/Out)" Ability { id: "(541F|5421)", source: "Compound 2P" }
+6567.1 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
+6570.6 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Puppet 2P" }

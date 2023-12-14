@@ -2,7 +2,7 @@
 
 <img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png" />
 
-[![GitHub 工作流程状态（分支）](https://img.shields.io/github/workflow/status/quisquous/cactbot/Test/main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain) [![GitHub 发行版（最新的 SemVer）](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen\&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
+[![GitHub 工作流程状态（分支）](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain) [![GitHub 发行版（最新的 SemVer）](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen\&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
 
 🌎 [[English](../../README.md)] [**简体中文**] [[한국어](../ko-KR/README.md)]
 

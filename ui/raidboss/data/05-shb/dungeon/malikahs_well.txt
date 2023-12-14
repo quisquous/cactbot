@@ -8,31 +8,31 @@ hideall "--sync--"
 # Terminus will be sealed off
 100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD5:/ window 100,0
 
-115.0 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/ window 115,5
-133.6 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
-138.6 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
-144.2 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
-148.9 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+115.0 "Stone Flail" Ability { id: "3CE5", source: "Greater Armadillo" } window 115,5
+133.6 "Head Toss" Ability { id: "3CE6", source: "Greater Armadillo" }
+138.6 "Right Round" Ability { id: "3CE7", source: "Greater Armadillo" }
+144.2 "Flail Smash" Ability { id: "3CE9", source: "Greater Armadillo" }
+148.9 "Earthshake" Ability { id: "3E39", source: "Greater Armadillo" }
 
 160.7 "2x Pack Armadillo"
 
-175.3 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/
-198.0 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
-203.0 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
-208.6 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
-213.3 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+175.3 "Stone Flail" Ability { id: "3CE5", source: "Greater Armadillo" }
+198.0 "Head Toss" Ability { id: "3CE6", source: "Greater Armadillo" }
+203.0 "Right Round" Ability { id: "3CE7", source: "Greater Armadillo" }
+208.6 "Flail Smash" Ability { id: "3CE9", source: "Greater Armadillo" }
+213.3 "Earthshake" Ability { id: "3E39", source: "Greater Armadillo" }
 
 225.1 "2x Pack Armadillo"
 
-239.6 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/
-262.0 "Head Toss" sync / 1[56]:[^:]*:Greater Armadillo:3CE6:/
-266.9 "Right Round" sync / 1[56]:[^:]*:Greater Armadillo:3CE7:/
-272.5 "Flail Smash" sync / 1[56]:[^:]*:Greater Armadillo:3CE9:/
-277.2 "Earthshake" sync / 1[56]:[^:]*:Greater Armadillo:3E39:/
+239.6 "Stone Flail" Ability { id: "3CE5", source: "Greater Armadillo" }
+262.0 "Head Toss" Ability { id: "3CE6", source: "Greater Armadillo" }
+266.9 "Right Round" Ability { id: "3CE7", source: "Greater Armadillo" }
+272.5 "Flail Smash" Ability { id: "3CE9", source: "Greater Armadillo" }
+277.2 "Earthshake" Ability { id: "3E39", source: "Greater Armadillo" }
 
 289.0 "2x Pack Armadillo"
 
-303.5 "Stone Flail" sync / 1[56]:[^:]*:Greater Armadillo:3CE5:/ window 20,20 jump 175.3
+303.5 "Stone Flail" Ability { id: "3CE5", source: "Greater Armadillo" } window 20,20 jump 175.3
 326.2 "Head Toss"
 331.2 "Right Round"
 336.8 "Flail Smash"
@@ -45,22 +45,22 @@ hideall "--sync--"
 # -ii 3CF0 -p 3CEB:515.5
 # Malikah's Gift will be sealed off
 500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD6:/ window 500,0
-515.5 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/ window 515.5,10
-527.1 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
-531.3 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
-534.1 "High Pressure" sync / 1[56]:[^:]*:Amphibious Talos:3CEC:/
-544.5 "Swift Spill x6" sync / 1[56]:[^:]*:Amphibious Talos:3CEF:/ duration 6.4
-562.4 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
-575.1 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+515.5 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" } window 515.5,10
+527.1 "Wellbore" Ability { id: "3CED", source: "Amphibious Talos" }
+531.3 "Geyser Eruption" Ability { id: "3CEE", source: "Amphibious Talos" }
+534.1 "High Pressure" Ability { id: "3CEC", source: "Amphibious Talos" }
+544.5 "Swift Spill x6" Ability { id: "3CEF", source: "Amphibious Talos" } duration 6.4
+562.4 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" }
+575.1 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" }
 
-590.4 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/
-594.6 "Geyser Eruption" sync / 1[56]:[^:]*:Amphibious Talos:3CEE:/
-597.4 "High Pressure" sync / 1[56]:[^:]*:Amphibious Talos:3CEC:/
-608.0 "Swift Spill x6" sync / 1[56]:[^:]*:Amphibious Talos:3CEF:/ duration 6.4
-625.9 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
-638.6 "Efface" sync / 1[56]:[^:]*:Amphibious Talos:3CEB:/
+590.4 "Wellbore" Ability { id: "3CED", source: "Amphibious Talos" }
+594.6 "Geyser Eruption" Ability { id: "3CEE", source: "Amphibious Talos" }
+597.4 "High Pressure" Ability { id: "3CEC", source: "Amphibious Talos" }
+608.0 "Swift Spill x6" Ability { id: "3CEF", source: "Amphibious Talos" } duration 6.4
+625.9 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" }
+638.6 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" }
 
-653.9 "Wellbore" sync / 1[56]:[^:]*:Amphibious Talos:3CED:/ window 20,20 jump 590.4
+653.9 "Wellbore" Ability { id: "3CED", source: "Amphibious Talos" } window 20,20 jump 590.4
 658.1 "Geyser Eruption"
 660.9 "High Pressure"
 671.5 "Swift Spill x6" duration 6.4
@@ -72,39 +72,39 @@ hideall "--sync--"
 # -ii 3CF7 3CA8 41A8 -p 3CF1:1015
 # Unquestioned Acceptance will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD7:/ window 1000,0
-1015.0 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/ window 1015,5
-1028.2 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3CF2:/
-1043.0 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3CF5:/
+1015.0 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" } window 1015,5
+1028.2 "Heretic's Fork" Ability { id: "3CF2", source: "Storge" }
+1043.0 "Breaking Wheel" Ability { id: "3CF5", source: "Storge" }
 
-1056.1 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
-1063.2 "Heretic's Fork?" sync / 1[56]:[^:]*:Storge:3CF2:/ window 10,10 jump 2063.2
-1065.7 "Breaking Wheel?" sync / 1[56]:[^:]*:Storge:3CF5:/ window 10,10 jump 2156.2
+1056.1 "Crystal Nail" Ability { id: "3CF6", source: "Storge" }
+1063.2 "Heretic's Fork?" Ability { id: "3CF2", source: "Storge" } window 10,10 jump 2063.2
+1065.7 "Breaking Wheel?" Ability { id: "3CF5", source: "Storge" } window 10,10 jump 2156.2
 
-2056.1 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
-2063.2 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3CF2:/
-2068.3 "Censure" sync / 1[56]:[^:]*:Storge:3CF8:/
-2078.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
-2082.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
-2086.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
-2090.5 "Heretic's Fork" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CF9:/
-2093.4 "Heretic's Fork" sync / 1[56]:[^:]*:Storge:3E0E:/
-2105.6 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
-2119.7 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
-2133.8 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2056.1 "Crystal Nail" Ability { id: "3CF6", source: "Storge" }
+2063.2 "Heretic's Fork" Ability { id: "3CF2", source: "Storge" }
+2068.3 "Censure" Ability { id: "3CF8", source: "Storge" }
+2078.5 "Heretic's Fork" #Ability { id: "3CF9", source: "Rhapsodic Nail" }
+2082.5 "Heretic's Fork" #Ability { id: "3CF9", source: "Rhapsodic Nail" }
+2086.5 "Heretic's Fork" #Ability { id: "3CF9", source: "Rhapsodic Nail" }
+2090.5 "Heretic's Fork" #Ability { id: "3CF9", source: "Rhapsodic Nail" }
+2093.4 "Heretic's Fork" Ability { id: "3E0E", source: "Storge" }
+2105.6 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
+2119.7 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
+2133.8 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
 
-2146.6 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/
-2156.2 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3CF5:/
-2161.4 "Censure" sync / 1[56]:[^:]*:Storge:3E37:/
-2172.5 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
-2177.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
-2182.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
-2187.7 "Breaking Wheel" #sync / 1[56]:[^:]*:Rhapsodic Nail:3CFA:/
-2192.6 "Breaking Wheel" sync / 1[56]:[^:]*:Storge:3E0F:/
-2212.4 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
-2226.5 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
-2240.6 "Intestinal Crank" sync / 1[56]:[^:]*:Storge:3CF1:/
+2146.6 "Crystal Nail" Ability { id: "3CF6", source: "Storge" }
+2156.2 "Breaking Wheel" Ability { id: "3CF5", source: "Storge" }
+2161.4 "Censure" Ability { id: "3E37", source: "Storge" }
+2172.5 "Breaking Wheel" #Ability { id: "3CFA", source: "Rhapsodic Nail" }
+2177.7 "Breaking Wheel" #Ability { id: "3CFA", source: "Rhapsodic Nail" }
+2182.7 "Breaking Wheel" #Ability { id: "3CFA", source: "Rhapsodic Nail" }
+2187.7 "Breaking Wheel" #Ability { id: "3CFA", source: "Rhapsodic Nail" }
+2192.6 "Breaking Wheel" Ability { id: "3E0F", source: "Storge" }
+2212.4 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
+2226.5 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
+2240.6 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" }
 
-2253.4 "Crystal Nail" sync / 1[56]:[^:]*:Storge:3CF6:/ window 50,50 jump 2056.1
+2253.4 "Crystal Nail" Ability { id: "3CF6", source: "Storge" } window 50,50 jump 2056.1
 2260.5 "Heretic's Fork"
 2265.5 "Censure"
 2275.7 "Heretic's Fork"

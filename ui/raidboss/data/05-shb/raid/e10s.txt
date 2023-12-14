@@ -14,103 +14,103 @@ hideall "--sync--"
 
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.3 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/ window 12,10
-24.5 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56F[03]:/
-33.3 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:5717:/
-40.9 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:56E[AD]:/
-53.2 "Umbra Smash" sync / 1[56]:[^:]*:Shadowkeeper:5BAA:/
-54.8 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-56.4 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-58.0 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-66.1 "Darkness Unleashed / Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0[CE]:/
-80.9 "Shadow Cleave" sync / 1[56]:[^:]*:Shadowkeeper:5718:/
-94.0 "Dualspell" sync / 1[56]:[^:]*:Shadowkeeper:573A:/
-94.0 "Blighting Blitz" sync / 1[56]:[^:]*:Shadowkeeper:573B:/
-97.0 "Blighting Blitz" sync / 1[56]:[^:]*:Shadowkeeper:573B:/
-100.0 "Blighting Blitz" sync / 1[56]:[^:]*:Shadowkeeper:573B:/
-107.4 "Shadowkeeper" sync / 1[56]:[^:]*:Shadowkeeper:5720:/
-110.5 "Swath Of Silence" sync / 1[56]:[^:]*:Shadow Of A Hero:5BBF:/
-119.8 "Umbra Smash" sync / 1[56]:[^:]*:Shadowkeeper:5BAA:/
-121.4 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-123.0 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-124.6 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-132.7 "Darkness Unleashed / Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0[CE]:/
-144.3 "Shadow Servant" sync / 1[56]:[^:]*:Shadowkeeper:5704:/
-159.4 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:5B2[CD]:/
-177.5 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:5B2[CD]:/
-191.2 "Distant Scream" sync / 1[56]:[^:]*:Shadowkeeper:5716:/
-199.7 "Umbral Orbs" sync / 1[56]:[^:]*:Shadowkeeper:5730:/
-209.5 "Flameshadow" sync / 1[56]:[^:]*:Shadefire:5733:/
-211.9 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-217.3 "Spawn Shadow" sync / 1[56]:[^:]*:Shadowkeeper:5727:/
-223.4 "Shadow Warrior" sync / 1[56]:[^:]*:Shadowkeeper:5739:/
-229.5 "Umbral Orbs" sync / 1[56]:[^:]*:Shadowkeeper:5730:/
-239.3 "Flameshadow" sync / 1[56]:[^:]*:Shadefire:5733:/
-253.7 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-261.9 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-267.1 "Fade To Shadow" sync / 1[56]:[^:]*:Shadowkeeper:572B:/
-279.4 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56F[03]:/
-280.7 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B13:/
-285.7 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B14:/
-290.7 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-306.0 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5700|56FC):/
-309.1 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5701|56FD):/
-312.2 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5701|56FD):/
-315.3 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5702|56FE):/
-323.4 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-335.1 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:5717:/
-341.6 "Umbra Smash" sync / 1[56]:[^:]*:Shadowkeeper:5BAA:/
-343.2 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-344.8 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-346.4 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-354.5 "Darkness Unleashed / Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0[CE]:/
-367.1 "Voidgate" sync / 1[56]:[^:]*:Shadowkeeper:5734:/
-373.3 "Shadow Servant" sync / 1[56]:[^:]*:Shadowkeeper:5704:/
-384.2 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:5735:/
-388.4 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:5B2[CD]:/
-401.9 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:5735:/
-409.5 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:5B2[CD]:/
-425.7 "Pitch Bog" sync / 1[56]:[^:]*:Shadowkeeper:5721:/
-431.0 "Umbral Orbs" sync / 1[56]:[^:]*:Shadowkeeper:5731:/
-438.9 "Distant Scream" sync / 1[56]:[^:]*:Shadowkeeper:5716:/
-440.9 "Flameshadow" sync / 1[56]:[^:]*:Shadefire:5733:/
-449.6 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5700|56FC):/
-452.7 "Implosion" sync / 1[56]:[^:]*:Shadowkeeper:(5702|5701|56FE):/
-464.8 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-476.0 "Shackled Apart" sync / 1[56]:[^:]*:Shadowkeeper:5BAC:/
-478.5 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-483.7 "Fade To Shadow" sync / 1[56]:[^:]*:Shadowkeeper:572B:/
-491.9 "Umbral Orbs" sync / 1[56]:[^:]*:Shadowkeeper:5730:/
-497.3 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B13:/
-502.3 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B14:/
-503.7 "Flameshadow" sync / 1[56]:[^:]*:Shadefire:5733:/
-516.0 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-531.6 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:5717:/
-538.2 "Pitch Bog" sync / 1[56]:[^:]*:Shadowkeeper:5721:/
-546.6 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:(56F8|56F4):/
-549.7 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:(56F9|56F5):/
-552.8 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:(56F9|56F5):/
-555.9 "Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:(56FA|56F6):/
-563.0 "Voidgate Amplifier" sync / 1[56]:[^:]*:Shadowkeeper:5BCF:/
-570.1 "Shadowkeeper" sync / 1[56]:[^:]*:Shadowkeeper:5720:/
-573.2 "Swath Of Silence" sync / 1[56]:[^:]*:Shadow Of A Hero:5BBF:/
-577.6 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:5735:/
-581.6 "Shadowy Eruption" sync / 1[56]:[^:]*:Shadowkeeper:5737:/
-585.4 "Shadowy Eruption" sync / 1[56]:[^:]*:Shadowkeeper:5738:/
-587.0 "Shackled Together" sync / 1[56]:[^:]*:Shadowkeeper:572E:/
-592.8 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:5735:/
-601.4 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5BAA:/
-603.0 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-604.6 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-606.2 "Umbra Smash" #sync / 1[56]:[^:]*:Shadowkeeper:5724:/
-614.3 "Darkness Unleashed / Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0[CE]:/
-621.9 "Umbral Orbs" sync / 1[56]:[^:]*:Shadowkeeper:5731:/
-629.8 "Distant Scream" sync / 1[56]:[^:]*:Shadowkeeper:5716:/
-631.7 "Flameshadow" sync / 1[56]:[^:]*:Shadefire:5733:/
-642.3 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-654.5 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
-662.7 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:573E:/
+11.3 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" } window 12,10
+24.5 "Implosion" Ability { id: "56F[03]", source: "Shadowkeeper" }
+33.3 "Throne Of Shadow" Ability { id: "5717", source: "Shadowkeeper" }
+40.9 "Giga Slash" Ability { id: "56E[AD]", source: "Shadowkeeper" }
+53.2 "Umbra Smash" Ability { id: "5BAA", source: "Shadowkeeper" }
+54.8 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+56.4 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+58.0 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+66.1 "Darkness Unleashed / Shadow's Edge" Ability { id: "5B0[CE]", source: "Shadowkeeper" }
+80.9 "Shadow Cleave" Ability { id: "5718", source: "Shadowkeeper" }
+94.0 "Dualspell" Ability { id: "573A", source: "Shadowkeeper" }
+94.0 "Blighting Blitz" Ability { id: "573B", source: "Shadowkeeper" }
+97.0 "Blighting Blitz" Ability { id: "573B", source: "Shadowkeeper" }
+100.0 "Blighting Blitz" Ability { id: "573B", source: "Shadowkeeper" }
+107.4 "Shadowkeeper" Ability { id: "5720", source: "Shadowkeeper" }
+110.5 "Swath Of Silence" Ability { id: "5BBF", source: "Shadow Of A Hero" }
+119.8 "Umbra Smash" Ability { id: "5BAA", source: "Shadowkeeper" }
+121.4 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+123.0 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+124.6 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+132.7 "Darkness Unleashed / Shadow's Edge" Ability { id: "5B0[CE]", source: "Shadowkeeper" }
+144.3 "Shadow Servant" Ability { id: "5704", source: "Shadowkeeper" }
+159.4 "Giga Slash" Ability { id: "5B2[CD]", source: "Shadowkeeper" }
+177.5 "Giga Slash" Ability { id: "5B2[CD]", source: "Shadowkeeper" }
+191.2 "Distant Scream" Ability { id: "5716", source: "Shadowkeeper" }
+199.7 "Umbral Orbs" Ability { id: "5730", source: "Shadowkeeper" }
+209.5 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
+211.9 "--sync--" Ability { id: "5B08", source: "Shadowkeeper" }
+217.3 "Spawn Shadow" Ability { id: "5727", source: "Shadowkeeper" }
+223.4 "Shadow Warrior" Ability { id: "5739", source: "Shadowkeeper" }
+229.5 "Umbral Orbs" Ability { id: "5730", source: "Shadowkeeper" }
+239.3 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
+253.7 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+261.9 "--sync--" Ability { id: "5B08", source: "Shadowkeeper" }
+267.1 "Fade To Shadow" Ability { id: "572B", source: "Shadowkeeper" }
+279.4 "Implosion" Ability { id: "56F[03]", source: "Shadowkeeper" }
+280.7 "Cloak Of Shadows" Ability { id: "5B13", source: "Shadowkeeper" }
+285.7 "Cloak Of Shadows" Ability { id: "5B14", source: "Shadowkeeper" }
+290.7 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+306.0 "Implosion" Ability { id: "(5700|56FC)", source: "Shadowkeeper" }
+309.1 "Implosion" Ability { id: "(5701|56FD)", source: "Shadowkeeper" }
+312.2 "Implosion" Ability { id: "(5701|56FD)", source: "Shadowkeeper" }
+315.3 "Implosion" Ability { id: "(5702|56FE)", source: "Shadowkeeper" }
+323.4 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+335.1 "Throne Of Shadow" Ability { id: "5717", source: "Shadowkeeper" }
+341.6 "Umbra Smash" Ability { id: "5BAA", source: "Shadowkeeper" }
+343.2 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+344.8 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+346.4 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+354.5 "Darkness Unleashed / Shadow's Edge" Ability { id: "5B0[CE]", source: "Shadowkeeper" }
+367.1 "Voidgate" Ability { id: "5734", source: "Shadowkeeper" }
+373.3 "Shadow Servant" Ability { id: "5704", source: "Shadowkeeper" }
+384.2 "Void Pulse" Ability { id: "5735", source: "Shadowkeeper" }
+388.4 "Giga Slash" Ability { id: "5B2[CD]", source: "Shadowkeeper" }
+401.9 "Void Pulse" Ability { id: "5735", source: "Shadowkeeper" }
+409.5 "Giga Slash" Ability { id: "5B2[CD]", source: "Shadowkeeper" }
+425.7 "Pitch Bog" Ability { id: "5721", source: "Shadowkeeper" }
+431.0 "Umbral Orbs" Ability { id: "5731", source: "Shadowkeeper" }
+438.9 "Distant Scream" Ability { id: "5716", source: "Shadowkeeper" }
+440.9 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
+449.6 "Implosion" Ability { id: "(5700|56FC)", source: "Shadowkeeper" }
+452.7 "Implosion" Ability { id: "(5702|5701|56FE)", source: "Shadowkeeper" }
+464.8 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+476.0 "Shackled Apart" Ability { id: "5BAC", source: "Shadowkeeper" }
+478.5 "--sync--" Ability { id: "5B08", source: "Shadowkeeper" }
+483.7 "Fade To Shadow" Ability { id: "572B", source: "Shadowkeeper" }
+491.9 "Umbral Orbs" Ability { id: "5730", source: "Shadowkeeper" }
+497.3 "Cloak Of Shadows" Ability { id: "5B13", source: "Shadowkeeper" }
+502.3 "Cloak Of Shadows" Ability { id: "5B14", source: "Shadowkeeper" }
+503.7 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
+516.0 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+531.6 "Throne Of Shadow" Ability { id: "5717", source: "Shadowkeeper" }
+538.2 "Pitch Bog" Ability { id: "5721", source: "Shadowkeeper" }
+546.6 "Giga Slash" Ability { id: "(56F8|56F4)", source: "Shadowkeeper" }
+549.7 "Giga Slash" Ability { id: "(56F9|56F5)", source: "Shadowkeeper" }
+552.8 "Giga Slash" Ability { id: "(56F9|56F5)", source: "Shadowkeeper" }
+555.9 "Giga Slash" Ability { id: "(56FA|56F6)", source: "Shadowkeeper" }
+563.0 "Voidgate Amplifier" Ability { id: "5BCF", source: "Shadowkeeper" }
+570.1 "Shadowkeeper" Ability { id: "5720", source: "Shadowkeeper" }
+573.2 "Swath Of Silence" Ability { id: "5BBF", source: "Shadow Of A Hero" }
+577.6 "Void Pulse" Ability { id: "5735", source: "Shadowkeeper" }
+581.6 "Shadowy Eruption" Ability { id: "5737", source: "Shadowkeeper" }
+585.4 "Shadowy Eruption" Ability { id: "5738", source: "Shadowkeeper" }
+587.0 "Shackled Together" Ability { id: "572E", source: "Shadowkeeper" }
+592.8 "Void Pulse" Ability { id: "5735", source: "Shadowkeeper" }
+601.4 "Umbra Smash" #Ability { id: "5BAA", source: "Shadowkeeper" }
+603.0 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+604.6 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+606.2 "Umbra Smash" #Ability { id: "5724", source: "Shadowkeeper" }
+614.3 "Darkness Unleashed / Shadow's Edge" Ability { id: "5B0[CE]", source: "Shadowkeeper" }
+621.9 "Umbral Orbs" Ability { id: "5731", source: "Shadowkeeper" }
+629.8 "Distant Scream" Ability { id: "5716", source: "Shadowkeeper" }
+631.7 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
+642.3 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+654.5 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
+662.7 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
 
 ### TODO: is this enrage??
-675.8 "Doom Arc" sync / 1[56]:[^:]*:Shadowkeeper:5741:/
-677.5 "Doom Arc" sync / 1[56]:[^:]*:Shadowkeeper:5742:/
+675.8 "Doom Arc" Ability { id: "5741", source: "Shadowkeeper" }
+677.5 "Doom Arc" Ability { id: "5742", source: "Shadowkeeper" }

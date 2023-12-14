@@ -9,95 +9,95 @@ hideall "Alluring Arm"
 
 ### Adds
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-4.0 "Vril" sync / 1[56]:[^:]*:Dreaming Kshatriya:2146:/ window 10,10
-12.1 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
-16.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-16.9 "Inner Demons" sync / 1[56]:[^:]*:Dreaming Kshatriya:258D:/
-28.1 "Inner Demons" sync / 1[56]:[^:]*:Dreaming Kshatriya:258D:/
-29.0 "Tail Slap" sync / 1[56]:[^:]*:Dreaming Kshatriya:258C:/
+4.0 "Vril" Ability { id: "2146", source: "Dreaming Kshatriya" } window 10,10
+12.1 "Tail Slap" Ability { id: "258C", source: "Dreaming Kshatriya" }
+16.0 "Stotram" Ability { id: "2147", source: "Lakshmi" }
+16.9 "Inner Demons" Ability { id: "258D", source: "Dreaming Kshatriya" }
+28.1 "Inner Demons" Ability { id: "258D", source: "Dreaming Kshatriya" }
+29.0 "Tail Slap" Ability { id: "258C", source: "Dreaming Kshatriya" }
 
 
 ### Warmup
 # first auto comes out before rp text.
-500.0 "Hand Of Grace" sync / 1[56]:[^:]*:Lakshmi:214C:/ window 500,0
-507.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-514.2 "Blissful Arrow" sync / 1[56]:[^:]*:Lakshmi:214F:/
-514.8 "Blissful Spear" sync / 1[56]:[^:]*:Lakshmi:2151:/
-517.4 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-528.6 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-535.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-546.0 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-553.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-560.3 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-563.4 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
-570.6 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-579.8 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
+500.0 "Hand Of Grace" Ability { id: "214C", source: "Lakshmi" } window 500,0
+507.2 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+514.2 "Blissful Arrow" Ability { id: "214F", source: "Lakshmi" }
+514.8 "Blissful Spear" Ability { id: "2151", source: "Lakshmi" }
+517.4 "Stotram" Ability { id: "2147", source: "Lakshmi" }
+528.6 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+535.9 "The Path Of Light" Ability { id: "215A", source: "Lakshmi" }
+546.0 "Alluring Arm" Ability { id: "214E", source: "Lakshmi" }
+553.2 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+560.3 "Blissful Hammer" Ability { id: "21DC", source: "Lakshmi" }
+563.4 "Stotram" Ability { id: "2147", source: "Lakshmi" }
+570.6 "The Pall Of Light" Ability { id: "215C", source: "Lakshmi" }
+579.8 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
 
 ### Chanchala #1
-588.0 "Chanchala #1" sync / 1[56]:[^:]*:Lakshmi:2148:/
-601.8 "Divine Denial" sync / 1[56]:[^:]*:Lakshmi:2149:/
-610.0 "Hand Of Beauty" sync / 1[56]:[^:]*:Lakshmi:214D:/
-617.2 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
-624.2 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
-624.5 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
-637.8 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
+588.0 "Chanchala #1" Ability { id: "2148", source: "Lakshmi" }
+601.8 "Divine Denial" Ability { id: "2149", source: "Lakshmi" }
+610.0 "Hand Of Beauty" Ability { id: "214D", source: "Lakshmi" }
+617.2 "The Pull Of Light" Ability { id: "215F", source: "Lakshmi" }
+624.2 "Blissful Hammer" Ability { id: "21DD", source: "Lakshmi" }
+624.5 "The Path Of Light" Ability { id: "215B", source: "Lakshmi" }
+637.8 "Divine Desire" Ability { id: "214B", source: "Lakshmi" }
 639.9 "--chanchala end--"
 
-650.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-662.5 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-670.6 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+650.1 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+662.5 "The Path Of Light" Ability { id: "215A", source: "Lakshmi" }
+670.6 "Stotram" Ability { id: "2147", source: "Lakshmi" }
 674.3 "--untargetable--"
 
 ### More Adds
 679.9 "--targetable--"
 
 ### Hugging
-2000.0 "Jagadishwari" sync / 1[56]:[^:]*:Lakshmi:2342:/ window 2000,0
+2000.0 "Jagadishwari" Ability { id: "2342", source: "Lakshmi" } window 2000,0
 2021.4 "/dance"
-2021.4 "--sync--" sync / 1[56]:[^:]*:Lakshmi:2159:/
-2037.1 "Alluring Embrace" sync / 1[56]:[^:]*:Lakshmi:2343:/
+2021.4 "--sync--" Ability { id: "2159", source: "Lakshmi" }
+2037.1 "Alluring Embrace" Ability { id: "2343", source: "Lakshmi" }
 2041.5 "--targetable--"
 
 ### Chanchala #2
 2041.7 "--sync--" sync / 14:[^:]*:Lakshmi:2148:/ window 50,10
-2044.7 "Chanchala #2" sync / 1[56]:[^:]*:Lakshmi:2148:/
-2058.5 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
-2073.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215B:/
-2084.0 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215F:/
+2044.7 "Chanchala #2" Ability { id: "2148", source: "Lakshmi" }
+2058.5 "Divine Doubt" Ability { id: "214A", source: "Lakshmi" }
+2073.9 "The Path Of Light" Ability { id: "215B", source: "Lakshmi" }
+2084.0 "The Pull Of Light" Ability { id: "215F", source: "Lakshmi" }
 2086.0 "--chanchala end--"
-2109.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-2111.5 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
+2109.5 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+2111.5 "Blissful Spear (Z)" Ability { id: "2166", source: "Lakshmi" }
 
-2125.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-2128.8 "Blissful Spear (mid)" sync / 1[56]:[^:]*:Lakshmi:2156:/
-2133.1 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-2144.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-2151.5 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-2158.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-2158.9 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-2169.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+2125.9 "The Path Of Light" Ability { id: "215A", source: "Lakshmi" }
+2128.8 "Blissful Spear (mid)" Ability { id: "2156", source: "Lakshmi" }
+2133.1 "The Pall Of Light" Ability { id: "215C", source: "Lakshmi" }
+2144.3 "Alluring Arm" Ability { id: "214E", source: "Lakshmi" }
+2151.5 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+2158.6 "Blissful Hammer" Ability { id: "21DC", source: "Lakshmi" }
+2158.9 "The Path Of Light" Ability { id: "215A", source: "Lakshmi" }
+2169.0 "Stotram" Ability { id: "2147", source: "Lakshmi" }
 
 ### Chanchala #3
-2180.3 "Chanchala #3" sync / 1[56]:[^:]*:Lakshmi:2148:/
-2195.6 "Divine Doubt" sync / 1[56]:[^:]*:Lakshmi:214A:/
-2210.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
-2236.5 "Divine Desire" sync / 1[56]:[^:]*:Lakshmi:214B:/
-2238.2 "Blissful Spear (out)" sync / 1[56]:[^:]*:Lakshmi:2154:/
-2250.8 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215D:/
-2251.8 "Blissful Spear (Z)" sync / 1[56]:[^:]*:Lakshmi:2166:/
-2264.0 "Stotram" sync / 1[56]:[^:]*:Lakshmi:249D:/
+2180.3 "Chanchala #3" Ability { id: "2148", source: "Lakshmi" }
+2195.6 "Divine Doubt" Ability { id: "214A", source: "Lakshmi" }
+2210.8 "The Pall Of Light" Ability { id: "215D", source: "Lakshmi" }
+2236.5 "Divine Desire" Ability { id: "214B", source: "Lakshmi" }
+2238.2 "Blissful Spear (out)" Ability { id: "2154", source: "Lakshmi" }
+2250.8 "The Pall Of Light" Ability { id: "215D", source: "Lakshmi" }
+2251.8 "Blissful Spear (Z)" Ability { id: "2166", source: "Lakshmi" }
+2264.0 "Stotram" Ability { id: "249D", source: "Lakshmi" }
 2266.1 "--chanchala end--"
-2275.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-2282.5 "The Pall Of Light" sync / 1[56]:[^:]*:Lakshmi:215C:/
-2289.5 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DC:/
-2289.8 "The Path Of Light" sync / 1[56]:[^:]*:Lakshmi:215A:/
-2297.9 "Stotram" sync / 1[56]:[^:]*:Lakshmi:2147:/
+2275.3 "Alluring Arm" Ability { id: "214E", source: "Lakshmi" }
+2282.5 "The Pall Of Light" Ability { id: "215C", source: "Lakshmi" }
+2289.5 "Blissful Hammer" Ability { id: "21DC", source: "Lakshmi" }
+2289.8 "The Path Of Light" Ability { id: "215A", source: "Lakshmi" }
+2297.9 "Stotram" Ability { id: "2147", source: "Lakshmi" }
 
-2308.1 "The Pull Of Light" sync / 1[56]:[^:]*:Lakshmi:215E:/
-2318.3 "Alluring Arm" sync / 1[56]:[^:]*:Lakshmi:214E:/
-2332.6 "Blissful Hammer" sync / 1[56]:[^:]*:Lakshmi:21DD:/
+2308.1 "The Pull Of Light" Ability { id: "215E", source: "Lakshmi" }
+2318.3 "Alluring Arm" Ability { id: "214E", source: "Lakshmi" }
+2332.6 "Blissful Hammer" Ability { id: "21DD", source: "Lakshmi" }
 
 ### Chanchala #4
-2332.8 "Chanchala #4" sync / 1[56]:[^:]*:Lakshmi:2148:/
+2332.8 "Chanchala #4" Ability { id: "2148", source: "Lakshmi" }
 2335.0 "--sync--" sync / 14:[^:]*:Lakshmi:2560:/ window 1000,1000
-2350.0 "Divine Denial Enrage" sync / 1[56]:[^:]*:Lakshmi:2560:/
+2350.0 "Divine Denial Enrage" Ability { id: "2560", source: "Lakshmi" }

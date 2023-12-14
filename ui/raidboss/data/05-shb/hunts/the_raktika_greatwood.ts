@@ -45,6 +45,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'GTFO + Look Away',
           de: 'Schnell raus + weg schauen',
+          fr: 'Allez vous-en et regardez ailleurs',
           cn: '快出去 + 看向其他方向',
           ko: '멀리 빠지기 + 뒤돌기',
         },
@@ -96,6 +97,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'Heal to Full',
           de: 'Voll heilen',
+          fr: 'Soignez au maximum',
           cn: '奶满全员',
           ko: '체력 풀피로',
         },

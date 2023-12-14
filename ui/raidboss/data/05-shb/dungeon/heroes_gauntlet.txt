@@ -11,33 +11,33 @@ hideall "--sync--"
 
 # Mount Argai Mines will be sealed off
 0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBB:/ window 0,1
-9.8 "Spectral Dream" sync / 1[56]:[^:]*:Spectral Thief:4FCB:/ window 9.8,5
-16.9 "Dash" sync / 1[56]:[^:]*:Spectral Thief:4FD3:/
-26.7 "Vacuum Blade" sync / 1[56]:[^:]*:Spectral Thief:506[12]:/
-37.8 "Spectral Whirlwind" sync / 1[56]:[^:]*:Spectral Thief:4FCC:/
-44.0 "--sync--" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
-51.1 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
-52.1 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/
-59.2 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
-63.4 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
+9.8 "Spectral Dream" Ability { id: "4FCB", source: "Spectral Thief" } window 9.8,5
+16.9 "Dash" Ability { id: "4FD3", source: "Spectral Thief" }
+26.7 "Vacuum Blade" Ability { id: "506[12]", source: "Spectral Thief" }
+37.8 "Spectral Whirlwind" Ability { id: "4FCC", source: "Spectral Thief" }
+44.0 "--sync--" Ability { id: "53CE", source: "Spectral Thief" }
+51.1 "Spectral Gust" Ability { id: "53CF", source: "Spectral Thief" }
+52.1 "Chicken Knife" Ability { id: "4FD6", source: "Spectral Thief" }
+59.2 "Shadowdash" Ability { id: "4FD4", source: "Spectral Thief" }
+63.4 "Coward's Cunning" Ability { id: "4FD7", source: "Chicken Knife" }
 
-69.0 "Papercutter" sync / 1[56]:[^:]*:Spectral Thief:4FD[12]:/
-83.2 "Spectral Dream" sync / 1[56]:[^:]*:Spectral Thief:4FCB:/
-88.4 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/ window 20,30
-95.5 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
-97.2 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
-99.7 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
-104.2 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
+69.0 "Papercutter" Ability { id: "4FD[12]", source: "Spectral Thief" }
+83.2 "Spectral Dream" Ability { id: "4FCB", source: "Spectral Thief" }
+88.4 "Chicken Knife" Ability { id: "4FD6", source: "Spectral Thief" } window 20,30
+95.5 "Shadowdash" Ability { id: "4FD4", source: "Spectral Thief" }
+97.2 "Spectral Gust" Ability { id: "53CE", source: "Spectral Thief" }
+99.7 "Coward's Cunning" Ability { id: "4FD7", source: "Chicken Knife" }
+104.2 "Spectral Gust" Ability { id: "53CF", source: "Spectral Thief" }
 
-107.4 "Vacuum Blade" sync / 1[56]:[^:]*:Spectral Thief:506[12]:/
-121.5 "Spectral Whirlwind" sync / 1[56]:[^:]*:Spectral Thief:4FCC:/
-129.6 "Chicken Knife" sync / 1[56]:[^:]*:Spectral Thief:4FD6:/ window 30,30
-136.8 "Shadowdash" sync / 1[56]:[^:]*:Spectral Thief:4FD4:/
-138.5 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CE:/
-141.0 "Coward's Cunning" sync / 1[56]:[^:]*:Chicken Knife:4FD7:/
-145.6 "Spectral Gust" sync / 1[56]:[^:]*:Spectral Thief:53CF:/
+107.4 "Vacuum Blade" Ability { id: "506[12]", source: "Spectral Thief" }
+121.5 "Spectral Whirlwind" Ability { id: "4FCC", source: "Spectral Thief" }
+129.6 "Chicken Knife" Ability { id: "4FD6", source: "Spectral Thief" } window 30,30
+136.8 "Shadowdash" Ability { id: "4FD4", source: "Spectral Thief" }
+138.5 "Spectral Gust" Ability { id: "53CE", source: "Spectral Thief" }
+141.0 "Coward's Cunning" Ability { id: "4FD7", source: "Chicken Knife" }
+145.6 "Spectral Gust" Ability { id: "53CF", source: "Spectral Thief" }
 
-148.8 "Papercutter" sync / 1[56]:[^:]*:Spectral Thief:4FD[12]:/ jump 69.0
+148.8 "Papercutter" Ability { id: "4FD[12]", source: "Spectral Thief" } jump 69.0
 163.0 "Spectral Dream"
 168.2 "Chicken Knife"
 175.3 "Shadowdash"
@@ -54,36 +54,36 @@ hideall "--sync--"
 
 # Summer Ballroom will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBC:/ window 1000,5
-1012.8 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/ window 1012.8,5
-1020.0 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
-1030.2 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/ window 30,30
-1046.7 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
-1051.4 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
-1059.0 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
-1066.7 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F58:/
-1074.2 "Death Throes" # sync / 1[56]:[^:]*:Necrobomb:4F63:/
-1085.7 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
+1012.8 "Absolute Dark II" Ability { id: "4F61", source: "Spectral Necromancer" } window 1012.8,5
+1020.0 "Necromancy" Ability { id: "4F57", source: "Spectral Necromancer" }
+1030.2 "Twisted Touch" Ability { id: "4F5E", source: "Spectral Necromancer" } window 30,30
+1046.7 "Necroburst" Ability { id: "4F5[9A]", source: "Spectral Necromancer" }
+1051.4 "--sync--" Ability { id: "4FA3", source: "Spectral Necromancer" }
+1059.0 "Pain Mire" Ability { id: "4FA4", source: "Spectral Necromancer" }
+1066.7 "Necromancy" Ability { id: "4F58", source: "Spectral Necromancer" }
+1074.2 "Death Throes" # Ability { id: "4F63", source: "Necrobomb" }
+1085.7 "Necroburst" Ability { id: "4F5[9A]", source: "Spectral Necromancer" }
 
-1096.8 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 100,30
-1105.4 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
-1111.6 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F58:/
-1121.7 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4F5C:/
-1122.7 "Dark Deluge" sync / 1[56]:[^:]*:Spectral Necromancer:4F5D:/ window 30,30
-1124.0 "Death Throes" # sync / 1[56]:[^:]*:Necrobomb:4F63:/
-1130.1 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F5[9A]:/
-1142.6 "Absolute Dark II" sync / 1[56]:[^:]*:Spectral Necromancer:4F61:/
-1149.8 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
-1157.4 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
-1164.9 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 30,30
-1176.0 "Twisted Touch" sync / 1[56]:[^:]*:Spectral Necromancer:4F5E:/
-1182.4 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4FA3:/
-1189.9 "Pain Mire" sync / 1[56]:[^:]*:Spectral Necromancer:4FA4:/
-1196.4 "Necromancy" sync / 1[56]:[^:]*:Spectral Necromancer:4F57:/
-1208.5 "--sync--" sync / 1[56]:[^:]*:Spectral Necromancer:4F5C:/
-1209.5 "Dark Deluge" sync / 1[56]:[^:]*:Spectral Necromancer:4F5D:/
-1218.9 "Necroburst" sync / 1[56]:[^:]*:Spectral Necromancer:4F59:/
+1096.8 "Chaos Storm" Ability { id: "4F60", source: "Spectral Necromancer" } window 100,30
+1105.4 "Necromancy" Ability { id: "4F57", source: "Spectral Necromancer" }
+1111.6 "Necromancy" Ability { id: "4F58", source: "Spectral Necromancer" }
+1121.7 "--sync--" Ability { id: "4F5C", source: "Spectral Necromancer" }
+1122.7 "Dark Deluge" Ability { id: "4F5D", source: "Spectral Necromancer" } window 30,30
+1124.0 "Death Throes" # Ability { id: "4F63", source: "Necrobomb" }
+1130.1 "Necroburst" Ability { id: "4F5[9A]", source: "Spectral Necromancer" }
+1142.6 "Absolute Dark II" Ability { id: "4F61", source: "Spectral Necromancer" }
+1149.8 "--sync--" Ability { id: "4FA3", source: "Spectral Necromancer" }
+1157.4 "Pain Mire" Ability { id: "4FA4", source: "Spectral Necromancer" }
+1164.9 "Chaos Storm" Ability { id: "4F60", source: "Spectral Necromancer" } window 30,30
+1176.0 "Twisted Touch" Ability { id: "4F5E", source: "Spectral Necromancer" }
+1182.4 "--sync--" Ability { id: "4FA3", source: "Spectral Necromancer" }
+1189.9 "Pain Mire" Ability { id: "4FA4", source: "Spectral Necromancer" }
+1196.4 "Necromancy" Ability { id: "4F57", source: "Spectral Necromancer" }
+1208.5 "--sync--" Ability { id: "4F5C", source: "Spectral Necromancer" }
+1209.5 "Dark Deluge" Ability { id: "4F5D", source: "Spectral Necromancer" }
+1218.9 "Necroburst" Ability { id: "4F59", source: "Spectral Necromancer" }
 
-1230.1 "Chaos Storm" sync / 1[56]:[^:]*:Spectral Necromancer:4F60:/ window 30,30 jump 1096.8
+1230.1 "Chaos Storm" Ability { id: "4F60", source: "Spectral Necromancer" } window 30,30 jump 1096.8
 1238.7 "Necromancy"
 1244.9 "Necromancy"
 1256.0 "Dark Deluge"
@@ -99,33 +99,33 @@ hideall "--sync--"
 
 # Illuminated Plaza will be sealed off
 2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:DBD:/ window 2000,5
-2012.0 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 2012,5
-2024.4 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
-2036.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
-2041.0 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
-2051.8 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/
-2066.0 "Wild Rage" sync / 1[56]:[^:]*:Spectral Berserker:5202:/ window 66,30
-2076.1 "Falling Rock" sync / 1[56]:[^:]*:Rubble:5205:/
-2082.3 "Wild Anguish x4" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
-2105.7 "--sync--" sync / 1[56]:[^:]*:Spectral Berserker:5206:/
-2106.2 "Wild Rampage" sync / 1[56]:[^:]*:Spectral Berserker:5207:/ window 106.2,5
-2117.7 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
-2122.6 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
-2127.7 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
-2137.6 "Wild Rage" sync / 1[56]:[^:]*:Spectral Berserker:5202:/ window 30,30
-2149.4 "--sync--" sync / 1[56]:[^:]*:Spectral Berserker:5206:/
-2149.9 "Wild Rampage" sync / 1[56]:[^:]*:Spectral Berserker:5207:/
-2157.4 "Falling Rock" sync / 1[56]:[^:]*:Rubble:5205:/
-2162.6 "Wild Anguish x4" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+2012.0 "Beastly Fury" Ability { id: "520C", source: "Spectral Berserker" } window 2012,5
+2024.4 "Wild Anguish" Ability { id: "5208", source: "Spectral Berserker" }
+2036.3 "Raging Slice" Ability { id: "520A", source: "Spectral Berserker" }
+2041.0 "Raging Slice" Ability { id: "520B", source: "Spectral Berserker" }
+2051.8 "Beastly Fury" Ability { id: "520C", source: "Spectral Berserker" }
+2066.0 "Wild Rage" Ability { id: "5202", source: "Spectral Berserker" } window 66,30
+2076.1 "Falling Rock" Ability { id: "5205", source: "Rubble" }
+2082.3 "Wild Anguish x4" Ability { id: "5208", source: "Spectral Berserker" }
+2105.7 "--sync--" Ability { id: "5206", source: "Spectral Berserker" }
+2106.2 "Wild Rampage" Ability { id: "5207", source: "Spectral Berserker" } window 106.2,5
+2117.7 "Raging Slice" Ability { id: "520A", source: "Spectral Berserker" }
+2122.6 "Raging Slice" Ability { id: "520B", source: "Spectral Berserker" }
+2127.7 "Raging Slice" Ability { id: "520B", source: "Spectral Berserker" }
+2137.6 "Wild Rage" Ability { id: "5202", source: "Spectral Berserker" } window 30,30
+2149.4 "--sync--" Ability { id: "5206", source: "Spectral Berserker" }
+2149.9 "Wild Rampage" Ability { id: "5207", source: "Spectral Berserker" }
+2157.4 "Falling Rock" Ability { id: "5205", source: "Rubble" }
+2162.6 "Wild Anguish x4" Ability { id: "5208", source: "Spectral Berserker" }
 
-2182.5 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 30,5
-2198.7 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/
-2207.8 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520A:/
-2212.3 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
-2217.2 "Raging Slice" sync / 1[56]:[^:]*:Spectral Berserker:520B:/
-2226.1 "Wild Anguish" sync / 1[56]:[^:]*:Spectral Berserker:5208:/
+2182.5 "Beastly Fury" Ability { id: "520C", source: "Spectral Berserker" } window 30,5
+2198.7 "Beastly Fury" Ability { id: "520C", source: "Spectral Berserker" }
+2207.8 "Raging Slice" Ability { id: "520A", source: "Spectral Berserker" }
+2212.3 "Raging Slice" Ability { id: "520B", source: "Spectral Berserker" }
+2217.2 "Raging Slice" Ability { id: "520B", source: "Spectral Berserker" }
+2226.1 "Wild Anguish" Ability { id: "5208", source: "Spectral Berserker" }
 
-2240.2 "Beastly Fury" sync / 1[56]:[^:]*:Spectral Berserker:520C:/ window 30,5 jump 2182.5
+2240.2 "Beastly Fury" Ability { id: "520C", source: "Spectral Berserker" } window 30,5 jump 2182.5
 2256.4 "Beastly Fury"
 2265.5 "Raging Slice"
 2270.0 "Raging Slice"

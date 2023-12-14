@@ -14,62 +14,62 @@ hideall "--sync--"
 0.0 "Start"
 # Central Bow will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:532:/ window 10,10
-6.1 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/ window 7,10
-26.0 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-27.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-34.9 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-42.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-57.3 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-65.9 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-75.0 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-76.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-91.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-106.0 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-107.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-115.0 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-122.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-137.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-146.0 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-155.0 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-156.2 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
+6.1 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" } window 7,10
+26.0 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+27.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+34.9 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+42.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+57.3 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+65.9 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+75.0 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+76.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+91.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+106.0 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+107.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+115.0 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+122.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+137.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+146.0 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+155.0 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+156.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
 
 ### Phase 2 (75%): brainjack + ballistic missile
 # Inertia Stream hits twice 1 second apart.
 # Only sync backwards for this first of three.
-162.6 "Inertia Stream" sync / 1[56]:[^:]*:The Avatar:7C9:/ window 170,0
-168.9 "Ballistic Missile" sync / 1[56]:[^:]*:The Avatar:7CA:/
-176.6 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-184.5 "Brainjack" sync / 1[56]:[^:]*:The Avatar:7C3:/ duration 11
-191.6 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-199.5 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-206.6 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-215.5 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-224.6 "Brainjack" sync / 1[56]:[^:]*:The Avatar:7C3:/ duration 11
-225.8 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-239.6 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-240.9 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
+162.6 "Inertia Stream" Ability { id: "7C9", source: "The Avatar" } window 170,0
+168.9 "Ballistic Missile" Ability { id: "7CA", source: "The Avatar" }
+176.6 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+184.5 "Brainjack" Ability { id: "7C3", source: "The Avatar" } duration 11
+191.6 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+199.5 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+206.6 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+215.5 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+224.6 "Brainjack" Ability { id: "7C3", source: "The Avatar" } duration 11
+225.8 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+239.6 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+240.9 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
 242.0 "Inertia Stream"
-248.3 "Ballistic Missile" sync / 1[56]:[^:]*:The Avatar:7CA:/
-255.6 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-256.8 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-264.7 "Brainjack" sync / 1[56]:[^:]*:The Avatar:7C3:/ duration 11
-271.7 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-279.6 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-286.8 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-295.7 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-304.8 "Brainjack" sync / 1[56]:[^:]*:The Avatar:7C3:/ duration 11
-306.0 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-319.7 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-321.0 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
+248.3 "Ballistic Missile" Ability { id: "7CA", source: "The Avatar" }
+255.6 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+256.8 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+264.7 "Brainjack" Ability { id: "7C3", source: "The Avatar" } duration 11
+271.7 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+279.6 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+286.8 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+295.7 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+304.8 "Brainjack" Ability { id: "7C3", source: "The Avatar" } duration 11
+306.0 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+319.7 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+321.0 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
 322.2 "Inertia Stream"
-328.4 "Ballistic Missile" sync / 1[56]:[^:]*:The Avatar:7CA:/
-335.8 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-337.0 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-344.9 "Brainjack" sync / 1[56]:[^:]*:The Avatar:7C3:/ duration 11
-352.0 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-359.8 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-367.1 "Diffusion Ray" sync / 1[56]:[^:]*:The Avatar:7C2:/
-375.9 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
+328.4 "Ballistic Missile" Ability { id: "7CA", source: "The Avatar" }
+335.8 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+337.0 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+344.9 "Brainjack" Ability { id: "7C3", source: "The Avatar" } duration 11
+352.0 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+359.8 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+367.1 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }
+375.9 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
 
 ### Phase 3 (45%): allagan field
 # NOTE: there seems to be two different last phase timings
@@ -81,37 +81,37 @@ hideall "--sync--"
 # The field/missile/bomb/surge timings are all roughly the same, so this
 # just removes the ray syncs and hopes for the best.
 377.0 "--sync--" sync / 14:[^:]*:The Avatar:7C4:/ window 400,0
-380.0 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31 window 400,10
-386.3 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-387.6 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-394.2 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-402.5 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-410.9 "Critical Surge" sync / 1[56]:[^:]*:Allagan Field:7C5:/
+380.0 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31 window 400,10
+386.3 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+387.6 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+394.2 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+402.5 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+410.9 "Critical Surge" Ability { id: "7C5", source: "Allagan Field" }
 
-420.0 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31
-421.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-427.2 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-434.2 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-436.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-450.8 "Critical Surge" sync / 1[56]:[^:]*:Allagan Field:7C5:/
-451.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
+420.0 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31
+421.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+427.2 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+434.2 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+436.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+450.8 "Critical Surge" Ability { id: "7C5", source: "Allagan Field" }
+451.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
 
-460.1 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31
-467.3 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-468.5 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-474.3 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-483.6 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-490.9 "Critical Surge" sync / 1[56]:[^:]*:Allagan Field:7C5:/
+460.1 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31
+467.3 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+468.5 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+474.3 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+483.6 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+490.9 "Critical Surge" Ability { id: "7C5", source: "Allagan Field" }
 
-500.0 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31
-501.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-507.3 "Homing Missile" sync / 1[56]:[^:]*:The Avatar:7C7:/
-514.3 "Gaseous Bomb" sync / 1[56]:[^:]*:The Avatar:7C6:/
-516.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
-530.9 "Critical Surge" sync / 1[56]:[^:]*:Allagan Field:7C5:/
-531.2 "Diffusion Ray" #sync / 1[56]:[^:]*:The Avatar:7C2:/
+500.0 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31
+501.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+507.3 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
+514.3 "Gaseous Bomb" Ability { id: "7C6", source: "The Avatar" }
+516.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
+530.9 "Critical Surge" Ability { id: "7C5", source: "Allagan Field" }
+531.2 "Diffusion Ray" #Ability { id: "7C2", source: "The Avatar" }
 
-540.1 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31 jump 460.1
+540.1 "Allagan Field" Ability { id: "7C4", source: "The Avatar" } duration 31 jump 460.1
 547.3 "Homing Missile"
 548.5 "Diffusion Ray"
 554.3 "Gaseous Bomb"
@@ -120,7 +120,7 @@ hideall "--sync--"
 
 
 ### Phase 4: Enrage
-800.0 "Atomic Ray" sync / 1[56]:[^:]*:The Avatar:7C8:/ window 800,800
+800.0 "Atomic Ray" Ability { id: "7C8", source: "The Avatar" } window 800,800
 805.1 "Atomic Ray"
 810.2 "Atomic Ray"
 815.3 "Atomic Ray"

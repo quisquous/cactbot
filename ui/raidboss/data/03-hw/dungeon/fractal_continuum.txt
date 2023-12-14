@@ -6,39 +6,39 @@ hideall "--sync--"
 
 # Exhibit Level III will be sealed off
 0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:60D:/ window 0,1
-10.3 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/ window 15,15
-16.6 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
-21.4 "Double Sever 1" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-25.6 "Double Sever 2" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-27.4 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
+10.3 "Rapid Sever" Ability { id: "F7A", source: "Phantom Ray" } window 15,15
+16.6 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
+21.4 "Double Sever 1" Ability { id: "F7[BC]", source: "Phantom Ray" }
+25.6 "Double Sever 2" Ability { id: "F7[BC]", source: "Phantom Ray" }
+27.4 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
 
-41.5 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/ window 15,15
-47.7 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
-52.5 "Double Sever 1" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-56.5 "Double Sever 2" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-58.3 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
+41.5 "Rapid Sever" Ability { id: "F7A", source: "Phantom Ray" } window 15,15
+47.7 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
+52.5 "Double Sever 1" Ability { id: "F7[BC]", source: "Phantom Ray" }
+56.5 "Double Sever 2" Ability { id: "F7[BC]", source: "Phantom Ray" }
+58.3 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
 
-72.4 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/  window 15,15 jump 41.5
+72.4 "Rapid Sever" Ability { id: "F7A", source: "Phantom Ray" }  window 15,15 jump 41.5
 78.6 "Atmospheric Displacement"
 83.3 "Double Sever 1"
 87.4 "Double Sever 2"
 89.2 "Atmospheric Displacement"
 # Phase 2 at < 75% HP
 
-100.0 "Damage Up" sync / 1[56]:[^:]*:Phantom Ray:F7F:/  window 100,30 #Overclock
-104.8 "Double Sever 1" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-107.6 "Atmospheric Compression" sync / 1[56]:[^:]*:Phantom Ray:F80:/
-109.0 "Double Sever 2" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-111.8 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
-118.9 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/
-124.0 "Rapid Sever" sync / 1[56]:[^:]*:Phantom Ray:F7A:/
-128.2 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
-133.1 "Double Sever 1" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-137.3 "Double Sever 2" sync / 1[56]:[^:]*:Phantom Ray:F7[BC]:/
-139.0 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
-146.1 "Atmospheric Displacement" sync / 1[56]:[^:]*:Phantom Ray:F7E:/
+100.0 "Damage Up" Ability { id: "F7F", source: "Phantom Ray" }  window 100,30 #Overclock
+104.8 "Double Sever 1" Ability { id: "F7[BC]", source: "Phantom Ray" }
+107.6 "Atmospheric Compression" Ability { id: "F80", source: "Phantom Ray" }
+109.0 "Double Sever 2" Ability { id: "F7[BC]", source: "Phantom Ray" }
+111.8 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
+118.9 "Rapid Sever" Ability { id: "F7A", source: "Phantom Ray" }
+124.0 "Rapid Sever" Ability { id: "F7A", source: "Phantom Ray" }
+128.2 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
+133.1 "Double Sever 1" Ability { id: "F7[BC]", source: "Phantom Ray" }
+137.3 "Double Sever 2" Ability { id: "F7[BC]", source: "Phantom Ray" }
+139.0 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
+146.1 "Atmospheric Displacement" Ability { id: "F7E", source: "Phantom Ray" }
 
-148.4 "Damage Up" sync / 1[56]:[^:]*:Phantom Ray:F7F:/ window 15,15 jump 100.0
+148.4 "Damage Up" Ability { id: "F7F", source: "Phantom Ray" } window 15,15 jump 100.0
 153.2 "Double Sever 1"
 156.0 "Atmospheric Compression"
 157.4 "Double Sever 2"
@@ -50,37 +50,37 @@ hideall "--sync--"
 ###Minotaur
 # High-level Incubation Bay will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:60E:/ window 1999,5
-1008.8 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/ window 9,9
-1019.0 "111-Tonze Swing" sync / 1[56]:[^:]*:Minotaur:F82:/ window 20,20
-1028.2 "Disorienting Groan" sync / 1[56]:[^:]*:Minotaur:F84:/
-1029.4 "Zoom In x3" sync / 1[56]:[^:]*:Minotaur:F86:/ duration 3.7
-1034.3 "10-Tonze Slash" sync / 1[56]:[^:]*:Minotaur:F83:/ window 20,20
-1043.5 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/
+1008.8 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" } window 9,9
+1019.0 "111-Tonze Swing" Ability { id: "F82", source: "Minotaur" } window 20,20
+1028.2 "Disorienting Groan" Ability { id: "F84", source: "Minotaur" }
+1029.4 "Zoom In x3" Ability { id: "F86", source: "Minotaur" } duration 3.7
+1034.3 "10-Tonze Slash" Ability { id: "F83", source: "Minotaur" } window 20,20
+1043.5 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" }
 
 # Rotation desyncs here due to timing on cage use
 1048.0  "--sync--" sync / 1B:........:Minotaur:....:....:0036:/ window 45,15 jump 1151.0
 1064.2 "Feast?"
-1064.3 "1111-Tonze Swing?" sync / 1[56]:[^:]*:Minotaur:F87:/ window 1,10 jump 1167.3
+1064.3 "1111-Tonze Swing?" Ability { id: "F87", source: "Minotaur" } window 1,10 jump 1167.3
 
 1076.4 "11-Tonze Swipe"
 1086.7 "111-Tonze Swing"
 
 # Second rotation landing spots
 1151.0 "--sync--" #landing for correct cage use
-1167.2 "Feast" sync / 1[56]:[^:]*:Minotaur:F88:/ window 15,15
+1167.2 "Feast" Ability { id: "F88", source: "Minotaur" } window 15,15
 1167.3 "--sync--" #landing for missed cage
 
 # Second rotation, same as the first
 # Necessary for a clean landing after cages
-1179.4 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/ window 15,15
-1189.7 "111-Tonze Swing" sync / 1[56]:[^:]*:Minotaur:F82:/ window 20,20
-1199.0 "Disorienting Groan" sync / 1[56]:[^:]*:Minotaur:F84:/
-1200.1 "Zoom In x3" sync / 1[56]:[^:]*:Minotaur:F86:/ duration 3.7
-1204.7 "10-Tonze Slash" sync / 1[56]:[^:]*:Minotaur:F83:/ window 20,20
-1214.0 "11-Tonze Swipe" sync / 1[56]:[^:]*:Minotaur:F81:/
+1179.4 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" } window 15,15
+1189.7 "111-Tonze Swing" Ability { id: "F82", source: "Minotaur" } window 20,20
+1199.0 "Disorienting Groan" Ability { id: "F84", source: "Minotaur" }
+1200.1 "Zoom In x3" Ability { id: "F86", source: "Minotaur" } duration 3.7
+1204.7 "10-Tonze Slash" Ability { id: "F83", source: "Minotaur" } window 20,20
+1214.0 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" }
 1219.0 "--sync--" sync / 1B:........:Minotaur:....:....:0036:/ window 45,15 jump 1151.0
 1235.2 "Feast?"
-1235.3 "1111-Tonze Swing?" sync / 1[56]:[^:]*:Minotaur:F87:/ window 1,10 jump 1167.3
+1235.3 "1111-Tonze Swing?" Ability { id: "F87", source: "Minotaur" } window 1,10 jump 1167.3
 
 1247.4 "11-Tonze Swipe"
 1263.6 "111-Tonze Swing"
@@ -95,29 +95,29 @@ hideall "--sync--"
 
 # Reality Augmentation Bay will be sealed off
 2000 "--sync--" sync / 29:[^:]*:7DC:[^:]*:612:/ window 2000,0
-2006.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/ window 7,7
-2011.4 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2020.6 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2028.8 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/ window 15,15
-2033.0 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2035.8 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2042.0 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2044.1 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2053.2 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/
-2066.4 "The Educator" sync / 1[56]:[^:]*:The Curator:F8D:/ window 30,30
+2006.2 "Sanctification" Ability { id: "F89", source: "The Curator" } window 7,7
+2011.4 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2020.6 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2028.8 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" } window 15,15
+2033.0 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2035.8 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2042.0 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2044.1 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2053.2 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" }
+2066.4 "The Educator" Ability { id: "F8D", source: "The Curator" } window 30,30
 
-2073.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2078.4 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2087.6 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2095.8 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/
-2100.0 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2102.8 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2109.0 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2111.1 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2120.2 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/
-2133.4 "The Educator" sync / 1[56]:[^:]*:The Curator:F8D:/ window 30,30
+2073.2 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2078.4 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2087.6 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2095.8 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" }
+2100.0 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2102.8 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2109.0 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2111.1 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2120.2 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" }
+2133.4 "The Educator" Ability { id: "F8D", source: "The Curator" } window 30,30
 
-2140.2 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/ window 15,15 jump 2073.2
+2140.2 "Sanctification" Ability { id: "F89", source: "The Curator" } window 15,15 jump 2073.2
 2145.4 "Unholy"
 2154.6 "Sanctification"
 2162.8 "Aetherochemical Explosive"
@@ -126,21 +126,21 @@ hideall "--sync--"
 
 # Phase 2 after first Educator. Maybe HP threshold?
 
-2200.0 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2203.9 "Aetherochemical Mine" sync / 1[56]:[^:]*:Repository Node:F8F:/ window 2200,10
-2205.2 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2214.6 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2222.7 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/
-2225.0 "Aetherochemical Mine" sync / 1[56]:[^:]*:Repository Node:F8F:/ window 10,10
-2226.8 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2229.0 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2235.0 "Unholy" sync / 1[56]:[^:]*:The Curator:F8A:/
-2237.4 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/
-2242.0 "Aetherochemical Mine" sync / 1[56]:[^:]*:Repository Node:F8F:/
-2246.5 "Aetherochemical Explosive" sync / 1[56]:[^:]*:The Curator:F8B:/ window 10,10
-2259.7 "The Educator" sync / 1[56]:[^:]*:The Curator:F8D:/
+2200.0 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2203.9 "Aetherochemical Mine" Ability { id: "F8F", source: "Repository Node" } window 2200,10
+2205.2 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2214.6 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2222.7 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" }
+2225.0 "Aetherochemical Mine" Ability { id: "F8F", source: "Repository Node" } window 10,10
+2226.8 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2229.0 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2235.0 "Unholy" Ability { id: "F8A", source: "The Curator" }
+2237.4 "Sanctification" Ability { id: "F89", source: "The Curator" }
+2242.0 "Aetherochemical Mine" Ability { id: "F8F", source: "Repository Node" }
+2246.5 "Aetherochemical Explosive" Ability { id: "F8B", source: "The Curator" } window 10,10
+2259.7 "The Educator" Ability { id: "F8D", source: "The Curator" }
 
-2267.0 "Sanctification" sync / 1[56]:[^:]*:The Curator:F89:/ window 15,15 jump 2196.1
+2267.0 "Sanctification" Ability { id: "F89", source: "The Curator" } window 15,15 jump 2196.1
 2270.9 "Aetherochemical Mine"
 2272.2 "Unholy"
 2281.6 "Sanctification"

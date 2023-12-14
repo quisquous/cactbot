@@ -4,76 +4,76 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-15 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/ window 16,3
-23 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
-36 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
-38 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
-54 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
-62 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
+15 "Hyperdrive" Ability { id: "292E", source: "Kefka" } window 16,3
+23 "Blizzard Blitz" Ability { id: "291(4|6|8|9)", source: "Kefka" }
+36 "Flagrant Fire" Ability { id: "291F", source: "Kefka" }
+38 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
+54 "Blizzard Blitz" Ability { id: "291(4|6|8|9)", source: "Kefka" }
+62 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
 
-82 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-94 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:2928:/
-95 "Shockwave" sync / 1[56]:[^:]*:Graven Image:2927:/
-107 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
-115 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
-129 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:2920:/
-131 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
-137 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+82 "Graven Image" Ability { id: "2925", source: "Kefka" }
+94 "Wave Cannon" Ability { id: "2928", source: "Graven Image" }
+95 "Shockwave" Ability { id: "2927", source: "Graven Image" }
+107 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
+115 "Hyperdrive" Ability { id: "292E", source: "Kefka" }
+129 "Flagrant Fire" Ability { id: "2920", source: "Kefka" }
+131 "Blizzard Blitz" Ability { id: "291(4|6|8|9)", source: "Kefka" }
+137 "Timely Teleport" Ability { id: "2922", source: "Kefka" }
 137 "--untargetable--"
 140 "--targetable--"
 140 "Aero/Ruin" duration 3
-148 "Aero Assault" sync / 1[56]:[^:]*:Kefka:2924:/
+148 "Aero Assault" Ability { id: "2924", source: "Kefka" }
 
-160 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-170 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
-172 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:2928:/
-173 "Shockwave" sync / 1[56]:[^:]*:Graven Image:2927:/
-183 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
-190 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+160 "Graven Image" Ability { id: "2925", source: "Kefka" }
+170 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
+172 "Wave Cannon" Ability { id: "2928", source: "Graven Image" }
+173 "Shockwave" Ability { id: "2927", source: "Graven Image" }
+183 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
+190 "Hyperdrive" Ability { id: "292E", source: "Kefka" }
 
-204 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-210 "Half Arena" sync / 1[56]:[^:]*:Graven Image:(292A|2929):/
-218 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+204 "Graven Image" Ability { id: "2925", source: "Kefka" }
+210 "Half Arena" Ability { id: "(292A|2929)", source: "Graven Image" }
+218 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
 
-228 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-234 "Half Arena" sync / 1[56]:[^:]*:Graven Image:(292A|2929):/
-240 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
-242 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
-248 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+228 "Graven Image" Ability { id: "2925", source: "Kefka" }
+234 "Half Arena" Ability { id: "(292A|2929)", source: "Graven Image" }
+240 "Flagrant Fire" Ability { id: "291F", source: "Kefka" }
+242 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
+248 "Timely Teleport" Ability { id: "2922", source: "Kefka" }
 248 "--untargetable--"
 251 "--targetable--"
 251 "Aero/Ruin" duration 3
 
-268 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-274 "Half Arena" sync / 1[56]:[^:]*:Graven Image:292(9|A):/
-275 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
-282 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
-289 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+268 "Graven Image" Ability { id: "2925", source: "Kefka" }
+274 "Half Arena" Ability { id: "292(9|A)", source: "Graven Image" }
+275 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
+282 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
+289 "Hyperdrive" Ability { id: "292E", source: "Kefka" }
 
-302 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-308 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292C:/
-318 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
-325 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+302 "Graven Image" Ability { id: "2925", source: "Kefka" }
+308 "Statue Gaze" Ability { id: "292C", source: "Graven Image" }
+318 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
+325 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
 
 # loop here
-335 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-341 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292(B|C):/
-342 "Thrumming Thunder" sync / 1[56]:[^:]*:Kefka:291(B|D):/
-348 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:2922:/
+335 "Graven Image" Ability { id: "2925", source: "Kefka" }
+341 "Statue Gaze" Ability { id: "292(B|C)", source: "Graven Image" }
+342 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
+348 "Timely Teleport" Ability { id: "2922", source: "Kefka" }
 348 "--untargetable--"
 351 "--targetable--"
 351 "Aero/Ruin" duration 3
-366 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:292E:/
+366 "Hyperdrive" Ability { id: "292E", source: "Kefka" }
 
-374 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/
-380 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:292(B|C):/
-386 "Flagrant Fire" sync / 1[56]:[^:]*:Kefka:291F:/
-388 "Blizzard Blitz" sync / 1[56]:[^:]*:Kefka:291(4|6|8|9):/
-401 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
-408 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:292D:/
+374 "Graven Image" Ability { id: "2925", source: "Kefka" }
+380 "Statue Gaze" Ability { id: "292(B|C)", source: "Graven Image" }
+386 "Flagrant Fire" Ability { id: "291F", source: "Kefka" }
+388 "Blizzard Blitz" Ability { id: "291(4|6|8|9)", source: "Kefka" }
+401 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
+408 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
 # end loop
 
-418 "Graven Image" sync / 1[56]:[^:]*:Kefka:2925:/ jump 333
+418 "Graven Image" Ability { id: "2925", source: "Kefka" } jump 333
 424 "Statue Gaze"
 425 "Thrumming Thunder"
 431 "Timely Teleport"
