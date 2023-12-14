@@ -258,7 +258,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAI Ketuduke Bubble Net',
       type: 'StartsUsing',
-      netRegex: { id: '8AAD', source: 'Ketuduke', capture: false },
+      netRegex: { id: ['8AC5', '8AAD'], source: 'Ketuduke', capture: false },
       response: Responses.aoe(),
     },
     {

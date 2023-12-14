@@ -129,9 +129,9 @@ const triggerSet: OopsyTriggerSet<Data> = {
     // Statice
     'AAIS Trigger Happy': '8969', // limit cut dart board
     'AAIS Bomb Burst': '897A', // bomb explosion
-    'AAIS Uncommon Ground': 'TODO', // people who are on the same dartboard color with Bull's-eye
+    'AAIS Uncommon Ground': '8CC3', // people who are on the same dartboard color with Bull's-eye
     'AAIS Faerie Ring': '8973', // donut rings during Present Box
-    'AAIS Fire Spread 1': 'TODO', // initial rotating fire (from Ball of Fire)
+    'AAIS Fire Spread 1': '896F', // initial rotating fire (from Ball of Fire)
     'AAIS Fire Spread 2': '89FB', // ongoing rotating fire damage (from Statice)
   },
   damageFail: {

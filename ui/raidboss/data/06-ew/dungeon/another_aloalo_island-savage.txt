@@ -17,7 +17,7 @@ hideall "--sync--"
 #~~~~~~~~~~#
 
 # -p 8AD4:1015.2
-# -ii 8AA7 8AED 8ADD 8AB9 8AB6 8AEB TODO TODO 8AE5 8AE6 8AC0 8ADA 8AD9 8AE4 8AC8 8AE3 8A82 8A83
+# -ii 8AA7 8AED 8ADD 8AB9 8AB6 8AEB 8ABE 8ABF 8AE5 8AE6 8AC0 8ADA 8AD9 8AE4 8AC8 8AE3 8A82 8A83
 
 # The Dawn Trial will be sealed off
 1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1146" } window 10000,0
@@ -35,7 +35,7 @@ hideall "--sync--"
 1065.1 "Hydrobullet/Hydrofall" Ability { id: "(8ADF|8ADE)", source: "Ketuduke" }
 
 1074.0 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
-1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: "(TODO|8AB5)", source: "Ketuduke" }
+1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
 1084.3 "Blowing Bubbles" Ability { id: "8ABD", source: "Ketuduke" }
 1091.4 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
 1096.3 "Hydrofall/Hydrobullet" Ability { id: "(8ADE|8ADF)", source: "Ketuduke" }
@@ -61,7 +61,7 @@ hideall "--sync--"
 
 1190.7 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
 1199.4 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
-1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: "(TODO|8AB5)", source: "Ketuduke" }
+1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
 1210.4 "Angry Seas" Ability { id: "8AE1", source: "Ketuduke" }
 1211.6 "Hydrofall/Hydrobullet" Ability { id: "(8ADE|8ADF)", source: "Ketuduke" }
 1212.2 "Hydrobullet/Hydrobullet" Ability { id: "(8ADF|8ADE)" } # this sometimes has the wrong source
@@ -109,7 +109,7 @@ hideall "--sync--"
 # 8AB2 Fluke Gale cast and ability for limit cut 1 wind
 # 8AB3 Fluke Gale cast and ability for limit cut 2 wind
 # 8AB4 Hydrofall self-targeted cast that adds stack markers
-# 8AB5 Hydrofall ability on players to give "stack second" before Blowing Bubbles
+# 8AB5 Hydrofall self-targeted "stack second" ability before Blowing Bubbles
 # 8AB6 Hydrofall ability on players that adds stack debuffs
 # 8ADE Hydrofall damage from stack debuffs
 # 8AB8 Hydrobullet self-targeted cast that adds stack markers
@@ -118,8 +118,8 @@ hideall "--sync--"
 # 8ABB Strewn Bubbles self-targeted cast before 8AE0 Sphere Shatter moving arches
 # 8AE0 Sphere Shatter damage from moving arches
 # 8ABD Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
-# TODO Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
-# TODO Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after TODO Riptide
+# 8ABE Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+# 8ABF Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
 # 8AC0 Angry Seas self-targeted cast for 8AE1 red line knockback
 # 8AE1 Angry Seas cast and knockback damage from red line
 # 8AE2 Burst tower damage
@@ -140,7 +140,7 @@ hideall "--sync--"
 # 8AEB Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
 # 8AD4 Tidal Roar self-targeted cast for raidwide aoe
 # 8AED Tidal Roar damage from 8AD4
-# TODO Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+# 8C6D Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
 
 
 #~~~~~~#
@@ -273,7 +273,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~#
 
 # -p 8966:3013.8
-# -ii TODO 8925 8926 8977 8978 8969 8988 8A6A 897C 897D TODO TODO 8CC1 89FB TODO 8974 8975
+# -ii 8964 8925 8926 8977 8978 8969 8988 8A6A 897C 897D 8CC3 896F 8CC1 89FB TODO 8974 8975
 # -it Statice
 
 # Midnight Trial will be sealed off
@@ -351,7 +351,7 @@ hideall "--sync--"
 # 8925 Locked and Loaded ability during 8967 Trick Reload when a bullet is in the gun
 # 8926 Misload ability during 8967 Trick Reload when a bullet missed the gun oops
 # 8927 --sync-- repositioning from Statice
-# TODO --sync-- auto damage from Statice
+# 8964 --sync-- auto damage from Statice
 # 8965 Shocking Abandon cast and tankbuster damage
 # 8966 Aero IV cast and raidwide damage
 # 8967 Trick Reload self-targeted cast to load gun with 8925/8926
@@ -374,7 +374,7 @@ hideall "--sync--"
 # 897C Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
 # 897D Fireworks spread damage during Present Box / Pinwheeling Dartboard
 # 8980 Beguiling Glitter self-targeted cast to give players Face debuffs
-# TODO Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
+# 896F Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
 # 8988 Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
 # 89FB Fire Spread ongoing rotating fire damage (from Statice)
 # 8A6A --sync-- ability on Bomb when rotating
@@ -383,7 +383,7 @@ hideall "--sync--"
 # 8BCF Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
 # 8CC0 Dartboard of Dancing Explosives self-targeted cast for colored dartboard
 # 8CC1 Burning Chains damage from not breaking chains
-# TODO Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
+# 8CC3 Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
 # 8D1C Trapshooting self-targeted cast after Trick Reload (some instances are 8976)
 
 

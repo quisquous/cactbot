@@ -104,7 +104,7 @@ hideall "--sync--"
 # 8AB2 Fluke Gale cast and ability for limit cut 1 wind
 # 8AB3 Fluke Gale cast and ability for limit cut 2 wind
 # 8AB4 Hydrofall self-targeted cast that adds stack markers
-# 8AB5 Hydrofall ability on players to give "stack second" before Blowing Bubbles
+# 8AB5 Hydrofall self-targeted "stack second" ability before Blowing Bubbles
 # 8AB6 Hydrofall ability on players that adds stack debuffs
 # 8AB7 Hydrofall damage from stack debuffs
 # 8AB8 Hydrobullet self-targeted cast that adds stack markers
@@ -135,7 +135,7 @@ hideall "--sync--"
 # 8AD1 Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
 # 8AD4 Tidal Roar self-targeted cast for raidwide aoe
 # 8AD5 Tidal Roar damage from 8AD4
-# 8C6D Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+# 8C6D Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
 
 
 #~~~~~~#

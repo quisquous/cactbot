@@ -578,11 +578,11 @@ const zoneReplace: ZoneReplace[] = [
       '7A56': '7A56', // --sync-- various auto damage (trash 1)
       '7A58': '7A58', // --sync-- various auto damage (trash 2)
       '8874': '8874', // --sync-- repositioning for Lala
-      '8889': '8BE0', // ??? Angular Addition self-targeted ability to give boss III
-      '888B': '8BE2', // ??? Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
-      '888C': '8BE3', // ??? Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
-      '888D': '8BE4', // ??? Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
-      '888E': '8BE5', // ??? Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
+      '8889': '8BE0', // Angular Addition self-targeted ability to give boss III
+      '888B': '8BE2', // Arcane Blight self-targeted cast for initial back-safe 270 degree rotating cleave
+      '888C': '8BE3', // Arcane Blight self-targeted cast for initial front-safe 270 degree rotating cleave
+      '888D': '8BE4', // Arcane Blight self-targeted cast for initial east-safe 270 degree rotating cleave
+      '888E': '8BE5', // Arcane Blight self-targeted cast for initial west-safe 270 degree rotating cleave
       '888F': '8BE6', // Arcane Blight cast and damage from 270 degree rotating cleave
       '8890': '8BE7', // Arcane Array self-targeted cast to summon moving blue squares (#1)
       '8891': '8BE8', // Bright Pulse cast and damage for initial blue square
@@ -613,15 +613,15 @@ const zoneReplace: ZoneReplace[] = [
       '8925': '8925', // Locked and Loaded ability during 894A Trick Reload when a bullet is in the gun
       '8926': '8926', // Misload ability during 894A Trick Reload when a bullet missed the gun oops
       '8927': '8927', // --sync-- repositioning from Statice
-      '8947': 'TODO', // --sync-- auto damage from Statice
+      '8947': '8964', // --sync-- auto damage from Statice
       '8948': '8965', // Shocking Abandon cast and tankbuster damage
       '8949': '8966', // Aero IV cast and raidwide damage
       '894A': '8967', // Trick Reload self-targeted cast to load gun with 8925/8926
       '894B': '8968', // Trigger Happy self-targeted cast for limit cut dart board
       '894C': '8969', // Trigger Happy cast and damage for limit cut dart board (filled pie slice)
       '894D': '8927', // Surprise Balloon self-targeted cast
-      '894E': '896B', // ??? Pop knockback from Surprise Balloon being popped
-      '894F': '896C', // ??? Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
+      '894E': '896B', // Pop knockback from Surprise Balloon being popped
+      '894F': '896C', // Surprise Needle short cast and ability blue line aoe from needle adds that pop balloons
       '8954': '8971', // Uncommon Ground light damage on people who are not on a dartboard color with Bull's-eye
       '8955': '8972', // Present Box self-targeted cast for bombs/donuts/missiles/hands
       '8956': '8973', // Faerie Ring cast and damage for donut rings during Present Box
@@ -636,7 +636,7 @@ const zoneReplace: ZoneReplace[] = [
       '895F': '897C', // Fireworks two person stack damage during Present Box / Pinwheeling Dartboard
       '8960': '897D', // Fireworks spread damage during Present Box / Pinwheeling Dartboard
       '8963': '8980', // Beguiling Glitter self-targeted cast to give players Face debuffs
-      '8982': 'TODO', // Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
+      '8982': '896F', // Fire Spread self-targeted damage for initial rotating fire (from Ball of Fire)
       '8987': '8988', // Trigger Happy cast and zero damage for limit cut dart board (empty pie slice)
       '89F9': '89FB', // Fire Spread ongoing rotating fire damage (from Statice)
       '8A6A': '8A6A', // --sync-- ability on Bomb when rotating
@@ -657,7 +657,7 @@ const zoneReplace: ZoneReplace[] = [
       '8AB2': '8AB2', // Fluke Gale cast and ability for limit cut 1 wind
       '8AB3': '8AB3', // Fluke Gale cast and ability for limit cut 2 wind
       '8AB4': '8AB4', // Hydrofall self-targeted cast that adds stack markers
-      '8AB5': '8AB5', // Hydrofall ability on players to give "stack second" before Blowing Bubbles
+      '8AB5': '8AB5', // Hydrofall self-targeted "stack second" ability before Blowing Bubbles
       '8AB6': '8AB6', // Hydrofall ability on players that adds stack debuffs
       '8AB7': '8ADE', // Hydrofall damage from stack debuffs
       '8AB8': '8AB8', // Hydrobullet self-targeted cast that adds stack markers
@@ -666,8 +666,8 @@ const zoneReplace: ZoneReplace[] = [
       '8ABB': '8ABB', // Strewn Bubbles self-targeted cast before 8ABC Sphere Shatter moving arches
       '8ABC': '8AE0', // Sphere Shatter damage from moving arches
       '8ABD': '8ABD', // Blowing Bubbles self-targeted cast that adds Airy Bubble Adds
-      '8ABE': 'TODO', // Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
-      '8ABF': 'TODO', // Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
+      '8ABE': '8ABE', // Riptide ability on players from Blowing Bubbles Airy Bubble when you step in one
+      '8ABF': '8ABF', // Fetters ability on players from Blowing Bubbles Airy Bubble when you step in one after 8ABE Riptide
       '8AC0': '8AC0', // Angry Seas self-targeted cast for 8AC1 red line knockback
       '8AC1': '8AE1', // Angry Seas cast and knockback damage from red line
       '8AC2': '8AE2', // Burst tower damage
@@ -698,6 +698,7 @@ const zoneReplace: ZoneReplace[] = [
       '8BC0': '8BCF', // --sync-- damage from Twister tornados
       '8BC1': '8BD4', // Ovation cast and damage from Wood Golem front line aoe
       '8BC5': '8C3A', // Gravity Force cast and stack damage from Islekeeper
+      // TODO: I haven't seen any of these enrages.
       '8C23': 'TODO', // Aero IV cast and enrage damage
       '8C24': 'TODO', // Aero IV post-enrage follow-up damage just in case
       '8C25': 'TODO', // Inferno Theorem cast and enrage damage
@@ -710,18 +711,18 @@ const zoneReplace: ZoneReplace[] = [
       '8C63': '8BC8', // Sharp Strike casted damage from Kiwakin tank buster with a concussion dot
       '8C64': '8BCC', // Water III casted damage from Snipper stack marker
       '8C65': '8BD1', // Hydroshot casted damage from Monk knockback line with a dot
-      '8C6D': 'TODO', // Hydrobullet ability on players to give "spread second" before Blowing Bubbles
+      '8C6D': '8C6D', // Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
       '8C6E': '8BC7', // Lead Hook casted damage from Kiwakin 3x tankbuster
       '8C6F': '8C3C', // Isle Drop cast and damage for Islekeeper front circle
       '8CBC': '8BCF', // Pinwheeling Dartboard self-targeted cast to summon dartboard with rotating fire
       '8CBD': '8CC0', // Dartboard of Dancing Explosives self-targeted cast for colored dartboard
-      '8CBE': '8CC1', // ??? Burning Chains damage from not breaking chains
-      '8CC2': 'TODO', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
+      '8CBE': '8CC1', // Burning Chains damage from not breaking chains
+      '8CC2': '8CC3', // Uncommon Ground heavy damage on people who are on the same dartboard color with Bull's-eye
       '8CDE': '8CE0', // Targeted Light self-targeted cast for weak spot boss tether
       '8CDF': '8CE1', // Targeted Light cast and damage on players for 8CDE
       '8D1A': '8D1C', // Trapshooting self-targeted cast after Trick Reload (some instances are 8959)
       '8D1F': '8D20', // Radiance damage from Arcane Globe being hit by a blue square (Arcane Array #2)
-      '8D2E': '8D2F', // ??? Angular Addition self-targeted ability to give boss V
+      '8D2E': '8D2F', // Angular Addition self-targeted ability to give boss V
     },
   },
 ];
