@@ -12,6 +12,7 @@ import { PluginCombatantState } from '../../../../../types/event';
 import { NetMatches } from '../../../../../types/net_matches';
 import { TriggerSet } from '../../../../../types/trigger';
 
+// TODO: add callout for Monk Hydroshot target
 // TODO: sc3 should say which bubble to take to the other side (for everyone)
 // TODO: figure out directions for Lala for Radiance orbs
 // TODO: map effects for Lala
@@ -733,12 +734,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         text: {
-          en: 'Esuna ${player}',
-          de: 'Medica ${player}',
-          fr: 'Guérison sur ${player}',
-          ja: 'エスナ: ${player}',
-          cn: '解除死亡宣告: ${player}',
-          ko: '${player} 에스나',
+          en: 'Cleanse ${player}',
         },
       },
     },
