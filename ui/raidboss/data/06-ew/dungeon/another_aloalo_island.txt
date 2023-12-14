@@ -84,7 +84,10 @@ hideall "--sync--"
 1313.7 "Far Tide/Near Tide" Ability { id: "(8ACF|8ACD)", source: "Ketuduke" }
 1314.3 "Sphere Shatter 2" Ability { id: "8ABC", source: "Ketuduke" }
 1314.3 "Hydrofall" Ability { id: "8AB7", source: "Ketuduke" }
-# ???
+1325.0 "Tidal Roar" Ability { id: "8AD4", source: "Ketuduke" }
+
+1331.8 "--sync--" StartsUsing { id: "8AD6", source: "Ketuduke" }
+1341.8 "Tidal Roar Enrage" Ability { id: "8AD6", source: "Ketuduke" }
 
 # ALL ENCOUNTER ABILITIES
 # 8A77 --sync-- Ketuduke repositioning
@@ -135,6 +138,7 @@ hideall "--sync--"
 # 8AD1 Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
 # 8AD4 Tidal Roar self-targeted cast for raidwide aoe
 # 8AD5 Tidal Roar damage from 8AD4
+# 8AD6 Tidal Roar cast and enrage damage
 # 8C6D Hydrobullet self-targeted "spread second" ability before Blowing Bubbles
 
 

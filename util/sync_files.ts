@@ -574,6 +574,7 @@ const zoneReplace: ZoneReplace[] = [
     },
     // eslint-disable-next-line max-len
     // grep "^# [A-F0-9]\{4\} " ui/raidboss/data/06-ew/dungeon/another_aloalo_island.txt | sort | sed "s/^..//" | sed "s/^\(....\) \(.*\)$/    '\1': 'TODO', \/\/ \2/"
+    // TODO: missing various enrages (both listed and likely unlisted)
     id: {
       '7A56': '7A56', // --sync-- various auto damage (trash 1)
       '7A58': '7A58', // --sync-- various auto damage (trash 2)
@@ -688,6 +689,7 @@ const zoneReplace: ZoneReplace[] = [
       '8AD1': '8AEB', // Hydrobomb cast and damage for 3x puddles duruing 8ABD Blowing Bubbles
       '8AD4': '8AD4', // Tidal Roar self-targeted cast for raidwide aoe
       '8AD5': '8AED', // Tidal Roar damage from 8AD4
+      '8AD6': 'TODO', // Tidal Roar cast and enrage damage
       '8BB8': '8BC9', // Tail Screw casted damage from Kiwakin baited circle
       '8BB9': '8BCA', // Bubble Shower casted damage from Snipper front conal
       '8BBA': '8BCB', // Crab Dribble fast casted damage from Snipper back conal after Bubble Shower 8BB9
@@ -698,7 +700,6 @@ const zoneReplace: ZoneReplace[] = [
       '8BC0': '8BCF', // --sync-- damage from Twister tornados
       '8BC1': '8BD4', // Ovation cast and damage from Wood Golem front line aoe
       '8BC5': '8C3A', // Gravity Force cast and stack damage from Islekeeper
-      // TODO: I haven't seen any of these enrages.
       '8C23': 'TODO', // Aero IV cast and enrage damage
       '8C24': 'TODO', // Aero IV post-enrage follow-up damage just in case
       '8C25': 'TODO', // Inferno Theorem cast and enrage damage
