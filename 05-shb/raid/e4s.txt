@@ -10,7 +10,7 @@ hideall "Earthen Wheels"
 
 ### Warmup
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.0 "--sync--" sync / 14:[^:]*:Titan:4116:/ window 11,5
+11.0 "--sync--" StartsUsing { id: "4116", source: "Titan" } window 11,5
 16.0 "Stonecrusher 1" Ability { id: "4116", source: "Titan" }
 19.1 "Stonecrusher 2" #Ability { id: "4143", source: "Titan" }
 22.1 "Stonecrusher 3" #Ability { id: "4143", source: "Titan" }

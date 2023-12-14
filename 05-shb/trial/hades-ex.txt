@@ -8,7 +8,7 @@ hideall "--sync--"
 ### Phase 1
 0 "Start"
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.6 "--sync--" sync / 14:[^:]*:Hades:47A5:/ window 10,10
+6.6 "--sync--" StartsUsing { id: "47A5", source: "Hades" } window 10,10
 9.6 "Ancient Double" Ability { id: "47A5", source: "Hades" }
 18.7 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }
 21.7 "Shadow Spread 2" Ability { id: "47AA", source: "Hades" }
@@ -41,7 +41,7 @@ hideall "--sync--"
 # 00:0044:Hades:Come, Nabriales!
 # 00:0044:Hades:Tremble and fall to the ground before me!
 227.9 "--targetable--"
-232.0 "--sync--" sync / 14:[^:]*:Nabriales's Shade:47B8:/ window 232,0
+232.0 "--sync--" StartsUsing { id: "47B8", source: "Nabriales's Shade" } window 232,0
 238.0 "Comet 1" #Ability { id: "4951", source: "Nabriales's Shade" }
 241.0 "Comet 2" #Ability { id: "4951", source: "Nabriales's Shade" }
 241.2 "Dark II" Ability { id: "47BA", source: "Shadow of the Ancients" }
@@ -73,7 +73,7 @@ hideall "--sync--"
 493.0 "--sync--" sync / 00:0044:Hades:Our plea transcends/ window 500,0
 # 00:0044:Hades:At last, you are one!
 499.9 "--targetable--"
-500.0 "--sync--" sync / 14:[^:]*:Ascian Prime's Shade:47C8:/ window 500,0
+500.0 "--sync--" StartsUsing { id: "47C8", source: "Ascian Prime's Shade" } window 500,0
 510.0 "Universal Manipulation" Ability { id: "47C8", source: "Ascian Prime's Shade" }
 520.2 "Ancient Circle" Ability { id: "47CA", source: "Ascian Prime's Shade" }
 522.2 "Death Shriek" Ability { id: "47CB", source: "Ascian Prime's Shade" }
@@ -90,7 +90,7 @@ hideall "--sync--"
 ### Phase 4
 750.2 "--sync--" sync / 22:........:Ascian Prime's Shade:........:Ascian Prime's Shade:00/ window 800,0
 799.9 "--targetable--"
-800.0 "--sync--" sync / 14:[^:]*:Hades:47D5:/ window 800,0
+800.0 "--sync--" StartsUsing { id: "47D5", source: "Hades" } window 800,0
 804.0 "Again The Majestic" Ability { id: "47D5", source: "Hades" }
 810.6 "Comet 1" Ability { id: "4952", source: "Hades" }
 812.2 "Captivity" Ability { id: "47D[67]", source: "Hades" }
@@ -115,7 +115,7 @@ hideall "--sync--"
 
 
 ### Phase 5
-1200.0 "--sync--" sync / 14:[^:]*:Hades:4948:/ window 1200,0
+1200.0 "--sync--" StartsUsing { id: "4948", source: "Hades" } window 1200,0
 1204.0 "Life In Captivity" Ability { id: "4948", source: "Hades" }
 1207.2 "--sync--" Ability { id: "47D9", source: "Hades" }
 1210.2 "--sync--" Ability { id: "4949", source: "Hades" }

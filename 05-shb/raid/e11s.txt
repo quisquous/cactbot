@@ -222,5 +222,5 @@ hideall "--sync--"
 946.7 "Shining Blade?"
 
 
-992.3 "Burnished Glory" sync / 14:[^:]*:Fatebreaker:5529:/ window 1000,0
+992.3 "Burnished Glory" StartsUsing { id: "5529", source: "Fatebreaker" } window 1000,0
 1000.0 "Burnished Glory Enrage" Ability { id: "5529", source: "Fatebreaker" }

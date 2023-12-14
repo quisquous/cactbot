@@ -82,5 +82,5 @@ hideall "Spell-In-Waiting"
 593.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
 602.5 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
 611.8 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
-624.8 "--sync--" sync / 14:[^:]*:Voidwalker:3E73:/ window 700,5
+624.8 "--sync--" StartsUsing { id: "3E73", source: "Voidwalker" } window 700,5
 629.8 "Quietus Enrage"

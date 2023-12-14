@@ -48,7 +48,7 @@ hideall "--sync--"
 
 # When one dies, the other powers up and starts casting stuff after it jumps back in.
 # However, I've never seen this cast get off, so just guessing on Marine Mayhem cast length.
-300.0 "--sync--" sync / 14:[^:]*:(Doliodus|Cladoselache):3E07:/ window 300,0
+300.0 "--sync--" StartsUsing { id: "3E07", source: "(Doliodus|Cladoselache)" } window 300,0
 302.0 "Carcharian Verve" Ability { id: "3E07", source: "(Doliodus|Cladoselache)" } window 300,0
 305.5 "Marine Mayhem" Ability { id: "3E06", source: "(Doliodus|Cladoselache)" }
 
@@ -64,7 +64,7 @@ hideall "--sync--"
 524.7 "Arbor Storm" Ability { id: "3E17", source: "Morbol Marquis" }
 
 # extensible tendrils appears to have some variation on start time
-532.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 30,10
+532.3 "--sync--" StartsUsing { id: "3E10", source: "Morbol Marquis" } window 30,10
 537.3 "Extensible Tendrils" Ability { id: "3E10", source: "Morbol Marquis" } duration 25
 564.7 "Putrid Breath" Ability { id: "3E12", source: "Morbol Marquis" }
 569.0 "Lash" #Ability { id: "3E16", source: "Morbol Marquis" }
@@ -72,7 +72,7 @@ hideall "--sync--"
 581.1 "Blossom" Ability { id: "3E13", source: "Morbol Marquis" }
 589.7 "Arbor Storm" Ability { id: "3E17", source: "Morbol Marquis" }
 
-598.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+598.3 "--sync--" StartsUsing { id: "3E10", source: "Morbol Marquis" } window 10,10
 603.3 "Extensible Tendrils" Ability { id: "3E10", source: "Morbol Marquis" } duration 25
 611.4 "Sap Shower" Ability { id: "3E15", source: "Morbol Marquis" }
 630.8 "Putrid Breath" Ability { id: "3E12", source: "Morbol Marquis" }
@@ -81,14 +81,14 @@ hideall "--sync--"
 653.3 "Sap Shower" Ability { id: "3E15", source: "Morbol Marquis" }
 657.1 "Lash" Ability { id: "3E16", source: "Morbol Marquis" }
 
-660.3 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+660.3 "--sync--" StartsUsing { id: "3E10", source: "Morbol Marquis" } window 10,10
 665.3 "Extensible Tendrils" Ability { id: "3E10", source: "Morbol Marquis" }
 692.6 "Putrid Breath" Ability { id: "3E12", source: "Morbol Marquis" }
 699.0 "Arbor Storm" Ability { id: "3E17", source: "Morbol Marquis" }
 707.6 "Blossom" Ability { id: "3E13", source: "Morbol Marquis" }
 716.1 "Arbor Storm" Ability { id: "3E17", source: "Morbol Marquis" }
 
-724.8 "--sync--" sync / 14:[^:]*:Morbol Marquis:3E10:/ window 10,10
+724.8 "--sync--" StartsUsing { id: "3E10", source: "Morbol Marquis" } window 10,10
 729.8 "Extensible Tendrils" Ability { id: "3E10", source: "Morbol Marquis" } duration 25
 737.9 "Sap Shower" Ability { id: "3E15", source: "Morbol Marquis" }
 757.3 "Putrid Breath" Ability { id: "3E12", source: "Morbol Marquis" }

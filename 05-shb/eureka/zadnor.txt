@@ -84,12 +84,12 @@ hideall "--sync--"
 21053.6 "Thermal Gust" Ability { id: "5E74", source: "Sartauvoir The Inferno" }
 21057.6 "Flamedive" Ability { id: "5E73", source: "Huma" }
 # This can push.
-21059.8 "--sync--" sync / 14:[^:]*:Sartauvoir The Inferno:5E6D:/ window 70,10
+21059.8 "--sync--" StartsUsing { id: "5E6D", source: "Sartauvoir The Inferno" } window 70,10
 21066.8 "--sync--" Ability { id: "5E6D", source: "Sartauvoir The Inferno" }
 21072.9 "Reverse Time Eruption 1" Ability { id: "5E71", source: "Sartauvoir The Inferno" }
 21074.9 "Reverse Time Eruption 2" Ability { id: "5E70", source: "Sartauvoir The Inferno" }
 # This too?
-21078.0 "--sync--" sync / 14:[^:]*:Sartauvoir The Inferno:5E7C:/ window 80,10
+21078.0 "--sync--" StartsUsing { id: "5E7C", source: "Sartauvoir The Inferno" } window 80,10
 21083.0 "Pyrokinesis" Ability { id: "5E7C", source: "Sartauvoir The Inferno" }
 21091.2 "Hyperpyroplexy" Ability { id: "5E76", source: "Sartauvoir The Inferno" }
 21101.4 "Pyroplexy" Ability { id: "5E77", source: "Sartauvoir The Inferno" }
@@ -129,7 +129,7 @@ hideall "--sync--"
 #22000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E5B:/ window 100000,0
 
 # Blackburn
-22011.0 "--sync--" sync / 14:[^:]*:4Th Legion Blackburn:5F12:/ window 100000,0
+22011.0 "--sync--" StartsUsing { id: "5F12", source: "4Th Legion Blackburn" } window 100000,0
 22016.0 "Suppressive Magitek Rays" Ability { id: "5F12", source: "4Th Legion Blackburn" }
 22031.7 "Anti-Personnel Missile" Ability { id: "5F0D", source: "4Th Legion Blackburn" }
 22033.8 "Ballistic Impact 1" #Ability { id: "5F0E", source: "4Th Legion Blackburn" }
@@ -146,7 +146,7 @@ hideall "--sync--"
 
 # Augur
 # this cast starts almost immediately after the Augur apperas
-22300.0 "--sync--" sync / 14:[^:]*:4Th Legion Augur:5F1F:/ window 300,0
+22300.0 "--sync--" StartsUsing { id: "5F1F", source: "4Th Legion Augur" } window 300,0
 22305.0 "Sanctified Quake III" Ability { id: "5F1F", source: "4Th Legion Augur" }
 22313.2 "Void Call" Ability { id: "5F1E", source: "4Th Legion Augur" }
 22325.5 "Turbine" Ability { id: "5F14", source: "Flameborne Zirnitra" }
@@ -158,7 +158,7 @@ hideall "--sync--"
 
 # Tamed Alkonost / Tamed Carrion Crow
 22500.0 "--sync--" sync / 03:........:Tamed Carrion Crow:/  window 600,0
-22507.0 "--sync--" sync / 14:[^:]*:Tamed Alkonost:5F26:/ window 600,10
+22507.0 "--sync--" StartsUsing { id: "5F26", source: "Tamed Alkonost" } window 600,10
 22512.0 "Stormcall" Ability { id: "5F26", source: "Tamed Alkonost" }
 22526.9 "Orb 1" Ability { id: "5F27", source: "Vortical Orb" }
 22526.9 "North Wind/South Wind" Ability { id: "5F2[12]", source: "Tamed Carrion Crow" }
@@ -204,7 +204,7 @@ hideall "--sync--"
 23140.2 "Necrotic Billow?" Ability { id: "5C86", source: "4Th-Make Cuchulainn" }
 23143.3 "Fleshy Necromass?" Ability { id: "5C82", source: "4Th-Make Cuchulainn" }
 # this timing can be 8 seconds earlier if it's Billow instead of Necromass.
-23163.2 "--sync--" sync / 14:[^:]*:4Th-Make Cuchulainn:5C88:/ window 20,20
+23163.2 "--sync--" StartsUsing { id: "5C88", source: "4Th-Make Cuchulainn" } window 20,20
 23168.2 "Burgeoning Dread" Ability { id: "5C88", source: "4Th-Make Cuchulainn" }
 
 23179.3 "--sync--" Ability { id: "5C8D", source: "4Th-Make Cuchulainn" }
@@ -218,7 +218,7 @@ hideall "--sync--"
 23226.8 "Necrotic Billow?" Ability { id: "5C86", source: "4Th-Make Cuchulainn" }
 23230.9 "Fleshy Necromass?" Ability { id: "5C82", source: "4Th-Make Cuchulainn" }
 # this timing can be 8 seconds earlier if it's Billow instead of Necromass.
-23249.1 "--sync--" sync / 14:[^:]*:4Th-Make Cuchulainn:5C8B:/ window 20,5
+23249.1 "--sync--" StartsUsing { id: "5C8B", source: "4Th-Make Cuchulainn" } window 20,5
 23254.1 "Fell Flow 1" Ability { id: "5C8B", source: "4Th-Make Cuchulainn" }
 23261.4 "Fell Flow 2" Ability { id: "5C8B", source: "4Th-Make Cuchulainn" }
 23275.6 "Burgeoning Dread" Ability { id: "5C88", source: "4Th-Make Cuchulainn" }
@@ -251,7 +251,7 @@ hideall "--sync--"
 24099.8 "--sync--" Ability { id: "5DD7", source: "Saunion" }
 # ?
 
-24300.0 "--sync--" sync / 14:[^:]*:Dawon The Younger:5DC6:/ window 300,0
+24300.0 "--sync--" StartsUsing { id: "5DC6", source: "Dawon The Younger" } window 300,0
 24306.0 "Touchdown" Ability { id: "5DC6", source: "Dawon The Younger" }
 24323.3 "--targetable--"
 24342.5 "--sync--" Ability { id: "5DD7", source: "Saunion" }
@@ -417,7 +417,7 @@ hideall "--sync--"
 25532.0 "Ultimate Pseudoterror" Ability { id: "5CA3", source: "The Diablo Armament" }
 
 # final phase (hp%?)
-25800.0 "--sync--" sync / 14:[^:]*:The Diablo Armament:5CB7:/ window 1000,0
+25800.0 "--sync--" StartsUsing { id: "5CB7", source: "The Diablo Armament" } window 1000,0
 25805.0 "Void Systems Overload" Ability { id: "5CB7", source: "The Diablo Armament" }
 25815.1 "Pillar Of Shamash" Ability { id: "5CB9", source: "The Diablo Armament" }
 25816.6 "Pillar Of Shamash" Ability { id: "5CBA", source: "The Diablo Armament" }

@@ -7,7 +7,7 @@ hideall "--sync--"
 
 ### Phase 1: single mechanics
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.0 "--sync--" sync / 14:[^:]*:Titania:3D4B:/ window 20,20
+8.0 "--sync--" StartsUsing { id: "3D4B", source: "Titania" } window 20,20
 12.0 "Bright Sabbath" Ability { id: "3D4B", source: "Titania" }
 26.0 "Phantom Rune Out" Ability { id: "3D4C", source: "Titania" }
 37.0 "Mist Rune" Ability { id: "3D45", source: "Titania" }
@@ -19,7 +19,7 @@ hideall "--sync--"
 103.9 "Phantom Rune In" Ability { id: "3D4D", source: "Titania" }
 
 # Mini-phase skip here at least from Divination Rune to here
-110.9 "--sync--" sync / 14:[^:]*:Titania:3D30:/ window 200,10
+110.9 "--sync--" StartsUsing { id: "3D30", source: "Titania" } window 200,10
 114.9 "Midsummer Night's Dream" Ability { id: "3D30", source: "Titania" }
 128.2 "--center--" Ability { id: "3D28", source: "Titania" }
 133.8 "Thunder Rune 1" Ability { id: "3D29", source: "Titania" } window 5,1
@@ -114,5 +114,5 @@ hideall "--sync--"
 
 
 ### Phase 4: too slow
-1500.0 "--sync--" sync / 14:[^:]*:Titania:3DAE:/ window 1500,0
+1500.0 "--sync--" StartsUsing { id: "3DAE", source: "Titania" } window 1500,0
 1510.0 "Bright Sabbath Enrage" Ability { id: "3DAE", source: "Titania" }

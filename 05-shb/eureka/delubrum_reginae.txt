@@ -161,7 +161,7 @@ hideall "--sync--"
 # -ii 575A 575C
 # The Hall of Supplication will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1D:/ window 10000,0
-2007.0 "--sync--" sync / 14:[^:]*:Dahu:576[12]:/ window 10,2
+2007.0 "--sync--" StartsUsing { id: "576[12]", source: "Dahu" } window 10,2
 2010.0 "Right-Sided Shockwave/Left-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
 2012.6 "Left-Sided Shockwave/Right-Sided Shockwave" #Ability { id: "576[12]", source: "Dahu" }
 2023.0 "Feral Howl" Ability { id: "5755", source: "Dahu" } window 30,10
@@ -226,26 +226,26 @@ hideall "--sync--"
 # We can't have huge syncs on these because many of these are used
 # multiple times.  So, 22 lines get huge syncs and ability lines
 # get more local windows here and in each block.
-3036.8 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 50,50 jump 3108.1
+3036.8 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 50,50 jump 3108.1
 3039.8 "Double Gambit?" #Ability { id: "5805", source: "Queen's Soldier" }
 
-3036.8 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 50,50 jump 3308.1
+3036.8 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 50,50 jump 3308.1
 3039.8 "Automatic Turret?" #Ability { id: "580B", source: "Queen's Gunner" }
 
-3036.8 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 50,50 jump 3508.1
+3036.8 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 50,50 jump 3508.1
 3039.8 "Bombslinger?" #Ability { id: "5AFD", source: "Queen's Warrior" }
 
-3036.8 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 50,50 jump 3708.1
+3036.8 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 50,50 jump 3708.1
 3039.8 "Shield Omen/Sword Omen?" #Ability { id: "57F[01]", source: "Queen's Knight" }
 
 # Queen's Soldier
 # (local jumps to other blocks)
-3100.0 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 0,200 jump 3308.1
-3100.0 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 0,200 jump 3508.1
-3100.0 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 0,200 jump 3708.1
+3100.0 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 0,200 jump 3308.1
+3100.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
+3100.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
 3100.0 "--targetable--" sync / 22:........:Queen's Soldier:........:Queen's Soldier:01/ window 500,500
-3108.1 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 10,10
+3108.1 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 10,10
 3111.1 "Double Gambit" Ability { id: "5805", source: "Queen's Soldier" }
 3119.3 "Secrets Revealed" Ability { id: "5B6E", source: "Queen's Soldier" }
 3130.6 "Pawn Off" Ability { id: "5807", source: "Soldier Avatar" }
@@ -266,12 +266,12 @@ hideall "--sync--"
 
 # Queen's Gunner
 # (local jumps to other blocks)
-3300.0 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 0,200 jump 3108.1
-3300.0 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 0,200 jump 3508.1
-3300.0 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 0,200 jump 3708.1
+3300.0 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 0,200 jump 3108.1
+3300.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
+3300.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
 3300.0 "--targetable--" sync / 22:........:Queen's Gunner:........:Queen's Gunner:01/ window 500,500
-3308.1 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 10,10
+3308.1 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 10,10
 3311.1 "Automatic Turret" Ability { id: "580B", source: "Queen's Gunner" }
 3319.2 "Turret's Tour" Ability { id: "580C", source: "Queen's Gunner" }
 3319.8 "Turret's Tour" Ability { id: "580E", source: "Automatic Turret" }
@@ -292,12 +292,12 @@ hideall "--sync--"
 
 # Queen's Warrior
 # (local jumps to other blocks)
-3500.0 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 0,200 jump 3108.1
-3500.0 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 0,200 jump 3308.1
-3500.0 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 0,200 jump 3708.1
+3500.0 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 0,200 jump 3108.1
+3500.0 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 0,200 jump 3308.1
+3500.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
 3500.0 "--targetable--" sync / 22:........:Queen's Warrior:........:Queen's Warrior:01/ window 500,500
-3508.1 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 10,10
+3508.1 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 10,10
 3511.1 "Bombslinger" Ability { id: "5AFD", source: "Queen's Warrior" }
 3520.2 "Above Board" Ability { id: "57FC", source: "Queen's Warrior" }
 3521.2 "--stunned--"
@@ -329,12 +329,12 @@ hideall "--sync--"
 
 # Queen's Knight
 # (local jumps to other blocks)
-3700.0 "--sync--" sync / 14:[^:]*:Queen's Soldier:5805:/ window 0,200 jump 3108.1
-3700.0 "--sync--" sync / 14:[^:]*:Queen's Gunner:580B:/ window 0,200 jump 3308.1
-3700.0 "--sync--" sync / 14:[^:]*:Queen's Warrior:5AFD:/ window 0,200 jump 3508.1
+3700.0 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 0,200 jump 3108.1
+3700.0 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 0,200 jump 3308.1
+3700.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
 
 3700.0 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 500,500
-3708.1 "--sync--" sync / 14:[^:]*:Queen's Knight:57F[01]:/ window 10,10
+3708.1 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 10,10
 3711.1 "Shield Omen/Sword Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
 3719.3 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }
 3727.5 "Sword Omen/Shield Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
@@ -356,10 +356,10 @@ hideall "--sync--"
 3842.1 "Optimal Play" #Ability { id: "57F4", source: "Queen's Knight" }
 
 # Aetherial Warded Knights
-4000.0 "--sync--" sync / 14:[^:]*:Queen's Knight:57F5:/ window 1000,0
+4000.0 "--sync--" StartsUsing { id: "57F5", source: "Queen's Knight" } window 1000,0
 4005.0 "Strongpoint Defense" Ability { id: "57F5", source: "Queen's Knight" }
 # 60s enrage cast of 5812, 580A, 5802, 57F9
-4008.0 "Enrage Cast" sync / 14:[^:]*:Queen's Gunner:5812:/ duration 60
+4008.0 "Enrage Cast" StartsUsing { id: "5812", source: "Queen's Gunner" } duration 60
 4018.8 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
 4036.0 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
 4053.1 "Coat Of Arms" Ability { id: "57F6", source: "Aetherial Ward" }
@@ -373,7 +373,7 @@ hideall "--sync--"
 5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1F:/ window 10000,0
 
 # one circle, one square
-5008.3 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57A3:/ window 10,10
+5008.3 "--sync--" StartsUsing { id: "57A3", source: "Bozjan Phantom" } window 10,10
 5011.3 "Weave Miasma" Ability { id: "57A3", source: "Bozjan Phantom" }
 5025.5 "Manipulate Miasma" Ability { id: "57A4", source: "Bozjan Phantom" }
 5026.5 "Swirling Miasma 1" Ability { id: "57A9", source: "Bozjan Phantom" }
@@ -447,7 +447,7 @@ hideall "--sync--"
 # -ii 5962 4F55 4F99 5B24 5968 4F56 4F9A 5964 5969 5965 5967 596A 596C
 # The Vault of Singing Crystal will be sealed off
 7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E20:/ window 10000,0
-7008.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5975:/ window 10,10
+7008.0 "--sync--" StartsUsing { id: "5975", source: "Trinity Avowed" } window 10,10
 7013.0 "Wrath Of Bozja" Ability { id: "5975", source: "Trinity Avowed" }
 7021.1 "Glory Of Bozja" Ability { id: "5976", source: "Trinity Avowed" }
 7029.3 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
@@ -535,7 +535,7 @@ hideall "--sync--"
 # -ii 5B83 5B82 59E0 59E2 59DA 59CC 5B40 59CD 5B8D
 # Queensheart will be sealed off
 9000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E23:/ window 10000,0
-9010.5 "--sync--" sync / 14:[^:]*:The Queen:59C8:/ window 15,15
+9010.5 "--sync--" StartsUsing { id: "59C8", source: "The Queen" } window 15,15
 9015.5 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
 9025.7 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 9036.0 "--middle--" Ability { id: "5BCB", source: "The Queen" }

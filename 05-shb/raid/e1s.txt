@@ -87,4 +87,4 @@ hideall "--sync--"
 
 
 ### Enrage
-900.0 "Fragor Maximus (Enrage)" sync / 14:[^:]*:Eden Prime:45E4:/ window 500,0 duration 10.0
+900.0 "Fragor Maximus (Enrage)" StartsUsing { id: "45E4", source: "Eden Prime" } window 500,0 duration 10.0

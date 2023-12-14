@@ -81,10 +81,10 @@ hideall "--sync--"
 2025.2 "Core Combustion" Ability { id: "5745", source: "Bicolor Golem" } window 2030,10
 2026.1 "--bleed--" # from blue golem
 2029.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2032.1 "--sync--" sync / 14:[^:]*:Bicolor Golem:5558:/ window 20,10
+2032.1 "--sync--" StartsUsing { id: "5558", source: "Bicolor Golem" } window 20,10
 2037.1 "Metamorphose" Ability { id: "5558", source: "Bicolor Golem" }
 2069.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2071.3 "--sync--" sync / 14:[^:]*:Bicolor Golem:5558:/ window 20,10
+2071.3 "--sync--" StartsUsing { id: "5558", source: "Bicolor Golem" } window 20,10
 2076.3 "Metamorphose" Ability { id: "5558", source: "Bicolor Golem" }
 2109.7 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
 2140.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
@@ -133,7 +133,7 @@ hideall "--sync--"
 # but with lots of extra syncs to future proof possible hp pushes.
 
 # Initial Merciful Air
-4006.4 "--sync--" sync / 14:[^:]*:Trinity Seeker:5AD3:/ window 20,20
+4006.4 "--sync--" StartsUsing { id: "5AD3", source: "Trinity Seeker" } window 20,20
 4011.4 "Verdant Tempest" Ability { id: "5AD3", source: "Trinity Seeker" }
 4015.6 "--middle--" Ability { id: "5A9A", source: "Trinity Seeker" }
 4020.0 "Manifest Avatar" Ability { id: "5ADA", source: "Trinity Seeker" }
@@ -154,7 +154,7 @@ hideall "--sync--"
 4074.2 "Merciful Arc" Ability { id: "5AD4", source: "Trinity Seeker" }
 
 # Initial Baleful Air (80% or time push)
-4076.5 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A98:/ window 80,20
+4076.5 "--sync--" StartsUsing { id: "5A98", source: "Trinity Seeker" } window 80,20
 4079.5 "Verdant Path" Ability { id: "5A98", source: "Trinity Seeker" }
 4084.1 "Baleful Swathe" Ability { id: "5AD0", source: "Trinity Seeker" }
 4092.2 "Baleful Onslaught" Ability { id: "5AD5", source: "Trinity Seeker" }
@@ -179,7 +179,7 @@ hideall "--sync--"
 4162.6 "Verdant Tempest" Ability { id: "5AD3", source: "Trinity Seeker" }
 
 # Initial Iron Air
-4168.7 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A99:/ window 200,20
+4168.7 "--sync--" StartsUsing { id: "5A99", source: "Trinity Seeker" } window 200,20
 4171.7 "Verdant Path" Ability { id: "5A99", source: "Trinity Seeker" }
 4176.6 "Iron Impact" Ability { id: "5AD2", source: "Trinity Seeker" }
 4180.7 "--middle--" Ability { id: "5A9A", source: "Trinity Seeker" }
@@ -199,7 +199,7 @@ hideall "--sync--"
 4251.3 "Verdant Tempest" Ability { id: "5AD3", source: "Trinity Seeker" }
 
 # Merciful Air v2
-4262.8 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A97:/ window 300,10
+4262.8 "--sync--" StartsUsing { id: "5A97", source: "Trinity Seeker" } window 300,10
 4265.8 "Verdant Path" Ability { id: "5A97", source: "Trinity Seeker" }
 4270.4 "Act Of Mercy" Ability { id: "5ACF", source: "Trinity Seeker" }
 4276.5 "--middle--" Ability { id: "5A9A", source: "Trinity Seeker" }
@@ -253,7 +253,7 @@ hideall "--sync--"
 4412.3 "Verdant Tempest" Ability { id: "5AD3", source: "Trinity Seeker" }
 
 # Baleful Air v2
-4422.5 "--sync--" sync / 14:[^:]*:Trinity Seeker:5A98:/ window 300,10
+4422.5 "--sync--" StartsUsing { id: "5A98", source: "Trinity Seeker" } window 300,10
 4425.5 "Verdant Path" Ability { id: "5A98", source: "Trinity Seeker" }
 4430.2 "Baleful Swathe" Ability { id: "5AD0", source: "Trinity Seeker" }
 4433.4 "--middle--" Ability { id: "5A9A", source: "Trinity Seeker" }
@@ -295,7 +295,7 @@ hideall "--sync--"
 4568.4 "Baleful Onslaught" Ability { id: "5AD[56]", source: "Trinity Seeker" }
 
 # Enrage
-4580.9 "--sync--" sync / 14:[^:]*:Trinity Seeker:5BBA:/ window 1000,10
+4580.9 "--sync--" StartsUsing { id: "5BBA", source: "Trinity Seeker" } window 1000,10
 4590.9 "Verdant Tempest Enrage" Ability { id: "5BBA", source: "Trinity Seeker" }
 4593.0 "Verdant Tempest" Ability { id: "5BBB", source: "Trinity Seeker" } window 10,10 # x infinity
 4595.0 "Verdant Tempest" Ability { id: "5BBB", source: "Trinity Seeker" }
@@ -364,7 +364,7 @@ hideall "--sync--"
 # This is a single or a double hot charge.
 6221.4 "Hot Charge 1" Ability { id: "5773", source: "Dahu" }
 6226.2 "Hot Charge 2?" Ability { id: "5773", source: "Dahu" }
-6228.0 "--sync--" sync / 14:[^:]*:Dahu:5774:/ window 20,20
+6228.0 "--sync--" StartsUsing { id: "5774", source: "Dahu" } window 20,20
 6233.0 "Firebreathe" Ability { id: "5774", source: "Dahu" }
 6246.3 "--sync--" Ability { id: "576A", source: "Crowned Marchosias" }
 6251.3 "--sync--" Ability { id: "576A", source: "Crowned Marchosias" }
@@ -397,7 +397,7 @@ hideall "--sync--"
 # Probably a loop, but you shouldn't see this charge, let alone the previous one.
 6367.8 "Hot Charge 1" Ability { id: "5773", source: "Dahu" }
 6372.6 "Hot Charge 2?" Ability { id: "5773", source: "Dahu" }
-6374.4 "--sync--" sync / 14:[^:]*:Dahu:5774:/ window 100,100 jump 6228.0
+6374.4 "--sync--" StartsUsing { id: "5774", source: "Dahu" } window 100,100 jump 6228.0
 6379.4 "Firebreathe" Ability { id: "5774", source: "Dahu" }
 6398.6 "Reverberating Roar" #Ability { id: "576D", source: "Dahu" }
 6407.7 "Reverberating Roar" #Ability { id: "576D", source: "Dahu" }
@@ -417,7 +417,7 @@ hideall "--sync--"
 # Alternatively, we could always insert " 19:${data.me} was defeated by" from script.
 
 8002.1 "--sync--" Ability { id: "1961", source: "Stygimoloch Warrior" } window 20000,0
-8009.1 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8009.1 "--sync--" StartsUsing { id: "5796", source: "Stygimoloch Warrior" } window 20,20
 8012.1 "Surge of Vigor" Ability { id: "5796", source: "Stygimoloch Warrior" }
 8024.3 "Unrelenting Charge x3" Ability { id: "5799", source: "Stygimoloch Warrior" }
 8035.4 "--north--" Ability { id: "577C", source: "Stygimoloch Warrior" }
@@ -438,13 +438,13 @@ hideall "--sync--"
 8113.7 "Inescapable Entrapment" Ability { id: "5780", source: "Stygimoloch Warrior" }
 
 # Single Trap
-8120.8 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:578[15]:/ window 20,20
+8120.8 "--sync--" StartsUsing { id: "578[15]", source: "Stygimoloch Warrior" } window 20,20
 8133.8 "Surging Flames/Withering Curse?" Ability { id: "578[15]", source: "Stygimoloch Warrior" }
 8133.8 "--sync--" Ability { id: "5781", source: "Stygimoloch Warrior" } jump 8137.3 # if Surging Flames, skip +3.5s ahead
 8136.4 "Devour?" Ability { id: "5789", source: "Stygimoloch Warrior" } # only if Withering Curse
 
 # Round 2
-8146.6 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5796:/ window 20,20
+8146.6 "--sync--" StartsUsing { id: "5796", source: "Stygimoloch Warrior" } window 20,20
 8149.6 "Surge of Vigor" Ability { id: "5796", source: "Stygimoloch Warrior" }
 8163.7 "Focused Tremor x16" Ability { id: "578E", source: "Stygimoloch Warrior" } duration 30.7
 8167.8 "--middle--" Ability { id: "577C", source: "Stygimoloch Warrior" }
@@ -456,11 +456,11 @@ hideall "--sync--"
 8207.2 "Inescapable Entrapment" Ability { id: "5780", source: "Stygimoloch Warrior" }
 
 # Triple Trap
-8210.4 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:578[15]:/ window 20,20
+8210.4 "--sync--" StartsUsing { id: "578[15]", source: "Stygimoloch Warrior" } window 20,20
 8223.4 "Surging Flames/Withering Curse?" Ability { id: "578[15]", source: "Stygimoloch Warrior" }
 8223.4 "--sync--" Ability { id: "5781", source: "Stygimoloch Warrior" } jump 8223.9 # if Surging Flames, skip +3.5s ahead
 8225.8 "Devour?" Ability { id: "5789", source: "Stygimoloch Warrior" } # only if Withering Curse
-8229.9 "--sync--" sync / 14:[^:]*:Stygimoloch Warrior:5783:/ window 20,20
+8229.9 "--sync--" StartsUsing { id: "5783", source: "Stygimoloch Warrior" } window 20,20
 8239.9 "Surging Flood" Ability { id: "5783", source: "Stygimoloch Warrior" }
 8248.1 "Leaping Spark x3" Ability { id: "578A", source: "Stygimoloch Warrior" }
 
@@ -512,7 +512,7 @@ hideall "--sync--"
 10002.5 "--sync--" Ability { id: "5858", source: "Queen's Gunner" } window 3,1
 
 # Phase 1: aoes (to 80%)
-10011.5 "--sync--" sync / 14:[^:]*:Queen's Warrior:5831:/ window 20,20
+10011.5 "--sync--" StartsUsing { id: "5831", source: "Queen's Warrior" } window 20,20
 10016.6 "Blood And Bone" Ability { id: "5831", source: "Queen's Warrior" }
 10025.6 "Blood And Bone" Ability { id: "5841", source: "Queen's Soldier" }
 10030.6 "--untargetable--"
@@ -520,7 +520,7 @@ hideall "--sync--"
 
 # Phase 2: Warrior + Knight section
 10033.9 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 25,0
-10051.1 "--sync--" sync / 14:[^:]*:Queen's Warrior:5825:/ window 60,20
+10051.1 "--sync--" StartsUsing { id: "5825", source: "Queen's Warrior" } window 60,20
 10056.1 "Relentless Battery" Ability { id: "5825", source: "Queen's Warrior" }
 10062.2 "Shield Omen/Sword Omen" Ability { id: "581[45]", source: "Queen's Knight" }
 
@@ -588,8 +588,8 @@ hideall "--sync--"
 10293.4 "Rapid Sever" Ability { id: "5832", source: "Queen's Warrior" }
 
 # If either die, they will start casting enrage.
-10302.9 "--sync--" sync / 14:[^:]*:Queen's Knight:5823:/ window 300,10
-10302.9 "--sync--" sync / 14:[^:]*:Queen's Warrior:5833:/ window 300,10
+10302.9 "--sync--" StartsUsing { id: "5823", source: "Queen's Knight" } window 300,10
+10302.9 "--sync--" StartsUsing { id: "5833", source: "Queen's Warrior" } window 300,10
 10312.9 "Blood and Bone Enrage" Ability { id: "5833", source: "Queen's Warrior" }
 10316.0 "Blood and Bone Enrage" Ability { id: "5B9D", source: "Queen's Knight" } window 10,10 # x infinity
 10319.1 "Blood and Bone Enrage" Ability { id: "5B9D", source: "Queen's Knight" }
@@ -597,7 +597,7 @@ hideall "--sync--"
 
 # Phase 3: Soldier + Gunner section
 10600.0 "--sync--" sync / 22:........:Queen's Gunner:........:Queen's Gunner:01/ window 600,0
-10612.0 "--sync--" sync / 14:[^:]*:Queen's Gunner:5844:/ window 600,0
+10612.0 "--sync--" StartsUsing { id: "5844", source: "Queen's Gunner" } window 600,0
 10617.0 "Relentless Battery" Ability { id: "5844", source: "Queen's Gunner" }
 10623.2 "Great Ball Of Fire" Ability { id: "583B", source: "Queen's Soldier" }
 10632.3 "Fool's Gambit" Ability { id: "583C", source: "Queen's Soldier" }
@@ -638,8 +638,8 @@ hideall "--sync--"
 10856.9 "Shot In The Dark" Ability { id: "5855", source: "Queen's Gunner" }
 
 # If either die, they will start casting enrage.
-10865.7 "--sync--" sync / 14:[^:]*:Queen's Soldier:5843:/ window 300,10
-10865.7 "--sync--" sync / 14:[^:]*:Queen's Gunner:5856:/ window 300,10
+10865.7 "--sync--" StartsUsing { id: "5843", source: "Queen's Soldier" } window 300,10
+10865.7 "--sync--" StartsUsing { id: "5856", source: "Queen's Gunner" } window 300,10
 10875.7 "Blood And Bone Enrage" Ability { id: "5843", source: "Queen's Soldier" }
 10878.8 "Blood And Bone Enrage" Ability { id: "5B9F", source: "Queen's Soldier" } window 10,10 # x infinity
 10881.9 "Blood And Bone Enrage" Ability { id: "5B9F", source: "Queen's Soldier" }
@@ -648,7 +648,7 @@ hideall "--sync--"
 
 
 # Phase 4: Aetherial Wards
-11000.0 "--sync--" sync / 14:[^:]*:Queen's Knight:581E:/ window 1000,0
+11000.0 "--sync--" StartsUsing { id: "581E", source: "Queen's Knight" } window 1000,0
 11005.0 "Strongpoint Defense" Ability { id: "581E", source: "Queen's Knight" }
 11005.0 "Spiteful Spirit" Ability { id: "582E", source: "Queen's Warrior" }
 11006.0 "--2x Aura Sphere--"
@@ -685,7 +685,7 @@ hideall "--sync--"
 12000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E1F:/ window 20000,0
 # .*is no longer sealed
 12000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
-12007.1 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57BD:/ window 20000,0
+12007.1 "--sync--" StartsUsing { id: "57BD", source: "Bozjan Phantom" } window 20000,0
 12011.1 "Malediction of Agony" Ability { id: "57BD", source: "Bozjan Phantom" }
 12019.2 "Weave Miasma" Ability { id: "57B2", source: "Bozjan Phantom" }
 
@@ -745,7 +745,7 @@ hideall "--sync--"
 12157.2 "--targetable--"
 
 # Start of loop block
-12162.3 "--sync--" sync / 14:[^:]*:Bozjan Phantom:57B2:/ window 100,50
+12162.3 "--sync--" StartsUsing { id: "57B2", source: "Bozjan Phantom" } window 100,50
 12165.3 "Weave Miasma" Ability { id: "57B2", source: "Bozjan Phantom" }
 12171.5 "Summon" Ability { id: "57BA", source: "Bozjan Phantom" }
 12187.6 "Undying Hatred" Ability { id: "57C2", source: "Stuffy Wraith" }
@@ -853,7 +853,7 @@ hideall "--sync--"
 14000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E20:/ window 20000,0
 # .*is no longer sealed
 14000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
-14006.7 "--sync--" sync / 14:[^:]*:Trinity Avowed:594E:/ window 10,10
+14006.7 "--sync--" StartsUsing { id: "594E", source: "Trinity Avowed" } window 10,10
 14011.8 "Wrath Of Bozja" Ability { id: "594E", source: "Trinity Avowed" }
 14019.9 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 
@@ -867,18 +867,18 @@ hideall "--sync--"
 14056.0 "Allegiant Arsenal" # -> random jump to initial weapon phase
 
 # -> Sword v1 (initial)?
-14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 10,10 jump 14100
+14053.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 10,10 jump 14100
 14061.2 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v1 (initial)?
-14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 10,10 jump 14700
+14053.0 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 10,10 jump 14700
 14061.2 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v1 (initial)?
-14053.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 10,10 jump 15300
+14053.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 10,10 jump 15300
 14061.2 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Sword v1 (initial)
-14100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14100.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" }
 14103.0 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 14108.2 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 14115.6 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -891,15 +891,15 @@ hideall "--sync--"
 14167.4 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 
 # -> Bow v1 (seen sword)?
-14175.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 14900
+14175.3 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10 jump 14900
 14183.5 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v1 (seen sword)?
-14175.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 15500
+14175.3 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10 jump 15500
 14183.5 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Sword v1 (seen bow)
-14300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14300.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" }
 14303.0 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 14308.2 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 14315.6 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -911,7 +911,7 @@ hideall "--sync--"
 14360.3 "--sync--" Ability { id: "5982", source: "Trinity Avowed" }
 14367.4 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Staff v1 (final)
-14375.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10
+14375.3 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10
 14378.3 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 14383.5 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 14389.6 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -924,18 +924,18 @@ hideall "--sync--"
 14444.5 "Allegiant Arsenal"
 
 # -> Sword v2?
-14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+14441.5 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 14449.7 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+14441.5 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 14449.7 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-14441.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+14441.5 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 14449.7 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Sword v1 (seen staff)
-14500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+14500.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" }
 14503.0 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 14508.2 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 14515.6 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -947,7 +947,7 @@ hideall "--sync--"
 14560.3 "--sync--" Ability { id: "5982", source: "Trinity Avowed" }
 14567.4 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Bow v1 (final)
-14575.3 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10
+14575.3 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10
 14578.3 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 14583.5 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 14589.6 "Quick March" Ability { id: "5BB3", source: "Trinity Avowed" }
@@ -963,18 +963,18 @@ hideall "--sync--"
 14664.2 "Allegiant Arsenal"
 
 # -> Sword v2?
-14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+14661.2 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 14669.4 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+14661.2 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 14669.4 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-14661.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+14661.2 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 14669.4 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Bow v1 (initial)
-14700.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+14700.0 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" }
 14703.0 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 14708.2 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 14714.3 "Quick March" Ability { id: "5BB3", source: "Trinity Avowed" }
@@ -990,15 +990,15 @@ hideall "--sync--"
 14788.9 "Allegiant Arsenal"
 
 # -> Sword v1 (seen bow)?
-14785.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 14300
+14785.9 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10 jump 14300
 14794.1 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Staff v1 (seen bow)?
-14785.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 15700
+14785.9 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10 jump 15700
 14794.1 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Bow v1 (seen sword)
-14900.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+14900.0 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" }
 14903.0 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 14908.2 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 14914.3 "Quick March" Ability { id: "5BB3", source: "Trinity Avowed" }
@@ -1012,7 +1012,7 @@ hideall "--sync--"
 14971.4 "--sync--" Ability { id: "5983", source: "Trinity Avowed" } window 10,10 # some variance here
 14978.5 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Staff v1 (final)
-14985.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10
+14985.9 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10
 14988.9 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 14994.1 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 15000.2 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -1025,18 +1025,18 @@ hideall "--sync--"
 15055.1 "Allegiant Arsenal"
 
 # -> Sword v2?
-15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15052.1 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 15060.3 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15052.1 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 15060.3 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-15052.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15052.1 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 15060.3 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Bow v1 (seen staff)
-15100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+15100.0 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" }
 15103.0 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 15108.2 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 15114.3 "Quick March" Ability { id: "5BB3", source: "Trinity Avowed" }
@@ -1050,7 +1050,7 @@ hideall "--sync--"
 15171.4 "--sync--" Ability { id: "5983", source: "Trinity Avowed" } window 10,10 # some variance here
 15178.5 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Sword v1 (final)
-15185.9 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10
+15185.9 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10
 15188.9 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 15194.1 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 15201.5 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -1063,18 +1063,18 @@ hideall "--sync--"
 15253.3 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 
 # -> Sword v2?
-15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15261.2 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 15269.4 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15261.2 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 15269.4 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-15261.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15261.2 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 15269.4 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Staff v1 (initial)
-15300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15300.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" }
 15303.0 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 15308.2 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 15314.3 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -1087,15 +1087,15 @@ hideall "--sync--"
 15369.2 "Allegiant Arsenal"
 
 # -> Sword v1 (seen staff)
-15366.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 14500
+15366.2 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10 jump 14500
 15374.4 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v1 (seen staff)
-15366.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 15100
+15366.2 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10 jump 15100
 15374.4 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 
 
 # Staff v1 (seen sword)
-15500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15500.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" }
 15503.0 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 15508.2 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 15514.3 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -1106,7 +1106,7 @@ hideall "--sync--"
 15550.6 "--sync--" Ability { id: "5984", source: "Trinity Avowed" }
 15557.7 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Bow v1 (final)
-15566.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10
+15566.2 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10
 15569.2 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 15574.4 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 15580.5 "Quick March" Ability { id: "5BB3", source: "Trinity Avowed" }
@@ -1122,18 +1122,18 @@ hideall "--sync--"
 15655.1 "Allegiant Arsenal"
 
 # -> Sword v2?
-15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15652.1 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 15660.3 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15652.1 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 15660.3 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-15652.1 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15652.1 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 15660.3 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Staff v1 (seen bow)
-15700.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+15700.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" }
 15703.0 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 15708.2 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 15714.3 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -1144,7 +1144,7 @@ hideall "--sync--"
 15750.6 "--sync--" Ability { id: "5984", source: "Trinity Avowed" }
 15757.7 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
 # -> roll into Sword v1 (final)
-15766.2 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10
+15766.2 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10
 15769.2 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 15774.4 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 15781.8 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -1158,18 +1158,18 @@ hideall "--sync--"
 15844.5 "Allegiant Arsenal"
 
 # -> Sword v2?
-15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 40,10 jump 15900
+15841.5 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 40,10 jump 15900
 15849.7 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 40,10 jump 16100
+15841.5 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 40,10 jump 16100
 15849.7 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-15841.5 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 40,10 jump 16300
+15841.5 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 40,10 jump 16300
 15849.7 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Sword v2
-15900.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/
+15900.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" }
 15903.0 "Allegiant Arsenal" Ability { id: "5985", source: "Trinity Avowed" }
 15908.2 "Infernal Slash" Ability { id: "594A", source: "Trinity Avowed" }
 15915.4 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
@@ -1184,15 +1184,15 @@ hideall "--sync--"
 15984.6 "Allegiant Arsenal"
 
 # -> Bow v2?
-15981.6 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 16100
+15981.6 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10 jump 16100
 15989.8 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 # -> Staff v2?
-15981.6 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 16300
+15981.6 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10 jump 16300
 15989.8 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 # Bow v2
-16100.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/
+16100.0 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" }
 16103.0 "Allegiant Arsenal" Ability { id: "5986", source: "Trinity Avowed" }
 16108.2 "Flashvane" Ability { id: "594B", source: "Trinity Avowed" }
 16114.3 "Unseen Eye" Ability { id: "5BB4", source: "Trinity Avowed" }
@@ -1211,16 +1211,16 @@ hideall "--sync--"
 16203.0 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 
 # -> Sword v2?
-16200.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 15900
+16200.0 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10 jump 15900
 16208.2 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Staff v2?
-16200.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/ window 70,10 jump 16300
+16200.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" } window 70,10 jump 16300
 16208.2 "Fury Of Bozja?" #Ability { id: "594C", source: "Trinity Avowed" }
 
 
 
 # Staff v2
-16300.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5987:/
+16300.0 "--sync--" StartsUsing { id: "5987", source: "Trinity Avowed" }
 16303.0 "Allegiant Arsenal" Ability { id: "5987", source: "Trinity Avowed" }
 16308.2 "Fury Of Bozja" Ability { id: "594C", source: "Trinity Avowed" }
 16314.3 "Hot And Cold" Ability { id: "597B", source: "Trinity Avowed" }
@@ -1235,10 +1235,10 @@ hideall "--sync--"
 16369.4 "Allegiant Arsenal"
 
 # -> Sword v2?
-16366.4 "--sync--" sync / 14:[^:]*:Trinity Avowed:5985:/ window 70,10 jump 15900
+16366.4 "--sync--" StartsUsing { id: "5985", source: "Trinity Avowed" } window 70,10 jump 15900
 16374.6 "Infernal Slash?" #Ability { id: "594A", source: "Trinity Avowed" }
 # -> Bow v2?
-16366.4 "--sync--" sync / 14:[^:]*:Trinity Avowed:5986:/ window 70,10 jump 16100
+16366.4 "--sync--" StartsUsing { id: "5986", source: "Trinity Avowed" } window 70,10 jump 16100
 16374.6 "Flashvane?" #Ability { id: "594B", source: "Trinity Avowed" }
 
 
@@ -1246,7 +1246,7 @@ hideall "--sync--"
 # This happens ~10 seconds after when the allegiant arsenal would have cast.
 # We could...technically...break up phase 2 into the same blocks like phase 1, but no.
 # TODO: Alternatively we could add this in as "Enrage?" to each block?
-16500.0 "--sync--" sync / 14:[^:]*:Trinity Avowed:5954:/ window 2500,0
+16500.0 "--sync--" StartsUsing { id: "5954", source: "Trinity Avowed" } window 2500,0
 16512.0 "Glory Of Bozja Enrage" Ability { id: "5954", source: "Trinity Avowed" }
 16512.0 "--untargetable--"
 
@@ -1265,7 +1265,7 @@ hideall "--sync--"
 # Both of these casts are renamed as --sync-- to clean up the timeline.
 
 # Phase 1
-18008.3 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57D7:/ window 15,15
+18008.3 "--sync--" StartsUsing { id: "57D7", source: "Stygimoloch Lord" } window 15,15
 18015.3 "Foe Splitter" Ability { id: "57D7", source: "Stygimoloch Lord" }
 18023.4 "Vicious Swipe" Ability { id: "5552", source: "Stygimoloch Lord" }
 18028.5 "--sync--" Ability { id: "57CF", source: "Stygimoloch Lord" }
@@ -1285,7 +1285,7 @@ hideall "--sync--"
 # loop.  Therefore, we'll just unroll this loop a few times and drop the
 # Mana Flame after a while.  Most logs don't even see the 2nd Fateful Words.
 18200.0 "--untargetable--" Ability { id: "57DA", source: "Stygimoloch Lord" }
-18201.5 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57C3:/ window 210,0
+18201.5 "--sync--" StartsUsing { id: "57C3", source: "Stygimoloch Lord" } window 210,0
 18204.5 "Memory of the Labyrinth" Ability { id: "57C3", source: "Stygimoloch Lord" }
 18205.1 "--adds--"
 18215.4 "Mana Flame" Ability { id: "57DE", source: "Ball Of Fire" }
@@ -1352,7 +1352,7 @@ hideall "--sync--"
 
 # Phase 3: Victory Lap (once adds are dead)
 19000.0 "--targetable--" sync / 22:........:Stygimoloch Lord:........:Stygimoloch Lord:01/ window 800,0
-19008.2 "--sync--" sync / 14:[^:]*:Stygimoloch Lord:57D2:/ window 1010,0
+19008.2 "--sync--" StartsUsing { id: "57D2", source: "Stygimoloch Lord" } window 1010,0
 19013.2 "Thunderous Discharge" Ability { id: "57D2", source: "Stygimoloch Lord" }
 19028.4 "Rapid Bolts 1" Ability { id: "57CD", source: "Stygimoloch Lord" } duration 12.8
 19040.5 "1111-Tonze Swing" Ability { id: "57D8", source: "Stygimoloch Lord" }
@@ -1388,7 +1388,7 @@ hideall "--sync--"
 20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E23:/ window 20000,0
 # .*is no longer sealed
 20000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
-20010.3 "--sync--" sync / 14:[^:]*:The Queen:59F9:/ window 20,20
+20010.3 "--sync--" StartsUsing { id: "59F9", source: "The Queen" } window 20,20
 20015.3 "Empyrean Iniquity" Ability { id: "59F9", source: "The Queen" }
 20025.5 "--sync--" Ability { id: "5BCB", source: "The Queen" }
 20033.9 "Queen's Will" Ability { id: "59E6", source: "The Queen" }

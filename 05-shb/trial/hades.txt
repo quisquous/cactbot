@@ -45,13 +45,13 @@ hideall "Double"
 # Give voice to your anguish, my brethren!
 304.5 "Adds (E/W)"
 
-400.0 "--sync--" sync / 14:[^:]*:Shadow .f .he Ancients:4593:/ window 500,0
+400.0 "--sync--" StartsUsing { id: "4593", source: "Shadow .f .he Ancients" } window 500,0
 405.0 "Ancient Darkness" Ability { id: "4593", source: "Shadow .f .he Ancients" }
 405.0 "Ancient Water III" Ability { id: "4594", source: "Shadow .f .he Ancients" }
 # Give substance to our hopes, our dreams, our prayers...
 408.0 "Adds (NE/SW)"
 
-500.0 "--sync--" sync / 14:[^:]*:Shadow .f .he Ancients:4595:/ window 600,0
+500.0 "--sync--" StartsUsing { id: "4595", source: "Shadow .f .he Ancients" } window 600,0
 505.0 "Ancient Aero" Ability { id: "4595", source: "Shadow .f .he Ancients" }
 508.0 "Ancient Water III" Ability { id: "4594", source: "Shadow .f .he Ancients" }
 508.0 "Ancient Darkness" Ability { id: "4593", source: "Shadow .f .he Ancients" }
@@ -59,7 +59,7 @@ hideall "Double"
 510.0 "Adds (N/S)"
 
 # Yawn wide, the ever-hungering void!
-600.0 "--sync--" sync / 14:[^:]*:Hades:4597:/ window 600,0
+600.0 "--sync--" StartsUsing { id: "4597", source: "Hades" } window 600,0
 605.0 "Ancient Dark IV" Ability { id: "4597", source: "Hades" }
 
 
@@ -86,12 +86,12 @@ hideall "Double"
 # There is technically an echo of the lost before this captivity
 # but impossible to properly sync that given that the previous phase
 # also uses that ability.
-895.0 "--sync--" sync / 14:[^:]*:Hades:4168:/ window 300,0
+895.0 "--sync--" StartsUsing { id: "4168", source: "Hades" } window 300,0
 900.0 "Captivity" Ability { id: "4168", source: "Hades" }
 900.8 "--fetters--"
 903.0 "--sync--" Ability { id: "417F", source: "Hades" }
 905.0 "Gaol Add"
-906.5 "--sync--" sync / 14:[^:]*:Hades:416C:/
+906.5 "--sync--" StartsUsing { id: "416C", source: "Hades" }
 936.2 "Chorus Of The Lost" Ability { id: "416C", source: "Hades" }
 # FIXME: I've never seen this go off, so unclear how far 416D is from 416C.
 # Chorus of the lost does seem likely to be 30 seconds.
@@ -116,7 +116,7 @@ hideall "Double"
 1065.0 "--sync--" Ability { id: "417F", source: "Hades" }
 1066.0 "Doom"
 1067.0 "Gaol Add"
-1068.5 "--sync--" sync / 14:[^:]*:Hades:416C:/
+1068.5 "--sync--" StartsUsing { id: "416C", source: "Hades" }
 1098.2 "Chorus Of The Lost" Ability { id: "416C", source: "Hades" }
 1101.0 "--sync--" Ability { id: "416D", source: "Hades" } window 100,0
 
@@ -131,7 +131,7 @@ hideall "Double"
 
 
 # Cutscene: Push at 30%?
-1300.0 "--sync--" sync / 14:[^:]*:Hades:4175:/ window 1300,0
+1300.0 "--sync--" StartsUsing { id: "4175", source: "Hades" } window 1300,0
 1304.0 "--untargetable--"
 1304.0 "Life In Captivity" Ability { id: "4175", source: "Hades" }
 1307.0 "--sync--" Ability { id: "417F", source: "Hades" }
@@ -147,5 +147,5 @@ hideall "Double"
 1403.0 "--sync--" Ability { id: "4159", source: "Hades" }
 
 # Gratuitous 45 second enrage.
-1412.7 "--sync--" sync / 14:[^:]*:Hades:417B:/ window 100,100
+1412.7 "--sync--" StartsUsing { id: "417B", source: "Hades" } window 100,100
 1457.7 "Enrage" Ability { id: "417B", source: "Hades" }

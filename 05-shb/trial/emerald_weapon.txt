@@ -12,7 +12,7 @@ hideall "--sync--"
 ### Phase 1
 0 "Start"
 0.5 "--sync--" Ability { id: "5B1A", source: "The Emerald Weapon" } window 1,0.5
-8.4 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5554:/ window 10,5
+8.4 "--sync--" StartsUsing { id: "5554", source: "The Emerald Weapon" } window 10,5
 13.4 "Emerald Shot" Ability { id: "5554", source: "The Emerald Weapon" }
 
 26.6 "Emerald Beam" Ability { id: "552A", source: "The Emerald Weapon" }
@@ -89,13 +89,13 @@ hideall "--sync--"
 
 ### Intermission
 936.6 "--untargetable--"
-936.7 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5B02:/ window 1000,10
+936.7 "--sync--" StartsUsing { id: "5B02", source: "The Emerald Weapon" } window 1000,10
 940.7 "Disruption Field" Ability { id: "5B02", source: "The Emerald Weapon" }
 1000.0 "--targetable--"
 
 
 ### Phase 2 (checkpoint)
-1006.2 "--sync--" sync / 14:[^:]*:The Emerald Weapon:5539:/ window 1200,10
+1006.2 "--sync--" StartsUsing { id: "5539", source: "The Emerald Weapon" } window 1200,10
 1011.2 "Divide Et Impera" Ability { id: "5539", source: "The Emerald Weapon" }
 1016.5 "--sync--" Ability { id: "5B1F", source: "The Emerald Weapon" }
 1025.6 "Primus Terminus Est" Ability { id: "5562", source: "The Emerald Weapon" }

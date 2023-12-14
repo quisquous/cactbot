@@ -295,7 +295,7 @@ hideall "--sync--"
 2625.2 "Crushing Wheel Enrage?"  Ability { id: "474B", source: "Marx [LR]" }
 
 2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
-2706.2 "--sync--" sync / 14:[^:]*:Engels:4733:/ window 150,5
+2706.2 "--sync--" StartsUsing { id: "4733", source: "Engels" } window 150,5
 2709.7 "Surface Missile" Ability { id: "4733", source: "Engels" }
 2718.9 "Marx Smash" Ability { id: "472[67AE]", source: "Engels" }
 2728.6 "Surface Missile" Ability { id: "4733", source: "Engels" }
@@ -355,7 +355,7 @@ hideall "--sync--"
 3146.8 "--sync--" Ability { id: "48DD", source: "9S-Operated Walking Fortress" }
 
 3151.7 "--targetable--"
-3152.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48F5:/
+3152.0 "--sync--" StartsUsing { id: "48F5", source: "9S-Operated Walking Fortress" }
 3156.0 "Neutralization" Ability { id: "48F5", source: "9S-Operated Walking Fortress" }
 3170.7 "Anti-Personnel Missile" #Ability { id: "48E4", source: "9S-Operated Walking Fortress" }
 3172.7 "Anti-Personnel Missile" #Ability { id: "48E4", source: "9S-Operated Walking Fortress" }
@@ -379,7 +379,7 @@ hideall "--sync--"
 3270.7 "Laser Saturation"
 
 # Tank Explosions
-3300.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48E7:/ window 200,0
+3300.0 "--sync--" StartsUsing { id: "48E7", source: "9S-Operated Walking Fortress" } window 200,0
 3310.0 "Hack Goliath Tank" Ability { id: "48E7", source: "9S-Operated Walking Fortress" }
 3310.0 "Convenient Self-Destruction" Ability { id: "48E8", source: "Goliath Tank" }
 3313.2 "Ground-To-Ground Missile" Ability { id: "48F8", source: "9S-Operated Walking Fortress" }
@@ -402,7 +402,7 @@ hideall "--sync--"
 3422.3 "Spin" Ability { id: "4A8[46]", source: "Serial-jointed Service Model" }
 3432.7 "Enrage?" # 70s ???
 
-3500.0 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48EB:/ window 300,0
+3500.0 "--sync--" StartsUsing { id: "48EB", source: "9S-Operated Walking Fortress" } window 300,0
 3510.0 "Total Annihilation Maneuver" Ability { id: "48EB", source: "9S-Operated Walking Fortress" }
 3520.0 "--targetable--"
 3530.1 "Neutralization" Ability { id: "48F5", source: "9S-Operated Walking Fortress" }
@@ -433,7 +433,7 @@ hideall "--sync--"
 3638.8 "--sync--" Ability { id: "48DD", source: "9S-Operated Walking Fortress" }
 
 3643.8 "--targetable--"
-3643.9 "--sync--" sync / 14:[^:]*:9S-Operated Walking Fortress:48F6:/ window 10,10
+3643.9 "--sync--" StartsUsing { id: "48F6", source: "9S-Operated Walking Fortress" } window 10,10
 3647.9 "Laser Saturation" Ability { id: "48F6", source: "9S-Operated Walking Fortress" }
 3659.3 "Engage Marx Support" Ability { id: "48D3", source: "9S-Operated Walking Fortress" }
 3674.5 "Ground-To-Ground Missile" Ability { id: "48F8", source: "9S-Operated Walking Fortress" }

@@ -205,7 +205,7 @@ hideall "--Reset--"
 1302.3 "Icebrand" Ability { id: "5373", source: "Shiva" }
 1306.4 "Icicle Impact (cross)" #Ability { id: "537B", source: "Shiva" }
 1306.4 "Permafrost?" Ability { id: "5369", source: "Shiva" }
-1316.8 "--sync--" sync / 14:[^:]*:Shiva:5375:/ window 10,10
+1316.8 "--sync--" StartsUsing { id: "5375", source: "Shiva" } window 10,10
 1319.0 "Glacier Bash" Ability { id: "5375", source: "Shiva" }
 1329.4 "Whiteout" Ability { id: "5376", source: "Shiva" }
 1334.7 "Heavenly Strike" Ability { id: "5374", source: "Shiva" }

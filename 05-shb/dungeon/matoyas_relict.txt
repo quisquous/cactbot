@@ -84,7 +84,7 @@ hideall "--sync--"
 3086.5 "Minced Meat" Ability { id: "5911", source: "Mother Porxie" } window 50,10
 3093.6 "--untargetable--"
 
-3096.6 "Huff And Puff" sync / 14:[^:]*:Mother Porxie:591A:/ window 96.6,5 duration 33.7
+3096.6 "Huff And Puff" StartsUsing { id: "591A", source: "Mother Porxie" } window 96.6,5 duration 33.7
 3101.6 "Buffet" Ability { id: "5926", source: "Aeolian Cave Sprite" }
 3107.3 "Buffet" Ability { id: "5926", source: "Aeolian Cave Sprite" }
 3112.8 "Buffet" Ability { id: "5926", source: "Aeolian Cave Sprite" }

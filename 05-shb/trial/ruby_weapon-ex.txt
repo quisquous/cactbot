@@ -34,7 +34,7 @@ hideall "--sync--"
 108.2 "Ruby Sphere 2" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 111.2 "Ruby Sphere 3" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 # can be slightly delayed
-122.6 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4B02:/ window 10,10
+122.6 "--sync--" StartsUsing { id: "4B02", source: "The Ruby Weapon" } window 10,10
 127.6 "Ruby Ray" Ability { id: "4B02", source: "The Ruby Weapon" }
 134.7 "Optimized Ultima" Ability { id: "4ABE", source: "The Ruby Weapon" }
 145.4 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
@@ -82,7 +82,7 @@ hideall "--sync--"
 431.7 "Optimized Ultima" Ability { id: "4ABE", source: "The Ruby Weapon" }
 437.9 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 ### Enrage (both time and hp% pushes)
-440.2 "--sync--" sync / 14:[^:]*:The Ruby Weapon:4B2D:/ window 600,0
+440.2 "--sync--" StartsUsing { id: "4B2D", source: "The Ruby Weapon" } window 600,0
 455.2 "Enrage" Ability { id: "4B2D", source: "The Ruby Weapon" }
 
 ### Cutscene

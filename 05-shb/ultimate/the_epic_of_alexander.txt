@@ -99,7 +99,7 @@ hideall "--sync--"
 423.7 "Eternal Darkness Enrage" Ability { id: "483A", source: "Cruise Chaser" }
 
 ### Transition 2: Cruise Chaser, Brute Justice and Alexander Prime
-492.0 "--sync--" sync / 14:[^:]*:Alexander Prime:485A:/ window 500,0
+492.0 "--sync--" StartsUsing { id: "485A", source: "Alexander Prime" } window 500,0
 500.0 "Temporal Stasis" Ability { id: "485A", source: "Alexander Prime" }
 503.1 "Surety and Severity" Ability { id: "4861", source: "Alexander Prime" }
 505.1 "Alpha Sword" #Ability { id: "486B", source: "Cruise Chaser" }
