@@ -13,7 +13,7 @@ hideall "--start--"
 # Crumbling Bridge will be sealed off
 0.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:949:/ window 0,1
 # TODO: does this only start when the adds are dead?
-22.6 "--sync--" sync / 14:[^:]*:Mateus, The Corrupt:2633:/ window 30,10
+22.6 "--sync--" StartsUsing { id: "2633", source: "Mateus, The Corrupt" } window 30,10
 
 # Ice phase
 27.6 "Unbind" Ability { id: "2633", source: "Mateus, The Corrupt" }
@@ -63,7 +63,7 @@ hideall "--start--"
 
 # Palace Square will be sealed off
 1000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94C:/ window 10000,0
-1011.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25D8:/ window 20,20
+1011.0 "--sync--" StartsUsing { id: "25D8", source: "Hashmal, Bringer of Order" } window 20,20
 1015.0 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
 1020.4 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1022.5 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
@@ -82,7 +82,7 @@ hideall "--start--"
 1082.6 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
 
 # This can push early.
-1087.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25BC:/ window 100,20
+1087.0 "--sync--" StartsUsing { id: "25BC", source: "Hashmal, Bringer of Order" } window 100,20
 1090.0 "Command Tower" Ability { id: "25BC", source: "Hashmal, Bringer of Order" }
 1101.3 "Earth Shaker" Ability { id: "25C8", source: "Command Tower" }
 1106.2 "Earth Shaker" Ability { id: "25C8", source: "Command Tower" }
@@ -98,7 +98,7 @@ hideall "--start--"
 1149.8 "Falling Rock" Ability { id: "25D3", source: "Hashmal, Bringer of Order" }
 # ??? more earth shaker, more jagged edge (seen on video, but no logs)
 
-1300.0 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:25C5:/ window 300,0
+1300.0 "--sync--" StartsUsing { id: "25C5", source: "Hashmal, Bringer of Order" } window 300,0
 1305.0 "Landwaster" Ability { id: "25C5", source: "Hashmal, Bringer of Order" }
 
 1314.4 "Control Tower x2" Ability { id: "25C1", source: "Hashmal, Bringer of Order" }
@@ -138,12 +138,12 @@ hideall "--start--"
 1447.8 "Submission Tower" Ability { id: "266D", source: "Hashmal, Bringer of Order" }
 1451.0 "Sanction" Ability { id: "2703", source: "Hashmal, Bringer of Order" }
 1454.1 "--Sand Sphere Adds--"
-# 1459.1 "--sync--" sync / 14:[^:]*:Sand Sphere:25C9:/ # To Dust starts casting, probably the phase over when 20s cast complete
+# 1459.1 "--sync--" StartsUsing { id: "25C9", source: "Sand Sphere" } # To Dust starts casting, probably the phase over when 20s cast complete
 1460.9 "Towerfall" Ability { id: "25CA", source: "Submission Tower" }
 1469.7 "Falling Boulder" Ability { id: "25D2", source: "Hashmal, Bringer of Order" }
 
 # Starts roughly after Sand Sphere adds are dead, guessing at this natural time if To Dust goes off
-1480.6 "--sync--" sync / 14:[^:]*:Hashmal, Bringer of Order:(25CE|25D0):/ window 40,40
+1480.6 "--sync--" StartsUsing { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" } window 40,40
 1486.6 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
 1489.1 "Falling Rock" Ability { id: "25D3", source: "Hashmal, Bringer of Order" }
 1499.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
@@ -175,7 +175,7 @@ hideall "--start--"
 
 # Lesalia Garden Ruins will be sealed off
 2000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94D:/ window 10000,0
-2012.8 "--sync--" sync / 14:[^:]*:Rofocale:2680:/ window 20,20
+2012.8 "--sync--" StartsUsing { id: "2680", source: "Rofocale" } window 20,20
 2015.8 "Crush Helm" Ability { id: "2680", source: "Rofocale" } duration 3.4
 2035.5 "Chariot" Ability { id: "2674", source: "Rofocale" }
 2040.8 "Cry Of Victory" Ability { id: "2675", source: "Rofocale" }
@@ -198,7 +198,7 @@ hideall "--start--"
 
 # TODO: could trigger instead off of Rofocale losing Sprint which happens ~here
 2400.0 "--sync--" sync / 00:0044:[^:]*:The heavens tremble in my wake/ window 500,0
-2417.6 "--sync--" sync / 14:[^:]*:Rofocale:268A:/ window 500,10
+2417.6 "--sync--" StartsUsing { id: "268A", source: "Rofocale" } window 500,10
 2421.1 "Heavenly Subjugation"
 2433.5 "Embrace" Ability { id: "2685", source: "Rofocale" }
 2450.8 "Chariot" Ability { id: "2674", source: "Rofocale" }
@@ -216,7 +216,7 @@ hideall "--start--"
 # => variable time turning off the lights
 
 # Seen 2734 only once in the loop fflogs link below.
-2700.0 "--sync--" sync / 14:[^:]*:Rofocale:(2734|2726):/ window 160,0
+2700.0 "--sync--" StartsUsing { id: "(2734|2726)", source: "Rofocale" } window 160,0
 2706.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
 2716.9 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
 2726.3 "Embrace" Ability { id: "2685", source: "Rofocale" }
@@ -230,7 +230,7 @@ hideall "--start--"
 2779.1 "Dark Geas" Ability { id: "2688", source: "Rofocale" }
 # => variable time turning off the lights
 
-2900.0 "--sync--" sync / 14:[^:]*:Rofocale:(2734|2726):/ window 160,0
+2900.0 "--sync--" StartsUsing { id: "(2734|2726)", source: "Rofocale" } window 160,0
 2906.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
 2917.3 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
 2924.2 "Trample" Ability { id: "2676", source: "Rofocale" }
@@ -291,7 +291,7 @@ hideall "--start--"
 ## Phase 1
 # Lesalia Temple Ruins will be sealed off
 4000.0 "--start--" sync / 29:[^:]*:7DC:[^:]*:94E:/ window 10000,0
-4006.7 "--sync--" sync / 14:[^:]*:Argath Thadalfus:262D:/ window 20,20
+4006.7 "--sync--" StartsUsing { id: "262D", source: "Argath Thadalfus" } window 20,20
 4009.7 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 4017.9 "Crush Weapon x3" Ability { id: "2628", source: "Argath Thadalfus" }
 4023.9 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
@@ -301,7 +301,7 @@ hideall "--start--"
 4058.1 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # Note: adding a larger sync in case there's a push here just to be safe.
-4064.3 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2622:/ window 100,10
+4064.3 "--sync--" StartsUsing { id: "2622", source: "Argath Thadalfus" } window 100,10
 4067.3 "Trepidation" Ability { id: "2622", source: "Argath Thadalfus" }
 4075.8 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
 4077.3 "Rail Of The Rat 1" Ability { id: "2624", source: "Argath Thadalfus" }
@@ -313,7 +313,7 @@ hideall "--start--"
 
 # Can early push (before Trepidation) to Judgment Blade.
 # TODO: is this an HP push? or is this a bug? I see this in <5% of logs atmost.
-4099.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2629:/ window 100,10
+4099.0 "--sync--" StartsUsing { id: "2629", source: "Argath Thadalfus" } window 100,10
 4102.0 "Judgment Blade" Ability { id: "2629", source: "Argath Thadalfus" }
 4108.3 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 4110.4 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
@@ -322,20 +322,20 @@ hideall "--start--"
 4129.2 "Royal Blood" #Ability { id: "261E", source: "Argath Thadalfus" }
 
 ## Phase 2: Shades and Shards (percentage push to this, 72%?)
-4500.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:261E:/ window 500,0
+4500.0 "--sync--" StartsUsing { id: "261E", source: "Argath Thadalfus" } window 500,0
 4505.0 "Royal Blood" Ability { id: "261E", source: "Argath Thadalfus" }
 4505.3 "--Shade Adds--"
 4515.2 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 4525.4 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
 # => variable amount of time until all shades are dead or explode
 
-4600.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:261F:/ window 600,0
+4600.0 "--sync--" StartsUsing { id: "261F", source: "Argath Thadalfus" } window 600,0
 4605.0 "Empty Soul" Ability { id: "261F", source: "Argath Thadalfus" }
 4605.9 "--Shard Adds--"
 4607.1 "--sync--" Ability { id: "270B", source: "Argath Thadalfus" }
 # => variable amount of time until all shards are dead or you wipe
 
-4700.0 "--sync--" sync / 14:[^:]*:Argath Thadalfus:2620:/ window 700,0
+4700.0 "--sync--" StartsUsing { id: "2620", source: "Argath Thadalfus" } window 700,0
 4702.5 "Dark Ultima" Ability { id: "2620", source: "Argath Thadalfus" }
 4715.4 "Mask Of Lies" Ability { id: "2619", source: "Argath Thadalfus" }
 4723.4 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }

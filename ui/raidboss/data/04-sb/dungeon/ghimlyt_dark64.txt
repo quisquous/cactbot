@@ -217,10 +217,10 @@ hideall "--sync--"
 
 # Enrage after two intermissions.
 
-# 2597.3 "--sync--" sync / 14:[^:]*:Julia Quo Soranus:372F:/ window 597.3
-2597.3 "Artificial Boost" sync / 14:[^:]*:Annia Quo Soranus:3730:/ window 597.3
+# 2597.3 "--sync--" StartsUsing { id: "372F", source: "Julia Quo Soranus" } window 597.3
+2597.3 "Artificial Boost" StartsUsing { id: "3730", source: "Annia Quo Soranus" } window 597.3
 # 2600.0 "--sync--" Ability { id: "372F", source: "Julia Quo Soranus" } window 600,5
 2600.0 "Artificial Boost" Ability { id: "3730", source: "Annia Quo Soranus" } window 600,5
-# 2603.2 "--sync--" sync / 14:[^:]*:Julia Quo Soranus:3731:/
-2603.2 "Imperial Authority" sync / 14:[^:]*:Annia Quo Soranus:3732:/ duration 39.7
+# 2603.2 "--sync--" StartsUsing { id: "3731", source: "Julia Quo Soranus" }
+2603.2 "Imperial Authority" StartsUsing { id: "3732", source: "Annia Quo Soranus" } duration 39.7
 2642.9 "Imperial Authority Enrage" Ability { id: "3732", source: "Annia Quo Soranus" }

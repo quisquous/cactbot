@@ -41,7 +41,7 @@ hideall "--sync--"
 
 # Post Wild Speed loop -> back into Wild Speed loop
 70.2 "--targetable--"
-70.2 "--sync--" sync / 14:[^:]*:Magna Roader:1F16:/ window 40,10
+70.2 "--sync--" StartsUsing { id: "1F16", source: "Magna Roader" } window 40,10
 73.2 "Magitek Fire III" Ability { id: "1F16", source: "Magna Roader" }
 77.3 "Wheel" Ability { id: "1F14", source: "Magna Roader" } window 47,10 # can jump here instead after being hit with the cannons
 84.8 "Magitek Fire II" Ability { id: "1F15", source: "Magna Roader" }
@@ -78,9 +78,9 @@ hideall "--sync--"
 
 # Project Aegis will be sealed off
 1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:791:/ window 10000,0
-1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A9:/ window 10,10 jump 1095.0 # fire phase first
-1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82A8:/ window 10,10 jump 1144.7 # ice phase first
-1008.3 "--sync--" sync / 14:[^:]*:Subject Number XXIV:82AA:/ window 10,10 jump 1193.6 # thunder phase first
+1008.3 "--sync--" StartsUsing { id: "82A9", source: "Subject Number XXIV" } window 10,10 jump 1095.0 # fire phase first
+1008.3 "--sync--" StartsUsing { id: "82A8", source: "Subject Number XXIV" } window 10,10 jump 1144.7 # ice phase first
+1008.3 "--sync--" StartsUsing { id: "82AA", source: "Subject Number XXIV" } window 10,10 jump 1193.6 # thunder phase first
 1013.2 "Elemental Overload (Random)"
 
 # fire phase
