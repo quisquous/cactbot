@@ -60,7 +60,7 @@ hideall "--sync--"
 2043.3 "Scratch" Ability { id: "15D5", source: "Winged Lion" }
 
 # can hp% push here
-2049.5 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 50,5
+2049.5 "--sync--" StartsUsing { id: "15C9", source: "Winged Lion" } window 50,5
 2052.5 "--sync--" Ability { id: "15C9", source: "Winged Lion" }
 2054.5 "--untargetable--"
 2072.6 "Ancient Holy" Ability { id: "15CA", source: "Winged Lion" } window 20,20
@@ -74,7 +74,7 @@ hideall "--sync--"
 2133.2 "Ancient Stone" Ability { id: "15D2", source: "Winged Lion" }
 2138.3 "Scratch" Ability { id: "15D5", source: "Winged Lion" }
 
-2143.3 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 80,5
+2143.3 "--sync--" StartsUsing { id: "15C9", source: "Winged Lion" } window 80,5
 2145.6 "--adds--"
 2146.3 "--sync--" Ability { id: "15C9", source: "Winged Lion" }
 2148.3 "--untargetable--"
@@ -94,7 +94,7 @@ hideall "--sync--"
 2259.3 "Scratch" Ability { id: "15D5", source: "Winged Lion" }
 
 2266.7 "--adds--"
-2264.4 "--sync--" sync / 14:[^:]*:Winged Lion:15C9:/ window 80,5
+2264.4 "--sync--" StartsUsing { id: "15C9", source: "Winged Lion" } window 80,5
 2267.4 "--sync--" Ability { id: "15C9", source: "Winged Lion" }
 2269.4 "--untargetable--"
 2287.5 "Ancient Holy" Ability { id: "15CA", source: "Winged Lion" } window 50,50 jump 2166.4

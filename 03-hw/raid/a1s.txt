@@ -123,6 +123,6 @@ hideall "--sync--"
 
 
 ## Enrage
-3000.0 "--sync--" sync / 14:[^:]*:Oppressor:E49:/ window 3000,0
-3000.0 "--sync--" sync / 14:[^:]*:Oppressor 0\.5:E49:/ window 3000,0
+3000.0 "--sync--" StartsUsing { id: "E49", source: "Oppressor" } window 3000,0
+3000.0 "--sync--" StartsUsing { id: "E49", source: "Oppressor 0\\.5" } window 3000,0
 3010.0 "Self-Destruct Enrage" Ability { id: "E49", source: "Oppressor" }

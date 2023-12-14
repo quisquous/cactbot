@@ -37,7 +37,7 @@ hideall "--sync--"
 # Back on the ground for a relatively short bridge block
 # We sync to a 14/20 startsUsing log line instead of a 15/21 ability line.
 # This lets us jump out of the intermission slightly earlier.
-197.3 "Dark Spike" sync / 14:[^:]*:Arachne Eve:1823:/ window 100,5
+197.3 "Dark Spike" StartsUsing { id: "1823", source: "Arachne Eve" } window 100,5
 206.3 "--sync--" Ability { id: "1847", source: "Arachne Eve" }
 210.5 "Sticky Wicket x3" # Ability { id: "183F", source: "Arachne Eve" }
 212.1 "--untargetable--"
@@ -212,7 +212,7 @@ hideall "--sync--"
 2157.1 "Execration" Ability { id: "1828", source: "Ozma" }
 2178.4 "Acceleration Bomb" Ability { id: "182F", source: "Ozma" }
 2195.7 "Transfiguration (Sphere)" Ability { id: "1827", source: "Ozma" }
-2199.1 "--sync--" sync / 14:[^:]*:Ozma:1800:/ window 48.8,5
+2199.1 "--sync--" StartsUsing { id: "1800", source: "Ozma" } window 48.8,5
 2203.8 "Black Hole" Ability { id: "1800", source: "Ozma" } window 53,5 jump 2400.0
 
 # Cube-first path
@@ -221,7 +221,7 @@ hideall "--sync--"
 2257.0 "Flare Star" Ability { id: "1805", source: "Ozma" }
 2288.0 "Holy" Ability { id: "182E", source: "Ozma" }
 2300.0 "Transfiguration (Sphere)" Ability { id: "1804", source: "Ozma" }
-2303.3 "--sync--" sync / 14:[^:]*:Ozma:1800:/ window 53.3,5
+2303.3 "--sync--" StartsUsing { id: "1800", source: "Ozma" } window 53.3,5
 2308.0 "Black Hole" Ability { id: "1800", source: "Ozma" } window 58,5 jump 2400.0
 
 # Intermission

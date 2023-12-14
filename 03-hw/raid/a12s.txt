@@ -29,7 +29,7 @@ hideall "--sync--"
 70.4 "Arrhidaeus's Lanner x8"
 
 105.5 "The General's Wing x4"
-113.7 "--sync--" sync / 14:[^:]*:The General's Wing:19F7:/ window 114,3
+113.7 "--sync--" StartsUsing { id: "19F7", source: "The General's Wing" } window 114,3
 116.7 "Almost Holy" Ability { id: "19F7", source: "The General's Wing" }
 124.9 "Almost Holy" Ability { id: "19F7", source: "The General's Wing" }
 133.2 "Almost Holy" Ability { id: "19F7", source: "The General's Wing" }

@@ -48,7 +48,7 @@
 ### Leg 2
 500.0 "--sync--" sync / 22:........:The Manipulator:........:The Manipulator:01/ window 500,0
 512.1 "--untargetable--"
-516.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 517,5
+516.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 517,5
 522.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 524.2 "--targetable--"
 532.3 "Emergency Quarantine" Ability { id: "F62", source: "The Manipulator" }
@@ -89,7 +89,7 @@
 ### Leg 3
 1000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 1012.1 "--untargetable--"
-1016.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
+1016.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
 1022.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 1024.2 "--targetable--"
 1027.4 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
@@ -144,7 +144,7 @@
 ### Leg 4
 1500.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 1512.1 "--untargetable--"
-1516.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
+1516.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
 1522.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 1524.2 "--targetable--"
 1528.4 "Judgment Nisi" Ability { id: "F64", source: "The Manipulator" }
@@ -179,7 +179,7 @@
 ### Final Phase
 2000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
 2012.1 "--untargetable--"
-2016.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
+2016.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
 2022.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 2024.2 "--targetable--"
 
@@ -222,5 +222,5 @@
 
 ### Enrage
 # Note: Manipulator won't enrage until all legs have been killed.
-2500.0 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 480,480
+2500.0 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 480,480
 2506.0 "Mortal Revolution Enrage" Ability { id: "13E7", source: "The Manipulator" }

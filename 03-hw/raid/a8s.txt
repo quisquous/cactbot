@@ -111,7 +111,7 @@ hideall "Brute Force"
 
 # All of the robots have their own rotation <50%
 # Messing up thunder seems the most punishing, so here's Vortexer.
-600.0 "--sync--" sync / 14:[^:]*:Vortexer:1657:/ window 600,0
+600.0 "--sync--" StartsUsing { id: "1657", source: "Vortexer" } window 600,0
 603.0 "Super Cyclone" Ability { id: "1657", source: "Vortexer" }
 608.1 "Elemental Jammer" Ability { id: "167E", source: "Vortexer" }
 615.4 "Ballistic Missile" Ability { id: "1650", source: "Vortexer" }
@@ -220,7 +220,7 @@ hideall "Brute Force"
 
 
 ### Phase 7: Gavel
-1252.1 "--targetable--" sync / 14:[^:]*:Brute Justice:166E:/ window 1255,100
+1252.1 "--targetable--" StartsUsing { id: "166E", source: "Brute Justice" } window 1255,100
 1257.1 "Justice" Ability { id: "166E", source: "Brute Justice" }
 1264.2 "Verdict" Ability { id: "166F", source: "Brute Justice" }
 1296.3 "Gavel" Ability { id: "1670", source: "Brute Justice" }

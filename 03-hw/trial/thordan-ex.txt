@@ -41,7 +41,7 @@ hideall "--sync--"
 101.4 "Heavensflame 4" #Ability { id: "14AC", source: "Ser Charibert" }
 101.5 "--sync--" Ability { id: "149C", source: "Ser Hermenost" } # Conviction (model animation, no actual snapshot)
 104.3 "Conviction" Ability { id: "149D", source: "Ser Hermenost" }
-107.4 "Sacred Cross" sync / 14:[^:]*:Ser Zephirin:1490:/ duration 19.7
+107.4 "Sacred Cross" StartsUsing { id: "1490", source: "Ser Zephirin" } duration 19.7
 127.1 "--sync--" Ability { id: "1490", source: "Ser Zephirin" }
 133.1 "Spiral Thrust" Ability { id: "14A6", source: "(Ser Ignasse|Ser Paulecrain|Ser Vellguine)" }
 
@@ -186,7 +186,7 @@ hideall "--sync--"
 704.6 "Heavensward Leap 1" Ability { id: "14AA", source: "Ser Vellguine" }
 707.6 "Heavensward Leap 2" Ability { id: "14AA", source: "Ser Paulecrain" }
 710.6 "Heavensward Leap 3" Ability { id: "14AA", source: "Ser Ignasse" }
-718.7 "Sacred Cross" sync / 14:[^:]*:Ser Zephirin:1491:/ duration 24.7
+718.7 "Sacred Cross" StartsUsing { id: "1491", source: "Ser Zephirin" } duration 24.7
 724.6 "Pure Of Soul" Ability { id: "(14B1|14B2)", source: "(Ser Charibert|Ser Noudenet|Ser Haumeric)" }
 732.6 "Absolute Conviction 1" Ability { id: "14A4", source: "Ser Guerrique" }
 735.5 "Absolute Conviction 2" Ability { id: "14A5", source: "Ser Hermenost" }
