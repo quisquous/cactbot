@@ -10,7 +10,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.9 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 20,20
+9.9 "--sync--" StartsUsing { id: "7720", source: "Proto-Carbuncle" } window 20,20
 14.9 "Sonic Howl" Ability { id: "7720", source: "Proto-Carbuncle" }
 22.0 "Ruby Glow 1" Ability { id: "76F3", source: "Proto-Carbuncle" }
 29.1 "Topaz Stones" Ability { id: "76FD", source: "Proto-Carbuncle" }
@@ -84,7 +84,7 @@ hideall "--sync--"
 275.5 "--sync--" Ability { id: "76F5", source: "Proto-Carbuncle" }
 
 # 2/3 Topaz Stones + stacks to break them
-280.6 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7720:/ window 50,10
+280.6 "--sync--" StartsUsing { id: "7720", source: "Proto-Carbuncle" } window 50,10
 285.6 "Sonic Howl" Ability { id: "7720", source: "Proto-Carbuncle" }
 292.7 "Ruby Glow 4" Ability { id: "76F3", source: "Proto-Carbuncle" }
 298.8 "Topaz Stones" Ability { id: "76FD", source: "Proto-Carbuncle" }
@@ -153,5 +153,5 @@ hideall "--sync--"
 583.0 "--sync--" Ability { id: "7708", source: "Proto-Carbuncle" }
 
 # Hard Enrage
-593.4 "--sync--" sync / 14:[^:]*:Proto-Carbuncle:7723:/ window 1850,10
+593.4 "--sync--" StartsUsing { id: "7723", source: "Proto-Carbuncle" } window 1850,10
 598.1 "Acidic Slaver (enrage)" Ability { id: "7723", source: "Proto-Carbuncle" }

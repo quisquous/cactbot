@@ -27,7 +27,7 @@ hideall "--sync--"
 # are the safe tiles.
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.0 "--sync--" sync / 14:[^:]*:Hesperos:6A09:/ window 10,20
+10.0 "--sync--" StartsUsing { id: "6A09", source: "Hesperos" } window 10,20
 15.0 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 23.2 "Bloodrake" Ability { id: "69D8", source: "Hesperos" }
 30.3 "Aetheric Chlamys" Ability { id: "69EC", source: "Hesperos" }
@@ -120,7 +120,7 @@ hideall "--sync--"
 #       Hemitheos's Aero III (6A1B, 6A1A)
 
 1000.0 "Start"
-1011.0 "--sync--" sync / 14:[^:]*:Hesperos:6A2D:/ window 1011,0
+1011.0 "--sync--" StartsUsing { id: "6A2D", source: "Hesperos" } window 1011,0
 1016.0 "Searing Stream" Ability { id: "6A2D", source: "Hesperos" }
 
 # Act 1 - Thorns 1

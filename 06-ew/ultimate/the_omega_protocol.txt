@@ -11,9 +11,9 @@ hideall "--sync--"
 ### P1: Beetle
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
 
-11.0 "--sync--" sync / 14:[^:]*:Omega:7B03:/ window 20,20
+11.0 "--sync--" StartsUsing { id: "7B03", source: "Omega" } window 20,20
 15.0 "Program Loop" Ability { id: "7B03", source: "Omega" }
-21.0 "--sync--" sync / 14:[^:]*:Omega:7B07:/
+21.0 "--sync--" StartsUsing { id: "7B07", source: "Omega" }
 29.0 "--sync--" Ability { id: "7B07", source: "Omega" }
 29.1 "Storage Violation 1" Ability { id: "7B04", source: "Omega" }
 29.1 "Blaster 1" Ability { id: "7B08", source: "Omega" }
@@ -24,7 +24,7 @@ hideall "--sync--"
 56.1 "Storage Violation 4" Ability { id: "7B04", source: "Omega" }
 56.1 "Blaster 4" Ability { id: "7B09", source: "Omega" }
 
-64.2 "--sync--" sync / 14:[^:]*:Omega:7B0B:/ window 20,20
+64.2 "--sync--" StartsUsing { id: "7B0B", source: "Omega" } window 20,20
 69.2 "Pantokrator" Ability { id: "7B0B", source: "Omega" }
 75.3 "Flame Thrower" Ability { id: "7B0D", source: "Omega" } duration 25.6
 81.3 "Condensed Wave Cannon Kyrios 1" Ability { id: "7B0F", source: "Omega" }
@@ -40,14 +40,14 @@ hideall "--sync--"
 108.0 "Wave Cannon Kyrios 1" Ability { id: "7B11", source: "Omega" }
 116.8 "Wave Cannon Kyrios 2" Ability { id: "7B11", source: "Omega" }
 
-122.7 "--sync--" sync / 14:[^:]*:Omega:7AF8:/ window 20,20
+122.7 "--sync--" StartsUsing { id: "7AF8", source: "Omega" } window 20,20
 127.7 "Atomic Ray Enrage" Ability { id: "7AF8", source: "Omega" }
 
 
 ### P2: M/F
 200.0 "--sync--" sync / 257 101:........:00020001:0A:/ window 200,0
 202.3 "--targetable--"
-203.4 "--sync--" sync / 14:[^:]*:Omega:7B40:/ window 210,5 # extra sync due to map effect sync
+203.4 "--sync--" StartsUsing { id: "7B40", source: "Omega" } window 210,5 # extra sync due to map effect sync
 206.4 "Firewall" Ability { id: "7B40", source: "Omega" }
 214.5 "Solar Ray" Ability { id: "7E6A", source: "Omega" }
 
@@ -101,7 +101,7 @@ hideall "--sync--"
 428.9 "Colossal Blow" Ability { id: "7B4E", source: "(Left Arm Unit|Right Arm Unit)" } window 1,1
 
 432.3 "--targetable--"
-436.3 "--sync--" sync / 14:[^:]*:Omega:7B55:/ window 40,40
+436.3 "--sync--" StartsUsing { id: "7B55", source: "Omega" } window 40,40
 
 441.3 "Hello, World" Ability { id: "7B55", source: "Omega" }
 # Most of the damage comes in 7B56 Critical Synchronization Bug,
@@ -109,31 +109,31 @@ hideall "--sync--"
 # (and patch, obviously).  There's also a ton of other Latent X
 # abilities here.  All of these are skipped for noise reasons.
 
-455.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+455.4 "--sync--" StartsUsing { id: "7B6F", source: "Omega" }
 464.4 "Latent Defect 1" Ability { id: "7B6F", source: "Omega" }
 # people break both patches here whenever, so don't sync these times
 # this time is roughly when people break the first one.
 466.9 "Patch x2" #Ability { id: "7B63", source: "Omega" }
 
-476.4 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+476.4 "--sync--" StartsUsing { id: "7B6F", source: "Omega" }
 485.4 "Latent Defect 2" Ability { id: "7B6F", source: "Omega" }
 487.9 "Patch x2" #Ability { id: "7B63", source: "Omega" }
 
-497.5 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+497.5 "--sync--" StartsUsing { id: "7B6F", source: "Omega" }
 506.5 "Latent Defect 3" Ability { id: "7B6F", source: "Omega" }
 509.0 "Patch x2" #Ability { id: "7B63", source: "Omega" }
 
-518.8 "--sync--" sync / 14:[^:]*:Omega:7B6F:/
+518.8 "--sync--" StartsUsing { id: "7B6F", source: "Omega" }
 527.5 "Patch" #Ability { id: "7B63", source: "Omega" }
 527.8 "Latent Defect 4" Ability { id: "7B6F", source: "Omega" }
 533.5 "Patch" #Ability { id: "7B63", source: "Omega" }
 
-542.1 "--sync--" sync / 14:[^:]*:Omega:7B64:/ window 30,30
+542.1 "--sync--" StartsUsing { id: "7B64", source: "Omega" } window 30,30
 550.1 "Critical Error" Ability { id: "7B64", source: "Omega" }
 
 560.2 "--sync--" Ability { id: "7B46", source: "Omega" }
 571.4 "Oversampled Wave Cannon" Ability { id: "(7B6B|7B6C)", source: "Omega" }
-577.4 "--sync--" sync / 14:[^:]*:Omega:7B48:/ window 50,50
+577.4 "--sync--" StartsUsing { id: "7B48", source: "Omega" } window 50,50
 587.4 "Ion Efflux Enrage" Ability { id: "7B48", source: "Omega" }
 
 
@@ -357,13 +357,13 @@ hideall "--sync--"
 1357.0 "Cosmo Meteor Enrage" Ability { id: "7BB5", source: "Cosmo Meteor" }
 
 # Tank 1 and Healer 1 Brilliant Dynamis Checks
-1361.7 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
+1361.7 "--sync--" StartsUsing { id: "7BB6", source: "Alpha Omega" } window 5,5
 1366.7 "Magic Number" Ability { id: "7BB6", source: "Alpha Omega" }
 
 # Tank 2 and Healer 2 Brilliant Dynamis Checks
-1377.8 "--sync--" sync / 14:[^:]*:Alpha Omega:7BB6:/ window 5,5
+1377.8 "--sync--" StartsUsing { id: "7BB6", source: "Alpha Omega" } window 5,5
 1382.8 "Magic Number" Ability { id: "7BB6", source: "Alpha Omega" }
 
-1391.9 "--sync--" sync / 14:[^:]*:Alpha Omega:7BA0:/ window 50,50
+1391.9 "--sync--" StartsUsing { id: "7BA0", source: "Alpha Omega" } window 50,50
 # The cast bar and logs say "16 seconds" but it appears to be ~30s in practice.
 1421.9 "Run: ****mi* Enrage" Ability { id: "7BA0", source: "Alpha Omega" }

@@ -11,7 +11,7 @@ hideall "--sync--"
 
 # Phase 1
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.1 "--sync--" sync / 14:[^:]*:Hydaelyn:65D7:/ window 20,20
+11.1 "--sync--" StartsUsing { id: "65D7", source: "Hydaelyn" } window 20,20
 16.1 "Heros's Radiance" Ability { id: "65D7", source: "Hydaelyn" }
 23.3 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
 29.9 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
@@ -184,7 +184,7 @@ hideall "--sync--"
 
 
 # Lightwave loop
-3191.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/
+3191.8 "--sync--" StartsUsing { id: "(6693|6694|6695)", source: "Hydaelyn" }
 3195.8 "Lightwave" Ability { id: "(6693|6694|6695)", source: "Hydaelyn" }
 3203.9 "Echoes" Ability { id: "(65B5|65B6|65B7)", source: "Hydaelyn" }
 3221.1 "Crystallize" Ability { id: "659[CE]", source: "Hydaelyn" }
@@ -197,7 +197,7 @@ hideall "--sync--"
 
 # Even ignoring the blizzard/stone above, this is still +/- 0.5s, so add a starts using cast.
 # TODO: it's possible the first loop is slightly different??
-3245.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/ window 30,30 jump 3191.8
+3245.8 "--sync--" StartsUsing { id: "(6693|6694|6695)", source: "Hydaelyn" } window 30,30 jump 3191.8
 3249.8 "Lightwave" #Ability { id: "(6693|6694|6695)", source: "Hydaelyn" }
 3257.9 "Echoes" #Ability { id: "(65B5|65B6|65B7)", source: "Hydaelyn" }
 3275.1 "Crystallize" #Ability { id: "659[CE]", source: "Hydaelyn" }

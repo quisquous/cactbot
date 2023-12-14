@@ -16,7 +16,7 @@ hideall "Season's Passing"
 
 # Fertile Plains will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10A9:/ window 10000,0
-1007.0 "--sync--" sync / 14:[^:]*:Nophica:7C24:/ window 20,20
+1007.0 "--sync--" StartsUsing { id: "7C24", source: "Nophica" } window 20,20
 1012.0 "Abundance" Ability { id: "7C24", source: "Nophica" }
 1020.7 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
 1031.8 "The Giving Land" Ability { id: "801A", source: "Nophica" }
@@ -94,14 +94,14 @@ hideall "Season's Passing"
 
 # The Bole will be sealed off
 2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AB:/ window 10000,0
-2009.0 "--sync--" sync / 14:[^:]*:Nymeia:7A38:/ window 10,10
+2009.0 "--sync--" StartsUsing { id: "7A38", source: "Nymeia" } window 10,10
 2013.5 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
-2019.2 "--sync--" sync / 14:[^:]*:Althyk:7A46:/ window 10,10
+2019.2 "--sync--" StartsUsing { id: "7A46", source: "Althyk" } window 10,10
 2026.2 "Mythril Greataxe" Ability { id: "7A46", source: "Althyk" }
 2041.1 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" } window 10,10
 2052.7 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
 
-2073.9 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 10,10
+2073.9 "--sync--" StartsUsing { id: "7A47", source: "Althyk" } window 10,10
 2078.9 "Axioma" Ability { id: "7A47", source: "Althyk" }
 2087.2 "Hydroptosis" Ability { id: "7A44", source: "Nymeia" }
 2099.2 "Inexorable Pull" Ability { id: "7A42", source: "Althyk" }
@@ -128,7 +128,7 @@ hideall "Season's Passing"
 2264.8 "Hydrostasis 2" Ability { id: "7A3B", source: "Nymeia" }
 2267.8 "Hydrostasis 3" Ability { id: "7A3C", source: "Nymeia" }
 
-2284.5 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 20,20
+2284.5 "--sync--" StartsUsing { id: "7A47", source: "Althyk" } window 20,20
 2289.5 "Axioma" Ability { id: "7A47", source: "Althyk" }
 2302.3 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
 2309.4 "Hydrorythmos" Ability { id: "7A3F", source: "Nymeia" }
@@ -159,7 +159,7 @@ hideall "Season's Passing"
 2492.8 "Inexorable Pull" Ability { id: "7A42", source: "Althyk" }
 
 2496.9 "--sync--" Ability { id: "7A4A", source: "Althyk" }
-2509.3 "--sync--" sync / 14:[^:]*:Althyk:7A4C:/ window 200,200
+2509.3 "--sync--" StartsUsing { id: "7A4C", source: "Althyk" } window 200,200
 2519.3 "Neikos Enrage" Ability { id: "7A4C", source: "Althyk" }
 #2520.5 "Neikos" Ability { id: "7A4D", source: "Nymeia" }
 #2520.5 "Neikos" Ability { id: "7A4E", source: "Althyk & Nymeia" }
@@ -181,17 +181,17 @@ hideall "Season's Passing"
 
 # The Barbs will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AD:/ window 10000,0
-3009.0 "--sync--" sync / 14:[^:]*:Halone:7D79:/
+3009.0 "--sync--" StartsUsing { id: "7D79", source: "Halone" }
 3013.0 "Rain of Spears x3" Ability { id: "7D79", source: "Halone" }
 
-3024.6 "--sync--" sync / 14:[^:]*:Halone:7D45:/
+3024.6 "--sync--" StartsUsing { id: "7D45", source: "Halone" }
 3037.9 "--sync--" Ability { id: "7D45", source: "Halone" }
 3038.1 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
 3040.1 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
 3042.1 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
 3044.1 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
 
-3049.2 "--sync--" sync / 14:[^:]*:Halone:7D45:/
+3049.2 "--sync--" StartsUsing { id: "7D45", source: "Halone" }
 3062.2 "--sync--" Ability { id: "7D45", source: "Halone" }
 3062.4 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
 3064.4 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
@@ -359,7 +359,7 @@ hideall "Season's Passing"
 4169.8 "Ancient Blizzard" #Ability { id: "8066", source: "Ice Sprite" }
 # ???
 
-4500.0 "--sync--" sync / 14:[^:]*:Menphina:8064:/ window 500,0
+4500.0 "--sync--" StartsUsing { id: "8064", source: "Menphina" } window 500,0
 4510.0 "Rise of the Twin Moons" Ability { id: "8064", source: "Menphina" }
 4513.2 "--targetable--"
 4526.6 "Midnight Frost" Ability { id: "(7BD7|7BD8|7BD9|7BDA)", source: "Menphina" }

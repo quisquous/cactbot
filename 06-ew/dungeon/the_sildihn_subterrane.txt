@@ -12,20 +12,20 @@ hideall "--sync--"
 
 # Silt Pump will be sealed off
 1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1068:/ window 100000,0
-1005.6 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+1005.6 "--sync--" StartsUsing { id: "74CF", source: "Geryon the Steer" }
 1010.6 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
 
 # -> yes pump
-1019.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74C7:/ window 20,20 jump 1219.7
+1019.7 "--sync--" StartsUsing { id: "74C7", source: "Geryon the Steer" } window 20,20 jump 1219.7
 1024.7 "Exploding Catapult?" #Ability { id: "74C7", source: "Geryon the Steer" }
 
 # -> no pump
-1014.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74D2:/ window 20,20 jump 2014.7
+1014.7 "--sync--" StartsUsing { id: "74D2", source: "Geryon the Steer" } window 20,20 jump 2014.7
 1019.7 "Subterranean Shudder" #Ability { id: "74D2", source: "Geryon the Steer" }
 
 
 # Geryon the Steer (left door, 1st boss, yes pump)
-1219.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74C7:/
+1219.7 "--sync--" StartsUsing { id: "74C7", source: "Geryon the Steer" }
 1224.7 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 1241.5 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 1246.1 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
@@ -89,7 +89,7 @@ hideall "--sync--"
 
 
 # Geryon the Steer (left door, 1st boss, no pump)
-2014.7 "--sync--" sync / 14:[^:]*:Geryon the Steer:74D2:/
+2014.7 "--sync--" StartsUsing { id: "74D2", source: "Geryon the Steer" }
 2019.7 "Subterranean Shudder" Ability { id: "74D2", source: "Geryon the Steer" }
 2025.8 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
 2026.8 "Runaway Sludge" Ability { id: "74D6", source: "Geryon the Steer" }
@@ -144,7 +144,7 @@ hideall "--sync--"
 
 # Sifting Site will be sealed off
 3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1070:/ window 100000,0
-3005.0 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+3005.0 "--sync--" StartsUsing { id: "74CF", source: "Geryon the Steer" }
 3010.0 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
 3019.1 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 3035.8 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
@@ -282,7 +282,7 @@ hideall "--sync--"
 
 # Settling Basin will be sealed off
 5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:106D:/ window 100000,0
-5005.0 "--sync--" sync / 14:[^:]*:Geryon the Steer:74CF:/
+5005.0 "--sync--" StartsUsing { id: "74CF", source: "Geryon the Steer" }
 5010.0 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
 
 5020.1 "Subterranean Shudder" Ability { id: "74D2", source: "Geryon the Steer" }
@@ -412,7 +412,7 @@ hideall "--sync--"
 
 # Forgotten Forecourt will be sealed off
 7000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1069:/ window 100000,0
-7009.3 "--sync--" sync / 14:[^:]*:Silkie:772C:/ window 10,10
+7009.3 "--sync--" StartsUsing { id: "772C", source: "Silkie" } window 10,10
 7014.3 "Total Wash" Ability { id: "772C", source: "Silkie" }
 7022.0 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
 7040.9 "Carpet Beater" Ability { id: "772B", source: "Silkie" }
@@ -481,7 +481,7 @@ hideall "--sync--"
 
 # Puffs
 # Note: this is timed to the longest of all bridge sections
-7196.9 "--sync--" sync / 14:[^:]*:Silkie:773D:/ window 20,100
+7196.9 "--sync--" StartsUsing { id: "773D", source: "Silkie" } window 20,100
 7200.9 "Fresh Puff" Ability { id: "773D", source: "Silkie" }
 7210.3 "Chilling Suds" Ability { id: "7736", source: "Silkie" }
 7217.0 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
@@ -517,7 +517,7 @@ hideall "--sync--"
 
 # The Cornice of Favor will be sealed off
 8000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1071:/ window 100000,0
-8007.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7656:/ window 20,20
+8007.0 "--sync--" StartsUsing { id: "7656", source: "Gladiator of Sil'dih" } window 20,20
 8012.0 "Flash of Steel" Ability { id: "7656", source: "Gladiator of Sil'dih" }
 8019.2 "--middle--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 8031.4 "Ring of Might (out)" Ability { id: "(763F|7640|7641)", source: "Gladiator of Sil'dih" }
@@ -533,48 +533,48 @@ hideall "--sync--"
 # Bridge 08
 #8065.6 "Ring of Might (in)" Ability { id: "7644", source: "Gladiator of Sil'dih" }
 #8078.8 "Flash of Steel" Ability { id: "764C", source: "Gladiator of Sil'dih" }
-#8080.9 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:79F6:/
+#8080.9 "--sync--" StartsUsing { id: "79F6", source: "Gladiator of Sil'dih" }
 #8084.9 "Biting Wind" Ability { id: "79F6", source: "Gladiator of Sil'dih" }
 #8088.5 "--sync--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 #8102.8 "Shattering Steel" Ability { id: "764B", source: "Gladiator of Sil'dih" }
-#8111.1 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8111.1 "--sync--" StartsUsing { id: "7657", source: "Gladiator of Sil'dih" }
 #8116.1 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 
 # Bridge 09
 #8065.6 "Ring of Might (in)" Ability { id: "7644", source: "Gladiator of Sil'dih" }
 #8078.8 "Flash of Steel" Ability { id: "764F", source: "Gladiator of Sil'dih" }
-#8081.9 "--sync--" sync / 14:[^:]*:Antique Boulder:7650:/
+#8081.9 "--sync--" StartsUsing { id: "7650", source: "Antique Boulder" }
 #8088.9 "Landing 1" Ability { id: "7650", source: "Antique Boulder" }
 #8092.9 "Landing 2" Ability { id: "7650", source: "Antique Boulder" }
 #8096.0 "--sync--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 #8096.9 "Landing 3" Ability { id: "7650", source: "Antique Boulder" }
 #8100.9 "Landing 4" Ability { id: "7650", source: "Antique Boulder" }
 #8110.7 "Shattering Steel" Ability { id: "764B", source: "Gladiator of Sil'dih" }
-#8117.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8117.0 "--sync--" StartsUsing { id: "7657", source: "Gladiator of Sil'dih" }
 #8122.0 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 
 # Bridge 10
 #8065.6 "Ring of Might (in)" Ability { id: "7644", source: "Gladiator of Sil'dih" }
-#8073.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7651:/
+#8073.8 "--sync--" StartsUsing { id: "7651", source: "Gladiator of Sil'dih" }
 #8076.8 "Hateful Visage 1" Ability { id: "7651", source: "Gladiator of Sil'dih" }
 #8089.0 "Golden Flame 1" Ability { id: "7652", source: "Hateful Visage" }
 #8095.0 "Hateful Visage 2" Ability { id: "7651", source: "Gladiator of Sil'dih" }
 #8107.2 "Golden Flame 2" Ability { id: "7652", source: "Hateful Visage" }
 #8107.2 "Sculptor's Passion" Ability { id: "764A", source: "Gladiator of Sil'dih" }
-#8114.5 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8114.5 "--sync--" StartsUsing { id: "7657", source: "Gladiator of Sil'dih" }
 #8119.5 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 
 # Bridge 11
 #8065.6 "Ring of Might (in)" Ability { id: "7644", source: "Gladiator of Sil'dih" }
-#8073.8 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7651:/
+#8073.8 "--sync--" StartsUsing { id: "7651", source: "Gladiator of Sil'dih" }
 #8076.8 "Hateful Visage" Ability { id: "7651", source: "Gladiator of Sil'dih" }
 #8089.0 "Silver Flame" Ability { id: "7653", source: "Hateful Visage" } duration 7.7
 #8094.0 "Sculptor's Passion" Ability { id: "764A", source: "Gladiator of Sil'dih" }
 #8107.1 "Flash of Steel" Ability { id: "7656", source: "Gladiator of Sil'dih" }
-#8114.4 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/
+#8114.4 "--sync--" StartsUsing { id: "7657", source: "Gladiator of Sil'dih" }
 #8118.4 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 
-8117.0 "--sync--" sync / 14:[^:]*:Gladiator of Sil'dih:7657:/ window 120,20
+8117.0 "--sync--" StartsUsing { id: "7657", source: "Gladiator of Sil'dih" } window 120,20
 8122.0 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 8128.1 "--corner--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 8141.3 "Rush of Might (near)" Ability { id: "763D", source: "Gladiator of Sil'dih" }
@@ -616,28 +616,28 @@ hideall "--sync--"
 
 # Eternal Ease will be sealed off
 9000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:106E:/ window 100000,0
-9010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+9010.6 "--sync--" StartsUsing { id: "74AE", source: "Shadowcaster Zeless Gah" } window 20,20
 9015.6 "Show of Strength" Ability { id: "74AE", source: "Shadowcaster Zeless Gah" }
 
 # -> Path 05
-9019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A2:/ window 20,20 jump 10019.7
+9019.7 "--sync--" StartsUsing { id: "74A2", source: "Shadowcaster Zeless Gah" } window 20,20 jump 10019.7
 9023.7 "Infern Gale?" #Ability { id: "74A2", source: "Shadowcaster Zeless Gah" }
 
 # -> Path 06
-9023.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:7491:/ window 20,20 jump 11023.8
+9023.8 "--sync--" StartsUsing { id: "7491", source: "Shadowcaster Zeless Gah" } window 20,20 jump 11023.8
 9027.8 "Infern Brand?" #Ability { id: "7491", source: "Shadowcaster Zeless Gah" }
 
 # -> Path 07
-9019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A7:/ window 20,20 jump 12019.7
+9019.7 "--sync--" StartsUsing { id: "74A7", source: "Shadowcaster Zeless Gah" } window 20,20 jump 12019.7
 9023.7 "Infern Well?" #Ability { id: "74A7", source: "Shadowcaster Zeless Gah" }
 
 ### Path 05
 # Note: this could be combined with Path 07 with knockback/draw-in replacements
 # Eternal Ease will be sealed off
 10000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:106E:/
-10010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+10010.6 "--sync--" StartsUsing { id: "74AE", source: "Shadowcaster Zeless Gah" } window 20,20
 10015.6 "Show of Strength" Ability { id: "74AE", source: "Shadowcaster Zeless Gah" }
-10019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A2:/
+10019.7 "--sync--" StartsUsing { id: "74A2", source: "Shadowcaster Zeless Gah" }
 10023.7 "Infern Gale" Ability { id: "74A2", source: "Shadowcaster Zeless Gah" }
 10024.5 "--sync--" Ability { id: "7495", source: "Shadowcaster Zeless Gah" }
 10030.1 "--knockback--" Ability { id: "74A3", source: "Infern Brand" }
@@ -722,10 +722,10 @@ hideall "--sync--"
 ### Path 06
 # Eternal Ease will be sealed off
 11000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:106E:/
-11010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+11010.6 "--sync--" StartsUsing { id: "74AE", source: "Shadowcaster Zeless Gah" } window 20,20
 11015.6 "Show of Strength" Ability { id: "74AE", source: "Shadowcaster Zeless Gah" }
 # 2 static portals
-11023.8 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:7491:/
+11023.8 "--sync--" StartsUsing { id: "7491", source: "Shadowcaster Zeless Gah" }
 11027.8 "Infern Brand" Ability { id: "7491", source: "Shadowcaster Zeless Gah" }
 11039.1 "Blazing Benifice" Ability { id: "74A5", source: "Arcane Font" }
 11047.0 "Firesteel Fracture" Ability { id: "74AC", source: "Shadowcaster Zeless Gah" }
@@ -809,9 +809,9 @@ hideall "--sync--"
 # Note: this could be combined with Path 05 with knockback/draw-in replacements
 # Eternal Ease will be sealed off
 12000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:106E:/
-12010.6 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74AE:/ window 20,20
+12010.6 "--sync--" StartsUsing { id: "74AE", source: "Shadowcaster Zeless Gah" } window 20,20
 12015.6 "Show of Strength" Ability { id: "74AE", source: "Shadowcaster Zeless Gah" }
-12019.7 "--sync--" sync / 14:[^:]*:Shadowcaster Zeless Gah:74A7:/
+12019.7 "--sync--" StartsUsing { id: "74A7", source: "Shadowcaster Zeless Gah" }
 12023.7 "Infern Well" Ability { id: "74A7", source: "Shadowcaster Zeless Gah" }
 12024.6 "--sync--" Ability { id: "7495", source: "Shadowcaster Zeless Gah" }
 12032.2 "--sync--" Ability { id: "74A8", source: "Infern Brand" }
@@ -909,7 +909,7 @@ hideall "--sync--"
 
 # Cold Arms' Quietus will be sealed off
 13000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1076:/ window 100000,0
-13011.8 "--sync--" sync / 14:[^:]*:Thorne Knight:70EB:/
+13011.8 "--sync--" StartsUsing { id: "70EB", source: "Thorne Knight" }
 13016.8 "Cogwheel" Ability { id: "70EB", source: "Thorne Knight" }
 13030.3 "Spring to Life" Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
 13031.1 "--sync--" Ability { id: "7126", source: "Magicked Puppet" }

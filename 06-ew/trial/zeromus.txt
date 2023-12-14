@@ -8,7 +8,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.7 "--sync--" sync / 14:[^:]*:Zeromus:8AF7:/ window 10,10
+6.7 "--sync--" StartsUsing { id: "8AF7", source: "Zeromus" } window 10,10
 11.7 "Abyssal Nox" Ability { id: "8AF7", source: "Zeromus" }
 20.7 "--sync--" Ability { id: "8AF8", source: "Zeromus" }
 27.7 "Abyssal Echoes" Ability { id: "8AFA", source: "Zeromus" }
@@ -37,7 +37,7 @@ hideall "--sync--"
 116.6 "Void Bio" Ability { id: "8B17", source: "Zeromus" }
 130.8 "Visceral Whirl" Ability { id: "8AF[BE]", source: "Zeromus" }
 
-135.8 "--sync--" sync / 14:[^:]*:Zeromus:8B03:/ window 20,20
+135.8 "--sync--" StartsUsing { id: "8B03", source: "Zeromus" } window 20,20
 145.8 "Big Bang" Ability { id: "8B03", source: "Zeromus" }
 163.9 "Visceral Whirl" Ability { id: "8AF[BE]", source: "Zeromus" }
 172.7 "The Dark Beckons" Ability { id: "8B0A", source: "Zeromus" }
@@ -63,7 +63,7 @@ hideall "--sync--"
 296.8 "Fractured Eventide" Ability { id: "8AF[34]", source: "Zeromus" }
 
 # Note: seen slightly irregular +3 time offsets here
-309.9 "--sync--" sync / 14:[^:]*:Zeromus:8B04:/ window 20,20
+309.9 "--sync--" StartsUsing { id: "8B04", source: "Zeromus" } window 20,20
 319.9 "Big Crunch" Ability { id: "8B04", source: "Zeromus" }
 
 335.1 "Abyssal Nox" Ability { id: "8AF7", source: "Zeromus" }
@@ -96,7 +96,7 @@ hideall "--sync--"
 
 
 # Phase 2: ~25% push
-1000.0 "--sync--" sync / 14:[^:]*:Zeromus:8B19:/ window 1000,0
+1000.0 "--sync--" StartsUsing { id: "8B19", source: "Zeromus" } window 1000,0
 1006.0 "Rend the Rift" Ability { id: "8B19", source: "Zeromus" }
 1023.3 "Nostalgia" Ability { id: "8B1A", source: "Zeromus" }
 1024.1 "Bury 1" Ability { id: "8B1C", source: "Zeromus" }

@@ -26,17 +26,17 @@ hideall "--sync--"
 1059.7 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
 
 # -> rain path
-1060.9 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:837E:/ window 50,50 jump 1360.9
+1060.9 "--sync--" StartsUsing { id: "837E", source: "Yozakura the Fleeting" } window 50,50 jump 1360.9
 1065.9 "Bunshin?" #Ability { id: "837E", source: "Yozakura the Fleeting" }
 
 # -> wind path
-1060.8 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/ window 50,50 jump 1660.8
+1060.8 "--sync--" StartsUsing { id: "838F", source: "Yozakura the Fleeting" } window 50,50 jump 1660.8
 1070.1 "Windblossom Whirl?" #Ability { id: "8390", source: "Yozakura the Fleeting" }
 
 
 # Rain path
 1359.7 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
-1360.9 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:837E:/
+1360.9 "--sync--" StartsUsing { id: "837E", source: "Yozakura the Fleeting" }
 1365.9 "Bunshin" Ability { id: "837E", source: "Yozakura the Fleeting" }
 1375.0 "Shadowflight (cast)" Ability { id: "837F", source: "Yozakura the Fleeting" }
 1380.0 "Shadowflight" Ability { id: "8380", source: "Mirrored Yozakura" }
@@ -72,7 +72,7 @@ hideall "--sync--"
 
 # Wind path
 1659.7 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
-1660.8 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/
+1660.8 "--sync--" StartsUsing { id: "838F", source: "Yozakura the Fleeting" }
 1663.8 "--sync--" Ability { id: "838F", source: "Yozakura the Fleeting" }
 1670.1 "Windblossom Whirl" Ability { id: "8390", source: "Yozakura the Fleeting" }
 1670.1 "Levinblossom Strike" Ability { id: "8392", source: "Yozakura the Fleeting" }
@@ -112,7 +112,7 @@ hideall "--sync--"
 1784.2 "Glory Neverlasting" Ability { id: "83A9", source: "Yozakura the Fleeting" }
 
 1789.3 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
-1790.5 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:838F:/
+1790.5 "--sync--" StartsUsing { id: "838F", source: "Yozakura the Fleeting" }
 1793.5 "--sync--" Ability { id: "838F", source: "Yozakura the Fleeting" } window 30,30 forcejump 1663.8
 
 # YOZAKURA ABILITIES (ALL PATHS)
@@ -192,19 +192,19 @@ hideall "--sync--"
 2163.8 "Double Kasumi-giri 2" Ability { id: "(858F|859[012])", source: "Moko the Restless" }
 
 # => path 01
-2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A8:/ window 50,50 jump 2269.0
+2169.0 "--sync--" StartsUsing { id: "85A8", source: "Moko the Restless" } window 50,50 jump 2269.0
 2172.0 "Untempered Sword?" #Ability { id: "85A8", source: "Moko the Restless" }
 
 # => path 02
-2170.5 "--sync--" sync / 14:[^:]*:Moko the Restless:85AB:/ window 50,50 jump 2570.5
+2170.5 "--sync--" StartsUsing { id: "85AB", source: "Moko the Restless" } window 50,50 jump 2570.5
 2173.5 "Moonless Night?" #Ability { id: "85AB", source: "Moko the Restless" }
 
 # => path 03
-2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A1:/ window 50,50 jump 2869.0
+2169.0 "--sync--" StartsUsing { id: "85A1", source: "Moko the Restless" } window 50,50 jump 2869.0
 2172.0 "Tengu-yobi?" #Ability { id: "85A1", source: "Moko the Restless" }
 
 # => path 04
-2169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A5:/ window 50,50 jump 3169.0
+2169.0 "--sync--" StartsUsing { id: "85A5", source: "Moko the Restless" } window 50,50 jump 3169.0
 2172.0 "Spiritspark?" #Ability { id: "85A5", source: "Moko the Restless" }
 
 
@@ -215,7 +215,7 @@ hideall "--sync--"
 2260.2 "Double Kasumi-giri 1" Ability { id: "858[BCDE]", source: "Moko the Restless" }
 2263.8 "Double Kasumi-giri 2" Ability { id: "(858F|859[012])", source: "Moko the Restless" }
 
-2269.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A8:/
+2269.0 "--sync--" StartsUsing { id: "85A8", source: "Moko the Restless" }
 2272.0 "Untempered Sword" Ability { id: "85A8", source: "Moko the Restless" }
 2276.0 "Unsheathing 1" Ability { id: "85A9", source: "Ancient Katana" }
 2280.0 "Unsheathing 2" Ability { id: "85A9", source: "Ancient Katana" }
@@ -258,7 +258,7 @@ hideall "--sync--"
 2563.8 "Double Kasumi-giri 2" Ability { id: "(858F|859[012])", source: "Moko the Restless" }
 
 2569.1 "--sync--" Ability { id: "85AF", source: "Moko the Restless" }
-2570.5 "--sync--" sync / 14:[^:]*:Moko the Restless:85AB:/
+2570.5 "--sync--" StartsUsing { id: "85AB", source: "Moko the Restless" }
 2573.5 "Moonless Night" Ability { id: "85AB", source: "Moko the Restless" }
 2581.7 "Clearout 1" Ability { id: "85AC", source: "Oni's Claw" }
 2590.9 "Clearout 2" Ability { id: "85AC", source: "Oni's Claw" }
@@ -294,7 +294,7 @@ hideall "--sync--"
 2860.2 "Double Kasumi-giri 1" Ability { id: "858[BCDE]", source: "Moko the Restless" }
 2863.8 "Double Kasumi-giri 2" Ability { id: "(858F|859[012])", source: "Moko the Restless" }
 
-2869.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A1:/
+2869.0 "--sync--" StartsUsing { id: "85A1", source: "Moko the Restless" }
 2872.0 "Tengu-yobi" Ability { id: "85A1", source: "Moko the Restless" }
 2884.0 "Yama-kagura" Ability { id: "85A2", source: "Ill-come Tengu" }
 
@@ -333,7 +333,7 @@ hideall "--sync--"
 3160.2 "Double Kasumi-giri 1" Ability { id: "858[BCDE]", source: "Moko the Restless" }
 3163.8 "Double Kasumi-giri 2" Ability { id: "(858F|859[012])", source: "Moko the Restless" }
 
-3169.0 "--sync--" sync / 14:[^:]*:Moko the Restless:85A5:/
+3169.0 "--sync--" StartsUsing { id: "85A5", source: "Moko the Restless" }
 3172.0 "Spiritspark" Ability { id: "85A5", source: "Moko the Restless" }
 3177.0 "Spiritflame 1" Ability { id: "85A6", source: "Moko the Restless" }
 3182.8 "Spiritflame 2" Ability { id: "85A6", source: "Moko the Restless" }
@@ -425,16 +425,16 @@ hideall "--sync--"
 4011.6 "Glory Neverlasting" Ability { id: "83A9", source: "Yozakura the Fleeting" }
 
 # -> door
-4016.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8394:/ window 20,20 jump 4116.7
+4016.7 "--sync--" StartsUsing { id: "8394", source: "Yozakura the Fleeting" } window 20,20 jump 4116.7
 4019.7 "Tatami Trap?" #Ability { id: "8394", source: "Yozakura the Fleeting" }
 
 # -> rope
-4015.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/ window 20,20 jump 4315.7
+4015.7 "--sync--" StartsUsing { id: "8369", source: "Yozakura the Fleeting" } window 20,20 jump 4315.7
 4020.7 "Art of the Windblossom?" #Ability { id: "8369", source: "Yozakura the Fleeting" }
 
 
 # door
-4116.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8394:/
+4116.7 "--sync--" StartsUsing { id: "8394", source: "Yozakura the Fleeting" }
 4119.7 "Tatami Trap" Ability { id: "8394", source: "Yozakura the Fleeting" }
 4129.8 "Kuge Rantsui" Ability { id: "83AA", source: "Yozakura the Fleeting" }
 4135.9 "Tatami-gaeshi" Ability { id: "8395", source: "Yozakura the Fleeting" }
@@ -474,7 +474,7 @@ hideall "--sync--"
 
 
 # rope
-4315.7 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/
+4315.7 "--sync--" StartsUsing { id: "8369", source: "Yozakura the Fleeting" }
 4320.7 "Art of the Windblossom" Ability { id: "8369", source: "Yozakura the Fleeting" }
 4329.8 "Oka Ranman" Ability { id: "836E", source: "Yozakura the Fleeting" }
 
@@ -541,7 +541,7 @@ hideall "--sync--"
 
 # Hall of Becoming will be sealed off
 5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10E0:/ window 10000,0
-5012.6 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:8500:/
+5012.6 "--sync--" StartsUsing { id: "8500", source: "Gorai the Uncaged" }
 5017.6 "Unenlightenment" Ability { id: "8500", source: "Gorai the Uncaged" }
 
 5027.1 "Flickering Flame" Ability { id: "84D5", source: "Gorai the Uncaged" }
@@ -564,21 +564,21 @@ hideall "--sync--"
 5111.1 "--middle--" #Ability { id: "84D3", source: "Gorai the Uncaged" }
 
 # -> path 05
-5114.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84ED:/ window 30,30 jump 5214.3
+5114.3 "--sync--" StartsUsing { id: "84ED", source: "Gorai the Uncaged" } window 30,30 jump 5214.3
 5116.8 "Pure Shock?" #Ability { id: "84ED", source: "Gorai the Uncaged" }
 
 # -> path 06
-5112.1 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84F2:/ window 30,30 jump 5312.1
+5112.1 "--sync--" StartsUsing { id: "84F2", source: "Gorai the Uncaged" } window 30,30 jump 5312.1
 5115.1 "Thundercall?" Ability { id: "84F2", source: "Gorai the Uncaged" }
 
 # -> path 07
-5112.1 "--sync--"  sync / 14:[^:]*:Gorai the Uncaged:84F8:/ window 30,30 jump 5412.1
+5112.1 "--sync--"  StartsUsing { id: "84F8", source: "Gorai the Uncaged" } window 30,30 jump 5412.1
 5117.1 "Fighting Spirits?" #Ability { id: "84F8", source: "Gorai the Uncaged" }
 
 
 # path 05
 5211.1 "--middle--" Ability { id: "84D3", source: "Gorai the Uncaged" }
-5214.3 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84ED:/
+5214.3 "--sync--" StartsUsing { id: "84ED", source: "Gorai the Uncaged" }
 5216.8 "Pure Shock" Ability { id: "84ED", source: "Gorai the Uncaged" }
 5218.5 "--stun--" Ability { id: "84EF", source: "Gorai the Uncaged" }
 5220.2 "Wily Wall" Ability { id: "84F0", source: "Shishu White Baboon" }
@@ -597,7 +597,7 @@ hideall "--sync--"
 
 # path 06
 5309.8 "--sync--" Ability { id: "84D3", source: "Gorai the Uncaged" }
-5312.1 "--sync--" sync / 14:[^:]*:Gorai the Uncaged:84F2:/
+5312.1 "--sync--" StartsUsing { id: "84F2", source: "Gorai the Uncaged" }
 5315.1 "Thundercall" Ability { id: "84F2", source: "Gorai the Uncaged" }
 5329.0 "Shock" Ability { id: "84DC", source: "Ball of Levin" }
 5335.0 "Humble Hammer" Ability { id: "84F6", source: "Gorai the Uncaged" } duration 8.8
@@ -612,7 +612,7 @@ hideall "--sync--"
 
 # path 07
 5409.9 "--sync--" Ability { id: "84D3", source: "Gorai the Uncaged" }
-5412.1 "--sync--"  sync / 14:[^:]*:Gorai the Uncaged:84F8:/
+5412.1 "--sync--"  StartsUsing { id: "84F8", source: "Gorai the Uncaged" }
 5417.1 "Fighting Spirits" Ability { id: "84F8", source: "Gorai the Uncaged" }
 5426.1 "Worldly Pursuit 1" Ability { id: "84FB", source: "Gorai the Uncaged" }
 5429.9 "Worldly Pursuit 2" Ability { id: "84FC", source: "Gorai the Uncaged" }
@@ -724,16 +724,16 @@ hideall "--sync--"
 6012.0 "Glory Neverlasting" Ability { id: "83A9", source: "Yozakura the Fleeting" }
 
 # -> no dogu
-6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/ window 30,30 jump 6116.1
+6016.1 "--sync--" StartsUsing { id: "8368", source: "Yozakura the Fleeting" } window 30,30 jump 6116.1
 6019.1 "Art of the Fireblossom?" #Ability { id: "8368", source: "Yozakura the Fleeting" }
 
 # -> dogu
-6016.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/ window 30,30 jump 6316.1
+6016.1 "--sync--" StartsUsing { id: "8369", source: "Yozakura the Fleeting" } window 30,30 jump 6316.1
 6021.1 "Art of the Windblossom?" Ability { id: "8369", source: "Yozakura the Fleeting" }
 
 
 # no dogu path
-6116.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8368:/
+6116.1 "--sync--" StartsUsing { id: "8368", source: "Yozakura the Fleeting" }
 6119.1 "Art of the Fireblossom" Ability { id: "8368", source: "Yozakura the Fleeting" }
 6123.3 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
 6129.6 "Bunshin" Ability { id: "837E", source: "Yozakura the Fleeting" }
@@ -779,7 +779,7 @@ hideall "--sync--"
 
 
 # dogu path
-6316.1 "--sync--" sync / 14:[^:]*:Yozakura the Fleeting:8369:/
+6316.1 "--sync--" StartsUsing { id: "8369", source: "Yozakura the Fleeting" }
 6321.1 "Art of the Windblossom" Ability { id: "8369", source: "Yozakura the Fleeting" }
 6325.3 "--sync--" Ability { id: "8612", source: "Yozakura the Fleeting" }
 #6329.4 "Season Indicator 1" Ability { id: "838[34]", source: "Yozakura the Fleeting" }
@@ -861,26 +861,26 @@ hideall "--sync--"
 7093.0 "Haunting Cry" Ability { id: "83E8", source: "Shishio" }
 
 # -> path 08
-7104.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7104.0 "--sync--" StartsUsing { id: "83EE", source: "Feral Thrall" }
 7110.0 "Rush?" Ability { id: "83EE", source: "Feral Thrall" } window 30,30 jump 7210.0
 
 # -> path 09
-7093.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/ window 30,30 jump 7293.9
+7093.9 "--sync--" StartsUsing { id: "83E9", source: "Shishio" } window 30,30 jump 7293.9
 7098.9 "Focused Tremor?" #Ability { id: "83E9", source: "Shishio" }
 
 # -> path 10
-7097.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/ window 30,30 jump 7397.0
+7097.0 "--sync--" StartsUsing { id: "83F0", source: "Devilish Thrall" } window 30,30 jump 7397.0
 7105.0 "Left Swipe?" #Ability { id: "83F1", source: "Devilish Thrall" }
 7105.0 "Right Swipe?" #Ability { id: "83F0", source: "Devilish Thrall" }
 
 # -> path 11
-7099.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/ window 30,30 jump 7599.0
+7099.0 "--sync--" StartsUsing { id: "872B", source: "Haunting Thrall" } window 30,30 jump 7599.0
 7103.0 "Reisho?" #Ability { id: "872B", source: "Haunting Thrall" }
 
 
 # path 08
 7193.0 "Haunting Cry" Ability { id: "83E8", source: "Shishio" }
-7204.0 "--sync--" sync / 14:[^:]*:Feral Thrall:83EE:/
+7204.0 "--sync--" StartsUsing { id: "83EE", source: "Feral Thrall" }
 7210.0 "Rush" Ability { id: "83EE", source: "Feral Thrall" }
 7212.0 "Vasoconstrictor 1" Ability { id: "83EF", source: "Venomous Thrall" }
 7217.0 "Vasoconstrictor 2" Ability { id: "83EF", source: "Venomous Thrall" }
@@ -892,7 +892,7 @@ hideall "--sync--"
 
 # path 09
 7293.0 "Haunting Cry" Ability { id: "83E8", source: "Shishio" }
-7293.9 "--sync--" sync / 14:[^:]*:Shishio:83E9:/
+7293.9 "--sync--" StartsUsing { id: "83E9", source: "Shishio" }
 7298.9 "Focused Tremor" Ability { id: "83E9", source: "Shishio" }
 7303.2 "Yoki (cast)" Ability { id: "83EA", source: "Shishio" }
 7308.0 "Yoki 1" Ability { id: "83EB", source: "Shishio" }
@@ -904,7 +904,7 @@ hideall "--sync--"
 
 # path 10
 7393.0 "Haunting Cry" Ability { id: "83E8", source: "Shishio" }
-7397.0 "--sync--" sync / 14:[^:]*:Devilish Thrall:83F0:/
+7397.0 "--sync--" StartsUsing { id: "83F0", source: "Devilish Thrall" }
 7405.0 "Left Swipe 1" Ability { id: "83F1", source: "Devilish Thrall" }
 7405.0 "Right Swipe 1" Ability { id: "83F0", source: "Devilish Thrall" }
 7415.3 "Left Swipe 2" Ability { id: "83F1", source: "Devilish Thrall" }
@@ -915,7 +915,7 @@ hideall "--sync--"
 
 # path 11
 7593.0 "Haunting Cry" Ability { id: "83E8", source: "Shishio" }
-7599.0 "--sync--" sync / 14:[^:]*:Haunting Thrall:872B:/
+7599.0 "--sync--" StartsUsing { id: "872B", source: "Haunting Thrall" }
 7603.0 "Reisho" Ability { id: "872B", source: "Haunting Thrall" }
 7611.1 "--middle--" Ability { id: "83F7", source: "Shishio" }
 7617.1 "Thunder Vortex" Ability { id: "83F4", source: "Shishio" }
@@ -1065,7 +1065,7 @@ hideall "--sync--"
 # TODO: this can tether multiple people and delay the timeline?
 
 8167.8 "--west--" Ability { id: "84C2", source: "Enenra" }
-8169.4 "--sync--" sync / 14:[^:]*:Enenra:8043:/ window 10,20
+8169.4 "--sync--" StartsUsing { id: "8043", source: "Enenra" } window 10,20
 8171.9 "Smoke and Mirrors" Ability { id: "8043", source: "Enenra" }
 8172.2 "--sync--" Ability { id: "8045", source: "Enenra" }
 8179.9 "Flagrant Combustion x2" Ability { id: "8042", source: "Enenra" }
