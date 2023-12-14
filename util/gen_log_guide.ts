@@ -555,16 +555,6 @@ const lineDocs: LineDocs = {
       ],
     },
   },
-  SpawnNpcExtra: {
-    examples: {
-      'en-US': [],
-    },
-  },
-  ActorControlExtra: {
-    examples: {
-      'en-US': [],
-    },
-  },
 } as const;
 
 type LogGuideOptions = {
