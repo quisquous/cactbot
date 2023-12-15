@@ -6,7 +6,7 @@ hideall "--sync--"
 # Note: Although there is a 18 sec. delay between the chatlog line and the boss being targetable
 # the player's InCombat status is changed at nearly the same time and can be reliably used to start the timeline.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 18 "--targetable--"
 21 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" } window 21,0
 31 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }

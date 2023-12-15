@@ -6,7 +6,7 @@ hideall "--sync--"
 
 ### Phase 1 (loops until low%)
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 15.3 "Solar Ray" Ability { id: "330F", source: "Omega-M" } window 16,3
 20.4 "Program Alpha" Ability { id: "3308", source: "Omega-M" }
 23.5 "Floodlight" Ability { id: "3309", source: "Omega-M" }

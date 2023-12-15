@@ -2,7 +2,7 @@
 
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 11 "Magitek Ray" Ability { id: "2788", source: "Guardian" } window 11,10
 21 "Arm And Hammer" Ability { id: "2789", source: "Guardian" }
 31 "Atomic Ray" Ability { id: "278D", source: "Guardian" }

@@ -10,7 +10,7 @@ hideall "Flame"
 ###### 1st Classical Elements
 # spread: knockback => in => spread+lightning
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.9 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" } window 7,3
 13.0 "Wyrm Tail" Ability { id: "1ECE", source: "Alte Roite" }
 20.1 "Twin Bolt" Ability { id: "1ECF", source: "Alte Roite" }

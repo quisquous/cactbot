@@ -6,7 +6,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 12.8 "Tidal Roar" Ability { id: "3FDC", source: "Leviathan" } window 13,10
 23.9 "Rip Current" Ability { id: "3FE0", source: "Leviathan" }
 43.3 "Undersea Quake" Ability { id: "3FEF", source: "Leviathan" }

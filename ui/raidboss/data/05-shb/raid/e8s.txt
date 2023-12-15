@@ -10,7 +10,7 @@ hideall "--sync--"
 
 # TODO: is there a missing bright hunger in icelit? (4DA3?)
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 16.0 "Absolute Zero" Ability { id: "4DCC", source: "Shiva" } window 17,20
 27.2 "Mirror, Mirror" Ability { id: "4D5A", source: "Shiva" }
 39.3 "Biting/Driving Frost" Ability { id: "4D6[67]", source: "Shiva" }

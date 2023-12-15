@@ -7,7 +7,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 12.7 "Fifth Element" Ability { id: "37FE", source: "Seiryu" } window 13,10
 24.8 "Infirm Soul" Ability { id: "37FD", source: "Seiryu" }
 33.1 "--sync--" Ability { id: "37D5", source: "Seiryu" }

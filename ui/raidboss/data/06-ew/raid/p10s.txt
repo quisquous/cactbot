@@ -24,7 +24,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 9.1 "--sync--" StartsUsing { id: "82A5", source: "Pand\\u00e6monium" } window 15,15
 14.1 "Ultima" Ability { id: "82A5", source: "Pand\\u00e6monium" }
 23.2 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7

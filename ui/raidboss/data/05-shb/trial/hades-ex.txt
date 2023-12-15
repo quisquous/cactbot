@@ -7,7 +7,7 @@ hideall "--sync--"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.6 "--sync--" StartsUsing { id: "47A5", source: "Hades" } window 10,10
 9.6 "Ancient Double" Ability { id: "47A5", source: "Hades" }
 18.7 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }

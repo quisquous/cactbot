@@ -6,7 +6,7 @@ hideall "--sync--"
 
 # -ii 1AE2 1AE6 1AF1
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.4 "Divine Spear" Ability { id: "1AE3", source: "Alexander Prime" } window 6.4,5
 14.5 "Mega Holy" Ability { id: "1AE7", source: "Alexander Prime" }
 22.6 "Punishing Heat" Ability { id: "1AE4", source: "Alexander Prime" }
