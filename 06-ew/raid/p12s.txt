@@ -11,7 +11,7 @@ hideall "--sync--"
 # -it "Athena"
 
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
-1.0 "--sync--" sync / 03:[^:]*:Hemitheos:00:5A:0{4}:00::12383:/ window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
+1.0 "--sync--" AddedCombatant { npcNameId: "12383", name: "Hemitheos", job: "00", level: "5A", ownerId: "0{4}", worldId: "00" } window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
 11.1 "On the Soul" Ability { id: "8304", source: "Athena" } window 20,20
 21.2 "Paradeigma 1" Ability { id: "82ED", source: "Athena" }
 24.3 "--middle--" Ability { id: "8315", source: "Athena" }
