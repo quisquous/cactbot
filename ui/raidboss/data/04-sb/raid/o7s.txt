@@ -8,7 +8,7 @@ hideall "--sync--"
 31 "Atomic Ray" Ability { id: "278D", source: "Guardian" }
 40 "Prey" Ability { id: "278A", source: "Guardian" }
 49 "Load?" Ability { id: "275C", source: "Guardian" }
-50 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 1050
+50 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } jump 1050
 52 "Shockwave?"
 
 # This is Version A of the encounter, with Bibliotaph first
@@ -92,8 +92,8 @@ hideall "--sync--"
 
 # Divergence point
 509 "Load/Skip?" Ability { id: "(275C|2773)", source: "Guardian" }
-510 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 2510       # Bibliotaph buff, jump to A1
-510 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 3510         # Dadaluma buff, jump to A2
+510 "--sync--" GainsEffect { effectId: "5D4", effect: "Bibliotaph Simulation", target: "Guardian" } jump 2510       # Bibliotaph buff, jump to A1
+510 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
 519 "Demon Simulation?"
 
@@ -274,8 +274,8 @@ hideall "--sync--"
 
 # Divergence point
 1481 "Load/Skip?" Ability { id: "(275C|2773)", source: "Guardian" }
-1482 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 4482       # Bibliotaph buff, jump to B1
-1482 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ jump 5482         # Dadaluma buff, jump to B2
+1482 "--sync--" GainsEffect { effectId: "5D4", effect: "Bibliotaph Simulation", target: "Guardian" } jump 4482       # Bibliotaph buff, jump to B1
+1482 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } jump 5482         # Dadaluma buff, jump to B2
 1484 "Shockwave?"
 1491 "Demon Simulation?"
 
