@@ -92,13 +92,13 @@ hideall "--sync--"
 420.4 "Wave Repeater 4" Ability { id: "7B52", source: "Omega" }
 422.4 "Wave Repeater 1" Ability { id: "7B4F", source: "Omega" }
 424.5 "Wave Repeater 2" Ability { id: "7B50", source: "Omega" }
-426.4 "Colossal Blow" Ability { id: "7B4E", source: "(Left Arm Unit|Right Arm Unit)" } window 1,1
+426.4 "Colossal Blow" Ability { id: "7B4E", source: ['Left Arm Unit', 'Right Arm Unit'] } window 1,1
 426.6 "Wave Repeater 3" Ability { id: "7B51", source: "Omega" }
 # sniper cannon times are a little sloppy and have inconsistent actor names
 427.3 "High-powered Sniper Cannon x2" #Ability { id: "7B54", source: "Omega" }
 428.4 "Sniper Cannon x4" #Ability { id: "7B53", source: "Omega" }
 428.7 "Wave Repeater 4" Ability { id: "7B52", source: "Omega" }
-428.9 "Colossal Blow" Ability { id: "7B4E", source: "(Left Arm Unit|Right Arm Unit)" } window 1,1
+428.9 "Colossal Blow" Ability { id: "7B4E", source: ['Left Arm Unit', 'Right Arm Unit'] } window 1,1
 
 432.3 "--targetable--"
 436.3 "--sync--" StartsUsing { id: "7B55", source: "Omega" } window 40,40

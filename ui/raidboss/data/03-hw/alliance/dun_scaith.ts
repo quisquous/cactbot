@@ -638,7 +638,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'de',
       'replaceSync': {
-        'Aether': 'Äthersphäre',
+        'Aether(?!i)': 'Äthersphäre',
         'Aether Collector': 'Ätherakkumulator',
         'Aetherial Chakram': 'ätherisch(?:e|er|es|en) Chakram',
         'Connla': 'Connla',
@@ -739,7 +739,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'fr',
       'replaceSync': {
-        'Aether': 'sphère éthérée',
+        'Aether(?!i)': 'sphère éthérée',
         'Aether Collector': 'accumulateur d\'éther',
         'Aetherial Chakram': 'chakram éthéré',
         'Connla': 'Connla',
@@ -1041,7 +1041,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       'locale': 'ko',
       'replaceSync': {
-        'Aether': '에테르 구체',
+        'Aether(?!i)': '에테르 구체',
         'Aether Collector': '에테르 집적기',
         'Aetherial Chakram': '에테르 차크람',
         'Connla': '콘라',
