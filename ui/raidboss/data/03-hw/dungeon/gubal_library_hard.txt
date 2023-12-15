@@ -64,7 +64,7 @@ hideall "--sync--"
 1054.3 "Hand/Tornado?"
 
 # Hand Form
-1100.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Chiromorph/ window 100,250
+1100.0 "--sync--" GameLog { line: "The liquid flame gains the effect of Chiromorph.*?" } window 100,250
 1108.4 "Seal Of Night And Day" Ability { id: "1949", source: "Liquid Flame" } window 10,10
 1112.5 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
 1116.4 "Searing Wind" Ability { id: "1948", source: "Liquid Flame" }
@@ -75,7 +75,7 @@ hideall "--sync--"
 1149.1 "Form Shift"
 
 # Tornado Form
-1200.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anemomorph/ window 200,0
+1200.0 "--sync--" GameLog { line: "The liquid flame gains the effect of Anemomorph.*?" } window 200,0
 1204.5 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" } window 10,10
 1215.4 "Magnetism/Repel?" Ability { id: "194[CD]", source: "Liquid Flame" }
 1226.9 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
@@ -83,7 +83,7 @@ hideall "--sync--"
 1246.1 "Form Shift"
 
 # Human Form
-1300.0 "--sync--" sync / 00:[^:]*::The liquid flame gains the effect of Anthropomorph/ window 300,10
+1300.0 "--sync--" GameLog { line: "The liquid flame gains the effect of Anthropomorph.*?" } window 300,10
 1307.5 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" } window 10,20
 1314.7 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1326.0 "Sea Of Flames x3"
