@@ -9,7 +9,7 @@ hideall "Relaxant"
 
 ### Hummel and Friends
 # The Clevering will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6AF:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6AF" } window 1000,0
 1009.8 "Kaltstrahl x1" Ability { id: "16CC", source: "Faust" } window 10,5
 1018.9 "Kaltstrahl x2" duration 2.1 Ability { id: "16CC", source: "Faust" } window 5,0.5
 #1021.0 "Kaltstrahl" Ability { id: "16CC", source: "Faust" }

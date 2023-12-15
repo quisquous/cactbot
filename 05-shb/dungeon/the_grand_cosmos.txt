@@ -6,7 +6,7 @@ hideall "--sync--"
 ### Seeker of Solitude
 # -ii 4768 49A4 476C 476F 4771 4770 -p 4769:111.7
 # The Martial Court will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D2F:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D2F" } window 100,0
 111.7 "Shadowbolt" Ability { id: "4769", source: "Seeker of Solitude" } window 112,5
 119.4 "Immortal Anathema" Ability { id: "49A3", source: "Seeker of Solitude" }
 
@@ -38,7 +38,7 @@ hideall "--sync--"
 ### Leannan Sith
 # -ii 4724 471F -p 471B:512
 # The Font of Quintessence will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D30:/ window 500,0 
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D30" } window 500,0 
 512.0 "Storm Of Color" Ability { id: "471B", source: "Leannan Sith" } window 512,10
 522.3 "Ode To Lost Love" Ability { id: "471C", source: "Leannan Sith" }
 
@@ -81,7 +81,7 @@ hideall "--sync--"
 ### Lugus
 # -ii 475B 4766 475A 475E -p 475D:1026.8
 # The Chamber of Celestial Song will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D31:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D31" } window 1000,0
 1015.3 "Scorching Left/Right" Ability { id: "476[23]", source: "Lugus" } window 1015.3,10
 1026.8 "Black Flame" Ability { id: "475D", source: "Lugus" }
 1030.3 "Otherworldly Heat" Ability { id: "475C", source: "Lugus" }

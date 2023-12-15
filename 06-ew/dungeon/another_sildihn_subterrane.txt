@@ -13,7 +13,7 @@ hideall "--sync--"
 # -ii 7760 7761 7762 7768 7769 776A 77ED 77EE
 
 # Trial of Knowledge is sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DD:[^:]*:1087:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DD", param1: "1087" } window 0,1
 12.2 "--sync--" StartsUsing { id: "7759", source: "Silkie" } window 15,15
 14.9 "Fizzling Suds" Ability { id: "7759", source: "Silkie" }
 21.0 "Soap's Up" Ability { id: "775A", source: "Silkie" }
@@ -102,7 +102,7 @@ hideall "--sync--"
 # -ii 766F 7670 7676 7677 77BF 7660 79F3
 
 # Trial of Might will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1088:/ window 1000,1
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1088" } window 1000,1
 1006.8 "--sync--" StartsUsing { id: "7671", source: "Gladiator of Sil'dih" } window 1007.3,5
 1011.5 "Flash of Steel" Ability { id: "7671", source: "Gladiator of Sil'dih" }
 1023.6 "Specter of Might" Ability { id: "7673", source: "Gladiator of Sil'dih" }
@@ -173,7 +173,7 @@ hideall "--sync--"
 # -ii 74B7 74B8
 
 # Trial of Balance will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1089:/ window 2000,1
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1089" } window 2000,1
 2006.8 "--sync--" StartsUsing { id: "74AF", source: "Shadowcaster Zeless Gah" } window 2007.3,5
 2011.5 "Show of Strength" Ability { id: "74AF", source: "Shadowcaster Zeless Gah" }
 2023.7 "Infern Brand" Ability { id: "7491", source: "Shadowcaster Zeless Gah" }

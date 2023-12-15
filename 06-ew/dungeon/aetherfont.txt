@@ -16,7 +16,7 @@ hideall "--sync--"
 # -p 823A:111.3
 
 # Landfast Floe will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CD:/ window 100000,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CD" } window 100000,0
 106.3 "--sync--" StartsUsing { id: "823A", source: "Lyngbakr" } window 10,10
 111.3 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
 121.7 "Tidal Breath" Ability { id: "8240", source: "Lyngbakr" }
@@ -57,7 +57,7 @@ hideall "--sync--"
 # -p 872D:510
 
 # Cyancap Cavern will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CE:/ window 100000,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CE" } window 100000,0
 505.0 "--sync--" StartsUsing { id: "872D", source: "Arkas" } window 10,10
 510.0 "Battle Cry" Ability { id: "872D", source: "Arkas" }
 521.3 "Lightning Leap" Ability { id: "824E", source: "Arkas" }
@@ -116,7 +116,7 @@ hideall "--sync--"
 # -p 824C:1009.6
 
 # The Deep Below will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CF:/ window 100000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CF" } window 100000,0
 1004.6 "--sync--" StartsUsing { id: "824C", source: "Octomammoth" } window 10,10
 1009.6 "Tidal Roar" Ability { id: "824C", source: "Octomammoth" }
 1032.7 "Octostroke" Ability { id: "8243", source: "Octomammoth" }

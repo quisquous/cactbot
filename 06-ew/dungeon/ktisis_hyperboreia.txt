@@ -13,7 +13,7 @@ hideall "--sync--"
 # -ii 1961 6258 6E90 -it Lyssa
 
 # Frozen Sphere will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB6:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "EB6" } window 0,1
 10.7 "Skull Dasher" Ability { id: "625E", source: "Lyssa" } window 10.7,10
 21.2 "Frostbite and Seek" Ability { id: "6257", source: "Lyssa" }
 23.2 "--untargetable--"
@@ -64,7 +64,7 @@ hideall "--sync--"
 # "Pyric Breath" Ability { id: "(6486|6487|6488|6489|648A|648B)", source: "Ladon Lord" }
 
 # Concept Review will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB7:/ window 1000,5
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "EB7" } window 1000,5
 1010.3 "Scratch" Ability { id: "648F", source: "Ladon Lord" } window 1010.3,10
 1019.3 "Inhale" Ability { id: "6484", source: "Ladon Lord" }
 1025.5 "--sync--" Ability { id: "6485", source: "Ladon Lord" }
@@ -116,7 +116,7 @@ hideall "--sync--"
 # -ii 368
 
 # Celestial Sphere will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:EB8:/ window 2000,10
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "EB8" } window 2000,10
 2013.1 "Trismegistos" Ability { id: "651E", source: "Hermes" } window 2013.1,10
 2020.2 "--middle--"
 2024.2 "Hermetica" Ability { id: "6520", source: "Hermes" }

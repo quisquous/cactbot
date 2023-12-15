@@ -14,7 +14,7 @@ hideall "--sync--"
 # -ii 6542 6EBC 6544 653E
 
 # Shell Mound will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1008:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1008" } window 10000,0
 1013.1 "--sync--" StartsUsing { id: "653C", source: "Caustic Grebuloff" }
 1018.1 "Miasmata" Ability { id: "653C", source: "Caustic Grebuloff" }
 1028.5 "Necrotic Fluid" Ability { id: "653F", source: "Weeping Miasma" } duration 10.6
@@ -46,7 +46,7 @@ hideall "--sync--"
 hideall "Disengage Hatch"
 
 # Deterrence Grounds will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1009:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1009" } window 10000,0
 2007.0 "--sync--" StartsUsing { id: "6550", source: "Peacekeeper" }
 2012.0 "Decimation" Ability { id: "6550", source: "Peacekeeper" }
 2018.1 "Electromagnetic Repellant" Ability { id: "6EC8", source: "Peacekeeper" }
@@ -97,7 +97,7 @@ hideall "Disengage Hatch"
 # -ii 655A 655C 655F
 
 # The World Tree will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:100A:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "100A" } window 10000,0
 3008.5 "--sync--" StartsUsing { id: "655E", source: "Ra-la" }
 3013.5 "Warm Glow" Ability { id: "655E", source: "Ra-la" }
 3023.7 "Pity" Ability { id: "655D", source: "Ra-la" }

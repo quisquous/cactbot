@@ -12,7 +12,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~#
 
 # A-4 Command will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ECF:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "ECF" } window 0,1
 12.6 "Side Cannons" Ability { id: "(6320|6321)", source: "Proto-Omega" } window 12.6,10
 24.2 "Forward Interceptors/Rear Interceptors" Ability { id: "(6322|6324)", source: "Proto-Omega" }
 29.3 "Chemical Missile" Ability { id: "6328", source: "Proto-Omega" }
@@ -45,7 +45,7 @@ hideall "--sync--"
 # -ii 368 63AE 63B2
 
 # A-4 Conquest will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ED0:/ window 1000,10
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "ED0" } window 1000,10
 1010.7 "Wheel" Ability { id: "63B5", source: "Arch-Lambda" } window 1010.7,10
 1021.0 "--sync--" Ability { id: "63AA", source: "Arch-Lambda" }
 1028.4 "Auto-mobile Assault Cannon" Ability { id: "63AB", source: "Arch-Lambda" }
@@ -85,7 +85,7 @@ hideall "--sync--"
 # -ii 6435
 
 # A-4 Headquarters will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:ED2:/ window 2000,1
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "ED2" } window 2000,1
 2010.0 "AI Takeover" Ability { id: "6429", source: "Stigma-4" }
 2015.6 "Touchdown?" Ability { id: "68F9", source: "Hybrid Dragon" }
 2024.7 "Proto-wave Cannon?" Ability { id: "(642A|642B)", source: "Omega Frame" }

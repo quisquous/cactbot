@@ -11,7 +11,7 @@ hideall "--sync--"
 # -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
 
 # The Queen's Room will be sealed off
-0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E0:/
+0 "--sync--" SystemLogMessage { id: "7DC", param1: "6E0" }
 9.8 "Dark Spike" Ability { id: "1823", source: "Arachne Eve" }
 21.6 "Silken Spray" Ability { id: "1824", source: "Arachne Eve" }
 30.4 "Arachne Web x3" duration 5 # Ability { id: "185E", source: "Arachne Eve" }
@@ -134,7 +134,7 @@ hideall "--sync--"
 # -ii 366 17D5 17C1 17D6
 
 # The Shrine of the Goetic will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E3:/ window 1000,5
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6E3" } window 1000,5
 1014.2 "Necropurge" Ability { id: "17D7", source: "Shriveled Talon" }
 1024.4 "Megiddo Flame" Ability { id: "17C0", source: "Forgall" }
 1032.4 "Necropurge" Ability { id: "17BE", source: "Forgall" }
@@ -195,7 +195,7 @@ hideall "--sync--"
 # Cube opening block ----> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
 
 # The Gloriole will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E5:/ window 2000,5
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6E5" } window 2000,5
 2015.0 "Meteor Headmarkers"
 2024.0 "Meteor Impact" Ability { id: "1935", source: "Singularity Fragment" }
 
@@ -326,7 +326,7 @@ hideall "--sync--"
 # 1811 and 180D are releasing hair after Haircut and Split End cleaves
 
 # Tomb of the Nullstone will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6E6:/ window 4000,5
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6E6" } window 4000,5
 4004.1 "Bloodied Nail x4" # Ability { id: "181F", source: "Calofisteri" }
 4018.8 "Coif Change" Ability { id: "180[AE]", source: "Calofisteri" } window 18.8,5
 4027.8 "Haircut" Ability { id: "180[BF]", source: "Calofisteri" }

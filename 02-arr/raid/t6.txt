@@ -10,7 +10,7 @@ hideall "--sync--"
 ### Phase 1
 0.0 "Start"
 # Scar's Edge will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51C:/ window 10,10
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "51C" } window 10,10
 7.5 "Bloody Caress" Ability { id: "797", source: "Rafflesia" } window 8,8
 11.5 "Thorn Whip" Ability { id: "879", source: "Rafflesia" }
 18.5 "Briary Growth" Ability { id: "884", source: "Rafflesia" } window 20,20

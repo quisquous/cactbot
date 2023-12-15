@@ -6,7 +6,7 @@ hideall "--sync--"
 ### Alpha Zaghnal
 # -p 3D65:108.5 -ii 3D66 3D67 3D68 3D69 3D6A 41CA 3D6C
 # Repurposing will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B9F:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B9F" } window 100,0
 108.5 "Augurium" Ability { id: "3D65", source: "Alpha Zaghnal" } window 109,9
 117.6 "Beastly Roar" Ability { id: "3D64", source: "Alpha Zaghnal" }
 122.9 "Beast Rampant" Ability { id: "3D60", source: "Alpha Zaghnal" }
@@ -34,7 +34,7 @@ hideall "--sync--"
 ### Mithridates
 # -p 3DED:512 -ii 3DEC 3DEF
 # Aetherial Observation will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BA0:/ window 500,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BA0" } window 500,0
 
 512.0 "Thunder Beam" Ability { id: "3DED", source: "Mithridates" } window 512,10
 522.2 "Electric Discharge" Ability { id: "3DF0", source: "Mithridates" }
@@ -66,7 +66,7 @@ hideall "Temporal Paradox"
 hideall "Temporal Flow"
 
 # The Cornice will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BA2:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BA2" } window 1000,0
 
 1013.8 "Magitek Crossray" Ability { id: "3DF8", source: "The Tycoon" } window 1013.8,5
 1016.2 "Temporal Paradox" Ability { id: "3DF7", source: "The Tycoon" }

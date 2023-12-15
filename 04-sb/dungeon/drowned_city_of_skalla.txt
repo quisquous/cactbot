@@ -9,7 +9,7 @@ hideall "--sync--"
 # -ii 2655
 
 # The Green Screams will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:93A:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "93A" } window 0,1
 7.4 "Torpedo" Ability { id: "264F", source: "Kelpie" } window 7.4,5
 15.0 "Rising Seas" Ability { id: "2650", source: "Kelpie" }
 26.7 "Gallop" Ability { id: "2653", source: "Kelpie" }
@@ -46,7 +46,7 @@ hideall "--sync--"
 
 
 # A Door Unopened will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:93C:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "93C" } window 1000,5
 1009.2 "Mystic Light" Ability { id: "2657", source: "The Old One" }
 1015.0 "Mystic Flame" Ability { id: "2658", source: "The Old One" }
 1018.1 "Order To Detonate (cast)" StartsUsing { id: "265B", source: "The Old One" } window 18.1,5 duration 19.7
@@ -98,7 +98,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~~~~~~~~~~#
 
 # The Golden Walls of Ruin will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:93E:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "93E" } window 2000,5
 2012.6 "Rusting Claw" Ability { id: "2661", source: "Hrodric Poisontongue" } window 2012.6
 2026.2 "Tail Drive" Ability { id: "2663", source: "Hrodric Poisontongue" }
 2035.9 "The Spin" Ability { id: "2664", source: "Hrodric Poisontongue" } window 35.9,5

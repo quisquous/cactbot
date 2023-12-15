@@ -5,7 +5,7 @@ hideall "--sync--"
 # -ii 1FD2 1FD8
 
 # Tourmaline Pond will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:788:/
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "788" }
 6.4 "Pounce" Ability { id: "1FD1", source: "Coeurl Sruti" } window 7,7
 17.8 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
 22.0 "Pounce" Ability { id: "1FD1", source: "Coeurl Sruti" }
@@ -53,7 +53,7 @@ hideall "--sync--"
 # Arbuda
 
 # Harmony will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:789:/ window 1000,10
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "789" } window 1000,10
 1006.5 "Cardinal Shift" Ability { id: "1FDA", source: "Arbuda" } window 7,7
 1014.6 "Fourfold Shear" Ability { id: "1FD9", source: "Arbuda" }
 1022.6 "Front/Back?Sides?" Ability { id: "1FD[BC]", source: "Arbuda" }
@@ -92,7 +92,7 @@ hideall "--sync--"
 # -ii 1FF0 1FE8 1FEC
 
 # Guidance will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:78A:/ window 2000,10
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "78A" } window 2000,10
 2010.9 "Spirit Wave" Ability { id: "1FE7", source: "Ivon Coeurlfist" }
 2018.6 "Hurricane Kick" Ability { id: "1FE5", source: "Ivon Coeurlfist" }
 2026.7 "Touch of Slaughter" Ability { id: "1FE6", source: "Ivon Coeurlfist" }

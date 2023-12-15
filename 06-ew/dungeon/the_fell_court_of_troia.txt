@@ -17,7 +17,7 @@ hideall "--sync--"
 # Hard to tell if there's a time based push, but have seen it push when some adds still alive?
 
 # Penitence will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1058:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1058" } window 10000,0
 
 1200.0 "--sync--" StartsUsing { id: "73B8", source: "Evil Dreamer" } window 200,0
 1208.0 "Dark Vision" Ability { id: "73B8", source: "Evil Dreamer" }
@@ -50,7 +50,7 @@ hideall "--sync--"
 # TODO: Beatific Scorn is 747 + 5/8/4/7, or 3/8/6/7, are these directions??
 
 # Seat of the Foremost will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1059:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1059" } window 10000,0
 2011.3 "--middle--" Ability { id: "747C", source: "Beatrice" }
 2016.5 "Eye of Troia" Ability { id: "747A", source: "Beatrice" }
 2022.5 "Death Foreseen" Ability { id: "747D", source: "Beatrice" }
@@ -107,7 +107,7 @@ hideall "--sync--"
 # -it "Scarmiglione"
 
 # The Garden of Epopts will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:105A:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "105A" } window 10000,0
 3005.1 "--sync--" Ability { id: "7631", source: "Scarmiglione" } window 10,10
 3009.1 "Cursed Echo" Ability { id: "7631", source: "Scarmiglione" }
 3016.3 "--sync--" Ability { id: "761D", source: "Scarmiglione" }

@@ -14,7 +14,7 @@ hideall "--sync--"
 
 ## Fixed-ish opening block
 # Ingenuity's Ingress will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E95:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E95" } window 0,1
 8.9 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" } window 8.9,5
 12.1 "--sync--" Ability { id: "6299", source: "Minduruva" }
 17.5 "Manusya Blizzard III" Ability { id: "6296", source: "Minduruva" }
@@ -88,7 +88,7 @@ hideall "--sync--"
 
 # Opening block
 # Prosperity's Promise will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E96:/ window 1000,5
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E96" } window 1000,5
 1009.3 "Isitva Siddhi" Ability { id: "62A9", source: "Sanduruva" } window 1009.3,5
 1015.7 "Prapti Siddhi #1" Ability { id: "62A8", source: "Sanduruva" }
 1019.6 "Prapti Siddhi #2" #Ability { id: "62A8", source: "Sanduruva" }
@@ -130,7 +130,7 @@ hideall "--sync--"
 # we sync aggressively all over the rotation block.
 
 # Wisdom's Ward will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E97:/ window 2000,5
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E97" } window 2000,5
 2002.5 "--sync--" Ability { id: "62BA", source: "Cinduruva" } window 2002.5,2
 2009.8 "Samsara" Ability { id: "62B9", source: "Cinduruva" }
 2025.6 "Manusya Faith" Ability { id: "62AA", source: "Sanduruva" }

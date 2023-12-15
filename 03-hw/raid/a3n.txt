@@ -8,7 +8,7 @@ hideall "--sync--"
 # -ii 1305 12FA
 
 # Condensate Demineralizer #9 will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:66C:/ window 10000,10000
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "66C" } window 10000,10000
 7.5 "Fluid Swing" Ability { id: "12EE", source: "Living Liquid" }
 11.6 "Splash x3" duration 3 #Ability { id: "12EF", source: "Living Liquid" }
 19.9 "Protean Wave" Ability { id: "12F0", source: "Living Liquid" }

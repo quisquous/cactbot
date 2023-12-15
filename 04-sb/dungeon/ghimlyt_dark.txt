@@ -10,7 +10,7 @@ hideall "--sync--"
 # -ii 394F 3775
 
 # The Field of Dust will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:AB8:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "AB8" } window 0,1
 12.9 "Jarring Blow" Ability { id: "376E", source: "Mark III-B Magitek Colossus" }
 15.0 "--sync--" Ability { id: "3771", source: "Mark III-B Magitek Colossus" }
 22.1 "Wild Fire Beam" Ability { id: "3772", source: "Mark III-B Magitek Colossus" } window 30,30
@@ -47,7 +47,7 @@ hideall "--sync--"
 # -ii 3AC6
 
 # Impact Crater will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:ABB:/ window 1000,1
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "ABB" } window 1000,1
 1012.2 "Nitrospin" Ability { id: "3455", source: "Prometheus" }
 1023.4 "Needle Gun" Ability { id: "345A", source: "Prometheus" }
 1031.1 "--untargetable--"
@@ -77,7 +77,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~#
 
 # Provisional Imperial Landing will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:ABD:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "ABD" } window 2000,5
 2000.4 "--sync--" Ability { id: "370F", source: "Annia Quo Soranus" } jump 2097.0
 2000.4 "--sync--" Ability { id: "370E", source: "Julia Quo Soranus" } jump 2297.0
 2003.4 "Artificial Plasma?"

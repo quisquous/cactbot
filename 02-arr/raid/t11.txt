@@ -10,7 +10,7 @@ hideall "--sync--"
 ### Phase 1
 0.0 "Start"
 # Core Override will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:592:/ window 10,10
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "592" } window 10,10
 9.4 "Resonance" Ability { id: "B6B", source: "Kaliya" } window 10,10
 
 19.7 "Nerve Gas"

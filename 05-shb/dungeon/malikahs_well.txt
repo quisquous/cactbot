@@ -6,7 +6,7 @@ hideall "--sync--"
 ### Greater Armadillo
 # -ii 3CEA 3CE8 -p 3CE5:115
 # Terminus will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD5:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BD5" } window 100,0
 
 115.0 "Stone Flail" Ability { id: "3CE5", source: "Greater Armadillo" } window 115,5
 133.6 "Head Toss" Ability { id: "3CE6", source: "Greater Armadillo" }
@@ -44,7 +44,7 @@ hideall "--sync--"
 ### Amphibious Talos
 # -ii 3CF0 -p 3CEB:515.5
 # Malikah's Gift will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD6:/ window 500,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BD6" } window 500,0
 515.5 "Efface" Ability { id: "3CEB", source: "Amphibious Talos" } window 515.5,10
 527.1 "Wellbore" Ability { id: "3CED", source: "Amphibious Talos" }
 531.3 "Geyser Eruption" Ability { id: "3CEE", source: "Amphibious Talos" }
@@ -71,7 +71,7 @@ hideall "--sync--"
 ### Storge
 # -ii 3CF7 3CA8 41A8 -p 3CF1:1015
 # Unquestioned Acceptance will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD7:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BD7" } window 1000,0
 1015.0 "Intestinal Crank" Ability { id: "3CF1", source: "Storge" } window 1015,5
 1028.2 "Heretic's Fork" Ability { id: "3CF2", source: "Storge" }
 1043.0 "Breaking Wheel" Ability { id: "3CF5", source: "Storge" }

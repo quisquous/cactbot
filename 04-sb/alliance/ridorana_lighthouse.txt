@@ -8,7 +8,7 @@ hideall "--sync--"
 # Famfrit #
 ###########
 # Echoes from Time's Garden will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:998:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "998" } window 0,1
 13 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" } window 13,1
 26 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
 35 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
@@ -65,7 +65,7 @@ hideall "--sync--"
 ##########
 
 # The Spire's Bounds will be sealed off
-1000 "Start" sync / 29:[^:]*:7DC:[^:]*:99A:/ window 1000,0
+1000 "Start" SystemLogMessage { id: "7DC", param1: "99A" } window 1000,0
 1012 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" } window 1012,5
 1024 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
 1033 "Time Eruption" Ability { id: "2CDE", source: "Belias, the Gigas" }
@@ -126,7 +126,7 @@ hideall "--sync--"
 # Construct 7 #
 ###############
 # The Cleft of Profaning Wind will be sealed off
-2000 "Start" sync / 29:[^:]*:7DC:[^:]*:99C:/ window 2000,0
+2000 "Start" SystemLogMessage { id: "7DC", param1: "99C" } window 2000,0
 2016 "Destroy" Ability { id: "2C5A", source: "Construct 7" } window 2016,0
 2026 "Ignite" Ability { id: "2C67", source: "Construct 7" }
 2029 "Accelerate" Ability { id: "2C65", source: "Construct 7" }
@@ -189,7 +189,7 @@ hideall "--sync--"
 
 ### Yiazmat
 # The Clockwork Coliseum will be sealed off
-3000 "Start" sync / 29:[^:]*:7DC:[^:]*:99D:/ window 3000,0
+3000 "Start" SystemLogMessage { id: "7DC", param1: "99D" } window 3000,0
 3016 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" } window 3016,0
 3026 "Gust Front" duration 4
 3034 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }

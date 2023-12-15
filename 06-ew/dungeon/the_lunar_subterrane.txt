@@ -15,7 +15,7 @@ hideall "--sync--"
 # -ii  87E5 89B6 87DF
 
 # Cloven Crystal Square will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1153:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1153" } window 10000,0
 1006.0 "--sync--" StartsUsing { id: "87D9", source: "Dark Elf" } window 10,10
 1009.0 "Hexing Staves" Ability { id: "87D9", source: "Dark Elf" }
 1017.1 "Ruinous Confluence" Ability { id: "8985", source: "Dark Elf" }
@@ -68,7 +68,7 @@ hideall "--sync--"
 # Note: timing is the same, even once all towers have fallen
 
 # Bloodied Barbican will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1154:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1154" } window 10000,0
 2009.5 "--sync--" StartsUsing { id: "87FD", source: "Damcyan Antlion" } window 10,10
 2014.5 "Sandblast" Ability { id: "87FD", source: "Damcyan Antlion" }
 2023.6 "Landslip" Ability { id: "8802", source: "Damcyan Antlion" }
@@ -152,7 +152,7 @@ hideall "--sync--"
 # -ii 8CDA 88B2 88B6 8CD8 88C0 88B9 8C20 88B4
 
 # Carnelian Courtyard will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1155:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1155" } window 10000,0
 3007.3 "--sync--" StartsUsing { id: "88C3", source: "Durante" } window 10,10
 3012.3 "Old Magic" Ability { id: "88C3", source: "Durante" }
 3014.4 "--middle--" Ability { id: "88AF", source: "Durante" }

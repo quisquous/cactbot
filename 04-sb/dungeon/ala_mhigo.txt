@@ -5,7 +5,7 @@ hideall "--sync--"
 # -ii 2049 204A 204B 204C
 # boss will walk center before using 2048 Tail Laser, causes timeline drift
 # Rhalgr's Gate will be sealed off
-0.0 "--Start--" sync / 29:[^:]*:7DC:[^:]*:8F1:/
+0.0 "--Start--" SystemLogMessage { id: "7DC", param1: "8F1" }
 9.6 "Electromagnetic Field" Ability { id: "204D", source: "Magitek Scorpion" } window 10,5
 18.8 "Target Search" Ability { id: "2046", source: "Magitek Scorpion" }
 29.4 "Lock On" Ability { id: "2047", source: "Magitek Scorpion" }
@@ -30,7 +30,7 @@ hideall "--sync--"
 # Aulus Mal Asina
 # -ii 2051 2052 205E
 # The Chamber of Knowledge will be sealed off
-1000.0 "--Start--" sync / 29:[^:]*:7DC:[^:]*:8F2:/ window 1000,5
+1000.0 "--Start--" SystemLogMessage { id: "7DC", param1: "8F2" } window 1000,5
 1013.0 "Mana Burst" Ability { id: "204F", source: "Aulus mal Asina" } window 14,5
 1019.1 "Order to Charge" Ability { id: "2057", source: "Aulus mal Asina" }
 1020.0 "--sync--" Ability { id: "2053", source: "Prototype Bit" }
@@ -94,7 +94,7 @@ hideall "--sync--"
 # -ii 2061 2062 2064 2067 2069 2589
 # boss will walk center before using 2065/2066/2068 Art of the Swell/Storm/Sword, causes timeline drift
 # The Hall of the Griffin will be sealed off
-2000.0 "--Start--" sync / 29:[^:]*:7DC:[^:]*:8F3:/ window 2000,5
+2000.0 "--Start--" SystemLogMessage { id: "7DC", param1: "8F3" } window 2000,5
 2009.7 "--sync--" Ability { id: "205F", source: "Zenos Yae Galvus" } window 10,5
 2023.4 "Storm?/Swell?" Ability { id: "206[56]", source: "Zenos Yae Galvus" } window 5,5
 

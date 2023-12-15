@@ -15,7 +15,7 @@ hideall "--sync--"
 # Long pull: https://www.fflogs.com/reports/a:ZBxnrKWpPfdt2gCV#fight=11&type=damage-done
 
 # The River of Knowledge will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1169:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1169" } window 10000,0
 1005.0 "--sync--" StartsUsing { id: "88D1", source: "Thaliak" } window 10,10
 1010.0 "Katarraktes" Ability { id: "88D1", source: "Thaliak" }
 
@@ -134,7 +134,7 @@ hideall "--sync--"
 # Long pull: https://www.fflogs.com/reports/qW8TMthAcD1JbmNk#fight=21&type=damage-done
 
 # The Briny Deep will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116A:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "116A" } window 10000,0
 2007.1 "--sync--" StartsUsing { id: "880B", source: "Llymlaen" } window 10,10
 2012.1 "Tempest" Ability { id: "880B", source: "Llymlaen" }
 2023.2 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
@@ -322,7 +322,7 @@ hideall "--sync--"
 # Long pull: https://www.fflogs.com/reports/GzjrkH97xXWFZvAM#fight=4&type=damage-done
 
 # The Windward Pass will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116B:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "116B" } window 10000,0
 
 # Phase 1
 3010.0 "--sync--" Ability { id: "8999", source: "Oschon" } window 10,10
@@ -500,7 +500,7 @@ hideall "--sync--"
 # Long pull: https://www.fflogs.com/reports/wRA1yPgGx8McNjnf#fight=7&type=damage-done
 
 # The Twelve's Embrace will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:116D:/ window 10000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "116D" } window 10000,0
 4009.6 "--sync--" StartsUsing { id: "8A03", source: "Eulogia" } window 10,10
 4014.6 "Dawn of Time" Ability { id: "8A03", source: "Eulogia" }
 

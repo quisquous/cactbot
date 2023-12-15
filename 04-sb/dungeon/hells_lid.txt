@@ -10,7 +10,7 @@ hideall "--sync--"
 # -ii 27C0
 
 # Demonsgate will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:954:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "954" } window 0,1
 19.7 "100-Tonze Swing" Ability { id: "27BE", source: "Otake-Maru" } window 19.7,5
 27.3 "Volcanic Debris x8" # Ability { id: "27C5", source: "Volcanic Debris" }
 28.3 "10-Tonze Slash" Ability { id: "27BF", source: "Otake-Maru" }
@@ -54,7 +54,7 @@ hideall "--sync--"
 # -ic "Tsumuji-Kaze"
 
 # The Furnace will be sealed off
-1000.0  "Start" sync / 29:[^:]*:7DC:[^:]*:956:/ window 1000,1
+1000.0  "Start" SystemLogMessage { id: "7DC", param1: "956" } window 1000,1
 1011.5 "Whipping Whittret" Ability { id: "27C6", source: "Kamaitachi" } window 11.5,5
 1024.1 "Circling Winds" Ability { id: "27C8", source: "Kamaitachi" }
 1037.8 "The Patient Blade" Ability { id: "27C7", source: "Kamaitachi" }
@@ -91,7 +91,7 @@ hideall "--sync--"
 # -ii 27D2 27D5
 
 # The Polished Shell will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:959:/ window 2000,1
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "959" } window 2000,1
 2005.0 "Caduceus" Ability { id: "27CF", source: "Genbu" } window 5,5
 2013.1 "Hell Of Water" Ability { id: "27D0", source: "Genbu" }
 2021.9 "Hell Of Waste" Ability { id: "27D1", source: "Genbu" }

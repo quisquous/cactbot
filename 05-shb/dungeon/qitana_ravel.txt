@@ -6,7 +6,7 @@ hideall "--sync--"
 ### Lozatl
 # -p 3C89:113.7
 # The Divine Threshold will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCC:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BCC" } window 100,0
 
 113.7 "Stonefist" Ability { id: "3C89", source: "Lozatl" } window 114,5
 121.0 "Sun Toss" Ability { id: "3C8A", source: "Lozatl" }
@@ -44,7 +44,7 @@ hideall "--sync--"
 ### Batsquatch
 # -ii 3C94 3C96 3C97 3C95 -p 3C91:514.5
 # Shadowed Hollow will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BCF:/ window 500,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BCF" } window 500,0
 
 514.5 "Ripper Fang" Ability { id: "3C91", source: "Batsquatch" } window 515,5
 525.7 "Soundwave" Ability { id: "3C92", source: "Batsquatch" }
@@ -76,7 +76,7 @@ hideall "--sync--"
 ### Eros
 #
 # The Song of Ox'Gatorl will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BD2:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BD2" } window 1000,0
 
 1015.0 "Rend" Ability { id: "3C99", source: "Eros" } window 1015,5
 1026.2 "Hound Out Of Heaven" Ability { id: "3C9A", source: "Eros" }

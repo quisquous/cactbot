@@ -9,7 +9,7 @@ hideall "Rite Of The Sacrament"
 ### Forgiven Cruelty
 # -p 3CFB:113 -ii 3CFE 3CFD 4301 3CFF
 # The Perished Path will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB6:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BB6" } window 100,0
 113.0 "Rake" Ability { id: "3CFB", source: "Forgiven Cruelty" } window 115,5
 121.2 "Lumen Infinitum" Ability { id: "41B2", source: "Forgiven Cruelty" }
 138.3 "Typhoon Wing" Ability { id: "3D00", source: "Forgiven Cruelty" }
@@ -46,7 +46,7 @@ hideall "Rite Of The Sacrament"
 ### Forgiven Whimsy
 # -p 3D0B:514.5 -ii 3D0C 3D07 3D0A
 # The White Gate will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB7:/ window 500,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BB7" } window 500,0
 514.5 "Sacrament Of Penance" Ability { id: "3D0B", source: "Forgiven Whimsy" } window 515,5
 518.3 "Reformation" Ability { id: "3D04", source: "Forgiven Whimsy" }
 530.4 "Exegesis" Ability { id: "425C", source: "Forgiven Whimsy" }
@@ -83,7 +83,7 @@ hideall "Rite Of The Sacrament"
 ### Forgiven Obscenity
 # -ii 3D15 4669 3D19 3D19 3D21 3D13 41CE 3D1B 3D20 -p 3D14:1014
 # The Winding Flare will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:BB8:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BB8" } window 1000,0
 1014.0 "Orison Fortissimo" Ability { id: "3D14", source: "Forgiven Obscenity" } window 1014,5
 1023.2 "Divine Diminuendo" Ability { id: "3D16", source: "Forgiven Obscenity" }
 1032.4 "--sync--" Ability { id: "3D17", source: "Forgiven Obscenity" }

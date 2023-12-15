@@ -8,7 +8,7 @@ hideall "--Reset--"
 # -p ED1:6.2
 
 # Greenlinn will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:649:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "649" } window 0,1
 6.2 "Bloody Caress" Ability { id: "ED1", source: "Raskovnik" } window 6.2,0
 12.3 "--sync--" Ability { id: "ED2", source: "Raskovnik" }
 17.9 "Acid Rain" Ability { id: "ED7", source: "Raskovnik" }
@@ -73,7 +73,7 @@ hideall "--Reset--"
 # -ic "Chyme Of The Mountain"
 
 # The Wound will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:64C:/ window 1000,1
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "64C" } window 1000,1
 
 1006.1 "Third Leg Forward" Ability { id: "1382", source: "Myath" } window 6.1,5
 1011.2 "Overbite" Ability { id: "EDB", source: "Myath" }
@@ -117,7 +117,7 @@ hideall "--Reset--"
 # -ic "Comet"
 
 # Hess Afah will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:64D:/ window 2000,1
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "64D" } window 2000,1
 
 2006.0 "Abyssic Buster" Ability { id: "EE3", source: "Tioman" } window 6,6
 2013.2 "Chaos Blast" Ability { id: "EE5", source: "Tioman" }

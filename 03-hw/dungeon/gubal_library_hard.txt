@@ -5,7 +5,7 @@ hideall "--sync--"
 # -ii 1951 1952
 
 # Hall of Magicks will be sealed off
-0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:657:/
+0 "--sync--" SystemLogMessage { id: "7DC", param1: "657" }
 6.1 "Triclip" Ability { id: "193A", source: "Demon of the Tome" } window 6.1,5
 17.3 "Folio" Ability { id: "193C", source: "Demon of the Tome" }
 23.4 "--sync--" Ability { id: "193D", source: "Top Shelf Tome" }
@@ -54,7 +54,7 @@ hideall "--sync--"
 # Whichever intermission comes second ends up with phantom "Gains Effect" lines
 
 # Astrology and Astromancy Camera will be sealed off
-1000.0 "--sync--"  sync / 29:[^:]*:7DC:[^:]*:658:/ window 1000,0
+1000.0 "--sync--"  SystemLogMessage { id: "7DC", param1: "658" } window 1000,0
 1007.3 "Searing Wind" Ability { id: "1944", source: "Liquid Flame" } window 7.3,5
 1014.3 "Bibliocide" Ability { id: "1945", source: "Liquid Flame" }
 1025.7 "Sea Of Flames x3"
@@ -108,7 +108,7 @@ hideall "--sync--"
 # -ii 194F 1950 1958 195B 1969
 
 # Rare Tomes Room will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:706:/ window 2000,5
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "706" } window 2000,5
 2009.2 "Check Out" Ability { id: "194E", source: "Strix" } window 9.2,10
 2017.5 "Properties Of Darkness (buster)" Ability { id: "1954", source: "Strix" }
 2029.6 "Properties Of Quakes" Ability { id: "1956", source: "Strix" }
