@@ -7,7 +7,7 @@ hideall "--sync--"
 # Use zone-unseal and 0x21 Reset lines
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
-0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "80000014", data0: "00" } window 100000 jump 0
 # .*is no longer sealed
 0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
@@ -18,52 +18,52 @@ hideall "--sync--"
 # abilities from there.
 
 ### Kill It with Fire
-1000.0 "--sync--" sync / 21:........:80000014:1D4:/ window 100000,0
+1000.0 "--sync--" ActorControl { command: "80000014", data0: "1D4" } window 100000,0
 
 ### The Baying of the Hound(s)
-2000.0 "--sync--" sync / 21:........:80000014:1CC:/ window 100000,0
+2000.0 "--sync--" ActorControl { command: "80000014", data0: "1CC" } window 100000,0
 
 ### Vigil for the Lost
-3000.0 "--sync--" sync / 21:........:80000014:1D0:/ window 100000,0
+3000.0 "--sync--" ActorControl { command: "80000014", data0: "1D0" } window 100000,0
 
 ### Aces High
-4000.0 "--sync--" sync / 21:........:80000014:1D2:/ window 100000,0
+4000.0 "--sync--" ActorControl { command: "80000014", data0: "1D2" } window 100000,0
 
 ### The Shadow of Death's Hand
-5000.0 "--sync--" sync / 21:........:80000014:1CD:/ window 100000,0
+5000.0 "--sync--" ActorControl { command: "80000014", data0: "1CD" } window 100000,0
 
 ### The Final Furlong
-6000.0 "--sync--" sync / 21:........:80000014:1D5:/ window 100000,0
+6000.0 "--sync--" ActorControl { command: "80000014", data0: "1D5" } window 100000,0
 
 ### The Hunt for Red Choctober
-7000.0 "--sync--" sync / 21:........:80000014:1CA:/ window 100000,0
+7000.0 "--sync--" ActorControl { command: "80000014", data0: "1CA" } window 100000,0
 
 ### Beast of Man
-8000.0 "--sync--" sync / 21:........:80000014:1DB:/ window 100000,0
+8000.0 "--sync--" ActorControl { command: "80000014", data0: "1DB" } window 100000,0
 
 ### Fires of War
-9000.0 "--sync--" sync / 21:........:80000014:1D6:/ window 100000,0
+9000.0 "--sync--" ActorControl { command: "80000014", data0: "1D6" } window 100000,0
 
 ### Patriot Games
-10000.0 "--sync--" sync / 21:........:80000014:1D1:/ window 100000,0
+10000.0 "--sync--" ActorControl { command: "80000014", data0: "1D1" } window 100000,0
 
 ### Trampled under Hoof
-11000.0 "--sync--" sync / 21:........:80000014:1CE:/ window 100000,0
+11000.0 "--sync--" ActorControl { command: "80000014", data0: "1CE" } window 100000,0
 
 ### And the Flames Went Higher
-12000.0 "--sync--" sync / 21:........:80000014:1D3:/ window 100000,0
+12000.0 "--sync--" ActorControl { command: "80000014", data0: "1D3" } window 100000,0
 
 ### Metal Fox Chaos
-13000.0 "--sync--" sync / 21:........:80000014:1CB:/ window 100000,0
+13000.0 "--sync--" ActorControl { command: "80000014", data0: "1CB" } window 100000,0
 
 ### Rise of the Robots
-14000.0 "--sync--" sync / 21:........:80000014:1DF:/ window 100000,0
+14000.0 "--sync--" ActorControl { command: "80000014", data0: "1DF" } window 100000,0
 
 ### Where Strode the Behemoth
-15000.0 "--sync--" sync / 21:........:80000014:1DC:/ window 100000,0
+15000.0 "--sync--" ActorControl { command: "80000014", data0: "1DC" } window 100000,0
 
 ### The Battle of Castrum Lacus Litore
-#16000.0 "--sync--" sync / 21:........:80000014:1D7:/ window 100000,0
+#16000.0 "--sync--" ActorControl { command: "80000014", data0: "1D7" } window 100000,0
 
 ### Brionac / 4th Legion Helldiver
 # The Grand Gates will be sealed off

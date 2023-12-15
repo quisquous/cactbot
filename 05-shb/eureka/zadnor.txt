@@ -7,7 +7,7 @@ hideall "--sync--"
 # Use zone-unseal and 0x21 Reset lines
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
-0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "80000014", data0: "00" } window 100000 jump 0
 # .*is no longer sealed
 0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
 
@@ -18,52 +18,52 @@ hideall "--sync--"
 # abilities from there.
 
 ### On Serpents' Wings
-1000.0 "--sync--" sync / 21:........:80000014:211:/ window 100000,0
+1000.0 "--sync--" ActorControl { command: "80000014", data0: "211" } window 100000,0
 
 ### Feeling the Burn
-2000.0 "--sync--" sync / 21:........:80000014:20E:/ window 100000,0
+2000.0 "--sync--" ActorControl { command: "80000014", data0: "20E" } window 100000,0
 
 ### The Broken Blade
-3000.0 "--sync--" sync / 21:........:80000014:21F:/ window 100000,0
+3000.0 "--sync--" ActorControl { command: "80000014", data0: "21F" } window 100000,0
 
 ### From Beyond the Grave
-4000.0 "--sync--" sync / 21:........:80000014:21B:/ window 100000,0
+4000.0 "--sync--" ActorControl { command: "80000014", data0: "21B" } window 100000,0
 
 ### With Diremite and Main
-5000.0 "--sync--" sync / 21:........:80000014:221:/ window 100000,0
+5000.0 "--sync--" ActorControl { command: "80000014", data0: "221" } window 100000,0
 
 ### Here Comes the Cavalry
-6000.0 "--sync--" sync / 21:........:80000014:21C:/ window 100000,0
+6000.0 "--sync--" ActorControl { command: "80000014", data0: "21C" } window 100000,0
 
 ### Head of the Snake
-7000.0 "--sync--" sync / 21:........:80000014:21E:/ window 100000,0
+7000.0 "--sync--" ActorControl { command: "80000014", data0: "21E" } window 100000,0
 
 ### There Would Be Blood
-8000.0 "--sync--" sync / 21:........:80000014:210:/ window 100000,0
+8000.0 "--sync--" ActorControl { command: "80000014", data0: "210" } window 100000,0
 
 ### Never Cry Wolf
-9000.0 "--sync--" sync / 21:........:80000014:20F:/ window 100000,0
+9000.0 "--sync--" ActorControl { command: "80000014", data0: "20F" } window 100000,0
 
 ### Time To Burn
-10000.0 "--sync--" sync / 21:........:80000014:21D:/ window 100000,0
+10000.0 "--sync--" ActorControl { command: "80000014", data0: "21D" } window 100000,0
 
 ### Lean, Mean, Magitek Machines
-11000.0 "--sync--" sync / 21:........:80000014:218:/ window 100000,0
+11000.0 "--sync--" ActorControl { command: "80000014", data0: "218" } window 100000,0
 
 ### Worn to a Shadow
-12000.0 "--sync--" sync / 21:........:80000014:222:/ window 100000,0
+12000.0 "--sync--" ActorControl { command: "80000014", data0: "222" } window 100000,0
 
 ### A Familiar Face
-13000.0 "--sync--" sync / 21:........:80000014:212:/ window 100000,0
+13000.0 "--sync--" ActorControl { command: "80000014", data0: "212" } window 100000,0
 
 ### Looks to Die For
-14000.0 "--sync--" sync / 21:........:80000014:207:/ window 100000,0
+14000.0 "--sync--" ActorControl { command: "80000014", data0: "207" } window 100000,0
 
 ### Taking the Lyon's Share
-15000.0 "--sync--" sync / 21:........:80000014:220:/ window 100000,0
+15000.0 "--sync--" ActorControl { command: "80000014", data0: "220" } window 100000,0
 
 ### The Dalriada
-#20000.0 "--sync--" sync / 21:........:80000014:213:/ window 100000,0
+#20000.0 "--sync--" ActorControl { command: "80000014", data0: "213" } window 100000,0
 
 ### Sartauvoir (up)
 # Note: can't sync to the zone closing here, as you (of course) can see the
