@@ -181,7 +181,7 @@ hideall "--sync--"
 
 
 ### Phase 4: Laser Show Forever
-1800.0 "Enrage" sync / 00:0044:[^:]*:\<blip\> Warning\. Calculations indicate/ window 1800,0
+1800.0 "Enrage" GameLog { code: "0044", line: "\<blip\> Warning\. Calculations indicate.*?" } window 1800,0
 
 1806.0 "Laser Shower Enrage" Ability { id: "3311", source: "Omega-M" } window 20,20
 1806.0 "Laser Shower Enrage" Ability { id: "3312", source: "Omega" } window 20,20
