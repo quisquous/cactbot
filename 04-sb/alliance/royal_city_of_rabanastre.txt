@@ -18,7 +18,7 @@ hideall "--start--"
 # Ice phase
 27.6 "Unbind" Ability { id: "2633", source: "Mateus, The Corrupt" }
 33.6 "--sync--" Ability { id: "26A2", source: "Mateus, The Corrupt" }
-34.3 "--Aqua Sphere Adds--" sync / 03:........:Aqua Sphere:/ 
+34.3 "--Aqua Sphere Adds--" AddedCombatant { name: "Aqua Sphere" } 
 57.5 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
 66.7 "--sync--" Ability { id: "2637", source: "Mateus, The Corrupt" }
 74.6 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
@@ -30,7 +30,7 @@ hideall "--start--"
 127.8 "--sync--" Ability { id: "263B", source: "Mateus, The Corrupt" }
 139.9 "Blizzard IV" Ability { id: "263D", source: "Mateus, The Corrupt" }
 152.1 "Flash-Freeze" Ability { id: "2647", source: "Mateus, The Corrupt" }
-165.4 "--Flume Toad Adds--" sync / 03:........:Flume Toad:/ 
+165.4 "--Flume Toad Adds--" AddedCombatant { name: "Flume Toad" } 
 192.5 "Snowpierce 1" Ability { id: "2640", source: "Icicle" }
 # ??? More flume toads, hard to tell from logs
 214.6 "Snowpierce 2" Ability { id: "2640", source: "Icicle" }
@@ -40,7 +40,7 @@ hideall "--start--"
 # Adds
 259.2 "--untargetable--" # ??? from video
 259.8 "--sync--" Ability { id: "266C", source: "Mateus, The Corrupt" } window 260,20
-262.9 "--Azure Guard Adds--" sync / 03:........:Azure Guard:/ 
+262.9 "--Azure Guard Adds--" AddedCombatant { name: "Azure Guard" } 
 333.2 "--enrage--" # ??? estimating from video
 
 # End of add phase aoe
@@ -49,7 +49,7 @@ hideall "--start--"
 # loop
 524.3 "Unbind" Ability { id: "2633", source: "Mateus, The Corrupt" } window 200,200 jump 27.6
 530.3 "--sync--" #Ability { id: "26A2", source: "Mateus, The Corrupt" }
-531.0 "--Aqua Sphere Adds--" #sync / 03:........:Aqua Sphere:/ 
+531.0 "--Aqua Sphere Adds--" #AddedCombatant { name: "Aqua Sphere" } 
 554.2 "Flash-Freeze" #Ability { id: "2647", source: "Mateus, The Corrupt" }
 563.4 "--sync--" #Ability { id: "2637", source: "Mateus, The Corrupt" }
 571.3 "Flash-Freeze" #Ability { id: "2647", source: "Mateus, The Corrupt" }
@@ -193,7 +193,7 @@ hideall "--start--"
 2189.4 "Crush Helm" Ability { id: "2680", source: "Rofocale" } duration 3.4
 
 2199.3 "--invulnerable--" # ??? from video, no debuff in logs, can push to this by hp%
-2201.3 "Archaeodemon Adds" sync / 03:........:Archaeodemon:/  window 300,300
+2201.3 "Archaeodemon Adds" AddedCombatant { name: "Archaeodemon" }  window 300,300
 2208.3 "--lock out--" # ??? from video
 
 # TODO: could trigger instead off of Rofocale losing Sprint which happens ~here

@@ -9,14 +9,14 @@ hideall "--sync--"
 7.4 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 10,10
 15.0 "Garlean Fire" Ability { id: "209E", source: "Magitek Rearguard" }
 30.6 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
-35.6 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/
+35.6 "Rearguard Mines" #AddedCombatant { name: "Rearguard Mine" }
 37.8 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 10,10
 40.8 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 43.4 "Garlean Fire" Ability { id: "209E", source: "Magitek Rearguard" }
 48.9 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 53.9 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 60.9 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 10,5
-68.5 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/
+68.5 "Rearguard Mines" #AddedCombatant { name: "Rearguard Mine" }
 
 70.7 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 5,10
 73.7 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
@@ -26,14 +26,14 @@ hideall "--sync--"
 88.9 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 91.6 "Garlean Fire" Ability { id: "209E", source: "Magitek Rearguard" }
 97.2 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
-98.7 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/
+98.7 "Rearguard Mines" #AddedCombatant { name: "Rearguard Mine" }
 101.3 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 10,10
 104.3 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 107.0 "Garlean Fire" Ability { id: "209E", source: "Magitek Rearguard" }
 112.5 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
 115.6 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 10,10
 118.6 "Magitek Ray" Ability { id: "20A1", source: "Rearguard Bit" }
-131.3 "Rearguard Mines" #sync / 03:........:Rearguard Mine:/
+131.3 "Rearguard Mines" #AddedCombatant { name: "Rearguard Mine" }
 
 133.2 "Cermet Pile" Ability { id: "209D", source: "Magitek Rearguard" } window 5,10 jump 70.7
 136.2 "Magitek Ray"
@@ -52,30 +52,30 @@ hideall "--sync--"
 1000 "Start" sync / 29:[^:]*:7DC:[^:]*:7C2:/ window 1000,0
 1010.6 "Circle Of Death" Ability { id: "20A2", source: "Magitek Hexadrone" }
 1018.9 "2-Tonze Magitek Missile" Ability { id: "20A3", source: "Magitek Hexadrone" }
-1024.1 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1024.1 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1029.6 "Bits Activate"
 1039.6 "Circle Of Death" Ability { id: "20A2", source: "Magitek Hexadrone" }
-1045.7 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1045.7 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1051.2 "Bits Activate"
 1049.8 "Circle Of Death" Ability { id: "20A2", source: "Magitek Hexadrone" }
 1064.5 "Magitek Missiles" Ability { id: "20A5", source: "Magitek Hexadrone" }
-1068.9 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1068.9 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1074.4 "Bits Activate"
 1077.3 "2-Tonze Magitek Missile" Ability { id: "20A3", source: "Magitek Hexadrone" }
 
 1083.9 "Circle Of Death" Ability { id: "20A2", source: "Magitek Hexadrone" }
-1090.0 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1090.0 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1095.5 "Bits Activate"
 1098.6 "Magitek Missiles" Ability { id: "20A5", source: "Magitek Hexadrone" }
-1111.2 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1111.2 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1116.7 "Bits Activate"
 1112.9 "Magitek Missiles" Ability { id: "20A5", source: "Magitek Hexadrone" }
 1125.6 "Circle Of Death" Ability { id: "20A2", source: "Magitek Hexadrone" }
-1132.0 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1132.0 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1137.5 "Bits Activate"
 1140.0 "2-Tonze Magitek Missile" Ability { id: "20A3", source: "Magitek Hexadrone" }
 1150.1 "Magitek Missiles" Ability { id: "20A5", source: "Magitek Hexadrone" }
-1159.5 "Hexadrone Bits" sync / 03:........:Hexadrone Bit:/
+1159.5 "Hexadrone Bits" AddedCombatant { name: "Hexadrone Bit" }
 1165.0 "Bits Activate"
 1168.0 "2-Tonze Magitek Missile" Ability { id: "20A3", source: "Magitek Hexadrone" }
 
@@ -105,7 +105,7 @@ hideall "--sync--"
 2084.9 "Gunsaw" duration 5.0  Ability { id: "20AA", source: "Hypertuned Grynewaht" }
 2098.2 "Delay-Action Charge" Ability { id: "20AD", source: "Hypertuned Grynewaht" }
 2098.2 "Clean Cut" #Ability { id: "20B1", source: "Magitek Chakram" }
-2102.6 "Magitek Bits" sync / 03:........:Retuned Magitek Bit:/
+2102.6 "Magitek Bits" AddedCombatant { name: "Retuned Magitek Bit" }
 2108.1 "Bits Activate"
 2117.9 "Chainsaw" duration 5.5 Ability { id: "20A8", source: "Hypertuned Grynewaht" }
 2120.9 "Thermobaric Charge" Ability { id: "20AF", source: "Hypertuned Grynewaht" }
@@ -118,7 +118,7 @@ hideall "--sync--"
 2174.1 "Delay-Action Charge" Ability { id: "20AD", source: "Hypertuned Grynewaht" }
 2174.1 "Clean Cut" #Ability { id: "20B1", source: "Magitek Chakram" }
 2179.7 "--center--" Ability { id: "20B0", source: "Hypertuned Grynewaht" } window 10,10
-2179.7 "Magitek Bits" sync / 03:........:Retuned Magitek Bit:/
+2179.7 "Magitek Bits" AddedCombatant { name: "Retuned Magitek Bit" }
 2185.2 "Bits Activate"
 2194.8 "Chainsaw" duration 5.5 Ability { id: "20A8", source: "Hypertuned Grynewaht" }
 2199.9 "Thermobaric Charge" Ability { id: "20AF", source: "Hypertuned Grynewaht" }
@@ -128,7 +128,7 @@ hideall "--sync--"
 2216.7 "Gunsaw" duration 5.0 Ability { id: "20AA", source: "Hypertuned Grynewaht" }
 2230.0 "Delay-Action Charge" Ability { id: "20AD", source: "Hypertuned Grynewaht" }
 2230.0 "Clean Cut" #Ability { id: "20B1", source: "Magitek Chakram" }
-2232.5 "Magitek Bits" sync / 03:........:Retuned Magitek Bit:/
+2232.5 "Magitek Bits" AddedCombatant { name: "Retuned Magitek Bit" }
 2238.0 "Bits Activate"
 2245.7 "Chainsaw" duration 5.5 Ability { id: "20A8", source: "Hypertuned Grynewaht" }
 2253.4 "Thermobaric Charge" Ability { id: "20AF", source: "Hypertuned Grynewaht" }

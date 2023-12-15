@@ -150,7 +150,7 @@ hideall "--sync--"
 2209.6 "Foul Nail" #Ability { id: "1F87", source: "Shisui Yohi" }
 
 # Phase 3: 75% -> 60%, introduction to adds
-2300.0 "--adds--" sync / 03:........:Naishi-No-Kami:/  window 300,0
+2300.0 "--adds--" AddedCombatant { name: "Naishi-No-Kami" }  window 300,0
 2303.4 "Foul Nail" Ability { id: "1F87", source: "Shisui Yohi" }
 2313.5 "Mad Stare" Ability { id: "1F82", source: "Shisui Yohi" }
 

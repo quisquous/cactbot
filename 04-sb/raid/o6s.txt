@@ -24,7 +24,7 @@ hideall "--sync--"
 130 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
 143 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
-150 "Easterlies" sync / 03:........:Easterly:/
+150 "Easterlies" AddedCombatant { name: "Easterly" }
 153 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
 155 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
 164 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
@@ -57,7 +57,7 @@ hideall "--sync--"
 352 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
 365 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
-373 "Easterlies" sync / 03:........:Easterly:/
+373 "Easterlies" AddedCombatant { name: "Easterly" }
 375 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
 376 "Demonic Wave" Ability { id: "2830", source: "Portrayal of Water" }
 384 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
@@ -93,7 +93,7 @@ hideall "--sync--"
 590 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
 603 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
-611 "Easterlies" sync / 03:........:Easterly:/
+611 "Easterlies" AddedCombatant { name: "Easterly" }
 613 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
 614 "Demonic Wave" Ability { id: "2830", source: "Portrayal of Water" }
 622 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }

@@ -34,7 +34,7 @@ hideall "--sync--"
 124.9 "Almost Holy" Ability { id: "19F7", source: "The General's Wing" }
 133.2 "Almost Holy" Ability { id: "19F7", source: "The General's Wing" }
 
-139.2 "The General's Might (W)" sync / 03:........:The General's Might:/  window 150,5
+139.2 "The General's Might (W)" AddedCombatant { name: "The General's Might" }  window 150,5
 139.2 "The General's Time (E)"
 141.6 "Almost Holy?" Ability { id: "19F7", source: "The General's Wing" }
 150.4 "Smash" Ability { id: "19F3", source: "The General's Might" } window 151,3

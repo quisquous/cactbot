@@ -22,7 +22,7 @@ hideall "--sync--"
 40.6 "Spin Crusher" Ability { id: "1A85", source: "Cruise Chaser" }
 
 # skippable
-45.8 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/ window 50,5
+45.8 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." } window 50,5
 
 # If we jump to this laser sword immediately after first, the timing is:
 # 9.2 (first sword) 21.7 (second sword)
@@ -135,7 +135,7 @@ hideall "--sync--"
 450.9 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
 
 # maybe skippable
-458.7 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
+458.7 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." }
 462.0 "Photon (dps)" Ability { id: "1A73", source: "Cruise Chaser" }
 470.2 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
 
@@ -151,7 +151,7 @@ hideall "--sync--"
 505.2 "Transform" Ability { id: "1A49", source: "Cruise Chaser" }
 513.0 "--sync--" Ability { id: "1A4A", source: "Cruise Chaser" }
 517.8 "Blassty Blaster" Ability { id: "1A69", source: "Cruise Chaser" }
-520.8 "Multifield x3" sync / 03:........:Multifield:/
+520.8 "Multifield x3" AddedCombatant { name: "Multifield" }
 523.9 "Transform" Ability { id: "1A4E", source: "Cruise Chaser" }
 529.9 "Perfect Landing" Ability { id: "1A6B", source: "Cruise Chaser" }
 
@@ -194,7 +194,7 @@ hideall "--sync--"
 683.0 "--targetable--"
 
 693.2 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
-697.2 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
+697.2 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." }
 705.4 "Photon (dps)" Ability { id: "1A73", source: "Cruise Chaser" }
 714.6 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
 722.7 "Photon (healer)" Ability { id: "1A73", source: "Cruise Chaser" }

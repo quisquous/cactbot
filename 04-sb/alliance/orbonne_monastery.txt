@@ -273,7 +273,7 @@ hideall "--sync--"
 5208.3 "Flare IV" Ability { id: "389D", source: "Ultima, the High Seraph" }
 
 ### Phase 2: 50% Push Remix "Death awaits defiance!"
-5400.0 "--sync--" sync / 03:........:Mustadio:/  window 400,0
+5400.0 "--sync--" AddedCombatant { name: "Mustadio" }  window 400,0
 5413.0 "Earth Hammer" Ability { id: "38D8", source: "Demi-Hashmal" } window 400,5
 5415.9 "Time Eruption" Ability { id: "38D0", source: "Demi-Belias" }
 5418.9 "Time Eruption" Ability { id: "38D1", source: "Demi-Belias" }

@@ -55,7 +55,7 @@ hideall "--sync--"
 2014.3 "Power Generator x2 (NE)"
 2014.3 "Lava (NE)" duration 42
 2023.4 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
-2034.4 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2034.4 "--rocks fall--" #AddedCombatant { name: "Scrap" } 
 2039.6 "Scrap Burst" Ability { id: "1A3A", source: "Refurbisher 0" }
 2048.8 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
 2055.9 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
@@ -83,7 +83,7 @@ hideall "--sync--"
 2173.9 "Lava (SW)" duration 15
 2180.2 "Acid Rain" #Ability { id: "1C0A", source: "Refurbisher 0" }
 2189.3 "Lava (SE)" duration 15
-2195.1 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2195.1 "--rocks fall--" #AddedCombatant { name: "Scrap" } 
 2200.3 "Scrap Burst" Ability { id: "1A3A", source: "Refurbisher 0" }
 
 # Phase 4
@@ -91,7 +91,7 @@ hideall "--sync--"
 2226.5 "Power Generator x1 (SW)"
 2226.5 "Alarum x1 (SW)"
 2226.5 "Lava (SW)" duration 42
-2238.7 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2238.7 "--rocks fall--" #AddedCombatant { name: "Scrap" } 
 2243.9 "Scrap Burst" Ability { id: "1A3A", source: "Refurbisher 0" }
 2253.1 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
 2260.2 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
@@ -124,7 +124,7 @@ hideall "--sync--"
 2376.4 "Scrap Bomb" Ability { id: "1A3E", source: "Refurbisher 0" }
 2384.6 "Scrap" Ability { id: "1A39", source: "Refurbisher 0" }
 2403.3 "Explosion (NW/SE)" Ability { id: "1A35", source: "Bomb" }
-2398.5 "--rocks fall--" #sync / 03:........:Scrap:/ 
+2398.5 "--rocks fall--" #AddedCombatant { name: "Scrap" } 
 2403.7 "Scrap Burst" Ability { id: "1A3A", source: "Refurbisher 0" }
 
 # Phase 7

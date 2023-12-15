@@ -82,7 +82,7 @@ hideall "Ballistic Missile"
 
 ## Brawler Orb Phase
 1500.0 "--sync--" sync / 22:........:Brawler:........:Brawler:00/ window 500,0
-1503.4 "Power Plasma Alpha x2" sync / 03:........:Power Plasma Alpha:/  window 500,5
+1503.4 "Power Plasma Alpha x2" AddedCombatant { name: "Power Plasma Alpha" }  window 500,5
 1503.4 "Power Plasma Gamma x2"
 
 1508.6 "Attachment" Ability { id: "1601", source: "Brawler" }

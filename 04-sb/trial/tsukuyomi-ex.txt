@@ -51,8 +51,8 @@ hideall "--Reset--"
 # Add phase
 781.0 "Nightbloom" Ability { id: "2BC7", source: "Tsukuyomi" } window 800,0
 781.8 "--untargetable--"
-792.3 "Homeland adds (E->W)" sync / 03:........:Specter Of The Patriarch:/  window 40,20
-852.3 "Empire adds (SW->NW)" sync / 03:........:Specter Of Asahi:/  window 160,20
+792.3 "Homeland adds (E->W)" AddedCombatant { name: "Specter Of The Patriarch" }  window 40,20
+852.3 "Empire adds (SW->NW)" AddedCombatant { name: "Specter Of Asahi" }  window 160,20
 886.3 "Enrage"
 
 1000.0 "Concentrativity" Ability { id: "2BC8", source: "Specter of Zenos" } window 1000,0

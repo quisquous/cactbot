@@ -88,7 +88,7 @@ hideall "--sync--"
 1143.2 "Chesed Gevurah" Ability { id: "(76A5|76A6)", source: "Sephirot" }
 1143.8 "Life Force + Spirit" Ability { id: "(76A7|76A8)", source: "Sephirot" }
 1149.4 "Malkuth" Ability { id: "76AF", source: "Sephirot" } window 30,30
-1150.5 "Adds Spawn" sync / 03:........:Storm Of Words:/
+1150.5 "Adds Spawn" AddedCombatant { name: "Storm Of Words" }
 1158.7 "Chesed Gevurah" Ability { id: "(76A5|76A6)", source: "Sephirot" }
 1159.3 "Life Force + Spirit" Ability { id: "(76A7|76A8)", source: "Sephirot" }
 1164.9 "Fiendish Wail" Ability { id: "76A3", source: "Sephirot" }
@@ -128,7 +128,7 @@ hideall "--sync--"
 1340.5 "Chesed Gevurah" Ability { id: "(76A5|76A6)", source: "Sephirot" }
 1341.1 "Life Force + Spirit" Ability { id: "(76A7|76A8)", source: "Sephirot" }
 1346.7 "Malkuth" Ability { id: "76AF", source: "Sephirot" }
-1347.8 "Adds Spawn" sync / 03:........:Storm Of Words:/
+1347.8 "Adds Spawn" AddedCombatant { name: "Storm Of Words" }
 1356.0 "Chesed Gevurah" Ability { id: "(76A5|76A6)", source: "Sephirot" }
 1356.6 "Life Force + Spirit" Ability { id: "(76A7|76A8)", source: "Sephirot" }
 1362.2 "Fiendish Wail" Ability { id: "76A3", source: "Sephirot" }

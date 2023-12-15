@@ -18,7 +18,7 @@ hideall "--sync--"
 
 
 # Wave 2 (timed push)
-20.3 "--Wave 2--" sync / 03:........:Gordian Hardmind:/  window 21,5
+20.3 "--Wave 2--" AddedCombatant { name: "Gordian Hardmind" }  window 21,5
 20.3 "Sniper, Soldier x2 (NW)"
 20.3 "Hardmind (SW)"
 
@@ -26,7 +26,7 @@ hideall "--sync--"
 
 
 # Wave 3 (timed push)
-80.2 "--Wave 3--" sync / 03:........:Gordian Hardhelm:/  window 70,70
+80.2 "--Wave 3--" AddedCombatant { name: "Gordian Hardhelm" }  window 70,70
 80.2 "Hardhelm, Soldier (SW)"
 80.2 "Hardmind, Sniper, Soldier 2x (N)"
 
@@ -35,7 +35,7 @@ hideall "--sync--"
 
 
 # Wave 4 (triggered push)
-2000.0 "--Wave 4--" sync / 03:........:Boomtype Magitek Gobwalker G-VII:/  window 2000,0
+2000.0 "--Wave 4--" AddedCombatant { name: "Boomtype Magitek Gobwalker G-VII" }  window 2000,0
 2000.0 "Gobwalker (NE)"
 2000.0 "Sniper x2, Soldier x2 (mid)"
 
@@ -46,7 +46,7 @@ hideall "--sync--"
 
 
 # Wave 5 (timed push)
-2095.5 "--Wave 5--" sync / 03:........:Magitek Gobwidow G-IX:/  window 2070,100
+2095.5 "--Wave 5--" AddedCombatant { name: "Magitek Gobwidow G-IX" }  window 2070,100
 2095.5 "Gobwidow (N)"
 2095.5 "Gobwidow (S)"
 2095.5 "Soldier x2 (SW)"
@@ -62,7 +62,7 @@ hideall "--sync--"
 
 
 # Wave 6 (timed push)
-2168.0 "--Wave 6--" sync / 03:........:Jagd Doll:/  window 2170,100
+2168.0 "--Wave 6--" AddedCombatant { name: "Jagd Doll" }  window 2170,100
 2168.0 "Jagd Doll (NE)"
 2168.0 "Gobwalker (N)"
 2168.0 "Hardhelm (SW)"
@@ -94,7 +94,7 @@ hideall "--sync--"
 
 
 # Wave 7 (triggered push)
-3000.0 "--Wave 7--" sync / 03:........:Jagd Doll:/  window 825,0
+3000.0 "--Wave 7--" AddedCombatant { name: "Jagd Doll" }  window 825,0
 3000.0 "Jagd Doll x4 (mid)"
 
 3006.2 "Kaltstrahl" #Ability { id: "FD4", source: "Jagd Doll" }
@@ -112,7 +112,7 @@ hideall "--sync--"
 
 # Wave 8 (timed push)
 # TODO: include additional jagd doll stuff into here?
-3080.7 "--Wave 8--" sync / 03:........:Gordian Sniper:/  window 1075,100
+3080.7 "--Wave 8--" AddedCombatant { name: "Gordian Sniper" }  window 1075,100
 3080.7 "Sniper x3, Soldier (SW)"
 3080.7 "Hardmind (N)"
 3080.7 "Hardhelm (SE)"
@@ -126,7 +126,7 @@ hideall "--sync--"
 
 
 # Wave 9 (triggered push)
-4000.0 "--Wave 9--"  sync / 03:........:Magitek Gobwidow G-IX:/  window 1900,0
+4000.0 "--Wave 9--"  AddedCombatant { name: "Magitek Gobwidow G-IX" }  window 1900,0
 4000.0 "Gobwidow (NW)"
 4000.0 "Gobwidow, Jagd Doll (SW)"
 4000.0 "Gobwalker (NE)"
@@ -165,7 +165,7 @@ hideall "--sync--"
 
 
 # Enrage
-5000.0 "--sync--" sync / 03:........:Giant Bomb:/  window 5000,0
+5000.0 "--sync--" AddedCombatant { name: "Giant Bomb" }  window 5000,0
 5010.0 "Massive Explosion Enrage" Ability { id: "FDD", source: "Giant Bomb" }
 
 # Technically this loops, and has a special dialog where Quickthinx says:

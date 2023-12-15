@@ -86,7 +86,7 @@ hideall "--sync--"
 249 "Stun Heart"
 249 "Sizzlebeam"
 258 "Sizzlespark" #can be skipped
-266 "Bomb x1" sync / 03:........:Bomb:/  window 50 jump 561
+266 "Bomb x1" AddedCombatant { name: "Bomb" }  window 50 jump 561
 267 ""
 267 ""
 267 ""
@@ -126,7 +126,7 @@ hideall "--sync--"
 
 ############################################
 ################# Version 1 - Phase 3
-561 "Bomb x1" sync / 03:........:Bomb:/  window 50,20
+561 "Bomb x1" AddedCombatant { name: "Bomb" }  window 50,20
 567 "Jails" #Green Prey & Red Tether
 570 "Zoomdoom" Ability { id: "15BE", source: "Quickthinx Allthoughts" } window 60
 570 "Doll"
@@ -171,7 +171,7 @@ hideall "--sync--"
 903 "Stun Heart"
 909 "Sizzlespark"
 917 "Sizzlespark"
-923 "Bombs / Sizzlebeam" sync / 03:........:Bomb:/  window 20 jump 1326
+923 "Bombs / Sizzlebeam" AddedCombatant { name: "Bomb" }  window 20 jump 1326
 924 "" Ability { id: "15EE", source: "Quickthinx Allthoughts" } window 20 jump 1526
 924 ""
 924 ""

@@ -10,7 +10,7 @@ hideall "--sync--"
 17.8 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
 22.0 "Pounce" Ability { id: "1FD1", source: "Coeurl Sruti" }
 
-38.5 "--Smriti Appears--" sync / 03:........:Coeurl Smriti:/  window 10,10
+38.5 "--Smriti Appears--" AddedCombatant { name: "Coeurl Smriti" }  window 10,10
 46.5 "Wide Blaster" Ability { id: "1FD4", source: "Coeurl Smriti" } window 15,15
 46.5 "Radial Blaster" Ability { id: "1FD3", source: "Coeurl Sruti" }
 52.6 "Pounce x2" Ability { id: "1FD1", source: "Coeurl Smriti" }

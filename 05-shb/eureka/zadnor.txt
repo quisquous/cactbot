@@ -157,7 +157,7 @@ hideall "--sync--"
 # ???
 
 # Tamed Alkonost / Tamed Carrion Crow
-22500.0 "--sync--" sync / 03:........:Tamed Carrion Crow:/  window 600,0
+22500.0 "--sync--" AddedCombatant { name: "Tamed Carrion Crow" }  window 600,0
 22507.0 "--sync--" StartsUsing { id: "5F26", source: "Tamed Alkonost" } window 600,10
 22512.0 "Stormcall" Ability { id: "5F26", source: "Tamed Alkonost" }
 22526.9 "Orb 1" Ability { id: "5F27", source: "Vortical Orb" }

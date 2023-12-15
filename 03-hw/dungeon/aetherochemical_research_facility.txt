@@ -415,7 +415,7 @@ hideall "--sync--"
 3092.6 "Height Of Chaos"
 
 # Intermission 1 at HP < 80%
-3100.0 "--sync--" sync / 03:........:Firesphere:/  window 100,5
+3100.0 "--sync--" AddedCombatant { name: "Firesphere" }  window 100,5
 
 3110.0 "Ancient Circle Appears"
 3115.1 "Ancient Circle" Ability { id: "1102", source: "Ascian Prime" }
@@ -442,7 +442,7 @@ hideall "--sync--"
 3260.0 "Shadow Flare"
 
 # Intermission 2 at HP < 40%
-3300.0 "--sync--" sync / 03:........:Firesphere:/  window 200,5
+3300.0 "--sync--" AddedCombatant { name: "Firesphere" }  window 200,5
 
 3304.6 "Ancient Circle Appears"
 3309.7 "Ancient Circle" Ability { id: "1102", source: "Ascian Prime" }
