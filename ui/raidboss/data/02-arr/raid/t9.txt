@@ -106,15 +106,15 @@ hideall "--sync--"
 
 ### Phase 2: Golem Adds
 500.0 "--untargetable--"
-503.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 505,0
+503.3 "Golem Meteors" HeadMarker { id: "0007" } duration 11 window 505,0
 514.3 "--sync--" Ability { id: "7EB", source: "Dalamud Fragment" }
-582.3 "Meteor 1/6" duration 7 sync / 1B:........:[^:]*:....:....:000[9A]:/ window 83,0
+582.3 "Meteor 1/6" duration 7 HeadMarker { id: "000[9A]" } window 83,0
 584.3 "Meteor 2/6" duration 7
 586.3 "Meteor 3/6" duration 7
 588.3 "Meteor 4/6" duration 7
 590.5 "Meteor 5/6" duration 7
 592.5 "Meteor 6/6" duration 7
-598.3 "Golem Meteors" sync / 1B:........:[^:]*:....:....:0007:/ duration 11 window 80,80
+598.3 "Golem Meteors" HeadMarker { id: "0007" } duration 11 window 80,80
 609.3 "--sync--" Ability { id: "7EB", source: "Dalamud Fragment" }
 683.5 "Megaflare" Ability { id: "7E7", source: "Nael deus Darnus" } window 700,700
 
