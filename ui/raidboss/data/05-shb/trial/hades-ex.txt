@@ -33,7 +33,7 @@ hideall "--sync--"
 
 
 ### Phase 2
-200.0 "--sync--" sync / 22:........:Hades:........:Hades:00/ window 200,0
+200.0 "--sync--" NameToggle { name: "Hades", toggle: "00" } window 200,0
 # 00:0044:Hades:Pitiful, malformed, wretched creatures!
 # 00:0044:Hades:Your call for aid beyond this world will avail you naught!
 # 00:0044:Hades:My brethren are legion!
@@ -88,7 +88,7 @@ hideall "--sync--"
 
 
 ### Phase 4
-750.2 "--sync--" sync / 22:........:Ascian Prime's Shade:........:Ascian Prime's Shade:00/ window 800,0
+750.2 "--sync--" NameToggle { name: "Ascian Prime's Shade", toggle: "00" } window 800,0
 799.9 "--targetable--"
 800.0 "--sync--" StartsUsing { id: "47D5", source: "Hades" } window 800,0
 804.0 "Again The Majestic" Ability { id: "47D5", source: "Hades" }

@@ -21,7 +21,7 @@ hideall "--sync--"
 54.0 "(Radiant?) Sacrament" Ability { id: "19E[BD]", source: "Alexander Prime" }
 58.1 "Divine Spear" Ability { id: "19E8", source: "Alexander Prime" }
 65.2 "Punishing Heat" Ability { id: "19E9", source: "Alexander Prime" }
-67.2 "--untargetable--" sync / 22:........:Alexander Prime:........:Alexander Prime:00/ window 70,5
+67.2 "--untargetable--" NameToggle { name: "Alexander Prime", toggle: "00" } window 70,5
 
 
 ### Phase 2: Adds Phase (79% push)

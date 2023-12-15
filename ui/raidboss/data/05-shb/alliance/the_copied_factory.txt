@@ -58,7 +58,7 @@ hideall "--sync--"
 # -ic 2P -ii 491D 491C -p 491B:715.5
 # Warehouse B will be sealed off
 600.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D4D" } window 600,0
-700.0 "--sync--" sync / 22:........:Small Flyer:........:Small Flyer:01/ window 100,0
+700.0 "--sync--" NameToggle { name: "Small Flyer", toggle: "01" } window 100,0
 715.5 "Frontal Somersault" Ability { id: "491B", source: "Small Biped" } window 116,2.5
 721.4 "Frontal Somersault" Ability { id: "491B", source: "Small Biped" }
 725.7 "High-Frequency Laser" Ability { id: "491E", source: "Multi-leg Medium Model" }
@@ -294,7 +294,7 @@ hideall "--sync--"
 2621.8 "Radiate Heat" Ability { id: "474C", source: "Engels" }
 2625.2 "Crushing Wheel Enrage?"  Ability { id: "474B", source: "Marx [LR]" }
 
-2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
+2700.0 "--targetable--" NameToggle { name: "Engels", toggle: "01" } window 150,0
 2706.2 "--sync--" StartsUsing { id: "4733", source: "Engels" } window 150,5
 2709.7 "Surface Missile" Ability { id: "4733", source: "Engels" }
 2718.9 "Marx Smash" Ability { id: "472[67AE]", source: "Engels" }

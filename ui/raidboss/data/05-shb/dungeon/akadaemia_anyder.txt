@@ -14,25 +14,25 @@ hideall "--sync--"
 100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "BC0" } window 100,0
 110.5 "Protolithic Puncture" Ability { id: "3E04", source: "Cladoselache" } window 111,8
 119.5 "Tidal Guillotine" Ability { id: "3E08", source: "Cladoselache" }
-128.7 "--2x targetable--" sync / 22:........:Doliodus:........:Doliodus:01/
-129.7 "--1x targetable--" sync / 22:........:Cladoselache:........:Cladoselache:00/
+128.7 "--2x targetable--" NameToggle { name: "Doliodus", toggle: "01" }
+129.7 "--1x targetable--" NameToggle { name: "Cladoselache", toggle: "00" }
 
 138.5 "Pelagic Cleaver" Ability { id: "3E09", source: "Doliodus" }
 150.5 "Tidal Guillotine" Ability { id: "3E0A", source: "Cladoselache" } window 10,10
-152.7 "--2x targetable--" sync / 22:........:Cladoselache:........:Cladoselache:01/
-154.7 "--1x targetable--" sync / 22:........:Doliodus:........:Doliodus:00/
+152.7 "--2x targetable--" NameToggle { name: "Cladoselache", toggle: "01" }
+154.7 "--1x targetable--" NameToggle { name: "Doliodus", toggle: "00" }
 
 162.4 "Aquatic Lance" Ability { id: "3E05", source: "Cladoselache" }
 173.5 "Protolithic Puncture" Ability { id: "3E04", source: "Cladoselache" }
 179.9 "Pelagic Cleaver" Ability { id: "3E0B", source: "Doliodus" } window 10,10
-181.5 "--untargetable--" sync / 22:........:Cladoselache:........:Cladoselache:00/
-183.3 "--targetable--" sync / 22:........:Doliodus:........:Doliodus:01/
+181.5 "--untargetable--" NameToggle { name: "Cladoselache", toggle: "00" }
+183.3 "--targetable--" NameToggle { name: "Doliodus", toggle: "01" }
 
 189.4 "Marine Mayhem" Ability { id: "3E06", source: "Doliodus" }
 199.8 "Protolithic Puncture" Ability { id: "3E04", source: "Doliodus" }
 201.4 "Tidal Guillotine" Ability { id: "3E0A", source: "Cladoselache" } window 10,10
-203.8 "--2x targetable--" sync / 22:........:Cladoselache:........:Cladoselache:01/
-205.1 "--1x targetable--" sync / 22:........:Doliodus:........:Doliodus:00/
+203.8 "--2x targetable--" NameToggle { name: "Cladoselache", toggle: "01" }
+205.1 "--1x targetable--" NameToggle { name: "Doliodus", toggle: "00" }
 
 213.2 "Aquatic Lance" Ability { id: "3E05", source: "Cladoselache" } window 30,30 jump 162.4
 224.3 "Protolithic Puncture"

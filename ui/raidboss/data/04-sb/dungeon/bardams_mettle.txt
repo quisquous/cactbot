@@ -100,7 +100,7 @@ hideall "Reconstruct"
 
 # Unfortunately, because there are two Corpsecleaner Eagles,
 # we can't just sync to a 04 log line.
-2189.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 120,5
+2189.7 "--targetable--" NameToggle { name: "Yol", toggle: "01" } window 120,5
 2196.8 "Feathercut" Ability { id: "1F09", source: "Yol" } window 125,5
 2204.0 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
 2212.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
@@ -115,7 +115,7 @@ hideall "Reconstruct"
 2247.7 "Feathercut" Ability { id: "1F09", source: "Yol" }
 2249.4 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 
-2253.8 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ window 60,5
+2253.8 "--untargetable--" NameToggle { name: "Yol", toggle: "00" } window 60,5
 2260.3 "Flutterfall" Ability { id: "1F10", source: "Yol" } window 60,5
 2267.5 "Wingbeat" Ability { id: "1F0F", source: "Yol" }
 2276.9 "Flutterfall" Ability { id: "1F0C", source: "Yol" }
@@ -135,7 +135,7 @@ hideall "Reconstruct"
 2352.5 "Pinion"
 
 
-2361.7 "--targetable--" sync / 22:........:Yol:........:Yol:01/ window 110,5
+2361.7 "--targetable--" NameToggle { name: "Yol", toggle: "01" } window 110,5
 2368.8 "Feathercut" Ability { id: "1F09", source: "Yol" } window 110,5
 2376.0 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
 2384.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
@@ -162,7 +162,7 @@ hideall "Reconstruct"
 2478.7 "Eye Of The Fierce" Ability { id: "1F0D", source: "Yol" }
 2483.9 "Feathercut" Ability { id: "1F09", source: "Yol" }
 2485.7 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
-2490.0 "--untargetable--" sync / 22:........:Yol:........:Yol:00/ jump 2253.8 window 130,5
+2490.0 "--untargetable--" NameToggle { name: "Yol", toggle: "00" } jump 2253.8 window 130,5
 
 2496.5 "Flutterfall"
 2503.7 "Wingbeat"
