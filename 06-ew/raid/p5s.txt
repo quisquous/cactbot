@@ -54,11 +54,11 @@ hideall "--sync--"
 193.1 "Venomous Mass" Ability { id: "771D", source: "Proto-Carbuncle" }
 200.2 "Toxic Crunch" Ability { id: "784A", source: "Proto-Carbuncle" }
 
-211.6 "Venom Squall/Venom Surge" Ability { id: "(7716|7717)", source: "Proto-Carbuncle" }
-215.5 "Venom Rain/Venom Pool" Ability { id: "(7718|771A)", source: "Proto-Carbuncle" }
+211.6 "Venom Squall/Venom Surge" Ability { id: ["7716", "7717"], source: "Proto-Carbuncle" }
+215.5 "Venom Rain/Venom Pool" Ability { id: ["7718", "771A"], source: "Proto-Carbuncle" }
 221.5 "Venom Drops" Ability { id: "7719", source: "Proto-Carbuncle" }
-224.5 "Venom Pool/Venom Rain" Ability { id: "(771A|7718)", source: "Proto-Carbuncle" }
-232.8 "Claw to Tail/Tail to Claw" Ability { id: "(770E|7712)", source: "Proto-Carbuncle" }
+224.5 "Venom Pool/Venom Rain" Ability { id: ["771A", "7718"], source: "Proto-Carbuncle" }
+232.8 "Claw to Tail/Tail to Claw" Ability { id: ["770E", "7712"], source: "Proto-Carbuncle" }
 #232.8 "Raging Claw x7" Ability { id: "770F", source: "Proto-Carbuncle" } duration 2.2
 #236.7 "Raging Tail" Ability { id: "7711", source: "Proto-Carbuncle" }
 
@@ -93,7 +93,7 @@ hideall "--sync--"
 311.1 "--sync--" Ability { id: "76F5", source: "Proto-Carbuncle" }
 312.3 "Topaz Ray" Ability { id: "79FE", source: "Proto-Carbuncle" }
 312.9 "Ruby Reflection" Ability { id: "76F8", source: "Proto-Carbuncle" }
-318.0 "Raging Claw x7 / Searing Ray?" #Ability { id: "(76FA|76F7)", source: "Proto-Carbuncle" }
+318.0 "Raging Claw x7 / Searing Ray?" #Ability { id: ["76FA", "76F7"], source: "Proto-Carbuncle" }
 318.8 "Ruby Reflection?" #Ability { id: "76F8", source: "Proto-Carbuncle" }
 
 # Light party splits
@@ -110,7 +110,7 @@ hideall "--sync--"
 386.8 "Venom Pool" Ability { id: "771A", source: "Proto-Carbuncle" }
 
 390.0 "--towers--" duration 10 # guessing
-404.8 "Claw to Tail/Tail to Claw" Ability { id: "(770E|7712)", source: "Proto-Carbuncle" }
+404.8 "Claw to Tail/Tail to Claw" Ability { id: ["770E", "7712"], source: "Proto-Carbuncle" }
 #414.9 "Raging Tail" Ability { id: "7A0C", source: "Proto-Carbuncle" }
 #416.8 "Raging Claw" Ability { id: "7713", source: "Proto-Carbuncle" } duration 2.2
 417.0 "Venomous Mass" Ability { id: "771D", source: "Proto-Carbuncle" }
@@ -135,12 +135,12 @@ hideall "--sync--"
 489.8 "Toxic Crunch" Ability { id: "784A", source: "Proto-Carbuncle" }
 503.2 "Sonic Howl" Ability { id: "7720", source: "Proto-Carbuncle" }
 
-511.4 "Venom Squall/Venom Surge" Ability { id: "(7716|7717)", source: "Proto-Carbuncle" }
-515.3 "Venom Rain/Venom Pool" Ability { id: "(7718|771A)", source: "Proto-Carbuncle" }
+511.4 "Venom Squall/Venom Surge" Ability { id: ["7716", "7717"], source: "Proto-Carbuncle" }
+515.3 "Venom Rain/Venom Pool" Ability { id: ["7718", "771A"], source: "Proto-Carbuncle" }
 521.3 "Venom Drops" Ability { id: "7719", source: "Proto-Carbuncle" }
-524.3 "Venom Pool/Venom Rain" Ability { id: "(771A|7718)", source: "Proto-Carbuncle" }
+524.3 "Venom Pool/Venom Rain" Ability { id: ["771A", "7718"], source: "Proto-Carbuncle" }
 
-530.7 "Claw to Tail/Tail to Claw" Ability { id: "(770E|7712)", source: "Proto-Carbuncle" }
+530.7 "Claw to Tail/Tail to Claw" Ability { id: ["770E", "7712"], source: "Proto-Carbuncle" }
 544.1 "Venomous Mass" Ability { id: "771D", source: "Proto-Carbuncle" }
 551.2 "Toxic Crunch" Ability { id: "784A", source: "Proto-Carbuncle" }
 

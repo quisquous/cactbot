@@ -32,11 +32,11 @@ hideall "--sync--"
 190 "Hyperdrive" Ability { id: "292E", source: "Kefka" }
 
 204 "Graven Image" Ability { id: "2925", source: "Kefka" }
-210 "Half Arena" Ability { id: "(292A|2929)", source: "Graven Image" }
+210 "Half Arena" Ability { id: ["292A", "2929"], source: "Graven Image" }
 218 "Ultima Upsurge" Ability { id: "292D", source: "Kefka" }
 
 228 "Graven Image" Ability { id: "2925", source: "Kefka" }
-234 "Half Arena" Ability { id: "(292A|2929)", source: "Graven Image" }
+234 "Half Arena" Ability { id: ["292A", "2929"], source: "Graven Image" }
 240 "Flagrant Fire" Ability { id: "291F", source: "Kefka" }
 242 "Thrumming Thunder" Ability { id: "291(B|D)", source: "Kefka" }
 248 "Timely Teleport" Ability { id: "2922", source: "Kefka" }

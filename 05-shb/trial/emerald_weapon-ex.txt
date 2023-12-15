@@ -69,7 +69,7 @@ hideall "--sync--"
 1162.4 "Tertius Terminus Est" Ability { id: "55CC", source: "The Emerald Weapon" }
 1168.1 "Split" Ability { id: "55(CF|D3)", source: "The Emerald Weapon" }
 1174.3 "Expire / Sidescathe" Ability { id: "55D[145]", source: "The Emerald Weapon" }
-1183.3 "Aire Tam Storm / Emerald Crusher" Ability { id: "(55D0|5585)", source: "The Emerald Weapon" }
+1183.3 "Aire Tam Storm / Emerald Crusher" Ability { id: ["55D0", "5585"], source: "The Emerald Weapon" }
 1186.7 "Tertius Terminus Est 1" #Ability { id: "55CE", source: "The Emerald Weapon" }
 1187.9 "Tertius Terminus Est 2" #Ability { id: "55CE", source: "The Emerald Weapon" }
 1189.0 "Tertius Terminus Est 3" #Ability { id: "55CE", source: "The Emerald Weapon" }
@@ -91,7 +91,7 @@ hideall "--sync--"
 1286.5 "Tertius Terminus Est" Ability { id: "55CC", source: "The Emerald Weapon" }
 1292.7 "Split" Ability { id: "55(CF|D3)", source: "The Emerald Weapon" }
 1298.5 "Sidescathe / Expire" Ability { id: "55D[145]", source: "The Emerald Weapon" }
-1307.5 "Emerald Crusher / Aire Tam Storm" Ability { id: "(55D0|5585)", source: "The Emerald Weapon" }
+1307.5 "Emerald Crusher / Aire Tam Storm" Ability { id: ["55D0", "5585"], source: "The Emerald Weapon" }
 1310.4 "Tertius Terminus Est 1" #Ability { id: "55CE", source: "The Emerald Weapon" }
 1311.6 "Tertius Terminus Est 2" #Ability { id: "55CE", source: "The Emerald Weapon" }
 1312.8 "Tertius Terminus Est 3" #Ability { id: "55CE", source: "The Emerald Weapon" }

@@ -35,8 +35,8 @@ hideall "--sync--"
 47.7 "Director's Belone" Ability { id: "69E6", source: "Hesperos" }
 48.5 "--debuffs--" Ability { id: "69E7", source: "Hesperos" }
 63.9 "Inversive Chlamys" Ability { id: "69ED", source: "Hesperos" }
-64.1 "Cursed Casting" Ability { id: "(69E8|69E9)", source: "Hesperos" }
-64.7 "Inversive Chlamys" Ability { id: "(69EE|69EF)", source: "Hesperos" }
+64.1 "Cursed Casting" Ability { id: ["69E8", "69E9"], source: "Hesperos" }
+64.7 "Inversive Chlamys" Ability { id: ["69EE", "69EF"], source: "Hesperos" }
 73.1 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 82.3 "Elegant Evisceration 1" Ability { id: "6A08", source: "Hesperos" }
 85.5 "Elegant Evisceration 2" Ability { id: "6819", source: "Hesperos" }
@@ -45,13 +45,13 @@ hideall "--sync--"
 # Scene 1
 100.7 "Setting the Scene" Ability { id: "69CB", source: "Hesperos" }
 113.8 "Pinax" Ability { id: "69CF", source: "Hesperos" }
-123.9 "Well Pinax/Levinstrike Pinax" Ability { id: "(69D6|69D7)", source: "Hesperos" }
-126.8 "Acid Pinax/Lava Pinax" Ability { id: "(69D4|69D5)", source: "Hesperos" }
+123.9 "Well Pinax/Levinstrike Pinax" Ability { id: ["69D6", "69D7"], source: "Hesperos" }
+126.8 "Acid Pinax/Lava Pinax" Ability { id: ["69D4", "69D5"], source: "Hesperos" }
 128.9 "--middle--" Ability { id: "69CE", source: "Hesperos" }
-136.8 "Levinstrike Pinax/Well Pinax" Ability { id: "(69D7|69D6)", source: "Hesperos" }
-138.4 "Directional Shift" Ability { id: "(69FD|69FE|69FF|6A00|6A02|6A03|6A04|6A05)", source: "Hesperos" }
-140.1 "Shifting Strike" Ability { id: "(6A01|6A06)", source: "Hesperos" }
-147.7 "Lava Pinax/Acid Pinax" Ability { id: "(69D5|69D4)", source: "Hesperos" }
+136.8 "Levinstrike Pinax/Well Pinax" Ability { id: ["69D7", "69D6"], source: "Hesperos" }
+138.4 "Directional Shift" Ability { id: ["69FD", "69FE", "69FF", "6A00", "6A02", "6A03", "6A04", "6A05"], source: "Hesperos" }
+140.1 "Shifting Strike" Ability { id: ["6A01", "6A06"], source: "Hesperos" }
+147.7 "Lava Pinax/Acid Pinax" Ability { id: ["69D5", "69D4"], source: "Hesperos" }
 156.5 "Elegant Evisceration 1" Ability { id: "6A08", source: "Hesperos" }
 159.7 "Elegant Evisceration 2" Ability { id: "6819", source: "Hesperos" }
 
@@ -66,26 +66,26 @@ hideall "--sync--"
 207.5 "Bloodrake" Ability { id: "69D8", source: "Hesperos" }
 216.7 "Belone Bursts" Ability { id: "69D9", source: "Hesperos" }
 230.8 "Periaktoi" Ability { id: "69F4", source: "Hesperos" }
-230.8 "Acid Pinax" #Ability { id: "(69F5|69F9)", source: "Hesperos" }
-230.8 "Well Pinax" #Ability { id: "(69F7|69FB)", source: "Hesperos" }
-230.8 "Lava Pinax" #Ability { id: "(69F6|69FA)", source: "Hesperos" }
-230.8 "Levinstrike Pinax" #Ability { id: "(69F8|69FC)", source: "Hesperos" }
+230.8 "Acid Pinax" #Ability { id: ["69F5", "69F9"], source: "Hesperos" }
+230.8 "Well Pinax" #Ability { id: ["69F7", "69FB"], source: "Hesperos" }
+230.8 "Lava Pinax" #Ability { id: ["69F6", "69FA"], source: "Hesperos" }
+230.8 "Levinstrike Pinax" #Ability { id: ["69F8", "69FC"], source: "Hesperos" }
 
 # Towers
 243.0 "Bloodrake" Ability { id: "69D8", source: "Hesperos" }
 250.1 "Belone Coils" Ability { id: "69DD", source: "Hesperos" }
 260.3 "Inversive Chlamys" Ability { id: "69ED", source: "Hesperos" }
-260.9 "Burst" Ability { id: "(69DE|69DF|69E0|69E1)", source: "Hesperos" }
+260.9 "Burst" Ability { id: ["69DE", "69DF", "69E0", "69E1"], source: "Hesperos" }
 261.1 "Inversive Chlamys" #Ability { id: "6F15", source: "Hesperos" }
 267.4 "Aetheric Chlamys" Ability { id: "69EC", source: "Hesperos" }
 275.6 "Bloodrake" Ability { id: "69D8", source: "Hesperos" }
 283.7 "Belone Coils" Ability { id: "69DD", source: "Hesperos" }
-294.5 "Burst" Ability { id: "(69DE|69DF|69E0|69E1)", source: "Hesperos" }
+294.5 "Burst" Ability { id: ["69DE", "69DF", "69E0", "69E1"], source: "Hesperos" }
 297.9 "Director's Belone" Ability { id: "69E6", source: "Hesperos" }
 298.7 "--debuffs--" Ability { id: "69E7", source: "Hesperos" }
 314.1 "Inversive Chlamys" Ability { id: "69ED", source: "Hesperos" }
-314.3 "Cursed Casting" #Ability { id: "(69E8|69E9)", source: "Hesperos" }
-314.9 "Inversive Chlamys" Ability { id: "(69EE|69EF)", source: "Hesperos" }
+314.3 "Cursed Casting" #Ability { id: ["69E8", "69E9"], source: "Hesperos" }
+314.9 "Inversive Chlamys" Ability { id: ["69EE", "69EF"], source: "Hesperos" }
 323.3 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 332.5 "Elegant Evisceration 1" Ability { id: "6A08", source: "Hesperos" }
 335.7 "Elegant Evisceration 2" Ability { id: "6819", source: "Hesperos" }
@@ -94,13 +94,13 @@ hideall "--sync--"
 # Scene 3
 350.9 "Setting the Scene" Ability { id: "69CB", source: "Hesperos" }
 364.1 "Pinax" Ability { id: "69CF", source: "Hesperos" }
-374.2 "Well Pinax/Levinstrike Pinax" Ability { id: "(69D6|69D7)", source: "Hesperos" }
-377.1 "Acid Pinax/Lava Pinax" Ability { id: "(69D4|69D5)", source: "Hesperos" }
+374.2 "Well Pinax/Levinstrike Pinax" Ability { id: ["69D6", "69D7"], source: "Hesperos" }
+377.1 "Acid Pinax/Lava Pinax" Ability { id: ["69D4", "69D5"], source: "Hesperos" }
 379.2 "--middle--" Ability { id: "69CE", source: "Hesperos" }
-387.1 "Levinstrike Pinax/Well Pinax" Ability { id: "(69D7|69D6)", source: "Hesperos" }
-389.1 "Directional Shift" Ability { id: "(69FD|69FE|69FF|6A00|6A02|6A03|6A04|6A05)", source: "Hesperos" }
-390.6 "Shifting Strike" Ability { id: "(6A01|6A06)", source: "Hesperos" }
-398.1 "Lava Pinax/Acid Pinax" Ability { id: "(69D5|69D4)", source: "Hesperos" }
+387.1 "Levinstrike Pinax/Well Pinax" Ability { id: ["69D7", "69D6"], source: "Hesperos" }
+389.1 "Directional Shift" Ability { id: ["69FD", "69FE", "69FF", "6A00", "6A02", "6A03", "6A04", "6A05"], source: "Hesperos" }
+390.6 "Shifting Strike" Ability { id: ["6A01", "6A06"], source: "Hesperos" }
+398.1 "Lava Pinax/Acid Pinax" Ability { id: ["69D5", "69D4"], source: "Hesperos" }
 403.2 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 412.4 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 421.6 "Decollation" Ability { id: "6A09", source: "Hesperos" }
@@ -130,7 +130,7 @@ hideall "--sync--"
 1057.7 "Hemitheos's Fire IV" Ability { id: "6A0D", source: "Hesperos" }
 1060.7 "Hemitheos's Thunder III" Ability { id: "6A0E", source: "Hesperos" }
 1063.7 "Hemitheos's Fire IV" Ability { id: "6A0D", source: "Hesperos" }
-1070.9 "Nearsight/Farsight" Ability { id: "(6A28|6DDB)", source: "Hesperos" }
+1070.9 "Nearsight/Farsight" Ability { id: ["6A28", "6DDB"], source: "Hesperos" }
 
 # Act 2 - Thorns 2 with Red/Purple/Green Colors
 1083.0 "Akanthai: Act 2" Ability { id: "6EB4", source: "Hesperos" }
@@ -138,10 +138,10 @@ hideall "--sync--"
 1102.4 "Wreath of Thorns 2" Ability { id: "6A30", source: "Hesperos" }
 1110.4 "Hemitheos's Dark IV" #Ability { id: "6A16", source: "Hesperos" }
 1113.7 "Dark Design" Ability { id: "6A2A", source: "Hesperos" }
-1115.5 "Hemitheos's Fire IV" Ability { id: "(6A0D|6A0E)", source: "Hesperos" }
+1115.5 "Hemitheos's Fire IV" Ability { id: ["6A0D", "6A0E"], source: "Hesperos" }
 1115.5 "Hemitheos's Thunder III x2" #Ability { id: "6A0E", source: "Hesperos" }
 1115.9 "Hemitheos's Fire III x2" #Ability { id: "6A18", source: "Hesperos" }
-1122.5 "Hemitheos's Thunder III x2" Ability { id: "(6A0D|6A0E)", source: "Hesperos" }
+1122.5 "Hemitheos's Thunder III x2" Ability { id: ["6A0D", "6A0E"], source: "Hesperos" }
 1122.5 "Hemitheos's Fire IV" #Ability { id: "6A0D", source: "Hesperos" }
 1123.2 "Hemitheos's Fire III x2" #Ability { id: "6A18", source: "Hesperos" }
 1124.2 "Hemitheos's Aero III" #Ability { id: "6A1B", source: "Hesperos" }
@@ -157,7 +157,7 @@ hideall "--sync--"
 1173.5 "Kothornos Kick 2" Ability { id: "6A23", source: "Hesperos" }
 1174.2 "Hemitheos's Thunder III 2" Ability { id: "6A0E", source: "Hesperos" }
 1177.5 "Kothornos Quake 2" Ability { id: "6A24", source: "Hesperos" }
-1187.7 "Nearsight/Farsight" Ability { id: "(6A28|6DDB)", source: "Hesperos" }
+1187.7 "Nearsight/Farsight" Ability { id: ["6A28", "6DDB"], source: "Hesperos" }
 1201.8 "Heart Stake" Ability { id: "6A2B", source: "Hesperos" }
 1205.0 "Heart Stake OT" Ability { id: "6E77", source: "Hesperos" }
 
@@ -177,7 +177,7 @@ hideall "--sync--"
 1327.3 "Hemitheos's Aero III" Ability { id: "6A1B", source: "Hesperos" }
 1336.0 "Wreath of Thorns 6" Ability { id: "6A35", source: "Hesperos" }
 1339.1 "Hemitheos's Thunder III x8" #Ability { id: "6A0E", source: "Hesperos" } duration 8.4
-1353.3 "Nearsight/Farsight" Ability { id: "(6A28|6DDB)", source: "Hesperos" }
+1353.3 "Nearsight/Farsight" Ability { id: ["6A28", "6DDB"], source: "Hesperos" }
 1365.4 "Searing Stream" Ability { id: "6A2D", source: "Hesperos" }
 1374.5 "Demigod Double" Ability { id: "6E78", source: "Hesperos" }
 

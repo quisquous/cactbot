@@ -18,10 +18,10 @@ hideall "--sync--"
 36.0 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
 38.9 "Magitek Ray" Ability { id: "4AD2", source: "Ruby Bit" }
 44.6 "Helicoclaw" Ability { id: "4A99", source: "The Ruby Weapon" }
-45.3 "Spike Of Flame" Ability { id: "(4D04|4AD3)", source: "The Ruby Weapon" }
+45.3 "Spike Of Flame" Ability { id: ["4D04", "4AD3"], source: "The Ruby Weapon" }
 46.7 "Magitek Ray" Ability { id: "4AD2", source: "Ruby Bit" }
 52.7 "Helicoclaw" Ability { id: "4A99", source: "The Ruby Weapon" }
-53.4 "Spike Of Flame" Ability { id: "(4D04|4AD3)", source: "The Ruby Weapon" }
+53.4 "Spike Of Flame" Ability { id: ["4D04", "4AD3"], source: "The Ruby Weapon" }
 54.5 "Magitek Ray" Ability { id: "4AD2", source: "Ruby Bit" }
 62.4 "Magitek Ray" Ability { id: "4AD2", source: "Ruby Bit" }
 72.6 "Stamp" Ability { id: "4B03", source: "The Ruby Weapon" }
@@ -29,7 +29,7 @@ hideall "--sync--"
 80.2 "Ruby Sphere" Ability { id: "4AC9", source: "The Ruby Weapon" }
 86.3 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
 95.9 "Ravensclaw" Ability { id: "4ACC", source: "The Ruby Weapon" }
-102.0 "Liquefaction?/Undermine?" Ability { id: "(4ACF|4AD0)", source: "The Ruby Weapon" }
+102.0 "Liquefaction?/Undermine?" Ability { id: ["4ACF", "4AD0"], source: "The Ruby Weapon" }
 105.2 "Ruby Sphere 1" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 108.2 "Ruby Sphere 2" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 111.2 "Ruby Sphere 3" #Ability { id: "4ACA", source: "The Ruby Weapon" }
@@ -57,7 +57,7 @@ hideall "--sync--"
 261.8 "Ruby Sphere" Ability { id: "4AC9", source: "The Ruby Weapon" }
 267.9 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
 277.5 "Ravensclaw" Ability { id: "4ACC", source: "The Ruby Weapon" }
-283.6 "Undermine?/Liquefaction?" Ability { id: "(4ACF|4AD0)", source: "The Ruby Weapon" }
+283.6 "Undermine?/Liquefaction?" Ability { id: ["4ACF", "4AD0"], source: "The Ruby Weapon" }
 286.9 "Ruby Sphere 1" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 289.9 "Ruby Sphere 2" #Ability { id: "4ACA", source: "The Ruby Weapon" }
 292.9 "Ruby Sphere 3" #Ability { id: "4ACA", source: "The Ruby Weapon" }

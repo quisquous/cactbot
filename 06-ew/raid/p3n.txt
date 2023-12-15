@@ -11,11 +11,11 @@ hideall "--sync--"
 # -p 66AD:118 66A3: 200
 
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
-9.1 "--sync--" StartsUsing { id: "(6696|6698)", source: "Phoinix" } window 9.1,5
-13.8 "Experimental Fireplume" Ability { id: "(6696|6698)", source: "Phoinix" } window 13.8,5
-19.0 "--giant fireplume?--" #Ability { id: "(6697|6699)", source: "Phoinix" }
-31.0 "Experimental Fireplume" Ability { id: "(6696|6698)", source: "Phoinix" }
-37.1 "--giant fireplume?--" #Ability { id: "(6697|6699)", source: "Phoinix" }
+9.1 "--sync--" StartsUsing { id: ["6696", "6698"], source: "Phoinix" } window 9.1,5
+13.8 "Experimental Fireplume" Ability { id: ["6696", "6698"], source: "Phoinix" } window 13.8,5
+19.0 "--giant fireplume?--" #Ability { id: ["6697", "6699"], source: "Phoinix" }
+31.0 "Experimental Fireplume" Ability { id: ["6696", "6698"], source: "Phoinix" }
+37.1 "--giant fireplume?--" #Ability { id: ["6697", "6699"], source: "Phoinix" }
 49.2 "Scorched Exaltation" Ability { id: "66B8", source: "Phoinix" }
 61.4 "Heat of Condemnation" Ability { id: "66B2", source: "Phoinix" } window 61.4,10
 75.6 "Darkened Fire" Ability { id: "6EDA", source: "Phoinix" }
@@ -24,7 +24,7 @@ hideall "--sync--"
 87.2 "Brightened Fire #2" #Ability { id: "6EDD", source: "Phoinix" }
 88.4 "Brightened Fire #3" #Ability { id: "6EDD", source: "Phoinix" }
 89.5 "Brightened Fire #4" #Ability { id: "6EDD", source: "Phoinix" }
-105.6 "Left Cinderwing/Right Cinderwing" Ability { id: "(66B4|66B5)", source: "Phoinix" }
+105.6 "Left Cinderwing/Right Cinderwing" Ability { id: ["66B4", "66B5"], source: "Phoinix" }
 
 # There might be an enrage here? More data will be needed.
 110.7 "--untargetable--"
@@ -48,7 +48,7 @@ hideall "--sync--"
 206.2 "Joint Pyre" Ability { id: "66A5", source: "Sparkfledged" }
 209.1 "--sync--" Ability { id: "66AC", source: "Phoinix" }
 221.2 "Dead Rebirth" Ability { id: "66A9", source: "Phoinix" } window 221.2,60
-231.4 "Left Cinderwing/Right Cinderwing" Ability { id: "(66B4|66B5)", source: "Phoinix" }
+231.4 "Left Cinderwing/Right Cinderwing" Ability { id: ["66B4", "66B5"], source: "Phoinix" }
 239.6 "Fledgling Flight" Ability { id: "66AA", source: "Phoinix" }
 253.8 "Ashen Eye #1" #Ability { id: "66AB", source: "Sparkfledged" }
 255.7 "Ashen Eye #2" #Ability { id: "66AB", source: "Sparkfledged" }
@@ -66,8 +66,8 @@ hideall "--sync--"
 316.8 "Scorched Exaltation" Ability { id: "66B8", source: "Phoinix" }
 326.0 "Experimental Charplume" Ability { id: "669C", source: "Phoinix" }
 331.1 "Charplume" Ability { id: "669D", source: "Phoinix" }
-335.1 "Experimental Fireplume" Ability { id: "(6696|6698)", source: "Phoinix" } window 30,30
-341.2 "--giant fireplume?--" #Ability { id: "(6697|6699)", source: "Phoinix" }
+335.1 "Experimental Fireplume" Ability { id: ["6696", "6698"], source: "Phoinix" } window 30,30
+341.2 "--giant fireplume?--" #Ability { id: ["6697", "6699"], source: "Phoinix" }
 349.2 "--untargetable--"
 356.5 "Trail of Condemnation" Ability { id: "66AD", source: "Phoinix" }
 361.2 "--targetable--"
@@ -79,8 +79,8 @@ hideall "--sync--"
 394.3 "Ashen Eye #2" #Ability { id: "66AB", source: "Sparkfledged" }
 396.3 "Ashen Eye #3" #Ability { id: "66AB", source: "Sparkfledged" }
 398.3 "Ashen Eye #4" #Ability { id: "66AB", source: "Sparkfledged" }
-399.7 "Experimental Fireplume" Ability { id: "(6696|6698)", source: "Phoinix" }
-405.8 "--giant fireplume?--" #Ability { id: "(6697|6699)", source: "Phoinix" }
+399.7 "Experimental Fireplume" Ability { id: ["6696", "6698"], source: "Phoinix" }
+405.8 "--giant fireplume?--" #Ability { id: ["6697", "6699"], source: "Phoinix" }
 405.9 "--sync--" Ability { id: "66AC", source: "Phoinix" }
 417.0 "--sync--" Ability { id: "66B6", source: "Phoinix" }
 420.1 "Searing Breeze x3" #Ability { id: "66B7", source: "Phoinix" }
@@ -92,12 +92,12 @@ hideall "--sync--"
 445.2 "Brightened Fire #2" #Ability { id: "6EDD", source: "Phoinix" }
 446.3 "Brightened Fire #3" #Ability { id: "6EDD", source: "Phoinix" }
 447.5 "Brightened Fire #4" #Ability { id: "6EDD", source: "Phoinix" }
-463.6 "Left Cinderwing/Right Cinderwing" Ability { id: "(66B4|66B5)", source: "Phoinix" } window 30,30
+463.6 "Left Cinderwing/Right Cinderwing" Ability { id: ["66B4", "66B5"], source: "Phoinix" } window 30,30
 474.7 "Scorched Exaltation" Ability { id: "66B8", source: "Phoinix" }
 484.9 "Experimental Charplume" Ability { id: "669C", source: "Phoinix" }
 490.0 "Charplume" Ability { id: "669D", source: "Phoinix" }
-494.0 "Experimental Fireplume" Ability { id: "(6696|6698)", source: "Phoinix" } window 30,30
-500.1 "--giant fireplume?--" #Ability { id: "(6697|6699)", source: "Phoinix" }
+494.0 "Experimental Fireplume" Ability { id: ["6696", "6698"], source: "Phoinix" } window 30,30
+500.1 "--giant fireplume?--" #Ability { id: ["6697", "6699"], source: "Phoinix" }
 508.1 "--untargetable--"
 515.4 "Trail of Condemnation" Ability { id: "66AD", source: "Phoinix" }
 518.9 "Flare of Condemnation" Ability { id: "66B0", source: "Phoinix" }

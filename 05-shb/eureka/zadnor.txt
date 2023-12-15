@@ -113,8 +113,8 @@ hideall "--sync--"
 21398.3 "Phenex" Ability { id: "5E85", source: "Sartauvoir The Inferno" }
 21408.6 "Time Eruption/Reverse Time Eruption" Ability { id: "5E8[34]", source: "Sartauvoir The Inferno" }
 21411.6 "Flamedive" Ability { id: "5E73", source: "Huma" }
-21415.9 "Time Eruption 1" Ability { id: "(5E6E|5E71)", source: "Sartauvoir The Inferno" }
-21417.9 "Time Eruption 2" Ability { id: "(5E6F|5E70)", source: "Sartauvoir The Inferno" }
+21415.9 "Time Eruption 1" Ability { id: ["5E6E", "5E71"], source: "Sartauvoir The Inferno" }
+21417.9 "Time Eruption 2" Ability { id: ["5E6F", "5E70"], source: "Sartauvoir The Inferno" }
 21425.9 "Pyrokinesis" Ability { id: "5E82", source: "Sartauvoir The Inferno" }
 21437.3 "Hyperpyroplexy" Ability { id: "5E86", source: "Sartauvoir The Inferno" }
 # ???
@@ -241,13 +241,13 @@ hideall "--sync--"
 24022.9 "High-Powered Magitek Ray" Ability { id: "5DC5", source: "Saunion" }
 24034.1 "Magitek Crossray/Magitek Halo" Ability { id: "5DB[57]", source: "Saunion" }
 24040.3 "--sync--" Ability { id: "5DD7", source: "Saunion" }
-24050.5 "Mobile Halo/Mobile Crossray" Ability { id: "(5DB[9ABCDEF]|5DC0)", source: "Saunion" }
+24050.5 "Mobile Halo/Mobile Crossray" Ability { id: ["5DB[9ABCDEF]", "5DC0"], source: "Saunion" }
 24063.7 "Missile Command" Ability { id: "5DC1", source: "Saunion" }
 24069.9 "Surface Missile" Ability { id: "5DC4", source: "Saunion" }
 24069.9 "Anti-Personnel Missile" Ability { id: "5DC2", source: "Saunion" }
 24074.9 "Missile Salvo" Ability { id: "5DC3", source: "Saunion" }
 24078.9 "--sync--" Ability { id: "5DD7", source: "Saunion" }
-24089.0 "Mobile Crossray/Mobile Halo" Ability { id: "(5DB[9ABCDEF]|5DC0)", source: "Saunion" }
+24089.0 "Mobile Crossray/Mobile Halo" Ability { id: ["5DB[9ABCDEF]", "5DC0"], source: "Saunion" }
 24099.8 "--sync--" Ability { id: "5DD7", source: "Saunion" }
 # ?
 
@@ -256,7 +256,7 @@ hideall "--sync--"
 24323.3 "--targetable--"
 24342.5 "--sync--" Ability { id: "5DD7", source: "Saunion" }
 24348.5 "Wildfire Winds" Ability { id: "5DCD", source: "Dawon The Younger" }
-24352.5 "Mobile Halo/Mobile Crossray" Ability { id: "(5DB[9ABCDEF]|5DC0)", source: "Saunion" }
+24352.5 "Mobile Halo/Mobile Crossray" Ability { id: ["5DB[9ABCDEF]", "5DC0"], source: "Saunion" }
 24361.2 "Raw Heat" Ability { id: "5DCE", source: "Vermilion Flame" }
 24362.7 "Missile Command" Ability { id: "5DC1", source: "Saunion" }
 24368.9 "Surface Missile" Ability { id: "5DC4", source: "Saunion" }
@@ -299,7 +299,7 @@ hideall "--sync--"
 24530.1 "--targetable--"
 24549.9 "--sync--" Ability { id: "5DD7", source: "Saunion" }
 24555.8 "Wildfire Winds" Ability { id: "5DCD", source: "Dawon The Younger" }
-24559.9 "Mobile Crossray/Mobile Halo" Ability { id: "(5DB[9ABCDEF]|5DC0)", source: "Saunion" }
+24559.9 "Mobile Crossray/Mobile Halo" Ability { id: ["5DB[9ABCDEF]", "5DC0"], source: "Saunion" }
 24568.6 "Raw Heat" Ability { id: "5DCE", source: "Vermilion Flame" }
 24570.1 "Missile Command" Ability { id: "5DC1", source: "Saunion" }
 24576.3 "Surface Missile" Ability { id: "5DC4", source: "Saunion" }

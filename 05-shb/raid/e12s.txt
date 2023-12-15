@@ -18,9 +18,9 @@ hideall "--sync--"
 25.8 "Initialize Recall" Ability { id: "588C", source: "Eden's Promise" }
 32.4 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
 40.1 "Rapturous Reach" Ability { id: "58A[DE]", source: "Eden's Promise" }
-43.6 "Frigid Stone/Under The Weight" Ability { id: "(589E|58A6)", source: "Eden's Promise" }
+43.6 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
 53.3 "Cast" Ability { id: "4E43", source: "Eden's Promise" }
-56.8 "Frigid Stone/Under The Weight" Ability { id: "(589E|58A6)", source: "Eden's Promise" }
+56.8 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
 57.5 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
 68.7 "Formless Judgment" Ability { id: "58A9", source: "Eden's Promise" }
 #69.0 "Formless Judgment" Ability { id: "58AC", source: "Eden's Promise" }
@@ -94,13 +94,13 @@ hideall "--sync--"
 418.2 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
 424.3 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
 434.0 "Cast" Ability { id: "4E43", source: "Eden's Promise" }
-437.5 "Frigid Stone/Under The Weight" Ability { id: "(589E|58A6)", source: "Eden's Promise" }
+437.5 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
 438.2 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
 445.8 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
 453.0 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
 462.7 "Release" Ability { id: "5893", source: "Eden's Promise" }
-466.2 "Frigid Stone/Under The Weight" Ability { id: "(589E|58A6)", source: "Eden's Promise" }
+466.2 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
 466.9 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
 
 478.1 "Formless Judgment" Ability { id: "58A9", source: "Eden's Promise" }

@@ -38,7 +38,7 @@ hideall "--sync--"
 86.2 "Faith Unmoving" Ability { id: "62DC", source: "Ser Grinnaux" }
 88.2 "Heavensflame" Ability { id: "62DE", source: "Ser Charibert" }
 102.2 "Holiest of Holy" Ability { id: "62D4", source: "Ser Adelphel" }
-104.2 "Empty Dimension/Full Dimension" Ability { id: "(62DA|62DB)", source: "Ser Grinnaux" }
+104.2 "Empty Dimension/Full Dimension" Ability { id: ["62DA", "62DB"], source: "Ser Grinnaux" }
 122.2 "Holiest of Holy" Ability { id: "62D4", source: "Ser Adelphel" }
 # "soft" enrage
 127.4 "The Bull's Steel" Ability { id: "62CD", source: "Ser Grinnaux" }
@@ -159,13 +159,13 @@ hideall "--sync--"
 1002.3 "Final Chorus" Ability { id: "6709", source: "Nidhogg" }
 1020.5 "Dive from Grace" Ability { id: "670D", source: "Nidhogg" }
 1030.2 "Lash and Gnash/Gnash and Lash" Ability { id: "671[23]", source: "Nidhogg" }
-1030.4 "Tower 1" Ability { id: "(670E|670F|6710)", source: "Nidhogg" }
+1030.4 "Tower 1" Ability { id: ["670E", "670F", "6710"], source: "Nidhogg" }
 1030.5 "Eye of the Tyrant" Ability { id: "6714", source: "Nidhogg" }
 1036.9 "Darkdragon Dive" Ability { id: "671[1789B]", source: "Nidhogg" }
-1040.3 "Tower 2" Ability { id: "(670E|670F|6710)", source: "Nidhogg" }
+1040.3 "Tower 2" Ability { id: ["670E", "670F", "6710"], source: "Nidhogg" }
 1044.0 "Geirskogul" Ability { id: "670A", source: "Nidhogg" }
 1046.9 "Darkdragon Dive" Ability { id: "671[1789B]", source: "Nidhogg" }
-1051.3 "Tower 3" Ability { id: "(670E|670F|6710)", source: "Nidhogg" }
+1051.3 "Tower 3" Ability { id: ["670E", "670F", "6710"], source: "Nidhogg" }
 1051.7 "Lash and Gnash/Gnash and Lash" Ability { id: "671[23]", source: "Nidhogg" }
 1052.0 "Eye of the Tyrant" Ability { id: "6714", source: "Nidhogg" }
 1054.0 "Geirskogul" Ability { id: "670A", source: "Nidhogg" }
@@ -317,7 +317,7 @@ hideall "--sync--"
 3554.3 "Akh Afah" Ability { id: "6D42", source: "Hraesvelgr" }
 3558.3 "--untargetable--"
 3559.5 "--targetable--"
-3567.4 "Hallowed Wings" Ability { id: "(6D23|6D24|6D26|6D27)", source: "Hraesvelgr" }
+3567.4 "Hallowed Wings" Ability { id: ["6D23", "6D24", "6D26", "6D27"], source: "Hraesvelgr" }
 3568.2 "Hallowed Plume" #Ability { id: "6D29", source: "Hraesvelgr" }
 3568.5 "Cauterize" Ability { id: "6D3E", source: "Nidhogg" }
 3568.8 "--untargetable--"
@@ -333,15 +333,15 @@ hideall "--sync--"
 3596.5 "Akh Morn 3" #Ability { id: "6D47", source: "Nidhogg" }
 3598.1 "Akh Morn 4" #Ability { id: "6D47", source: "Nidhogg" }
 3599.1 "--targetable--"
-3605.2 "Hot Tail/Hot Wing" Ability { id: "(6D2D|6D2B)", source: "Nidhogg" }
+3605.2 "Hot Tail/Hot Wing" Ability { id: ["6D2D", "6D2B"], source: "Nidhogg" }
 3607.2 "Spreading Flames" #Ability { id: "742B", source: "Nidhogg" }
 3607.2 "Entangled Flames" #Ability { id: "742C", source: "Nidhogg" }
 3607.2 "Spreading Flames" #Ability { id: "742B", source: "Nidhogg" }
 3607.2 "Entangled Flames" #Ability { id: "742C", source: "Nidhogg" }
 3611.1 "Mortal Vow" Ability { id: "6D31", source: "Nidhogg" }
 3623.4 "Akh Afah" Ability { id: "6D42", source: "Hraesvelgr" }
-3635.4 "Hallowed Wings" Ability { id: "(6D23|6D24|6D26|6D27)", source: "Hraesvelgr" }
-3635.4 "Hot Tail/Hot Wing" #Ability { id: "(6D2D|6D2B)", source: "Nidhogg" }
+3635.4 "Hallowed Wings" Ability { id: ["6D23", "6D24", "6D26", "6D27"], source: "Hraesvelgr" }
+3635.4 "Hot Tail/Hot Wing" #Ability { id: ["6D2D", "6D2B"], source: "Nidhogg" }
 3635.5 "Hallowed Plume" #Ability { id: "6D29", source: "Hraesvelgr" }
 3645.1 "Mortal Vow" Ability { id: "6D31", source: "Nidhogg" }
 3655.1 "Great Wyrmsbreath" Ability { id: "6D35", source: "Hraesvelgr" }
@@ -413,61 +413,61 @@ hideall "--sync--"
 4024.8 "--targetable--"
 4035.1 "--sync--" Ability { id: "6D9B", source: "Dragon-king Thordan" }
 4036.0 "Exaflare's Edge" duration 9.3 #Ability { id: "6D9C", source: "Dragon-king Thordan" }
-4036.2 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: ["Nidhogg", "Dragon-king Thordan"] }
+4036.2 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: ["Nidhogg", "Dragon-king Thordan"] }
 4043.2 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4044.3 "Trinity 1" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4044.3 "Trinity 1" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4047.3 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4048.4 "Trinity 2" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4048.4 "Trinity 2" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4056.3 "--sync--" Ability { id: "6D93", source: "Dragon-king Thordan" }
-4057.0 "Akh Morn's Edge x5" duration 5.5 #Ability { id: "(730C|730D|730E)", source: "Dragon-king Thordan" }
-4057.1 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4057.0 "Akh Morn's Edge x5" duration 5.5 #Ability { id: ["730C", "730D", "730E"], source: "Dragon-king Thordan" }
+4057.1 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4067.8 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4068.9 "Trinity 3" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4068.9 "Trinity 3" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4071.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4073.0 "Trinity 4" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4073.0 "Trinity 4" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4082.9 "--sync--" Ability { id: "6D99", source: "Dragon-king Thordan" }
 4083.9 "Gigaflare's Edge x3" duration 7.9 #Ability { id: "6D9A", source: "Dragon-king Thordan" }
-4084.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4084.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4100.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4102.0 "Trinity 5" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4102.0 "Trinity 5" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4104.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4106.0 "Trinity 6" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4106.0 "Trinity 6" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4113.9 "--sync--" Ability { id: "6D9B", source: "Dragon-king Thordan" }
 4114.8 "Exaflare's Edge" duration 9.3 #Ability { id: "6D9C", source: "Dragon-king Thordan" }
-4115.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4115.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4121.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4122.9 "Trinity 1" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4122.9 "Trinity 1" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4125.8 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4126.9 "Trinity 2" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4126.9 "Trinity 2" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4134.9 "--sync--" Ability { id: "6D93", source: "Dragon-king Thordan" }
-4135.6 "Akh Morn's Edge x6" duration 6.6 #Ability { id: "(730C|730D|730E)", source: "Dragon-king Thordan" }
-4135.7 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4135.6 "Akh Morn's Edge x6" duration 6.6 #Ability { id: ["730C", "730D", "730E"], source: "Dragon-king Thordan" }
+4135.7 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4147.5 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4148.6 "Trinity 3" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4148.6 "Trinity 3" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4151.6 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4152.7 "Trinity 4" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4152.7 "Trinity 4" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4162.6 "Gigaflare's Edge x3" Ability { id: "6D99", source: "Dragon-king Thordan" } duration 7.9
-4163.7 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4163.7 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4180.8 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4181.9 "Trinity 5" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4181.9 "Trinity 5" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4184.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4186.0 "Trinity 6" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4186.0 "Trinity 6" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4193.9 "--sync--" Ability { id: "6D9B", source: "Dragon-king Thordan" }
 4194.8 "Exaflare's Edge" duration 9.3 #Ability { id: "6D9C", source: "Dragon-king Thordan" }
-4195.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4195.0 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4201.9 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4202.9 "Trinity 1" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4202.9 "Trinity 1" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4205.8 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4206.9 "Trinity 2" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4206.9 "Trinity 2" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4214.8 "--sync--" Ability { id: "6D93", source: "Dragon-king Thordan" }
-4215.5 "Akh Morn's Edge x7" duration 7.7 #Ability { id: "(730C|730D|730E)", source: "Dragon-king Thordan" }
-4215.6 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "Dragon-king Thordan" }
+4215.5 "Akh Morn's Edge x7" duration 7.7 #Ability { id: ["730C", "730D", "730E"], source: "Dragon-king Thordan" }
+4215.6 "Ice of Ascalon/Flames of Ascalon" Ability { id: ["6D92", "6D91"], source: "Dragon-king Thordan" }
 4228.5 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4229.6 "Trinity 3" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4229.6 "Trinity 3" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4232.6 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
-4233.7 "Trinity 4" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
+4233.7 "Trinity 4" #Ability { id: ["6D9F", "6DA0", "6DA1"], source: "Dragon-king Thordan" }
 4245.6 "--sync--" Ability { id: "6E2E", source: "Dragon-king Thordan" }
-4246.3 "Morn Afah's Edge x3" Ability { id: "(730F|7310|7311)", source: "Dragon-king Thordan" }
+4246.3 "Morn Afah's Edge x3" Ability { id: ["730F", "7310", "7311"], source: "Dragon-king Thordan" }
 
 # This seems to loop indefinitely
 # 6E31 will fire if 6E30 does not hit a player

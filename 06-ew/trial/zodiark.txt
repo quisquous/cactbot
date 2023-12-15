@@ -34,7 +34,7 @@ hideall "Triple Esoteric Ray"
 103.1 "Styx x5" Ability { id: "67DB", source: "Zodiark" } duration 5.5
 115.7 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
 122.8 "Exoterikos" Ability { id: "6C36", source: "Zodiark" }
-129.1 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+129.1 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 129.4 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
 
 # Cutscene
@@ -70,7 +70,7 @@ hideall "Triple Esoteric Ray"
 318.1 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 333.2 "Kokytos" Ability { id: "6C5F", source: "Zodiark" }
 338.3 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
-353.4 "Astral Flow" Ability { id: "(662F|6630)", source: "Zodiark" }
+353.4 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
 359.8 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
 368.6 "Styx" Ability { id: "67DA", source: "Zodiark" }
 378.7 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
@@ -78,11 +78,11 @@ hideall "Triple Esoteric Ray"
 388.0 "Esoteric Dyad" Ability { id: "67CB", source: "Arcane Sigil" }
 
 391.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
-401.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
-405.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
-409.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+401.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+405.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+409.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 416.2 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
-431.4 "Astral Flow" Ability { id: "(662F|6630)", source: "Zodiark" }
+431.4 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
 437.2 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
 446.5 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 456.6 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
@@ -93,14 +93,14 @@ hideall "Triple Esoteric Ray"
 472.8 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
 479.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
-489.8 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
-493.8 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+489.8 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+493.8 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 497.1 "Phlegethon x3" Ability { id: "67CF", source: "Zodiark" } duration 4.6
-497.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+497.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 505.3 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 517.5 "Algedon" Ability { id: "67D[12]", source: "Zodiark" }
 530.7 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
-545.9 "Astral Flow" Ability { id: "(662F|6630)", source: "Zodiark" }
+545.9 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
 551.7 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
 561.0 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 571.2 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
@@ -111,9 +111,9 @@ hideall "Triple Esoteric Ray"
 587.4 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
 593.5 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" } window 50,50 jump 479
-604.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
-608.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+604.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+608.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 611.6 "Phlegethon x3" #Ability { id: "67CF", source: "Zodiark" } duration 4.6
-612.2 "Esoteric Dyad/Esoteric Sect" #Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
+612.2 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
 619.8 "Styx x5" #Ability { id: "67DA", source: "Zodiark" } duration 5.5
 632.0 "Algedon" #Ability { id: "67D[12]", source: "Zodiark" }

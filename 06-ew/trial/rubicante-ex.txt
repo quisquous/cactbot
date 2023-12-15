@@ -19,7 +19,7 @@ hideall "Infernal Slaughter"
 17.4 "Hope Abandon Ye" Ability { id: "7F27", source: "Rubicante" }
 26.8 "Arcane Revelation" Ability { id: "7CBE", source: "Rubicante" }
 49.0 "Ordeal of Purgation 1" Ability { id: "80E9", source: "Rubicante" }
-57.0 "Fiery Expiation" Ability { id: "(7CEF|7CF0)", source: "Circle of Purgatory" }
+57.0 "Fiery Expiation" Ability { id: ["7CEF", "7CF0"], source: "Circle of Purgatory" }
 75.8 "Ordeal of Purgation 2" Ability { id: "80E9", source: "Rubicante" }
 83.8 "Fiery Expiation" Ability { id: "7CF0", source: "Circle of Purgatory" }
 97.9 "Shattering Heat" Ability { id: "7D2D", source: "Rubicante" }
@@ -29,10 +29,10 @@ hideall "Infernal Slaughter"
 113.1 "Arch Inferno" Ability { id: "7CF9", source: "Rubicante" }
 113.1 "Inferno Devil x2" Ability { id: "7CFB", source: "Rubicante" } duration 26
 116.2 "Infernal Slaughter" Ability { id: "7D00", source: "Rubicante" }
-122.1 "Spike of Flame/Fourfold Flame/Twinfold Flame 1" Ability { id: "(7D02|7D03|7D04)", source: "Rubicante" }
+122.1 "Spike of Flame/Fourfold Flame/Twinfold Flame 1" Ability { id: ["7D02", "7D03", "7D04"], source: "Rubicante" }
 126.3 "Conflagration" Ability { id: "7CFD", source: "Rubicante" }
 129.4 "Infernal Slaughter" Ability { id: "7D00", source: "Rubicante" }
-135.3 "Spike of Flame/Fourfold Flame/Twinfold Flame 2" Ability { id: "(7D02|7D03|7D04)", source: "Rubicante" }
+135.3 "Spike of Flame/Fourfold Flame/Twinfold Flame 2" Ability { id: ["7D02", "7D03", "7D04"], source: "Rubicante" }
 
 142.5 "Radial Flagration" Ability { id: "7CFE", source: "Rubicante" }
 152.6 "Inferno (aoe)" Ability { id: "7D2C", source: "Rubicante" }
@@ -79,11 +79,11 @@ hideall "Infernal Slaughter"
 
 # Scalding/Line baits 1
 1071.0 "--middle--" Ability { id: "7CBD", source: "Rubicante" }
-1078.0 "Scalding Ring/Scalding Signal" Ability { id: "(7D25|7D24)", source: "Rubicante" }
+1078.0 "Scalding Ring/Scalding Signal" Ability { id: ["7D25", "7D24"], source: "Rubicante" }
 1079.1 "Scalding Fleet" Ability { id: "7D26", source: "Rubicante Mirage" }
 1088.1 "Sweeping Immolation" Ability { id: "7D21", source: "Rubicante" }
 1088.5 "Scalding Fleet" #Ability { id: "7D27", source: "Rubicante Mirage" }
-1088.5 "Partial Immolation/Total Immolation" Ability { id: "(7D22|7D23)", source: "Rubicante" }
+1088.5 "Partial Immolation/Total Immolation" Ability { id: ["7D22", "7D23"], source: "Rubicante" }
 
 1094.2 "Explosive Pyre" Ability { id: "7D11", source: "Rubicante" }
 1102.3 "Dualfire" Ability { id: "7D2E", source: "Rubicante" }
@@ -93,9 +93,9 @@ hideall "Infernal Slaughter"
 1114.7 "Hope Abandon Ye" Ability { id: "7F27", source: "Rubicante" }
 1124.1 "Arcane Revelation" Ability { id: "7CBE", source: "Rubicante" }
 1146.8 "Ordeal of Purgation 5" Ability { id: "80E9", source: "Rubicante" }
-1154.8 "Fiery Expiation" Ability { id: "(7CEF|7CF0)", source: "Circle of Purgatory" }
+1154.8 "Fiery Expiation" Ability { id: ["7CEF", "7CF0"], source: "Circle of Purgatory" }
 1173.1 "Ordeal of Purgation 6" Ability { id: "80E9", source: "Rubicante" }
-1181.1 "Fiery Expiation" Ability { id: "(7CEF|7CF0)", source: "Circle of Purgatory" }
+1181.1 "Fiery Expiation" Ability { id: ["7CEF", "7CF0"], source: "Circle of Purgatory" }
 
 1190.2 "Inferno (aoe)" Ability { id: "7D2C", source: "Rubicante" }
 
@@ -115,11 +115,11 @@ hideall "Infernal Slaughter"
 
 # Scalding/Line baits 2
 1240.1 "--middle--" Ability { id: "7CBD", source: "Rubicante" }
-1247.1 "Scalding Ring/Scalding Signal" Ability { id: "(7D25|7D24)", source: "Rubicante" }
+1247.1 "Scalding Ring/Scalding Signal" Ability { id: ["7D25", "7D24"], source: "Rubicante" }
 1248.2 "Scalding Fleet" Ability { id: "7D26", source: "Rubicante Mirage" }
 1257.4 "Sweeping Immolation" Ability { id: "7D20", source: "Rubicante" }
 1257.7 "Scalding Fleet" Ability { id: "7D27", source: "Rubicante Mirage" }
-1257.8 "Partial Immolation/Total Immolation" Ability { id: "(7D22|7D23)", source: "Rubicante" }
+1257.8 "Partial Immolation/Total Immolation" Ability { id: ["7D22", "7D23"], source: "Rubicante" }
 
 1263.5 "Explosive Pyre" Ability { id: "7D11", source: "Rubicante" }
 1271.5 "Dualfire" Ability { id: "7D2E", source: "Rubicante" }

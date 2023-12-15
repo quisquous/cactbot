@@ -22,26 +22,26 @@ hideall "--sync--"
 1022.0 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
 1027.0 "Spring Crystals 1" Ability { id: "8AA8", source: "Ketuduke" }
 1034.0 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
-1041.0 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1041.0 "Hydrobullet/Hydrofall (buff)" Ability { id: ["8AB8", "8AB4"], source: "Ketuduke" }
 1050.0 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
 1060.0 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
 1062.0 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
 1065.0 "Saturate" Ability { id: "8AAC", source: "Spring Crystal" }
-1065.1 "Hydrobullet/Hydrofall" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+1065.1 "Hydrobullet/Hydrofall" Ability { id: ["8ABA", "8AB7"], source: "Ketuduke" }
 
-1074.0 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
-1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
+1074.0 "Hydrofall/Hydrobullet (buff)" Ability { id: ["8AB4", "8AB8"], source: "Ketuduke" }
+1077.1 "Hydrobullet/Hydrofall (buff)" Ability { id: ["8C6D", "8AB5"], source: "Ketuduke" }
 1084.3 "Blowing Bubbles" Ability { id: "8ABD", source: "Ketuduke" }
 1091.4 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
-1096.3 "Hydrofall/Hydrobullet" Ability { id: "(8AB7|8ABA)", source: "Ketuduke" }
+1096.3 "Hydrofall/Hydrobullet" Ability { id: ["8AB7", "8ABA"], source: "Ketuduke" }
 1099.6 "Hydrobomb x3" Ability { id: "8AD0", source: "Ketuduke" }
-1102.5 "Hydrobullet/Hydrobullet" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+1102.5 "Hydrobullet/Hydrobullet" Ability { id: ["8ABA", "8AB7"], source: "Ketuduke" }
 
 1113.6 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
 1118.9 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
-1130.3 "Receding Twintides/Encroaching Twintides" Ability { id: "(8ACC|8ACE)", source: "Ketuduke" }
+1130.3 "Receding Twintides/Encroaching Twintides" Ability { id: ["8ACC", "8ACE"], source: "Ketuduke" }
 1130.9 "Sphere Shatter 1" Ability { id: "8ABC", source: "Ketuduke" }
-1133.4 "Far Tide/Near Tide" Ability { id: "(8ACF|8ACD)", source: "Ketuduke" }
+1133.4 "Far Tide/Near Tide" Ability { id: ["8ACF", "8ACD"], source: "Ketuduke" }
 1134.0 "Sphere Shatter 2" Ability { id: "8ABC", source: "Ketuduke" }
 1134.0 "Hydrofall" Ability { id: "8AB7", source: "Ketuduke" }
 
@@ -55,11 +55,11 @@ hideall "--sync--"
 1184.1 "Hundred Lashings" Ability { id: "8ACA", source: "Aloalo Zaratan" }
 
 1190.7 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
-1199.4 "Hydrofall/Hydrobullet (buff)" Ability { id: "(8AB4|8AB8)", source: "Ketuduke" }
-1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8C6D|8AB5)", source: "Ketuduke" }
+1199.4 "Hydrofall/Hydrobullet (buff)" Ability { id: ["8AB4", "8AB8"], source: "Ketuduke" }
+1202.4 "Hydrobullet/Hydrofall (buff)" Ability { id: ["8C6D", "8AB5"], source: "Ketuduke" }
 1210.4 "Angry Seas" Ability { id: "8AC1", source: "Ketuduke" }
-1211.6 "Hydrofall/Hydrobullet" Ability { id: "(8AB7|8ABA)", source: "Ketuduke" }
-1212.2 "Hydrobullet/Hydrobullet" Ability { id: "(8ABA|8AB7)" } # this sometimes has the wrong source
+1211.6 "Hydrofall/Hydrobullet" Ability { id: ["8AB7", "8ABA"], source: "Ketuduke" }
+1212.2 "Hydrobullet/Hydrobullet" Ability { id: ["8ABA", "8AB7"] } # this sometimes has the wrong source
 1214.8 "Spring Crystals 3" Ability { id: "8AA8", source: "Ketuduke" }
 1216.8 "Hydrobullet" Ability { id: "8ABA", source: "Ketuduke" }
 1221.8 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
@@ -70,18 +70,18 @@ hideall "--sync--"
 
 1246.7 "Spring Crystals 4" Ability { id: "8AA8", source: "Ketuduke" }
 1253.7 "Bubble Net" Ability { id: "8AAD", source: "Ketuduke" }
-1260.7 "Hydrobullet/Hydrofall (buff)" Ability { id: "(8AB8|8AB4)", source: "Ketuduke" }
+1260.7 "Hydrobullet/Hydrofall (buff)" Ability { id: ["8AB8", "8AB4"], source: "Ketuduke" }
 1269.8 "Fluke Gale (cast)" Ability { id: "8AB1", source: "Ketuduke" }
 1279.9 "Fluke Gale 1" Ability { id: "8AB2", source: "Ketuduke" }
 1281.9 "Fluke Gale 2" Ability { id: "8AB3", source: "Ketuduke" }
 1284.9 "Saturate" Ability { id: "8AAC", source: "Spring Crystal" }
-1285.0 "Hydrobullet/Hydrofall" Ability { id: "(8ABA|8AB7)", source: "Ketuduke" }
+1285.0 "Hydrobullet/Hydrofall" Ability { id: ["8ABA", "8AB7"], source: "Ketuduke" }
 
 1293.9 "Hydrofall (buff)" Ability { id: "8AB4", source: "Ketuduke" }
 1299.2 "Strewn Bubbles" Ability { id: "8ABB", source: "Ketuduke" }
-1310.6 "Receding Twintides/Encroaching Twintides" Ability { id: "(8ACC|8ACE)", source: "Ketuduke" }
+1310.6 "Receding Twintides/Encroaching Twintides" Ability { id: ["8ACC", "8ACE"], source: "Ketuduke" }
 1311.2 "Sphere Shatter 1" Ability { id: "8ABC", source: "Ketuduke" }
-1313.7 "Far Tide/Near Tide" Ability { id: "(8ACF|8ACD)", source: "Ketuduke" }
+1313.7 "Far Tide/Near Tide" Ability { id: ["8ACF", "8ACD"], source: "Ketuduke" }
 1314.3 "Sphere Shatter 2" Ability { id: "8ABC", source: "Ketuduke" }
 1314.3 "Hydrofall" Ability { id: "8AB7", source: "Ketuduke" }
 1325.0 "Tidal Roar" Ability { id: "8AD4", source: "Ketuduke" }
@@ -155,16 +155,16 @@ hideall "--sync--"
 2011.1 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
 
 2013.2 "--middle--" Ability { id: "8874", source: "Lala" }
-2018.3 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
-2026.4 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+2018.3 "Angular Addition" Ability { id: ["8889", "8D2E"], source: "Lala" }
+2026.4 "Arcane Blight" Ability { id: ["888B", "888C", "888D", "888E"], source: "Lala" }
 
 2029.6 "--middle--" Ability { id: "8874", source: "Lala" }
 2034.7 "Analysis" Ability { id: "8895", source: "Lala" }
 2039.8 "Arcane Array 1" Ability { id: "8890", source: "Lala" }
-2044.9 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2044.9 "Angular Addition" Ability { id: ["8889", "8D2E"], source: "Lala" }
 2045.6 "Bright Pulse" Ability { id: "8891", source: "Lala" }
 2046.9 "Radiance 1" Ability { id: "8894", source: "Arcane Globe" }
-2053.0 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+2053.0 "Arcane Blight" Ability { id: ["888B", "888C", "888D", "888E"], source: "Lala" }
 # This can be +1.2s if it's on the final square instead of penultimate.
 2054.1 "Radiance 2" #Ability { id: "8894", source: "Arcane Globe" }
 2061.2 "Targeted Light" Ability { id: "8CDE", source: "Lala" }
@@ -186,10 +186,10 @@ hideall "--sync--"
 2150.5 "Radiance" Ability { id: "8D1F", source: "Arcane Globe" }
 2152.9 "Inferno Divide 2" Ability { id: "8893", source: "Arcane Font" } window 1,1
 2156.6 "Inferno Divide 3" Ability { id: "8893", source: "Arcane Font" } window 1,1
-2157.6 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2157.6 "Angular Addition" Ability { id: ["8889", "8D2E"], source: "Lala" }
 2157.8 "Inferno Divide 4" Ability { id: "8893", source: "Arcane Font" } window 1,1
 2160.2 "Inferno Divide 5" Ability { id: "8893", source: "Arcane Font" } window 1,1
-2165.6 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+2165.6 "Arcane Blight" Ability { id: ["888B", "888C", "888D", "888E"], source: "Lala" }
 
 2173.7 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
 2184.8 "Inferno Theorem" Ability { id: "88AE", source: "Lala" }
@@ -211,10 +211,10 @@ hideall "--sync--"
 2263.6 "--middle--" Ability { id: "8874", source: "Lala" }
 2269.0 "Analysis" Ability { id: "8895", source: "Lala" }
 2274.1 "Arcane Array 3" Ability { id: "8890", source: "Lala" }
-2279.2 "Angular Addition" Ability { id: "(8889|8D2E)", source: "Lala" }
+2279.2 "Angular Addition" Ability { id: ["8889", "8D2E"], source: "Lala" }
 2279.9 "Bright Pulse" Ability { id: "8891", source: "Lala" }
 2281.2 "Radiance 1" Ability { id: "8894", source: "Arcane Globe" }
-2287.3 "Arcane Blight" Ability { id: "(888B|888C|888D|888E)", source: "Lala" }
+2287.3 "Arcane Blight" Ability { id: ["888B", "888C", "888D", "888E"], source: "Lala" }
 2290.9 "Radiance 2" Ability { id: "8894", source: "Arcane Globe" }
 2295.6 "Targeted Light" Ability { id: "8CDE", source: "Lala" }
 2306.7 "Strategic Strike" Ability { id: "88AD", source: "Lala" }

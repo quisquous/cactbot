@@ -24,7 +24,7 @@ hideall "--sync--"
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
 56.0 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 56,5
-63.6 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }
+63.6 "Thunder II/III" Ability { id: ["7DA6", "7DAA"], source: "Sophia" }
 63.6 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" } window 30,2.5
 69.7 "Aero III" Ability { id: "7DA8", source: "Sophia" }
 69.7 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" }
@@ -38,22 +38,22 @@ hideall "--sync--"
 110.6 "Cloudy Heavens" Ability { id: "7DB8", source: "Sophia" } window 110.6
 111.6 "--untargetable--"
 111.6 "--adds spawn--"
-120.9 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(7DB5|7DB6)", source: "The First Demiurge" }
+120.9 "Horizontal Kenoma/Vertical Kenoma" Ability { id: ["7DB5", "7DB6"], source: "The First Demiurge" }
 121.9 "Gnostic Spear" Ability { id: "7DB3", source: "The Third Demiurge" }
 125.9 "Divine Spark" # Ability { id: "7DB0", source: "The Second Demiurge" }
 129.0 "Ring Of Pain" Ability { id: "7DB4", source: "The Third Demiurge" }
-135.1 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(7DB5|7DB6)", source: "The First Demiurge" }
+135.1 "Horizontal Kenoma/Vertical Kenoma" Ability { id: ["7DB5", "7DB6"], source: "The First Demiurge" }
 147.3 "Gnostic Spear?" Ability { id: "7DB3", source: "The Third Demiurge" }
-149.2 "Horizontal Kenoma/Vertical Kenoma" Ability { id: "(7DB5|7DB6)", source: "The First Demiurge" }
+149.2 "Horizontal Kenoma/Vertical Kenoma" Ability { id: ["7DB5", "7DB6"], source: "The First Demiurge" }
 191.6 "Zombification Enrage?"
 
 # There's an introductory block leading into a rotation.
 250.0 "The Scales Of Wisdom" Ability { id: "7D9C", source: "Sophia" } window 250,5
 267.5 "The Scales Of Wisdom" Ability { id: "7DC6", source: "Sophia" }
 272.9 "--targetable--"
-280.8 "Quasar (Snapshot)" Ability { id: "(7D9B|7DA1)", source: "Sophia" }
+280.8 "Quasar (Snapshot)" Ability { id: ["7D9B", "7DA1"], source: "Sophia" }
 286.8 "Quasar (Meteor Detonate)" Ability { id: "7E81", source: "Sophia" }
-291.3 "Aero III/Thunder II/Thunder III" Ability { id: "(7DA6|7DA8|7DAA)", source: "Sophia" } window 41.3,5
+291.3 "Aero III/Thunder II/Thunder III" Ability { id: ["7DA6", "7DA8", "7DAA"], source: "Sophia" } window 41.3,5
 297.1 "Quasar Tethers" Ability { id: "7D9B", source: "Sophia" }
 305.7 "Quasar (Tilt)" Ability { id: "7E46", source: "Sophia" }
 310.7 "Cintamani x2" duration 3 # Ability { id: "7DBF", source: "Sophia" }
@@ -66,13 +66,13 @@ hideall "--sync--"
 341.2 "Onrush" Ability { id: "7DBB", source: "Sophia" }
 341.8 "Quasar (Tilt)" # Ability { id: "7E46", source: "Sophia" }
 345.4 "--targetable--"
-361.5 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
+361.5 "Dischordant Cleansing" # Ability { id: ["7DAD", "7DAF"], source: "Sophia" }
 361.5 "Cintamani x2" duration 3 # Ability { id: "7DBF", source: "Sophia" }
 370.8 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" } window 30,5
 379.0 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 60,20
 382.0 "Cintamani x3" duration 6 # Ability { id: "7DBF", source: "Sophia" }
 393.3 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" }
-393.3 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }
+393.3 "Thunder II/III" Ability { id: ["7DA6", "7DAA"], source: "Sophia" }
 399.4 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" }
 399.4 "Aero III" Ability { id: "7DA8", source: "Sophia" } window 30,5
 408.5 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
@@ -98,23 +98,23 @@ hideall "--sync--"
 507.1 "Cintamani x3" duration 6 # Ability { id: "7DBF", source: "Sophia" }
 518.3 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
 525.4 "Thunder II" Ability { id: "7DAA", source: "Sophia" }
-535.9 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
+535.9 "Dischordant Cleansing" # Ability { id: ["7DAD", "7DAF"], source: "Sophia" }
 539.7 "Gnosis" Ability { id: "7DBC", source: "Barbelo" } window 30,5
 552.2 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
 567.0 "Quasar Tethers" Ability { id: "7D9B", source: "Sophia" }
-568.3 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
+568.3 "Dischordant Cleansing" # Ability { id: ["7DAD", "7DAF"], source: "Sophia" }
 575.7 "Quasar (Tilt)" # Ability { id: "7E46", source: "Sophia" }
 581.5 "Cintamani x3" duration 6 # Ability { id: "7DBF", source: "Sophia" }
 577.5 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 60,5
 592.8 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
 599.9 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" } window 10,2.5
-599.9 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }
+599.9 "Thunder II/III" Ability { id: ["7DA6", "7DAA"], source: "Sophia" }
 606.1 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" }
 606.1 "Aero III" Ability { id: "7DA8", source: "Sophia" }
-611.9 "Quasar (Snapshot)" Ability { id: "(7D9B|7DA1)", source: "Sophia" }
+611.9 "Quasar (Snapshot)" Ability { id: ["7D9B", "7DA1"], source: "Sophia" }
 617.9 "Quasar (Meteor Detonate)" Ability { id: "7E81", source: "Sophia" }
 624.4 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
-636.6 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
+636.6 "Dischordant Cleansing" # Ability { id: ["7DAD", "7DAF"], source: "Sophia" }
 639.0 "Execute" Ability { id: "7DA4", source: "Sophia" } window 30,30 jump 420.5
 
 650.9 "Cintamani x3"

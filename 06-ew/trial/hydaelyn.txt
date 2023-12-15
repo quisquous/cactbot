@@ -136,7 +136,7 @@ hideall "--sync--"
 2155.4 "Dawn Mantle" #Ability { id: "6C0C", source: "Hydaelyn" }
 2161.7 "Equinox" #Ability { id: "65C3", source: "Hydaelyn" }
 2164.8 "--sync--" #Ability { id: "659F", source: "Hydaelyn" }
-2165.5 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: "(6C5A|6C59)", source: "Hydaelyn" }
+2165.5 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 
 
 ### Parhelion first
@@ -177,32 +177,32 @@ hideall "--sync--"
 3155.2 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
 3161.5 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 3164.6 "--sync--" Ability { id: "659F", source: "Hydaelyn" }
-3165.4 "Crystalline Blizzard III/Crystalline Stone III" Ability { id: "(6C5A|6C59)", source: "Hydaelyn" }
+3165.4 "Crystalline Blizzard III/Crystalline Stone III" Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 3176.9 "Heros's Sundering" Ability { id: "65D5", source: "Hydaelyn" }
 3180.0 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
 3186.5 "Radiant Halo" Ability { id: "65D0", source: "Hydaelyn" }
 
 
 # Lightwave loop
-3191.8 "--sync--" StartsUsing { id: "(6693|6694|6695)", source: "Hydaelyn" }
-3195.8 "Lightwave" Ability { id: "(6693|6694|6695)", source: "Hydaelyn" }
-3203.9 "Echoes" Ability { id: "(65B5|65B6|65B7)", source: "Hydaelyn" }
+3191.8 "--sync--" StartsUsing { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3195.8 "Lightwave" Ability { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3203.9 "Echoes" Ability { id: ["65B5", "65B6", "65B7"], source: "Hydaelyn" }
 3221.1 "Crystallize" Ability { id: "659[CE]", source: "Hydaelyn" }
-3224.3 "--middle--" Ability { id: "(65A9|6E7A)", source: "Hydaelyn" }
+3224.3 "--middle--" Ability { id: ["65A9", "6E7A"], source: "Hydaelyn" }
 3230.7 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
-3237.0 "Highest Holy/Anthelion/Equinox" Ability { id: "(65C3|65C7|65C8)", source: "Hydaelyn" }
+3237.0 "Highest Holy/Anthelion/Equinox" Ability { id: ["65C3", "65C7", "65C8"], source: "Hydaelyn" }
 # This timing is +/- 1 second for some reason (even with the same Crystallize),
 # so don't sync because it throws Lightwave off even more.
-3239.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: "(6C5A|6C59)", source: "Hydaelyn" }
+3239.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 
 # Even ignoring the blizzard/stone above, this is still +/- 0.5s, so add a starts using cast.
 # TODO: it's possible the first loop is slightly different??
-3245.8 "--sync--" StartsUsing { id: "(6693|6694|6695)", source: "Hydaelyn" } window 30,30 jump 3191.8
-3249.8 "Lightwave" #Ability { id: "(6693|6694|6695)", source: "Hydaelyn" }
-3257.9 "Echoes" #Ability { id: "(65B5|65B6|65B7)", source: "Hydaelyn" }
+3245.8 "--sync--" StartsUsing { id: ["6693", "6694", "6695"], source: "Hydaelyn" } window 30,30 jump 3191.8
+3249.8 "Lightwave" #Ability { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3257.9 "Echoes" #Ability { id: ["65B5", "65B6", "65B7"], source: "Hydaelyn" }
 3275.1 "Crystallize" #Ability { id: "659[CE]", source: "Hydaelyn" }
-3278.3 "--middle--" #Ability { id: "(65A9|6E7A)", source: "Hydaelyn" }
+3278.3 "--middle--" #Ability { id: ["65A9", "6E7A"], source: "Hydaelyn" }
 3284.7 "Dawn Mantle" #Ability { id: "6C0C", source: "Hydaelyn" }
-3291.0 "Highest Holy/Anthelion/Equinox" #Ability { id: "(65C3|65C7|65C8)", source: "Hydaelyn" }
-3293.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: "(6C5A|6C59)", source: "Hydaelyn" }
+3291.0 "Highest Holy/Anthelion/Equinox" #Ability { id: ["65C3", "65C7", "65C8"], source: "Hydaelyn" }
+3293.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 

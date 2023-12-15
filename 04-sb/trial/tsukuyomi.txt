@@ -77,18 +77,18 @@ hideall "--Reset--"
 678.3 "--sync--" Ability { id: "2D1F", source: "Tsukuyomi" }
 683.2 "Dance Of The Dead" Ability { id: "2E79", source: "Tsukuyomi" }
 693.5 "Lunacy x3" Ability { id: "2BFB", source: "Tsukuyomi" }
-701.8 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+701.8 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 709.0 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
-719.2 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+719.2 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 725.2 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
 726.5 "Lunacy x4" Ability { id: "2BFB", source: "Tsukuyomi" }
 738.8 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
 749.1 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" }
 758.2 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
 759.0 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
-763.4 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+763.4 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 770.6 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
-780.7 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+780.7 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 786.7 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
 788.1 "Lunacy x5" Ability { id: "2BFB", source: "Tsukuyomi" }
 801.5 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
@@ -97,9 +97,9 @@ hideall "--Reset--"
 811.7 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" }
 820.8 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
 821.7 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
-826.1 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+826.1 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 833.2 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
-843.4 "Bright Blade/Dark Blade" Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+843.4 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 849.4 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
 850.7 "Lunacy x5" Ability { id: "2BFB", source: "Tsukuyomi" }
 864.1 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
@@ -108,9 +108,9 @@ hideall "--Reset--"
 874.3 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" } window 50,50 jump 811.7
 883.4 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }
 884.3 "Tsuki-No-Maiogi" #Ability { id: "2BED", source: "Dancing Fan" } duration 4
-888.7 "Bright Blade/Dark Blade" #Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+888.7 "Bright Blade/Dark Blade" #Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 895.8 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }
-906.0 "Bright Blade/Dark Blade" #Ability { id: "(2BF9|2BFA)", source: "Tsukuyomi" }
+906.0 "Bright Blade/Dark Blade" #Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
 912.0 "Tsuki-No-Maiogi" #Ability { id: "2BED", source: "Dancing Fan" } duration 4
 913.3 "Lunacy x5" #Ability { id: "2BFB", source: "Tsukuyomi" }
 926.7 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }

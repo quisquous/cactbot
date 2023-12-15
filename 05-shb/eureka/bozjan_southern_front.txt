@@ -228,8 +228,8 @@ hideall "--sync--"
 
 50116.0 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
 50123.1 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
-50130.3 "Orb 1" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
-50132.1 "Orb 2" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
+50130.3 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50132.1 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
 50144.3 "Tornado" Ability { id: "4F8F", source: "Adrammelech" }
 50151.4 "Flare" Ability { id: "4F95", source: "Adrammelech" }
@@ -240,11 +240,11 @@ hideall "--sync--"
 50194.3 "--sync--" StartsUsing { id: "4F7A", source: "Adrammelech" } window 70,20
 50197.3 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
 50204.4 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
-50211.6 "Orb 1" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
-50213.4 "Orb 2" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
+50211.6 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50213.4 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 50213.5 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
-50220.7 "Orb 3" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
-50222.5 "Orb 4" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
+50220.7 "Orb 3" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50222.5 "Orb 4" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
 50230.7 "Flare" Ability { id: "4F95", source: "Adrammelech" }
 50237.8 "Tornado" Ability { id: "4F8F", source: "Adrammelech" }
@@ -258,11 +258,11 @@ hideall "--sync--"
 
 50316.7 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
 50323.8 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
-50331.0 "Orb 1" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
-50332.8 "Orb 2" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
+50331.0 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50332.8 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 50332.9 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
-50340.1 "Orb 3" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
-50341.9 "Orb 4" #Ability { id: "(504D|504A|4F7D|4F8[5-7])", source: "Adrammelech" }
+50340.1 "Orb 3" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50341.9 "Orb 4" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
 # Loop
 # TODO: if anybody ever finds the enrage, we can unroll this.

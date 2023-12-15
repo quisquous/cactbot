@@ -14,13 +14,13 @@ hideall "--sync--"
 49.6 "Light's Course" # Ability { id: "4C3C", source: "Unforgiven Idolatry" }
 52.6 "Light's Course" # Ability { id: "4C3C", source: "Unforgiven Idolatry" }
 55.5 "Betwixt Worlds" Ability { id: "4CF8", source: "The Idol Of Darkness" } window 20,20
-72.7 "Light's Course" # Ability { id: "(4E63|4C3C)", source: "Unforgiven Idolatry" }
-75.7 "Light's Course" # Ability { id: "(4E63|4C3C)", source: "Unforgiven Idolatry" }
+72.7 "Light's Course" # Ability { id: ["4E63", "4C3C"], source: "Unforgiven Idolatry" }
+75.7 "Light's Course" # Ability { id: ["4E63", "4C3C"], source: "Unforgiven Idolatry" }
 78.7 "Light's Course" # Ability { id: "4C40", source: "Unforgiven Idolatry" }
 81.7 "Light's Course" # Ability { id: "4C40", source: "Unforgiven Idolatry" }
 88.7 "Betwixt Worlds" Ability { id: "4CF8", source: "The Idol Of Darkness" }
-104.9 "Light's Course" # Ability { id: "(4E63|4C3C)", source: "Unforgiven Idolatry" }
-107.9 "Light's Course" # Ability { id: "(4E63|4C3C)", source: "Unforgiven Idolatry" }
+104.9 "Light's Course" # Ability { id: ["4E63", "4C3C"], source: "Unforgiven Idolatry" }
+107.9 "Light's Course" # Ability { id: ["4E63", "4C3C"], source: "Unforgiven Idolatry" }
 110.8 "Light's Course" # Ability { id: "4C40", source: "Unforgiven Idolatry" }
 113.8 "Light's Course" # Ability { id: "4C40", source: "Unforgiven Idolatry" }
 124.6 "Away with Thee" Ability { id: "4C39", source: "The Idol Of Darkness" } window 30,30
@@ -39,7 +39,7 @@ hideall "--sync--"
 
 # Intermission block
 226.3 "--targetable--"
-236.8 "Away with Thee" Ability { id: "(4C39|4E7E)", source: "The Idol Of Darkness" } window 30,30
+236.8 "Away with Thee" Ability { id: ["4C39", "4E7E"], source: "The Idol Of Darkness" } window 30,30
 251.7 "Strength in Numbers" Ability { id: "4C4[CD]", source: "Idolatry" } window 251.7,5
 262.3 "Silver Shot" Ability { id: "4E7[CD]", source: "The Idol Of Darkness" }
 270.3 "Silver Shot" Ability { id: "4E7[CD]", source: "The Idol Of Darkness" }
@@ -48,8 +48,8 @@ hideall "--sync--"
 
 
 # Rotation block. 135.6 seconds
-393.3 "--sync--" StartsUsing { id: "(4E5[46]|4C53)", source: "The Idol Of Darkness" } window 400,20
-400.0 "Empty Flood" Ability { id: "(4E5[46]|4C53)", source: "The Idol Of Darkness" } window 400,20
+393.3 "--sync--" StartsUsing { id: ["4E5[46]", "4C53"], source: "The Idol Of Darkness" } window 400,20
+400.0 "Empty Flood" Ability { id: ["4E5[46]", "4C53"], source: "The Idol Of Darkness" } window 400,20
 410.3 "--targetable--"
 414.4 "Unjoined Aspect" Ability { id: "4C3B", source: "The Idol Of Darkness" }
 419.6 "Betwixt Worlds" Ability { id: "4CF8", source: "The Idol Of Darkness" }

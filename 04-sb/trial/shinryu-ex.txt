@@ -22,7 +22,7 @@ hideall "--sync--"
 62.4 "Icicle Impact" Ability { id: "25EF", source: "Icicle" }
 67.0 "Spikesicle" Ability { id: "25F0", source: "Icicle" }
 67.9 "Tail Slap" Ability { id: "25E2", source: "Tail" }
-79.8 "Hypernova / Levinbolt" Ability { id: "(25E8|25EA)", source: "Right Wing" }
+79.8 "Hypernova / Levinbolt" Ability { id: ["25E8", "25EA"], source: "Right Wing" }
 90.9 "Dragonfist" Ability { id: "2610", source: "Shinryu" }
 97.8 "Ice Storm" Ability { id: "25F1", source: "Left Wing" } # sometimes 3 seconds earlier?
 108.0 "Akh Morn 1" Ability { id: "25F3", source: "Shinryu" } duration 3.2
@@ -30,7 +30,7 @@ hideall "--sync--"
 116.3 "Summon Icicle" Ability { id: "25EE", source: "Left Wing" }
 116.9 "Icicle Impact" Ability { id: "25EF", source: "Icicle" }
 121.4 "Spikesicle" Ability { id: "25F0", source: "Icicle" }
-123.3 "Judgment Bolt / Hellfire" Ability { id: "(25FA|25DC)", source: "Shinryu" }
+123.3 "Judgment Bolt / Hellfire" Ability { id: ["25FA", "25DC"], source: "Shinryu" }
 
 138.4 "--Tail Marker (dps)--"
 149.5 "Levinbolt" Ability { id: "25EA", source: "Right Wing" }
@@ -68,7 +68,7 @@ hideall "--sync--"
 350.9 "Hypernova" Ability { id: "25E8", source: "Right Wing" }
 363.0 "Akh Morn 4" Ability { id: "25F3", source: "Shinryu" } duration 4.3
 365.1 "Akh Rhai" Ability { id: "25F5", source: "Shinryu" } duration 5.3
-378.3 "Hypernova / Levinbolt" Ability { id: "(25E8|25EA)", source: "Right Wing" }
+378.3 "Hypernova / Levinbolt" Ability { id: ["25E8", "25EA"], source: "Right Wing" }
 384.3 "Tidal Wave" Ability { id: "25F9", source: "Shinryu" }
 387.4 "--untargetable--"
 394.8 "Dark Matter" #Ability { id: "25E7", source: "Shinryu" }
@@ -102,8 +102,8 @@ hideall "--sync--"
 859.5 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
 868.2 "Atomic Ray" Ability { id: "264C", source: "Shinryu" }
 885.9 "Ice Storm" Ability { id: "2722", source: "Left Wing" }
-889.9 "Levinbolt / Hypernova" Ability { id: "(2720|271F)", source: "Right Wing" }
-897.9 "Wormwail / Benighting Breath" Ability { id: "(2648|2649)", source: "Shinryu" }
+889.9 "Levinbolt / Hypernova" Ability { id: ["2720", "271F"], source: "Right Wing" }
+897.9 "Wormwail / Benighting Breath" Ability { id: ["2648", "2649"], source: "Shinryu" }
 907.1 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
 910.8 "--Reiryu Adds--"
 
@@ -111,8 +111,8 @@ hideall "--sync--"
 957.4 "Tera Slash" Ability { id: "264B", source: "Shinryu" } window 20,20
 966.1 "Atomic Ray" Ability { id: "264C", source: "Shinryu" }
 983.8 "Ice Storm" Ability { id: "2722", source: "Left Wing" }
-987.8 "Levinbolt / Hypernova" Ability { id: "(2720|271F)", source: "Right Wing" }
-995.9 "Wormwail / Benighting Breath" Ability { id: "(2648|2649)", source: "Shinryu" }
+987.8 "Levinbolt / Hypernova" Ability { id: ["2720", "271F"], source: "Right Wing" }
+995.9 "Wormwail / Benighting Breath" Ability { id: ["2648", "2649"], source: "Shinryu" }
 1005.1 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
 1009.1 "--Reiryu Adds--"
 

@@ -123,14 +123,14 @@ hideall "--sync--"
 488.1 "Holy Shield Bash" Ability { id: "1497", source: ["Ser Adelphel", "Ser Janlenoux"] }
 497.1 "Spear Of the Fury" Ability { id: "1492", source: "Ser Zephirin" } # A smile better suits a hero
 499.5 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
-504.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }
+504.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
 516.6 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 
 #Phase 4
 # Conviction Trio
 521.8 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
 532.0 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
-543.1 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }
+543.1 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
 543.2 "Conviction" Ability { id: "149C", source: "Ser Hermenost" }
 544.1 "Heavy Impact 1" Ability { id: "14A0", source: "Ser Guerrique" }
 546.0 "Conviction" Ability { id: "149D", source: "Ser Hermenost" }
@@ -164,7 +164,7 @@ hideall "--sync--"
 641.5 "--chains appear--"
 642.4 "Holy Meteor" Ability { id: "14B0", source: "Ser Noudenet" }
 643.5 "Comet x4" duration 4 #Ability { id: "14B5", source: "Ser Noudenet" }
-643.5 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }
+643.5 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
 643.8 "--sync--" Ability { id: "14AB", source: "Ser Charibert" } # Heavensflame (cast)
 644.2 "Heavensflame 1" #Ability { id: "14AC", source: "Ser Charibert" }
 645.3 "Heavensflame 2" #Ability { id: "14AC", source: "Ser Charibert" }
@@ -187,10 +187,10 @@ hideall "--sync--"
 707.6 "Heavensward Leap 2" Ability { id: "14AA", source: "Ser Paulecrain" }
 710.6 "Heavensward Leap 3" Ability { id: "14AA", source: "Ser Ignasse" }
 718.7 "Sacred Cross" StartsUsing { id: "1491", source: "Ser Zephirin" } duration 24.7
-724.6 "Pure Of Soul" Ability { id: "(14B1|14B2)", source: ["Ser Charibert", "Ser Noudenet", "Ser Haumeric"] }
+724.6 "Pure Of Soul" Ability { id: ["14B1", "14B2"], source: ["Ser Charibert", "Ser Noudenet", "Ser Haumeric"] }
 732.6 "Absolute Conviction 1" Ability { id: "14A4", source: "Ser Guerrique" }
 735.5 "Absolute Conviction 2" Ability { id: "14A5", source: "Ser Hermenost" }
-740.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }
+740.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
 743.4 "--sync--" Ability { id: "1491", source: "Ser Zephirin" } # Sacred Cross resolves
 750.7 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 

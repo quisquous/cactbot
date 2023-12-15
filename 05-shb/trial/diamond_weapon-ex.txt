@@ -37,7 +37,7 @@ hideall "--sync--"
 197.8 "--targetable--"
 210.0 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
 218.2 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
-229.6 "Auri Arts (Z)" Ability { id: "(5FAF|5FF8)", source: "The Diamond Weapon" }
+229.6 "Auri Arts (Z)" Ability { id: ["5FAF", "5FF8"], source: "The Diamond Weapon" }
 229.6 "--untargetable--"
 236.4 "Auri Arts (Jump)" Ability { id: "5FB2", source: "The Diamond Weapon" }
 241.0 "--targetable--"
@@ -51,7 +51,7 @@ hideall "--sync--"
 291.1 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
 301.3 "Articulated Bits" Ability { id: "5FC1", source: "The Diamond Weapon" }
 312.4 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
-312.9 "Auri Arts (Z)" Ability { id: "(5FAF|5FF8)", source: "The Diamond Weapon" }
+312.9 "Auri Arts (Z)" Ability { id: ["5FAF", "5FF8"], source: "The Diamond Weapon" }
 312.9 "--untargetable--"
 319.7 "Auri Arts (Jump)" Ability { id: "5FB2", source: "The Diamond Weapon" }
 320.4 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }

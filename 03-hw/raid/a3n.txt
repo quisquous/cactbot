@@ -83,11 +83,11 @@ hideall "--sync--"
 326.6 "Sluice" Ability { id: "12F2", source: "Living Liquid" }
 329.6 "--sync--" Ability { id: "12F3", source: "Living Liquid" }
 331.6 "--sync--" Ability { id: "12F4", source: "Living Liquid" }
-335.9 "Magnetism/Repel" Ability { id: "(1307|1309)", source: "Living Liquid" }
+335.9 "Magnetism/Repel" Ability { id: ["1307", "1309"], source: "Living Liquid" }
 344.0 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" } window 17.4,2.5
 346.1 "Splash x4" # Ability { id: "12EF", source: "Living Liquid" }
 350.5 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" }
-359.8 "Magnetism/Repel" Ability { id: "(1307|1309)", source: "Living Liquid" }
+359.8 "Magnetism/Repel" Ability { id: ["1307", "1309"], source: "Living Liquid" }
 365.9 "Fluid Swing" Ability { id: "12F5", source: "Living Liquid" } window 10,2.5
 372.0 "Sluice" Ability { id: "12F2", source: "Living Liquid" }
 375.0 "--sync--" Ability { id: "12F3", source: "Living Liquid" }

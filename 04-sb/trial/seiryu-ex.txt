@@ -43,17 +43,17 @@ hideall "--sync--"
 504.3 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
 511.9 "Blazing Aramitama" Ability { id: "37E4", source: "Seiryu" }
 515.9 "--jump--" Ability { id: "37D5", source: "Seiryu" }
-#519.4 "In/Out" Ability { id: "(37DA|37D8)", source: "Seiryu" }
-522.4 "In/Out" Ability { id: "(3A05|3A03)", source: "Seiryu" }
-#524.9 "Out/In" Ability { id: "(37DB|37D9)", source: "Seiryu" }
-525.4 "Out/In" Ability { id: "(3A06|3A04)", source: "Seiryu" }
+#519.4 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+522.4 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#524.9 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+525.4 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
 531.9 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
 538.6 "Kuji-kiri" Ability { id: "37E1", source: "Seiryu" }
 541.6 "--jump--" Ability { id: "37D5", source: "Seiryu" }
-#545.1 "In/Out" Ability { id: "(37DA|37D8)", source: "Seiryu" }
-548.1 "In/Out" Ability { id: "(3A05|3A03)", source: "Seiryu" }
-#550.6 "Out/In" Ability { id: "(37DB|37D9)", source: "Seiryu" }
-551.1 "Out/In" Ability { id: "(3A06|3A04)", source: "Seiryu" }
+#545.1 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+548.1 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#550.6 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+551.1 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
 558.6 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
 572.6 "Serpent Ascending" Ability { id: "3C25", source: "Seiryu" }
 578.6 "Serpent Descending" Ability { id: "37DE", source: "Seiryu" }
@@ -66,11 +66,11 @@ hideall "--sync--"
 633.3 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
 646.3 "Summon Shiki" Ability { id: "37CD", source: "Seiryu" }
 652.3 "--jump--" Ability { id: "37D5", source: "Seiryu" }
-#655.8 "In/Out" Ability { id: "(37DA|37D8)", source: "Seiryu" }
+#655.8 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
 658.4 "100-tonze Swing" Ability { id: "37ED", source: "Iwa-no-shiki" }
-658.8 "In/Out" Ability { id: "(3A05|3A03)", source: "Seiryu" }
-#661.3 "Out/In" Ability { id: "(37DB|37D9)", source: "Seiryu" }
-661.8 "Out/In" Ability { id: "(3A06|3A04)", source: "Seiryu" }
+658.8 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#661.3 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+661.8 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
 667.5 "Kanabo" Ability { id: "37EE", source: "Iwa-no-shiki" }
 671.3 "--sync--" Ability { id: "37EF", source: "Seiryu" }
 676.3 "Serpent Ascending" Ability { id: "37DC", source: "Seiryu" }
@@ -86,10 +86,10 @@ hideall "--sync--"
 716.5 "Force of Nature" Ability { id: "37EB", source: "Seiryu" }
 719.1 "Coursing River" Ability { id: "37F6", source: "Seiryu" }
 721.6 "--jump--" Ability { id: "37D5", source: "Seiryu" }
-#725.1 "In/Out" Ability { id: "(37DA|37D8)", source: "Seiryu" }
-728.1 "In/Out" Ability { id: "(3A05|3A03)", source: "Seiryu" }
-#730.6 "Out/In" Ability { id: "(37DB|37D9)", source: "Seiryu" }
-731.1 "Out/In" Ability { id: "(3A06|3A04)", source: "Seiryu" }
+#725.1 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+728.1 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#730.6 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+731.1 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
 733.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
 741.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
 749.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
@@ -103,10 +103,10 @@ hideall "--sync--"
 807.8 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
 817.0 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
 823.0 "--jump--" Ability { id: "37D5", source: "Seiryu" }
-#826.5 "In/Out" Ability { id: "(37DA|37D8)", source: "Seiryu" }
-829.5 "In/Out" Ability { id: "(3A05|3A03)", source: "Seiryu" }
-#832.0 "Out/In" Ability { id: "(37DB|37D9)", source: "Seiryu" }
-832.5 "Out/In" Ability { id: "(3A06|3A04)", source: "Seiryu" }
+#826.5 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+829.5 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#832.0 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+832.5 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
 839.0 "Serpent Ascending" Ability { id: "3C25", source: "Seiryu" }
 842.5 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
 845.0 "Serpent Descending" Ability { id: "37DE", source: "Seiryu" }

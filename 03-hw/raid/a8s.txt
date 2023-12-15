@@ -74,7 +74,7 @@ hideall "Brute Force"
 322.4 "Mind Blast?" #Ability { id: "1639", source: "Blaster" } # 3 second cast, interruptible
 324.5 "Brute Force" #Ability { id: "1638", source: "Blaster Mirage" }
 325.6 "Brute Force" Ability { id: "1638", source: "Blaster" }
-326.0 "Brawler Mechanic" Ability { id: "(163D|163E|163F|1640)", source: "Brawler" }
+326.0 "Brawler Mechanic" Ability { id: ["163D", "163E", "163F", "1640"], source: "Brawler" }
 
 329.4 "Swindler (east)" #NameToggle { name: "Swindler", toggle: "01" }
 330.1 "Auxiliary Power" Ability { id: "164B", source: "Brawler" }
@@ -90,7 +90,7 @@ hideall "Brute Force"
 
 352.4 "Vortexer (south)" #NameToggle { name: "Vortexer", toggle: "01" }
 354.6 "Magicked Mark" Ability { id: "1646", source: "Swindler" }
-355.5 "Brawler Mechanic" Ability { id: "(163D|163E|163F|1640)", source: "Brawler" }
+355.5 "Brawler Mechanic" Ability { id: ["163D", "163E", "163F", "1640"], source: "Brawler" }
 359.6 "Auxiliary Power" Ability { id: "164B", source: "Brawler" }
 360.4 "Brute Force" Ability { id: "164D", source: "Vortexer" }
 363.7 "Magicked Mark" Ability { id: "163B", source: "Brawler" }
@@ -99,11 +99,11 @@ hideall "Brute Force"
 375.9 "Auxiliary Power" Ability { id: "164B", source: "Brawler" }
 379.0 "Attachment" Ability { id: "163C", source: "Brawler" }
 380.5 "Brute Force" Ability { id: "164D", source: "Vortexer" }
-385.0 "Brawler Mechanic" Ability { id: "(163D|163E|163F|1640)", source: "Brawler" }
+385.0 "Brawler Mechanic" Ability { id: ["163D", "163E", "163F", "1640"], source: "Brawler" }
 390.2 "Auxiliary Power" Ability { id: "164B", source: "Brawler" }
 390.6 "Brute Force" Ability { id: "164D", source: "Vortexer" }
 393.4 "Attachment" Ability { id: "163C", source: "Brawler" }
-399.5 "Brawler Mechanic" Ability { id: "(163D|163E|163F|1640)", source: "Brawler" }
+399.5 "Brawler Mechanic" Ability { id: ["163D", "163E", "163F", "1640"], source: "Brawler" }
 400.7 "Brute Force" Ability { id: "164D", source: "Vortexer" }
 403.6 "Auxiliary Power" Ability { id: "164B", source: "Brawler" }
 407.7 "Magicked Mark" Ability { id: "163B", source: "Brawler" }

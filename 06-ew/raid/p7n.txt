@@ -11,15 +11,15 @@ hideall "--sync--"
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 3.0 "--sync--" Ability { id: "78E3", source: "Agdistis" } window 3,0
 15.8 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" } window 16,5
-23.4 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+23.4 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 37.6 "Hemitheos's Holy" Ability { id: "7808", source: "Agdistis" }
 44.0 "Hemitheos's Glare III" Ability { id: "77F8", source: "Agdistis" }
 54.1 "Bough of Attis (in)"  Ability { id: "77FE", source: "Agdistis" }
 64.5 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-72.1 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+72.1 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 81.9 "Immortal's Obol" Ability { id: "77F5", source: "Agdistis" }
 102.0 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-109.6 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+109.6 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 119.7 "Hemitheos's Aero II" Ability { id: "7809", source: "Agdistis" } window 215,10
 128.9 "Spark of Life" Ability { id: "780B", source: "Agdistis" }
 143.2 "Forbidden Fruit" Ability { id: "7801", source: "Agdistis" }
@@ -58,10 +58,10 @@ hideall "--sync--"
 475.9 "Hemitheos's Aero II" Ability { id: "7809", source: "Agdistis" } window 30,30
 489.2 "Forbidden Fruit" Ability { id: "7801", source: "Agdistis" }
 492.3 "Shadow of Attis" Ability { id: "783C", source: "Agdistis" }
-500.7 "Static Moon/Stymphalian Strike" Ability { id: "(7802|7803)", source: ["Immature Io", "Immature Stymphalide"] }
+500.7 "Static Moon/Stymphalian Strike" Ability { id: ["7802", "7803"], source: ["Immature Io", "Immature Stymphalide"] }
 505.4 "Burst" Ability { id: "783D", source: "Agdistis" }
 513.6 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-521.2 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+521.2 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 530.4 "Spark of Life" Ability { id: "780B", source: "Agdistis" }
 539.5 "Spark of Life" Ability { id: "780B", source: "Agdistis" }
 548.6 "Spark of Life" Ability { id: "780B", source: "Agdistis" }
@@ -76,7 +76,7 @@ hideall "--sync--"
 636.1 "Hemitheos's Glare III" Ability { id: "79FA", source: "Agdistis" } window 30,30
 643.7 "Blades of Attis (triangle)" Ability { id: "7805", source: "Agdistis" }
 658.0 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-665.6 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+665.6 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 
 669.1 "--sync--" StartsUsing { id: "7800", source: "Agdistis" } window 30,30 jump 400
 670.2 "--sync--" StartsUsing { id: "7807", source: "Agdistis" } window 30,30 jump 1000
@@ -96,10 +96,10 @@ hideall "--sync--"
 1016.2 "Hemitheos's Glare III" Ability { id: "77F8", source: "Agdistis" } window 30,30
 1026.3 "Bough of Attis (in)"  Ability { id: "77FE", source: "Agdistis" }
 1036.7 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-1044.3 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+1044.3 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 1054.1 "Immortal's Obol" Ability { id: "77F5", source: "Agdistis" } window 30,30
 1074.2 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-1081.8 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+1081.8 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 1091.9 "Hemitheos's Aero II" Ability { id: "7809", source: "Agdistis" } window 30,30
 1101.1 "Spark of Life" Ability { id: "780B", source: "Agdistis" }
 1115.5 "Forbidden Fruit" Ability { id: "7801", source: "Agdistis" }
@@ -110,7 +110,7 @@ hideall "--sync--"
 1189.8 "Hemitheos's Glare III" Ability { id: "79FA", source: "Agdistis" } window 30,30
 1197.4 "Blades of Attis" Ability { id: "7805", source: "Agdistis" }
 1211.7 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
-1219.3 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }
+1219.3 "Bough of Attis (left/right)" Ability { id: ["77FB", "77FC"], source: "Agdistis" }
 
 1222.5 "--sync--" StartsUsing { id: "7800", source: "Agdistis" } window 30,30 jump 400
 1223.6 "--sync--" StartsUsing { id: "7807", source: "Agdistis" } window 30,30 jump 1000

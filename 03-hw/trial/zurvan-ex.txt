@@ -105,7 +105,7 @@ hideall "--sync--"
 429.3 "Southern Cross (snapshot)" Ability { id: "1C5C", source: "Zurvan" } window 430,10
 432.9 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 434.6 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
-444.7 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5A|1C5B)", source: "Zurvan" }
+444.7 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5A", "1C5B"], source: "Zurvan" }
 
 # This is the earliest point this phase can push
 448.8 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
@@ -134,7 +134,7 @@ hideall "--sync--"
 990.3 "Sarva" Ability { id: "1C5F", source: "Zurvan" } window 500,10
 1000.0 "Ahura Mazda" Ability { id: "1C60", source: "Zurvan" } window 1000,10
 1018.2 "--targetable--"
-1024.4 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1024.4 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1032.5 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1039.7 "Tyrfing x5" Ability { id: "1C6D", source: "Zurvan" } duration 5 window 1040,5
 1044.8 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -142,9 +142,9 @@ hideall "--sync--"
 1054.5 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1056.2 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1065.3 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" } window 30,30
-1081.0 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1081.0 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 1086.3 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
-1091.1 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1091.1 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1099.5 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1106.6 "Tyrfing x6" Ability { id: "1C6D", source: "Zurvan" } duration 6
 1112.7 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -152,7 +152,7 @@ hideall "--sync--"
 1122.4 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1124.1 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1133.2 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" }
-1147.9 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1147.9 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 1154.0 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1164.1 "Soar" Ability { id: "1E09", source: "Zurvan" } window 100,20
 1164.2 "--untargetable--"
@@ -162,7 +162,7 @@ hideall "--sync--"
 1181.3 "--targetable--"
 1187.4 "The Demon's Claw" Ability { id: "1C71", source: "Zurvan" }
 1194.5 "Wave Cannon (stack)" Ability { id: "1C72", source: "Zurvan" }
-1200.6 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1200.6 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1208.7 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1215.8 "Tyrfing x7" Ability { id: "1C6D", source: "Zurvan" } duration 7
 1222.9 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -170,9 +170,9 @@ hideall "--sync--"
 1232.6 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1234.3 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1243.4 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" } window 30,30
-1258.4 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1258.4 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 1264.5 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
-1269.6 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1269.6 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1277.7 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1284.8 "Tyrfing x8" Ability { id: "1C6D", source: "Zurvan" } duration 8
 1292.9 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -180,7 +180,7 @@ hideall "--sync--"
 1302.6 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1304.3 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1313.4 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" }
-1328.6 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1328.6 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 1334.8 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1344.8 "Soar" Ability { id: "1E09", source: "Zurvan" } window 100,20
 1344.9 "--untargetable--"
@@ -190,7 +190,7 @@ hideall "--sync--"
 1362.0 "--targetable--"
 1368.1 "The Demon's Claw" Ability { id: "1C71", source: "Zurvan" }
 1375.2 "Wave Cannon (stack)" Ability { id: "1C72", source: "Zurvan" }
-1381.3 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1381.3 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1389.5 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1396.6 "Tyrfing x9" Ability { id: "1C6D", source: "Zurvan" } duration 9
 1405.7 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -198,12 +198,12 @@ hideall "--sync--"
 1415.4 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1417.1 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1426.2 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" } window 30,30
-1441.2 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1441.2 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 
 # It should theoretically be impossible to reach here before enrage,
 # but just in case we'll unroll a bit more to get to 10x Tyrfings.
 1447.4 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
-1452.5 "Infinite Fire/Infinite Ice" Ability { id: "(1C67|1C68)", source: "Zurvan" }
+1452.5 "Infinite Fire/Infinite Ice" Ability { id: ["1C67", "1C68"], source: "Zurvan" }
 1460.6 "Wave Cannon (avoid)" Ability { id: "1C73", source: "Zurvan" }
 1467.7 "Tyrfing x10" Ability { id: "1C6D", source: "Zurvan" } duration 10
 1475.8 "Fire III" Ability { id: "1C6F", source: "Zurvan" }
@@ -211,7 +211,7 @@ hideall "--sync--"
 1485.5 "Southern Cross (puddle)" Ability { id: "1C5D", source: "Zurvan" }
 1487.2 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1496.3 "Broken Seal" Ability { id: "1DC7", source: "Zurvan" }
-1511.5 "Biting Halberd/Ciclicle/Tail End" Ability { id: "(1C59|1C5B|1C5A)", source: "Zurvan" }
+1511.5 "Biting Halberd/Ciclicle/Tail End" Ability { id: ["1C59", "1C5B", "1C5A"], source: "Zurvan" }
 1517.7 "Metal Cutter" Ability { id: "1C70", source: "Zurvan" }
 1527.7 "Soar" Ability { id: "1E09", source: "Zurvan" }
 1527.8 "--untargetable--"

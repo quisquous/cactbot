@@ -25,8 +25,8 @@ hideall "--sync--"
 38.0 "Transmute Element III" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
 38.9 "--sync--" Ability { id: "629B", source: "Minduruva" }
 42.3 "Manusya Fire" Ability { id: "6463", source: "Minduruva" }
-47.7 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-51.8 "Delayed Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+47.7 "Manusya Element III" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+51.8 "Delayed Element III" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
 61.9 "Manusya Bio" Ability { id: "62A0", source: "Minduruva" }
 69.0 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
@@ -39,9 +39,9 @@ hideall "--sync--"
 80.8 "--sync--" Ability { id: "629B", source: "Minduruva" }
 84.0 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
 84.9 "--sync--" Ability { id: "629B", source: "Minduruva" }
-89.3 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-93.4 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-97.5 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+89.3 "Manusya Element III" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+93.4 "Delayed Element III #1" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+97.5 "Delayed Element III #2" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
 107.6 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
 # Rotation block with Bio
@@ -54,9 +54,9 @@ hideall "--sync--"
 132.4 "--sync--" Ability { id: "629B", source: "Minduruva" }
 135.5 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
 136.4 "--sync--" Ability { id: "629B", source: "Minduruva" }
-140.8 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-144.9 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-148.9 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+140.8 "Manusya Element III" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+144.9 "Delayed Element III #1" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+148.9 "Delayed Element III #2" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
 159.0 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
 160.1 "Manusya Fire" Ability { id: "629D", source: "Minduruva" }
@@ -68,9 +68,9 @@ hideall "--sync--"
 183.7 "--sync--" Ability { id: "629B", source: "Minduruva" }
 186.8 "Transmute Element III #2" Ability { id: "6(29A|31[BCD])", source: "Minduruva" }
 187.7 "--sync--" Ability { id: "629B", source: "Minduruva" }
-192.1 "Manusya Element III" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-196.2 "Delayed Element III #1" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
-200.2 "Delayed Element III #2" #Ability { id: "(6295|6296|6297|6298)", source: "Minduruva" }
+192.1 "Manusya Element III" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+196.2 "Delayed Element III #1" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
+200.2 "Delayed Element III #2" #Ability { id: ["6295", "6296", "6297", "6298"], source: "Minduruva" }
 210.3 "Dhrupad" Ability { id: "629C", source: "Minduruva" } window 30,30
 
 211.4 "Manusya Fire" Ability { id: "629D", source: "Minduruva" } jump 160.1

@@ -207,8 +207,8 @@ hideall "--sync--"
 1200.0 "--untargetable--"
 1200.0 "--sync--" Ability { id: "4CE0", source: "Varis Yae Galvus" } window 1200,0
 1200.1 "Gunshield"
-1210.4 "Magitek Spark/Torch" Ability { id: "(4CE4|4CE3)", source: "Gunshield" } window 10,5
-1219.1 "Magitek Torch/Spark" Ability { id: "(4CE4|4CE3)", source: "Gunshield" } window 5,5
+1210.4 "Magitek Spark/Torch" Ability { id: ["4CE4", "4CE3"], source: "Gunshield" } window 10,5
+1219.1 "Magitek Torch/Spark" Ability { id: ["4CE4", "4CE3"], source: "Gunshield" } window 5,5
 # 52 second cast
 1254.0 "Altius Enrage" Ability { id: "4CE1", source: "Varis Yae Galvus" }
 

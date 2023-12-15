@@ -91,7 +91,7 @@ hideall "--sync--"
 499 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Divergence point
-509 "Load/Skip?" Ability { id: "(275C|2773)", source: "Guardian" }
+509 "Load/Skip?" Ability { id: ["275C", "2773"], source: "Guardian" }
 510 "--sync--" GainsEffect { effectId: "5D4", effect: "Bibliotaph Simulation", target: "Guardian" } jump 2510       # Bibliotaph buff, jump to A1
 510 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
@@ -102,7 +102,7 @@ hideall "--sync--"
 ########################################################
 
 # Bibliotaph
-2509 "Load Biblio" Ability { id: "(275C|2773)", source: "Guardian" }
+2509 "Load Biblio" Ability { id: ["275C", "2773"], source: "Guardian" }
 2518 "Radar" duration 2
 2519 "Demon Simulation" Ability { id: "2B36", source: "Guardian" }
 2532 "Run Biblio" Ability { id: "276F", source: "Guardian" }
@@ -114,7 +114,7 @@ hideall "--sync--"
 2579 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Dadaluma
-2590 "Load Dada" Ability { id: "(275C|2774)", source: "Guardian" }
+2590 "Load Dada" Ability { id: ["275C", "2774"], source: "Guardian" }
 2593 "Shockwave" Ability { id: "2783", source: "Guardian" }
 2597 "Radar" duration 2
 2603 "Missile Simulation" Ability { id: "2764", source: "Guardian" }
@@ -123,7 +123,7 @@ hideall "--sync--"
 2629 "Prey" Ability { id: "278A", source: "Guardian" }
 2635 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 2643 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-2648 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 648          # Load/Skip starts casting, return to A
+2648 "--sync--" StartsUsing { id: ["275C", "2773"], source: "Guardian" } jump 648          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 2653 "Load Air Force"
@@ -135,7 +135,7 @@ hideall "--sync--"
 #### Divergent path, Version A2: Dadaluma->Biblio
 
 # Dadaluma
-3509 "Load Dada" Ability { id: "(275C|2773)", source: "Guardian" }
+3509 "Load Dada" Ability { id: ["275C", "2773"], source: "Guardian" }
 3512 "Shockwave" Ability { id: "2783", source: "Guardian" }
 3516 "Radar" duration 2
 3522 "Missile Simulation" Ability { id: "2764", source: "Guardian" }
@@ -146,7 +146,7 @@ hideall "--sync--"
 3562 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Bibliotaph
-3572 "Load Biblio" Ability { id: "(275C|2774)", source: "Guardian" }
+3572 "Load Biblio" Ability { id: ["275C", "2774"], source: "Guardian" }
 3581 "Radar" duration 2
 3582 "Demon Simulation" Ability { id: "2B36", source: "Guardian" }
 3595 "Run Biblio" Ability { id: "276F", source: "Guardian" }
@@ -156,7 +156,7 @@ hideall "--sync--"
 3624 "Prey" Ability { id: "278A", source: "Guardian" }
 3633 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 3642 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-3648 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 648 # Load/Skip starts casting, return to A
+3648 "--sync--" StartsUsing { id: ["275C", "2773"], source: "Guardian" } jump 648 # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 3653 "Load Air Force"
@@ -171,7 +171,7 @@ hideall "--sync--"
 ##########################################################
 
 # Air Force
-653 "Load Air Force" Ability { id: "(275C|2773)", source: "Guardian" }
+653 "Load Air Force" Ability { id: ["275C", "2773"], source: "Guardian" }
 656 "Diffractive Laser" Ability { id: "2780", source: "Guardian" }
 659 "Radar" duration 2
 666 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
@@ -273,7 +273,7 @@ hideall "--sync--"
 1470 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Divergence point
-1481 "Load/Skip?" Ability { id: "(275C|2773)", source: "Guardian" }
+1481 "Load/Skip?" Ability { id: ["275C", "2773"], source: "Guardian" }
 1482 "--sync--" GainsEffect { effectId: "5D4", effect: "Bibliotaph Simulation", target: "Guardian" } jump 4482       # Bibliotaph buff, jump to B1
 1482 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } jump 5482         # Dadaluma buff, jump to B2
 1484 "Shockwave?"
@@ -284,7 +284,7 @@ hideall "--sync--"
 ##########################################################
 
 # Bibliotaph
-4481 "Load Biblio" Ability { id: "(275C|2773)", source: "Guardian" }
+4481 "Load Biblio" Ability { id: ["275C", "2773"], source: "Guardian" }
 4490 "Radar" duration 2
 4491 "Demon Simulation" Ability { id: "2B36", source: "Guardian" }
 4504 "Run Biblio" Ability { id: "276F", source: "Guardian" }
@@ -296,7 +296,7 @@ hideall "--sync--"
 4551 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Dadaluma
-4562 "Load Dada" Ability { id: "(275C|2774)", source: "Guardian" }
+4562 "Load Dada" Ability { id: ["275C", "2774"], source: "Guardian" }
 4565 "Shockwave" Ability { id: "2783", source: "Guardian" }
 4569 "Radar" duration 2
 4575 "Missile Simulation" Ability { id: "2764", source: "Guardian" }
@@ -305,7 +305,7 @@ hideall "--sync--"
 4601 "Prey" Ability { id: "278A", source: "Guardian" }
 4607 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 4615 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-4620 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 1620         # Load/Skip casting, return to B
+4620 "--sync--" StartsUsing { id: ["275C", "2773"], source: "Guardian" } jump 1620         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 4625 "Load Ultros"
@@ -319,7 +319,7 @@ hideall "--sync--"
 #### Divergent path, Version B2: Dadaluma -> Bibliotaph
 
 # Dadaluma
-5481 "Load Dada" Ability { id: "(275C|2773)", source: "Guardian" }
+5481 "Load Dada" Ability { id: ["275C", "2773"], source: "Guardian" }
 5484 "Shockwave" Ability { id: "2783", source: "Guardian" }
 5488 "Radar" duration 2
 5494 "Missile Simulation" Ability { id: "2764", source: "Guardian" }
@@ -330,7 +330,7 @@ hideall "--sync--"
 5534 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
 
 # Bibliotaph
-5544 "Load Biblio" Ability { id: "(275C|2774)", source: "Guardian" }
+5544 "Load Biblio" Ability { id: ["275C", "2774"], source: "Guardian" }
 5553 "Radar" duration 2
 5554 "Demon Simulation" Ability { id: "2B36", source: "Guardian" }
 5567 "Run Biblio" Ability { id: "276F", source: "Guardian" }
@@ -340,7 +340,7 @@ hideall "--sync--"
 5596 "Prey" Ability { id: "278A", source: "Guardian" }
 5605 "Magitek Ray" Ability { id: "2788", source: "Guardian" }
 5614 "Diffractive Plasma" Ability { id: "278B", source: "Guardian" }
-5620 "--sync--" StartsUsing { id: "(275C|2773)", source: "Guardian" } jump 1620         # Load/Skip casting, return to B
+5620 "--sync--" StartsUsing { id: ["275C", "2773"], source: "Guardian" } jump 1620         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 5625 "Load Ultros"
@@ -356,7 +356,7 @@ hideall "--sync--"
 ##########################################################
 
 # Ultros
-1625 "Load Ultros" Ability { id: "(275C|2773)", source: "Guardian" }
+1625 "Load Ultros" Ability { id: ["275C", "2773"], source: "Guardian" }
 1626 "Ink" Ability { id: "277D", source: "Guardian" }
 1633 "Tentacle Simulation" Ability { id: "275E", source: "Guardian" }
 1637 "Tentacle"

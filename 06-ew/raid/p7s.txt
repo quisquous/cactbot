@@ -9,7 +9,7 @@ hideall "--sync--"
 
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 13.0 "Spark of Life" Ability { id: "7839", source: "Agdistis" } window 50,50
-26.3 "Condensed Aero II/Dispersed Aero II" Ability { id: "(7836|7835)", source: "Agdistis" }
+26.3 "Condensed Aero II/Dispersed Aero II" Ability { id: ["7836", "7835"], source: "Agdistis" }
 34.1 "--sync--" Ability { id: "782E", source: "Agdistis" }
 42.7 "Immortal's Obol" Ability { id: "780C", source: "Agdistis" }
 44.6 "Blades of Attis" Ability { id: "782F", source: "Agdistis" } duration 14
@@ -21,7 +21,7 @@ hideall "--sync--"
 79.8 "Hemitheos's Holy III" Ability { id: "783B", source: "Agdistis" }
 80.0 "Bough of Attis (far)" Ability { id: "7826", source: "Agdistis" }
 80.3 "Stymphalian Strike" Ability { id: "7815", source: "Immature Stymphalide" }
-91.7 "Condensed Aero II/Dispersed Aero II" Ability { id: "(7836|7835)", source: "Agdistis" }
+91.7 "Condensed Aero II/Dispersed Aero II" Ability { id: ["7836", "7835"], source: "Agdistis" }
 102.5 "Spark of Life" Ability { id: "7839", source: "Agdistis" }
 
 # Inviolate Bonds: Spread/Stack
@@ -29,11 +29,11 @@ hideall "--sync--"
 121.8 "Bough of Attis (close)" Ability { id: "7821", source: "Agdistis" }
 121.9 "Hemitheos's Aero III" Ability { id: "781B", source: "Agdistis" }
 121.9 "Hemitheos's Holy III" Ability { id: "781C", source: "Agdistis" }
-129.4 "Bough of Attis (arrow)" Ability { id: "(7823|7824)", source: "Agdistis" }
+129.4 "Bough of Attis (arrow)" Ability { id: ["7823", "7824"], source: "Agdistis" }
 132.9 "Hemitheos's Aero III" Ability { id: "781B", source: "Agdistis" }
 132.9 "Hemitheos's Holy III" Ability { id: "781C", source: "Agdistis" }
 138.6 "Roots of Attis" Ability { id: "780E", source: "Agdistis" }
-157.1 "Condensed Aero II/Dispersed Aero II" Ability { id: "(7836|7835)", source: "Agdistis" }
+157.1 "Condensed Aero II/Dispersed Aero II" Ability { id: ["7836", "7835"], source: "Agdistis" }
 
 # Forbidden Fruit: Birds + Knockback
 165.8 "Forbidden Fruit" Ability { id: "7810", source: "Agdistis" }
@@ -51,8 +51,8 @@ hideall "--sync--"
 223.4 "Hemitheos's Holy III" Ability { id: "783B", source: "Agdistis" }
 
 240.6 "Bough of Attis (close)" Ability { id: "7821", source: "Agdistis" }
-248.2 "Bough of Attis (arrow)" Ability { id: "(7823|7824)", source: "Agdistis" }
-258.3 "Condensed Aero II/Dispersed Aero II" Ability { id: "(7836|7835)", source: "Agdistis" }
+248.2 "Bough of Attis (arrow)" Ability { id: ["7823", "7824"], source: "Agdistis" }
+258.3 "Condensed Aero II/Dispersed Aero II" Ability { id: ["7836", "7835"], source: "Agdistis" }
 
 # Forbidden Fruit: 3 Minos, 2 Bulls
 266.0 "Forbidden Fruit" Ability { id: "7810", source: "Agdistis" }
@@ -67,7 +67,7 @@ hideall "--sync--"
 305.3 "Blades of Attis" Ability { id: "782F", source: "Agdistis" } duration 14
 307.0 "Hemitheos's Aero IV" Ability { id: "7834", source: "Agdistis" }
 309.7 "Hemitheos's Holy III" Ability { id: "783B", source: "Agdistis" }
-324.2 "Condensed Aero II/Dispersed Aero II" Ability { id: "(7836|7835)", source: "Agdistis" }
+324.2 "Condensed Aero II/Dispersed Aero II" Ability { id: ["7836", "7835"], source: "Agdistis" }
 
 # Forbidden Fruit: Towers and Birds
 333.9 "Forbidden Fruit" Ability { id: "7810", source: "Agdistis" }
@@ -135,7 +135,7 @@ hideall "--sync--"
 617.3 "--sync--" Ability { id: "783A", source: "Agdistis" }
 626.3 "Bough of Attis (close)" Ability { id: "7821", source: "Agdistis" }
 627.5 "Hemitheos's Holy III" Ability { id: "783B", source: "Agdistis" }
-633.9 "Bough of Attis (arrow)" Ability { id: "(7823|7824)", source: "Agdistis" }
+633.9 "Bough of Attis (arrow)" Ability { id: ["7823", "7824"], source: "Agdistis" }
 643.1 "Spark of Life" Ability { id: "7839", source: "Agdistis" }
 656.3 "Spark of Life" Ability { id: "7839", source: "Agdistis" }
 

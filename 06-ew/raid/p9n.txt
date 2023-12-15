@@ -29,8 +29,8 @@ hideall "--sync--"
 76.0 "Blizzard III (resolve)" Ability { id: "8121", source: "Kokytos" }
 82.6 "Dualspell" Ability { id: "811D", source: "Kokytos" }
 85.9 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
-90.3 "Fire III" Ability { id: "(8120|811E)", source: "Kokytos" }
-90.3 "Blizzard III" Ability { id: "(811F|8121)", source: "Kokytos" }
+90.3 "Fire III" Ability { id: ["8120", "811E"], source: "Kokytos" }
+90.3 "Blizzard III" Ability { id: ["811F", "8121"], source: "Kokytos" }
 99.8 "Global Spell" Ability { id: "8141", source: "Kokytos" }
 103.0 "Disgorge" Ability { id: "8124", source: "Kokytos" }
 
@@ -94,8 +94,8 @@ hideall "--sync--"
 351.6 "Explosion" Ability { id: "86E[23]", source: "Fire Sphere" }
 356.0 "Dualspell" Ability { id: "811D", source: "Kokytos" }
 359.3 "--sync--" Ability { id: "812[23]", source: "Kokytos" }
-363.8 "Blizzard III" Ability { id: "(811F|8121)", source: "Kokytos" }
-363.8 "Fire III" Ability { id: "(811E|8120)", source: "Kokytos" }
+363.8 "Blizzard III" Ability { id: ["811F", "8121"], source: "Kokytos" }
+363.8 "Fire III" Ability { id: ["811E", "8120"], source: "Kokytos" }
 370.5 "Global Spell" Ability { id: "8141", source: "Kokytos" }
 372.7 "Disgorge" Ability { id: "8124", source: "Kokytos" }
 

@@ -27,8 +27,8 @@ hideall "--sync--"
 1051.6 "Thlipsis" Ability { id: "88D8", source: "Thaliak" }
 
 1059.7 "--middle--" Ability { id: "88DB", source: "Thaliak" }
-1067.0 "Left Bank/Right Bank" Ability { id: "(88D2|88D3)", source: "Thaliak" }
-1074.1 "Right Bank/Left Bank" Ability { id: "(88D3|88D2)", source: "Thaliak" }
+1067.0 "Left Bank/Right Bank" Ability { id: ["88D2", "88D3"], source: "Thaliak" }
+1074.1 "Right Bank/Left Bank" Ability { id: ["88D3", "88D2"], source: "Thaliak" }
 
 1080.2 "Hydroptosis" Ability { id: "88D4", source: "Thaliak" }
 
@@ -57,7 +57,7 @@ hideall "--sync--"
 1225.1 "--sync--" Ability { id: "88D0", source: "Thaliak" }
 1234.5 "Hieroglyphika 2" Ability { id: "88CF", source: "Thaliak" }
 1254.5 "--sync--" Ability { id: "88D0", source: "Thaliak" }
-1258.6 "Left Bank/Right Bank" Ability { id: "(8C2C|8C2D)", source: "Thaliak" }
+1258.6 "Left Bank/Right Bank" Ability { id: ["8C2C", "8C2D"], source: "Thaliak" }
 
 1264.7 "--middle--" Ability { id: "88DB", source: "Thaliak" }
 1272.9 label "thaliak-loop"
@@ -86,7 +86,7 @@ hideall "--sync--"
 1379.2 "--middle--" Ability { id: "88DB", source: "Thaliak" }
 1386.5 "Hieroglyphika" Ability { id: "88CF", source: "Thaliak" }
 1406.5 "--sync--" Ability { id: "88D0", source: "Thaliak" }
-1410.5 "Left Bank/Right Bank" Ability { id: "(8C2C|8C2D)", source: "Thaliak" }
+1410.5 "Left Bank/Right Bank" Ability { id: ["8C2C", "8C2D"], source: "Thaliak" }
 
 1416.6 "Hydroptosis" Ability { id: "88D4", source: "Thaliak" }
 1427.7 "Katarraktes" Ability { id: "88D1", source: "Thaliak" }
@@ -137,24 +137,24 @@ hideall "--sync--"
 2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "116A" } window 10000,0
 2007.1 "--sync--" StartsUsing { id: "880B", source: "Llymlaen" } window 10,10
 2012.1 "Tempest" Ability { id: "880B", source: "Llymlaen" }
-2023.2 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
-2032.3 "Wind Rose/Seafoam Spiral" Ability { id: "(880C|880D)", source: "Llymlaen" }
+2023.2 "Seafoam Spiral/Wind Rose" Ability { id: ["880D", "880C"], source: "Llymlaen" }
+2032.3 "Wind Rose/Seafoam Spiral" Ability { id: ["880C", "880D"], source: "Llymlaen" }
 
 2041.6 "--middle--" Ability { id: "8809", source: "Llymlaen" }
 2049.4 "Navigator's Trident" Ability { id: "880E", source: "Llymlaen" }
-2050.5 "Dire Straits 1" #Ability { id: "(880F|8810)", source: "Llymlaen" }
-2052.3 "Dire Straits 2" #Ability { id: "(880F|8810)", source: "Llymlaen" }
+2050.5 "Dire Straits 1" #Ability { id: ["880F", "8810"], source: "Llymlaen" }
+2052.3 "Dire Straits 2" #Ability { id: ["880F", "8810"], source: "Llymlaen" }
 
 2052.7 "--jump--" Ability { id: "8CCF", source: "Llymlaen" }
 2060.9 "Navigator's Trident" Ability { id: "8811", source: "Llymlaen" }
 
 2064.0 "--middle--" Ability { id: "8809", source: "Llymlaen" }
-2073.0 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
+2073.0 "Seafoam Spiral/Wind Rose" Ability { id: ["880D", "880C"], source: "Llymlaen" }
 
 2084.0 "Surging Wave" Ability { id: "8812", source: "Llymlaen" }
 2085.2 "Shockwave" Ability { id: "8814", source: "Llymlaen" }
 
-2105.2 "Left Strait/Right Strait" Ability { id: "(8851|8852)", source: "Llymlaen" }
+2105.2 "Left Strait/Right Strait" Ability { id: ["8851", "8852"], source: "Llymlaen" }
 2113.4 "Deep Dive" Ability { id: "8819", source: "Llymlaen" }
 
 2122.6 "--sync--" StartsUsing { id: "881A", source: "Llymlaen" } window 20,20
@@ -184,10 +184,10 @@ hideall "--sync--"
 2178.2 "--middle--" Ability { id: "8809", source: "Llymlaen" }
 2185.3 "Wind Rose" Ability { id: "880C", source: "Llymlaen" }
 
-2185.4 "Serpents' Tide 1" Ability { id: "(8828|8829)", source: "Thalaos" }
-2196.5 "Serpents' Tide 2" Ability { id: "(8828|8829)", source: "Thalaos" }
-2201.3 "  /Right Strait" Ability { id: "(8851|8852)", source: "Llymlaen" }
-2207.4 "Serpents' Tide 3" Ability { id: "(8828|8829)", source: "Thalaos" }
+2185.4 "Serpents' Tide 1" Ability { id: ["8828", "8829"], source: "Thalaos" }
+2196.5 "Serpents' Tide 2" Ability { id: ["8828", "8829"], source: "Thalaos" }
+2201.3 "  /Right Strait" Ability { id: ["8851", "8852"], source: "Llymlaen" }
+2207.4 "Serpents' Tide 3" Ability { id: ["8828", "8829"], source: "Thalaos" }
 2212.0 "Maelstrom" Ability { id: "882A", source: "Llymlaen" }
 
 2213.3 "--middle--" Ability { id: "8809", source: "Llymlaen" }
@@ -197,23 +197,23 @@ hideall "--sync--"
 2230.5 "--middle--" Ability { id: "8809", source: "Llymlaen" }
 2238.3 label "llymlaen-loop"
 2238.3 "Navigator's Trident" Ability { id: "880E", source: "Llymlaen" }
-2239.3 "Dire Straits 1" #Ability { id: "(880F|8810)", source: "Llymlaen" }
-2241.1 "Dire Straits 2" #Ability { id: "(880F|8810)", source: "Llymlaen" }
+2239.3 "Dire Straits 1" #Ability { id: ["880F", "8810"], source: "Llymlaen" }
+2241.1 "Dire Straits 2" #Ability { id: ["880F", "8810"], source: "Llymlaen" }
 
 # TODO: can this be 882B instead of 8CCF?
 2241.5 "--jump--" Ability { id: "8CCF", source: "Llymlaen" }
 2249.7 "Navigator's Trident" Ability { id: "8811", source: "Llymlaen" }
-2250.8 "Serpents' Tide" Ability { id: "(8828|8829)", source: "Thalaos" }
+2250.8 "Serpents' Tide" Ability { id: ["8828", "8829"], source: "Thalaos" }
 
 2252.8 "--middle--" Ability { id: "8809", source: "Llymlaen" }
-2261.8 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
+2261.8 "Seafoam Spiral/Wind Rose" Ability { id: ["880D", "880C"], source: "Llymlaen" }
 2272.8 "Surging Wave" Ability { id: "8812", source: "Llymlaen" }
 2274.0 "Shockwave" Ability { id: "8814", source: "Llymlaen" }
 2281.9 "--sync--" Ability { id: "8815", source: "Llymlaen" }
 2282.1 "To the Last 1" #Ability { id: "8817", source: "Llymlaen" }
 2284.1 "To the Last 2" #Ability { id: "8817", source: "Llymlaen" }
 2286.2 "To the Last 3" #Ability { id: "8817", source: "Llymlaen" }
-2294.3 "Left Strait/Right Strait" Ability { id: "(8851|8852)", source: "Llymlaen" }
+2294.3 "Left Strait/Right Strait" Ability { id: ["8851", "8852"], source: "Llymlaen" }
 
 2297.4 "--middle--" Ability { id: "8809", source: "Llymlaen" }
 2304.6 "Hard Water 1" Ability { id: "8835", source: "Perykos" }
@@ -242,20 +242,20 @@ hideall "--sync--"
 
 2355.0 "Serpents' Tide" Ability { id: "8829", source: "Thalaos" }
 2359.6 "Maelstrom" Ability { id: "882A", source: "Llymlaen" }
-2363.9 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
+2363.9 "Seafoam Spiral/Wind Rose" Ability { id: ["880D", "880C"], source: "Llymlaen" }
 
 2366.0 "--middle--" Ability { id: "8809", source: "Llymlaen" }
 2370.0 "--sync--" Ability { id: "8824", source: "Llymlaen" }
 2373.0 "Godsbane" Ability { id: "8821", source: "Llymlaen" }
 
-2392.2 "Seafoam Spiral/Wind Rose" Ability { id: "(880D|880C)", source: "Llymlaen" }
+2392.2 "Seafoam Spiral/Wind Rose" Ability { id: ["880D", "880C"], source: "Llymlaen" }
 2394.3 "Stormy Seas" Ability { id: "881D", source: "Llymlaen" }
 2399.1 "Stormwhorl 1" #Ability { id: "881E", source: "Llymlaen" }
 2401.1 "Stormwhorl 2" #Ability { id: "881E", source: "Llymlaen" }
 2403.1 "Stormwhorl 3" #Ability { id: "881E", source: "Llymlaen" }
 2404.1 "Stormwinds" #Ability { id: "881F", source: "Llymlaen" }
 
-2410.4 "Left Strait/Right Strait" Ability { id: "(8851|8852)", source: "Llymlaen" }
+2410.4 "Left Strait/Right Strait" Ability { id: ["8851", "8852"], source: "Llymlaen" }
 2421.5 "Tempest" Ability { id: "880B", source: "Llymlaen" }
 
 2431.8 "--middle--" Ability { id: "8809", source: "Llymlaen" }
@@ -335,14 +335,14 @@ hideall "--sync--"
 
 3033.6 "--middle--" Ability { id: "8998", source: "Oschon" }
 3037.7 "Reproduce" Ability { id: "8989", source: "Oschon" }
-3040.7 "--sync--" Ability { id: "(8830|8831)", source: "Oschon" }
-3047.7 "--sync--" Ability { id: "(898A|898B)", source: "Oschon's Avatar" }
+3040.7 "--sync--" Ability { id: ["8830", "8831"], source: "Oschon" }
+3047.7 "--sync--" Ability { id: ["898A", "898B"], source: "Oschon's Avatar" }
 3053.8 "Swinging Draw" Ability { id: "898C", source: "Oschon's Avatar" }
 
 3054.9 "--middle--" Ability { id: "8998", source: "Oschon" }
 3059.2 "Reproduce" Ability { id: "8989", source: "Oschon" }
-3062.2 "--sync--" Ability { id: "(8830|8831)", source: "Oschon" }
-3069.2 "--sync--" Ability { id: "(898A|898B)", source: "Oschon's Avatar" }
+3062.2 "--sync--" Ability { id: ["8830", "8831"], source: "Oschon" }
+3069.2 "--sync--" Ability { id: ["898A", "898B"], source: "Oschon's Avatar" }
 3075.3 "Swinging Draw x2" Ability { id: "898C", source: "Oschon's Avatar" }
 
 3076.4 "--middle--" Ability { id: "8998", source: "Oschon" }
@@ -353,23 +353,23 @@ hideall "--sync--"
 
 3109.4 label "oschon-p1-loop"
 3109.4 "Reproduce" Ability { id: "8989", source: "Oschon" }
-3112.4 "--sync--" Ability { id: "(8830|8831)", source: "Oschon" }
-3119.4 "--sync--" Ability { id: "(898A|898B)", source: "Oschon's Avatar" }
+3112.4 "--sync--" Ability { id: ["8830", "8831"], source: "Oschon" }
+3119.4 "--sync--" Ability { id: ["898A", "898B"], source: "Oschon's Avatar" }
 3125.5 "Swinging Draw x2" Ability { id: "898C", source: "Oschon's Avatar" }
 
 3129.5 "Sudden Downpour" Ability { id: "8999", source: "Oschon" }
 
 3133.6 "--middle--" Ability { id: "8998", source: "Oschon" }
 3137.9 "Downhill (cast)" Ability { id: "899F", source: "Oschon" }
-3145.0 "Climbing Shot" Ability { id: "(8990|8991|8992|8993)", source: "Oschon" }
+3145.0 "Climbing Shot" Ability { id: ["8990", "8991", "8992", "8993"], source: "Oschon" }
 3146.8 "Downhill" Ability { id: "89A1", source: "Oschon" }
 
 3153.1 "Soaring Minuet" Ability { id: "8994", source: "Oschon" }
 3160.8 "Flinted Foehn x6" Ability { id: "89A3", source: "Oschon" } duration 5.6
 
-3168.1 "--sync--" Ability { id: "(882E|882F)", source: "Oschon" }
-3174.1 "--sync--" Ability { id: "(898D|898E)", source: "Oschon" }
-3177.7 "Trek Shot" Ability { id: "(898F|8C44)", source: "Oschon" }
+3168.1 "--sync--" Ability { id: ["882E", "882F"], source: "Oschon" }
+3174.1 "--sync--" Ability { id: ["898D", "898E"], source: "Oschon" }
+3177.7 "Trek Shot" Ability { id: ["898F", "8C44"], source: "Oschon" }
 
 3184.4 "Sudden Downpour 1" Ability { id: "8999", source: "Oschon" }
 3190.5 "Sudden Downpour 2" Ability { id: "8999", source: "Oschon" }
@@ -392,14 +392,14 @@ hideall "--sync--"
 
 
 # Phase 2
-3544.0 "Piton Pull 1" Ability { id: "(89A9|89AA)", source: "Oschon" }
-3556.1 "Piton Pull 2" Ability { id: "(89A9|89AA)", source: "Oschon" }
+3544.0 "Piton Pull 1" Ability { id: ["89A9", "89AA"], source: "Oschon" }
+3556.1 "Piton Pull 2" Ability { id: ["89A9", "89AA"], source: "Oschon" }
 3568.2 "Altitude" Ability { id: "89AF", source: "Oschon" }
 3578.9 "Flinted Foehn x6" Ability { id: "89A4", source: "Oschon" } duration 5.6
 
-3595.1 "Wandering Shot 1" Ability { id: "(8CF6|8CF7)", source: "Oschon" }
+3595.1 "Wandering Shot 1" Ability { id: ["8CF6", "8CF7"], source: "Oschon" }
 3598.8 "Great Whirlwind 1" Ability { id: "89AE", source: "Oschon" }
-3609.4 "Wandering Shot 2" Ability { id: "(8CF6|8CF7)", source: "Oschon" }
+3609.4 "Wandering Shot 2" Ability { id: ["8CF6", "8CF7"], source: "Oschon" }
 3613.1 "Great Whirlwind 2" Ability { id: "89AE", source: "Oschon" }
 
 3622.5 "The Arrow" Ability { id: "899C", source: "Oschon" }
@@ -409,14 +409,14 @@ hideall "--sync--"
 3642.9 "Downhill 1" Ability { id: "8C45", source: "Oschon" }
 3646.9 "Downhill 2" Ability { id: "8C45", source: "Oschon" }
 3650.9 "Downhill 3" Ability { id: "8C45", source: "Oschon" }
-3657.9 "Piton Pull" Ability { id: "(89A9|89AA)", source: "Oschon" }
+3657.9 "Piton Pull" Ability { id: ["89A9", "89AA"], source: "Oschon" }
 
 3668.1 "Downhill (cast)" Ability { id: "89A0", source: "Oschon" }
-3681.2 "Wandering Volley" Ability { id: "(89AC|89AD)", source: "Oschon" }
+3681.2 "Wandering Volley" Ability { id: ["89AC", "89AD"], source: "Oschon" }
 3682.4 "Downhill" Ability { id: "89A2", source: "Oschon" }
 3684.7 "Great Whirlwind" Ability { id: "89AE", source: "Oschon" }
 
-3692.1 "Piton Pull" Ability { id: "(89A9|89AA)", source: "Oschon" }
+3692.1 "Piton Pull" Ability { id: ["89A9", "89AA"], source: "Oschon" }
 
 3702.6 "Flinted Foehn x6" Ability { id: "89A4", source: "Oschon" } duration 5.6
 
@@ -506,24 +506,24 @@ hideall "--sync--"
 
 4019.9 "--sync--" Ability { id: "8A02", source: "Eulogia" }
 4022.0 "--sync--" Ability { id: "8A08", source: "Eulogia" }
-4031.4 "First Form" Ability { id: "(8A0A|8A0D|8A10)", source: "Eulogia" }
-4038.5 "Second Form" Ability { id: "(8A0B|8A0E|8A11)", source: "Eulogia" }
-4045.6 "Third Form" Ability { id: "(8A0C|8A0F|8A12)", source: "Eulogia" }
+4031.4 "First Form" Ability { id: ["8A0A", "8A0D", "8A10"], source: "Eulogia" }
+4038.5 "Second Form" Ability { id: ["8A0B", "8A0E", "8A11"], source: "Eulogia" }
+4045.6 "Third Form" Ability { id: ["8A0C", "8A0F", "8A12"], source: "Eulogia" }
 4049.7 "--sync--" Ability { id: "8A16", source: "Eulogia" }
-4049.9 "Quintessence 1" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4053.6 "Quintessence 2" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4057.2 "Quintessence 3" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
+4049.9 "Quintessence 1" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4053.6 "Quintessence 2" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4057.2 "Quintessence 3" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
 
 4071.5 "--sync--" Ability { id: "8A02", source: "Eulogia" }
 4073.7 "--sync--" Ability { id: "8A08", source: "Eulogia" }
 
-4083.1 "First Form" Ability { id: "(8A0A|8A0D|8A10)", source: "Eulogia" }
-4090.3 "Second Form" Ability { id: "(8A0B|8A0E|8A11)", source: "Eulogia" }
-4097.4 "Third Form" Ability { id: "(8A0C|8A0F|8A12)", source: "Eulogia" }
+4083.1 "First Form" Ability { id: ["8A0A", "8A0D", "8A10"], source: "Eulogia" }
+4090.3 "Second Form" Ability { id: ["8A0B", "8A0E", "8A11"], source: "Eulogia" }
+4097.4 "Third Form" Ability { id: ["8A0C", "8A0F", "8A12"], source: "Eulogia" }
 4101.5 "--sync--" Ability { id: "8A16", source: "Eulogia" }
-4101.7 "Quintessence 1" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4105.4 "Quintessence 2" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4109.0 "Quintessence 3" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
+4101.7 "Quintessence 1" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4105.4 "Quintessence 2" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4109.0 "Quintessence 3" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
 
 4122.0 "Sunbeam" Ability { id: "8A00", source: "Eulogia" }
 
@@ -554,14 +554,14 @@ hideall "--sync--"
 4223.0 "--middle--" Ability { id: "8A02", source: "Eulogia" }
 4230.3 "Hieroglyphika" Ability { id: "8A43", source: "Eulogia" }
 4247.4 "--sync--" Ability { id: "8A44", source: "Eulogia" }
-4252.2 "Hand of the Destroyer" Ability { id: "(8A47|8A48)", source: "Eulogia" }
+4252.2 "Hand of the Destroyer" Ability { id: ["8A47", "8A48"], source: "Eulogia" }
 
 4256.3 "--middle--" Ability { id: "8A02", source: "Eulogia" }
 4261.4 "Matron's Breath" Ability { id: "8A4B", source: "Eulogia" }
-4276.5 "Blueblossoms/Giltblossoms 1" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-4280.1 "Blueblossoms/Giltblossoms 2" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-4283.7 "Blueblossoms/Giltblossoms 3" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-4287.3 "Blueblossoms/Giltblossoms 4" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
+4276.5 "Blueblossoms/Giltblossoms 1" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+4280.1 "Blueblossoms/Giltblossoms 2" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+4283.7 "Blueblossoms/Giltblossoms 3" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+4287.3 "Blueblossoms/Giltblossoms 4" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
 
 4290.7 "Torrential Tridents" Ability { id: "8A4E", source: "Eulogia" }
 4291.6 "Landing 1" #Ability { id: "8A4F", source: "Trident" }
@@ -579,11 +579,11 @@ hideall "--sync--"
 4316.7 "Destructive Bolt" Ability { id: "8CEC", source: "Eulogia" }
 
 4327.1 "Byregot's Strike" Ability { id: "8A52", source: "Eulogia" }
-4334.0 "Thousandfold Thrust" Ability { id: "(8A57|8A58)", source: "Eulogia" } duration 5.4
+4334.0 "Thousandfold Thrust" Ability { id: ["8A57", "8A58"], source: "Eulogia" } duration 5.4
 
 4343.0 "--middle--" Ability { id: "8A02", source: "Eulogia" }
-4350.2 "As Above, So Below" Ability { id: "(8A5B|8A5C)", source: "Eulogia" }
-4362.3 "Climbing Shot" Ability { id: "(8D0A|8D0B)", source: "Eulogia" }
+4350.2 "As Above, So Below" Ability { id: ["8A5B", "8A5C"], source: "Eulogia" }
+4362.3 "Climbing Shot" Ability { id: ["8D0A", "8D0B"], source: "Eulogia" }
 4372.8 "Soaring Minuet" Ability { id: "8A69", source: "Eulogia" }
 
 4377.1 "--middle--" Ability { id: "8A08", source: "Eulogia" }
@@ -604,13 +604,13 @@ hideall "--sync--"
 4418.0 "--sync--" Ability { id: "8A02", source: "Eulogia" }
 4420.3 label "Quintessence"
 4420.3 "--sync--" Ability { id: "8A08", source: "Eulogia" }
-4429.7 "First Form" Ability { id: "(8A0A|8A0D|8A10)", source: "Eulogia" }
-4436.9 "Second Form" Ability { id: "(8A0B|8A0E|8A11)", source: "Eulogia" }
-4444.1 "Third Form" Ability { id: "(8A0C|8A0F|8A12)", source: "Eulogia" }
+4429.7 "First Form" Ability { id: ["8A0A", "8A0D", "8A10"], source: "Eulogia" }
+4436.9 "Second Form" Ability { id: ["8A0B", "8A0E", "8A11"], source: "Eulogia" }
+4444.1 "Third Form" Ability { id: ["8A0C", "8A0F", "8A12"], source: "Eulogia" }
 4448.2 "--sync--" Ability { id: "8A16", source: "Eulogia" }
-4448.4 "Quintessence 1" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4452.1 "Quintessence 2" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
-4455.7 "Quintessence 3" Ability { id: "(8A17|8A18|8A19)", source: "Eulogia" }
+4448.4 "Quintessence 1" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4452.1 "Quintessence 2" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
+4455.7 "Quintessence 3" Ability { id: ["8A17", "8A18", "8A19"], source: "Eulogia" }
 4468.5 "Sunbeam" Ability { id: "8A00", source: "Eulogia" }
 
 4476.9 "--middle--" Ability { id: "8A02", source: "Eulogia" }
@@ -623,7 +623,7 @@ hideall "--sync--"
 # This is probably Good Enough (TM).
 4400.0 "--sync--" StartsUsing { id: "8A3B", source: "Eulogia" } window 0,10000 jump "Solar Fans"
 4400.0 "--sync--" StartsUsing { id: "8A4B", source: "Eulogia" } window 0,10000 jump "Matron's Breath"
-4400.0 "--sync--" StartsUsing { id: "(8A5B|8A5C)", source: "Eulogia" } window 0,10000 jump "As Above, So Below"
+4400.0 "--sync--" StartsUsing { id: ["8A5B", "8A5C"], source: "Eulogia" } window 0,10000 jump "As Above, So Below"
 4400.0 "--sync--" StartsUsing { id: "8A4E", source: "Eulogia" } window 0,10000 jump "Torrential Tridents"
 4400.0 "--sync--" StartsUsing { id: "8A30", source: "Eulogia" } window 0,10000 jump "Love's Light"
 4400.0 "--sync--" StartsUsing { id: "8A43", source: "Eulogia" } window 0,10000 jump "Hieroglyphika"
@@ -643,15 +643,15 @@ hideall "--sync--"
 5100.0 label "Matron's Breath"
 5100.0 "--sync--"StartsUsing { id: "8A4B", source: "Eulogia" }
 5103.0 "Matron's Breath" Ability { id: "8A4B", source: "Eulogia" }
-5118.1 "Blueblossoms/Giltblossoms 1" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-5121.7 "Blueblossoms/Giltblossoms 2" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-5125.3 "Blueblossoms/Giltblossoms 3" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
-5128.9 "Blueblossoms/Giltblossoms 4" Ability { id: "(8A4C|8A4D)", source: "Eulogia" }
+5118.1 "Blueblossoms/Giltblossoms 1" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+5121.7 "Blueblossoms/Giltblossoms 2" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+5125.3 "Blueblossoms/Giltblossoms 3" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
+5128.9 "Blueblossoms/Giltblossoms 4" Ability { id: ["8A4C", "8A4D"], source: "Eulogia" }
 
 5200.0 label "As Above, So Below"
-5200.0 "--sync--" StartsUsing { id: "(8A5B|8A5C)", source: "Eulogia" }
-5205.0 "As Above, So Below" Ability { id: "(8A5B|8A5C)", source: "Eulogia" }
-5217.1 "Climbing Shot" Ability { id: "(8D0A|8D0B)", source: "Eulogia" }
+5200.0 "--sync--" StartsUsing { id: ["8A5B", "8A5C"], source: "Eulogia" }
+5205.0 "As Above, So Below" Ability { id: ["8A5B", "8A5C"], source: "Eulogia" }
+5217.1 "Climbing Shot" Ability { id: ["8D0A", "8D0B"], source: "Eulogia" }
 5227.4 "Soaring Minuet" Ability { id: "8A69", source: "Eulogia" }
 5237.6 "Destructive Bolt" Ability { id: "8CEC", source: "Eulogia" }
 
@@ -686,7 +686,7 @@ hideall "--sync--"
 5500.0 "--sync--" StartsUsing { id: "8A43", source: "Eulogia" }
 5505.0 "Hieroglyphika" Ability { id: "8A43", source: "Eulogia" }
 5522.1 "--sync--" Ability { id: "8A44", source: "Eulogia" }
-5526.8 "Hand of the Destroyer" Ability { id: "(8A47|8A48)", source: "Eulogia" }
+5526.8 "Hand of the Destroyer" Ability { id: ["8A47", "8A48"], source: "Eulogia" }
 5537.9 "Destructive Bolt" Ability { id: "8CEC", source: "Eulogia" }
 
 5600.0 label "Hydrostasis"
@@ -701,7 +701,7 @@ hideall "--sync--"
 5700.0 label "Byregot's Strike"
 5700.0 "--sync--" Ability { id: "8A52", source: "Eulogia" }
 5706.0 "Byregot's Strike" Ability { id: "8A52", source: "Eulogia" }
-5712.9 "Thousandfold Thrust" Ability { id: "(8A57|8A58)", source: "Eulogia" } duration 5.4
+5712.9 "Thousandfold Thrust" Ability { id: ["8A57", "8A58"], source: "Eulogia" } duration 5.4
 5727.1 "Destructive Bolt" Ability { id: "8CEC", source: "Eulogia" }
 
 
