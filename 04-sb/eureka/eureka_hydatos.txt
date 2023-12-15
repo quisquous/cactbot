@@ -136,7 +136,7 @@ hideall "--sync--"
 3124.4 "Streak Lightning" #Ability { id: "3877", source: "Streak Lightning" }
 3134.9 "Ultimate Zantetsuken" StartsUsing { id: "3878", source: "Raiden" } duration 20
 
-3154.9 "--sync--" sync / 17:[^:]*:Raiden:3878:/ window 40,0
+3154.9 "--sync--" NetworkCancelAbility { id: "3878", source: "Raiden" } window 40,0
 3164.9 "Spirits of the Fallen" Ability { id: "387A", source: "Raiden" } window 40,5
 3171.2 "Booming Lament" Ability { id: "387D", source: "Raiden" }
 3177.3 "Cloud to Ground" Ability { id: "3870", source: "Raiden" }
@@ -158,7 +158,7 @@ hideall "--sync--"
 3316.0 "Lateral Zantetsuken" Ability { id: "386[BC]", source: "Raiden" }
 3321.7 "Ultimate Zantetsuken" StartsUsing { id: "3878", source: "Raiden" } duration 20
 
-3341.7 "--sync--" sync / 17:[^:]*:Raiden:3878:/ window 40,0
+3341.7 "--sync--" NetworkCancelAbility { id: "3878", source: "Raiden" } window 40,0
 3347.7 "Spirits of the Fallen" Ability { id: "387A", source: "Raiden" } window 40,5
 3353.8 "Shingan" Ability { id: "387B", source: "Raiden" }
 3365.4 "Ame-no-Sakahoko" Ability { id: "3868", source: "Raiden" }
