@@ -46,7 +46,7 @@ hideall "--sync--"
 142.1 "Cascade Enrage" Ability { id: "49B3", source: "Living Liquid" }
 
 ### Transition 1: Cruise Chaser
-196.0 "--sync--" sync / 04:........:Liquid Hand:/ window 50,0
+196.0 "--sync--" RemovedCombatant { name: "Liquid Hand" } window 50,0
 200.0 "Hawk Blaster 1" Ability { id: "4830", source: "Cruise Chaser" } window 200,0
 202.2 "Hawk Blaster 2"
 204.4 "Hawk Blaster 3"
