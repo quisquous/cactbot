@@ -3,7 +3,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 15 "Hyperdrive" Ability { id: "292E", source: "Kefka" } window 16,3
 23 "Blizzard Blitz" Ability { id: "291(4|6|8|9)", source: "Kefka" }
 36 "Flagrant Fire" Ability { id: "291F", source: "Kefka" }

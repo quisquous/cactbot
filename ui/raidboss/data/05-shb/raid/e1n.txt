@@ -8,7 +8,7 @@ hideall "Vice And Virtue"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 12.0 "Spear Of Paradise" Ability { id: "3DA1", source: "Eden Prime" } window 12,5
 13.5 "Heavensunder" Ability { id: "3DA2", source: "Eden Prime" }
 22.5 "Eden's Gravity" Ability { id: "3D94", source: "Eden Prime" }

@@ -10,7 +10,7 @@ hideall "Infernal Slaughter"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 7.0 "--sync--" StartsUsing { id: "7D2C", source: "Rubicante" } window 10,20
 12.0 "Inferno (aoe)" Ability { id: "7D2C", source: "Rubicante" }
 

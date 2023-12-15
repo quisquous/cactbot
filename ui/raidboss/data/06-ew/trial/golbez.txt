@@ -29,7 +29,7 @@ hideall "--sync--"
 hideall "--middle--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 11.0 "--middle--" Ability { id: "84B8", source: "Golbez" } window 12,12
 25.2 "Terrastorm" Ability { id: "8465", source: "Golbez" }
 30.3 "Crescent Blade" Ability { id: "846B", source: "Golbez" }

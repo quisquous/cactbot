@@ -7,7 +7,7 @@ hideall "--sync--"
 # -ii 366 4B18 4B19 4B1B
 
 # Opening Block. Introduces Fire/Lightning in a random order.
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 11.0 "--center--" Ability { id: "5908", source: "Fatebreaker" } window 11,5
 21.8 "Burnt Strike" Ability { id: "562[CE]", source: "Fatebreaker" }
 23.5 "Blastburn/Burnout" # Ability { id: "562[DF]", source: "Fatebreaker" }

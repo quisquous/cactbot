@@ -6,7 +6,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 12.0 "Judgment Volts" Ability { id: "4BB5", source: "Ramuh" } window 12,20
 22.2 "Stratospear Summons" Ability { id: "4BA5", source: "Ramuh" }
 27.1 "Impact" Ability { id: "4E3B", source: "Ramuh" }

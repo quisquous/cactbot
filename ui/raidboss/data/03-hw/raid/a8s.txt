@@ -10,7 +10,7 @@ hideall "Magicked Mark"
 hideall "Brute Force"
 
 ### Phase 1: Onslaughter: Execution and Legislation
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.7 "Hydrothermal Missile" Ability { id: "162A", source: "Onslaughter" } window 7,5
 15.9 "Seed Of The Sky" Ability { id: "162D", source: "Onslaughter" }
 17.9 "Mega Beam" Ability { id: "162E", source: "Onslaughter" }

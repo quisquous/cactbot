@@ -6,7 +6,7 @@ hideall "--sync--"
 
 # -ii 22EA 22FE 2309 230C 230F 2315
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 10.7 "Critical Hit" Ability { id: "22EB", source: "Halicarnassus" } window 10.7,5
 19.7 "Spellblade Holy" Ability { id: "22EF", source: "Halicarnassus" }
 25.4 "Pole Shift" # Ability { id: "22F[23]", source: "Halicarnassus" }

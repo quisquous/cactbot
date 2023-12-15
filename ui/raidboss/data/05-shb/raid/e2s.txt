@@ -7,7 +7,7 @@ hideall "--sync--"
 hideall "Spell-In-Waiting"
 
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 10.5 "--sync--" Ability { id: "3E63", source: "Voidwalker" } window 11,5
 11.2 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
 25.4 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }

@@ -10,7 +10,7 @@ hideall "Infernal Torrent"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 10.8 "Kokytos" Ability { id: "6C60", source: "Zodiark" } window 11.3,5
 21.0 "Paradeigma 1" Ability { id: "67BF", source: "Zodiark" }
 33.0 "Keraunos Eidolon" Ability { id: "67E1", source: "Quetzalcoatl" }

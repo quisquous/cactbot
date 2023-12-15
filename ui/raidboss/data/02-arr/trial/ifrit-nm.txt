@@ -6,7 +6,7 @@ hideall "--sync--"
 
 # 0%
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 1.2 "Incinerate" Ability { id: "1C5", source: "Ifrit" } window 10,10
 9.1 "Vulcan Burst" Ability { id: "1C6", source: "Ifrit" }
 17.1 "Incinerate" Ability { id: "1C5", source: "Ifrit" }
