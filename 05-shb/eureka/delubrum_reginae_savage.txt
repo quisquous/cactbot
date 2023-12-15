@@ -125,7 +125,7 @@ hideall "--sync--"
 # The Theater of One will be sealed off
 4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E1B" } window 20000,0
 # .*is no longer sealed
-4000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+4000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 
 # Note: it is likely that there are additional hp pushes on later Verdant Paths.
 # It is known that the first one is 80%, but I have seen 0-10 second variations
@@ -507,7 +507,7 @@ hideall "--sync--"
 # The Hall of Hieromancy will be sealed off
 10000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E1E" } window 20000,0
 # .*is no longer sealed
-10000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+10000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 # ranged auto should be reasonably timed
 10002.5 "--sync--" Ability { id: "5858", source: "Queen's Gunner" } window 3,1
 
@@ -684,7 +684,7 @@ hideall "--sync--"
 # Pride of the Lion will be sealed off
 12000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E1F" } window 20000,0
 # .*is no longer sealed
-12000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+12000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 12007.1 "--sync--" StartsUsing { id: "57BD", source: "Bozjan Phantom" } window 20000,0
 12011.1 "Malediction of Agony" Ability { id: "57BD", source: "Bozjan Phantom" }
 12019.2 "Weave Miasma" Ability { id: "57B2", source: "Bozjan Phantom" }
@@ -852,7 +852,7 @@ hideall "--sync--"
 # The Vault of Singing Crystal will be sealed off
 14000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E20" } window 20000,0
 # .*is no longer sealed
-14000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+14000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 14006.7 "--sync--" StartsUsing { id: "594E", source: "Trinity Avowed" } window 10,10
 14011.8 "Wrath Of Bozja" Ability { id: "594E", source: "Trinity Avowed" }
 14019.9 "Glory Of Bozja" Ability { id: "594F", source: "Trinity Avowed" }
@@ -1258,7 +1258,7 @@ hideall "--sync--"
 # The Path of Divine Clarity will be sealed off
 18000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E22" } window 20000,0
 # .*is no longer sealed
-18000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+18000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 
 # Note: 57CF is the cast for Whack but 57D1 is the instant damage.
 # Similarly, 57C4 is the cast for Devastating Bolt, but 57C5/57C6 is the delayed damage.
@@ -1387,7 +1387,7 @@ hideall "--sync--"
 # Queensheart will be sealed off
 20000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E23" } window 20000,0
 # .*is no longer sealed
-20000.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 0,2000 jump 0
+20000.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,2000 jump 0
 20010.3 "--sync--" StartsUsing { id: "59F9", source: "The Queen" } window 20,20
 20015.3 "Empyrean Iniquity" Ability { id: "59F9", source: "The Queen" }
 20025.5 "--sync--" Ability { id: "5BCB", source: "The Queen" }
