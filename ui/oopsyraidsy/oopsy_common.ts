@@ -22,7 +22,7 @@ export const damageFields = {
 };
 
 export const playerTargetFields = {
-  targetId: '[^4].......',
+  targetId: '1.......',
 };
 
 export const playerDamageFields = {
