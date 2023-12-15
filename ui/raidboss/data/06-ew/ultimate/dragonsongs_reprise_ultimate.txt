@@ -153,7 +153,7 @@ hideall "--sync--"
 
 # If Aetheric Burst gets interrupted, then we can sync earlier,
 # but if you kill it before then, there's less indication of when to sync.
-993.1 "--sync--" sync / 17:[^:]*:King Thordan:63C3:/ window 300,0
+993.1 "--sync--" NetworkCancelAbility { id: "63C3", source: "King Thordan" } window 300,0
 1000.0 "--sync--" Ability { id: "6708", source: "Nidhogg" } window 1000,0
 1002.3 "--targetable--"
 1002.3 "Final Chorus" Ability { id: "6709", source: "Nidhogg" }
