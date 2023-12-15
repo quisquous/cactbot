@@ -17,8 +17,8 @@ hideall "--sync--"
 6.0 "--sync--" Ability { id: "802C", source: "Albion" }
 10.6 "Call of the Mountain" Ability { id: "7A7C", source: "Albion" }
 
-12.9 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
-26.9 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
+12.9 "Wildlife Crossing 1" MapEffect { flags: "00020001" } window 5,5 duration 15
+26.9 "Wildlife Crossing 2" MapEffect { flags: "00020001" } window 5,5 duration 15
 41.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
 48.4 "--sync--" Ability { id: "802C", source: "Albion" }
 55.1 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
@@ -31,10 +31,10 @@ hideall "--sync--"
 
 90.2 "Roar of Albion" Ability { id: "7A84", source: "Albion" }
 103.3 "Call of the Mountain" Ability { id: "7A7C", source: "Albion" }
-106.1 "Wildlife Crossing 1" sync / 257 101:........:00020001:/ window 5,5 duration 15
+106.1 "Wildlife Crossing 1" MapEffect { flags: "00020001" } window 5,5 duration 15
 108.7 "--sync--" Ability { id: "802C", source: "Albion" }
 115.5 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
-120.0 "Wildlife Crossing 2" sync / 257 101:........:00020001:/ window 5,5 duration 15
+120.0 "Wildlife Crossing 2" MapEffect { flags: "00020001" } window 5,5 duration 15
 123.9 "--sync--" Ability { id: "802C", source: "Albion" }
 130.8 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
 141.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
@@ -48,10 +48,10 @@ hideall "--sync--"
 # loop
 175.8 "Roar of Albion" Ability { id: "7A84", source: "Albion" } window 30,30 jump 90.2
 188.9 "Call of the Mountain" #Ability { id: "7A7C", source: "Albion" }
-191.7 "Wildlife Crossing 1" #sync / 257 101:........:00020001:/ window 5,5 duration 15
+191.7 "Wildlife Crossing 1" #MapEffect { flags: "00020001" } window 5,5 duration 15
 194.3 "--sync--" #Ability { id: "802C", source: "Albion" }
 201.1 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
-205.6 "Wildlife Crossing 2" #sync / 257 101:........:00020001:/ window 5,5 duration 15
+205.6 "Wildlife Crossing 2" #MapEffect { flags: "00020001" } window 5,5 duration 15
 209.5 "--sync--" #Ability { id: "802C", source: "Albion" }
 216.4 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
 
