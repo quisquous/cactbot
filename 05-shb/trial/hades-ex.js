@@ -684,6 +684,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Gaol': 'Ätherkerker',
         'Arcane Font': 'Arkan(?:e|er|es|en) Körper',
@@ -748,6 +749,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Gaol': 'Geôle Éthérée',
         'Arcane Font': 'Solide Arcanique',
@@ -942,6 +944,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Gaol': '에테르 감옥',
         'Arcane Font': '입체 마법진',

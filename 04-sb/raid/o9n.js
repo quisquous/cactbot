@@ -153,6 +153,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'Chaos',
         'YOU DARE!': 'Wie könnt ihr es wagen?!',
@@ -177,6 +178,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'Chaos',
         'YOU DARE!': '... Mon cristal !? Impossible !',
@@ -201,6 +203,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'YOU DARE!': 'まさか……黒水晶を……！？',
@@ -225,6 +228,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '卡奥斯',
         'YOU DARE!': '居然……把黑水晶给……',
@@ -249,6 +253,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '카오스',
         'YOU DARE!': '네 이노오오옴',

@@ -166,6 +166,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Reinitialisiere Deltaprotokoll',
         'Level Checker': 'Monitor',
@@ -193,6 +194,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
         'Level Checker': 'vérifiniveau',
@@ -221,6 +223,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'デルタアタックの必要性を認定します',
         'Level Checker': 'レベルチェッカー',
@@ -248,6 +251,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '认定有必要使用三角攻击。',
         'Level Checker': '等级检测仪',
@@ -275,6 +279,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
         'Level Checker': '레벨 측정기',

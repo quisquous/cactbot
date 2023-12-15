@@ -53,7 +53,7 @@ hideall "--sync--"
 611.6 "Force Quit" Ability { id: "327A", source: "Level Checker" }
 
 ## Delta Attack
-1000.0 "--sync--" sync / 00:0044:Omega:Program failure detected/ window 1500,100
+1000.0 "--sync--" GameLog { code: "0044", name: "Omega", line: "Program failure detected.*?" } window 1500,100
 1007.0 "--sync--" StartsUsing { id: "327B", source: "Omega" } window 1500,100
 1037.0 "Delta Attack" Ability { id: "327B", source: "Omega" } window 1500,100
 1048.4 "--targetable--"

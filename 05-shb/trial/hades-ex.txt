@@ -70,7 +70,7 @@ hideall "--sync--"
 
 
 ### Phase 3
-493.0 "--sync--" sync / 00:0044:Hades:Our plea transcends/ window 500,0
+493.0 "--sync--" GameLog { code: "0044", name: "Hades", line: "Our plea transcends.*?" } window 500,0
 # 00:0044:Hades:At last, you are one!
 499.9 "--targetable--"
 500.0 "--sync--" StartsUsing { id: "47C8", source: "Ascian Prime's Shade" } window 500,0

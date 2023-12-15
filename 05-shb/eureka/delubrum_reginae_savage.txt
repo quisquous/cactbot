@@ -412,7 +412,7 @@ hideall "--sync--"
 # This is the zone, but can't use this sync as it can be seen by Dahu.  Sync to autos instead.
 # Pride of the Lioness will be sealed off
 #8000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E1C" } window 20000,0
-8000.0 "--Reset--" sync / 00:0044:Stygimoloch Warrior:Why\.\.\.won't\.\.\.you\.\.\./ window 0,2000 jump 0
+8000.0 "--Reset--" GameLog { code: "0044", name: "Stygimoloch Warrior", line: "Why\.\.\.won't\.\.\.you\.\.\..*?" } window 0,2000 jump 0
 # TODO: is there a reset dialog line for losing?
 # Alternatively, we could always insert " 19:${data.me} was defeated by" from script.
 

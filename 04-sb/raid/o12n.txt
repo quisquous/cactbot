@@ -51,7 +51,7 @@ hideall "--sync--"
 
 
 ### Phase 2: Passage of Arms
-500.0 "--sync--" sync / 00:0044:Omega-M:\<blip\> Limits of single combatant/ window 500,0
+500.0 "--sync--" GameLog { code: "0044", name: "Omega-M", line: "\<blip\> Limits of single combatant.*?" } window 500,0
 514.0 "Ground Zero" Ability { id: "3313", source: "Omega-M" } # drift 0.045001
 514.0 "Electric Slide" Ability { id: "3314", source: "Omega" }
 522.0 "Efficient Bladework" Ability { id: "32F3", source: "Omega-M" } # drift -0.045

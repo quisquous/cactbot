@@ -171,6 +171,7 @@ Options.Triggers.push({
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat':
           'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
@@ -212,6 +213,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         '\\\\<blip\\\\> Warning\\\\\. Calculations indicate':
           'Alerte... Alerte... Forte augmentation',
@@ -253,6 +255,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-M': 'オメガM',
@@ -291,6 +294,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
@@ -330,6 +334,7 @@ Options.Triggers.push({
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-M': '오메가 M',
