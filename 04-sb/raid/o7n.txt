@@ -10,7 +10,7 @@ hideall "--sync--"
 39 "Load" Ability { id: "275C", source: "Guardian" }
 
 # Ultros
-200 "--sync--" sync / 1A:5D1:Ultros Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
+200 "--sync--" GainsEffect { effectId: "5D1", effect: "Ultros Simulation", target: "Guardian" } window 2000,2000
 203 "Ink" Ability { id: "275D", source: "Guardian" }
 209 "Diffractive Plasma" Ability { id: "276E", source: "Guardian" }
 219 "Tentacle Simulation" Ability { id: "275E", source: "Guardian" }
@@ -27,7 +27,7 @@ hideall "--sync--"
 284 "Load" Ability { id: "275C", source: "Guardian" }
 
 # Dadaluma
-400 "--sync--" sync / 1A:5D3:Dadaluma Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
+400 "--sync--" GainsEffect { effectId: "5D3", effect: "Dadaluma Simulation", target: "Guardian" } window 2000,2000
 404 "Shockwave" Ability { id: "2766", source: "Guardian" }
 415 "--sync--" Ability { id: "276B", source: "Guardian" } jump 1215 # rare version
 424 "Chakra Burst" Ability { id: "276A", source: "Guardian" }
@@ -38,7 +38,7 @@ hideall "--sync--"
 460 "Load" Ability { id: "275C", source: "Guardian" }
 
 # Air Force
-600 "--sync--" sync / 1A:5D2:Air Force Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
+600 "--sync--" GainsEffect { effectId: "5D2", effect: "Air Force Simulation", target: "Guardian" } window 2000,2000
 604 "Diffractive Laser" Ability { id: "2761", source: "Guardian" }
 613 "Missile Simulation" Ability { id: "2764", source: "Guardian" }
 614 "--sync--" Ability { id: "276F", source: "Guardian" } jump 1014 # rare version
@@ -52,7 +52,7 @@ hideall "--sync--"
 688 "Load" Ability { id: "275C", source: "Guardian" }
 
 # Bibliotaph
-800 "--sync--" sync / 1A:5D4:Bibliotaph Simulation:[^:]*:[^:]*:[^:]*:[^:]*:Guardian:/ window 2000,2000
+800 "--sync--" GainsEffect { effectId: "5D4", effect: "Bibliotaph Simulation", target: "Guardian" } window 2000,2000
 817 "Demon Simulation" Ability { id: "2752", source: "Guardian" }
 824 "Run Program" Ability { id: "276F", source: "Guardian" }
 838 "Burst/Darkness" Ability { id: "29(BF|C0)", source: "Bibliotaph" }
