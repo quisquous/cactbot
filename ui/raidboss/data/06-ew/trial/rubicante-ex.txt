@@ -8,7 +8,7 @@ hideall "--Reset--"
 hideall "--sync--"
 hideall "Infernal Slaughter"
 
-0.0 "--Reset--" sync / 21:........:40000010:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "40000010" } window 100000 jump 0
 
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 7.0 "--sync--" StartsUsing { id: "7D2C", source: "Rubicante" } window 10,20
