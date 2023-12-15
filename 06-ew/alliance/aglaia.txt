@@ -217,18 +217,18 @@ hideall "Fan Flames"
 4007.0 "--sync--" StartsUsing { id: "71D7", source: "Lioness of Aglaia" } window 10,10
 4012.0 "Double Immolation" Ability { id: "71D7", source: "Lioness of Aglaia" }
 4019.8 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
-4028.1 "Slash and Burn" Ability { id: "(71D0|71D2)", source: "(Lion of Aglaia|Lioness of Aglaia)" }
-4031.3 "Slash and Burn" Ability { id: "(71D6|71D5)", source: "(Lioness of Aglaia|Lion of Aglaia)" }
+4028.1 "Slash and Burn" Ability { id: "(71D0|71D2)", source: ['Lion of Aglaia', 'Lioness of Aglaia'] }
+4031.3 "Slash and Burn" Ability { id: "(71D6|71D5)", source: ['Lioness of Aglaia', 'Lion of Aglaia'] }
 4036.1 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
-4044.7 "Slash and Burn" Ability { id: "(71D0|71D2)", source: "(Lion of Aglaia|Lioness of Aglaia)" }
-4047.9 "Slash and Burn" Ability { id: "(71D6|71D5)", source: "(Lioness of Aglaia|Lion of Aglaia)" }
+4044.7 "Slash and Burn" Ability { id: "(71D0|71D2)", source: ['Lion of Aglaia', 'Lioness of Aglaia'] }
+4047.9 "Slash and Burn" Ability { id: "(71D6|71D5)", source: ['Lioness of Aglaia', 'Lion of Aglaia'] }
 4056.7 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
 4063.8 "Roaring Blaze" Ability { id: "71CE", source: "Lioness of Aglaia" }
 4066.8 "Roaring Blaze" Ability { id: "71CF", source: "Lion of Aglaia" }
 4072.4 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
 4079.5 "Roaring Blaze" Ability { id: "71CE", source: "Lion of Aglaia" }
 4082.5 "Roaring Blaze" Ability { id: "71CF", source: "Lioness of Aglaia" }
-4085.1 "Rejuvenating Spark" Ability { id: "71D9", source: "(Lion of Aglaia|Lioness of Aglaia)" }
+4085.1 "Rejuvenating Spark" Ability { id: "71D9", source: ['Lion of Aglaia', 'Lioness of Aglaia'] }
 4093.4 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
 4101.7 "Slash and Burn" Ability { id: "71D2", source: "Lioness of Aglaia" }
 # ??? (is this a loop?)
@@ -429,7 +429,7 @@ hideall "Fan Flames"
 6230.2 "Fired Up II" Ability { id: "738A", source: "Nald'thal" }
 6240.3 "Fortune's Flux" Ability { id: "7113", source: "Nald'thal" }
 6242.8 "--sync--" Ability { id: "7430", source: "Thal" }
-6242.8 "Seventh Passage" Ability { id: "73AF", source: "(Thal|Nald'thal)" }
+6242.8 "Seventh Passage" Ability { id: "73AF", source: ['Thal', 'Nald\'thal'] }
 6244.5 "Seventh Passage" Ability { id: "7118", source: "Nald'thal" }
 6244.8 "--sync--" Ability { id: "7431", source: "Thal" }
 6250.9 "Fired Up I" Ability { id: "7112", source: "Nald'thal" }

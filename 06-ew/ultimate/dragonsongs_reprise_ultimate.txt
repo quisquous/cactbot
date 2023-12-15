@@ -26,9 +26,9 @@ hideall "--sync--"
 38.4 "--untargetable--"
 43.6 "--sync--" Ability { id: "62D6", source: "Ser Grinnaux" }
 # These slashes come from Ser Grinnaux, but sometimes name updates are sloppy.
-44.8 "Hyperdimensional Slash 1" Ability { id: "62D7", source: "(Ser Grinnaux|Ser Charibert)" }
+44.8 "Hyperdimensional Slash 1" Ability { id: "62D7", source: ['Ser Grinnaux', 'Ser Charibert'] }
 50.7 "--sync--" Ability { id: "6315", source: "Ser Grinnaux" }
-51.9 "Hyperdimensional Slash 2" Ability { id: "62D7", source: "(Ser Grinnaux|Ser Charibert)" }
+51.9 "Hyperdimensional Slash 2" Ability { id: "62D7", source: ['Ser Grinnaux', 'Ser Charibert'] }
 54.8 "--targetable--"
 59.8 "Faith Unmoving" Ability { id: "62DC", source: "Ser Grinnaux" }
 60.9 "Holiest of Holy" Ability { id: "62D4", source: "Ser Adelphel" }
@@ -356,13 +356,13 @@ hideall "--sync--"
 3668.4 "Cauterize" Ability { id: "6D3F", source: "Hraesvelgr" }
 3668.7 "--untargetable--"
 3674.5 "--sync--" Ability { id: "6D40", source: "Hraesvelgr" }
-3675.4 "Touchdown" Ability { id: "70E7", source: "(Hraesvelgr|Nidhogg)" }
+3675.4 "Touchdown" Ability { id: "70E7", source: ['Hraesvelgr', 'Nidhogg'] }
 3675.7 "--targetable--"
 3679.1 "Mortal Vow" Ability { id: "6D31", source: "Nidhogg" }
-3701.8 "Revenge of the Horde (enrage)" Ability { id: "6D21", source: "(Hraesvelgr|Nidhogg)" }
+3701.8 "Revenge of the Horde (enrage)" Ability { id: "6D21", source: ['Hraesvelgr', 'Nidhogg'] }
 
 3711.8 "Resentment?"
-3718.8 "Shockwave?" #Ability { id: "71E4", source: "(King Thordan|Nidhogg)" }
+3718.8 "Shockwave?" #Ability { id: "71E4", source: ['King Thordan', 'Nidhogg'] }
 3744.6 "Alternative End?" #Ability { id: "7438", source: "Dragon-king Thordan" }
 
 
@@ -370,7 +370,7 @@ hideall "--sync--"
 # Note: Shockwave could come from King Thordan or Nidhogg
 3809.5 "--sync--" Ability { id: "717A", source: "Right Eye" } window 200,0
 3809.5 "Resentment"
-3826.5 "Shockwave?" #Ability { id: "71E4", source: "(King Thordan|Nidhogg)" }
+3826.5 "Shockwave?" #Ability { id: "71E4", source: ['King Thordan', 'Nidhogg'] }
 3828.3 "--sync--" #Ability { id: "63F3", source: "Left Eye" }
 3828.5 "--sync--" #Ability { id: "63F3", source: "Right Eye" }
 3842.3 "Alternative End?" #Ability { id: "7438", source: "Dragon-king Thordan" }
@@ -406,14 +406,14 @@ hideall "--sync--"
 #  6DD3 = Third Proximity AoE
 # 6D91 = Flames of Ascalon (Out/Chariot)
 # 6D92 = Ice of Ascalon (In/Dynamo)
-4000.0 "Shockwave" Ability { id: "71E4", source: "(King Thordan|Nidhogg)" } window 400,0
+4000.0 "Shockwave" Ability { id: "71E4", source: ['King Thordan', 'Nidhogg'] } window 400,0
 4001.8 "--sync--" Ability { id: "63F3", source: "Left Eye" }
 4002.0 "--sync--" #Ability { id: "63F3", source: "Right Eye" }
 4015.8 "Alternative End" Ability { id: "7438", source: "Dragon-king Thordan" }
 4024.8 "--targetable--"
 4035.1 "--sync--" Ability { id: "6D9B", source: "Dragon-king Thordan" }
 4036.0 "Exaflare's Edge" duration 9.3 #Ability { id: "6D9C", source: "Dragon-king Thordan" }
-4036.2 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: "(Nidhogg|Dragon-king Thordan)" }
+4036.2 "Ice of Ascalon/Flames of Ascalon" Ability { id: "(6D92|6D91)", source: ['Nidhogg', 'Dragon-king Thordan'] }
 4043.2 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
 4044.3 "Trinity 1" #Ability { id: "(6D9F|6DA0|6DA1)", source: "Dragon-king Thordan" }
 4047.3 "--sync--" Ability { id: "6D9E", source: "Dragon-king Thordan" }
