@@ -162,7 +162,7 @@ hideall "--sync--"
 2145.1 "Hydrovent" Ability { id: "79A0", source: "Cagnazzo" }
 # probably more Hydrovent spam here until phase end or enrage
 
-2500.0 "--sync--" sync / 00:0044:Cagnazzo:No more games!/ window 500,0
+2500.0 "--sync--" GameLog { code: "0044", name: "Cagnazzo", line: "No more games!.*?" } window 500,0
 2513.0 "Tsunami" Ability { id: "79A1", source: "Cagnazzo" } window 500,1 # if we miss the chatline sync we'll still resync here
 2516.9 "--targetable--"
 2523.0 "--sync--" Ability { id: "799B", source: "Cagnazzo" }

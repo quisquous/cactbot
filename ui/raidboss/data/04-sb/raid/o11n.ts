@@ -178,6 +178,7 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Reinitialisiere Deltaprotokoll',
         'Level Checker': 'Monitor',
@@ -205,6 +206,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
         'Level Checker': 'vérifiniveau',
@@ -233,6 +235,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': 'デルタアタックの必要性を認定します',
         'Level Checker': 'レベルチェッカー',
@@ -260,6 +263,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '认定有必要使用三角攻击。',
         'Level Checker': '等级检测仪',
@@ -287,6 +291,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
         'Level Checker': '레벨 측정기',
