@@ -1329,12 +1329,8 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'AAI Statice Bomb Count',
       type: 'Ability',
-      netRegex: { id: '8A6A' },
-      run: (data, matches) => {
-        const firstBomb = data.staticeSafeBombIds[0];
-        if (matches.targetId === firstBomb)
-          data.staticeBombRotateCount++;
-      },
+      netRegex: { id: '8A6A', capture: false },
+      run: (data) => data.staticeBombRotateCount++,
     },
     {
       id: 'AAI Statice Bomb Rotate Final',
@@ -1346,6 +1342,9 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (data, _matches, output) => {
         if (data.staticeSafeBombIds.length !== 3)
           return;
+
+        // There are six bombs, but the middle does not get this ability.
+        const rotation = Math.round(data.staticeBombRotateCount / 5);
 
         const bombToDir: { [id: string]: number } = {};
         for (const id of data.staticeSafeBombIds) {
@@ -1375,7 +1374,7 @@ const triggerSet: TriggerSet<Data> = {
             2: output.dirSE!(),
             3: output.dirSW!(),
             4: output.dirNW!(),
-          }[(dir + data.staticeBombRotateCount) % 5] ?? output.unknown!();
+          }[(dir + rotation) % 5] ?? output.unknown!();
         });
 
         const mech = output[data.staticeTrapshooting.shift() ?? 'unknown']!();
