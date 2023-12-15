@@ -57,9 +57,9 @@ hideall "--sync--"
 1029.8 "Ceruleum Vent" Ability { id: "2794", source: "The Ultima Warrior" }
 1042.0 "Aetheroplasm" Ability { id: "2793", source: "The Ultima Warrior" } # skipped if boss is at or below 95% HP
 
-1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 53.4,10 jump 1100.0
-1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 53.4,10 jump 1200.0
-1053.4 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 53.4,10 jump 1300.0
+1053.4 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "This humanoid prototype can perfectly replicate.*?" } window 53.4,10 jump 1100.0
+1053.4 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Utilizing our data on Sophia.*?" } window 53.4,10 jump 1200.0
+1053.4 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Successfully mimicking the Demon Zurvan.*?" } window 53.4,10 jump 1300.0
 1060.9 "Primordial Aether"
 1062.0 "Ceruleum Vent?"
 1063.5 "Infinite Fire/Infinite Ice?"
@@ -71,7 +71,7 @@ hideall "--sync--"
 
 # Sephirot's block
 
-1100.0 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/
+1100.0 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "This humanoid prototype can perfectly replicate.*?" }
 1107.5 "Primordial Aether" Ability { id: "2796", source: "The Ultima Warrior" } window 10,10
 1119.1 "Citadel Buster" Ability { id: "2792", source: "The Ultima Warrior" }
 1120.1 "Ratzon" Ability { id: "2797", source: "The Ultima Warrior" }
@@ -79,9 +79,9 @@ hideall "--sync--"
 1139.2 "Mass Aetheroplasm" Ability { id: "2795", source: "The Ultima Warrior" }
 1149.7 "Aetheroplasm" Ability { id: "2793", source: "The Ultima Warrior" }
 
-1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
-1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
-1154.8 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1154.8 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "This humanoid prototype can perfectly replicate.*?" } window 50,10 jump 1100.0
+1154.8 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Utilizing our data on Sophia.*?" } window 50,10 jump 1200.0
+1154.8 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Successfully mimicking the Demon Zurvan.*?" } window 50,10 jump 1300.0
 1162.3 "Primordial Aether"
 1163.4 "Ceruleum Vent?"
 1164.9 "Infinite Fire/Infinite Ice?"
@@ -93,7 +93,7 @@ hideall "--sync--"
 
 # Sophia's Block
 
-1200.0 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/
+1200.0 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Utilizing our data on Sophia.*?" }
 1207.5 "Primordial Aether" Ability { id: "2796", source: "The Ultima Warrior" } window 10,10
 1218.1 "Ceruleum Vent" Ability { id: "2794", source: "The Ultima Warrior" }
 1225.3 "Citadel Buster" Ability { id: "2792", source: "The Ultima Warrior" }
@@ -102,9 +102,9 @@ hideall "--sync--"
 1232.3 "Dischordant Cleansing" Ability { id: "279A", source: "The Ultima Warrior" }
 1242.3 "Aetheroplasm" Ability { id: "2793", source: "The Ultima Warrior" }
 
-1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
-1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
-1248.5 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1248.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "This humanoid prototype can perfectly replicate.*?" } window 50,10 jump 1100.0
+1248.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Utilizing our data on Sophia.*?" } window 50,10 jump 1200.0
+1248.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Successfully mimicking the Demon Zurvan.*?" } window 50,10 jump 1300.0
 1256.0 "Primordial Aether"
 1257.1 "Ceruleum Vent?"
 1258.6 "Infinite Fire/Infinite Ice?"
@@ -116,7 +116,7 @@ hideall "--sync--"
 
 # Zurvan's Block
 
-1300.0 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/
+1300.0 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Successfully mimicking the Demon Zurvan.*?" }
 1308.5 "Primordial Aether" Ability { id: "2796", source: "The Ultima Warrior" } window 10,10
 1311.1 "Infinite Fire/Infinite Ice" Ability { id: "279[DE]", source: "The Ultima Warrior" }
 1319.1 "Ceruleum Vent" Ability { id: "2794", source: "The Ultima Warrior" }
@@ -125,9 +125,9 @@ hideall "--sync--"
 1343.0 "Citadel Buster" Ability { id: "2792", source: "The Ultima Warrior" }
 1354.0 "Aetheroplasm" Ability { id: "2793", source: "The Ultima Warrior" }
 
-1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 50,10 jump 1100.0
-1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 50,10 jump 1200.0
-1365.5 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 50,10 jump 1300.0
+1365.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "This humanoid prototype can perfectly replicate.*?" } window 50,10 jump 1100.0
+1365.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Utilizing our data on Sophia.*?" } window 50,10 jump 1200.0
+1365.5 "--sync--" GameLog { code: "0044", name: "Vocal Guidance System", line: "Successfully mimicking the Demon Zurvan.*?" } window 50,10 jump 1300.0
 1373.0 "Primordial Aether"
 1374.1 "Ceruleum Vent?"
 1375.6 "Infinite Fire/Infinite Ice?"

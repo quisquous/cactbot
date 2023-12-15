@@ -43,7 +43,7 @@ hideall "--sync--"
 1211.6 "--sync--" Ability { id: "3215", source: "Chaos" }
 1218.3 "Stray Flames" Ability { id: "316B", source: "Chaos" }
 1224.2 "Stray Spray" Ability { id: "316C", source: "Chaos" }
-1500.0 "--sync--" sync / 00:0044:Chaos:The crystal\.\.\.destroyed\!\?/ window 500,10
+1500.0 "--sync--" GameLog { code: "0044", name: "Chaos", line: "The crystal\.\.\.destroyed\!\?.*?" } window 500,10
 1503.0 "Soul of Chaos" Ability { id: "316A", source: "Chaos" } window 500,10
 1513.1 "--targetable--"
 # fake window into Water->Earth loop
@@ -77,7 +77,7 @@ hideall "--sync--"
 2212.8 "--sync--" Ability { id: "3215", source: "Chaos" }
 2219.5 "Stray Flames" Ability { id: "316B", source: "Chaos" }
 2225.4 "Stray Spray" Ability { id: "316C", source: "Chaos" }
-2500.0 "--sync--" sync / 00:0044:Chaos:The crystal\.\.\.destroyed\!\?/ window 500,10
+2500.0 "--sync--" GameLog { code: "0044", name: "Chaos", line: "The crystal\.\.\.destroyed\!\?.*?" } window 500,10
 2503.0 "Soul of Chaos" Ability { id: "316A", source: "Chaos" } window 500,10
 # fake window into Fire->Air loop
 2529.5 "Chaotic Dispersion" Ability { id: "314F", source: "Chaos" } window 50,50 jump 3212.6
