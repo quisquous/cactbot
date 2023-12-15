@@ -76,7 +76,7 @@ hideall "--sync--"
 360.0 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }
 361.3 "Aetherochemical Grenado" Ability { id: "10E2", source: "Magitek Turret II" }
 365.0 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
-368.0 "Self-detonate?" Ability { id: "10E3", source: "(Magitek Turret I|Magitek Turret II)" }
+368.0 "Self-detonate?" Ability { id: "10E3", source: ['Magitek Turret I', 'Magitek Turret II'] }
 368.7 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
 372.5 "Magitek Slug" Ability { id: "10DB", source: "Regula van Hydrus" }
 373.7 "--sync--" Ability { id: "10DF", source: "Regula van Hydrus" }

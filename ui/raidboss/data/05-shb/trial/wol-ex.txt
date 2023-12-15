@@ -264,11 +264,11 @@ hideall "Limit Break"
 4531.9 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 4540.2 "Summon" Ability { id: "4F3F", source: "Spectral Summoner" }
 4554.4 "Flare Breath" Ability { id: "4F40", source: "Spectral Summoner" }
-4554.7 "Perfect Decimation" Ability { id: "4F05", source: "(Spectral Warrior|Warrior Of Light)" }
+4554.7 "Perfect Decimation" Ability { id: "4F05", source: ['Spectral Warrior', 'Warrior Of Light'] }
 4554.9 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 4566.1 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 4566.5 "Flare Breath" Ability { id: "4F40", source: "Spectral Summoner" }
-4566.9 "Perfect Decimation" Ability { id: "4F05", source: "(Spectral Warrior|Warrior Of Light)" }
+4566.9 "Perfect Decimation" Ability { id: "4F05", source: ['Spectral Warrior', 'Warrior Of Light'] }
 4568.2 "--sync--" Ability { id: "531E", source: "Spectral Warrior" }
 4572.4 "--sync--" Ability { id: "531E", source: "Spectral Summoner" }
 4572.8 "Summon Wyrm" Ability { id: "4F41", source: "Warrior Of Light" }
@@ -419,11 +419,11 @@ hideall "Limit Break"
 9014.3 "Specter Of Light" Ability { id: "4F37", source: "Warrior Of Light" }
 9022.6 "Summon" Ability { id: "4F3F", source: "Spectral Summoner" }
 9036.7 "Flare Breath" Ability { id: "4F40", source: "Spectral Summoner" }
-9037.0 "Perfect Decimation" Ability { id: "4F05", source: "(Spectral Warrior|Warrior Of Light)" }
+9037.0 "Perfect Decimation" Ability { id: "4F05", source: ['Spectral Warrior', 'Warrior Of Light'] }
 9037.2 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 9048.5 "Solemn Confiteor" Ability { id: "4F0C", source: "Warrior Of Light" }
 9048.8 "Flare Breath" Ability { id: "4F40", source: "Spectral Summoner" }
-9049.2 "Perfect Decimation" Ability { id: "4F05", source: "(Spectral Warrior|Warrior Of Light)" }
+9049.2 "Perfect Decimation" Ability { id: "4F05", source: ['Spectral Warrior', 'Warrior Of Light'] }
 9050.8 "--sync--" Ability { id: "531E", source: "Spectral Warrior" }
 9054.8 "--sync--" Ability { id: "531E", source: "Spectral Summoner" }
 9055.2 "Summon Wyrm" Ability { id: "4F41", source: "Warrior Of Light" }

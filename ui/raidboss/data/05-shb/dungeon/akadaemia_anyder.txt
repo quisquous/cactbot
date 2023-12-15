@@ -49,8 +49,8 @@ hideall "--sync--"
 # When one dies, the other powers up and starts casting stuff after it jumps back in.
 # However, I've never seen this cast get off, so just guessing on Marine Mayhem cast length.
 300.0 "--sync--" StartsUsing { id: "3E07", source: "(Doliodus|Cladoselache)" } window 300,0
-302.0 "Carcharian Verve" Ability { id: "3E07", source: "(Doliodus|Cladoselache)" } window 300,0
-305.5 "Marine Mayhem" Ability { id: "3E06", source: "(Doliodus|Cladoselache)" }
+302.0 "Carcharian Verve" Ability { id: "3E07", source: ['Doliodus', 'Cladoselache'] } window 300,0
+305.5 "Marine Mayhem" Ability { id: "3E06", source: ['Doliodus', 'Cladoselache'] }
 
 
 
