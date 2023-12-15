@@ -43,7 +43,7 @@ hideall "--sync--"
 104.3 "Conviction" Ability { id: "149D", source: "Ser Hermenost" }
 107.4 "Sacred Cross" StartsUsing { id: "1490", source: "Ser Zephirin" } duration 19.7
 127.1 "--sync--" Ability { id: "1490", source: "Ser Zephirin" }
-133.1 "Spiral Thrust" Ability { id: "14A6", source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'] }
+133.1 "Spiral Thrust" Ability { id: "14A6", source: ["Ser Ignasse", "Ser Paulecrain", "Ser Vellguine"] }
 
 # Intermission part 2
 # This loops until both Adelphel and Janlenoux are dead.
@@ -54,28 +54,28 @@ hideall "--sync--"
 # but it's more important that we sync during the loop,
 # so we accept a small amount of jumpiness in the timeline.
 140.2 "--targetable--"
-150.2 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-159.3 "Holy Bladedance" Ability { id: "1496", source: ['Ser Adelphel', 'Ser Janlenoux'] }
+150.2 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+159.3 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
 175.3 "Skyward Leap 1" Ability { id: "14A9", source: "Ser Vellguine" }
-177.3 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
+177.3 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
 178.3 "Skyward Leap 2" Ability { id: "14A9", source: "Ser Paulecrain" }
-179.4 "Heavenly Slash" Ability { id: "1494", source: ['Ser Adelphel', 'Ser Janlenoux'] }
+179.4 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
 181.3 "Skyward Leap 3" Ability { id: "14A9", source: "Ser Ignasse" }
-192.4 "Holiest Of Holy" Ability { id: "1495", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-198.5 "Holy Bladedance" Ability { id: "1496", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-205.6 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-212.7 "Holiest Of Holy" Ability { id: "1495", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-216.8 "Heavenly Slash" Ability { id: "1494", source: ['Ser Adelphel', 'Ser Janlenoux'] }
+192.4 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+198.5 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+205.6 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+212.7 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+216.8 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
 
-232.9 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-242.0 "Holy Bladedance" Ability { id: "1496", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-260.0 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-262.1 "Heavenly Slash" Ability { id: "1494", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-275.2 "Holiest Of Holy" Ability { id: "1495", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-281.3 "Holy Bladedance" Ability { id: "1496", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-288.3 "Divine Right" Ability { id: "1493", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-295.4 "Holiest Of Holy" Ability { id: "1495", source: ['Ser Adelphel', 'Ser Janlenoux'] }
-299.5 "Heavenly Slash" Ability { id: "1494", source: ['Ser Adelphel', 'Ser Janlenoux'] } forcejump 216.8
+232.9 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+242.0 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+260.0 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+262.1 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
+275.2 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+281.3 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+288.3 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+295.4 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+299.5 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] } forcejump 216.8
 
 
 # Intermission part 3
@@ -83,8 +83,8 @@ hideall "--sync--"
 352.0 "--sync--" Ability { id: "1018", source: "Ser Grinnaux" } window 150,10
 353.0 "--sync--" Ability { id: "1018", source: "Ser Haumeric" } window 150,10
 359.6 "Hiemal Storm" Ability { id: "14AE", source: "Ser Haumeric" } window 328,10
-359.8 "--sync--" Ability { id: "14AF", source: ['Ser Haumeric', 'Ser Noudenet'] } # Hiemal Storm
-360.2 "Spiral Pierce" Ability { id: "14A7", source: ['Ser Ignasse', 'Ser Paulecrain', 'Ser Vellguine'] }
+359.8 "--sync--" Ability { id: "14AF", source: ["Ser Haumeric", "Ser Noudenet"] } # Hiemal Storm
+360.2 "Spiral Pierce" Ability { id: "14A7", source: ["Ser Ignasse", "Ser Paulecrain", "Ser Vellguine"] }
 361.5 "Dimensional Collapse" Ability { id: "1499", source: "Ser Grinnaux" }
 361.9 "--sync--" Ability { id: "149A", source: "Ser Grinnaux" } # Dimensional Collapse
 365.0 "Faith Unmoving" Ability { id: "149B", source: "Ser Grinnaux" }
@@ -120,7 +120,7 @@ hideall "--sync--"
 466.4 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
 476.6 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
 481.7 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
-488.1 "Holy Shield Bash" Ability { id: "1497", source: ['Ser Adelphel', 'Ser Janlenoux'] }
+488.1 "Holy Shield Bash" Ability { id: "1497", source: ["Ser Adelphel", "Ser Janlenoux"] }
 497.1 "Spear Of the Fury" Ability { id: "1492", source: "Ser Zephirin" } # A smile better suits a hero
 499.5 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
 504.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }
@@ -170,7 +170,7 @@ hideall "--sync--"
 645.3 "Heavensflame 2" #Ability { id: "14AC", source: "Ser Charibert" }
 646.4 "Heavensflame 3" #Ability { id: "14AC", source: "Ser Charibert" }
 646.8 "Hiemal Storm" Ability { id: "14AE", source: "Ser Haumeric" }
-647.4 "--sync--" Ability { id: "14AF", source: ['Ser Haumeric', 'Ser Noudenet'] } # Hiemal Storm
+647.4 "--sync--" Ability { id: "14AF", source: ["Ser Haumeric", "Ser Noudenet"] } # Hiemal Storm
 648.7 "Ascalon's Mercy" Ability { id: "147F", source: "King Thordan" }
 656.8 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 662.9 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
@@ -187,7 +187,7 @@ hideall "--sync--"
 707.6 "Heavensward Leap 2" Ability { id: "14AA", source: "Ser Paulecrain" }
 710.6 "Heavensward Leap 3" Ability { id: "14AA", source: "Ser Ignasse" }
 718.7 "Sacred Cross" StartsUsing { id: "1491", source: "Ser Zephirin" } duration 24.7
-724.6 "Pure Of Soul" Ability { id: "(14B1|14B2)", source: ['Ser Charibert', 'Ser Noudenet', 'Ser Haumeric'] }
+724.6 "Pure Of Soul" Ability { id: "(14B1|14B2)", source: ["Ser Charibert", "Ser Noudenet", "Ser Haumeric"] }
 732.6 "Absolute Conviction 1" Ability { id: "14A4", source: "Ser Guerrique" }
 735.5 "Absolute Conviction 2" Ability { id: "14A5", source: "Ser Hermenost" }
 740.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: "(1489|148A)", source: "King Thordan" }

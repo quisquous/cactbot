@@ -58,7 +58,7 @@ hideall "--sync--"
 475.9 "Hemitheos's Aero II" Ability { id: "7809", source: "Agdistis" } window 30,30
 489.2 "Forbidden Fruit" Ability { id: "7801", source: "Agdistis" }
 492.3 "Shadow of Attis" Ability { id: "783C", source: "Agdistis" }
-500.7 "Static Moon/Stymphalian Strike" Ability { id: "(7802|7803)", source: ['Immature Io', 'Immature Stymphalide'] }
+500.7 "Static Moon/Stymphalian Strike" Ability { id: "(7802|7803)", source: ["Immature Io", "Immature Stymphalide"] }
 505.4 "Burst" Ability { id: "783D", source: "Agdistis" }
 513.6 "Bough of Attis (out)" Ability { id: "77F9", source: "Agdistis" }
 521.2 "Bough of Attis (left/right)" Ability { id: "(77FB|77FC)", source: "Agdistis" }

@@ -19,10 +19,10 @@ hideall "--sync--"
 56.7 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 56.7,5
 58.0 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
 61.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
-61.7 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ['Blizzard Arrow', 'Weight of the World'] }
+61.7 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
 69.0 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
 70.3 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
-74.0 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ['Blizzard Arrow', 'Weight of the World'] }
+74.0 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
 74.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
 78.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 87.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
@@ -83,9 +83,9 @@ hideall "--sync--"
 393.3 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 398.2 "Trap #1" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 100,2.5
 402.3 "Trap #2" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
-403.2 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ['Blizzard Arrow', 'Weight of the World'] }
+403.2 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
 403.6 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
-407.3 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ['Blizzard Arrow', 'Weight of the World'] }
+407.3 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
 408.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
 418.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
 422.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }

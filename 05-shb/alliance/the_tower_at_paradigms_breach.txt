@@ -215,13 +215,13 @@ hideall "--sync--"
 2700.0 "--sync--" StartsUsing { id: "5C73", source: "Gretel" } window 700,0
 2700.0 "--sync--" StartsUsing { id: "5C74", source: "Hansel" } window 700,0
 # Gretel does 57C3 and Hansel does 57C4, and they both do 5C75
-2708.0 "Lamentation" Ability { id: "(5C73|5C74)", source: ['Gretel', 'Hansel'] } window 100,100
-2713.8 "Seed Of Magic Beta" Ability { id: "5C75", source: ['Gretel', 'Hansel'] }
-2718.1 "Lamentation" #Ability { id: "(5C73|5C74)", source: ['Gretel', 'Hansel'] }
-2723.9 "Seed Of Magic Beta" #Ability { id: "5C75", source: ['Gretel', 'Hansel'] }
-2728.2 "Lamentation" #Ability { id: "(5C73|5C74)", source: ['Gretel', 'Hansel'] }
-2734.0 "Seed Of Magic Beta" #Ability { id: "5C75", source: ['Gretel', 'Hansel'] }
-2738.3 "Lamentation" #Ability { id: "(5C73|5C74)", source: ['Gretel', 'Hansel'] }
+2708.0 "Lamentation" Ability { id: "(5C73|5C74)", source: ["Gretel", "Hansel"] } window 100,100
+2713.8 "Seed Of Magic Beta" Ability { id: "5C75", source: ["Gretel", "Hansel"] }
+2718.1 "Lamentation" #Ability { id: "(5C73|5C74)", source: ["Gretel", "Hansel"] }
+2723.9 "Seed Of Magic Beta" #Ability { id: "5C75", source: ["Gretel", "Hansel"] }
+2728.2 "Lamentation" #Ability { id: "(5C73|5C74)", source: ["Gretel", "Hansel"] }
+2734.0 "Seed Of Magic Beta" #Ability { id: "5C75", source: ["Gretel", "Hansel"] }
+2738.3 "Lamentation" #Ability { id: "(5C73|5C74)", source: ["Gretel", "Hansel"] }
 
 
 ### Assorted Trash

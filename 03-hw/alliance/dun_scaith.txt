@@ -121,18 +121,18 @@ hideall "--sync--"
 1014.2 "Black Wind x3" # Ability { id: "1CAC", source: "Ferdiad Hollow" }
 1020.3 "Sleight" Ability { id: "1C99", source: "Ferdiad Hollow" }
 1028.0 "Wormhole" Ability { id: "1C9A", source: "Ferdiad Hollow" }
-1028.3 "--sync--" Ability { id: "1C49", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1028.5 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ['Aether', 'Aetherial Chakram'] }
-1030.0 "--sync--" Ability { id: "1C9[CD]", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1033.2 "Explosion" Ability { id: "1CA[12]", source: ['Aether', 'Aetherial Chakram'] }
+1028.3 "--sync--" Ability { id: "1C49", source: ["Cursing Atomos", "Wailing Atomos"] }
+1028.5 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ["Aether", "Aetherial Chakram"] }
+1030.0 "--sync--" Ability { id: "1C9[CD]", source: ["Cursing Atomos", "Wailing Atomos"] }
+1033.2 "Explosion" Ability { id: "1CA[12]", source: ["Aether", "Aetherial Chakram"] }
 1039.2 "Jester's Reap" Ability { id: "1E41", source: "Ferdiad Hollow" }
 1047.2 "Jongleur's X" Ability { id: "1C98", source: "Ferdiad Hollow" }
 1052.2 "Sleight" Ability { id: "1C99", source: "Ferdiad Hollow" }
 1060.5 "Wormhole" Ability { id: "1C9A", source: "Ferdiad Hollow" }
-1060.8 "--sync--" Ability { id: "1C49", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1061.0 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ['Aether', 'Aetherial Chakram'] }
-1062.5 "--sync--" Ability { id: "1C9[CD]", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1065.7 "Explosion" Ability { id: "1CA[12]", source: ['Aether', 'Aetherial Chakram'] }
+1060.8 "--sync--" Ability { id: "1C49", source: ["Cursing Atomos", "Wailing Atomos"] }
+1061.0 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ["Aether", "Aetherial Chakram"] }
+1062.5 "--sync--" Ability { id: "1C9[CD]", source: ["Cursing Atomos", "Wailing Atomos"] }
+1065.7 "Explosion" Ability { id: "1CA[12]", source: ["Aether", "Aetherial Chakram"] }
 1069.7 "Debilitator" Ability { id: "1CA6", source: "Ferdiad Hollow" }
 1079.9 "Jongleur's X" Ability { id: "1C98", source: "Ferdiad Hollow" }
 1087.4 "Flameflow" Ability { id: "1CA7", source: "Ferdiad Hollow" }
@@ -155,10 +155,10 @@ hideall "--sync--"
 
 1319.0 "Sleight" Ability { id: "1C99", source: "Ferdiad Hollow" }
 1327.5 "Wormhole" Ability { id: "1C9A", source: "Ferdiad Hollow" }
-1327.8 "--sync--" Ability { id: "1C49", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1328.0 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ['Aether', 'Aetherial Chakram'] }
-1329.6 "--sync--" Ability { id: "1C9[CD]", source: ['Cursing Atomos', 'Wailing Atomos'] }
-1333.0 "Explosion" Ability { id: "1CA[12]", source: ['Aether', 'Aetherial Chakram'] } window 15,15
+1327.8 "--sync--" Ability { id: "1C49", source: ["Cursing Atomos", "Wailing Atomos"] }
+1328.0 "Juggling Sphere" Ability { id: "1C(9F|A0)", source: ["Aether", "Aetherial Chakram"] }
+1329.6 "--sync--" Ability { id: "1C9[CD]", source: ["Cursing Atomos", "Wailing Atomos"] }
+1333.0 "Explosion" Ability { id: "1CA[12]", source: ["Aether", "Aetherial Chakram"] } window 15,15
 1338.1 "Jester's Reap" Ability { id: "1E41", source: "Ferdiad Hollow" }
 1348.8 "Black Wind" # Ability { id: "1CAC", source: "Ferdiad Hollow" }
 1362.4 "Blackfire" Ability { id: "1CAA", source: "Ferdiad Hollow" }

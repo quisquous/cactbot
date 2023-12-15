@@ -12,7 +12,7 @@ hideall "--sync--"
 16.6 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
 21.8 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
-30.8 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+30.8 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 30.9 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
 36.2 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
 40.8 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
@@ -23,7 +23,7 @@ hideall "--sync--"
 
 58.6 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 63.4 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
-67.6 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+67.6 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 69.4 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
 71.8 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
 74.9 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
@@ -32,7 +32,7 @@ hideall "--sync--"
 
 95.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 96.6 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
-104.0 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+104.0 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 107.2 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
 112.3 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
 115.4 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
@@ -42,7 +42,7 @@ hideall "--sync--"
 135.5 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 140.0 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 143.2 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
-144.6 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+144.6 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 146.1 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
 150.7 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
 152.6 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
@@ -51,7 +51,7 @@ hideall "--sync--"
 
 168.6 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 177.4 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" } duration 13
-177.7 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+177.7 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 183.9 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
 186.2 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
 189.3 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
@@ -60,7 +60,7 @@ hideall "--sync--"
 
 203.9 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 208.0 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
-213.0 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+213.0 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 217.5 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
 222.6 "Meteor Stream" #Ability { id: "7DE", source: "Nael Geminus" }
 225.8 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
@@ -68,7 +68,7 @@ hideall "--sync--"
 239.6 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
 
 245.8 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
-254.8 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+254.8 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 255.5 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
 260.1 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
 262.1 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
@@ -78,7 +78,7 @@ hideall "--sync--"
 
 283.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 286.8 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
-292.0 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+292.0 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 294.3 "Lunar Dynamo" Ability { id: "7DA", source: "Nael deus Darnus" }
 296.7 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
 299.9 "Dalamud Dive" Ability { id: "7DC", source: "Nael deus Darnus" }
@@ -86,7 +86,7 @@ hideall "--sync--"
 
 314.3 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 322.8 "Ravensbeak" Ability { id: "7D6", source: "Nael deus Darnus" }
-323.3 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+323.3 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 332.0 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
 335.9 "--sync--" Ability { id: "7D7", source: "Nael deus Darnus" }
 337.0 "Meteor Stream" Ability { id: "7DE", source: "Nael Geminus" }
@@ -95,7 +95,7 @@ hideall "--sync--"
 
 355.0 "Stardust" Ability { id: "877", source: "Nael deus Darnus" } duration 9
 358.5 "Ravensclaw" Ability { id: "7D5", source: "Nael deus Darnus" }
-364.0 "--sync--" Ability { id: "7E9", source: ['Astral Debris', 'Umbral Debris'] }
+364.0 "--sync--" Ability { id: "7E9", source: ["Astral Debris", "Umbral Debris"] }
 366.0 "Raven Dive" Ability { id: "7DD", source: "Nael deus Darnus" }
 370.5 "Iron Chariot" Ability { id: "7D8", source: "Nael deus Darnus" }
 372.7 "Thermionic Beam" Ability { id: "7DF", source: "Nael deus Darnus" }
