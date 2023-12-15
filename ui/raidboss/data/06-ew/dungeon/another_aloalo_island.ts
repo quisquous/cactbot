@@ -310,18 +310,16 @@ const triggerSet: TriggerSet<Data> = {
         en: `These directions assume that you always pick a square in the same
              quadrant as the crystal specified.
              For brevity, "next to" always means horizontal east/west of something.
-             The number in parentheses is the limit cut wind you should be on.
              See trigger source for diagrams in comments.`,
         de: `Diese Anweisungen gehen davon aus, dass Sie immer ein Quadrat im gleichen
              Quadranten wie der angegebene Kristall liegt.
              Der Einfachheit halber bedeutet "neben" immer horizontal östlich/westlich von etwas.
-             Die Zahl in Klammern ist der Grenzwert für den Wind-Rückstoß, auf dem Sie sich befinden sollten.
              Siehe Triggerquelle für Diagramme in den Kommentaren.`,
       },
       type: 'StartsUsing',
       netRegex: { id: ['8AB8', '8AB4'], source: 'Ketuduke' },
       condition: (data) => data.ketuHydroBuffCount === 1 || data.ketuHydroBuffCount === 6,
-      durationSeconds: 8,
+      durationSeconds: 10,
       alertText: (data, matches, output) => {
         if (data.ketuBuff === undefined)
           return;
@@ -364,6 +362,14 @@ const triggerSet: TriggerSet<Data> = {
         // and one with two columns that have an H and a V in that same column ("columns").
         // Wind doesn't matter, as "1" will always be on the horizontal crystals.
         // These can be flipped somewhat, but the solution is always the same.
+        // Horizontal crystals are always in lc1 wind, and vertical crystals are always
+        // in lc2 wind. Players with bubbles always go either (1) adjacent to a horizontal
+        // crystal OR (2) diagonal of a vertical crystal. Either one works, but it
+        // depends on how you split your priorities / wind which one you'd take.
+        //
+        // Legend: V = vertical crystal, H = horizontal crystal
+        //         1 = limit cut wind 1, 2 = limit cut wind 2
+        //         f = fetters, b = bubble (if placed in lc1)
         //
         // STACK FETTERS COLUMNS (kitty to horizontal)
         //     2                   2
@@ -444,24 +450,24 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Sammeln',
         },
         bubbleAnything: {
-          en: 'Next to Horizontal (1)',
-          de: 'Neben Horizontal (1)',
+          en: 'Diagonal of Vertical / Next to Horizontal ',
+          de: 'Diagonale der Vertikalen / Neben Horizontal',
         },
         fettersSpreadSplit: {
-          en: 'Diagonal of Vertical (2)',
-          de: 'Diagonale der Vertikalen (2)',
+          en: 'Diagonal of Vertical',
+          de: 'Diagonale der Vertikalen',
         },
         fettersSpreadColumn: {
-          en: 'Next to Vertical (2)',
-          de: 'Neben Vertikal (2)',
+          en: 'Next to Vertical',
+          de: 'Neben Vertikal',
         },
         fettersStackSplit: {
-          en: 'On Horizontal (1)',
-          de: 'Auf Horizontal (1)',
+          en: 'On Horizontal',
+          de: 'Auf Horizontal',
         },
         fettersStackColumn: {
-          en: 'Diagonal of Horizontal (1)',
-          de: 'Diagonale der Horizontalen (1)',
+          en: 'Diagonal of Horizontal',
+          de: 'Diagonale der Horizontalen',
         },
       },
     },
