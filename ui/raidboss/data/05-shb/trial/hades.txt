@@ -102,7 +102,7 @@ hideall "Double"
 962.3 "Doom"
 
 985.0 "Wail Of The Lost" Ability { id: "416[56]", source: "Hades" }
-993.0 "Stream/Purgation?" Ability { id: "(415C|4170)", source: "Hades" }
+993.0 "Stream/Purgation?" Ability { id: ["415C", "4170"], source: "Hades" }
 1002.0 "Titanomachy" Ability { id: "4180", source: "Hades" }
 1011.0 "Hellborn Yawp" Ability { id: "416E", source: "Hades" }
 1021.0 "Echo Of The Lost" Ability { id: "416[34]", source: "Hades" }

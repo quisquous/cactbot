@@ -477,10 +477,10 @@ hideall "--sync--"
 
 # cleaves, 2 levels of temperature
 7182.5 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" }
-7193.7 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7201.9 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7210.0 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7218.2 "Blade Of Entropy" Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7193.7 "Blade Of Entropy" Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7201.9 "Blade Of Entropy" Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7210.0 "Blade Of Entropy" Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7218.2 "Blade Of Entropy" Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
 
 7221.3 "--sync--" Ability { id: "5982", source: "Trinity Avowed" }
 7227.4 "Unseen Eye" Ability { id: "5980", source: "Trinity Avowed" }
@@ -523,10 +523,10 @@ hideall "--sync--"
 
 # (probably a loop, back to cleaves, 2 levels of temperature)
 7463.9 "Hot And Cold" Ability { id: "5BAF", source: "Trinity Avowed" } window 100,100 jump 7182.5
-7475.1 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7483.3 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7491.4 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
-7499.6 "Blade Of Entropy" #Ability { id: "(5B6[5-8]|596[D-F]|5970)", source: "Trinity Avowed" }
+7475.1 "Blade Of Entropy" #Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7483.3 "Blade Of Entropy" #Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7491.4 "Blade Of Entropy" #Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
+7499.6 "Blade Of Entropy" #Ability { id: ["5B6[5-8]", "596[D-F]", "5970"], source: "Trinity Avowed" }
 
 
 ### The Queen
@@ -584,8 +584,8 @@ hideall "--sync--"
 9283.5 "Above Board" Ability { id: "59D1", source: "Queen's Warrior" }
 9284.5 "--stunned--"
 # Note: these can be in either order, so can't sync.
-9286.5 "Lots Cast" #Ability { id: "(59D3|5B86)", source: "Aetherial Bolt" }
-9289.5 "Lots Cast" #Ability { id: "(59D2|5B87)", source: "Aetherial Burst" }
+9286.5 "Lots Cast" #Ability { id: ["59D3", "5B86"], source: "Aetherial Bolt" }
+9289.5 "Lots Cast" #Ability { id: ["59D2", "5B87"], source: "Aetherial Burst" }
 9291.2 "--unstunned--"
 
 9300.4 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
@@ -630,6 +630,6 @@ hideall "--sync--"
 9499.0 "--knockback--" #Ability { id: "59C7", source: "The Queen" }
 9503.5 "Above Board" #Ability { id: "59D1", source: "Queen's Warrior" }
 9504.5 "--stunned--"
-9506.5 "Lots Cast" #Ability { id: "(59D3|5B86)", source: "Aetherial Bolt" }
-9509.5 "Lots Cast" #Ability { id: "(59D2|5B87)", source: "Aetherial Burst" }
+9506.5 "Lots Cast" #Ability { id: ["59D3", "5B86"], source: "Aetherial Bolt" }
+9509.5 "Lots Cast" #Ability { id: ["59D2", "5B87"], source: "Aetherial Burst" }
 9511.2 "--unstunned--"

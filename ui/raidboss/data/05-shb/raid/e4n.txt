@@ -81,8 +81,8 @@ hideall "Earthen Wheels"
 1274.3 "Geocrush" Ability { id: "40F6", source: "Titan" }
 1278.1 "Earthen Gauntlets" Ability { id: "40E6", source: "Titan" }
 1286.2 "Massive Landslide" Ability { id: "40FA", source: "Titan" }
-1300.8 "Left/Right Landslide" Ability { id: "(40FF|4100)", source: "Titan" }
-1315.4 "Left/Right Landslide" Ability { id: "(40FF|4100)", source: "Titan" }
+1300.8 "Left/Right Landslide" Ability { id: ["40FF", "4100"], source: "Titan" }
+1315.4 "Left/Right Landslide" Ability { id: ["40FF", "4100"], source: "Titan" }
 1324.1 "Earthen Armor" Ability { id: "40E7", source: "Titan" }
 
 
@@ -163,8 +163,8 @@ hideall "Earthen Wheels"
 2400.4 "Geocrush" Ability { id: "40F6", source: "Titan" }
 2404.2 "Earthen Gauntlets" Ability { id: "40E6", source: "Titan" }
 2412.3 "Massive Landslide" Ability { id: "40FA", source: "Titan" }
-2426.9 "Left/Right Landslide" Ability { id: "(40FF|4100)", source: "Titan" }
-2441.5 "Left/Right Landslide" Ability { id: "(40FF|4100)", source: "Titan" }
+2426.9 "Left/Right Landslide" Ability { id: ["40FF", "4100"], source: "Titan" }
+2441.5 "Left/Right Landslide" Ability { id: ["40FF", "4100"], source: "Titan" }
 2450.1 "Earthen Armor" Ability { id: "40E7", source: "Titan" }
 
 

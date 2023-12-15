@@ -12,23 +12,23 @@ hideall "--sync--"
 121.0 "Sun Toss" Ability { id: "3C8A", source: "Lozatl" }
 127.2 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
 137.5 "Sun Toss" Ability { id: "3C8A", source: "Lozatl" }
-137.5 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+137.5 "Ronkan Light" Ability { id: ["3D6D", "3C8C"], source: "Lozatl" }
 145.1 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
-151.5 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
+151.5 "Lozatl's Fury" Ability { id: ["3C8F", "3C90"], source: "Lozatl" }
 
 161.2 "Stonefist" Ability { id: "3C89", source: "Lozatl" }
 168.1 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
 173.2 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
-182.7 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
-183.4 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+182.7 "Lozatl's Fury" Ability { id: ["3C8F", "3C90"], source: "Lozatl" }
+183.4 "Ronkan Light" Ability { id: ["3D6D", "3C8C"], source: "Lozatl" }
 191.4 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 196.7 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 
 207.9 "Stonefist" Ability { id: "3C89", source: "Lozatl" }
 222.9 "Heat Up" Ability { id: "3C8[DE]", source: "Lozatl" }
 228.1 "Lozatl's Scorn" Ability { id: "3C8B", source: "Lozatl" }
-237.4 "Lozatl's Fury" Ability { id: "(3C8F|3C90)", source: "Lozatl" }
-238.5 "Ronkan Light" Ability { id: "(3D6D|3C8C)", source: "Lozatl" }
+237.4 "Lozatl's Fury" Ability { id: ["3C8F", "3C90"], source: "Lozatl" }
+238.5 "Ronkan Light" Ability { id: ["3D6D", "3C8C"], source: "Lozatl" }
 246.2 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 251.5 "Sun Toss" #Ability { id: "3C8A", source: "Lozatl" }
 

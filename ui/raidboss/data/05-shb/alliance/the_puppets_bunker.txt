@@ -15,7 +15,7 @@ hideall "--sync--"
 170.6 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
 177.7 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
 187.8 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
-197.9 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+197.9 "Maneuver: Refraction Cannons" Ability { id: ["507F", "5080"], source: "813P-Operated Aegis Unit" }
 206.2 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
 220.2 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
 239.6 "Aerial Support: Bombardment" Ability { id: "50D3", source: "813P-Operated Aegis Unit" }
@@ -33,7 +33,7 @@ hideall "--sync--"
 296.3 "--sync--" Ability { id: "53B2", source: "813P-Operated Aegis Unit" }
 303.8 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
 309.3 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
-317.4 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+317.4 "Maneuver: Refraction Cannons" Ability { id: ["507F", "5080"], source: "813P-Operated Aegis Unit" }
 319.4 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
 328.5 "Firing Order: Surface Laser" Ability { id: "508E", source: "813P-Operated Aegis Unit" }
 330.7 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
@@ -71,7 +71,7 @@ hideall "--sync--"
 485.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
 490.2 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
 495.7 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" }
-503.8 "Maneuver: Refraction Cannons" Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+503.8 "Maneuver: Refraction Cannons" Ability { id: ["507F", "5080"], source: "813P-Operated Aegis Unit" }
 505.8 "Flight Path" Ability { id: "508C", source: "Flight Unit" }
 521.1 "Firing Order: Anti-Personnel Laser" Ability { id: "508D", source: "813P-Operated Aegis Unit" }
 531.1 "Maneuver: Collider Cannons" Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
@@ -91,7 +91,7 @@ hideall "--sync--"
 593.1 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
 598.1 "Life's Last Song" Ability { id: "53B3", source: "813P-Operated Aegis Unit" }
 603.6 "Aerial Support: Swoop" Ability { id: "50D2", source: "813P-Operated Aegis Unit" } window 100,100 jump 495.7
-611.7 "Maneuver: Refraction Cannons" #Ability { id: "(507F|5080)", source: "813P-Operated Aegis Unit" }
+611.7 "Maneuver: Refraction Cannons" #Ability { id: ["507F", "5080"], source: "813P-Operated Aegis Unit" }
 613.7 "Flight Path" #Ability { id: "508C", source: "Flight Unit" }
 629.0 "Firing Order: Anti-Personnel Laser" #Ability { id: "508D", source: "813P-Operated Aegis Unit" }
 639.0 "Maneuver: Collider Cannons" #Ability { id: "507[BCD]", source: "813P-Operated Aegis Unit" }
@@ -158,7 +158,7 @@ hideall "--sync--"
 2153.5 "Incendiary Barrage" Ability { id: "4FAF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2155.0 "Sliding Swipe 1" Ability { id: "4FA[CD]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2157.0 "Sliding Swipe 2" Ability { id: "550[DE]", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" }
-2159.0 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
+2159.0 "Sliding Swipe 3" Ability { id: ["550F", "5510"], source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2161.3 "--targetable--"
 
 2172.7 "--sync--" StartsUsing { id: "4FC4", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 70,20
@@ -190,7 +190,7 @@ hideall "--sync--"
 2403.1 "Incendiary Barrage" Ability { id: "4FAF", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2404.6 "Sliding Swipe 1" Ability { id: "4FA[CD]", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2406.6 "Sliding Swipe 2" Ability { id: "550[DE]", source: "767P-Operated Superior Flight Unit \\(B-Eta\\)" }
-2408.6 "Sliding Swipe 3" Ability { id: "(550F|5510)", source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
+2408.6 "Sliding Swipe 3" Ability { id: ["550F", "5510"], source: "772P-Operated Superior Flight Unit \\(C-Hi\\)" }
 2410.9 "--targetable--"
 
 2427.2 "--sync--" StartsUsing { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 70,20
@@ -392,9 +392,9 @@ hideall "--sync--"
 # beginning of loop
 6350.2 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
 6356.3 "Reproduce" Ability { id: "51A1", source: "Compound 2P" }
-6366.0 "Prime Blade (In/Out)" Ability { id: "(541F|5421)", source: "Compound 2P" }
+6366.0 "Prime Blade (In/Out)" Ability { id: ["541F", "5421"], source: "Compound 2P" }
 6375.9 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
-6379.4 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Puppet 2P" }
+6379.4 "Prime Blade (In/Out)" Ability { id: ["5198", "519A"], source: "Puppet 2P" }
 
 
 # Random Three Parts/ Four Parts
@@ -423,10 +423,10 @@ hideall "--sync--"
 
 6523.7 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
 6532.5 "Forced Transfer" Ability { id: "53D[01]", source: "Compound 2P" }
-6535.8 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Compound 2P" }
+6535.8 "Prime Blade (In/Out)" Ability { id: ["5198", "519A"], source: "Compound 2P" }
 
 6541.3 "--sync--" Ability { id: "51A3", source: "Compound 2P" }
 6547.4 "Reproduce" Ability { id: "51A1", source: "Compound 2P" } window 100,100 jump 6356.3
-6557.2 "Prime Blade (In/Out)" Ability { id: "(541F|5421)", source: "Compound 2P" }
+6557.2 "Prime Blade (In/Out)" Ability { id: ["541F", "5421"], source: "Compound 2P" }
 6567.1 "Forced Transfer" Ability { id: "51A2", source: "Compound 2P" }
-6570.6 "Prime Blade (In/Out)" Ability { id: "(5198|519A)", source: "Puppet 2P" }
+6570.6 "Prime Blade (In/Out)" Ability { id: ["5198", "519A"], source: "Puppet 2P" }

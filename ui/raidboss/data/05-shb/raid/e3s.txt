@@ -11,11 +11,11 @@ hideall "--sync--"
 23.9 "Rip Current" Ability { id: "3FE0", source: "Leviathan" }
 43.3 "Undersea Quake" Ability { id: "3FEF", source: "Leviathan" }
 46.1 "Tidal Wave" Ability { id: "3FF2", source: "Leviathan" }
-52.4 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
+52.4 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
 61.6 "Drenching Pulse" Ability { id: "3FE2", source: "Leviathan" }
 65.7 "Monster Wave" Ability { id: "3FE5", source: "Leviathan" }
 69.7 "Freak Wave" Ability { id: "3FE6", source: "Leviathan" }
-73.7 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
+73.7 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
 87.9 "Maelstrom" Ability { id: "3FFA", source: "Leviathan" }
 90.0 "--untargetable--"
 99.3 "Spinning Dive 1" #Ability { id: "3FFD", source: "Leviathan" }
@@ -26,24 +26,24 @@ hideall "--sync--"
 132.8 "Tsunami" Ability { id: "441C", source: "Leviathan" }
 141.4 "Sundering Tsunami" Ability { id: "3FF6", source: "Leviathan" }
 146.1 "Undersea Quake" Ability { id: "3FEE", source: "Leviathan" }
-158.4 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
+158.4 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
 158.4 "Smothering Tsunami" Ability { id: "3FF7", source: "Leviathan" }
 158.4 "Swirling Tsunami" Ability { id: "3FF4", source: "Leviathan" }
 168.7 "Tidal Roar" Ability { id: "3FDC", source: "Leviathan" }
 175.9 "Rip Current" Ability { id: "3FE0", source: "Leviathan" }
-186.1 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
+186.1 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
 197.3 "Tidal Roar" Ability { id: "3FDC", source: "Leviathan" }
 210.4 "Refreshing Shower" Ability { id: "400F", source: "Leviathan" }
 223.6 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 235.9 "Undersea Quake" Ability { id: "3FEF", source: "Leviathan" }
 238.9 "Tidal Wave" Ability { id: "3FF2", source: "Leviathan" }
-246.0 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
-250.1 "Temporary Current" Ability { id: "(3FEC|3FED)", source: "Leviathan" }
+246.0 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
+250.1 "Temporary Current" Ability { id: ["3FEC", "3FED"], source: "Leviathan" }
 256.2 "Drenching Pulse" Ability { id: "3FE2", source: "Leviathan" }
 260.3 "Monster Wave" Ability { id: "3FE9", source: "Leviathan" }
 264.3 "Freak Wave" Ability { id: "3FE6", source: "Leviathan" }
-269.4 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
-273.5 "Temporary Current" Ability { id: "(3FEC|3FED)", source: "Leviathan" }
+269.4 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
+273.5 "Temporary Current" Ability { id: ["3FEC", "3FED"], source: "Leviathan" }
 287.8 "Maelstrom" Ability { id: "3FFA", source: "Leviathan" }
 290.0 "--untargetable--"
 301.2 "Spinning Dive 1" #Ability { id: "3FFD", source: "Leviathan" }
@@ -55,8 +55,8 @@ hideall "--sync--"
 339.7 "Stormy Horizon" Ability { id: "3FFE", source: "Leviathan" }
 346.8 "Monster Wave x4" duration 6 #Ability { id: "3FE9", source: "Leviathan" }
 352.8 "Backbreaking Wave" Ability { id: "4001", source: "Leviathan" }
-353.9 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
-358.1 "Temporary Current" Ability { id: "(3FEC|3FED)", source: "Leviathan" }
+353.9 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
+358.1 "Temporary Current" Ability { id: ["3FEC", "3FED"], source: "Leviathan" }
 363.0 "Plunging Wave x5" duration 4.4 #Ability { id: "4003", source: "Leviathan" }
 373.2 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 383.5 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
@@ -72,8 +72,8 @@ hideall "--sync--"
 449.2 "Sundering Tsunami" #Ability { id: "3FF6", source: "Leviathan" }
 453.2 "Sundering Tsunami" #Ability { id: "3FF6", source: "Leviathan" }
 457.1 "Scouring Tsunami" Ability { id: "3CE0", source: "Leviathan" }
-466.8 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
-470.9 "Temporary Current" Ability { id: "(3FEC|3FED)", source: "Leviathan" }
+466.8 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
+470.9 "Temporary Current" Ability { id: ["3FEC", "3FED"], source: "Leviathan" }
 483.1 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 493.2 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 500.3 "Rip Current" Ability { id: "3FE0", source: "Leviathan" }
@@ -86,8 +86,8 @@ hideall "--sync--"
 536.9 "Spilling Wave x12" duration 15 #Ability { id: "4008", source: "Leviathan" }
 540.9 "Hydrothermal Vent x4" duration 9 #Ability { id: "4004", source: "Leviathan" }
 544.4 "Hot Water x5" duration 9 #Ability { id: "4005", source: "Leviathan" }
-561.9 "Temporary Current" Ability { id: "(3FEB|3FEA)", source: "Leviathan" }
-565.9 "Temporary Current" Ability { id: "(3FEC|3FED)", source: "Leviathan" }
+561.9 "Temporary Current" Ability { id: ["3FEB", "3FEA"], source: "Leviathan" }
+565.9 "Temporary Current" Ability { id: ["3FEC", "3FED"], source: "Leviathan" }
 576.9 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 587.9 "Tidal Rage" Ability { id: "3FDE", source: "Leviathan" }
 604.9 "The Calm" Ability { id: "4009", source: "Leviathan" }

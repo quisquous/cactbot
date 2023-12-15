@@ -15,26 +15,26 @@ hideall "--sync--"
 13.7 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 22.8 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
 
-34.0 "Experimental Fireplume" Ability { id: "(66BE|66C0)", source: "Phoinix" }
+34.0 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
 40.1 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
-44.6 "Left Cinderwing/Right Cinderwing" Ability { id: "(6702|6703)", source: "Phoinix" }
+44.6 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
 58.8 "Darkened Fire" Ability { id: "66B9", source: "Phoinix" }
 69.0 "Brightened Fire x8" Ability { id: "66BC", source: "Phoinix" } duration 8.7
 96.5 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
 104.7 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 114.9 "Devouring Brand" Ability { id: "66CE", source: "Phoinix" }
-122.0 "Experimental Fireplume" Ability { id: "(66BE|66C0)", source: "Phoinix" }
+122.0 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
 128.2 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
 131.9 "--fire expands--" Ability { id: "6D83", source: "Phoinix" }
 132.2 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
-140.4 "Left Cinderwing/Right Cinderwing" Ability { id: "(6702|6703)", source: "Phoinix" }
+140.4 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
 149.5 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
-157.6 "Experimental Fireplume" Ability { id: "(66BE|66C0)", source: "Phoinix" }
+157.6 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
 163.7 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
 
 162.2 "--untargetable--"
-172.0 "Trail of Condemnation" Ability { id: "(66FB|66FC)", source: "Phoinix" }
-173.6 "Flare of Condemnation/Sparks of Condemnation" Ability { id: "(66FE|66FF)", source: "Phoinix" }
+172.0 "Trail of Condemnation" Ability { id: ["66FB", "66FC"], source: "Phoinix" }
+173.6 "Flare of Condemnation/Sparks of Condemnation" Ability { id: ["66FE", "66FF"], source: "Phoinix" }
 
 # Adds Phase 1
 180.8 "--adds targetable--"
@@ -77,8 +77,8 @@ hideall "--sync--"
 
 564.8 "--sync--" Ability { id: "66AC", source: "Phoinix" }
 574.9 "Experimental Gloryplume" Ability { id: "66CA", source: "Phoinix" }
-577.5 "--sync--" Ability { id: "(66CC|66C8)", source: "Phoinix" }
-588.1 "Gloryplume" Ability { id: "(66CD|66C9)", source: "Phoinix" }
+577.5 "--sync--" Ability { id: ["66CC", "66C8"], source: "Phoinix" }
+588.1 "Gloryplume" Ability { id: ["66CD", "66C9"], source: "Phoinix" }
 606.1 "Fountain of Fire" Ability { id: "66E7", source: "Phoinix" }
 614.2 "Sun's Pinion" Ability { id: "66EA", source: "Phoinix" }
 614.2 "Sun's Pinion 1" Ability { id: "66EB", source: "Phoinix" }
@@ -97,12 +97,12 @@ hideall "--sync--"
 
 676.5 "Flames of Asphodelos" Ability { id: "66F1", source: "Phoinix" }
 681.7 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
-683.7 "Experimental Ashplume" Ability { id: "(66C2|66C4)", source: "Phoinix" }
+683.7 "Experimental Ashplume" Ability { id: ["66C2", "66C4"], source: "Phoinix" }
 684.5 "Flames of Asphodelos 1" Ability { id: "66F2", source: "Phoinix" }
 685.5 "Flames of Asphodelos 2" Ability { id: "66F3", source: "Phoinix" }
 686.5 "Flames of Asphodelos 3" Ability { id: "66F4", source: "Phoinix" }
 687.8 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
-689.8 "Ashplume" Ability { id: "(66C3|66C5)", source: "Phoinix" }
+689.8 "Ashplume" Ability { id: ["66C3", "66C5"], source: "Phoinix" }
 
 694.8 "Flames of Asphodelos" Ability { id: "66F1", source: "Phoinix" }
 696.9 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
@@ -119,11 +119,11 @@ hideall "--sync--"
 726.1 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
 728.1 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
 
-735.2 "Experimental Ashplume" Ability { id: "(66C2|66C4)", source: "Phoinix" }
+735.2 "Experimental Ashplume" Ability { id: ["66C2", "66C4"], source: "Phoinix" }
 736.2 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
 738.0 "Dark Twister" Ability { id: "66F9", source: "Darkblaze Twister" }
 740.0 "Burning Twister" Ability { id: "66FA", source: "Darkblaze Twister" }
-742.3 "Ashplume" Ability { id: "(66C3|66C5)", source: "Phoinix" }
+742.3 "Ashplume" Ability { id: ["66C3", "66C5"], source: "Phoinix" }
 749.3 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 
 762.5 "Death's Toll" Ability { id: "66ED", source: "Phoinix" }
@@ -134,17 +134,17 @@ hideall "--sync--"
 798.1 "--sync--" Ability { id: "66AC", source: "Phoinix" }
 
 807.2 "Experimental Gloryplume" Ability { id: "66C6", source: "Phoinix" }
-809.8 "--sync--" Ability { id: "(66CC|66C8)", source: "Phoinix" }
-814.4 "Gloryplume" Ability { id: "(66CD|66C9)", source: "Phoinix" }
+809.8 "--sync--" Ability { id: ["66CC", "66C8"], source: "Phoinix" }
+814.4 "Gloryplume" Ability { id: ["66CD", "66C9"], source: "Phoinix" }
 817.3 "--untargetable--"
-827.1 "Trail of Condemnation" Ability { id: "(66FB|66FC)", source: "Phoinix" }
-828.7 "Flare of Condemnation/Sparks of Condemnation" Ability { id: "(66FE|66FF)", source: "Phoinix" }
+827.1 "Trail of Condemnation" Ability { id: ["66FB", "66FC"], source: "Phoinix" }
+828.7 "Flare of Condemnation/Sparks of Condemnation" Ability { id: ["66FE", "66FF"], source: "Phoinix" }
 831.8 "--targetable--"
 839.9 "Devouring Brand" Ability { id: "66CE", source: "Phoinix" }
 847.0 "Experimental Fireplume" Ability { id: "66BE", source: "Phoinix" }
 856.9 "Devouring Brand" Ability { id: "6D83", source: "Phoinix" }
 857.2 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
-865.4 "Left Cinderwing/Right Cinderwing" Ability { id: "(6702|6703)", source: "Phoinix" }
+865.4 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
 876.5 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 883.6 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 

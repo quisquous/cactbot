@@ -58,7 +58,7 @@ hideall "Alluring Arm"
 1220.2 "--vril despawn--"
 1221.6 "--chanchala end--"
 1234.5 "Alluring Arm" Ability { id: "2488", source: "Lakshmi" }
-1248.8 "Blissful Arrow/Spear" Ability { id: "(2489|2494)", source: "Lakshmi" }
+1248.8 "Blissful Arrow/Spear" Ability { id: ["2489", "2494"], source: "Lakshmi" }
 1256.8 "The Pull Of Light" Ability { id: "2492", source: "Lakshmi" }
 
 1265.0 "Chanchala" Ability { id: "2484", source: "Lakshmi" } window 30,30
@@ -72,7 +72,7 @@ hideall "Alluring Arm"
 1317.9 "Divine Denial" Ability { id: "2485", source: "Lakshmi" } window 30,30
 1317.9 "--vril despawn--"
 1332.1 "Alluring Arm" Ability { id: "2488", source: "Lakshmi" }
-1346.4 "Blissful Arrow/Spear" Ability { id: "(248A|2495)", source: "Lakshmi" }
+1346.4 "Blissful Arrow/Spear" Ability { id: ["248A", "2495"], source: "Lakshmi" }
 1348.4 "The Pall Of Light" Ability { id: "2491", source: "Lakshmi" } window 30,30
 1360.5 "The Pull Of Light" Ability { id: "2493", source: "Lakshmi" }
 1360.9 "--chanchala end--"

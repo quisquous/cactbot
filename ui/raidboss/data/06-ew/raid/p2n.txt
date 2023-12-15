@@ -12,8 +12,8 @@ hideall "--sync--"
 14.3 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
 26.6 "Doubled Impact" Ability { id: "680E", source: "Hippokampos" }
 32.8 "--middle--" Ability { id: "6835", source: "Hippokampos" }
-43.6 "Spoken Cataract" Ability { id: "(67F7|67F8|67F9|67FD)", source: "Hippokampos" }
-58.3 "Spoken Cataract" Ability { id: "(67F7|67F8|67F9|67FD)", source: "Hippokampos" }
+43.6 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+58.3 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
 72.0 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
 77.2 "--middle--" Ability { id: "6835", source: "Hippokampos" }
 84.6 "Sewage Deluge" Ability { id: "67F6", source: "Hippokampos" }
@@ -32,11 +32,11 @@ hideall "--sync--"
 201.0 "--middle--" Ability { id: "6835", source: "Hippokampos" }
 208.6 "Sewage Deluge" Ability { id: "67F6", source: "Hippokampos" }
 227.1 "Tainted Flood" Ability { id: "6809", source: "Hippokampos" }
-235.0 "Spoken Cataract" Ability { id: "(67F7|67F8|67F9|67FD)", source: "Hippokampos" }
+235.0 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
 250.7 "Sewage Eruption 1" #Ability { id: "680D", source: "Hippokampos" }
 252.2 "Sewage Eruption 2" #Ability { id: "680D", source: "Hippokampos" }
 253.7 "Sewage Eruption 3" #Ability { id: "680D", source: "Hippokampos" }
-259.5 "Spoken Cataract" Ability { id: "(67F7|67F8|67F9|67FD)", source: "Hippokampos" }
+259.5 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
 273.4 "Tainted Flood" Ability { id: "6809", source: "Hippokampos" }
 279.8 "Predatory Sight" Ability { id: "680B", source: "Hippokampos" }
 287.0 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
@@ -62,5 +62,5 @@ hideall "--sync--"
 392.3 "--middle--" Ability { id: "6835", source: "Hippokampos" } window 50,50 jump 201.0
 399.7 "Sewage Deluge" #Ability { id: "67F6", source: "Hippokampos" }
 418.2 "Tainted Flood" #Ability { id: "6809", source: "Hippokampos" }
-426.1 "Spoken Cataract" #Ability { id: "(67F7|67F8|67F9|67FD)", source: "Hippokampos" }
+426.1 "Spoken Cataract" #Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
 441.8 "Sewage Eruption 1" #Ability { id: "680D", source: "Hippokampos" }

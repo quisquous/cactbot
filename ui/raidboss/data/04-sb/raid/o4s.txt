@@ -95,14 +95,14 @@ hideall "--sync--"
 1045.8 "--untargetable--"
 1048.9 "--targetable--"
 1053.7 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
-1061.7 "Flood Of Naught (colors)" Ability { id: "(2411|2412)", source: "Neo Exdeath" }
+1061.7 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
 1073.2 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
 1083.8 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
-1091.8 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1091.8 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 1101.9 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 
 1116.0 "Grand Cross Delta" Ability { id: "242C", source: "Neo Exdeath" } window 116,10
-1129.0 "Flood Of Naught (colors/lasers)" Ability { id: "(2411|2412|240E|240F)", source: "Neo Exdeath" }
+1129.0 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
 1138.0 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
 1149.1 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 1158.9 "Earth Shaker" Ability { id: "241A", source: "Neo Exdeath" }
@@ -113,10 +113,10 @@ hideall "--sync--"
 1192.4 "Flare" Ability { id: "2401", source: "Neo Exdeath" }
 1192.4 "Holy" Ability { id: "2403", source: "Neo Exdeath" }
 1192.8 "--targetable--"
-1197.6 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1197.6 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 1211.6 "Meteor" Ability { id: "2424", source: "Neo Exdeath" }
 1212.3 "--adds targetable--"
-1224.7 "Flood Of Naught (colors)" Ability { id: "(2411|2412)", source: "Neo Exdeath" }
+1224.7 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
 1237.4 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }
 1244.9 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
 1260.4 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
@@ -128,7 +128,7 @@ hideall "--sync--"
 1289.6 "--untargetable--"
 1292.7 "--targetable--"
 1297.5 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
-1305.5 "Flood Of Naught (colors)" Ability { id: "(2411|2412)", source: "Neo Exdeath" }
+1305.5 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
 1322.5 "Delta Attack" Ability { id: "241E", source: "Neo Exdeath" }
 1323.0 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
 1323.2 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
@@ -136,24 +136,24 @@ hideall "--sync--"
 1324.2 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
 1326.0 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
 1326.5 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
-1330.5 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1330.5 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 
 1339.5 "Grand Cross Omega" Ability { id: "242D", source: "Neo Exdeath" } window 340,10
 1345.5 "--untargetable--"
 1346.5 "The Final Battle" Ability { id: "242A", source: "Neo Exdeath" }
-1354.6 "Flood Of Naught (colors/lasers)" Ability { id: "(2411|2412|240E|240F)", source: "Neo Exdeath" }
-1359.6 "Flood Of Naught (colors/lasers)" Ability { id: "(2411|2412|240E|240F)", source: "Neo Exdeath" }
-1365.6 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1354.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1359.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1365.6 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 1371.7 "--targetable--"
 1378.1 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
 1389.1 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
 
 1396.3 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
-1404.4 "Flood Of Naught" Ability { id: "(2411|2412|240E|240F)", source: "Neo Exdeath" }
+1404.4 "Flood Of Naught" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
 1414.6 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 
 1428.6 "Grand Cross Delta" Ability { id: "242C", source: "Neo Exdeath" } window 90,10
-1441.6 "Flood Of Naught (colors/lasers)" Ability { id: "(2411|2412|240E|240F)", source: "Neo Exdeath" }
+1441.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
 1450.6 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
 1461.6 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 1471.3 "Earth Shaker" Ability { id: "241A", source: "Neo Exdeath" }
@@ -164,10 +164,10 @@ hideall "--sync--"
 1504.8 "Flare" Ability { id: "2401", source: "Neo Exdeath" }
 1504.8 "Holy" Ability { id: "2403", source: "Neo Exdeath" }
 1505.2 "--targetable--"
-1509.8 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1509.8 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 1523.8 "Meteor" Ability { id: "2424", source: "Neo Exdeath" }
 1524.5 "--adds targetable--"
-1536.8 "Flood Of Naught (colors)" Ability { id: "(2411|2412)", source: "Neo Exdeath" }
+1536.8 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
 1549.8 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }
 1557.3 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
 1572.8 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
@@ -179,7 +179,7 @@ hideall "--sync--"
 1602.0 "--untargetable--"
 1605.3 "--targetable--"
 1609.9 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
-1617.9 "Flood Of Naught (colors)" Ability { id: "(2411|2412)", source: "Neo Exdeath" }
+1617.9 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
 1634.9 "Delta Attack" Ability { id: "241E", source: "Neo Exdeath" }
 1635.4 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
 1635.6 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
@@ -187,7 +187,7 @@ hideall "--sync--"
 1636.6 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
 1638.4 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
 1638.9 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
-1642.9 "Flood Of Naught (lasers)" Ability { id: "(240E|240F)", source: "Neo Exdeath" }
+1642.9 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 
 1652.1 "Neverwhere" Ability { id: "2426", source: "Neo Exdeath" } window 652.1,10
 1660.2 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }

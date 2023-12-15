@@ -16,13 +16,13 @@ hideall "--sync--"
 37.5 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 45.6 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
 49.7 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
-56.7 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 56.7,5
+56.7 "Trap" Ability { id: ["1AB0", "1AB1"], source: "Lamebrix Strikebocks" } window 56.7,5
 58.0 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
 61.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
-61.7 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
-69.0 "Trap" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
+61.7 "Frostbite/Impact" Ability { id: ["1AC7", "1AC6"], source: ["Blizzard Arrow", "Weight of the World"] }
+69.0 "Trap" Ability { id: ["1AB0", "1AB1"], source: "Lamebrix Strikebocks" }
 70.3 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
-74.0 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
+74.0 "Impact/Frostbite" Ability { id: ["1AC7", "1AC6"], source: ["Blizzard Arrow", "Weight of the World"] }
 74.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
 78.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 87.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
@@ -62,15 +62,15 @@ hideall "--sync--"
 309.2 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" } window 200,10
 317.3 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
 
-321.4 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" }
+321.4 "--sync--" Ability { id: ["1AB8", "1AB9"], source: "Lamebrix Strikebocks" }
 324.6 "--sync--" Ability { id: "1A97", source: "Lamebrix Strikebocks" }
-325.5 "Gobspin Whooshdrops/Gobswipe Conklops" Ability { id: "(1ACB|1ACC)", source: "Lamebrix Strikebocks" } window 25,10
+325.5 "Gobspin Whooshdrops/Gobswipe Conklops" Ability { id: ["1ACB", "1ACC"], source: "Lamebrix Strikebocks" } window 25,10
 331.6 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 335.6 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 339.7 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
-344.7 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" }
+344.7 "--sync--" Ability { id: ["1AB8", "1AB9"], source: "Lamebrix Strikebocks" }
 347.9 "--sync--" Ability { id: "1A97", source: "Lamebrix Strikebocks" }
-348.8 "Gobswipe Conklops/Gobspin Whooshdrops" Ability { id: "(1ACB|1ACC)", source: "Lamebrix Strikebocks" } window 10,10
+348.8 "Gobswipe Conklops/Gobspin Whooshdrops" Ability { id: ["1ACB", "1ACC"], source: "Lamebrix Strikebocks" } window 10,10
 355.9 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 360.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
 368.1 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
@@ -81,11 +81,11 @@ hideall "--sync--"
 385.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 389.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 393.3 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
-398.2 "Trap #1" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" } window 100,2.5
-402.3 "Trap #2" Ability { id: "(1AB0|1AB1)", source: "Lamebrix Strikebocks" }
-403.2 "Frostbite/Impact" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
+398.2 "Trap #1" Ability { id: ["1AB0", "1AB1"], source: "Lamebrix Strikebocks" } window 100,2.5
+402.3 "Trap #2" Ability { id: ["1AB0", "1AB1"], source: "Lamebrix Strikebocks" }
+403.2 "Frostbite/Impact" Ability { id: ["1AC7", "1AC6"], source: ["Blizzard Arrow", "Weight of the World"] }
 403.6 "--sync--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" }
-407.3 "Impact/Frostbite" Ability { id: "(1AC7|1AC6)", source: ["Blizzard Arrow", "Weight of the World"] }
+407.3 "Impact/Frostbite" Ability { id: ["1AC7", "1AC6"], source: ["Blizzard Arrow", "Weight of the World"] }
 408.9 "Illuminati Hand Cannon" Ability { id: "1AD2", source: "Lamebrix Strikebocks" }
 418.1 "Gobslash Slicetops" Ability { id: "1AD1", source: "Lamebrix Strikebocks" }
 422.1 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" }
@@ -101,7 +101,7 @@ hideall "--sync--"
 467.2 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
 470.3 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 
-474.4 "--sync--" Ability { id: "(1AB8|1AB9)", source: "Lamebrix Strikebocks" } window 30,10 jump 321.4
+474.4 "--sync--" Ability { id: ["1AB8", "1AB9"], source: "Lamebrix Strikebocks" } window 30,10 jump 321.4
 477.6 "Single Charge"
 478.5 "Gobspin Whooshdrops/Gobswipe Conklops"
 484.6 "Gobsway Rumblerocks"

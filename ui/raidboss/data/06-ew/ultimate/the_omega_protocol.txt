@@ -55,8 +55,8 @@ hideall "--sync--"
 230.9 "Party Synergy" Ability { id: "7B3E", source: "Omega" } window 20,20
 233.9 "--untargetable--"
 240.5 "--sync--" Ability { id: "7B1B", source: "Omega" }
-241.3 "Superliminal Steel/Optimized Blizzard III" Ability { id: "(7B2A|7B2D)", source: "Omega-F" }
-241.3 "Efficient Bladework/Beyond Strength" Ability { id: "(7B25|7B26)", source: "Omega-M" }
+241.3 "Superliminal Steel/Optimized Blizzard III" Ability { id: ["7B2A", "7B2D"], source: "Omega-F" }
+241.3 "Efficient Bladework/Beyond Strength" Ability { id: ["7B25", "7B26"], source: "Omega-M" }
 247.7 "Optimized Fire III" Ability { id: "7B2F", source: "Omega" }
 248.0 "Optical Laser" Ability { id: "7B21", source: "Optical Unit" }
 250.8 "--sync--" Ability { id: "7B1F", source: "Omega" }
@@ -132,7 +132,7 @@ hideall "--sync--"
 550.1 "Critical Error" Ability { id: "7B64", source: "Omega" }
 
 560.2 "--sync--" Ability { id: "7B46", source: "Omega" }
-571.4 "Oversampled Wave Cannon" Ability { id: "(7B6B|7B6C)", source: "Omega" }
+571.4 "Oversampled Wave Cannon" Ability { id: ["7B6B", "7B6C"], source: "Omega" }
 577.4 "--sync--" StartsUsing { id: "7B48", source: "Omega" } window 50,50
 587.4 "Ion Efflux Enrage" Ability { id: "7B48", source: "Omega" }
 
@@ -199,7 +199,7 @@ hideall "--sync--"
 774.0 "Hyper Pulse" #Ability { id: "7B71", source: "Right Arm Unit" }
 782.0 "Patch" #Ability { id: "7B63", source: "Omega-M" }
 784.0 "Patch" #Ability { id: "7B63", source: "Omega-M" }
-786.4 "Swivel Cannon" Ability { id: "(7B94|7B95)", source: "Omega" }
+786.4 "Swivel Cannon" Ability { id: ["7B94", "7B95"], source: "Omega" }
 787.0 "Hello, Distant World 1" Ability { id: "8110", source: "Omega-M" }
 787.0 "Hello, Near World 1" Ability { id: "7B89", source: "Omega-M" }
 788.0 "Hello, Distant World 2" #Ability { id: "8111", source: "Omega-M" }
@@ -230,7 +230,7 @@ hideall "--sync--"
 856.4 "Storage Violation x5 / Storage Violation x6" Ability { id: "7B0[45]", source: "Omega" }
 
 870.6 "Rear Lasers x14" Ability { id: "7B8F", source: "Rear Power Unit" } duration 7.8
-873.7 "Superliminal Steel/Optimized Blizzard III" Ability { id: "(7B2A|7B2D)", source: "Omega-M" }
+873.7 "Superliminal Steel/Optimized Blizzard III" Ability { id: ["7B2A", "7B2D"], source: "Omega-M" }
 880.6 "Hello, Near World 1" Ability { id: "7B89", source: "Omega-F" }
 880.6 "Hello, Distant World 1" Ability { id: "8110", source: "Omega-F" }
 880.6 "Hyper Pulse" Ability { id: "7B72", source: "Right Arm Unit" }
@@ -246,10 +246,10 @@ hideall "--sync--"
 897.4 "Solar Ray 2" Ability { id: "7B02", source: "Omega-M" }
 904.6 "--sync--" Ability { id: "7B43", source: "Omega-M" }
 910.7 "Run: ****mi* (Omega Version)" Ability { id: "8015", source: "Omega-M" }
-927.8 "Diffuse Wave Cannon" Ability { id: "(7B9B|7B9C)", source: "Omega" }
+927.8 "Diffuse Wave Cannon" Ability { id: ["7B9B", "7B9C"], source: "Omega" }
 # 928.8 "Superliminal Steel" Ability { id: "7B2A", source: "Omega-F" }
 # 928.8 "Beyond Strength" Ability { id: "7B25", source: "Omega-M" }
-931.9 "Diffuse Wave Cannon" Ability { id: "(7B78|7B77)", source: "Omega" }
+931.9 "Diffuse Wave Cannon" Ability { id: ["7B78", "7B77"], source: "Omega" }
 # 932.7 "Optimized Blizzard III" Ability { id: "7B2D", source: "Omega-F" }
 # 932.7 "Beyond Strength" Ability { id: "7B25", source: "Omega-M" }
 935.6 "--untargetable--"

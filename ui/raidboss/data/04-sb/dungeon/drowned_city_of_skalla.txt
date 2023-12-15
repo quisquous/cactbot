@@ -13,13 +13,13 @@ hideall "--sync--"
 7.4 "Torpedo" Ability { id: "264F", source: "Kelpie" } window 7.4,5
 15.0 "Rising Seas" Ability { id: "2650", source: "Kelpie" }
 26.7 "Gallop" Ability { id: "2653", source: "Kelpie" }
-37.0 "Hydro Pull/Hydro Push" Ability { id: "(2651|2652)", source: "Kelpie" }
+37.0 "Hydro Pull/Hydro Push" Ability { id: ["2651", "2652"], source: "Kelpie" }
 43.5 "Torpedo" Ability { id: "264F", source: "Kelpie" }
 51.1 "Rising Seas" Ability { id: "2650", source: "Kelpie" }
 62.7 "Bloody Puddle" Ability { id: "2654", source: "Kelpie" }
 65.9 "Gallop" Ability { id: "2653", source: "Kelpie" } window 20,20
 73.9 "Bubble Burst" Ability { id: "261B", source: "Hydrosphere" }
-76.2 "Hydro Pull/Hydro Push" Ability { id: "(2651|2652)", source: "Kelpie" }
+76.2 "Hydro Pull/Hydro Push" Ability { id: ["2651", "2652"], source: "Kelpie" }
 92.6 "Rising Seas" Ability { id: "2650", source: "Kelpie" }
 
 # A near-perfect 50-second rotation
@@ -28,7 +28,7 @@ hideall "--sync--"
 117.3 "Bloody Puddle" Ability { id: "2654", source: "Kelpie" }
 120.5 "Gallop" Ability { id: "2653", source: "Kelpie" }
 128.6 "Bubble Burst" Ability { id: "261B", source: "Hydrosphere" }
-130.7 "Hydro Pull/Hydro Push" Ability { id: "(2651|2652)", source: "Kelpie" }
+130.7 "Hydro Pull/Hydro Push" Ability { id: ["2651", "2652"], source: "Kelpie" }
 
 152.2 "Torpedo" Ability { id: "264F", source: "Kelpie" } window 20,20 jump 102.2
 157.8 "Rising Seas"
@@ -106,33 +106,33 @@ hideall "--sync--"
 2046.7 "Ring Of Chaos" Ability { id: "2667", source: "Hrodric Poisontongue" }
 2052.2 "Eye Of The Fire" Ability { id: "2665", source: "Hrodric Poisontongue" } window 2052.2,10
 2057.9 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
-2063.0 "Cross Of Chaos/Circle Of Chaos" Ability { id: "(2668|2669)", source: "Hrodric Poisontongue" }
+2063.0 "Cross Of Chaos/Circle Of Chaos" Ability { id: ["2668", "2669"], source: "Hrodric Poisontongue" }
 2068.7 "Words Of Woe" Ability { id: "2662", source: "Hrodric Poisontongue" }
 2074.4 "Words Of Woe" Ability { id: "2662", source: "Hrodric Poisontongue" }
 2080.2 "Words Of Woe" Ability { id: "2662", source: "Hrodric Poisontongue" }
 2087.9 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" } window 15,2.5 # Solo/duo runners will see only one or two lasers
 
-2093.0 "Ring Of Chaos/Cross Of Chaos" Ability { id: "(2667|2668)", source: "Hrodric Poisontongue" }
+2093.0 "Ring Of Chaos/Cross Of Chaos" Ability { id: ["2667", "2668"], source: "Hrodric Poisontongue" }
 2095.5 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
 2100.6 "Ring Of Chaos" Ability { id: "2667", source: "Hrodric Poisontongue" }
 2103.0 "Tail Drive" Ability { id: "2663", source: "Hrodric Poisontongue" }
 2115.6 "The Spin" Ability { id: "2664", source: "Hrodric Poisontongue" } window 30,30
 2126.3 "Rusting Claw" Ability { id: "2661", source: "Hrodric Poisontongue" }
 2132.0 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
-2137.1 "Cross Of Chaos/Circle Of Chaos" Ability { id: "(2668|2669)", source: "Hrodric Poisontongue" }
+2137.1 "Cross Of Chaos/Circle Of Chaos" Ability { id: ["2668", "2669"], source: "Hrodric Poisontongue" }
 2139.6 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
 2144.7 "Ring Of Chaos" Ability { id: "2667", source: "Hrodric Poisontongue" }
 2145.2 "Eye Of The Fire" Ability { id: "2665", source: "Hrodric Poisontongue" } window 30,30
 2155.8 "Rusting Claw" Ability { id: "2661", source: "Hrodric Poisontongue" }
 2166.4 "Tail Drive" Ability { id: "2663", source: "Hrodric Poisontongue" }
 2174.1 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
-2179.2 "Ring Of Chaos/Circle Of Chaos" Ability { id: "(2667|2669)", source: "Hrodric Poisontongue" }
+2179.2 "Ring Of Chaos/Circle Of Chaos" Ability { id: ["2667", "2669"], source: "Hrodric Poisontongue" }
 2181.7 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
 2186.8 "Cross Of Chaos" Ability { id: "2668", source: "Hrodric Poisontongue" }
 2187.5 "Words Of Woe" Ability { id: "2662", source: "Hrodric Poisontongue" }
 2195.2 "--sync--" Ability { id: "2666", source: "Hrodric Poisontongue" }
 
-2200.3 "Ring Of Chaos/Cross Of Chaos" Ability { id: "(2667|2668)", source: "Hrodric Poisontongue" } jump 2093.0
+2200.3 "Ring Of Chaos/Cross Of Chaos" Ability { id: ["2667", "2668"], source: "Hrodric Poisontongue" } jump 2093.0
 2202.8 "--sync--"
 2207.9 "Ring Of Chaos"
 2210.3 "Tail Drive"

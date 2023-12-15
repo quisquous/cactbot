@@ -53,10 +53,10 @@ hideall "--sync--"
 280.7 "Cloak Of Shadows" Ability { id: "5B13", source: "Shadowkeeper" }
 285.7 "Cloak Of Shadows" Ability { id: "5B14", source: "Shadowkeeper" }
 290.7 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
-306.0 "Implosion" Ability { id: "(5700|56FC)", source: "Shadowkeeper" }
-309.1 "Implosion" Ability { id: "(5701|56FD)", source: "Shadowkeeper" }
-312.2 "Implosion" Ability { id: "(5701|56FD)", source: "Shadowkeeper" }
-315.3 "Implosion" Ability { id: "(5702|56FE)", source: "Shadowkeeper" }
+306.0 "Implosion" Ability { id: ["5700", "56FC"], source: "Shadowkeeper" }
+309.1 "Implosion" Ability { id: ["5701", "56FD"], source: "Shadowkeeper" }
+312.2 "Implosion" Ability { id: ["5701", "56FD"], source: "Shadowkeeper" }
+315.3 "Implosion" Ability { id: ["5702", "56FE"], source: "Shadowkeeper" }
 323.4 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
 335.1 "Throne Of Shadow" Ability { id: "5717", source: "Shadowkeeper" }
 341.6 "Umbra Smash" Ability { id: "5BAA", source: "Shadowkeeper" }
@@ -74,8 +74,8 @@ hideall "--sync--"
 431.0 "Umbral Orbs" Ability { id: "5731", source: "Shadowkeeper" }
 438.9 "Distant Scream" Ability { id: "5716", source: "Shadowkeeper" }
 440.9 "Flameshadow" Ability { id: "5733", source: "Shadefire" }
-449.6 "Implosion" Ability { id: "(5700|56FC)", source: "Shadowkeeper" }
-452.7 "Implosion" Ability { id: "(5702|5701|56FE)", source: "Shadowkeeper" }
+449.6 "Implosion" Ability { id: ["5700", "56FC"], source: "Shadowkeeper" }
+452.7 "Implosion" Ability { id: ["5702", "5701", "56FE"], source: "Shadowkeeper" }
 464.8 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
 476.0 "Shackled Apart" Ability { id: "5BAC", source: "Shadowkeeper" }
 478.5 "--sync--" Ability { id: "5B08", source: "Shadowkeeper" }
@@ -87,10 +87,10 @@ hideall "--sync--"
 516.0 "Deepshadow Nova" Ability { id: "573E", source: "Shadowkeeper" }
 531.6 "Throne Of Shadow" Ability { id: "5717", source: "Shadowkeeper" }
 538.2 "Pitch Bog" Ability { id: "5721", source: "Shadowkeeper" }
-546.6 "Giga Slash" Ability { id: "(56F8|56F4)", source: "Shadowkeeper" }
-549.7 "Giga Slash" Ability { id: "(56F9|56F5)", source: "Shadowkeeper" }
-552.8 "Giga Slash" Ability { id: "(56F9|56F5)", source: "Shadowkeeper" }
-555.9 "Giga Slash" Ability { id: "(56FA|56F6)", source: "Shadowkeeper" }
+546.6 "Giga Slash" Ability { id: ["56F8", "56F4"], source: "Shadowkeeper" }
+549.7 "Giga Slash" Ability { id: ["56F9", "56F5"], source: "Shadowkeeper" }
+552.8 "Giga Slash" Ability { id: ["56F9", "56F5"], source: "Shadowkeeper" }
+555.9 "Giga Slash" Ability { id: ["56FA", "56F6"], source: "Shadowkeeper" }
 563.0 "Voidgate Amplifier" Ability { id: "5BCF", source: "Shadowkeeper" }
 570.1 "Shadowkeeper" Ability { id: "5720", source: "Shadowkeeper" }
 573.2 "Swath Of Silence" Ability { id: "5BBF", source: "Shadow Of A Hero" }

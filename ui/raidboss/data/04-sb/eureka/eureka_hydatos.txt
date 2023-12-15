@@ -267,14 +267,14 @@ hideall "--sync--"
 5062.5 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 5068.5 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 
-5070.5 "Sphere Form" Ability { id: "(37B3|37A5|379F)", source: "Proto Ozma" }
+5070.5 "Sphere Form" Ability { id: ["37B3", "37A5", "379F"], source: "Proto Ozma" }
 5079.5 "Black Hole" Ability { id: "379D", source: "Proto Ozma" }
 
-5092.5 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
-5099.5 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5101.0 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5092.5 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
+5099.5 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5101.0 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 
-5121.5 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5121.5 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 
 # fake loop
 5125.5 "Random Form"
@@ -293,8 +293,8 @@ hideall "--sync--"
 
 ### Pyramid Phase
 5300.0 "Pyramid Form" Ability { id: "37A4", source: "Proto Ozma" } window 800,800
-5303.0  "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5304.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5303.0  "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5304.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 
 5307.0 "--sync--" Ability { id: "37A6", source: "Proto Ozma" }
 5308.7 "Execration" Ability { id: "37A7", source: "Ozma" }
@@ -307,18 +307,18 @@ hideall "--sync--"
 5337.0 "Bleed Attack" Ability { id: "37AD", source: "Ozma" }
 5343.0 "Bleed Attack" Ability { id: "37AD", source: "Ozma" }
 
-5346.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5346.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 5349.0 "Acceleration Bomb" Ability { id: "37AA", source: "Proto Ozma" }
-5353.0 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5354.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5353.0 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5354.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 
 5364.0 "Meteor (Stack)" Ability { id: "37A8", source: "Ozma" }
 5370.0 "Bleed Attack" Ability { id: "37AD", source: "Ozma" }
 
-5373.0 "Sphere Form" Ability { id: "(37B3|37A5|379F)", source: "Proto Ozma" }
+5373.0 "Sphere Form" Ability { id: ["37B3", "37A5", "379F"], source: "Proto Ozma" }
 5382.0 "Black Hole" Ability { id: "379D", source: "Proto Ozma" }
 
-5395.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5395.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 
 # fake loop
 5399.0 "Random Form"
@@ -338,8 +338,8 @@ hideall "--sync--"
 ### Cube Phase
 5600.0 "Cube Form" Ability { id: "379E", source: "Proto Ozma" } window 800,800
 
-5603.0 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5604.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5603.0 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5604.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 
 5607.0 "--sync--" Ability { id: "37A0", source: "Proto Ozma" }
 5608.5 "Flare Star" Ability { id: "37A1", source: "Ozma" }
@@ -347,16 +347,16 @@ hideall "--sync--"
 5619.0 "Meteor (Stack)" Ability { id: "37A8", source: "Ozma" }
 5622.0 "Holy" Ability { id: "37A9", source: "Proto Ozma" }
 
-5649.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5649.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 5655.0 "Meteor (Stack)" Ability { id: "37A8", source: "Ozma" }
 5656.0 "Holy" Ability { id: "37A9", source: "Proto Ozma" }
-5656.0 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5657.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5656.0 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5657.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 
-5673.0 "Sphere Form" Ability { id: "(37B3|37A5|379F)", source: "Proto Ozma" }
+5673.0 "Sphere Form" Ability { id: ["37B3", "37A5", "379F"], source: "Proto Ozma" }
 5682.0 "Black Hole" Ability { id: "379D", source: "Proto Ozma" }
 
-5695.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5695.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 
 # fake loop
 5699.0 "Random Form"
@@ -375,8 +375,8 @@ hideall "--sync--"
 
 ### Star Phase
 5900.0 "Star Form" Ability { id: "37B2", source: "Proto Ozma" } window 800,800
-5903.0 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5904.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5903.0 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5904.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 5907.0 "--sync--" Ability { id: "37B4", source: "Proto Ozma" }
 5908.0 "Mourning Star" Ability { id: "37B5", source: "Ozma" }
 5911.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
@@ -386,18 +386,18 @@ hideall "--sync--"
 5938.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 5944.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 
-5949.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5949.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 5954.0 "Shooting Star" Ability { id: "37B7", source: "Proto Ozma" }
-5956.0 "--sync--" Ability { id: "(37A6|37B4|37A0)", source: "Ozmashade" }
-5957.5 "Shade Ability" # Ability { id: "(37A7|37B5|37A1)", source: "Shadow" }
+5956.0 "--sync--" Ability { id: ["37A6", "37B4", "37A0"], source: "Ozmashade" }
+5957.5 "Shade Ability" # Ability { id: ["37A7", "37B5", "37A1"], source: "Shadow" }
 5959.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 5959.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 5965.0 "Soak Attack" Ability { id: "37B6", source: "Ozma" }
 
-5973.0 "Sphere Form" Ability { id: "(37B3|37A5|379F)", source: "Proto Ozma" }
+5973.0 "Sphere Form" Ability { id: ["37B3", "37A5", "379F"], source: "Proto Ozma" }
 5982.0 "Black Hole" Ability { id: "379D", source: "Proto Ozma" }
 
-5995.0 "Random Shade" Ability { id: "(37A4|37B2|379E)", source: "Ozmashade" }
+5995.0 "Random Shade" Ability { id: ["37A4", "37B2", "379E"], source: "Ozmashade" }
 
 # fake loop
 5999.0 "Random Form"

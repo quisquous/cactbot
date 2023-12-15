@@ -26,7 +26,7 @@ hideall "--sync--"
 84.9 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 90.1 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
 98.7 "Helicoclaw" Ability { id: "4A99", source: "The Ruby Weapon" }
-99.4 "Spike Of Flame" Ability { id: "(4A9A|4D02)", source: "The Ruby Weapon" }
+99.4 "Spike Of Flame" Ability { id: ["4A9A", "4D02"], source: "The Ruby Weapon" }
 113.8 "High-Powered Homing Lasers" Ability { id: "4AC5", source: "The Ruby Weapon" }
 120.5 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 130.8 "Ravensflight" Ability { id: "4AA1", source: "The Ruby Weapon" }
@@ -47,7 +47,7 @@ hideall "--sync--"
 239.1 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 244.4 "Flexiclaw" Ability { id: "4A92", source: "The Ruby Weapon" }
 253.0 "Helicoclaw" Ability { id: "4A99", source: "The Ruby Weapon" }
-253.7 "Spike Of Flame" Ability { id: "(4A9A|4D02)", source: "The Ruby Weapon" }
+253.7 "Spike Of Flame" Ability { id: ["4A9A", "4D02"], source: "The Ruby Weapon" }
 268.2 "High-Powered Homing Lasers" Ability { id: "4AC5", source: "The Ruby Weapon" }
 274.9 "--sync--" Ability { id: "4A9B", source: "The Ruby Weapon" }
 285.2 "Ravensflight" Ability { id: "4AA1", source: "The Ruby Weapon" }

@@ -81,7 +81,7 @@ hideall "Earthen Wheels"
 1000.0 "Orogenesis" Ability { id: "4371", source: "Titan" } window 1000,0
 1026.3 "--targetable--"
 1033.1 "Earthen Fury" Ability { id: "4124", source: "Titan Maximum" }
-1048.3 "Earthen Fist" Ability { id: "(4130|4131|4132|412F)", source: "Titan Maximum" }
+1048.3 "Earthen Fist" Ability { id: ["4130", "4131", "4132", "412F"], source: "Titan Maximum" }
 1053.2 "Weight of the Land" Ability { id: "4108", source: "Titan" }
 1061.9 "Dual Earthen Fists" Ability { id: "4135", source: "Titan Maximum" }
 1065.9 "Earthen Anguish" Ability { id: "4137", source: "Titan" }
@@ -98,7 +98,7 @@ hideall "Earthen Wheels"
 1180.7 "Tumult x5" Ability { id: "412A", source: "Titan Maximum" } duration 6
 1197.4 "Dual Earthen Fists" Ability { id: "4135", source: "Titan Maximum" }
 1201.4 "Earthen Anguish" Ability { id: "4137", source: "Titan" }
-1208.3 "Earthen Fist" Ability { id: "(4130|4131|4132|412F)", source: "Titan Maximum" }
+1208.3 "Earthen Fist" Ability { id: ["4130", "4131", "4132", "412F"], source: "Titan Maximum" }
 1225.7 "Tectonic Uplift" Ability { id: "4122", source: "Titan Maximum" }
 1249.0 "Pulse of the Land" Ability { id: "4106", source: "Titan" }
 1226.6 "Force of the Land" Ability { id: "4107", source: "Titan" }
@@ -127,7 +127,7 @@ hideall "Earthen Wheels"
 1438.1 "Earthen Fury" Ability { id: "413A", source: "Titan Maximum" }
 1457.3 "Pulse of the Land" Ability { id: "4106", source: "Titan" }
 1457.3 "Force of the Land" Ability { id: "4107", source: "Titan" }
-1468.4 "Earthen Fist" Ability { id: "(4130|4131|4132|412F)", source: "Titan Maximum" }
+1468.4 "Earthen Fist" Ability { id: ["4130", "4131", "4132", "412F"], source: "Titan Maximum" }
 1479.5 "Stonecrusher 1" Ability { id: "4116", source: "Titan" }
 1482.6 "Stonecrusher 2" #Ability { id: "4143", source: "Titan" }
 1485.7 "Stonecrusher 3" #Ability { id: "4143", source: "Titan" }
@@ -135,7 +135,7 @@ hideall "Earthen Wheels"
 1504.1 "Earthen Fury" Ability { id: "413A", source: "Titan Maximum" }
 1523.4 "Pulse of the Land" Ability { id: "4106", source: "Titan" }
 1523.4 "Force of the Land" Ability { id: "4107", source: "Titan" }
-1534.3 "Earthen Fist" Ability { id: "(4130|4131|4132|412F)", source: "Titan Maximum" }
+1534.3 "Earthen Fist" Ability { id: ["4130", "4131", "4132", "412F"], source: "Titan Maximum" }
 1543.4 "Voice of the Land" Ability { id: "4114", source: "Titan" }
 1546.2 "Tumult x5" Ability { id: "412A", source: "Titan Maximum" } duration 6
 1555.6 "Voice of the Land" Ability { id: "4114", source: "Titan" }

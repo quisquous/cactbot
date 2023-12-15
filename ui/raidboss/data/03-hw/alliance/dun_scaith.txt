@@ -253,7 +253,7 @@ hideall "--sync--"
 3013.1 "Thirty Thorns" Ability { id: "1D2B", source: "Scathach" }
 3030.2 "Thirty Arrows" Ability { id: "1D2F", source: "Scathach" } window 30,5
 3037.4 "Manos" Ability { id: "1CD3", source: "Scathach" } window 30,5
-3047.7 "--sync--" Ability { id: "(1D1[EF])", source: "Scathach" }
+3047.7 "--sync--" Ability { id: ["1D1[EF]"], source: "Scathach" }
 3049.0 "Shadespin" Ability { id: "1D20", source: "Scathach" }
 3052.8 "Thirty Sickles" Ability { id: "1D31", source: "Scathach" }
 3056.0 "Soar" Ability { id: "1D1B", source: "Scathach" }

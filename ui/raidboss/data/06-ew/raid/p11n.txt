@@ -32,11 +32,11 @@ hideall "--sync--"
 # Divisive Ruling Intro
 16.2 "--center--" Ability { id: "8235", source: "Themis" }
 25.5 "Divisive Ruling (in)" Ability { id: "81B5", source: "Themis" }
-28.2 "Ripples of Gloom" Ability { id: "(81B7|81B8)", source: "Themis" }
+28.2 "Ripples of Gloom" Ability { id: ["81B7", "81B8"], source: "Themis" }
 37.8 "Divisive Ruling (out)" Ability { id: "81B5", source: "Themis" }
 40.4 "Divine Ruination" Ability { id: "81B6", source: "Themis" }
 50.1 "Divisive Ruling (random)" Ability { id: "81B5", source: "Themis" }
-52.7 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
+52.7 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
 60.9 "Eunomia" Ability { id: "81E2", source: "Themis" }
 
 # Dark and Light Intro
@@ -57,8 +57,8 @@ hideall "--sync--"
 138.0 "--center--" Ability { id: "8235", source: "Themis" }
 144.1 "Dark and Light" Ability { id: "81C3", source: "Themis" }
 151.2 "Sigils of Discord" Ability { id: "81C4", source: "Themis" }
-164.3 "Dismissal Ruling (random)" Ability { id: "(81FA|81FB)", source: "Themis" }
-167.9 "Inner Light/Outer Dark" Ability { id: "(86F3|86F4)", source: "Themis" }
+164.3 "Dismissal Ruling (random)" Ability { id: ["81FA", "81FB"], source: "Themis" }
+167.9 "Inner Light/Outer Dark" Ability { id: ["86F3", "86F4"], source: "Themis" }
 174.0 "Emissary's Will" Ability { id: "81C7", source: "Themis" }
 186.4 "Upheld Ruling (cleave -> dynamo)" Ability { id: "81BA", source: "Themis" } window 186.4,10
 193.0 "Dark Perimeter" Ability { id: "81BE", source: "Themis" }
@@ -71,9 +71,9 @@ hideall "--sync--"
 235.3 "Dark and Light" Ability { id: "81C3", source: "Themis" }
 242.4 "Sigils of Discord" Ability { id: "81C4", source: "Themis" }
 256.5 "Divisive Ruling (in/out)" Ability { id: "81B5", source: "Themis" }
-259.1 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
-271.3 "Dismissal Ruling (random)" Ability { id: "(81FA|81FB)", source: "Themis" }
-274.9 "Inner Light/Outer Dark" Ability { id: "(86F3|86F4)", source: "Themis" }
+259.1 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
+271.3 "Dismissal Ruling (random)" Ability { id: ["81FA", "81FB"], source: "Themis" }
+274.9 "Inner Light/Outer Dark" Ability { id: ["86F3", "86F4"], source: "Themis" }
 281.0 "Emissary's Will" Ability { id: "81C7", source: "Themis" }
 290.1 "Dike" Ability { id: "81E3", source: "Themis" }
 297.3 "--center--" Ability { id: "8235", source: "Themis" } window 30,30
@@ -81,9 +81,9 @@ hideall "--sync--"
 306.3 "Dineis (puddle 1)" #Ability { id: "8726", source: "Themis" }
 308.3 "Dineis (puddle 2)" #Ability { id: "8726", source: "Themis" }
 311.7 "Divisive Ruling (in/out)" Ability { id: "81B5", source: "Themis" }
-314.3 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
-322.7 "Upheld Ruling (random)" Ability { id: "(81B9|81BA)", source: "Themis" }
-329.3 "Dark Perimeter/Lightburst" Ability { id: "(81BE|81BD)", source: "Themis" }
+314.3 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
+322.7 "Upheld Ruling (random)" Ability { id: ["81B9", "81BA"], source: "Themis" }
+329.3 "Dark Perimeter/Lightburst" Ability { id: ["81BE", "81BD"], source: "Themis" }
 336.9 "Eunomia" Ability { id: "81E2", source: "Themis" }
 346.1 "Shadowed Messengers" Ability { id: "81D4", source: "Themis" }
 
@@ -91,11 +91,11 @@ hideall "--sync--"
 356.8 "--center--" Ability { id: "8235", source: "Themis" } window 15,15
 357.6 "Divisive Ruling" Ability { id: "81D7", source: "Illusory Themis" }
 360.7 "Divine Ruination" Ability { id: "81D8", source: "Illusory Themis" }
-360.7 "Ripples of Gloom" Ability { id: "(81D9|81DA)", source: "Illusory Themis" }
+360.7 "Ripples of Gloom" Ability { id: ["81D9", "81DA"], source: "Illusory Themis" }
 361.8 "--sync--" Ability { id: "81E0", source: "Themis" } window 361.8,10  # Blinding Light cast
 367.0 "Blinding Light" Ability { id: "81E1", source: "Themis" }
-372.0 "Dismissal Ruling (random)" Ability { id: "(81FA|81FB)", source: "Themis" }
-375.6 "Inner Light/Outer Dark" Ability { id: "(86F3|86F4)", source: "Themis" }
+372.0 "Dismissal Ruling (random)" Ability { id: ["81FA", "81FB"], source: "Themis" }
+375.6 "Inner Light/Outer Dark" Ability { id: ["86F3", "86F4"], source: "Themis" }
 380.7 "Styx x5" Ability { id: "81DB", source: "Themis" } duration 5
 
 # Loop until death (208.2)
@@ -104,17 +104,17 @@ hideall "--sync--"
 400.4 "Dineis (puddle 1)" #Ability { id: "8726", source: "Themis" }
 402.4 "Dineis (puddle 2)" #Ability { id: "8726", source: "Themis" }
 406.0 "Divisive Ruling (in/out)" Ability { id: "81B5", source: "Themis" }
-408.6 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
-417.3 "Upheld Ruling (random)" Ability { id: "(81B9|81BA)", source: "Themis" }
-423.0 "Dark Perimeter/Lightburst" Ability { id: "(81BE|81BD)", source: "Themis" }
+408.6 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
+417.3 "Upheld Ruling (random)" Ability { id: ["81B9", "81BA"], source: "Themis" }
+423.0 "Dark Perimeter/Lightburst" Ability { id: ["81BE", "81BD"], source: "Themis" }
 431.6 "Eunomia" Ability { id: "81E2", source: "Themis" }
 436.8 "--center--" Ability { id: "8235", source: "Themis" } window 30,30
 444.0 "Dark and Light" Ability { id: "81C3", source: "Themis" }
 451.1 "Sigils of Discord" Ability { id: "81C4", source: "Themis" }
 465.1 "Divisive Ruling (in/out)" Ability { id: "81B5", source: "Themis" }
-467.7 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
-479.9 "Dismissal Ruling (random)" Ability { id: "(81FA|81FB)", source: "Themis" }
-483.5 "Inner Light/Outer Dark" Ability { id: "(86F3|86F4)", source: "Themis" }
+467.7 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
+479.9 "Dismissal Ruling (random)" Ability { id: ["81FA", "81FB"], source: "Themis" }
+483.5 "Inner Light/Outer Dark" Ability { id: ["86F3", "86F4"], source: "Themis" }
 489.6 "Emissary's Will" Ability { id: "81C7", source: "Themis" }
 498.7 "Dike" Ability { id: "81E3", source: "Themis" }
 505.9 "--center--" Ability { id: "8235", source: "Themis" } window 30,30
@@ -122,19 +122,19 @@ hideall "--sync--"
 514.9 "Dineis" #Ability { id: "8726", source: "Themis" }
 516.9 "Dineis" #Ability { id: "8726", source: "Themis" }
 520.3 "Divisive Ruling (in/out)" Ability { id: "81B5", source: "Themis" }
-522.9 "Divine Ruination/Ripples of Gloom" Ability { id: "(81B6|81B7|81B8)", source: "Themis" }
-531.5 "Upheld Ruling (random)" Ability { id: "(81B9|81BA)", source: "Themis" }
-537.2 "Dark Perimeter/Lightburst" Ability { id: "(81BE|81BD)", source: "Themis" }
+522.9 "Divine Ruination/Ripples of Gloom" Ability { id: ["81B6", "81B7", "81B8"], source: "Themis" }
+531.5 "Upheld Ruling (random)" Ability { id: ["81B9", "81BA"], source: "Themis" }
+537.2 "Dark Perimeter/Lightburst" Ability { id: ["81BE", "81BD"], source: "Themis" }
 545.6 "Eunomia" Ability { id: "81E2", source: "Themis" }
 554.7 "Shadowed Messengers" Ability { id: "81D4", source: "Themis" }
 565.4 "--center--" Ability { id: "8235", source: "Themis" }
 566.1 "Divisive Ruling" Ability { id: "81D7", source: "Illusory Themis" }
 569.2 "Divine Ruination" Ability { id: "81D8", source: "Illusory Themis" }
-569.2 "Ripples of Gloom" Ability { id: "(81D9|81DA)", source: "Illusory Themis" }
+569.2 "Ripples of Gloom" Ability { id: ["81D9", "81DA"], source: "Illusory Themis" }
 570.3 "--sync--" Ability { id: "81E0", source: "Themis" } # Blinding Light cast
 575.5 "Blinding Light" Ability { id: "81E1", source: "Themis" }
-580.5 "Dismissal Ruling (random)" Ability { id: "(81FA|81FB)", source: "Themis" }
-584.1 "Inner Light/Outer Dark" Ability { id: "(86F3|86F4)", source: "Themis" }
+580.5 "Dismissal Ruling (random)" Ability { id: ["81FA", "81FB"], source: "Themis" }
+584.1 "Inner Light/Outer Dark" Ability { id: ["86F3", "86F4"], source: "Themis" }
 589.2 "Styx x5" Ability { id: "81DB", source: "Themis" } duration 5
 
 

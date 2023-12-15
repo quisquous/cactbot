@@ -12,8 +12,8 @@ hideall "--sync--"
 9.6 "Ancient Double" Ability { id: "47A5", source: "Hades" }
 18.7 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }
 21.7 "Shadow Spread 2" Ability { id: "47AA", source: "Hades" }
-29.6 "Bad Faith 1" Ability { id: "(47AE|47AD)", source: "Hades" }
-32.7 "Bad Faith 2" Ability { id: "(47AF|47B0)", source: "Hades" }
+29.6 "Bad Faith 1" Ability { id: ["47AE", "47AD"], source: "Hades" }
+32.7 "Bad Faith 2" Ability { id: ["47AF", "47B0"], source: "Hades" }
 40.9 "Ravenous Assault 1" Ability { id: "47A6", source: "Hades" }
 44.1 "Ravenous Assault 2" Ability { id: "47A7", source: "Hades" }
 50.2 "Arcane Utterance" Ability { id: "47B3", source: "Hades" }
@@ -25,8 +25,8 @@ hideall "--sync--"
 115.7 "Magic Spear/Chakram" #Ability { id: "47B6", source: "Arcane Font" }
 128.9 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }
 131.9 "Shadow Spread 2" Ability { id: "47AA", source: "Hades" }
-139.8 "Bad Faith 1" Ability { id: "(47AE|47AD)", source: "Hades" }
-142.9 "Bad Faith 2" Ability { id: "(47AF|47B0)", source: "Hades" }
+139.8 "Bad Faith 1" Ability { id: ["47AE", "47AD"], source: "Hades" }
+142.9 "Bad Faith 2" Ability { id: ["47AF", "47B0"], source: "Hades" }
 151.1 "Ravenous Assault 1" Ability { id: "47A6", source: "Hades" }
 154.3 "Ravenous Assault 2" Ability { id: "47A7", source: "Hades" }
 168.6 "Ancient Dark IV" Ability { id: "47B7", source: "Hades" }

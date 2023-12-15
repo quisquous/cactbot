@@ -19,15 +19,15 @@ hideall "--sync--"
 0.0 "--sync--" Ability { id: "7947", source: "Hephaistos" } window 1,0
 7.1 "--sync--" StartsUsing { id: "7944", source: "Hephaistos" } window 20,20
 12.1 "Genesis of Flame" Ability { id: "7944", source: "Hephaistos" }
-18.2 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: "(7914|7915)", source: "Hephaistos" }
+18.2 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: ["7914", "7915"], source: "Hephaistos" }
 24.4 "Volcanic Torches" Ability { id: "78F7", source: "Hephaistos" }
 30.6 "--sync--" Ability { id: "7108", source: "Hephaistos" }
 38.5 "Torch Flame" Ability { id: "7927", source: "Hephaistos" }
 
 # Human 1
 39.9 "Sunforge" Ability { id: "7911", source: "Hephaistos" }
-40.9 "Scorching Fang/Sun's Pinion" Ability { id: "(7912|7913)", source: "Hephaistos" }
-41.1 "Emergent Octaflare/Emergent Tetraflare" Ability { id: "(7918|7919)", source: "Hephaistos" }
+40.9 "Scorching Fang/Sun's Pinion" Ability { id: ["7912", "7913"], source: "Hephaistos" }
+41.1 "Emergent Octaflare/Emergent Tetraflare" Ability { id: ["7918", "7919"], source: "Hephaistos" }
 48.3 "Flameviper 1" Ability { id: "7945", source: "Hephaistos" }
 51.5 "Flameviper 2" Ability { id: "7946", source: "Hephaistos" }
 
@@ -79,10 +79,10 @@ hideall "--sync--"
 255.3 "Hemitheos's Flare" Ability { id: "72CE", source: "Hephaistos" }
 258.7 "Manifold Flames" Ability { id: "7922", source: "Hephaistos" }
 259.5 "Nest of Flamevipers" Ability { id: "7920", source: "Hephaistos" }
-266.2 "Sunforge" Ability { id: "(7950|7951)", source: "Illusory Hephaistos" }
-266.8 "Tetraflare/Nest of Flamevipers" Ability { id: "(791E|791F)", source: "Hephaistos" }
-267.2 "Scorching Fang/Scorched Pinion" Ability { id: "(7952|7953)", source: "Illusory Hephaistos" }
-267.6 "Emergent Octaflare/Emergent Tetraflare" Ability { id: "(7918|7919)", source: "Hephaistos" }
+266.2 "Sunforge" Ability { id: ["7950", "7951"], source: "Illusory Hephaistos" }
+266.8 "Tetraflare/Nest of Flamevipers" Ability { id: ["791E", "791F"], source: "Hephaistos" }
+267.2 "Scorching Fang/Scorched Pinion" Ability { id: ["7952", "7953"], source: "Illusory Hephaistos" }
+267.6 "Emergent Octaflare/Emergent Tetraflare" Ability { id: ["7918", "7919"], source: "Hephaistos" }
 279.8 "Torch Flame" Ability { id: "7927", source: "Hephaistos" }
 283.9 "Genesis of Flame" Ability { id: "7944", source: "Hephaistos" }
 
@@ -101,18 +101,18 @@ hideall "--sync--"
 329.3 "Stomp Dead 4" #Ability { id: "7937", source: "Hephaistos" }
 
 # Human 3 (Snake first)
-346.7 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: "(7914|7915)", source: "Hephaistos" }
+346.7 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: ["7914", "7915"], source: "Hephaistos" }
 352.8 "Fourfold Fires" Ability { id: "78F2", source: "Hephaistos" } window 300,10
 358.6 "Abyssal Fires" Ability { id: "7954", source: "Hephaistos" }
 362.0 "--sync--" Ability { id: "78F0", source: "Hephaistos" }
 367.9 "Cthonic Vent 1" Ability { id: "7925", source: "Suneater" }
 376.9 "Cthonic Vent 2" Ability { id: "794E", source: "Suneater" }
-377.2 "Tetraflare/Octaflare" Ability { id: "(791E|791D)", source: "Hephaistos" }
+377.2 "Tetraflare/Octaflare" Ability { id: ["791E", "791D"], source: "Hephaistos" }
 381.4 "--sync--" Ability { id: "7108", source: "Hephaistos" }
 385.9 "Cthonic Vent 3" Ability { id: "7926", source: "Suneater" }
-390.6 "Sunforge" Ability { id: "(7910|7911)", source: "Hephaistos" }
-391.6 "Scorching Fang/Sun's Pinion" Ability { id: "(7912|7913)", source: "Hephaistos" }
-391.8 "Emergent Octaflare/Emergent Tetraflare" Ability { id: "(7918|7919)", source: "Hephaistos" }
+390.6 "Sunforge" Ability { id: ["7910", "7911"], source: "Hephaistos" }
+391.6 "Scorching Fang/Sun's Pinion" Ability { id: ["7912", "7913"], source: "Hephaistos" }
+391.8 "Emergent Octaflare/Emergent Tetraflare" Ability { id: ["7918", "7919"], source: "Hephaistos" }
 399.0 "Flameviper 1" Ability { id: "7945", source: "Hephaistos" }
 402.2 "Flameviper 2" Ability { id: "7946", source: "Hephaistos" }
 
@@ -140,8 +140,8 @@ hideall "--sync--"
 491.4 "--sync--" Ability { id: "7108", source: "Hephaistos" }
 496.6 "Reforged Reflection" Ability { id: "794B", source: "Hephaistos" }
 503.1 "Footprint" Ability { id: "7109", source: "Hephaistos" }
-509.4 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: "(7A04|7A05)", source: "Hephaistos" }
-515.8 "Conceptual Diflare/Conceptual Tetraflare" Ability { id: "(7917|7916)", source: "Hephaistos" }
+509.4 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: ["7A04", "7A05"], source: "Hephaistos" }
+515.8 "Conceptual Diflare/Conceptual Tetraflare" Ability { id: ["7917", "7916"], source: "Hephaistos" }
 522.0 "--sync--" Ability { id: "793B", source: "Hephaistos" }
 524.2 "--sync--" Ability { id: "793D", source: "Hephaistos" }
 526.4 "--sync--" Ability { id: "793B", source: "Hephaistos" }
@@ -149,7 +149,7 @@ hideall "--sync--"
 531.0 "--untargetable--"
 531.0 "Blazing Footfalls" Ability { id: "7938", source: "Hephaistos" }
 531.6 "Trailblaze 1" Ability { id: "793E", source: "Hephaistos" }
-532.8 "Emergent Diflare/Emergent Tetraflare" Ability { id: "(791B|7919)", source: "Hephaistos" }
+532.8 "Emergent Diflare/Emergent Tetraflare" Ability { id: ["791B", "7919"], source: "Hephaistos" }
 535.7 "--sync--" Ability { id: "793F", source: "Hephaistos" }
 536.6 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: "7107", source: "Hephaistos" }
 539.5 "--sync--" Ability { id: "7939", source: "Hephaistos" }
@@ -190,10 +190,10 @@ hideall "--sync--"
 1229.2 "Hemitheos's Flare" Ability { id: "72CE", source: "Hephaistos" }
 1232.6 "Manifold Flames" Ability { id: "7922", source: "Hephaistos" }
 1233.4 "Nest of Flamevipers" Ability { id: "7920", source: "Hephaistos" }
-1240.1 "Sunforge" Ability { id: "(7950|7951)", source: "Illusory Hephaistos" }
-1240.7 "Tetraflare/Nest of Flamevipers" Ability { id: "(791E|791F)", source: "Hephaistos" }
-1241.1 "Scorching Fang/Scorched Pinion" Ability { id: "(7952|7953)", source: "Illusory Hephaistos" }
-1241.5 "Emergent Octaflare/Emergent Tetraflare" Ability { id: "(7918|7919)", source: "Hephaistos" }
+1240.1 "Sunforge" Ability { id: ["7950", "7951"], source: "Illusory Hephaistos" }
+1240.7 "Tetraflare/Nest of Flamevipers" Ability { id: ["791E", "791F"], source: "Hephaistos" }
+1241.1 "Scorching Fang/Scorched Pinion" Ability { id: ["7952", "7953"], source: "Illusory Hephaistos" }
+1241.5 "Emergent Octaflare/Emergent Tetraflare" Ability { id: ["7918", "7919"], source: "Hephaistos" }
 1253.7 "Torch Flame" Ability { id: "7927", source: "Hephaistos" }
 1257.8 "Genesis of Flame" Ability { id: "7944", source: "Hephaistos" }
 
@@ -216,18 +216,18 @@ hideall "--sync--"
 
 # Human 3 (Beast first)
 1331.1 "--sync--" Ability { id: "7949", source: "Hephaistos" }
-1346.5 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: "(7914|7915)", source: "Hephaistos" }
+1346.5 "Conceptual Octaflare/Conceptual Tetraflare" Ability { id: ["7914", "7915"], source: "Hephaistos" }
 1352.6 "Fourfold Fires" Ability { id: "78F2", source: "Hephaistos" } window 300,10
 1358.4 "Abyssal Fires" Ability { id: "7954", source: "Hephaistos" }
 1361.8 "--sync--" Ability { id: "78F0", source: "Hephaistos" }
 1367.7 "Cthonic Vent 1" Ability { id: "7925", source: "Suneater" }
 1376.7 "Cthonic Vent 2" Ability { id: "794E", source: "Suneater" }
-1377.0 "Tetraflare/Octaflare" Ability { id: "(791E|791D)", source: "Hephaistos" }
+1377.0 "Tetraflare/Octaflare" Ability { id: ["791E", "791D"], source: "Hephaistos" }
 1381.2 "--sync--" Ability { id: "7108", source: "Hephaistos" }
 1385.7 "Cthonic Vent 3" Ability { id: "7926", source: "Suneater" }
-1390.4 "Sunforge" Ability { id: "(7910|7911)", source: "Hephaistos" }
-1391.4 "Scorching Fang/Sun's Pinion" Ability { id: "(7912|7913)", source: "Hephaistos" }
-1391.6 "Emergent Octaflare/Emergent Tetraflare" Ability { id: "(7918|7919)", source: "Hephaistos" }
+1390.4 "Sunforge" Ability { id: ["7910", "7911"], source: "Hephaistos" }
+1391.4 "Scorching Fang/Sun's Pinion" Ability { id: ["7912", "7913"], source: "Hephaistos" }
+1391.6 "Emergent Octaflare/Emergent Tetraflare" Ability { id: ["7918", "7919"], source: "Hephaistos" }
 1398.8 "Flameviper 1" Ability { id: "7945", source: "Hephaistos" }
 1402.0 "Flameviper 2" Ability { id: "7946", source: "Hephaistos" }
 
@@ -235,8 +235,8 @@ hideall "--sync--"
 1409.1 "--sync--" Ability { id: "7108", source: "Hephaistos" }
 1414.3 "Reforged Reflection" Ability { id: "794B", source: "Hephaistos" }
 1420.8 "Footprint" Ability { id: "7109", source: "Hephaistos" }
-1427.1 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: "(7A04|7A05)", source: "Hephaistos" }
-1433.5 "Conceptual Diflare/Conceptual Tetraflare" Ability { id: "(7917|7916)", source: "Hephaistos" }
+1427.1 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: ["7A04", "7A05"], source: "Hephaistos" }
+1433.5 "Conceptual Diflare/Conceptual Tetraflare" Ability { id: ["7917", "7916"], source: "Hephaistos" }
 1439.7 "--sync--" Ability { id: "793B", source: "Hephaistos" }
 1441.9 "--sync--" Ability { id: "793D", source: "Hephaistos" }
 1444.1 "--sync--" Ability { id: "793B", source: "Hephaistos" }
@@ -244,7 +244,7 @@ hideall "--sync--"
 1448.7 "--untargetable--"
 1448.7 "Blazing Footfalls" Ability { id: "7938", source: "Hephaistos" }
 1449.3 "Trailblaze 1" Ability { id: "793E", source: "Hephaistos" }
-1450.5 "Emergent Diflare/Emergent Tetraflare" Ability { id: "(791B|7919)", source: "Hephaistos" }
+1450.5 "Emergent Diflare/Emergent Tetraflare" Ability { id: ["791B", "7919"], source: "Hephaistos" }
 1453.4 "--sync--" Ability { id: "793F", source: "Hephaistos" }
 1454.3 "Quadrupedal Impact/Quadrupedal Crush" Ability { id: "7107", source: "Hephaistos" }
 1457.2 "--sync--" Ability { id: "7939", source: "Hephaistos" }
@@ -302,13 +302,13 @@ hideall "--sync--"
 5040.4 "Natural Alignment 1" Ability { id: "79BB", source: "Hephaistos" } window 20,20
 5049.5 "Twist Nature" Ability { id: "79BC", source: "Hephaistos" }
 5055.6 "Tyrant's Flare" Ability { id: "7A89", source: "Hephaistos" }
-5058.6 "Forcible Fire III/Forcible Fire II" Ability { id: "(79BF|79C0)", source: "Hephaistos" }
+5058.6 "Forcible Fire III/Forcible Fire II" Ability { id: ["79BF", "79C0"], source: "Hephaistos" }
 5058.6 "Tyrant's Flare" Ability { id: "7A8A", source: "Hephaistos" }
-5064.6 "Forcible Fire II/Forcible Fire III" Ability { id: "(79C0|79BF)", source: "Hephaistos" }
+5064.6 "Forcible Fire II/Forcible Fire III" Ability { id: ["79C0", "79BF"], source: "Hephaistos" }
 
-5064.6 "Ashing Blaze" Ability { id: "(79D7|79D8)", source: "Hephaistos" }
-5076.4 "Forcible Trifire/Forcible Difreeze" Ability { id: "(79BD|79BE)", source: "Hephaistos" }
-5082.4 "Forcible Difreeze/Forcible Trifire" Ability { id: "(79BE|79BD)", source: "Hephaistos" }
+5064.6 "Ashing Blaze" Ability { id: ["79D7", "79D8"], source: "Hephaistos" }
+5076.4 "Forcible Trifire/Forcible Difreeze" Ability { id: ["79BD", "79BE"], source: "Hephaistos" }
+5082.4 "Forcible Difreeze/Forcible Trifire" Ability { id: ["79BE", "79BD"], source: "Hephaistos" }
 
 5088.7 "Aioniopyr" Ability { id: "79DF", source: "Hephaistos" } window 20,20
 5091.7 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
@@ -321,11 +321,11 @@ hideall "--sync--"
 5126.3 "Arcane Control" Ability { id: "79B6", source: "Hephaistos" }
 5126.7 "Conceptual Shift" Ability { id: "79AD", source: "Hephaistos" }
 5126.7 "Splicer" Ability { id: "79B3", source: "Hephaistos" }
-5138.5 "Ashing Blaze" Ability { id: "(79D7|79D8)", source: "Hephaistos" }
+5138.5 "Ashing Blaze" Ability { id: ["79D7", "79D8"], source: "Hephaistos" }
 5138.5 "Arcane Channel" Ability { id: "79B7", source: "Hephaistos" }
 5144.6 "Arcane Control" Ability { id: "79B6", source: "Hephaistos" }
 5144.7 "Conceptual Shift" Ability { id: "79AD", source: "Hephaistos" }
-5156.7 "Ashing Blaze" Ability { id: "(79D7|79D8)", source: "Hephaistos" }
+5156.7 "Ashing Blaze" Ability { id: ["79D7", "79D8"], source: "Hephaistos" }
 5156.7 "Arcane Channel" Ability { id: "79B7", source: "Hephaistos" }
 5159.8 "--targetable--"
 5162.8 "Deconceptualize" Ability { id: "7A8E", source: "Hephaistos" }
@@ -357,11 +357,11 @@ hideall "--sync--"
 5241.5 "Natural Alignment 2" Ability { id: "79BB", source: "Hephaistos" }
 5247.6 "Inverse Magicks" Ability { id: "79C2", source: "Hephaistos" }
 5253.7 "Twist Nature" Ability { id: "79BC", source: "Hephaistos" }
-5262.9 "Forcible Fire III/Forcible Fire II" Ability { id: "(79BF|79C0)", source: "Hephaistos" }
-5268.9 "Forcible Fire II/Forcible Fire III" Ability { id: "(79C0|79BF)", source: "Hephaistos" }
-5281.8 "Forcible Trifire/Forcible Difreeze" Ability { id: "(79BD|79BE)", source: "Hephaistos" }
-5287.9 "Forcible Difreeze/Forcible Trifire" Ability { id: "(79BE|79BD)", source: "Hephaistos" }
-5293.8 "Ashing Blaze" Ability { id: "(79D7|79D8)", source: "Hephaistos" }
+5262.9 "Forcible Fire III/Forcible Fire II" Ability { id: ["79BF", "79C0"], source: "Hephaistos" }
+5268.9 "Forcible Fire II/Forcible Fire III" Ability { id: ["79C0", "79BF"], source: "Hephaistos" }
+5281.8 "Forcible Trifire/Forcible Difreeze" Ability { id: ["79BD", "79BE"], source: "Hephaistos" }
+5287.9 "Forcible Difreeze/Forcible Trifire" Ability { id: ["79BE", "79BD"], source: "Hephaistos" }
+5293.8 "Ashing Blaze" Ability { id: ["79D7", "79D8"], source: "Hephaistos" }
 
 5301.9 "Aioniopyr" Ability { id: "79DF", source: "Hephaistos" } window 20,20
 5305.0 "--auto--" #Ability { id: "72C2", source: "Hephaistos" }
@@ -375,7 +375,7 @@ hideall "--sync--"
 5339.4 "Arcane Control" Ability { id: "79B6", source: "Hephaistos" }
 5339.8 "Conceptual Shift" Ability { id: "79AD", source: "Hephaistos" }
 5339.8 "Splicer" Ability { id: "79B3", source: "Hephaistos" }
-5351.6 "Ashing Blaze" Ability { id: "(79D7|79D8)", source: "Hephaistos" }
+5351.6 "Ashing Blaze" Ability { id: ["79D7", "79D8"], source: "Hephaistos" }
 5351.6 "Arcane Channel" Ability { id: "79B7", source: "Hephaistos" }
 5357.7 "Arcane Control" Ability { id: "79B6", source: "Hephaistos" }
 5357.8 "Conceptual Shift" Ability { id: "79AD", source: "Hephaistos" }

@@ -57,7 +57,7 @@ hideall "--sync--"
 
 1056.2 "Unbreakable Cermet Drill" Ability { id: "3459", source: "Prometheus" } window 30,30
 1068.3 "Needle Gun" Ability { id: "345A", source: "Prometheus" }
-1075.4 "Needle Gun/Oil Shower" Ability { id: "(345A|3456)", source: "Prometheus" }
+1075.4 "Needle Gun/Oil Shower" Ability { id: ["345A", "3456"], source: "Prometheus" }
 1086.4 "Nitrospin" Ability { id: "3455", source: "Prometheus" }
 1097.8 "Freezing Missile (windup)" Ability { id: "345B", source: "Prometheus" }
 1100.4 "--untargetable--"

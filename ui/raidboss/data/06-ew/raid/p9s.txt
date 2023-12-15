@@ -18,23 +18,23 @@ hideall "--sync--"
 25.3 "Ravening (Mage #1)" Ability { id: "8118", source: "Kokytos" }
 32.0 "Soul Surge" Ability { id: "811B", source: "Kokytos" }
 47.0 "Duality of Death" Ability { id: "8151", source: "Kokytos" }
-47.9 "Aero IV/Fire IV #1" #Ability { id: "(8152|8153)", source: "Kokytos" }
-50.2 "Aero IV/Fire IV #2" #Ability { id: "(8152|8153)", source: "Kokytos" }
+47.9 "Aero IV/Fire IV #1" #Ability { id: ["8152", "8153"], source: "Kokytos" }
+50.2 "Aero IV/Fire IV #2" #Ability { id: ["8152", "8153"], source: "Kokytos" }
 
 60.4 "Dualspell (Fire/Ice)" Ability { id: "8154", source: "Kokytos" }
-63.7 "--sync--" Ability { id: "(8122|8123)", source: "Kokytos" }
-68.1 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-68.1 "Pile Pyre" Ability { id: "(8156|8158)", source: "Kokytos" }
+63.7 "--sync--" Ability { id: ["8122", "8123"], source: "Kokytos" }
+68.1 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+68.1 "Pile Pyre" Ability { id: ["8156", "8158"], source: "Kokytos" }
 
 73.4 "Dualspell (Thunder/Ice)" Ability { id: "8155", source: "Kokytos" }
-76.7 "--sync--" Ability { id: "(8123|815C)", source: "Kokytos" }
-81.1 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-81.1 "Thunder III" Ability { id: "(815A|815B)", source: "Kokytos" }
+76.7 "--sync--" Ability { id: ["8123", "815C"], source: "Kokytos" }
+81.1 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+81.1 "Thunder III" Ability { id: ["815A", "815B"], source: "Kokytos" }
 
 86.4 "Dualspell (Fire/Ice)" Ability { id: "8154", source: "Kokytos" }
-89.7 "--sync--" Ability { id: "(8122|8123)", source: "Kokytos" }
-94.1 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-94.1 "Pile Pyre" Ability { id: "(8156|8158)", source: "Kokytos" }
+89.7 "--sync--" Ability { id: ["8122", "8123"], source: "Kokytos" }
+94.1 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+94.1 "Pile Pyre" Ability { id: ["8156", "8158"], source: "Kokytos" }
 
 101.8 "Disgorge" Ability { id: "8124", source: "Kokytos" }
 
@@ -46,12 +46,12 @@ hideall "--sync--"
 146.4 "Archaic Rockbreaker (cast)" Ability { id: "815F", source: "Kokytos" }
 148.0 "Shockwave" Ability { id: "8160", source: "Kokytos" }
 149.3 "Archaic Rockbreaker (stacks)" Ability { id: "8162", source: "Kokytos" }
-155.5 "Front Combination/Rear Combination" Ability { id: "(8167|8168|8169|816A)", source: "Kokytos" }
+155.5 "Front Combination/Rear Combination" Ability { id: ["8167", "8168", "8169", "816A"], source: "Kokytos" }
 155.8 "Archaic Rockbreaker #1" Ability { id: "8161", source: "Kokytos" }
-156.3 "Inside Roundhouse/Outside Roundhouse" Ability { id: "(8238|8239)", source: "Kokytos" }
-158.7 "Swinging Kick" Ability { id: "(816B|816C)", source: "Kokytos" }
+156.3 "Inside Roundhouse/Outside Roundhouse" Ability { id: ["8238", "8239"], source: "Kokytos" }
+158.7 "Swinging Kick" Ability { id: ["816B", "816C"], source: "Kokytos" }
 161.7 "Archaic Rockbreaker #2" Ability { id: "8161", source: "Kokytos" }
-162.4 "Outside Roundhouse/Inside Roundhouse" Ability { id: "(8239|8238)", source: "Kokytos" }
+162.4 "Outside Roundhouse/Inside Roundhouse" Ability { id: ["8239", "8238"], source: "Kokytos" }
 168.7 "Archaic Demolish" Ability { id: "816D", source: "Kokytos" }
 
 175.8 "Gluttony's Augur" Ability { id: "814C", source: "Kokytos" }
@@ -95,10 +95,10 @@ hideall "--sync--"
 256.5 "--middle--" Ability { id: "8144", source: "Kokytos" }
 
 258.1 "--targetable--"
-262.2 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
-265.1 "Two Minds" Ability { id: "(8184|8185)", source: "Kokytos" }
-266.2 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-266.2 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+262.2 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
+265.1 "Two Minds" Ability { id: ["8184", "8185"], source: "Kokytos" }
+266.2 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+266.2 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 272.2 "Gluttony's Augur" Ability { id: "814C", source: "Kokytos" }
 
 276.3 "Disgorge" Ability { id: "8236", source: "Kokytos" }
@@ -130,37 +130,37 @@ hideall "--sync--"
 374.2 "Ravening (Chimera #2)" Ability { id: "817B", source: "Kokytos" }
 380.8 "Soul Surge" Ability { id: "811B", source: "Kokytos" }
 393.7 "Duality of Death" Ability { id: "8151", source: "Kokytos" }
-394.6 "Aero IV/Fire IV #1" #Ability { id: "(8152|8153)", source: "Kokytos" }
-396.4 "Aero IV/Fire IV #2" #Ability { id: "(8152|8153)", source: "Kokytos" }
+394.6 "Aero IV/Fire IV #1" #Ability { id: ["8152", "8153"], source: "Kokytos" }
+396.4 "Aero IV/Fire IV #2" #Ability { id: ["8152", "8153"], source: "Kokytos" }
 
 402.9 "Archaic Rockbreaker (cast)" Ability { id: "815F", source: "Kokytos" }
 404.5 "Shockwave" Ability { id: "8160", source: "Kokytos" }
 405.8 "Archaic Rockbreaker (stacks)" Ability { id: "8162", source: "Kokytos" }
 412.5 "Archaic Rockbreaker #1" Ability { id: "8161", source: "Kokytos" }
-413.2 "Dualspell" Ability { id: "(8154|8155)", source: "Kokytos" }
-416.5 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
+413.2 "Dualspell" Ability { id: ["8154", "8155"], source: "Kokytos" }
+416.5 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
 418.5 "Archaic Rockbreaker #2" Ability { id: "8161", source: "Kokytos" }
 
-420.9 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-420.9 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+420.9 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+420.9 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 426.2 "Gluttony's Augur" Ability { id: "814C", source: "Kokytos" }
 
 # Limit Cut 2
 438.6 "Chimeric Succession" Ability { id: "81BB", source: "Kokytos" }
 449.5 "Icemeld #1" Ability { id: "8183", source: "Kokytos's Echo" }
 452.5 "Icemeld #2" Ability { id: "8190", source: "Kokytos's Echo" }
-454.2 "Front Firestrikes/Rear Firestrikes" Ability { id: "(878E|878F)", source: "Kokytos" }
+454.2 "Front Firestrikes/Rear Firestrikes" Ability { id: ["878E", "878F"], source: "Kokytos" }
 
-454.4 "Pyremeld" Ability { id: "(8793|8794)", source: "Kokytos" }
+454.4 "Pyremeld" Ability { id: ["8793", "8794"], source: "Kokytos" }
 455.8 "Icemeld #3" Ability { id: "8191", source: "Kokytos's Echo" }
 458.6 "Icemeld #4" Ability { id: "8192", source: "Kokytos's Echo" }
-459.7 "Swinging Kick" Ability { id: "(8795|8796)", source: "Kokytos" }
+459.7 "Swinging Kick" Ability { id: ["8795", "8796"], source: "Kokytos" }
 
 461.8 "--middle--" Ability { id: "8144", source: "Kokytos" }
-467.4 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
-470.3 "Two Minds" Ability { id: "(8184|8185)", source: "Kokytos" }
-471.4 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-471.4 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+467.4 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
+470.3 "Two Minds" Ability { id: ["8184", "8185"], source: "Kokytos" }
+471.4 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+471.4 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 
 472.4 "Disgorge" Ability { id: "8236", source: "Kokytos" }
 
@@ -169,25 +169,25 @@ hideall "--sync--"
 486.1 "Ravening (Mage #2)" Ability { id: "8118", source: "Kokytos" }
 492.7 "Soul Surge" Ability { id: "811B", source: "Kokytos" }
 
-500.3 "Dualspell" Ability { id: "(8154|8155)", source: "Kokytos" }
-503.6 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
-508.2 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-508.2 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+500.3 "Dualspell" Ability { id: ["8154", "8155"], source: "Kokytos" }
+503.6 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
+508.2 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+508.2 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 513.5 "Gluttony's Augur" Ability { id: "814C", source: "Kokytos" }
 
-520.6 "Dualspell" Ability { id: "(8154|8155)", source: "Kokytos" }
-523.9 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
-528.5 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-528.5 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+520.6 "Dualspell" Ability { id: ["8154", "8155"], source: "Kokytos" }
+523.9 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
+528.5 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+528.5 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 
 534.8 "Duality of Death" Ability { id: "8151", source: "Kokytos" }
-535.7 "Aero IV/Fire IV #1" #Ability { id: "(8152|8153)", source: "Kokytos" }
-538.0 "Aero IV/Fire IV #2" #Ability { id: "(8152|8153)", source: "Kokytos" }
+535.7 "Aero IV/Fire IV #1" #Ability { id: ["8152", "8153"], source: "Kokytos" }
+538.0 "Aero IV/Fire IV #2" #Ability { id: ["8152", "8153"], source: "Kokytos" }
 
-544.0 "Dualspell" Ability { id: "(8154|8155)", source: "Kokytos" }
-547.3 "--sync--" Ability { id: "(8122|8123|815C)", source: "Kokytos" }
-551.9 "Blizzard III" Ability { id: "(8157|8159)", source: "Kokytos" }
-551.9 "Pile Pyre/Thunder III" Ability { id: "(8156|8158|815A|815B)", source: "Kokytos" }
+544.0 "Dualspell" Ability { id: ["8154", "8155"], source: "Kokytos" }
+547.3 "--sync--" Ability { id: ["8122", "8123", "815C"], source: "Kokytos" }
+551.9 "Blizzard III" Ability { id: ["8157", "8159"], source: "Kokytos" }
+551.9 "Pile Pyre/Thunder III" Ability { id: ["8156", "8158", "815A", "815B"], source: "Kokytos" }
 557.1 "Gluttony's Augur" Ability { id: "814C", source: "Kokytos" }
 
 564.7 "Disgorge" Ability { id: "8124", source: "Kokytos" }

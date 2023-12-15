@@ -60,7 +60,7 @@ hideall "--sync--"
 1405.5 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 1410.1 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 1413.2 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-1421.5 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" } # only seen Launch
+1421.5 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" } # only seen Launch
 1428.1 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 1434.9 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 1445.3 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -123,7 +123,7 @@ hideall "--sync--"
 2180.6 "Shockwave" Ability { id: "74CE", source: "Geryon the Steer" }
 2190.7 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 2193.8 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-2202.0 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" }
+2202.0 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" }
 2208.7 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 2215.3 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 2225.7 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -197,7 +197,7 @@ hideall "--sync--"
 3395.0 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 3399.6 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 3402.7 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-3410.8 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" } # only seen Launch
+3410.8 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" } # only seen Launch
 3417.5 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 3424.3 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 3433.7 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -251,7 +251,7 @@ hideall "--sync--"
 4196.6 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 4201.1 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 4204.2 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-4212.3 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" } # only seen Swing
+4212.3 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" } # only seen Swing
 4218.0 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 4224.7 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 4234.1 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -328,7 +328,7 @@ hideall "--sync--"
 5182.3 "Suddenly Sewage 2" #Ability { id: "74D8", source: "Geryon the Steer" }
 5190.9 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 5194.0 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-5202.4 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" }
+5202.4 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" }
 5209.1 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 5215.8 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 5225.2 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -386,7 +386,7 @@ hideall "--sync--"
 6167.7 "Gigantomill 4" #Ability { id: "74CB", source: "Geryon the Steer" }
 6176.4 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 6179.5 "--sync--" Ability { id: "74C6", source: "Geryon the Steer" }
-6187.7 "Colossal Launch / Colossal Swing" Ability { id: "(74C8|74D1)", source: "Geryon the Steer" }
+6187.7 "Colossal Launch / Colossal Swing" Ability { id: ["74C8", "74D1"], source: "Geryon the Steer" }
 6194.4 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
 6201.0 "Colossal Slam" Ability { id: "74D0", source: "Geryon the Steer" }
 6210.4 "Colossal Strike" Ability { id: "74CF", source: "Geryon the Steer" }
@@ -414,18 +414,18 @@ hideall "--sync--"
 7000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1069" } window 100000,0
 7009.3 "--sync--" StartsUsing { id: "772C", source: "Silkie" } window 10,10
 7014.3 "Total Wash" Ability { id: "772C", source: "Silkie" }
-7022.0 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
+7022.0 "Squeaky Left/Squeaky Right" Ability { id: ["772E", "772D"], source: "Silkie" }
 7040.9 "Carpet Beater" Ability { id: "772B", source: "Silkie" }
-7051.6 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
+7051.6 "Squeaky Left/Squeaky Right" Ability { id: ["772E", "772D"], source: "Silkie" }
 7069.6 "Chilling Suds" Ability { id: "7736", source: "Silkie" }
 7076.7 "Soap's Up" Ability { id: "7737", source: "Silkie" }
 7077.7 "Chilling Duster" Ability { id: "7738", source: "Silkie" }
 7086.8 "Bracing Suds" Ability { id: "7735", source: "Silkie" }
 7093.9 "Soap's Up" Ability { id: "7737", source: "Silkie" }
 7094.9 "Bracing Duster" Ability { id: "7739", source: "Silkie" }
-7104.0 "Bracing Suds / Chilling Suds" Ability { id: "(7735|7736)", source: "Silkie" }
+7104.0 "Bracing Suds / Chilling Suds" Ability { id: ["7735", "7736"], source: "Silkie" }
 7112.8 "Slippery Soap" Ability { id: "773A", source: "Silkie" }
-7116.2 "Bracing Duster / Chilling Duster" Ability { id: "(773B|773C)", source: "Silkie" }
+7116.2 "Bracing Duster / Chilling Duster" Ability { id: ["773B", "773C"], source: "Silkie" }
 7128.3 "Spot Remover" Ability { id: "7742", source: "Silkie" }
 7137.4 "Dust Bluster" Ability { id: "7744", source: "Silkie" }
 7148.5 "Total Wash" Ability { id: "772C", source: "Silkie" }
@@ -484,31 +484,31 @@ hideall "--sync--"
 7196.9 "--sync--" StartsUsing { id: "773D", source: "Silkie" } window 20,100
 7200.9 "Fresh Puff" Ability { id: "773D", source: "Silkie" }
 7210.3 "Chilling Suds" Ability { id: "7736", source: "Silkie" }
-7217.0 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
+7217.0 "Squeaky Left/Squeaky Right" Ability { id: ["772E", "772D"], source: "Silkie" }
 7233.9 "Soaping Spree" Ability { id: "773E", source: "Silkie" }
 7234.9 "Chilling Duster" Ability { id: "773F", source: "Silken Puff" }
 7245.0 "Total Wash" Ability { id: "772C", source: "Silkie" }
-7256.2 "Bracing Suds / Chilling Suds" Ability { id: "(7735|7736)", source: "Silkie" }
+7256.2 "Bracing Suds / Chilling Suds" Ability { id: ["7735", "7736"], source: "Silkie" }
 7264.0 "Slippery Soap" Ability { id: "773A", source: "Silkie" }
-7267.6 "Bracing Duster / Chilling Duster" Ability { id: "(773B|773C)", source: "Silkie" }
+7267.6 "Bracing Duster / Chilling Duster" Ability { id: ["773B", "773C"], source: "Silkie" }
 
-7278.8 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" }
+7278.8 "Squeaky Left/Squeaky Right" Ability { id: ["772E", "772D"], source: "Silkie" }
 7298.7 "Carpet Beater" Ability { id: "772B", source: "Silkie" }
 7306.4 "Spot Remover" Ability { id: "7742", source: "Silkie" }
 7315.5 "Dust Bluster" Ability { id: "7744", source: "Silkie" }
 7326.6 "Total Wash" Ability { id: "772C", source: "Silkie" }
-7337.7 "Bracing Suds / Chilling Suds" Ability { id: "(7735|7736)", source: "Silkie" }
+7337.7 "Bracing Suds / Chilling Suds" Ability { id: ["7735", "7736"], source: "Silkie" }
 7345.4 "Slippery Soap" Ability { id: "773A", source: "Silkie" }
-7348.8 "Bracing Duster / Chilling Duster" Ability { id: "(773B|773C)", source: "Silkie" }
+7348.8 "Bracing Duster / Chilling Duster" Ability { id: ["773B", "773C"], source: "Silkie" }
 
-7359.9 "Squeaky Left/Squeaky Right" Ability { id: "(772E|772D)", source: "Silkie" } window 20,20 jump 7278.8
+7359.9 "Squeaky Left/Squeaky Right" Ability { id: ["772E", "772D"], source: "Silkie" } window 20,20 jump 7278.8
 7379.8 "Carpet Beater" #Ability { id: "772B", source: "Silkie" }
 7387.5 "Spot Remover" #Ability { id: "7742", source: "Silkie" }
 7396.6 "Dust Bluster" #Ability { id: "7744", source: "Silkie" }
 7407.7 "Total Wash" #Ability { id: "772C", source: "Silkie" }
-7418.8 "Bracing Suds / Chilling Suds" #Ability { id: "(7735|7736)", source: "Silkie" }
+7418.8 "Bracing Suds / Chilling Suds" #Ability { id: ["7735", "7736"], source: "Silkie" }
 7426.5 "Slippery Soap" #Ability { id: "773A", source: "Silkie" }
-7429.9 "Bracing Duster / Chilling Duster" #Ability { id: "(773B|773C)", source: "Silkie" }
+7429.9 "Bracing Duster / Chilling Duster" #Ability { id: ["773B", "773C"], source: "Silkie" }
 
 
 ### Gladiator of Sil'dih
@@ -520,14 +520,14 @@ hideall "--sync--"
 8007.0 "--sync--" StartsUsing { id: "7656", source: "Gladiator of Sil'dih" } window 20,20
 8012.0 "Flash of Steel" Ability { id: "7656", source: "Gladiator of Sil'dih" }
 8019.2 "--middle--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
-8031.4 "Ring of Might (out)" Ability { id: "(763F|7640|7641)", source: "Gladiator of Sil'dih" }
+8031.4 "Ring of Might (out)" Ability { id: ["763F", "7640", "7641"], source: "Gladiator of Sil'dih" }
 8031.4 "--sync--" Ability { id: "77BF", source: "Gladiator of Sil'dih" }
-8033.4 "Ring of Might (in)" Ability { id: "(7642|7643|7644)", source: "Gladiator of Sil'dih" }
+8033.4 "Ring of Might (in)" Ability { id: ["7642", "7643", "7644"], source: "Gladiator of Sil'dih" }
 8044.6 "Sculptor's Passion" Ability { id: "764A", source: "Gladiator of Sil'dih" }
 8050.8 "--middle--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
-8063.6 "Ring of Might (out)" Ability { id: "(763F|7640|7641)", source: "Gladiator of Sil'dih" }
+8063.6 "Ring of Might (out)" Ability { id: ["763F", "7640", "7641"], source: "Gladiator of Sil'dih" }
 8063.6 "--sync--" Ability { id: "77BF", source: "Gladiator of Sil'dih" }
-8065.6 "Ring of Might (in)" Ability { id: "(7642|7643|7644)", source: "Gladiator of Sil'dih" }
+8065.6 "Ring of Might (in)" Ability { id: ["7642", "7643", "7644"], source: "Gladiator of Sil'dih" }
 8078.8 "Flash of Steel?" Ability { id: "764C", source: "Gladiator of Sil'dih" }
 
 # Bridge 08
@@ -591,9 +591,9 @@ hideall "--sync--"
 8206.3 "Sundered Remains" Ability { id: "7648", source: "Gladiator of Sil'dih" }
 8214.4 "--middle--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
 8218.4 "Sundered Remains (mid)" #Ability { id: "7649", source: "Gladiator of Sil'dih" }
-8226.9 "Ring of Might (out)" Ability { id: "(763F|7640|7641)", source: "Gladiator of Sil'dih" }
+8226.9 "Ring of Might (out)" Ability { id: ["763F", "7640", "7641"], source: "Gladiator of Sil'dih" }
 8226.9 "--sync--" Ability { id: "77BF", source: "Gladiator of Sil'dih" }
-8228.9 "Ring of Might (in)" Ability { id: "(7642|7643|7644)", source: "Gladiator of Sil'dih" }
+8228.9 "Ring of Might (in)" Ability { id: ["7642", "7643", "7644"], source: "Gladiator of Sil'dih" }
 8240.1 "Mighty Smite" Ability { id: "7657", source: "Gladiator of Sil'dih" }
 8253.2 "Wrath of Ruin" Ability { id: "7645", source: "Gladiator of Sil'dih" }
 8259.3 "--corner--" Ability { id: "7639", source: "Gladiator of Sil'dih" }
@@ -606,9 +606,9 @@ hideall "--sync--"
 8299.2 "Sundered Remains" #Ability { id: "7648", source: "Gladiator of Sil'dih" }
 8307.3 "--middle--" #Ability { id: "7639", source: "Gladiator of Sil'dih" }
 8311.3 "Sundered Remains (mid)" #Ability { id: "7649", source: "Gladiator of Sil'dih" }
-8319.8 "Ring of Might (out)" #Ability { id: "(763F|7640|7641)", source: "Gladiator of Sil'dih" }
+8319.8 "Ring of Might (out)" #Ability { id: ["763F", "7640", "7641"], source: "Gladiator of Sil'dih" }
 8319.8 "--sync--" #Ability { id: "77BF", source: "Gladiator of Sil'dih" }
-8321.8 "Ring of Might (in)" #Ability { id: "(7642|7643|7644)", source: "Gladiator of Sil'dih" }
+8321.8 "Ring of Might (in)" #Ability { id: ["7642", "7643", "7644"], source: "Gladiator of Sil'dih" }
 
 ### Shadowcaster Zeless Gah
 # -p 74AE:9015.6
@@ -911,37 +911,37 @@ hideall "--sync--"
 13000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1076" } window 100000,0
 13011.8 "--sync--" StartsUsing { id: "70EB", source: "Thorne Knight" }
 13016.8 "Cogwheel" Ability { id: "70EB", source: "Thorne Knight" }
-13030.3 "Spring to Life" Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
+13030.3 "Spring to Life" Ability { id: ["70ED", "70EE"], source: "Thorne Knight" }
 13031.1 "--sync--" Ability { id: "7126", source: "Magicked Puppet" }
 13034.1 "Magic Cannon" Ability { id: "70F7", source: "Magicked Puppet" }
 13034.7 "Amalj'aa Artillery" Ability { id: "70F8", source: "Amalj'aa Artillery Carriage" }
 13037.1 "--sync--" Ability { id: "7127", source: "Magicked Puppet" }
 13052.5 "Blistering Blow" Ability { id: "70EA", source: "Thorne Knight" }
-13064.6 "Spring to Life" Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
+13064.6 "Spring to Life" Ability { id: ["70ED", "70EE"], source: "Thorne Knight" }
 13065.4 "--sync--" Ability { id: "7126", source: "Magicked Puppet" }
 13068.4 "Magic Cannon" Ability { id: "70F7", source: "Magicked Puppet" }
 13069.1 "Amalj'aa Artillery" Ability { id: "70F8", source: "Amalj'aa Artillery Carriage" }
 13071.5 "--sync--" Ability { id: "7127", source: "Magicked Puppet" }
 13075.1 "Fore Honor" Ability { id: "70EC", source: "Thorne Knight" }
-13090.8 "Slashburn" Ability { id: "(70EF|70F0|70F1|7102)", source: "Thorne Knight" }
+13090.8 "Slashburn" Ability { id: ["70EF", "70F0", "70F1", "7102"], source: "Thorne Knight" }
 13103.5 "--sync--" Ability { id: "70F5", source: "Thorne Knight" }
 
 13105.0 "Signal Flare 1" #Ability { id: "70FB", source: "Thorne Knight" }
 13106.6 "Signal Flare 2" #Ability { id: "70FB", source: "Thorne Knight" }
 13108.2 "Signal Flare 3" #Ability { id: "70FB", source: "Thorne Knight" }
 13114.1 "Blistering Blow" Ability { id: "70EA", source: "Thorne Knight" }
-13131.1 "Slashburn" Ability { id: "(70EF|70F0|70F1|7102)", source: "Thorne Knight" }
+13131.1 "Slashburn" Ability { id: ["70EF", "70F0", "70F1", "7102"], source: "Thorne Knight" }
 13142.7 "Blaze of Glory" Ability { id: "70F4", source: "Thorne Knight" }
-13152.6 "Spring to Life" Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
+13152.6 "Spring to Life" Ability { id: ["70ED", "70EE"], source: "Thorne Knight" }
 13153.4 "--sync--" Ability { id: "7126", source: "Magicked Puppet" }
 13156.3 "Magic Cannon" Ability { id: "70F7", source: "Magicked Puppet" }
 13157.0 "Amalj'aa Artillery" Ability { id: "70F8", source: "Amalj'aa Artillery Carriage" }
 13157.0 "Explosion" Ability { id: "70FD", source: "Ball of Fire" }
 13159.4 "--sync--" Ability { id: "7127", source: "Magicked Puppet" }
-13169.2 "Slashburn" Ability { id: "(70EF|70F0|70F1|7102)", source: "Thorne Knight" }
+13169.2 "Slashburn" Ability { id: ["70EF", "70F0", "70F1", "7102"], source: "Thorne Knight" }
 13178.7 "Blaze of Glory" Ability { id: "70F4", source: "Thorne Knight" }
 13193.1 "Explosion" Ability { id: "70FD", source: "Ball of Fire" }
-13193.1 "Slashburn" Ability { id: "(70EF|70F0|70F1|7102)", source: "Thorne Knight" }
+13193.1 "Slashburn" Ability { id: ["70EF", "70F0", "70F1", "7102"], source: "Thorne Knight" }
 13205.7 "--sync--" Ability { id: "70F5", source: "Thorne Knight" }
 13207.3 "Signal Flare 1" #Ability { id: "70FB", source: "Thorne Knight" }
 13208.9 "Signal Flare 2" #Ability { id: "70FB", source: "Thorne Knight" }
@@ -950,7 +950,7 @@ hideall "--sync--"
 
 13221.4 "Cogwheel" Ability { id: "70EB", source: "Thorne Knight" }
 13234.1 "Blaze of Glory" Ability { id: "70F4", source: "Thorne Knight" }
-13244.1 "Spring to Life" Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
+13244.1 "Spring to Life" Ability { id: ["70ED", "70EE"], source: "Thorne Knight" }
 13244.9 "--sync--" Ability { id: "7126", source: "Magicked Puppet" }
 13247.9 "Magic Cannon" Ability { id: "70F7", source: "Magicked Puppet" }
 13248.5 "Amalj'aa Artillery" Ability { id: "70F8", source: "Amalj'aa Artillery Carriage" }
@@ -959,7 +959,7 @@ hideall "--sync--"
 
 13253.2 "Cogwheel" Ability { id: "70EB", source: "Thorne Knight" }
 13265.8 "Blaze of Glory" Ability { id: "70F4", source: "Thorne Knight" }
-13280.3 "Slashburn" Ability { id: "(70EF|70F0|70F1|7102)", source: "Thorne Knight" }
+13280.3 "Slashburn" Ability { id: ["70EF", "70F0", "70F1", "7102"], source: "Thorne Knight" }
 13280.3 "Explosion" Ability { id: "70FD", source: "Ball of Fire" }
 13293.0 "--sync--" Ability { id: "70F5", source: "Thorne Knight" }
 13294.6 "Signal Flare 1" #Ability { id: "70FB", source: "Thorne Knight" }
@@ -969,7 +969,7 @@ hideall "--sync--"
 
 13308.8 "Cogwheel" Ability { id: "70EB", source: "Thorne Knight" } window 40,40 jump 13221.4
 13321.5 "Blaze of Glory" #Ability { id: "70F4", source: "Thorne Knight" }
-13331.5 "Spring to Life" #Ability { id: "(70ED|70EE)", source: "Thorne Knight" }
+13331.5 "Spring to Life" #Ability { id: ["70ED", "70EE"], source: "Thorne Knight" }
 13332.3 "--sync--" #Ability { id: "7126", source: "Magicked Puppet" }
 13335.3 "Magic Cannon" #Ability { id: "70F7", source: "Magicked Puppet" }
 13335.9 "Amalj'aa Artillery" #Ability { id: "70F8", source: "Amalj'aa Artillery Carriage" }

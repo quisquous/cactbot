@@ -19,11 +19,11 @@ hideall "--sync--"
 44.8 "--sync--" Ability { id: "6598", source: "Hydaelyn" } jump 144.8
 44.8 "--sync--" Ability { id: "6594", source: "Hydaelyn" } jump 242.9
 
-44.8 "Highest Holy/Anthelion?" #Ability { id: "(6598|6594)", source: "Hydaelyn" }
+44.8 "Highest Holy/Anthelion?" #Ability { id: ["6598", "6594"], source: "Hydaelyn" }
 47.9 "--sync--" #Ability { id: "65A[01]", source: "Hydaelyn" }
 48.8 "Crystalline Water III" #Ability { id: "65A2", source: "Hydaelyn" }
-56.4 "Magos's Radiance/Mousa's Scorn?" #Ability { id: "(65C2|65C0)", source: "Hydaelyn" }
-66.6 "Aureole/Lateral Aureole?" #Ability { id: "(6C91|6F13)", source: "Hydaelyn" }
+56.4 "Magos's Radiance/Mousa's Scorn?" #Ability { id: ["65C2", "65C0"], source: "Hydaelyn" }
+66.6 "Aureole/Lateral Aureole?" #Ability { id: ["6C91", "6F13"], source: "Hydaelyn" }
 
 
 # Highest Holy first
@@ -31,15 +31,15 @@ hideall "--sync--"
 147.9 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
 148.8 "Crystalline Water III" Ability { id: "65A2", source: "Hydaelyn" }
 156.4 "Magos's Radiance" Ability { id: "65C2", source: "Hydaelyn" }
-166.6 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13)", source: "Hydaelyn" }
+166.6 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13"], source: "Hydaelyn" }
 175.7 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
 184.9 "Anthelion" Ability { id: "6594", source: "Hydaelyn" }
 188.0 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
 188.9 "Crystalline Blizzard III" Ability { id: "65A4", source: "Hydaelyn" }
 197.1 "Mousa's Scorn" Ability { id: "65C0", source: "Hydaelyn" }
 
-207.3 "Aureole/Lateral Aureole" Ability { id: "(6F11|65C5)", source: "Hydaelyn" } jump 307.1
-216.6 "Crystallize" #Ability { id: "(659E|6ED5|659A|659B)", source: "Hydaelyn" }
+207.3 "Aureole/Lateral Aureole" Ability { id: ["6F11", "65C5"], source: "Hydaelyn" } jump 307.1
+216.6 "Crystallize" #Ability { id: ["659E", "6ED5", "659A", "659B"], source: "Hydaelyn" }
 225.8 "Equinox" #Ability { id: "65C3", source: "Hydaelyn" }
 228.9 "--sync--" #Ability { id: "659F", source: "Hydaelyn" }
 229.8 "Crystalline Water/Stone III" #Ability { id: "65A[23]", source: "Hydaelyn" }
@@ -51,7 +51,7 @@ hideall "--sync--"
 246.0 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
 246.9 "Crystalline Water III" Ability { id: "65A2", source: "Hydaelyn" }
 255.1 "Mousa's Scorn" Ability { id: "65C0", source: "Hydaelyn" }
-265.3 "Aureole/Lateral Aureole" Ability { id: "(6F11|65C5)", source: "Hydaelyn" }
+265.3 "Aureole/Lateral Aureole" Ability { id: ["6F11", "65C5"], source: "Hydaelyn" }
 276.1 "Crystallize" Ability { id: "659D", source: "Hydaelyn" }
 285.3 "Highest Holy" Ability { id: "6598", source: "Hydaelyn" }
 288.4 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
@@ -60,8 +60,8 @@ hideall "--sync--"
 # -> naturally into Crystallize 3 (or jump from above)
 
 # Crystallize 3 (Equinox and Water/Stone)
-307.1 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13)", source: "Hydaelyn" }
-316.4 "Crystallize" Ability { id: "(659E|6ED5|659A|659B)", source: "Hydaelyn" }
+307.1 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13"], source: "Hydaelyn" }
+316.4 "Crystallize" Ability { id: ["659E", "6ED5", "659A", "659B"], source: "Hydaelyn" }
 325.6 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 328.7 "--sync--" Ability { id: "659F", source: "Hydaelyn" }
 329.6 "Crystalline Water/Stone III" Ability { id: "65A[23]", source: "Hydaelyn" }
@@ -105,11 +105,11 @@ hideall "--sync--"
 # Parhelion or Parhelic Circle
 1575.3 "--sync--" Ability { id: "6594", source: "Hydaelyn" } jump 1675.3
 1575.3 "--sync--" Ability { id: "6598", source: "Hydaelyn" } jump 1966.1
-1575.3 "Anthelion/Highest Holy?" #Ability { id: "(6594|6598)", source: "Hydaelyn" }
-1585.5 "Mousa's Scorn/Magos's Radiance?" #Ability { id: "(65C0|65C2)", source: "Hydaelyn" }
+1575.3 "Anthelion/Highest Holy?" #Ability { id: ["6594", "6598"], source: "Hydaelyn" }
+1585.5 "Mousa's Scorn/Magos's Radiance?" #Ability { id: ["65C0", "65C2"], source: "Hydaelyn" }
 1590.7 "--middle?--" #Ability { id: "6E7A", source: "Hydaelyn" }
 1594.6 "Crystallize?" #Ability { id: "659C", source: "Hydaelyn" }
-1597.2 "Parhelion?" Ability { id: "(65B0|65AC)", source: "Hydaelyn" }
+1597.2 "Parhelion?" Ability { id: ["65B0", "65AC"], source: "Hydaelyn" }
 1597.8 "--top-middle?--" #Ability { id: "65A9", source: "Hydaelyn" }
 1605.4 "Parhelic Circle?" #Ability { id: "65AC", source: "Hydaelyn" }
 
@@ -129,7 +129,7 @@ hideall "--sync--"
 1717.2 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
 1717.9 "Beacon 2" #Ability { id: "65B3", source: "Parhelion" }
 1719.5 "Beacon 3" #Ability { id: "65B3", source: "Parhelion" }
-1724.4 "Aureole/Lateral Aureole" Ability { id: "(6F11|65C5)", source: "Hydaelyn" }
+1724.4 "Aureole/Lateral Aureole" Ability { id: ["6F11", "65C5"], source: "Hydaelyn" }
 
 1733.5 "Highest Holy" Ability { id: "6598", source: "Hydaelyn" }
 1743.6 "Magos's Radiance" Ability { id: "65C2", source: "Hydaelyn" }
@@ -140,7 +140,7 @@ hideall "--sync--"
 1765.4 "Incandescence" Ability { id: "65AF", source: "Mystic Refulgence" }
 1766.7 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
 1768.9 "Crystalline Blizzard III" Ability { id: "65A4", source: "Hydaelyn" }
-1774.7 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13)", source: "Hydaelyn" }
+1774.7 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13"], source: "Hydaelyn" }
 1783.8 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 1791.0 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
 1797.6 "Radiant Halo" Ability { id: "65B4", source: "Hydaelyn" }
@@ -162,7 +162,7 @@ hideall "--sync--"
 1998.2 "Incandescence" Ability { id: "65AF", source: "Mystic Refulgence" }
 1999.5 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
 2001.7 "Crystalline Blizzard III" Ability { id: "65A4", source: "Hydaelyn" }
-2007.6 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13)", source: "Hydaelyn" }
+2007.6 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13"], source: "Hydaelyn" }
 
 2016.7 "Anthelion" Ability { id: "6594", source: "Hydaelyn" }
 2026.9 "Mousa's Scorn" Ability { id: "65C0", source: "Hydaelyn" }
@@ -178,7 +178,7 @@ hideall "--sync--"
 2058.7 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
 2059.4 "Beacon 2" #Ability { id: "65B3", source: "Parhelion" }
 2061.0 "Beacon 3" #Ability { id: "65B3", source: "Parhelion" }
-2065.8 "Aureole/Lateral Aureole" Ability { id: "(6F11|65C5)", source: "Hydaelyn" }
+2065.8 "Aureole/Lateral Aureole" Ability { id: ["6F11", "65C5"], source: "Hydaelyn" }
 2074.9 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 2082.1 "--top-middle--" Ability { id: "65A9", source: "Hydaelyn" }
 2088.6 "Radiant Halo" Ability { id: "65B4", source: "Hydaelyn" }
@@ -199,7 +199,7 @@ hideall "--sync--"
 2246.3 "Crystallize" Ability { id: "659A", source: "Hydaelyn" }
 2253.9 "Shining Saber" Ability { id: "68C8", source: "Hydaelyn" }
 2258.2 "Crystalline Water III" Ability { id: "65A2", source: "Hydaelyn" }
-2263.2 "Highest Holy/Anthelion" Ability { id: "(6594|6598)", source: "Hydaelyn" }
+2263.2 "Highest Holy/Anthelion" Ability { id: ["6594", "6598"], source: "Hydaelyn" }
 2266.3 "--sync--" Ability { id: "65A[01]", source: "Hydaelyn" }
 
 # Lightwave 4
@@ -209,13 +209,13 @@ hideall "--sync--"
 2301.8 "Dichroic Spectrum" Ability { id: "65B8", source: "Hydaelyn" }
 
 2314.0 "Crystallize" Ability { id: "659[CD]", source: "Hydaelyn" }
-2321.7 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13|6F11|65C5)", source: "Hydaelyn" }
+2321.7 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13", "6F11", "65C5"], source: "Hydaelyn" }
 2325.9 "Crystalline Blizzard III" Ability { id: "65A4", source: "Hydaelyn" }
-2330.9 "Highest Holy/Anthelion" Ability { id: "(6594|6598)", source: "Hydaelyn" }
+2330.9 "Highest Holy/Anthelion" Ability { id: ["6594", "6598"], source: "Hydaelyn" }
 2334.0 "--sync--" Ability { id: "65A[01]", source: "Hydaelyn" }
 
 2342.1 "Crystallize" Ability { id: "659E", source: "Hydaelyn" }
-2350.3 "Aureole/Lateral Aureole" Ability { id: "(6C91|6F13|6F11|65C5)", source: "Hydaelyn" }
+2350.3 "Aureole/Lateral Aureole" Ability { id: ["6C91", "6F13", "6F11", "65C5"], source: "Hydaelyn" }
 2354.5 "Crystalline Stone III" Ability { id: "65A3", source: "Hydaelyn" }
 2359.5 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 

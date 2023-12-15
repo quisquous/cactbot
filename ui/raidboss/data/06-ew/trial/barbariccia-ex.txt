@@ -15,30 +15,30 @@ hideall "Brush with Death"
 
 # Pattern 1a, linked with pattern 2a through 757A+7575 and 757A+757B
 # 6? Possible Spell Ids
-25.7 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
-31.7 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
-32.7 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
-34.8 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
+25.7 "--sync--" StartsUsing { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" } window 10,10
+31.7 "--sync--" Ability { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" }
+32.7 "Savage Barbery (line/donut)" Ability { id: ["7574", "757A"], source: "Barbariccia" }
+34.8 "Savage Barbery (out)" Ability { id: ["7575", "757B"], source: "Barbariccia" }
 35.8 "Brush with Death" Ability { id: "75A4", source: "Barbariccia" }
 
 # Pattern 1b, linked with Pattern 2b through 757C+757D and 757E+757F and also independently by 75A6 and 75A7
-44.9 "--sync--" Ability { id: "(757C|757E)", source: "Barbariccia" }
-46.9 "Hair Raid" Ability { id: "(757D|757F)", source: "Barbariccia" }
-49.1 "Hair Spray/Deadly Twist" Ability { id: "(75A6|75A7)", source: "Barbariccia" }
+44.9 "--sync--" Ability { id: ["757C", "757E"], source: "Barbariccia" }
+46.9 "Hair Raid" Ability { id: ["757D", "757F"], source: "Barbariccia" }
+49.1 "Hair Spray/Deadly Twist" Ability { id: ["75A6", "75A7"], source: "Barbariccia" }
 
 51.0 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
 
 # Pattern 2a
-54.4 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
-60.4 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
-61.4 "Savage Barbery (donut/line)" Ability { id: "(757A|7574)", source: "Barbariccia" }
-63.5 "Savage Barbery (out)" Ability { id: "(757B|7575)", source: "Barbariccia" }
+54.4 "--sync--" StartsUsing { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" } window 10,10
+60.4 "--sync--" Ability { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" }
+61.4 "Savage Barbery (donut/line)" Ability { id: ["757A", "7574"], source: "Barbariccia" }
+63.5 "Savage Barbery (out)" Ability { id: ["757B", "7575"], source: "Barbariccia" }
 64.5 "Brush with Death" Ability { id: "75A4", source: "Barbariccia" }
 
 # Pattern 2b
-73.6 "--sync--" Ability { id: "(757E|757C)", source: "Barbariccia" }
-75.6 "Hair Raid" Ability { id: "(757F|757D)", source: "Barbariccia" }
-77.9 "Deadly Twist/Hair Spray" Ability { id: "(75A7|75A6)", source: "Barbariccia" }
+73.6 "--sync--" Ability { id: ["757E", "757C"], source: "Barbariccia" }
+75.6 "Hair Raid" Ability { id: ["757F", "757D"], source: "Barbariccia" }
+77.9 "Deadly Twist/Hair Spray" Ability { id: ["75A7", "75A6"], source: "Barbariccia" }
 
 85.8 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 92.9 "Void Aero III" Ability { id: "7571", source: "Barbariccia" }
@@ -129,17 +129,17 @@ hideall "Brush with Death"
 338.2 "Secret Breeze (protean)" #Ability { id: "7581", source: "Barbariccia" }
 
 # Pattern 3a, linked with pattern 4a through 757A+7575 and 757A+757B
-341.4 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
-347.4 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
-348.4 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
-350.5 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
+341.4 "--sync--" StartsUsing { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" } window 10,10
+347.4 "--sync--" Ability { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" }
+348.4 "Savage Barbery (line/donut)" Ability { id: ["7574", "757A"], source: "Barbariccia" }
+350.5 "Savage Barbery (out)" Ability { id: ["7575", "757B"], source: "Barbariccia" }
 
 351.5 "Brush with Death" Ability { id: "75A4", source: "Barbariccia" }
 
 # Pattern 3b, linked with Pattern 4b through 757C+757D and 757E+757F and also independently by 75A6 and 75A7
-360.6 "--sync--" Ability { id: "(757C|757E)", source: "Barbariccia" }
-362.6 "Hair Raid" Ability { id: "(757D|757F)", source: "Barbariccia" }
-364.9 "Deadly Twist/Hair Spray" Ability { id: "(75A7|75A6)", source: "Barbariccia" }
+360.6 "--sync--" Ability { id: ["757C", "757E"], source: "Barbariccia" }
+362.6 "Hair Raid" Ability { id: ["757D", "757F"], source: "Barbariccia" }
+364.9 "Deadly Twist/Hair Spray" Ability { id: ["75A7", "75A6"], source: "Barbariccia" }
 
 373.8 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 380.9 "Void Aero III" Ability { id: "7571", source: "Barbariccia" }
@@ -153,15 +153,15 @@ hideall "Brush with Death"
 409.2 "Upbraid" Ability { id: "75A8", source: "Barbariccia" }
 
 # Pattern 4a
-410.7 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
-416.7 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
-417.7 "Savage Barbery (donut/line)" Ability { id: "(757A|7574)", source: "Barbariccia" }
-419.8 "Savage Barbery (out)" Ability { id: "(757B|7575)", source: "Barbariccia" }
+410.7 "--sync--" StartsUsing { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" } window 10,10
+416.7 "--sync--" Ability { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" }
+417.7 "Savage Barbery (donut/line)" Ability { id: ["757A", "7574"], source: "Barbariccia" }
+419.8 "Savage Barbery (out)" Ability { id: ["757B", "7575"], source: "Barbariccia" }
 
 # Pattern 4b
-426.8 "--sync--" Ability { id: "(757C|757E)", source: "Barbariccia" }
-428.8 "Hair Raid" Ability { id: "(757D|757F)", source: "Barbariccia" }
-430.7 "Hair Spray/Deadly Twist" Ability { id: "(75A6|75A7)", source: "Barbariccia" }
+426.8 "--sync--" Ability { id: ["757C", "757E"], source: "Barbariccia" }
+428.8 "Hair Raid" Ability { id: ["757D", "757F"], source: "Barbariccia" }
+430.7 "Hair Spray/Deadly Twist" Ability { id: ["75A6", "75A7"], source: "Barbariccia" }
 
 439.9 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 447.1 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
@@ -224,17 +224,17 @@ hideall "Brush with Death"
 622.9 "Secret Breeze (protean)" #Ability { id: "7581", source: "Barbariccia" }
 
 # Pattern 5a
-626.2 "--sync--" StartsUsing { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" } window 10,10
-632.2 "--sync--" Ability { id: "(7573|7464|7465|7466|7489|748B)", source: "Barbariccia" }
-633.2 "Savage Barbery (line/donut)" Ability { id: "(7574|757A)", source: "Barbariccia" }
-635.3 "Savage Barbery (out)" Ability { id: "(7575|757B)", source: "Barbariccia" }
+626.2 "--sync--" StartsUsing { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" } window 10,10
+632.2 "--sync--" Ability { id: ["7573", "7464", "7465", "7466", "7489", "748B"], source: "Barbariccia" }
+633.2 "Savage Barbery (line/donut)" Ability { id: ["7574", "757A"], source: "Barbariccia" }
+635.3 "Savage Barbery (out)" Ability { id: ["7575", "757B"], source: "Barbariccia" }
 
 636.3 "Brush with Death" Ability { id: "75A4", source: "Barbariccia" }
 
 # Pattern 5b
-645.4 "--sync--" Ability { id: "(757C|757E)", source: "Barbariccia" }
-647.4 "Hair Raid" Ability { id: "(757D|757F)", source: "Barbariccia" }
-649.7 "Hair Spray/Deadly Twist" Ability { id: "(75A6|75A7)", source: "Barbariccia" }
+645.4 "--sync--" Ability { id: ["757C", "757E"], source: "Barbariccia" }
+647.4 "Hair Raid" Ability { id: ["757D", "757F"], source: "Barbariccia" }
+649.7 "Hair Spray/Deadly Twist" Ability { id: ["75A6", "75A7"], source: "Barbariccia" }
 
 658.6 "Void Aero IV" Ability { id: "7570", source: "Barbariccia" }
 660.7 "Raging Storm" Ability { id: "7572", source: "Barbariccia" }
