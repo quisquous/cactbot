@@ -11,7 +11,7 @@ hideall "--sync--"
 
 ### Phase 1
 # Realm of the Machinists will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B35:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B35" } window 1000,0
 1012.0 "Energy Burst" Ability { id: "373B", source: "Mustadio" }
 1022.7 "Arm Shot" Ability { id: "3739", source: "Mustadio" }
 1033.2 "L/R Handgonne" Ability { id: "373[EF]", source: "Mustadio" }
@@ -94,7 +94,7 @@ hideall "--sync--"
 
 ### Phase 1
 # Realm of the Templars will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B36:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B36" } window 2000,0
 2012.8 "Divine Light" Ability { id: "3867", source: "Agrias" }
 2023.3 "Thunder Slash" Ability { id: "3866", source: "Agrias" }
 2043.5 "Judgment Blade" Ability { id: "3857", source: "Agrias" }
@@ -155,7 +155,7 @@ hideall "--sync--"
 #######################
 # -p 377F:3500 -ii 3780
 # Lifeless Alley will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B37:/ window 3000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B37" } window 3000,0
 3491.0 "--sync--" StartsUsing { id: "377F", source: "Dark Crusader" } window 500,0
 3500.0 "Dark Rite" Ability { id: "377F", source: "Dark Crusader" }
 3509.0 "Noahionto" Ability { id: "377E", source: "Dark Crusader" }
@@ -184,7 +184,7 @@ hideall "--sync--"
 
 ### Phase 1
 # Realm of the Thunder God will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B38:/ window 4000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B38" } window 4000,0
 4015.0 "Cleansing Strike" Ability { id: "3751", source: "The Thunder God" }
 4032.5 "Sword L/R" Ability { id: "374[9A]", source: "The Thunder God" }
 4042.5 "Sword In/Out" Ability { id: "37(50|4F)", source: "The Thunder God" }
@@ -241,7 +241,7 @@ hideall "--sync--"
 
 ### Phase 1: Throwbacks
 # Crystalline Gaol will be sealed off
-5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B39:/ window 5000,0
+5000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B39" } window 5000,0
 5015.0 "Holy IV Ground" Ability { id: "3899", source: "Ultima, the High Seraph" }
 5029.2 "Auralight" Ability { id: "3898", source: "Ultima, the High Seraph" }
 5035.7 "Holy IV" Ability { id: "389B", source: "Ultima, the High Seraph" }

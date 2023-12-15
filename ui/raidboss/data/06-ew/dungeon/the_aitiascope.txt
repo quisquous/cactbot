@@ -16,7 +16,7 @@ hideall "--sync--"
 # -ii 60C3 6444 6446
 
 # Central Observatory will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F98:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "F98" } window 10000,0
 1012.0 "Frustration" Ability { id: "6448", source: "Livia the Undeterred" }
 1022.2 "Aglaea Bite" Ability { id: "6449", source: "Livia the Undeterred" }
 1029.3 "--middle--"
@@ -66,7 +66,7 @@ hideall "--sync--"
 # -ii 6454
 
 # Saltcrystal Strings will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F99:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "F99" } window 10000,0
 2012.0 "Tartarean Impact" Ability { id: "6455", source: "Rhitahtyn the Unshakable" }
 2020.5 "Tartarean Spark" Ability { id: "6457", source: "Rhitahtyn the Unshakable" }
 
@@ -115,7 +115,7 @@ hideall "--sync--"
 # -ii 6088
 
 # Midnight Downwell will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:F9A:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "F9A" } window 10000,0
 3012.0 "Dark Forte" Ability { id: "6464", source: "Amon the Undying" }
 3022.2 "Thundaga Forte (proximity)" Ability { id: "645A", source: "Amon the Undying" }
 3028.0 "Thundaga Forte 1" Ability { id: "645B", source: "Amon the Undying" }

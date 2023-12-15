@@ -10,7 +10,7 @@ hideall "--sync--"
 # -ii 1C90 1ABC -ic "Fierce Wind" "Void Sprite"
 
 # Main Deck will be sealed off
-0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:755:/ window 0,5
+0 "--sync--" SystemLogMessage { id: "7DC", param1: "755" } window 0,5
 6.7 "Spike Of Darkness" Ability { id: "1E51", source: "Deathgaze Hollow" }
 11.8 "--sync--" Ability { id: "1C91", source: "Deathgaze Hollow" }
 16.6 "--sync--" Ability { id: "1C92", source: "Deathgaze Hollow" }
@@ -117,7 +117,7 @@ hideall "--sync--"
 # -ic "Ferdiad's Fool"
 
 # The Rostrum will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:758:/ window 1000,5
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "758" } window 1000,5
 1014.2 "Black Wind x3" # Ability { id: "1CAC", source: "Ferdiad Hollow" }
 1020.3 "Sleight" Ability { id: "1C99", source: "Ferdiad Hollow" }
 1028.0 "Wormhole" Ability { id: "1C9A", source: "Ferdiad Hollow" }
@@ -189,7 +189,7 @@ hideall "--sync--"
 # -ic "Allagan Dreadnaught" "Proto Bit"
 
 # The Queen's Pride will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:759:/ window 2000,5
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "759" } window 2000,5
 
 2007.8 "Aether Bend" Ability { id: "1D99", source: "Proto Ultima" }
 2018.4 "Aetherochemical Laser 1" Ability { id: "1D96", source: "Proto Ultima" }
@@ -249,7 +249,7 @@ hideall "--sync--"
 # -ic Shadowcourt Jester" "Chimera Poppet"
 
 # The Queen's Graces will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:75A:/ window 3000,5
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "75A" } window 3000,5
 3013.1 "Thirty Thorns" Ability { id: "1D2B", source: "Scathach" }
 3030.2 "Thirty Arrows" Ability { id: "1D2F", source: "Scathach" } window 30,5
 3037.4 "Manos" Ability { id: "1CD3", source: "Scathach" } window 30,5

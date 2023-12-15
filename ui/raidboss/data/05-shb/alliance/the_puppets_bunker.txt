@@ -7,7 +7,7 @@ hideall "--sync--"
 # -p 508D:112.8 -ii 5074 5075 5076 5091 5092 5081 5099 507E 5090 51BC
 
 # Elevated Detritus will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB0:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB0" } window 100,0
 112.8 "Firing Order: Anti-Personnel Laser" Ability { id: "508D", source: "813P-Operated Aegis Unit" } window 112.8,20
 125.1 "--sync--" Ability { id: "507[789A]", source: "813P-Operated Aegis Unit" }
 140.1 "Maneuver: Beam Cannons" Ability { id: "5073", source: "813P-Operated Aegis Unit" }
@@ -105,7 +105,7 @@ hideall "--sync--"
 # -ic "Yorha Close-Combat Unit: Spear" "Yorha Close-Combat Unit: Blade" "Yorha Close-Combat Unit: Martial"
 # -p 5212:1013.9 -ii 5214
 # Sunken Detritus will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB1:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB1" } window 1000,0
 1013.9 "Maneuver: Long-Barreled Laser" Ability { id: "5212", source: "Light Artillery Unit" } window 1013.9,20
 1025.7 "Maneuver: Volt Array" Ability { id: "5211", source: "Light Artillery Unit" }
 1036.0 "Authorization: No Restrictions" Ability { id: "520E", source: "Light Artillery Unit" }
@@ -139,7 +139,7 @@ hideall "--sync--"
 # * however, syncing against multiple planes simultaneously might cause timeline jitter
 
 # Launch Deck will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB2:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB2" } window 2000,0
 2005.1 "Apply Shield Protocol" Ability { id: "4FA6", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" } window 2005.1,20
 2018.3 "Maneuver: Missile Command" Ability { id: "4FBD", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
 2031.5 "Maneuver: Incendiary Bombing" Ability { id: "4FC3", source: "724P-Operated Superior Flight Unit \\(A-Lpha\\)" }
@@ -224,7 +224,7 @@ hideall "--sync--"
 # -p 5006:3012.1 -ii 4FF6 4FF7 4FF8 4FF9 4FFC 5004 4FFA 4FFF 4FFE 5002
 
 # Core Command will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB3:/ window 3000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB3" } window 3000,0
 3012.1 "Maneuver: Volt Array" Ability { id: "5006", source: "905P-Operated Heavy Artillery Unit" } window 3012.1,20
 3024.5 "Operation: Activate Laser Turret" Ability { id: "4FED", source: "905P-Operated Heavy Artillery Unit" }
 3028.2 "Lower Laser" Ability { id: "5086", source: "905P-Operated Heavy Artillery Unit" } duration 3.5
@@ -300,7 +300,7 @@ hideall "--sync--"
 
 ### Heavy Artillery Unit: caster-friendly hallway section
 # Passage will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB4:/ window 4000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB4" } window 4000,0
 
 
 ### The Compound
@@ -310,7 +310,7 @@ hideall "--sync--"
 # * Can't use "The Bridge" area sync due to checkpoint with Compound 2P.
 
 # The bridge will be sealed off
-#5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DB5:/ window 5000,0
+#5000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DB5" } window 5000,0
 5002.0 "--sync--" Ability { id: "53CA", source: "The Compound" } window 5002,0
 5013.2 "Mechanical Laceration" Ability { id: "51B8", source: "The Compound" } window 6000,20
 5024.4 "Mechanical Decapitation/Dissection" Ability { id: "51B[34]", source: "The Compound" }

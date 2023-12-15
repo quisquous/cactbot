@@ -12,7 +12,7 @@ hideall "--sync--"
 # The Harakiri Kosho adds seem to be on a separate timer and thus aren't included here.
 
 # Keisen Garden will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:7AF:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "7AF" } window 0,1
 9.6 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" } window 9.6,5
 21.8 "Kenki Release" Ability { id: "1E93", source: "Zuiko-Maru" } window 21.8,10
 30.9 "Clearout" Ability { id: "1E92", source: "Zuiko-Maru" }
@@ -42,7 +42,7 @@ hideall "--sync--"
 # -ii 1E9C 1E9E
 
 # Budokan Training Grounds will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B3:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "7B3" } window 1000,5
 1006.5 "Issen" Ability { id: "1E97", source: "Dojun-Maru" } window 1006.5,5
 1016.6 "Clockwork Medium" Ability { id: "1E99", source: "Dojun-Maru" }
 1019.8 "Issen" Ability { id: "1E97", source: "Dojun-Maru" }
@@ -82,7 +82,7 @@ hideall "--sync--"
 
 # Short opener
 # Noh Theater will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B5:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "7B5" } window 2000,5
 2009.5 "Iai-Giri" Ability { id: "1EA2", source: "Yojimbo" } window 2009.5,5
 2012.7 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }
 2018.9 "Wakizashi" Ability { id: "1EA1", source: "Yojimbo" }

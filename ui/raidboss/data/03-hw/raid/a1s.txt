@@ -10,7 +10,7 @@ hideall "--sync--"
 ### Faust
 # -p E3C:1006 -ii E3E
 # Machinery Bay 44 will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:65F:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "65F" } window 1000,0
 1006.0 "Kaltstrahl" Ability { id: "E3C", source: "Faust" } window 1006,5
 1009.7 "Sturm Doll Add"
 1016.0 "Kaltstrahl" Ability { id: "E3C", source: "Faust" }
@@ -53,7 +53,7 @@ hideall "--sync--"
 # -ic "Oppressor 0.5"
 
 # Hangar 8 will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:660:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "660" } window 2000,0
 2007.0 "Royal Fount" Ability { id: "E40", source: "Oppressor" } window 2010,5
 2011.1 "Gunnery Pod" Ability { id: "E41", source: "Oppressor" }
 2016.2 "Hydrothermal Missile" Ability { id: "E43", source: "Oppressor" } duration 8

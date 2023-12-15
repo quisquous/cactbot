@@ -9,7 +9,7 @@ hideall "--sync--"
 # -ii 2E51 2E4C
 
 # Zymology will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:68D:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "68D" } window 0,1
 9.7 "Odious Air" Ability { id: "2E49", source: "Nullchu" } window 9.7,5
 21.8 "Vine Whip" Ability { id: "2E48", source: "Nullchu" }
 33.9 "--sync--" Ability { id: "2E4D", source: "Nullchu" }
@@ -53,7 +53,7 @@ hideall "--sync--"
 
 
 # The Soil Bed will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:AAA:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "AAA" } window 1000,5
 1008.9 "Stone II" Ability { id: "312A", source: "Lakhamu" } window 1008.9,10
 1019.5 "Tectonics" Ability { id: "312C", source: "Lakhamu" }
 1039.1 "Landslip" Ability { id: "3132", source: "Lakhamu" }
@@ -114,7 +114,7 @@ hideall "--sync--"
 # -ii 3139 321C 33A0
 
 # Kingsloam will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:AAF:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "AAF" } window 2000,5
 2008.6 "Mudsling" Ability { id: "3135", source: "Tokkapchi" }
 2021.8 "Quickmire" Ability { id: "3136", source: "Tokkapchi" }
 2028.8 "Quagmire" Ability { id: "3138", source: "Tokkapchi" }

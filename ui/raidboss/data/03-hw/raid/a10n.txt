@@ -7,7 +7,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # The Excruciationator will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:736:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "736" } window 0,1
 7.0 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" } window 7,3
 10.1 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }
 15.2 "Gobsway Rumblerocks" Ability { id: "1AD0", source: "Lamebrix Strikebocks" }

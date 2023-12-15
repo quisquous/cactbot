@@ -10,7 +10,7 @@ hideall "--sync--"
 ### Phase 1 (100%)
 
 # Bioweapon Storage will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:51E:/ window 10,10
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "51E" } window 10,10
 6.4 "Tail Slap" Ability { id: "7A8", source: "Melusine" } window 7,0
 12.3 "Cursed Voice" Ability { id: "7AC", source: "Melusine" }
 14.3 "Circle Of Flames x2" #Ability { id: "7AA", source: "Melusine" }

@@ -7,7 +7,7 @@ hideall "--sync--"
 # -p 4B69:1013.5 4E4B:1313
 # -ii 4B78 4B6D 4B6F
 # Katharsis will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D86:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D86" } window 1000,0
 1013.5 "Fetid Fang" Ability { id: "4B69", source: "Unknown" } window 1014,10
 1032.3 "Scrutiny" Ability { id: "4E25", source: "Unknown" }
 1034.3 "Explosion" Ability { id: "4B6E", source: "Sinister Bubble" }
@@ -65,7 +65,7 @@ hideall "--sync--"
 # -p 4B58:2011
 # -ii 4B53 4B5C 4B5B
 # Doxa will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D87:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D87" } window 2000,0
 2011.0 "The Final Verse" Ability { id: "4B58", source: "Kyklops" } window 2012,5
 2020.6 "Swing/Swipe/Cyclone" Ability { id: "4B5[457]", source: "Kyklops" }
 2030.9 "Hammer/Blade Mark" Ability { id: "4B5[9A]", source: "Kyklops" }
@@ -97,7 +97,7 @@ hideall "--sync--"
 # -p 4B8C:3013
 # -ii 4B7C 4B7E 4B8A 4B86 4B85 4B80 4B82 4B87
 # Noesis will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:D89:/ window 3000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "D89" } window 3000,0
 3013.0 "Bonebreaker" Ability { id: "4B8C", source: "Rukshs Dheem" } window 3013,10
 3019.2 "Swift Shift" Ability { id: "4B83", source: "Rukshs Dheem" }
 3026.5 "Seabed Ceremony" Ability { id: "4B7B", source: "Rukshs Dheem" }

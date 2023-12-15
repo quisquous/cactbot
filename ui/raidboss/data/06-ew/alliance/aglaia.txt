@@ -20,7 +20,7 @@ hideall "Fan Flames"
 # Note: "--hammer--" lines are done visually, as there seem to be no log line for them.
 
 # Ingenuity's Foothold will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104D:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104D" } window 10000,0
 1005.5 "--sync--" StartsUsing { id: "7176", source: "Byregot" } window 10,10
 1010.5 "Ordeal of Thunder" Ability { id: "7176", source: "Byregot" }
 1022.4 "Byregot's Strike" Ability { id: "725A", source: "Byregot" }
@@ -111,7 +111,7 @@ hideall "Fan Flames"
 # -ii 70D8 70E2 70E4 70DC
 
 # The Path will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104E:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104E" } window 10000,0
 2004.8 "--sync--" StartsUsing { id: "70E0", source: "Rhalgr's Emissary" } window 10,10
 2012.8 "Destructive Static" Ability { id: "70E0", source: "Rhalgr's Emissary" }
 2019.8 "Destructive Charge" Ability { id: "70DA", source: "Rhalgr's Emissary" } duration 17
@@ -142,7 +142,7 @@ hideall "Fan Flames"
 # TODO: is the ordering of fake vs real Broken World correct? Every log has been this.
 
 # Monument to Destruction will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104F:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104F" } window 10000,0
 3007.5 "--sync--" StartsUsing { id: "70A5", source: "Rhalgr" } window 10,10
 3012.5 "Lightning Reign" Ability { id: "70A5", source: "Rhalgr" }
 3023.6 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
@@ -213,7 +213,7 @@ hideall "Fan Flames"
 # TODO: These do "Rejuvenating Spark" (71D9) to rebalance health.  Does that adjust timings?
 
 # Endless City will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1050:/ window 10000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1050" } window 10000,0
 4007.0 "--sync--" StartsUsing { id: "71D7", source: "Lioness of Aglaia" } window 10,10
 4012.0 "Double Immolation" Ability { id: "71D7", source: "Lioness of Aglaia" }
 4019.8 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
@@ -267,7 +267,7 @@ hideall "Fan Flames"
 # -ii 70A1 7082 7083 709F 708E 72BE 7093 7094 71EE 7089 731C 708C 7092 7087
 
 # Circle of Inquiry will be sealed off
-5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1051:/ window 10000,0
+5000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1051" } window 10000,0
 5006.2 "--sync--" StartsUsing { id: "70A0", source: "Azeyma" } window 10,10
 5012.2 "Warden's Prominence" Ability { id: "70A0", source: "Azeyma" }
 
@@ -394,7 +394,7 @@ hideall "Fan Flames"
 # TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
 
 # The Twin Halls will be sealed off
-6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1052:/ window 10000,0
+6000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1052" } window 10000,0
 6008.2 "--sync--" StartsUsing { id: "70E9", source: "Nald'thal" } window 10,10
 6013.2 "As Above, So Below" Ability { id: "(70E8|70E9)", source: "Nald'thal" }
 6027.4 "Heat Above, Flames Below" Ability { id: "73A5", source: "Nald'thal" }

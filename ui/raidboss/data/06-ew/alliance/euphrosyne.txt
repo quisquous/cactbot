@@ -15,7 +15,7 @@ hideall "Season's Passing"
 # -ii 7C26 7C09 7C10 7C0F 7C14 7C15 7C23
 
 # Fertile Plains will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10A9:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10A9" } window 10000,0
 1007.0 "--sync--" StartsUsing { id: "7C24", source: "Nophica" } window 20,20
 1012.0 "Abundance" Ability { id: "7C24", source: "Nophica" }
 1020.7 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
@@ -93,7 +93,7 @@ hideall "Season's Passing"
 # This is overall an awkward timeline.  The two bosses can definitely desync by ~1-2s.
 
 # The Bole will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AB:/ window 10000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10AB" } window 10000,0
 2009.0 "--sync--" StartsUsing { id: "7A38", source: "Nymeia" } window 10,10
 2013.5 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
 2019.2 "--sync--" StartsUsing { id: "7A46", source: "Althyk" } window 10,10
@@ -180,7 +180,7 @@ hideall "Season's Passing"
 # -it "Glacial Spear"
 
 # The Barbs will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AD:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10AD" } window 10000,0
 3009.0 "--sync--" StartsUsing { id: "7D79", source: "Halone" }
 3013.0 "Rain of Spears x3" Ability { id: "7D79", source: "Halone" }
 
@@ -319,7 +319,7 @@ hideall "Season's Passing"
 # -it "Ceremonial Pillar"
 
 # The Chamber of Revolutions will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10BC:/ window 10000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10BC" } window 10000,0
 4013.1 "Blue Moon" Ability { id: "7BFA", source: "Menphina" }
 4020.9 "Love's Light" Ability { id: "7BB8", source: "Menphina" }
 4026.6 "Full Bright" Ability { id: "7BBB", source: "Menphina" }
