@@ -161,7 +161,7 @@ hideall "--sync--"
 # Final Omega - Alphascape V4.0 (Savage) - O12S+
 # -r ch1gtabdwN7QYDR6 -p 336C:3016 -ii 3380 3369 3366 335F 3377 336B 33B5
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
 3000.0 "Start"
 3002.5 "--sync--" Ability { id: "3380", source: "Omega" } window 3003,0

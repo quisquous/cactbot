@@ -4,7 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
 # -ii 77F6 77F7 77FA 77FD 77FF 7800 7804 7806 7807 780A 783E 7841
 

@@ -3,7 +3,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
 ### Phase 1: Athena
 # -ii 8677 8314 8350 82F0 8308 8309 8331 8313
