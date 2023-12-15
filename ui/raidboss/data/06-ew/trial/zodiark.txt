@@ -29,7 +29,7 @@ hideall "Triple Esoteric Ray"
 58.3 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
 71.0 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
 76.1 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
-88.3 "Opheos Eidolon" Ability { id: "67C7", source: ['Python', 'Behemoth', 'Zodiark'] }
+88.3 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
 94.9 "Phlegethon x3" Ability { id: "67D0", source: "Zodiark" } duration 4.6
 103.1 "Styx x5" Ability { id: "67DB", source: "Zodiark" } duration 5.5
 115.7 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
@@ -56,7 +56,7 @@ hideall "Triple Esoteric Ray"
 253.6 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
 268.7 "Astral Flow" Ability { id: "6630", source: "Zodiark" }
 # Note: this mob is sometimes Zodiark and sometimes Python.
-274.6 "Opheos Eidolon" Ability { id: "67C7", source: ['Python', 'Behemoth', 'Zodiark'] } window 10,10
+274.6 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] } window 10,10
 
 # Star tethers
 280.9 "--sync--" StartsUsing { id: "67C3", source: "Zodiark" } window 300,10
@@ -83,7 +83,7 @@ hideall "Triple Esoteric Ray"
 409.7 "Esoteric Dyad/Esoteric Sect" Ability { id: "(67CB|67CC)", source: "Arcane Sigil" }
 416.2 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
 431.4 "Astral Flow" Ability { id: "(662F|6630)", source: "Zodiark" }
-437.2 "Opheos Eidolon" Ability { id: "67C7", source: ['Python', 'Behemoth', 'Zodiark'] }
+437.2 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
 446.5 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 456.6 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
 465.7 "Triple Esoteric Ray" Ability { id: "67C4", source: "Zodiark" }
@@ -101,7 +101,7 @@ hideall "Triple Esoteric Ray"
 517.5 "Algedon" Ability { id: "67D[12]", source: "Zodiark" }
 530.7 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
 545.9 "Astral Flow" Ability { id: "(662F|6630)", source: "Zodiark" }
-551.7 "Opheos Eidolon" Ability { id: "67C7", source: ['Python', 'Behemoth', 'Zodiark'] }
+551.7 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
 561.0 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
 571.2 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
 580.3 "Triple Esoteric Ray" Ability { id: "67C4", source: "Zodiark" }

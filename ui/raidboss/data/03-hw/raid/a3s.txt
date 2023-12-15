@@ -38,7 +38,7 @@ hideall "--sync--"
 107.6 "Wash Away" Ability { id: "F07", source: "Living Liquid" }
 109.6 "--split--"
 115.8 "Fluid Strike" Ability { id: "F06", source: "Living Liquid" }
-125.0 "Hand Of Prayer/Parting" Ability { id: "F0[BC]", source: ['Living Liquid', 'Liquid Limb'] }
+125.0 "Hand Of Prayer/Parting" Ability { id: "F0[BC]", source: ["Living Liquid", "Liquid Limb"] }
 136.9 "Digititis" Ability { id: "F08", source: "Living Liquid" }
 137.1 "Equal Concentration" Ability { id: "F09", source: "Liquid Limb" }
 137.1 "--dps burn--" duration 27.4
@@ -47,7 +47,7 @@ hideall "--sync--"
 149.2 "Fluid Strike x2" Ability { id: "F06", source: "Living Liquid" }
 157.4 "Fluid Strike x2" Ability { id: "F06", source: "Living Liquid" }
 164.5 "Hand Of Pain" Ability { id: "F0A", source: "Living Liquid" }
-174.7 "Hand Of Prayer/Parting" Ability { id: "F0[BC]", source: ['Living Liquid', 'Liquid Limb'] }
+174.7 "Hand Of Prayer/Parting" Ability { id: "F0[BC]", source: ["Living Liquid", "Liquid Limb"] }
 178.8 "Fluid Strike x2" Ability { id: "F06", source: "Living Liquid" }
 183.8 "--sync--" Ability { id: "F28", source: "Hydrate Core" }
 184.9 "--sync--" Ability { id: "F24", source: "Living Liquid" }

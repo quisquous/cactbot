@@ -847,7 +847,7 @@ hideall "--sync--"
 # Note: various "Blast" are renamed "Elemental Blast" and various "Arrow" are renamed
 # to be "Elemental Arrow" to avoid having too many skills on the timeline.
 
-# Note: Blade of Entropy is `Ability { id: "594[23456789]|595[6789ABCD]", source: ['Trinity Avowed', 'Avowed Avatar'] }``
+# Note: Blade of Entropy is `Ability { id: "594[23456789]|595[6789ABCD]", source: ["Trinity Avowed", "Avowed Avatar"] }``
 
 # The Vault of Singing Crystal will be sealed off
 14000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E20" } window 20000,0
@@ -1496,7 +1496,7 @@ hideall "--sync--"
 20515.5 "--sync--" Ability { id: "5B8E", source: "Queen's Warrior" }
 20516.5 "--stunned--" # 3 or 7 second stun
 # Aetherial Burst does 5B89 and Aetherial Bolt does 5A0D
-20518.5 "Lots Cast" Ability { id: "(5B89|5A0D)", source: ['Aetherial Burst', 'Aetherial Bolt'] }
+20518.5 "Lots Cast" Ability { id: "(5B89|5A0D)", source: ["Aetherial Burst", "Aetherial Bolt"] }
 20521.5 "Lots Cast" #Ability { id: "5B88", source: "Aetherial Bolt" }
 20522.7 "Lots Cast" #Ability { id: "5BB6", source: "Aetherial Bolt" }
 20523.5 "--unstunned--"

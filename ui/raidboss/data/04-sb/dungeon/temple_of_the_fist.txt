@@ -29,19 +29,19 @@ hideall "--sync--"
 123.9 "Radial Blaster"
 
 # Phase change after one dies
-150.0 "Basic Instinct" Ability { id: "1FD5", source: ['Coeurl Sruti', 'Coeurl Smriti'] } window 150,10
+150.0 "Basic Instinct" Ability { id: "1FD5", source: ["Coeurl Sruti", "Coeurl Smriti"] } window 150,10
 
-156.2 "Electric Burst" Ability { id: "1FD6", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
-160.3 "Pounce" Ability { id: "1FD1", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
+156.2 "Electric Burst" Ability { id: "1FD6", source: ["Coeurl Sruti", "Coeurl Smriti"] }
+160.3 "Pounce" Ability { id: "1FD1", source: ["Coeurl Sruti", "Coeurl Smriti"] }
 167.8 "Heat Lightning" Ability { id: "1FD7", source: "Coeurl Sruti" }
-175.2 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
-180.4 "Pounce" Ability { id: "1FD1", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
+175.2 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: ["Coeurl Sruti", "Coeurl Smriti"] }
+180.4 "Pounce" Ability { id: "1FD1", source: ["Coeurl Sruti", "Coeurl Smriti"] }
 
-191.6 "Electric Burst" Ability { id: "1FD6", source: ['Coeurl Sruti', 'Coeurl Smriti'] } window 20,20
-195.7 "Pounce" Ability { id: "1FD1", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
-203.2 "Heat Lightning" Ability { id: "1FD7", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
-210.6 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: ['Coeurl Sruti', 'Coeurl Smriti'] }
-215.8 "Pounce" Ability { id: "1FD1", source: ['Coeurl Sruti', 'Coeurl Smriti'] } jump 180.4
+191.6 "Electric Burst" Ability { id: "1FD6", source: ["Coeurl Sruti", "Coeurl Smriti"] } window 20,20
+195.7 "Pounce" Ability { id: "1FD1", source: ["Coeurl Sruti", "Coeurl Smriti"] }
+203.2 "Heat Lightning" Ability { id: "1FD7", source: ["Coeurl Sruti", "Coeurl Smriti"] }
+210.6 "Radial/Wide Blaster" Ability { id: "1FD[34]", source: ["Coeurl Sruti", "Coeurl Smriti"] }
+215.8 "Pounce" Ability { id: "1FD1", source: ["Coeurl Sruti", "Coeurl Smriti"] } jump 180.4
 
 227.0 "Electric Burst"
 231.1 "Pounce"
