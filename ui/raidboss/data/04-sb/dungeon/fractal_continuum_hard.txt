@@ -10,7 +10,7 @@ hideall "--sync--"
 # -ii 27A3 27A7 27A9
 
 # Reality Augmentation Bay will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:612:/
+0 "Start" SystemLogMessage { id: "7DC", param1: "612" }
 
 10.1 "Electrochemical Transfer" Ability { id: "27A4", source: "Motherbit" } window 11,5
 15.7 "--sync--" Ability { id: "27AB", source: "Prototype Bit" }
@@ -51,7 +51,7 @@ hideall "--sync--"
 # regardless of whether X is followed by Y or by Z.
 
 # Exhibit Level VIII will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:95D:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "95D" } window 1000,5
 1008.5 "Aetheroplasm" Ability { id: "2793", source: "The Ultima Warrior" } window 8.5,5
 1018.9 "Citadel Buster" Ability { id: "2792", source: "The Ultima Warrior" }
 1029.8 "Ceruleum Vent" Ability { id: "2794", source: "The Ultima Warrior" }
@@ -144,7 +144,7 @@ hideall "--sync--"
 # -ii 27B9 27BC 27BA 27BB
 
 # Genesis Engine will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:95E:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "95E" } window 2000,5
 2012.0 "Death Spin" Ability { id: "27AD", source: "The Ultima Beast" } window 12,5
 2025.6 "Aether Bend" Ability { id: "27AF", source: "The Ultima Beast" }
 2035.2 "--sync--" Ability { id: "27B6", source: "The Ultima Beast" }

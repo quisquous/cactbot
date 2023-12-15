@@ -15,7 +15,7 @@ hideall "--sync--"
 
 # Common opener
 # Magitek Servicing will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101C:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "101C" } window 0,1
 5.7 "--sync--" StartsUsing { id: "6247", source: "Barnabas" } window 5.7,5
 8.9 "Ground and Pound" Ability { id: "6247", source: "Barnabas" }
 27.3 "Ground and Pound" Ability { id: "62EA", source: "Barnabas" }
@@ -89,7 +89,7 @@ hideall "--sync--"
 #~~~~~~~~~~~#
 
 # Martial Conditioning will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101D:/ window 1000,5
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "101D" } window 1000,5
 1009.7 "Thermal Suppression" Ability { id: "62FA", source: "Lugae" } window 1009.7,10
 1018.2 "Magitek Missile" Ability { id: "62F6", source: "Lugae" }
 1022.5 "Surface Missile" Ability { id: "62F7", source: "Lugae" }
@@ -143,7 +143,7 @@ hideall "--sync--"
 # -ii 52BE 5E68 6305
 
 # The Iron Womb will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:101E:/ window 2000,1
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "101E" } window 2000,1
 2009.8 "Lunar Nail" Ability { id: "62FE", source: "Anima" } window 2009.8,10
 2020.7 "Phantom Pain" Ability { id: "62FF", source: "Anima" }
 2029.8 "Mega Graviton" Ability { id: "6300", source: "Anima" }

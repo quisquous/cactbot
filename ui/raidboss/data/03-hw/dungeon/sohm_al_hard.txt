@@ -11,7 +11,7 @@ hideall "--Reset--"
 # -ic "Spore Sac"
 
 # The Wound will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:64C:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "64C" } window 0,1
 2.4 "--sync--" Ability { id: "5B5", source: "The Leightonward" } window 2.4,1
 6.1 "Wild Horn" Ability { id: "1C2D", source: "The Leightonward" } window 6.1,5
 13.2 "Inflammable Fumes (Readies)" Ability { id: "1C30", source: "The Leightonward" }
@@ -64,7 +64,7 @@ hideall "--Reset--"
 # -ii 1C3F
 
 # The Lava Tube will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:763:/ window 2000,1
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "763" } window 2000,1
 2012.0 "Molten Silk (Front)" Ability { id: "1C43", source: "Lava Scorpion" } window 12,5
 2022.2 "Flying Press" Ability { id: "1C3E", source: "Lava Scorpion" }
 2038.4 "Deadly Thrust" Ability { id: "1C40", source: "Lava Scorpion" }

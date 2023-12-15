@@ -10,7 +10,7 @@ hideall "Reconstruct"
 # -ic "Steppe Coeurl" "Steppe Sheep" "Steppe Yamaa"
 
 # Bardam's Hunt will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B8:/
+0 "Start" SystemLogMessage { id: "7DC", param1: "7B8" }
 11.7 "Heave" Ability { id: "1EF7", source: "Garula" } window 11.7,5
 20.9 "--sync--" Ability { id: "1EF8", source: "Garula" }
 22.4 "Crumbling Crust" Ability { id: "1F13", source: "Garula" }
@@ -34,7 +34,7 @@ hideall "Reconstruct"
 # -ii 1EFE 2578 2579 257A 257E 257B
 
 # The Rebirth of Bardam the Brave will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7B9:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "7B9" } window 1000,5
 1007.8 "Travail" Ability { id: "1EFF", source: "Bardam" } window 7.8,5
 1014.1 "Magnetism" Ability { id: "1F08", source: "Hunter Of Bardam" }
 1020.3 "Tremblor" Ability { id: "257C", source: "Bardam" }
@@ -72,7 +72,7 @@ hideall "Reconstruct"
 # -ii 1F0B 1F0E
 
 # The Voiceless Muse will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:7BA:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "7BA" } window 2000,5
 2008.1 "Feathercut" Ability { id: "1F09", source: "Yol" }
 2015.2 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
 2023.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }

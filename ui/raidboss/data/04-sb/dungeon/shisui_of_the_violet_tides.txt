@@ -8,7 +8,7 @@ hideall "--sync--"
 
 # Phase 1: 100% -> 90%, autos + mini busters
 # Harutsuge Gate will be sealed off
-0.0 "Start" sync / 29:[^:]*:7DC:[^:]*:796:/ window 10000,0
+0.0 "Start" SystemLogMessage { id: "7DC", param1: "796" } window 10000,0
 4.5 "Sharp Strike" Ability { id: "1F72", source: "Amikiri" } window 20,20
 12.7 "Sharp Strike" #Ability { id: "1F72", source: "Amikiri" }
 20.9 "Sharp Strike" #Ability { id: "1F72", source: "Amikiri" }
@@ -44,7 +44,7 @@ hideall "--sync--"
 
 # Phase 1: 100 -> 90%, autos + mini busters
 # Akashio Hall will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:797:/ window 10000,0
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "797" } window 10000,0
 1006.4 "Tornadogenesis" Ability { id: "1F7F", source: "Ruby Princess" } window 20,20
 1013.5 "Tornadogenesis" #Ability { id: "1F7F", source: "Ruby Princess" }
 1020.6 "Tornadogenesis" #Ability { id: "1F7F", source: "Ruby Princess" }
@@ -119,7 +119,7 @@ hideall "--sync--"
 
 # Phase 1: 100% -> 90%, autos and mini busters
 # Shisui Gokagura will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:798:/ window 10000,0
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "798" } window 10000,0
 2006.5 "Foul Nail" Ability { id: "1F87", source: "Shisui Yohi" }
 2013.6 "Foul Nail" Ability { id: "1F87", source: "Shisui Yohi" }
 

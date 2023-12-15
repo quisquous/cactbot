@@ -16,7 +16,7 @@ hideall "--sync--"
 # So, give up, and add extra syncs on abilities after.
 
 # Closed Area A will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E46:/ window 10000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E46" } window 10000,0
 1012.0 "Roar" Ability { id: "5EB5", source: "Knave Of Hearts" } window 1012,10
 1022.1 "Colossal Impact" Ability { id: "5EA7", source: "Knave Of Hearts" }
 1033.2 "Colossal Impact" Ability { id: "5EA4", source: "Knave Of Hearts" }
@@ -98,7 +98,7 @@ hideall "--sync--"
 # -it "Hansel"
 
 # Staging Node B will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E49:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E49" } window 2000,0
 2012.0 "Upgraded Shield" Ability { id: "5C6[89]", source: "Gretel" } window 2012,10
 2012.0 "Upgraded Lance" Ability { id: "5C6[AB]", source: "Hansel" } window 2012,10
 2025.2 "Wail" Ability { id: "5C77", source: "Hansel" }
@@ -230,7 +230,7 @@ hideall "--sync--"
 # -ii 5BFD 5BF7 5BF8 592A
 # -p 5BFE:3513.1
 # Staging Node C will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4A:/ window 10000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E4A" } window 10000,0
 
 # A bunch of 2P doing 5FB7/5BF8 blade flurry, but hard to sync this.
 # Presumably once they die, then flight units show up.
@@ -264,7 +264,7 @@ hideall "--sync--"
 
 # Phase 1
 # Staging Node D will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4B:/ window 4000,0
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E4B" } window 4000,0
 4009.0 "--sync--" StartsUsing { id: "6012", source: "Red Girl" } window 4009,10
 4014.0 "Cruelty" Ability { id: "6012", source: "Red Girl" }
 4019.9 "Shockwave" Ability { id: "600E", source: "Red Girl" }
@@ -363,7 +363,7 @@ hideall "--sync--"
 # -p 5C00:5013.3
 # -ii 5CEC 5CED 5CEE 5C02 5C05 5C07 5C08
 # Ascension Platform will be sealed off
-5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4C:/ window 5000,0
+5000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E4C" } window 5000,0
 5013.3 "Deploy Armaments" Ability { id: "5C0[03]", source: "Xun-Zi" } window 5013.3,7
 5023.4 "Deploy Armaments" Ability { id: "5C0[03]", source: "Xun-Zi" }
 5036.4 "Universal Assault" Ability { id: "5C06", source: "Xun-Zi" }
@@ -403,7 +403,7 @@ hideall "--sync--"
 # -p 5BDD:6012.3
 # -ii 5CEC 5CED 5CEE 5CEF 5FFC 5FFF 5BDA 5BDC
 # Beyond will be sealed off
-6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E4D:/ window 6000,0
+6000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E4D" } window 6000,0
 6007.3 "--sync--" StartsUsing { id: "5BDD", source: "False Idol" } window 6007.3,10
 6012.3 "Screaming Score" Ability { id: "5BDD", source: "False Idol" }
 6025.5 "Made Magic" Ability { id: "5BD[67]", source: "False Idol" }

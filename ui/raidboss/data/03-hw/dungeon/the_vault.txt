@@ -8,7 +8,7 @@ hideall "--sync--"
 # Barely worth including, but oh well.
 
 # The Quire will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:622:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "622" } window 0,1
 5.4 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" } window 5.4,5
 12.5 "Bloodstain" Ability { id: "44B", source: "Ser Adelphel Brightblade" }
 15.8 "Fast Blade" Ability { id: "2CD", source: "Ser Adelphel Brightblade" }
@@ -92,7 +92,7 @@ hideall "--sync--"
 
 # Pre-phase
 # Chapter House will be sealed off
-1000 "--sync--" sync / 29:[^:]*:7DC:[^:]*:623:/ window 1000,1
+1000 "--sync--" SystemLogMessage { id: "7DC", param1: "623" } window 1000,1
 1006.7 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" } window 6.7,5
 1015.6 "Rive" Ability { id: "46F", source: "Ser Grinnaux the Bull" }
 1018.9 "Overpower" Ability { id: "88C", source: "Ser Grinnaux the Bull" }
@@ -155,7 +155,7 @@ hideall "--sync--"
 ###Ser Charibert
 
 # The Chancel will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:624:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "624" } window 2000,0
 2006.3 "Altar Candle" Ability { id: "1030", source: "Ser Charibert" } window 6.3,5
 2015.0 "Heavensflame" Ability { id: "1031", source: "Ser Charibert" }
 2019.2 "Holy Chain" Ability { id: "1033", source: "Ser Charibert" } window 15,15

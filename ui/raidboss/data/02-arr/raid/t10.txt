@@ -10,7 +10,7 @@ hideall "--sync--"
 # Initial Phase: Tankbuster, Charge, Repeat
 0.0 "Start"
 # Alpha Concourse will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:588:/ window 5,5
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "588" } window 5,5
 8.0 "Crackle Hiss" Ability { id: "B55", source: "Imdugud" }
 16.0 "Critical Rip" Ability { id: "B56", source: "Imdugud" }
 20.0 "Crackle Hiss" Ability { id: "B55", source: "Imdugud" }

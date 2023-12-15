@@ -6,7 +6,7 @@ hideall "--sync--"
 ### Aenc Thon, Lord of the Lingering Gaze
 # -ii 1EDB 22BD -p 2299:112.2
 # Teag Gye will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B93:/ window 100,0
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B93" } window 100,0
 
 112.2 "Candy Cane" Ability { id: "2299", source: "Aenc Thon, Lord of the Lingering Gaze" } window 113,5
 120.4 "Hydrofall" Ability { id: "22A7", source: "Aenc Thon, Lord of the Lingering Gaze" }
@@ -35,7 +35,7 @@ hideall "--sync--"
 ### Griaule
 # -p 2873:507.5
 # The Atelier will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B96:/ window 500,0
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B96" } window 500,0
 
 507.5 "Rake" Ability { id: "2873", source: "Griaule" } window 508,5
 518.0 "Swinge" Ability { id: "22CA", source: "Griaule" }
@@ -76,7 +76,7 @@ hideall "--sync--"
 ### Aenc Thon, Lord of the Lengthsome Gate
 # -p 35A4:1011 34D2:1300 -ii 34EC 3681 3396
 # The Throne Room will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:B98:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "B98" } window 1000,0
 
 1011.0 "Crippling Blow" Ability { id: "35A4", source: "Aenc Thon, Lord of the Lengthsome Gait" } window 1011,5
 1018.2 "Virtuosic Capriccio" Ability { id: "358C", source: "Aenc Thon, Lord of the Lengthsome Gait" }

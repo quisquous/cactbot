@@ -8,7 +8,7 @@ hideall "Ballistic Missile"
 
 ### Blaster
 # Machinery Bay 67 will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B7:/ window 1,0
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6B7" } window 1,0
 7.0 "Brute Force" Ability { id: "15F2", source: "Blaster" } window 10,10
 14.1 "Mind Blast" Ability { id: "15F3", source: "Blaster" }
 18.2 "Ballistic Missile" Ability { id: "15F4", source: "Blaster" }
@@ -63,7 +63,7 @@ hideall "Ballistic Missile"
 # Note: "Brawler Mechanic" drifts relative to attachment depending on type.
 # Brawler Mechanics seem entirely/mostly random?
 # Machinery Bay 68 will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B8:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6B8" } window 1000,0
 1008.8 "Magicked Mark" Ability { id: "1600", source: "Brawler" } window 100,100
 1011.0 "Attachment" Ability { id: "1601", source: "Brawler" }
 1017.2 "Brawler Mechanic" #Ability { id: "160[2345]", source: "Brawler" }
@@ -109,7 +109,7 @@ hideall "Ballistic Missile"
 
 ### Swindler
 # Machinery Bay 69 will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6B9:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6B9" } window 2000,0
 2021.2 "Height" Ability { id: "160D", source: "Swindler" } window 22,7
 2021.2 "Enumeration" Ability { id: "160F", source: "Swindler" }
 2029.3 "Bio-Arithmeticks" Ability { id: "1610", source: "Swindler" }
@@ -155,7 +155,7 @@ hideall "Ballistic Missile"
 
 ### Vortexer
 # Machinery Bay 70 will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:6BA:/ window 3000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6BA" } window 3000,0
 3006.7 "Brute Force" Ability { id: "1619", source: "Vortexer" } window 10,10
 3016.8 "Elemental Jammer" Ability { id: "161B", source: "Vortexer" }
 3022.0 "Ballistic Missile" Ability { id: "1622", source: "Vortexer" }

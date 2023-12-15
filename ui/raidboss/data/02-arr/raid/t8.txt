@@ -13,7 +13,7 @@ hideall "--sync--"
 ### Phase 1: introduction to towers
 0.0 "Start"
 # Central Bow will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:532:/ window 10,10
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "532" } window 10,10
 6.1 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" } window 7,10
 26.0 "Homing Missile" Ability { id: "7C7", source: "The Avatar" }
 27.2 "Diffusion Ray" Ability { id: "7C2", source: "The Avatar" }

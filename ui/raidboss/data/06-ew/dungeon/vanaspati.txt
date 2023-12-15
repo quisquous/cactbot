@@ -14,7 +14,7 @@ hideall "--sync--"
 # -ii 366 6291 6292
 
 # Trnakiya will be sealed off
-0.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAC:/ window 0,1
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "FAC" } window 0,1
 7.1 "--sync--" StartsUsing { id: "6238", source: "Terminus Snatcher" } window 10,10
 12.1 "Note of Despair" Ability { id: "6238", source: "Terminus Snatcher" }
 19.6 "Mouth Off" Ability { id: "6231", source: "Terminus Snatcher" }
@@ -52,7 +52,7 @@ hideall "--sync--"
 # Note: 623F is also called "Poison Heart" but that's when the stack marker appears.
 
 # Insight will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAD:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "FAD" } window 1000,0
 1006.2 "--sync--" StartsUsing { id: "6241", source: "Terminus Wrecker" } window 1010,10
 1011.2 "Meaningless Destruction" Ability { id: "6241", source: "Terminus Wrecker" }
 1021.4 "Unholy Water" Ability { id: "6CCC", source: "Terminus Wrecker" }
@@ -99,7 +99,7 @@ hideall "--sync--"
 hideall "Crumbling Sky"
 
 # Devatagara will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:FAE:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "FAE" } window 2000,0
 2005.1 "--sync--" StartsUsing { id: "6252", source: "Svarbhanu" } window 2020,10
 2010.1 "Flames of Decay" Ability { id: "6252", source: "Svarbhanu" }
 2018.0 "Chaotic Pulse" Ability { id: "6B61", source: "Svarbhanu" }

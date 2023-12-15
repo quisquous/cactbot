@@ -16,7 +16,7 @@ hideall "--sync--"
 # We sync on Magitek Ray and hope for the best. It's all bad.
 
 # Via Praetoria will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:746:/ window 0,1
+0 "Start" SystemLogMessage { id: "7DC", param1: "746" } window 0,1
 10.5 "Magitek Claw" Ability { id: "1CB2", source: "Magitek Predator" }
 26.8 "Magitek Ray" Ability { id: "1CB3", source: "Magitek Predator" }
 34.1 "Magitek Missile" Ability { id: "1CB4", source: "Magitek Predator" }
@@ -39,7 +39,7 @@ hideall "--sync--"
 # -ii 1CB7 1CBA
 
 # The Magitek Installation will be sealed off
-1000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:747:/ window 1000,5
+1000.0 "Start" SystemLogMessage { id: "7DC", param1: "747" } window 1000,5
 1007.1 "Magitek Cannon" Ability { id: "1CB8", source: "Armored Weapon" } window 7.1,5
 1013.2 "Launcher" Ability { id: "1CBC", source: "Armored Weapon" }
 1019.4 "Dynamic Sensory Jammer" Ability { id: "1CB9", source: "Armored Weapon" } duration 6
@@ -84,7 +84,7 @@ hideall "--sync--"
 #~~~~~~~~~~~~~#
 
 # The Airship Landing will be sealed off
-2000.0 "Start" sync / 29:[^:]*:7DC:[^:]*:748:/ window 2000,5
+2000.0 "Start" SystemLogMessage { id: "7DC", param1: "748" } window 2000,5
 2006.1 "Dull Blade" Ability { id: "1CC1", source: "The Griffin" } window 6.1,5
 2012.2 "Beak Of The Griffin" Ability { id: "1CC3", source: "The Griffin" }
 2019.3 "Flash Powder" Ability { id: "1CC4", source: "The Griffin" }

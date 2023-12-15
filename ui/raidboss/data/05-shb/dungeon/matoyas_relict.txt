@@ -7,7 +7,7 @@ hideall "--sync--"
 # -p 547F:1011
 # -ii 368 5481 5487 548E 548F 5490 5492
 # Clayclot Cauldron will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E02:/ window 1000,0
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E02" } window 1000,0
 # Loop 3 times
 1011.0 "Hard Rock" Ability { id: "547F", source: "Mudman" } window 1012,10
 1020.2 "Petrified Peat" Ability { id: "5480", source: "Mudman" }
@@ -47,7 +47,7 @@ hideall "--sync--"
 # -p 598F:2009.2
 # -ii 598E 5990 5992 5993 5994 5995 5996 5BB9
 # Clearnote Cauldron will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E03:/ window 2000,0
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E03" } window 2000,0
 
 2009.2 "Crash-Smash" Ability { id: "598F", source: "Nixie" } window 2010,10
 2023.4 "Shower Power" Ability { id: "5991", source: "Nixie" }
@@ -71,7 +71,7 @@ hideall "--sync--"
 # -p 5913:3010.0
 # -ii 4A8F 5912 5914 5917 5918 591E 591F 5923 5925
 # Woebegone Workshop will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:E05:/ window 3000,0
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E05" } window 3000,0
 
 3011.3 "Tender Loin" Ability { id: "5913", source: "Mother Porxie" } window 3012,10
 3029.5 "Huff And Puff" Ability { id: "5919", source: "Mother Porxie" }

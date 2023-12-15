@@ -9,7 +9,7 @@ hideall "--sync--"
 ### Faust Z
 # -p 1A2B:1006.5
 # The Cranial Plate will be sealed off
-1000.0	"--sync--"	sync / 29:[^:]*:7DC:[^:]*:72F:/ window 10000
+1000.0	"--sync--"	SystemLogMessage { id: "7DC", param1: "72F" } window 10000
 1006.5 "Kaltstrahl" Ability { id: "1A2B", source: "Faust Z" } window 1007,2.5
 1013.6 "Kaltstrahl" Ability { id: "1A2B", source: "Faust Z" }
 1020.7 "Kaltstrahl" Ability { id: "1A2B", source: "Faust Z" }
@@ -49,7 +49,7 @@ hideall "--sync--"
 
 # Phase 1
 # Life Support will be sealed off
-2000.0	"--sync--"	sync / 29:[^:]*:7DC:[^:]*:730:/ window 10000
+2000.0	"--sync--"	SystemLogMessage { id: "7DC", param1: "730" } window 10000
 2010.0 "Stockpile" Ability { id: "1A38", source: "Refurbisher 0" } window 2010,5
 2012.1 "Right Arm Reassembly" Ability { id: "1A2E", source: "Refurbisher 0" }
 2014.3 "Power Generator x2 (NE)"
