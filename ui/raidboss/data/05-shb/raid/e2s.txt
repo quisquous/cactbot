@@ -11,7 +11,7 @@ hideall "Spell-In-Waiting"
 10.5 "--sync--" Ability { id: "3E63", source: "Voidwalker" } window 11,5
 11.2 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
 25.4 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
-31.8 "Slicer/Guillotine" Ability { id: "(3E4F|3E50)", source: "Voidwalker" }
+31.8 "Slicer/Guillotine" Ability { id: ["3E4F", "3E50"], source: "Voidwalker" }
 43.8 "Dark Fire III" Ability { id: "3E57", source: "Voidwalker" }
 59.2 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
 69.3 "Punishing Ray" Ability { id: "3E5B", source: "Voidwalker" }
@@ -41,11 +41,11 @@ hideall "Spell-In-Waiting"
 282.9 "Light/Dark Circles" # ???
 286.4 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
 295.7 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
-304.1 "Slicer/Guillotine" Ability { id: "(3E4F|3E50)", source: "Voidwalker" }
+304.1 "Slicer/Guillotine" Ability { id: ["3E4F", "3E50"], source: "Voidwalker" }
 330.3 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
 342.5 "Entropy" Ability { id: "3E70", source: "Voidwalker" }
 348.1 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
-358.2 "Empty Hate/Rage" Ability { id: "(3E5A|3E6C)", source: "Voidwalker" }
+358.2 "Empty Hate/Rage" Ability { id: ["3E5A", "3E6C"], source: "Voidwalker" }
 361.4 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
 374.7 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
 381.6 "Flare" Ability { id: "4685", source: "Voidwalker" }
@@ -64,21 +64,21 @@ hideall "Spell-In-Waiting"
 # FIXME: I've seen this push ~6s earlier once
 # but is pretty consistent otherwise?
 499.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" } window 500,20
-507.4 "Cycle Of ?" Ability { id: "(40B9|4659)", source: "Voidwalker" }
+507.4 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
 510.5 "Slicer/Guillotine?" Ability { id: "465A", source: "Voidwalker" }
 511.2 "Cleaver/Slicer?" Ability { id: "3E64", source: "Voidwalker" }
 513.6 "Guillotine/Cleaver?" Ability { id: "465B", source: "Voidwalker" }
 
-531.8 "Cycle Of ?" Ability { id: "(40B9|4659)", source: "Voidwalker" }
+531.8 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
 534.9 "Slicer/Guillotine?" Ability { id: "40BA", source: "Voidwalker" }
 538.0 "Cleaver/Slicer?" Ability { id: "40BB", source: "Voidwalker" }
 538.7 "Guillotine/Cleaver?" Ability { id: "3E64", source: "Voidwalker" }
 
 558.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
-568.2 "Cycle Of ?" Ability { id: "(40B9|4659)", source: "Voidwalker" }
-571.3 "Slicer/Guillotine?" Ability { id: "(40BA|465A)", source: "Voidwalker" }
-574.4 "Cleaver/Slicer?" #Ability { id: "(40BB|3E64)", source: "Voidwalker" }
-575.1 "Guillotine/Cleaver?" #Ability { id: "(3E64|465B)", source: "Voidwalker" }
+568.2 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
+571.3 "Slicer/Guillotine?" Ability { id: ["40BA", "465A"], source: "Voidwalker" }
+574.4 "Cleaver/Slicer?" #Ability { id: ["40BB", "3E64"], source: "Voidwalker" }
+575.1 "Guillotine/Cleaver?" #Ability { id: ["3E64", "465B"], source: "Voidwalker" }
 593.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
 602.5 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
 611.8 "Quietus" Ability { id: "3E71", source: "Voidwalker" }

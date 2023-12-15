@@ -75,7 +75,7 @@ hideall "--sync--"
 2173.1 "Upburst x4" # Ability { id: "605B", source: "Lunar Nail" }
 2179.7 "Big Burst x4" # Ability { id: "5B48", source: "Lunar Nail" }
 2191.3 "Lunar Flare (circles)" Ability { id: "5B49", source: "Lunar Bahamut" } window 30,30
-2203.4 "Lunar Flare (explosions)" Ability { id: "(5B4A|5B4B)", source: "Lunar Bahamut" }
+2203.4 "Lunar Flare (explosions)" Ability { id: ["5B4A", "5B4B"], source: "Lunar Bahamut" }
 2215.5 "Kan Rhai" Ability { id: "5B4F", source: "Lunar Bahamut" }
 2217.1 "--sync--" Ability { id: "5B51", source: "Lunar Bahamut" }
 2223.5 "Flatten" Ability { id: "5B58", source: "Lunar Bahamut" }

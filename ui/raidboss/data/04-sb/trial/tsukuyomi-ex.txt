@@ -81,7 +81,7 @@ hideall "--Reset--"
 1196.8 "Lunar Halo" Ability { id: "2BD6", source: "Moonlight" }
 1197.2 "Crater" Ability { id: "2CD7", source: "Moondust" }
 1197.2 "Moonbeam" Ability { id: "2BD4", source: "Moondust" }
-1208.3 "Antitwilight/Perilune" Ability { id: "(2BD7|2BD8)", source: "Tsukuyomi" }
+1208.3 "Antitwilight/Perilune" Ability { id: ["2BD7", "2BD8"], source: "Tsukuyomi" }
 
 1223.4 "Reprimand" Ability { id: "2BBA", source: "Tsukuyomi" }
 1230.6 "Zashiki-Asobi" Ability { id: "2BC5", source: "Tsukuyomi" }
@@ -108,7 +108,7 @@ hideall "--Reset--"
 1334.9 "Moonbeam" Ability { id: "2BD4", source: "Moondust" }
 1334.9 "Crater" Ability { id: "2CD7", source: "Moondust" }
 1335.9 "Lunar Halo" Ability { id: "2BD6", source: "Moonlight" }
-1346.0 "Antitwilight/Perilune" Ability { id: "(2BD7|2BD8)", source: "Tsukuyomi" }
+1346.0 "Antitwilight/Perilune" Ability { id: ["2BD7", "2BD8"], source: "Tsukuyomi" }
 
 # 35% push
 1361.3 "Dance Of The Dead" Ability { id: "2CD0", source: "Tsukuyomi" } window 1400,20

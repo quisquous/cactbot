@@ -73,7 +73,7 @@ hideall "--start--"
 1031.8 "Sanction" Ability { id: "25C3", source: "Hashmal, Bringer of Order" }
 1038.1 "--untargetable--" # ??? from video
 1039.4 "Towerfall" Ability { id: "25C4", source: "Control Tower" }
-1046.2 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1046.2 "Extreme Edge" Ability { id: ["25CE", "25D0"], source: "Hashmal, Bringer of Order" }
 1050.1 "--targetable--" # ??? from video
 
 1056.1 "Earth Hammer" Ability { id: "25CB", source: "Hashmal, Bringer of Order" }
@@ -113,7 +113,7 @@ hideall "--start--"
 1341.7 "Towerfall" Ability { id: "25C4", source: "Control Tower" }
 1343.9 "--untargetable--" # ??? from video
 1348.2 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
-1348.5 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1348.5 "Extreme Edge" Ability { id: ["25CE", "25D0"], source: "Hashmal, Bringer of Order" }
 1350.3 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1352.3 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1355.4 "--targetable--" # ??? from video
@@ -143,8 +143,8 @@ hideall "--start--"
 1469.7 "Falling Boulder" Ability { id: "25D2", source: "Hashmal, Bringer of Order" }
 
 # Starts roughly after Sand Sphere adds are dead, guessing at this natural time if To Dust goes off
-1480.6 "--sync--" StartsUsing { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" } window 40,40
-1486.6 "Extreme Edge" Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1480.6 "--sync--" StartsUsing { id: ["25CE", "25D0"], source: "Hashmal, Bringer of Order" } window 40,40
+1486.6 "Extreme Edge" Ability { id: ["25CE", "25D0"], source: "Hashmal, Bringer of Order" }
 1489.1 "Falling Rock" Ability { id: "25D3", source: "Hashmal, Bringer of Order" }
 1499.3 "Quake IV" Ability { id: "25D8", source: "Hashmal, Bringer of Order" }
 1508.5 "Rock Cutter" Ability { id: "25D7", source: "Hashmal, Bringer of Order" }
@@ -162,7 +162,7 @@ hideall "--start--"
 1543.1 "Towerfall" #Ability { id: "25C4", source: "Control Tower" }
 1545.3 "--untargetable--" # ??? from video
 1549.6 "Jagged Edge 1" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
-1549.9 "Extreme Edge" #Ability { id: "(25CE|25D0)", source: "Hashmal, Bringer of Order" }
+1549.9 "Extreme Edge" #Ability { id: ["25CE", "25D0"], source: "Hashmal, Bringer of Order" }
 1551.7 "Jagged Edge 2" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1553.7 "Jagged Edge 3" #Ability { id: "25CD", source: "Hashmal, Bringer of Order" }
 1556.8 "--targetable--" # ??? from video
@@ -216,8 +216,8 @@ hideall "--start--"
 # => variable time turning off the lights
 
 # Seen 2734 only once in the loop fflogs link below.
-2700.0 "--sync--" StartsUsing { id: "(2734|2726)", source: "Rofocale" } window 160,0
-2706.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
+2700.0 "--sync--" StartsUsing { id: ["2734", "2726"], source: "Rofocale" } window 160,0
+2706.0 "Maverick" Ability { id: ["2734", "2726"], source: "Rofocale" }
 2716.9 "Crush Helm" Ability { id: "2680", source: "Rofocale" }
 2726.3 "Embrace" Ability { id: "2685", source: "Rofocale" }
 2735.5 "Maverick" Ability { id: "2689", source: "Rofocale" }
@@ -230,8 +230,8 @@ hideall "--start--"
 2779.1 "Dark Geas" Ability { id: "2688", source: "Rofocale" }
 # => variable time turning off the lights
 
-2900.0 "--sync--" StartsUsing { id: "(2734|2726)", source: "Rofocale" } window 160,0
-2906.0 "Maverick" Ability { id: "(2734|2726)", source: "Rofocale" }
+2900.0 "--sync--" StartsUsing { id: ["2734", "2726"], source: "Rofocale" } window 160,0
+2906.0 "Maverick" Ability { id: ["2734", "2726"], source: "Rofocale" }
 2917.3 "Crush Weapon x4" Ability { id: "2683", source: "Rofocale" }
 2924.2 "Trample" Ability { id: "2676", source: "Rofocale" }
 2931.0 "Cry Of Victory" Ability { id: "274C", source: "Rofocale" }
@@ -351,9 +351,9 @@ hideall "--start--"
 # (probably, based on https://www.fflogs.com/reports/8Wmfp6FZ72DtcjKn#fight=last at hp=67%)
 
 ## Phase 3: ~45% (can push early)
-4795.0 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,10
+4795.0 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" } window 100,10
 4803.0 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
-4813.6 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+4813.6 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 4821.8 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
 4828.8 "Judgment Blade?" Ability { id: "2629", source: "Argath Thadalfus" } window 100,100 jump 5000
 4830.7 "Gnawing Dread?" Ability { id: "2621", source: "Argath Thadalfus" } window 100,100 jump 5300
@@ -372,9 +372,9 @@ hideall "--start--"
 5058.6 "Rail Of The Rat 2" Ability { id: "2624", source: "Argath Thadalfus" }
 5061.6 "Rail Of The Rat 3" Ability { id: "2624", source: "Argath Thadalfus" }
 5065.8 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
-5076.4 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5076.4 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5084.5 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
-5095.0 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5095.0 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5103.1 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
 5112.0 "Gnawing Dread" Ability { id: "2621", source: "Argath Thadalfus" }
 5114.1 "--sync--" Ability { id: "2625", source: "Argath Thadalfus" }
@@ -389,9 +389,9 @@ hideall "--start--"
 5197.1 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # loop
-5207.2 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,100 jump 4795
+5207.2 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" } window 100,100 jump 4795
 5215.3 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
-5225.6 "Mask Of Truth/Mask Of Lies" #Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5225.6 "Mask Of Truth/Mask Of Lies" #Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5233.7 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
 
 
@@ -408,9 +408,9 @@ hideall "--start--"
 5363.8 "Rail Of The Rat 2" Ability { id: "2624", source: "Argath Thadalfus" }
 5366.9 "Rail Of The Rat 3" Ability { id: "2624", source: "Argath Thadalfus" }
 5371.1 "Soulfix" Ability { id: "262A", source: "Argath Thadalfus" }
-5384.3 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5384.3 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5392.3 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
-5402.9 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5402.9 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5411.1 "The Word" Ability { id: "24A0", source: "Argath Thadalfus" }
 5418.0 "Judgment Blade" Ability { id: "2629", source: "Argath Thadalfus" }
 5424.4 "Unrelenting" Ability { id: "262B", source: "Argath Thadalfus" }
@@ -426,7 +426,7 @@ hideall "--start--"
 5498.3 "Crippling Blow" Ability { id: "262D", source: "Argath Thadalfus" }
 
 # loop
-5508.4 "Mask Of Truth/Mask Of Lies" Ability { id: "(2619|261A)", source: "Argath Thadalfus" } window 100,100 jump 4795
+5508.4 "Mask Of Truth/Mask Of Lies" Ability { id: ["2619", "261A"], source: "Argath Thadalfus" } window 100,100 jump 4795
 5516.5 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }
-5526.8 "Mask Of Truth/Mask Of Lies" #Ability { id: "(2619|261A)", source: "Argath Thadalfus" }
+5526.8 "Mask Of Truth/Mask Of Lies" #Ability { id: ["2619", "261A"], source: "Argath Thadalfus" }
 5534.9 "The Word" #Ability { id: "24A0", source: "Argath Thadalfus" }

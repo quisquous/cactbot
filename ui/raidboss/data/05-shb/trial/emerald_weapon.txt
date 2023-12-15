@@ -31,7 +31,7 @@ hideall "--sync--"
 
 73.9 "Optimized Ultima" Ability { id: "5555", source: "The Emerald Weapon" }
 79.1 "Split" Ability { id: "553A", source: "The Emerald Weapon" }
-85.2 "Sidescathe" Ability { id: "(553F|5541)", source: "The Emerald Weapon" }
+85.2 "Sidescathe" Ability { id: ["553F", "5541"], source: "The Emerald Weapon" }
 95.0 "Emerald Crusher" Ability { id: "553E", source: "The Emerald Weapon" }
 
 99.2 "--sync--" Ability { id: "5543", source: "The Emerald Weapon" }
@@ -63,7 +63,7 @@ hideall "--sync--"
 
 200.6 "Split" Ability { id: "553B", source: "The Emerald Weapon" }
 211.7 "Bit Plasma" Ability { id: "554F", source: "Claw Bit" }
-211.7 "Sidescathe" Ability { id: "(5540|5542)", source: "The Emerald Weapon" }
+211.7 "Sidescathe" Ability { id: ["5540", "5542"], source: "The Emerald Weapon" }
 219.2 "Bit Plasma" Ability { id: "554F", source: "Claw Bit" }
 226.7 "Bit Plasma" Ability { id: "554F", source: "Claw Bit" }
 
@@ -82,7 +82,7 @@ hideall "--sync--"
 # TODO: there's sometimes a 5544/5B1E ability here?
 321.0 "Split" Ability { id: "553B", source: "The Emerald Weapon" } window 100,100 jump 200.6
 332.1 "Bit Plasma" #Ability { id: "554F", source: "Claw Bit" }
-332.1 "Sidescathe" #Ability { id: "(5541|5542)", source: "The Emerald Weapon" }
+332.1 "Sidescathe" #Ability { id: ["5541", "5542"], source: "The Emerald Weapon" }
 339.6 "Bit Plasma" #Ability { id: "554F", source: "Claw Bit" }
 347.1 "Bit Plasma" #Ability { id: "554F", source: "Claw Bit" }
 

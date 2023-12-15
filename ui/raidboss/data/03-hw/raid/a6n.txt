@@ -30,11 +30,11 @@
 1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "6B8" } window 1000,0
 1008.7 "Magicked Mark" Ability { id: "1715", source: "Brawler" } window 8.7,5
 1010.8 "Attachment" Ability { id: "1601", source: "Brawler" }
-1017.0 "Single Buster/Double Buster/Rocket Drill" Ability { id: "(1717|1718|1719)", source: "Brawler" }
+1017.0 "Single Buster/Double Buster/Rocket Drill" Ability { id: ["1717", "1718", "1719"], source: "Brawler" }
 
 1022.1 "Magicked Mark" Ability { id: "1715", source: "Brawler" }
 1024.2 "Attachment" Ability { id: "1601", source: "Brawler" } window 5,5
-1030.3 "Single Buster/Double Buster/Rocket Drill" Ability { id: "(1717|1718|1719)", source: "Brawler" }
+1030.3 "Single Buster/Double Buster/Rocket Drill" Ability { id: ["1717", "1718", "1719"], source: "Brawler" }
 
 1035.4 "Magicked Mark" Ability { id: "1715", source: "Brawler" } jump 1022.1
 1037.5 "Attachment"

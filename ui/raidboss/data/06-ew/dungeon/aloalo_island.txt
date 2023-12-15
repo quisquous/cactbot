@@ -176,8 +176,8 @@ hideall "--sync--"
 2107.5 "Strewn Bubbles" Ability { id: "8A86", source: "Ketuduke" }
 2114.5 "Sphere Shatter" Ability { id: "8A87", source: "Ketuduke" }
 
-2123.5 "Receding Twintides/Encroaching Twintides" Ability { id: "(8A9D|8A9F)", source: "Ketuduke" }
-2127.5 "Far Tide/Near Tide" Ability { id: "(8AA0|8A9E)", source: "Ketuduke" }
+2123.5 "Receding Twintides/Encroaching Twintides" Ability { id: ["8A9D", "8A9F"], source: "Ketuduke" }
+2127.5 "Far Tide/Near Tide" Ability { id: ["8AA0", "8A9E"], source: "Ketuduke" }
 
 2134.2 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
 2146.4 "--sync--" StartsUsing { id: "8A79", source: "Ketuduke" } jump "ketuduke-01"
@@ -240,15 +240,15 @@ hideall "--sync--"
 
 2837.9 "Blowing Bubbles" Ability { id: "8A88", source: "Ketuduke" }
 2843.9 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
-2851.8 "Receding Twintides/Encroaching Twintides" Ability { id: "(8A9D|8A9F)", source: "Ketuduke" }
-2855.8 "Far Tide/Near Tide" Ability { id: "(8AA0|8A9E)", source: "Ketuduke" }
+2851.8 "Receding Twintides/Encroaching Twintides" Ability { id: ["8A9D", "8A9F"], source: "Ketuduke" }
+2855.8 "Far Tide/Near Tide" Ability { id: ["8AA0", "8A9E"], source: "Ketuduke" }
 2867.5 "Tidal Roar" Ability { id: "8AA5", source: "Ketuduke" }
 
 2874.3 "--middle--" Ability { id: "8A77", source: "Ketuduke" }
 2879.4 "Strewn Bubbles" Ability { id: "8A86", source: "Ketuduke" }
 2886.4 "Sphere Shatter" Ability { id: "8A87", source: "Ketuduke" }
-2887.4 "Receding Twintides/Encroaching Twintides" Ability { id: "(8A9D|8A9F)", source: "Ketuduke" }
-2891.4 "Far Tide/Near Tide" Ability { id: "(8AA0|8A9E)", source: "Ketuduke" }
+2887.4 "Receding Twintides/Encroaching Twintides" Ability { id: ["8A9D", "8A9F"], source: "Ketuduke" }
+2891.4 "Far Tide/Near Tide" Ability { id: ["8AA0", "8A9E"], source: "Ketuduke" }
 2903.1 "Hydroblast" Ability { id: "8AA3", source: "Ketuduke" }
 2914.8 "Tidal Roar" Ability { id: "8AA5", source: "Ketuduke" }
 
@@ -441,12 +441,12 @@ hideall "--sync--"
 4016.2 "Inferno Theorem" Ability { id: "887F", source: "Lala" }
 
 4019.3 "--middle--" Ability { id: "8874", source: "Lala" }
-4027.4 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4027.4 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4040.5 "Arcane Plot" Ability { id: "8875", source: "Lala" }
 4062.6 "Inferno Theorem" Ability { id: "887F", source: "Lala" }
 
 4069.7 "--middle--" Ability { id: "8874", source: "Lala" }
-4077.8 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4077.8 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4088.9 "Analysis" Ability { id: "887B", source: "Lala" }
 4102.7 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
@@ -471,7 +471,7 @@ hideall "--sync--"
 
 4243.4 "--middle--" Ability { id: "8874", source: "Lala" }
 4251.7 label "lala-05-loop"
-4251.7 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4251.7 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4260.8 "Analysis" Ability { id: "887B", source: "Lala" }
 4272.5 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
@@ -485,7 +485,7 @@ hideall "--sync--"
 4363.2 "Strategic Strike" Ability { id: "887E", source: "Lala" }
 
 4371.4 "--middle--" Ability { id: "8874", source: "Lala" }
-4379.7 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" } window 40,40 forcejump "lala-05-loop"
+4379.7 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" } window 40,40 forcejump "lala-05-loop"
 
 
 4411.0 label "lala-06"
@@ -496,7 +496,7 @@ hideall "--sync--"
 
 4443.4 "--middle--" Ability { id: "8874", source: "Lala" }
 4451.7 label "lala-06-loop"
-4451.7 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4451.7 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4460.8 "Analysis" Ability { id: "887B", source: "Lala" }
 4472.5 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
@@ -510,7 +510,7 @@ hideall "--sync--"
 4568.5 "Strategic Strike" Ability { id: "887E", source: "Lala" }
 
 4576.7 "--middle--" Ability { id: "8874", source: "Lala" }
-4584.9 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" } window 40,40 forcejump "lala-06-loop"
+4584.9 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" } window 40,40 forcejump "lala-06-loop"
 
 
 4611.0 label "lala-07"
@@ -521,7 +521,7 @@ hideall "--sync--"
 
 4643.1 "--middle--" Ability { id: "8874", source: "Lala" }
 4651.3 label "lala-07-loop"
-4651.3 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4651.3 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4660.4 "Analysis" Ability { id: "887B", source: "Lala" }
 4672.1 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
@@ -535,7 +535,7 @@ hideall "--sync--"
 4762.7 "Strategic Strike" Ability { id: "887E", source: "Lala" }
 
 4770.9 "--middle--" Ability { id: "8874", source: "Lala" }
-4779.1 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" } window 40,40 forcejump "lala-07-loop"
+4779.1 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" } window 40,40 forcejump "lala-07-loop"
 
 
 4811.0 label "lala-08"
@@ -547,7 +547,7 @@ hideall "--sync--"
 
 4844.3 "--middle--" Ability { id: "8874", source: "Lala" }
 4852.4 label "lala-08-loop"
-4852.4 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" }
+4852.4 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" }
 4861.5 "Analysis" Ability { id: "887B", source: "Lala" }
 4873.2 "Targeted Light" Ability { id: "8CDC", source: "Lala" }
 
@@ -562,7 +562,7 @@ hideall "--sync--"
 4967.0 "Strategic Strike" Ability { id: "887E", source: "Lala" }
 
 4975.2 "--middle--" Ability { id: "8874", source: "Lala" }
-4983.5 "Arcane Blight" Ability { id: "(886F|8870|8871|8872)", source: "Lala" } window 40,40 forcejump "lala-08-loop"
+4983.5 "Arcane Blight" Ability { id: ["886F", "8870", "8871", "8872"], source: "Lala" } window 40,40 forcejump "lala-08-loop"
 
 
 # ALL ENCOUNTER ABILITIES
@@ -773,7 +773,7 @@ hideall "--sync--"
 6275.2 "Thunderstorm 1" Ability { id: "8939", source: "Statice" }
 6279.2 "Thunderstorm 2" Ability { id: "8939", source: "Statice" }
 6283.2 "Thunderstorm 3" Ability { id: "8939", source: "Statice" }
-6300.4 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: "(893A|893B|893C|893D)", source: "Statice" }
+6300.4 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: ["893A", "893B", "893C", "893D"], source: "Statice" }
 
 6310.5 label "statice-09-loop"
 6310.5 "Pinwheel" Ability { id: "8933", source: "Statice" }
@@ -812,7 +812,7 @@ hideall "--sync--"
 6469.8 "Thunderstorm 1" Ability { id: "8939", source: "Statice" }
 6473.8 "Thunderstorm 2" Ability { id: "8939", source: "Statice" }
 6477.8 "Thunderstorm 3" Ability { id: "8939", source: "Statice" }
-6495.0 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: "(893A|893B|893C|893D)", source: "Statice" }
+6495.0 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: ["893A", "893B", "893C", "893D"], source: "Statice" }
 
 6508.1 label "statice-10-loop"
 6508.1 "Pinwheel" Ability { id: "8933", source: "Statice" }
@@ -851,7 +851,7 @@ hideall "--sync--"
 6672.1 "Thunderstorm 1" Ability { id: "8939", source: "Statice" }
 6676.1 "Thunderstorm 2" Ability { id: "8939", source: "Statice" }
 6680.1 "Thunderstorm 3" Ability { id: "8939", source: "Statice" }
-6697.2 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: "(893A|893B|893C|893D)", source: "Statice" }
+6697.2 "Meteor/Sledgemagic/Hunks of Junk/Happy Surprise" Ability { id: ["893A", "893B", "893C", "893D"], source: "Statice" }
 
 6707.3 label "statice-11-loop"
 6707.3 "Pinwheel" Ability { id: "8933", source: "Statice" }

@@ -139,7 +139,7 @@ hideall "Limit Break"
 1559.4 "Meteor Impact 8" #Ability { id: "4F03", source: "Spectral Black Mage" }
 1567.9 "Coruscant Saber" Ability { id: "4EF[12]", source: "Warrior Of Light" }
 1568.0 "Cauterize" Ability { id: "4F07", source: "Wyrm Of Light" }
-1580.2 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
+1580.2 "Limit Break" Ability { id: ["4EFB", "53CB", "515C"], source: "Warrior Of Light" }
 ### TODO: bitter end gets moved up 0.5s if it's meteor???
 1593.1 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 1598.1 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
@@ -185,7 +185,7 @@ hideall "Limit Break"
 2556.6 "Absolute Holy" Ability { id: "4F2B", source: "Warrior Of Light" }
 2556.6 "Deluge Of Death" Ability { id: "4F02", source: "Spectral Bard" }
 2563.6 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-2571.8 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
+2571.8 "Limit Break" Ability { id: ["4EFB", "53CB", "515C"], source: "Warrior Of Light" }
 2584.1 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 2589.1 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 
@@ -326,7 +326,7 @@ hideall "Limit Break"
 6050.9 "Coruscant Saber" Ability { id: "4EF[12]", source: "Warrior Of Light" }
 6051.0 "Cauterize" Ability { id: "4F07", source: "Wyrm Of Light" }
 ### TODO: This is random (note: bitter end gets moved up 0.5s if it's meteor)
-6063.1 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
+6063.1 "Limit Break" Ability { id: ["4EFB", "53CB", "515C"], source: "Warrior Of Light" }
 6075.9 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 6080.9 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }
 6084.1 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
@@ -360,7 +360,7 @@ hideall "Limit Break"
 7039.3 "Deluge Of Death" Ability { id: "4F02", source: "Spectral Bard" }
 7039.3 "Absolute Holy" Ability { id: "4F2B", source: "Warrior Of Light" }
 7046.3 "--middle--" Ability { id: "4F45", source: "Warrior Of Light" }
-7054.6 "Limit Break" Ability { id: "(4EFB|53CB|515C)", source: "Warrior Of Light" }
+7054.6 "Limit Break" Ability { id: ["4EFB", "53CB", "515C"], source: "Warrior Of Light" }
 # TODO: guessing here
 7066.8 "--sync--" StartsUsing { id: "4F0A", source: "Warrior Of Light" } window 10,10
 7071.8 "The Bitter End" Ability { id: "4F0A", source: "Warrior Of Light" }

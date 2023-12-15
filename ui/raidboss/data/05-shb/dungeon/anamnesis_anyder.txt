@@ -79,7 +79,7 @@ hideall "--sync--"
 2073.2 "The Final Verse" Ability { id: "4B58", source: "Kyklops" }
 2083.1 "Hammer/Blade Mark" Ability { id: "4B5[9A]", source: "Kyklops" }
 2087.7 "Blade/Hammer Mark" Ability { id: "4B5[9A]", source: "Kyklops" }
-2095.4 "Pyre/Hearth" Ability { id: "(4B5F|4B60)", source: "Kyklops" }
+2095.4 "Pyre/Hearth" Ability { id: ["4B5F", "4B60"], source: "Kyklops" }
 2100.1 "Terrible Hammer/Blade" #Ability { id: "4B5[DE]", source: "Kyklops" }
 2102.2 "Terrible Blade/Hammer" #Ability { id: "4B5[DE]", source: "Kyklops" }
 2107.0 "Swing/Swipe/Cyclone" Ability { id: "4B5[457]", source: "Kyklops" }

@@ -68,9 +68,9 @@ hideall "--sync--"
 341.4 "Brightfire" # Ability { id: "563[BC]", source: "Halo Of Flame" }
 346.1 "--center--" Ability { id: "5908", source: "Fatebreaker" }
 356.8 "Burnt Strike" Ability { id: "56(2C|2E|30)", source: "Fatebreaker" }
-358.5 "Blastburn/Burnout" # Ability { id: "(2D|2F|31)", source: "Fatebreaker" }
+358.5 "Blastburn/Burnout" # Ability { id: "56(2D|2F|31)", source: "Fatebreaker" }
 369.2 "Burnt Strike" Ability { id: "56(2C|2E|30)", source: "Fatebreaker" }
-370.9 "Blastburn/Burnout" # Ability { id: "(2D|2F|31)", source: "Fatebreaker" }
+370.9 "Blastburn/Burnout" # Ability { id: "56(2D|2F|31)", source: "Fatebreaker" }
 381.2 "Burnished Glory" Ability { id: "5650", source: "Fatebreaker" }
 
 # Fetters rotation block

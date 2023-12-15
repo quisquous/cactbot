@@ -42,7 +42,7 @@ hideall "--sync--"
 # Tiles 1
 118.5 "Intemperance" Ability { id: "661E", source: "Erichthonios" }
 122.6 "--sync--" Ability { id: "65F5", source: "Erichthonios" }
-134.4 "Intemperate Torment" Ability { id: "(661F|6620)", source: "Erichthonios" }
+134.4 "Intemperate Torment" Ability { id: ["661F", "6620"], source: "Erichthonios" }
 135.3 "First Element" Ability { id: "6621", source: "Erichthonios" }
 141.4 "Warder's Wrath" Ability { id: "662A", source: "Erichthonios" }
 146.4 "Second Element" Ability { id: "6621", source: "Erichthonios" }
@@ -84,7 +84,7 @@ hideall "--sync--"
 # Tiles 2
 341.6 "Intemperance" Ability { id: "661E", source: "Erichthonios" }
 345.7 "--sync--" Ability { id: "65F5", source: "Erichthonios" }
-357.4 "Intemperate Torment" Ability { id: "(661F|6620)", source: "Erichthonios" }
+357.4 "Intemperate Torment" Ability { id: ["661F", "6620"], source: "Erichthonios" }
 358.6 "First Element" Ability { id: "6621", source: "Erichthonios" }
 369.6 "Second Element" Ability { id: "6621", source: "Erichthonios" }
 374.0 "Gaoler's Flail In/Out" Ability { id: "6DA[2-9A-D]", source: "Erichthonios" } window 3,2

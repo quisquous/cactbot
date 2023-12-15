@@ -126,9 +126,9 @@ hideall "--sync--"
 3098.4 "--untargetable--"
 3115.5 "Nox" Ability { id: "7621", source: "Scarmiglione" }
 # These seem to be adjusted slightly in time based on which order they come in.
-3118.5 "Void Gravity/Void Vortex" #Ability { id: "(7622|7623)", source: "Scarmiglione" }
+3118.5 "Void Gravity/Void Vortex" #Ability { id: ["7622", "7623"], source: "Scarmiglione" }
 3142.1 "Nox" Ability { id: "7621", source: "Scarmiglione" }
-3148.1 "Void Vortex/Void Gravity" #Ability { id: "(7623|7622)", source: "Scarmiglione" }
+3148.1 "Void Vortex/Void Gravity" #Ability { id: ["7623", "7622"], source: "Scarmiglione" }
 
 # natural enrage, if add phase is failed
 3191.8 "Corruptor's Pitch" Ability { id: "7625", source: "Scarmiglione" } duration 8 window 200,50

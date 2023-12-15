@@ -11,9 +11,9 @@ hideall "--sync--"
 10.1 "--sync--" Ability { id: "7854", source: "Hegemone" }
 20.0 "Polyominous Dark IV" Ability { id: "7855", source: "Hegemone" }
 23.8 "--sync--" Ability { id: "784C", source: "Hegemone" }
-30.9 "Choros Ixou 1" Ability { id: "(7857|7858)", source: "Hegemone" }
-41.0 "Choros Ixou 2" Ability { id: "(7857|7858)", source: "Hegemone" }
-51.1 "Choros Ixou 3" Ability { id: "(7857|7858)", source: "Hegemone" }
+30.9 "Choros Ixou 1" Ability { id: ["7857", "7858"], source: "Hegemone" }
+41.0 "Choros Ixou 2" Ability { id: ["7857", "7858"], source: "Hegemone" }
+51.1 "Choros Ixou 3" Ability { id: ["7857", "7858"], source: "Hegemone" }
 62.6 "Hemitheos's Dark IV" Ability { id: "784E", source: "Hegemone" } window 65,10
 74.3 "Transmission 1" Ability { id: "784F", source: "Hegemone" }
 84.0 "Transmission 2" Ability { id: "784F", source: "Hegemone" }
@@ -23,7 +23,7 @@ hideall "--sync--"
 121.8 "Aetheric Polyominoid" Ability { id: "7853", source: "Hegemone" }
 121.8 "--sync--" Ability { id: "7854", source: "Hegemone" }
 127.5 "--sync--" Ability { id: "784C", source: "Hegemone" }
-134.7 "Choros Ixou" Ability { id: "(7857|7858)", source: "Hegemone" }
+134.7 "Choros Ixou" Ability { id: ["7857", "7858"], source: "Hegemone" }
 135.9 "Polyominous Dark IV" Ability { id: "7855", source: "Hegemone" }
 141.3 "--sync--" Ability { id: "784C", source: "Hegemone" }
 149.1 "Strophe Ixou x8" Ability { id: "7A11", source: "Hegemone" }
@@ -70,7 +70,7 @@ hideall "--sync--"
 414.1 "Polyominoid Sigma" Ability { id: "7856", source: "Hegemone" }
 414.1 "--sync--" Ability { id: "7854", source: "Hegemone" }
 419.2 "--sync--" Ability { id: "784C", source: "Hegemone" }
-426.4 "Choros Ixou" Ability { id: "(7857|7858)", source: "Hegemone" }
+426.4 "Choros Ixou" Ability { id: ["7857", "7858"], source: "Hegemone" }
 427.1 "Polyominous Dark IV" Ability { id: "7855", source: "Hegemone" }
 437.2 "Synergy" Ability { id: "785B", source: "Hegemone" }
 
@@ -102,6 +102,6 @@ hideall "--sync--"
 597.8 "Polyominoid Sigma" #Ability { id: "7856", source: "Hegemone" }
 597.8 "--sync--" #Ability { id: "7854", source: "Hegemone" }
 602.9 "--sync--" #Ability { id: "784C", source: "Hegemone" }
-610.1 "Choros Ixou" #Ability { id: "(7857|7858)", source: "Hegemone" }
+610.1 "Choros Ixou" #Ability { id: ["7857", "7858"], source: "Hegemone" }
 610.8 "Polyominous Dark IV" #Ability { id: "7855", source: "Hegemone" }
 620.9 "Synergy" #Ability { id: "785B", source: "Hegemone" }

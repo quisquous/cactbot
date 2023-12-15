@@ -37,9 +37,9 @@ hideall "Season's Passing"
 
 1115.5 "Matron's Harvest" Ability { id: "7C1E", source: "Nophica" }
 1123.7 "--middle--" Ability { id: "7C25", source: "Nophica" }
-1143.8 "Blueblossoms/Giltblossoms 1" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1149.8 "Blueblossoms/Giltblossoms 2" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1155.8 "Blueblossoms/Giltblossoms 3" Ability { id: "(7C20|7C21)", source: "Nophica" }
+1143.8 "Blueblossoms/Giltblossoms 1" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1149.8 "Blueblossoms/Giltblossoms 2" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1155.8 "Blueblossoms/Giltblossoms 3" Ability { id: ["7C20", "7C21"], source: "Nophica" }
 1161.5 "Abundance" Ability { id: "7C24", source: "Nophica" }
 
 1170.3 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
@@ -57,12 +57,12 @@ hideall "Season's Passing"
 1227.9 "Matron's Harvest" Ability { id: "7C1E", source: "Nophica" }
 1236.1 "--sync--" Ability { id: "7C25", source: "Nophica" }
 1240.5 "Matron's Breath" Ability { id: "7C1F", source: "Nophica" }
-1256.1 "Blueblossoms/Giltblossoms 1" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1259.7 "Blueblossoms/Giltblossoms 2" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1263.3 "Blueblossoms/Giltblossoms 3" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1266.9 "Blueblossoms/Giltblossoms 4" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1270.5 "Blueblossoms/Giltblossoms 5" Ability { id: "(7C20|7C21)", source: "Nophica" }
-1274.1 "Blueblossoms/Giltblossoms 6" Ability { id: "(7C20|7C21)", source: "Nophica" }
+1256.1 "Blueblossoms/Giltblossoms 1" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1259.7 "Blueblossoms/Giltblossoms 2" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1263.3 "Blueblossoms/Giltblossoms 3" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1266.9 "Blueblossoms/Giltblossoms 4" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1270.5 "Blueblossoms/Giltblossoms 5" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1274.1 "Blueblossoms/Giltblossoms 6" Ability { id: ["7C20", "7C21"], source: "Nophica" }
 1280.1 "Furrow" Ability { id: "7C16", source: "Nophica" }
 1288.2 "Heavens' Earth" Ability { id: "7C22", source: "Nophica" }
 1299.4 "Abundance" Ability { id: "7C24", source: "Nophica" }
@@ -121,7 +121,7 @@ hideall "Season's Passing"
 2235.2 "Petrai" Ability { id: "7A48", source: "Althyk" }
 
 2240.2 "--middle--" Ability { id: "7A4A", source: "Althyk" }
-2243.9 "Philotes" Ability { id: "(7A35|7A36)", source: "Althyk" }
+2243.9 "Philotes" Ability { id: ["7A35", "7A36"], source: "Althyk" }
 2247.7 "Hydrostasis" Ability { id: "7A3A", source: "Nymeia" } window 20,20
 2261.0 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
 2261.8 "Hydrostasis 1" Ability { id: "7A3E", source: "Nymeia" }
@@ -326,7 +326,7 @@ hideall "Season's Passing"
 4038.0 "First Blush" Ability { id: "7BBC", source: "Menphina" }
 
 4040.3 "--middle--" Ability { id: "7BD3", source: "Menphina" }
-4048.6 "Midnight Frost" Ability { id: "(7BCB|7BCC)", source: "Menphina" }
+4048.6 "Midnight Frost" Ability { id: ["7BCB", "7BCC"], source: "Menphina" }
 4061.2 "Lunar Kiss" Ability { id: "7BF7", source: "Menphina" }
 
 4070.0 "--sync--" Ability { id: "7BF5", source: "Menphina" }
@@ -345,7 +345,7 @@ hideall "Season's Passing"
 4109.9 "Lovers' Bridge 1" Ability { id: "7BBD", source: "Menphina" }
 4112.8 "--middle--" Ability { id: "7BD3", source: "Menphina" }
 4116.0 "Lovers' Bridge 2" Ability { id: "7BBE", source: "Menphina" }
-4121.0 "Midnight Frost" Ability { id: "(7BCB|7BCC)", source: "Menphina" }
+4121.0 "Midnight Frost" Ability { id: ["7BCB", "7BCC"], source: "Menphina" }
 
 # add phase
 4125.8 "--sync--" Ability { id: "7BD3", source: "Menphina" }
@@ -362,28 +362,28 @@ hideall "Season's Passing"
 4500.0 "--sync--" StartsUsing { id: "8064", source: "Menphina" } window 500,0
 4510.0 "Rise of the Twin Moons" Ability { id: "8064", source: "Menphina" }
 4513.2 "--targetable--"
-4526.6 "Midnight Frost" Ability { id: "(7BD7|7BD8|7BD9|7BDA)", source: "Menphina" }
-4526.8 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4526.6 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4526.8 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4535.5 "Playful Orbit" Ability { id: "(7BE2|7BE3)", source: "Menphina" }
-4545.7 "Midnight Frost" Ability { id: "(7BE4|7BE5|7BE6|7BE7|7F0A|7F0B|7F0C|7F0D)", source: "Menphina" }
-4545.8 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4535.5 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4545.7 "Midnight Frost" Ability { id: ["7BE4", "7BE5", "7BE6", "7BE7", "7F0A", "7F0B", "7F0C", "7F0D"], source: "Menphina" }
+4545.8 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4548.8 "--sync--" Ability { id: "(7C06|7C07)", source: "Menphina" }
+4548.8 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
 4558.9 "Blue Moon" Ability { id: "7BFB", source: "Menphina" }
 4566.7 "--sync--" Ability { id: "7BF3", source: "Menphina" }
 4573.3 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
-4579.3 "Midnight Frost" Ability { id: "(7BD7|7BD8|7BD9|7BDA)", source: "Menphina" }
-4579.4 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4579.3 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4579.4 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
 4586.4 "Cratering Chill" Ability { id: "7BEE", source: "Menphina" }
 4593.5 "Winter Solstice" Ability { id: "7BED", source: "Menphina" }
 4593.8 "--sync--" Ability { id: "7BEF", source: "Menphina" }
-4597.9 "Playful Orbit" Ability { id: "(7BE2|7BE3)", source: "Menphina" }
-4608.1 "Winter Halo" Ability { id: "(7BE8|7BE9|7F0E|7F0F|7BDB|7BDC)", source: "Menphina" }
-4608.2 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4597.9 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4608.1 "Winter Halo" Ability { id: ["7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4608.2 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4611.2 "--sync--" Ability { id: "(7C06|7C07)", source: "Menphina" }
+4611.2 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
 4619.3 "Moonset Rays" Ability { id: "80F9", source: "Menphina" }
 4628.0 "Love's Light" Ability { id: "7BC3", source: "Menphina" }
 4632.7 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
@@ -395,17 +395,17 @@ hideall "Season's Passing"
 4651.6 "Silver Mirror 1" #Ability { id: "7BF6", source: "Menphina" }
 4653.6 "Silver Mirror 2" #Ability { id: "7BF6", source: "Menphina" }
 4655.6 "Silver Mirror 3" #Ability { id: "7BF6", source: "Menphina" }
-4661.3 "Midnight Frost/Winter Halo" Ability { id: "(7BD7|7BD8|7BD9|7BDA|7BE8|7BE9|7F0E|7F0F|7BDB|7BDC)", source: "Menphina" }
-4661.5 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4661.3 "Midnight Frost/Winter Halo" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA", "7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4661.5 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
 4671.5 "Love's Light" Ability { id: "7BC2", source: "Menphina" }
 4676.2 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
-4681.4 "Playful Orbit" Ability { id: "(7BE2|7BE3)", source: "Menphina" }
+4681.4 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
 4687.4 "First Blush" Ability { id: "7BBC", source: "Menphina" }
-4691.5 "Midnight Frost" Ability { id: "(7BE4|7BE5|7BE6|7BE7|7F0A|7F0B|7F0C|7F0D)", source: "Menphina" }
-4691.7 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4691.5 "Midnight Frost" Ability { id: ["7BE4", "7BE5", "7BE6", "7BE7", "7F0A", "7F0B", "7F0C", "7F0D"], source: "Menphina" }
+4691.7 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4694.6 "--sync--" Ability { id: "(7C06|7C07)", source: "Menphina" }
+4694.6 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
 4702.7 "Moonset Rays" Ability { id: "80F9", source: "Menphina" }
 
 4717.4 "Lunar Kiss" Ability { id: "7BF8", source: "Menphina" }
@@ -413,20 +413,20 @@ hideall "Season's Passing"
 4729.9 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
 4736.7 "Lovers' Bridge 1" Ability { id: "7BBD", source: "Menphina" }
 # This regex could probably be shorter, but need more info.
-4739.7 "Midnight Frost" Ability { id: "(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD])", source: "Menphina" }
+4739.7 "Midnight Frost" Ability { id: ["7BCF", "7BD0", "7BD[789A]", "7BE[4567]", "7F0[ABCD]"], source: "Menphina" }
 4742.7 "Lovers' Bridge 2" Ability { id: "7BBE", source: "Menphina" }
 
 4748.5 "Blue Moon" Ability { id: "7BFB", source: "Menphina" }
 4759.2 "Lunar Kiss" Ability { id: "7BF8", source: "Menphina" }
 4765.9 "--sync--" Ability { id: "7BF3", source: "Menphina" }
 4772.5 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
-4778.2 "Midnight Frost" Ability { id: "(7BD7|7BD8|7BD9|7BDA)", source: "Menphina" }
-4778.4 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4778.2 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4778.4 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
 # loop, probably
 4785.4 "Cratering Chill" Ability { id: "7BEE", source: "Menphina" } window 50,50 jump 4586.4
 4792.5 "Winter Solstice" #Ability { id: "7BED", source: "Menphina" }
 4792.8 "--sync--" #Ability { id: "7BEF", source: "Menphina" }
-4796.9 "Playful Orbit" Ability { id: "(7BE2|7BE3)", source: "Menphina" }
-4807.1 "Winter Halo" #Ability { id: "(7BE8|7BE9|7F0E|7F0F|7BDB|7BDC)", source: "Menphina" }
-4807.2 "Waxing Claw" Ability { id: "(7BE0|7BE1)", source: "Menphina" }
+4796.9 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4807.1 "Winter Halo" #Ability { id: ["7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4807.2 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }

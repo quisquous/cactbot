@@ -246,9 +246,9 @@ hideall "--sync--"
 1015.6 "Homing Lasers" Ability { id: "6EF0", source: "The Ultima Weapon" }
 1019.9 "Ceruleum Vent" Ability { id: "6EEF", source: "The Ultima Weapon" }
 1023.1 "Viscous Aetheroplasm" Ability { id: "6EEE", source: "The Ultima Weapon" }
-1034.1 "Magitek Ray 1" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
-1037.1 "Magitek Ray 2" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
-1040.1 "Magitek Ray 3" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
+1034.1 "Magitek Ray 1" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
+1037.1 "Magitek Ray 2" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
+1040.1 "Magitek Ray 3" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
 
 1042.7 "--sync--" StartsUsing { id: "6EF9", source: "The Ultima Weapon" } window 45,45
 1045.9 "Tank Purge" Ability { id: "6EF9", source: "The Ultima Weapon" }
@@ -257,17 +257,17 @@ hideall "--sync--"
 1054.8 "Homing Lasers" Ability { id: "6EF0", source: "The Ultima Weapon" } window 20,20
 1059.1 "Ceruleum Vent" Ability { id: "6EEF", source: "The Ultima Weapon" }
 1062.4 "Viscous Aetheroplasm" Ability { id: "6EEE", source: "The Ultima Weapon" }
-1070.5 "Magitek Ray 1" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" } window 15,1
-1073.5 "Magitek Ray 2" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
-1076.5 "Magitek Ray 3" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
+1070.5 "Magitek Ray 1" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" } window 15,1
+1073.5 "Magitek Ray 2" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
+1076.5 "Magitek Ray 3" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
 1080.8 "Viscous Aetheroplasm" Ability { id: "6EEE", source: "The Ultima Weapon" }
 1084.1 "Diffractive Laser" Ability { id: "6EF1", source: "The Ultima Weapon" } window 10,20
 1086.4 "Homing Lasers" Ability { id: "6EF0", source: "The Ultima Weapon" } window 10,20
 1090.7 "Ceruleum Vent" Ability { id: "6EEF", source: "The Ultima Weapon" }
 1094.0 "Viscous Aetheroplasm" Ability { id: "6EEE", source: "The Ultima Weapon" }
-1105.1 "Magitek Ray 1" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" } window 15,1
-1108.1 "Magitek Ray 2" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
-1111.0 "Magitek Ray 3" Ability { id: "(6EF2|6EF3|6EF4)", source: "The Ultima Weapon" }
+1105.1 "Magitek Ray 1" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" } window 15,1
+1108.1 "Magitek Ray 2" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
+1111.0 "Magitek Ray 3" Ability { id: ["6EF2", "6EF3", "6EF4"], source: "The Ultima Weapon" }
 
 1113.6 "--sync--" StartsUsing { id: "6EF9", source: "The Ultima Weapon" } window 45,45 jump 1042.7
 1116.8 "Tank Purge"

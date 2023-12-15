@@ -616,7 +616,7 @@ hideall "--sync--"
 10710.1 "Sniper Shot" Ability { id: "5850", source: "Gun Turret" }
 10715.0 "Blood And Bone" Ability { id: "5841", source: "Queen's Soldier" }
 10728.4 "--gun turret enrage--"
-10732.2 "Icy Portent/Fiery Portent" Ability { id: "(583F|5840)", source: "Queen's Soldier" }
+10732.2 "Icy Portent/Fiery Portent" Ability { id: ["583F", "5840"], source: "Queen's Soldier" }
 10747.4 "Relentless Battery" Ability { id: "5844", source: "Queen's Gunner" }
 10753.5 "Double Gambit" Ability { id: "5837", source: "Queen's Soldier" }
 10761.5 "Automatic Turret" Ability { id: "584A", source: "Queen's Gunner" }
@@ -632,7 +632,7 @@ hideall "--sync--"
 10822.6 "Automatic Turret" Ability { id: "5845", source: "Queen's Gunner" }
 10830.8 "Turret's Tour 1" Ability { id: "5846", source: "Queen's Gunner" }
 10831.4 "Turret's Tour 2" Ability { id: "5848", source: "Automatic Turret" }
-10837.6 "Fiery Portent/Icy Portent" Ability { id: "(583F|5840)", source: "Queen's Soldier" }
+10837.6 "Fiery Portent/Icy Portent" Ability { id: ["583F", "5840"], source: "Queen's Soldier" }
 10847.8 "Blood And Bone" Ability { id: "5841", source: "Queen's Soldier" }
 10856.9 "Rapid Sever" Ability { id: "5842", source: "Queen's Soldier" }
 10856.9 "Shot In The Dark" Ability { id: "5855", source: "Queen's Gunner" }
@@ -859,10 +859,10 @@ hideall "--sync--"
 
 # Initial Phase
 14029.2 "Allegiant Arsenal" Ability { id: "598[567]", source: "Trinity Avowed" }
-14034.4 "Flashvane/Fury Of Bozja/Infernal Slash" Ability { id: "(594B|594C|594A)", source: "Trinity Avowed" }
+14034.4 "Flashvane/Fury Of Bozja/Infernal Slash" Ability { id: ["594B", "594C", "594A"], source: "Trinity Avowed" }
 14037.5 "--sync--" Ability { id: "5983", source: "Trinity Avowed" }
 14042.6 "Allegiant Arsenal" Ability { id: "598[567]", source: "Trinity Avowed" }
-14047.8 "Flashvane/Fury Of Bozja/Infernal Slash" Ability { id: "(594B|594C|594A)", source: "Trinity Avowed" }
+14047.8 "Flashvane/Fury Of Bozja/Infernal Slash" Ability { id: ["594B", "594C", "594A"], source: "Trinity Avowed" }
 14050.9 "--sync--" Ability { id: "5984", source: "Trinity Avowed" }
 14056.0 "Allegiant Arsenal" # -> random jump to initial weapon phase
 
@@ -1474,7 +1474,7 @@ hideall "--sync--"
 20422.5 "Relentless Play 3" Ability { id: "59FC", source: "The Queen" } window 20,20
 20428.6 "Sword Omen/Shield Omen" Ability { id: "59F[DE]", source: "Queen's Knight" }
 20437.9 "Automatic Turret" Ability { id: "5A26", source: "Queen's Gunner" }
-20440.0 "Optimal Play" Ability { id: "(5A00|59FF)", source: "Queen's Knight" }
+20440.0 "Optimal Play" Ability { id: ["5A00", "59FF"], source: "Queen's Knight" }
 20446.0 "Turret's Tour" Ability { id: "5A27", source: "Queen's Gunner" }
 20446.6 "--sync--" Ability { id: "5BCB", source: "The Queen" }
 20446.6 "Turret's Tour" #Ability { id: "5A29", source: "Automatic Turret" }
@@ -1496,7 +1496,7 @@ hideall "--sync--"
 20515.5 "--sync--" Ability { id: "5B8E", source: "Queen's Warrior" }
 20516.5 "--stunned--" # 3 or 7 second stun
 # Aetherial Burst does 5B89 and Aetherial Bolt does 5A0D
-20518.5 "Lots Cast" Ability { id: "(5B89|5A0D)", source: ["Aetherial Burst", "Aetherial Bolt"] }
+20518.5 "Lots Cast" Ability { id: ["5B89", "5A0D"], source: ["Aetherial Burst", "Aetherial Bolt"] }
 20521.5 "Lots Cast" #Ability { id: "5B88", source: "Aetherial Bolt" }
 20522.7 "Lots Cast" #Ability { id: "5BB6", source: "Aetherial Bolt" }
 20523.5 "--unstunned--"

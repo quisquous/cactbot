@@ -21,11 +21,11 @@ hideall "--sync--"
 26.9 "Wildlife Crossing 2" MapEffect { flags: "00020001" } window 5,5 duration 15
 41.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
 48.4 "--sync--" Ability { id: "802C", source: "Albion" }
-55.1 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
+55.1 "Left Slam/Right Slam" Ability { id: ["802E", "802D"], source: "Albion" }
 65.7 "Knock on Ice" Ability { id: "7A7F", source: "Albion" }
 72.0 "Icebreaker" Ability { id: "7A81", source: "Albion" }
 75.0 "--sync--" Ability { id: "7A82", source: "Albion" }
-81.2 "Icy Throes" Ability { id: "(800F|7A83)", source: "Albion" }
+81.2 "Icy Throes" Ability { id: ["800F", "7A83"], source: "Albion" }
 81.6 "--sync--" Ability { id: "802C", source: "Albion" }
 86.2 "Icy Throes" Ability { id: "7FB9", source: "Albion" }
 
@@ -33,15 +33,15 @@ hideall "--sync--"
 103.3 "Call of the Mountain" Ability { id: "7A7C", source: "Albion" }
 106.1 "Wildlife Crossing 1" MapEffect { flags: "00020001" } window 5,5 duration 15
 108.7 "--sync--" Ability { id: "802C", source: "Albion" }
-115.5 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
+115.5 "Left Slam/Right Slam" Ability { id: ["802E", "802D"], source: "Albion" }
 120.0 "Wildlife Crossing 2" MapEffect { flags: "00020001" } window 5,5 duration 15
 123.9 "--sync--" Ability { id: "802C", source: "Albion" }
-130.8 "Left Slam/Right Slam" Ability { id: "(802E|802D)", source: "Albion" }
+130.8 "Left Slam/Right Slam" Ability { id: ["802E", "802D"], source: "Albion" }
 141.4 "Albion's Embrace" Ability { id: "7A85", source: "Albion" }
 151.5 "Knock on Ice" Ability { id: "7A7F", source: "Albion" }
 157.6 "Icebreaker" Ability { id: "7A81", source: "Albion" }
 160.6 "--sync--" Ability { id: "7A82", source: "Albion" }
-166.8 "Icy Throes" Ability { id: "(800F|7A83)", source: "Albion" }
+166.8 "Icy Throes" Ability { id: ["800F", "7A83"], source: "Albion" }
 167.2 "--sync--" Ability { id: "802C", source: "Albion" }
 171.8 "Icy Throes" Ability { id: "7FB9", source: "Albion" }
 
@@ -50,10 +50,10 @@ hideall "--sync--"
 188.9 "Call of the Mountain" #Ability { id: "7A7C", source: "Albion" }
 191.7 "Wildlife Crossing 1" #MapEffect { flags: "00020001" } window 5,5 duration 15
 194.3 "--sync--" #Ability { id: "802C", source: "Albion" }
-201.1 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
+201.1 "Left Slam/Right Slam" #Ability { id: ["802E", "802D"], source: "Albion" }
 205.6 "Wildlife Crossing 2" #MapEffect { flags: "00020001" } window 5,5 duration 15
 209.5 "--sync--" #Ability { id: "802C", source: "Albion" }
-216.4 "Left Slam/Right Slam" #Ability { id: "(802E|802D)", source: "Albion" }
+216.4 "Left Slam/Right Slam" #Ability { id: ["802E", "802D"], source: "Albion" }
 
 #~~~~~~~~~~~~~~~#
 # Galatea Magna #
@@ -64,9 +64,9 @@ hideall "--sync--"
 # Forum Messorum will be sealed off
 1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10B3" } window 1000,1
 1010.2 "--sync--" Ability { id: "7F71", source: "Galatea Magna" } # manually added for early sync
-1015.2 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1015.2 "Waxing Cycle/Waning Cycle" Ability { id: ["7A91", "7F6E"], source: "Galatea Magna" }
 1016.8 "--sync--" Ability { id: "7F6F", source: "Galatea Magna" }
-1017.2 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1017.2 "Waxing Cycle/Waning Cycle" Ability { id: ["7A93", "7F70"], source: "Galatea Magna" }
 1028.3 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
 1037.4 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
 1049.1 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
@@ -78,9 +78,9 @@ hideall "--sync--"
 1075.1 "Burst 3" #Ability { id: "7A97", source: "Galatea Magna" }
 1077.1 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
 1079.1 "Stony Gaze x4" Ability { id: "7A99", source: "Galatea Magna" }
-1091.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1091.1 "Waxing Cycle/Waning Cycle" Ability { id: ["7A91", "7F6E"], source: "Galatea Magna" }
 1092.7 "--sync--" Ability { id: "7A92", source: "Galatea Magna" }
-1093.9 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1093.9 "Waxing Cycle/Waning Cycle" Ability { id: ["7A93", "7F70"], source: "Galatea Magna" }
 1103.1 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
 1111.1 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
 1122.8 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
@@ -94,9 +94,9 @@ hideall "--sync--"
 1151.8 "Burst 3" #Ability { id: "7A97", source: "Galatea Magna" }
 1153.8 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
 1155.8 "Stony Gaze x4" Ability { id: "7A99", source: "Galatea Magna" }
-1162.9 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1162.9 "Waxing Cycle/Waning Cycle" Ability { id: ["7A91", "7F6E"], source: "Galatea Magna" }
 1164.5 "--sync--" Ability { id: "7A92", source: "Galatea Magna" }
-1165.6 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1165.6 "Waxing Cycle/Waning Cycle" Ability { id: ["7A93", "7F70"], source: "Galatea Magna" }
 1174.3 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" }
 1182.3 "Soul Nebula" Ability { id: "7A9E", source: "Galatea Magna" }
 1194.0 "--sync--" Ability { id: "7A9B", source: "Galatea Magna" }
@@ -111,9 +111,9 @@ hideall "--sync--"
 1225.0 "Burst 4" #Ability { id: "7A97", source: "Galatea Magna" }
 1227.0 "Stony Gaze x4" #Ability { id: "7A99", source: "Galatea Magna" }
 1232.0 "Dark Harvest" Ability { id: "7A9F", source: "Galatea Magna" } # first time tankbuster is used
-1244.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A91|7F6E)", source: "Galatea Magna" }
+1244.1 "Waxing Cycle/Waning Cycle" Ability { id: ["7A91", "7F6E"], source: "Galatea Magna" }
 1245.7 "--sync--" Ability { id: "7F6F", source: "Galatea Magna" }
-1246.1 "Waxing Cycle/Waning Cycle" Ability { id: "(7A93|7F70)", source: "Galatea Magna" }
+1246.1 "Waxing Cycle/Waning Cycle" Ability { id: ["7A93", "7F70"], source: "Galatea Magna" }
 
 # loop
 1256.0 "Soul Scythe" Ability { id: "7A9A", source: "Galatea Magna" } window 30,30 jump 1174.3
@@ -140,7 +140,7 @@ hideall "--sync--"
 2038.0 "Antediluvian 1" Ability { id: "7990", source: "Cagnazzo" }
 2042.0 "Antediluvian 2" Ability { id: "7990", source: "Cagnazzo" }
 2043.3 "--sync--" Ability { id: "7991", source: "Cagnazzo" }
-2044.3 "Body Slam" Ability { id: "(7992|7993)", source: "Cagnazzo" }
+2044.3 "Body Slam" Ability { id: ["7992", "7993"], source: "Cagnazzo" }
 2046.0 "Antediluvian 3" Ability { id: "7990", source: "Cagnazzo" }
 2051.1 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
 2060.9 "--sync--" Ability { id: "7FB4", source: "Cagnazzo" }
@@ -184,7 +184,7 @@ hideall "--sync--"
 2622.3 "Antediluvian 1" Ability { id: "7990", source: "Cagnazzo" }
 2626.3 "Antediluvian 2" Ability { id: "7990", source: "Cagnazzo" }
 2627.6 "--sync--" Ability { id: "7991", source: "Cagnazzo" }
-2628.6 "Body Slam" Ability { id: "(7992|7993)", source: "Cagnazzo" }
+2628.6 "Body Slam" Ability { id: ["7992", "7993"], source: "Cagnazzo" }
 2630.3 "Antediluvian 3" Ability { id: "7990", source: "Cagnazzo" }
 2635.3 "--sync--" Ability { id: "799B", source: "Cagnazzo" }
 2642.6 "--sync--" Ability { id: "7986", source: "Cagnazzo" }

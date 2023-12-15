@@ -10,15 +10,15 @@ hideall "--sync--"
 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 9.5 "--sync--" StartsUsing { id: "7860", source: "Hegemone" } window 10,5
 14.2 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
-28.0 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+28.0 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 35.1 "--sync--" Ability { id: "784C", source: "Hegemone" }
 42.0 "Aetheric Polyominoid" Ability { id: "7866", source: "Hegemone" } window 15,15
 42.0 "--sync--" Ability { id: "7854", source: "Hegemone" }
-48.6 "Unholy Darkness" Ability { id: "(786D|786E|7891)", source: "Hegemone" }
+48.6 "Unholy Darkness" Ability { id: ["786D", "786E", "7891"], source: "Hegemone" }
 54.6 "Polyominous Dark IV" Ability { id: "7867", source: "Hegemone" }
-54.7 "Exocleaver 1" Ability { id: "(7869|786B)", source: "Hegemone" } window 2,2
+54.7 "Exocleaver 1" Ability { id: ["7869", "786B"], source: "Hegemone" } window 2,2
 56.8 "Unholy Darkness" Ability { id: "7892", source: "Hegemone" }
-57.2 "Exocleaver 2" Ability { id: "(7869|786B)", source: "Hegemone" } window 2,2
+57.2 "Exocleaver 2" Ability { id: ["7869", "786B"], source: "Hegemone" } window 2,2
 71.2 "--sync--" Ability { id: "7864", source: "Hegemone" }
 71.7 "#1 Pathogenic Cells" #Ability { id: "7865", source: "Hegemone" }
 73.6 "#2 Pathogenic Cells" #Ability { id: "7865", source: "Hegemone" }
@@ -32,16 +32,16 @@ hideall "--sync--"
 91.9 "--sync--" Ability { id: "784C", source: "Hegemone" }
 97.7 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" } window 100,30
 104.4 "Exchange Of Agonies" Ability { id: "786C", source: "Hegemone" }
-111.6 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-112.3 "Unholy Darkness" Ability { id: "(786D|786E|7891)", source: "Hegemone" }
-114.7 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-128.5 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+111.6 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+112.3 "Unholy Darkness" Ability { id: ["786D", "786E", "7891"], source: "Hegemone" }
+114.7 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+128.5 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 141.4 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" } window 30,30
 153.2 "Transmission" Ability { id: "7861", source: "Hegemone" }
 159.0 "--sync--" Ability { id: "784C", source: "Hegemone" }
-166.1 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-168.0 "Chelic Claw/Reek Havoc" Ability { id: "(79EE|79EF)", source: "Parasitos" }
-169.2 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+166.1 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+168.0 "Chelic Claw/Reek Havoc" Ability { id: ["79EE", "79EF"], source: "Parasitos" }
+169.2 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 179.0 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" }
 185.7 "Polyominoid Sigma" Ability { id: "7868", source: "Hegemone" } window 30,30
 185.7 "--sync--" Ability { id: "7854", source: "Hegemone" }
@@ -51,10 +51,10 @@ hideall "--sync--"
 204.0 "--sync--" Ability { id: "784C", source: "Hegemone" }
 209.8 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" }
 216.5 "Exchange Of Agonies" Ability { id: "786C", source: "Hegemone" } window 30,30
-224.4 "Exocleaver 1" Ability { id: "(7869|786B)", source: "Hegemone" } window 2,2
+224.4 "Exocleaver 1" Ability { id: ["7869", "786B"], source: "Hegemone" } window 2,2
 224.4 "Unholy Darkness" Ability { id: "7A0F", source: "Hegemone" }
-227.0 "Exocleaver 2" Ability { id: "(7869|786B)", source: "Hegemone" } window 2,2
-239.3 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+227.0 "Exocleaver 2" Ability { id: ["7869", "786B"], source: "Hegemone" } window 2,2
+239.3 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 252.2 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" } window 30,30
 262.0 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" }
 268.7 "Polyominoid Sigma" Ability { id: "7868", source: "Hegemone" }
@@ -63,22 +63,22 @@ hideall "--sync--"
 282.3 "Polyominous Dark IV" Ability { id: "7867", source: "Hegemone" } window 30,30
 287.3 "--sync--" Ability { id: "784C", source: "Hegemone" }
 294.0 "Dark Ashes" Ability { id: "788D", source: "Hegemone" }
-302.0 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+302.0 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 303.0 "Dark Ashes" Ability { id: "788E", source: "Hegemone" }
-305.1 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+305.1 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 311.8 "--sync--" Ability { id: "784C", source: "Hegemone" }
 317.6 "Cachexia" Ability { id: "7876", source: "Hegemone" } window 30,30
 326.6 "Aetheronecrosis 1" #Ability { id: "7877", source: "Hegemone" }
 330.6 "Aetheronecrosis 2" #Ability { id: "7877", source: "Hegemone" }
 334.6 "Aetheronecrosis 3" #Ability { id: "7877", source: "Hegemone" }
 334.8 "Dual Predation" Ability { id: "7878", source: "Hegemone" }
-335.8 "Predation 1" Ability { id: "(787A|787B)", source: "Hegemone" }
+335.8 "Predation 1" Ability { id: ["787A", "787B"], source: "Hegemone" }
 338.7 "Aetheronecrosis 4" #Ability { id: "7877", source: "Hegemone" }
-339.9 "Predation 2" Ability { id: "(787A|787B)", source: "Hegemone" }
-343.9 "Predation 3" Ability { id: "(787A|787B)", source: "Hegemone" }
-347.9 "Predation 4" Ability { id: "(787A|787B)", source: "Hegemone" }
+339.9 "Predation 2" Ability { id: ["787A", "787B"], source: "Hegemone" }
+343.9 "Predation 3" Ability { id: ["787A", "787B"], source: "Hegemone" }
+347.9 "Predation 4" Ability { id: ["787A", "787B"], source: "Hegemone" }
 356.9 "Ptera Ixou" Ability { id: "787C", source: "Hegemone" }
-372.2 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+372.2 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 384.3 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" } window 30,30
 395.0 "Aetheric Polyominoid" Ability { id: "7866", source: "Hegemone" }
 395.0 "--sync--" Ability { id: "7854", source: "Hegemone" }
@@ -89,17 +89,17 @@ hideall "--sync--"
 417.5 "--sync--" Ability { id: "784C", source: "Hegemone" } window 30,30
 423.4 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" }
 430.1 "Exchange Of Agonies" Ability { id: "786C", source: "Hegemone" }
-437.3 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-437.8 "Unholy Darkness" Ability { id: "(786D|786E|7891)", source: "Hegemone" }
-440.2 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+437.3 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+437.8 "Unholy Darkness" Ability { id: ["786D", "786E", "7891"], source: "Hegemone" }
+440.2 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 449.9 "Aetherial Exchange" Ability { id: "784D", source: "Hegemone" }
 456.6 "Polyominoid Sigma" Ability { id: "7868", source: "Hegemone" }
 456.6 "--sync--" Ability { id: "7854", source: "Hegemone" }
 461.2 "--sync--" Ability { id: "784C", source: "Hegemone" }
-468.3 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+468.3 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 469.2 "Polyominous Dark IV" Ability { id: "7867", source: "Hegemone" }
-471.4 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-485.0 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+471.4 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+485.0 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 497.1 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
 503.9 "--sync--" Ability { id: "784C", source: "Hegemone" }
 509.7 "Cachexia" Ability { id: "7876", source: "Hegemone" }
@@ -112,7 +112,7 @@ hideall "--sync--"
 545.4 "Dark Sphere" Ability { id: "7880", source: "Hegemone" }
 545.4 "Ptera Ixou" Ability { id: "787C", source: "Hegemone" } window 30,30
 545.4 "Unholy Darkness" Ability { id: "787F", source: "Hegemone" }
-546.4 "Chelic Claw/Reek Havoc" Ability { id: "(79EE|79EF)", source: "Parasitos" }
+546.4 "Chelic Claw/Reek Havoc" Ability { id: ["79EE", "79EF"], source: "Parasitos" }
 551.6 "--sync--" Ability { id: "7A19", source: "Hegemone" }
 558.7 "Aetheric Polyominoid" Ability { id: "7866", source: "Hegemone" }
 558.7 "--sync--" Ability { id: "7854", source: "Hegemone" }
@@ -122,10 +122,10 @@ hideall "--sync--"
 577.0 "--sync--" Ability { id: "784C", source: "Hegemone" }
 583.7 "Aetheric Polyominoid" Ability { id: "7866", source: "Hegemone" }
 583.7 "--sync--" Ability { id: "7854", source: "Hegemone" }
-592.8 "Choros Ixou 1" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
+592.8 "Choros Ixou 1" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
 593.5 "Polyominous Dark IV" Ability { id: "7867", source: "Hegemone" }
-595.9 "Choros Ixou 2" Ability { id: "(7881|7882|7883|7884)", source: "Hegemone" }
-608.9 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }
+595.9 "Choros Ixou 2" Ability { id: ["7881", "7882", "7883", "7884"], source: "Hegemone" }
+608.9 "Synergy" Ability { id: ["7887", "788A"], source: "Hegemone" }
 621.8 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
 
 # Enrage

@@ -62,7 +62,7 @@ hideall "--sync--"
 348.6 "Bright Hunger" Ability { id: "4E0C", source: "Shiva" }
 356.0 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
 368.1 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
-373.2 "Reflected Kick/Frost" Ability { id: "(4DF[EF]|4E0[01])", source: "Frozen Mirror" }
+373.2 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
 
 # Rotation block
 385.3 "Redress" Ability { id: "4F4E", source: "Shiva" }
@@ -71,7 +71,7 @@ hideall "--sync--"
 413.7 "Double Slap" Ability { id: "4DDA", source: "Shiva" }
 424.8 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
 437.0 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
-442.1 "Reflected Kick/Frost" Ability { id: "(4DF[EF]|4E0[01])", source: "Frozen Mirror" }
+442.1 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
 455.2 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
 467.4 "Redress" Ability { id: "4F4F", source: "Shiva" }
 472.6 "Shining Armor" Ability { id: "4DF1", source: "Shiva" }
@@ -86,7 +86,7 @@ hideall "--sync--"
 554.5 "Double Slap" Ability { id: "4DDA", source: "Shiva" }
 565.6 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
 577.8 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
-582.9 "Reflected Kick/Frost" Ability { id: "(4DF[EF]|4E0[01])", source: "Frozen Mirror" }
+582.9 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
 596.0 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
 608.2 "Redress" Ability { id: "4F4F", source: "Shiva" }
 613.4 "Shining Armor" Ability { id: "4DF1", source: "Shiva" }
