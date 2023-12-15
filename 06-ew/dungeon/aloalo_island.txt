@@ -636,13 +636,13 @@ hideall "--sync--"
 
 5194.4 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5200.8 "Arcane Pursuit" Ability { id: "8BA4", source: "Quaqua" }
-5214.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BAD:/
-5216.8 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BAD:/
+5214.1 "--cleanse--" Ability { id: "8BAD" }
+5216.8 "--cleanse--" Ability { id: "8BAD" }
 
 5214.9 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5221.1 "Arcane Pursuit" Ability { id: "8BA4", source: "Quaqua" }
-5237.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
-5244.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+5237.1 "--cleanse--" Ability { id: "8BA6" }
+5244.1 "--cleanse--" Ability { id: "8BA6" }
 
 5248.2 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5254.6 label "quaqua-right-fixed-loop"
@@ -653,8 +653,8 @@ hideall "--sync--"
 
 5274.9 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5281.1 "Arcane Pursuit" Ability { id: "8BA4", source: "Quaqua" }
-5297.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
-5304.1 "--cleanse--" sync / 1[56]:[^:]*:[^:]*:8BA6:/
+5297.1 "--cleanse--" Ability { id: "8BA6" }
+5304.1 "--cleanse--" Ability { id: "8BA6" }
 
 5297.2 "--middle--" Ability { id: "8B8F", source: "Quaqua" }
 5303.3 "Arcane Armaments" Ability { id: "8B8C", source: "Quaqua" }

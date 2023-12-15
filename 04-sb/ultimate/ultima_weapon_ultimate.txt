@@ -155,7 +155,7 @@ hideall "--Reset--"
 
 
 ### Phase 4: Snacks ###
-800.0 "Freefire" sync / 1[56]:[^:]*:[^:]*:2CF5:/ window 800,0
+800.0 "Freefire" Ability { id: "2CF5" } window 800,0
 802.0 "--targetable--"
 803.0 "--sync--" StartsUsing { id: "2B72", source: "Magitek Bit" }
 815.0 "Self-detonate" Ability { id: "2B72", source: "Magitek Bit" }
@@ -317,13 +317,13 @@ hideall "--Reset--"
 
 # FIXME: this waits until 100% aether, but unclear when that happens in the log.
 # The only indication is a 122 Damage Up ability 2 seconds before this.
-1625.0 "Citadel Siege 1" sync / 1[56]:[^:]*:[^:]*:2B92:/ window 30,0
-1628.0 "Citadel Siege 2" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1631.0 "Citadel Siege 3" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1634.0 "Citadel Siege 4" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1637.0 "Citadel Siege 5" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1640.0 "Citadel Siege 6" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1643.0 "Citadel Siege 7" sync / 1[56]:[^:]*:[^:]*:2B92:/
+1625.0 "Citadel Siege 1" Ability { id: "2B92" } window 30,0
+1628.0 "Citadel Siege 2" Ability { id: "2B92" }
+1631.0 "Citadel Siege 3" Ability { id: "2B92" }
+1634.0 "Citadel Siege 4" Ability { id: "2B92" }
+1637.0 "Citadel Siege 5" Ability { id: "2B92" }
+1640.0 "Citadel Siege 6" Ability { id: "2B92" }
+1643.0 "Citadel Siege 7" Ability { id: "2B92" }
 # Is this really 6 seconds on the last person?
-1649.0 "Citadel Siege 8" sync / 1[56]:[^:]*:[^:]*:2B92:/
+1649.0 "Citadel Siege 8" Ability { id: "2B92" }
 1651.0 "Sabik Enrage" Ability { id: "2B93", source: "The Ultima Weapon" }

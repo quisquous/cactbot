@@ -116,7 +116,7 @@ hideall "--sync--"
 444.7 "The Light Of Ascalon 6" #Ability { id: "89CE", source: "Ascalon" }
 446.1 "The Light Of Ascalon 7" #Ability { id: "89CE", source: "Ascalon" }
 447.2 "--sync--" Ability { id: "89CC", source: "King Thordan" } # Ultimate End wind-up
-451.8 "--sync--" sync / 1[56]:[^:]*:[^:]*:89B9:/ # All the knights use this unknown attack here
+451.8 "--sync--" Ability { id: "89B9" } # All the knights use this unknown attack here
 455.8 "Ultimate End" Ability { id: "89CD", source: "King Thordan" }
 460.3 "--targetable--"
 

@@ -48,7 +48,7 @@ hideall "--sync--"
 68.5 "--sync--" Ability { id: "794C", source: "Hephaistos" } window 50,50 jump 468.5
 80.8 "Into the Shadows?" #Ability { id: "78FB", source: "Hephaistos" }
 88.8 "--sync--" #Ability { id: "78FC", source: "Gorgon" }
-89.9 "Petrifaction?" #sync / 1[56]:[^:]*:[^:]*:6723:/
+89.9 "Petrifaction?" #Ability { id: "6723" }
 
 
 # Quadruped v1 (Quadruped branch)
@@ -81,7 +81,7 @@ hideall "--sync--"
 284.7 "Reforged Reflection" Ability { id: "794C", source: "Hephaistos" }
 297.0 "Into the Shadows" Ability { id: "78FB", source: "Hephaistos" }
 305.0 "--sync--" Ability { id: "78FC", source: "Gorgon" }
-306.1 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+306.1 "Petrifaction" Ability { id: "6723" }
 306.1 "--targetable--"
 312.3 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
 319.6 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
@@ -106,7 +106,7 @@ hideall "--sync--"
 468.5 "Reforged Reflection" Ability { id: "794C", source: "Hephaistos" }
 480.8 "Into the Shadows" Ability { id: "78FB", source: "Hephaistos" }
 488.8 "--sync--" Ability { id: "78FC", source: "Gorgon" }
-489.9 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+489.9 "Petrifaction" Ability { id: "6723" }
 489.9 "--targetable--"
 496.1 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
 503.4 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
@@ -208,7 +208,7 @@ hideall "--sync--"
 977.7 "--sync--" Ability { id: "78FC", source: "Gorgon" }
 977.7 "Gorgospit" Ability { id: "6FD7", source: "Illusory Hephaistos" }
 977.7 "Volcanic Torches" Ability { id: "71DE", source: "Hephaistos" }
-978.7 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+978.7 "Petrifaction" Ability { id: "6723" }
 978.7 "--targetable--"
 983.9 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
 990.1 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
@@ -233,7 +233,7 @@ hideall "--sync--"
 1132.0 "--sync--" Ability { id: "78FC", source: "Gorgon" }
 1132.0 "Gorgospit" Ability { id: "6FD7", source: "Illusory Hephaistos" }
 1132.0 "Volcanic Torches" Ability { id: "71DE", source: "Hephaistos" }
-1133.0 "Petrifaction" sync / 1[56]:[^:]*:[^:]*:6723:/
+1133.0 "Petrifaction" Ability { id: "6723" }
 1133.0 "--targetable--"
 1138.2 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
 1144.4 "Gorgospit" Ability { id: "78FF", source: "Hephaistos" }
