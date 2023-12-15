@@ -80,6 +80,7 @@ export const orbOutputStrings: OutputStrings = {
   knockback: {
     en: '${dir} Knockback',
     de: '${dir} Rückstoß',
+    fr: 'Poussée ${dir}',
     ja: '${dir} ノックバック',
     cn: '${dir} 击退',
     ko: '${dir} 넉백',
@@ -87,6 +88,7 @@ export const orbOutputStrings: OutputStrings = {
   knockbackWithHead: {
     en: '${dir1} Knockback -> ${dir2}',
     de: '${dir1} Rückstoß -> ${dir2}',
+    fr: 'Poussée ${dir1} -> ${dir2}',
     ja: '${dir1} ノックバック -> ${dir2}',
     cn: '${dir1} 击退 -> ${dir2}',
     ko: '${dir1} 넉백 -> ${dir2}',
@@ -94,6 +96,7 @@ export const orbOutputStrings: OutputStrings = {
   aoeWithHead: {
     en: 'Go ${dir1} (lean ${dir2})',
     de: 'Geh ${dir1} (nach ${dir2} bewegen)',
+    fr: 'Allez ${dir1} (côté ${dir2})',
     ja: '${dir1}方に (そっと${dir2}方へ)',
     cn: '去${dir1} (偏${dir2})',
     ko: '${dir1}쪽으로 (살짝 ${dir2}쪽으로)',
@@ -347,6 +350,7 @@ const triggerSet: TriggerSet<Data> = {
         sides: {
           en: 'Out (Sides)',
           de: 'Raus (Seiten)',
+          fr: 'Extérieur (Côtés)',
           ja: '外 (横へ)',
           cn: '去外面 (两边)',
           ko: '밖으로 (양 옆)',
@@ -354,6 +358,7 @@ const triggerSet: TriggerSet<Data> = {
         sidesWithTower: {
           en: 'Tower + Outside',
           de: 'Turm + Außerhalb',
+          fr: 'Tour + Extérieur',
           ja: '塔踏み + 外側',
           cn: '踩塔 + 去外面',
           ko: '기둥 + 양 옆',
@@ -361,6 +366,7 @@ const triggerSet: TriggerSet<Data> = {
         sidesWithStacks: {
           en: 'Outside + Healer Groups',
           de: 'Außerhalb + Heiler-Gruppen',
+          fr: 'Extérieur + Groupes sur les heals',
           ja: '外側 + ヒーラと4:4頭割り',
           cn: '去外面 + 治疗分组分摊',
           ko: '양 옆 + 힐러 그룹',
@@ -385,6 +391,7 @@ const triggerSet: TriggerSet<Data> = {
         middle: {
           en: 'Inside (Middle)',
           de: 'Innen (Mitte)',
+          fr: 'Intérieur (Milieu)',
           ja: '中へ (真ん中)',
           cn: '去里面 (中间)',
           ko: '안으로 (가운데)',
@@ -392,6 +399,7 @@ const triggerSet: TriggerSet<Data> = {
         middleWithTower: {
           en: 'Tower + Inside',
           de: 'Turm + Innen',
+          fr: 'Tour + Intérieur',
           ja: '塔踏み + 内側',
           cn: '踩塔 + 去里面',
           ko: '기둥 + 안으로',
@@ -399,6 +407,7 @@ const triggerSet: TriggerSet<Data> = {
         middleWithStacks: {
           en: 'Inside + Healer Groups',
           de: 'Innen + Heiler-Gruppen',
+          fr: 'Intérieur + Groupes sur les heals',
           ja: '内側 + ヒーラと4:4頭割り',
           cn: '去里面 + 治疗分组分摊',
           ko: '안으로 + 힐러 그룹',
@@ -943,11 +952,10 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Azure Star': 'astre azuré',
-        'Fiery Star': 'astre incarnat',
-        'The Endsinger': 'chantre de l\'anéantissement',
+        'Azure Star': 'Astre azuré',
+        'Fiery Star': 'Astre incarnat',
+        'The Endsinger': 'Chantre de l\'anéantissement',
       },
       'replaceText': {
         'Befoulment': 'Bombe de pus',
@@ -962,8 +970,10 @@ const triggerSet: TriggerSet<Data> = {
         '(?<! )Fatalism(?!e)': 'Fatalisme',
         'Grip of Despair': 'Chaînes du désespoir',
         'Hubris': 'Hubris',
+        'Star Collision': 'Collision d\'étoile',
         'Telomania': 'Télomanie',
         'Telos': 'Télos',
+        'Tower Explosion': 'Explosion de tour',
         'Theological Fatalism': 'Fatalisme théologique',
         'Twinsong\'s Aporrhoia': 'Chœur aporétique',
         'Ultimate Fate': 'Ultime destin',
