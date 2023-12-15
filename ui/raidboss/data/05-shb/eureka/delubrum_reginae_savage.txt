@@ -312,7 +312,7 @@ hideall "--sync--"
 # are in the Dahu fight.
 # The Hall of Supplication will be sealed off
 6000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "E1D" } window 6000,0
-6000.0 "--Reset--" sync / 19:[^:]*:Dahu:/ window 0,2000 jump 0
+6000.0 "--Reset--" WasDefeated { target: "Dahu" } window 0,2000 jump 0
 6008.4 "Reverberating Roar" Ability { id: "576D", source: "Dahu" } window 10,2.5
 6014.5 "Reverberating Roar" Ability { id: "576D", source: "Dahu" }
 6022.7 "Hot Charge 1" Ability { id: "5773", source: "Dahu" }
