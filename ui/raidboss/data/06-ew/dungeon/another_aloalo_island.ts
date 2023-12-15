@@ -233,8 +233,15 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '8AA8', source: 'Ketuduke', capture: false },
       run: (data) => {
         data.ketuSpringCrystalCount++;
-        data.ketuCrystalAdd = [];
+        // Note: cannot clear `data.ketuCrystalAdd` here as there has been at least one case
+        // where AddCombatant (coming from memory, so racy) is partially before this cast.
       },
+    },
+    {
+      id: 'AAI Ketuduke Spring Crystals Saturate Cleanup',
+      type: 'StartsUsing',
+      netRegex: { id: ['8AAB', '8AAC'], capture: false },
+      run: (data) => data.ketuCrystalAdd = [],
     },
     {
       id: 'AAI Ketuduke Spring Crystal Collect',
