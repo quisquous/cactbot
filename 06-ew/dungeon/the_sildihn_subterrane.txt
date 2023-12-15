@@ -156,11 +156,11 @@ hideall "--sync--"
 3067.1 "Exploding Catapult" #Ability { id: "74C7", source: "Geryon the Steer" }
 
 # -> left handle
-3062.1 "--sync--" sync / 257 101:80038CA1:00020001:09:/ window 70,70 jump 3262.1
+3062.1 "--sync--" MapEffect { flags: "00020001", location: "09" } window 70,70 jump 3262.1
 3076.2 "Intake?" #Ability { id: "74D9", source: "Geryon the Steer" }
 
 # -> right handle
-3062.1 "--sync--" sync / 257 101:80038CA1:20000004:0A:/ window 70,70 jump 4062.1
+3062.1 "--sync--" MapEffect { flags: "20000004", location: "0A" } window 70,70 jump 4062.1
 3078.2 "Rolling Boulder?" #Ability { id: "74DA", source: "Geryon the Steer" }
 
 # TODO: fix the test_timeline utilities (python doesn't handle this, typescript is broken)
@@ -169,7 +169,7 @@ hideall "--sync--"
 
 # Geryon the Steer (middle door, 1st boss, left handle)
 3260.0 "Subterranean Shudder" Ability { id: "74D2", source: "Geryon the Steer" }
-3262.1 "--sync--" sync / 257 101:80038CA1:00020001:09:/
+3262.1 "--sync--" MapEffect { flags: "00020001", location: "09" }
 3267.1 "Exploding Catapult" Ability { id: "74C7", source: "Geryon the Steer" }
 3276.2 "Intake" Ability { id: "74D9", source: "Geryon the Steer" } window 300,10
 3280.6 "Explosion" Ability { id: "74D[45]", source: "Powder Keg" }
