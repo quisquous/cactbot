@@ -542,8 +542,8 @@ hideall "--sync--"
 
 9044.2 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
 9052.4 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
-9056.7 "The Means" Ability { id: "59B[BD]", source: ['Queen\'s Gunner', 'Queen\'s Warrior'] }
-9056.7 "The Ends" Ability { id: "59B[AC]", source: ['Queen\'s Soldier', 'Queen\'s Knight'] }
+9056.7 "The Means" Ability { id: "59B[BD]", source: ["Queen's Gunner", "Queen's Warrior"] }
+9056.7 "The Ends" Ability { id: "59B[AC]", source: ["Queen's Soldier", "Queen's Knight"] }
 
 9066.6 "Empyrean Iniquity" Ability { id: "59C8", source: "The Queen" }
 9074.8 "--middle--" Ability { id: "5BCB", source: "The Queen" }
@@ -557,8 +557,8 @@ hideall "--sync--"
 9132.1 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
 9140.2 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
 9143.3 "--untargetable--"
-9144.5 "The Means" Ability { id: "59B[BD]", source: ['Queen\'s Gunner', 'Queen\'s Warrior'] }
-9144.5 "The Ends" Ability { id: "59B[AC]", source: ['Queen\'s Soldier', 'Queen\'s Knight'] }
+9144.5 "The Means" Ability { id: "59B[BD]", source: ["Queen's Gunner", "Queen's Warrior"] }
+9144.5 "The Ends" Ability { id: "59B[AC]", source: ["Queen's Soldier", "Queen's Knight"] }
 9151.5 "Judgment Blade" Ability { id: "59C[12]", source: "The Queen" }
 9156.2 "--targetable--"
 
@@ -594,8 +594,8 @@ hideall "--sync--"
 9338.0 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
 9339.5 "--stunned--"
 9341.7 "Queen's Justice" Ability { id: "59BF", source: "Queen's Warrior" } # only on failure
-9342.4 "The Means" Ability { id: "59B[BD]", source: ['Queen\'s Gunner', 'Queen\'s Warrior'] }
-9342.4 "The Ends" Ability { id: "59B[AC]", source: ['Queen\'s Soldier', 'Queen\'s Knight'] }
+9342.4 "The Means" Ability { id: "59B[BD]", source: ["Queen's Gunner", "Queen's Warrior"] }
+9342.4 "The Ends" Ability { id: "59B[AC]", source: ["Queen's Soldier", "Queen's Knight"] }
 9345.4 "--unstunned--"
 9354.5 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 
@@ -616,8 +616,8 @@ hideall "--sync--"
 9437.6 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
 9440.2 "--explosion--" Ability { id: "59C4", source: "The Queen" }
 9445.7 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
-9450.0 "The Means" Ability { id: "59B[BD]", source: ['Queen\'s Gunner', 'Queen\'s Warrior'] }
-9450.0 "The Ends" Ability { id: "59B[AC]", source: ['Queen\'s Soldier', 'Queen\'s Knight'] }
+9450.0 "The Means" Ability { id: "59B[BD]", source: ["Queen's Gunner", "Queen's Warrior"] }
+9450.0 "The Ends" Ability { id: "59B[AC]", source: ["Queen's Soldier", "Queen's Knight"] }
 9459.9 "Cleansing Slash" Ability { id: "59C5", source: "The Queen" }
 
 9473.1 "Relentless Play" Ability { id: "59FC", source: "The Queen" } window 50,50 jump 9253.1
