@@ -58,7 +58,7 @@ hideall "--sync--"
 1043.5 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" }
 
 # Rotation desyncs here due to timing on cage use
-1048.0  "--sync--" sync / 1B:........:Minotaur:....:....:0036:/ window 45,15 jump 1151.0
+1048.0  "--sync--" HeadMarker { id: "0036", target: "Minotaur" } window 45,15 jump 1151.0
 1064.2 "Feast?"
 1064.3 "1111-Tonze Swing?" Ability { id: "F87", source: "Minotaur" } window 1,10 jump 1167.3
 
@@ -78,7 +78,7 @@ hideall "--sync--"
 1200.1 "Zoom In x3" Ability { id: "F86", source: "Minotaur" } duration 3.7
 1204.7 "10-Tonze Slash" Ability { id: "F83", source: "Minotaur" } window 20,20
 1214.0 "11-Tonze Swipe" Ability { id: "F81", source: "Minotaur" }
-1219.0 "--sync--" sync / 1B:........:Minotaur:....:....:0036:/ window 45,15 jump 1151.0
+1219.0 "--sync--" HeadMarker { id: "0036", target: "Minotaur" } window 45,15 jump 1151.0
 1235.2 "Feast?"
 1235.3 "1111-Tonze Swing?" Ability { id: "F87", source: "Minotaur" } window 1,10 jump 1167.3
 
