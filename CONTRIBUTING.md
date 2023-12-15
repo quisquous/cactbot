@@ -245,67 +245,10 @@ here's a set of features that will almost always be needed:
 * [issues marked "help wanted"](https://github.com/quisquous/cactbot/issues?utf8=%E2%9C%93&q=label%3A%22help+wanted%22)
 * [adding missing timelines](https://github.com/quisquous/cactbot/issues/414)
 * missing translations
-* job ui for missing jobs (that you play and have opinions on)
 
 ## Trigger Guidelines
 
-As a rule, cactbot defaults to text alarms with a small number of default sounds over custom sounds and tts.
-This is because there is a clearer mental separation between visual text for triggers and audio of voice comms.
-This separation is easier to process than mixing the audio of voice comms and tts together.
-This design choice isn't for everybody, especially those used to tts (which is an option).
-However, text triggers will always be the default.
-Give it a try.
-
-As it's easier to disable triggers than to write triggers,
-cactbot also tends to be slightly noisier than most people prefer.
-
-### Trigger Severity
-
-Here's the general guidelines for how cactbot has triggers.
-You can use these when adding new triggers for raids.
-As always, try to be consistent with the surrounding code.
-
-* alarm (red text)
-  * you will wipe the raid if you mess this up
-  * ideally used on random mechanics (one person gets X)
-  * ideally used only once or twice in a raid
-
-* alert (yellow text)
-  * you will get killed if you mess this up (or kill others)
-  * used for important mechanics
-  * should be about ~1/3 of the triggers
-
-* info (green text)
-  * you should probably do something about this, but it might not kill you
-  * also used for information like nael dragon dives or grand octet markers
-  * should be about ~2/3 of the triggers
-
-Another consideration for trigger severity is to make them contextually useful.
-For example, if you may get selected for one of two mechanics,
-it's preferable to have one mechanic be info and the other alert
-(or one alert and the other alarm)
-so that it is obvious from the noise which mechanic you have.
-
-A final consideration is to not overload the player
-with too many of the same types of message.
-If every trigger is an alert,
-it's probably better to change some of them to be info.
-Having different sounds helps create a "rhythm" for the fight.
-This is especially true for simultaneous alerts.
-
-### Trigger Text
-
-Here's some general guidelines for the text in triggers.
-The goal for trigger text is to mimic what a human raidcaller would say.
-It should minimize the amount of that the player has to think to do a mechanic.
-
-* Be concise.  Text should be as short as possible, like lalafells.
-* Tell the player what to do rather than the mechanic name, i.e. prefer `Get Out` vs `Iron Chariot`
-* Have the text be positive, i.e. prefer `Left` vs `Don't Go Right`
-* Don't prescribe a particular strategy, if multiple strategies exist, i.e. Titania Ex tethers or Hello World
-* If multiple strategies exist, tell the player the mechanic (`Jail on YOU`) instead of dictating a strategy.
-* Don't write triggers for obvious ground aoes.
-* As always, be consistent with other triggers.
+See: [Raidboss Guide](docs/RaidbossGuide.md#trigger-guidelines)
 
 ## Timeline Guidelines
 
@@ -316,6 +259,10 @@ It should minimize the amount of that the player has to think to do a mechanic.
 * When using `jump`, prefer to jump to a time that has a timeline entry on it.
 * When adding a loop, add at least 30 seconds of fake abilities, and make sure these abilities line up with where the loop jumps to.
 * As always, be consistent with other timelines.
+
+## Oopsy Guidelines
+
+See: [Oopsy Guide](docs/OopsyraidsyGuide.md#overview)
 
 ## Markdown Guidelines
 
