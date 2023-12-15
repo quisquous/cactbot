@@ -23,7 +23,7 @@ hideall "--sync--"
 41.4 "Arms Of Wisdom?" Ability { id: "7DBE", source: "Sophia" } # May be skipped depending on DPS
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
-56.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 56,5
+56.0 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 56,5
 63.6 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }
 63.6 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" } window 30,2.5
 69.7 "Aero III" Ability { id: "7DA8", source: "Sophia" }
@@ -69,7 +69,7 @@ hideall "--sync--"
 361.5 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
 361.5 "Cintamani x2" duration 3 # Ability { id: "7DBF", source: "Sophia" }
 370.8 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" } window 30,5
-379.0 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,20
+379.0 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 60,20
 382.0 "Cintamani x3" duration 6 # Ability { id: "7DBF", source: "Sophia" }
 393.3 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" }
 393.3 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }
@@ -105,7 +105,7 @@ hideall "--sync--"
 568.3 "Dischordant Cleansing" # Ability { id: "(7DAD|7DAF)", source: "Sophia" }
 575.7 "Quasar (Tilt)" # Ability { id: "7E46", source: "Sophia" }
 581.5 "Cintamani x3" duration 6 # Ability { id: "7DBF", source: "Sophia" }
-577.5 "--clones appear--" sync / 03:........:Aion Teleos:/  window 60,5
+577.5 "--clones appear--" AddedCombatant { name: "Aion Teleos" }  window 60,5
 592.8 "Arms Of Wisdom" Ability { id: "7DBE", source: "Sophia" }
 599.9 "--sync--" Ability { id: "7DA5", source: "Aion Teleos" } window 10,2.5
 599.9 "Thunder II/III" Ability { id: "(7DA6|7DAA)", source: "Sophia" }

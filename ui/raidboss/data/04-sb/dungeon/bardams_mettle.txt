@@ -88,7 +88,7 @@ hideall "Reconstruct"
 2060.9 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 2069.3 "Wind Unbound" Ability { id: "1F0A", source: "Yol" }
 2071.4 "--untargetable--"
-2071.4 "--adds spawn--" sync / 03:........:Corpsecleaner Eagle:/  window 71.4,5
+2071.4 "--adds spawn--" AddedCombatant { name: "Corpsecleaner Eagle" }  window 71.4,5
 2078.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 2088.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }
 2098.0 "Pinion" Ability { id: "1F11", source: "Yol Feather" }

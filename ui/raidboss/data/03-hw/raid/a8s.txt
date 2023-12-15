@@ -62,7 +62,7 @@ hideall "Brute Force"
 
 ### Phase 2: Robots
 300.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 300,0
-303.0 "--sync--" sync / 03:........:Blaster:/  window 303,30
+303.0 "--sync--" AddedCombatant { name: "Blaster" }  window 303,30
 304.0 "Blaster (north)"
 304.0 "Brawler (middle)"
 306.2 "--targetable--"

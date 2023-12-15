@@ -291,7 +291,7 @@ hideall "--sync--"
 
 # Intermission at 45% HP. Might be a time push too? but it's uncertain.
 3300.0 "--untargetable--" sync / 22:........:Scathach:........:Scathach:00/ window 300,5
-3302.2 "--sync--" sync / 03:........:Shadowcourt Jester:/  window 300,5
+3302.2 "--sync--" AddedCombatant { name: "Shadowcourt Jester" }  window 300,5
 3323.6 "--towers appear--"
 3333.6 "Particle Beam" Ability { id: "1D2[78]", source: "Scathach" }
 
@@ -403,9 +403,9 @@ hideall "--sync--"
 # This is the dueling-lasers part where the party kills the big deathgate and two small ones.
 
 4274.0 "--sync--" sync / 22:........:Diabolos:........:Diabolos:00/ window 100,5
-4286.2 "--lifegate spawn--" sync / 03:........:Lifegate:/  window 300,5
+4286.2 "--lifegate spawn--" AddedCombatant { name: "Lifegate" }  window 300,5
 4300.0 "--sync--" Ability { id: "1C16", source: "Diabolos" } window 300,5
-4320.0 "--deathgate spawn--" sync / 03:........:Deathgate:/  window 50,5
+4320.0 "--deathgate spawn--" AddedCombatant { name: "Deathgate" }  window 50,5
 4477.1 "--sync--" Ability { id: "1AFB", source: "Diabolos" } window 177,5
 4488.5 "--sync--" Ability { id: "1AFD", source: "Diabolos" }
 4494.6 "Dream Shroud" Ability { id: "1DB1", source: "Diabolos Hollow" } window 194,5
@@ -452,7 +452,7 @@ hideall "--sync--"
 4613.6 "Shadethrust" Ability { id: "1C1A", source: "Diabolos Hollow" }
 4620.4 "Particle Beam" Ability { id: "1C2[456]", source: "Diabolos Hollow" }
 4620.8 "Hollow Camisado" Ability { id: "1C19", source: "Diabolos Hollow" }
-4624.1 "--deathgate spawn--" sync / 03:........:Deathgate:/  window 25,5
+4624.1 "--deathgate spawn--" AddedCombatant { name: "Deathgate" }  window 25,5
 4627.1 "Hollowshield" Ability { id: "1C1E", source: "Diabolos Hollow" } window 27.1,5
 4637.5 "Hollow Camisado" Ability { id: "1C19", source: "Diabolos Hollow" }
 4646.8 "Shadethrust" Ability { id: "1C1A", source: "Diabolos Hollow" } window 20,10

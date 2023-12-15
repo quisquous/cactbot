@@ -128,7 +128,7 @@ hideall "--Reset--"
 801.0 "--sync--" #Ability { id: "53AE", source: "Shiva" }
 # If you push *really* fast and skip a 3a/3b weapon phase, you'll miss the melt jump.
 # So, fix that up with a combatant sync here.
-806.6 "--adds targetable--" sync / 03:........:Ice Soldier:/  window 807,10
+806.6 "--adds targetable--" AddedCombatant { name: "Ice Soldier" }  window 807,10
 807.6 "Dreams Of Ice" Ability { id: "536A", source: "Shiva" }
 813.2 "Frost Blade" Ability { id: "5366", source: "Shiva" }
 818.5 "Icebrand" Ability { id: "5373", source: "Shiva" }

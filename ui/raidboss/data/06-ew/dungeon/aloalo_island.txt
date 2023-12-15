@@ -216,8 +216,8 @@ hideall "--sync--"
 2437.0 label "ketuduke-0304"
 2437.0 "--sync--" StartsUsing { id: "8A92", source: "Ketuduke" }
 2442.0 "Roar" Ability { id: "8A92", source: "Ketuduke" }
-# 2142.7 "--sync--" sync / 03:[^:]*:Aloalo Zaratan:/ # path 03
-# 2142.7 "--sync--" sync / 03:[^:]*:Aloalo Ogrebon:/ # path 04
+# 2142.7 "--sync--" AddedCombatant { name: "Aloalo Zaratan" } # path 03
+# 2142.7 "--sync--" AddedCombatant { name: "Aloalo Ogrebon" } # path 04
 2454.8 "Bubble Net" Ability { id: "8A93", source: "Ketuduke" }
 2465.4 "Updraft" Ability { id: "8D0F", source: "Ketuduke" }
 2467.6 "Hundred Lashings?" Ability { id: "8A97", source: "Aloalo Zaratan" } # path 03
