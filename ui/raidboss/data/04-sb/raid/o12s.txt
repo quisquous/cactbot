@@ -9,7 +9,7 @@ hideall "--sync--"
 # Use autos/chatlog instead of InCombat lines to start timelines for door & final boss
 # as timeline resets out of combat.
 
-0.0 "Start" sync / 00:0044:[^:]*:I am the Omega/ window 1,0
+0.0 "Start" GameLog { code: "0044", line: "I am the Omega.*?" } window 1,0
 2.4 "--sync--" Ability { id: "337D", source: "Omega-M" } window 2.4,0.5 # first auto
 11.7 "Synthetic Shield" Ability { id: "32FD", source: "Omega-M" } window 12,5
 19.7 "Suppression" Ability { id: "3345", source: "Omega-M" }

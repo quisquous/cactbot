@@ -352,7 +352,7 @@ hideall "--sync--"
 6371.3 "Flare IV"
 
 ### Phase 3: 15% off Demi-Virgo Combo Platter
-6500.0 "--sync--" sync / 00:0044:[^:]*:I see it now/ window 500,0
+6500.0 "--sync--" GameLog { code: "0044", line: "I see it now.*?" } window 500,0
 
 6503.0 "Demi-Virgo Line/Tether" Ability { id: "38C2", source: "Ultima, the High Seraph" } window 8,8
 6509.1 "Redemption" Ability { id: "38AA", source: "Ultima, the High Seraph" }
