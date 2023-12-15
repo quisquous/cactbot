@@ -9,7 +9,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" ActorControl { command: "80000014", data0: "00" } window 100000 jump 0
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 # TODO: fill in CEs
 # The idea with each of them is that you have at most two minutes of standing
