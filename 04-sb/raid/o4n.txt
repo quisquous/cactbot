@@ -9,7 +9,7 @@ hideall "--sync--"
 
 # -ii 24BA 24BC 24BE 24C3 24C5
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 9.5 "Doom" Ability { id: "24B7", source: "Exdeath" } window 9.5,5
 19.1 "Blizzard/Fire III" Ability { id: "24B[9B]", source: "Exdeath" }
 28.8 "Thunder III (Buster)" Ability { id: "24BD", source: "Exdeath" }

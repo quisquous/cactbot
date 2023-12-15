@@ -16,7 +16,7 @@ hideall "Earthen Wheels"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 13.0 "Voice Of The Land" Ability { id: "40F7", source: "Titan" } window 13,8
 21.3 "Evil Earth" Ability { id: "40EE", source: "Titan" }
 30.5 "Weight Of The Land" Ability { id: "40EA", source: "Titan" }

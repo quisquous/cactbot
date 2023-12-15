@@ -8,7 +8,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 8.0 "--sync--" StartsUsing { id: "326C", source: "Omega" } window 8,8
 12.0 "Atomic Ray" Ability { id: "326C", source: "Omega" }
 24.0 "Mustard Bomb" Ability { id: "326D", source: "Omega" }

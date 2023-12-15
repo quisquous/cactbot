@@ -13,7 +13,7 @@ hideall "--sync--"
 
 ### Phase 1: 100->90%
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 
 5.0 "Rock Buster" Ability { id: "550", source: "Titan" } window 5,50
 11.2 "Landslide" Ability { id: "554", source: "Titan" }

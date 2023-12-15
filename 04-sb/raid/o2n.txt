@@ -7,7 +7,7 @@ hideall "--sync--"
 # Unlike O1N and O3N, Catastrophe has no enrage.
 # -ii 24E8 24FC 2500 2501 2505 2514 2515 2516
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 5.6 "Tremblor" Ability { id: "2511", source: "Catastrophe" } window 5.6,2
 9.2 "Tremblor" Ability { id: "2511", source: "Catastrophe" }
 17.8 "Earthquake" Ability { id: "2512", source: "Catastrophe" }

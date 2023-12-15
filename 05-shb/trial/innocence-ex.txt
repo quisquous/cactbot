@@ -9,7 +9,7 @@ hideall "Soul And Body"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 17.0 "Shadowreaver" Ability { id: "3EEA", source: "Innocence" } window 20,5
 28.0 "Winged Rep Tethers" Ability { id: "40BD", source: "Innocence" }
 37.0 "Duel Descent" Ability { id: "3EA9", source: "Nail of Condemnation" }

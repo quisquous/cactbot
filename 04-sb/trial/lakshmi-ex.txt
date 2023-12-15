@@ -8,7 +8,7 @@ hideall "--sync--"
 hideall "Alluring Arm"
 
 ### Adds
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 4.0 "Vril" Ability { id: "2146", source: "Dreaming Kshatriya" } window 10,10
 12.1 "Tail Slap" Ability { id: "258C", source: "Dreaming Kshatriya" }
 16.0 "Stotram" Ability { id: "2147", source: "Lakshmi" }

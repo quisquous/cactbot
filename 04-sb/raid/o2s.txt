@@ -8,7 +8,7 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 5.0 "Tremblor" Ability { id: "2373", source: "Catastrophe" } window 5,2.5
 8.7 "Tremblor" Ability { id: "2373", source: "Catastrophe" }
 17.4 "Earthquake" Ability { id: "2374", source: "Catastrophe" } window 18,10

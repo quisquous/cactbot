@@ -12,7 +12,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 12.0 "Thunder II" Ability { id: "19B0", source: "Sophia" } window 12,5
 22.4 "Gnosis" Ability { id: "19C2", source: "Barbelo" }
 41.4 "Arms Of Wisdom?" Ability { id: "19C4", source: "Sophia" } # May be skipped depending on DPS

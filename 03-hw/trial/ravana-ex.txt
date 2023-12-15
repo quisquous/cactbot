@@ -9,7 +9,7 @@ hideall "--sync--"
 # The meter also increases passively during all phases except the opening block.
 # Any displayed phase lengths are the maximum that could occur with no "extra" Bloodlust.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 7.1 "Blinding Blade" Ability { id: "E9F", source: "Ravana" } window 7.1,10
 11.9 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
 16.0 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }

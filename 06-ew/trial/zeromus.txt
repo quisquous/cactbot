@@ -7,7 +7,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.7 "--sync--" StartsUsing { id: "8AF7", source: "Zeromus" } window 10,10
 11.7 "Abyssal Nox" Ability { id: "8AF7", source: "Zeromus" }
 20.7 "--sync--" Ability { id: "8AF8", source: "Zeromus" }

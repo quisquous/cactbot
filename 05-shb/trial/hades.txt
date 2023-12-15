@@ -6,7 +6,7 @@ hideall "--sync--"
 hideall "Double"
 
 # Phase 1: Everybody Murdered By Circles
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 1.5 "--sync--" Ability { id: "368", source: "Hades" } window 2,0
 15.5 "Ravenous Assault" Ability { id: "4158", source: "Hades" } window 16,5
 25.9 "Bad Faith" Ability { id: "414[9A]", source: "Hades" }

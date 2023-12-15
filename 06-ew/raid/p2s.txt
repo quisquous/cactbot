@@ -8,7 +8,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 11.0 "--sync--" StartsUsing { id: "6833", source: "Hippokampos" } window 15,15
 16.0 "Murky Depths" Ability { id: "6833", source: "Hippokampos" }
 26.3 "Doubled Impact" Ability { id: "6832", source: "Hippokampos" }

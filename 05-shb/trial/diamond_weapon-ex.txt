@@ -8,7 +8,7 @@ hideall "--sync--"
 # -p 5FA7:21.3
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 16.3 "--sync--" StartsUsing { id: "5FA7", source: "The Diamond Weapon" } window 17,10
 21.3 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" } window 25,10
 

@@ -7,7 +7,7 @@ hideall "--sync--"
 0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
 
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 9.5 "--sync--" StartsUsing { id: "7860", source: "Hegemone" } window 10,5
 14.2 "Hemitheos's Dark IV" Ability { id: "7860", source: "Hegemone" }
 28.0 "Synergy" Ability { id: "(7887|788A)", source: "Hegemone" }

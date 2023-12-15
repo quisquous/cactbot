@@ -11,7 +11,7 @@ hideall "Yasakani-No-Magatama"
 hideall "--knockback cloud--"
 
 ### Phase 1 ###
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 9.1 "Assail" Ability { id: "202C", source: "Susano" } window 10,10
 12.3 "Churn" Ability { id: "203E", source: "Susano" }
 36.4 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }

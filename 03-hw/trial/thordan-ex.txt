@@ -8,7 +8,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1. Pushes at 70% HP?
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 5.0 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
 14.8 "Meteorain" Ability { id: "1483", source: "King Thordan" }
 15.1 "--sync--" Ability { id: "1484", source: "King Thordan" } # Meteorain

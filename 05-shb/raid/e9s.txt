@@ -5,7 +5,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 16.9 "Ground-Razing Particle Beam" Ability { id: "5625", source: "Cloud Of Darkness" } window 17,10
 27.1 "The Art Of Darkness" Ability { id: "5B4[56]", source: "Cloud Of Darkness" }
 36.8 "The Art Of Darkness" Ability { id: "5B4[56]", source: "Cloud Of Darkness" }

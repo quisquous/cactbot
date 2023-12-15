@@ -26,7 +26,7 @@ hideall "--sync--"
 # Acid Pinax (69F5), Lava Pinax (69F6), Well Pinax (69F7), Levinstrike Pinax (69F8)
 # are the safe tiles.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 10.0 "--sync--" StartsUsing { id: "6A09", source: "Hesperos" } window 10,20
 15.0 "Decollation" Ability { id: "6A09", source: "Hesperos" }
 23.2 "Bloodrake" Ability { id: "69D8", source: "Hesperos" }

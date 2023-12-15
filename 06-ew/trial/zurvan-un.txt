@@ -22,7 +22,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Preliminary phase. No pushes.
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 6.4 "Metal Cutter" Ability { id: "857F", source: "Zurvan" } window 6.5,2.5
 10.5 "Metal Cutter" Ability { id: "857F", source: "Zurvan" }
 16.6 "Flare Star (circles)" Ability { id: "8557", source: "Zurvan" }
