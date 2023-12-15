@@ -76,7 +76,7 @@ hideall "--sync--"
 
 
 ### Golems (The Granary, right side)
-2000.0 "--sync--" sync / 22:........:Bicolor Golem:........:Bicolor Golem:01/ window 2000,0
+2000.0 "--sync--" NameToggle { name: "Bicolor Golem", toggle: "01" } window 2000,0
 2000.0 "--Reset--" AddedCombatant { name: "Trinity Seeker" }  window 0,1000 jump 0
 2025.2 "Core Combustion" Ability { id: "5745", source: "Bicolor Golem" } window 2030,10
 2026.1 "--bleed--" # from blue golem
@@ -519,7 +519,7 @@ hideall "--sync--"
 
 
 # Phase 2: Warrior + Knight section
-10033.9 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 25,0
+10033.9 "--targetable--" NameToggle { name: "Queen's Knight", toggle: "01" } window 25,0
 10051.1 "--sync--" StartsUsing { id: "5825", source: "Queen's Warrior" } window 60,20
 10056.1 "Relentless Battery" Ability { id: "5825", source: "Queen's Warrior" }
 10062.2 "Shield Omen/Sword Omen" Ability { id: "581[45]", source: "Queen's Knight" }
@@ -596,7 +596,7 @@ hideall "--sync--"
 10322.2 "Blood and Bone Enrage" Ability { id: "5B9D", source: "Queen's Knight" }
 
 # Phase 3: Soldier + Gunner section
-10600.0 "--sync--" sync / 22:........:Queen's Gunner:........:Queen's Gunner:01/ window 600,0
+10600.0 "--sync--" NameToggle { name: "Queen's Gunner", toggle: "01" } window 600,0
 10612.0 "--sync--" StartsUsing { id: "5844", source: "Queen's Gunner" } window 600,0
 10617.0 "Relentless Battery" Ability { id: "5844", source: "Queen's Gunner" }
 10623.2 "Great Ball Of Fire" Ability { id: "583B", source: "Queen's Soldier" }
@@ -1351,7 +1351,7 @@ hideall "--sync--"
 
 
 # Phase 3: Victory Lap (once adds are dead)
-19000.0 "--targetable--" sync / 22:........:Stygimoloch Lord:........:Stygimoloch Lord:01/ window 800,0
+19000.0 "--targetable--" NameToggle { name: "Stygimoloch Lord", toggle: "01" } window 800,0
 19008.2 "--sync--" StartsUsing { id: "57D2", source: "Stygimoloch Lord" } window 1010,0
 19013.2 "Thunderous Discharge" Ability { id: "57D2", source: "Stygimoloch Lord" }
 19028.4 "Rapid Bolts 1" Ability { id: "57CD", source: "Stygimoloch Lord" } duration 12.8

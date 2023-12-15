@@ -58,7 +58,7 @@ hideall "--sync--"
 # Instead we just go straight for the ultimate cast. (It has no cast time.)
 # However, we don't want timeline triggers firing during the intermission.
 
-500.0 "--sync--" sync / 22:........:Sephirot:........:Sephirot:00/ window 500,0
+500.0 "--sync--" NameToggle { name: "Sephirot", toggle: "00" } window 500,0
 1000.0 "Ein Sof Ohr" Ability { id: "1571", source: "Sephirot" } window 1000,5
 
 # Phase 2 rotation block, 197.3 seconds

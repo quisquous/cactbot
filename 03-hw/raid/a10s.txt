@@ -68,7 +68,7 @@ hideall "--sync--"
 
 
 ### Phase 2: Steam Roller (60%)
-200.5 "--untargetable--" sync / 22:........:Lamebrix Strikebocks:........:Lamebrix Strikebocks:00/ window 201,5
+200.5 "--untargetable--" NameToggle { name: "Lamebrix Strikebocks", toggle: "00" } window 201,5
 201.6 "--jump--" Ability { id: "1AA2", source: "Lamebrix Strikebocks" } window 20,5
 207.0 "Brighteyes Markers" Ability { id: "1AA9", source: "Lamebrix Strikebocks" } window 210,5
 212.0 "Brighteyes" Ability { id: "1AAA", source: "Lamebrix Strikebocks" }
@@ -98,7 +98,7 @@ hideall "--sync--"
 302.4 "Gobsway Rumblerocks" Ability { id: "1AA0", source: "Lamebrix Strikebocks" }
 
 ### Phase 3
-500.0 "--targetable--" sync / 22:........:Lamebrix Strikebocks:........:Lamebrix Strikebocks:01/ window 500,0
+500.0 "--targetable--" NameToggle { name: "Lamebrix Strikebocks", toggle: "01" } window 500,0
 509.0 "Goblin Rush" Ability { id: "1A16", source: "Lamebrix Strikebocks" } window 305,5
 517.1 "Gobrush Rushgob" Ability { id: "1A9F", source: "Lamebrix Strikebocks" }
 521.3 "--sync--" #Ability { id: "1AB[89AB]", source: "Lamebrix Strikebocks" }

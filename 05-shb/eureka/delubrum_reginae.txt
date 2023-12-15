@@ -244,7 +244,7 @@ hideall "--sync--"
 3100.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
 3100.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
-3100.0 "--targetable--" sync / 22:........:Queen's Soldier:........:Queen's Soldier:01/ window 500,500
+3100.0 "--targetable--" NameToggle { name: "Queen's Soldier", toggle: "01" } window 500,500
 3108.1 "--sync--" StartsUsing { id: "5805", source: "Queen's Soldier" } window 10,10
 3111.1 "Double Gambit" Ability { id: "5805", source: "Queen's Soldier" }
 3119.3 "Secrets Revealed" Ability { id: "5B6E", source: "Queen's Soldier" }
@@ -270,7 +270,7 @@ hideall "--sync--"
 3300.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
 3300.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
-3300.0 "--targetable--" sync / 22:........:Queen's Gunner:........:Queen's Gunner:01/ window 500,500
+3300.0 "--targetable--" NameToggle { name: "Queen's Gunner", toggle: "01" } window 500,500
 3308.1 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 10,10
 3311.1 "Automatic Turret" Ability { id: "580B", source: "Queen's Gunner" }
 3319.2 "Turret's Tour" Ability { id: "580C", source: "Queen's Gunner" }
@@ -296,7 +296,7 @@ hideall "--sync--"
 3500.0 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 0,200 jump 3308.1
 3500.0 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 0,200 jump 3708.1
 
-3500.0 "--targetable--" sync / 22:........:Queen's Warrior:........:Queen's Warrior:01/ window 500,500
+3500.0 "--targetable--" NameToggle { name: "Queen's Warrior", toggle: "01" } window 500,500
 3508.1 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 10,10
 3511.1 "Bombslinger" Ability { id: "5AFD", source: "Queen's Warrior" }
 3520.2 "Above Board" Ability { id: "57FC", source: "Queen's Warrior" }
@@ -333,7 +333,7 @@ hideall "--sync--"
 3700.0 "--sync--" StartsUsing { id: "580B", source: "Queen's Gunner" } window 0,200 jump 3308.1
 3700.0 "--sync--" StartsUsing { id: "5AFD", source: "Queen's Warrior" } window 0,200 jump 3508.1
 
-3700.0 "--targetable--" sync / 22:........:Queen's Knight:........:Queen's Knight:01/ window 500,500
+3700.0 "--targetable--" NameToggle { name: "Queen's Knight", toggle: "01" } window 500,500
 3708.1 "--sync--" StartsUsing { id: "57F[01]", source: "Queen's Knight" } window 10,10
 3711.1 "Shield Omen/Sword Omen" Ability { id: "57F[01]", source: "Queen's Knight" }
 3719.3 "Optimal Play" Ability { id: "57F4", source: "Queen's Knight" }

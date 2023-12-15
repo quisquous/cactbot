@@ -58,7 +58,7 @@ hideall "--sync--"
 203.6 "Steam Roller Enrage?" Ability { id: "1ACA", source: "Gobpress R-VI" }
 
 # This targetable entry is the earliest we can re-sync the timeline.
-300.0 "--targetable--" sync /22:[^:]*:Lamebrix Strikebocks:[^:]*:Lamebrix Strikebocks:01/ window 190,10
+300.0 "--targetable--" NameToggle { name: "Lamebrix Strikebocks", toggle: "01" } window 190,10
 309.2 "Goblin Rush" Ability { id: "1A17", source: "Lamebrix Strikebocks" } window 200,10
 317.3 "Gobrush Rushgob" Ability { id: "1ACF", source: "Lamebrix Strikebocks" }
 

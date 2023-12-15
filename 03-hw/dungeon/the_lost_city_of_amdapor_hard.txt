@@ -137,7 +137,7 @@ hideall "--sync--"
 3119.3 "Glory" #Ability { id: "15E4", source: "Kuribu" }
 
 # Phase 2
-3300.0 "--untargetable--" sync / 22:........:Kuribu:........:Kuribu:00/ window 300,0
+3300.0 "--untargetable--" NameToggle { name: "Kuribu", toggle: "00" } window 300,0
 3306.0 "--targetable--"
 3306.0 "Reverse" Ability { id: "15D8", source: "Kuribu" } window 306,5
 
@@ -154,7 +154,7 @@ hideall "--sync--"
 3408.2 "Glory" #Ability { id: "15E4", source: "Kuribu" }
 
 # Phase 3
-3500.0 "--untargetable--" sync / 22:........:Kuribu:........:Kuribu:00/ window 200,0
+3500.0 "--untargetable--" NameToggle { name: "Kuribu", toggle: "00" } window 200,0
 3506.0 "--targetable--"
 3506.0 "Reverse" Ability { id: "15D8", source: "Kuribu" }
 3511.0 "Decoy" Ability { id: "15E1", source: "Kuribu" } window 511,10
