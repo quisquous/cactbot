@@ -290,7 +290,7 @@ hideall "--sync--"
 
 
 # Intermission at 45% HP. Might be a time push too? but it's uncertain.
-3300.0 "--untargetable--" sync / 22:........:Scathach:........:Scathach:00/ window 300,5
+3300.0 "--untargetable--" NameToggle { name: "Scathach", toggle: "00" } window 300,5
 3302.2 "--sync--" AddedCombatant { name: "Shadowcourt Jester" }  window 300,5
 3323.6 "--towers appear--"
 3333.6 "Particle Beam" Ability { id: "1D2[78]", source: "Scathach" }
@@ -402,7 +402,7 @@ hideall "--sync--"
 # This section leads directly into Diabolos Hollow the first time after Diabolos is defeated.
 # This is the dueling-lasers part where the party kills the big deathgate and two small ones.
 
-4274.0 "--sync--" sync / 22:........:Diabolos:........:Diabolos:00/ window 100,5
+4274.0 "--sync--" NameToggle { name: "Diabolos", toggle: "00" } window 100,5
 4286.2 "--lifegate spawn--" AddedCombatant { name: "Lifegate" }  window 300,5
 4300.0 "--sync--" Ability { id: "1C16", source: "Diabolos" } window 300,5
 4320.0 "--deathgate spawn--" AddedCombatant { name: "Deathgate" }  window 50,5

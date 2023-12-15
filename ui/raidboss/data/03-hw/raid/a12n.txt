@@ -18,7 +18,7 @@ hideall "--sync--"
 56.4 "Divine Spear" Ability { id: "1AE3", source: "Alexander Prime" }
 
 # The intermission can be pushed early at ~75% HP.
-61.4 "--untargetable--" sync / 22:........:Alexander Prime:........:Alexander Prime:00/ window 61.4,5
+61.4 "--untargetable--" NameToggle { name: "Alexander Prime", toggle: "00" } window 61.4,5
 161.9 "--sync--" Ability { id: "1A18", source: "Alexander" } window 161.9,5
 171.6 "Divine Judgment" Ability { id: "1AEF", source: "Alexander" }
 

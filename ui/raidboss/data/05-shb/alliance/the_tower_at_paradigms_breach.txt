@@ -370,7 +370,7 @@ hideall "--sync--"
 # ???
 
 # ~70% HP push?
-5200.0 "--untargetable--" sync / 22:........:Xun-Zi:........:Xun-Zi:00/ window 200,0
+5200.0 "--untargetable--" NameToggle { name: "Xun-Zi", toggle: "00" } window 200,0
 5210.9 "--targetable--"
 5221.0 "Deploy Armaments" Ability { id: "5C0[03]", source: "Xun-Zi" }
 5224.0 "Deploy Armaments" Ability { id: "5C0[03]", source: "Meng-Zi" }

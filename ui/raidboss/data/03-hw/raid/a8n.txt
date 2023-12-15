@@ -47,7 +47,7 @@ hideall "Brute Force"
 # There's no way to know which robot will die first or when,
 # so we just do one full rotation and hope for the best.
 # If it would have looped past here, there are bigger problems!
-200.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 200,0
+200.0 "--sync--" NameToggle { name: "Onslaughter", toggle: "00" } window 200,0
 203.8 "--sync--" AddedCombatant { name: "Brawler" }  window 150,30
 206.2 "--targetable--"
 214.3 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
