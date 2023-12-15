@@ -13,44 +13,44 @@ hideall "--sync--"
 
 
 ### Slimes (The Barracks, left side)
-1000.0 "--sync--" sync / 03:........:Viscous Clot:/  window 1000,0
-1000.0 "--Reset--" sync / 03:........:Trinity Seeker:/  window 0,1000 jump 0
-1000.0 "Viscous Clot x3" sync / 03:........:Viscous Clot:/  window 1000,0
-1005.3 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1012.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1024.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1025.4 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1027.5 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1036.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1044.9 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1048.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1060.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1065.1 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1072.4 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1077.1 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1084.3 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1085.0 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1096.1 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1105.2 "Sanguine Clot x3" sync / 03:........:Sanguine Clot:/
-1108.3 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
-1120.0 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1125.2 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1127.4 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1132.2 "Viscous Clot" sync / 03:........:Viscous Clot:/
-1144.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1156.2 "Viscous Clot x3" sync / 03:........:Viscous Clot:/
-1162.1 "Viscous Clot" sync / 03:........:Viscous Clot:/
-1165.4 "Sanguine Clot x2" sync / 03:........:Sanguine Clot:/
-1168.2 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
-1172.7 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1177.4 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1192.2 "Viscous Clot" sync / 03:........:Viscous Clot:/
-1204.2 "Viscous Clot x2" sync / 03:........:Viscous Clot:/
-1225.1 "Sanguine Clot" sync / 03:........:Sanguine Clot:/
-1227.2 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1233.1 "Sanguine Clot x4" sync / 03:........:Sanguine Clot:/
-1277.3 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
-1297.3 "Grim Reaper Enrage" sync / 03:........:Grim Reaper:/  window 300,10
+1000.0 "--sync--" AddedCombatant { name: "Viscous Clot" }  window 1000,0
+1000.0 "--Reset--" AddedCombatant { name: "Trinity Seeker" }  window 0,1000 jump 0
+1000.0 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }  window 1000,0
+1005.3 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1012.1 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1024.1 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1025.4 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1027.5 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1036.1 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1044.9 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1048.2 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1060.2 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1065.1 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1072.4 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1077.1 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1084.3 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1085.0 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1096.1 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1105.2 "Sanguine Clot x3" AddedCombatant { name: "Sanguine Clot" }
+1108.3 "Viscous Clot x2" AddedCombatant { name: "Viscous Clot" }
+1120.0 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1125.2 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1127.4 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1132.2 "Viscous Clot" AddedCombatant { name: "Viscous Clot" }
+1144.2 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1156.2 "Viscous Clot x3" AddedCombatant { name: "Viscous Clot" }
+1162.1 "Viscous Clot" AddedCombatant { name: "Viscous Clot" }
+1165.4 "Sanguine Clot x2" AddedCombatant { name: "Sanguine Clot" }
+1168.2 "Viscous Clot x2" AddedCombatant { name: "Viscous Clot" }
+1172.7 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1177.4 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1192.2 "Viscous Clot" AddedCombatant { name: "Viscous Clot" }
+1204.2 "Viscous Clot x2" AddedCombatant { name: "Viscous Clot" }
+1225.1 "Sanguine Clot" AddedCombatant { name: "Sanguine Clot" }
+1227.2 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1233.1 "Sanguine Clot x4" AddedCombatant { name: "Sanguine Clot" }
+1277.3 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
+1297.3 "Grim Reaper Enrage" AddedCombatant { name: "Grim Reaper" }  window 300,10
 1302.3 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1305.3 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1308.3 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
@@ -60,7 +60,7 @@ hideall "--sync--"
 1320.4 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1323.5 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1326.5 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
-1327.3 "Bozjan Soldier x2" sync / 03:........:Bozjan Soldier:/
+1327.3 "Bozjan Soldier x2" AddedCombatant { name: "Bozjan Soldier" }
 1329.5 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1332.6 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 1335.6 "Death Scythe" Ability { id: "5747", source: "Grim Reaper" } window 5,10
@@ -77,36 +77,36 @@ hideall "--sync--"
 
 ### Golems (The Granary, right side)
 2000.0 "--sync--" sync / 22:........:Bicolor Golem:........:Bicolor Golem:01/ window 2000,0
-2000.0 "--Reset--" sync / 03:........:Trinity Seeker:/  window 0,1000 jump 0
+2000.0 "--Reset--" AddedCombatant { name: "Trinity Seeker" }  window 0,1000 jump 0
 2025.2 "Core Combustion" Ability { id: "5745", source: "Bicolor Golem" } window 2030,10
 2026.1 "--bleed--" # from blue golem
-2029.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2029.9 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
 2032.1 "--sync--" StartsUsing { id: "5558", source: "Bicolor Golem" } window 20,10
 2037.1 "Metamorphose" Ability { id: "5558", source: "Bicolor Golem" }
-2069.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2069.9 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
 2071.3 "--sync--" StartsUsing { id: "5558", source: "Bicolor Golem" } window 20,10
 2076.3 "Metamorphose" Ability { id: "5558", source: "Bicolor Golem" }
-2109.7 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2140.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2160.2 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2170.3 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2180.3 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2189.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2199.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2209.9 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2220.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2230.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2240.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2250.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2260.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2270.0 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2280.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2290.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
-2299.7 "Grim Reaper Enrage" sync / 03:........:Grim Reaper:/
-2300.2 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2109.7 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2140.1 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2160.2 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2170.3 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2180.3 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2189.9 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2199.9 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2209.9 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2220.0 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2230.0 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2240.0 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2250.1 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2260.0 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2270.0 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2280.1 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2290.1 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
+2299.7 "Grim Reaper Enrage" AddedCombatant { name: "Grim Reaper" }
+2300.2 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
 2305.0 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 2308.0 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
-2310.1 "Ruins Golem x2" sync / 03:........:Ruins Golem:/
+2310.1 "Ruins Golem x2" AddedCombatant { name: "Ruins Golem" }
 2311.1 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 2314.1 "Death Scythe" #Ability { id: "5747", source: "Grim Reaper" }
 2317.1 "Death Scythe" Ability { id: "5747", source: "Grim Reaper" } window 5,10

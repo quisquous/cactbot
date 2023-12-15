@@ -39,8 +39,8 @@ hideall "--sync--"
 
 # chimney + train cars
 300 "--sync--" Ability { id: "28B3", source: "Phantom Train" } window 500,500
-305 "(T/H) Ghosts" sync / 03:........:Agony:/
-309 "(DPS) Ghosts" sync / 03:........:Malice:/
+305 "(T/H) Ghosts" AddedCombatant { name: "Agony" }
+309 "(DPS) Ghosts" AddedCombatant { name: "Malice" }
 
 
 491 "--sync--" Ability { id: "28A8", source: "Phantom Train" } window 500,500

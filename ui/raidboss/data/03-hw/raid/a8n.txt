@@ -48,7 +48,7 @@ hideall "Brute Force"
 # so we just do one full rotation and hope for the best.
 # If it would have looped past here, there are bigger problems!
 200.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 200,0
-203.8 "--sync--" sync / 03:........:Brawler:/  window 150,30
+203.8 "--sync--" AddedCombatant { name: "Brawler" }  window 150,30
 206.2 "--targetable--"
 214.3 "Magicked Mark" Ability { id: "173B", source: "Brawler" }
 214.3 "Brute Force" Ability { id: "1744", source: "Vortexer" }
@@ -87,7 +87,7 @@ hideall "Brute Force"
 
 # CUTE ROBOTS 2
 # One full rotation plus a tail again, for the same reasons. Don't be slow!
-500.0 "--sync--" sync / 03:........:Blaster:/  window 300,30
+500.0 "--sync--" AddedCombatant { name: "Blaster" }  window 300,30
 502.1 "--targetable--"
 510.3 "Magicked Mark" Ability { id: "173F", source: "Swindler" }
 510.3 "Brute Force" Ability { id: "1738", source: "Blaster" }
@@ -119,7 +119,7 @@ hideall "Brute Force"
 618.7 "Mind Blast"
 
 # GO, GO, MEGAZORD MODE (BRUTE JUSTICE)
-800.0 "--sync--" sync / 03:........:Brute Justice:/  window 300,30
+800.0 "--sync--" AddedCombatant { name: "Brute Justice" }  window 300,30
 810.3 "--sync--" Ability { id: "1758", source: "Brute Justice" } window 610.3,30
 813.0 "--targetable--"
 826.9 "Double Rocket Punch" Ability { id: "174E", source: "Brute Justice" } window 26,30

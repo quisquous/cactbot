@@ -42,8 +42,8 @@ hideall "--sync--"
 523.0 "Shrill Shriek" Ability { id: "3CCF", source: "Terminus Bellwether" } window 523,5
 525.0 "--untargetable--"
 525.0 "Adds (N)"
-561.3 "Adds (SW)" sync / 03:........:Terminus Roiler:/  window 60,60
-610.9 "Adds (S)" sync / 03:........:Terminus Pursuer:/  window 100,100
+561.3 "Adds (SW)" AddedCombatant { name: "Terminus Roiler" }  window 60,60
+610.9 "Adds (S)" AddedCombatant { name: "Terminus Pursuer" }  window 100,100
 800.0 "--sync--" StartsUsing { id: "3CD0", source: "Terminus Bellwether" } window 300,00
 840.0 "Burst" Ability { id: "3CD0", source: "Terminus Bellwether" } window 40,40
 
