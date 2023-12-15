@@ -45,7 +45,7 @@ hideall "--sync--"
 
 
 ### P2: M/F
-200.0 "--sync--" sync / 257 101:........:00020001:0A:/ window 200,0
+200.0 "--sync--" MapEffect { flags: "00020001", location: "0A" } window 200,0
 202.3 "--targetable--"
 203.4 "--sync--" StartsUsing { id: "7B40", source: "Omega" } window 210,5 # extra sync due to map effect sync
 206.4 "Firewall" Ability { id: "7B40", source: "Omega" }
