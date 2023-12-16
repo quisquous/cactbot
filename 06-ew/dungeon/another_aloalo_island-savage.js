@@ -160,7 +160,7 @@ Options.Triggers.push({
     {
       id: 'AAIS Monk Hydroshot',
       type: 'StartsUsing',
-      netRegex: { id: '8BCD', source: 'Aloalo Monk' },
+      netRegex: { id: '8BD1', source: 'Aloalo Monk' },
       condition: Conditions.targetIsYou(),
       response: Responses.knockbackOn(),
     },
