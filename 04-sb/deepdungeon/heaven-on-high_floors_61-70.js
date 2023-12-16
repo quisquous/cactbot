@@ -33,6 +33,7 @@ Options.Triggers.push({
         text: {
           en: 'Avoid Puddle',
           de: 'Flächen vermeiden',
+          fr: 'Évitez la zone au sol',
           cn: '躲避圈圈',
           ko: '장판 피하기',
         },
@@ -73,6 +74,7 @@ Options.Triggers.push({
         text: {
           en: 'Out of Puddle',
           de: 'Raus aus der Fläche',
+          fr: 'À l\'extérieur de la zone au sol',
           cn: '离开圈圈',
           ko: '장판 밖으로',
         },
