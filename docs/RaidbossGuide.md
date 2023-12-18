@@ -736,7 +736,7 @@ These reports have several different categories of errors:
 
 - other: general miscellaneous errors, usually not related to any line
 - code: a block of TypeScript code is missing a translation
-- sync: a trigger or a timeline `sync /something/` line is missing a translation
+- sync: a trigger or a timeline `Ability { source: "something" }` line is missing a translation
 - text: timeline text (e.g. `2.0 "text"`) is missing a translation
 
 ### Code Translations

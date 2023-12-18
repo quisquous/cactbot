@@ -269,7 +269,7 @@ Support is continually added over time (patches welcome!)
 but a lot of old content may not be supported yet.
 
 Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
-plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
+plugin, [documented here](https://web.archive.org/web/20230426121530/https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
 with [some extensions](docs/TimelineGuide.md).
 
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.

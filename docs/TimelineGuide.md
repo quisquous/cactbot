@@ -3,15 +3,6 @@
 This is a guide for people who want to write timelines,
 primarily for cactbot.
 
-NOTE: When this guide was originally written,
-Cape Westwind was a standard 8-player trial.
-This was removed in Endwalker, and that version of the encounter is no longer accessible.
-However, the timeline creation process for it is still valid,
-and it covers nearly all the different situations that can arise during timeline creation.
-
-The example output for `test_timeline` is out of date compared to its modern incarnation,
-but it's close enough to be understandable.
-
 ![import screenshot](images/timelineguide_timeline.png)
 
 cactbot uses the [raidboss module](https://github.com/quisquous/cactbot#raidboss-module)
@@ -21,48 +12,103 @@ or triggers that are based on timelines themselves.
 
 ## Table of Contents
 
-* [History](#history)
-* [Timeline File Syntax](#timeline-file-syntax)
-  * [Comments](#comments)
-  * [Entries](#entries)
-  * [Commands](#commands)
-  * [Examples](#examples)
-  * [Testing](#testing)
-  * [Shasta Kota Guide](#shasta-kota-guide)
-* [Cactbot Style Guide](#cactbot-style-guide)
-* [Timeline Triggers](#timeline-triggers)
-* [Timeline Injection](#timeline-injection)
-* [Timeline Translation](#timeline-translation)
-* [Example Timeline Creation](#example-timeline-creation)
-  * [Run the fight a few times](#run-the-fight-a-few-times)
-  * [Software prerequisites](#software-prerequisites)
-  * [Timeline Skeleton](#timeline-skeleton)
-  * [Generating an initial timeline file](#generating-an-initial-timeline-file)
-  * [Building Loops](#building-loops)
-  * [Adding Phases](#adding-phases)
-  * [Next phase](#next-phase)
-  * [Final Phase](#final-phase)
-  * [Boilerplate glue](#boilerplate-glue)
-  * [Making loops loop](#making-loops-loop)
-  * [Putting it all together](#putting-it-all-together)
-  * [Testing Timelines](#testing-timelines)
-  * [Test against other timelines](#test-against-other-timelines)
+* [Timeline Guide](#timeline-guide)
+  * [Table of Contents](#table-of-contents)
+  * [History](#history)
+  * [How do Timelines Work](#how-do-timelines-work)
+  * [Timeline File Syntax](#timeline-file-syntax)
+    * [Comments](#comments)
+    * [Entries](#entries)
+    * [Commands](#commands)
+    * [Basic Testing](#basic-testing)
+  * [Cactbot Style Guide](#cactbot-style-guide)
+    * [Guidelines](#guidelines)
+    * [Trigger Filenames](#trigger-filenames)
+    * [Pre-timeline combat, starts & resets, and multiple zones](#pre-timeline-combat--starts---resets--and-multiple-zones)
+  * [Timeline Triggers](#timeline-triggers)
+  * [Timeline Injection](#timeline-injection)
+  * [Timeline Translation](#timeline-translation)
+  * [Making a Timeline](#making-a-timeline)
+    * [Run the fight a few times](#run-the-fight-a-few-times)
+    * [Software prerequisites](#software-prerequisites)
+    * [Timeline Skeleton](#timeline-skeleton)
+    * [Using make_timeline.ts](#using-make-timelinets)
+    * [Timeline Ability Tables](#timeline-ability-tables)
+      * [One Hacky Workflow Suggestion](#one-hacky-workflow-suggestion)
+    * [Using make_timeline.ts with fflogs](#using-make-timelinets-with-fflogs)
+    * [Using test_timeline.ts](#using-test-timelinets)
+    * [Using test_timeline.ts with fflogs](#using-test-timelinets-with-fflogs)
+  * [Common Timeline Edits](#common-timeline-edits)
+    * [`-ii` to ignore abilities](#--ii--to-ignore-abilities)
+    * [`-p` for later phases](#--p--for-later-phases)
+    * [Targetable Lines](#targetable-lines)
+    * [Ignoring Combatants](#ignoring-combatants)
+    * [Adjusting Blocks of Timelines](#adjusting-blocks-of-timelines)
+    * [Variations vs Simultaneous Abilities](#variations-vs-simultaneous-abilities)
+    * [Basic Loops](#basic-loops)
+    * [Branches](#branches)
+    * [HP% Pushes](#hp--pushes)
+    * [Doubled Abilities](#doubled-abilities)
+    * [Doubled Abilities with suffixes](#doubled-abilities-with-suffixes)
+    * [Multi-hit Abilities](#multi-hit-abilities)
+    * [Numbering Important Mechanics](#numbering-important-mechanics)
+    * [Renaming Abilities to `--sync--`](#renaming-abilities-to----sync---)
+  * [Future Work](#future-work)
+    * [Smaller Fixes/Changes](#smaller-fixes-changes)
+    * [Larger Features](#larger-features)
+    * [Ability Table](#ability-table)
 
 ## History
 
-Back in 2016, Shasta Kota on the Death and Taxes website made this [guide](https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin) to use with  anoyetta's [ACT timeline plugin](https://github.com/anoyetta/ACT.Hojoring).
+Back in 2016, Shasta Kota on the Death and Taxes website made this
+[guide](https://web.archive.org/web/20230426121530/https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin) to use with anoyetta's [ACT timeline plugin](https://github.com/anoyetta/ACT.Hojoring).
 That plugin is now part of Hojoring.
 
 There's also an older [kaizoban](https://github.com/090/act_timeline/releases) version of the plugin that some people have used that predates anoyetta's work.
 
-cactbot timeline files were originally intended to be backwards compatible with these,
-and so cactbot-specific extensions are injected later from the triggers file.
+cactbot timeline files were originally intended to be backwards compatible with these.
+Eventually when it became clear that nobody else was using this format,
+some breaking changes were added, including:
+
+* `forcejump` keyword
+* `label` keyword
+* netregex sync syntax, e.g. `Ability { id: "1234", source: "That Mob" }` instead of `sync /etc/`
+
+## How do Timelines Work
+
+You can think about timelines as being a very simple state machine.
+There are two states: whether it is paused or not, and the current timeline time.
+
+They start paused at time=0.
+As soon as any sync happens, it jumps to that time, then unpauses.
+If it ever jumps to time=0, then it pauses again.
+
+When playing, the timeline time advances in real time.
+In other words, if the timeline time is currently `360.2`
+and then exactly two seconds of real time pass,
+then the timeline time will automatically move to `362.2`.
+
+To keep the timeline on track, the timeline is full of syncs
+which each have a window of time that they are active for.
+
+Take the line:
+`1350.7 "Melt" Ability { id: "5372", source: "Shiva" } window 20,10`
+
+This line has a `window 20,10` and a time of `1350.7`.
+This means that between the timeline times of `1330.7` and `1360.7` this sync is active.
+
+Once the current timeline time is within that window of 30 seconds, then it can be synced to.
+If the regex `Ability { id: "5372", source: "Shiva" }` matches any network log line,
+then the current timeline will jump to `1350.7`.
+After that the timeline will continue playing and moving forward in real time.
+If that line occurs outside the valid window, it is ignored.
 
 ## Timeline File Syntax
 
 Each line in a timeline file is considered its own timeline entry.
 There is no ordering at all.
 The fact that timeline files are ordered is as a convenience to the reader.
+(Two lines with the same time do keep their relative ordering.)
 
 ### Comments
 
@@ -71,32 +117,69 @@ Everything after that on the current line will be ignored.
 
 ### Entries
 
-Here are some grammar examples of timeline entries.
-Every timeline entry begins with the ability time and the ability name.
-
-`Number "String" (duration Number)`
-
-`Number "String" sync /Regex/ (window Number,Number) (jump NumberOrLabel) (duration Number)`
-
-`Number "String" sync /Regex/ (window Number,Number) (forcejump NumberOrLabel) (duration Number)`
-
-`Number label "String"`
-
+Here are some grammar examples of the timeline.
 (The parentheses here indicate optionality and are not literal parentheses.)
 
-**Number** can be an integer, e.g. `34`, or a float, e.g. `84.381`.
+There are only a few keywords: `hideall`, `jump`, `forcejump`, `duration`, `window`, `label`.
 
-**NumberOrLabel** can be a **Number** (e.g. `42` or `12.8`)
+Note: `forcejump` and `label` were added during Endwalker and so
+many previous timelines do not use these (but could and should).
+
+```text
+# hideall "[string]"
+hideall "--sync--"
+hideall "Reset"
+
+# [number] label "[string]"
+3631.7 label "oschon-p2-loop"
+6508.1 label "statice-10-loop"
+
+# [number] "[string]" (duration [number])
+677.0 "Heavensfall Trio"
+1044 "Enrage" # ???
+35.2 "Flare Breath x3" duration 4
+
+# [number] "[string]" [LogType] { [params] } (window [number],[number]) (jump [numberOrLabel]) (duration [number])
+685.5 "Warder's Wrath" Ability { id: "662A", source: "Erichthonios" } jump 1077.3
+267.5 "Resonance" Ability { id: "B6B", source: "Kaliya" } window 10,10 jump 217.5
+28.0 "Damning Edict?" Ability { id: "3150", source: "Chaos" } window 30,10 jump 2028.0
+
+# [number] "[string]" [LogType] { [params] } (window [number],[number]) (forcejump [numberOrLabel]) (duration [number])
+5639.7 "Made Magic" Ability { id: "8B94", source: "Quaqua" } window 40,40 forcejump "quaqua-right-untouched-loop"
+1258.6 "Immolating Shade (light parties)" Ability { id: "8496", source: "Golbez" } forcejump 1600.0
+```
+
+`[number]` can be an integer, e.g. `34`, or a float, e.g. `84.381`.
+
+`[numberOrLabel]` can be a `[number]` (e.g. `42` or `12.8`)
 or a label name with double quotes (e.g. `"loop"` or `"branch2"`).
 
-**String** is a character string, e.g. `"Liftoff"` or `"Double Attack"`
+`"[string]"` is a character string, e.g. `"Liftoff"` or `"Double Attack"`
 
-**Regex** is a [Javascript regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
+`[LogType]` is a key from [netlog_defs.ts](../resources/netlog_defs.ts),
+e.g. `Ability` or `StartsUsing` or `AddedCombatant`.
+Any line with `[LogType]` and parameters is a "sync".
+
+`[params]` are a [JSON5](https://json5.org/) object.
+The keys are from the `fields` of the `LogType`.
+See: the [Log Guide](LogGuide.md) for more explanation.
+The values are either strings or arrays of strings.
+Style-wise, prefer using bareword keys with double quotes.
+(Even if quoted keys or single quotes are legal.)
+
+These string param fields are interpreted as regular expressions,
+so `"E.D.D."` means `E` followed by any character then `D` followed by any character (etc).
+If you want escape a regular expression character, you need two backslashes, e.g.
+`"E\\.D\\.D\\."` (i.e. matching the literal string `E.D.D.`).
+
+Additionally, if you are using [sync_files.ts](RaidbossGuide.md#sync-files) for this timeline
+you should spell out ability ids in full, e.g. `id: "(8B43|8B46)"` instead of `id: "8B4[36]"`,
+so that the script can find and replace them properly.
 
 The ability time and ability name always need to come first,
-but `duration`, `forcejump`, `jump`, `sync`, and `window`
+but `duration`, `forcejump`, `jump`, `[LogType]`, and `window`
 do not have to be in any order with respect to each other.
-Stylistically, usually `sync` is put first.
+Stylistically, usually the`[LogType]` sync is put first.
 
 **duration** is a time in seconds to display the accompanying action.
 Usually, timeline entries disappear immediately,
@@ -104,13 +187,14 @@ but sometimes an action is ongoing, like 5x Bahamut's Claw in a row.
 You can use `duration` to show the action for that length of time.
 It does not need a sync to do this.
 
-The syntax for **duration** is `duration Number`,
+The syntax for **duration** is `duration [number]`,
 as `duration 5.5`.
 
 **forcejump** tells the timeline playback to jump to a particular time
 if the sync is encountered *or* if the line containing the **forcejump**
 is reached without syncing.
 This is intended for loops that will always be taken in an encounter.
+
 When this is used, no "lookahead" loop unrolling is needed,
 and the timeline will use the **forcejump** destination to list events in the future,
 because it knows that it will always jump there.
@@ -124,7 +208,8 @@ and its second value extends past the **forcejump** time,
 this "overhang window" will still be respected even after force jumping
 until the next sync or jump occurs.
 
-The syntax for **forcejump** is `forcejump Number`, as `forcejump 204.2`.
+The syntax for **forcejump** is `forcejump [number]` (e.g. `forcejump 204.2`)
+or `forcejump [label]` (e.g. `forcejump "quaqua-middle-poison-loop"`).
 
 **jump** tells the timeline playback to jump to a particular time
 if and only if the sync is encountered.
@@ -133,82 +218,64 @@ The timeline controller does not require a timeline entry at the time you jump t
 but common practice is to ensure there there is one for readability and sanity-check purposes.
 If you jump to time 0, the timeline will stop playback.
 
-The syntax for **jump** is `jump Number`, as `jump 204.2`.
+The syntax for **jump** is `jump [number]` (e.g. `jump 204.2`)
+or `jump [label]` (e.g. `jump "Hieroglyphika"`).
 
 **window** is the time frame in which to consider the sync.
 By default, if **window** is not specified, cactbot considers it the
-same as specifying `window 2.5,2.5`.  In other words,
+same as specifying `window 2.5,2.5`.
+In other words,
 2.5 seconds before the ability time and 2.5 seconds after.
-As an example, for the line `3118.9 "Lancing Bolt" sync /:Raiden:3876:/`,
-if the regular expression `/:Raiden:3876:/` is encountered anywhere between 3116.4 and 3121.4
-then it will resync the timeline playback to 3118.9.
+As an example, for the line `3118.9 "Lancing Bolt" Ability { id: "3876", source: "Raiden" }`,
+if the log line for this ability is encountered anywhere between `3116.4` and `3121.4`
+then it will resync the timeline playback to `3118.9`.
 Often timelines will use very large windows for unique abilities,
-to make sure that timelines sync to the right place even if started mid-fight.
+to make sure that timelines sync to the right place even if started mid-fight
+or if hp pushes are discovered when the content is no longer current.
 
-The syntax for **window** is `window Number,Number`, as `window 10,30`.
+The syntax for **window** is `window [number],[number]` (e.g `window 10,30`).
+There is no space after the comma.
 
 ### Commands
 
 To hide all instances of an ability, you can use the `hideall` command.
 Most timelines start with the line `hideall "--sync--"`
 to hide syncs that are just used to keep the timeline on track but should not be shown to the player.
+Timeline triggers can still match hidden entries.
 
 There are a number of other commands for generating alerts based on timeline entries.
 These are still supported but are not documented.
 Instead, alerts based on timelines in cactbot should use [timeline triggers](#timeline-triggers).
 
-### Example Timeline Entries
-
-```bash
-# I am just a comment
-
-# This hides all timeline entries that contain the exact string "--sync--".
-hideall "--sync--"
-
-# These examples are improper, generally speaking. Lines should have syncs,
-# or their syncs should be commented out.
-# Some older timelines will still have entries that look like this though.
-677.0 "Heavensfall Trio"
-1044 "Enrage" # ???
-35.2 "Flare Breath x3" duration 4
-
-# These are examples of lines that sync to actions.
-1608.1 "Petrifaction" sync / 1[56]:[^:]*:Melusine:7B1:/ window 1610,5
-1141.4 "Leg Shot" sync / 1[56]:[^:]*:Mustadio:3738:/ duration 20
-28.0 "Damning Edict?" sync / 1[56]:[^:]*:Chaos:3150:/ window 30,10 jump 2028.0
-524.9 "Allagan Field" sync / 1[56]:[^:]*:The Avatar:7C4:/ duration 31 jump 444.9
-
-# This is an example of syncing to the beginning of a cast.
-1032.0 "Control Tower" sync / 14:[^:]*:Hashmal:25C1:/ window 20,20 duration 13.5 # start of cast -> tower fall
-
-# This is a line that would sync to an action, but the sync has been commented out.
-330.7 "Atma-Linga x2" #sync / 1[56]:[^:]*:Ravana:EA6:/
-```
-
-### Testing
+### Basic Testing
 
 In cactbot, running `npm run test` will run tests to verify that there are no errors.
 
-### Shasta Kota Guide
-
-It is also worth reading Shasta Kota's original [guide](https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
-which is still excellent.
-
 ## Cactbot Style Guide
 
-These are guidelines that cactbot tries to follow for timelines.
+Timelines are extremely subjective.
+The goal is to be clear and useful to people using it.
+This means cleaning up things that feel "noisy" but leaving in as much as possible.
+It requires a good bit of manual work to create a nice feeling and correct timeline.
 
-* add syncs for everything possible
+In general, cactbot has decided to use actual ability names instead of things like "raidwide".
+It's easier to translate, but it is hard to talk about abilities with others if
+"raidwide" could mean "Ultima" or "Gaiochos" or "Caloric Theory".
+
+### Guidelines
+
+* add syncs for every ability possible.
 * if there is only one boss in a zone, the timeline should start on entering combat.
 (The timeline utility will usually add the correct line automatically for you.)
-It is generally unnecessary to sync to the first auto-attack
-or otherwise "supplement" starting from combat beginning.
+* add a sync for the first cast that will start the timeline so that testing with fflogs will sync properly.
+* it is generally unnecessary to sync to the first auto-attack.
 (In special cases such as raid bosses with checkpoints,
 it may be acceptable to sync an auto for the second part of the encounter.)
+* remove all other auto attack syncs, as these are often inconsistent.
 * include any special command line flags used to generate the timeline in a comment at the top.
 (The ignore-combatant and ignore-ability flags
 are automatically added by the timeline utility for your convenience.)
-* prefer actions for syncs over game log lines, but sync to game log lines if that's the only option
+* prefer actions for syncs over game log lines, but sync to game log lines if that's the only option.
 * if you do sync a phase with game log lines,
 add a large window sync for an action after that line for safety.
 * if a boss has multiple phases,
@@ -220,14 +287,19 @@ If this is not possible, still try to add wide syncs to the beginning of each ph
 or if it otherwise makes sense to modify how it's displayed,
 handle that modification in the timeline replacement section of the trigger file.)
 * loops should use `jump` or `forcejump` to return to an earlier point in the timeline,
-rather than using a wide window sync at the beginning of the loop.
-* liberally use whitespace and comments to make the timeline readable
-* do not put any triggers, tts, or any other form of alerts in the timeline file itself
-* use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts
-* add a lookahead window of at least 30 seconds *and* 6 abilities for multi-possibility `jump`s that are not simple loops.
-(If it is a simple loop, use `forcejump`.)
-* comment out syncs from any displayed abilities that are within 7 seconds of each other,
+rather than using a wide window sync at the beginning of the loop for readability.
+* liberally use whitespace and comments to make the timeline readable.
+* do not put any triggers, tts, or any other form of alerts in the timeline file itself.
+* use [timeline triggers](#timeline-triggers) from within a trigger file for any alerts.
+* prefer using `label` for all jumps rather than jumping to a number.
+* for any loop that is always taken, use `forcejump` to automatically provide lookahead.
+* for any loop or branch that is conditionally taken, add a lookahead window of at least 30 seconds *and* 6 abilities.
+* for any `jump` or `forcejump`, prefer to jump via `StartsUsing` instead of `Ability` where possible to jump sooner.
+* comment out syncs from any displayed abilities that are within 3 seconds of each other,
 but do not remove them. (This preserves the ability ID for future maintainers.)
+* prefer to use `npcNameId` instead of `name` on `AddedCombatant` lines.
+* use `-la` with `make_timeline` to print an [ability table](../ui/raidboss/data/06-ew/dungeon/another_aloalo_island.txt#L92-L142) and fill it out.
+* As always, be consistent with other timelines.
 
 ### Trigger Filenames
 
@@ -238,7 +310,7 @@ raids get abbreviated and numbered,
 dungeons are called by their zone.
 
 For filenames, use underscores to separate words.
-For trials like `nm` (normal mode), `hm` (hard mode), and `ex` (extreme mode),
+For trials like `nm` (normal mode), `hm` (hard mode), `ex` (extreme mode), `un` (unreal mode)
 separate with a hyphen.
 Dungeons with hard in the name can spell out "Hard" as a full word.
 Articles like `The` can be dropped.
@@ -253,10 +325,117 @@ Examples:
 * The Grand Cosmos: `grand_cosmos`
 * Titan Extreme: `titan-ex`
 * Ruby Weapon Extreme: `ruby_weapon-ex`
+* Thordan Unreal: `thordan-un`
 * The Great Gubal Library (Hard): `great_gubal_library_hard`
 * Sigmascape V2.0 (Savage): `o6s`
 * Alexander - The Arm of the Father: `a3n`
 * The Final Coil of Bahamut: `t13`
+
+### Pre-timeline combat, starts & resets, and multiple zones
+
+There is no one-size-fits-all approach for starting and resetting timelines.
+
+In single-boss, single-zone content (e.g., most trials),
+the timeline should start when combat begins,
+and should reset on a wipe or when the player is out of combat.
+
+However, in dungeons for example, the player is often in combat
+with mobs before the timeline should begin for the first boss encounter.
+For that matter, there are also several boss encounters in each dungeon.
+In those situations, we need discrete timelines for each boss encounter,
+and each boss's timeline should start only once that boss encounter begins.
+
+There are a number of ways we can handle this.
+
+First, by default, cacbot will reset the timeline to time=0
+whenever a player is out of combat.
+This default can be overriden in particular fight's trigger set
+with the following property:
+
+```typescript
+resetWhenOutOfCombat: false
+```
+
+This property is only used in selective circumstances (e.g. zones like Eureka),
+so we'll approach timeline creation here assuming default behavior.
+
+The first step is determining how the timeline should begin running.
+
+If the timeline should begin when the player first begins combat,
+we can use OverlayPlugin's 0x104 InCombat line
+to detect when the player enters combat:
+
+```text
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+```
+
+(`make_timeline` generates this line by default where appropriate.)
+
+However, if there will be pre-timeline combat (e.g., pre-boss mobs),
+this would incorrectly start combat during the pre-boss phase,
+so we need a different approach.
+
+In these situations, boss encounters (and timelines) are often tied
+to a specific zone within the instance,
+which means we can start the timeline when that zone is sealed off.
+For example:
+
+```text
+# Landfast Floe will be sealed off
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CD" } window 100000,0
+```
+
+(`make_timeline` generates this by default if the encounter begins with a zone seal.)
+
+This `SystemLogMessage` is the equivalent of the `GameLog` that looks like
+`00|2023-12-14T21:02:36.0000000-08:00|0839||The Landfast Floe will be sealed off in 15 seconds!|419a62a812652b97`.
+However, by using `SystemLogMessage` with an id, it will work without chat log lines turned on
+and it does not require any translations and thus is more robust.
+
+For multi-zone instances like dungeons, we can effectively create
+separate timelines for each encounter in the same timeline file
+by using large gaps between the timelines, coupled with large sync windows.
+
+For example, in [Alzadaal's Legacy](../ui/raidboss/data/06-ew/dungeon/alzadaals_legacy.txt),
+we effectively have three separate timelines,
+one for each boss encounter, each spaced 1000 seconds apart.
+Because the timeline resets to 0 each time the player is out of combat,
+we use large sync windows on each zone-seal message to 'jump' the timeline
+to the right place for each encounter:
+
+```bash
+# Undersea Entrance will be sealed off
+0.0 "--sync--" SystemLogMessage { id: "7DC", param1: "103E" } window 0,1
+# etc etc
+# The Threshold of Bounty will be sealed off
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "103F" } window 1000,1
+# etc etc
+# Weaver's Warding will be sealed off
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1040" } window 2000,1
+```
+
+Finally, because cactbot automatically resets the timeline when the player is out of combat,
+there is no need to include specific reset lines in most timeline files by default.
+
+However, if a trigger set contains the property to NOT reset the timeline
+when out of combat, there are several options for manualy triggering a reset.
+
+On fights where the entire zone resets (e.g. all of omegascape, a4s, a8s, a12s, t9, t13),
+you can use the ActorControl line that is sent on a wipe:
+
+```bash
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
+```
+
+On fights with zones that seal and unseal, (e.g. a1s, t1-8)
+you can use the zone unsealing message itself to reset:
+
+```bash
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
+```
+
+This `SystemLogMessage` is the equivalent to the `GameLog` line for something like
+`00|2023-12-14T21:06:37.0000000-08:00|0839||The Landfast Floe is no longer sealed!|7505dac81c639ea5`.
 
 ## Timeline Triggers
 
@@ -298,9 +477,11 @@ If those things are strings, it will add them directly.
 If those things are functions, it will call the function and add the return value.
 (The `data` parameter passed only contains a player's role and job and not other things.)
 
-The test timeline in Summerford Farms that you can start by doing a /countdown or /bow-ing to a Striking Dummy has examples of this.  See: [test.js](https://github.com/quisquous/cactbot/blob/79239abda888dd7a277da0501a7d4ac60d8cf963/ui/raidboss/data/triggers/test.js#L10).
+The test timeline in Summerford Farms that you can start by doing a /countdown or /bow-ing to a Striking Dummy has examples of this.
+See: [test.ts](../ui/raidboss/data/00-misc/test.ts).
 
-You can also add timeline entries to your **cactbot/user/raidboss.js** file for personalized timeline entries and triggers.  See: [user/raidboss.js](https://github.com/quisquous/cactbot-user/blob/641488590e3ea499cc3b54cc9f2f2f856dee4ad8/raidboss.js#L28)
+You can also add timeline entries to your **cactbot/user/raidboss.js** file for personalized timeline entries and triggers.
+See: [user/raidboss.js](https://github.com/quisquous/cactbot-user/blob/641488590e3ea499cc3b54cc9f2f2f856dee4ad8/raidboss.js#L28)
 
 ## Timeline Translation
 
@@ -312,20 +493,17 @@ This has two purposes.
 The first purpose is for tools, to autogenerate regular expression translations for triggers.
 
 The second purpose is for timelines at runtime.
-cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text/` on a timeline line,
+cactbot will use the `replaceSync` section to auto-replace anything inside curly braces on
+a timeline line (e.g. `Ability { id: "1234", source: "Ultima" })`)
 and the `replaceText` section to auto-replace anything inside the ability text.
 
-These match only the exact text of the regex within the line, not the entire line.
+Each `replaceSync` entry is applied against each parameter individually.
+Only some parameters are translated (e.g. never `id`, but always `source` or `name`).
 Care is needed to make sure that replacements are not overzealous.
 
-## Example Timeline Creation
+See also: [Trigger Translation Overview](RaidbossGuide.md#translation-overview)
 
-Here's an example of using cactbot's tools to make a timeline file for Cape Westwind.
-This is pretty straightforward and only requires one person to test, so is a good first example.
-
-Note that the Cape Westwind trial was removed in Patch 6.1,
-and the timeline has since been removed from cactbot.
-However, you can view the original timeline [here](https://github.com/quisquous/cactbot/blob/aa38bdf8f2551a504e1d3f595cd266d3baa193f2/ui/raidboss/data/02-arr/trial/cape_westwind.txt).
+## Making a Timeline
 
 ### Run the fight a few times
 
@@ -343,40 +521,52 @@ Good guidelines for getting good logs are:
 1. run long enough to see the enrage
 1. have enough people to see all the mechanics (e.g. t11 tethers don't appear without two people)
 1. per phase, run long enough to see the mechanics loop
-1. run several times so you can test it
+1. run several times so you can test it, especially if there are mechanic variations or hp pushes
+
+It's also recommended that you record video at the same time.
+If you don't want to stream publicly, unlisted youtube videos are a good option.
 
 ### Software prerequisites
 
 * [Node.js](https://nodejs.org/en/)
 * A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/main.zip)
+* See: [CONTRIBUTING.md](../CONTRIBUTING.md#development-workflow)
 
 ### Timeline Skeleton
 
 There are three things you need to add a new timeline to cactbot.
 
+Let's say you are creating a log file for the final extreme of Endwalker.
+
 (1) Create a blank timeline file.
 
-Add a new file called **ui/raidboss/data/timelines/cape_westwind.txt**.
+Add a new file called **ui/raidboss/data/06-ew/raid/zeromus-ex.txt**.
 You can leave it blank.
 
 (2) Add a new triggers file, if it doesn't exist.
 
-Create **ui/raidboss/data/02-arr/trial/cape_westwind.js**.
-This can be named whatever you want.
-Timeline files can only be loaded via triggers files,
-so the triggers file is always required.
+Create **ui/raidboss/data/06-ew/raid/zeromus-ex.ts**.
+Timeline files can only be loaded via trigger files,
+so the trigger file is always required.
 
 (Note that these steps are typically already done by repository contributors around patch release.)
 
-An initial triggers file should look like the following:
+An initial trigger file should look like the following:
 
-```javascript
-export default {
-  zoneId: ZoneId.CapeWestwind,
-  timelineFile: 'cape_westwind.txt',
-  triggers: [
-  ],
+```typescript
+import { RaidbossData } from '../../../../../types/data';
+import { TriggerSet } from '../../../../../types/trigger';
+
+export type Data = RaidbossData;
+
+const triggerSet: TriggerSet<Data> = {
+  id: 'TheAbyssalFractureExtreme',
+  zoneId: ZoneId.TheAbyssalFractureExtreme,
+  timelineFile: 'zeromus-ex.txt',
+  triggers: [],
 };
+
+export default triggerSet;
 ```
 
 (3) Build cactbot.
@@ -392,1061 +582,678 @@ plugin to pick up the changes.
 
 If you are using `webpack-dev-server`, it will automatically reload whenever you change the source files.
 
-### Generating an initial timeline file
+### Using make_timeline.ts
 
-Once you have a network log file, you need to find the start and the finish.
+For this example, we'll be using the [TheAbyssalFractureExtreme.log](logs/TheAbyssalFractureExtreme.log) file.
+Feel free to play along at home.
 
-[View the logs in ACT](LogGuide.md#viewing-logs-after-a-fight) and find the start and the end.
+From your cactbot directory, use the command:
+`node --loader=ts-node/esm util/logtools/make_timeline.ts -f docs/logs/TheAbyssalFractureExtreme.log -lf`
+
+```shell
+$ node --loader=ts-node/esm util/logtools/make_timeline.ts -f docs/logs/TheAbyssalFractureExtreme.log -lf
+(node:19900) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+┌───────┬──────────────┬────────────────┬──────────┬──────────────────────────────────┬──────────────────────────────────┬──────────┐
+│ Index │  Start Date  │   Start Time   │ Duration │            Zone Name             │          Encounter Name          │ End Type │
+├───────┼──────────────┼────────────────┼──────────┼──────────────────────────────────┼──────────────────────────────────┼──────────┤
+│   1   │  2023-10-06  │  20:20:08.265  │   10m    │  The Abyssal Fracture (Extreme)  │  The Abyssal Fracture (Extreme)  │   Win    │
+│   2   │  2023-10-06  │  21:09:43.014  │   12m    │  The Abyssal Fracture (Extreme)  │  The Abyssal Fracture (Extreme)  │   Win    │
+│   3   │  2023-10-06  │  21:55:12.239  │    9m    │  The Abyssal Fracture (Extreme)  │  The Abyssal Fracture (Extreme)  │   Win    │
+└───────┴──────────────┴────────────────┴──────────┴──────────────────────────────────┴──────────────────────────────────┴──────────┘
+```
+
+`-lf` lists all of the fights and their zones.
+This log file has been run through the [log splitter](https://quisquous.github.io/cactbot/util/logtools/splitter.html)
+and anonymized, and so there are only three fights.
+
+You can make a timeline for a particular fight by using `-lf` with the index, e.g. `-lf 1`.
+If you run the command, it should look something like this.
+
+```shell
+$ node --loader=ts-node/esm util/logtools/make_timeline.ts -f docs/logs/TheAbyssalFractureExtreme.log -lf 1
+(node:24172) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This
+ feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+### THE ABYSSAL FRACTURE (EXTREME)
+# ZoneId: 491
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+72.8 "--sync--" Ability { id: "8C49", source: "Zeromus" }
+75.8 "--sync--" Ability { id: "8C49", source: "Zeromus" }
+83.9 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+92.9 "--sync--" Ability { id: "8B41", source: "Zeromus" }
+92.9 "--sync--" #Ability { id: "8B40", source: "Zeromus" }
+92.9 "--sync--" #Ability { id: "8B40", source: "Zeromus" }
+92.9 "--sync--" Ability { id: "8D2B", source: "Zeromus" }
+97.9 "--sync--" Ability { id: "8B41", source: "Zeromus" }
+97.9 "--sync--" Ability { id: "8B40", source: "Zeromus" }
+99.9 "Abyssal Echoes" Ability { id: "8B42", source: "Zeromus" }
+# etc etc etc
+```
+
+TODO: for some reason, `make_timeline.ts` is confused here and thinks the first
+real ability (Abyssal Nox 8B3F) occurs at time=83.9.
+It's clear from the log that it should be t=11.1.
+See: <https://github.com/quisquous/cactbot/issues/6048>
+
+```text
+260|2023-10-06T20:21:19.9510000-07:00|1|0|
+20|2023-10-06T20:21:27.1110000-07:00|40022550|Zeromus|8B3F|Abyssal Nox|40022550|Zeromus|4.700|100.00|80.10|0.00|0.00|
+22|2023-10-06T20:21:32.1010000-07:00|40022550|Zeromus|8B3F|Abyssal Nox|10FF0007|Kehabiqo Febiqo|4A|10000|E|6E90000|1B|8B3F8000|0|0|0|0|0|0|0|0|0|0|126650|128564|10000|10000|||99.95|97.53|0.00|3.14|39444801|40478540|10000|10000|||100.00|80.10|0.00|0.00|0001A48D|0|8|
+```
+
+You can fix this by running with `-p 8B3F:11.1` which will set the first use of `8B3F` to be time `11.`1.
+
+From here, it's a question of massaging this timeline into something that's usable.
+
+It may be tedious, but the best place to start when making a timeline is by filling out the
+[timeline ability table](#timeline-ability-tables).
+
+After that, you should follow these guidelines and your own subjective opinions to finish the timeline:
+
+* [cactbot timeline style guide](#cactbot-style-guide)
+* [common timeline edits](#common-timeline-edits)
+
+You can look at [zeromus-ex.txt](../ui/raidboss/data/06-ew/trial/zeromus-ex.txt) to see a final version.
+
+### Timeline Ability Tables
+
+If you run `make_timeline.ts` with the `-la` (list abilities) parameter,
+it will build a table for you of encounter abilities that it's seen
+and print it at the end of the timeline.
+
+It looks like this:
+
+```shell
+$ node --loader=ts-node/esm util/logtools/make_timeline.ts -f docs/logs/TheAbyssalFractureExtreme.log -lf 1 -la
+# (elided normal timeline output here for many lines)
+
+# ALL ENCOUNTER ABILITIES
+# 8AEF --sync--
+# 8B27 --sync--
+# 8B28 --sync--
+# 8B29 --sync--
+# 8B2A --sync--
+# 8B2B --sync--
+# 8B38 Sable Thread
+# 8B39 Sable Thread
+# 8B3A Sable Thread
+# 8B3B Sable Thread
+# 8B3D Fractured Eventide
+# etc
+```
+
+The best way to make sense of all of the abilities is to write down some information
+about each of the abilities.
+Why are there four `Sable Thread` abilities here? What do they all do?
+
+Things to look at:
+
+* is there a cast for this ability or is it an immediate ability?
+* is this cast on players or a self-targeted cast on the boss?
+* does the ability hit players?
+* does the ability do damage? (or just give debuffs)
+* is this id associated with a version of an attack (e.g. left cleave or right cleave)?
+
+The reason to build the ability table is:
+
+* easier to understand what abilities to ignore in timeline
+* trivial to build [Oopsy](OopsyraidsyGuide.md) once you know what damage ids are
+* easier to find ids when filling out [sync_files.ts](RaidbossGuide.md#sync-files)
+* helpful to have ids to write triggers from
+
+Personally, starting from the ability table and then working out from there
+is the best way to attack most new content.
+
+#### One Hacky Workflow Suggestion
+
+This is a bit of a hacky workflow, but one way to build the ability table is to filter log lines
+down to the useful log lines.
+
+If you load the log into ACT, [view the logs](LogGuide.md#viewing-logs-after-a-fight), and then search by the following regex,
+you will get most of the "interesting" lines for a fight.
 
 ![encounter logs screenshot](images/timelineguide_encounterlogs.png)
 
-For example, in this fight, these are the relevant log lines and times:
+This includes boss abilities and casts, added combatants, tethers, map effects, head markers, and debuffs on players.
+It's not perfect, but it's a place to start.
 
-```log
-[18:42:23.614] 15:105E5703:Potato Chippy:2E:Tomahawk:4000EE16:Rhitahtyn sas Arvina:710003:9450000:1C:2E8000:0:0:0:0:0:0:0:0:0:0:0:0:140279:140279:8010:8010:1000:1000:-707.8608:-822.4221:67.74045:3858:74095:4560:0:1000:1000:-693.7162:-816.4633:65.55687:
-[18:49:22.934] 19:Rhitahtyn Sas Arvina was defeated by Potato Chippy.
+You can then walk through a log with video, and look at which abilities hit players and do damage
+and which are castbars on the boss (not all `StartsUsing` are castbars) and then fill out the ability table
+and understand what everything is.
+
+```text
+( 1A:[^:]*:([^:]|: )*:[^:]*:[E4][^:]*:[^:]*:1| 1A:(B9A|808):| 03:| 23:| 101:| 1B:| 1[456]:4.......:(?!\w*-Egi|Liturgic Bell|Thancred|Moonstone Carbuncle|Zero(?!mus)|Alphinaud|Alisaie|Topaz Titan|Emerald Carbuncle|Eos|Rook Autoturret|Seraph|Bishop Autoturret|Ruby Carbuncle|Esteem|Demi-\w*|Earthly Star|Automaton Queen|Bunshin|Selene|Hien|Lyse|Pipin Of The Steel Heart|Yugiri Mistwalker|2B|Topaz Carbuncle|Y'shtola|Hythlodaeus|Emet-Selch|Venat|Krile|Estinien|Urianger|G'raha Tia|Carbuncle|Varshahn|Emerald Garuda|Ruby Ifrit|Bunshin|Earthly Star)[^:]*:(?!IGNOREIDSHERE)[^:]*:(?!Attack|attack))
 ```
 
-(Known bug: sometimes network logs from other people's timezones require converting the time from what the act log lines.  Patches welcome.)
+TODO: This could be a lot better. We could add an option in the log splitter to output "interesting" lines.
 
-You can then make a timeline from those times by running the following command.
+### Using make_timeline.ts with fflogs
 
-```bash
-ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
+Usually you want a network log file for the bulk of timeline work,
+but in desperate situations where your fights end too quickly
+it can be helpful to look through fflogs and find the longest fight possible.
+This may help you find loops or enrages.
 
-0 "Start"
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-57.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-85.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-94.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-102.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-106.1 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-110.4 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-114.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-119.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-123.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-127.8 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-132.1 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-136.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-140.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-145.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-149.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-154.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-158.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-163.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-167.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-172.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-175.8 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-179.3 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-184.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-189.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-193.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-195.9 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-196.1 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-198.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-202.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-202.9 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-203.3 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-207.2 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-207.6 "Rampart" sync /:7th Cohort Optio:0A:/
-210.0 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-211.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-212.6 "Shield Bash" sync /:7th Cohort Optio:2CE:/
-214.3 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-214.9 "Fight Or Flight" sync /:7th Cohort Optio:14:/
-216.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-217.3 "Rampart" sync /:7th Cohort Optio:0A:/
-218.0 "Celeris" sync /:7th Cohort Optio:194:/
-220.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-222.0 "Fight Or Flight" sync /:7th Cohort Optio:14:/
-225.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-226.3 "Fast Blade" sync /:7th Cohort Optio:2CD:/
-229.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-234.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-239.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-243.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-259.1 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-263.6 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-267.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-269.1 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-274.2 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-278.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-282.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-299.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-303.8 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-308.1 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-309.3 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-314.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-318.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-323.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-339.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-344.0 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-348.3 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-349.5 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-354.6 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-358.9 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-363.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-378.7 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-383.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-387.5 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-388.7 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-393.8 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-398.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-402.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-```
+However, fflogs does not include all of the abilities or line types
+and so this is a backup method to find extended versions of timelines
+once you have already worked on the bulk of it.
 
-(Note that you can also use the `-lf` parameter to list the encounters in the combat log.
+You need your fflogs api v1 key.
+Go to <https://www.fflogs.com/profile> and scroll down to `Web API`.
 
-```bash
-ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -lf
+Add a `V1 Client Name` like "manual" and make a note of your `V1 Client Key`.
 
-┌───────┬──────────────┬────────────────┬──────────┬─────────────────────────────────────────┬─────────────────────────────────────────┬───────────────┐
-│ Index │  Start Date  │   Start Time   │ Duration │                Zone Name                │             Encounter Name              │   End Type    │
-├───────┼──────────────┼────────────────┼──────────┼─────────────────────────────────────────┼─────────────────────────────────────────┼───────────────┤
-│   1   │  2018-07-02  │  02:03:44.018  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-│   2   │  2018-07-02  │  18:32:52.981  │    3m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-│   3   │  2018-07-02  │  18:42:23.614  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-│   4   │  2018-07-02  │  18:57:09.114  │   13m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-│   5   │  2018-07-02  │  19:29:42.265  │    7m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-│   6   │  2018-07-02  │  19:40:20.606  │    6m    │              Cape Westwind              │              Cape Westwind              │     Wipe      │
-└───────┴──────────────┴────────────────┴──────────┴─────────────────────────────────────────┴─────────────────────────────────────────┴───────────────┘
-```
+Find any log for the fight you want.
+Here's a random one for Zeromus:
+<https://www.fflogs.com/reports/Ktm6hbrTjZAYpQB1#fight=34&type=damage-done>
 
-From here, you can then rerun the command with the number of the encounter you want to use,
-as `-lf 3`.)
+Then run this command, substituting your `V1 Client Key` for `YourClientKeyHere` below:
 
-This isn't really a workable timeline yet, but it's a start.
-Paste this into **ui/raidboss/data/timelines/cape_westwind.txt**.
-
-If you are using Windows cmd.exe or MINGW32 as your terminal,
-you can copy this by clicking the upper left hand corner icon,
-selecting **Edit**, and then **Mark**.
-You can highlight what you want with your mouse, and then hit
-the Enter key, and that will copy that so you can paste it
-elsewhere.
-
-![mark screenshot](images/timelineguide_copy.png)
-
-The first thing to note from this log is that there's a bunch
-of junk from adds.
-Most of the time, you can't count on adds to have reliable
-timing relative to the main boss, so it's usually better to
-remove them.
-
-The ts-node util/logtools/make_timeline.ts script has two options to do this.
-One is "ignore combatants" and the other is "ignore id".
-Either `-ic "7Th Cohort Optio"` or `-ii 0A 2CD 2CE 194 14`
-will remove all of these abilities.
-We'll go with ids.
-
-Run the command again with this ignore to have a cleaned up version:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14`
-
-At this point, it may also be worth going through and finding other lines to add.
-Usually, these are [added combatant](LogGuide.md#line-03-0x03-addcombatant) lines
-or [game log lines](LogGuide.md#line-00-0x00-logline) for rp text.
-You can look at the time and figure out where they go yourself.
-(Patches welcome to add either of these into **make_timeline.ts** automatically.)
-
-The relevant lines here are:
-
-```log
-[18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5159,-804.6631,62.33055).
-[18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5013,-807.1013,62.45256).
-[18:42:24.000] 00:0044:Rhitahtyn sas Arvina:I will suffer none to oppose Lord van Baelsar!
-[18:44:08.000] 00:0044:Rhitahtyn sas Arvina:My shields are impregnable! Join the countless challengers who have dashed themselves against them!
-[18:46:27.000] 00:0044:Rhitahtyn sas Arvina:Your defeat will bring Lord van Baelsar's noble conquest one step closer to fruition!
-[18:48:27.000] 00:0044:Rhitahtyn sas Arvina:Ungh... Though it cost me my life...I will strike you down!
-```
-
-You can subtract the times from the start time to figure out about where they are.
-For instance, the adds pop at t=183.5 (which is 18:45:27.041 - 18:42:23.614).
-
-### Building Loops
-
-The next step is to build some loops around the phases.
-From observation, it looks like there's a number of phase pushes.
-
-Here's what the initial phase looks like, with some extra line breaks
-for clarity.
-
-```bash
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-57.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-```
-
-It's pretty clear that there's a loop of roughly 27.8 or 27.9 seconds.
-Let's just assume it's 27.8.
-
-If you are using VSCode, you should use the [adjust time feature](https://github.com/MaikoTan/cactbot-highlight#adjust-time) from the [Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) extension,
-which offer a simple way to adjust time in one-click.
-This will not adjust jumps.
-
-Here's an abbreviated version of the output after adjusting the time:
-
-```bash
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-57.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-85.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-94.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-102.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-108.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-```
-
-Comparing to the original, it looks like this loops fairly perfectly.
-The first loop is perfect and the second loop is off by a little,
-as this adjusted loop has 57.6, 74.6, 80.0 but the original
-is 57.7, 74.7, 80.2.  Close enough.
-
-In cactbot, there's a configurable window of time for how far ahead
-to show in the timeline.  By default it is 30 seconds, so you should
-at least make a loop that goes 30 seconds ahead.
-
-Here's what a completed version of the first phase loop looks like.
-
-```bash
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-57.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:471:/
-```
-
-Note that we've used adjusted times rather
-than the original times.
-This is so that when we jump from 52.2 to 24.4, all of the relative times stay the same.
-In both cases when `Gate Of Tartarus` occurs,
-there's a `Shield Skewer` 5.4 seconds after it.
-
-We'll add any necessary jumps in later.
-
-### Adding Phases
-
-Now on to the second phase.
-From observation, it's clear that at 80% the boss does some rp
-text and then starts doing some different abilities.
-
-Unfortunately for us, it looks like the boss starts phase 2
-by doing another `Shield Skewer` which it does a lot of in
-phase 1, so it won't be easy to sync to that.
-
-**make_timeline.ts** has an option `-p` to move the first usage
-of an ability to a particular time.
-As cactbot usually has a window of 30 seconds ahead,
-feel free to generously move phases ahead in time.
-
-Let's move phase 2 to start its first ability at time=200.
-Since `Shrapnel Shell` starts 4.3 seconds after that,
-let's adjust the first usage of `Shrapnel Shell`
-(ability id 474) to time=204.3. The `-p` command takes space-separated abilityId:timeline-time pairs,
-so here we would write it as `-p 474:204.3`.
-
-Here's the new command line we've built up to:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3`
-
-This gets us the following output for phase 2,
-with manually added blank lines to break out the loops.
-
-```bash
-# manually added in
-199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/
-200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-
-# output of make_timeline
-204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-239.1 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-243.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-248.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-252.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-257.2 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-261.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-266.2 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-```
-
-It looks like there's a clear loop here,
-where every iteration of the loop has 2x `Firebomb` and 2x `Shield Skewer`.
-The loop time is 34.6.
-After adjusting the time again, it looks like this:
-
-```bash
-234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-243.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-247.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-252.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-256.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-260.6 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-264.9 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-```
-
-This has diverged a fair bit from the original times,
-with the last Firebomb being 264.9 vs 266.2.
-If you want to be more precise,
-this is where you would compare against some other runs.
-
-However, this is good enough for Cape Westwind,
-so we will replace the second loop with adjusted output.
-
-The current state of our timeline is now:
-
-```bash
-0 "Start"
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-57.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-
-# 80%
-199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/
-200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-243.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-247.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-252.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-256.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-260.6 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-264.9 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-# 60%
-```
-
-### Next phase
-
-From observation, we know that the next phase starts
-at 60% and there's two adds.
-
-From reading the timeline, there's a random
-"Gate of Tartarus" around the time the adds show up.
-
-This is the original timeline, before any phases were adjusted:
-
-```bash
-175.8 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-183.5 "Adds"
-```
-
-Unfortunately, the boss uses `Gate of Tartarus` in phase 1,
-so we can't add it using `-p` like we did for phase 2.
-(Patches welcome to add more options to make this possible?)
-
-If we adjust the original timeline by 400-175.8=224.2
-then we can start phase 3 at t=400.
-
-Here's the adjusted output, with the adds manually
-added back in:
-
-```bash
-400.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-403.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-
-407.7 "Adds"
-408.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-413.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-417.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-422.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-426.9 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-431.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-435.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-440.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.4 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-454.1 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-458.6 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-463.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-467.6 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-
-# 40% phase push??
-483.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-487.8 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-492.1 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-493.3 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-407.7 "Adds"
-```
-
-Without recorded video, it's not 100% clear from the logs
-whether the `Shrapnel Shell` is part of phase 3 or phase 4.
-We know from observation that `Magitek Missiles` is the last phase,
-so because the `Shrapnel Shell` breaks the pattern let's assume
-it starts phase 4.
-We'll test this later.
-
-It looks a bit like there's another loop just like phase 2.
-
-One consideration is to see if it's exactly the same as phase 2.
-You can move the abilities with an adjustment of 208.7
-to move phase 2's `Shield Skewer` on top of phase 3.
-However, you can see from that output that it's not quite the same.
-Therefore, we'll need to build phase 3 separately.
-
-A 36.2 adjustment gets this output:
-
-```bash
-445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-454.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-458.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-463.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-467.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-472.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-476.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-```
-
-This is really close to the original times, so let's consider
-that our loop.
-
-### Final Phase
-
-Finally, we need the phase that starts at 40%.
-We assumed that the `Shrapnel Shell` started this phase.
-However, this isn't a unique skill.
-`Magitek Missiles` is the first unique skill in this phase
-and that starts 10 seconds after "Shrapnel Shell".
-Let's start phase 4 at 600 seconds, so we'll adjust the
-first use of `Magitek Missile` (ability id 478) to be t=610.
-
-Here's the final command line, including this second phase:
-`ts-node util/logtools/make_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
-
-```bash
-# manually added in
-595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
-600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-608.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-# partial output from make_timeline
-610.0 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-615.1 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-619.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-623.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-640.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-644.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-649.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-655.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-659.6 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-663.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-680.4 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-684.9 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-689.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-690.4 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-695.5 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-699.8 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-704.1 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-719.6 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-724.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-728.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-729.6 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-734.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-739.0 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-743.3 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-```
-
-This sure looks like a 40.2 second loop.
-With a 40.2 second adjustment,
-we get the following output:
-
-```bash
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
-655.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-659.6 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-663.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-680.4 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-684.9 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-689.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-```
-
-This is a perfect match for the original times, so there's our loop.
-
-### Boilerplate glue
-
-In general, most timelines should include some boilerplate at the top like this:
-
-```bash
-# Cape Westwind
-# -ii 0A 2CD 2CE 194 14 -p 474:204 478:610
-
+```shell
+$ node --loader=ts-node/esm util/logtools/make_timeline.ts -k YourClientKeyHere -r Ktm6hbrTjZAYpQB1 -rf 34`
+(node:7972) ExperimentalWarning: Custom ESM Loaders is an experimental feature.
+This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
-
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+11.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+20.1 "--sync--" Ability { id: "8B41", source: "Zeromus" }
+20.1 "--sync--" Ability { id: "8D2B", source: "Zeromus" }
+# etc
 ```
 
-Most of this will be automatically added for you by the timline utility,
-but it's good to double-check that all of it is present if relevant.
+### Using test_timeline.ts
 
-It's good practice to include the command line you used to generate this so that
-other people can come back and see what you skipped.
+Once you have made a timeline, it's now time to verify it works against various logs.
 
-`hideall` hides all instances of a line, so that players don't see `--sync--` show up visually,
-but the timeline itself will still sync to those lines.
-(Note that `--sync--` is not syntactically special in any way,
-but it's the standard "sync to this invisibly" convention in the repository.)
+`test_timeline.ts` uses all the same parameters as `make_timeline.ts`,
+but you also need to specify the timeline file (no `.txt` or directory) via `-t`.
 
-### Pre-timeline combat, starts & resets, and multiple zones
-
-There is no one-size-fits-all approach for starting and resetting timelines.
-
-In single-boss, single-zone content (e.g., most trials),
-the timeline should start when combat begins,
-and should reset on a wipe or when the player is out of combat.
-
-However, in dungeons for example, the player is often in combat
-with mobs before the timeline should begin for the first boss encounter.
-For that matter, there are also several boss encounters in each dungeon.
-In those situations, we need discrete timelines for each boss encounter,
-and each boss's timeline should start only once that boss encounter begins.
-
-There are a number of ways we can handle this.
-
-First, by default, cacbot will reset the timeline to 0
-whenever a player is out of combat.
-This default can be overriden in particular fight's trigger set
-with the following property:
-
-```bash
-resetWhenOutOfCombat: false
+```shell
+$ node --loader=ts-node/esm util/logtools/test_timeline.ts -f docs/logs/TheAbyssalFractureExtreme.log -lf 1 -t zeromus-ex
+(node:840) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Timeline:
+      +0.000 |   14 | 0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+      -0.555 |   15 | 6.1 "--sync--" StartsUsing { id: "8B3F", source: "Zeromus" } window 10,10
+      +0.010 |   16 | 11.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+      -0.078 |   17 | 27.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+      -0.035 |   18 | 32.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+      -0.068 |   19 | 42.1 "Sable Thread x6" Ability { id: "8B38", source: "Zeromus" } duration 6.9
+      -0.230 |   24 | 49.0 "--sync--" Ability { id: "8B3A", source: "Zeromus" }
+      +0.275 |   26 | 61.7 "Dark Matter x3" Ability { id: "8B83", source: "Zeromus" } duration 4.1
+      -0.062 |   28 | 78.8 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+      -0.102 |   29 | 87.8 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
+      -0.076 |   31 | 101.8 "Flare" Ability { id: "8B5D", source: "Zeromus" }
+      -0.018 |   32 | 109.9 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+      -0.030 |   33 | 119.9 "Void Bio" Ability { id: "8B66", source: "Zeromus" }
+      +0.081 |   34 | 134.1 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+      -0.088 |   35 | 143.1 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
 ```
 
-This property is only used in selective circumstances (e.g. zones like Eureka),
-so we'll approach timeline creation here assuming default behavior.
+This runs the timeline file against hte network log and the given pull
+and then prints out the results of all the syncs to verify that they are
+close in time.
 
-The first step is determining how the timeline should begin running.
+This will catch things like:
 
-If the timeline should begin when the player first begins combat,
-we can use OverlayPlugin's 0x104 InCombat line
-to detect when the player enters combat:
+* ability variations (e.g. `Visceral Whirl` being `8B43` vs `8B46` when it can be both)
+* hp% phase pushes (e.g. `Rend the Rift` in this fight)
+* slight timeline drifts (maybe one ability is +/- 1 second and so needs a large window for safety)
+* your own mistakes
 
-```bash
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+Each line looks like this:
+
+`-0.555 |   15 | 6.1 "--sync--" StartsUsing { id: "8B3F", source: "Zeromus" } window 10,10`
+
+This means:
+
+* `15`: the line in the file
+* `6.1`: the original time
+* `-0.555`: the time adjustment the timeline made when it did this sync
+
+`-0.555` means that the original time was `6.1 + 0.555 = 6.655`
+and so when this sync occurred it had to do a `-0.555` adjustment to correct for that.
+Similarly, it means that if you wanted to fix the timeline
+to match the log file, you would add `0.555` to the timeline time to be `6.6`.
+
+See also: [Adjusting Blocks of Timelines](#adjusting-blocks-of-timelines)
+
+In general:
+
+* 1 second or more is a very large discrepancy; 0.5s is ~ok but not ideal, <0.3 is best
+* `InCombat` / `SystemLogMessage` to the first ability might have some slop, but ~0.5 is fine in this case
+* if you can adjust the timeline to be <0.1 or <0.3 at worst, that's ideal especially if you see this discrepancy in multiple logs
+* sometimes a large discrepancy on later abilities in loops means you have the loop wrong
+* when there is a jump, it will "miss" abilities until the jump location (this is ok)
+
+### Using test_timeline.ts with fflogs
+
+You can do the same thing as [make_timeline.ts with fflogs](#using-make_timelinets-with-fflogs) but with `test_timeline.ts.
+
+```shell
+node --loader=ts-node/esm util/logtools/test_timeline.ts -k YourClientKeyHere -r Ktm6hbrTjZAYpQB1 -rf 34 -t zeromus-ex
+(node:18264) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Timeline:
+      -0.074 |   15 | 6.1 "--sync--" StartsUsing { id: "8B3F", source: "Zeromus" } window 10,10
+      +0.011 |   16 | 11.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+      -0.077 |   17 | 27.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+      -0.031 |   18 | 32.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+# etc
 ```
 
-(`make_timeline` generates this line by default where appropriate.)
+This is a good way to test a variety of logs against your timeline to verify that it works.
+Note that fflogs does not always include all of the abilities and line types
+and so "missing" abilities may be false positives.
 
-However, if there will be pre-timeline combat (e.g., pre-boss mobs),
-this would incorrectly start combat during the pre-boss phase,
-so we need a different approach.
+## Common Timeline Edits
 
-In these situations, boss encounters (and timelines) are often tied
-to a specific zone within the instance,
-which means we can start the timeline when that zone is sealed off.
-For example:
+Here's a playbook of "common operations" when making a timeline.
 
-```bash
-0.0 "--sync--" sync / 00:0839::The Landfast Floe will be sealed off/ window 1,0
-```
+Please add to this list as necessary to collect "folk wisdom" and "common practices".
 
-(`make_timeline` generates this by default if the encounter begins with a zone seal.)
+### `-ii` to ignore abilities
 
-For multi-zone instances like dungeons, we can effectively create
-separate timelines for each encounter in the same timeline file
-by using large gaps between the timelines, coupled with large sync windows.
+In order to make it easier to come back later to a timeline that's been heavily edited,
+timeline authors try to encode as much as possible into parameters for running `make_timeline.ts`.
+(TODO: We could probably add more!)
 
-For example, in [Alzadaal's Legacy](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/alzadaals_legacy.txt), we effectively have three separate timelines,
-one for each boss encounter, each spaced 1000 seconds apart.
-Because the timeline resets to 0 each time the player is out of combat,
-we use large sync windows on each zone-seal message to 'jump' the timeline
-to the right place for each encounter:
+`-ii` ignores abilities and drops them from the timeline.
 
-```bash
-0.0 "--sync--" sync / 00:0839::The Undersea Entrance will be sealed off/ window 0,1
-...
-1000.0 "--sync--" sync / 00:0839::The Threshold Of Bounty will be sealed off/ window 1000,1
-...
-2000.0 "--sync--" sync / 00:0839::Weaver'S Warding will be sealed off/ window 2000,1
-```
+For example, with the [TheAbyssalFractureExtreme.log](logs/TheAbyssalFractureExtreme.log) example log,
+you can see `8C49` is most likely an auto attack.
+(It hits one person, it happens roughly every three seconds when the boss is not casting.)
+Many auto-attacks are called `Attack` by name and are auto-ignored but this is not always true.
+Auto-attacks are also often inconsistent in timing and so should always be ignored in timelines
+(unless they are "special" autoattacks like DSR p7 "autos" or Diamond Extreme laser cleave "autos".)
 
-Finally, because cactbot automatically resets the timeline when the player is out of combat,
-there is no need to include specific reset lines in most timeline files by default.
+In this case, you would want to pass `-ii 8C49` to `make_timeline.ts` to ignore this auto.
+You can list multiple abilities, e.g. `-ii 8C49 8CB9 8B55 8B5B` etc.
 
-However, if a trigger set contains the property to NOT reset the timeline
-when out of combat, there are several options for manualy triggering a reset.
+Note: timeline times are relative to the previous entry to the precision of tenths of seconds.
+That means that ignoring abilities may change the times of later non-ignored abilities
+and cause some timeline drift.
+It's always best to rerun `make_timeline.ts` again to get new times after ignoring abilities.
 
-On fights where the entire zone resets (e.g. all of omegascape, a4s, a8s, a12s, t9, t13),
-you can use the ActorControl line that is sent on a wipe:
+### `-p` for later phases
 
-```bash
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
-```
+If there's later phases, use `-p` to specify an ability that marks that phase.
+For `zeromus-ex`, you can see the comment `-p 8B3F:11.1 8C0D:1006`.
+The first instance of `8B3F` will be set to time=11.1 and the first instead of `8C0D` is set to `1006`.
+`1006` is arbitrary here, and is just "very far" from the previous ability.
+`1000` is used for `StartsUsing` with a large sync (which `make_timeline.ts` doesn't generate)
+and so `1006` is used for the `Ability`.
 
-On fights with zones that seal and unseal, (e.g. a1s, t1-8)
-you can use the zone unsealing message itself to reset:
+### Targetable Lines
 
-```bash
-0.0 "--Reset--" sync / 00:0839::.*is no longer sealed/ window 100000 jump 0
-```
+You can pass the parameter `-it` with a mob name, e.g. `-it "Rubicante"`
+to automatically generate `--targetable--` and `--untargetable--` lines in a timeline.
 
-### Making loops loop
+Currently, if there are multiple mobs that you want to track,
+you need to run `make_timeline.ts` several times with different `-it` values.
 
-Back to our Cape Westwind timeline, here's the phase 1 loop, again.
-We're going to edit this so that whenever we get to 52.2 seconds
-it will jump back to 24.4 seconds seamlessly.
+### Ignoring Combatants
 
-```bash
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
+Sometimes there are NPC combatants who do abilities that you do not want to appear in the timeline..
+For example, `2B` appears in the Shadowbringers alliance raids.
+You can remove combatants by name via `-ic 2B`.
 
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
+### Adjusting Blocks of Timelines
 
-57.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-66.2 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-74.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
-```
+It's highly recommended that you use VSCode and the
+[Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight)
+extension when adjusting timelines.
 
-On the 52.2 line, add the following `window 10,0 forcejump 24.4`.
-This means, if you see this anywhere in the past 10 seconds, jump to t=24.4.
-By default, all syncs are `window 2.5,2.5` unless otherwise specified,
-meaning they sync against the ability any time within the last
-2.5 seconds or 2.5 seconds in the future.
+Apart from just syntax formatting,
+the most useful part is that you select a block of timeline entries,
+right click,
+and then select `Set Time of Selection`.
+Type in a new time.
+This will change the first listed time in the selection to the time you typed in,
+and then adjust all following times relative to that.
 
-The abilities from 57.6 to 80.0 will never be synced against,
-because the `forcejump` command will automatically jump to the noted time,
-regardless of whether or not the sync at its line occurs.
-Because we have verified already that the loop is good,
-we can safely remove the rest of it after `forcejump`.
-The timeline controller will display the loop appropriately
-based on seeing  this command.
+It's a great way to handle drift issues that you see in `test_timeline.ts.
+If one sync is consistently off by -0.5 and then the rest of the timeline is fine,
+you can select that line and all following and then set its time to be 0.5 more
+that its original time.
 
-Finally, because sometimes log lines get dropped
-or ACT starts mid-combat, it can be good to put large syncs
-on infrequent or important abilities so that the timeline
-can sync there.
+### Variations vs Simultaneous Abilities
 
-This leaves us with this final version of the initial loop.
-
-```bash
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 30,10
-
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
-```
-
-This is repeated for each loop remaining in the timeline.
-
-### Putting it all together
-
-Putting all the loops that we have created together leaves
-us with the following timeline.
-
-Because there are so many `Shield Skewer` abilities, any
-loops are on less frequent abilities just to be more careful.
-
-```bash
-# Cape Westwind
-# -ii 0A 2CD 2CE 194 14 -p 474:204 478:610
-
-hideall "--Reset--"
-hideall "--sync--"
-
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 10000 jump 0
-
-### Phase 1: skewers and stuns
-0 "Start"
-0.0 "--sync--" sync /:Engage!/ window 0,1
-2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-24.4 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 30,10
-
-29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-46.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-52.2 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 10 forcejump 24.4
-
-### Phase 2 (80%): firebombs
-199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
-200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-
-204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
-208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-213.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-217.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-221.7 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-226.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-230.3 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-
-234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 204.3
-
-
-### Phase 3 (60%): Adds
-400.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/ window 200,20
-403.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-
-407.7 "Adds"
-408.7 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-
-413.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20,20
-417.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-422.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-426.9 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-431.4 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-435.9 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-440.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
-449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 20 forcejump 413.2
-
-### Phase 4 (40%): magitek missiles
-595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
-
-600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-608.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-610.0 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 610,30
-615.1 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
-619.4 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-623.7 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-640.2 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-644.7 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
-649.0 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
-
-650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/ window 20 forcejump 610.0
-```
-
-### Testing Timelines
-
-cactbot has a testing tool called **util/logtools/test_timeline.ts** that can
-test a network log file or an fflogs fight against an existing timeline.
-
-The test tool will tell you when a sync in your timeline is not matched against the fight,
-and if a future sync is hit, it will let you know that some were skipped over.
-It will not do the reverse,
-and tell you about abilities in the fight that have no timeline entries.
-
-It will also tell you about how far off the sync was, which can help with
-adjusting timelines to be more accurate.
-
-Here's an example.
-The `-t` parameter here refers to the file name of the timeline you want to test against
-in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
-(As with `make_timeline`, you can use the `-lf` parameter to list encounters.)
-
-```bash
-$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -t cape_westwind
-0.000: Matched entry: 2.0 Shield Skewer (+2.000s)
-10.556: Matched entry: 10.6 Shield Skewer (+0.044s)
-18.985: Matched entry: 19.0 Shield Skewer (+0.015s)
-24.411: Matched entry: 24.4 Gate Of Tartarus (-0.011s)
-29.810: Matched entry: 29.8 Shield Skewer (-0.010s)
-38.372: Matched entry: 38.4 Shield Skewer (+0.028s)
-46.835: Matched entry: 46.8 Shield Skewer (-0.035s)
-52.239: Matched entry: 52.2 Gate Of Tartarus (-0.039s)
-    Jumping to 24.400
-29.897: Matched entry: 29.8 Shield Skewer (-0.097s)
-38.286: Matched entry: 38.4 Shield Skewer (+0.114s)
-46.851: Matched entry: 46.8 Shield Skewer (-0.051s)
-52.291: Matched entry: 52.2 Gate Of Tartarus (-0.091s)
-    Jumping to 24.400
-29.831: Matched entry: 29.8 Shield Skewer (-0.031s)
-38.204: Matched entry: 38.4 Shield Skewer (+0.196s)
-46.888: Matched entry: 46.8 Shield Skewer (-0.088s)
-48.695: Matched entry: 199.0 --sync-- (+150.305s)
-    Missed sync: Gate Of Tartarus at 52.2 (last seen at 24.411)
-200.693: Matched entry: 200.0 Shield Skewer (-0.693s)
-204.273: Matched entry: 204.3 Shrapnel Shell (+0.027s)
-208.809: Matched entry: 208.8 Winds Of Tartarus (-0.009s)
-213.111: Matched entry: 213.1 Firebomb (-0.011s)
-217.417: Matched entry: 217.4 Shield Skewer (-0.017s)
-221.711: Matched entry: 221.7 Drill Shot (-0.011s)
-226.017: Matched entry: 226.0 Winds Of Tartarus (-0.017s)
-230.313: Matched entry: 230.3 Firebomb (-0.013s)
-234.642: Matched entry: 234.6 Shield Skewer (-0.042s)
-239.144: Matched entry: 238.9 Shrapnel Shell (-0.244s)
-    Jumping to 204.300
-208.885: Matched entry: 208.8 Winds Of Tartarus (-0.085s)
-213.304: Matched entry: 213.1 Firebomb (-0.204s)
-217.623: Matched entry: 217.4 Shield Skewer (-0.223s)
-221.857: Matched entry: 221.7 Drill Shot (-0.157s)
-226.191: Matched entry: 226.0 Winds Of Tartarus (-0.191s)
-230.480: Matched entry: 230.3 Firebomb (-0.180s)
-233.846: Matched entry: 400.0 Gate Of Tartarus (+166.154s)
-    Missed sync: Shield Skewer at 234.6 (last seen at 217.623)
-    Missed sync: Shrapnel Shell at 238.9 (last seen at 204.273)
-403.546: Matched entry: 403.5 Shield Skewer (-0.046s)
-408.741: Matched entry: 408.7 Shield Skewer (-0.041s)
-413.195: Matched entry: 413.2 Shrapnel Shell (+0.005s)
-417.897: Matched entry: 417.9 Winds Of Tartarus (+0.003s)
-422.385: Matched entry: 422.4 Firebomb (+0.015s)
-426.890: Matched entry: 426.9 Shield Skewer (+0.010s)
-431.389: Matched entry: 431.4 Drill Shot (+0.011s)
-435.882: Matched entry: 435.9 Winds Of Tartarus (+0.018s)
-440.393: Matched entry: 440.4 Firebomb (+0.007s)
-444.969: Matched entry: 445.0 Shield Skewer (+0.031s)
-449.380: Matched entry: 449.5 Shrapnel Shell (+0.120s)
-    Jumping to 413.200
-417.884: Matched entry: 417.9 Winds Of Tartarus (+0.016s)
-422.366: Matched entry: 422.4 Firebomb (+0.034s)
-426.975: Matched entry: 426.9 Shield Skewer (-0.075s)
-431.292: Matched entry: 431.4 Drill Shot (+0.108s)
-431.400: Matched entry: 595.0 --sync-- (+163.600s)
-    Missed sync: Winds Of Tartarus at 435.9 (last seen at 417.884)
-    Missed sync: Firebomb at 440.4 (last seen at 422.366)
-    Missed sync: Shield Skewer at 445.0 (last seen at 426.97499999999997)
-    Missed sync: Shrapnel Shell at 449.5 (last seen at 413.195)
-620.783: Matched entry: 610.0 Magitek Missiles (-10.783s)
-    Missed sync: Shrapnel Shell at 600.0 (last seen at 610.739)
-    Missed sync: Firebomb at 604.5 (last seen at 615.247)
-    Missed sync: Winds Of Tartarus at 608.8 (last seen at 619.564)
-615.098: Matched entry: 615.1 Drill Shot (+0.002s)
-619.409: Matched entry: 619.4 Firebomb (-0.009s)
-623.711: Matched entry: 623.7 Winds Of Tartarus (-0.011s)
-640.166: Matched entry: 640.2 Shrapnel Shell (+0.034s)
-644.715: Matched entry: 644.7 Firebomb (-0.015s)
-649.012: Matched entry: 649.0 Winds Of Tartarus (-0.012s)
-650.179: Matched entry: 650.2 Magitek Missiles (+0.021s)
-    Jumping to 610.000
-615.137: Matched entry: 615.1 Drill Shot (-0.037s)
-619.413: Matched entry: 619.4 Firebomb (-0.013s)
-623.709: Matched entry: 623.7 Winds Of Tartarus (-0.009s)
-640.170: Matched entry: 640.2 Shrapnel Shell (+0.030s)
-644.712: Matched entry: 644.7 Firebomb (-0.012s)
-649.013: Matched entry: 649.0 Winds Of Tartarus (-0.013s)
-650.177: Matched entry: 650.2 Magitek Missiles (+0.023s)
-    Jumping to 610.000
-615.135: Matched entry: 615.1 Drill Shot (-0.035s)
-619.418: Matched entry: 619.4 Firebomb (-0.018s)
-623.709: Matched entry: 623.7 Winds Of Tartarus (-0.009s)
-639.166: Matched entry: 640.2 Shrapnel Shell (+1.034s)
-644.713: Matched entry: 644.7 Firebomb (-0.013s)
-649.014: Matched entry: 649.0 Winds Of Tartarus (-0.014s)
-650.175: Matched entry: 650.2 Magitek Missiles (+0.025s)
-    Jumping to 610.000
-615.131: Matched entry: 615.1 Drill Shot (-0.031s)
-619.413: Matched entry: 619.4 Firebomb (-0.013s)
-623.709: Matched entry: 623.7 Winds Of Tartarus (-0.009s)
-```
-
-As this timeline was generated against this network log,
-it's not surprising that most of these timings are very accurate.
-
-The `Missed sync` lines are the ones to look at more closely.
-
-These three examples aren't worrisome because they are just the end of the loop
-and we've skipped forward in time to the next phase.
-(Patches welcome to figure out how to not warn on this sort of jump.)
+This is more of a timeline style thing,
+but if there are two abilities that are alternatives for each other,
+then it is common to put them on the same line with `/` between them.
+Abilities that always happen should be on separate timeline lines.
+(If there are too many lines for abilities or players don't care about some of them,
+ignore as many as make sense to make the timeline more readable.)
+Abilities that might or might not happen (e.g. Phantom Edge in [delubrum_reginae.txt](../ui/raidboss/data/05-shb/eureka/delubrum_reginae.txt))
+should be listed with a question mark, e.g. `Phantom Edge?`.
 
 ```text
-48.695: Matched entry: 199.0 --sync-- (+150.305s)
-    Missed sync: Gate Of Tartarus at 52.2 (last seen at 24.411)
-
-233.846: Matched entry: 400.0 Gate Of Tartarus (+166.154s)
-    Missed sync: Shield Skewer at 234.6 (last seen at 217.623)
-    Missed sync: Shrapnel Shell at 238.9 (last seen at 204.273)
-
-431.400: Matched entry: 595.0 --sync-- (+163.600s)
-    Missed sync: Winds Of Tartarus at 435.9 (last seen at 417.884)
-    Missed sync: Firebomb at 440.4 (last seen at 422.366)
-    Missed sync: Shield Skewer at 445.0 (last seen at 426.97499999999997)
-    Missed sync: Shrapnel Shell at 449.5 (last seen at 413.195)
+438.6 "Branding Flare/Sparking Flare" Ability { id: "8B6[45]", source: "Zeromus" }
+438.6 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
 ```
 
-However, this looks like a problem:
+These two lines means *either* Branding Flare or Sparking Flare (spread or partner stack) will happen,
+and then Prominence Spine (fireball explosion lines) also happens at the same time.
+Note: some older timelines don't follow this rule, but ~most do and newer ones should for consistency.
+
+The following are the log entries.
+Note: these are ~0.1s apart but sometimes are closer
+and so the timeline author chose to put them at the same `438.6` time.
 
 ```text
-620.783: Matched entry: 610.0 Magitek Missiles (-10.783s)
-    Missed sync: Shrapnel Shell at 600.0 (last seen at 610.739)
-    Missed sync: Firebomb at 604.5 (last seen at 615.247)
-    Missed sync: Winds Of Tartarus at 608.8 (last seen at 619.564)
+[21:19:05.359] AOEActionEffect 16:4002248D:Zeromus:8B65:Branding Flare:10FF0003:Gegehi Gehi:150003:A44A0000:180E:8320000:1B:8B658000:0:0:0:0:0:0:0:0:0:0:73814:73814:4950:10000:::117.80:118.35:0.00:-2.98:44:44:0:10000:::105.00:100.00:0.00:0.00:00019F83:0:2
+[21:19:05.447] ActionEffect 15:40022482:Zeromus:8B63:Prominence Spine:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:::::::::::44:44:0:10000:::95.00:100.00:0.00:0.00:00019F88:0:0
 ```
 
-It seems pretty likely that we've put the rp text sync in the wrong place.
-Because we added such a large window on `Magitek Missile` the timeline
-resynced (thank goodness), but some of the abilities before that were wrong.
+### Basic Loops
 
-The original timeline is:
+In content without enrages, often a boss will loop its abilities forever.
 
-```bash
-595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
-600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-```
+Here's one example: [thaleia.txt](../ui/raidboss/data/06-ew/alliance/thaleia.txt)
 
-However, Shrapnel Shell is off by 10.7 seconds,
-as the tester output mentioned `(last seen at 610.739)`.
-The fix is to move the rp text sync back in time by that amount.
-The new time will be 595 - 10.7 = 584.3.
-
-```bash
-584.3 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
-600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
-```
-
-Rerunning the tester (most output omitted)
-
-```bash
-$ ts-node util/logtools/test_timeline.ts -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
-934 -t cape_westwind
-
-431.400: Matched entry: 584.3 --sync-- (+152.900s)
-    Missed sync: Winds Of Tartarus at 435.9 (last seen at 417.884)
-    Missed sync: Firebomb at 440.4 (last seen at 422.366)
-    Missed sync: Shield Skewer at 445.0 (last seen at 426.97499999999997)
-    Missed sync: Shrapnel Shell at 449.5 (last seen at 413.195)
-600.039: Matched entry: 600.0 Shrapnel Shell (-0.039s)
-604.508: Matched entry: 604.5 Firebomb (-0.008s)
-608.817: Matched entry: 608.8 Winds Of Tartarus (-0.017s)
-610.019: Matched entry: 610.0 Magitek Missiles (-0.019s)
-```
-
-This is what we want to see.
-As before, these missed syncs are just from the phase push,
-but `Shrapnel Shell` is now in the right spot.
-
-### Test against other timelines
-
-It's important to test against multiple fight instances to make sure that the timeline is good.
-Here's an example of running against the **CapeWestwind2.log** file.
-
-If you run `ts-node util/logtools/test_timeline.ts -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
-
-One minor problem is that this boss is inconsistent:
+For the first boss Thaliak, there's this loop:
 
 ```text
-447.329: Matched entry: 445.0 Shield Skewer (-2.329s)
-443.789: Matched entry: 445.0 Shield Skewer (+1.211s)
-444.792: Matched entry: 445.0 Shield Skewer (+0.208s)
-447.361: Matched entry: 445.0 Shield Skewer (-2.361s)
+1272.9 label "thaliak-loop"
+1272.9 "Tetraktys (cast)" Ability { id: "88C9", source: "Thaliak" }
+1280.9 "Tetraktys 1" Ability { id: "88CA", source: "Thaliak" }
+
+# many abilities in between
+
+1442.1 "Tetraktys (cast)" Ability { id: "88C9", source: "Thaliak" } window 40,40 forcejump "thaliak-loop"
 ```
 
-This `Shield Skewer` in phase 3 comes at wildly different times.
-However, the abilities before and after seem to be just fine.
-Often if there are inconsistencies like this,
-the best thing to do is make sure there are larger windows around surrounding abilities
-to make sure that even if one ability is inconsistent the entire timeline doesn't get derailed.
+In other words:
 
-However, one major problem is that there's a missing `Shield Skewer`:
+* a `label`, usually named "loop" of some kind
+* a `forcejump` to that label with a large window
+* both source and destination of the jump are identical
+
+Note: `label` and `forcejump` were added late in 6.x to cactbot and so many old timelines don't use them.
+Feel free to edit old timelines to use them, but please always use them in newer timelines.
+
+The author of the timeline has also verified that everything after `1442.1` is the same as after `1272.9`
+and has run this timeline through `test_timeline.ts` with multiply looping timelines to verify this.
+Sometimes things *look* like loops from ability names, but have slightly different timings so it's good to test.
+
+`forcejump` not only always jumps (as the name implies), but because the timeline knows there will always be a jump,
+it can preview abilities ahead.
+
+In other words, when the timeline is at time `1440.1`,
+with 2 seconds until `Tetraktys (cast)`,
+it will automatically show 10 seconds until `Tetraktys 1` at `1280.9`.
+
+### Branches
+
+[p8s.txt](../ui/raidboss/data/06-ew/raid/p8s.txt) has a classic branch that everybody hates.
+Here's what the timeline looks like.
 
 ```text
-403.454: Matched entry: 403.5 Shield Skewer (+0.046s)
-407.876: Matched entry: 413.2 Shrapnel Shell (+5.324s)
-    Missed sync: Shield Skewer at 408.7 (last seen at 403.454)
-417.748: Matched entry: 417.9 Winds Of Tartarus (+0.152s)
+# => Snake first branch
+58.7 "--sync--" #Ability { id: "7108", source: "Hephaistos" }
+63.9 "--sync--" Ability { id: "794C", source: "Hephaistos" } window 100,100 jump 163.9
+71.2 "Snaking Kick?" #Ability { id: "7929", source: "Hephaistos" }
+77.3 "Gorgomanteia?" #Ability { id: "791A", source: "Hephaistos" }
+83.4 "Into the Shadows?" #Ability { id: "792A", source: "Hephaistos" }
+
+# => Beast first branch
+58.7 "--sync--" Ability { id: "7108", source: "Hephaistos" }
+63.9 "--sync--" Ability { id: "794B", source: "Hephaistos" } window 100,100 jump 1163.9
+70.3 "Footprint?" #Ability { id: "7109", source: "Hephaistos" }
+77.2 "Uplift 1?" #Ability { id: "7935", source: "Hephaistos" }
+79.3 "Uplift 2?" #Ability { id: "7935", source: "Hephaistos" }
+81.5 "Uplift 3?" #Ability { id: "7935", source: "Hephaistos" }
+83.6 "Uplift 4?" #Ability { id: "7935", source: "Hephaistos" }
 ```
 
-One timeline has two `Shield Skewer`s and one only has one.
-And the `Shrapnel Shell` is horribly mistimed here.
+Note: this old timeline does not use `forcejump` or `label` but should!
 
-What to do in this case is subjective.
-Here are some options:
+`794C` and `794B` are the first abilities that differ between the two branches
+and so are used as the jumping point with a large `window` (just in case)
+Every entry after that gets a `?` in the name, with a commented out `Ability` sync.
 
-* get more data, and make a timeline for the most common case
-* leave a comment in the timeline
-* if this is an important ability (e.g. tankbuster) put a question mark on it so players know it's not guaranteed
+This provides a timeline "preview" of upcoming abilities that might be coming,
+and when the jump finally happens to either snake or beast branch,
+the question marks will be "removed" when the real entries appear.
 
-### Handling "Linear" Timelines
+They should match the relative timing exactly.
+See [adjusting blocks](#adjusting-blocks-of-timelines) for shortcuts on how to do this easily.
 
-While Cape Westwind is a fairly complex example of how timelines can be generated,
-most content in FFXIV that's from patch 4.0 or later will be simpler in several ways.
-Looping blocks will almost always be longer,
-and there will usually be very easy-to-find "bookend" abilities.
-Also, most Extreme and Savage encounters will not have any loops at all,
-but will have a fully linear timeline,
-or several non-repeating blocks in a random order.
+TODO: This might be a good opportunity for `maybejump` keyword that could show timeline abilities along each branch
+with a `?` automatically without having to list them out manually or adjust blocks.
 
-A very common structure for normal mode trials and raids is to have
-a long linear set of opening blocks, and then upon "getting to the end",
-a final block will loop until the boss dies or (very rarely)
-a timed enrage will occur.
+### HP% Pushes
 
-In all of these cases, it's good practice to put wide opening syncs at the beginning of each new block. This will ensure that even if later phase pushes are found,
-the timeline will probably continue to function seamlessly.
+Zeromus extreme has an hp percentage push at 25% to phase 2.
+In its case, it loops forever in phase one until you get to 25%.
+Timeline authors usually start new blocks at a round number far away in this case.
 
-You can see an example in the file **ui/raidboss/data/05-shb/raid/e8n.txt**.
-When this file was first added, party DPS was far too low to skip anything.
-However, with power creep from later expansions,
-it's not at all uncommon to skip ahead a little.
-To fix this, we added new very wide syncs at various points
-to ensure that even if the party pushed phases, the timeline would still continue to run.
+```text
+# Note that this enrage can happen at any time in P2, because it always happens at roughly 11m into the pull regardless of when you hit P2
+658.2 "--sync--" StartsUsing { id: "8C1E", source: "Zeromus" } window 1000,1000
+668.2 "Big Bang (Enrage)" Ability { id: "8C1E", source: "Zeromus" }
+
+# Phase 2: ~25% push
+1000.0 "--sync--" StartsUsing { id: "8C0D", source: "Zeromus" } window 1000,0
+1006.0 "Rend the Rift" Ability { id: "8C0D", source: "Zeromus" }
+```
+
+Another example is an hp% push where the boss will naturally do all of the abilities in order,
+but if pushed low enough will "skip ahead".
+In this case, it's best to keep all the ability times for the "non push" case
+and then add a large `window` at the hp push.
+
+This is an example from [delubrum_reginae.txt](../ui/raidboss/data/05-shb/eureka/delubrum_reginae.txt).
+The Queen will naturally do all of these abilities in order,
+but if its gets low enough it will skip to `9613.9`.
+
+```text
+9132.1 "Queen's Will" Ability { id: "59B9", source: "The Queen" }
+9140.2 "Beck And Call To Arms" Ability { id: "5B99", source: "The Queen" }
+9143.3 "--untargetable--"
+9144.5 "The Means" Ability { id: "59B[BD]", source: ["Queen's Gunner", "Queen's Warrior"] }
+9144.5 "The Ends" Ability { id: "59B[AC]", source: ["Queen's Soldier", "Queen's Knight"] }
+9151.5 "Judgment Blade" Ability { id: "59C[12]", source: "The Queen" }
+9156.2 "--targetable--"
+
+# HP% push here.
+9160.5 "--middle--" Ability { id: "5BCB", source: "The Queen" }
+9163.9 "--sync--" Ability { id: "55A8", source: "The Queen" } window 200,10
+9171.0 "Gods Save The Queen" Ability { id: "59C9", source: "The Queen" }
+```
+
+### Doubled Abilities
+
+An extremely common pattern in content is to see "doubled" abilities in the timeline.
+Here's an example set of loglines from Zeromus.
+
+```text
+[20:22:56.186] StartsCasting 14:40022550:Zeromus:8B5D:Flare:40022550:Zeromus:6.700:100.00:80.10:0.00:0.00
+[20:22:56.186] StartsCasting 14:4002256D:Zeromus:8B60:Flare:4002256D:Zeromus:7.700:110.00:115.00:0.00:0.00
+[20:23:03.177] ActionEffect 15:40022550:Zeromus:8B5D:Flare:40022550:Zeromus:1B:8B5D8000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:32191814:40478540:10000:10000:::100.00:80.10:0.00:0.00:32191814:40478540:10000:10000:::100.00:80.10:0.00:0.00:0001A75D:0:1
+[20:23:04.160] AOEActionEffect 16:4002256D:Zeromus:8B60:Flare:10FF0003:Gegehi Gehi:150003:D55E0000:1B:8B608000:0:0:0:0:0:0:0:0:0:0:0:0:73085:73085:6700:10000:::110.09:114.18:0.00:-2.85:44:44:0:10000:::110.00:115.00:0.00:0.00:0001A763:0:4
+```
+
+This turns into this timeline:
+
+```text
+# 8B60 has been ignored
+101.8 "Flare" Ability { id: "8B5D", source: "Zeromus" }
+```
+
+Zeromus has a self-targeted `8B5D` cast and also a player-targeted `8560` cast slightly later.
+Often the time disrepancy here is ~0.3s or so but in this case it's 1s which is very large.
+
+In *general*, cactbot timelines prefer to use the self-targeted castbar time,
+as that's when the mitigation usually locks in and timelines are good for mitigation planning.
+The damage itself is locked in silently during the `8B60` ability line on players.
+(The damage itself doesn't actually happen until the corresponding 0x25 [NetworkActionSync](LogGuide.md#line-37-0x25-networkactionsync) line,
+which timelines haven't ever concerned themselves with.)
+
+However, this is subjective and is really just an author convention and not a hard and fast rule.
+
+See also the next section about `(cast)`.
+
+### Doubled Abilities with suffixes
+
+Often players expect to see castbars show up in the timeline,
+and having the timeline say that some ability ends 1s later then the cast bar ends
+makes it feel like the timeline is desynced.
+
+Sometimes when self-targeted and damage are very far away from each other,
+they get labelled with a `(cast)` suffix to indicate that this is the boss
+casting some prepared move which will resolve a good bit later.
+
+For instance, in [thaleia.txt](../ui/raidboss/data/06-ew/alliance/thaleia.txt)
+there's a Rheognosis castbar and then TWENTY SECONDS LATER there's a knockback.
+Because these are so far apart, the original castbar gets a `(cast)`.
+
+```text
+1016.1 "--middle--" Ability { id: "88DB", source: "Thaliak" }
+1023.4 "Rheognosis (cast)" Ability { id: "88C4", source: "Thaliak" }
+1029.5 "--sync--" Ability { id: "88C6", source: "Thaliak" }
+1043.6 "Rheognosis" Ability { id: "88C7", source: "Thaliak" }
+```
+
+This also differentiates that there are not two Rheognosis abilities, just one extended one.
+
+### Multi-hit Abilities
+
+Multihit abilities usually get a `duration` and an `x#` suffix, e.g. `x6` below for "six hits".
+
+```text
+42.1 "Sable Thread x6" Ability { id: "8B38", source: "Zeromus" } duration 6.9
+#43.8 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#45.1 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#46.4 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#47.7 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+49.0 "--sync--" Ability { id: "8B3A", source: "Zeromus" }
+```
+
+There's a couple of reasons for this:
+
+* it's not that useful to know when the other hits are happening exactly
+* having 6 or 7 timeline things that all say "Sable Thread" is noisy
+* we can't sync things anyway because the same ability id is too close in time (and so they're commented out)
+
+Note that `8B39` is just listed out as a convenience to the timeline author to know how many hits there are.
+It could be ignored. The actual `8B3B` damage after `8B38`/`8B39`/`8B3A` *is* entirely ignored via `-ii`.
+
+Another alternative is to list them all and number them, e.g.
+
+```text
+27.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+32.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+```
+
+These are ~5s apart and so don't need a comment.
+Numbering makes it clear that there are multiple abilities that need to be dodged.
+
+Sometimes, if there's nothing else going on and timing is tight
+(and especially when there is a set number of abilities that people are counting)
+it can be useful to list out everything explicitly.
+See this example from [p12s.txt](../ui/raidboss/data/06-ew/raid/p12s.txt):
+
+```text
+# Laser/Cleave order is random here so we can only really timeline the Palladion dashes.
+290.6 "Palladion 1" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+293.7 "Palladion 2" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+296.8 "Palladion 3" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+299.9 "Palladion 4" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+303.0 "Palladion 5" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+306.1 "Palladion 6" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+309.2 "Palladion 7" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+312.4 "Palladion 8" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+```
+
+This is just subjective, so let readability and clarity guide you.
+
+### Numbering Important Mechanics
+
+Often players remember things by which instance of a big mechanic it is.
+For instance, [rubicante-ex.txt](../ui/raidboss/data/06-ew/trial/rubicante-ex.txt)
+has something like `Ordeal of Purgation 4` so that players remember
+that this is the one where they have to find the cat ears.
+
+Similarly, on fights where people do a lot of mit planning (ultimates, fourth floors)
+often people will remember "I'm addling the 4th ultima" and so
+[p12s.txt](../ui/raidboss/data/06-ew/raid/p12s.txt) has things like `"Ultima 6"` or `"Gaiaochos 2"`.
+
+This is also subjective, so do what seems useful.
+
+### Renaming Abilities to `--sync--`
+
+From [delubrum_reginae_savage.txt](../ui/raidboss/data/05-shb/eureka/delubrum_reginae_savage.txt):
+
+```text
+# Similarly, 57C4 is the cast for Devastating Bolt, but 57C5/57C6 is the delayed damage.
+# Both of these casts are renamed as --sync-- to clean up the timeline.
+
+18247.2 "--sync--" Ability { id: "57C4", source: "Stygimoloch Lord" }
+18251.3 "Mana Flame" Ability { id: "57DE", source: "Ball Of Fire" }
+18251.7 "Devastating Bolt" Ability { id: "57C5", source: "Stygimoloch Lord" }
+```
+
+This is an alternative to [doubled abilities with suffixes](#doubled-abilities-with-suffixes).
+
+See also: <https://github.com/quisquous/cactbot/issues/5510>
+
+## Future Work
+
+There's plenty of feature work and fixes for timelines if you are interested in working on making this code better:
+
+### Smaller Fixes/Changes
+
+* update [Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) to include `forcejump`, `label`, and new `Ability { params }` style syncs
+* make it so you can pass multiple mob names to `-it`
+* `test_timeline.ts` could know which file to use without `-t` (it could use `ZoneChange` lines to look up the correct timeline)
+* `make_timeline.ts` has issues with empty names: <https://github.com/quisquous/cactbot/issues/5943>
+* `test_timeline.ts` sometimes misses seal lines that are in the log: <https://github.com/quisquous/cactbot/issues/5716>
+* investigate this drift issue: <https://github.com/quisquous/cactbot/issues/5635>
+* make it possible to pass a set of ids that should be named `--sync--`: <https://github.com/quisquous/cactbot/issues/5510>
+* fix the log splitter so that when importing into ACT separate fights stay separate (maybe need to keep one new zone line? or just insert a fake `/echo end`?)
+* fix the offset issue with make/test timeline on zeromus log file: <https://github.com/quisquous/cactbot/issues/6048>
+
+### Larger Features
+
+* general timeline improvement thread (many ideas, see especially first comment): <https://github.com/quisquous/cactbot/issues/5619>
+* add a `maybejump` similar to `forcejump` that does "loop lookahead" instead of manually writing out the loop
+* named blocks to separate out phases / fights: <https://github.com/quisquous/cactbot/issues/5619#issuecomment-1672589487>
+* consider moving all "huge syncs" to the beginning (rather than a huge sync for t=2000 for a seal line, maybe all the seal lines only sync `window 0,1` and are listed at the beginning) to reduce active syncs and improve readability
+* `testsync` instead of comments (we use `#Ability { params }` to avoid sync issues, but it'd be nice to add a `testsync` command that verifies that the sync was hit in the window but does not resync for testing purposes)
+* handle multiple syncs at the same time: <https://github.com/quisquous/cactbot/issues/5479>
+* clean up old timelines to use `label` and `forcejump`
+* add some checkbox to the splitter code to only print out "interesting" lines (see: [hacky workflow](#one-hacky-workflow-suggestion))
+
+### Ability Table
+
+The [ability table](#timeline-ability-tables) was added during the 6.x timeframe
+and has become an important part of making timelines, triggers, and oopsy.
+
+In some ways, having it be just text comments in a timeline only goes so far.
+
+It could become its own json(?) file of ability mappings (auto-generated? partially auto-generated?) that says
+
+* damage / no damage
+* is avoidable / unavoidable damage
+* has cast / has castbar in game / just ability
+* self-targeted on caster / hits N players / hits all players
+
+Oopsy could use this to print out extra information (mouseover for what an ability is that somebody died from).
+We wouldn't need to duplicate this information in oopsy comments or `sync_files.ts` comments.
+You could make a "log viewer" that pulls out interesting lines and annotates them with this information,
+or attempts to infer this information to fill out a json file.
+[Cactbot Highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) could somehow use this information when looking at timeline?
+
+I think it could be possible to enshrine this in a little bit more formal way
+and then it'd be useful in multiple cactbot contexts.
+Probably other non-cactbot trigger makers would find this useful too.
