@@ -129,11 +129,11 @@ export class EncounterFinder {
 
     const cZ = this.regex.changeZone.exec(line)?.groups;
     if (cZ) {
-      if (this.currentZone.zoneName === cZ.name) {
-        // Zoning into the same zone, possibly a d/c situation.
-        // Don't stop anything?
-        return;
-      }
+      // Note this could happen in the case of a d/c,
+      // however a log splitting scenario could only include
+      // the relevant change zone lines and not anything else,
+      // which is a much more common scenario, so don't check if
+      // this is the "same zone".
 
       // If we changed zones, we have definitely stopped fighting.
       // Therefore we can safely initialize everything.
