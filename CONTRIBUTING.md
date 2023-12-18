@@ -252,13 +252,7 @@ See: [Raidboss Guide](docs/RaidbossGuide.md#trigger-guidelines)
 
 ## Timeline Guidelines
 
-* Use the existing scripts in the `util/` directory to make timelines.
-* Prefer using `sync` with the default time for all abilities.
-* Prefer to use actual ability names for the timeline text.
-* If ability names are confusing or long, consider abbreviating.
-* When using `jump`, prefer to jump to a time that has a timeline entry on it.
-* When adding a loop, add at least 30 seconds of fake abilities, and make sure these abilities line up with where the loop jumps to.
-* As always, be consistent with other timelines.
+See: [Timeline Guide](docs/TimelineGuide.md#cactbot-style-guide)
 
 ## Oopsy Guidelines
 
@@ -269,8 +263,3 @@ See: [Oopsy Guide](docs/OopsyraidsyGuide.md#overview)
 * Improvements and additions to documentation are always welcome.
 * Use [semantic line breaks](https://sembr.org/).
 * As always, be consistent!
-
-## Roadmap
-
-If you're curious what is coming in the future,
-here is a [rough roadmap](https://gist.github.com/quisquous/85b85338b7a87ca6bad98e793d159fdf).
