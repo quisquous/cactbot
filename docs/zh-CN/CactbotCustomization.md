@@ -2,19 +2,19 @@
 
 🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[繁體中文](./zh-TW/CactbotCustomization.md)] [[한국어](../ko-KR/CactbotCustomization.md)]
 
-- [使用cactbot配置界面](#使用cactbot配置界面)
-- [通过cactbot配置界面改变触发器文本](#通过cactbot配置界面改变触发器文本)
+- [使用cactbot配置界面](#使用-cactbot-配置界面)
+- [通过cactbot配置界面改变触发器文本](#通过-cactbot-配置界面改变触发器文本)
 - [用户文件夹概览](#用户文件夹概览)
 - [设置你自己的用户文件夹](#设置你自己的用户文件夹)
 - [样式自定义](#样式自定义)
-- [Raidboss触发器自定义](#raidboss触发器自定义)
+- [Raidboss触发器自定义](#raidboss-触发器自定义)
   - [例1：改变输出文本](#例1改变输出文本)
   - [例2：使挑衅提示适用于全职业](#例2使挑衅提示适用于全职业)
   - [例3：添加自定义触发器](#例3添加自定义触发器)
-- [Raidboss时间轴自定义](#raidboss时间轴自定义)
+- [Raidboss时间轴自定义](#raidboss-时间轴自定义)
 - [行为自定义](#行为自定义)
 - [用户文件的调试](#用户文件的调试)
-  - [检查OverlayPlugin的错误日志](#检查OverlayPlugin的错误日志)
+  - [检查OverlayPlugin的错误日志](#检查-overlayplugin-的错误日志)
   - [检查文件是否加载](#检查文件是否加载)
   - [检查文件是否有错误](#检查文件是否有错误)
 
