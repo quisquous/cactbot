@@ -186,7 +186,7 @@ and they don't expose a lot of knobs to tune.
 If you have particular things you want to change about the timeline bars that you can't,
 please feel free to submit a [github issue](https://github.com/quisquous/cactbot/issues/new/choose).
 
-**Warning**: cactbot makes no guarantees about preserving CSS backwards compatability.
+**Warning**: cactbot makes no guarantees about preserving CSS backwards compatibility.
 Future changes to cactbot may rearrange elements,
 change element names and classes,
 or change styling entirely.
@@ -388,7 +388,7 @@ The steps to override a timeline are:
     [ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt](../ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt)
     to `user/the_epic_of_alexander.txt`.
 
-1) Add a section to your user/raidboss.js file to override this.
+1) Add a section to your `user/raidboss.js` file to override this.
 
     Like adding a trigger, you add a section with the `zoneId`,
     along with `overrideTimelineFile: true`,
@@ -458,7 +458,7 @@ provide access to.
 
 ## Global Trigger File Imports
 
-User files are `eval`'d in JavaScript,
+User files are [`eval`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)'d in JavaScript,
 and thus cannot `import` in the same way that built-in trigger files do.
 User javascript files have access to the following globals:
 
