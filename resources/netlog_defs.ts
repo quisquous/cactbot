@@ -598,6 +598,9 @@ const latestLogDefinitions = {
       y: 7,
       z: 8,
     },
+    playerIds: {
+      4: 5,
+    },
     canAnonymize: true,
     firstOptionalField: undefined,
   },
@@ -617,8 +620,8 @@ const latestLogDefinitions = {
       targetName: 7,
     },
     playerIds: {
-      4: null,
-      5: null,
+      4: 5,
+      6: 7,
     },
     firstOptionalField: undefined,
   },

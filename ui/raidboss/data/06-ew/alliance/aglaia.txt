@@ -5,7 +5,7 @@ hideall "--sync--"
 hideall "Fan Flames"
 
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 #~~~~~~~~~#
 # BYREGOT #
@@ -20,87 +20,87 @@ hideall "Fan Flames"
 # Note: "--hammer--" lines are done visually, as there seem to be no log line for them.
 
 # Ingenuity's Foothold will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104D:/ window 10000,0
-1005.5 "--sync--" sync / 14:[^:]*:Byregot:7176:/ window 10,10
-1010.5 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
-1022.4 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:725A:/
-1036.7 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
-1044.8 "Builder's Build" sync / 1[56]:[^:]*:Byregot:72F9:/
-1053.2 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:7167:/
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104D" } window 10000,0
+1005.5 "--sync--" StartsUsing { id: "7176", source: "Byregot" } window 10,10
+1010.5 "Ordeal of Thunder" Ability { id: "7176", source: "Byregot" }
+1022.4 "Byregot's Strike" Ability { id: "725A", source: "Byregot" }
+1036.7 "Byregot's Ward" Ability { id: "7175", source: "Byregot" }
+1044.8 "Builder's Build" Ability { id: "72F9", source: "Byregot" }
+1053.2 "Byregot's Strike" Ability { id: "7167", source: "Byregot" }
 
-1060.4 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
-1062.9 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
-1069.4 "--sync--" sync / 1[56]:[^:]*:Byregot:7174:/
-1083.3 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1060.4 "--middle--" Ability { id: "7169", source: "Byregot" }
+1062.9 "The Builder's Forge" Ability { id: "716A", source: "Byregot" }
+1069.4 "--sync--" Ability { id: "7174", source: "Byregot" }
+1083.3 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
 1110.1 "--hammer--"
-1108.3 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
-1110.4 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1108.3 "--sync--" Ability { id: "7171", source: "Byregot" }
+1110.4 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
 1127.2 "--hammer--"
-1127.6 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
-1129.1 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
-1135.3 "--north--" sync / 1[56]:[^:]*:Byregot:7169:/
+1127.6 "Levinforge" Ability { id: "7172", source: "Byregot" }
+1129.1 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
+1135.3 "--north--" Ability { id: "7169", source: "Byregot" }
 1145.9 "--hammer--"
-1148.1 "Byregot's Spire" sync / 1[56]:[^:]*:Byregot:7170:/
+1148.1 "Byregot's Spire" Ability { id: "7170", source: "Byregot" }
 
 # If Byregot uses Builder's Build, then Strike has lightning and is pushed
 # back ~5.6seconds.  The real time for Builder's Build is 1176.6.  This
 # sync adjusts the timeline backwards in time to adjust for this.
-1151.2 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
-1153.4 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
-1168.0 "--sync--" sync / 14:[^:]*:Byregot:72F9:/ window 10,10
-1171.0 "Builder's Build?" sync / 1[56]:[^:]*:Byregot:72F9:/
-1173.7 "--sync--" sync / 14:[^:]*:Byregot:(725A|7167):/ window 10,10
-1179.7 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:(725A|7167):/
-1187.8 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
-1196.9 "Reproduce" sync / 1[56]:[^:]*:Byregot:716B:/
-1199.8 "Builder's Build" sync / 1[56]:[^:]*:Byregot's Avatar:72FA:/
-1207.8 "Cloud to Ground" sync / 1[56]:[^:]*:Byregot's Avatar:716C:/ duration 7.6
-1223.0 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
+1151.2 "--middle--" Ability { id: "7169", source: "Byregot" }
+1153.4 "The Builder's Forge" Ability { id: "716A", source: "Byregot" }
+1168.0 "--sync--" StartsUsing { id: "72F9", source: "Byregot" } window 10,10
+1171.0 "Builder's Build?" Ability { id: "72F9", source: "Byregot" }
+1173.7 "--sync--" StartsUsing { id: ["725A", "7167"], source: "Byregot" } window 10,10
+1179.7 "Byregot's Strike" Ability { id: ["725A", "7167"], source: "Byregot" }
+1187.8 "Ordeal of Thunder" Ability { id: "7176", source: "Byregot" }
+1196.9 "Reproduce" Ability { id: "716B", source: "Byregot" }
+1199.8 "Builder's Build" Ability { id: "72FA", source: "Byregot's Avatar" }
+1207.8 "Cloud to Ground" Ability { id: "716C", source: "Byregot's Avatar" } duration 7.6
+1223.0 "Byregot's Ward" Ability { id: "7175", source: "Byregot" }
 
-1225.1 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
-1227.4 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
-1234.1 "--sync--" sync / 1[56]:[^:]*:Byregot:7174:/
-1247.7 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
-1249.8 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1225.1 "--middle--" Ability { id: "7169", source: "Byregot" }
+1227.4 "The Builder's Forge" Ability { id: "716A", source: "Byregot" }
+1234.1 "--sync--" Ability { id: "7174", source: "Byregot" }
+1247.7 "--sync--" Ability { id: "7171", source: "Byregot" }
+1249.8 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
 1266.6 "--hammer--"
-1267.0 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
-1274.8 "--sync--" sync / 1[56]:[^:]*:Byregot:7171:/
-1276.9 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
+1267.0 "Levinforge" Ability { id: "7172", source: "Byregot" }
+1274.8 "--sync--" Ability { id: "7171", source: "Byregot" }
+1276.9 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
 1293.7 "--hammer--"
-1294.1 "Levinforge" sync / 1[56]:[^:]*:Byregot:7172:/
-1295.6 "Peal of the Hammer" sync / 1[56]:[^:]*:Byregot:716F:/
-1301.8 "--north--" sync / 1[56]:[^:]*:Byregot:7169:/
+1294.1 "Levinforge" Ability { id: "7172", source: "Byregot" }
+1295.6 "Peal of the Hammer" Ability { id: "716F", source: "Byregot" }
+1301.8 "--north--" Ability { id: "7169", source: "Byregot" }
 1312.4 "--hammer--"
-1314.6 "Byregot's Spire" sync / 1[56]:[^:]*:Byregot:7170:/
+1314.6 "Byregot's Spire" Ability { id: "7170", source: "Byregot" }
 
-1317.7 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
-1319.9 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/
-1334.5 "--sync--" sync / 14:[^:]*:Byregot:72F9:/ window 10,10
-1337.5 "Builder's Build?" sync / 1[56]:[^:]*:Byregot:72F9:/
-1340.2 "--sync--" sync / 14:[^:]*:Byregot:(725A|7167):/ window 10,10
-1346.2 "Byregot's Strike" sync / 1[56]:[^:]*:Byregot:(725A|7167):/
-1354.3 "Ordeal of Thunder" sync / 1[56]:[^:]*:Byregot:7176:/
-1366.5 "Byregot's Ward" sync / 1[56]:[^:]*:Byregot:7175:/
-1374.6 "Reproduce" sync / 1[56]:[^:]*:Byregot:716B:/
-1377.5 "Builder's Build" sync / 1[56]:[^:]*:Byregot's Avatar:72FA:/
-1385.5 "Cloud to Ground" sync / 1[56]:[^:]*:Byregot's Avatar:716C:/ duration 7.6
+1317.7 "--middle--" Ability { id: "7169", source: "Byregot" }
+1319.9 "The Builder's Forge" Ability { id: "716A", source: "Byregot" }
+1334.5 "--sync--" StartsUsing { id: "72F9", source: "Byregot" } window 10,10
+1337.5 "Builder's Build?" Ability { id: "72F9", source: "Byregot" }
+1340.2 "--sync--" StartsUsing { id: ["725A", "7167"], source: "Byregot" } window 10,10
+1346.2 "Byregot's Strike" Ability { id: ["725A", "7167"], source: "Byregot" }
+1354.3 "Ordeal of Thunder" Ability { id: "7176", source: "Byregot" }
+1366.5 "Byregot's Ward" Ability { id: "7175", source: "Byregot" }
+1374.6 "Reproduce" Ability { id: "716B", source: "Byregot" }
+1377.5 "Builder's Build" Ability { id: "72FA", source: "Byregot's Avatar" }
+1385.5 "Cloud to Ground" Ability { id: "716C", source: "Byregot's Avatar" } duration 7.6
 
 # LOOP
-1395.7 "--middle--" sync / 1[56]:[^:]*:Byregot:7169:/
-1398.1 "The Builder's Forge" sync / 1[56]:[^:]*:Byregot:716A:/ window 50,50 jump 1227.4
-1404.7 "--sync--" #sync / 1[56]:[^:]*:Byregot:7174:/
-1418.4 "--sync--" #sync / 1[56]:[^:]*:Byregot:7171:/
-1420.5 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
+1395.7 "--middle--" Ability { id: "7169", source: "Byregot" }
+1398.1 "The Builder's Forge" Ability { id: "716A", source: "Byregot" } window 50,50 jump 1227.4
+1404.7 "--sync--" #Ability { id: "7174", source: "Byregot" }
+1418.4 "--sync--" #Ability { id: "7171", source: "Byregot" }
+1420.5 "Peal of the Hammer" #Ability { id: "716F", source: "Byregot" }
 1437.3 "--hammer--"
-1437.7 "Levinforge" #sync / 1[56]:[^:]*:Byregot:7172:/
-1445.4 "--sync--" #sync / 1[56]:[^:]*:Byregot:7171:/
-1447.5 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
+1437.7 "Levinforge" #Ability { id: "7172", source: "Byregot" }
+1445.4 "--sync--" #Ability { id: "7171", source: "Byregot" }
+1447.5 "Peal of the Hammer" #Ability { id: "716F", source: "Byregot" }
 1464.3 "--hammer--"
-1464.7 "Levinforge" #sync / 1[56]:[^:]*:Byregot:7172:/
-1466.2 "Peal of the Hammer" #sync / 1[56]:[^:]*:Byregot:716F:/
-1472.4 "--north--" #sync / 1[56]:[^:]*:Byregot:7169:/
+1464.7 "Levinforge" #Ability { id: "7172", source: "Byregot" }
+1466.2 "Peal of the Hammer" #Ability { id: "716F", source: "Byregot" }
+1472.4 "--north--" #Ability { id: "7169", source: "Byregot" }
 1483.0 "--hammer--"
-1485.2 "Byregot's Spire" #sync / 1[56]:[^:]*:Byregot:7170:/
+1485.2 "Byregot's Spire" #Ability { id: "7170", source: "Byregot" }
 
 
 #~~~~~~~~~~~~~~~~~~~#
@@ -111,24 +111,24 @@ hideall "Fan Flames"
 # -ii 70D8 70E2 70E4 70DC
 
 # The Path will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104E:/ window 10000,0
-2004.8 "--sync--" sync / 14:[^:]*:Rhalgr's Emissary:70E0:/ window 10,10
-2012.8 "Destructive Static" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E0:/
-2019.8 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
-2036.9 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
-2037.5 "Lightning Bolt x3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E1:/ duration 8
-2052.7 "Bolts from the Blue" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E3:/
-2058.1 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
-2075.2 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
-2078.1 "Destructive Static" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E0:/
-2087.4 "Boltloop 1" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DD:/
-2089.4 "Boltloop 2" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DE:/
-2091.4 "Boltloop 3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DF:/
-2100.6 "Destructive Strike" sync / 1[56]:[^:]*:Rhalgr's Emissary:70D9:/
-2111.7 "Bolts from the Blue" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E3:/
-2118.1 "Destructive Charge" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DA:/ duration 17
-2135.2 "--sync--" sync / 1[56]:[^:]*:Rhalgr's Emissary:70DB:/
-2135.7 "Lightning Bolt x3" sync / 1[56]:[^:]*:Rhalgr's Emissary:70E1:/ duration 8
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104E" } window 10000,0
+2004.8 "--sync--" StartsUsing { id: "70E0", source: "Rhalgr's Emissary" } window 10,10
+2012.8 "Destructive Static" Ability { id: "70E0", source: "Rhalgr's Emissary" }
+2019.8 "Destructive Charge" Ability { id: "70DA", source: "Rhalgr's Emissary" } duration 17
+2036.9 "--sync--" Ability { id: "70DB", source: "Rhalgr's Emissary" }
+2037.5 "Lightning Bolt x3" Ability { id: "70E1", source: "Rhalgr's Emissary" } duration 8
+2052.7 "Bolts from the Blue" Ability { id: "70E3", source: "Rhalgr's Emissary" }
+2058.1 "Destructive Charge" Ability { id: "70DA", source: "Rhalgr's Emissary" } duration 17
+2075.2 "--sync--" Ability { id: "70DB", source: "Rhalgr's Emissary" }
+2078.1 "Destructive Static" Ability { id: "70E0", source: "Rhalgr's Emissary" }
+2087.4 "Boltloop 1" Ability { id: "70DD", source: "Rhalgr's Emissary" }
+2089.4 "Boltloop 2" Ability { id: "70DE", source: "Rhalgr's Emissary" }
+2091.4 "Boltloop 3" Ability { id: "70DF", source: "Rhalgr's Emissary" }
+2100.6 "Destructive Strike" Ability { id: "70D9", source: "Rhalgr's Emissary" }
+2111.7 "Bolts from the Blue" Ability { id: "70E3", source: "Rhalgr's Emissary" }
+2118.1 "Destructive Charge" Ability { id: "70DA", source: "Rhalgr's Emissary" } duration 17
+2135.2 "--sync--" Ability { id: "70DB", source: "Rhalgr's Emissary" }
+2135.7 "Lightning Bolt x3" Ability { id: "70E1", source: "Rhalgr's Emissary" } duration 8
 # TODO: is this a loop back to  2037.5??
 
 
@@ -142,65 +142,65 @@ hideall "Fan Flames"
 # TODO: is the ordering of fake vs real Broken World correct? Every log has been this.
 
 # Monument to Destruction will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:104F:/ window 10000,0
-3007.5 "--sync--" sync / 14:[^:]*:Rhalgr:70A5:/ window 10,10
-3012.5 "Lightning Reign" sync / 1[56]:[^:]*:Rhalgr:70A5:/
-3023.6 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3038.7 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[89]:/
-3054.6 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3067.3 "Broken World (proximity)" sync / 1[56]:[^:]*:Rhalgr:70B6:/
-3078.1 "Rhalgr's Beacon" sync / 1[56]:[^:]*:Rhalgr:70AA:/
-3094.3 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3109.5 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[89]:/
-3125.3 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
-3136.5 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3142.6 "--jump--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
-3147.0 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3158.1 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70AC:/
-3163.9 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
-3180.2 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3189.3 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3200.4 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70AC:/
-3206.2 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "104F" } window 10000,0
+3007.5 "--sync--" StartsUsing { id: "70A5", source: "Rhalgr" } window 10,10
+3012.5 "Lightning Reign" Ability { id: "70A5", source: "Rhalgr" }
+3023.6 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3038.7 "Hand of the Destroyer" Ability { id: "70A[89]", source: "Rhalgr" }
+3054.6 "Broken World (summon)" Ability { id: "70A6", source: "Rhalgr" }
+3067.3 "Broken World (proximity)" Ability { id: "70B6", source: "Rhalgr" }
+3078.1 "Rhalgr's Beacon" Ability { id: "70AA", source: "Rhalgr" }
+3094.3 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3109.5 "Hand of the Destroyer" Ability { id: "70A[89]", source: "Rhalgr" }
+3125.3 "Destructive Bolt" Ability { id: "70A4", source: "Rhalgr" }
+3136.5 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3142.6 "--jump--" Ability { id: "70AE", source: "Rhalgr" }
+3147.0 "Broken World (summon)" Ability { id: "70A6", source: "Rhalgr" }
+3158.1 "Hand of the Destroyer" Ability { id: "70AC", source: "Rhalgr" }
+3163.9 "Broken World (fake)" Ability { id: "71DD", source: "Rhalgr" }
+3180.2 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3189.3 "Broken World (summon)" Ability { id: "70A6", source: "Rhalgr" }
+3200.4 "Hand of the Destroyer" Ability { id: "70AC", source: "Rhalgr" }
+3206.2 "Broken World (fake)" Ability { id: "71DD", source: "Rhalgr" }
 
-3214.6 "--middle--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
-3222.5 "Bronze Work" sync / 1[56]:[^:]*:Rhalgr:70AB:/
-3223.0 "Bronze Lightning 1" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
-3225.0 "Striking Meteor 1" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
-3225.0 "Bronze Lightning 2" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
-3227.0 "Striking Meteor 2" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
-3230.6 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
+3214.6 "--middle--" Ability { id: "70AE", source: "Rhalgr" }
+3222.5 "Bronze Work" Ability { id: "70AB", source: "Rhalgr" }
+3223.0 "Bronze Lightning 1" Ability { id: "70B9", source: "Rhalgr" } window 1,1
+3225.0 "Striking Meteor 1" Ability { id: "70BB", source: "Rhalgr" } window 1,1
+3225.0 "Bronze Lightning 2" Ability { id: "70B9", source: "Rhalgr" } window 1,1
+3227.0 "Striking Meteor 2" Ability { id: "70BB", source: "Rhalgr" } window 1,1
+3230.6 "Destructive Bolt" Ability { id: "70A4", source: "Rhalgr" }
 
-3236.7 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3245.8 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3256.9 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A9:/
-3258.5 "Broken World (proximity)" sync / 1[56]:[^:]*:Rhalgr:70B6:/
-3265.9 "Lightning Storm" sync / 1[56]:[^:]*:Rhalgr:70BA:/
+3236.7 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3245.8 "Broken World (summon)" Ability { id: "70A6", source: "Rhalgr" }
+3256.9 "Hand of the Destroyer" Ability { id: "70A9", source: "Rhalgr" }
+3258.5 "Broken World (proximity)" Ability { id: "70B6", source: "Rhalgr" }
+3265.9 "Lightning Storm" Ability { id: "70BA", source: "Rhalgr" }
 
-3274.7 "Hell of Lightning" sync / 1[56]:[^:]*:Rhalgr:70AD:/
-3286.1 "Rhalgr's Beacon" sync / 1[56]:[^:]*:Rhalgr:70AA:/
-3289.8 "Shock" sync / 1[56]:[^:]*:Lightning Orb:70B3:/
+3274.7 "Hell of Lightning" Ability { id: "70AD", source: "Rhalgr" }
+3286.1 "Rhalgr's Beacon" Ability { id: "70AA", source: "Rhalgr" }
+3289.8 "Shock" Ability { id: "70B3", source: "Lightning Orb" }
 
-3302.2 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/
-3311.3 "Broken World (summon)" sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3322.4 "Hand of the Destroyer" sync / 1[56]:[^:]*:Rhalgr:70A[C9]:/
-3328.3 "Broken World (fake)" sync / 1[56]:[^:]*:Rhalgr:71DD:/
-3337.6 "Lightning Reign" sync / 1[56]:[^:]*:Rhalgr:70A5:/
+3302.2 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" }
+3311.3 "Broken World (summon)" Ability { id: "70A6", source: "Rhalgr" }
+3322.4 "Hand of the Destroyer" Ability { id: "70A[C9]", source: "Rhalgr" }
+3328.3 "Broken World (fake)" Ability { id: "71DD", source: "Rhalgr" }
+3337.6 "Lightning Reign" Ability { id: "70A5", source: "Rhalgr" }
 
-3347.8 "--middle--" sync / 1[56]:[^:]*:Rhalgr:70AE:/
-3355.5 "Bronze Work" sync / 1[56]:[^:]*:Rhalgr:70AB:/
-3356.0 "Bronze Lightning 1" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
-3358.0 "Striking Meteor 1" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
-3358.0 "Bronze Lightning 2" sync / 1[56]:[^:]*:Rhalgr:70B9:/ window 1,1
-3360.0 "Striking Meteor 2" sync / 1[56]:[^:]*:Rhalgr:70BB:/ window 1,1
-3363.6 "Destructive Bolt" sync / 1[56]:[^:]*:Rhalgr:70A4:/
+3347.8 "--middle--" Ability { id: "70AE", source: "Rhalgr" }
+3355.5 "Bronze Work" Ability { id: "70AB", source: "Rhalgr" }
+3356.0 "Bronze Lightning 1" Ability { id: "70B9", source: "Rhalgr" } window 1,1
+3358.0 "Striking Meteor 1" Ability { id: "70BB", source: "Rhalgr" } window 1,1
+3358.0 "Bronze Lightning 2" Ability { id: "70B9", source: "Rhalgr" } window 1,1
+3360.0 "Striking Meteor 2" Ability { id: "70BB", source: "Rhalgr" } window 1,1
+3363.6 "Destructive Bolt" Ability { id: "70A4", source: "Rhalgr" }
 
 # Loop
-3369.7 "Advent of the Eighth" sync / 1[56]:[^:]*:Rhalgr:70A7:/ window 30,30 jump 3236.7
-3378.8 "Broken World (summon)" #sync / 1[56]:[^:]*:Rhalgr:70A6:/
-3389.9 "Hand of the Destroyer" #sync / 1[56]:[^:]*:Rhalgr:70A9:/
-3391.5 "Broken World (proximity)" #sync / 1[56]:[^:]*:Rhalgr:70B6:/
-3398.9 "Lightning Storm" #sync / 1[56]:[^:]*:Rhalgr:70BA:/
+3369.7 "Advent of the Eighth" Ability { id: "70A7", source: "Rhalgr" } window 30,30 jump 3236.7
+3378.8 "Broken World (summon)" #Ability { id: "70A6", source: "Rhalgr" }
+3389.9 "Hand of the Destroyer" #Ability { id: "70A9", source: "Rhalgr" }
+3391.5 "Broken World (proximity)" #Ability { id: "70B6", source: "Rhalgr" }
+3398.9 "Lightning Storm" #Ability { id: "70BA", source: "Rhalgr" }
 
 
 #~~~~~~~~~~~~~~~~~#
@@ -213,50 +213,50 @@ hideall "Fan Flames"
 # TODO: These do "Rejuvenating Spark" (71D9) to rebalance health.  Does that adjust timings?
 
 # Endless City will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1050:/ window 10000,0
-4007.0 "--sync--" sync / 14:[^:]*:Lioness of Aglaia:71D7:/ window 10,10
-4012.0 "Double Immolation" sync / 1[56]:[^:]*:Lioness of Aglaia:71D7:/
-4019.8 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
-4028.1 "Slash and Burn" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):(71D0|71D2):/
-4031.3 "Slash and Burn" sync / 1[56]:[^:]*:(Lioness of Aglaia|Lion of Aglaia):(71D6|71D5):/
-4036.1 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
-4044.7 "Slash and Burn" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):(71D0|71D2):/
-4047.9 "Slash and Burn" sync / 1[56]:[^:]*:(Lioness of Aglaia|Lion of Aglaia):(71D6|71D5):/
-4056.7 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
-4063.8 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:71CE:/
-4066.8 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:71CF:/
-4072.4 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
-4079.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:71CE:/
-4082.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:71CF:/
-4085.1 "Rejuvenating Spark" sync / 1[56]:[^:]*:(Lion of Aglaia|Lioness of Aglaia):71D9:/
-4093.4 "--sync--" sync / 1[56]:[^:]*:Lioness of Aglaia:71CD:/ window 10,10
-4101.7 "Slash and Burn" sync / 1[56]:[^:]*:Lioness of Aglaia:71D2:/
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1050" } window 10000,0
+4007.0 "--sync--" StartsUsing { id: "71D7", source: "Lioness of Aglaia" } window 10,10
+4012.0 "Double Immolation" Ability { id: "71D7", source: "Lioness of Aglaia" }
+4019.8 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
+4028.1 "Slash and Burn" Ability { id: ["71D0", "71D2"], source: ["Lion of Aglaia", "Lioness of Aglaia"] }
+4031.3 "Slash and Burn" Ability { id: ["71D6", "71D5"], source: ["Lioness of Aglaia", "Lion of Aglaia"] }
+4036.1 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
+4044.7 "Slash and Burn" Ability { id: ["71D0", "71D2"], source: ["Lion of Aglaia", "Lioness of Aglaia"] }
+4047.9 "Slash and Burn" Ability { id: ["71D6", "71D5"], source: ["Lioness of Aglaia", "Lion of Aglaia"] }
+4056.7 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
+4063.8 "Roaring Blaze" Ability { id: "71CE", source: "Lioness of Aglaia" }
+4066.8 "Roaring Blaze" Ability { id: "71CF", source: "Lion of Aglaia" }
+4072.4 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
+4079.5 "Roaring Blaze" Ability { id: "71CE", source: "Lion of Aglaia" }
+4082.5 "Roaring Blaze" Ability { id: "71CF", source: "Lioness of Aglaia" }
+4085.1 "Rejuvenating Spark" Ability { id: "71D9", source: ["Lion of Aglaia", "Lioness of Aglaia"] }
+4093.4 "--sync--" Ability { id: "71CD", source: "Lioness of Aglaia" } window 10,10
+4101.7 "Slash and Burn" Ability { id: "71D2", source: "Lioness of Aglaia" }
 # ??? (is this a loop?)
 
 
 # Lioness dead branch
-4500.0 "--sync--" sync / 14:[^:]*:Lion of Aglaia:72C0:/ window 500,100
-4504.0 "Trial by Fire" sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
-4515.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+4500.0 "--sync--" StartsUsing { id: "72C0", source: "Lion of Aglaia" } window 500,100
+4504.0 "Trial by Fire" Ability { id: "72C0", source: "Lion of Aglaia" }
+4515.5 "Roaring Blaze" Ability { id: "72BF", source: "Lion of Aglaia" }
 
-4526.9 "Trial by Fire" #sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
-4538.4 "Roaring Blaze" #sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+4526.9 "Trial by Fire" #Ability { id: "72C0", source: "Lion of Aglaia" }
+4538.4 "Roaring Blaze" #Ability { id: "72BF", source: "Lion of Aglaia" }
 
 # guessing at these two and the loop
-4549.8 "Trial by Fire" #sync / 1[56]:[^:]*:Lion of Aglaia:72C0:/
-4561.3 "Roaring Blaze" #sync / 1[56]:[^:]*:Lion of Aglaia:72BF:/
+4549.8 "Trial by Fire" #Ability { id: "72C0", source: "Lion of Aglaia" }
+4561.3 "Roaring Blaze" #Ability { id: "72BF", source: "Lion of Aglaia" }
 
 
 # Lion dead branch
-4800.0 "--sync--" sync / 14:[^:]*:Lioness of Aglaia:72C1:/ window 800,100
-4804.0 "Spinning Slash" sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
-4815.5 "Roaring Blaze" sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+4800.0 "--sync--" StartsUsing { id: "72C1", source: "Lioness of Aglaia" } window 800,100
+4804.0 "Spinning Slash" Ability { id: "72C1", source: "Lioness of Aglaia" }
+4815.5 "Roaring Blaze" Ability { id: "72BF", source: "Lioness of Aglaia" }
 
-4526.9 "Spinning Slash" #sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
-4538.4 "Roaring Blaze" #sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+4526.9 "Spinning Slash" #Ability { id: "72C1", source: "Lioness of Aglaia" }
+4538.4 "Roaring Blaze" #Ability { id: "72BF", source: "Lioness of Aglaia" }
 
-4549.8 "Spinning Slash" #sync / 1[56]:[^:]*:Lioness of Aglaia:72C1:/
-4561.3 "Roaring Blaze" #sync / 1[56]:[^:]*:Lioness of Aglaia:72BF:/
+4549.8 "Spinning Slash" #Ability { id: "72C1", source: "Lioness of Aglaia" }
+4561.3 "Roaring Blaze" #Ability { id: "72BF", source: "Lioness of Aglaia" }
 
 
 #~~~~~~~~#
@@ -267,120 +267,120 @@ hideall "Fan Flames"
 # -ii 70A1 7082 7083 709F 708E 72BE 7093 7094 71EE 7089 731C 708C 7092 7087
 
 # Circle of Inquiry will be sealed off
-5000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1051:/ window 10000,0
-5006.2 "--sync--" sync / 14:[^:]*:Azeyma:70A0:/ window 10,10
-5012.2 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
+5000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1051" } window 10000,0
+5006.2 "--sync--" StartsUsing { id: "70A0", source: "Azeyma" } window 10,10
+5012.2 "Warden's Prominence" Ability { id: "70A0", source: "Azeyma" }
 
-5018.3 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5019.9 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5030.2 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
-5037.9 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
-5050.6 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+5018.3 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5019.9 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5030.2 "Solar Wings" Ability { id: "7081", source: "Azeyma" }
+5037.9 "Solar Flair" Ability { id: "7084", source: "Sunstorm" }
+5050.6 "Warden's Warmth" Ability { id: "709E", source: "Azeyma" }
 
-5056.7 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5058.3 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5065.2 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
-5070.6 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
-5073.5 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
-5081.4 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:7086:/
-5084.0 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
+5056.7 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5058.3 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5065.2 "Solar Wings" Ability { id: "7081", source: "Azeyma" }
+5070.6 "Sun's Shine" Ability { id: "7085", source: "Azeyma" }
+5073.5 "--sync--" Ability { id: "7315", source: "Azeyma's Heat" }
+5081.4 "Haute Air" Ability { id: "7086", source: "Azeyma's Heat" }
+5084.0 "Solar Flair" Ability { id: "7084", source: "Sunstorm" }
 
-5084.7 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5086.3 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5093.1 "Solar Fans" sync / 1[56]:[^:]*:Azeyma:708D:/
-5101.3 "Radiant Rhythm" sync / 1[56]:[^:]*:Azeyma:708F:/
-5102.7 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5104.1 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5105.5 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5109.9 "Radiant Finish" sync / 1[56]:[^:]*:Azeyma:7091:/
-5116.0 "--sync--" sync / 1[56]:[^:]*:Azeyma:72B0:/
-5126.1 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
-5137.9 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
+5084.7 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5086.3 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5093.1 "Solar Fans" Ability { id: "708D", source: "Azeyma" }
+5101.3 "Radiant Rhythm" Ability { id: "708F", source: "Azeyma" }
+5102.7 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5104.1 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5105.5 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5109.9 "Radiant Finish" Ability { id: "7091", source: "Azeyma" }
+5116.0 "--sync--" Ability { id: "72B0", source: "Azeyma" }
+5126.1 "Warden's Warmth" Ability { id: "709E", source: "Azeyma" }
+5137.9 "Fleeting Spark" Ability { id: "709C", source: "Azeyma" }
 
-5143.3 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5144.9 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5152.0 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:7088:/
-5152.0 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:71EE:/
-5157.1 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
-5160.0 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
-5174.9 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:708A:/
-5176.0 "Dancing Flame" sync / 1[56]:[^:]*:Azeyma:708B:/
-5184.2 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
+5143.3 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5144.9 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5152.0 "Solar Fold" Ability { id: "7088", source: "Azeyma" }
+5152.0 "Solar Fold" Ability { id: "71EE", source: "Azeyma" }
+5157.1 "Sun's Shine" Ability { id: "7085", source: "Azeyma" }
+5160.0 "--sync--" Ability { id: "7315", source: "Azeyma's Heat" }
+5174.9 "Haute Air" Ability { id: "708A", source: "Azeyma's Heat" }
+5176.0 "Dancing Flame" Ability { id: "708B", source: "Azeyma" }
+5184.2 "Warden's Prominence" Ability { id: "70A0", source: "Azeyma" }
 
-5188.4 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5195.0 "Wildfire Ward" sync / 1[56]:[^:]*:Azeyma:709A:/
-5211.2 "Illuminating Glimpse 1" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
-5215.3 "Illuminating Glimpse 2" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
-5219.3 "Illuminating Glimpse 3" sync / 1[56]:[^:]*:Azeyma's Heat:709B:/
+5188.4 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5195.0 "Wildfire Ward" Ability { id: "709A", source: "Azeyma" }
+5211.2 "Illuminating Glimpse 1" Ability { id: "709B", source: "Azeyma's Heat" }
+5215.3 "Illuminating Glimpse 2" Ability { id: "709B", source: "Azeyma's Heat" }
+5219.3 "Illuminating Glimpse 3" Ability { id: "709B", source: "Azeyma's Heat" }
 
-5225.2 "--jump--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5230.8 "Noble Dawn" sync / 1[56]:[^:]*:Azeyma:7095:/
-5234.6 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5236.6 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5238.6 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5241.6 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
-5243.6 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
-5245.6 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
+5225.2 "--jump--" Ability { id: "70A2", source: "Azeyma" }
+5230.8 "Noble Dawn" Ability { id: "7095", source: "Azeyma" }
+5234.6 "Sunbeam 1" #Ability { id: "7096", source: "Prodigal Sun" }
+5236.6 "Sunbeam 2" #Ability { id: "7096", source: "Prodigal Sun" }
+5238.6 "Sunbeam 3" #Ability { id: "7096", source: "Prodigal Sun" }
+5241.6 "Sunbeam 1" #Ability { id: "7097", source: "Prodigal Sun" }
+5243.6 "Sunbeam 2" #Ability { id: "7097", source: "Prodigal Sun" }
+5245.6 "Sunbeam 3" #Ability { id: "7097", source: "Prodigal Sun" }
 
-5248.8 "--jump--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5259.7 "Sublime Sunset" sync / 1[56]:[^:]*:Azeyma:7098:/
-5260.3 "Sunset" sync / 1[56]:[^:]*:Prodigal Sun:7099:/
+5248.8 "--jump--" Ability { id: "70A2", source: "Azeyma" }
+5259.7 "Sublime Sunset" Ability { id: "7098", source: "Azeyma" }
+5260.3 "Sunset" Ability { id: "7099", source: "Prodigal Sun" }
 
-5268.9 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5270.5 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5277.4 "Solar Fans" sync / 1[56]:[^:]*:Azeyma:708D:/
-5285.6 "Radiant Rhythm" sync / 1[56]:[^:]*:Azeyma:708F:/
-5287.0 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5288.4 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5289.8 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5291.2 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5295.6 "Radiant Finish" sync / 1[56]:[^:]*:Azeyma:7091:/
-5306.1 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
+5268.9 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5270.5 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5277.4 "Solar Fans" Ability { id: "708D", source: "Azeyma" }
+5285.6 "Radiant Rhythm" Ability { id: "708F", source: "Azeyma" }
+5287.0 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5288.4 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5289.8 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5291.2 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5295.6 "Radiant Finish" Ability { id: "7091", source: "Azeyma" }
+5306.1 "Fleeting Spark" Ability { id: "709C", source: "Azeyma" }
 
-5309.8 "--sync--" sync / 1[56]:[^:]*:Azeyma:72B0:/
-5317.0 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5318.6 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5325.8 "Solar Wings" sync / 1[56]:[^:]*:Azeyma:7081:/
-5331.2 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
-5334.1 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
-5342.0 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:7086:/
-5344.7 "Solar Flair" sync / 1[56]:[^:]*:Sunstorm:7084:/
-5352.4 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+5309.8 "--sync--" Ability { id: "72B0", source: "Azeyma" }
+5317.0 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5318.6 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5325.8 "Solar Wings" Ability { id: "7081", source: "Azeyma" }
+5331.2 "Sun's Shine" Ability { id: "7085", source: "Azeyma" }
+5334.1 "--sync--" Ability { id: "7315", source: "Azeyma's Heat" }
+5342.0 "Haute Air" Ability { id: "7086", source: "Azeyma's Heat" }
+5344.7 "Solar Flair" Ability { id: "7084", source: "Sunstorm" }
+5352.4 "Warden's Warmth" Ability { id: "709E", source: "Azeyma" }
 
-5357.6 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5359.2 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/
-5366.4 "Solar Fold" sync / 1[56]:[^:]*:Azeyma:7088:/
-5371.5 "Sun's Shine" sync / 1[56]:[^:]*:Azeyma:7085:/
-5374.4 "--sync--" sync / 1[56]:[^:]*:Azeyma's Heat:7315:/
-5389.3 "Haute Air" sync / 1[56]:[^:]*:Azeyma's Heat:708A:/
-5390.4 "Dancing Flame" sync / 1[56]:[^:]*:Azeyma:708B:/
+5357.6 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5359.2 "Fan Flames" Ability { id: "7080", source: "Azeyma" }
+5366.4 "Solar Fold" Ability { id: "7088", source: "Azeyma" }
+5371.5 "Sun's Shine" Ability { id: "7085", source: "Azeyma" }
+5374.4 "--sync--" Ability { id: "7315", source: "Azeyma's Heat" }
+5389.3 "Haute Air" Ability { id: "708A", source: "Azeyma's Heat" }
+5390.4 "Dancing Flame" Ability { id: "708B", source: "Azeyma" }
 
-5396.6 "Warden's Prominence" sync / 1[56]:[^:]*:Azeyma:70A0:/
-5402.7 "--sync--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5408.3 "Noble Dawn" sync / 1[56]:[^:]*:Azeyma:7095:/
-5412.1 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5414.1 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5416.1 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7096:/
-5419.1 "Sunbeam 1" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
-5421.1 "Sunbeam 2" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
-5423.1 "Sunbeam 3" #sync / 1[56]:[^:]*:Prodigal Sun:7097:/
-5431.0 "Fleeting Spark" sync / 1[56]:[^:]*:Azeyma:709C:/
-5433.4 "--sync--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5444.7 "Sublime Sunset" sync / 1[56]:[^:]*:Azeyma:7098:/
-5445.2 "Sunset" sync / 1[56]:[^:]*:Prodigal Sun:7099:/
-5453.8 "Warden's Warmth" sync / 1[56]:[^:]*:Azeyma:709E:/
+5396.6 "Warden's Prominence" Ability { id: "70A0", source: "Azeyma" }
+5402.7 "--sync--" Ability { id: "70A2", source: "Azeyma" }
+5408.3 "Noble Dawn" Ability { id: "7095", source: "Azeyma" }
+5412.1 "Sunbeam 1" #Ability { id: "7096", source: "Prodigal Sun" }
+5414.1 "Sunbeam 2" #Ability { id: "7096", source: "Prodigal Sun" }
+5416.1 "Sunbeam 3" #Ability { id: "7096", source: "Prodigal Sun" }
+5419.1 "Sunbeam 1" #Ability { id: "7097", source: "Prodigal Sun" }
+5421.1 "Sunbeam 2" #Ability { id: "7097", source: "Prodigal Sun" }
+5423.1 "Sunbeam 3" #Ability { id: "7097", source: "Prodigal Sun" }
+5431.0 "Fleeting Spark" Ability { id: "709C", source: "Azeyma" }
+5433.4 "--sync--" Ability { id: "70A2", source: "Azeyma" }
+5444.7 "Sublime Sunset" Ability { id: "7098", source: "Azeyma" }
+5445.2 "Sunset" Ability { id: "7099", source: "Prodigal Sun" }
+5453.8 "Warden's Warmth" Ability { id: "709E", source: "Azeyma" }
 
 # Loop? (this is a guess), 5516.7 is the furthest seen in a log.
-5460.0 "--middle--" sync / 1[56]:[^:]*:Azeyma:70A2:/
-5461.6 "Fan Flames" sync / 1[56]:[^:]*:Azeyma:7080:/ window 50,50 jump 5270.5
-5468.5 "Solar Fans" #sync / 1[56]:[^:]*:Azeyma:708D:/
-5476.7 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:708F:/
-5478.1 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5479.5 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5480.9 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5482.3 "Radiant Rhythm" #sync / 1[56]:[^:]*:Azeyma:7090:/
-5486.7 "Radiant Finish" #sync / 1[56]:[^:]*:Azeyma:7091:/
-5497.2 "Fleeting Spark" #sync / 1[56]:[^:]*:Azeyma:709C:/
+5460.0 "--middle--" Ability { id: "70A2", source: "Azeyma" }
+5461.6 "Fan Flames" Ability { id: "7080", source: "Azeyma" } window 50,50 jump 5270.5
+5468.5 "Solar Fans" #Ability { id: "708D", source: "Azeyma" }
+5476.7 "Radiant Rhythm" #Ability { id: "708F", source: "Azeyma" }
+5478.1 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5479.5 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5480.9 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5482.3 "Radiant Rhythm" #Ability { id: "7090", source: "Azeyma" }
+5486.7 "Radiant Finish" #Ability { id: "7091", source: "Azeyma" }
+5497.2 "Fleeting Spark" #Ability { id: "709C", source: "Azeyma" }
 
 
 #~~~~~~~~~~~#
@@ -394,83 +394,83 @@ hideall "Fan Flames"
 # TODO: Is Fired Up I/II always knockback -> out and I/II/III is out -> knockback -> knockback or out?
 
 # The Twin Halls will be sealed off
-6000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:1052:/ window 10000,0
-6008.2 "--sync--" sync / 14:[^:]*:Nald'thal:70E9:/ window 10,10
-6013.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-6027.4 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A5:/
-6036.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-6049.7 "Heat Above, Flames Below" sync / 1[56]:[^:]*:Nald'thal:73A4:/
-6056.8 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
-6061.8 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
-6062.7 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
-6070.0 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
-6081.6 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E8:/
+6000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1052" } window 10000,0
+6008.2 "--sync--" StartsUsing { id: "70E9", source: "Nald'thal" } window 10,10
+6013.2 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+6027.4 "Heat Above, Flames Below" Ability { id: "73A5", source: "Nald'thal" }
+6036.5 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+6049.7 "Heat Above, Flames Below" Ability { id: "73A4", source: "Nald'thal" }
+6056.8 "--sync--" Ability { id: "73CD", source: "Nald'thal" }
+6061.8 "Heavens' Trial" Ability { id: "711E", source: "Nald'thal" }
+6062.7 "Smelting" Ability { id: "7120", source: "Nald'thal" }
+6070.0 "Golden Tenet" Ability { id: "711A", source: "Nald'thal" }
+6081.6 "As Above, So Below" Ability { id: "70E8", source: "Nald'thal" }
 
-6095.8 "Far Above, Deep Below" sync / 1[56]:[^:]*:Nald'thal:73A[AB]:/
-6096.7 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
-6102.1 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
+6095.8 "Far Above, Deep Below" Ability { id: "73A[AB]", source: "Nald'thal" }
+6096.7 "Far-flung Fire?" Ability { id: "73AD", source: "Nald" }
+6102.1 "Deepest Pit?" Ability { id: "73C7", source: "Thal" } duration 4
 
 # Possible ~1s delay here
-6102.0 "--sync--" sync / 14:[^:]*:Nald'thal:70E[89]:/ window 10,10
-6107.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:70E[89]:/
-6121.2 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+6102.0 "--sync--" StartsUsing { id: "70E[89]", source: "Nald'thal" } window 10,10
+6107.0 "As Above, So Below" Ability { id: "70E[89]", source: "Nald'thal" }
+6121.2 "Once Above, Ever Below" Ability { id: ["73BF", "73C0", "741C", "741D"], source: "Nald'thal" }
 
 # Possible ~5s delay here
-6132.6 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
-6140.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
-6147.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
-6152.3 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/ duration 20
-6175.3 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/ duration 20
-6193.5 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+6132.6 "--sync--" StartsUsing { id: "72B[79]", source: "Nald'thal" } window 10,10
+6140.6 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
+6147.2 "--sync--" Ability { id: "710D", source: "Nald'thal" }
+6152.3 "Wayward Soul" Ability { id: "710E", source: "Nald'thal" } duration 20
+6175.3 "Wayward Soul" Ability { id: "710E", source: "Nald'thal" } duration 20
+6193.5 "--sync--" Ability { id: "710F", source: "Nald'thal" }
 
-6199.2 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
-6207.2 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
-6224.1 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7111:/
-6230.2 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:738A:/
-6240.3 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-6242.8 "--sync--" sync / 1[56]:[^:]*:Thal:7430:/
-6242.8 "Seventh Passage" sync / 1[56]:[^:]*:(Thal|Nald'thal):73AF:/
-6244.5 "Seventh Passage" sync / 1[56]:[^:]*:Nald'thal:7118:/
-6244.8 "--sync--" sync / 1[56]:[^:]*:Thal:7431:/
-6250.9 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
-6257.0 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
-6263.1 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:741[9A]:/
-6273.2 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-6275.1 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
-6277.8 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
-6279.2 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
-6289.7 "Soul's Measure" sync / 1[56]:[^:]*:Nald'thal:7122:/
+6199.2 "--sync--" StartsUsing { id: "72B[79]", source: "Nald'thal" } window 10,10
+6207.2 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
+6224.1 "Fired Up I" Ability { id: "7111", source: "Nald'thal" }
+6230.2 "Fired Up II" Ability { id: "738A", source: "Nald'thal" }
+6240.3 "Fortune's Flux" Ability { id: "7113", source: "Nald'thal" }
+6242.8 "--sync--" Ability { id: "7430", source: "Thal" }
+6242.8 "Seventh Passage" Ability { id: "73AF", source: ["Thal", "Nald'thal"] }
+6244.5 "Seventh Passage" Ability { id: "7118", source: "Nald'thal" }
+6244.8 "--sync--" Ability { id: "7431", source: "Thal" }
+6250.9 "Fired Up I" Ability { id: "7112", source: "Nald'thal" }
+6257.0 "Fired Up II" Ability { id: "7389", source: "Nald'thal" }
+6263.1 "Fired Up III" Ability { id: "741[9A]", source: "Nald'thal" }
+6273.2 "Fortune's Flux" Ability { id: "7113", source: "Nald'thal" }
+6275.1 "Seventh Passage 1" Ability { id: "7119", source: "Nald'thal" }
+6277.8 "Seventh Passage 2" #Ability { id: "73AF", source: "Thal" }
+6279.2 "Seventh Passage 3" #Ability { id: ["73AF", "7118"], source: "Thal" }
+6289.7 "Soul's Measure" Ability { id: "7122", source: "Nald'thal" }
 6290.8 "--untargetable--"
 
 # Add phase
-6300.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7123:/ window 300,10
-6311.0 "Equal Weight" sync / 1[56]:[^:]*:Soul Vessel:7124:/
-6311.2 "--sync--" sync / 1[56]:[^:]*:Nald'thal:7386:/
-6322.6 "Twingaze" sync / 1[56]:[^:]*:Soul Vessel:712A:/
-6339.5 "Magmatic Spell" sync / 1[56]:[^:]*:Soul Vessel:712D:/
-6346.0 "Twingaze" sync / 1[56]:[^:]*:Soul Vessel:712A:/
+6300.0 "--sync--" Ability { id: "7123", source: "Nald'thal" } window 300,10
+6311.0 "Equal Weight" Ability { id: "7124", source: "Soul Vessel" }
+6311.2 "--sync--" Ability { id: "7386", source: "Nald'thal" }
+6322.6 "Twingaze" Ability { id: "712A", source: "Soul Vessel" }
+6339.5 "Magmatic Spell" Ability { id: "712D", source: "Soul Vessel" }
+6346.0 "Twingaze" Ability { id: "712A", source: "Soul Vessel" }
 # ???
 
 # Loop block intro
-7000.0 "--sync--" sync / 14:[^:]*:Nald'thal:7125:/ window 1000,0
-7012.5 "Balance" sync / 1[56]:[^:]*:Nald'thal:7125:/
-7014.6 "Tipped Scales" sync / 1[56]:[^:]*:Nald'thal:7388:/
+7000.0 "--sync--" StartsUsing { id: "7125", source: "Nald'thal" } window 1000,0
+7012.5 "Balance" Ability { id: "7125", source: "Nald'thal" }
+7014.6 "Tipped Scales" Ability { id: "7388", source: "Nald'thal" }
 7058.7 "--targetable--"
 
-7070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-7084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+7070.2 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+7084.4 "Once Above, Ever Below" Ability { id: ["73BF", "73C0", "741C", "741D"], source: "Nald'thal" }
 
-7091.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
-7095.5 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
-7096.6 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
-7097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+7091.6 "--sync--" Ability { id: "73CD", source: "Nald'thal" }
+7095.5 "Stygian Tenet?" Ability { id: "711C", source: "Nald'thal" }
+7096.6 "Heavens' Trial?" Ability { id: "711E", source: "Nald'thal" }
+7097.5 "Smelting?" Ability { id: "7120", source: "Nald" }
 
-7105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-7119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
-7121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
-7125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
-7131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
-7147.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+7105.7 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+7119.9 "Hearth Above, Flight Below" Ability { id: ["741B", "73CA", "73CB", "73CC"], source: "Nald'thal" }
+7121.1 "Far-flung Fire?" Ability { id: "73AD", source: "Nald" }
+7125.7 "Deepest Pit?" Ability { id: "73C7", source: "Thal" } duration 4
+7131.1 "Golden Tenet/Hells' Trial" Ability { id: ["7121", "711A"], source: "Nald'thal" }
+7147.6 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
 
 # Branch to Wayward Soul / Fired Up.
 #
@@ -481,88 +481,88 @@ hideall "Fan Flames"
 #   https://www.fflogs.com/reports/cxqYG1L3mFMrpZdQ#fight=last
 
 # -> initial Wayward Soul block
-7156.0 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/ window 100,100 jump 7998.3
-7161.1 "Wayward Soul?" #sync / 1[56]:[^:]*:Nald'thal:710E:/
+7156.0 "--sync--" Ability { id: "710D", source: "Nald'thal" } window 100,100 jump 7998.3
+7161.1 "Wayward Soul?" #Ability { id: "710E", source: "Nald'thal" }
 
 # -> main loop block, starting with Fired Up
-7159.5 "--sync--" sync / 14:[^:]*:Nald'thal:7112:/ window 100,100 jump 8159.5
-7163.5 "Fired Up I?" #sync / 1[56]:[^:]*:Nald'thal:7112:/
-7169.6 "Fired Up II?" #sync / 1[56]:[^:]*:Nald'thal:7389:/
-7175.7 "Fired Up III?" #sync / 1[56]:[^:]*:Nald'thal:7419:/
+7159.5 "--sync--" StartsUsing { id: "7112", source: "Nald'thal" } window 100,100 jump 8159.5
+7163.5 "Fired Up I?" #Ability { id: "7112", source: "Nald'thal" }
+7169.6 "Fired Up II?" #Ability { id: "7389", source: "Nald'thal" }
+7175.7 "Fired Up III?" #Ability { id: "7419", source: "Nald'thal" }
 
 
 # Initial Wayward Soul block, fall into Main loop block
 # This has slightly different timings here (+5/-5 on some abilities) than the loop.
-7998.3 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/
-8003.4 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
-8023.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
-8034.3 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B7:/
-8044.5 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
-8059.6 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+7998.3 "--sync--" Ability { id: "710D", source: "Nald'thal" }
+8003.4 "Wayward Soul" Ability { id: "710E", source: "Nald'thal" }
+8023.6 "--sync--" Ability { id: "710F", source: "Nald'thal" }
+8034.3 "Hell of Fire" Ability { id: "72B7", source: "Nald'thal" }
+8044.5 "Stygian Tenet" Ability { id: "711C", source: "Nald'thal" }
+8059.6 "Hells' Trial" Ability { id: "7121", source: "Nald'thal" }
 
 
 # Main loop, repeating the loop block intro, but with no more branching
-8070.2 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8084.4 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+8070.2 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+8084.4 "Once Above, Ever Below" Ability { id: ["73BF", "73C0", "741C", "741D"], source: "Nald'thal" }
 
-8091.6 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
-8095.5 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
-8096.6 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
-8097.5 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+8091.6 "--sync--" Ability { id: "73CD", source: "Nald'thal" }
+8095.5 "Stygian Tenet?" Ability { id: "711C", source: "Nald'thal" }
+8096.6 "Heavens' Trial?" Ability { id: "711E", source: "Nald'thal" }
+8097.5 "Smelting?" Ability { id: "7120", source: "Nald" }
 
-8105.7 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8119.9 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
-8121.1 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
-8125.7 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
-8131.1 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
-8147.6 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+8105.7 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+8119.9 "Hearth Above, Flight Below" Ability { id: ["741B", "73CA", "73CB", "73CC"], source: "Nald'thal" }
+8121.1 "Far-flung Fire?" Ability { id: "73AD", source: "Nald" }
+8125.7 "Deepest Pit?" Ability { id: "73C7", source: "Thal" } duration 4
+8131.1 "Golden Tenet/Hells' Trial" Ability { id: ["7121", "711A"], source: "Nald'thal" }
+8147.6 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
 
-8159.5 "--sync--" sync / 14:[^:]*:Nald'thal:7112:/ window 20,20
-8163.5 "Fired Up I" sync / 1[56]:[^:]*:Nald'thal:7112:/
-8169.6 "Fired Up II" sync / 1[56]:[^:]*:Nald'thal:7389:/
-8175.7 "Fired Up III" sync / 1[56]:[^:]*:Nald'thal:7419:/
-8185.8 "Fortune's Flux" sync / 1[56]:[^:]*:Nald'thal:7113:/
-8187.7 "Seventh Passage 1" sync / 1[56]:[^:]*:Nald'thal:7119:/
-8190.4 "Seventh Passage 2" #sync / 1[56]:[^:]*:Thal:73AF:/
-8191.7 "Seventh Passage 3" #sync / 1[56]:[^:]*:Thal:(73AF|7118):/
+8159.5 "--sync--" StartsUsing { id: "7112", source: "Nald'thal" } window 20,20
+8163.5 "Fired Up I" Ability { id: "7112", source: "Nald'thal" }
+8169.6 "Fired Up II" Ability { id: "7389", source: "Nald'thal" }
+8175.7 "Fired Up III" Ability { id: "7419", source: "Nald'thal" }
+8185.8 "Fortune's Flux" Ability { id: "7113", source: "Nald'thal" }
+8187.7 "Seventh Passage 1" Ability { id: "7119", source: "Nald'thal" }
+8190.4 "Seventh Passage 2" #Ability { id: "73AF", source: "Thal" }
+8191.7 "Seventh Passage 3" #Ability { id: ["73AF", "7118"], source: "Thal" }
 
-8197.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:73CD:/
-8202.1 "Heavens' Trial" sync / 1[56]:[^:]*:Nald'thal:711E:/
-8203.0 "Smelting" sync / 1[56]:[^:]*:Nald'thal:7120:/
-8212.3 "Golden Tenet" sync / 1[56]:[^:]*:Nald'thal:711A:/
-8227.5 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+8197.1 "--sync--" Ability { id: "73CD", source: "Nald'thal" }
+8202.1 "Heavens' Trial" Ability { id: "711E", source: "Nald'thal" }
+8203.0 "Smelting" Ability { id: "7120", source: "Nald'thal" }
+8212.3 "Golden Tenet" Ability { id: "711A", source: "Nald'thal" }
+8227.5 "Hells' Trial" Ability { id: "7121", source: "Nald'thal" }
 
-8238.5 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8252.7 "Once Above, Ever Below" sync / 1[56]:[^:]*:Nald'thal:73C0:/
-8263.8 "Stygian Tenet?" sync / 1[56]:[^:]*:Nald'thal:711C:/
-8264.9 "Heavens' Trial?" sync / 1[56]:[^:]*:Nald'thal:711E:/
-8265.8 "Smelting?" sync / 1[56]:[^:]*:Nald:7120:/
+8238.5 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+8252.7 "Once Above, Ever Below" Ability { id: "73C0", source: "Nald'thal" }
+8263.8 "Stygian Tenet?" Ability { id: "711C", source: "Nald'thal" }
+8264.9 "Heavens' Trial?" Ability { id: "711E", source: "Nald'thal" }
+8265.8 "Smelting?" Ability { id: "7120", source: "Nald" }
 
-8274.0 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/
-8288.2 "Hearth Above, Flight Below" sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
-8289.4 "Far-flung Fire?" sync / 1[56]:[^:]*:Nald:73AD:/
-8294.0 "Deepest Pit?" sync / 1[56]:[^:]*:Thal:73C7:/ duration 4
-8299.4 "Golden Tenet/Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:(7121|711A):/
-8315.9 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
+8274.0 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" }
+8288.2 "Hearth Above, Flight Below" Ability { id: ["741B", "73CA", "73CB", "73CC"], source: "Nald'thal" }
+8289.4 "Far-flung Fire?" Ability { id: "73AD", source: "Nald" }
+8294.0 "Deepest Pit?" Ability { id: "73C7", source: "Thal" } duration 4
+8299.4 "Golden Tenet/Hells' Trial" Ability { id: ["7121", "711A"], source: "Nald'thal" }
+8315.9 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
 
-8324.1 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710D:/ window 20,20
-8329.2 "Wayward Soul" sync / 1[56]:[^:]*:Nald'thal:710E:/
-8344.4 "--sync--" sync / 1[56]:[^:]*:Nald'thal:710F:/
+8324.1 "--sync--" Ability { id: "710D", source: "Nald'thal" } window 20,20
+8329.2 "Wayward Soul" Ability { id: "710E", source: "Nald'thal" }
+8344.4 "--sync--" Ability { id: "710F", source: "Nald'thal" }
 
 # Possibly ~5s delay here as well?
-8347.1 "--sync--" sync / 14:[^:]*:Nald'thal:72B[79]:/ window 10,10
-8355.1 "Hell of Fire" sync / 1[56]:[^:]*:Nald'thal:72B[79]:/
-8375.3 "Stygian Tenet" sync / 1[56]:[^:]*:Nald'thal:711C:/
-8390.5 "Hells' Trial" sync / 1[56]:[^:]*:Nald'thal:7121:/
+8347.1 "--sync--" StartsUsing { id: "72B[79]", source: "Nald'thal" } window 10,10
+8355.1 "Hell of Fire" Ability { id: "72B[79]", source: "Nald'thal" }
+8375.3 "Stygian Tenet" Ability { id: "711C", source: "Nald'thal" }
+8390.5 "Hells' Trial" Ability { id: "7121", source: "Nald'thal" }
 
 # Loop back to beginning of loop block
-8401.1 "As Above, So Below" sync / 1[56]:[^:]*:Nald'thal:(70E8|70E9):/ window 50,50 jump 8070.2
-8415.3 "Once Above, Ever Below" #sync / 1[56]:[^:]*:Nald'thal:(73BF|73C0|741C|741D):/
+8401.1 "As Above, So Below" Ability { id: ["70E8", "70E9"], source: "Nald'thal" } window 50,50 jump 8070.2
+8415.3 "Once Above, Ever Below" #Ability { id: ["73BF", "73C0", "741C", "741D"], source: "Nald'thal" }
 
-8422.5 "--sync--" #sync / 1[56]:[^:]*:Nald'thal:73CD:/
-8426.4 "Stygian Tenet?" #sync / 1[56]:[^:]*:Nald'thal:711C:/
-8427.5 "Heavens' Trial?" #sync / 1[56]:[^:]*:Nald'thal:711E:/
-8428.4 "Smelting?" #sync / 1[56]:[^:]*:Nald:7120:/
+8422.5 "--sync--" #Ability { id: "73CD", source: "Nald'thal" }
+8426.4 "Stygian Tenet?" #Ability { id: "711C", source: "Nald'thal" }
+8427.5 "Heavens' Trial?" #Ability { id: "711E", source: "Nald'thal" }
+8428.4 "Smelting?" #Ability { id: "7120", source: "Nald" }
 
-8436.6 "As Above, So Below" #sync / 1[56]:[^:]*:Nald'thal:70E9:/
-8450.8 "Hearth Above, Flight Below" #sync / 1[56]:[^:]*:Nald'thal:(741B|73CA|73CB|73CC):/
+8436.6 "As Above, So Below" #Ability { id: "70E9", source: "Nald'thal" }
+8450.8 "Hearth Above, Flight Below" #Ability { id: ["741B", "73CA", "73CB", "73CC"], source: "Nald'thal" }

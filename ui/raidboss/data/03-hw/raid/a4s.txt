@@ -9,218 +9,218 @@
 #       So, I applied that to all perpetual rays.
 
 ### Leg 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-3.0 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 3,13
-14.1 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/
-21.2 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-21.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-26.3 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+3.0 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 3,13
+14.1 "Discoid" Ability { id: "F61", source: "The Manipulator" }
+21.2 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+21.2 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+26.3 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
 26.4 "--stun--" duration 5
-32.2 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-41.3 "Emergency Quarantine" sync / 1[56]:[^:]*:The Manipulator:F62:/
+32.2 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+41.3 "Emergency Quarantine" Ability { id: "F62", source: "The Manipulator" }
 
-43.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-48.5 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/
-53.6 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-58.6 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
+43.4 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+48.5 "Discoid" Ability { id: "F61", source: "The Manipulator" }
+53.6 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+58.6 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
 55.6 "--stun--" duration 5
-61.4 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-71.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
+61.4 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+71.5 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
 
-85.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-96.7 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/ window 20,20 jump 14.1
-103.8 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-103.8 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-108.9 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
+85.6 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+96.7 "Discoid" Ability { id: "F61", source: "The Manipulator" } window 20,20 jump 14.1
+103.8 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+103.8 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+108.9 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
 109.0 "--stun--" duration 5
-114.8 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-123.9 "Emergency Quarantine" #sync / 1[56]:[^:]*:The Manipulator:F62:/
+114.8 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+123.9 "Emergency Quarantine" #Ability { id: "F62", source: "The Manipulator" }
 
-126.0 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-131.1 "Discoid" #sync / 1[56]:[^:]*:The Manipulator:F61:/
-136.2 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-141.2 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
+126.0 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+131.1 "Discoid" #Ability { id: "F61", source: "The Manipulator" }
+136.2 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+141.2 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
 138.2 "--stun--" duration 5
-144.0 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-154.1 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+144.0 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+154.1 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 
 
 ### Leg 2
-500.0 "--sync--" sync / 22:........:The Manipulator:........:The Manipulator:01/ window 500,0
+500.0 "--sync--" NameToggle { name: "The Manipulator", toggle: "01" } window 500,0
 512.1 "--untargetable--"
-516.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 517,5
-522.2 "Mortal Revolution" sync / 1[56]:[^:]*:The Manipulator:13E7:/
+516.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 517,5
+522.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 524.2 "--targetable--"
-532.3 "Emergency Quarantine" sync / 1[56]:[^:]*:The Manipulator:F62:/
-543.4 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
-545.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
+532.3 "Emergency Quarantine" Ability { id: "F62", source: "The Manipulator" }
+543.4 "Carnage" Ability { id: "F63", source: "The Manipulator" }
+545.5 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
 547.6 "--stun--" duration 5
-553.4 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-564.5 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
-566.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-569.6 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
+553.4 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+564.5 "Carnage" Ability { id: "F63", source: "The Manipulator" }
+566.6 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+569.6 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
 
-578.7 "Emergency Quarantine" sync / 1[56]:[^:]*:The Manipulator:F62:/
+578.7 "Emergency Quarantine" Ability { id: "F62", source: "The Manipulator" }
 580.8 "--stun--" duration 5
-586.6 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-590.7 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-597.8 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
-602.9 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-612.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
+586.6 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+590.7 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+597.8 "Carnage" Ability { id: "F63", source: "The Manipulator" }
+602.9 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+612.9 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
 
-625.0 "Emergency Quarantine" sync / 1[56]:[^:]*:The Manipulator:F62:/ window 30,30 jump 532.3
-636.1 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
-638.2 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+625.0 "Emergency Quarantine" Ability { id: "F62", source: "The Manipulator" } window 30,30 jump 532.3
+636.1 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
+638.2 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 640.3 "--stun--" duration 5
-646.1 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-657.2 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
-659.3 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-662.3 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
+646.1 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+657.2 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
+659.3 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+662.3 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
 
-671.4 "Emergency Quarantine" #sync / 1[56]:[^:]*:The Manipulator:F62:/
+671.4 "Emergency Quarantine" #Ability { id: "F62", source: "The Manipulator" }
 673.5 "--stun--" duration 5
-679.3 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-683.4 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-690.5 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
-695.6 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-705.6 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+679.3 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+683.4 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+690.5 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
+695.6 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+705.6 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 
 
 ### Leg 3
-1000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+1000.0 "--sync--"  NameToggle { name: "The Manipulator", toggle: "01" } window 490,0
 1012.1 "--untargetable--"
-1016.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
-1022.2 "Mortal Revolution" sync / 1[56]:[^:]*:The Manipulator:13E7:/
+1016.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
+1022.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 1024.2 "--targetable--"
-1027.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
-1034.5 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
+1027.4 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
+1034.5 "Carnage" Ability { id: "F63", source: "The Manipulator" }
 1040.2 "Straf Doll x1"
 1040.2 "Jagd Doll x3"
 1044.6 "--stun--" duration 5
-1050.4 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1057.6 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1062.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-1071.7 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
+1050.4 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1057.6 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1062.6 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+1071.7 "Carnage" Ability { id: "F63", source: "The Manipulator" }
 1075.4 "--stun--" duration 5
-1081.2 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5D:/
+1081.2 "Perpetual Ray x2" #Ability { id: "F5D", source: "The Manipulator" }
 
-1098.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
+1098.9 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
 1107.5 "Straf Doll x1"
 1107.5 "Jagd Doll x3"
 1108.0 "--stun--" duration 5
-1113.8 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1120.8 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1124.8 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
-1129.9 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1129.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
+1113.8 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1120.8 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1124.8 "Carnage" Ability { id: "F63", source: "The Manipulator" }
+1129.9 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1129.9 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
 1135.6 "--stun--" duration 5
-1141.4 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5D:/
+1141.4 "Perpetual Ray x2" #Ability { id: "F5D", source: "The Manipulator" }
 
-1160.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
-1167.3 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/ window 20,20 jump 1034.5
+1160.2 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
+1167.3 "Carnage" Ability { id: "F63", source: "The Manipulator" } window 20,20 jump 1034.5
 1173.0 "Straf Doll x1"
 1173.0 "Jagd Doll x3"
 1177.4 "--stun--" duration 5
-1183.2 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1190.4 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1195.4 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-1204.5 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
+1183.2 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1190.4 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+1195.4 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+1204.5 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
 1208.2 "--stun--" duration 5
-1214.0 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5D:/
+1214.0 "Perpetual Ray x2" #Ability { id: "F5D", source: "The Manipulator" }
 
-1231.7 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+1231.7 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 1240.3 "Straf Doll x1"
 1240.3 "Jagd Doll x3"
 1240.8 "--stun--" duration 5
-1246.6 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1253.6 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1257.6 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
-1262.7 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1262.7 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+1246.6 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1253.6 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+1257.6 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
+1262.7 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+1262.7 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 1268.4 "--stun--" duration 5
-1274.2 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5D:/
+1274.2 "Perpetual Ray x2" #Ability { id: "F5D", source: "The Manipulator" }
 
 
 ### Leg 4
-1500.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+1500.0 "--sync--"  NameToggle { name: "The Manipulator", toggle: "01" } window 490,0
 1512.1 "--untargetable--"
-1516.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
-1522.2 "Mortal Revolution" sync / 1[56]:[^:]*:The Manipulator:13E7:/
+1516.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
+1522.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 1524.2 "--targetable--"
-1528.4 "Judgment Nisi" sync / 1[56]:[^:]*:The Manipulator:F64:/
+1528.4 "Judgment Nisi" Ability { id: "F64", source: "The Manipulator" }
 1535.9 "Straf Doll x1"
 1535.9 "Jagd Doll x3"
 1540.6 "--stun--" duration 5
-1546.4 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1556.5 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1563.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
+1546.4 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1556.5 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1563.5 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
 
-1573.6 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/
-1582.8 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1587.8 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1589.8 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
+1573.6 "Discoid" Ability { id: "F61", source: "The Manipulator" }
+1582.8 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1587.8 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+1589.8 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
 1598.0 "Straf Doll x1"
 1598.0 "Jagd Doll x3"
 1605.0 "--stun--" duration 5
-1610.8 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
-1615.9 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
+1610.8 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
+1615.9 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" } window 10,10
 
 # ??? Guessing at this loop.
-1621.0 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/ window 30,30 jump 1573.6
-1630.2 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1635.2 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-1637.2 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/ window 10,10
+1621.0 "Discoid" Ability { id: "F61", source: "The Manipulator" } window 30,30 jump 1573.6
+1630.2 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+1635.2 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+1637.2 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" } window 10,10
 1645.4 "Straf Doll x1"
 1645.4 "Jagd Doll x3"
 1652.4 "--stun--" duration 5
-1658.2 "Perpetual Ray x2" #sync / 1[56]:[^:]*:The Manipulator:F5F:/
+1658.2 "Perpetual Ray x2" #Ability { id: "F5F", source: "The Manipulator" }
 
 
 ### Final Phase
-2000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+2000.0 "--sync--"  NameToggle { name: "The Manipulator", toggle: "01" } window 490,0
 2012.1 "--untargetable--"
-2016.2 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 490,5
-2022.2 "Mortal Revolution" sync / 1[56]:[^:]*:The Manipulator:13E7:/
+2016.2 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 490,5
+2022.2 "Mortal Revolution" Ability { id: "13E7", source: "The Manipulator" }
 2024.2 "--targetable--"
 
-2033.3 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2041.4 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/
-2052.5 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2053.5 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2058.6 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
+2033.3 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
+2041.4 "Discoid" Ability { id: "F61", source: "The Manipulator" }
+2052.5 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+2053.5 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+2058.6 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
 
-2072.8 "Royal Pentacle" sync / 1[56]:[^:]*:The Manipulator:F66:/
-2074.9 "Perpetual Ray x5" duration 8.4 #sync / 1[56]:[^:]*:The Manipulator:13B6:/
-2085.4 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2105.6 "Carnage" sync / 1[56]:[^:]*:The Manipulator:F63:/
+2072.8 "Royal Pentacle" Ability { id: "F66", source: "The Manipulator" }
+2074.9 "Perpetual Ray x5" duration 8.4 #Ability { id: "13B6", source: "The Manipulator" }
+2085.4 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+2105.6 "Carnage" Ability { id: "F63", source: "The Manipulator" }
 2114.6 "Straf Doll x1"
 2114.6 "Jagd Doll x3"
-2116.8 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2122.9 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2122.9 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2128.0 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2140.0 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2148.2 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
+2116.8 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+2122.9 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
+2122.9 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+2128.0 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+2140.0 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
+2148.2 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
 
-2161.3 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2169.5 "Discoid" sync / 1[56]:[^:]*:The Manipulator:F61:/
-2180.6 "Seed Of The Sky" sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2181.6 "Hydrothermal Missile" sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2186.7 "Carnage Zero" sync / 1[56]:[^:]*:The Manipulator:F5E:/
+2161.3 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
+2169.5 "Discoid" Ability { id: "F61", source: "The Manipulator" }
+2180.6 "Seed Of The Sky" Ability { id: "13D0", source: "The Manipulator" }
+2181.6 "Hydrothermal Missile" Ability { id: "F5B", source: "The Manipulator" }
+2186.7 "Carnage Zero" Ability { id: "F5E", source: "The Manipulator" }
 
-2200.9 "Royal Pentacle" sync / 1[56]:[^:]*:The Manipulator:F66:/ window 40,40 jump 2072.8
-2203.0 "Perpetual Ray x5" duration 8.4 #sync / 1[56]:[^:]*:The Manipulator:13B6:/
-2213.5 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2233.7 "Carnage" #sync / 1[56]:[^:]*:The Manipulator:F63:/
-2244.9 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
-2251.0 "Carnage Zero" #sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2251.0 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2256.1 "Seed Of The Sky" #sync / 1[56]:[^:]*:The Manipulator:13D0:/
-2268.1 "Carnage Zero" #sync / 1[56]:[^:]*:The Manipulator:F5E:/
-2276.3 "Hydrothermal Missile" #sync / 1[56]:[^:]*:The Manipulator:F5B:/
+2200.9 "Royal Pentacle" Ability { id: "F66", source: "The Manipulator" } window 40,40 jump 2072.8
+2203.0 "Perpetual Ray x5" duration 8.4 #Ability { id: "13B6", source: "The Manipulator" }
+2213.5 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+2233.7 "Carnage" #Ability { id: "F63", source: "The Manipulator" }
+2244.9 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
+2251.0 "Carnage Zero" #Ability { id: "F5E", source: "The Manipulator" }
+2251.0 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+2256.1 "Seed Of The Sky" #Ability { id: "13D0", source: "The Manipulator" }
+2268.1 "Carnage Zero" #Ability { id: "F5E", source: "The Manipulator" }
+2276.3 "Hydrothermal Missile" #Ability { id: "F5B", source: "The Manipulator" }
 
 
 ### Enrage
 # Note: Manipulator won't enrage until all legs have been killed.
-2500.0 "--sync--" sync / 14:[^:]*:The Manipulator:13E7:/ window 480,480
-2506.0 "Mortal Revolution Enrage" sync / 1[56]:[^:]*:The Manipulator:13E7:/
+2500.0 "--sync--" StartsUsing { id: "13E7", source: "The Manipulator" } window 480,480
+2506.0 "Mortal Revolution Enrage" Ability { id: "13E7", source: "The Manipulator" }

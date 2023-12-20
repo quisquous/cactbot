@@ -4,120 +4,120 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.0 "--sync--" sync / 14:[^:]*:Themis:822B:/ window 12,10
-16.0 "Eunomia" sync / 1[56]:[^:]*:Themis:822B:/
-26.1 "Dike 1" sync / 1[56]:[^:]*:Themis:822D:/
-29.2 "Dike 2" sync / 1[56]:[^:]*:Themis:822E:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+11.0 "--sync--" StartsUsing { id: "822B", source: "Themis" } window 12,10
+16.0 "Eunomia" Ability { id: "822B", source: "Themis" }
+26.1 "Dike 1" Ability { id: "822D", source: "Themis" }
+29.2 "Dike 2" Ability { id: "822E", source: "Themis" }
 
-42.3 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
-48.3 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+42.3 "Jury Overruling" Ability { id: ["81E6", "81E7"], source: "Themis" }
+48.3 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-61.7 "Upheld Overruling" sync / 1[56]:[^:]*:Themis:(87D3|87D4):/
-66.3 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+61.7 "Upheld Overruling" Ability { id: ["87D3", "87D4"], source: "Themis" }
+66.3 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-70.3 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-79.9 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
-84.5 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+70.3 "--middle--" Ability { id: "867F", source: "Themis" }
+79.9 "Divisive Overruling" Ability { id: ["81EC", "81ED"], source: "Themis" }
+84.5 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-93.7 "Styx x5" sync / 1[56]:[^:]*:Themis:8217:/ duration 4.4
+93.7 "Styx x5" Ability { id: "8217", source: "Themis" } duration 4.4
 
-105.2 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-113.3 "Arcane Revelation" sync / 1[56]:[^:]*:Themis:(820D|820E):/
-120.4 "Dismissal Overruling" sync / 1[56]:[^:]*:Themis:(8784|8785):/
-122.8 "Arche" sync / 1[56]:[^:]*:Arcane Sphere:(8213|8214):/
-125.8 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+105.2 "--middle--" Ability { id: "867F", source: "Themis" }
+113.3 "Arcane Revelation" Ability { id: ["820D", "820E"], source: "Themis" }
+120.4 "Dismissal Overruling" Ability { id: ["8784", "8785"], source: "Themis" }
+122.8 "Arche" Ability { id: ["8213", "8214"], source: "Arcane Sphere" }
+125.8 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-145.5 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-152.6 "Shadowed Messengers" sync / 1[56]:[^:]*:Themis:8219:/
-166.9 "Divisive Ruling" sync / 1[56]:[^:]*:Illusory Themis:821C:/
-169.6 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(87B3|87B4):/
-174.1 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-179.5 "Upheld Ruling" sync / 1[56]:[^:]*:Illusory Themis:8221:/
-183.5 "Lightburst" sync / 1[56]:[^:]*:Illusory Themis:8224:/
-183.5 "Dark Perimeter" sync / 1[56]:[^:]*:Illusory Themis:8225:/
+145.5 "--middle--" Ability { id: "867F", source: "Themis" }
+152.6 "Shadowed Messengers" Ability { id: "8219", source: "Themis" }
+166.9 "Divisive Ruling" Ability { id: "821C", source: "Illusory Themis" }
+169.6 "Divisive Overruling" Ability { id: ["87B3", "87B4"], source: "Themis" }
+174.1 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+179.5 "Upheld Ruling" Ability { id: "8221", source: "Illusory Themis" }
+183.5 "Lightburst" Ability { id: "8224", source: "Illusory Themis" }
+183.5 "Dark Perimeter" Ability { id: "8225", source: "Illusory Themis" }
 
-189.2 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
-195.2 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+189.2 "Jury Overruling" Ability { id: ["81E6", "81E7"], source: "Themis" }
+195.2 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-203.3 "Styx x6" sync / 1[56]:[^:]*:Themis:8217:/ duration 5.5
+203.3 "Styx x6" Ability { id: "8217", source: "Themis" } duration 5.5
 
-220.9 "Lightstream (cast)" sync / 1[56]:[^:]*:Themis:8203:/
-230.6 "--sync--" sync / 1[56]:[^:]*:Themis:867F:/
-233.2 "Lightstream x7" sync / 1[56]:[^:]*:Arcane Cylinder:8207:/ duration 6.1
+220.9 "Lightstream (cast)" Ability { id: "8203", source: "Themis" }
+230.6 "--sync--" Ability { id: "867F", source: "Themis" }
+233.2 "Lightstream x7" Ability { id: "8207", source: "Arcane Cylinder" } duration 6.1
 
-240.1 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
-244.7 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+240.1 "Divisive Overruling" Ability { id: ["81EC", "81ED"], source: "Themis" }
+244.7 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-256.8 "Eunomia" sync / 1[56]:[^:]*:Themis:822B:/
-271.2 "Upheld Overruling" sync / 1[56]:[^:]*:Themis:(87D3|87D4):/
-275.6 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+256.8 "Eunomia" Ability { id: "822B", source: "Themis" }
+271.2 "Upheld Overruling" Ability { id: ["87D3", "87D4"], source: "Themis" }
+275.6 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-286.6 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-293.9 "Dark and Light" sync / 1[56]:[^:]*:Themis:81FE:/
-307.0 "Arcane Revelation" sync / 1[56]:[^:]*:Themis:(820F|8210):/
-316.7 "Unlucky Lot" sync / 1[56]:[^:]*:Arcane Sphere:(8215|8216):/
-323.1 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
-329.1 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-341.5 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
-346.1 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-353.2 "Emissary's Will" sync / 1[56]:[^:]*:Themis:8202:/
+286.6 "--middle--" Ability { id: "867F", source: "Themis" }
+293.9 "Dark and Light" Ability { id: "81FE", source: "Themis" }
+307.0 "Arcane Revelation" Ability { id: ["820F", "8210"], source: "Themis" }
+316.7 "Unlucky Lot" Ability { id: ["8215", "8216"], source: "Arcane Sphere" }
+323.1 "Jury Overruling" Ability { id: ["81E6", "81E7"], source: "Themis" }
+329.1 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+341.5 "Divisive Overruling" Ability { id: ["81EC", "81ED"], source: "Themis" }
+346.1 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+353.2 "Emissary's Will" Ability { id: "8202", source: "Themis" }
 
-361.4 "Styx x7" sync / 1[56]:[^:]*:Themis:8217:/ duration 6.6
+361.4 "Styx x7" Ability { id: "8217", source: "Themis" } duration 6.6
 
-380.2 "Dike 1" sync / 1[56]:[^:]*:Themis:822D:/
-383.3 "Dike 2" sync / 1[56]:[^:]*:Themis:822E:/
+380.2 "Dike 1" Ability { id: "822D", source: "Themis" }
+383.3 "Dike 2" Ability { id: "822E", source: "Themis" }
 
-395.4 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-402.5 "Dark Current (cast)" sync / 1[56]:[^:]*:Themis:8204:/
-410.6 "Dark Current x8" duration 7 sync / 1[56]:[^:]*:Themis:8209:/
-412.5 "Blinding Light" sync / 1[56]:[^:]*:Themis:8229:/
+395.4 "--middle--" Ability { id: "867F", source: "Themis" }
+402.5 "Dark Current (cast)" Ability { id: "8204", source: "Themis" }
+410.6 "Dark Current x8" duration 7 Ability { id: "8209", source: "Themis" }
+412.5 "Blinding Light" Ability { id: "8229", source: "Themis" }
 
-426.6 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
-432.6 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-446.0 "Upheld Overruling" sync / 1[56]:[^:]*:Themis:(87D3|87D4):/
-450.4 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+426.6 "Jury Overruling" Ability { id: ["81E6", "81E7"], source: "Themis" }
+432.6 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+446.0 "Upheld Overruling" Ability { id: ["87D3", "87D4"], source: "Themis" }
+450.4 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-456.4 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-466.2 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
-470.8 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-483.9 "Eunomia" sync / 1[56]:[^:]*:Themis:822B:/
+456.4 "--middle--" Ability { id: "867F", source: "Themis" }
+466.2 "Divisive Overruling" Ability { id: ["81EC", "81ED"], source: "Themis" }
+470.8 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+483.9 "Eunomia" Ability { id: "822B", source: "Themis" }
 
-503.1 "--middle--" sync / 1[56]:[^:]*:Themis:867F:/
-510.2 "Letter of the Law" sync / 1[56]:[^:]*:Themis:87D2:/
-517.3 "Twofold Revelation" sync / 1[56]:[^:]*:Themis:(8211|8212):/
-526.4 "Heart of Judgment" sync / 1[56]:[^:]*:Themis:8226:/
-527.0 "Arche" sync / 1[56]:[^:]*:Arcane Sphere:(8213|8214):/
-527.0 "Unlucky Lot" sync / 1[56]:[^:]*:Arcane Sphere:(8215|8216):/
-529.5 "Upheld Ruling" sync / 1[56]:[^:]*:Illusory Themis:8221:/
-533.5 "Lightburst" sync / 1[56]:[^:]*:Illusory Themis:8224:/
-533.5 "Dark Perimeter" sync / 1[56]:[^:]*:Illusory Themis:8225:/
-538.4 "Explosion" sync / 1[56]:[^:]*:Themis:8227:/
-541.8 "Divisive Ruling" sync / 1[56]:[^:]*:Illusory Themis:821C:/
+503.1 "--middle--" Ability { id: "867F", source: "Themis" }
+510.2 "Letter of the Law" Ability { id: "87D2", source: "Themis" }
+517.3 "Twofold Revelation" Ability { id: ["8211", "8212"], source: "Themis" }
+526.4 "Heart of Judgment" Ability { id: "8226", source: "Themis" }
+527.0 "Arche" Ability { id: ["8213", "8214"], source: "Arcane Sphere" }
+527.0 "Unlucky Lot" Ability { id: ["8215", "8216"], source: "Arcane Sphere" }
+529.5 "Upheld Ruling" Ability { id: "8221", source: "Illusory Themis" }
+533.5 "Lightburst" Ability { id: "8224", source: "Illusory Themis" }
+533.5 "Dark Perimeter" Ability { id: "8225", source: "Illusory Themis" }
+538.4 "Explosion" Ability { id: "8227", source: "Themis" }
+541.8 "Divisive Ruling" Ability { id: "821C", source: "Illusory Themis" }
 
-547.4 "Dismissal Overruling" sync / 1[56]:[^:]*:Themis:(8784|8785):/
-553.0 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+547.4 "Dismissal Overruling" Ability { id: ["8784", "8785"], source: "Themis" }
+553.0 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-561.6 "Styx x8" sync / 1[56]:[^:]*:Themis:8217:/ duration 7.7
+561.6 "Styx x8" Ability { id: "8217", source: "Themis" } duration 7.7
 
-580.4 "Lightstream (cast)" sync / 1[56]:[^:]*:Themis:8203:/
-589.5 "--sync--" sync / 1[56]:[^:]*:Themis:867F:/
-592.6 "Lightstream x7" sync / 1[56]:[^:]*:Arcane Cylinder:8207:/ duration 6.1
+580.4 "Lightstream (cast)" Ability { id: "8203", source: "Themis" }
+589.5 "--sync--" Ability { id: "867F", source: "Themis" }
+592.6 "Lightstream x7" Ability { id: "8207", source: "Arcane Cylinder" } duration 6.1
 
-598.9 "Divisive Overruling" sync / 1[56]:[^:]*:Themis:(81EC|81ED):/
-603.4 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
+598.9 "Divisive Overruling" Ability { id: ["81EC", "81ED"], source: "Themis" }
+603.4 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
 
-619.5 "Dike 1" sync / 1[56]:[^:]*:Themis:822D:/
-622.6 "Dike 2" sync / 1[56]:[^:]*:Themis:822E:/
+619.5 "Dike 1" Ability { id: "822D", source: "Themis" }
+622.6 "Dike 2" Ability { id: "822E", source: "Themis" }
 
-638.7 "Jury Overruling" sync / 1[56]:[^:]*:Themis:(81E6|81E7):/
-644.7 "Inevitable Law/Inevitable Sentence" sync / 1[56]:[^:]*:Themis:(81FC|81FD):/
-655.8 "Eunomia" sync / 1[56]:[^:]*:Themis:822B:/
+638.7 "Jury Overruling" Ability { id: ["81E6", "81E7"], source: "Themis" }
+644.7 "Inevitable Law/Inevitable Sentence" Ability { id: ["81FC", "81FD"], source: "Themis" }
+655.8 "Eunomia" Ability { id: "822B", source: "Themis" }
 
-662.5 "--sync--" sync / 14:[^:]*:Themis:822C:/ window 30,10
-672.5 "Ultimate Verdict (enrage)" sync / 1[56]:[^:]*:Themis:822C:/
+662.5 "--sync--" StartsUsing { id: "822C", source: "Themis" } window 30,10
+672.5 "Ultimate Verdict (enrage)" Ability { id: "822C", source: "Themis" }
 
 
 # Abilities, ignored and not

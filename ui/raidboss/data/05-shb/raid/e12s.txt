@@ -11,106 +11,106 @@ hideall "--sync--"
 # as timeline resets out of combat.
 
 0 "Start"
-0.8 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:4B1E:/ window 1,0
-11.0 "--sync--" sync / 14:[^:]*:Eden's Promise:58A8:/ window 11,20
-16.0 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
-23.2 "--middle--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-25.8 "Initialize Recall" sync / 1[56]:[^:]*:Eden's Promise:588C:/
-32.4 "Junction Shiva/Titan" sync / 1[56]:[^:]*:Eden's Promise:589[45]:/
-40.1 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:58A[DE]:/
-43.6 "Frigid Stone/Under The Weight" sync / 1[56]:[^:]*:Eden's Promise:(589E|58A6):/
-53.3 "Cast" sync / 1[56]:[^:]*:Eden's Promise:4E43:/
-56.8 "Frigid Stone/Under The Weight" sync / 1[56]:[^:]*:Eden's Promise:(589E|58A6):/
-57.5 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58A7:/
-68.7 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58A9:/
-#69.0 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58AC:/
-71.4 "Formless Judgment" #sync / 1[56]:[^:]*:Eden's Promise:58AC:/
-81.9 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
-90.2 "--middle--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
+0.8 "--sync--" Ability { id: "4B1E", source: "Eden's Promise" } window 1,0
+11.0 "--sync--" StartsUsing { id: "58A8", source: "Eden's Promise" } window 11,20
+16.0 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
+23.2 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
+25.8 "Initialize Recall" Ability { id: "588C", source: "Eden's Promise" }
+32.4 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
+40.1 "Rapturous Reach" Ability { id: "58A[DE]", source: "Eden's Promise" }
+43.6 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
+53.3 "Cast" Ability { id: "4E43", source: "Eden's Promise" }
+56.8 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
+57.5 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
+68.7 "Formless Judgment" Ability { id: "58A9", source: "Eden's Promise" }
+#69.0 "Formless Judgment" Ability { id: "58AC", source: "Eden's Promise" }
+71.4 "Formless Judgment" #Ability { id: "58AC", source: "Eden's Promise" }
+81.9 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
+90.2 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
 
-95.6 "Junction Shiva" sync / 1[56]:[^:]*:Eden's Promise:5894:/
-106.5 "Diamond Dust" sync / 1[56]:[^:]*:Eden's Promise:5896:/
-112.6 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:5898:/
-118.8 "Ice Floe" sync / 1[56]:[^:]*:Eden's Promise:5899:/
-125.8 "Ice Pillar" sync / 1[56]:[^:]*:Ice Pillar:589A:/
-137.8 "Plunging Ice" sync / 1[56]:[^:]*:Eden's Promise:589D:/
-141.8 "Pillar Pierce" sync / 1[56]:[^:]*:Ice Pillar:4B3F:/
-143.9 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58A7:/
-155.0 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+95.6 "Junction Shiva" Ability { id: "5894", source: "Eden's Promise" }
+106.5 "Diamond Dust" Ability { id: "5896", source: "Eden's Promise" }
+112.6 "--sync--" Ability { id: "5898", source: "Eden's Promise" }
+118.8 "Ice Floe" Ability { id: "5899", source: "Eden's Promise" }
+125.8 "Ice Pillar" Ability { id: "589A", source: "Ice Pillar" }
+137.8 "Plunging Ice" Ability { id: "589D", source: "Eden's Promise" }
+141.8 "Pillar Pierce" Ability { id: "4B3F", source: "Ice Pillar" }
+143.9 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
+155.0 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
-163.3 "--middle--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-168.7 "Junction Titan" sync / 1[56]:[^:]*:Eden's Promise:5895:/
-179.6 "Earthen Fury" sync / 1[56]:[^:]*:Eden's Promise:589F:/
+163.3 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
+168.7 "Junction Titan" Ability { id: "5895", source: "Eden's Promise" }
+179.6 "Earthen Fury" Ability { id: "589F", source: "Eden's Promise" }
 
-184.6 "Impact" sync / 1[56]:[^:]*:Bomb Boulder:58A1:/
-193.3 "Pulse Of The Land" sync / 1[56]:[^:]*:Eden's Promise:58A3:/
-193.3 "Force Of The Land" sync / 1[56]:[^:]*:Eden's Promise:58A4:/
-193.3 "Weight Of The World" sync / 1[56]:[^:]*:Eden's Promise:58A5:/
+184.6 "Impact" Ability { id: "58A1", source: "Bomb Boulder" }
+193.3 "Pulse Of The Land" Ability { id: "58A3", source: "Eden's Promise" }
+193.3 "Force Of The Land" Ability { id: "58A4", source: "Eden's Promise" }
+193.3 "Weight Of The World" Ability { id: "58A5", source: "Eden's Promise" }
 
-197.8 "Impact" sync / 1[56]:[^:]*:Bomb Boulder:58A1:/
-206.4 "Force Of The Land" sync / 1[56]:[^:]*:Eden's Promise:58A4:/
-206.4 "Weight Of The World" sync / 1[56]:[^:]*:Eden's Promise:58A5:/
+197.8 "Impact" Ability { id: "58A1", source: "Bomb Boulder" }
+206.4 "Force Of The Land" Ability { id: "58A4", source: "Eden's Promise" }
+206.4 "Weight Of The World" Ability { id: "58A5", source: "Eden's Promise" }
 
-210.9 "Impact" sync / 1[56]:[^:]*:Bomb Boulder:58A1:/
-219.5 "Pulse Of The Land" sync / 1[56]:[^:]*:Eden's Promise:58A3:/
-219.5 "Force Of The Land" sync / 1[56]:[^:]*:Eden's Promise:58A4:/
-219.5 "Weight Of The World" sync / 1[56]:[^:]*:Eden's Promise:58A5:/
+210.9 "Impact" Ability { id: "58A1", source: "Bomb Boulder" }
+219.5 "Pulse Of The Land" Ability { id: "58A3", source: "Eden's Promise" }
+219.5 "Force Of The Land" Ability { id: "58A4", source: "Eden's Promise" }
+219.5 "Weight Of The World" Ability { id: "58A5", source: "Eden's Promise" }
 
-222.0 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58A7:/
-239.2 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
-248.4 "--middle--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-258.5 "Cast" sync / 1[56]:[^:]*:Eden's Promise:4E43:/
-259.6 "Obliteration Laser" sync / 1[56]:[^:]*:Guardian Of Eden:4E36:/
-269.8 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+222.0 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
+239.2 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
+248.4 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
+258.5 "Cast" Ability { id: "4E43", source: "Eden's Promise" }
+259.6 "Obliteration Laser" Ability { id: "4E36", source: "Guardian Of Eden" }
+269.8 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
-283.0 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5892:/
-288.1 "Classical Sculpture" sync / 1[56]:[^:]*:Chiseled Sculpture:58B2:/
-298.8 "Blade Of Flame 1" #sync / 1[56]:[^:]*:Chiseled Sculpture:58B3:/
-299.2 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:58A[DE]:/
-301.9 "Blade Of Flame 2" #sync / 1[56]:[^:]*:Chiseled Sculpture:58B3:/
-305.0 "Blade Of Flame 3" #sync / 1[56]:[^:]*:Chiseled Sculpture:58B3:/
-307.1 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-308.0 "Blade Of Flame 4" #sync / 1[56]:[^:]*:Chiseled Sculpture:58B3:/
-310.2 "Palm Of Temperance" sync / 1[56]:[^:]*:Eden's Promise:58B6:/
-316.5 "Release" sync / 1[56]:[^:]*:Eden's Promise:5893:/
-327.7 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+283.0 "Stock" Ability { id: "5892", source: "Eden's Promise" }
+288.1 "Classical Sculpture" Ability { id: "58B2", source: "Chiseled Sculpture" }
+298.8 "Blade Of Flame 1" #Ability { id: "58B3", source: "Chiseled Sculpture" }
+299.2 "Rapturous Reach" Ability { id: "58A[DE]", source: "Eden's Promise" }
+301.9 "Blade Of Flame 2" #Ability { id: "58B3", source: "Chiseled Sculpture" }
+305.0 "Blade Of Flame 3" #Ability { id: "58B3", source: "Chiseled Sculpture" }
+307.1 "--sync--" Ability { id: "58AF", source: "Eden's Promise" }
+308.0 "Blade Of Flame 4" #Ability { id: "58B3", source: "Chiseled Sculpture" }
+310.2 "Palm Of Temperance" Ability { id: "58B6", source: "Eden's Promise" }
+316.5 "Release" Ability { id: "5893", source: "Eden's Promise" }
+327.7 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
-335.4 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58A9:/
-#335.7 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58AC:/
-338.1 "Formless Judgment" #sync / 1[56]:[^:]*:Eden's Promise:58AC:/
+335.4 "Formless Judgment" Ability { id: "58A9", source: "Eden's Promise" }
+#335.7 "Formless Judgment" Ability { id: "58AC", source: "Eden's Promise" }
+338.1 "Formless Judgment" #Ability { id: "58AC", source: "Eden's Promise" }
 
-352.1 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5892:/
-362.3 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:58A[DE]:/
-365.4 "Lionsblaze 1" sync / 1[56]:[^:]*:Beastly Sculpture:58B9:/
-369.5 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-370.3 "Laser Eye" sync / 1[56]:[^:]*:Guardian Of Eden:58B7:/
-374.5 "Lionsblaze 2" sync / 1[56]:[^:]*:Beastly Sculpture:58B9:/
-379.7 "Release" sync / 1[56]:[^:]*:Eden's Promise:5893:/
-383.8 "Lionsblaze 3" sync / 1[56]:[^:]*:Beastly Sculpture:58B9:/
-388.9 "Rapturous Reach" sync / 1[56]:[^:]*:Eden's Promise:58A[DE]:/
-401.7 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+352.1 "Stock" Ability { id: "5892", source: "Eden's Promise" }
+362.3 "Rapturous Reach" Ability { id: "58A[DE]", source: "Eden's Promise" }
+365.4 "Lionsblaze 1" Ability { id: "58B9", source: "Beastly Sculpture" }
+369.5 "--sync--" Ability { id: "58AF", source: "Eden's Promise" }
+370.3 "Laser Eye" Ability { id: "58B7", source: "Guardian Of Eden" }
+374.5 "Lionsblaze 2" Ability { id: "58B9", source: "Beastly Sculpture" }
+379.7 "Release" Ability { id: "5893", source: "Eden's Promise" }
+383.8 "Lionsblaze 3" Ability { id: "58B9", source: "Beastly Sculpture" }
+388.9 "Rapturous Reach" Ability { id: "58A[DE]", source: "Eden's Promise" }
+401.7 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
-414.9 "Stock" sync / 1[56]:[^:]*:Eden's Promise:5892:/
-418.2 "--middle--" sync / 1[56]:[^:]*:Eden's Promise:58AF:/
-424.3 "Junction Shiva/Titan" sync / 1[56]:[^:]*:Eden's Promise:589[45]:/
-434.0 "Cast" sync / 1[56]:[^:]*:Eden's Promise:4E43:/
-437.5 "Frigid Stone/Under The Weight" sync / 1[56]:[^:]*:Eden's Promise:(589E|58A6):/
-438.2 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58A7:/
-445.8 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+414.9 "Stock" Ability { id: "5892", source: "Eden's Promise" }
+418.2 "--middle--" Ability { id: "58AF", source: "Eden's Promise" }
+424.3 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
+434.0 "Cast" Ability { id: "4E43", source: "Eden's Promise" }
+437.5 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
+438.2 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
+445.8 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 
-453.0 "Junction Shiva/Titan" sync / 1[56]:[^:]*:Eden's Promise:589[45]:/
-462.7 "Release" sync / 1[56]:[^:]*:Eden's Promise:5893:/
-466.2 "Frigid Stone/Under The Weight" sync / 1[56]:[^:]*:Eden's Promise:(589E|58A6):/
-466.9 "--sync--" sync / 1[56]:[^:]*:Eden's Promise:58A7:/
+453.0 "Junction Shiva/Titan" Ability { id: "589[45]", source: "Eden's Promise" }
+462.7 "Release" Ability { id: "5893", source: "Eden's Promise" }
+466.2 "Frigid Stone/Under The Weight" Ability { id: ["589E", "58A6"], source: "Eden's Promise" }
+466.9 "--sync--" Ability { id: "58A7", source: "Eden's Promise" }
 
-478.1 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58A9:/
-#478.4 "Formless Judgment" sync / 1[56]:[^:]*:Eden's Promise:58AC:/
-480.9 "Formless Judgment" #sync / 1[56]:[^:]*:Eden's Promise:58AC:/
+478.1 "Formless Judgment" Ability { id: "58A9", source: "Eden's Promise" }
+#478.4 "Formless Judgment" Ability { id: "58AC", source: "Eden's Promise" }
+480.9 "Formless Judgment" #Ability { id: "58AC", source: "Eden's Promise" }
 
-489.4 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
-498.6 "Maleficium" sync / 1[56]:[^:]*:Eden's Promise:58A8:/
+489.4 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
+498.6 "Maleficium" Ability { id: "58A8", source: "Eden's Promise" }
 506.9 "--untargetable--"
-512.0 "Paradise Lost" sync / 1[56]:[^:]*:Eden's Promise:58BA:/
+512.0 "Paradise Lost" Ability { id: "58BA", source: "Eden's Promise" }
 
 
 ### Oracle of Darkness
@@ -119,107 +119,107 @@ hideall "--sync--"
 # -ii 4B1F 58C5 58C6 58D7 58BF 58C9 58CB 58CC 58CE
 
 1000.0 "Start"
-1011.0 "--sync--" sync / 14:[^:]*:Oracle Of Darkness:58EF:/ window 1011,0
-1015.0 "Hell's Judgment" sync / 1[56]:[^:]*:Oracle Of Darkness:58EF:/
-1023.2 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1011.0 "--sync--" StartsUsing { id: "58EF", source: "Oracle Of Darkness" } window 1011,0
+1015.0 "Hell's Judgment" Ability { id: "58EF", source: "Oracle Of Darkness" }
+1023.2 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1032.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Oracle Of Darkness:58C8:/
-1045.6 "Spell-In-Waiting" sync / 1[56]:[^:]*:Oracle Of Darkness:58C8:/
-1053.3 "Dark Water III / Dark Eruption" sync / 1[56]:[^:]*:Oracle Of Darkness:58C[AD]:/
-1064.9 "Darkest Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58BE:/
-1067.9 "Darkest Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58C1:/
-1071.5 "Dark Eruption / Dark Water III" sync / 1[56]:[^:]*:Oracle Of Darkness:58C[AD]:/
-1080.7 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1032.3 "Spell-In-Waiting" Ability { id: "58C8", source: "Oracle Of Darkness" }
+1045.6 "Spell-In-Waiting" Ability { id: "58C8", source: "Oracle Of Darkness" }
+1053.3 "Dark Water III / Dark Eruption" Ability { id: "58C[AD]", source: "Oracle Of Darkness" }
+1064.9 "Darkest Dance" Ability { id: "58BE", source: "Oracle Of Darkness" }
+1067.9 "Darkest Dance" Ability { id: "58C1", source: "Oracle Of Darkness" }
+1071.5 "Dark Eruption / Dark Water III" Ability { id: "58C[AD]", source: "Oracle Of Darkness" }
+1080.7 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1101.9 "Basic Relativity" sync / 1[56]:[^:]*:Oracle Of Darkness:58E0:/ window 200,100
-1110.0 "Speed" sync / 1[56]:[^:]*:Oracle Of Darkness:58DD:/
-1110.0 "Slow" sync / 1[56]:[^:]*:Oracle Of Darkness:58DF:/
-1110.0 "Quicken" sync / 1[56]:[^:]*:Oracle Of Darkness:58DE:/
-1117.0 "Dark Current" sync / 1[56]:[^:]*:Sorrow's Hourglass:58D7:/
-1124.0 "Dark Current" sync / 1[56]:[^:]*:Sorrow's Hourglass:58D7:/
-1124.8 "Return" sync / 1[56]:[^:]*:Oracle Of Darkness:58D6:/
-1124.8 "Shadoweye" sync / 1[56]:[^:]*:Oracle Of Darkness:58D2:/
-1131.0 "Dark Current" sync / 1[56]:[^:]*:Sorrow's Hourglass:58D7:/
-1131.0 "Empty Rage" sync / 1[56]:[^:]*:Sorrow's Hourglass:58DB:/
-1135.1 "Empty Hate" sync / 1[56]:[^:]*:Sorrow's Hourglass:58DC:/
-1138.8 "Dark Water III" sync / 1[56]:[^:]*:Oracle Of Darkness:58CA:/
-1148.1 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1101.9 "Basic Relativity" Ability { id: "58E0", source: "Oracle Of Darkness" } window 200,100
+1110.0 "Speed" Ability { id: "58DD", source: "Oracle Of Darkness" }
+1110.0 "Slow" Ability { id: "58DF", source: "Oracle Of Darkness" }
+1110.0 "Quicken" Ability { id: "58DE", source: "Oracle Of Darkness" }
+1117.0 "Dark Current" Ability { id: "58D7", source: "Sorrow's Hourglass" }
+1124.0 "Dark Current" Ability { id: "58D7", source: "Sorrow's Hourglass" }
+1124.8 "Return" Ability { id: "58D6", source: "Oracle Of Darkness" }
+1124.8 "Shadoweye" Ability { id: "58D2", source: "Oracle Of Darkness" }
+1131.0 "Dark Current" Ability { id: "58D7", source: "Sorrow's Hourglass" }
+1131.0 "Empty Rage" Ability { id: "58DB", source: "Sorrow's Hourglass" }
+1135.1 "Empty Hate" Ability { id: "58DC", source: "Sorrow's Hourglass" }
+1138.8 "Dark Water III" Ability { id: "58CA", source: "Oracle Of Darkness" }
+1148.1 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1163.3 "Singular Apocalypse" sync / 1[56]:[^:]*:Oracle Of Darkness:58E5:/ window 200,100
-1172.7 "Cataclysm" sync / 1[56]:[^:]*:Oracle Of Darkness:58C2:/
-1181.3 "Black Halo" sync / 1[56]:[^:]*:Oracle Of Darkness:58C7:/
-1185.6 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1187.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1188.6 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1189.0 "Shell Crusher" sync / 1[56]:[^:]*:Oracle Of Darkness:58C3:/
-1190.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1191.6 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1193.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1194.6 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1195.0 "Spirit Taker" sync / 1[56]:[^:]*:Oracle Of Darkness:58C4:/
-1196.0 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1197.5 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1199.0 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1206.2 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1163.3 "Singular Apocalypse" Ability { id: "58E5", source: "Oracle Of Darkness" } window 200,100
+1172.7 "Cataclysm" Ability { id: "58C2", source: "Oracle Of Darkness" }
+1181.3 "Black Halo" Ability { id: "58C7", source: "Oracle Of Darkness" }
+1185.6 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1187.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1188.6 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1189.0 "Shell Crusher" Ability { id: "58C3", source: "Oracle Of Darkness" }
+1190.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1191.6 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1193.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1194.6 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1195.0 "Spirit Taker" Ability { id: "58C4", source: "Oracle Of Darkness" }
+1196.0 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1197.5 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1199.0 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1206.2 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1224.4 "Intermediate Relativity" sync / 1[56]:[^:]*:Oracle Of Darkness:58E1:/ window 300,100
+1224.4 "Intermediate Relativity" Ability { id: "58E1", source: "Oracle Of Darkness" } window 300,100
 # TODO: fill this in better with where the rewinds drop
-1237.3 "Return IV" sync / 1[56]:[^:]*:Oracle Of Darkness:4E59:/
-1265.6 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1237.3 "Return IV" Ability { id: "4E59", source: "Oracle Of Darkness" }
+1265.6 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1280.8 "Dual Apocalypse" sync / 1[56]:[^:]*:Oracle Of Darkness:501C:/ window 300,100
-1290.2 "Cataclysm" sync / 1[56]:[^:]*:Oracle Of Darkness:58C2:/
-1295.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1297.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1299.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1301.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1302.4 "Somber Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58BD:/
-1303.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1305.1 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1305.9 "Somber Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58C0:/
-1316.2 "Shell Crusher" sync / 1[56]:[^:]*:Oracle Of Darkness:58C3:/
-1322.1 "Spirit Taker" sync / 1[56]:[^:]*:Oracle Of Darkness:58C4:/
-1330.7 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1280.8 "Dual Apocalypse" Ability { id: "501C", source: "Oracle Of Darkness" } window 300,100
+1290.2 "Cataclysm" Ability { id: "58C2", source: "Oracle Of Darkness" }
+1295.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1297.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1299.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1301.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1302.4 "Somber Dance" Ability { id: "58BD", source: "Oracle Of Darkness" }
+1303.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1305.1 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1305.9 "Somber Dance" Ability { id: "58C0", source: "Oracle Of Darkness" }
+1316.2 "Shell Crusher" Ability { id: "58C3", source: "Oracle Of Darkness" }
+1322.1 "Spirit Taker" Ability { id: "58C4", source: "Oracle Of Darkness" }
+1330.7 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1349.9 "Advanced Relativity" sync / 1[56]:[^:]*:Oracle Of Darkness:58E2:/ window 400,100
+1349.9 "Advanced Relativity" Ability { id: "58E2", source: "Oracle Of Darkness" } window 400,100
 1353.9 "--untargetable--"
-1358.0 "Speed" sync / 1[56]:[^:]*:Oracle Of Darkness:58DD:/
-1358.1 "Slow" sync / 1[56]:[^:]*:Oracle Of Darkness:58DF:/
-1358.1 "Quicken" sync / 1[56]:[^:]*:Oracle Of Darkness:58DE:/
-1362.8 "Return IV" sync / 1[56]:[^:]*:Oracle Of Darkness:4E59:/
-1362.8 "Dark Water III" sync / 1[56]:[^:]*:Oracle Of Darkness:58CA:/
-1373.1 "Maelstrom" sync / 1[56]:[^:]*:Sorrow's Hourglass:58DA:/
-1373.9 "Dark Fire III" sync / 1[56]:[^:]*:Oracle Of Darkness:58CF:/
-1373.9 "Dark Aero III" sync / 1[56]:[^:]*:Oracle Of Darkness:58D4:/
-1377.1 "Maelstrom" sync / 1[56]:[^:]*:Sorrow's Hourglass:58DA:/
-1377.9 "Shadoweye" sync / 1[56]:[^:]*:Oracle Of Darkness:58D2:/
-1381.2 "Maelstrom" sync / 1[56]:[^:]*:Sorrow's Hourglass:58DA:/
-1382.0 "Dark Aero III" sync / 1[56]:[^:]*:Oracle Of Darkness:58D4:/
-1386.0 "Dark Water III" sync / 1[56]:[^:]*:Oracle Of Darkness:58CA:/
+1358.0 "Speed" Ability { id: "58DD", source: "Oracle Of Darkness" }
+1358.1 "Slow" Ability { id: "58DF", source: "Oracle Of Darkness" }
+1358.1 "Quicken" Ability { id: "58DE", source: "Oracle Of Darkness" }
+1362.8 "Return IV" Ability { id: "4E59", source: "Oracle Of Darkness" }
+1362.8 "Dark Water III" Ability { id: "58CA", source: "Oracle Of Darkness" }
+1373.1 "Maelstrom" Ability { id: "58DA", source: "Sorrow's Hourglass" }
+1373.9 "Dark Fire III" Ability { id: "58CF", source: "Oracle Of Darkness" }
+1373.9 "Dark Aero III" Ability { id: "58D4", source: "Oracle Of Darkness" }
+1377.1 "Maelstrom" Ability { id: "58DA", source: "Sorrow's Hourglass" }
+1377.9 "Shadoweye" Ability { id: "58D2", source: "Oracle Of Darkness" }
+1381.2 "Maelstrom" Ability { id: "58DA", source: "Sorrow's Hourglass" }
+1382.0 "Dark Aero III" Ability { id: "58D4", source: "Oracle Of Darkness" }
+1386.0 "Dark Water III" Ability { id: "58CA", source: "Oracle Of Darkness" }
 1387.2 "--targetable--"
-1395.4 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
+1395.4 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
 
-1412.6 "Triple Apocalypse" sync / 1[56]:[^:]*:Oracle Of Darkness:501D:/ window 500,100
-1421.3 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1422.8 "Darkest Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58BE:/
-1424.3 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1425.9 "Darkest Dance" sync / 1[56]:[^:]*:Oracle Of Darkness:58C1:/
-1427.3 "Apocalypse" #sync / 1[56]:[^:]*:Oracle Of Darkness:58E6:/
-1439.3 "Shockwave Pulsar" sync / 1[56]:[^:]*:Oracle Of Darkness:58F0:/
-1447.9 "Black Halo" sync / 1[56]:[^:]*:Oracle Of Darkness:58C7:/
+1412.6 "Triple Apocalypse" Ability { id: "501D", source: "Oracle Of Darkness" } window 500,100
+1421.3 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1422.8 "Darkest Dance" Ability { id: "58BE", source: "Oracle Of Darkness" }
+1424.3 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1425.9 "Darkest Dance" Ability { id: "58C1", source: "Oracle Of Darkness" }
+1427.3 "Apocalypse" #Ability { id: "58E6", source: "Oracle Of Darkness" }
+1439.3 "Shockwave Pulsar" Ability { id: "58F0", source: "Oracle Of Darkness" }
+1447.9 "Black Halo" Ability { id: "58C7", source: "Oracle Of Darkness" }
 
-1471.1 "Terminal Relativity" sync / 1[56]:[^:]*:Oracle Of Darkness:58E3:/ window 500,100
-1477.9 "--1--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1481.0 "--2--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1484.0 "--3--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1486.2 "Shockwave Pulsar 1" sync / 1[56]:[^:]*:Oracle Of Darkness:58D5:/
-1491.0 "--1--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1493.9 "--2--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1496.9 "--3--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1499.7 "Shockwave Pulsar 2" sync / 1[56]:[^:]*:Oracle Of Darkness:58D5:/
-1503.9 "--1--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1506.9 "--2--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1509.9 "--3--" #sync / 1[56]:[^:]*:Oracle Of Darkness:501E:/
-1513.2 "Shockwave Pulsar 3" sync / 1[56]:[^:]*:Oracle Of Darkness:58D5:/
+1471.1 "Terminal Relativity" Ability { id: "58E3", source: "Oracle Of Darkness" } window 500,100
+1477.9 "--1--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1481.0 "--2--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1484.0 "--3--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1486.2 "Shockwave Pulsar 1" Ability { id: "58D5", source: "Oracle Of Darkness" }
+1491.0 "--1--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1493.9 "--2--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1496.9 "--3--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1499.7 "Shockwave Pulsar 2" Ability { id: "58D5", source: "Oracle Of Darkness" }
+1503.9 "--1--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1506.9 "--2--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1509.9 "--3--" #Ability { id: "501E", source: "Oracle Of Darkness" }
+1513.2 "Shockwave Pulsar 3" Ability { id: "58D5", source: "Oracle Of Darkness" }
 
-1533.7 "Memory's End" sync / 1[56]:[^:]*:Oracle Of Darkness:58E4:/
+1533.7 "Memory's End" Ability { id: "58E4", source: "Oracle Of Darkness" }

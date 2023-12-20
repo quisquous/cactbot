@@ -10,90 +10,90 @@ hideall "--sync--"
 # change the player's InCombat status.
 
 # Opening block
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.1 "--sync--" sync / 1[56]:[^:]*:Shiva:4DD7:/ window 15,5
-15.1 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
-27.2 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
-32.4 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/ window 32.4,5
-40.4 "Axe Kick/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4DE[23]:/
-52.5 "Redress" sync / 1[56]:[^:]*:Shiva:4F4E:/
-57.6 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DF0:/
-65.6 "Biting Frost/Driving Frost" sync / 1[56]:[^:]*:Shiva:4DD[BC]:/
-78.8 "Double Slap" sync / 1[56]:[^:]*:Shiva:4DDA:/
-92.0 "Diamond Frost" sync / 1[56]:[^:]*:Shiva:4DE1:/
-100.2 "Frigid Water/Frigid Stone" # sync / 1[56]:[^:]*:Shiva:4E(08|66):/
-103.1 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4E0A:/
-110.2 "Frigid Eruption" # sync / 1[56]:[^:]*:Shiva:4E09:/
-111.2 "Icicle Impact" sync / 1[56]:[^:]*:Shiva:4E0A:/
-112.3 "Frigid Eruption" # sync / 1[56]:[^:]*:Shiva:4E09:/
-114.3 "Frigid Eruption" # sync / 1[56]:[^:]*:Shiva:4E09:/
-120.1 "Heavenly Strike" sync / 1[56]:[^:]*:Shiva:4DD8:/ window 120,10
-131.2 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4DD4:/
-143.4 "Driving Frost/Biting Frost" sync / 1[56]:[^:]*:Shiva:4DD[BC]:/
-148.5 "Reflected Frost" sync / 1[56]:[^:]*:Frozen Mirror:4DF[EF]:/
-160.6 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
-165.7 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
-173.7 "Axe Kick/Scythe Kick" sync / 1[56]:[^:]*:Shiva:4DE[23]:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.1 "--sync--" Ability { id: "4DD7", source: "Shiva" } window 15,5
+15.1 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
+27.2 "Redress" Ability { id: "4F4F", source: "Shiva" }
+32.4 "Shining Armor" Ability { id: "4DF1", source: "Shiva" } window 32.4,5
+40.4 "Axe Kick/Scythe Kick" Ability { id: "4DE[23]", source: "Shiva" }
+52.5 "Redress" Ability { id: "4F4E", source: "Shiva" }
+57.6 "Frost Armor" Ability { id: "4DF0", source: "Shiva" }
+65.6 "Biting Frost/Driving Frost" Ability { id: "4DD[BC]", source: "Shiva" }
+78.8 "Double Slap" Ability { id: "4DDA", source: "Shiva" }
+92.0 "Diamond Frost" Ability { id: "4DE1", source: "Shiva" }
+100.2 "Frigid Water/Frigid Stone" # Ability { id: "4E(08|66)", source: "Shiva" }
+103.1 "Icicle Impact" Ability { id: "4E0A", source: "Shiva" }
+110.2 "Frigid Eruption" # Ability { id: "4E09", source: "Shiva" }
+111.2 "Icicle Impact" Ability { id: "4E0A", source: "Shiva" }
+112.3 "Frigid Eruption" # Ability { id: "4E09", source: "Shiva" }
+114.3 "Frigid Eruption" # Ability { id: "4E09", source: "Shiva" }
+120.1 "Heavenly Strike" Ability { id: "4DD8", source: "Shiva" } window 120,10
+131.2 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
+143.4 "Driving Frost/Biting Frost" Ability { id: "4DD[BC]", source: "Shiva" }
+148.5 "Reflected Frost" Ability { id: "4DF[EF]", source: "Frozen Mirror" }
+160.6 "Redress" Ability { id: "4F4F", source: "Shiva" }
+165.7 "Shining Armor" Ability { id: "4DF1", source: "Shiva" }
+173.7 "Axe Kick/Scythe Kick" Ability { id: "4DE[23]", source: "Shiva" }
 181.9 "--Untargetable--"
-193.2 "Shattered World" sync / 1[56]:[^:]*:Shiva:4DE9:/ window 193.2,15
+193.2 "Shattered World" Ability { id: "4DE9", source: "Shiva" } window 193.2,15
 
 # Intermission. Fixed length.
-209.4 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4E12:/
-218.1 "Stoneskin" # sync / 1[56]:[^:]*:Earthen Aether:4DEF:/
-223.5 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4E12:/
-228.2 "Shock Spikes" sync / 1[56]:[^:]*:Electric Aether:4DEE:/
-233.2 "Rush" sync / 1[56]:[^:]*:Luminous Aether:4FC8:/
-237.5 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4E12:/
-251.5 "Heart Asunder" sync / 1[56]:[^:]*:Mothercrystal:4E12:/
-256.2 "Shock Spikes" sync / 1[56]:[^:]*:Electric Aether:4DEE:/
-260.2 "Stoneskin" # sync / 1[56]:[^:]*:Earthen Aether:4DEF:/
-261.2 "Rush" sync / 1[56]:[^:]*:Luminous Aether:4FC8:/
+209.4 "Heart Asunder" Ability { id: "4E12", source: "Mothercrystal" }
+218.1 "Stoneskin" # Ability { id: "4DEF", source: "Earthen Aether" }
+223.5 "Heart Asunder" Ability { id: "4E12", source: "Mothercrystal" }
+228.2 "Shock Spikes" Ability { id: "4DEE", source: "Electric Aether" }
+233.2 "Rush" Ability { id: "4FC8", source: "Luminous Aether" }
+237.5 "Heart Asunder" Ability { id: "4E12", source: "Mothercrystal" }
+251.5 "Heart Asunder" Ability { id: "4E12", source: "Mothercrystal" }
+256.2 "Shock Spikes" Ability { id: "4DEE", source: "Electric Aether" }
+260.2 "Stoneskin" # Ability { id: "4DEF", source: "Earthen Aether" }
+261.2 "Rush" Ability { id: "4FC8", source: "Luminous Aether" }
 
 # Post-intermission block
-272.6 "Skyfall" sync / 1[56]:[^:]*:Shiva:4E13:/ window 272.6,20
+272.6 "Skyfall" Ability { id: "4E13", source: "Shiva" } window 272.6,20
 287.9 "--targetable--"
-306.9 "Holy" sync / 1[56]:[^:]*:Shiva:4DE[CD]:/
-321.4 "Light Rampant" sync / 1[56]:[^:]*:Shiva:4DE8:/
-329.6 "The Path of Light" sync / 1[56]:[^:]*:Shiva:4DD9:/
-332.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4E0C:/
-337.7 "The Path of Light" sync / 1[56]:[^:]*:Shiva:4DD9:/
-340.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4E0C:/
-345.9 "The Path of Light" sync / 1[56]:[^:]*:Shiva:4DD9:/
-348.6 "Bright Hunger" sync / 1[56]:[^:]*:Shiva:4E0C:/
-356.0 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4DD4:/
-368.1 "Kick/Frost" sync / 1[56]:[^:]*:Shiva:4D(D[BC]|E[23]):/
-373.2 "Reflected Kick/Frost" sync / 1[56]:[^:]*:Frozen Mirror:(4DF[EF]|4E0[01]):/
+306.9 "Holy" Ability { id: "4DE[CD]", source: "Shiva" }
+321.4 "Light Rampant" Ability { id: "4DE8", source: "Shiva" }
+329.6 "The Path of Light" Ability { id: "4DD9", source: "Shiva" }
+332.6 "Bright Hunger" Ability { id: "4E0C", source: "Shiva" }
+337.7 "The Path of Light" Ability { id: "4DD9", source: "Shiva" }
+340.6 "Bright Hunger" Ability { id: "4E0C", source: "Shiva" }
+345.9 "The Path of Light" Ability { id: "4DD9", source: "Shiva" }
+348.6 "Bright Hunger" Ability { id: "4E0C", source: "Shiva" }
+356.0 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
+368.1 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
+373.2 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
 
 # Rotation block
-385.3 "Redress" sync / 1[56]:[^:]*:Shiva:4F4E:/
-390.4 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DF0:/
-398.4 "Twin Stillness/Twin Silence" sync / 1[56]:[^:]*:Shiva:4DD[DE]:/
-413.7 "Double Slap" sync / 1[56]:[^:]*:Shiva:4DDA:/
-424.8 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4DD4:/
-437.0 "Kick/Frost" sync / 1[56]:[^:]*:Shiva:4D(D[BC]|E[23]):/
-442.1 "Reflected Kick/Frost" sync / 1[56]:[^:]*:Frozen Mirror:(4DF[EF]|4E0[01]):/
-455.2 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
-467.4 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
-472.6 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
-480.6 "Embittered Dance/Spiteful Dance" sync / 1[56]:[^:]*:Shiva:4DE[4567]:/
-484.7 "Spiteful Dance/Embittered Dance" sync / 1[56]:[^:]*:Shiva:4DE[4567]:/
-500.8 "Holy" sync / 1[56]:[^:]*:Shiva:4DE[CD]:/
-513.9 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
+385.3 "Redress" Ability { id: "4F4E", source: "Shiva" }
+390.4 "Frost Armor" Ability { id: "4DF0", source: "Shiva" }
+398.4 "Twin Stillness/Twin Silence" Ability { id: "4DD[DE]", source: "Shiva" }
+413.7 "Double Slap" Ability { id: "4DDA", source: "Shiva" }
+424.8 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
+437.0 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
+442.1 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
+455.2 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
+467.4 "Redress" Ability { id: "4F4F", source: "Shiva" }
+472.6 "Shining Armor" Ability { id: "4DF1", source: "Shiva" }
+480.6 "Embittered Dance/Spiteful Dance" Ability { id: "4DE[4567]", source: "Shiva" }
+484.7 "Spiteful Dance/Embittered Dance" Ability { id: "4DE[4567]", source: "Shiva" }
+500.8 "Holy" Ability { id: "4DE[CD]", source: "Shiva" }
+513.9 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
 
-526.1 "Redress" sync / 1[56]:[^:]*:Shiva:4F4E:/
-531.2 "Frost Armor" sync / 1[56]:[^:]*:Shiva:4DF0:/
-539.2 "Twin Stillness/Twin Silence" sync / 1[56]:[^:]*:Shiva:4DD[DE]:/
-554.5 "Double Slap" sync / 1[56]:[^:]*:Shiva:4DDA:/
-565.6 "Mirror, Mirror" sync / 1[56]:[^:]*:Shiva:4DD4:/
-577.8 "Kick/Frost" sync / 1[56]:[^:]*:Shiva:4D(D[BC]|E[23]):/
-582.9 "Reflected Kick/Frost" sync / 1[56]:[^:]*:Frozen Mirror:(4DF[EF]|4E0[01]):/
-596.0 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/
-608.2 "Redress" sync / 1[56]:[^:]*:Shiva:4F4F:/
-613.4 "Shining Armor" sync / 1[56]:[^:]*:Shiva:4DF1:/
-621.4 "Embittered Dance/Spiteful Dance" sync / 1[56]:[^:]*:Shiva:4DE[4567]:/
-625.5 "Spiteful Dance/Embittered Dance" sync / 1[56]:[^:]*:Shiva:4DE[4567]:/
-641.6 "Holy" sync / 1[56]:[^:]*:Shiva:4DE[CD]:/
-654.7 "Absolute Zero" sync / 1[56]:[^:]*:Shiva:4DD7:/ jump 513.9
+526.1 "Redress" Ability { id: "4F4E", source: "Shiva" }
+531.2 "Frost Armor" Ability { id: "4DF0", source: "Shiva" }
+539.2 "Twin Stillness/Twin Silence" Ability { id: "4DD[DE]", source: "Shiva" }
+554.5 "Double Slap" Ability { id: "4DDA", source: "Shiva" }
+565.6 "Mirror, Mirror" Ability { id: "4DD4", source: "Shiva" }
+577.8 "Kick/Frost" Ability { id: "4D(D[BC]|E[23])", source: "Shiva" }
+582.9 "Reflected Kick/Frost" Ability { id: ["4DF[EF]", "4E0[01]"], source: "Frozen Mirror" }
+596.0 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" }
+608.2 "Redress" Ability { id: "4F4F", source: "Shiva" }
+613.4 "Shining Armor" Ability { id: "4DF1", source: "Shiva" }
+621.4 "Embittered Dance/Spiteful Dance" Ability { id: "4DE[4567]", source: "Shiva" }
+625.5 "Spiteful Dance/Embittered Dance" Ability { id: "4DE[4567]", source: "Shiva" }
+641.6 "Holy" Ability { id: "4DE[CD]", source: "Shiva" }
+654.7 "Absolute Zero" Ability { id: "4DD7", source: "Shiva" } jump 513.9
 
 666.9 "Redress"
 672.0 "Frost Armor"
@@ -103,5 +103,5 @@ hideall "--sync--"
 
 # There's an Absolute Zero spam sequence before this, but
 # it's indistinguishable from the standard usage.
-1000.0 "--sync--" sync / 1[56]:[^:]*:Shiva:4E29:/ window 1000,0
+1000.0 "--sync--" Ability { id: "4E29", source: "Shiva" } window 1000,0
 1066.2 "--targetable--"

@@ -5,7 +5,7 @@ hideall "--sync--"
 hideall "Season's Passing"
 
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 #~~~~~~~~~#
 # NOPHICA #
@@ -15,71 +15,71 @@ hideall "Season's Passing"
 # -ii 7C26 7C09 7C10 7C0F 7C14 7C15 7C23
 
 # Fertile Plains will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10A9:/ window 10000,0
-1007.0 "--sync--" sync / 14:[^:]*:Nophica:7C24:/ window 20,20
-1012.0 "Abundance" sync / 1[56]:[^:]*:Nophica:7C24:/
-1020.7 "Matron's Plenty" sync / 1[56]:[^:]*:Nophica:7C08:/
-1031.8 "The Giving Land" sync / 1[56]:[^:]*:Nophica:801A:/
-1032.0 "Spring Flowers" sync / 1[56]:[^:]*:Nophica:7C10:/
-1034.9 "Season's Passing" sync / 1[56]:[^:]*:Nophica:7C0A:/
-1043.0 "The Giving Land" sync / 1[56]:[^:]*:Nophica:8018:/
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10A9" } window 10000,0
+1007.0 "--sync--" StartsUsing { id: "7C24", source: "Nophica" } window 20,20
+1012.0 "Abundance" Ability { id: "7C24", source: "Nophica" }
+1020.7 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
+1031.8 "The Giving Land" Ability { id: "801A", source: "Nophica" }
+1032.0 "Spring Flowers" Ability { id: "7C10", source: "Nophica" }
+1034.9 "Season's Passing" Ability { id: "7C0A", source: "Nophica" }
+1043.0 "The Giving Land" Ability { id: "8018", source: "Nophica" }
 
-1056.1 "Matron's Harvest" sync / 1[56]:[^:]*:Nophica:7C1D:/
-1068.2 "--sync--" sync / 1[56]:[^:]*:Nophica:7C0B:/
-1068.8 "Reaper's Gale 1" #sync / 1[56]:[^:]*:Nophica:7C0E:/
-1071.2 "Reaper's Gale 2" #sync / 1[56]:[^:]*:Nophica:7C0E:/
+1056.1 "Matron's Harvest" Ability { id: "7C1D", source: "Nophica" }
+1068.2 "--sync--" Ability { id: "7C0B", source: "Nophica" }
+1068.8 "Reaper's Gale 1" #Ability { id: "7C0E", source: "Nophica" }
+1071.2 "Reaper's Gale 2" #Ability { id: "7C0E", source: "Nophica" }
 
-1075.9 "Matron's Plenty" sync / 1[56]:[^:]*:Nophica:7C08:/
-1084.0 "Floral Haze" sync / 1[56]:[^:]*:Nophica:7DEB:/
-1092.1 "The Giving Land" sync / 1[56]:[^:]*:Nophica:8018:/
-1094.2 "Season's Passing" sync / 1[56]:[^:]*:Nophica:7C0A:/
-1102.3 "The Giving Land" sync / 1[56]:[^:]*:Nophica:801A:/
+1075.9 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
+1084.0 "Floral Haze" Ability { id: "7DEB", source: "Nophica" }
+1092.1 "The Giving Land" Ability { id: "8018", source: "Nophica" }
+1094.2 "Season's Passing" Ability { id: "7C0A", source: "Nophica" }
+1102.3 "The Giving Land" Ability { id: "801A", source: "Nophica" }
 
-1115.5 "Matron's Harvest" sync / 1[56]:[^:]*:Nophica:7C1E:/
-1123.7 "--middle--" sync / 1[56]:[^:]*:Nophica:7C25:/
-1143.8 "Blueblossoms/Giltblossoms 1" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1149.8 "Blueblossoms/Giltblossoms 2" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1155.8 "Blueblossoms/Giltblossoms 3" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1161.5 "Abundance" sync / 1[56]:[^:]*:Nophica:7C24:/
+1115.5 "Matron's Harvest" Ability { id: "7C1E", source: "Nophica" }
+1123.7 "--middle--" Ability { id: "7C25", source: "Nophica" }
+1143.8 "Blueblossoms/Giltblossoms 1" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1149.8 "Blueblossoms/Giltblossoms 2" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1155.8 "Blueblossoms/Giltblossoms 3" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1161.5 "Abundance" Ability { id: "7C24", source: "Nophica" }
 
-1170.3 "Matron's Plenty" sync / 1[56]:[^:]*:Nophica:7C08:/
-1179.4 "Floral Haze" sync / 1[56]:[^:]*:Nophica:7DEB:/
-1185.5 "Landwaker" sync / 1[56]:[^:]*:Nophica:7C19:/
-1192.6 "--sync--" sync / 1[56]:[^:]*:Nophica:7C0C:/
-1193.2 "Reaper's Gale 1" #sync / 1[56]:[^:]*:Nophica:7C0E:/
-1195.5 "Landwaker" sync / 1[56]:[^:]*:Nophica:7C1C:/
-1195.6 "Reaper's Gale 2" #sync / 1[56]:[^:]*:Nophica:7C0E:/
-1199.6 "The Giving Land" sync / 1[56]:[^:]*:Nophica:8018:/
-1206.7 "Sowing Circle" sync / 1[56]:[^:]*:Nophica:7C11:/ duration 14.3
-1208.8 "Season's Passing" sync / 1[56]:[^:]*:Nophica:7C0A:/
-1215.8 "The Giving Land" sync / 1[56]:[^:]*:Nophica:801A:/
+1170.3 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" }
+1179.4 "Floral Haze" Ability { id: "7DEB", source: "Nophica" }
+1185.5 "Landwaker" Ability { id: "7C19", source: "Nophica" }
+1192.6 "--sync--" Ability { id: "7C0C", source: "Nophica" }
+1193.2 "Reaper's Gale 1" #Ability { id: "7C0E", source: "Nophica" }
+1195.5 "Landwaker" Ability { id: "7C1C", source: "Nophica" }
+1195.6 "Reaper's Gale 2" #Ability { id: "7C0E", source: "Nophica" }
+1199.6 "The Giving Land" Ability { id: "8018", source: "Nophica" }
+1206.7 "Sowing Circle" Ability { id: "7C11", source: "Nophica" } duration 14.3
+1208.8 "Season's Passing" Ability { id: "7C0A", source: "Nophica" }
+1215.8 "The Giving Land" Ability { id: "801A", source: "Nophica" }
 
-1227.9 "Matron's Harvest" sync / 1[56]:[^:]*:Nophica:7C1E:/
-1236.1 "--sync--" sync / 1[56]:[^:]*:Nophica:7C25:/
-1240.5 "Matron's Breath" sync / 1[56]:[^:]*:Nophica:7C1F:/
-1256.1 "Blueblossoms/Giltblossoms 1" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1259.7 "Blueblossoms/Giltblossoms 2" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1263.3 "Blueblossoms/Giltblossoms 3" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1266.9 "Blueblossoms/Giltblossoms 4" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1270.5 "Blueblossoms/Giltblossoms 5" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1274.1 "Blueblossoms/Giltblossoms 6" sync / 1[56]:[^:]*:Nophica:(7C20|7C21):/
-1280.1 "Furrow" sync / 1[56]:[^:]*:Nophica:7C16:/
-1288.2 "Heavens' Earth" sync / 1[56]:[^:]*:Nophica:7C22:/
-1299.4 "Abundance" sync / 1[56]:[^:]*:Nophica:7C24:/
-1308.5 "Abundance" sync / 1[56]:[^:]*:Nophica:7C24:/
+1227.9 "Matron's Harvest" Ability { id: "7C1E", source: "Nophica" }
+1236.1 "--sync--" Ability { id: "7C25", source: "Nophica" }
+1240.5 "Matron's Breath" Ability { id: "7C1F", source: "Nophica" }
+1256.1 "Blueblossoms/Giltblossoms 1" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1259.7 "Blueblossoms/Giltblossoms 2" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1263.3 "Blueblossoms/Giltblossoms 3" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1266.9 "Blueblossoms/Giltblossoms 4" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1270.5 "Blueblossoms/Giltblossoms 5" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1274.1 "Blueblossoms/Giltblossoms 6" Ability { id: ["7C20", "7C21"], source: "Nophica" }
+1280.1 "Furrow" Ability { id: "7C16", source: "Nophica" }
+1288.2 "Heavens' Earth" Ability { id: "7C22", source: "Nophica" }
+1299.4 "Abundance" Ability { id: "7C24", source: "Nophica" }
+1308.5 "Abundance" Ability { id: "7C24", source: "Nophica" }
 
 # loop block
-1322.3 "Matron's Plenty" sync / 1[56]:[^:]*:Nophica:7C08:/ window 50,50 jump 1170.3
-1331.4 "Floral Haze" #sync / 1[56]:[^:]*:Nophica:7DEB:/
-1337.5 "Landwaker" #sync / 1[56]:[^:]*:Nophica:7C19:/
-1344.6 "--sync--" #sync / 1[56]:[^:]*:Nophica:7C0C:/
-1345.2 "Reaper's Gale 1" #sync / 1[56]:[^:]*:Nophica:7C0E:/
-1347.5 "Landwaker" #sync / 1[56]:[^:]*:Nophica:7C1C:/
-1347.6 "Reaper's Gale 2" #sync / 1[56]:[^:]*:Nophica:7C0E:/
-1351.6 "The Giving Land" #sync / 1[56]:[^:]*:Nophica:8018:/
-1358.7 "Sowing Circle" #sync / 1[56]:[^:]*:Nophica:7C11:/ duration 14.3
-1360.8 "Season's Passing" #sync / 1[56]:[^:]*:Nophica:7C0A:/
-1367.8 "The Giving Land" #sync / 1[56]:[^:]*:Nophica:801A:/
+1322.3 "Matron's Plenty" Ability { id: "7C08", source: "Nophica" } window 50,50 jump 1170.3
+1331.4 "Floral Haze" #Ability { id: "7DEB", source: "Nophica" }
+1337.5 "Landwaker" #Ability { id: "7C19", source: "Nophica" }
+1344.6 "--sync--" #Ability { id: "7C0C", source: "Nophica" }
+1345.2 "Reaper's Gale 1" #Ability { id: "7C0E", source: "Nophica" }
+1347.5 "Landwaker" #Ability { id: "7C1C", source: "Nophica" }
+1347.6 "Reaper's Gale 2" #Ability { id: "7C0E", source: "Nophica" }
+1351.6 "The Giving Land" #Ability { id: "8018", source: "Nophica" }
+1358.7 "Sowing Circle" #Ability { id: "7C11", source: "Nophica" } duration 14.3
+1360.8 "Season's Passing" #Ability { id: "7C0A", source: "Nophica" }
+1367.8 "The Giving Land" #Ability { id: "801A", source: "Nophica" }
 
 
 #~~~~~~~~~~~~~~~~~#
@@ -93,81 +93,81 @@ hideall "Season's Passing"
 # This is overall an awkward timeline.  The two bosses can definitely desync by ~1-2s.
 
 # The Bole will be sealed off
-2000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AB:/ window 10000,0
-2009.0 "--sync--" sync / 14:[^:]*:Nymeia:7A38:/ window 10,10
-2013.5 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2019.2 "--sync--" sync / 14:[^:]*:Althyk:7A46:/ window 10,10
-2026.2 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
-2041.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 10,10
-2052.7 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
+2000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10AB" } window 10000,0
+2009.0 "--sync--" StartsUsing { id: "7A38", source: "Nymeia" } window 10,10
+2013.5 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
+2019.2 "--sync--" StartsUsing { id: "7A46", source: "Althyk" } window 10,10
+2026.2 "Mythril Greataxe" Ability { id: "7A46", source: "Althyk" }
+2041.1 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" } window 10,10
+2052.7 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
 
-2073.9 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 10,10
-2078.9 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2087.2 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2099.2 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
-2113.9 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/ duration 8
-2125.6 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2073.9 "--sync--" StartsUsing { id: "7A47", source: "Althyk" } window 10,10
+2078.9 "Axioma" Ability { id: "7A47", source: "Althyk" }
+2087.2 "Hydroptosis" Ability { id: "7A44", source: "Nymeia" }
+2099.2 "Inexorable Pull" Ability { id: "7A42", source: "Althyk" }
+2113.9 "Hydrorythmos" Ability { id: "7A3F", source: "Nymeia" } duration 8
+2125.6 "Mythril Greataxe" Ability { id: "7A46", source: "Althyk" }
 
-2137.8 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2144.1 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/
-2145.1 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
-2161.2 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2164.2 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3C:/
-2167.2 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3D:/
+2137.8 "--middle--" Ability { id: "7A4A", source: "Althyk" }
+2144.1 "Hydrostasis" Ability { id: "7A3A", source: "Nymeia" }
+2145.1 "Petrai" Ability { id: "7A48", source: "Althyk" }
+2161.2 "Hydrostasis 1" Ability { id: "7A3B", source: "Nymeia" }
+2164.2 "Hydrostasis 2" Ability { id: "7A3C", source: "Nymeia" }
+2167.2 "Hydrostasis 3" Ability { id: "7A3D", source: "Nymeia" }
 
-2185.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
-2214.0 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
-2218.4 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2235.2 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
+2185.1 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" } window 20,20
+2214.0 "Mythril Greataxe" Ability { id: "7A46", source: "Althyk" }
+2218.4 "Hydroptosis" Ability { id: "7A44", source: "Nymeia" }
+2235.2 "Petrai" Ability { id: "7A48", source: "Althyk" }
 
-2240.2 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2243.9 "Philotes" sync / 1[56]:[^:]*:Althyk:(7A35|7A36):/
-2247.7 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
-2261.0 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2261.8 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
-2264.8 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2267.8 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
+2240.2 "--middle--" Ability { id: "7A4A", source: "Althyk" }
+2243.9 "Philotes" Ability { id: ["7A35", "7A36"], source: "Althyk" }
+2247.7 "Hydrostasis" Ability { id: "7A3A", source: "Nymeia" } window 20,20
+2261.0 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
+2261.8 "Hydrostasis 1" Ability { id: "7A3E", source: "Nymeia" }
+2264.8 "Hydrostasis 2" Ability { id: "7A3B", source: "Nymeia" }
+2267.8 "Hydrostasis 3" Ability { id: "7A3C", source: "Nymeia" }
 
-2284.5 "--sync--" sync / 14:[^:]*:Althyk:7A47:/ window 20,20
-2289.5 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2302.3 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2309.4 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
-2313.8 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2322.1 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2339.2 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2343.2 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
-2356.4 "Petrai" sync / 1[56]:[^:]*:Althyk:7A48:/
-2372.4 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2385.1 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/
-2387.9 "Mythril Greataxe" sync / 1[56]:[^:]*:Althyk:7A46:/
+2284.5 "--sync--" StartsUsing { id: "7A47", source: "Althyk" } window 20,20
+2289.5 "Axioma" Ability { id: "7A47", source: "Althyk" }
+2302.3 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
+2309.4 "Hydrorythmos" Ability { id: "7A3F", source: "Nymeia" }
+2313.8 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
+2322.1 "Philotes" Ability { id: "7A36", source: "Althyk" }
+2339.2 "Hydroptosis" Ability { id: "7A44", source: "Nymeia" }
+2343.2 "Inexorable Pull" Ability { id: "7A42", source: "Althyk" }
+2356.4 "Petrai" Ability { id: "7A48", source: "Althyk" }
+2372.4 "Axioma" Ability { id: "7A47", source: "Althyk" }
+2385.1 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" }
+2387.9 "Mythril Greataxe" Ability { id: "7A46", source: "Althyk" }
 
-2390.1 "--middle--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2393.5 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2401.6 "Hydrostasis" sync / 1[56]:[^:]*:Nymeia:7A3A:/ window 20,20
-2413.6 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2415.6 "Hydrostasis 1" sync / 1[56]:[^:]*:Nymeia:7A3E:/
-2418.6 "Hydrostasis 2" sync / 1[56]:[^:]*:Nymeia:7A3B:/
-2421.6 "Hydrostasis 3" sync / 1[56]:[^:]*:Nymeia:7A3C:/
+2390.1 "--middle--" Ability { id: "7A4A", source: "Althyk" }
+2393.5 "Philotes" Ability { id: "7A36", source: "Althyk" }
+2401.6 "Hydrostasis" Ability { id: "7A3A", source: "Nymeia" } window 20,20
+2413.6 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
+2415.6 "Hydrostasis 1" Ability { id: "7A3E", source: "Nymeia" }
+2418.6 "Hydrostasis 2" Ability { id: "7A3B", source: "Nymeia" }
+2421.6 "Hydrostasis 3" Ability { id: "7A3C", source: "Nymeia" }
 
-2441.9 "Axioma" sync / 1[56]:[^:]*:Althyk:7A47:/
-2447.2 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2455.9 "Spinner's Wheel" sync / 1[56]:[^:]*:Nymeia:7A38:/ window 20,20
-2463.0 "Hydrorythmos" sync / 1[56]:[^:]*:Nymeia:7A3F:/
-2467.4 "Time and Tide" sync / 1[56]:[^:]*:Althyk:7A39:/
-2475.7 "Philotes" sync / 1[56]:[^:]*:Althyk:7A36:/
-2488.8 "Hydroptosis" sync / 1[56]:[^:]*:Nymeia:7A44:/
-2492.8 "Inexorable Pull" sync / 1[56]:[^:]*:Althyk:7A42:/
+2441.9 "Axioma" Ability { id: "7A47", source: "Althyk" }
+2447.2 "Philotes" Ability { id: "7A36", source: "Althyk" }
+2455.9 "Spinner's Wheel" Ability { id: "7A38", source: "Nymeia" } window 20,20
+2463.0 "Hydrorythmos" Ability { id: "7A3F", source: "Nymeia" }
+2467.4 "Time and Tide" Ability { id: "7A39", source: "Althyk" }
+2475.7 "Philotes" Ability { id: "7A36", source: "Althyk" }
+2488.8 "Hydroptosis" Ability { id: "7A44", source: "Nymeia" }
+2492.8 "Inexorable Pull" Ability { id: "7A42", source: "Althyk" }
 
-2496.9 "--sync--" sync / 1[56]:[^:]*:Althyk:7A4A:/
-2509.3 "--sync--" sync / 14:[^:]*:Althyk:7A4C:/ window 200,200
-2519.3 "Neikos Enrage" sync / 1[56]:[^:]*:Althyk:7A4C:/
-#2520.5 "Neikos" sync / 1[56]:[^:]*:Nymeia:7A4D:/
-#2520.5 "Neikos" sync / 1[56]:[^:]*:Althyk & Nymeia:7A4E:/
+2496.9 "--sync--" Ability { id: "7A4A", source: "Althyk" }
+2509.3 "--sync--" StartsUsing { id: "7A4C", source: "Althyk" } window 200,200
+2519.3 "Neikos Enrage" Ability { id: "7A4C", source: "Althyk" }
+#2520.5 "Neikos" Ability { id: "7A4D", source: "Nymeia" }
+#2520.5 "Neikos" Ability { id: "7A4E", source: "Althyk & Nymeia" }
 
-#2522.5 "--sync--" sync / 1[56]:[^:]*:Althyk & Nymeia:801C:/
-#2537.6 "Neikos" sync / 1[56]:[^:]*:Nymeia:7D99:/
-#2537.6 "Neikos" sync / 1[56]:[^:]*:Althyk:7D98:/
-#2537.6 "Neikos" sync / 1[56]:[^:]*:Althyk & Nymeia:7A4E:/
+#2522.5 "--sync--" Ability { id: "801C", source: "Althyk & Nymeia" }
+#2537.6 "Neikos" Ability { id: "7D99", source: "Nymeia" }
+#2537.6 "Neikos" Ability { id: "7D98", source: "Althyk" }
+#2537.6 "Neikos" Ability { id: "7A4E", source: "Althyk & Nymeia" }
 
 
 #~~~~~~~~#
@@ -180,133 +180,133 @@ hideall "Season's Passing"
 # -it "Glacial Spear"
 
 # The Barbs will be sealed off
-3000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10AD:/ window 10000,0
-3009.0 "--sync--" sync / 14:[^:]*:Halone:7D79:/
-3013.0 "Rain of Spears x3" sync / 1[56]:[^:]*:Halone:7D79:/
+3000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10AD" } window 10000,0
+3009.0 "--sync--" StartsUsing { id: "7D79", source: "Halone" }
+3013.0 "Rain of Spears x3" Ability { id: "7D79", source: "Halone" }
 
-3024.6 "--sync--" sync / 14:[^:]*:Halone:7D45:/
-3037.9 "--sync--" sync / 1[56]:[^:]*:Halone:7D45:/
-3038.1 "Tetrapagos 1" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3040.1 "Tetrapagos 2" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3042.1 "Tetrapagos 3" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3044.1 "Tetrapagos 4" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
+3024.6 "--sync--" StartsUsing { id: "7D45", source: "Halone" }
+3037.9 "--sync--" Ability { id: "7D45", source: "Halone" }
+3038.1 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3040.1 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3042.1 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3044.1 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
 
-3049.2 "--sync--" sync / 14:[^:]*:Halone:7D45:/
-3062.2 "--sync--" sync / 1[56]:[^:]*:Halone:7D45:/
-3062.4 "Tetrapagos 1" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3064.4 "Tetrapagos 2" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3066.4 "Tetrapagos 3" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3068.4 "Tetrapagos 4" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
+3049.2 "--sync--" StartsUsing { id: "7D45", source: "Halone" }
+3062.2 "--sync--" Ability { id: "7D45", source: "Halone" }
+3062.4 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3064.4 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3066.4 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3068.4 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
 
-3077.4 "--sync--" sync / 1[56]:[^:]*:Halone:80AD:/
-3078.4 "Doom Spear 1" sync / 1[56]:[^:]*:Halone:80AF:/
-3080.4 "Doom Spear 2" sync / 1[56]:[^:]*:Halone:80B0:/
-3082.4 "Doom Spear 3" sync / 1[56]:[^:]*:Halone:80B1:/
-3087.8 "Spears Three" sync / 1[56]:[^:]*:Halone:7D77:/
+3077.4 "--sync--" Ability { id: "80AD", source: "Halone" }
+3078.4 "Doom Spear 1" Ability { id: "80AF", source: "Halone" }
+3080.4 "Doom Spear 2" Ability { id: "80B0", source: "Halone" }
+3082.4 "Doom Spear 3" Ability { id: "80B1", source: "Halone" }
+3087.8 "Spears Three" Ability { id: "7D77", source: "Halone" }
 
-3095.0 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3102.9 "Thousandfold Thrust" sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
+3095.0 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3102.9 "Thousandfold Thrust" Ability { id: "7D57", source: "Halone" } duration 4
 
-3111.7 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3119.8 "Thousandfold Thrust" sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
+3111.7 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3119.8 "Thousandfold Thrust" Ability { id: "7D57", source: "Halone" } duration 4
 
-3129.9 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3136.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D5A:/
-3142.2 "Lochos" sync / 1[56]:[^:]*:Halone:7D5B:/ duration 4
+3129.9 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3136.3 "--sync--" Ability { id: "7D5A", source: "Halone" }
+3142.2 "Lochos" Ability { id: "7D5B", source: "Halone" } duration 4
 
-3149.3 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3153.7 "Will of the Fury" sync / 1[56]:[^:]*:Halone:7D5D:/
-3159.6 "--sync--" sync / 1[56]:[^:]*:Halone:7D5E:/
-3161.6 "--sync--" sync / 1[56]:[^:]*:Halone:7D5F:/
-3163.6 "--sync--" sync / 1[56]:[^:]*:Halone:7D60:/
-3165.6 "--sync--" sync / 1[56]:[^:]*:Halone:7D61:/
-3165.9 "Wrath of Halone" sync / 1[56]:[^:]*:Halone:7D63:/
-3180.3 "--north--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3182.0 "--sync--" sync / 1[56]:[^:]*:Halone:7D68:/
+3149.3 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3153.7 "Will of the Fury" Ability { id: "7D5D", source: "Halone" }
+3159.6 "--sync--" Ability { id: "7D5E", source: "Halone" }
+3161.6 "--sync--" Ability { id: "7D5F", source: "Halone" }
+3163.6 "--sync--" Ability { id: "7D60", source: "Halone" }
+3165.6 "--sync--" Ability { id: "7D61", source: "Halone" }
+3165.9 "Wrath of Halone" Ability { id: "7D63", source: "Halone" }
+3180.3 "--north--" Ability { id: "7D7C", source: "Halone" }
+3182.0 "--sync--" Ability { id: "7D68", source: "Halone" }
 3185.0 "--untargetable--"
 
 # Add phase
 3187.8 "--adds targetable--"
-3205.0 "Niphas" sync / 1[56]:[^:]*:Glacial Spear:7D69:/
-3205.0 "Ice Dart" sync / 1[56]:[^:]*:Halone:7D66:/
-3223.0 "Cheimon" sync / 1[56]:[^:]*:Glacial Spear:7D6A:/
-3239.0 "Ice Dart" sync / 1[56]:[^:]*:Halone:7D66:/
+3205.0 "Niphas" Ability { id: "7D69", source: "Glacial Spear" }
+3205.0 "Ice Dart" Ability { id: "7D66", source: "Halone" }
+3223.0 "Cheimon" Ability { id: "7D6A", source: "Glacial Spear" }
+3239.0 "Ice Dart" Ability { id: "7D66", source: "Halone" }
 # ???
 
 
-3500.0 "Fury's Aegis" sync / 1[56]:[^:]*:Halone:7D6E:/ window 500,0
-3501.0 "Shockwave" sync / 1[56]:[^:]*:Halone:7D6F:/
-3508.9 "Fury's Aegis" sync / 1[56]:[^:]*:Halone:7D70:/ duration 8.5
-3509.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D71:/
-3509.9 "--sync--" sync / 1[56]:[^:]*:Halone:7D72:/
-3510.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D73:/
-3511.1 "--sync--" sync / 1[56]:[^:]*:Halone:7D74:/
-3517.4 "--sync--" sync / 1[56]:[^:]*:Halone:7D75:/
-3525.4 "--sync--" sync / 1[56]:[^:]*:Halone:7D7C:/
+3500.0 "Fury's Aegis" Ability { id: "7D6E", source: "Halone" } window 500,0
+3501.0 "Shockwave" Ability { id: "7D6F", source: "Halone" }
+3508.9 "Fury's Aegis" Ability { id: "7D70", source: "Halone" } duration 8.5
+3509.5 "--sync--" Ability { id: "7D71", source: "Halone" }
+3509.9 "--sync--" Ability { id: "7D72", source: "Halone" }
+3510.5 "--sync--" Ability { id: "7D73", source: "Halone" }
+3511.1 "--sync--" Ability { id: "7D74", source: "Halone" }
+3517.4 "--sync--" Ability { id: "7D75", source: "Halone" }
+3525.4 "--sync--" Ability { id: "7D7C", source: "Halone" }
 3525.4 "--targetable--"
 
-3531.8 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3538.2 "--sync--" sync / 1[56]:[^:]*:Halone:7D5A:/
-3547.7 "Thousandfold Thrust" sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
-3547.9 "Lochos" sync / 1[56]:[^:]*:Halone:7D5B:/ duration 4
+3531.8 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3538.2 "--sync--" Ability { id: "7D5A", source: "Halone" }
+3547.7 "Thousandfold Thrust" Ability { id: "7D57", source: "Halone" } duration 4
+3547.9 "Lochos" Ability { id: "7D5B", source: "Halone" } duration 4
 
-3556.9 "Ice Dart" sync / 1[56]:[^:]*:Halone:7D66:/
-3561.6 "Will of the Fury" sync / 1[56]:[^:]*:Halone:7D5D:/
-3567.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D5E:/
-3569.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D5F:/
-3571.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D60:/
-3573.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D61:/
-3573.8 "Wrath of Halone" sync / 1[56]:[^:]*:Halone:7D63:/
-3575.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D62:/
+3556.9 "Ice Dart" Ability { id: "7D66", source: "Halone" }
+3561.6 "Will of the Fury" Ability { id: "7D5D", source: "Halone" }
+3567.5 "--sync--" Ability { id: "7D5E", source: "Halone" }
+3569.5 "--sync--" Ability { id: "7D5F", source: "Halone" }
+3571.5 "--sync--" Ability { id: "7D60", source: "Halone" }
+3573.5 "--sync--" Ability { id: "7D61", source: "Halone" }
+3573.8 "Wrath of Halone" Ability { id: "7D63", source: "Halone" }
+3575.5 "--sync--" Ability { id: "7D62", source: "Halone" }
 
-3578.1 "--sync--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3592.5 "--sync--" sync / 1[56]:[^:]*:Halone:7D59:/
-3592.7 "Tetrapagos 1" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3594.7 "Tetrapagos 2" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3596.7 "Tetrapagos 3" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3598.7 "Tetrapagos 4" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3602.8 "Thousandfold Thrust" sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
+3578.1 "--sync--" Ability { id: "7D7C", source: "Halone" }
+3592.5 "--sync--" Ability { id: "7D59", source: "Halone" }
+3592.7 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3594.7 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3596.7 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3598.7 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3602.8 "Thousandfold Thrust" Ability { id: "7D57", source: "Halone" } duration 4
 
-3615.2 "--middle--" sync / 1[56]:[^:]*:Halone:80AD:/
-3616.2 "Doom Spear 1" sync / 1[56]:[^:]*:Halone:80AF:/
-3618.2 "Doom Spear 2" sync / 1[56]:[^:]*:Halone:80B0:/
-3620.2 "Doom Spear 3" sync / 1[56]:[^:]*:Halone:80B1:/
-3625.6 "Rain of Spears x3" sync / 1[56]:[^:]*:Halone:7D79:/
+3615.2 "--middle--" Ability { id: "80AD", source: "Halone" }
+3616.2 "Doom Spear 1" Ability { id: "80AF", source: "Halone" }
+3618.2 "Doom Spear 2" Ability { id: "80B0", source: "Halone" }
+3620.2 "Doom Spear 3" Ability { id: "80B1", source: "Halone" }
+3625.6 "Rain of Spears x3" Ability { id: "7D79", source: "Halone" }
 
-3638.8 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3643.5 "Chalaza" sync / 1[56]:[^:]*:Halone:7D65:/
-3650.4 "Ice Rondel" sync / 1[56]:[^:]*:Halone:7D67:/
-3650.4 "Ice Dart" sync / 1[56]:[^:]*:Halone:7D66:/
+3638.8 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3643.5 "Chalaza" Ability { id: "7D65", source: "Halone" }
+3650.4 "Ice Rondel" Ability { id: "7D67", source: "Halone" }
+3650.4 "Ice Dart" Ability { id: "7D66", source: "Halone" }
 
-3661.7 "--sync--" sync / 1[56]:[^:]*:Halone:7D45:/
-3661.9 "Tetrapagos 1" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3663.9 "Tetrapagos 2" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3665.9 "Tetrapagos 3" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3667.9 "Tetrapagos 4" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3674.2 "Spears Three" sync / 1[56]:[^:]*:Halone:7D77:/
+3661.7 "--sync--" Ability { id: "7D45", source: "Halone" }
+3661.9 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3663.9 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3665.9 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3667.9 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3674.2 "Spears Three" Ability { id: "7D77", source: "Halone" }
 
-3680.3 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/
-3686.7 "--sync--" sync / 1[56]:[^:]*:Halone:7D5A:/
-3696.6 "Thousandfold Thrust" sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
-3696.6 "Lochos" sync / 1[56]:[^:]*:Halone:7D5B:/ duration 4
-3705.7 "Ice Dart" sync / 1[56]:[^:]*:Halone:7D66:/
-3710.4 "Will of the Fury" sync / 1[56]:[^:]*:Halone:7D5D:/
-3716.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D5E:/
-3718.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D5F:/
-3720.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D60:/
-3722.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D61:/
-3722.6 "Wrath of Halone" sync / 1[56]:[^:]*:Halone:7D63:/
-3724.3 "--sync--" sync / 1[56]:[^:]*:Halone:7D62:/
-3731.1 "Rain of Spears" sync / 1[56]:[^:]*:Halone:7D79:/
+3680.3 "--middle--" Ability { id: "7D7C", source: "Halone" }
+3686.7 "--sync--" Ability { id: "7D5A", source: "Halone" }
+3696.6 "Thousandfold Thrust" Ability { id: "7D57", source: "Halone" } duration 4
+3696.6 "Lochos" Ability { id: "7D5B", source: "Halone" } duration 4
+3705.7 "Ice Dart" Ability { id: "7D66", source: "Halone" }
+3710.4 "Will of the Fury" Ability { id: "7D5D", source: "Halone" }
+3716.3 "--sync--" Ability { id: "7D5E", source: "Halone" }
+3718.3 "--sync--" Ability { id: "7D5F", source: "Halone" }
+3720.3 "--sync--" Ability { id: "7D60", source: "Halone" }
+3722.3 "--sync--" Ability { id: "7D61", source: "Halone" }
+3722.6 "Wrath of Halone" Ability { id: "7D63", source: "Halone" }
+3724.3 "--sync--" Ability { id: "7D62", source: "Halone" }
+3731.1 "Rain of Spears" Ability { id: "7D79", source: "Halone" }
 
 # loop
-3742.2 "--middle--" sync / 1[56]:[^:]*:Halone:7D7C:/ jump 3578.1 window 50,50
-3756.6 "--sync--" #sync / 1[56]:[^:]*:Halone:7D59:/
-3756.8 "Tetrapagos 1" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3758.8 "Tetrapagos 2" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3760.8 "Tetrapagos 3" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3762.8 "Tetrapagos 4" #sync / 1[56]:[^:]*:Halone:7D4[ABCD]:/
-3766.9 "Thousandfold Thrust" #sync / 1[56]:[^:]*:Halone:7D57:/ duration 4
+3742.2 "--middle--" Ability { id: "7D7C", source: "Halone" } jump 3578.1 window 50,50
+3756.6 "--sync--" #Ability { id: "7D59", source: "Halone" }
+3756.8 "Tetrapagos 1" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3758.8 "Tetrapagos 2" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3760.8 "Tetrapagos 3" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3762.8 "Tetrapagos 4" #Ability { id: "7D4[ABCD]", source: "Halone" }
+3766.9 "Thousandfold Thrust" #Ability { id: "7D57", source: "Halone" } duration 4
 
 
 #~~~~~~~~~~#
@@ -319,114 +319,114 @@ hideall "Season's Passing"
 # -it "Ceremonial Pillar"
 
 # The Chamber of Revolutions will be sealed off
-4000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10BC:/ window 10000,0
-4013.1 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFA:/
-4020.9 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BB8:/
-4026.6 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BBB:/
-4038.0 "First Blush" sync / 1[56]:[^:]*:Menphina:7BBC:/
+4000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10BC" } window 10000,0
+4013.1 "Blue Moon" Ability { id: "7BFA", source: "Menphina" }
+4020.9 "Love's Light" Ability { id: "7BB8", source: "Menphina" }
+4026.6 "Full Bright" Ability { id: "7BBB", source: "Menphina" }
+4038.0 "First Blush" Ability { id: "7BBC", source: "Menphina" }
 
-4040.3 "--middle--" sync / 1[56]:[^:]*:Menphina:7BD3:/
-4048.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCB|7BCC):/
-4061.2 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF7:/
+4040.3 "--middle--" Ability { id: "7BD3", source: "Menphina" }
+4048.6 "Midnight Frost" Ability { id: ["7BCB", "7BCC"], source: "Menphina" }
+4061.2 "Lunar Kiss" Ability { id: "7BF7", source: "Menphina" }
 
-4070.0 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF5:/
-4070.0 "Silver Mirror 1" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4072.0 "Silver Mirror 2" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4074.0 "Silver Mirror 3" #sync / 1[56]:[^:]*:Menphina:7BF6:/
+4070.0 "--sync--" Ability { id: "7BF5", source: "Menphina" }
+4070.0 "Silver Mirror 1" #Ability { id: "7BF6", source: "Menphina" }
+4072.0 "Silver Mirror 2" #Ability { id: "7BF6", source: "Menphina" }
+4074.0 "Silver Mirror 3" #Ability { id: "7BF6", source: "Menphina" }
 
-4076.7 "--sync--" sync / 1[56]:[^:]*:Menphina:7BC8:/
-4077.7 "Moonset 1" #sync / 1[56]:[^:]*:Menphina:7BCA:/
-4079.9 "Moonset 2" #sync / 1[56]:[^:]*:Menphina:7BCA:/
-4082.1 "Moonset 3" #sync / 1[56]:[^:]*:Menphina:7BCA:/
-4088.5 "Winter Halo" sync / 1[56]:[^:]*:Menphina:7BC6:/
+4076.7 "--sync--" Ability { id: "7BC8", source: "Menphina" }
+4077.7 "Moonset 1" #Ability { id: "7BCA", source: "Menphina" }
+4079.9 "Moonset 2" #Ability { id: "7BCA", source: "Menphina" }
+4082.1 "Moonset 3" #Ability { id: "7BCA", source: "Menphina" }
+4088.5 "Winter Halo" Ability { id: "7BC6", source: "Menphina" }
 
-4097.2 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BB9:/
-4102.9 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BBB:/
-4109.9 "Lovers' Bridge 1" sync / 1[56]:[^:]*:Menphina:7BBD:/
-4112.8 "--middle--" sync / 1[56]:[^:]*:Menphina:7BD3:/
-4116.0 "Lovers' Bridge 2" sync / 1[56]:[^:]*:Menphina:7BBE:/
-4121.0 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCB|7BCC):/
+4097.2 "Love's Light" Ability { id: "7BB9", source: "Menphina" }
+4102.9 "Full Bright" Ability { id: "7BBB", source: "Menphina" }
+4109.9 "Lovers' Bridge 1" Ability { id: "7BBD", source: "Menphina" }
+4112.8 "--middle--" Ability { id: "7BD3", source: "Menphina" }
+4116.0 "Lovers' Bridge 2" Ability { id: "7BBE", source: "Menphina" }
+4121.0 "Midnight Frost" Ability { id: ["7BCB", "7BCC"], source: "Menphina" }
 
 # add phase
-4125.8 "--sync--" sync / 1[56]:[^:]*:Menphina:7BD3:/
-4131.5 "Selenain Mysteria" sync / 1[56]:[^:]*:Menphina:7ABC:/
+4125.8 "--sync--" Ability { id: "7BD3", source: "Menphina" }
+4131.5 "Selenain Mysteria" Ability { id: "7ABC", source: "Menphina" }
 4131.5 "--untargetable--"
 4135.8 "--adds targetable--"
-4145.4 "Ancient Blizzard" #sync / 1[56]:[^:]*:Ice Sprite:8066:/
-4148.3 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4155.2 "Ancient Blizzard" #sync / 1[56]:[^:]*:Ice Sprite:8066:/
-4162.9 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4169.8 "Ancient Blizzard" #sync / 1[56]:[^:]*:Ice Sprite:8066:/
+4145.4 "Ancient Blizzard" #Ability { id: "8066", source: "Ice Sprite" }
+4148.3 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
+4155.2 "Ancient Blizzard" #Ability { id: "8066", source: "Ice Sprite" }
+4162.9 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
+4169.8 "Ancient Blizzard" #Ability { id: "8066", source: "Ice Sprite" }
 # ???
 
-4500.0 "--sync--" sync / 14:[^:]*:Menphina:8064:/ window 500,0
-4510.0 "Rise of the Twin Moons" sync / 1[56]:[^:]*:Menphina:8064:/
+4500.0 "--sync--" StartsUsing { id: "8064", source: "Menphina" } window 500,0
+4510.0 "Rise of the Twin Moons" Ability { id: "8064", source: "Menphina" }
 4513.2 "--targetable--"
-4526.6 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA):/
-4526.8 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4526.6 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4526.8 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4535.5 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4545.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BE4|7BE5|7BE6|7BE7|7F0A|7F0B|7F0C|7F0D):/
-4545.8 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4535.5 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4545.7 "Midnight Frost" Ability { id: ["7BE4", "7BE5", "7BE6", "7BE7", "7F0A", "7F0B", "7F0C", "7F0D"], source: "Menphina" }
+4545.8 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4548.8 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
-4558.9 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFB:/
-4566.7 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF3:/
-4573.3 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4579.3 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA):/
-4579.4 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4548.8 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
+4558.9 "Blue Moon" Ability { id: "7BFB", source: "Menphina" }
+4566.7 "--sync--" Ability { id: "7BF3", source: "Menphina" }
+4573.3 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
+4579.3 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4579.4 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4586.4 "Cratering Chill" sync / 1[56]:[^:]*:Menphina:7BEE:/
-4593.5 "Winter Solstice" sync / 1[56]:[^:]*:Menphina:7BED:/
-4593.8 "--sync--" sync / 1[56]:[^:]*:Menphina:7BEF:/
-4597.9 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4608.1 "Winter Halo" sync / 1[56]:[^:]*:Menphina:(7BE8|7BE9|7F0E|7F0F|7BDB|7BDC):/
-4608.2 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4586.4 "Cratering Chill" Ability { id: "7BEE", source: "Menphina" }
+4593.5 "Winter Solstice" Ability { id: "7BED", source: "Menphina" }
+4593.8 "--sync--" Ability { id: "7BEF", source: "Menphina" }
+4597.9 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4608.1 "Winter Halo" Ability { id: ["7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4608.2 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4611.2 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
-4619.3 "Moonset Rays" sync / 1[56]:[^:]*:Menphina:80F9:/
-4628.0 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC3:/
-4632.7 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
-4639.5 "--sync--" sync / 1[56]:[^:]*:Menphina:7BBD:/
-4645.5 "Lovers' Bridge 1" #sync / 1[56]:[^:]*:Menphina:7BBE:/
-4645.5 "Lovers' Bridge 2" #sync / 1[56]:[^:]*:Menphina:7BBE:/
+4611.2 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
+4619.3 "Moonset Rays" Ability { id: "80F9", source: "Menphina" }
+4628.0 "Love's Light" Ability { id: "7BC3", source: "Menphina" }
+4632.7 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
+4639.5 "--sync--" Ability { id: "7BBD", source: "Menphina" }
+4645.5 "Lovers' Bridge 1" #Ability { id: "7BBE", source: "Menphina" }
+4645.5 "Lovers' Bridge 2" #Ability { id: "7BBE", source: "Menphina" }
 
-4651.6 "--sync--" sync / 1[56]:[^:]*:Menphina:7AAA:/
-4651.6 "Silver Mirror 1" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4653.6 "Silver Mirror 2" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4655.6 "Silver Mirror 3" #sync / 1[56]:[^:]*:Menphina:7BF6:/
-4661.3 "Midnight Frost/Winter Halo" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA|7BE8|7BE9|7F0E|7F0F|7BDB|7BDC):/
-4661.5 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4651.6 "--sync--" Ability { id: "7AAA", source: "Menphina" }
+4651.6 "Silver Mirror 1" #Ability { id: "7BF6", source: "Menphina" }
+4653.6 "Silver Mirror 2" #Ability { id: "7BF6", source: "Menphina" }
+4655.6 "Silver Mirror 3" #Ability { id: "7BF6", source: "Menphina" }
+4661.3 "Midnight Frost/Winter Halo" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA", "7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4661.5 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4671.5 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC2:/
-4676.2 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
-4681.4 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4687.4 "First Blush" sync / 1[56]:[^:]*:Menphina:7BBC:/
-4691.5 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BE4|7BE5|7BE6|7BE7|7F0A|7F0B|7F0C|7F0D):/
-4691.7 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4671.5 "Love's Light" Ability { id: "7BC2", source: "Menphina" }
+4676.2 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
+4681.4 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4687.4 "First Blush" Ability { id: "7BBC", source: "Menphina" }
+4691.5 "Midnight Frost" Ability { id: ["7BE4", "7BE5", "7BE6", "7BE7", "7F0A", "7F0B", "7F0C", "7F0D"], source: "Menphina" }
+4691.7 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
-4694.6 "--sync--" sync / 1[56]:[^:]*:Menphina:(7C06|7C07):/
-4702.7 "Moonset Rays" sync / 1[56]:[^:]*:Menphina:80F9:/
+4694.6 "--sync--" Ability { id: ["7C06", "7C07"], source: "Menphina" }
+4702.7 "Moonset Rays" Ability { id: "80F9", source: "Menphina" }
 
-4717.4 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF8:/
-4725.2 "Love's Light" sync / 1[56]:[^:]*:Menphina:7BC3:/
-4729.9 "Full Bright" sync / 1[56]:[^:]*:Menphina:7BC5:/
-4736.7 "Lovers' Bridge 1" sync / 1[56]:[^:]*:Menphina:7BBD:/
+4717.4 "Lunar Kiss" Ability { id: "7BF8", source: "Menphina" }
+4725.2 "Love's Light" Ability { id: "7BC3", source: "Menphina" }
+4729.9 "Full Bright" Ability { id: "7BC5", source: "Menphina" }
+4736.7 "Lovers' Bridge 1" Ability { id: "7BBD", source: "Menphina" }
 # This regex could probably be shorter, but need more info.
-4739.7 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BCF|7BD0|7BD[789A]|7BE[4567]|7F0[ABCD]):/
-4742.7 "Lovers' Bridge 2" sync / 1[56]:[^:]*:Menphina:7BBE:/
+4739.7 "Midnight Frost" Ability { id: ["7BCF", "7BD0", "7BD[789A]", "7BE[4567]", "7F0[ABCD]"], source: "Menphina" }
+4742.7 "Lovers' Bridge 2" Ability { id: "7BBE", source: "Menphina" }
 
-4748.5 "Blue Moon" sync / 1[56]:[^:]*:Menphina:7BFB:/
-4759.2 "Lunar Kiss" sync / 1[56]:[^:]*:Menphina:7BF8:/
-4765.9 "--sync--" sync / 1[56]:[^:]*:Menphina:7BF3:/
-4772.5 "Keen Moonbeam" sync / 1[56]:[^:]*:Menphina:7BF4:/
-4778.2 "Midnight Frost" sync / 1[56]:[^:]*:Menphina:(7BD7|7BD8|7BD9|7BDA):/
-4778.4 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4748.5 "Blue Moon" Ability { id: "7BFB", source: "Menphina" }
+4759.2 "Lunar Kiss" Ability { id: "7BF8", source: "Menphina" }
+4765.9 "--sync--" Ability { id: "7BF3", source: "Menphina" }
+4772.5 "Keen Moonbeam" Ability { id: "7BF4", source: "Menphina" }
+4778.2 "Midnight Frost" Ability { id: ["7BD7", "7BD8", "7BD9", "7BDA"], source: "Menphina" }
+4778.4 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }
 
 # loop, probably
-4785.4 "Cratering Chill" sync / 1[56]:[^:]*:Menphina:7BEE:/ window 50,50 jump 4586.4
-4792.5 "Winter Solstice" #sync / 1[56]:[^:]*:Menphina:7BED:/
-4792.8 "--sync--" #sync / 1[56]:[^:]*:Menphina:7BEF:/
-4796.9 "Playful Orbit" sync / 1[56]:[^:]*:Menphina:(7BE2|7BE3):/
-4807.1 "Winter Halo" #sync / 1[56]:[^:]*:Menphina:(7BE8|7BE9|7F0E|7F0F|7BDB|7BDC):/
-4807.2 "Waxing Claw" sync / 1[56]:[^:]*:Menphina:(7BE0|7BE1):/
+4785.4 "Cratering Chill" Ability { id: "7BEE", source: "Menphina" } window 50,50 jump 4586.4
+4792.5 "Winter Solstice" #Ability { id: "7BED", source: "Menphina" }
+4792.8 "--sync--" #Ability { id: "7BEF", source: "Menphina" }
+4796.9 "Playful Orbit" Ability { id: ["7BE2", "7BE3"], source: "Menphina" }
+4807.1 "Winter Halo" #Ability { id: ["7BE8", "7BE9", "7F0E", "7F0F", "7BDB", "7BDC"], source: "Menphina" }
+4807.2 "Waxing Claw" Ability { id: ["7BE0", "7BE1"], source: "Menphina" }

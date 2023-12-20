@@ -26,100 +26,100 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.4 "Wakizashi" sync / 1[56]:[^:]*:Yojimbo:3827:/ window 7,7
-14.5 "Inoshikacho" sync / 1[56]:[^:]*:Yojimbo:3829:/ duration 9.2
-23.7 "--sync--" sync / 1[56]:[^:]*:Inoshikacho:382A:/
-28.8 "Metta-giri" sync / 1[56]:[^:]*:Yojimbo:3828:/
-32.0 "--untargetable--" sync / 1[56]:[^:]*:Yojimbo:382B:/
-37.2 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382C:/
-44.0 "Unveiling" sync / 1[56]:[^:]*:Yojimbo:382D:/
-55.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
-58.5 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-59.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
-62.1 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-63.7 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-67.7 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
-73.7 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:31DE:/
-84.2 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
-88.8 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
-97.4 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
-103.8 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
-106.8 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
-123.2 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
-128.8 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
-131.8 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-132.9 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
-135.4 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-136.9 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-141.0 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.4 "Wakizashi" Ability { id: "3827", source: "Yojimbo" } window 7,7
+14.5 "Inoshikacho" Ability { id: "3829", source: "Yojimbo" } duration 9.2
+23.7 "--sync--" Ability { id: "382A", source: "Inoshikacho" }
+28.8 "Metta-giri" Ability { id: "3828", source: "Yojimbo" }
+32.0 "--untargetable--" Ability { id: "382B", source: "Yojimbo" }
+37.2 "--sync--" Ability { id: "382C", source: "Yojimbo" }
+44.0 "Unveiling" Ability { id: "382D", source: "Yojimbo" }
+55.6 "--sync--" Ability { id: "382F", source: "Yojimbo" }
+58.5 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+59.6 "--sync--" Ability { id: "3830", source: "Yojimbo" }
+62.1 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+63.7 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+67.7 "Kasha" Ability { id: "3834", source: "Gilgamesh" }
+73.7 "Bitter End" Ability { id: "31DE", source: "Yojimbo" }
+84.2 "Tiny Song" Ability { id: "3835", source: "Yojimbo" }
+88.8 "Dragon's Lair" Ability { id: "3836", source: "Yojimbo" }
+97.4 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
+103.8 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
+106.8 "Dragon Night" Ability { id: "3838", source: "Yojimbo" }
+123.2 "Tiny Song" Ability { id: "3835", source: "Yojimbo" }
+128.8 "--sync--" Ability { id: "382F", source: "Yojimbo" }
+131.8 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+132.9 "--sync--" Ability { id: "3830", source: "Yojimbo" }
+135.4 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+136.9 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+141.0 "Kasha" Ability { id: "3834", source: "Gilgamesh" }
 
-147.1 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
-151.5 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+147.1 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
+151.5 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
 
 # """Adds""" phase
 157.3 "--untargetable--"
 # starts 100 seconds of gauge
-157.7 "--sync--" sync / 1[56]:[^:]*:Yojimbo:383A:/ window 200,200
-161.2 "Giga Jump" sync / 1[56]:[^:]*:Embodiment:383B:/
+157.7 "--sync--" Ability { id: "383A", source: "Yojimbo" } window 200,200
+161.2 "Giga Jump" Ability { id: "383B", source: "Embodiment" }
 164.0 "--targetable--"
 
-169.6 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-175.1 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-175.3 "A Giant Me" sync / 1[56]:[^:]*:Embodiment:3830:/
-179.3 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-182.4 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-183.4 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
-187.5 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-198.9 "Kasha" sync / 1[56]:[^:]*:Yojimbo:3834:/
-203.2 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-206.0 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-210.3 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-223.7 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
-229.1 "Bitter End" #sync / 1[56]:[^:]*:Embodiment:382E:/
+169.6 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+175.1 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+175.3 "A Giant Me" Ability { id: "3830", source: "Embodiment" }
+179.3 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+182.4 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+183.4 "Kasha" Ability { id: "3834", source: "Gilgamesh" }
+187.5 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+198.9 "Kasha" Ability { id: "3834", source: "Yojimbo" }
+203.2 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+206.0 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+210.3 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+223.7 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
+229.1 "Bitter End" #Ability { id: "382E", source: "Embodiment" }
 # ???
 
-296.0 "--sync--" sync / 14:[^:]*:Gilgamesh:383D:/ window 100,0
-300.0 "Ame-no-Murakumo" sync / 1[56]:[^:]*:Gilgamesh:383D:/ window 300,300
-316.4 "Giga Jump" sync / 1[56]:[^:]*:Yojimbo:383E:/ # drift -0.048
+296.0 "--sync--" StartsUsing { id: "383D", source: "Gilgamesh" } window 100,0
+300.0 "Ame-no-Murakumo" Ability { id: "383D", source: "Gilgamesh" } window 300,300
+316.4 "Giga Jump" Ability { id: "383E", source: "Yojimbo" } # drift -0.048
 316.4 "--targetable--"
-319.0 "Electrogenetic Force" sync / 1[56]:[^:]*:Yojimbo:383F:/ duration 9.6
-328.6 "--sync--" sync / 1[56]:[^:]*:Electrogenetic Force:3840:/
-338.6 "Enchain" sync / 1[56]:[^:]*:Yojimbo:3841:/
-361.1 "Hell's Gate" sync / 1[56]:[^:]*:Yojimbo:3842:/
+319.0 "Electrogenetic Force" Ability { id: "383F", source: "Yojimbo" } duration 9.6
+328.6 "--sync--" Ability { id: "3840", source: "Electrogenetic Force" }
+338.6 "Enchain" Ability { id: "3841", source: "Yojimbo" }
+361.1 "Hell's Gate" Ability { id: "3842", source: "Yojimbo" }
 
 # final loop
-374.5 "Masamune" sync / 1[56]:[^:]*:Yojimbo:3843:/
-380.4 "Zanma Zanmai" sync / 1[56]:[^:]*:Yojimbo:3844:/
-388.0 "Epic Stormsplitter" sync / 1[56]:[^:]*:Yojimbo:3845:/
-396.5 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
-399.0 "Electrogenetic Force" sync / 1[56]:[^:]*:Yojimbo:383F:/ duration 9.6
-408.7 "--sync--" sync / 1[56]:[^:]*:Electrogenetic Force:3840:/
-414.5 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
-416.6 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
-422.0 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+374.5 "Masamune" Ability { id: "3843", source: "Yojimbo" }
+380.4 "Zanma Zanmai" Ability { id: "3844", source: "Yojimbo" }
+388.0 "Epic Stormsplitter" Ability { id: "3845", source: "Yojimbo" }
+396.5 "Dragon's Lair" Ability { id: "3836", source: "Yojimbo" }
+399.0 "Electrogenetic Force" Ability { id: "383F", source: "Yojimbo" } duration 9.6
+408.7 "--sync--" Ability { id: "3840", source: "Electrogenetic Force" }
+414.5 "Dragon Night" Ability { id: "3838", source: "Yojimbo" }
+416.6 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
+422.0 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
 
-433.5 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
-436.5 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-437.6 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
-430.0 "Yukikaze" #sync / 1[56]:[^:]*:Yojimbo:3832:/
-441.6 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-445.7 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
-445.8 "Dragon's Lair" sync / 1[56]:[^:]*:Yojimbo:3836:/
-456.5 "Tiny Song" sync / 1[56]:[^:]*:Yojimbo:3835:/
-463.8 "Dragon Night" sync / 1[56]:[^:]*:Yojimbo:3838:/
-469.1 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+433.5 "--sync--" Ability { id: "382F", source: "Yojimbo" }
+436.5 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+437.6 "--sync--" Ability { id: "3830", source: "Yojimbo" }
+430.0 "Yukikaze" #Ability { id: "3832", source: "Yojimbo" }
+441.6 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+445.7 "Kasha" Ability { id: "3834", source: "Gilgamesh" }
+445.8 "Dragon's Lair" Ability { id: "3836", source: "Yojimbo" }
+456.5 "Tiny Song" Ability { id: "3835", source: "Yojimbo" }
+463.8 "Dragon Night" Ability { id: "3838", source: "Yojimbo" }
+469.1 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
 
-474.4 "--sync--" sync / 1[56]:[^:]*:Yojimbo:382F:/
-477.4 "Yukikaze" sync / 1[56]:[^:]*:Yojimbo:3832:/
-478.5 "--sync--" sync / 1[56]:[^:]*:Yojimbo:3830:/
-480.9 "Yukikaze" sync / 1[56]:[^:]*:Yojimbo:3832:/
-482.5 "Gekko" sync / 1[56]:[^:]*:Yojimbo:3833:/
-486.6 "Kasha" sync / 1[56]:[^:]*:Gilgamesh:3834:/
-489.8 "Bitter End" sync / 1[56]:[^:]*:Yojimbo:382E:/
+474.4 "--sync--" Ability { id: "382F", source: "Yojimbo" }
+477.4 "Yukikaze" Ability { id: "3832", source: "Yojimbo" }
+478.5 "--sync--" Ability { id: "3830", source: "Yojimbo" }
+480.9 "Yukikaze" Ability { id: "3832", source: "Yojimbo" }
+482.5 "Gekko" Ability { id: "3833", source: "Yojimbo" }
+486.6 "Kasha" Ability { id: "3834", source: "Gilgamesh" }
+489.8 "Bitter End" Ability { id: "382E", source: "Yojimbo" }
 
 # fake loop lookahead
-505.0 "Masamune" sync / 1[56]:[^:]*:Yojimbo:3843:/ window 40,40 jump 374.5
+505.0 "Masamune" Ability { id: "3843", source: "Yojimbo" } window 40,40 jump 374.5
 510.9 "Zanma Zanmai"
 518.5 "Epic Stormsplitter"
 527.0 "Dragon's Lair"

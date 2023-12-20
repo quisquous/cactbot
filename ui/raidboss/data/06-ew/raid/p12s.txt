@@ -3,209 +3,209 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
 ### Phase 1: Athena
 # -ii 8677 8314 8350 82F0 8308 8309 8331 8313
 # -p 8304:11.1
 # -it "Athena"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-1.0 "--sync--" sync / 03:[^:]*:Hemitheos:00:5A:0{4}:00::12383:/ window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
-11.1 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/ window 20,20
-21.2 "Paradeigma 1" sync / 1[56]:[^:]*:Athena:82ED:/
-24.3 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
-36.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8):/
-36.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
-39.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
-41.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
-41.9 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC):/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+1.0 "--sync--" AddedCombatant { npcNameId: "12383", name: "Hemitheos", job: "00", level: "5A", ownerId: "0{4}", worldId: "00" } window 10,3 jump 1000.5 # Sync to P2 immediately through AddCombatant.
+11.1 "On the Soul" Ability { id: "8304", source: "Athena" } window 20,20
+21.2 "Paradeigma 1" Ability { id: "82ED", source: "Athena" }
+24.3 "--middle--" Ability { id: "8315", source: "Athena" }
+36.7 "Trinity of Souls 1" Ability { id: ["82E7", "82E8"], source: "Athena" }
+36.7 "White Flame" Ability { id: "82EF", source: "Anthropos" }
+39.3 "Trinity of Souls 2" Ability { id: ["82E9", "82EA"], source: "Athena" }
+41.7 "White Flame" Ability { id: "82EF", source: "Anthropos" }
+41.9 "Trinity of Souls 3" Ability { id: ["82EB", "82EC"], source: "Athena" }
 
-57.3 "Paradeigma 2" sync / 1[56]:[^:]*:Athena:82ED:/
-65.0 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
-74.8 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/
-75.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
-78.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/
-81.8 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
+57.3 "Paradeigma 2" Ability { id: "82ED", source: "Athena" }
+65.0 "Engravement of Souls" Ability { id: "8305", source: "Athena" }
+74.8 "Searing Radiance/Shadowsear" Ability { id: "82F[12]", source: "Anthropos" }
+75.8 "Astral Glow/Umbral Glow" Ability { id: "830[CD]", source: "Athena" }
+78.8 "Astral Advance/Umbral Advance" Ability { id: "830[EF]", source: "Anthropos" }
+81.8 "Ray of Light" Ability { id: "82EE", source: "Anthropos" }
 
-88.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-97.0 "Glaukopis 1" sync / 1[56]:[^:]*:Athena:82FC:/
-100.0 "Glaukopis 2" sync / 1[56]:[^:]*:Athena:82FD:/
+88.8 "On the Soul" Ability { id: "8304", source: "Athena" }
+97.0 "Glaukopis 1" Ability { id: "82FC", source: "Athena" }
+100.0 "Glaukopis 2" Ability { id: "82FD", source: "Athena" }
 
-116.1 "Superchain Theory I" sync / 1[56]:[^:]*:Athena:82DA:/
-123.2 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
-128.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
-134.3 "Polarized Ray" sync / 1[56]:[^:]*:Athena:8307:/
-135.2 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
-135.5 "Astral Impact/Umbral Impact" sync / 1[56]:[^:]*:Athena:830[89]:/
-140.2 "Superchain Coil/Superchain Burst" #sync / 1[56]:[^:]*:Athena:82D[BC]:/
-142.2 "Superchain Coil/Superchain Burst" #sync / 1[56]:[^:]*:Athena:82D[BC]:/
-143.5 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
-145.2 "Theos's Holy" sync / 1[56]:[^:]*:Athena:8306:/
-146.4 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[FE]:/
+116.1 "Superchain Theory I" Ability { id: "82DA", source: "Athena" }
+123.2 "Engravement of Souls" Ability { id: "8305", source: "Athena" }
+128.2 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
+134.3 "Polarized Ray" Ability { id: "8307", source: "Athena" }
+135.2 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
+135.5 "Astral Impact/Umbral Impact" Ability { id: "830[89]", source: "Athena" }
+140.2 "Superchain Coil/Superchain Burst" #Ability { id: "82D[BC]", source: "Athena" }
+142.2 "Superchain Coil/Superchain Burst" #Ability { id: "82D[BC]", source: "Athena" }
+143.5 "Astral Glow/Umbral Glow" Ability { id: "830[CD]", source: "Athena" }
+145.2 "Theos's Holy" Ability { id: "8306", source: "Athena" }
+146.4 "Astral Advance/Umbral Advance" Ability { id: "830[FE]", source: "Anthropos" }
 
-157.4 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
-160.1 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
-162.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
+157.4 "Trinity of Souls 1" Ability { id: ["82E7", "82E8", "82E1", "82E2"], source: "Athena" }
+160.1 "Trinity of Souls 2" Ability { id: ["82E9", "82EA"], source: "Athena" }
+162.7 "Trinity of Souls 3" Ability { id: ["82EB", "82EC", "82E5", "82E6"], source: "Athena" }
 
-171.1 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
-172.1 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
-178.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-190.0 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
-195.3 "Paradeigma 3" sync / 1[56]:[^:]*:Athena:82ED:/
-202.4 "Engravement of Souls" sync / 1[56]:[^:]*:Athena:8305:/
-212.5 "Shock" sync / 1[56]:[^:]*:Athena:8312:/
-213.6 "Sample" sync / 1[56]:[^:]*:Athena:82E0:/
-213.7 "Searing Radiance/Shadowsear" sync / 1[56]:[^:]*:Anthropos:82F[12]:/
-220.5 "Theos's Saltire/Theos's Cross" sync / 1[56]:[^:]*:Athena:830[AB]:/
-220.7 "White Flame" sync / 1[56]:[^:]*:Anthropos:82EF:/
-220.8 "Astral Glow/Umbral Glow" sync / 1[56]:[^:]*:Athena:830[CD]:/
-223.8 "Astral Advance/Umbral Advance" sync / 1[56]:[^:]*:Anthropos:830[EF]:/
+171.1 "Apodialogos/Peridialogos" Ability { id: "830[01]", source: "Athena" }
+172.1 "Dialogos" Ability { id: "8302", source: "Athena" }
+178.8 "On the Soul" Ability { id: "8304", source: "Athena" }
+190.0 "--middle--" Ability { id: "8315", source: "Athena" }
+195.3 "Paradeigma 3" Ability { id: "82ED", source: "Athena" }
+202.4 "Engravement of Souls" Ability { id: "8305", source: "Athena" }
+212.5 "Shock" Ability { id: "8312", source: "Athena" }
+213.6 "Sample" Ability { id: "82E0", source: "Athena" }
+213.7 "Searing Radiance/Shadowsear" Ability { id: "82F[12]", source: "Anthropos" }
+220.5 "Theos's Saltire/Theos's Cross" Ability { id: "830[AB]", source: "Athena" }
+220.7 "White Flame" Ability { id: "82EF", source: "Anthropos" }
+220.8 "Astral Glow/Umbral Glow" Ability { id: "830[CD]", source: "Athena" }
+223.8 "Astral Advance/Umbral Advance" Ability { id: "830[EF]", source: "Anthropos" }
 
-229.8 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-242.1 "Glaukopis 1" sync / 1[56]:[^:]*:Athena:82FC:/
-245.2 "Glaukopis 2" sync / 1[56]:[^:]*:Athena:82FD:/
-254.3 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
-259.9 "--sync--" sync / 1[56]:[^:]*:Athena:82F3:/
-267.3 "Ultima Blade" sync / 1[56]:[^:]*:Athena:82F4:/
+229.8 "On the Soul" Ability { id: "8304", source: "Athena" }
+242.1 "Glaukopis 1" Ability { id: "82FC", source: "Athena" }
+245.2 "Glaukopis 2" Ability { id: "82FD", source: "Athena" }
+254.3 "--middle--" Ability { id: "8315", source: "Athena" }
+259.9 "--sync--" Ability { id: "82F3", source: "Athena" }
+267.3 "Ultima Blade" Ability { id: "82F4", source: "Athena" }
 280.0 "--untargetable--"
 
 # Laser/Cleave order is random here so we can only really timeline the Palladion dashes.
-290.6 "Palladion 1" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-293.7 "Palladion 2" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-296.8 "Palladion 3" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-299.9 "Palladion 4" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-303.0 "Palladion 5" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-306.1 "Palladion 6" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-309.2 "Palladion 7" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-312.4 "Palladion 8" sync / 1[56]:[^:]*:Athena:82F6:/ window 1.5,0.5
-317.5 "--sync--" sync / 1[56]:[^:]*:Athena:82F8:/
-321.5 "Palladion (Floor Drop)" sync / 1[56]:[^:]*:Athena:82F9:/ window 20,20
+290.6 "Palladion 1" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+293.7 "Palladion 2" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+296.8 "Palladion 3" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+299.9 "Palladion 4" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+303.0 "Palladion 5" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+306.1 "Palladion 6" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+309.2 "Palladion 7" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+312.4 "Palladion 8" Ability { id: "82F6", source: "Athena" } window 1.5,0.5
+317.5 "--sync--" Ability { id: "82F8", source: "Athena" }
+321.5 "Palladion (Floor Drop)" Ability { id: "82F9", source: "Athena" } window 20,20
 
 324.4 "--targetable--"
-333.2 "Theos's Ultima" sync / 1[56]:[^:]*:Athena:82FA:/
-352.6 "Superchain Theory IIA" sync / 1[56]:[^:]*:Athena:86FA:/
-365.7 "Trinity of Souls 1" sync / 1[56]:[^:]*:Athena:(82E7|82E8|82E1|82E2):/
-368.3 "Trinity of Souls 2" sync / 1[56]:[^:]*:Athena:(82E9|82EA):/
-370.7 "Trinity of Souls 3" sync / 1[56]:[^:]*:Athena:(82EB|82EC|82E5|82E6):/
-374.0 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+333.2 "Theos's Ultima" Ability { id: "82FA", source: "Athena" }
+352.6 "Superchain Theory IIA" Ability { id: "86FA", source: "Athena" }
+365.7 "Trinity of Souls 1" Ability { id: ["82E7", "82E8", "82E1", "82E2"], source: "Athena" }
+368.3 "Trinity of Souls 2" Ability { id: ["82E9", "82EA"], source: "Athena" }
+370.7 "Trinity of Souls 3" Ability { id: ["82EB", "82EC", "82E5", "82E6"], source: "Athena" }
+374.0 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
 
-380.2 "Apodialogos/Peridialogos" sync / 1[56]:[^:]*:Athena:830[01]:/
-381.2 "Dialogos" sync / 1[56]:[^:]*:Athena:8302:/
-387.9 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-395.1 "--middle--" sync / 1[56]:[^:]*:Athena:8315:/
-402.5 "Superchain Theory IIB" sync / 1[56]:[^:]*:Athena:86FB:/
-408.6 "Paradeigma 4" sync / 1[56]:[^:]*:Athena:82ED:/
-415.6 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
-418.6 "Parthenos" sync / 1[56]:[^:]*:Athena:8303:/
-422.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
-424.9 "Ray of Light" sync / 1[56]:[^:]*:Anthropos:82EE:/
-431.5 "Superchain Coil/Superchain Burst" sync / 1[56]:[^:]*:Athena:82D[BC]:/
+380.2 "Apodialogos/Peridialogos" Ability { id: "830[01]", source: "Athena" }
+381.2 "Dialogos" Ability { id: "8302", source: "Athena" }
+387.9 "On the Soul" Ability { id: "8304", source: "Athena" }
+395.1 "--middle--" Ability { id: "8315", source: "Athena" }
+402.5 "Superchain Theory IIB" Ability { id: "86FB", source: "Athena" }
+408.6 "Paradeigma 4" Ability { id: "82ED", source: "Athena" }
+415.6 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
+418.6 "Parthenos" Ability { id: "8303", source: "Athena" }
+422.5 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
+424.9 "Ray of Light" Ability { id: "82EE", source: "Anthropos" }
+431.5 "Superchain Coil/Superchain Burst" Ability { id: "82D[BC]", source: "Athena" }
 
-434.3 "Unnatural Enchainment" sync / 1[56]:[^:]*:Athena:82DF:/
-435.4 "Sample" sync / 1[56]:[^:]*:Athena:82E0:/
-442.4 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-450.5 "On the Soul" sync / 1[56]:[^:]*:Athena:8304:/
-459.0 "--untargetable--" sync / 14:[^:]*:Athena:8556:/
-466.0 "Theos's Ultima (enrage)" sync / 1[56]:[^:]*:Athena:8556:/
+434.3 "Unnatural Enchainment" Ability { id: "82DF", source: "Athena" }
+435.4 "Sample" Ability { id: "82E0", source: "Athena" }
+442.4 "On the Soul" Ability { id: "8304", source: "Athena" }
+450.5 "On the Soul" Ability { id: "8304", source: "Athena" }
+459.0 "--untargetable--" StartsUsing { id: "8556", source: "Athena" }
+466.0 "Theos's Ultima (enrage)" Ability { id: "8556", source: "Athena" }
 
 
 ### Phase 2: Pallas Athena
 # -p 8682:1012.1
 # -ii 8678 831C 831D 879F 832C 87A0 8334 8325 8323 833D 8792 833E 86FD 831F 8683 8320 8322 8340 8328 834D 86F5 8337 8339 8341 8332 8335
 
-1007.1 "--sync--" sync / 14:[^:]*:Pallas Athena:8682:/ window 1100,10
-1012.1 "Ultima 1" sync / 1[56]:[^:]*:Pallas Athena:8682:/
-1024.2 "Palladian Grasp 1" sync / 1[56]:[^:]*:Pallas Athena:831A:/
-1027.4 "Palladian Grasp 2" sync / 1[56]:[^:]*:Pallas Athena:831B:/
-1040.8 "Gaiaochos 1" sync / 1[56]:[^:]*:Pallas Athena:8326:/
-1051.9 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
+1007.1 "--sync--" StartsUsing { id: "8682", source: "Pallas Athena" } window 1100,10
+1012.1 "Ultima 1" Ability { id: "8682", source: "Pallas Athena" }
+1024.2 "Palladian Grasp 1" Ability { id: "831A", source: "Pallas Athena" }
+1027.4 "Palladian Grasp 2" Ability { id: "831B", source: "Pallas Athena" }
+1040.8 "Gaiaochos 1" Ability { id: "8326", source: "Pallas Athena" }
+1051.9 "Summon Darkness" Ability { id: "832F", source: "Pallas Athena" }
 1059.0 "--tethers--"
-1063.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
+1063.8 "Ultima Ray" Ability { id: "8330", source: "Hemitheos" }
 
-1065.1 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
-1074.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
-1084.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
-1085.2 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+1065.1 "Missing Link" Ability { id: "8586", source: "Pallas Athena" }
+1074.1 "Demi Parhelion" Ability { id: "8327", source: "Pallas Athena" }
+1084.2 "Geocentrism" Ability { id: "832[AB9]", source: "Pallas Athena" }
+1085.2 "Divine Excoriation" Ability { id: "832E", source: "Pallas Athena" }
 
-1094.4 "Ultima 2" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
-1108.6 "The Classical Concepts 1" sync / 1[56]:[^:]*:Pallas Athena:8331:/
-1130.0 "Implode" sync / 1[56]:[^:]*:Concept of Water:8333:/
-1133.4 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/ duration 4
+1094.4 "Ultima 2" Ability { id: "86F6", source: "Pallas Athena" }
+1108.6 "The Classical Concepts 1" Ability { id: "8331", source: "Pallas Athena" }
+1130.0 "Implode" Ability { id: "8333", source: "Concept of Water" }
+1133.4 "Palladian Ray" Ability { id: "8324", source: "Pallas Athena" } duration 4
 
-1143.8 "Ultima 3" sync / 1[56]:[^:]*:Pallas Athena:8682:/
-1153.0 "--sync--" sync / 1[56]:[^:]*:Pallas Athena:8317:/
-1153.8 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1154.9 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1156.0 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1157.1 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1159.2 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+1143.8 "Ultima 3" Ability { id: "8682", source: "Pallas Athena" }
+1153.0 "--sync--" Ability { id: "8317", source: "Pallas Athena" }
+1153.8 "Crush Helm 1" #Ability { id: "8318", source: "Pallas Athena" }
+1154.9 "Crush Helm 2" #Ability { id: "8318", source: "Pallas Athena" }
+1156.0 "Crush Helm 3" #Ability { id: "8318", source: "Pallas Athena" }
+1157.1 "Crush Helm 4" #Ability { id: "8318", source: "Pallas Athena" }
+1159.2 "Crush Helm Buster" Ability { id: "8319", source: "Pallas Athena" }
 
-1173.2 "Caloric Theory 1" sync / 1[56]:[^:]*:Pallas Athena:8338:/
-1185.9 "Pyre Pulse 1" sync / 1[56]:[^:]*:Pallas Athena:833A:/
-1197.3 "Pyre Pulse 2" sync / 1[56]:[^:]*:Pallas Athena:833A:/
-1197.3 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+1173.2 "Caloric Theory 1" Ability { id: "8338", source: "Pallas Athena" }
+1185.9 "Pyre Pulse 1" Ability { id: "833A", source: "Pallas Athena" }
+1197.3 "Pyre Pulse 2" Ability { id: "833A", source: "Pallas Athena" }
+1197.3 "Dynamic Atmosphere" Ability { id: "833B", source: "Pallas Athena" }
 
-1207.6 "Ekpyrosis (cast)" sync / 1[56]:[^:]*:Pallas Athena:831E:/
-1215.4 "Ekpyrosis (proximity)" sync / 1[56]:[^:]*:Pallas Athena:8683:/
-1218.5 "Ekpyrosis (spread)" sync / 1[56]:[^:]*:Pallas Athena:8322:/
+1207.6 "Ekpyrosis (cast)" Ability { id: "831E", source: "Pallas Athena" }
+1215.4 "Ekpyrosis (proximity)" Ability { id: "8683", source: "Pallas Athena" }
+1218.5 "Ekpyrosis (spread)" Ability { id: "8322", source: "Pallas Athena" }
 
-1226.8 "Ultima 4" sync / 1[56]:[^:]*:Pallas Athena:8682:/
-1241.0 "Pangenesis" sync / 1[56]:[^:]*:Pallas Athena:833F:/
+1226.8 "Ultima 4" Ability { id: "8682", source: "Pallas Athena" }
+1241.0 "Pangenesis" Ability { id: "833F", source: "Pallas Athena" }
 
-1254.9 "Astral Advent/Umbral Advent 1" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
-1260.0 "Astral Advent/Umbral Advent 2" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
-1265.0 "Astral Advent/Umbral Advent 3" sync / 1[56]:[^:]*:Hemitheos:834[34]:/
-1277.4 "Factor In" sync / 1[56]:[^:]*:Forbidden Factor:8347:/
-1280.4 "Palladian Grasp 1" sync / 1[56]:[^:]*:Pallas Athena:831A:/
-1283.6 "Palladian Grasp 2" sync / 1[56]:[^:]*:Pallas Athena:831B:/
+1254.9 "Astral Advent/Umbral Advent 1" Ability { id: "834[34]", source: "Hemitheos" }
+1260.0 "Astral Advent/Umbral Advent 2" Ability { id: "834[34]", source: "Hemitheos" }
+1265.0 "Astral Advent/Umbral Advent 3" Ability { id: "834[34]", source: "Hemitheos" }
+1277.4 "Factor In" Ability { id: "8347", source: "Forbidden Factor" }
+1280.4 "Palladian Grasp 1" Ability { id: "831A", source: "Pallas Athena" }
+1283.6 "Palladian Grasp 2" Ability { id: "831B", source: "Pallas Athena" }
 
-1296.8 "The Classical Concepts 2" sync / 1[56]:[^:]*:Pallas Athena:8331:/
-1313.9 "Panta Rhei" sync / 1[56]:[^:]*:Pallas Athena:8336:/
-1322.7 "Palladian Ray" sync / 1[56]:[^:]*:Pallas Athena:8324:/ duration 4
-1325.2 "Implode" sync / 1[56]:[^:]*:Concept of Water:8333:/
+1296.8 "The Classical Concepts 2" Ability { id: "8331", source: "Pallas Athena" }
+1313.9 "Panta Rhei" Ability { id: "8336", source: "Pallas Athena" }
+1322.7 "Palladian Ray" Ability { id: "8324", source: "Pallas Athena" } duration 4
+1325.2 "Implode" Ability { id: "8333", source: "Concept of Water" }
 
-1333.1 "Ultima 5" sync / 1[56]:[^:]*:Pallas Athena:8682:/
-1342.2 "--sync--" sync / 1[56]:[^:]*:Pallas Athena:8317:/
-1343.0 "Crush Helm 1" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1344.1 "Crush Helm 2" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
+1333.1 "Ultima 5" Ability { id: "8682", source: "Pallas Athena" }
+1342.2 "--sync--" Ability { id: "8317", source: "Pallas Athena" }
+1343.0 "Crush Helm 1" #Ability { id: "8318", source: "Pallas Athena" }
+1344.1 "Crush Helm 2" #Ability { id: "8318", source: "Pallas Athena" }
 1345.2 "Crush Helm 3" #sync / 1[56]:[^:]*:Pallas Athena:8318:
-1346.3 "Crush Helm 4" #sync / 1[56]:[^:]*:Pallas Athena:8318:/
-1348.4 "Crush Helm Buster" sync / 1[56]:[^:]*:Pallas Athena:8319:/
+1346.3 "Crush Helm 4" #Ability { id: "8318", source: "Pallas Athena" }
+1348.4 "Crush Helm Buster" Ability { id: "8319", source: "Pallas Athena" }
 
-1362.5 "Caloric Theory 2" sync / 1[56]:[^:]*:Pallas Athena:8338:/
-1369.3 "Entropic Excess 1" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1372.3 "Entropic Excess 2" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1375.3 "Entropic Excess 3" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1378.3 "Entropic Excess 4" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1381.3 "Entropic Excess 5" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1384.3 "Entropic Excess 6" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1387.3 "Entropic Excess 7" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1390.3 "Entropic Excess 8" sync / 1[56]:[^:]*:Pallas Athena:833C:/ window 1.5,1.5
-1390.3 "Dynamic Atmosphere" sync / 1[56]:[^:]*:Pallas Athena:833B:/
+1362.5 "Caloric Theory 2" Ability { id: "8338", source: "Pallas Athena" }
+1369.3 "Entropic Excess 1" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1372.3 "Entropic Excess 2" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1375.3 "Entropic Excess 3" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1378.3 "Entropic Excess 4" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1381.3 "Entropic Excess 5" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1384.3 "Entropic Excess 6" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1387.3 "Entropic Excess 7" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1390.3 "Entropic Excess 8" Ability { id: "833C", source: "Pallas Athena" } window 1.5,1.5
+1390.3 "Dynamic Atmosphere" Ability { id: "833B", source: "Pallas Athena" }
 
-1392.6 "Ekpyrosis (cast)" sync / 1[56]:[^:]*:Pallas Athena:831E:/
-1400.4 "Ekpyrosis (proximity)" sync / 1[56]:[^:]*:Pallas Athena:8683:/
-1403.5 "Ekpyrosis (spread)" sync / 1[56]:[^:]*:Pallas Athena:8322:/
+1392.6 "Ekpyrosis (cast)" Ability { id: "831E", source: "Pallas Athena" }
+1400.4 "Ekpyrosis (proximity)" Ability { id: "8683", source: "Pallas Athena" }
+1403.5 "Ekpyrosis (spread)" Ability { id: "8322", source: "Pallas Athena" }
 
-1411.7 "Ultima 6" sync / 1[56]:[^:]*:Pallas Athena:8682:/
-1425.9 "Gaiaochos 2" sync / 1[56]:[^:]*:Pallas Athena:8326:/
-1437.0 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
-1443.1 "Demi Parhelion" sync / 1[56]:[^:]*:Pallas Athena:8327:/
+1411.7 "Ultima 6" Ability { id: "8682", source: "Pallas Athena" }
+1425.9 "Gaiaochos 2" Ability { id: "8326", source: "Pallas Athena" }
+1437.0 "Summon Darkness" Ability { id: "832F", source: "Pallas Athena" }
+1443.1 "Demi Parhelion" Ability { id: "8327", source: "Pallas Athena" }
 1448.1 "--tethers--"
-1453.2 "Geocentrism" sync / 1[56]:[^:]*:Pallas Athena:832[AB9]:/
-1453.8 "Ultima Ray" sync / 1[56]:[^:]*:Hemitheos:8330:/
-1454.0 "Missing Link" sync / 1[56]:[^:]*:Pallas Athena:8586:/
-1457.1 "Divine Excoriation" sync / 1[56]:[^:]*:Pallas Athena:832E:/
+1453.2 "Geocentrism" Ability { id: "832[AB9]", source: "Pallas Athena" }
+1453.8 "Ultima Ray" Ability { id: "8330", source: "Hemitheos" }
+1454.0 "Missing Link" Ability { id: "8586", source: "Pallas Athena" }
+1457.1 "Divine Excoriation" Ability { id: "832E", source: "Pallas Athena" }
 
-1465.2 "Summon Darkness" sync / 1[56]:[^:]*:Pallas Athena:832F:/
-1476.2 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
-1480.4 "Ultima 7" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
-1490.1 "Ultima Blow" #sync / 1[56]:[^:]*:Hemitheos:8348:/
-1494.6 "Ultima 8" sync / 1[56]:[^:]*:Pallas Athena:86F6:/
+1465.2 "Summon Darkness" Ability { id: "832F", source: "Pallas Athena" }
+1476.2 "Ultima Blow" #Ability { id: "8348", source: "Hemitheos" }
+1480.4 "Ultima 7" Ability { id: "86F6", source: "Pallas Athena" }
+1490.1 "Ultima Blow" #Ability { id: "8348", source: "Hemitheos" }
+1494.6 "Ultima 8" Ability { id: "86F6", source: "Pallas Athena" }
 
-1508.4 "--sync--" sync / 14:[^:]*:Pallas Athena:8349:/ window 30,30
-1523.4 "Ignorabimus" sync / 1[56]:[^:]*:Pallas Athena:8349:/
+1508.4 "--sync--" StartsUsing { id: "8349", source: "Pallas Athena" } window 30,30
+1523.4 "Ignorabimus" Ability { id: "8349", source: "Pallas Athena" }
 
 
 ### Ability Chart

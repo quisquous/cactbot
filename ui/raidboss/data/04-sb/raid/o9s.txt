@@ -5,11 +5,11 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 
 ## Branch between Fire/Water paths
-10.7 "--sync--" sync / 14:[^:]*:Chaos:317(2|3):/ window 12,12 jump 2010.1 # Long/lat means water path
-10.7 "--sync--" sync / 14:[^:]*:Chaos:3171:/ window 12,12 jump 1010.7 # Edict means fire path
+10.7 "--sync--" StartsUsing { id: "317(2|3)", source: "Chaos" } window 12,12 jump 2010.1 # Long/lat means water path
+10.7 "--sync--" StartsUsing { id: "3171", source: "Chaos" } window 12,12 jump 1010.7 # Edict means fire path
 
 # Fake water path
 15.7 "Long/Lat Implosion?"
@@ -26,69 +26,69 @@ hideall "--sync--"
 #############
 
 # Fire phase
-1016.7 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-1029.9 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
-1041.7 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1047.6 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-1055.8 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1066.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-1079.1 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/ # drift 0.028
-1090.9 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1098.8 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
-1104.9 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1109.8 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
-1118.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+1016.7 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+1029.9 "Blaze" Ability { id: "3206", source: "Chaos" }
+1041.7 "(T/H) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1047.6 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+1055.8 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1066.8 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+1079.1 "Blaze" Ability { id: "3206", source: "Chaos" } # drift 0.028
+1090.9 "(T/H) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1098.8 "Knock" Ability { id: "317E", source: "Chaos" }
+1104.9 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1109.8 "Big Bang" Ability { id: "3180", source: "Chaos" }
+1118.6 "Fiendish Orbs" Ability { id: "317C", source: "Chaos" }
 
 # Wind phase
-1141.0 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
-1153.2 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
-1160.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
-1163.4 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-1181.6 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-1194.0 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
-1207.2 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
-1214.2 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
-1225.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+1141.0 "Cyclone" Ability { id: "3208", source: "Chaos" }
+1153.2 "Umbra Smash" Ability { id: "3175", source: "Chaos" }
+1160.7 "Cyclone" Ability { id: "318F", source: "Chaos" }
+1163.4 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+1181.6 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+1194.0 "Cyclone" Ability { id: "3208", source: "Chaos" }
+1207.2 "Knock" Ability { id: "317F", source: "Chaos" }
+1214.2 "Big Bang" Ability { id: "3181", source: "Chaos" }
+1225.6 "Fiendish Orbs" Ability { id: "317D", source: "Chaos" }
 
 # Orb phase
-1251.0 "Bowels of Agony" sync / 1[56]:[^:]*:Chaos:318A:/ # drift 0.04
-1265.1 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1268.1 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1293.1 "Soul of Chaos" sync / 1[56]:[^:]*:Chaos:318B:/ window 500,500
+1251.0 "Bowels of Agony" Ability { id: "318A", source: "Chaos" } # drift 0.04
+1265.1 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1268.1 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1293.1 "Soul of Chaos" Ability { id: "318B", source: "Chaos" } window 500,500
 
 # Water phase
-1320.1 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-1334.5 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-1343.6 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
-1345.1 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1352.1 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1353.8 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-1371.9 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-1384.3 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-1395.0 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1395.4 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
-1402.0 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1402.3 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
-1413.7 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+1320.1 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+1334.5 "Tsunami" Ability { id: "3207", source: "Chaos" }
+1343.6 "Umbra Smash" Ability { id: "3175", source: "Chaos" }
+1345.1 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1352.1 "(DPS) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1353.8 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+1371.9 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+1384.3 "Tsunami" Ability { id: "3207", source: "Chaos" }
+1395.0 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1395.4 "Knock" Ability { id: "317F", source: "Chaos" }
+1402.0 "(DPS) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1402.3 "Big Bang" Ability { id: "3181", source: "Chaos" }
+1413.7 "Fiendish Orbs" Ability { id: "317D", source: "Chaos" }
 
 # Earth phase
-1436.0 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
-1446.0 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
-1449.6 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-1468.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-1491.1 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
-1494.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
-1499.1 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
-1507.9 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+1436.0 "Earthquake" Ability { id: "3209", source: "Chaos" }
+1446.0 "Earthquake" Ability { id: "3190", source: "Chaos" }
+1449.6 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+1468.8 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+1491.1 "Earthquake" Ability { id: "3190", source: "Chaos" }
+1494.2 "Knock" Ability { id: "317E", source: "Chaos" }
+1499.1 "Big Bang" Ability { id: "3180", source: "Chaos" }
+1507.9 "Fiendish Orbs" Ability { id: "317C", source: "Chaos" }
 
 # Enrage phase
-1538.4 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
-1546.1 "(ALL) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-1551.4 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-1558.0 "(ALL) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-1564.6 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+1538.4 "Blaze" Ability { id: "3206", source: "Chaos" }
+1546.1 "(ALL) Stray Flames" Ability { id: "318C", source: "Chaos" }
+1551.4 "Tsunami" Ability { id: "3207", source: "Chaos" }
+1558.0 "(ALL) Stray Spray" Ability { id: "318D", source: "Chaos" }
+1564.6 "Cyclone" Ability { id: "3208", source: "Chaos" }
 1571.3 "Stray Gusts"
-1577.6 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+1577.6 "Earthquake" Ability { id: "3209", source: "Chaos" }
 1585.9 "Stray Earth"
 
 ##############
@@ -96,68 +96,68 @@ hideall "--sync--"
 ##############
 
 # Water phase
-2015.7 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-2029.7 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-2038.7 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
-2040.2 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-2048.8 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-2066.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-2078.8 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-2096.3 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-2089.6 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
-2096.3 "(DPS) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-2096.5 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
-2107.8 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+2015.7 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+2029.7 "Tsunami" Ability { id: "3207", source: "Chaos" }
+2038.7 "Umbra Smash" Ability { id: "3175", source: "Chaos" }
+2040.2 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+2048.8 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+2066.8 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+2078.8 "Tsunami" Ability { id: "3207", source: "Chaos" }
+2096.3 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+2089.6 "Knock" Ability { id: "317F", source: "Chaos" }
+2096.3 "(DPS) Stray Spray" Ability { id: "318D", source: "Chaos" }
+2096.5 "Big Bang" Ability { id: "3181", source: "Chaos" }
+2107.8 "Fiendish Orbs" Ability { id: "317D", source: "Chaos" }
 
 # Earth phase
-2129.8 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
-2139.8 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
-2143.3 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-2162.3 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-2174.3 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
-2184.3 "Earthquake" sync / 1[56]:[^:]*:Chaos:3190:/
-2187.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
-2192.0 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
-2200.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+2129.8 "Earthquake" Ability { id: "3209", source: "Chaos" }
+2139.8 "Earthquake" Ability { id: "3190", source: "Chaos" }
+2143.3 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+2162.3 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+2174.3 "Earthquake" Ability { id: "3209", source: "Chaos" }
+2184.3 "Earthquake" Ability { id: "3190", source: "Chaos" }
+2187.2 "Knock" Ability { id: "317E", source: "Chaos" }
+2192.0 "Big Bang" Ability { id: "3180", source: "Chaos" }
+2200.6 "Fiendish Orbs" Ability { id: "317C", source: "Chaos" }
 
 # Orb phase
-2225.6 "Bowels of Agony" sync / 1[56]:[^:]*:Chaos:318A:/ # drift 0.038
-2239.6 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2242.6 "(T/H) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-2267.6 "Soul of Chaos" sync / 1[56]:[^:]*:Chaos:318B:/ window 500,500
+2225.6 "Bowels of Agony" Ability { id: "318A", source: "Chaos" } # drift 0.038
+2239.6 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2242.6 "(T/H) Stray Spray" Ability { id: "318D", source: "Chaos" }
+2267.6 "Soul of Chaos" Ability { id: "318B", source: "Chaos" } window 500,500
 
 # Fire phase
-2295.3 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-2308.3 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
-2320.0 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2325.8 "Long/Lat Implosion" sync / 1[56]:[^:]*:Chaos:317(2|3):/
-2334.0 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2344.8 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-2356.8 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
-2368.5 "(T/H) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2376.2 "Knock" sync / 1[56]:[^:]*:Chaos:317E:/
-2382.5 "(DPS) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2387.0 "Big Bang" sync / 1[56]:[^:]*:Chaos:3180:/
-2395.6 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317C:/
+2295.3 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+2308.3 "Blaze" Ability { id: "3206", source: "Chaos" }
+2320.0 "(T/H) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2325.8 "Long/Lat Implosion" Ability { id: "317(2|3)", source: "Chaos" }
+2334.0 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2344.8 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+2356.8 "Blaze" Ability { id: "3206", source: "Chaos" }
+2368.5 "(T/H) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2376.2 "Knock" Ability { id: "317E", source: "Chaos" }
+2382.5 "(DPS) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2387.0 "Big Bang" Ability { id: "3180", source: "Chaos" }
+2395.6 "Fiendish Orbs" Ability { id: "317C", source: "Chaos" }
 
 # Wind phase
-2417.6 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
-2429.6 "Umbra Smash" sync / 1[56]:[^:]*:Chaos:3175:/
-2437.1 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
-2439.7 "Damning Edict" sync / 1[56]:[^:]*:Chaos:3171:/
-2457.7 "Chaotic Dispersion" sync / 1[56]:[^:]*:Chaos:3170:/
-2469.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
-2482.6 "Knock" sync / 1[56]:[^:]*:Chaos:317F:/
-2482.7 "Cyclone" sync / 1[56]:[^:]*:Chaos:318F:/
-2489.4 "Big Bang" sync / 1[56]:[^:]*:Chaos:3181:/
-2500.7 "Fiendish Orbs" sync / 1[56]:[^:]*:Chaos:317D:/
+2417.6 "Cyclone" Ability { id: "3208", source: "Chaos" }
+2429.6 "Umbra Smash" Ability { id: "3175", source: "Chaos" }
+2437.1 "Cyclone" Ability { id: "318F", source: "Chaos" }
+2439.7 "Damning Edict" Ability { id: "3171", source: "Chaos" }
+2457.7 "Chaotic Dispersion" Ability { id: "3170", source: "Chaos" }
+2469.7 "Cyclone" Ability { id: "3208", source: "Chaos" }
+2482.6 "Knock" Ability { id: "317F", source: "Chaos" }
+2482.7 "Cyclone" Ability { id: "318F", source: "Chaos" }
+2489.4 "Big Bang" Ability { id: "3181", source: "Chaos" }
+2500.7 "Fiendish Orbs" Ability { id: "317D", source: "Chaos" }
 
 # Enrage phase
-2530.8 "Blaze" sync / 1[56]:[^:]*:Chaos:3206:/
-2538.5 "(ALL) Stray Flames" sync / 1[56]:[^:]*:Chaos:318C:/
-2543.8 "Tsunami" sync / 1[56]:[^:]*:Chaos:3207:/
-2550.4 "(ALL) Stray Spray" sync / 1[56]:[^:]*:Chaos:318D:/
-2556.9 "Cyclone" sync / 1[56]:[^:]*:Chaos:3208:/
+2530.8 "Blaze" Ability { id: "3206", source: "Chaos" }
+2538.5 "(ALL) Stray Flames" Ability { id: "318C", source: "Chaos" }
+2543.8 "Tsunami" Ability { id: "3207", source: "Chaos" }
+2550.4 "(ALL) Stray Spray" Ability { id: "318D", source: "Chaos" }
+2556.9 "Cyclone" Ability { id: "3208", source: "Chaos" }
 2563.5 "Stray Gusts"
-2569.7 "Earthquake" sync / 1[56]:[^:]*:Chaos:3209:/
+2569.7 "Earthquake" Ability { id: "3209", source: "Chaos" }
 2578.0 "Stray Earth"

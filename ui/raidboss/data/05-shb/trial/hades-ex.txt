@@ -7,33 +7,33 @@ hideall "--sync--"
 
 ### Phase 1
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.6 "--sync--" sync / 14:[^:]*:Hades:47A5:/ window 10,10
-9.6 "Ancient Double" sync / 1[56]:[^:]*:Hades:47A5:/
-18.7 "Shadow Spread 1" sync / 1[56]:[^:]*:Hades:47A9:/
-21.7 "Shadow Spread 2" sync / 1[56]:[^:]*:Hades:47AA:/
-29.6 "Bad Faith 1" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
-32.7 "Bad Faith 2" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
-40.9 "Ravenous Assault 1" sync / 1[56]:[^:]*:Hades:47A6:/
-44.1 "Ravenous Assault 2" sync / 1[56]:[^:]*:Hades:47A7:/
-50.2 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
-58.3 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
-59.2 "Magic Chakram/Spear" #sync / 1[56]:[^:]*:Arcane Globe:47B5:/
-67.4 "Broken Faith" sync / 1[56]:[^:]*:Hades:47B1:/ duration 35.3
-106.7 "Arcane Utterance" sync / 1[56]:[^:]*:Hades:47B3:/
-114.8 "Arcane Control" sync / 1[56]:[^:]*:Hades:47B4:/
-115.7 "Magic Spear/Chakram" #sync / 1[56]:[^:]*:Arcane Font:47B6:/
-128.9 "Shadow Spread 1" sync / 1[56]:[^:]*:Hades:47A9:/
-131.9 "Shadow Spread 2" sync / 1[56]:[^:]*:Hades:47AA:/
-139.8 "Bad Faith 1" sync / 1[56]:[^:]*:Hades:(47AE|47AD):/
-142.9 "Bad Faith 2" sync / 1[56]:[^:]*:Hades:(47AF|47B0):/
-151.1 "Ravenous Assault 1" sync / 1[56]:[^:]*:Hades:47A6:/
-154.3 "Ravenous Assault 2" sync / 1[56]:[^:]*:Hades:47A7:/
-168.6 "Ancient Dark IV" sync / 1[56]:[^:]*:Hades:47B7:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.6 "--sync--" StartsUsing { id: "47A5", source: "Hades" } window 10,10
+9.6 "Ancient Double" Ability { id: "47A5", source: "Hades" }
+18.7 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }
+21.7 "Shadow Spread 2" Ability { id: "47AA", source: "Hades" }
+29.6 "Bad Faith 1" Ability { id: ["47AE", "47AD"], source: "Hades" }
+32.7 "Bad Faith 2" Ability { id: ["47AF", "47B0"], source: "Hades" }
+40.9 "Ravenous Assault 1" Ability { id: "47A6", source: "Hades" }
+44.1 "Ravenous Assault 2" Ability { id: "47A7", source: "Hades" }
+50.2 "Arcane Utterance" Ability { id: "47B3", source: "Hades" }
+58.3 "Arcane Control" Ability { id: "47B4", source: "Hades" }
+59.2 "Magic Chakram/Spear" #Ability { id: "47B5", source: "Arcane Globe" }
+67.4 "Broken Faith" Ability { id: "47B1", source: "Hades" } duration 35.3
+106.7 "Arcane Utterance" Ability { id: "47B3", source: "Hades" }
+114.8 "Arcane Control" Ability { id: "47B4", source: "Hades" }
+115.7 "Magic Spear/Chakram" #Ability { id: "47B6", source: "Arcane Font" }
+128.9 "Shadow Spread 1" Ability { id: "47A9", source: "Hades" }
+131.9 "Shadow Spread 2" Ability { id: "47AA", source: "Hades" }
+139.8 "Bad Faith 1" Ability { id: ["47AE", "47AD"], source: "Hades" }
+142.9 "Bad Faith 2" Ability { id: ["47AF", "47B0"], source: "Hades" }
+151.1 "Ravenous Assault 1" Ability { id: "47A6", source: "Hades" }
+154.3 "Ravenous Assault 2" Ability { id: "47A7", source: "Hades" }
+168.6 "Ancient Dark IV" Ability { id: "47B7", source: "Hades" }
 
 
 ### Phase 2
-200.0 "--sync--" sync / 22:........:Hades:........:Hades:00/ window 200,0
+200.0 "--sync--" NameToggle { name: "Hades", toggle: "00" } window 200,0
 # 00:0044:Hades:Pitiful, malformed, wretched creatures!
 # 00:0044:Hades:Your call for aid beyond this world will avail you naught!
 # 00:0044:Hades:My brethren are legion!
@@ -41,98 +41,98 @@ hideall "--sync--"
 # 00:0044:Hades:Come, Nabriales!
 # 00:0044:Hades:Tremble and fall to the ground before me!
 227.9 "--targetable--"
-232.0 "--sync--" sync / 14:[^:]*:Nabriales's Shade:47B8:/ window 232,0
-238.0 "Comet 1" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
-241.0 "Comet 2" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
-241.2 "Dark II" sync / 1[56]:[^:]*:Shadow of the Ancients:47BA:/
-243.9 "Comet 3" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
-246.9 "Comet 4" #sync / 1[56]:[^:]*:Nabriales's Shade:4951:/
-254.2 "Ancient Water III" sync / 1[56]:[^:]*:Shadow of the Ancients:47BC:/
-254.2 "Ancient Darkness" sync / 1[56]:[^:]*:Shadow of the Ancients:47BB:/
-259.7 "Quake III" sync / 1[56]:[^:]*:Nabriales's Shade:47B8:/
+232.0 "--sync--" StartsUsing { id: "47B8", source: "Nabriales's Shade" } window 232,0
+238.0 "Comet 1" #Ability { id: "4951", source: "Nabriales's Shade" }
+241.0 "Comet 2" #Ability { id: "4951", source: "Nabriales's Shade" }
+241.2 "Dark II" Ability { id: "47BA", source: "Shadow of the Ancients" }
+243.9 "Comet 3" #Ability { id: "4951", source: "Nabriales's Shade" }
+246.9 "Comet 4" #Ability { id: "4951", source: "Nabriales's Shade" }
+254.2 "Ancient Water III" Ability { id: "47BC", source: "Shadow of the Ancients" }
+254.2 "Ancient Darkness" Ability { id: "47BB", source: "Shadow of the Ancients" }
+259.7 "Quake III" Ability { id: "47B8", source: "Nabriales's Shade" }
 # 00:0044:Hades:Emerge, Lahabrea! Rise, Igeyorhm!
 272.3 "--targetable--"
-277.5 "Annihilation" sync / 1[56]:[^:]*:Lahabrea's and Igeyorhm's Shades:47BF:/ window 50,10
-277.5 "Fire Sphere" #sync / 1[56]:[^:]*:Lahabrea's Shade:47BE:/
-277.5 "Blizzard Sphere" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47BD:/
-295.6 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
-295.6 "Blizzard IV" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
-299.5 "Dark Flame" sync / 1[56]:[^:]*:Shadow of the Ancients:47C6:/
-299.5 "Dark Freeze" #sync / 1[56]:[^:]*:Shadow of the Ancients:47C4:/
-307.6 "Annihilation" sync / 1[56]:[^:]*:Lahabrea's and Igeyorhm's Shades:47BF:/
-307.6 "Fire Sphere" #sync / 1[56]:[^:]*:Lahabrea's Shade:47BE:/
-307.6 "Blizzard Sphere" #sync / 1[56]:[^:]*:Igeyorhm's Shade:47BD:/
-320.8 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
-320.8 "Blizzard IV" sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
-336.6 "Fire IV" sync / 1[56]:[^:]*:Lahabrea's Shade:47C2:/
-336.6 "Blizzard IV" sync / 1[56]:[^:]*:Igeyorhm's Shade:47C3:/
-355.2 "Shadow Flare" #sync / 1[56]:[^:]*:Lahabrea's Shade:47FD:/
+277.5 "Annihilation" Ability { id: "47BF", source: "Lahabrea's and Igeyorhm's Shades" } window 50,10
+277.5 "Fire Sphere" #Ability { id: "47BE", source: "Lahabrea's Shade" }
+277.5 "Blizzard Sphere" #Ability { id: "47BD", source: "Igeyorhm's Shade" }
+295.6 "Fire IV" Ability { id: "47C2", source: "Lahabrea's Shade" }
+295.6 "Blizzard IV" #Ability { id: "47C3", source: "Igeyorhm's Shade" }
+299.5 "Dark Flame" Ability { id: "47C6", source: "Shadow of the Ancients" }
+299.5 "Dark Freeze" #Ability { id: "47C4", source: "Shadow of the Ancients" }
+307.6 "Annihilation" Ability { id: "47BF", source: "Lahabrea's and Igeyorhm's Shades" }
+307.6 "Fire Sphere" #Ability { id: "47BE", source: "Lahabrea's Shade" }
+307.6 "Blizzard Sphere" #Ability { id: "47BD", source: "Igeyorhm's Shade" }
+320.8 "Fire IV" Ability { id: "47C2", source: "Lahabrea's Shade" }
+320.8 "Blizzard IV" Ability { id: "47C3", source: "Igeyorhm's Shade" }
+336.6 "Fire IV" Ability { id: "47C2", source: "Lahabrea's Shade" }
+336.6 "Blizzard IV" Ability { id: "47C3", source: "Igeyorhm's Shade" }
+355.2 "Shadow Flare" #Ability { id: "47FD", source: "Lahabrea's Shade" }
 
 
 ### Phase 3
-493.0 "--sync--" sync / 00:0044:Hades:Our plea transcends/ window 500,0
+493.0 "--sync--" GameLog { code: "0044", name: "Hades", line: "Our plea transcends.*?" } window 500,0
 # 00:0044:Hades:At last, you are one!
 499.9 "--targetable--"
-500.0 "--sync--" sync / 14:[^:]*:Ascian Prime's Shade:47C8:/ window 500,0
-510.0 "Universal Manipulation" sync / 1[56]:[^:]*:Ascian Prime's Shade:47C8:/
-520.2 "Ancient Circle" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CA:/
-522.2 "Death Shriek" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CB:/
-524.2 "Forked Lightning" sync / 1[56]:[^:]*:Ascian Prime's Shade:47C9:/
-531.2 "Blight" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CC:/
-542.6 "Height Of Chaos" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D1:/
-552.8 "Megiddo Flame" sync / 1[56]:[^:]*:Ascian Prime's Shade:47CD:/
-561.9 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D0:/
-569.4 "Ancient Eruption" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D2:/
-580.8 "Shadow Flare" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D0:/
-609.3 "Shadow Flare Enrage" sync / 1[56]:[^:]*:Ascian Prime's Shade:47D4:/
+500.0 "--sync--" StartsUsing { id: "47C8", source: "Ascian Prime's Shade" } window 500,0
+510.0 "Universal Manipulation" Ability { id: "47C8", source: "Ascian Prime's Shade" }
+520.2 "Ancient Circle" Ability { id: "47CA", source: "Ascian Prime's Shade" }
+522.2 "Death Shriek" Ability { id: "47CB", source: "Ascian Prime's Shade" }
+524.2 "Forked Lightning" Ability { id: "47C9", source: "Ascian Prime's Shade" }
+531.2 "Blight" Ability { id: "47CC", source: "Ascian Prime's Shade" }
+542.6 "Height Of Chaos" Ability { id: "47D1", source: "Ascian Prime's Shade" }
+552.8 "Megiddo Flame" Ability { id: "47CD", source: "Ascian Prime's Shade" }
+561.9 "Shadow Flare" Ability { id: "47D0", source: "Ascian Prime's Shade" }
+569.4 "Ancient Eruption" Ability { id: "47D2", source: "Ascian Prime's Shade" }
+580.8 "Shadow Flare" Ability { id: "47D0", source: "Ascian Prime's Shade" }
+609.3 "Shadow Flare Enrage" Ability { id: "47D4", source: "Ascian Prime's Shade" }
 
 
 ### Phase 4
-750.2 "--sync--" sync / 22:........:Ascian Prime's Shade:........:Ascian Prime's Shade:00/ window 800,0
+750.2 "--sync--" NameToggle { name: "Ascian Prime's Shade", toggle: "00" } window 800,0
 799.9 "--targetable--"
-800.0 "--sync--" sync / 14:[^:]*:Hades:47D5:/ window 800,0
-804.0 "Again The Majestic" sync / 1[56]:[^:]*:Hades:47D5:/
-810.6 "Comet 1" sync / 1[56]:[^:]*:Hades:4952:/
-812.2 "Captivity" sync / 1[56]:[^:]*:Hades:47D[67]:/
-816.6 "Comet 2" sync / 1[56]:[^:]*:Hades:4952:/
-822.6 "Comet 3" sync / 1[56]:[^:]*:Hades:4952:/
-828.6 "Comet 4" sync / 1[56]:[^:]*:Hades:4952:/
-837.2 "Again The Martyr" sync / 1[56]:[^:]*:Hades:47DE:/
-846.3 "Wail Of The Lost" sync / 1[56]:[^:]*:Hades:47E1:/
-848.4 "Dark Flame" sync / 1[56]:[^:]*:Hades:47E0:/
-848.4 "Dark Freeze" sync / 1[56]:[^:]*:Hades:47DF:/
-856.5 "Again The Abyssal Celebrant" sync / 1[56]:[^:]*:Hades:47E2:/
-864.6 "Shadow Spread x3" #sync / 1[56]:[^:]*:Hades:47E4:/
-865.6 "Megiddo Flame x3" #sync / 1[56]:[^:]*:Hades:47E8:/
-865.6 "Nether Blast x3" #sync / 1[56]:[^:]*:Hades:47E6:/
-876.7 "Dark Seal" sync / 1[56]:[^:]*:Hades:47E9:/
-884.8 "Purgation/Stream" sync / 1[56]:[^:]*:Hades:47E[AB]:/
-892.9 "Stream/Purgation" sync / 1[56]:[^:]*:Hades:47E[AB]:/
-904.1 "Dark Seal" sync / 1[56]:[^:]*:Hades:47E9:/
-912.2 "Purgation/Stream" sync / 1[56]:[^:]*:Hades:47E[AB]:/
-918.3 "Stream/Purgation" sync / 1[56]:[^:]*:Hades:47E[AB]:/
-950.2 "Titanomachy Enrage" sync / 1[56]:[^:]*:Hades:47EF:/
+800.0 "--sync--" StartsUsing { id: "47D5", source: "Hades" } window 800,0
+804.0 "Again The Majestic" Ability { id: "47D5", source: "Hades" }
+810.6 "Comet 1" Ability { id: "4952", source: "Hades" }
+812.2 "Captivity" Ability { id: "47D[67]", source: "Hades" }
+816.6 "Comet 2" Ability { id: "4952", source: "Hades" }
+822.6 "Comet 3" Ability { id: "4952", source: "Hades" }
+828.6 "Comet 4" Ability { id: "4952", source: "Hades" }
+837.2 "Again The Martyr" Ability { id: "47DE", source: "Hades" }
+846.3 "Wail Of The Lost" Ability { id: "47E1", source: "Hades" }
+848.4 "Dark Flame" Ability { id: "47E0", source: "Hades" }
+848.4 "Dark Freeze" Ability { id: "47DF", source: "Hades" }
+856.5 "Again The Abyssal Celebrant" Ability { id: "47E2", source: "Hades" }
+864.6 "Shadow Spread x3" #Ability { id: "47E4", source: "Hades" }
+865.6 "Megiddo Flame x3" #Ability { id: "47E8", source: "Hades" }
+865.6 "Nether Blast x3" #Ability { id: "47E6", source: "Hades" }
+876.7 "Dark Seal" Ability { id: "47E9", source: "Hades" }
+884.8 "Purgation/Stream" Ability { id: "47E[AB]", source: "Hades" }
+892.9 "Stream/Purgation" Ability { id: "47E[AB]", source: "Hades" }
+904.1 "Dark Seal" Ability { id: "47E9", source: "Hades" }
+912.2 "Purgation/Stream" Ability { id: "47E[AB]", source: "Hades" }
+918.3 "Stream/Purgation" Ability { id: "47E[AB]", source: "Hades" }
+950.2 "Titanomachy Enrage" Ability { id: "47EF", source: "Hades" }
 
 
 ### Phase 5
-1200.0 "--sync--" sync / 14:[^:]*:Hades:4948:/ window 1200,0
-1204.0 "Life In Captivity" sync / 1[56]:[^:]*:Hades:4948:/
-1207.2 "--sync--" sync / 1[56]:[^:]*:Hades:47D9:/
-1210.2 "--sync--" sync / 1[56]:[^:]*:Hades:4949:/
-1242.3 "--sync--" sync / 1[56]:[^:]*:Hades:494A:/
+1200.0 "--sync--" StartsUsing { id: "4948", source: "Hades" } window 1200,0
+1204.0 "Life In Captivity" Ability { id: "4948", source: "Hades" }
+1207.2 "--sync--" Ability { id: "47D9", source: "Hades" }
+1210.2 "--sync--" Ability { id: "4949", source: "Hades" }
+1242.3 "--sync--" Ability { id: "494A", source: "Hades" }
 1282.4 "--targetable--"
-1286.6 "Dark Current" sync / 1[56]:[^:]*:Hades:47F0:/
-1311.2 "Gigantomachy" sync / 1[56]:[^:]*:Hades:47F3:/
-1318.4 "--sync--" sync / 1[56]:[^:]*:Hades:47F4:/
-1318.8 "Quadrastrike 1" #sync / 1[56]:[^:]*:Hades:47F5:/
-1320.2 "Quadrastrike 2" #sync / 1[56]:[^:]*:Hades:47F5:/
-1323.8 "Quadrastrike Tower" sync / 1[56]:[^:]*:Hades:47F6:/
-1330.6 "Quadrastrike Bleed" sync / 1[56]:[^:]*:Hades:47F8:/
-1344.5 "Dark Current" sync / 1[56]:[^:]*:Hades:47F0:/
-1369.0 "Gigantomachy" sync / 1[56]:[^:]*:Hades:47F3:/
-1376.2 "--sync--" sync / 1[56]:[^:]*:Hades:47F4:/
-1376.6 "Quadrastrike 1" #sync / 1[56]:[^:]*:Hades:47F5:/
-1378.0 "Quadrastrike 2" #sync / 1[56]:[^:]*:Hades:47F5:/
-1381.7 "Quadrastrike Tower" sync / 1[56]:[^:]*:Hades:47F6:/
-1388.5 "Quadrastrike Bleed" sync / 1[56]:[^:]*:Hades:47F8:/
-1426.5 "Gigantomachy Enrage" sync / 1[56]:[^:]*:Hades:47F9:/
+1286.6 "Dark Current" Ability { id: "47F0", source: "Hades" }
+1311.2 "Gigantomachy" Ability { id: "47F3", source: "Hades" }
+1318.4 "--sync--" Ability { id: "47F4", source: "Hades" }
+1318.8 "Quadrastrike 1" #Ability { id: "47F5", source: "Hades" }
+1320.2 "Quadrastrike 2" #Ability { id: "47F5", source: "Hades" }
+1323.8 "Quadrastrike Tower" Ability { id: "47F6", source: "Hades" }
+1330.6 "Quadrastrike Bleed" Ability { id: "47F8", source: "Hades" }
+1344.5 "Dark Current" Ability { id: "47F0", source: "Hades" }
+1369.0 "Gigantomachy" Ability { id: "47F3", source: "Hades" }
+1376.2 "--sync--" Ability { id: "47F4", source: "Hades" }
+1376.6 "Quadrastrike 1" #Ability { id: "47F5", source: "Hades" }
+1378.0 "Quadrastrike 2" #Ability { id: "47F5", source: "Hades" }
+1381.7 "Quadrastrike Tower" Ability { id: "47F6", source: "Hades" }
+1388.5 "Quadrastrike Bleed" Ability { id: "47F8", source: "Hades" }
+1426.5 "Gigantomachy Enrage" Ability { id: "47F9", source: "Hades" }

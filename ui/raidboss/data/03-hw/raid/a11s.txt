@@ -10,212 +10,212 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 7,5
-9.2 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.2 "--sync--" StartsUsing { id: "1A7[A9]", source: "Cruise Chaser" } window 7,5
+9.2 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
 
 # skippable
-17.3 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
+17.3 "Optical Sight (clock/out)" Ability { id: "1A6[CD]", source: "Cruise Chaser" }
 
 # skippable
-33.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-40.6 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+33.4 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+40.6 "Spin Crusher" Ability { id: "1A85", source: "Cruise Chaser" }
 
 # skippable
-45.8 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/ window 50,5
+45.8 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." } window 50,5
 
 # If we jump to this laser sword immediately after first, the timing is:
 # 9.2 (first sword) 21.7 (second sword)
 # Sync to somewhere that will catch t=18.7 - 2.5 seconds = ~36 window (at least)
-51.8 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 40,5
-54.8 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+51.8 "--sync--" StartsUsing { id: "1A7[A9]", source: "Cruise Chaser" } window 40,5
+54.8 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
 55.8 "E.D.D. Armored Pauldron"
-64.0 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
-81.2 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+64.0 "Spin Crusher" Ability { id: "1A85", source: "Cruise Chaser" }
+81.2 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
 
-85.3 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 30,5
-88.3 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+85.3 "--sync--" StartsUsing { id: "1A7[A9]", source: "Cruise Chaser" } window 30,5
+88.3 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
 
 # GA-100 in the first phase.  WHO KNEW?
 # There's a question mark because nobody should ever see this.
-101.6 "GA-100?" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/
+101.6 "GA-100?" Ability { id: "1A76", source: "Cruise Chaser" }
 
 # can skip add and jump here
-112.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A6E:/ window 113,5
-114.7 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
-119.9 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
+112.7 "--sync--" StartsUsing { id: "1A6E", source: "Cruise Chaser" } window 113,5
+114.7 "Optical Sight (bait)" Ability { id: "1A6E", source: "Cruise Chaser" }
+119.9 "Hawk Blaster" Ability { id: "1A6F", source: "Cruise Chaser" }
 
-129.8 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
-137.9 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+129.8 "Optical Sight (clock/out)" Ability { id: "1A6[CD]", source: "Cruise Chaser" }
+137.9 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
 
-143.9 "Optical Sight (out/clock)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
-150.9 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+143.9 "Optical Sight (out/clock)" Ability { id: "1A6[CD]", source: "Cruise Chaser" }
+150.9 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
 
-159.9 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-168.1 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
+159.9 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+168.1 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
 
 ### Limit Cut Numbers
-177.3 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 180,5
-179.3 "Limit Cut (numbers)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+177.3 "--sync--" StartsUsing { id: "1A80", source: "Cruise Chaser" } window 180,5
+179.3 "Limit Cut (numbers)" Ability { id: "1A80", source: "Cruise Chaser" }
 179.9 "--invincible--"
 183.5 "Markers"
-192.1 "Sword 1" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-193.2 "Charge 2" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-195.4 "Sword 3" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-196.5 "Charge 4" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-198.7 "Sword 5" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-199.8 "Charge 6" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-202.0 "Sword 7" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-203.1 "Charge 8" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+192.1 "Sword 1" Ability { id: "1A81", source: "Cruise Chaser" }
+193.2 "Charge 2" Ability { id: "1A82", source: "Cruise Chaser" }
+195.4 "Sword 3" Ability { id: "1A81", source: "Cruise Chaser" }
+196.5 "Charge 4" Ability { id: "1A82", source: "Cruise Chaser" }
+198.7 "Sword 5" Ability { id: "1A81", source: "Cruise Chaser" }
+199.8 "Charge 6" Ability { id: "1A82", source: "Cruise Chaser" }
+202.0 "Sword 7" Ability { id: "1A81", source: "Cruise Chaser" }
+203.1 "Charge 8" Ability { id: "1A82", source: "Cruise Chaser" }
 205.2 "--targetable--"
 
-215.3 "Photon" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-222.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-229.6 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
-237.1 "Blastoff" sync / 1[56]:[^:]*:Cruise Chaser:1A66:/ window 240,10
+215.3 "Photon" Ability { id: "1A73", source: "Cruise Chaser" }
+222.4 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+229.6 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
+237.1 "Blastoff" Ability { id: "1A66", source: "Cruise Chaser" } window 240,10
 237.9 "--untargetable--"
 
 
 ### Cutscene
-240.2 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A49:/
-247.9 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A4A:/
-252.8 "Blassty Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A69:/
-258.8 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A4E:/
-264.8 "Perfect Landing" sync / 1[56]:[^:]*:Cruise Chaser:1A6B:/
+240.2 "Transform" Ability { id: "1A49", source: "Cruise Chaser" }
+247.9 "--sync--" Ability { id: "1A4A", source: "Cruise Chaser" }
+252.8 "Blassty Blaster" Ability { id: "1A69", source: "Cruise Chaser" }
+258.8 "Transform" Ability { id: "1A4E", source: "Cruise Chaser" }
+264.8 "Perfect Landing" Ability { id: "1A6B", source: "Cruise Chaser" }
 
 
 ### ORBS
 268.0 "--targetable--"
-270.1 "Limit Cut (orbs)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+270.1 "Limit Cut (orbs)" Ability { id: "1A80", source: "Cruise Chaser" }
 270.7 "--invincible--"
 273.2 "Lapis Lazuli x4"
-276.3 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+276.3 "--sync--" Ability { id: "1A7B", source: "Cruise Chaser" }
 276.8 "Plasmasphere x1"
-283.4 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-287.6 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A5A:/
-292.7 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
-295.7 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+283.4 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+287.6 "--sync--" Ability { id: "1A5A", source: "Cruise Chaser" }
+292.7 "--sync--" Ability { id: "1A5B", source: "Claster" }
+295.7 "--sync--" Ability { id: "1A7B", source: "Cruise Chaser" }
 296.4 "Plasmasphere x2"
-297.4 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-308.0 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
-308.9 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
-313.7 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-315.1 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A7B:/
+297.4 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+308.0 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
+308.9 "--sync--" Ability { id: "1A5B", source: "Claster" }
+313.7 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+315.1 "--sync--" Ability { id: "1A7B", source: "Cruise Chaser" }
 315.7 "Plasmasphere x2"
-321.7 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-326.2 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
-338.3 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+321.7 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+326.2 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
+338.3 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
 
 
 ### Eternal Darkness
 344.4 "--targetable--"
-344.5 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A19:/ window 350,10
-352.5 "Eternal Darkness" sync / 1[56]:[^:]*:Cruise Chaser:1A19:/
-361.7 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
-370.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-378.9 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
+344.5 "--sync--" StartsUsing { id: "1A19", source: "Cruise Chaser" } window 350,10
+352.5 "Eternal Darkness" Ability { id: "1A19", source: "Cruise Chaser" }
+361.7 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
+370.8 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+378.9 "Spin Crusher" Ability { id: "1A85", source: "Cruise Chaser" }
 
 # skippable
-386.0 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
-391.2 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
-396.1 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
+386.0 "Optical Sight (bait)" Ability { id: "1A6E", source: "Cruise Chaser" }
+391.2 "Hawk Blaster" Ability { id: "1A6F", source: "Cruise Chaser" }
+396.1 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
 
 # also skippable
-399.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 50,10
-401.2 "Limit Cut (shield)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+399.2 "--sync--" StartsUsing { id: "1A80", source: "Cruise Chaser" } window 50,10
+401.2 "Limit Cut (shield)" Ability { id: "1A80", source: "Cruise Chaser" }
 401.8 "--invincible--"
 406.6 "Plasma Shield"
 431.2 "Plasma Shield Enrage"
-431.2 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A83:/ window 40,30
-435.2 "Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:1A83:/
+431.2 "--sync--" StartsUsing { id: "1A83", source: "Cruise Chaser" } window 40,30
+435.2 "Blassty Charge" Ability { id: "1A83", source: "Cruise Chaser" }
 437.3 "--targetable--"
 
-439.5 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A73:/ window 40,10
-442.5 "Photon (offtank)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-450.9 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+439.5 "--sync--" StartsUsing { id: "1A73", source: "Cruise Chaser" } window 40,10
+442.5 "Photon (offtank)" Ability { id: "1A73", source: "Cruise Chaser" }
+450.9 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
 
 # maybe skippable
-458.7 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
-462.0 "Photon (dps)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-470.2 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+458.7 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." }
+462.0 "Photon (dps)" Ability { id: "1A73", source: "Cruise Chaser" }
+470.2 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
 
-478.4 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A7[A9]:/ window 80,5
-481.4 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
-487.5 "Photon (healer)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-495.6 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-502.1 "Blastoff" sync / 1[56]:[^:]*:Cruise Chaser:1A66:/ window 260,10
+478.4 "--sync--" StartsUsing { id: "1A7[A9]", source: "Cruise Chaser" } window 80,5
+481.4 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
+487.5 "Photon (healer)" Ability { id: "1A73", source: "Cruise Chaser" }
+495.6 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+502.1 "Blastoff" Ability { id: "1A66", source: "Cruise Chaser" } window 260,10
 502.9 "--untargetable--"
 
 
 ### Cutscene 2
-505.2 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A49:/
-513.0 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A4A:/
-517.8 "Blassty Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A69:/
-520.8 "Multifield x3" sync / 03:........:Multifield:/
-523.9 "Transform" sync / 1[56]:[^:]*:Cruise Chaser:1A4E:/
-529.9 "Perfect Landing" sync / 1[56]:[^:]*:Cruise Chaser:1A6B:/
+505.2 "Transform" Ability { id: "1A49", source: "Cruise Chaser" }
+513.0 "--sync--" Ability { id: "1A4A", source: "Cruise Chaser" }
+517.8 "Blassty Blaster" Ability { id: "1A69", source: "Cruise Chaser" }
+520.8 "Multifield x3" AddedCombatant { name: "Multifield" }
+523.9 "Transform" Ability { id: "1A4E", source: "Cruise Chaser" }
+529.9 "Perfect Landing" Ability { id: "1A6B", source: "Cruise Chaser" }
 
 
 ### Final phase
 532.7 "--targetable--"
-551.3 "GA-100" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/
-558.4 "Optical Sight (clock/out)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
-565.5 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
-573.6 "Optical Sight (out/clock)" sync / 1[56]:[^:]*:Cruise Chaser:1A6[CD]:/
-581.7 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
-586.7 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-595.9 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-605.1 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
-612.2 "Optical Sight (bait)" sync / 1[56]:[^:]*:Cruise Chaser:1A6E:/
-617.4 "Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A6F:/
-622.3 "Super Hawk Blaster" sync / 1[56]:[^:]*:Cruise Chaser:1A71:/
-622.4 "--sync--" sync / 1[56]:[^:]*:Cruise Chaser:1A5A:/
-626.6 "--sync--" sync / 1[56]:[^:]*:Claster:1A5B:/
+551.3 "GA-100" Ability { id: "1A76", source: "Cruise Chaser" }
+558.4 "Optical Sight (clock/out)" Ability { id: "1A6[CD]", source: "Cruise Chaser" }
+565.5 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
+573.6 "Optical Sight (out/clock)" Ability { id: "1A6[CD]", source: "Cruise Chaser" }
+581.7 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
+586.7 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+595.9 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+605.1 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
+612.2 "Optical Sight (bait)" Ability { id: "1A6E", source: "Cruise Chaser" }
+617.4 "Hawk Blaster" Ability { id: "1A6F", source: "Cruise Chaser" }
+622.3 "Super Hawk Blaster" Ability { id: "1A71", source: "Cruise Chaser" }
+622.4 "--sync--" Ability { id: "1A5A", source: "Cruise Chaser" }
+626.6 "--sync--" Ability { id: "1A5B", source: "Claster" }
 # Well, really everyone but the main tank.  But that's too long to write out.
-628.6 "Photon (everyone)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-633.1 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-635.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-640.3 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-647.4 "Assault Cannon" #sync / 1[56]:[^:]*:Claster:1A78:/
-651.8 "Propeller Wind" sync / 1[56]:[^:]*:Cruise Chaser:1A75:/
+628.6 "Photon (everyone)" Ability { id: "1A73", source: "Cruise Chaser" }
+633.1 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+635.8 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+640.3 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+647.4 "Assault Cannon" #Ability { id: "1A78", source: "Claster" }
+651.8 "Propeller Wind" Ability { id: "1A75", source: "Cruise Chaser" }
 
-655.0 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 100,20
-657.0 "Limit Cut (numbers)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+655.0 "--sync--" StartsUsing { id: "1A80", source: "Cruise Chaser" } window 100,20
+657.0 "Limit Cut (numbers)" Ability { id: "1A80", source: "Cruise Chaser" }
 657.6 "--invincible--"
 661.2 "Markers"
-669.9 "Sword 1" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-671.0 "Charge 2" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-673.2 "Sword 3" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-674.3 "Charge 4" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-676.5 "Sword 5" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-677.6 "Charge 6" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
-679.8 "Sword 7" sync / 1[56]:[^:]*:Cruise Chaser:1A81:/
-680.9 "Charge 8" sync / 1[56]:[^:]*:Cruise Chaser:1A82:/
+669.9 "Sword 1" Ability { id: "1A81", source: "Cruise Chaser" }
+671.0 "Charge 2" Ability { id: "1A82", source: "Cruise Chaser" }
+673.2 "Sword 3" Ability { id: "1A81", source: "Cruise Chaser" }
+674.3 "Charge 4" Ability { id: "1A82", source: "Cruise Chaser" }
+676.5 "Sword 5" Ability { id: "1A81", source: "Cruise Chaser" }
+677.6 "Charge 6" Ability { id: "1A82", source: "Cruise Chaser" }
+679.8 "Sword 7" Ability { id: "1A81", source: "Cruise Chaser" }
+680.9 "Charge 8" Ability { id: "1A82", source: "Cruise Chaser" }
 683.0 "--targetable--"
 
-693.2 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
-697.2 "E.D.D. Add" sync / 03:........:E\.D\.D\.:/
-705.4 "Photon (dps)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-714.6 "Left/Right Laser Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7[A9]:/
-722.7 "Photon (healer)" sync / 1[56]:[^:]*:Cruise Chaser:1A73:/
-730.8 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
+693.2 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
+697.2 "E.D.D. Add" AddedCombatant { name: "E\\.D\\.D\\." }
+705.4 "Photon (dps)" Ability { id: "1A73", source: "Cruise Chaser" }
+714.6 "Left/Right Laser Sword" Ability { id: "1A7[A9]", source: "Cruise Chaser" }
+722.7 "Photon (healer)" Ability { id: "1A73", source: "Cruise Chaser" }
+730.8 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
 
-733.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A80:/ window 70,20
-735.7 "Limit Cut (shield)" sync / 1[56]:[^:]*:Cruise Chaser:1A80:/
+733.7 "--sync--" StartsUsing { id: "1A80", source: "Cruise Chaser" } window 70,20
+735.7 "Limit Cut (shield)" Ability { id: "1A80", source: "Cruise Chaser" }
 736.3 "--invincible--"
 741.1 "Plasma Shield"
 765.7 "Plasma Shield Enrage"
-765.7 "--sync--" sync / 14:[^:]*:Cruise Chaser:1A83:/ window 40,30
-769.7 "Blassty Charge" sync / 1[56]:[^:]*:Cruise Chaser:1A83:/
+765.7 "--sync--" StartsUsing { id: "1A83", source: "Cruise Chaser" } window 40,30
+769.7 "Blassty Charge" Ability { id: "1A83", source: "Cruise Chaser" }
 771.8 "--targetable--"
 
-779.7 "Spin Crusher" sync / 1[56]:[^:]*:Cruise Chaser:1A85:/
-789.7 "Whirlwind" sync / 1[56]:[^:]*:Cruise Chaser:1A84:/
-806.4 "Laser X Sword" sync / 1[56]:[^:]*:Cruise Chaser:1A7F:/
+779.7 "Spin Crusher" Ability { id: "1A85", source: "Cruise Chaser" }
+789.7 "Whirlwind" Ability { id: "1A84", source: "Cruise Chaser" }
+806.4 "Laser X Sword" Ability { id: "1A7F", source: "Cruise Chaser" }
 
 # If you destroy a tower with the first GA-100, this is enrage.
 # FIXME: Guessing that this loops, but unclear.
-829.4 "GA-100" sync / 1[56]:[^:]*:Cruise Chaser:1A76:/ window 100,100 jump 551.3
+829.4 "GA-100" Ability { id: "1A76", source: "Cruise Chaser" } window 100,100 jump 551.3
 836.5 "Optical Sight (clock/out)"
 843.6 "Super Hawk Blaster"
 851.7 "Optical Sight (out/clock)"

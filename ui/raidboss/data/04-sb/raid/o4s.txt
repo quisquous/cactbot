@@ -9,70 +9,70 @@ hideall "--sync--"
 # as timeline resets out of combat.
 
 # Exfaust
-3.8 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F2:/ window 3.8,0
-12.2 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/ window 12.2,5
-16.8 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F7:/
-17.3 "Blizzard III" # sync / 1[56]:[^:]*:Exdeath:23F8:/
-19.9 "Blizzard III" # sync / 1[56]:[^:]*:Exdeath:23F8:/
-24.8 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-30.8 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F9:/
-31.5 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-32.6 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-37.9 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-42.5 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F5:/
-43.1 "Fire III" # sync / 1[56]:[^:]*:Exdeath:23F6:/
-47.1 "Fire III" # sync / 1[56]:[^:]*:Exdeath:23F6:/
-53.6 "White Hole" sync / 1[56]:[^:]*:Exdeath:23FF:/
-64.7 "The Decisive Battle" sync / 1[56]:[^:]*:Exdeath:2408:/
+3.8 "--sync--" Ability { id: "23F2", source: "Exdeath" } window 3.8,0
+12.2 "Dualcast" Ability { id: "23F4", source: "Exdeath" } window 12.2,5
+16.8 "--sync--" Ability { id: "23F7", source: "Exdeath" }
+17.3 "Blizzard III" # Ability { id: "23F8", source: "Exdeath" }
+19.9 "Blizzard III" # Ability { id: "23F8", source: "Exdeath" }
+24.8 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+30.8 "--sync--" Ability { id: "23F9", source: "Exdeath" }
+31.5 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+32.6 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+37.9 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+42.5 "--sync--" Ability { id: "23F5", source: "Exdeath" }
+43.1 "Fire III" # Ability { id: "23F6", source: "Exdeath" }
+47.1 "Fire III" # Ability { id: "23F6", source: "Exdeath" }
+53.6 "White Hole" Ability { id: "23FF", source: "Exdeath" }
+64.7 "The Decisive Battle" Ability { id: "2408", source: "Exdeath" }
 66.5 "--untargetable--"
 
-70.6 "--sync--" sync / 1[56]:[^:]*:Exdeath:240A:/
-71.8 "Collision" sync / 1[56]:[^:]*:Exdeath:2409:/
-73.8 "Holy" sync / 1[56]:[^:]*:Exdeath:2403:/
-77.7 "Zombie Breath" sync / 1[56]:[^:]*:Exdeath:240B:/
-82.4 "Flare" sync / 1[56]:[^:]*:Exdeath:2401:/
+70.6 "--sync--" Ability { id: "240A", source: "Exdeath" }
+71.8 "Collision" Ability { id: "2409", source: "Exdeath" }
+73.8 "Holy" Ability { id: "2403", source: "Exdeath" }
+77.7 "Zombie Breath" Ability { id: "240B", source: "Exdeath" }
+82.4 "Flare" Ability { id: "2401", source: "Exdeath" }
 
 85.2 "--targetable--"
-89.2 "Blizzard III/Fire III/Thunder III" sync / 1[56]:[^:]*:Exdeath:23F[BCD]:/ window 10,10
-95.4 "Vacuum Wave" sync / 1[56]:[^:]*:Exdeath:23FE:/
-105.6 "White Hole" sync / 1[56]:[^:]*:Exdeath:23FF:/
-118.0 "Black Hole" sync / 1[56]:[^:]*:Exdeath:2406:/
-123.1 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-127.7 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F5:/
-128.3 "Fire III" # sync / 1[56]:[^:]*:Exdeath:23F6:/
-132.2 "Fire III" # sync / 1[56]:[^:]*:Exdeath:23F6:/
-134.8 "Holy" sync / 1[56]:[^:]*:Exdeath:240[23]:/
-144.0 "White Hole" sync / 1[56]:[^:]*:Exdeath:23FF:/
-153.1 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-159.1 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F9:/
-159.8 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-160.9 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-166.1 "Meteor" sync / 1[56]:[^:]*:Exdeath:2404:/
-179.4 "The Decisive Battle" sync / 1[56]:[^:]*:Exdeath:2408:/
+89.2 "Blizzard III/Fire III/Thunder III" Ability { id: "23F[BCD]", source: "Exdeath" } window 10,10
+95.4 "Vacuum Wave" Ability { id: "23FE", source: "Exdeath" }
+105.6 "White Hole" Ability { id: "23FF", source: "Exdeath" }
+118.0 "Black Hole" Ability { id: "2406", source: "Exdeath" }
+123.1 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+127.7 "--sync--" Ability { id: "23F5", source: "Exdeath" }
+128.3 "Fire III" # Ability { id: "23F6", source: "Exdeath" }
+132.2 "Fire III" # Ability { id: "23F6", source: "Exdeath" }
+134.8 "Holy" Ability { id: "240[23]", source: "Exdeath" }
+144.0 "White Hole" Ability { id: "23FF", source: "Exdeath" }
+153.1 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+159.1 "--sync--" Ability { id: "23F9", source: "Exdeath" }
+159.8 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+160.9 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+166.1 "Meteor" Ability { id: "2404", source: "Exdeath" }
+179.4 "The Decisive Battle" Ability { id: "2408", source: "Exdeath" }
 181.5 "--untargetable--"
 
-185.3 "--sync--" sync / 1[56]:[^:]*:Exdeath:240A:/
-186.4 "Collision" sync / 1[56]:[^:]*:Exdeath:2409:/
-188.7 "Holy" sync / 1[56]:[^:]*:Exdeath:2403:/
-192.4 "Zombie Breath" sync / 1[56]:[^:]*:Exdeath:240B:/
-197.1 "Flare" sync / 1[56]:[^:]*:Exdeath:2401:/
+185.3 "--sync--" Ability { id: "240A", source: "Exdeath" }
+186.4 "Collision" Ability { id: "2409", source: "Exdeath" }
+188.7 "Holy" Ability { id: "2403", source: "Exdeath" }
+192.4 "Zombie Breath" Ability { id: "240B", source: "Exdeath" }
+197.1 "Flare" Ability { id: "2401", source: "Exdeath" }
 
 200.0 "--targetable--"
-203.9 "Blizzard III/Fire III/Thunder III" sync / 1[56]:[^:]*:Exdeath:23F[BCD]:/
-210.3 "Vacuum Wave" sync / 1[56]:[^:]*:Exdeath:23FE:/
-220.5 "White Hole" sync / 1[56]:[^:]*:Exdeath:23FF:/
-232.8 "Black Hole" sync / 1[56]:[^:]*:Exdeath:2406:/
-237.9 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-242.5 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F7:/
-243.0 "Blizzard III" # sync / 1[56]:[^:]*:Exdeath:23F8:/
-245.6 "Blizzard III" # sync / 1[56]:[^:]*:Exdeath:23F8:/
-249.6 "Flare" sync / 1[56]:[^:]*:Exdeath:2401:/
-258.8 "White Hole" sync / 1[56]:[^:]*:Exdeath:23FF:/
-267.9 "Dualcast" sync / 1[56]:[^:]*:Exdeath:23F4:/
-274.0 "--sync--" sync / 1[56]:[^:]*:Exdeath:23F9:/
-274.7 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-275.8 "Thunder III" # sync / 1[56]:[^:]*:Exdeath:23FA:/
-281.0 "Meteor" sync / 1[56]:[^:]*:Exdeath:2404:/
+203.9 "Blizzard III/Fire III/Thunder III" Ability { id: "23F[BCD]", source: "Exdeath" }
+210.3 "Vacuum Wave" Ability { id: "23FE", source: "Exdeath" }
+220.5 "White Hole" Ability { id: "23FF", source: "Exdeath" }
+232.8 "Black Hole" Ability { id: "2406", source: "Exdeath" }
+237.9 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+242.5 "--sync--" Ability { id: "23F7", source: "Exdeath" }
+243.0 "Blizzard III" # Ability { id: "23F8", source: "Exdeath" }
+245.6 "Blizzard III" # Ability { id: "23F8", source: "Exdeath" }
+249.6 "Flare" Ability { id: "2401", source: "Exdeath" }
+258.8 "White Hole" Ability { id: "23FF", source: "Exdeath" }
+267.9 "Dualcast" Ability { id: "23F4", source: "Exdeath" }
+274.0 "--sync--" Ability { id: "23F9", source: "Exdeath" }
+274.7 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+275.8 "Thunder III" # Ability { id: "23FA", source: "Exdeath" }
+281.0 "Meteor" Ability { id: "2404", source: "Exdeath" }
 282.0 "--untargetable--"
 
 
@@ -80,139 +80,139 @@ hideall "--sync--"
 # -p 242C:1116 242D:1339.5 2426:1652.1
 
 # Neo Exdeath
-1002.0 "--sync--" sync / 14:[^:]*:Neo Exdeath:2417:/ window 1002,5
-1007.7 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/ window 1008,5
-1016.7 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
-1026.7 "Delta Attack" sync / 1[56]:[^:]*:Neo Exdeath:241E:/
-1027.2 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1027.4 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1027.7 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
-1028.4 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1030.2 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1030.7 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
+1002.0 "--sync--" StartsUsing { id: "2417", source: "Neo Exdeath" } window 1002,5
+1007.7 "Almagest" Ability { id: "2417", source: "Neo Exdeath" } window 1008,5
+1016.7 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
+1026.7 "Delta Attack" Ability { id: "241E", source: "Neo Exdeath" }
+1027.2 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1027.4 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1027.7 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
+1028.4 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1030.2 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1030.7 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
 
-1042.7 "Grand Cross Alpha" sync / 1[56]:[^:]*:Neo Exdeath:242B:/
+1042.7 "Grand Cross Alpha" Ability { id: "242B", source: "Neo Exdeath" }
 1045.8 "--untargetable--"
 1048.9 "--targetable--"
-1053.7 "Flood Of Naught (charge)" sync / 1[56]:[^:]*:Neo Exdeath:2416:/
-1061.7 "Flood Of Naught (colors)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412):/
-1073.2 "Double Attack" sync / 1[56]:[^:]*:Neo Exdeath:241C:/
-1083.8 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
-1091.8 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
-1101.9 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
+1053.7 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
+1061.7 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
+1073.2 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
+1083.8 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
+1091.8 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
+1101.9 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 
-1116.0 "Grand Cross Delta" sync / 1[56]:[^:]*:Neo Exdeath:242C:/ window 116,10
-1129.0 "Flood Of Naught (colors/lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412|240E|240F):/
-1138.0 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/
-1149.1 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
-1158.9 "Earth Shaker" sync / 1[56]:[^:]*:Neo Exdeath:241A:/
-1164.4 "Vacuum Wave" sync / 1[56]:[^:]*:Neo Exdeath:241D:/
-1178.4 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
-1186.4 "Light And Darkness" sync / 1[56]:[^:]*:Neo Exdeath:241F:/
+1116.0 "Grand Cross Delta" Ability { id: "242C", source: "Neo Exdeath" } window 116,10
+1129.0 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1138.0 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
+1149.1 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
+1158.9 "Earth Shaker" Ability { id: "241A", source: "Neo Exdeath" }
+1164.4 "Vacuum Wave" Ability { id: "241D", source: "Neo Exdeath" }
+1178.4 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
+1186.4 "Light And Darkness" Ability { id: "241F", source: "Neo Exdeath" }
 1189.5 "--untargetable--"
-1192.4 "Flare" sync / 1[56]:[^:]*:Neo Exdeath:2401:/
-1192.4 "Holy" sync / 1[56]:[^:]*:Neo Exdeath:2403:/
+1192.4 "Flare" Ability { id: "2401", source: "Neo Exdeath" }
+1192.4 "Holy" Ability { id: "2403", source: "Neo Exdeath" }
 1192.8 "--targetable--"
-1197.6 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
-1211.6 "Meteor" sync / 1[56]:[^:]*:Neo Exdeath:2424:/
+1197.6 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
+1211.6 "Meteor" Ability { id: "2424", source: "Neo Exdeath" }
 1212.3 "--adds targetable--"
-1224.7 "Flood Of Naught (colors)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412):/
-1237.4 "Charybdis" sync / 1[56]:[^:]*:Neo Exdeath:2423:/
-1244.9 "Double Attack" sync / 1[56]:[^:]*:Neo Exdeath:241C:/
-1260.4 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/
-1266.4 "Vacuum Wave" sync / 1[56]:[^:]*:Neo Exdeath:241D:/
-1272.4 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
-1277.5 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
+1224.7 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
+1237.4 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }
+1244.9 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
+1260.4 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
+1266.4 "Vacuum Wave" Ability { id: "241D", source: "Neo Exdeath" }
+1272.4 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
+1277.5 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
 
-1286.5 "Grand Cross Alpha" sync / 1[56]:[^:]*:Neo Exdeath:242B:/ window 170,10
+1286.5 "Grand Cross Alpha" Ability { id: "242B", source: "Neo Exdeath" } window 170,10
 1289.6 "--untargetable--"
 1292.7 "--targetable--"
-1297.5 "Flood Of Naught (charge)" sync / 1[56]:[^:]*:Neo Exdeath:2416:/
-1305.5 "Flood Of Naught (colors)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412):/
-1322.5 "Delta Attack" sync / 1[56]:[^:]*:Neo Exdeath:241E:/
-1323.0 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1323.2 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1323.5 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
-1324.2 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1326.0 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1326.5 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
-1330.5 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
+1297.5 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
+1305.5 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
+1322.5 "Delta Attack" Ability { id: "241E", source: "Neo Exdeath" }
+1323.0 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1323.2 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1323.5 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
+1324.2 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1326.0 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1326.5 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
+1330.5 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 
-1339.5 "Grand Cross Omega" sync / 1[56]:[^:]*:Neo Exdeath:242D:/ window 340,10
+1339.5 "Grand Cross Omega" Ability { id: "242D", source: "Neo Exdeath" } window 340,10
 1345.5 "--untargetable--"
-1346.5 "The Final Battle" sync / 1[56]:[^:]*:Neo Exdeath:242A:/
-1354.6 "Flood Of Naught (colors/lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412|240E|240F):/
-1359.6 "Flood Of Naught (colors/lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412|240E|240F):/
-1365.6 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
+1346.5 "The Final Battle" Ability { id: "242A", source: "Neo Exdeath" }
+1354.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1359.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1365.6 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 1371.7 "--targetable--"
-1378.1 "Flood Of Naught (charge)" sync / 1[56]:[^:]*:Neo Exdeath:2416:/
-1389.1 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/
+1378.1 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
+1389.1 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
 
-1396.3 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
-1404.4 "Flood Of Naught" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412|240E|240F):/
-1414.6 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
+1396.3 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
+1404.4 "Flood Of Naught" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1414.6 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
 
-1428.6 "Grand Cross Delta" sync / 1[56]:[^:]*:Neo Exdeath:242C:/ window 90,10
-1441.6 "Flood Of Naught (colors/lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412|240E|240F):/
-1450.6 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/
-1461.6 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
-1471.3 "Earth Shaker" sync / 1[56]:[^:]*:Neo Exdeath:241A:/
-1476.8 "Vacuum Wave" sync / 1[56]:[^:]*:Neo Exdeath:241D:/
-1490.8 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
-1498.8 "Light And Darkness" sync / 1[56]:[^:]*:Neo Exdeath:241F:/
+1428.6 "Grand Cross Delta" Ability { id: "242C", source: "Neo Exdeath" } window 90,10
+1441.6 "Flood Of Naught (colors/lasers)" Ability { id: ["2411", "2412", "240E", "240F"], source: "Neo Exdeath" }
+1450.6 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
+1461.6 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
+1471.3 "Earth Shaker" Ability { id: "241A", source: "Neo Exdeath" }
+1476.8 "Vacuum Wave" Ability { id: "241D", source: "Neo Exdeath" }
+1490.8 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
+1498.8 "Light And Darkness" Ability { id: "241F", source: "Neo Exdeath" }
 1501.9 "--untargetable--"
-1504.8 "Flare" sync / 1[56]:[^:]*:Neo Exdeath:2401:/
-1504.8 "Holy" sync / 1[56]:[^:]*:Neo Exdeath:2403:/
+1504.8 "Flare" Ability { id: "2401", source: "Neo Exdeath" }
+1504.8 "Holy" Ability { id: "2403", source: "Neo Exdeath" }
 1505.2 "--targetable--"
-1509.8 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
-1523.8 "Meteor" sync / 1[56]:[^:]*:Neo Exdeath:2424:/
+1509.8 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
+1523.8 "Meteor" Ability { id: "2424", source: "Neo Exdeath" }
 1524.5 "--adds targetable--"
-1536.8 "Flood Of Naught (colors)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412):/
-1549.8 "Charybdis" sync / 1[56]:[^:]*:Neo Exdeath:2423:/
-1557.3 "Double Attack" sync / 1[56]:[^:]*:Neo Exdeath:241C:/
-1572.8 "Almagest" sync / 1[56]:[^:]*:Neo Exdeath:2417:/
-1578.8 "Vacuum Wave" sync / 1[56]:[^:]*:Neo Exdeath:241D:/
-1584.8 "Aero III" sync / 1[56]:[^:]*:Neo Exdeath:2419:/
-1589.9 "Emptiness x8" sync / 1[56]:[^:]*:Neo Exdeath:2420:/ duration 10
+1536.8 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
+1549.8 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }
+1557.3 "Double Attack" Ability { id: "241C", source: "Neo Exdeath" }
+1572.8 "Almagest" Ability { id: "2417", source: "Neo Exdeath" }
+1578.8 "Vacuum Wave" Ability { id: "241D", source: "Neo Exdeath" }
+1584.8 "Aero III" Ability { id: "2419", source: "Neo Exdeath" }
+1589.9 "Emptiness x8" Ability { id: "2420", source: "Neo Exdeath" } duration 10
 
-1598.9 "Grand Cross Alpha" sync / 1[56]:[^:]*:Neo Exdeath:242B:/ window 170,10
+1598.9 "Grand Cross Alpha" Ability { id: "242B", source: "Neo Exdeath" } window 170,10
 1602.0 "--untargetable--"
 1605.3 "--targetable--"
-1609.9 "Flood Of Naught (charge)" sync / 1[56]:[^:]*:Neo Exdeath:2416:/
-1617.9 "Flood Of Naught (colors)" sync / 1[56]:[^:]*:Neo Exdeath:(2411|2412):/
-1634.9 "Delta Attack" sync / 1[56]:[^:]*:Neo Exdeath:241E:/
-1635.4 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1635.6 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1635.9 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
-1636.6 "Thunder III" # sync / 1[56]:[^:]*:Neo Exdeath:23FA:/
-1638.4 "Blizzard III" # sync / 1[56]:[^:]*:Neo Exdeath:23F8:/
-1638.9 "Fire III" # sync / 1[56]:[^:]*:Neo Exdeath:23F6:/
-1642.9 "Flood Of Naught (lasers)" sync / 1[56]:[^:]*:Neo Exdeath:(240E|240F):/
+1609.9 "Flood Of Naught (charge)" Ability { id: "2416", source: "Neo Exdeath" }
+1617.9 "Flood Of Naught (colors)" Ability { id: ["2411", "2412"], source: "Neo Exdeath" }
+1634.9 "Delta Attack" Ability { id: "241E", source: "Neo Exdeath" }
+1635.4 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1635.6 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1635.9 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
+1636.6 "Thunder III" # Ability { id: "23FA", source: "Neo Exdeath" }
+1638.4 "Blizzard III" # Ability { id: "23F8", source: "Neo Exdeath" }
+1638.9 "Fire III" # Ability { id: "23F6", source: "Neo Exdeath" }
+1642.9 "Flood Of Naught (lasers)" Ability { id: ["240E", "240F"], source: "Neo Exdeath" }
 
-1652.1 "Neverwhere" sync / 1[56]:[^:]*:Neo Exdeath:2426:/ window 652.1,10
-1660.2 "Charybdis" sync / 1[56]:[^:]*:Neo Exdeath:2423:/
-1663.4 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1664.4 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1671.2 "Frenzied Sphere 1" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1673.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1674.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1681.0 "Frenzied Sphere 2" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1683.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1684.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1691.0 "Frenzied Sphere 3" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1693.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1694.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1701.0 "Frenzied Sphere 4" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1703.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1704.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1711.0 "Frenzied Sphere 5" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1713.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1714.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1721.0 "Frenzied Sphere 6" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1723.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1724.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1731.0 "Frenzied Sphere 7" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1733.2 "Flying Frenzy" sync / 1[56]:[^:]*:Neo Exdeath:2427:/
-1734.1 "Frenzied Fist x9" # sync / 1[56]:[^:]*:Neo Exdeath:2428:/
-1741.0 "Frenzied Sphere 8" sync / 1[56]:[^:]*:Neo Exdeath:2429:/
-1753.2 "Almagest (enrage)" sync / 1[56]:[^:]*:Neo Exdeath:2418:/
+1652.1 "Neverwhere" Ability { id: "2426", source: "Neo Exdeath" } window 652.1,10
+1660.2 "Charybdis" Ability { id: "2423", source: "Neo Exdeath" }
+1663.4 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1664.4 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1671.2 "Frenzied Sphere 1" Ability { id: "2429", source: "Neo Exdeath" }
+1673.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1674.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1681.0 "Frenzied Sphere 2" Ability { id: "2429", source: "Neo Exdeath" }
+1683.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1684.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1691.0 "Frenzied Sphere 3" Ability { id: "2429", source: "Neo Exdeath" }
+1693.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1694.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1701.0 "Frenzied Sphere 4" Ability { id: "2429", source: "Neo Exdeath" }
+1703.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1704.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1711.0 "Frenzied Sphere 5" Ability { id: "2429", source: "Neo Exdeath" }
+1713.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1714.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1721.0 "Frenzied Sphere 6" Ability { id: "2429", source: "Neo Exdeath" }
+1723.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1724.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1731.0 "Frenzied Sphere 7" Ability { id: "2429", source: "Neo Exdeath" }
+1733.2 "Flying Frenzy" Ability { id: "2427", source: "Neo Exdeath" }
+1734.1 "Frenzied Fist x9" # Ability { id: "2428", source: "Neo Exdeath" }
+1741.0 "Frenzied Sphere 8" Ability { id: "2429", source: "Neo Exdeath" }
+1753.2 "Almagest (enrage)" Ability { id: "2418", source: "Neo Exdeath" }

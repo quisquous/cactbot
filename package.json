@@ -1,6 +1,6 @@
 {
   "name": "cactbot",
-  "version": "0.30.9",
+  "version": "0.30.10",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",

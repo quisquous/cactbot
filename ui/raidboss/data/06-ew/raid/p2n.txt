@@ -5,62 +5,62 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.3 "--sync--" sync / 14:[^:]*:Hippokampos:680F:/ window 20,20
-14.3 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
-26.6 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:680E:/
-32.8 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/
-43.6 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-58.3 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-72.0 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
-77.2 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/
-84.6 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:67F6:/
-111.0 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
-126.9 "Predatory Sight" sync / 1[56]:[^:]*:Hippokampos:680B:/
-137.3 "Shockwave" sync / 1[56]:[^:]*:Hippokampos:6807:/
-148.6 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
-153.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
-165.8 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
-172.5 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6D14:/
-178.2 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:6800:/
-180.7 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:6802:/
-182.7 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6803:/
-194.8 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+9.3 "--sync--" StartsUsing { id: "680F", source: "Hippokampos" } window 20,20
+14.3 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
+26.6 "Doubled Impact" Ability { id: "680E", source: "Hippokampos" }
+32.8 "--middle--" Ability { id: "6835", source: "Hippokampos" }
+43.6 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+58.3 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+72.0 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
+77.2 "--middle--" Ability { id: "6835", source: "Hippokampos" }
+84.6 "Sewage Deluge" Ability { id: "67F6", source: "Hippokampos" }
+111.0 "Tainted Flood" Ability { id: "6809", source: "Hippokampos" }
+126.9 "Predatory Sight" Ability { id: "680B", source: "Hippokampos" }
+137.3 "Shockwave" Ability { id: "6807", source: "Hippokampos" }
+148.6 "Dissociation" Ability { id: "6804", source: "Hippokampos" }
+153.7 "--sync--" Ability { id: "6805", source: "Hippokampos" }
+165.8 "Dissociation Dive" Ability { id: "6806", source: "Hippokampos" }
+172.5 "--sync--" Ability { id: "6D14", source: "Hippokampos" }
+178.2 "Coherence Flare" Ability { id: "6800", source: "Hippokampos" }
+180.7 "Coherence Line" Ability { id: "6802", source: "Hippokampos" }
+182.7 "--sync--" Ability { id: "6803", source: "Hippokampos" }
+194.8 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
 
-201.0 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/
-208.6 "Sewage Deluge" sync / 1[56]:[^:]*:Hippokampos:67F6:/
-227.1 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
-235.0 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-250.7 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-252.2 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-253.7 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-259.5 "Spoken Cataract" sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-273.4 "Tainted Flood" sync / 1[56]:[^:]*:Hippokampos:6809:/
-279.8 "Predatory Sight" sync / 1[56]:[^:]*:Hippokampos:680B:/
-287.0 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
-296.2 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
-301.3 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
-310.7 "Shockwave (knockback)" sync / 1[56]:[^:]*:Hippokampos:6807:/
-313.4 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
-318.9 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/
-325.3 "Dissociation" sync / 1[56]:[^:]*:Hippokampos:6804:/
-330.4 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6805:/
-342.3 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6D14:/
-342.5 "Dissociation Dive" sync / 1[56]:[^:]*:Hippokampos:6806:/
-342.5 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-344.0 "Sewage Eruption 2" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-345.5 "Sewage Eruption 3" #sync / 1[56]:[^:]*:Hippokampos:680D:/
-347.9 "Coherence Flare" sync / 1[56]:[^:]*:Hippokampos:6800:/
-350.4 "Coherence Line" sync / 1[56]:[^:]*:Hippokampos:6802:/
-352.4 "--sync--" sync / 1[56]:[^:]*:Hippokampos:6803:/
-360.6 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
-371.8 "Murky Depths" sync / 1[56]:[^:]*:Hippokampos:680F:/
-383.1 "Doubled Impact" sync / 1[56]:[^:]*:Hippokampos:680E:/
+201.0 "--middle--" Ability { id: "6835", source: "Hippokampos" }
+208.6 "Sewage Deluge" Ability { id: "67F6", source: "Hippokampos" }
+227.1 "Tainted Flood" Ability { id: "6809", source: "Hippokampos" }
+235.0 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+250.7 "Sewage Eruption 1" #Ability { id: "680D", source: "Hippokampos" }
+252.2 "Sewage Eruption 2" #Ability { id: "680D", source: "Hippokampos" }
+253.7 "Sewage Eruption 3" #Ability { id: "680D", source: "Hippokampos" }
+259.5 "Spoken Cataract" Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+273.4 "Tainted Flood" Ability { id: "6809", source: "Hippokampos" }
+279.8 "Predatory Sight" Ability { id: "680B", source: "Hippokampos" }
+287.0 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
+296.2 "Dissociation" Ability { id: "6804", source: "Hippokampos" }
+301.3 "--sync--" Ability { id: "6805", source: "Hippokampos" }
+310.7 "Shockwave (knockback)" Ability { id: "6807", source: "Hippokampos" }
+313.4 "Dissociation Dive" Ability { id: "6806", source: "Hippokampos" }
+318.9 "--middle--" Ability { id: "6835", source: "Hippokampos" }
+325.3 "Dissociation" Ability { id: "6804", source: "Hippokampos" }
+330.4 "--sync--" Ability { id: "6805", source: "Hippokampos" }
+342.3 "--sync--" Ability { id: "6D14", source: "Hippokampos" }
+342.5 "Dissociation Dive" Ability { id: "6806", source: "Hippokampos" }
+342.5 "Sewage Eruption 1" #Ability { id: "680D", source: "Hippokampos" }
+344.0 "Sewage Eruption 2" #Ability { id: "680D", source: "Hippokampos" }
+345.5 "Sewage Eruption 3" #Ability { id: "680D", source: "Hippokampos" }
+347.9 "Coherence Flare" Ability { id: "6800", source: "Hippokampos" }
+350.4 "Coherence Line" Ability { id: "6802", source: "Hippokampos" }
+352.4 "--sync--" Ability { id: "6803", source: "Hippokampos" }
+360.6 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
+371.8 "Murky Depths" Ability { id: "680F", source: "Hippokampos" }
+383.1 "Doubled Impact" Ability { id: "680E", source: "Hippokampos" }
 
-392.3 "--middle--" sync / 1[56]:[^:]*:Hippokampos:6835:/ window 50,50 jump 201.0
-399.7 "Sewage Deluge" #sync / 1[56]:[^:]*:Hippokampos:67F6:/
-418.2 "Tainted Flood" #sync / 1[56]:[^:]*:Hippokampos:6809:/
-426.1 "Spoken Cataract" #sync / 1[56]:[^:]*:Hippokampos:(67F7|67F8|67F9|67FD):/
-441.8 "Sewage Eruption 1" #sync / 1[56]:[^:]*:Hippokampos:680D:/
+392.3 "--middle--" Ability { id: "6835", source: "Hippokampos" } window 50,50 jump 201.0
+399.7 "Sewage Deluge" #Ability { id: "67F6", source: "Hippokampos" }
+418.2 "Tainted Flood" #Ability { id: "6809", source: "Hippokampos" }
+426.1 "Spoken Cataract" #Ability { id: ["67F7", "67F8", "67F9", "67FD"], source: "Hippokampos" }
+441.8 "Sewage Eruption 1" #Ability { id: "680D", source: "Hippokampos" }

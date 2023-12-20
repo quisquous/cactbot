@@ -6,114 +6,114 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 14:[^:]*:The Endsinger:6FF6:/ window 10,10
-11.7 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-25.1 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
-26.7 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-29.9 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-43.3 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
-44.9 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-55.3 "Grip of Despair" sync / 1[56]:[^:]*:The Endsinger:701D:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+7.0 "--sync--" StartsUsing { id: "6FF6", source: "The Endsinger" } window 10,10
+11.7 "Elegeia Unforgotten" Ability { id: "6FF6", source: "The Endsinger" }
+25.1 "Star Collision" Ability { id: "6FF[AB]", source: ["Fiery Star", "Azure Star"] }
+26.7 "Diairesis" Ability { id: "6FFC", source: "The Endsinger" }
+29.9 "Elegeia Unforgotten" Ability { id: "6FF6", source: "The Endsinger" }
+43.3 "Star Collision" Ability { id: "6FF[AB]", source: ["Fiery Star", "Azure Star"] }
+44.9 "Diairesis" Ability { id: "6FFC", source: "The Endsinger" }
+55.3 "Grip of Despair" Ability { id: "701D", source: "The Endsinger" }
 
 # Towers 1
-64.6 "Tower Explosion" #sync / 1[56]:[^:]*:The Endsinger:702A:/
-65.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-74.5 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
-84.6 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
-96.8 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-110.2 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
-111.8 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-114.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-122.3 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
-132.6 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-139.1 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-145.4 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
+64.6 "Tower Explosion" #Ability { id: "702A", source: "The Endsinger" }
+65.4 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+74.5 "Telos" Ability { id: "702E", source: "The Endsinger" }
+84.6 "Hubris" Ability { id: "702C", source: "The Endsinger" }
+96.8 "Elegeia Unforgotten" Ability { id: "6FF6", source: "The Endsinger" }
+110.2 "Star Collision" Ability { id: "6FF[AB]", source: ["Fiery Star", "Azure Star"] }
+111.8 "Diairesis" Ability { id: "6FFC", source: "The Endsinger" }
+114.1 "Eironeia" Ability { id: "702F", source: "The Endsinger" }
+122.3 "Fatalism" Ability { id: "6FFD", source: "The Endsinger" }
+132.6 "Star Collision 1" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+139.1 "Star Collision 2" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+145.4 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
 
 # 5Head 1
-154.6 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
-165.7 "Diairesis 1" sync / 1[56]:[^:]*:The Endsinger:7006:/
-174.8 "Diairesis 2" sync / 1[56]:[^:]*:The Endsinger:7006:/
-183.9 "Diairesis 3" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-192.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
-205.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-205.2 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-214.4 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+154.6 "Twinsong's Aporrhoia" Ability { id: "7007", source: "The Endsinger" }
+165.7 "Diairesis 1" Ability { id: "7006", source: "The Endsinger" }
+174.8 "Diairesis 2" Ability { id: "7006", source: "The Endsinger" }
+183.9 "Diairesis 3" Ability { id: "6FFC", source: "The Endsinger" }
+192.0 "Theological Fatalism" Ability { id: "700B", source: "The Endsinger" }
+205.2 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+205.2 "Eironeia" Ability { id: "702F", source: "The Endsinger" }
+214.4 "Hubris" Ability { id: "702C", source: "The Endsinger" }
 
 # Stack/Flare/Donut/Spread
-224.6 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
-232.1 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:7016:/
-237.8 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
-245.3 "Befoulment" sync / 1[56]:[^:]*:The Endsinger:7014:/
-250.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-258.1 "Despair Unforgotten" sync / 1[56]:[^:]*:The Endsinger:7012:/
-265.6 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:7016:/
-272.3 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
-282.5 "Benevolence" sync / 1[56]:[^:]*:The Endsinger:701A:/
+224.6 "Despair Unforgotten" Ability { id: "7012", source: "The Endsinger" }
+232.1 "Benevolence" Ability { id: "7016", source: "The Endsinger" }
+237.8 "Despair Unforgotten" Ability { id: "7012", source: "The Endsinger" }
+245.3 "Befoulment" Ability { id: "7014", source: "The Endsinger" }
+250.0 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+258.1 "Despair Unforgotten" Ability { id: "7012", source: "The Endsinger" }
+265.6 "Benevolence" Ability { id: "7016", source: "The Endsinger" }
+272.3 "Theological Fatalism" Ability { id: "700B", source: "The Endsinger" }
+282.5 "Benevolence" Ability { id: "701A", source: "The Endsinger" }
 
-289.5 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:72C3:/
-291.4 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:665F:/
-299.7 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:72C5:/
+289.5 "Telomania (cast)" Ability { id: "72C3", source: "The Endsinger" }
+291.4 "Telomania (small) x4" duration 5 #Ability { id: "665F", source: "The Endsinger" }
+299.7 "Telomania (big)" Ability { id: "72C5", source: "The Endsinger" }
 
 # 6 Head Dodges 1
-313.6 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
-321.8 "Endsong 1" sync / 1[56]:[^:]*:The Endsinger:701B:/
-332.3 "Endsong 2" sync / 1[56]:[^:]*:The Endsinger:701C:/
-341.4 "Endsong 3" sync / 1[56]:[^:]*:The Endsinger:701C:/
-350.5 "Endsong 4" sync / 1[56]:[^:]*:The Endsinger:701C:/
-354.0 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-363.1 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
-373.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
-387.4 "Elegeia Unforgotten" sync / 1[56]:[^:]*:The Endsinger:6FF6:/
-400.8 "Star Collision" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):6FF[AB]:/
-402.4 "Diairesis" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-404.7 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-410.8 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
-420.9 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+313.6 "Endsong's Aporrhoia" Ability { id: "72B1", source: "The Endsinger" }
+321.8 "Endsong 1" Ability { id: "701B", source: "The Endsinger" }
+332.3 "Endsong 2" Ability { id: "701C", source: "The Endsinger" }
+341.4 "Endsong 3" Ability { id: "701C", source: "The Endsinger" }
+350.5 "Endsong 4" Ability { id: "701C", source: "The Endsinger" }
+354.0 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+363.1 "Telos" Ability { id: "702E", source: "The Endsinger" }
+373.2 "Hubris" Ability { id: "702C", source: "The Endsinger" }
+387.4 "Elegeia Unforgotten" Ability { id: "6FF6", source: "The Endsinger" }
+400.8 "Star Collision" Ability { id: "6FF[AB]", source: ["Fiery Star", "Azure Star"] }
+402.4 "Diairesis" Ability { id: "6FFC", source: "The Endsinger" }
+404.7 "Eironeia" Ability { id: "702F", source: "The Endsinger" }
+410.8 "Fatalism" Ability { id: "6FFD", source: "The Endsinger" }
+420.9 "Fatalism" Ability { id: "6FFD", source: "The Endsinger" }
 
 # Four Planets 1
-421.1 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-427.6 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-431.2 "Star Collision 3" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-437.7 "Star Collision 4" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
+421.1 "Star Collision 1" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+427.6 "Star Collision 2" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+431.2 "Star Collision 3" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+437.7 "Star Collision 4" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
 
 # Towers 2
-446.5 "Tower Explosion" #sync / 1[56]:[^:]*:The Endsinger:702A:/
-447.2 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/ window 5,5
-456.3 "Telomania (cast)" sync / 1[56]:[^:]*:The Endsinger:72C3:/
-458.2 "Telomania (small) x4" duration 5 #sync / 1[56]:[^:]*:The Endsinger:665F:/
-466.5 "Telomania (big)" sync / 1[56]:[^:]*:The Endsinger:72C5:/
+446.5 "Tower Explosion" #Ability { id: "702A", source: "The Endsinger" }
+447.2 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" } window 5,5
+456.3 "Telomania (cast)" Ability { id: "72C3", source: "The Endsinger" }
+458.2 "Telomania (small) x4" duration 5 #Ability { id: "665F", source: "The Endsinger" }
+466.5 "Telomania (big)" Ability { id: "72C5", source: "The Endsinger" }
 
 # 5Head 2
-480.5 "Twinsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:7007:/
-491.6 "Diairesis 1" sync / 1[56]:[^:]*:The Endsinger:7006:/
-500.7 "Diairesis 2" sync / 1[56]:[^:]*:The Endsinger:7006:/
-509.9 "Diairesis 3" sync / 1[56]:[^:]*:The Endsinger:6FFC:/
-518.0 "Theological Fatalism" sync / 1[56]:[^:]*:The Endsinger:700B:/
-531.1 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-531.1 "Eironeia" sync / 1[56]:[^:]*:The Endsinger:702F:/
-540.2 "Hubris" sync / 1[56]:[^:]*:The Endsinger:702C:/
+480.5 "Twinsong's Aporrhoia" Ability { id: "7007", source: "The Endsinger" }
+491.6 "Diairesis 1" Ability { id: "7006", source: "The Endsinger" }
+500.7 "Diairesis 2" Ability { id: "7006", source: "The Endsinger" }
+509.9 "Diairesis 3" Ability { id: "6FFC", source: "The Endsinger" }
+518.0 "Theological Fatalism" Ability { id: "700B", source: "The Endsinger" }
+531.1 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+531.1 "Eironeia" Ability { id: "702F", source: "The Endsinger" }
+540.2 "Hubris" Ability { id: "702C", source: "The Endsinger" }
 
 # 6 Head Dodges 2
-550.4 "Endsong's Aporrhoia" sync / 1[56]:[^:]*:The Endsinger:72B1:/
-558.6 "Endsong 1" sync / 1[56]:[^:]*:The Endsinger:701B:/
-569.1 "Endsong 2" sync / 1[56]:[^:]*:The Endsinger:701C:/
-578.1 "Endsong 3" sync / 1[56]:[^:]*:The Endsinger:701C:/
-587.1 "Endsong 4" sync / 1[56]:[^:]*:The Endsinger:701C:/
-590.7 "Elenchos" sync / 1[56]:[^:]*:The Endsinger:702[02]:/
-599.8 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
-613.0 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
-623.1 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:6FFD:/
+550.4 "Endsong's Aporrhoia" Ability { id: "72B1", source: "The Endsinger" }
+558.6 "Endsong 1" Ability { id: "701B", source: "The Endsinger" }
+569.1 "Endsong 2" Ability { id: "701C", source: "The Endsinger" }
+578.1 "Endsong 3" Ability { id: "701C", source: "The Endsinger" }
+587.1 "Endsong 4" Ability { id: "701C", source: "The Endsinger" }
+590.7 "Elenchos" Ability { id: "702[02]", source: "The Endsinger" }
+599.8 "Telos" Ability { id: "702E", source: "The Endsinger" }
+613.0 "Fatalism" Ability { id: "6FFD", source: "The Endsinger" }
+623.1 "Fatalism" Ability { id: "6FFD", source: "The Endsinger" }
 
 # Four Planets 2
-623.3 "Star Collision 1" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-629.8 "Star Collision 2" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-633.4 "Star Collision 3" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-639.9 "Star Collision 4" sync / 1[56]:[^:]*:(Fiery Star|Azure Star):700[24]:/
-647.2 "Telos" sync / 1[56]:[^:]*:The Endsinger:702E:/
-661.4 "Fatalism" sync / 1[56]:[^:]*:The Endsinger:7031:/
+623.3 "Star Collision 1" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+629.8 "Star Collision 2" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+633.4 "Star Collision 3" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+639.9 "Star Collision 4" Ability { id: "700[24]", source: ["Fiery Star", "Azure Star"] }
+647.2 "Telos" Ability { id: "702E", source: "The Endsinger" }
+661.4 "Fatalism" Ability { id: "7031", source: "The Endsinger" }
 
 683.7 "--untargetable--"
-688.7 "Ultimate Fate (enrage)" sync / 1[56]:[^:]*:The Endsinger:7032:/
+688.7 "Ultimate Fate (enrage)" Ability { id: "7032", source: "The Endsinger" }

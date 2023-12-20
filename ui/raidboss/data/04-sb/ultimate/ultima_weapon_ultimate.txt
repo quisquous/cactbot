@@ -14,316 +14,316 @@ hideall "--Reset--"
 
 
 ### Phase 1: Garuda ###
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.3 "--sync--" sync / 14:[^:]*:Garuda:2B53:/ window 10,10
-8.8 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
-11.4 "Mistral Song" sync / 1[56]:[^:]*:Garuda:2B42:/
-17.5 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
-23.6 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
-24.2 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
-27.6 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/
-29.7 "Great Whirlwind" sync / 1[56]:[^:]*:Garuda:2B41:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.3 "--sync--" StartsUsing { id: "2B53", source: "Garuda" } window 10,10
+8.8 "Slipstream" Ability { id: "2B53", source: "Garuda" }
+11.4 "Mistral Song" Ability { id: "2B42", source: "Garuda" }
+17.5 "Great Whirlwind" Ability { id: "2B41", source: "Garuda" }
+23.6 "Great Whirlwind" Ability { id: "2B41", source: "Garuda" }
+24.2 "Slipstream" Ability { id: "2B53", source: "Garuda" }
+27.6 "Downburst" Ability { id: "2B50", source: "Garuda" }
+29.7 "Great Whirlwind" Ability { id: "2B41", source: "Garuda" }
 34.9 "--untargetable--"
-37.5 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+37.5 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 39.2 "--targetable--"
-42.2 "Mistral Shriek" sync / 1[56]:[^:]*:Garuda:2B54:/
-51.5 "Friction 1" sync / 1[56]:[^:]*:Garuda:2B48:/
-57.6 "Friction 2" sync / 1[56]:[^:]*:Garuda:2B48:/
+42.2 "Mistral Shriek" Ability { id: "2B54", source: "Garuda" }
+51.5 "Friction 1" Ability { id: "2B48", source: "Garuda" }
+57.6 "Friction 2" Ability { id: "2B48", source: "Garuda" }
 69.5 "--untargetable--"
-72.1 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+72.1 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 73.8 "--targetable--"
-76.8 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/
-92.9 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-99.8 "Mistral Song x2" sync / 1[56]:[^:]*:Chirada:2B4B:/
-100.1 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-100.2 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
-104.2 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-105.8 "Great Whirlwind" sync / 1[56]:[^:]*:Suparna:2B41:/
-121.8 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
-123.0 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-125.0 "Mesohigh x2" sync / 1[56]:[^:]*:Chirada:2B49:/
-125.1 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/
-129.6 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-142.2 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
-150.6 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
-152.6 "Wicked Tornado" sync / 1[56]:[^:]*:Garuda:2B4F:/
-155.4 "Downburst" sync / 1[56]:[^:]*:Garuda:2B50:/
-163.4 "Slipstream" sync / 1[56]:[^:]*:Garuda:2B53:/
+76.8 "Aerial Blast" Ability { id: "2B55", source: "Garuda" }
+92.9 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+99.8 "Mistral Song x2" Ability { id: "2B4B", source: "Chirada" }
+100.1 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+100.2 "Wicked Wheel" Ability { id: "2B4E", source: "Garuda" }
+104.2 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+105.8 "Great Whirlwind" Ability { id: "2B41", source: "Suparna" }
+121.8 "Slipstream" Ability { id: "2B53", source: "Garuda" }
+123.0 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+125.0 "Mesohigh x2" Ability { id: "2B49", source: "Chirada" }
+125.1 "Downburst" Ability { id: "2B50", source: "Garuda" }
+129.6 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+142.2 "Slipstream" Ability { id: "2B53", source: "Garuda" }
+150.6 "Wicked Wheel" Ability { id: "2B4E", source: "Garuda" }
+152.6 "Wicked Tornado" Ability { id: "2B4F", source: "Garuda" }
+155.4 "Downburst" Ability { id: "2B50", source: "Garuda" }
+163.4 "Slipstream" Ability { id: "2B53", source: "Garuda" }
 # retime below
-176.5 "--untargetable--" sync / 1[56]:[^:]*:Garuda:2B4D:/
-181.5 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/
+176.5 "--untargetable--" Ability { id: "2B4D", source: "Garuda" }
+181.5 "Aerial Blast" Ability { id: "2B55", source: "Garuda" }
 
 
 ### Phase 2: Ifrit ###
-300.0 "--sync--" sync / 14:[^:]*:Ifrit:2B5F:/ window 300,0
-303.0 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
-304.0 "Radiant Plume" sync / 1[56]:[^:]*:Ifrit:2B61:/
+300.0 "--sync--" StartsUsing { id: "2B5F", source: "Ifrit" } window 300,0
+303.0 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
+304.0 "Radiant Plume" Ability { id: "2B61", source: "Ifrit" }
 307.1 "--targetable--"
-310.1 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/
-318.3 "Vulcan Burst" sync / 1[56]:[^:]*:Ifrit:2B57:/
-321.2 "Incinerate 1" sync / 1[56]:[^:]*:Ifrit:2B56:/
-324.3 "Incinerate 2" sync / 1[56]:[^:]*:Ifrit:2B56:/
-328.4 "Incinerate 3" sync / 1[56]:[^:]*:Ifrit:2B56:/
-331.5 "--nail adds--" sync / 1[56]:[^:]*:Ifrit:1CD:/
-340.6 "Infernal Fetters" sync / 1[56]:[^:]*:Ifrit:2C19:/
-342.7 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/ duration 18
-348.8 "Eruption 1" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-350.8 "Eruption 2" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-352.8 "Eruption 3" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-354.8 "Eruption 4" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
+310.1 "Hellfire" Ability { id: "2B5E", source: "Ifrit" }
+318.3 "Vulcan Burst" Ability { id: "2B57", source: "Ifrit" }
+321.2 "Incinerate 1" Ability { id: "2B56", source: "Ifrit" }
+324.3 "Incinerate 2" Ability { id: "2B56", source: "Ifrit" }
+328.4 "Incinerate 3" Ability { id: "2B56", source: "Ifrit" }
+331.5 "--nail adds--" Ability { id: "1CD", source: "Ifrit" }
+340.6 "Infernal Fetters" Ability { id: "2C19", source: "Ifrit" }
+342.7 "Inferno Howl" Ability { id: "2B5B", source: "Ifrit" } duration 18
+348.8 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
+350.8 "Eruption 2" #Ability { id: "2B5A", source: "Ifrit" }
+352.8 "Eruption 3" #Ability { id: "2B5A", source: "Ifrit" }
+354.8 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
 365.7 "--untargetable--"
 369.9 "--targetable--"
-369.9 "--sync--" sync / 14:[^:]*:Ifrit:2B5E:/ window 10,10
-372.9 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/
-381.2 "Inferno Howl 1" sync / 1[56]:[^:]*:Ifrit:2B5B:/ duration 30
-387.3 "Eruption 1" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-389.3 "Eruption 2" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-391.3 "Eruption 3" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-393.3 "Eruption 4" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-394.3 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
-399.2 "Inferno Howl 2" sync / 1[56]:[^:]*:Ifrit:2B5B:/ duration 30
-409.6 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
+369.9 "--sync--" StartsUsing { id: "2B5E", source: "Ifrit" } window 10,10
+372.9 "Hellfire" Ability { id: "2B5E", source: "Ifrit" }
+381.2 "Inferno Howl 1" Ability { id: "2B5B", source: "Ifrit" } duration 30
+387.3 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
+389.3 "Eruption 2" #Ability { id: "2B5A", source: "Ifrit" }
+391.3 "Eruption 3" #Ability { id: "2B5A", source: "Ifrit" }
+393.3 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
+394.3 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
+399.2 "Inferno Howl 2" Ability { id: "2B5B", source: "Ifrit" } duration 30
+409.6 "Flaming Crush" Ability { id: "2B5D", source: "Ifrit" }
 413.6 "--untargetable--"
-421.1 "Crimson Cyclone 1" #sync / 1[56]:[^:]*:Ifrit:2B5F:/
-422.5 "Crimson Cyclone 2" #sync / 1[56]:[^:]*:Ifrit:2B5F:/
-424.0 "Crimson Cyclone 3" #sync / 1[56]:[^:]*:Ifrit:2B5F:/
-425.4 "Crimson Cyclone 4" #sync / 1[56]:[^:]*:Ifrit:2B5F:/
+421.1 "Crimson Cyclone 1" #Ability { id: "2B5F", source: "Ifrit" }
+422.5 "Crimson Cyclone 2" #Ability { id: "2B5F", source: "Ifrit" }
+424.0 "Crimson Cyclone 3" #Ability { id: "2B5F", source: "Ifrit" }
+425.4 "Crimson Cyclone 4" #Ability { id: "2B5F", source: "Ifrit" }
 429.5 "--targetable--"
-433.6 "Incinerate 1" sync / 1[56]:[^:]*:Ifrit:2B56:/
-436.7 "Incinerate 2" sync / 1[56]:[^:]*:Ifrit:2B56:/
-440.8 "Incinerate 3" sync / 1[56]:[^:]*:Ifrit:2B56:/
+433.6 "Incinerate 1" Ability { id: "2B56", source: "Ifrit" }
+436.7 "Incinerate 2" Ability { id: "2B56", source: "Ifrit" }
+440.8 "Incinerate 3" Ability { id: "2B56", source: "Ifrit" }
 # retime below
-447.0 "Eruption 1" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-449.0 "Eruption 2" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-451.0 "Eruption 3" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-453.0 "Eruption 4" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-456.0 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
+447.0 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
+449.0 "Eruption 2" #Ability { id: "2B5A", source: "Ifrit" }
+451.0 "Eruption 3" #Ability { id: "2B5A", source: "Ifrit" }
+453.0 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
+456.0 "Flaming Crush" Ability { id: "2B5D", source: "Ifrit" }
 # ??? unknown enrage
 
 
 ### Phase 3: Titan ###
-600.0 "--sync--" sync / 14:[^:]*:Titan:2CFD:/ window 600,0
-603.0 "Geocrush" sync / 1[56]:[^:]*:Titan:2CFD:/
+600.0 "--sync--" StartsUsing { id: "2CFD", source: "Titan" } window 600,0
+603.0 "Geocrush" Ability { id: "2CFD", source: "Titan" }
 605.3 "--targetable--"
-608.3 "Earthen Fury" sync / 1[56]:[^:]*:Titan:2B90:/
-616.4 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/
-619.5 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/
-624.5 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-627.5 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
+608.3 "Earthen Fury" Ability { id: "2B90", source: "Titan" }
+616.4 "Rock Buster" Ability { id: "2B62", source: "Titan" }
+619.5 "Mountain Buster" Ability { id: "2B63", source: "Titan" }
+624.5 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+627.5 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
 627.6 "--untargetable--"
-632.8 "Geocrush" sync / 1[56]:[^:]*:Titan:2B66:/
+632.8 "Geocrush" Ability { id: "2B66", source: "Titan" }
 635.1 "--targetable--"
-635.1 "--sync--" sync / 1[56]:[^:]*:Titan:2B68:/
-638.1 "Bury" sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-641.1 "Upheaval" sync / 1[56]:[^:]*:Titan:2B67:/
-643.2 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/
-646.1 "Bury" sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-647.7 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-652.1 "Landslide 2" sync / 1[56]:[^:]*:Titan:2B70:/
-654.2 "Tumult x8" duration 7.7 #sync / 1[56]:[^:]*:Titan:2C18:/
-670.0 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-673.0 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
-675.0 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-677.0 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
+635.1 "--sync--" Ability { id: "2B68", source: "Titan" }
+638.1 "Bury" Ability { id: "2B69", source: "Bomb Boulder" }
+641.1 "Upheaval" Ability { id: "2B67", source: "Titan" }
+643.2 "Rock Throw" Ability { id: "2B6B", source: "Titan" }
+646.1 "Bury" Ability { id: "2B69", source: "Bomb Boulder" }
+647.7 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+652.1 "Landslide 2" Ability { id: "2B70", source: "Titan" }
+654.2 "Tumult x8" duration 7.7 #Ability { id: "2C18", source: "Titan" }
+670.0 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+673.0 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
+675.0 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+677.0 "Landslide 2" Ability { id: "2C22", source: "Titan" }
 681.1 "--untargetable--"
-686.3 "Geocrush" sync / 1[56]:[^:]*:Titan:2B66:/
+686.3 "Geocrush" Ability { id: "2B66", source: "Titan" }
 688.6 "--targetable--"
-688.6 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/
-702.9 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-704.9 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
-708.0 "Tumult x6" duration 5.5 #sync / 1[56]:[^:]*:Titan:2C18:/
-715.6 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/
-719.6 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/
-721.6 "--sync--" sync / 1[56]:[^:]*:Titan:2B68:/
-724.6 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-726.6 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-726.6 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-728.6 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-729.6 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
-730.6 "Bury" #sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-731.9 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-732.7 "Weight of the Land 3" sync / 1[56]:[^:]*:Titan:2B65:/
-733.9 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
-740.0 "Rock Buster" sync / 1[56]:[^:]*:Titan:2B62:/
-744.0 "Mountain Buster" sync / 1[56]:[^:]*:Titan:2B63:/
-749.1 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-752.1 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
-755.1 "Weight of the Land 3" sync / 1[56]:[^:]*:Titan:2B65:/
-756.8 "Tumult x8" duration 7.7 #sync / 1[56]:[^:]*:Titan:2C18:/
+688.6 "Rock Throw" Ability { id: "2B6B", source: "Titan" }
+702.9 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+704.9 "Landslide 2" Ability { id: "2C22", source: "Titan" }
+708.0 "Tumult x6" duration 5.5 #Ability { id: "2C18", source: "Titan" }
+715.6 "Rock Buster" Ability { id: "2B62", source: "Titan" }
+719.6 "Mountain Buster" Ability { id: "2B63", source: "Titan" }
+721.6 "--sync--" Ability { id: "2B68", source: "Titan" }
+724.6 "Bury" #Ability { id: "2B69", source: "Bomb Boulder" }
+726.6 "Bury" #Ability { id: "2B69", source: "Bomb Boulder" }
+726.6 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+728.6 "Bury" #Ability { id: "2B69", source: "Bomb Boulder" }
+729.6 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
+730.6 "Bury" #Ability { id: "2B69", source: "Bomb Boulder" }
+731.9 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+732.7 "Weight of the Land 3" Ability { id: "2B65", source: "Titan" }
+733.9 "Landslide 2" Ability { id: "2C22", source: "Titan" }
+740.0 "Rock Buster" Ability { id: "2B62", source: "Titan" }
+744.0 "Mountain Buster" Ability { id: "2B63", source: "Titan" }
+749.1 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+752.1 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
+755.1 "Weight of the Land 3" Ability { id: "2B65", source: "Titan" }
+756.8 "Tumult x8" duration 7.7 #Ability { id: "2C18", source: "Titan" }
 772.5 "--untargetable--"
-779.8 "Earthen Fury Enrage" sync / 1[56]:[^:]*:Titan:2B90:/
+779.8 "Earthen Fury Enrage" Ability { id: "2B90", source: "Titan" }
 
 
 ### Phase 4: Snacks ###
-800.0 "Freefire" sync / 1[56]:[^:]*:[^:]*:2CF5:/ window 800,0
+800.0 "Freefire" Ability { id: "2CF5" } window 800,0
 802.0 "--targetable--"
-803.0 "--sync--" sync / 14:[^:]*:Magitek Bit:2B72:/
-815.0 "Self-detonate" sync / 1[56]:[^:]*:Magitek Bit:2B72:/
-815.2 "Blight" sync / 1[56]:[^:]*:Lahabrea:2B73:/ window 50,10
-824.2 "--sync--" sync / 14:[^:]*:Lahabrea:2B74:/ window 50,10
-841.2 "Dark IV" sync / 1[56]:[^:]*:Lahabrea:2B74:/ window 50,10
-845.4 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2B8B:/ window 50,10
-850.4 "Ultima" sync / 1[56]:[^:]*:The Ultima Weapon:2B8B:/ window 50,10 forcejump 960.3
+803.0 "--sync--" StartsUsing { id: "2B72", source: "Magitek Bit" }
+815.0 "Self-detonate" Ability { id: "2B72", source: "Magitek Bit" }
+815.2 "Blight" Ability { id: "2B73", source: "Lahabrea" } window 50,10
+824.2 "--sync--" StartsUsing { id: "2B74", source: "Lahabrea" } window 50,10
+841.2 "Dark IV" Ability { id: "2B74", source: "Lahabrea" } window 50,10
+845.4 "--sync--" StartsUsing { id: "2B8B", source: "The Ultima Weapon" } window 50,10
+850.4 "Ultima" Ability { id: "2B8B", source: "The Ultima Weapon" } window 50,10 forcejump 960.3
 
 
 ### Phase 5: Ultima ###
-960.3 "Ultima" sync / 1[56]:[^:]*:The Ultima Weapon:2B8B:/
-1000 "--targetable--" sync / 14:[^:]*:The Ultima Weapon:2B87:/ window 1000,100
-1004.0 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/
-1006.3 "--apply viscous--" sync / 1[56]:[^:]*:The Ultima Weapon:2B79:/
-1012.4 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
-1017.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/
+960.3 "Ultima" Ability { id: "2B8B", source: "The Ultima Weapon" }
+1000 "--targetable--" StartsUsing { id: "2B87", source: "The Ultima Weapon" } window 1000,100
+1004.0 "Tank Purge" Ability { id: "2B87", source: "The Ultima Weapon" }
+1006.3 "--apply viscous--" Ability { id: "2B79", source: "The Ultima Weapon" }
+1012.4 "Homing Lasers" Ability { id: "2B7B", source: "The Ultima Weapon" }
+1017.4 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "The Ultima Weapon" }
 
 ## Ultimate Predation
-1020.5 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2B76:/ window 30,30
-1023.5 "Ultimate Predation" sync / 1[56]:[^:]*:The Ultima Weapon:2B76:/
+1020.5 "--sync--" StartsUsing { id: "2B76", source: "The Ultima Weapon" } window 30,30
+1023.5 "Ultimate Predation" Ability { id: "2B76", source: "The Ultima Weapon" }
 1027.9 "--untargetable--"
-1038.2 "Landslide" sync / 1[56]:[^:]*:Titan:2B70:/
-1038.2 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
-1038.2 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
-1040.2 "Ceruleum Vent" sync / 1[56]:[^:]*:The Ultima Weapon:2B7C:/
-1040.2 "Landslide" sync / 1[56]:[^:]*:Titan:2C22:/
-1040.2 "Wicked Tornado" sync / 1[56]:[^:]*:Garuda:2B4F:/
-1045.4 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+1038.2 "Landslide" Ability { id: "2B70", source: "Titan" }
+1038.2 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
+1038.2 "Wicked Wheel" Ability { id: "2B4E", source: "Garuda" }
+1040.2 "Ceruleum Vent" Ability { id: "2B7C", source: "The Ultima Weapon" }
+1040.2 "Landslide" Ability { id: "2C22", source: "Titan" }
+1040.2 "Wicked Tornado" Ability { id: "2B4F", source: "Garuda" }
+1045.4 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 
 ## Interlude Dance
 1047.4 "--targetable--"
-1059.8 "Eruption 1" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1061.8 "Eruption 2" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1063.8 "Eruption 3" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1064.8 "Infernal Fetters" sync / 1[56]:[^:]*:Ifrit:2C19:/
-1065.8 "Eruption 4" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1067.9 "--sync--" sync / 1[56]:[^:]*:Titan:2B68:/
-1069.9 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:2B7D:/
-1070.9 "Bury x6" duration 10 #sync / 1[56]:[^:]*:Bomb Boulder:2B69:/
-#1074.2 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-1074.9 "Landslide 1" sync / 1[56]:[^:]*:The Ultima Weapon:2B7E:/
-1076.2 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
-1079.3 "Tumult x7" duration 6.9 #sync / 1[56]:[^:]*:Titan:2C18:/
-1082.3 "--apply viscous--" sync / 1[56]:[^:]*:The Ultima Weapon:2B79:/
-1087.3 "Wicked Wheel" sync / 1[56]:[^:]*:Chirada:2B4C:/
-1089.3 "Mistral Shriek" sync / 1[56]:[^:]*:Garuda:2B54:/
-1092.6 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-1093.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/
-1094.5 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
-1096.2 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+1059.8 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
+1061.8 "Eruption 2" #Ability { id: "2B5A", source: "Ifrit" }
+1063.8 "Eruption 3" #Ability { id: "2B5A", source: "Ifrit" }
+1064.8 "Infernal Fetters" Ability { id: "2C19", source: "Ifrit" }
+1065.8 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
+1067.9 "--sync--" Ability { id: "2B68", source: "Titan" }
+1069.9 "Radiant Plume" Ability { id: "2B7D", source: "The Ultima Weapon" }
+1070.9 "Bury x6" duration 10 #Ability { id: "2B69", source: "Bomb Boulder" }
+#1074.2 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+1074.9 "Landslide 1" Ability { id: "2B7E", source: "The Ultima Weapon" }
+1076.2 "Landslide 2" Ability { id: "2C22", source: "Titan" }
+1079.3 "Tumult x7" duration 6.9 #Ability { id: "2C18", source: "Titan" }
+1082.3 "--apply viscous--" Ability { id: "2B79", source: "The Ultima Weapon" }
+1087.3 "Wicked Wheel" Ability { id: "2B4C", source: "Chirada" }
+1089.3 "Mistral Shriek" Ability { id: "2B54", source: "Garuda" }
+1092.6 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+1093.4 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "The Ultima Weapon" }
+1094.5 "Homing Lasers" Ability { id: "2B7B", source: "The Ultima Weapon" }
+1096.2 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 
 ## Ultimate Annihilation
-1098.8 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2D4C:/ window 30,30
-1101.8 "Ultimate Annihilation" sync / 1[56]:[^:]*:The Ultima Weapon:2D4C:/
+1098.8 "--sync--" StartsUsing { id: "2D4C", source: "The Ultima Weapon" } window 30,30
+1101.8 "Ultimate Annihilation" Ability { id: "2D4C", source: "The Ultima Weapon" }
 1106.2 "--untargetable--"
 1110.4 "--targetable--"
-1113.4 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-1115.4 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
-1116.4 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
-1116.5 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1113.4 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+1115.4 "Flaming Crush" Ability { id: "2B5D", source: "Ifrit" }
+1116.4 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
+1116.5 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
 # This damage is when the orb is taken, but the timing is the first moment it could be taken.
-1118.2 "Aetheroplasm 1" #sync / 1[56]:[^:]*:Aetheroplasm:2B81:/
-1118.6 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/
-1119.5 "Weight of the Land 3" sync / 1[56]:[^:]*:Titan:2B65:/
-1119.5 "Inferno Howl" sync / 1[56]:[^:]*:Ifrit:2B5B:/
-1123.2 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-1123.6 "Aetheroplasm 2" #sync / 1[56]:[^:]*:Aetheroplasm:2B81:/
-1127.7 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
-1128.6 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-1130.6 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
-1132.6 "Aetheroplasm 3" #sync / 1[56]:[^:]*:Aetheroplasm:2B81:/
-1133.7 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-1135.9 "Aetheroplasm 4" #sync / 1[56]:[^:]*:Aetheroplasm:2B81:/
-1136.0 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/
-1138.8 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/
-1140.7 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+1118.2 "Aetheroplasm 1" #Ability { id: "2B81", source: "Aetheroplasm" }
+1118.6 "Mesohigh" Ability { id: "2B49", source: "Garuda" }
+1119.5 "Weight of the Land 3" Ability { id: "2B65", source: "Titan" }
+1119.5 "Inferno Howl" Ability { id: "2B5B", source: "Ifrit" }
+1123.2 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+1123.6 "Aetheroplasm 2" #Ability { id: "2B81", source: "Aetheroplasm" }
+1127.7 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
+1128.6 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+1130.6 "Landslide 2" Ability { id: "2C22", source: "Titan" }
+1132.6 "Aetheroplasm 3" #Ability { id: "2B81", source: "Aetheroplasm" }
+1133.7 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+1135.9 "Aetheroplasm 4" #Ability { id: "2B81", source: "Aetheroplasm" }
+1136.0 "Mesohigh" Ability { id: "2B49", source: "Garuda" }
+1138.8 "Tank Purge" Ability { id: "2B87", source: "The Ultima Weapon" }
+1140.7 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 1142.9 "--untargetable--"
 1147.1 "--targetable--"
-1150.5 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-1154.2 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
-1162.3 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-1164.4 "Radiant Plume" sync / 1[56]:[^:]*:The Ultima Weapon:2B7D:/
-1167.5 "Diffractive Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B78:/
-1171.6 "Vulcan Burst" sync / 1[56]:[^:]*:The Ultima Weapon:2CF4:/
+1150.5 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+1154.2 "Homing Lasers" Ability { id: "2B7B", source: "The Ultima Weapon" }
+1162.3 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+1164.4 "Radiant Plume" Ability { id: "2B7D", source: "The Ultima Weapon" }
+1167.5 "Diffractive Laser" Ability { id: "2B78", source: "The Ultima Weapon" }
+1171.6 "Vulcan Burst" Ability { id: "2CF4", source: "The Ultima Weapon" }
 
-1173.6 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
-1179.2 "Homing Lasers" sync / 1[56]:[^:]*:The Ultima Weapon:2B7B:/
-1183.3 "Vulcan Burst" sync / 1[56]:[^:]*:The Ultima Weapon:2CF4:/
-1185.5 "Eye of the Storm" sync / 1[56]:[^:]*:Garuda:2B52:/
+1173.6 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
+1179.2 "Homing Lasers" Ability { id: "2B7B", source: "The Ultima Weapon" }
+1183.3 "Vulcan Burst" Ability { id: "2CF4", source: "The Ultima Weapon" }
+1185.5 "Eye of the Storm" Ability { id: "2B52", source: "Garuda" }
 # retime from here, into natural push below
 1190 "Diffractive Laser"
 
 ## Ultimate Suppression (50%)
-1192.0 "--sync--" sync / 14:[^:]*:The Ultima Weapon:2D4D:/ window 1200,100
-1195.0 "Ultimate Suppression" sync / 1[56]:[^:]*:The Ultima Weapon:2D4D:/
+1192.0 "--sync--" StartsUsing { id: "2D4D", source: "The Ultima Weapon" } window 1200,100
+1195.0 "Ultimate Suppression" Ability { id: "2D4D", source: "The Ultima Weapon" }
 1199.4 "--untargetable--"
-1205.7 "Rock Throw" sync / 1[56]:[^:]*:Titan:2B6B:/
-1206.7 "Eruption 1" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1208.7 "Eruption 2" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1209.8 "Mistral Song" sync / 1[56]:[^:]*:Suparna:2B4B:/
-1210.7 "Eruption 3" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1211.7 "Light Pillar x6" sync / 1[56]:[^:]*:The Ultima Weapon:2B82:/ duration 8
-1212.0 "Mistral Song" sync / 1[56]:[^:]*:Garuda:2B8E:/
-1212.6 "Eruption 4" #sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1214.4 "Feather Rain 1" #sync / 1[56]:[^:]*:Garuda:2B4D:/
-1216.0 "Great Whirlwind" sync / 1[56]:[^:]*:Suparna:2B41:/
-1216.4 "Feather Rain 2" #sync / 1[56]:[^:]*:Garuda:2B4D:/
-1216.8 "Aetherochemical Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B8[456]:/
-1221.0 "Aetherochemical Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B8[456]:/
-1224.3 "Landslide 1" sync / 1[56]:[^:]*:Titan:2B70:/
-1225.1 "Aetherochemical Laser" sync / 1[56]:[^:]*:The Ultima Weapon:2B8[456]:/
-1226.3 "Landslide 2" sync / 1[56]:[^:]*:Titan:2C22:/
-1227.1 "Mesohigh" sync / 1[56]:[^:]*:Garuda:2B49:/
-1228.0 "Flaming Crush" sync / 1[56]:[^:]*:Ifrit:2B5D:/
-1232.8 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
-1233.2 "Tank Purge" sync / 1[56]:[^:]*:The Ultima Weapon:2B87:/
+1205.7 "Rock Throw" Ability { id: "2B6B", source: "Titan" }
+1206.7 "Eruption 1" #Ability { id: "2B5A", source: "Ifrit" }
+1208.7 "Eruption 2" #Ability { id: "2B5A", source: "Ifrit" }
+1209.8 "Mistral Song" Ability { id: "2B4B", source: "Suparna" }
+1210.7 "Eruption 3" #Ability { id: "2B5A", source: "Ifrit" }
+1211.7 "Light Pillar x6" Ability { id: "2B82", source: "The Ultima Weapon" } duration 8
+1212.0 "Mistral Song" Ability { id: "2B8E", source: "Garuda" }
+1212.6 "Eruption 4" #Ability { id: "2B5A", source: "Ifrit" }
+1214.4 "Feather Rain 1" #Ability { id: "2B4D", source: "Garuda" }
+1216.0 "Great Whirlwind" Ability { id: "2B41", source: "Suparna" }
+1216.4 "Feather Rain 2" #Ability { id: "2B4D", source: "Garuda" }
+1216.8 "Aetherochemical Laser" Ability { id: "2B8[456]", source: "The Ultima Weapon" }
+1221.0 "Aetherochemical Laser" Ability { id: "2B8[456]", source: "The Ultima Weapon" }
+1224.3 "Landslide 1" Ability { id: "2B70", source: "Titan" }
+1225.1 "Aetherochemical Laser" Ability { id: "2B8[456]", source: "The Ultima Weapon" }
+1226.3 "Landslide 2" Ability { id: "2C22", source: "Titan" }
+1227.1 "Mesohigh" Ability { id: "2B49", source: "Garuda" }
+1228.0 "Flaming Crush" Ability { id: "2B5D", source: "Ifrit" }
+1232.8 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
+1233.2 "Tank Purge" Ability { id: "2B87", source: "The Ultima Weapon" }
 1239.5 "--targetable--"
-1244.5 "Ultima" sync / 1[56]:[^:]*:The Ultima Weapon:2B8B:/
-1254.7 "Aetheric Boom" sync / 1[56]:[^:]*:The Ultima Weapon:2B88:/
-1275.9 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B8F:/
-1279.9 "Summon Random Primal" #sync / 1[56]:[^:]*:The Ultima Weapon:2CD[345]:/
+1244.5 "Ultima" Ability { id: "2B8B", source: "The Ultima Weapon" }
+1254.7 "Aetheric Boom" Ability { id: "2B88", source: "The Ultima Weapon" }
+1275.9 "Viscous Aetheroplasm" Ability { id: "2B8F", source: "The Ultima Weapon" }
+1279.9 "Summon Random Primal" #Ability { id: "2CD[345]", source: "The Ultima Weapon" }
 
 
 ## Random Primal Finale (summon all three in random order)
 # Note: 2CD3/2CD4/2CD5 get used at other points in the fight so can't have big syncs.
 
 ## Summon Garuda (random order)
-1300.0 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD3:/ window 50,300
-1307.2 "Wicked Wheel" sync / 1[56]:[^:]*:Garuda:2B4E:/
-1308.4 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:The Ultima Weapon:2B7A:/
-1309.3 "Wicked Tornado" sync / 1[56]:[^:]*:Ifrit:2B4F:/
-1314.1 "Aerial Blast" sync / 1[56]:[^:]*:Garuda:2B55:/
+1300.0 "--sync--" Ability { id: "2CD3", source: "The Ultima Weapon" } window 50,300
+1307.2 "Wicked Wheel" Ability { id: "2B4E", source: "Garuda" }
+1308.4 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "The Ultima Weapon" }
+1309.3 "Wicked Tornado" Ability { id: "2B4F", source: "Ifrit" }
+1314.1 "Aerial Blast" Ability { id: "2B55", source: "Garuda" }
 # ??? is this timing correct if Garuda is not last?
-1318.1 "Summon Random Primal" #sync / 1[56]:[^:]*:The Ultima Weapon:2CD[345]:/
-1321.8 "Feather Rain" sync / 1[56]:[^:]*:Garuda:2B4D:/
+1318.1 "Summon Random Primal" #Ability { id: "2CD[345]", source: "The Ultima Weapon" }
+1321.8 "Feather Rain" Ability { id: "2B4D", source: "Garuda" }
 
 
 ## Summon Ifrit (random order)
-1400.0 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD4:/ window 150,300
-1407.2 "Crimson Cyclone" sync / 1[56]:[^:]*:Ifrit:2B5F:/
-1407.2 "Eruption" sync / 1[56]:[^:]*:Ifrit:2B5A:/
-1408.5 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:Ifrit:2B7A:/
-1415.2 "Hellfire" sync / 1[56]:[^:]*:Ifrit:2B5E:/
-1420.1 "Summon Random Primal" #sync / 1[56]:[^:]*:The Ultima Weapon:2CD[345]:/
+1400.0 "--sync--" Ability { id: "2CD4", source: "The Ultima Weapon" } window 150,300
+1407.2 "Crimson Cyclone" Ability { id: "2B5F", source: "Ifrit" }
+1407.2 "Eruption" Ability { id: "2B5A", source: "Ifrit" }
+1408.5 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "Ifrit" }
+1415.2 "Hellfire" Ability { id: "2B5E", source: "Ifrit" }
+1420.1 "Summon Random Primal" #Ability { id: "2CD[345]", source: "The Ultima Weapon" }
 
 ## Summon Titan (random order)
-1500.0 "--sync--" sync / 1[56]:[^:]*:The Ultima Weapon:2CD5:/ window 250,300
-1505.1 "Weight of the Land 1" sync / 1[56]:[^:]*:Titan:2B65:/
-1508.1 "Weight of the Land 2" sync / 1[56]:[^:]*:Titan:2B65:/
-1508.8 "Viscous Aetheroplasm" sync / 1[56]:[^:]*:Titan:2B7A:/
-1511.1 "Weight of the Land 3" sync / 1[56]:[^:]*:Titan:2B65:/
-1514.2 "Earthen Fury" sync / 1[56]:[^:]*:Titan:2B90:/
-1520.1 "Summon Random Primal" #sync / 1[56]:[^:]*:The Ultima Weapon:2CD4:/
+1500.0 "--sync--" Ability { id: "2CD5", source: "The Ultima Weapon" } window 250,300
+1505.1 "Weight of the Land 1" Ability { id: "2B65", source: "Titan" }
+1508.1 "Weight of the Land 2" Ability { id: "2B65", source: "Titan" }
+1508.8 "Viscous Aetheroplasm" Ability { id: "2B7A", source: "Titan" }
+1511.1 "Weight of the Land 3" Ability { id: "2B65", source: "Titan" }
+1514.2 "Earthen Fury" Ability { id: "2B90", source: "Titan" }
+1520.1 "Summon Random Primal" #Ability { id: "2CD4", source: "The Ultima Weapon" }
 
 
 ## Enrage
-1600.0 "Enrage" sync / 1[56]:[^:]*:The Ultima Weapon:2B8C:/ window 400,0
+1600.0 "Enrage" Ability { id: "2B8C", source: "The Ultima Weapon" } window 400,0
 
 # FIXME: this waits until 100% aether, but unclear when that happens in the log.
 # The only indication is a 122 Damage Up ability 2 seconds before this.
-1625.0 "Citadel Siege 1" sync / 1[56]:[^:]*:[^:]*:2B92:/ window 30,0
-1628.0 "Citadel Siege 2" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1631.0 "Citadel Siege 3" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1634.0 "Citadel Siege 4" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1637.0 "Citadel Siege 5" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1640.0 "Citadel Siege 6" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1643.0 "Citadel Siege 7" sync / 1[56]:[^:]*:[^:]*:2B92:/
+1625.0 "Citadel Siege 1" Ability { id: "2B92" } window 30,0
+1628.0 "Citadel Siege 2" Ability { id: "2B92" }
+1631.0 "Citadel Siege 3" Ability { id: "2B92" }
+1634.0 "Citadel Siege 4" Ability { id: "2B92" }
+1637.0 "Citadel Siege 5" Ability { id: "2B92" }
+1640.0 "Citadel Siege 6" Ability { id: "2B92" }
+1643.0 "Citadel Siege 7" Ability { id: "2B92" }
 # Is this really 6 seconds on the last person?
-1649.0 "Citadel Siege 8" sync / 1[56]:[^:]*:[^:]*:2B92:/
-1651.0 "Sabik Enrage" sync / 1[56]:[^:]*:The Ultima Weapon:2B93:/
+1649.0 "Citadel Siege 8" Ability { id: "2B92" }
+1651.0 "Sabik Enrage" Ability { id: "2B93", source: "The Ultima Weapon" }

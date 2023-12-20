@@ -171,6 +171,13 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
               assert.isNull(e, `${timelineFile}:${e.error}`);
           }
         });
+        it('should use netregex parameter style', () => {
+          // Incorrect: 8.0 "Crackle Hiss" sync / 1[56]:[^:]*:Imdugud:B55:/
+          //   Correct: 8.0 "Crackle Hiss" Ability { id: "B55", source: "Imdugud" }
+          for (const sync of timeline.syncStarts) {
+            assert.strictEqual(sync.regexType, 'net');
+          }
+        });
         it('should not have translation conflicts', () => {
           const translations = triggerSet.timelineReplace;
           if (!translations)
@@ -329,24 +336,6 @@ const testTimelineFiles = (timelineFiles: string[]): void => {
                   );
                 }
               }
-            }
-          }
-        });
-        it('should have proper sealed sync', () => {
-          for (const sync of timeline.syncStarts) {
-            const regex = sync.regex.source;
-            if (sync.regexType === 'net')
-              continue;
-            if (regex.includes('is no longer sealed')) {
-              assert.isArray(
-                /00:0839::\.\*is no longer sealed/.exec(regex),
-                `${timelineFile}:${sync.lineNumber} 'is no longer sealed' sync must be exactly '00:0839::.*is no longer sealed'`,
-              );
-            } else if (regex.includes('will be sealed')) {
-              assert.isArray(
-                /00:0839::.*will be sealed/.exec(regex),
-                `${timelineFile}:${sync.lineNumber} 'will be sealed' sync must be preceded by '00:0839::'`,
-              );
             }
           }
         });

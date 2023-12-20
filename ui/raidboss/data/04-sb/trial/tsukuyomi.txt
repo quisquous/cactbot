@@ -7,110 +7,110 @@ hideall "--sync--"
 hideall "--Reset--"
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.2 "--sync--" sync / 14:[^:]*:Tsukuyomi:2BE3:/ window 20,20
-14.2 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
-24.3 "Zashiki-Asobi" sync / 1[56]:[^:]*:Tsukuyomi:2BEC:/
-30.4 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE5:/
-35.3 "Tsuki-No-Maiogi" duration 4 #sync / 1[56]:[^:]*:Dancing Fan:2BED:/
-36.6 "Steel Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE7:/
-39.8 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
-49.9 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-65.2 "Midnight Haze 1" sync / 1[56]:[^:]*:Tsukuyomi:2BE8:/
-69.6 "Midnight Haze 2" sync / 1[56]:[^:]*:Tsukuyomi:2BE9:/
-77.7 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
-79.9 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
-85.0 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
-88.1 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
-107.0 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2BEE:/ window 110,10
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.2 "--sync--" StartsUsing { id: "2BE3", source: "Tsukuyomi" } window 20,20
+14.2 "Torment Unto Death" Ability { id: "2BE3", source: "Tsukuyomi" }
+24.3 "Zashiki-Asobi" Ability { id: "2BEC", source: "Tsukuyomi" }
+30.4 "Nightfall" Ability { id: "2BE5", source: "Tsukuyomi" }
+35.3 "Tsuki-No-Maiogi" duration 4 #Ability { id: "2BED", source: "Dancing Fan" }
+36.6 "Steel Of The Underworld" Ability { id: "2BE7", source: "Tsukuyomi" }
+39.8 "--sync--" Ability { id: "2BC0", source: "Tsukuyomi" }
+49.9 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+65.2 "Midnight Haze 1" Ability { id: "2BE8", source: "Tsukuyomi" }
+69.6 "Midnight Haze 2" Ability { id: "2BE9", source: "Tsukuyomi" }
+77.7 "Nightfall" Ability { id: "2BE4", source: "Tsukuyomi" }
+79.9 "--sync--" Ability { id: "2CB1", source: "Tsukuyomi" }
+85.0 "Lead Of The Underworld" Ability { id: "2BE6", source: "Tsukuyomi" }
+88.1 "--sync--" Ability { id: "2CCF", source: "Tsukuyomi" }
+107.0 "Nightbloom" Ability { id: "2BEE", source: "Tsukuyomi" } window 110,10
 108.0 "--untargetable--"
 
 
 ### Phase 2: Adds
-127.8 "--Patriarch/Matriarch Adds--" sync / 03:........:Specter Of The Matriarch:/  window 30,10
-174.5 "--Empire/Homeland Adds--" sync / 03:........:Specter Of The Empire:/  window 80,10
+127.8 "--Patriarch/Matriarch Adds--" AddedCombatant { name: "Specter Of The Matriarch" }  window 30,10
+174.5 "--Empire/Homeland Adds--" AddedCombatant { name: "Specter Of The Empire" }  window 80,10
 # TODO: Specter of Asahi shows up alone after all other adds are dead, so can't have a timeline entry.
 
-400.0 "Concentrativity" sync / 1[56]:[^:]*:Specter of Zenos:2BEF:/ window 400,0
-406.7 "Unmoving Troika" sync / 1[56]:[^:]*:Specter of Zenos:2CAB:/
-413.6 "--sync--" sync / 1[56]:[^:]*:Specter of Zenos:2BCA:/
+400.0 "Concentrativity" Ability { id: "2BEF", source: "Specter of Zenos" } window 400,0
+406.7 "Unmoving Troika" Ability { id: "2CAB", source: "Specter of Zenos" }
+413.6 "--sync--" Ability { id: "2BCA", source: "Specter of Zenos" }
 416.6 "--targetable--"
-423.7 "Dispersivity" sync / 1[56]:[^:]*:Specter:2BF0:/ window 40,40
-429.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
-435.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
-441.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
-447.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
-453.7 "Dispersivity" #sync / 1[56]:[^:]*:Specter:2BF0:/
+423.7 "Dispersivity" Ability { id: "2BF0", source: "Specter" } window 40,40
+429.7 "Dispersivity" #Ability { id: "2BF0", source: "Specter" }
+435.7 "Dispersivity" #Ability { id: "2BF0", source: "Specter" }
+441.7 "Dispersivity" #Ability { id: "2BF0", source: "Specter" }
+447.7 "Dispersivity" #Ability { id: "2BF0", source: "Specter" }
+453.7 "Dispersivity" #Ability { id: "2BF0", source: "Specter" }
 
 
 ### Phase 3: Selenomancy
-500.0 "--sync--" sync / 14:[^:]*:Tsukuyomi:2CB0:/ window 500,0
-504.0 "Nightbloom" sync / 1[56]:[^:]*:Tsukuyomi:2CB0:/
+500.0 "--sync--" StartsUsing { id: "2CB0", source: "Tsukuyomi" } window 500,0
+504.0 "Nightbloom" Ability { id: "2CB0", source: "Tsukuyomi" }
 509.9 "--targetable--"
-524.4 "Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2BF1:/
-541.6 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
-543.6 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2C73:/
-543.8 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
-549.0 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
-552.1 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
-565.3 "Antitwilight" sync / 1[56]:[^:]*:Tsukuyomi:2BF8:/
-575.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
-582.7 "Zashiki-Asobi" sync / 1[56]:[^:]*:Tsukuyomi:2BEC:/
-588.8 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE4:/
-591.0 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CB1:/
-593.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-596.2 "Lead Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE6:/
-599.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2CCF:/
-611.5 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2BE3:/
-623.2 "Selenomancy" sync / 1[56]:[^:]*:Tsukuyomi:2BF1:/
-630.5 "Midnight Haze" sync / 1[56]:[^:]*:Tsukuyomi:2BE8:/
-635.0 "Midnight Haze" sync / 1[56]:[^:]*:Tsukuyomi:2BE9:/
-643.1 "Nightfall" sync / 1[56]:[^:]*:Tsukuyomi:2BE5:/
-649.3 "Steel Of The Underworld" sync / 1[56]:[^:]*:Tsukuyomi:2BE7:/
-652.2 "Lunar Halo" sync / 1[56]:[^:]*:Moonlight:2C73:/
-652.5 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BC0:/
-667.7 "Perilune" sync / 1[56]:[^:]*:Tsukuyomi:2BF7:/
+524.4 "Selenomancy" Ability { id: "2BF1", source: "Tsukuyomi" }
+541.6 "Nightfall" Ability { id: "2BE4", source: "Tsukuyomi" }
+543.6 "Lunar Halo" Ability { id: "2C73", source: "Moonlight" }
+543.8 "--sync--" Ability { id: "2CB1", source: "Tsukuyomi" }
+549.0 "Lead Of The Underworld" Ability { id: "2BE6", source: "Tsukuyomi" }
+552.1 "--sync--" Ability { id: "2CCF", source: "Tsukuyomi" }
+565.3 "Antitwilight" Ability { id: "2BF8", source: "Tsukuyomi" }
+575.5 "Torment Unto Death" Ability { id: "2BE3", source: "Tsukuyomi" }
+582.7 "Zashiki-Asobi" Ability { id: "2BEC", source: "Tsukuyomi" }
+588.8 "Nightfall" Ability { id: "2BE4", source: "Tsukuyomi" }
+591.0 "--sync--" Ability { id: "2CB1", source: "Tsukuyomi" }
+593.7 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+596.2 "Lead Of The Underworld" Ability { id: "2BE6", source: "Tsukuyomi" }
+599.3 "--sync--" Ability { id: "2CCF", source: "Tsukuyomi" }
+611.5 "Torment Unto Death" Ability { id: "2BE3", source: "Tsukuyomi" }
+623.2 "Selenomancy" Ability { id: "2BF1", source: "Tsukuyomi" }
+630.5 "Midnight Haze" Ability { id: "2BE8", source: "Tsukuyomi" }
+635.0 "Midnight Haze" Ability { id: "2BE9", source: "Tsukuyomi" }
+643.1 "Nightfall" Ability { id: "2BE5", source: "Tsukuyomi" }
+649.3 "Steel Of The Underworld" Ability { id: "2BE7", source: "Tsukuyomi" }
+652.2 "Lunar Halo" Ability { id: "2C73", source: "Moonlight" }
+652.5 "--sync--" Ability { id: "2BC0", source: "Tsukuyomi" }
+667.7 "Perilune" Ability { id: "2BF7", source: "Tsukuyomi" }
 
 
 ### Phase 4: Dance Of The Dead -> Bright/Dark Blade (hp push and timed)
-677.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2BFD:/ window 700,50
-678.3 "--sync--" sync / 1[56]:[^:]*:Tsukuyomi:2D1F:/
-683.2 "Dance Of The Dead" sync / 1[56]:[^:]*:Tsukuyomi:2E79:/
-693.5 "Lunacy x3" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
-701.8 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-709.0 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-719.2 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-725.2 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-726.5 "Lunacy x4" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
-738.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-749.1 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/
-758.2 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-759.0 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-763.4 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-770.6 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-780.7 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-786.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-788.1 "Lunacy x5" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
-801.5 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+677.3 "--sync--" Ability { id: "2BFD", source: "Tsukuyomi" } window 700,50
+678.3 "--sync--" Ability { id: "2D1F", source: "Tsukuyomi" }
+683.2 "Dance Of The Dead" Ability { id: "2E79", source: "Tsukuyomi" }
+693.5 "Lunacy x3" Ability { id: "2BFB", source: "Tsukuyomi" }
+701.8 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+709.0 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+719.2 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+725.2 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+726.5 "Lunacy x4" Ability { id: "2BFB", source: "Tsukuyomi" }
+738.8 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+749.1 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" }
+758.2 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+759.0 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+763.4 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+770.6 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+780.7 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+786.7 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+788.1 "Lunacy x5" Ability { id: "2BFB", source: "Tsukuyomi" }
+801.5 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
 
 # begin loop
-811.7 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/
-820.8 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-821.7 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-826.1 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-833.2 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-843.4 "Bright Blade/Dark Blade" sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-849.4 "Tsuki-No-Maiogi" sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-850.7 "Lunacy x5" sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
-864.1 "Reprimand" sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+811.7 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" }
+820.8 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+821.7 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+826.1 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+833.2 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
+843.4 "Bright Blade/Dark Blade" Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+849.4 "Tsuki-No-Maiogi" Ability { id: "2BED", source: "Dancing Fan" } duration 4
+850.7 "Lunacy x5" Ability { id: "2BFB", source: "Tsukuyomi" }
+864.1 "Reprimand" Ability { id: "2BE2", source: "Tsukuyomi" }
 
 # loop
-874.3 "Torment Unto Death" sync / 1[56]:[^:]*:Tsukuyomi:2EB3:/ window 50,50 jump 811.7
-883.4 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-884.3 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-888.7 "Bright Blade/Dark Blade" #sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-895.8 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
-906.0 "Bright Blade/Dark Blade" #sync / 1[56]:[^:]*:Tsukuyomi:(2BF9|2BFA):/
-912.0 "Tsuki-No-Maiogi" #sync / 1[56]:[^:]*:Dancing Fan:2BED:/ duration 4
-913.3 "Lunacy x5" #sync / 1[56]:[^:]*:Tsukuyomi:2BFB:/
-926.7 "Reprimand" #sync / 1[56]:[^:]*:Tsukuyomi:2BE2:/
+874.3 "Torment Unto Death" Ability { id: "2EB3", source: "Tsukuyomi" } window 50,50 jump 811.7
+883.4 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }
+884.3 "Tsuki-No-Maiogi" #Ability { id: "2BED", source: "Dancing Fan" } duration 4
+888.7 "Bright Blade/Dark Blade" #Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+895.8 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }
+906.0 "Bright Blade/Dark Blade" #Ability { id: ["2BF9", "2BFA"], source: "Tsukuyomi" }
+912.0 "Tsuki-No-Maiogi" #Ability { id: "2BED", source: "Dancing Fan" } duration 4
+913.3 "Lunacy x5" #Ability { id: "2BFB", source: "Tsukuyomi" }
+926.7 "Reprimand" #Ability { id: "2BE2", source: "Tsukuyomi" }

@@ -9,137 +9,137 @@ hideall "--Reset--"
 hideall "Answer On High"
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.9 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/ window 11,5
-17.1 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
-27.3 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
-28.5 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-34.7 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-37.5 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
-38.5 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-44.7 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.9 "Storm Pulse" Ability { id: "27DC", source: "Byakko" } window 11,5
+17.1 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
+27.3 "State of Shock 1" Ability { id: "27E0", source: "Byakko" }
+28.5 "Clutch" Ability { id: "27E1", source: "Byakko" }
+34.7 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+37.5 "State of Shock 2" Ability { id: "2756", source: "Byakko" }
+38.5 "Clutch" Ability { id: "27E1", source: "Byakko" }
+44.7 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
 
-55.5 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
-59.6 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
-65.8 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
-68.0 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
-77.4 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
-85.7 "--leap north--" sync / 1[56]:[^:]*:Byakko:2757:/
-87.3 "Dance Of The Incomplete" sync / 1[56]:[^:]*:Byakko:25D1:/
+55.5 "--middle--" Ability { id: "2757", source: "Byakko" }
+59.6 "Unrelenting Anguish" Ability { id: "27ED", source: "Byakko" }
+65.8 "Storm Pulse" Ability { id: "27DC", source: "Byakko" }
+68.0 "Ominous Wind" Ability { id: "27EB", source: "Byakko" }
+77.4 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
+85.7 "--leap north--" Ability { id: "2757", source: "Byakko" }
+87.3 "Dance Of The Incomplete" Ability { id: "25D1", source: "Byakko" }
 92.2 "--Hakutei Add--"
-103.4 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
-103.4 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
-109.6 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
-113.7 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+103.4 "Storm Pulse" Ability { id: "27DC", source: "Byakko" }
+103.4 "Steel Claw" Ability { id: "27DF", source: "Hakutei" }
+109.6 "Steel Claw" Ability { id: "27DF", source: "Hakutei" }
+113.7 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
 116.6 "--tiger untargetable--"
-122.4 "White Herald" sync / 1[56]:[^:]*:Hakutei:27FA:/
+122.4 "White Herald" Ability { id: "27FA", source: "Hakutei" }
 124.4 "--tiger targetable--"
-124.8 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
-128.6 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
-133.0 "Storm Pulse" sync / 1[56]:[^:]*:Byakko:27DC:/
+124.8 "Distant Clap" Ability { id: "27DD", source: "Byakko" }
+128.6 "Fire and Lightning" Ability { id: "27DE", source: "Hakutei" }
+133.0 "Storm Pulse" Ability { id: "27DC", source: "Byakko" }
 135.1 "--untargetable--"
-135.2 "--sync--" sync / 1[56]:[^:]*:Hakutei:265E:/
-136.6 "The Voice Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F7:/
-159.8 "The Roar Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F9:/
+135.2 "--sync--" Ability { id: "265E", source: "Hakutei" }
+136.6 "The Voice Of Thunder" Ability { id: "27F7", source: "Hakutei" }
+159.8 "The Roar Of Thunder" Ability { id: "27F9", source: "Hakutei" }
 162.9 "--untargetable--"
 
 
 ### Phase 2: zzz x infinity
-191.1 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/ window 200,5
-197.2 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27F3:/
-208.1 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
-208.4 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/
-220.2 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
-222.6 "--sync--" sync / 1[56]:[^:]*:Byakko:27EE:/
-228.7 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27F3:/
-237.3 "Imperial Guard" sync / 1[56]:[^:]*:Hakutei:27F1:/
+191.1 "--sync--" Ability { id: "27EE", source: "Byakko" } window 200,5
+197.2 "Sweep the Leg" Ability { id: "27F3", source: "Byakko" }
+208.1 "Imperial Guard" Ability { id: "27F1", source: "Hakutei" }
+208.4 "--sync--" Ability { id: "27EE", source: "Byakko" }
+220.2 "Imperial Guard" Ability { id: "27F1", source: "Hakutei" }
+222.6 "--sync--" Ability { id: "27EE", source: "Byakko" }
+228.7 "Sweep the Leg" Ability { id: "27F3", source: "Byakko" }
+237.3 "Imperial Guard" Ability { id: "27F1", source: "Hakutei" }
 
 
 ### Phase 3: More Bubbles
-250.1 "--sync--" sync / 1[56]:[^:]*:Byakko:2A2A:/
-265.1 "Fell Swoop" sync / 1[56]:[^:]*:Byakko:27FB:/ window 300,10
-284.4 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
-290.5 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
-295.6 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
-296.6 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
-297.7 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-298.6 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
-304.0 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-306.9 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
-307.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-314.1 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-320.8 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
+250.1 "--sync--" Ability { id: "2A2A", source: "Byakko" }
+265.1 "Fell Swoop" Ability { id: "27FB", source: "Byakko" } window 300,10
+284.4 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
+290.5 "Answer On High" Ability { id: "27E4", source: "Byakko" }
+295.6 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" } duration 3.2
+296.6 "State of Shock 1" Ability { id: "27E0", source: "Byakko" }
+297.7 "Clutch" Ability { id: "27E1", source: "Byakko" }
+298.6 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" } duration 3.2
+304.0 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+306.9 "State of Shock 2" Ability { id: "2756", source: "Byakko" }
+307.9 "Clutch" Ability { id: "27E1", source: "Byakko" }
+314.1 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+320.8 "Sweep the Leg" Ability { id: "27DB", source: "Byakko" }
 
-330.9 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/ window 10,10
-335.2 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
-341.4 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-345.6 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
-351.6 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
-353.6 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
-361.0 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
-364.1 "--north--" sync / 1[56]:[^:]*:Byakko:2757:/
-369.9 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
+330.9 "--sync--" Ability { id: "2757", source: "Byakko" } window 10,10
+335.2 "Unrelenting Anguish" Ability { id: "27ED", source: "Byakko" }
+341.4 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+345.6 "Bombogenesis" Ability { id: "27E7", source: "Byakko" }
+351.6 "Ominous Wind" Ability { id: "27EB", source: "Byakko" }
+353.6 "Gale Force" Ability { id: "27E8", source: "Byakko" }
+361.0 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
+364.1 "--north--" Ability { id: "2757", source: "Byakko" }
+369.9 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
 
-373.1 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
-374.5 "Dance Of The Incomplete" sync / 1[56]:[^:]*:Byakko:25D1:/
+373.1 "--sync--" Ability { id: "2757", source: "Byakko" }
+374.5 "Dance Of The Incomplete" Ability { id: "25D1", source: "Byakko" }
 379.5 "--tiger targetable--"
 388.8 "--tiger untargetable--"
-394.5 "White Herald" sync / 1[56]:[^:]*:Hakutei:27FA:/
+394.5 "White Herald" Ability { id: "27FA", source: "Hakutei" }
 396.5 "--tiger targetable--"
-396.8 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
-400.7 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
-405.0 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
-408.9 "Fire and Lightning" sync / 1[56]:[^:]*:Hakutei:27DE:/
-416.1 "Steel Claw" sync / 1[56]:[^:]*:Hakutei:27DF:/
-416.4 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
-422.4 "--sync--" sync / 1[56]:[^:]*:Hakutei:265E:/
-423.9 "The Voice Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F7:/
-436.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-447.1 "The Roar Of Thunder" sync / 1[56]:[^:]*:Hakutei:27F9:/
-450.6 "--sync--" sync / 1[56]:[^:]*:Hakutei:29E5:/
+396.8 "Distant Clap" Ability { id: "27DD", source: "Byakko" }
+400.7 "Fire and Lightning" Ability { id: "27DE", source: "Hakutei" }
+405.0 "Distant Clap" Ability { id: "27DD", source: "Byakko" }
+408.9 "Fire and Lightning" Ability { id: "27DE", source: "Hakutei" }
+416.1 "Steel Claw" Ability { id: "27DF", source: "Hakutei" }
+416.4 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
+422.4 "--sync--" Ability { id: "265E", source: "Hakutei" }
+423.9 "The Voice Of Thunder" Ability { id: "27F7", source: "Hakutei" }
+436.5 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+447.1 "The Roar Of Thunder" Ability { id: "27F9", source: "Hakutei" }
+450.6 "--sync--" Ability { id: "29E5", source: "Hakutei" }
 
-451.5 "--sync--" sync / 1[56]:[^:]*:Byakko:29E4:/
-453.5 "--sync--" sync / 1[56]:[^:]*:Byakko:2757:/
-459.3 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
-474.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-484.8 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
-487.0 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
-492.0 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
-492.9 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
-495.1 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/ duration 3.2
-495.8 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
-496.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-503.2 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-505.8 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
-506.9 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-513.2 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-519.7 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
-534.2 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
-544.5 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-557.9 "Distant Clap" sync / 1[56]:[^:]*:Byakko:27DD:/
-564.1 "Heavenly Strike" sync / 1[56]:[^:]*:Byakko:27DA:/
+451.5 "--sync--" Ability { id: "29E4", source: "Byakko" }
+453.5 "--sync--" Ability { id: "2757", source: "Byakko" }
+459.3 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
+474.5 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+484.8 "Bombogenesis" Ability { id: "27E7", source: "Byakko" }
+487.0 "Answer On High" Ability { id: "27E4", source: "Byakko" }
+492.0 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" } duration 3.2
+492.9 "Gale Force" Ability { id: "27E8", source: "Byakko" }
+495.1 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" } duration 3.2
+495.8 "State of Shock 1" Ability { id: "27E0", source: "Byakko" }
+496.9 "Clutch" Ability { id: "27E1", source: "Byakko" }
+503.2 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+505.8 "State of Shock 2" Ability { id: "2756", source: "Byakko" }
+506.9 "Clutch" Ability { id: "27E1", source: "Byakko" }
+513.2 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+519.7 "Sweep the Leg" Ability { id: "27DB", source: "Byakko" }
+534.2 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
+544.5 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+557.9 "Distant Clap" Ability { id: "27DD", source: "Byakko" }
+564.1 "Heavenly Strike" Ability { id: "27DA", source: "Byakko" }
 
-572.2 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
-576.3 "Unrelenting Anguish" sync / 1[56]:[^:]*:Byakko:27ED:/
-582.4 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-586.7 "Bombogenesis" sync / 1[56]:[^:]*:Byakko:27E7:/
-592.8 "Ominous Wind" sync / 1[56]:[^:]*:Byakko:27EB:/
-594.7 "Gale Force" sync / 1[56]:[^:]*:Byakko:27E8:/
-602.1 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
-605.3 "--north--" sync / 1[56]:[^:]*:Byakko:2757:/
-611.0 "Fire and Lightning" sync / 1[56]:[^:]*:Byakko:27D9:/
-626.2 "Storm Pulse x2" sync / 1[56]:[^:]*:Byakko:27DC:/
-634.4 "Answer On High" sync / 1[56]:[^:]*:Byakko:27E4:/
-639.4 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/
-640.5 "State of Shock 1" sync / 1[56]:[^:]*:Byakko:27E0:/
-641.6 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-642.5 "Hundredfold Havoc" sync / 1[56]:[^:]*:Byakko:27E5:/
-647.9 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-650.8 "State of Shock 2" sync / 1[56]:[^:]*:Byakko:2756:/
-651.8 "Clutch" sync / 1[56]:[^:]*:Byakko:27E1:/
-658.1 "Highest Stakes" sync / 1[56]:[^:]*:Byakko:27E2:/
-664.8 "Sweep the Leg" sync / 1[56]:[^:]*:Byakko:27DB:/
+572.2 "--middle--" Ability { id: "2757", source: "Byakko" }
+576.3 "Unrelenting Anguish" Ability { id: "27ED", source: "Byakko" }
+582.4 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+586.7 "Bombogenesis" Ability { id: "27E7", source: "Byakko" }
+592.8 "Ominous Wind" Ability { id: "27EB", source: "Byakko" }
+594.7 "Gale Force" Ability { id: "27E8", source: "Byakko" }
+602.1 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
+605.3 "--north--" Ability { id: "2757", source: "Byakko" }
+611.0 "Fire and Lightning" Ability { id: "27D9", source: "Byakko" }
+626.2 "Storm Pulse x2" Ability { id: "27DC", source: "Byakko" }
+634.4 "Answer On High" Ability { id: "27E4", source: "Byakko" }
+639.4 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" }
+640.5 "State of Shock 1" Ability { id: "27E0", source: "Byakko" }
+641.6 "Clutch" Ability { id: "27E1", source: "Byakko" }
+642.5 "Hundredfold Havoc" Ability { id: "27E5", source: "Byakko" }
+647.9 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+650.8 "State of Shock 2" Ability { id: "2756", source: "Byakko" }
+651.8 "Clutch" Ability { id: "27E1", source: "Byakko" }
+658.1 "Highest Stakes" Ability { id: "27E2", source: "Byakko" }
+664.8 "Sweep the Leg" Ability { id: "27DB", source: "Byakko" }
 
-674.9 "--middle--" sync / 1[56]:[^:]*:Byakko:2757:/
-680.2 "Storm Pulse x4" sync / 1[56]:[^:]*:Byakko:27DC:/
-696.3 "Storm Pulse Enrage" sync / 1[56]:[^:]*:Byakko:2A09:/
+674.9 "--middle--" Ability { id: "2757", source: "Byakko" }
+680.2 "Storm Pulse x4" Ability { id: "27DC", source: "Byakko" }
+696.3 "Storm Pulse Enrage" Ability { id: "2A09", source: "Byakko" }

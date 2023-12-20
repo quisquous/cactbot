@@ -10,36 +10,36 @@ hideall "--sync--"
 
 ### Phase 1
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.5 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/ window 10,5
-21.6 "Death Sentence" sync / 1[56]:[^:]*:Twintania:5B2:/ window 22,10
-25.7 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/
-38.4 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/
-51.8 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/
-57.9 "Death Sentence" sync / 1[56]:[^:]*:Twintania:5B2:/ window 22,10
-65.3 "Plummet" sync / 1[56]:[^:]*:Twintania:4D8:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+7.5 "Plummet" Ability { id: "4D8", source: "Twintania" } window 10,5
+21.6 "Death Sentence" Ability { id: "5B2", source: "Twintania" } window 22,10
+25.7 "Plummet" Ability { id: "4D8", source: "Twintania" }
+38.4 "Plummet" Ability { id: "4D8", source: "Twintania" }
+51.8 "Plummet" Ability { id: "4D8", source: "Twintania" }
+57.9 "Death Sentence" Ability { id: "5B2", source: "Twintania" } window 22,10
+65.3 "Plummet" Ability { id: "4D8", source: "Twintania" }
 # ???
 
 
 ### Phase 2
-200.0 "--sync--" sync / 1[56]:[^:]*:Twintania:5AC:/ window 200,0
-205.0 "Fireball" sync / 1[56]:[^:]*:Twintania:4DE:/
-219.0 "Firestorm" sync / 1[56]:[^:]*:Twintania:5AB:/
-229.3 "Fireball" sync / 1[56]:[^:]*:Twintania:4DE:/
-254.9 "Fireball" sync / 1[56]:[^:]*:Twintania:4DE:/
-257.4 "Firestorm" sync / 1[56]:[^:]*:Twintania:5AB:/
-280.0 "Fireball" sync / 1[56]:[^:]*:Twintania:4DE:/
+200.0 "--sync--" Ability { id: "5AC", source: "Twintania" } window 200,0
+205.0 "Fireball" Ability { id: "4DE", source: "Twintania" }
+219.0 "Firestorm" Ability { id: "5AB", source: "Twintania" }
+229.3 "Fireball" Ability { id: "4DE", source: "Twintania" }
+254.9 "Fireball" Ability { id: "4DE", source: "Twintania" }
+257.4 "Firestorm" Ability { id: "5AB", source: "Twintania" }
+280.0 "Fireball" Ability { id: "4DE", source: "Twintania" }
 # ???
 
 ### Phase 3
-400.0 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/ window 400,0
-407.9 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/
-415.6 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/
+400.0 "Divebomb" Ability { id: "5B0", source: "Twintania" } window 400,0
+407.9 "Divebomb" Ability { id: "5B0", source: "Twintania" }
+415.6 "Divebomb" Ability { id: "5B0", source: "Twintania" }
 419.6 "1x Asclepius add"
 419.6 "2x Hygieia adds"
-465.3 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/ window 30,5
-473.0 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/
-480.9 "Divebomb" sync / 1[56]:[^:]*:Twintania:5B0:/
+465.3 "Divebomb" Ability { id: "5B0", source: "Twintania" } window 30,5
+473.0 "Divebomb" Ability { id: "5B0", source: "Twintania" }
+480.9 "Divebomb" Ability { id: "5B0", source: "Twintania" }
 484.9 "2x Hygieia adds"
 
 
@@ -50,20 +50,20 @@ hideall "--sync--"
 # weird.  Having twister timers seems nice though, even if it's not perfect.
 
 546.0 "--targetable--"
-600.0 "Aetheric Profusion" sync / 1[56]:[^:]*:Twintania:4E0:/ window 600,0
-616.0 "Unwoven Will" sync / 1[56]:[^:]*:Twintania:4E3:/ window 50,20
-637.8 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
-656.2 "Unwoven Will" sync / 1[56]:[^:]*:Twintania:4E3:/ window 30,30
-664.6 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
-685.8 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
+600.0 "Aetheric Profusion" Ability { id: "4E0", source: "Twintania" } window 600,0
+616.0 "Unwoven Will" Ability { id: "4E3", source: "Twintania" } window 50,20
+637.8 "Twister" Ability { id: "4E1", source: "Twintania" }
+656.2 "Unwoven Will" Ability { id: "4E3", source: "Twintania" } window 30,30
+664.6 "Twister" Ability { id: "4E1", source: "Twintania" }
+685.8 "Twister" Ability { id: "4E1", source: "Twintania" }
 
-696.0 "Unwoven Will" sync / 1[56]:[^:]*:Twintania:4E3:/ window 30,30
-711.0 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
-736.2 "Unwoven Will" sync / 1[56]:[^:]*:Twintania:4E3:/ window 30,30
-744.6 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
-765.8 "Twister" sync / 1[56]:[^:]*:Twintania:4E1:/
+696.0 "Unwoven Will" Ability { id: "4E3", source: "Twintania" } window 30,30
+711.0 "Twister" Ability { id: "4E1", source: "Twintania" }
+736.2 "Unwoven Will" Ability { id: "4E3", source: "Twintania" } window 30,30
+744.6 "Twister" Ability { id: "4E1", source: "Twintania" }
+765.8 "Twister" Ability { id: "4E1", source: "Twintania" }
 
-776.0 "Unwoven Will" sync / 1[56]:[^:]*:Twintania:4E3:/ window 30,30 jump 696
+776.0 "Unwoven Will" Ability { id: "4E3", source: "Twintania" } window 30,30 jump 696
 791.0 "Twister"
 816.2 "Unwoven Will"
 824.6 "Twister"
@@ -71,10 +71,10 @@ hideall "--sync--"
 
 
 ### Phase 5
-900.0 "Hatch" sync / 1[56]:[^:]*:Twintania:5AD:/ window 900,0
-904.0 "Liquid Hell" sync / 1[56]:[^:]*:Twintania:5B1:/ duration 8 window 200,200
-912.5 "Hatch" sync / 1[56]:[^:]*:Twintania:5AD:/
-921.0 "Hatch" sync / 1[56]:[^:]*:Twintania:5AD:/
+900.0 "Hatch" Ability { id: "5AD", source: "Twintania" } window 900,0
+904.0 "Liquid Hell" Ability { id: "5B1", source: "Twintania" } duration 8 window 200,200
+912.5 "Hatch" Ability { id: "5AD", source: "Twintania" }
+921.0 "Hatch" Ability { id: "5AD", source: "Twintania" }
 922.0 "Liquid Hell"
 930.5 "Hatch"
 939.0 "Hatch"
@@ -85,7 +85,7 @@ hideall "--sync--"
 
 ### Enrage
 # There's also plummets in here on a different timer.
-1000 "Aetheric Profusion" sync / 1[56]:[^:]*:Twintania:4E0:/ window 399,100
+1000 "Aetheric Profusion" Ability { id: "4E0", source: "Twintania" } window 399,100
 1006 "Aetheric Profusion"
 1012 "Aetheric Profusion"
 1018 "Aetheric Profusion"

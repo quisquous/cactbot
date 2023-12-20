@@ -9,91 +9,91 @@ hideall "--sync--"
 # Use ActorControl (0x21) Reset line
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/ window 11,5
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+11 "Encumber" Ability { id: "28B6", source: "Wroth Ghost" } window 11,5
 18 "Saintly Beam" duration 10
-31 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
-41 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
-50 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
-64 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
-65 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
-71 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
-80 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+31 "Knockback Whistle" Ability { id: "28A5", source: "Phantom Train" }
+41 "All In The Mind" Ability { id: "28AD", source: "Remorse" }
+50 "Doom Strike" Ability { id: "28B1", source: "Phantom Train" }
+64 "Head On" Ability { id: "28B7", source: "Phantom Train" }
+65 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
+71 "Acid Rain" Ability { id: "28B5", source: "Phantom Train" }
+80 "Crossing Whistle" Ability { id: "28A5", source: "Phantom Train" }
 90 "Saintly Beam" duration 10
-104 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
-116 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+104 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
+116 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 125 "Saintly Beam" duration 10
 141 "Diabolic Light" duration 13
-152 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
-159 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+152 "Doom Strike" Ability { id: "28B1", source: "Phantom Train" }
+159 "Acid Rain" Ability { id: "28B5", source: "Phantom Train" }
 
 
 # add phase
 
-168 "--untargetable--" sync / 1[56]:[^:]*:Phantom Train:28A7:/ window 500,500
+168 "--untargetable--" Ability { id: "28A7", source: "Phantom Train" } window 500,500
 180 "Add Wave"
-196 "(DPS) Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
-203 "(T/H) Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+196 "(DPS) Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
+203 "(T/H) Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
 
 # chimney + train cars
-300 "--sync--" sync / 1[56]:[^:]*:Phantom Train:28B3:/ window 500,500
-305 "(T/H) Ghosts" sync / 03:........:Agony:/
-309 "(DPS) Ghosts" sync / 03:........:Malice:/
+300 "--sync--" Ability { id: "28B3", source: "Phantom Train" } window 500,500
+305 "(T/H) Ghosts" AddedCombatant { name: "Agony" }
+309 "(DPS) Ghosts" AddedCombatant { name: "Malice" }
 
 
-491 "--sync--" sync / 1[56]:[^:]*:Phantom Train:28A8:/ window 500,500
+491 "--sync--" Ability { id: "28A8", source: "Phantom Train" } window 500,500
 500 "--targetable--"
-517 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/ window 80,80
+517 "Encumber" Ability { id: "28B6", source: "Wroth Ghost" } window 80,80
 525 "Diabolic Light" duration 13
-530 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+530 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
 534 "Saintly Beam" duration 10
-547 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
+547 "Doom Strike" Ability { id: "28B1", source: "Phantom Train" }
 
-556 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+556 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 563 "Saintly Beam" duration 10
-580 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
-589 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
-593 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
-611 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
+580 "Knockback Whistle" Ability { id: "28A5", source: "Phantom Train" }
+589 "All In The Mind" Ability { id: "28AD", source: "Remorse" }
+593 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
+611 "Head On" Ability { id: "28B7", source: "Phantom Train" }
 612 "Saintly Beam" duration 10
 616 "Ghosts spawn"
 
-629 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
-637 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
-645 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
-646 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+629 "Crossing Whistle" Ability { id: "28A5", source: "Phantom Train" }
+637 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
+645 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
+646 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 653 "Saintly Beam" duration 10
-659 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+659 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
 
 665 "Diabolic Light" duration 13
-676 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
-683 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
-697 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+676 "Doom Strike" Ability { id: "28B1", source: "Phantom Train" }
+683 "Acid Rain" Ability { id: "28B5", source: "Phantom Train" }
+697 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
 699 "Saintly Beam" duration 10
-704 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
+704 "Acid Rain" Ability { id: "28B5", source: "Phantom Train" }
 
-718 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+718 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 728 "Saintly Beam" duration 10
-731 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/
-732 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
+731 "Encumber" Ability { id: "28B6", source: "Wroth Ghost" }
+732 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
 
 737 "Diabolic Light" duration 13
-748 "Doom Strike" sync / 1[56]:[^:]*:Phantom Train:28B1:/
-760 "Knockback Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
-769 "All In The Mind" sync / 1[56]:[^:]*:Remorse:28AD:/
-774 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
+748 "Doom Strike" Ability { id: "28B1", source: "Phantom Train" }
+760 "Knockback Whistle" Ability { id: "28A5", source: "Phantom Train" }
+769 "All In The Mind" Ability { id: "28AD", source: "Remorse" }
+774 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
 
-789 "Head On" sync / 1[56]:[^:]*:Phantom Train:28B7:/
-791 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
-797 "Acid Rain" sync / 1[56]:[^:]*:Phantom Train:28B5:/
-808 "Encumber" sync / 1[56]:[^:]*:Wroth Ghost:28B6:/
-811 "Crossing Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
-819 "Diabolic Headlamp" sync / 1[56]:[^:]*:Phantom Train:28B8:/
-827 "Diabolic Wind" sync / 1[56]:[^:]*:Phantom Train:28BD:/
-828 "Tether Whistle" sync / 1[56]:[^:]*:Phantom Train:28A5:/
+789 "Head On" Ability { id: "28B7", source: "Phantom Train" }
+791 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
+797 "Acid Rain" Ability { id: "28B5", source: "Phantom Train" }
+808 "Encumber" Ability { id: "28B6", source: "Wroth Ghost" }
+811 "Crossing Whistle" Ability { id: "28A5", source: "Phantom Train" }
+819 "Diabolic Headlamp" Ability { id: "28B8", source: "Phantom Train" }
+827 "Diabolic Wind" Ability { id: "28BD", source: "Phantom Train" }
+828 "Tether Whistle" Ability { id: "28A5", source: "Phantom Train" }
 
 # 10:00 enrage, final phase length depends on add phase time
-821 "--sync--" sync / 14:[^:]*:Phantom Train:2A87:/ window 821,500
-831 "Saintly Beam" sync / 1[56]:[^:]*:Phantom Train:2A87:/
+821 "--sync--" StartsUsing { id: "2A87", source: "Phantom Train" } window 821,500
+831 "Saintly Beam" Ability { id: "2A87", source: "Phantom Train" }

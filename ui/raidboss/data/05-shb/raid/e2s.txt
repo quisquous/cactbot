@@ -7,80 +7,80 @@ hideall "--sync--"
 hideall "Spell-In-Waiting"
 
 0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.5 "--sync--" sync / 1[56]:[^:]*:Voidwalker:3E63:/ window 11,5
-11.2 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
-25.4 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
-31.8 "Slicer/Guillotine" sync / 1[56]:[^:]*:Voidwalker:(3E4F|3E50):/
-43.8 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
-59.2 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-69.3 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
-72.7 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-86.1 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-95.3 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
-105.3 "Hell Wind" sync / 1[56]:[^:]*:Voidwalker:3E66:/
-106.8 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
-106.8 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
-121.9 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
-134.1 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
-143.8 "Empty Rage" sync / 1[56]:[^:]*:Voidwalker:3E6C:/
-148.7 "Doomvoid Guillotine" sync / 1[56]:[^:]*:Voidwalker:3E4F:/
-156.9 "Doomvoid Slicer" sync / 1[56]:[^:]*:Voidwalker:3E50:/
-164.9 "Empty Hate" sync / 1[56]:[^:]*:Voidwalker:3E5A:/
-175.8 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
-191.2 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
-203.4 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
-208.0 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-224.9 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
-229.3 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-242.5 "Hell Wind" sync / 1[56]:[^:]*:Voidwalker:3E66:/
-248.5 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
-248.9 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
-260.7 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
-272.9 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.5 "--sync--" Ability { id: "3E63", source: "Voidwalker" } window 11,5
+11.2 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
+25.4 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
+31.8 "Slicer/Guillotine" Ability { id: ["3E4F", "3E50"], source: "Voidwalker" }
+43.8 "Dark Fire III" Ability { id: "3E57", source: "Voidwalker" }
+59.2 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+69.3 "Punishing Ray" Ability { id: "3E5B", source: "Voidwalker" }
+72.7 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+86.1 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+95.3 "Dark Fire III" Ability { id: "3E57", source: "Voidwalker" }
+105.3 "Hell Wind" Ability { id: "3E66", source: "Voidwalker" }
+106.8 "Shadoweye" Ability { id: "3E69", source: "Voidwalker" }
+106.8 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
+121.9 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
+134.1 "Entropy" Ability { id: "3E70", source: "Voidwalker" }
+143.8 "Empty Rage" Ability { id: "3E6C", source: "Voidwalker" }
+148.7 "Doomvoid Guillotine" Ability { id: "3E4F", source: "Voidwalker" }
+156.9 "Doomvoid Slicer" Ability { id: "3E50", source: "Voidwalker" }
+164.9 "Empty Hate" Ability { id: "3E5A", source: "Voidwalker" }
+175.8 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
+191.2 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
+203.4 "Entropy" Ability { id: "3E70", source: "Voidwalker" }
+208.0 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+224.9 "Flare" Ability { id: "4685", source: "Voidwalker" }
+229.3 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+242.5 "Hell Wind" Ability { id: "3E66", source: "Voidwalker" }
+248.5 "Punishing Ray" Ability { id: "3E5B", source: "Voidwalker" }
+248.9 "Shadoweye" Ability { id: "3E69", source: "Voidwalker" }
+260.7 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
+272.9 "Entropy" Ability { id: "3E70", source: "Voidwalker" }
 282.9 "Light/Dark Circles" # ???
-286.4 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
-295.7 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
-304.1 "Slicer/Guillotine" sync / 1[56]:[^:]*:Voidwalker:(3E4F|3E50):/
-330.3 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
-342.5 "Entropy" sync / 1[56]:[^:]*:Voidwalker:3E70:/
-348.1 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-358.2 "Empty Hate/Rage" sync / 1[56]:[^:]*:Voidwalker:(3E5A|3E6C):/
-361.4 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-374.7 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-381.6 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
-386.9 "Unholy Darkness" sync / 1[56]:[^:]*:Voidwalker:3E54:/
-399.9 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
-408.5 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-421.8 "Spell-In-Waiting" sync / 1[56]:[^:]*:Voidwalker:3E52:/
-430.0 "Shadoweye" sync / 1[56]:[^:]*:Voidwalker:3E69:/
-430.0 "Flare" sync / 1[56]:[^:]*:Voidwalker:4685:/
-437.4 "Dark Fire III" sync / 1[56]:[^:]*:Voidwalker:3E57:/
+286.4 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
+295.7 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
+304.1 "Slicer/Guillotine" Ability { id: ["3E4F", "3E50"], source: "Voidwalker" }
+330.3 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
+342.5 "Entropy" Ability { id: "3E70", source: "Voidwalker" }
+348.1 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+358.2 "Empty Hate/Rage" Ability { id: ["3E5A", "3E6C"], source: "Voidwalker" }
+361.4 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+374.7 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+381.6 "Flare" Ability { id: "4685", source: "Voidwalker" }
+386.9 "Unholy Darkness" Ability { id: "3E54", source: "Voidwalker" }
+399.9 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
+408.5 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+421.8 "Spell-In-Waiting" Ability { id: "3E52", source: "Voidwalker" }
+430.0 "Shadoweye" Ability { id: "3E69", source: "Voidwalker" }
+430.0 "Flare" Ability { id: "4685", source: "Voidwalker" }
+437.4 "Dark Fire III" Ability { id: "3E57", source: "Voidwalker" }
 445.4 "Light/Dark Circles" # ???
-450.2 "Punishing Ray" sync / 1[56]:[^:]*:Voidwalker:3E5B:/
-455.0 "Doomvoid Cleaver" sync / 1[56]:[^:]*:Voidwalker:3E64:/
-469.4 "Shadowflame" sync / 1[56]:[^:]*:Voidwalker:3E61:/
+450.2 "Punishing Ray" Ability { id: "3E5B", source: "Voidwalker" }
+455.0 "Doomvoid Cleaver" Ability { id: "3E64", source: "Voidwalker" }
+469.4 "Shadowflame" Ability { id: "3E61", source: "Voidwalker" }
 
 # FIXME: I've seen this push ~6s earlier once
 # but is pretty consistent otherwise?
-499.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/ window 500,20
-507.4 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
-510.5 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:465A:/
-511.2 "Cleaver/Slicer?" sync / 1[56]:[^:]*:Voidwalker:3E64:/
-513.6 "Guillotine/Cleaver?" sync / 1[56]:[^:]*:Voidwalker:465B:/
+499.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" } window 500,20
+507.4 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
+510.5 "Slicer/Guillotine?" Ability { id: "465A", source: "Voidwalker" }
+511.2 "Cleaver/Slicer?" Ability { id: "3E64", source: "Voidwalker" }
+513.6 "Guillotine/Cleaver?" Ability { id: "465B", source: "Voidwalker" }
 
-531.8 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
-534.9 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:40BA:/
-538.0 "Cleaver/Slicer?" sync / 1[56]:[^:]*:Voidwalker:40BB:/
-538.7 "Guillotine/Cleaver?" sync / 1[56]:[^:]*:Voidwalker:3E64:/
+531.8 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
+534.9 "Slicer/Guillotine?" Ability { id: "40BA", source: "Voidwalker" }
+538.0 "Cleaver/Slicer?" Ability { id: "40BB", source: "Voidwalker" }
+538.7 "Guillotine/Cleaver?" Ability { id: "3E64", source: "Voidwalker" }
 
-558.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
-568.2 "Cycle Of ?" sync / 1[56]:[^:]*:Voidwalker:(40B9|4659):/
-571.3 "Slicer/Guillotine?" sync / 1[56]:[^:]*:Voidwalker:(40BA|465A):/
-574.4 "Cleaver/Slicer?" #sync / 1[56]:[^:]*:Voidwalker:(40BB|3E64):/
-575.1 "Guillotine/Cleaver?" #sync / 1[56]:[^:]*:Voidwalker:(3E64|465B):/
-593.2 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
-602.5 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
-611.8 "Quietus" sync / 1[56]:[^:]*:Voidwalker:3E71:/
-624.8 "--sync--" sync / 14:[^:]*:Voidwalker:3E73:/ window 700,5
+558.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
+568.2 "Cycle Of ?" Ability { id: ["40B9", "4659"], source: "Voidwalker" }
+571.3 "Slicer/Guillotine?" Ability { id: ["40BA", "465A"], source: "Voidwalker" }
+574.4 "Cleaver/Slicer?" #Ability { id: ["40BB", "3E64"], source: "Voidwalker" }
+575.1 "Guillotine/Cleaver?" #Ability { id: ["3E64", "465B"], source: "Voidwalker" }
+593.2 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
+602.5 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
+611.8 "Quietus" Ability { id: "3E71", source: "Voidwalker" }
+624.8 "--sync--" StartsUsing { id: "3E73", source: "Voidwalker" } window 700,5
 629.8 "Quietus Enrage"

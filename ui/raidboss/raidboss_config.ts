@@ -2195,6 +2195,13 @@ const templateOptions: OptionsTemplate = {
           'Full Job (Warrior)': 'jobFull',
           'Full Name (Tini Poutini)': 'name',
         },
+        de: {
+          'Spitzname (Tini)': 'nick',
+          'Rolle (Tank)': 'role',
+          'Job (WAR)': 'job',
+          'Job ausgeschrieben (Warrior)': 'jobFull',
+          'Kompletter Name (Tini Poutini)': 'name',
+        },
         ja: {
           'あだ名 (Tini)': 'nick',
           'ロール (ヒーラー)': 'role',

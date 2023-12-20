@@ -11,132 +11,132 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.1 "--sync--" sync / 14:[^:]*:Zeromus:8B3F:/ window 10,10
-11.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-27.1 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
-32.1 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
-42.1 "Sable Thread x6" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 6.9
-#43.8 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#45.1 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#46.4 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#47.7 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-49.0 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.1 "--sync--" StartsUsing { id: "8B3F", source: "Zeromus" } window 10,10
+11.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+27.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+32.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+42.1 "Sable Thread x6" Ability { id: "8B38", source: "Zeromus" } duration 6.9
+#43.8 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#45.1 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#46.4 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#47.7 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+49.0 "--sync--" Ability { id: "8B3A", source: "Zeromus" }
 
-61.7 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+61.7 "Dark Matter x3" Ability { id: "8B83", source: "Zeromus" } duration 4.1
 
-78.8 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
-87.8 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
+78.8 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+87.8 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
 
-101.8 "Flare" sync / 1[56]:[^:]*:Zeromus:8B5D:/
-109.9 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
-119.9 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-134.1 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
-143.1 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
+101.8 "Flare" Ability { id: "8B5D", source: "Zeromus" }
+109.9 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+119.9 "Void Bio" Ability { id: "8B66", source: "Zeromus" }
+134.1 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+143.1 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
 
-148.1 "--sync--" sync / 14:[^:]*:Zeromus:8B4C:/ window 10,10
-153.1 "--spread--" #sync / 1[56]:[^:]*:Zeromus:8BDE:/
-158.1 "Big Bang" sync / 1[56]:[^:]*:Zeromus:8B4C:/
+148.1 "--sync--" StartsUsing { id: "8B4C", source: "Zeromus" } window 10,10
+153.1 "--spread--" #Ability { id: "8BDE", source: "Zeromus" }
+158.1 "Big Bang" Ability { id: "8B4C", source: "Zeromus" }
 
-173.1 "Void Meteor" sync / 1[56]:[^:]*:Zeromus:8B57:/
-186.3 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B56:/
-188.3 "Meteor Impact 1" #sync / 1[56]:[^:]*:Comet:8B58:/
-194.8 "Meteor Impact 2" #sync / 1[56]:[^:]*:Comet:8B58:/
-202.0 "Explosion" sync / 1[56]:[^:]*:Comet:8D34:/
+173.1 "Void Meteor" Ability { id: "8B57", source: "Zeromus" }
+186.3 "--sync--" Ability { id: "8B56", source: "Zeromus" }
+188.3 "Meteor Impact 1" #Ability { id: "8B58", source: "Comet" }
+194.8 "Meteor Impact 2" #Ability { id: "8B58", source: "Comet" }
+202.0 "Explosion" Ability { id: "8D34", source: "Comet" }
 
-214.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
-223.5 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-227.1 "The Dark Divides" sync / 1[56]:[^:]*:Zeromus:8B52:/
-233.5 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
-234.1 "The Dark Beckons" sync / 1[56]:[^:]*:Zeromus:8D3A:/
-234.1 "Forked Lightning" sync / 1[56]:[^:]*:Zeromus:8B54:/
+214.4 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+223.5 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
+227.1 "The Dark Divides" Ability { id: "8B52", source: "Zeromus" }
+233.5 "Dark Matter x3" Ability { id: "8B83", source: "Zeromus" } duration 4.1
+234.1 "The Dark Beckons" Ability { id: "8D3A", source: "Zeromus" }
+234.1 "Forked Lightning" Ability { id: "8B54", source: "Zeromus" }
 
-247.7 "Black Hole" sync / 1[56]:[^:]*:Zeromus:8B69:/
-259.8 "Fractured Eventide" sync / 1[56]:[^:]*:Zeromus:8B3[CD]:/
+247.7 "Black Hole" Ability { id: "8B69", source: "Zeromus" }
+259.8 "Fractured Eventide" Ability { id: "8B3[CD]", source: "Zeromus" }
 
-278.0 "--sync--" sync / 14:[^:]*:Zeromus:8B4D:/ window 10,10
-282.1 "--spread--" #sync / 1[56]:[^:]*:Zeromus:8D32:/
-288.0 "Big Crunch" sync / 1[56]:[^:]*:Zeromus:8B4D:/
+278.0 "--sync--" StartsUsing { id: "8B4D", source: "Zeromus" } window 10,10
+282.1 "--spread--" #Ability { id: "8D32", source: "Zeromus" }
+288.0 "Big Crunch" Ability { id: "8B4D", source: "Zeromus" }
 
-303.2 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-319.2 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
-324.2 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
-329.2 "Sable Thread x7" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 8.2
-#330.9 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#332.2 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#333.5 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#334.8 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#336.1 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-337.4 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+303.2 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+319.2 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+324.2 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+329.2 "Sable Thread x7" Ability { id: "8B38", source: "Zeromus" } duration 8.2
+#330.9 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#332.2 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#333.5 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#334.8 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#336.1 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+337.4 "--sync--" Ability { id: "8B3A", source: "Zeromus" }
 
-353.2 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-361.2 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
-361.2 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
-380.2 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-394.4 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
-403.4 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-414.4 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+353.2 "--towers--" Ability { id: "8B5[EF]", source: "Zeromus" }
+361.2 "Branding Flare/Sparking Flare" Ability { id: "8B6[45]", source: "Zeromus" }
+361.2 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+380.2 "Void Bio" Ability { id: "8B66", source: "Zeromus" }
+394.4 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+403.4 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
+414.4 "Dark Matter x3" Ability { id: "8B83", source: "Zeromus" } duration 4.1
 
-430.6 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-438.6 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
-438.6 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
-467.7 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-483.7 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
-488.7 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
-493.7 "Sable Thread x7" sync / 1[56]:[^:]*:Zeromus:8B38:/ duration 8.2
-#495.4 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#496.7 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#498.0 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#499.3 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-#500.6 "Sable Thread" #sync / 1[56]:[^:]*:Zeromus:8B39:/
-501.9 "--sync--" sync / 1[56]:[^:]*:Zeromus:8B3A:/
+430.6 "--towers--" Ability { id: "8B5[EF]", source: "Zeromus" }
+438.6 "Branding Flare/Sparking Flare" Ability { id: "8B6[45]", source: "Zeromus" }
+438.6 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+467.7 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+483.7 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+488.7 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
+493.7 "Sable Thread x7" Ability { id: "8B38", source: "Zeromus" } duration 8.2
+#495.4 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#496.7 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#498.0 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#499.3 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+#500.6 "Sable Thread" #Ability { id: "8B39", source: "Zeromus" }
+501.9 "--sync--" Ability { id: "8B3A", source: "Zeromus" }
 
-517.7 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-525.7 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
-525.7 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
-544.8 "Void Bio" sync / 1[56]:[^:]*:Zeromus:8B66:/
-558.9 "Visceral Whirl" sync / 1[56]:[^:]*:Zeromus:8B4[36]:/
-567.9 "Miasmic Blast" sync / 1[56]:[^:]*:Zeromus:8B49:/
-578.9 "Dark Matter x3" sync / 1[56]:[^:]*:Zeromus:8B83:/ duration 4.1
+517.7 "--towers--" Ability { id: "8B5[EF]", source: "Zeromus" }
+525.7 "Branding Flare/Sparking Flare" Ability { id: "8B6[45]", source: "Zeromus" }
+525.7 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+544.8 "Void Bio" Ability { id: "8B66", source: "Zeromus" }
+558.9 "Visceral Whirl" Ability { id: "8B4[36]", source: "Zeromus" }
+567.9 "Miasmic Blast" Ability { id: "8B49", source: "Zeromus" }
+578.9 "Dark Matter x3" Ability { id: "8B83", source: "Zeromus" } duration 4.1
 
-595.0 "--towers--" sync / 1[56]:[^:]*:Zeromus:8B5[EF]:/
-603.0 "Branding Flare/Sparking Flare" sync / 1[56]:[^:]*:Zeromus:8B6[45]:/
-603.0 "Prominence Spine" sync / 1[56]:[^:]*:Zeromus:8B63:/
-632.1 "Abyssal Nox" sync / 1[56]:[^:]*:Zeromus:8B3F:/
-648.1 "Abyssal Echoes 1" sync / 1[56]:[^:]*:Zeromus:8B42:/
-653.1 "Abyssal Echoes 2" sync / 1[56]:[^:]*:Zeromus:8B42:/
+595.0 "--towers--" Ability { id: "8B5[EF]", source: "Zeromus" }
+603.0 "Branding Flare/Sparking Flare" Ability { id: "8B6[45]", source: "Zeromus" }
+603.0 "Prominence Spine" Ability { id: "8B63", source: "Zeromus" }
+632.1 "Abyssal Nox" Ability { id: "8B3F", source: "Zeromus" }
+648.1 "Abyssal Echoes 1" Ability { id: "8B42", source: "Zeromus" }
+653.1 "Abyssal Echoes 2" Ability { id: "8B42", source: "Zeromus" }
 
 # Note that this enrage can happen at any time in P2, because it always happens at roughly 11m into the pull regardless of when you hit P2
-658.2 "--sync--" sync / 14:[^:]*:Zeromus:8C1E:/ window 1000,1000
-668.2 "Big Bang (Enrage)" sync / 1[56]:[^:]*:Zeromus:8C1E:/
+658.2 "--sync--" StartsUsing { id: "8C1E", source: "Zeromus" } window 1000,1000
+668.2 "Big Bang (Enrage)" Ability { id: "8C1E", source: "Zeromus" }
 
 
 # Phase 2: ~25% push
-1000.0 "--sync--" sync / 14:[^:]*:Zeromus:8C0D:/ window 1000,0
-1006.0 "Rend the Rift" sync / 1[56]:[^:]*:Zeromus:8C0D:/
-1023.1 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/
-1023.9 "Bury 1" sync / 1[56]:[^:]*:Zeromus:8B6D:/
-1024.9 "Bury 2" sync / 1[56]:[^:]*:Zeromus:8B6E:/
-1025.9 "Bury 3" sync / 1[56]:[^:]*:Zeromus:8B6F:/
-1026.9 "Bury 4" sync / 1[56]:[^:]*:Zeromus:8B70:/
-1028.9 "Roar 5" sync / 1[56]:[^:]*:Zeromus:8B71:/
-1029.9 "Roar 6" sync / 1[56]:[^:]*:Zeromus:8B72:/
-1032.9 "Primal Roar 7" sync / 1[56]:[^:]*:Zeromus:8B73:/
+1000.0 "--sync--" StartsUsing { id: "8C0D", source: "Zeromus" } window 1000,0
+1006.0 "Rend the Rift" Ability { id: "8C0D", source: "Zeromus" }
+1023.1 "Nostalgia" Ability { id: "8B6B", source: "Zeromus" }
+1023.9 "Bury 1" Ability { id: "8B6D", source: "Zeromus" }
+1024.9 "Bury 2" Ability { id: "8B6E", source: "Zeromus" }
+1025.9 "Bury 3" Ability { id: "8B6F", source: "Zeromus" }
+1026.9 "Bury 4" Ability { id: "8B70", source: "Zeromus" }
+1028.9 "Roar 5" Ability { id: "8B71", source: "Zeromus" }
+1029.9 "Roar 6" Ability { id: "8B72", source: "Zeromus" }
+1032.9 "Primal Roar 7" Ability { id: "8B73", source: "Zeromus" }
 
-1047.2 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
-1048.3 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
-1049.2 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1060.3 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
-1062.3 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+1047.2 "Flow of the Abyss" Ability { id: "8CFA", source: "Zeromus" }
+1048.3 "Akh Rhai/Umbral Prism/Umbral Rays" Ability { id: "8B7[467]", source: "Zeromus" }
+1049.2 "Dimensional Surge" Ability { id: "8B82", source: "Zeromus" }
+1060.3 "Chasmic Nails" Ability { id: "8B78", source: "Zeromus" }
+1062.3 "Dimensional Surge" Ability { id: "8B82", source: "Zeromus" }
 
-1081.4 "Flow of the Abyss" sync / 1[56]:[^:]*:Zeromus:8CFA:/
-1082.5 "Akh Rhai/Umbral Prism/Umbral Rays" sync / 1[56]:[^:]*:Zeromus:8B7[467]:/
-1083.4 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
-1094.5 "Chasmic Nails" sync / 1[56]:[^:]*:Zeromus:8B78:/
-1096.5 "Dimensional Surge" sync / 1[56]:[^:]*:Zeromus:8B82:/
+1081.4 "Flow of the Abyss" Ability { id: "8CFA", source: "Zeromus" }
+1082.5 "Akh Rhai/Umbral Prism/Umbral Rays" Ability { id: "8B7[467]", source: "Zeromus" }
+1083.4 "Dimensional Surge" Ability { id: "8B82", source: "Zeromus" }
+1094.5 "Chasmic Nails" Ability { id: "8B78", source: "Zeromus" }
+1096.5 "Dimensional Surge" Ability { id: "8B82", source: "Zeromus" }
 
 # Is this the loop?
-1114.7 "Nostalgia" sync / 1[56]:[^:]*:Zeromus:8B6B:/ window 30,30 forcejump 1023.1
+1114.7 "Nostalgia" Ability { id: "8B6B", source: "Zeromus" } window 30,30 forcejump 1023.1
 
 
 # ALL ENCOUNTER ABILITIES

@@ -22,140 +22,140 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.1 "--sync--" sync / 14:[^:]*:Pand\u00e6monium:82A5:/ window 15,15
-14.1 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
-23.2 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
-34.7 "Dividing Wings (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
-40.8 "Steel Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8723:/
-48.5 "Dividing Wings (cone)" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
-48.7 "Steel Web (share)" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
-58.7 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
-67.4 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
-68.5 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
-70.9 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
-78.6 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
-89.6 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+9.1 "--sync--" StartsUsing { id: "82A5", source: "Pand\\u00e6monium" } window 15,15
+14.1 "Ultima" Ability { id: "82A5", source: "Pand\\u00e6monium" }
+23.2 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7
+34.7 "Dividing Wings (cast)" Ability { id: "8297", source: "Pand\\u00e6monium" }
+40.8 "Steel Web (cast)" Ability { id: "8723", source: "Pand\\u00e6monium" }
+48.5 "Dividing Wings (cone)" Ability { id: "8298", source: "Pand\\u00e6monium" }
+48.7 "Steel Web (share)" Ability { id: "827F", source: "Pand\\u00e6monium" }
+58.7 "Pandaemon's Holy/Circles of Pandaemonium" Ability { id: ["82A6", "82A7"], source: "Pand\\u00e6monium" }
+67.4 "--sync--" Ability { id: "8299", source: "Pand\\u00e6monium" }
+68.5 "Wicked Step 1" Ability { id: "829A", source: "Pand\\u00e6monium" }
+70.9 "Wicked Step 2" Ability { id: "829B", source: "Pand\\u00e6monium" }
+78.6 "Entangling Web (cast)" Ability { id: "8722", source: "Pand\\u00e6monium" }
+89.6 "Entangling Web" Ability { id: "827E", source: "Pand\\u00e6monium" }
 
-96.0 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
-97.3 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
-102.9 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
-103.0 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+96.0 "Pandaemoniac Pillars" Ability { id: "8280", source: "Pand\\u00e6monium" }
+97.3 "Bury" Ability { id: "8282", source: "Pand\\u00e6monium" }
+102.9 "Pandaemon's Holy/Circles of Pandaemonium" Ability { id: ["82A6", "82A7"], source: "Pand\\u00e6monium" }
+103.0 "Peal of Damnation" Ability { id: "87B0", source: "Pand\\u00e6moniac Pillar" }
 
-108.4 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
-118.4 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
-122.8 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
-126.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
-131.9 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
+108.4 "Silkspit (cast)" Ability { id: "827C", source: "Pand\\u00e6monium" }
+118.4 "Silkspit" Ability { id: "827D", source: "Pand\\u00e6monium" }
+122.8 "Daemoniac Bonds" Ability { id: "82A1", source: "Pand\\u00e6monium" }
+126.9 "--sync--" Ability { id: "6854", source: "Pand\\u00e6monium" }
+131.9 "Pandaemoniac Meltdown" Ability { id: "829D", source: "Pand\\u00e6monium" }
 
-144.2 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828D:/
-145.8 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-148.8 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+144.2 "Touchdown" Ability { id: "828D", source: "Pand\\u00e6monium" }
+145.8 "Daemoniac Bonds 1" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
+148.8 "Daemoniac Bonds 2" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
 
-159.8 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
-168.9 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+159.8 "Ultima" Ability { id: "82A5", source: "Pand\\u00e6monium" }
+168.9 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7
 
-185.0 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
-194.1 "Pandaemoniac Turrets" sync / 1[56]:[^:]*:Pand\u00e6monium:87AF:/
-195.4 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
-206.1 "Peal of Condemnation 1" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
-210.7 "Peal of Condemnation 2" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
-215.1 "Peal of Condemnation 3" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
-219.7 "Peal of Condemnation 4" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8288:/
+185.0 "Daemoniac Bonds" Ability { id: "82A1", source: "Pand\\u00e6monium" }
+194.1 "Pandaemoniac Turrets" Ability { id: "87AF", source: "Pand\\u00e6monium" }
+195.4 "Bury" Ability { id: "8282", source: "Pand\\u00e6monium" }
+206.1 "Peal of Condemnation 1" Ability { id: "8288", source: "Pand\\u00e6moniac Pillar" }
+210.7 "Peal of Condemnation 2" Ability { id: "8288", source: "Pand\\u00e6moniac Pillar" }
+215.1 "Peal of Condemnation 3" Ability { id: "8288", source: "Pand\\u00e6moniac Pillar" }
+219.7 "Peal of Condemnation 4" Ability { id: "8288", source: "Pand\\u00e6moniac Pillar" }
 
-223.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-226.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-233.8 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
-237.6 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
+223.9 "Daemoniac Bonds 1" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
+226.9 "Daemoniac Bonds 2" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
+233.8 "Pandaemoniac Ray" Ability { id: ["8289", "828B"], source: "Pand\\u00e6monium" }
+237.6 "Jade Passage" Ability { id: "828C", source: "Arcane Sphere" }
 
-249.3 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
-258.4 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
-277.5 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
-278.6 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
-281.0 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
-288.7 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
-298.9 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
-299.6 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+249.3 "Ultima" Ability { id: "82A5", source: "Pand\\u00e6monium" }
+258.4 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7
+277.5 "--sync--" Ability { id: "8299", source: "Pand\\u00e6monium" }
+278.6 "Wicked Step 1" Ability { id: "829A", source: "Pand\\u00e6monium" }
+281.0 "Wicked Step 2" Ability { id: "829B", source: "Pand\\u00e6monium" }
+288.7 "Entangling Web (cast)" Ability { id: "8722", source: "Pand\\u00e6monium" }
+298.9 "Silkspit (cast)" Ability { id: "827C", source: "Pand\\u00e6monium" }
+299.6 "Entangling Web" Ability { id: "827E", source: "Pand\\u00e6monium" }
 
-308.0 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
-308.9 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
-316.2 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
-317.5 "Bury" sync / 1[56]:[^:]*:Pand\u00e6monium:8282:/
-323.1 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
-323.2 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+308.0 "Daemoniac Bonds" Ability { id: "82A1", source: "Pand\\u00e6monium" }
+308.9 "Silkspit" Ability { id: "827D", source: "Pand\\u00e6monium" }
+316.2 "Pandaemoniac Pillars" Ability { id: "8280", source: "Pand\\u00e6monium" }
+317.5 "Bury" Ability { id: "8282", source: "Pand\\u00e6monium" }
+323.1 "Pandaemon's Holy/Circles of Pandaemonium" Ability { id: ["82A6", "82A7"], source: "Pand\\u00e6monium" }
+323.2 "Peal of Damnation" Ability { id: "87B0", source: "Pand\\u00e6moniac Pillar" }
 
-329.9 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-330.6 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
-333.9 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+329.9 "Daemoniac Bonds 1" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
+330.6 "Pandaemoniac Ray" Ability { id: ["8289", "828B"], source: "Pand\\u00e6monium" }
+333.9 "Daemoniac Bonds 2" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
 
-334.3 "Jade Passage" #sync / 1[56]:[^:]*:Arcane Sphere:828C:/
-338.6 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
-344.7 "Steel Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8723:/
-356.8 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828D:/
-357.4 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
-357.7 "Steel Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
-357.7 "Touchdown" sync / 1[56]:[^:]*:Pand\u00e6monium:828E:/
-370.3 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
-375.3 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
-384.6 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
+334.3 "Jade Passage" #Ability { id: "828C", source: "Arcane Sphere" }
+338.6 "Dividing Wings" Ability { id: "8297", source: "Pand\\u00e6monium" }
+344.7 "Steel Web (cast)" Ability { id: "8723", source: "Pand\\u00e6monium" }
+356.8 "Touchdown" Ability { id: "828D", source: "Pand\\u00e6monium" }
+357.4 "Dividing Wings" Ability { id: "8298", source: "Pand\\u00e6monium" }
+357.7 "Steel Web" Ability { id: "827F", source: "Pand\\u00e6monium" }
+357.7 "Touchdown" Ability { id: "828E", source: "Pand\\u00e6monium" }
+370.3 "--sync--" Ability { id: "6854", source: "Pand\\u00e6monium" }
+375.3 "Pandaemoniac Meltdown" Ability { id: "829D", source: "Pand\\u00e6monium" }
+384.6 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7
 
-405.0 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8297:/
-411.1 "Pandaemoniac Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8724:/
-418.9 "Dividing Wings" sync / 1[56]:[^:]*:Pand\u00e6monium:8298:/
-419.1 "Steel Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827F:/
-419.2 "Pandaemon's Holy" sync / 1[56]:[^:]*:Pand\u00e6monium:82A6:/
-422.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
-426.4 "Daemoniac Bonds" sync / 1[56]:[^:]*:Pand\u00e6monium:82A1:/
-428.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+405.0 "Dividing Wings" Ability { id: "8297", source: "Pand\\u00e6monium" }
+411.1 "Pandaemoniac Web (cast)" Ability { id: "8724", source: "Pand\\u00e6monium" }
+418.9 "Dividing Wings" Ability { id: "8298", source: "Pand\\u00e6monium" }
+419.1 "Steel Web" Ability { id: "827F", source: "Pand\\u00e6monium" }
+419.2 "Pandaemon's Holy" Ability { id: "82A6", source: "Pand\\u00e6monium" }
+422.1 "Entangling Web" Ability { id: "827E", source: "Pand\\u00e6monium" }
+426.4 "Daemoniac Bonds" Ability { id: "82A1", source: "Pand\\u00e6monium" }
+428.1 "Entangling Web" Ability { id: "827E", source: "Pand\\u00e6monium" }
 
-437.8 "Harrowing Hell (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:828F:/
-438.8 "Harrowing Hell 1" sync / 1[56]:[^:]*:Pand\u00e6monium:8290:/
-440.8 "Harrowing Hell 2" sync / 1[56]:[^:]*:Pand\u00e6monium:8291:/
-442.6 "Harrowing Hell 3" sync / 1[56]:[^:]*:Pand\u00e6monium:8292:/
-444.3 "Harrowing Hell 4" sync / 1[56]:[^:]*:Pand\u00e6monium:8293:/
-446.0 "Harrowing Hell 5" sync / 1[56]:[^:]*:Pand\u00e6monium:86B9:/
-447.6 "Harrowing Hell 6" sync / 1[56]:[^:]*:Pand\u00e6monium:86BA:/
-448.9 "Harrowing Hell 7" sync / 1[56]:[^:]*:Pand\u00e6monium:86BB:/
-450.1 "Harrowing Hell 8" sync / 1[56]:[^:]*:Pand\u00e6monium:86BC:/
-454.0 "Harrowing Hell (knockback)" sync / 1[56]:[^:]*:Pand\u00e6monium:8294:/
+437.8 "Harrowing Hell (cast)" Ability { id: "828F", source: "Pand\\u00e6monium" }
+438.8 "Harrowing Hell 1" Ability { id: "8290", source: "Pand\\u00e6monium" }
+440.8 "Harrowing Hell 2" Ability { id: "8291", source: "Pand\\u00e6monium" }
+442.6 "Harrowing Hell 3" Ability { id: "8292", source: "Pand\\u00e6monium" }
+444.3 "Harrowing Hell 4" Ability { id: "8293", source: "Pand\\u00e6monium" }
+446.0 "Harrowing Hell 5" Ability { id: "86B9", source: "Pand\\u00e6monium" }
+447.6 "Harrowing Hell 6" Ability { id: "86BA", source: "Pand\\u00e6monium" }
+448.9 "Harrowing Hell 7" Ability { id: "86BB", source: "Pand\\u00e6monium" }
+450.1 "Harrowing Hell 8" Ability { id: "86BC", source: "Pand\\u00e6monium" }
+454.0 "Harrowing Hell (knockback)" Ability { id: "8294", source: "Pand\\u00e6monium" }
 
-459.3 "Daemoniac Bonds 1" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
-462.3 "Daemoniac Bonds 2" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A2|82A3|87AE):/
+459.3 "Daemoniac Bonds 1" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
+462.3 "Daemoniac Bonds 2" Ability { id: ["82A2", "82A3", "87AE"], source: "Pand\\u00e6monium" }
 
-480.5 "Ultima" sync / 1[56]:[^:]*:Pand\u00e6monium:82A5:/
-490.6 "Soul Grasp x4" sync / 1[56]:[^:]*:Pand\u00e6monium:829F:/ duration 5.7
-512.9 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:8299:/
-514.0 "Wicked Step 1" sync / 1[56]:[^:]*:Pand\u00e6monium:829A:/
-516.4 "Wicked Step 2" sync / 1[56]:[^:]*:Pand\u00e6monium:829B:/
-523.1 "Entangling Web (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:8722:/
-534.1 "Entangling Web" sync / 1[56]:[^:]*:Pand\u00e6monium:827E:/
+480.5 "Ultima" Ability { id: "82A5", source: "Pand\\u00e6monium" }
+490.6 "Soul Grasp x4" Ability { id: "829F", source: "Pand\\u00e6monium" } duration 5.7
+512.9 "--sync--" Ability { id: "8299", source: "Pand\\u00e6monium" }
+514.0 "Wicked Step 1" Ability { id: "829A", source: "Pand\\u00e6monium" }
+516.4 "Wicked Step 2" Ability { id: "829B", source: "Pand\\u00e6monium" }
+523.1 "Entangling Web (cast)" Ability { id: "8722", source: "Pand\\u00e6monium" }
+534.1 "Entangling Web" Ability { id: "827E", source: "Pand\\u00e6monium" }
 
-543.8 "Parted Plumes" sync / 1[56]:[^:]*:Pand\u00e6monium:8295:/ duration 10
+543.8 "Parted Plumes" Ability { id: "8295", source: "Pand\\u00e6monium" } duration 10
 
-555.9 "Pandaemoniac Ray" sync / 1[56]:[^:]*:Pand\u00e6monium:(8289|828B):/
+555.9 "Pandaemoniac Ray" Ability { id: ["8289", "828B"], source: "Pand\\u00e6monium" }
 
-559.7 "Jade Passage" sync / 1[56]:[^:]*:Arcane Sphere:828C:/
-563.0 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
-569.1 "Silkspit (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:827C:/
-579.1 "Silkspit" sync / 1[56]:[^:]*:Pand\u00e6monium:827D:/
+559.7 "Jade Passage" Ability { id: "828C", source: "Arcane Sphere" }
+563.0 "Pandaemon's Holy/Circles of Pandaemonium" Ability { id: ["82A6", "82A7"], source: "Pand\\u00e6monium" }
+569.1 "Silkspit (cast)" Ability { id: "827C", source: "Pand\\u00e6monium" }
+579.1 "Silkspit" Ability { id: "827D", source: "Pand\\u00e6monium" }
 
-586.4 "Pandaemoniac Pillars" sync / 1[56]:[^:]*:Pand\u00e6monium:8280:/
-587.3 "Bury" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:8281:/
-593.3 "Pandaemon's Holy/Circles of Pandaemonium" sync / 1[56]:[^:]*:Pand\u00e6monium:(82A6|82A7):/
-593.4 "Peal of Damnation" sync / 1[56]:[^:]*:Pand\u00e6moniac Pillar:87B0:/
+586.4 "Pandaemoniac Pillars" Ability { id: "8280", source: "Pand\\u00e6monium" }
+587.3 "Bury" Ability { id: "8281", source: "Pand\\u00e6moniac Pillar" }
+593.3 "Pandaemon's Holy/Circles of Pandaemonium" Ability { id: ["82A6", "82A7"], source: "Pand\\u00e6monium" }
+593.4 "Peal of Damnation" Ability { id: "87B0", source: "Pand\\u00e6moniac Pillar" }
 
-595.8 "--sync--" sync / 1[56]:[^:]*:Pand\u00e6monium:6854:/
-600.8 "Pandaemoniac Meltdown" sync / 1[56]:[^:]*:Pand\u00e6monium:829D:/
+595.8 "--sync--" Ability { id: "6854", source: "Pand\\u00e6monium" }
+600.8 "Pandaemoniac Meltdown" Ability { id: "829D", source: "Pand\\u00e6monium" }
 
-623.5 "Harrowing Hell (cast)" sync / 1[56]:[^:]*:Pand\u00e6monium:828F:/
-624.5 "Harrowing Hell 1" sync / 1[56]:[^:]*:Pand\u00e6monium:8290:/
-626.5 "Harrowing Hell 2" sync / 1[56]:[^:]*:Pand\u00e6monium:8291:/
-628.3 "Harrowing Hell 3" sync / 1[56]:[^:]*:Pand\u00e6monium:8292:/
-630.0 "Harrowing Hell 4" sync / 1[56]:[^:]*:Pand\u00e6monium:8293:/
-631.7 "Harrowing Hell 5" sync / 1[56]:[^:]*:Pand\u00e6monium:86B9:/
-633.3 "Harrowing Hell 6" sync / 1[56]:[^:]*:Pand\u00e6monium:86BA:/
-634.6 "Harrowing Hell 7" sync / 1[56]:[^:]*:Pand\u00e6monium:86BB:/
-635.8 "Harrowing Hell 8" sync / 1[56]:[^:]*:Pand\u00e6monium:86BC:/
-639.7 "Harrowing Hell (enrage)" sync / 1[56]:[^:]*:Pand\u00e6monium:8294:/
+623.5 "Harrowing Hell (cast)" Ability { id: "828F", source: "Pand\\u00e6monium" }
+624.5 "Harrowing Hell 1" Ability { id: "8290", source: "Pand\\u00e6monium" }
+626.5 "Harrowing Hell 2" Ability { id: "8291", source: "Pand\\u00e6monium" }
+628.3 "Harrowing Hell 3" Ability { id: "8292", source: "Pand\\u00e6monium" }
+630.0 "Harrowing Hell 4" Ability { id: "8293", source: "Pand\\u00e6monium" }
+631.7 "Harrowing Hell 5" Ability { id: "86B9", source: "Pand\\u00e6monium" }
+633.3 "Harrowing Hell 6" Ability { id: "86BA", source: "Pand\\u00e6monium" }
+634.6 "Harrowing Hell 7" Ability { id: "86BB", source: "Pand\\u00e6monium" }
+635.8 "Harrowing Hell 8" Ability { id: "86BC", source: "Pand\\u00e6monium" }
+639.7 "Harrowing Hell (enrage)" Ability { id: "8294", source: "Pand\\u00e6monium" }

@@ -8,42 +8,42 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1. Pushes at 70% HP?
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-5.0 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-14.8 "Meteorain" sync / 1[56]:[^:]*:King Thordan:1483:/
-15.1 "--sync--" sync / 1[56]:[^:]*:King Thordan:1484:/ # Meteorain
-20.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:147F:/
-20.0 "Ascalon's Mercy" sync / 1[56]:[^:]*:King Thordan:1480:/
-22.1 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-27.2 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-37.3 "the Dragon's Gaze" sync / 1[56]:[^:]*:King Thordan:1489:/
-42.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-51.1 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:1481:/
-51.5 "--sync--" sync / 1[56]:[^:]*:King Thordan:1482:/ # Lightning Storm
-58.2 "the Dragon's Rage" sync / 1[56]:[^:]*:King Thordan:148B:/
-63.3 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
-69.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-75.4 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
-77.5 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+5.0 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+14.8 "Meteorain" Ability { id: "1483", source: "King Thordan" }
+15.1 "--sync--" Ability { id: "1484", source: "King Thordan" } # Meteorain
+20.0 "--sync--" Ability { id: "147F", source: "King Thordan" }
+20.0 "Ascalon's Mercy" Ability { id: "1480", source: "King Thordan" }
+22.1 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+27.2 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+37.3 "the Dragon's Gaze" Ability { id: "1489", source: "King Thordan" }
+42.4 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+51.1 "Lightning Storm" Ability { id: "1481", source: "King Thordan" }
+51.5 "--sync--" Ability { id: "1482", source: "King Thordan" } # Lightning Storm
+58.2 "the Dragon's Rage" Ability { id: "148B", source: "King Thordan" }
+63.3 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
+69.4 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+75.4 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
+77.5 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
 79.6 "--untargetable--"
 
 # Phase 2
 # Intermission part 1
-82.4 "--sync--" sync / 1[56]:[^:]*:King Thordan:105A:/ window 82.4,10
-91.4 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:1018:/
-93.4 "--sync--" sync / 1[56]:[^:]*:Ser Hermenost:1018:/
+82.4 "--sync--" Ability { id: "105A", source: "King Thordan" } window 82.4,10
+91.4 "--sync--" Ability { id: "1018", source: "Ser Charibert" }
+93.4 "--sync--" Ability { id: "1018", source: "Ser Hermenost" }
 95.7 "--chains appear--"
-98.0 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:14AB:/ window 10,10 # Heavensflame cast
-98.4 "Heavensflame 1" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-99.4 "Heavensflame 2" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
+98.0 "--sync--" Ability { id: "14AB", source: "Ser Charibert" } window 10,10 # Heavensflame cast
+98.4 "Heavensflame 1" #Ability { id: "14AC", source: "Ser Charibert" }
+99.4 "Heavensflame 2" #Ability { id: "14AC", source: "Ser Charibert" }
 99.4 "--towers spawn--"
-100.4 "Heavensflame 3" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-101.4 "Heavensflame 4" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-101.5 "--sync--" sync / 1[56]:[^:]*:Ser Hermenost:149C:/ # Conviction (model animation, no actual snapshot)
-104.3 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:149D:/
-107.4 "Sacred Cross" sync / 14:[^:]*:Ser Zephirin:1490:/ duration 19.7
-127.1 "--sync--" sync / 1[56]:[^:]*:Ser Zephirin:1490:/
-133.1 "Spiral Thrust" sync / 1[56]:[^:]*:(Ser Ignasse|Ser Paulecrain|Ser Vellguine):14A6:/
+100.4 "Heavensflame 3" #Ability { id: "14AC", source: "Ser Charibert" }
+101.4 "Heavensflame 4" #Ability { id: "14AC", source: "Ser Charibert" }
+101.5 "--sync--" Ability { id: "149C", source: "Ser Hermenost" } # Conviction (model animation, no actual snapshot)
+104.3 "Conviction" Ability { id: "149D", source: "Ser Hermenost" }
+107.4 "Sacred Cross" StartsUsing { id: "1490", source: "Ser Zephirin" } duration 19.7
+127.1 "--sync--" Ability { id: "1490", source: "Ser Zephirin" }
+133.1 "Spiral Thrust" Ability { id: "14A6", source: ["Ser Ignasse", "Ser Paulecrain", "Ser Vellguine"] }
 
 # Intermission part 2
 # This loops until both Adelphel and Janlenoux are dead.
@@ -54,155 +54,155 @@ hideall "--sync--"
 # but it's more important that we sync during the loop,
 # so we accept a small amount of jumpiness in the timeline.
 140.2 "--targetable--"
-150.2 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-159.3 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
-175.3 "Skyward Leap 1" sync / 1[56]:[^:]*:Ser Vellguine:14A9:/
-177.3 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-178.3 "Skyward Leap 2" sync / 1[56]:[^:]*:Ser Paulecrain:14A9:/
-179.4 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
-181.3 "Skyward Leap 3" sync / 1[56]:[^:]*:Ser Ignasse:14A9:/
-192.4 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
-198.5 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
-205.6 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-212.7 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
-216.8 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
+150.2 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+159.3 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+175.3 "Skyward Leap 1" Ability { id: "14A9", source: "Ser Vellguine" }
+177.3 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+178.3 "Skyward Leap 2" Ability { id: "14A9", source: "Ser Paulecrain" }
+179.4 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
+181.3 "Skyward Leap 3" Ability { id: "14A9", source: "Ser Ignasse" }
+192.4 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+198.5 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+205.6 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+212.7 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+216.8 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
 
-232.9 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-242.0 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
-260.0 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-262.1 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/
-275.2 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
-281.3 "Holy Bladedance" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1496:/
-288.3 "Divine Right" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1493:/
-295.4 "Holiest Of Holy" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1495:/
-299.5 "Heavenly Slash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1494:/ forcejump 216.8
+232.9 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+242.0 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+260.0 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+262.1 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] }
+275.2 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+281.3 "Holy Bladedance" Ability { id: "1496", source: ["Ser Adelphel", "Ser Janlenoux"] }
+288.3 "Divine Right" Ability { id: "1493", source: ["Ser Adelphel", "Ser Janlenoux"] }
+295.4 "Holiest Of Holy" Ability { id: "1495", source: ["Ser Adelphel", "Ser Janlenoux"] }
+299.5 "Heavenly Slash" Ability { id: "1494", source: ["Ser Adelphel", "Ser Janlenoux"] } forcejump 216.8
 
 
 # Intermission part 3
-350.0 "--sync--" sync / 1[56]:[^:]*:Ser Paulecrain:1018:/ window 150,10
-352.0 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:1018:/ window 150,10
-353.0 "--sync--" sync / 1[56]:[^:]*:Ser Haumeric:1018:/ window 150,10
-359.6 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:14AE:/ window 328,10
-359.8 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):14AF:/ # Hiemal Storm
-360.2 "Spiral Pierce" sync / 1[56]:[^:]*:(Ser Ignasse|Ser Paulecrain|Ser Vellguine):14A7:/
-361.5 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1499:/
-361.9 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:149A:/ # Dimensional Collapse
-365.0 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:149B:/
+350.0 "--sync--" Ability { id: "1018", source: "Ser Paulecrain" } window 150,10
+352.0 "--sync--" Ability { id: "1018", source: "Ser Grinnaux" } window 150,10
+353.0 "--sync--" Ability { id: "1018", source: "Ser Haumeric" } window 150,10
+359.6 "Hiemal Storm" Ability { id: "14AE", source: "Ser Haumeric" } window 328,10
+359.8 "--sync--" Ability { id: "14AF", source: ["Ser Haumeric", "Ser Noudenet"] } # Hiemal Storm
+360.2 "Spiral Pierce" Ability { id: "14A7", source: ["Ser Ignasse", "Ser Paulecrain", "Ser Vellguine"] }
+361.5 "Dimensional Collapse" Ability { id: "1499", source: "Ser Grinnaux" }
+361.9 "--sync--" Ability { id: "149A", source: "Ser Grinnaux" } # Dimensional Collapse
+365.0 "Faith Unmoving" Ability { id: "149B", source: "Ser Grinnaux" }
 
 # Intermission part 4
 # Two sets of four Heavy Impacts used during this intermission.
 # They overlap heavily. Because they use different IDs for each ring,
 # it's safe to leave them all synced.
-366.0 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:14B0:/ window 220,10
-374.6 "Heavy Impact Set 1" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ duration 10
-376.0 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
-379.9 "Heavy Impact Set 2" sync / 1[56]:[^:]*:Ser Guerrique:149F:/ duration 10
-383.8 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
-398.1 "Comet Impact" sync / 1[56]:[^:]*:Comet Circle:14B3:/
-420.7 "Meteor Impact Enrage" sync / 1[56]:[^:]*:Meteor Circle:14B4:/
+366.0 "Holy Meteor" Ability { id: "14B0", source: "Ser Noudenet" } window 220,10
+374.6 "Heavy Impact Set 1" Ability { id: "149F", source: "Ser Guerrique" } duration 10
+376.0 "Comet x4" duration 4 #Ability { id: "14B5", source: "Ser Noudenet" }
+379.9 "Heavy Impact Set 2" Ability { id: "149F", source: "Ser Guerrique" } duration 10
+383.8 "Comet x4" duration 4 #Ability { id: "14B5", source: "Ser Noudenet" }
+398.1 "Comet Impact" Ability { id: "14B3", source: "Comet Circle" }
+420.7 "Meteor Impact Enrage" Ability { id: "14B4", source: "Meteor Circle" }
 
 
-427.0 "--sync--" sync / 1[56]:[^:]*:King Thordan:105B:/ window 260,10
-437.7 "The Light Of Ascalon 1" #sync / 1[56]:[^:]*:Ascalon:148F:/
-439.1 "The Light Of Ascalon 2" #sync / 1[56]:[^:]*:Ascalon:148F:/
-440.5 "The Light Of Ascalon 3" #sync / 1[56]:[^:]*:Ascalon:148F:/
-441.9 "The Light Of Ascalon 4" #sync / 1[56]:[^:]*:Ascalon:148F:/
-443.3 "The Light Of Ascalon 5" #sync / 1[56]:[^:]*:Ascalon:148F:/
-444.7 "The Light Of Ascalon 6" #sync / 1[56]:[^:]*:Ascalon:148F:/
-446.1 "The Light Of Ascalon 7" #sync / 1[56]:[^:]*:Ascalon:148F:/
-447.2 "--sync--" sync / 1[56]:[^:]*:King Thordan:148D:/ # Ultimate End wind-up
-451.8 "--sync--" sync / 1[56]:[^:]*:[^:]*:1059:/ # All the knights use this unknown attack here
-455.8 "Ultimate End" sync / 1[56]:[^:]*:King Thordan:148E:/
+427.0 "--sync--" Ability { id: "105B", source: "King Thordan" } window 260,10
+437.7 "The Light Of Ascalon 1" #Ability { id: "148F", source: "Ascalon" }
+439.1 "The Light Of Ascalon 2" #Ability { id: "148F", source: "Ascalon" }
+440.5 "The Light Of Ascalon 3" #Ability { id: "148F", source: "Ascalon" }
+441.9 "The Light Of Ascalon 4" #Ability { id: "148F", source: "Ascalon" }
+443.3 "The Light Of Ascalon 5" #Ability { id: "148F", source: "Ascalon" }
+444.7 "The Light Of Ascalon 6" #Ability { id: "148F", source: "Ascalon" }
+446.1 "The Light Of Ascalon 7" #Ability { id: "148F", source: "Ascalon" }
+447.2 "--sync--" Ability { id: "148D", source: "King Thordan" } # Ultimate End wind-up
+451.8 "--sync--" Ability { id: "1059" } # All the knights use this unknown attack here
+455.8 "Ultimate End" Ability { id: "148E", source: "King Thordan" }
 460.3 "--targetable--"
 
 # Phase 3
 # Save the [healer]!
-466.4 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-476.6 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
-481.7 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-488.1 "Holy Shield Bash" sync / 1[56]:[^:]*:(Ser Adelphel|Ser Janlenoux):1497:/
-497.1 "Spear Of the Fury" sync / 1[56]:[^:]*:Ser Zephirin:1492:/ # A smile better suits a hero
-499.5 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
-504.6 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
-516.6 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
+466.4 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+476.6 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
+481.7 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+488.1 "Holy Shield Bash" Ability { id: "1497", source: ["Ser Adelphel", "Ser Janlenoux"] }
+497.1 "Spear Of the Fury" Ability { id: "1492", source: "Ser Zephirin" } # A smile better suits a hero
+499.5 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
+504.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
+516.6 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 
 #Phase 4
 # Conviction Trio
-521.8 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-532.0 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
-543.1 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
-543.2 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:149C:/
-544.1 "Heavy Impact 1" sync / 1[56]:[^:]*:Ser Guerrique:14A0:/
-546.0 "Conviction" sync / 1[56]:[^:]*:Ser Hermenost:149D:/
-546.0 "Heavy Impact 2" sync / 1[56]:[^:]*:Ser Guerrique:14A1:/
-548.0 "Heavy Impact 3" sync / 1[56]:[^:]*:Ser Guerrique:14A2:/
-550.0 "Heavy Impact 4" sync / 1[56]:[^:]*:Ser Guerrique:14A3:/
-552.4 "Dimensional Collapse" sync / 1[56]:[^:]*:Ser Grinnaux:1499:/
-552.8 "--sync--" sync / 1[56]:[^:]*:Ser Grinnaux:149A:/ # Dimensional Collapse
-555.9 "Faith Unmoving" sync / 1[56]:[^:]*:Ser Grinnaux:149B:/
-557.9 "the Dragon's Rage" sync / 1[56]:[^:]*:King Thordan:148B:/
-563.0 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
+521.8 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+532.0 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
+543.1 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
+543.2 "Conviction" Ability { id: "149C", source: "Ser Hermenost" }
+544.1 "Heavy Impact 1" Ability { id: "14A0", source: "Ser Guerrique" }
+546.0 "Conviction" Ability { id: "149D", source: "Ser Hermenost" }
+546.0 "Heavy Impact 2" Ability { id: "14A1", source: "Ser Guerrique" }
+548.0 "Heavy Impact 3" Ability { id: "14A2", source: "Ser Guerrique" }
+550.0 "Heavy Impact 4" Ability { id: "14A3", source: "Ser Guerrique" }
+552.4 "Dimensional Collapse" Ability { id: "1499", source: "Ser Grinnaux" }
+552.8 "--sync--" Ability { id: "149A", source: "Ser Grinnaux" } # Dimensional Collapse
+555.9 "Faith Unmoving" Ability { id: "149B", source: "Ser Grinnaux" }
+557.9 "the Dragon's Rage" Ability { id: "148B", source: "King Thordan" }
+563.0 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
 
 # Phase 5
 # Spiral Sky Trio
-572.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-582.2 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
-588.9 "Lightning Storm" sync / 1[56]:[^:]*:King Thordan:1481:/
-589.3 "--sync--" sync / 1[56]:[^:]*:King Thordan:1482:/# Lightning Storm
-597.3 "Spiral Thrust" sync / 1[56]:[^:]*:Ser Vellguine:14A6:/
-597.3 "Spiral Pierce" sync / 1[56]:[^:]*:Ser Paulecrain:14A7:/
-597.5 "Skyward Leap" sync / 1[56]:[^:]*:Ser Ignasse:14A9:/
-598.9 "the Dragon's Rage" sync / 1[56]:[^:]*:King Thordan:148B:/
-609.9 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
-612.0 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
+572.1 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+582.2 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
+588.9 "Lightning Storm" Ability { id: "1481", source: "King Thordan" }
+589.3 "--sync--" Ability { id: "1482", source: "King Thordan" }# Lightning Storm
+597.3 "Spiral Thrust" Ability { id: "14A6", source: "Ser Vellguine" }
+597.3 "Spiral Pierce" Ability { id: "14A7", source: "Ser Paulecrain" }
+597.5 "Skyward Leap" Ability { id: "14A9", source: "Ser Ignasse" }
+598.9 "the Dragon's Rage" Ability { id: "148B", source: "King Thordan" }
+609.9 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
+612.0 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
 
 # Phase 6
 # Meteor Trio
-622.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-632.3 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
-638.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
+622.1 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+632.3 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
+638.4 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
 641.5 "--chains appear--"
-642.4 "Holy Meteor" sync / 1[56]:[^:]*:Ser Noudenet:14B0:/
-643.5 "Comet x4" duration 4 #sync / 1[56]:[^:]*:Ser Noudenet:14B5:/
-643.5 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
-643.8 "--sync--" sync / 1[56]:[^:]*:Ser Charibert:14AB:/ # Heavensflame (cast)
-644.2 "Heavensflame 1" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-645.3 "Heavensflame 2" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-646.4 "Heavensflame 3" #sync / 1[56]:[^:]*:Ser Charibert:14AC:/
-646.8 "Hiemal Storm" sync / 1[56]:[^:]*:Ser Haumeric:14AE:/
-647.4 "--sync--" sync / 1[56]:[^:]*:(Ser Haumeric|Ser Noudenet):14AF:/ # Hiemal Storm
-648.7 "Ascalon's Mercy" sync / 1[56]:[^:]*:King Thordan:147F:/
-656.8 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
-662.9 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
-668.0 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
+642.4 "Holy Meteor" Ability { id: "14B0", source: "Ser Noudenet" }
+643.5 "Comet x4" duration 4 #Ability { id: "14B5", source: "Ser Noudenet" }
+643.5 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
+643.8 "--sync--" Ability { id: "14AB", source: "Ser Charibert" } # Heavensflame (cast)
+644.2 "Heavensflame 1" #Ability { id: "14AC", source: "Ser Charibert" }
+645.3 "Heavensflame 2" #Ability { id: "14AC", source: "Ser Charibert" }
+646.4 "Heavensflame 3" #Ability { id: "14AC", source: "Ser Charibert" }
+646.8 "Hiemal Storm" Ability { id: "14AE", source: "Ser Haumeric" }
+647.4 "--sync--" Ability { id: "14AF", source: ["Ser Haumeric", "Ser Noudenet"] } # Hiemal Storm
+648.7 "Ascalon's Mercy" Ability { id: "147F", source: "King Thordan" }
+656.8 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
+662.9 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
+668.0 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 
 # Phase 7 -- zomg SO MUCH AOE DAMAGE
 # Heavensward Trio
-673.1 "the Dragon's Eye" sync / 1[56]:[^:]*:King Thordan:1488:/
-683.3 "Knights Of the Round" sync / 1[56]:[^:]*:King Thordan:148C:/
-688.4 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-693.4 "Holiest Of Holy" sync / 1[56]:[^:]*:Ser Janlenoux:1495:/
-698.5 "Ascalon's Might" sync / 1[56]:[^:]*:King Thordan:147E:/
-704.6 "Heavensward Leap 1" sync / 1[56]:[^:]*:Ser Vellguine:14AA:/
-707.6 "Heavensward Leap 2" sync / 1[56]:[^:]*:Ser Paulecrain:14AA:/
-710.6 "Heavensward Leap 3" sync / 1[56]:[^:]*:Ser Ignasse:14AA:/
-718.7 "Sacred Cross" sync / 14:[^:]*:Ser Zephirin:1491:/ duration 24.7
-724.6 "Pure Of Soul" sync / 1[56]:[^:]*:(Ser Charibert|Ser Noudenet|Ser Haumeric):(14B1|14B2):/
-732.6 "Absolute Conviction 1" sync / 1[56]:[^:]*:Ser Guerrique:14A4:/
-735.5 "Absolute Conviction 2" sync / 1[56]:[^:]*:Ser Hermenost:14A5:/
-740.6 "The Dragon's Gaze/The Dragon's Glory" sync / 1[56]:[^:]*:King Thordan:(1489|148A):/
-743.4 "--sync--" sync / 1[56]:[^:]*:Ser Zephirin:1491:/ # Sacred Cross resolves
-750.7 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1485:/
+673.1 "the Dragon's Eye" Ability { id: "1488", source: "King Thordan" }
+683.3 "Knights Of the Round" Ability { id: "148C", source: "King Thordan" }
+688.4 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+693.4 "Holiest Of Holy" Ability { id: "1495", source: "Ser Janlenoux" }
+698.5 "Ascalon's Might" Ability { id: "147E", source: "King Thordan" }
+704.6 "Heavensward Leap 1" Ability { id: "14AA", source: "Ser Vellguine" }
+707.6 "Heavensward Leap 2" Ability { id: "14AA", source: "Ser Paulecrain" }
+710.6 "Heavensward Leap 3" Ability { id: "14AA", source: "Ser Ignasse" }
+718.7 "Sacred Cross" StartsUsing { id: "1491", source: "Ser Zephirin" } duration 24.7
+724.6 "Pure Of Soul" Ability { id: ["14B1", "14B2"], source: ["Ser Charibert", "Ser Noudenet", "Ser Haumeric"] }
+732.6 "Absolute Conviction 1" Ability { id: "14A4", source: "Ser Guerrique" }
+735.5 "Absolute Conviction 2" Ability { id: "14A5", source: "Ser Hermenost" }
+740.6 "The Dragon's Gaze/The Dragon's Glory" Ability { id: ["1489", "148A"], source: "King Thordan" }
+743.4 "--sync--" Ability { id: "1491", source: "Ser Zephirin" } # Sacred Cross resolves
+750.7 "Ancient Quaga" Ability { id: "1485", source: "King Thordan" }
 
 # Enrage sequence
-759.8 "Heavenly Heel" sync / 1[56]:[^:]*:King Thordan:1487:/
-761.9 "Ascalon's Might 1" sync / 1[56]:[^:]*:King Thordan:147E:/
-767.0 "Ascalon's Might 2" sync / 1[56]:[^:]*:King Thordan:147E:/
-770.1 "Ascalon's Might 3" sync / 1[56]:[^:]*:King Thordan:147E:/
-773.2 "Ascalon's Might 4" sync / 1[56]:[^:]*:King Thordan:147E:/
-776.3 "Ascalon's Might 5" sync / 1[56]:[^:]*:King Thordan:147E:/
-779.4 "Ascalon's Might 6" sync / 1[56]:[^:]*:King Thordan:147E:/
-791.4 "Ancient Quaga" sync / 1[56]:[^:]*:King Thordan:1486:/
+759.8 "Heavenly Heel" Ability { id: "1487", source: "King Thordan" }
+761.9 "Ascalon's Might 1" Ability { id: "147E", source: "King Thordan" }
+767.0 "Ascalon's Might 2" Ability { id: "147E", source: "King Thordan" }
+770.1 "Ascalon's Might 3" Ability { id: "147E", source: "King Thordan" }
+773.2 "Ascalon's Might 4" Ability { id: "147E", source: "King Thordan" }
+776.3 "Ascalon's Might 5" Ability { id: "147E", source: "King Thordan" }
+779.4 "Ascalon's Might 6" Ability { id: "147E", source: "King Thordan" }
+791.4 "Ancient Quaga" Ability { id: "1486", source: "King Thordan" }
 
 # IGNORED ABILITIES
 # 1018 --sync--

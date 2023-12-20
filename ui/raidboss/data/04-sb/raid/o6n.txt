@@ -6,62 +6,62 @@ hideall "--sync--"
 # Note: Although there is a 18 sec. delay between the chatlog line and the boss being targetable
 # the player's InCombat status is changed at nearly the same time and can be reliably used to start the timeline.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 18 "--targetable--"
-21 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/ window 21,2.5
-30 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
+21 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" } window 21,2.5
+30 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
 
-54 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-59 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
-66 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-76 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
-86 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+54 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+59 "Flash Fire" Ability { id: "280B", source: "Portrayal of Fire" }
+66 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+76 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
+86 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-99 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-104 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2811:/
-118 "Demonic Stone" sync / 1[56]:[^:]*:Demon Chadarnook:2847:/
-125 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-138 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
-146 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+99 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+104 "Earthquake" Ability { id: "2811", source: "Portrayal of Earth" }
+118 "Demonic Stone" Ability { id: "2847", source: "Demon Chadarnook" }
+125 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+138 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
+146 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-159 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-170 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2831:/
-179 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-187 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
-195 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2835:/
-200 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2837:/
-209 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+159 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+170 "Demonic Wave" Ability { id: "2831", source: "Portrayal of Water" }
+179 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+187 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
+195 "Demonic Spout" Ability { id: "2835", source: "Demon Chadarnook" }
+200 "Demonic Spout" Ability { id: "2837", source: "Demon Chadarnook" }
+209 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-222 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-227 "Demonic Typhoon" sync / 1[56]:[^:]*:Demon Chadarnook:283D:/
-244 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-245 "Featherlance" sync / 1[56]:[^:]*:Easterly:2AE8:/
-253 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEB:/
-264 "Flash Gale" sync / 1[56]:[^:]*:Demon Chadarnook:2842:/
-275 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+222 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+227 "Demonic Typhoon" Ability { id: "283D", source: "Demon Chadarnook" }
+244 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+245 "Featherlance" Ability { id: "2AE8", source: "Easterly" }
+253 "Demonic Pain" Ability { id: "2AEB", source: "Demon Chadarnook" }
+264 "Flash Gale" Ability { id: "2842", source: "Demon Chadarnook" }
+275 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
 # loop starts here
-288 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-293 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
-299 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2831:/
-308 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-318 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2835:/
-323 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2837:/
-330 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
-341 "Release" sync / 1[56]:[^:]*:Haunt:2809:/
+288 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+293 "Flash Fire" Ability { id: "280B", source: "Portrayal of Fire" }
+299 "Demonic Wave" Ability { id: "2831", source: "Portrayal of Water" }
+308 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+318 "Demonic Spout" Ability { id: "2835", source: "Demon Chadarnook" }
+323 "Demonic Spout" Ability { id: "2837", source: "Demon Chadarnook" }
+330 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
+341 "Release" Ability { id: "2809", source: "Haunt" }
 
-354 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/
-359 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2811:/
-359 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280B:/
-368 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
-381 "Demonic Stone" sync / 1[56]:[^:]*:Demon Chadarnook:2847:/
-384 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-394 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:282A:/
-404 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282C:/
-415 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+354 "Possession" Ability { id: "2803", source: "Demon Chadarnook" }
+359 "Earthquake" Ability { id: "2811", source: "Portrayal of Earth" }
+359 "Flash Fire" Ability { id: "280B", source: "Portrayal of Fire" }
+368 "Materialize" Ability { id: "282D", source: "Demon Chadarnook" }
+381 "Demonic Stone" Ability { id: "2847", source: "Demon Chadarnook" }
+384 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+394 "Demonic Shear" Ability { id: "282A", source: "Demon Chadarnook" }
+404 "Demonic Howl" Ability { id: "282C", source: "Demon Chadarnook" }
+415 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 # loop ends here
 
-428 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ jump 288
+428 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } jump 288
 433 "Flash Fire"
 439 "Demonic Wave"
 448 "Demonic Howl"

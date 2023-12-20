@@ -7,32 +7,32 @@ hideall "--sync--"
 # -p 55B0:17.1
 # -ii 55AF 55AE 557B 58D3 557D 557F 5BA6 5BA7 5596 557A 5579 5BD3 5017 559E 55A0 5597 5018 55A4 5BA3 554B 554C 5593 559A 5B03 5598 5B1A
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-1.1 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1A:/ window 1.1,0
-12.1 "--sync--" sync / 14:[^:]*:The Emerald Weapon:55B0:/ window 20,20
-17.1 "Emerald Shot" sync / 1[56]:[^:]*:The Emerald Weapon:55B0:/
-28.2 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B1:/
-39.4 "Aetheroplasm Production" sync / 1[56]:[^:]*:The Emerald Weapon:55AA:/
-65.6 "Emerald Beam" sync / 1[56]:[^:]*:The Emerald Weapon:557[13]:/
-92.8 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5594:/
-118.0 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5594:/
-138.1 "Emerald Beam" sync / 1[56]:[^:]*:The Emerald Weapon:557[57]:/
-160.3 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B1:/
-171.4 "Bit Storm" sync / 1[56]:[^:]*:The Emerald Weapon:55A2:/
-178.5 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:5537:/
-198.6 "Expire" sync / 1[56]:[^:]*:The Emerald Weapon:5591:/
-208.6 "Aire Tam Storm" sync / 1[56]:[^:]*:The Emerald Weapon:558F:/
-231.7 "Photon Ring" sync / 1[56]:[^:]*:The Emerald Weapon:55A9:/
-243.9 "Magitek Magnetism" sync / 1[56]:[^:]*:The Emerald Weapon:5594:/
-278.1 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B1:/
-291.1 "Bit Storm" sync / 1[56]:[^:]*:The Emerald Weapon:55A2:/
-298.2 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:5537:/
-312.5 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:55B2:/
-339.6 "Enrage" sync / 1[56]:[^:]*:The Emerald Weapon:5B16:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+1.1 "--sync--" Ability { id: "5B1A", source: "The Emerald Weapon" } window 1.1,0
+12.1 "--sync--" StartsUsing { id: "55B0", source: "The Emerald Weapon" } window 20,20
+17.1 "Emerald Shot" Ability { id: "55B0", source: "The Emerald Weapon" }
+28.2 "Optimized Ultima" Ability { id: "55B1", source: "The Emerald Weapon" }
+39.4 "Aetheroplasm Production" Ability { id: "55AA", source: "The Emerald Weapon" }
+65.6 "Emerald Beam" Ability { id: "557[13]", source: "The Emerald Weapon" }
+92.8 "Magitek Magnetism" Ability { id: "5594", source: "The Emerald Weapon" }
+118.0 "Magitek Magnetism" Ability { id: "5594", source: "The Emerald Weapon" }
+138.1 "Emerald Beam" Ability { id: "557[57]", source: "The Emerald Weapon" }
+160.3 "Optimized Ultima" Ability { id: "55B1", source: "The Emerald Weapon" }
+171.4 "Bit Storm" Ability { id: "55A2", source: "The Emerald Weapon" }
+178.5 "Divide Et Impera" Ability { id: "5537", source: "The Emerald Weapon" }
+198.6 "Expire" Ability { id: "5591", source: "The Emerald Weapon" }
+208.6 "Aire Tam Storm" Ability { id: "558F", source: "The Emerald Weapon" }
+231.7 "Photon Ring" Ability { id: "55A9", source: "The Emerald Weapon" }
+243.9 "Magitek Magnetism" Ability { id: "5594", source: "The Emerald Weapon" }
+278.1 "Optimized Ultima" Ability { id: "55B1", source: "The Emerald Weapon" }
+291.1 "Bit Storm" Ability { id: "55A2", source: "The Emerald Weapon" }
+298.2 "Divide Et Impera" Ability { id: "5537", source: "The Emerald Weapon" }
+312.5 "Optimized Ultima" Ability { id: "55B2", source: "The Emerald Weapon" }
+339.6 "Enrage" Ability { id: "5B16", source: "The Emerald Weapon" }
 
 
 ### Cutscene
-800.0 "--cutscene--" sync / 1[56]:[^:]*:The Emerald Weapon:5B02:/ window 800,0 duration 58.5
+800.0 "--cutscene--" Ability { id: "5B02", source: "The Emerald Weapon" } window 800,0 duration 58.5
 858.5 "--targetable--"
 
 
@@ -43,58 +43,58 @@ hideall "--sync--"
 # -ii 5B1C 55DA 55D9 55C4 55C5 55C6 55C7 55BC 55BD 55CD 55D2 5585 55CA 55C9 55CB
 
 1000.0 "Start"
-1001.0 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1C:/ window 1001,0
-1010.0 "--sync--" sync / 14:[^:]*:The Emerald Weapon:555B:/ window 1015,20
-1015.0 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:555B:/
-1021.3 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
-1031.3 "Primus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55C3:/
-1046.4 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55CC:/
-1056.4 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1057.6 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1058.8 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
+1001.0 "--sync--" Ability { id: "5B1C", source: "The Emerald Weapon" } window 1001,0
+1010.0 "--sync--" StartsUsing { id: "555B", source: "The Emerald Weapon" } window 1015,20
+1015.0 "Divide Et Impera" Ability { id: "555B", source: "The Emerald Weapon" }
+1021.3 "--sync--" Ability { id: "5B1F", source: "The Emerald Weapon" }
+1031.3 "Primus Terminus Est" Ability { id: "55C3", source: "The Emerald Weapon" }
+1046.4 "Tertius Terminus Est" Ability { id: "55CC", source: "The Emerald Weapon" }
+1056.4 "Tertius Terminus Est 1" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1057.6 "Tertius Terminus Est 2" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1058.8 "Tertius Terminus Est 3" #Ability { id: "55CE", source: "The Emerald Weapon" }
 
-1075.6 "Legio Phantasmatis" sync / 1[56]:[^:]*:The Emerald Weapon:55B4:/ window 20,20
+1075.6 "Legio Phantasmatis" Ability { id: "55B4", source: "The Emerald Weapon" } window 20,20
 1077.7 "--untargetable--"
 1080.8 "--targetable--"
-1084.7 "Mechanized Maneuver" sync / 1[56]:[^:]*:Black Wolf's Image:55BA:/
-1096.2 "Heirsbane" sync / 1[56]:[^:]*:Black Wolf's Image:55B9:/
-1099.4 "Bombs Away" sync / 1[56]:[^:]*:Black Wolf's Image:55BB:/
+1084.7 "Mechanized Maneuver" Ability { id: "55BA", source: "Black Wolf's Image" }
+1096.2 "Heirsbane" Ability { id: "55B9", source: "Black Wolf's Image" }
+1099.4 "Bombs Away" Ability { id: "55BB", source: "Black Wolf's Image" }
 1104.6 "--untargetable--"
-1117.6 "Magitek Cannon" sync / 1[56]:[^:]*:Reaper Image:55BE:/ window 20,20
+1117.6 "Magitek Cannon" Ability { id: "55BE", source: "Reaper Image" } window 20,20
 1127.3 "--targetable--"
 
-1135.4 "Optimized Ultima" sync / 1[56]:[^:]*:The Emerald Weapon:5B10:/
-1148.6 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:555B:/
-1155.4 "--sync--" sync / 1[56]:[^:]*:The Emerald Weapon:5B1F:/
-1162.4 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55CC:/
-1168.1 "Split" sync / 1[56]:[^:]*:The Emerald Weapon:55(CF|D3):/
-1174.3 "Expire / Sidescathe" sync / 1[56]:[^:]*:The Emerald Weapon:55D[145]:/
-1183.3 "Aire Tam Storm / Emerald Crusher" sync / 1[56]:[^:]*:The Emerald Weapon:(55D0|5585):/
-1186.7 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1187.9 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1189.0 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
+1135.4 "Optimized Ultima" Ability { id: "5B10", source: "The Emerald Weapon" }
+1148.6 "Divide Et Impera" Ability { id: "555B", source: "The Emerald Weapon" }
+1155.4 "--sync--" Ability { id: "5B1F", source: "The Emerald Weapon" }
+1162.4 "Tertius Terminus Est" Ability { id: "55CC", source: "The Emerald Weapon" }
+1168.1 "Split" Ability { id: "55(CF|D3)", source: "The Emerald Weapon" }
+1174.3 "Expire / Sidescathe" Ability { id: "55D[145]", source: "The Emerald Weapon" }
+1183.3 "Aire Tam Storm / Emerald Crusher" Ability { id: ["55D0", "5585"], source: "The Emerald Weapon" }
+1186.7 "Tertius Terminus Est 1" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1187.9 "Tertius Terminus Est 2" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1189.0 "Tertius Terminus Est 3" #Ability { id: "55CE", source: "The Emerald Weapon" }
 
-1205.5 "Legio Phantasmatis" sync / 1[56]:[^:]*:The Emerald Weapon:55B4:/ window 20,20
+1205.5 "Legio Phantasmatis" Ability { id: "55B4", source: "The Emerald Weapon" } window 20,20
 1207.5 "--untargetable--"
 1210.7 "--targetable--"
-1214.9 "Full Rank" sync / 1[56]:[^:]*:Black Wolf's Image:55C0:/
-1226.2 "Final Formation" sync / 1[56]:[^:]*:Black Wolf's Image:55C1:/
-1232.4 "Fatal Fire" sync / 1[56]:[^:]*:Black Wolf's Image:55C2:/
+1214.9 "Full Rank" Ability { id: "55C0", source: "Black Wolf's Image" }
+1226.2 "Final Formation" Ability { id: "55C1", source: "Black Wolf's Image" }
+1232.4 "Fatal Fire" Ability { id: "55C2", source: "Black Wolf's Image" }
 1234.6 "--untargetable--"
-1238.4 "Shots Fired 1" #sync / 1[56]:[^:]*:Imperial Image:55B7:/
-1240.4 "Shots Fired 2" #sync / 1[56]:[^:]*:Imperial Image:55B7:/
-1242.4 "Shots Fired 3" #sync / 1[56]:[^:]*:Imperial Image:55B7:/
-1247.5 "Magitek Cannon" sync / 1[56]:[^:]*:Reaper Image:55BE:/ window 20,20
+1238.4 "Shots Fired 1" #Ability { id: "55B7", source: "Imperial Image" }
+1240.4 "Shots Fired 2" #Ability { id: "55B7", source: "Imperial Image" }
+1242.4 "Shots Fired 3" #Ability { id: "55B7", source: "Imperial Image" }
+1247.5 "Magitek Cannon" Ability { id: "55BE", source: "Reaper Image" } window 20,20
 1257.2 "--targetable--"
 
-1269.4 "Secundus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55C8:/
-1286.5 "Tertius Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55CC:/
-1292.7 "Split" sync / 1[56]:[^:]*:The Emerald Weapon:55(CF|D3):/
-1298.5 "Sidescathe / Expire" sync / 1[56]:[^:]*:The Emerald Weapon:55D[145]:/
-1307.5 "Emerald Crusher / Aire Tam Storm" sync / 1[56]:[^:]*:The Emerald Weapon:(55D0|5585):/
-1310.4 "Tertius Terminus Est 1" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1311.6 "Tertius Terminus Est 2" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1312.8 "Tertius Terminus Est 3" #sync / 1[56]:[^:]*:The Emerald Weapon:55CE:/
-1326.5 "Primus Terminus Est" sync / 1[56]:[^:]*:The Emerald Weapon:55C3:/
-1343.2 "Divide Et Impera" sync / 1[56]:[^:]*:The Emerald Weapon:555B:/
-1374.5 "Enrage" sync / 1[56]:[^:]*:The Emerald Weapon:5B17:/
+1269.4 "Secundus Terminus Est" Ability { id: "55C8", source: "The Emerald Weapon" }
+1286.5 "Tertius Terminus Est" Ability { id: "55CC", source: "The Emerald Weapon" }
+1292.7 "Split" Ability { id: "55(CF|D3)", source: "The Emerald Weapon" }
+1298.5 "Sidescathe / Expire" Ability { id: "55D[145]", source: "The Emerald Weapon" }
+1307.5 "Emerald Crusher / Aire Tam Storm" Ability { id: ["55D0", "5585"], source: "The Emerald Weapon" }
+1310.4 "Tertius Terminus Est 1" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1311.6 "Tertius Terminus Est 2" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1312.8 "Tertius Terminus Est 3" #Ability { id: "55CE", source: "The Emerald Weapon" }
+1326.5 "Primus Terminus Est" Ability { id: "55C3", source: "The Emerald Weapon" }
+1343.2 "Divide Et Impera" Ability { id: "555B", source: "The Emerald Weapon" }
+1374.5 "Enrage" Ability { id: "5B17", source: "The Emerald Weapon" }

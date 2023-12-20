@@ -5,63 +5,63 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-16.9 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/ window 17,10
-27.1 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5B4[56]:/
-36.8 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5B4[56]:/
-47.5 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+16.9 "Ground-Razing Particle Beam" Ability { id: "5625", source: "Cloud Of Darkness" } window 17,10
+27.1 "The Art Of Darkness" Ability { id: "5B4[56]", source: "Cloud Of Darkness" }
+36.8 "The Art Of Darkness" Ability { id: "5B4[56]", source: "Cloud Of Darkness" }
+47.5 "Devouring Dark" Ability { id: "5623", source: "Cloud Of Darkness" }
 
 ## Woods
-63.1 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:55EE:/
-74.3 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:5907:/
-81.8 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:5618:/
-101.6 "Phaser Unlimited 1" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
-103.7 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
-105.7 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
-109.0 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
-126.2 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/
-144.4 "The Second Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[12]:/
-159.5 "Phaser Unlimited 2" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
-161.6 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
-163.6 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
-166.9 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
-182.1 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+63.1 "Obscure Woods" Ability { id: "55EE", source: "Cloud Of Darkness" }
+74.3 "Flood Of Obscurity" Ability { id: "5907", source: "Cloud Of Darkness" }
+81.8 "Rejuvenating Balm" Ability { id: "5618", source: "Cloud Of Darkness" }
+101.6 "Phaser Unlimited 1" Ability { id: "56(1[23]|0[DE])", source: "Cloud Of Darkness" } window 4,4
+103.7 "--1--" Ability { id: "56(14|0F)", source: "Cloud Of Darkness" }
+105.7 "--2--" Ability { id: "561[05]", source: "Cloud Of Darkness" }
+109.0 "--3--" Ability { id: "5B0[01]", source: "Cloud Of Darkness" }
+126.2 "Ground-Razing Particle Beam" Ability { id: "5625", source: "Cloud Of Darkness" }
+144.4 "The Second Art Of Darkness" Ability { id: "560[12]", source: "Cloud Of Darkness" }
+159.5 "Phaser Unlimited 2" Ability { id: "56(1[23]|0[DE])", source: "Cloud Of Darkness" } window 4,4
+161.6 "--1--" Ability { id: "56(14|0F)", source: "Cloud Of Darkness" }
+163.6 "--2--" Ability { id: "561[05]", source: "Cloud Of Darkness" }
+166.9 "--3--" Ability { id: "5B0[01]", source: "Cloud Of Darkness" }
+182.1 "Devouring Dark" Ability { id: "5623", source: "Cloud Of Darkness" }
 
 ## Tiles
-197.7 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:55EF:/
-208.9 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F0:/
-216.0 "Hypercharged Condensation" sync / 1[56]:[^:]*:Cloud Of Darkness:560C:/
-231.2 "Full-Perimeter Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5629:/
-248.5 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
-264.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
-279.0 "Deluge Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F1:/
+197.7 "Empty Plane" Ability { id: "55EF", source: "Cloud Of Darkness" }
+208.9 "Flood Of Emptiness" Ability { id: "55F0", source: "Cloud Of Darkness" }
+216.0 "Hypercharged Condensation" Ability { id: "560C", source: "Cloud Of Darkness" }
+231.2 "Full-Perimeter Particle Beam" Ability { id: "5629", source: "Cloud Of Darkness" }
+248.5 "The Art Of Darkness (L/R)" Ability { id: "5A9[56]", source: "Cloud Of Darkness" }
+264.3 "The Art Of Darkness" Ability { id: "55F[BE]", source: "Cloud Of Darkness" }
+279.0 "Deluge Of Darkness" Ability { id: "55F1", source: "Cloud Of Darkness" }
 
 ## Default
-285.9 "Summon" sync / 1[56]:[^:]*:Cloud Of Darkness:5019:/
-301.2 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
-314.8 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
-337.4 "The Third Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[34]:/
+285.9 "Summon" Ability { id: "5019", source: "Cloud Of Darkness" }
+301.2 "The Art Of Darkness (L/R)" Ability { id: "5A9[56]", source: "Cloud Of Darkness" }
+314.8 "Devouring Dark" Ability { id: "5623", source: "Cloud Of Darkness" }
+337.4 "The Third Art Of Darkness" Ability { id: "560[34]", source: "Cloud Of Darkness" }
 
 ## Woods
-358.0 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:55EE:/
-369.2 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:5907:/
-377.3 "Particle Concentration" sync / 1[56]:[^:]*:Cloud Of Darkness:5620:/
-397.3 "Phaser Unlimited 3" sync / 1[56]:[^:]*:Cloud Of Darkness:56(1[23]|0[DE]):/ window 4,4
-399.4 "--1--" sync / 1[56]:[^:]*:Cloud Of Darkness:56(14|0F):/
-401.4 "--2--" sync / 1[56]:[^:]*:Cloud Of Darkness:561[05]:/
-404.7 "--3--" sync / 1[56]:[^:]*:Cloud Of Darkness:5B0[01]:/
-418.9 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5625:/
-433.0 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:5618:/
-444.6 "The Second Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:560[12]:/
-461.3 "Devouring Dark" sync / 1[56]:[^:]*:Cloud Of Darkness:5623:/
+358.0 "Obscure Woods" Ability { id: "55EE", source: "Cloud Of Darkness" }
+369.2 "Flood Of Obscurity" Ability { id: "5907", source: "Cloud Of Darkness" }
+377.3 "Particle Concentration" Ability { id: "5620", source: "Cloud Of Darkness" }
+397.3 "Phaser Unlimited 3" Ability { id: "56(1[23]|0[DE])", source: "Cloud Of Darkness" } window 4,4
+399.4 "--1--" Ability { id: "56(14|0F)", source: "Cloud Of Darkness" }
+401.4 "--2--" Ability { id: "561[05]", source: "Cloud Of Darkness" }
+404.7 "--3--" Ability { id: "5B0[01]", source: "Cloud Of Darkness" }
+418.9 "Ground-Razing Particle Beam" Ability { id: "5625", source: "Cloud Of Darkness" }
+433.0 "Rejuvenating Balm" Ability { id: "5618", source: "Cloud Of Darkness" }
+444.6 "The Second Art Of Darkness" Ability { id: "560[12]", source: "Cloud Of Darkness" }
+461.3 "Devouring Dark" Ability { id: "5623", source: "Cloud Of Darkness" }
 
 ## Tiles
-476.7 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:55EF:/
-487.9 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F0:/
-495.0 "Hypercharged Condensation" sync / 1[56]:[^:]*:Cloud Of Darkness:560C:/
-510.2 "Full-Perimeter Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5629:/
-527.5 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
-543.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
-564.2 "The Art Of Darkness (L/R)" sync / 1[56]:[^:]*:Cloud Of Darkness:5A9[56]:/
-580.0 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:55F[BE]:/
-597.1 "Enrage" sync / 1[56]:[^:]*:Cloud Of Darkness:562A:/
+476.7 "Empty Plane" Ability { id: "55EF", source: "Cloud Of Darkness" }
+487.9 "Flood Of Emptiness" Ability { id: "55F0", source: "Cloud Of Darkness" }
+495.0 "Hypercharged Condensation" Ability { id: "560C", source: "Cloud Of Darkness" }
+510.2 "Full-Perimeter Particle Beam" Ability { id: "5629", source: "Cloud Of Darkness" }
+527.5 "The Art Of Darkness (L/R)" Ability { id: "5A9[56]", source: "Cloud Of Darkness" }
+543.3 "The Art Of Darkness" Ability { id: "55F[BE]", source: "Cloud Of Darkness" }
+564.2 "The Art Of Darkness (L/R)" Ability { id: "5A9[56]", source: "Cloud Of Darkness" }
+580.0 "The Art Of Darkness" Ability { id: "55F[BE]", source: "Cloud Of Darkness" }
+597.1 "Enrage" Ability { id: "562A", source: "Cloud Of Darkness" }

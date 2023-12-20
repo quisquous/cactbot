@@ -6,59 +6,59 @@ hideall "--sync--"
 
 # -ii 56B0 56B6 56B9 56BA 56BB 56BD 56BE 56C0 56C1 56CC 56D4 56D5 56D8 56D9 56E1 56E7 5B09 5B0D 5B26
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-17.0 "Forward Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B4:/ window 17,5
-30.5 "Forward Shadow Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B5:/
-41.8 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:56E5:/
-55.0 "Backward Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B7:/
-68.5 "Backward Shadow Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B8:/
-74.9 "--center--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/ window 74.9,10
-80.3 "Spawn Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56D6:/
-82.0 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:56D7:/
-86.4 "Shadow Warrior" sync / 1[56]:[^:]*:Shadowkeeper:56E2:/
-99.6 "Barbs Of Agony" sync / 1[56]:[^:]*:Shadowkeeper:5743:/
-112.7 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:56E5:/ window 30,30
-118.9 "--center--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-124.3 "Fade To Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56DA:/
-135.4 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:56DB:/
-137.9 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B11:/ window 50,50
-149.1 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56C7:/
-157.7 "Umbra Smash x4" duration 5 # sync / 1[56]:[^:]*:Shadowkeeper:5BAB:/
-169.2 "Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0B:/
-180.6 "Left/Right Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AE|B1):/
-194.1 "Left/Right Shadow Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AF|B2):/
-205.5 "Voidgate" sync / 1[56]:[^:]*:Shadowkeeper:56DD:/ window 50,50
-219.6 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:56DE:/
-230.8 "Left/Right Shadow Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AF|B2):/
-233.9 "Left/Right Shadow Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AF|B2):/
-246.6 "Distant Scream" sync / 1[56]:[^:]*:Shadowkeeper:56C6:/ window 246.6,10
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+17.0 "Forward Implosion" Ability { id: "56B4", source: "Shadowkeeper" } window 17,5
+30.5 "Forward Shadow Implosion" Ability { id: "56B5", source: "Shadowkeeper" }
+41.8 "Deepshadow Nova" Ability { id: "56E5", source: "Shadowkeeper" }
+55.0 "Backward Implosion" Ability { id: "56B7", source: "Shadowkeeper" }
+68.5 "Backward Shadow Implosion" Ability { id: "56B8", source: "Shadowkeeper" }
+74.9 "--center--" Ability { id: "5B08", source: "Shadowkeeper" } window 74.9,10
+80.3 "Spawn Shadow" Ability { id: "56D6", source: "Shadowkeeper" }
+82.0 "--sync--" Ability { id: "56D7", source: "Shadowkeeper" }
+86.4 "Shadow Warrior" Ability { id: "56E2", source: "Shadowkeeper" }
+99.6 "Barbs Of Agony" Ability { id: "5743", source: "Shadowkeeper" }
+112.7 "Deepshadow Nova" Ability { id: "56E5", source: "Shadowkeeper" } window 30,30
+118.9 "--center--" Ability { id: "5B08", source: "Shadowkeeper" }
+124.3 "Fade To Shadow" Ability { id: "56DA", source: "Shadowkeeper" }
+135.4 "--sync--" Ability { id: "56DB", source: "Shadowkeeper" }
+137.9 "Cloak Of Shadows" Ability { id: "5B11", source: "Shadowkeeper" } window 50,50
+149.1 "Throne Of Shadow" Ability { id: "56C7", source: "Shadowkeeper" }
+157.7 "Umbra Smash x4" duration 5 # Ability { id: "5BAB", source: "Shadowkeeper" }
+169.2 "Shadow's Edge" Ability { id: "5B0B", source: "Shadowkeeper" }
+180.6 "Left/Right Giga Slash" Ability { id: "56(AE|B1)", source: "Shadowkeeper" }
+194.1 "Left/Right Shadow Slash" Ability { id: "56(AF|B2)", source: "Shadowkeeper" }
+205.5 "Voidgate" Ability { id: "56DD", source: "Shadowkeeper" } window 50,50
+219.6 "Void Pulse" Ability { id: "56DE", source: "Shadowkeeper" }
+230.8 "Left/Right Shadow Slash" Ability { id: "56(AF|B2)", source: "Shadowkeeper" }
+233.9 "Left/Right Shadow Slash" Ability { id: "56(AF|B2)", source: "Shadowkeeper" }
+246.6 "Distant Scream" Ability { id: "56C6", source: "Shadowkeeper" } window 246.6,10
 
-253.2 "--center--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-258.6 "Spawn Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56D6:/
-260.3 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:56D7:/
-264.7 "Shadow Warrior" sync / 1[56]:[^:]*:Shadowkeeper:56E2:/
-276.9 "Shadowy Eruption" sync / 1[56]:[^:]*:Shadowkeeper:56(DF|E4):/
-278.0 "Barbs Of Agony" sync / 1[56]:[^:]*:Shadowkeeper:5743:/
-295.1 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:56E5:/
-309.4 "Front/Back Shadow Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B[58]:/
-312.5 "Front/Back Shadow Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B[58]:/
-320.7 "Deepshadow Nova" sync / 1[56]:[^:]*:Shadowkeeper:56E5:/
-328.9 "--center--" sync / 1[56]:[^:]*:Shadowkeeper:5B08:/
-334.3 "Fade To Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56DA:/
-345.4 "--sync--" sync / 1[56]:[^:]*:Shadowkeeper:56DB:/
-347.1 "Forward/Backward Implosion" sync / 1[56]:[^:]*:Shadowkeeper:56B[47]:/
-347.9 "Cloak Of Shadows" sync / 1[56]:[^:]*:Shadowkeeper:5B11:/
-359.0 "Throne Of Shadow" sync / 1[56]:[^:]*:Shadowkeeper:56C7:/
-367.6 "Voidgate" sync / 1[56]:[^:]*:Shadowkeeper:56DD:/
-381.7 "Void Pulse" sync / 1[56]:[^:]*:Shadowkeeper:56DE:/
-384.8 "Left/Right Giga Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AE|B1):/
-395.2 "Shadowy Eruption" sync / 1[56]:[^:]*:Shadowkeeper:56(DF|E4):/
-404.4 "Left/Right Shadow Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AF|B2):/
-407.5 "Left/Right Shadow Slash" sync / 1[56]:[^:]*:Shadowkeeper:56(AF|B2):/
-418.6 "Umbra Smash x4" duration 5 # sync / 1[56]:[^:]*:Shadowkeeper:5BAB:/
-430.0 "Shadow's Edge" sync / 1[56]:[^:]*:Shadowkeeper:5B0B:/
-439.3 "Shadowy Eruption x3" # sync / 1[56]:[^:]*:Shadowkeeper:56E0:/
-449.0 "Distant Scream" sync / 1[56]:[^:]*:Shadowkeeper:56C6:/ jump 246.6
+253.2 "--center--" Ability { id: "5B08", source: "Shadowkeeper" }
+258.6 "Spawn Shadow" Ability { id: "56D6", source: "Shadowkeeper" }
+260.3 "--sync--" Ability { id: "56D7", source: "Shadowkeeper" }
+264.7 "Shadow Warrior" Ability { id: "56E2", source: "Shadowkeeper" }
+276.9 "Shadowy Eruption" Ability { id: "56(DF|E4)", source: "Shadowkeeper" }
+278.0 "Barbs Of Agony" Ability { id: "5743", source: "Shadowkeeper" }
+295.1 "Deepshadow Nova" Ability { id: "56E5", source: "Shadowkeeper" }
+309.4 "Front/Back Shadow Implosion" Ability { id: "56B[58]", source: "Shadowkeeper" }
+312.5 "Front/Back Shadow Implosion" Ability { id: "56B[58]", source: "Shadowkeeper" }
+320.7 "Deepshadow Nova" Ability { id: "56E5", source: "Shadowkeeper" }
+328.9 "--center--" Ability { id: "5B08", source: "Shadowkeeper" }
+334.3 "Fade To Shadow" Ability { id: "56DA", source: "Shadowkeeper" }
+345.4 "--sync--" Ability { id: "56DB", source: "Shadowkeeper" }
+347.1 "Forward/Backward Implosion" Ability { id: "56B[47]", source: "Shadowkeeper" }
+347.9 "Cloak Of Shadows" Ability { id: "5B11", source: "Shadowkeeper" }
+359.0 "Throne Of Shadow" Ability { id: "56C7", source: "Shadowkeeper" }
+367.6 "Voidgate" Ability { id: "56DD", source: "Shadowkeeper" }
+381.7 "Void Pulse" Ability { id: "56DE", source: "Shadowkeeper" }
+384.8 "Left/Right Giga Slash" Ability { id: "56(AE|B1)", source: "Shadowkeeper" }
+395.2 "Shadowy Eruption" Ability { id: "56(DF|E4)", source: "Shadowkeeper" }
+404.4 "Left/Right Shadow Slash" Ability { id: "56(AF|B2)", source: "Shadowkeeper" }
+407.5 "Left/Right Shadow Slash" Ability { id: "56(AF|B2)", source: "Shadowkeeper" }
+418.6 "Umbra Smash x4" duration 5 # Ability { id: "5BAB", source: "Shadowkeeper" }
+430.0 "Shadow's Edge" Ability { id: "5B0B", source: "Shadowkeeper" }
+439.3 "Shadowy Eruption x3" # Ability { id: "56E0", source: "Shadowkeeper" }
+449.0 "Distant Scream" Ability { id: "56C6", source: "Shadowkeeper" } jump 246.6
 
 461.0 "Spawn Shadow"
 467.1 "Shadow Warrior"

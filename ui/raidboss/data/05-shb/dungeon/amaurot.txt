@@ -7,24 +7,24 @@ hideall "--sync--"
 # -p 3CCE:113.5 -ii 3CC6 3CCA 3CC8
 
 # The First Doom will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8B:/ window 100,0
-113.5 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/ window 114,9
-122.7 "Meteor Rain" sync / 1[56]:[^:]*:The First Beast:3CC4:/
-132.9 "The Falling Sky" sync / 1[56]:[^:]*:The First Beast:3CC9:/
-136.3 "Cosmic Kiss" sync / 1[56]:[^:]*:Fallen Star:42D4:/
-151.6 "The Final Sky" sync / 1[56]:[^:]*:The First Beast:3CCB:/
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "C8B" } window 100,0
+113.5 "Venomous Breath" Ability { id: "3CCE", source: "The First Beast" } window 114,9
+122.7 "Meteor Rain" Ability { id: "3CC4", source: "The First Beast" }
+132.9 "The Falling Sky" Ability { id: "3CC9", source: "The First Beast" }
+136.3 "Cosmic Kiss" Ability { id: "42D4", source: "Fallen Star" }
+151.6 "The Final Sky" Ability { id: "3CCB", source: "The First Beast" }
 
-153.0 "Cosmic Shrapnel" sync / 1[56]:[^:]*:Fallen Star:42D6:/
-171.0 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/
-181.2 "Earthquake" sync / 1[56]:[^:]*:The First Beast:3CCD:/
-190.4 "Venomous Breath" sync / 1[56]:[^:]*:The First Beast:3CCE:/
-200.8 "Meteor Rain" sync / 1[56]:[^:]*:The First Beast:3CC4:/
-211.1 "The Falling Sky" sync / 1[56]:[^:]*:The First Beast:3CC9:/
-214.5 "Cosmic Kiss" sync / 1[56]:[^:]*:Fallen Star:42D4:/
-220.5 "The Burning Sky" sync / 1[56]:[^:]*:The First Beast:3CC7:/
-239.0 "The Final Sky" sync / 1[56]:[^:]*:The First Beast:3CCB:/
+153.0 "Cosmic Shrapnel" Ability { id: "42D6", source: "Fallen Star" }
+171.0 "Venomous Breath" Ability { id: "3CCE", source: "The First Beast" }
+181.2 "Earthquake" Ability { id: "3CCD", source: "The First Beast" }
+190.4 "Venomous Breath" Ability { id: "3CCE", source: "The First Beast" }
+200.8 "Meteor Rain" Ability { id: "3CC4", source: "The First Beast" }
+211.1 "The Falling Sky" Ability { id: "3CC9", source: "The First Beast" }
+214.5 "Cosmic Kiss" Ability { id: "42D4", source: "Fallen Star" }
+220.5 "The Burning Sky" Ability { id: "3CC7", source: "The First Beast" }
+239.0 "The Final Sky" Ability { id: "3CCB", source: "The First Beast" }
 
-240.4 "Cosmic Shrapnel" sync / 1[56]:[^:]*:Fallen Star:42D6:/ window 30,30 jump 153
+240.4 "Cosmic Shrapnel" Ability { id: "42D6", source: "Fallen Star" } window 30,30 jump 153
 258.4 "Venomous Breath"
 268.6 "Earthquake"
 277.8 "Venomous Breath"
@@ -38,49 +38,49 @@ hideall "--sync--"
 ### Terminus Bellwether
 # -p 3CCF:523 -ii 465D 3CE4 3CD3 3CD2 3CD5 417D
 # The Second Doom will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8C:/ window 500,0
-523.0 "Shrill Shriek" sync / 1[56]:[^:]*:Terminus Bellwether:3CCF:/ window 523,5
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "C8C" } window 500,0
+523.0 "Shrill Shriek" Ability { id: "3CCF", source: "Terminus Bellwether" } window 523,5
 525.0 "--untargetable--"
 525.0 "Adds (N)"
-561.3 "Adds (SW)" sync / 03:........:Terminus Roiler:/  window 60,60
-610.9 "Adds (S)" sync / 03:........:Terminus Pursuer:/  window 100,100
-800.0 "--sync--" sync / 14:[^:]*:Terminus Bellwether:3CD0:/ window 300,00
-840.0 "Burst" sync / 1[56]:[^:]*:Terminus Bellwether:3CD0:/ window 40,40
+561.3 "Adds (SW)" AddedCombatant { name: "Terminus Roiler" }  window 60,60
+610.9 "Adds (S)" AddedCombatant { name: "Terminus Pursuer" }  window 100,100
+800.0 "--sync--" StartsUsing { id: "3CD0", source: "Terminus Bellwether" } window 300,00
+840.0 "Burst" Ability { id: "3CD0", source: "Terminus Bellwether" } window 40,40
 
 
 ### Therion
 # -ii 3CD6 3CDD 3CD9 3CDE 3CE1 3CDB 4191 4192 -p 3CE3:1013
 # The Third Doom will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:C8D:/ window 1000,0
-1013.0 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/ window 1013,10
-1026.2 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
-1042.8 "Therion Charge" sync / 1[56]:[^:]*:Therion:3CDA:/
-1051.1 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
-1060.0 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
-1068.9 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
-1081.6 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
-1091.5 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
-1096.5 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
-1099.2 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
-1100.2 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
-1105.3 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
-1115.1 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
-1131.7 "Therion Charge" sync / 1[56]:[^:]*:Therion:3CDA:/
-1140.0 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "C8D" } window 1000,0
+1013.0 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" } window 1013,10
+1026.2 "Apokalypsis" Ability { id: "3CD7", source: "Therion" } duration 5.9
+1042.8 "Therion Charge" Ability { id: "3CDA", source: "Therion" }
+1051.1 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" }
+1060.0 "Deathly Ray" Ability { id: "3CDC", source: "The Face of the Beast" } duration 4.4
+1068.9 "Deathly Ray" Ability { id: "3CDC", source: "The Face of the Beast" } duration 4.4
+1081.6 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" }
+1091.5 "Deathly Ray" Ability { id: "3CDF", source: "Therion" } duration 4.3
+1096.5 "--sync--" Ability { id: "42D3", source: "Therion" }
+1099.2 "Misfortune" Ability { id: "3CE2", source: "Therion" }
+1100.2 "Deathly Ray" Ability { id: "3CDF", source: "Therion" } duration 4.3
+1105.3 "--sync--" Ability { id: "42D3", source: "Therion" }
+1115.1 "Apokalypsis" Ability { id: "3CD7", source: "Therion" } duration 5.9
+1131.7 "Therion Charge" Ability { id: "3CDA", source: "Therion" }
+1140.0 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" }
 
-1148.8 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
-1156.6 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
-1157.6 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4
-1170.3 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
-1180.2 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
-1185.2 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
-1188.0 "Misfortune" sync / 1[56]:[^:]*:Therion:3CE2:/
-1188.8 "Deathly Ray" sync / 1[56]:[^:]*:Therion:3CDF:/ duration 4.3
-1193.9 "--sync--" sync / 1[56]:[^:]*:Therion:42D3:/
-1202.5 "Shadow Wreck" sync / 1[56]:[^:]*:Therion:3CE3:/
-1213.7 "Apokalypsis" sync / 1[56]:[^:]*:Therion:3CD7:/ duration 5.9
+1148.8 "Deathly Ray" Ability { id: "3CDC", source: "The Face of the Beast" } duration 4.4
+1156.6 "Misfortune" Ability { id: "3CE2", source: "Therion" }
+1157.6 "Deathly Ray" Ability { id: "3CDC", source: "The Face of the Beast" } duration 4.4
+1170.3 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" }
+1180.2 "Deathly Ray" Ability { id: "3CDF", source: "Therion" } duration 4.3
+1185.2 "--sync--" Ability { id: "42D3", source: "Therion" }
+1188.0 "Misfortune" Ability { id: "3CE2", source: "Therion" }
+1188.8 "Deathly Ray" Ability { id: "3CDF", source: "Therion" } duration 4.3
+1193.9 "--sync--" Ability { id: "42D3", source: "Therion" }
+1202.5 "Shadow Wreck" Ability { id: "3CE3", source: "Therion" }
+1213.7 "Apokalypsis" Ability { id: "3CD7", source: "Therion" } duration 5.9
 
-1230.7 "Deathly Ray" sync / 1[56]:[^:]*:The Face of the Beast:3CDC:/ duration 4.4 window 50,50 jump 1148.8
+1230.7 "Deathly Ray" Ability { id: "3CDC", source: "The Face of the Beast" } duration 4.4 window 50,50 jump 1148.8
 1238.5 "Misfortune"
 1239.5 "Deathly Ray"
 1252.2 "Shadow Wreck"

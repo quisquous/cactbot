@@ -9,72 +9,72 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 
 ## First Gaoler's Flail
-8.7 "--sync--" sync / 14:[^:]*:Erichthonios:(6DA3|6DA2):/ window 10,9
-17.4 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-28.5 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-39.0 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-46.2 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
-51.5 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
-58.6 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
+8.7 "--sync--" StartsUsing { id: ["6DA3", "6DA2"], source: "Erichthonios" } window 10,9
+17.4 "Gaoler's Flail Left/Gaoler's Flail Right" Ability { id: ["6DA3", "6DA2"], source: "Erichthonios" }
+28.5 "Gaoler's Flail Right/Gaoler's Flail Left" Ability { id: ["6DA2", "6DA3"], source: "Erichthonios" }
+39.0 "Warder's Wrath" Ability { id: "65F4", source: "Erichthonios" }
+46.2 "--knockback stack--" Ability { id: "6D15", source: "Erichthonios" }
+51.5 "Pitiless Flail" Ability { id: "65E5", source: "Erichthonios" }
+58.6 "True Holy" Ability { id: "65E7", source: "Erichthonios" }
 
 ## Third Gaoler's Flail
-70.5 "Gaoler's Flail Left/Gaoler's Flail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-81.1 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-93.2 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
-97.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-105.1 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
-107.7 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-116.7 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-125.7 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-135.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-147.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-162.7 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
-174.9 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
-175.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-183.1 "Aetherchain" sync / 1[56]:[^:]*:Erichthonios:65EB:/
-184.0 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
+70.5 "Gaoler's Flail Left/Gaoler's Flail Right" Ability { id: ["6DA3", "6DA2"], source: "Erichthonios" }
+81.1 "Heavy Hand" Ability { id: "65F3", source: "Erichthonios" }
+93.2 "Intemperance" Ability { id: "65EE", source: "Erichthonios" }
+97.3 "--middle--" Ability { id: "65F5", source: "Erichthonios" }
+105.1 "Intemperate Torment" Ability { id: "65EF", source: "Erichthonios" }
+107.7 "Hot Spell/Cold Spell 1" Ability { id: ["65F0", "54F1"], source: "Erichthonios" }
+116.7 "Hot Spell/Cold Spell 2" Ability { id: ["6CC5", "6CC6"], source: "Erichthonios" }
+125.7 "Hot Spell/Cold Spell 3" Ability { id: ["6CC5", "6CC6"], source: "Erichthonios" }
+135.3 "Warder's Wrath" Ability { id: "65F4", source: "Erichthonios" }
+147.6 "Heavy Hand" Ability { id: "65F3", source: "Erichthonios" }
+162.7 "Shining Cells" Ability { id: "65E9", source: "Erichthonios" }
+174.9 "Aetherchain" Ability { id: "65EB", source: "Erichthonios" }
+175.8 "Powerful Fire/Powerful Light" Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+183.1 "Aetherchain" Ability { id: "65EB", source: "Erichthonios" }
+184.0 "Powerful Fire/Powerful Light" Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
 
 ## Beginning of Loop
-188.3 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+188.3 "--middle--" Ability { id: "65F5", source: "Erichthonios" }
 
 # Fourth Gaoler's Flail
-198.7 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-198.8 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-209.8 "Aetherflail Right/Aetherflail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-209.9 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-214.3 "--knockback stack--" sync / 1[56]:[^:]*:Erichthonios:6D15:/
-219.6 "Pitiless Flail" sync / 1[56]:[^:]*:Erichthonios:65E5:/
-226.7 "True Holy" sync / 1[56]:[^:]*:Erichthonios:65E7:/
-232.9 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
+198.7 "Aetherflail Left/Aetherflail Right" Ability { id: ["6DA3", "6DA2"], source: "Erichthonios" }
+198.8 "Powerful Fire/Powerful Light" Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+209.8 "Aetherflail Right/Aetherflail Left" Ability { id: ["6DA2", "6DA3"], source: "Erichthonios" }
+209.9 "Powerful Fire/Powerful Light" Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+214.3 "--knockback stack--" Ability { id: "6D15", source: "Erichthonios" }
+219.6 "Pitiless Flail" Ability { id: "65E5", source: "Erichthonios" }
+226.7 "True Holy" Ability { id: "65E7", source: "Erichthonios" }
+232.9 "--middle--" Ability { id: "65F5", source: "Erichthonios" }
 
 # Sixth Gaoler's Flail
-243.3 "Aetherflail Left/Aetherflail Right" sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-243.4 "Powerful Fire/Powerful Light" sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-260.8 "Slam Shut" sync / 1[56]:[^:]*:Erichthonios:65EA:/
-270.0 "Intemperance" sync / 1[56]:[^:]*:Erichthonios:65EE:/
-274.1 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/
-281.7 "Intemperate Torment" sync / 1[56]:[^:]*:Erichthonios:65EF:/
-284.3 "Hot Spell/Cold Spell 1" sync / 1[56]:[^:]*:Erichthonios:(65F0|54F1):/
-293.3 "Hot Spell/Cold Spell 2" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-302.3 "Hot Spell/Cold Spell 3" sync / 1[56]:[^:]*:Erichthonios:(6CC5|6CC6):/
-305.6 "Gaoler's Flail Right/Gaoler's Flail Left" sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-316.1 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-327.3 "Warder's Wrath" sync / 1[56]:[^:]*:Erichthonios:65F4:/
-336.6 "Heavy Hand" sync / 1[56]:[^:]*:Erichthonios:65F3:/
-355.8 "Shining Cells" sync / 1[56]:[^:]*:Erichthonios:65E9:/
+243.3 "Aetherflail Left/Aetherflail Right" Ability { id: ["6DA3", "6DA2"], source: "Erichthonios" }
+243.4 "Powerful Fire/Powerful Light" Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+260.8 "Slam Shut" Ability { id: "65EA", source: "Erichthonios" }
+270.0 "Intemperance" Ability { id: "65EE", source: "Erichthonios" }
+274.1 "--middle--" Ability { id: "65F5", source: "Erichthonios" }
+281.7 "Intemperate Torment" Ability { id: "65EF", source: "Erichthonios" }
+284.3 "Hot Spell/Cold Spell 1" Ability { id: ["65F0", "54F1"], source: "Erichthonios" }
+293.3 "Hot Spell/Cold Spell 2" Ability { id: ["6CC5", "6CC6"], source: "Erichthonios" }
+302.3 "Hot Spell/Cold Spell 3" Ability { id: ["6CC5", "6CC6"], source: "Erichthonios" }
+305.6 "Gaoler's Flail Right/Gaoler's Flail Left" Ability { id: ["6DA2", "6DA3"], source: "Erichthonios" }
+316.1 "Warder's Wrath" Ability { id: "65F4", source: "Erichthonios" }
+327.3 "Warder's Wrath" Ability { id: "65F4", source: "Erichthonios" }
+336.6 "Heavy Hand" Ability { id: "65F3", source: "Erichthonios" }
+355.8 "Shining Cells" Ability { id: "65E9", source: "Erichthonios" }
 
 # Repeat
-360.0 "--middle--" sync / 1[56]:[^:]*:Erichthonios:65F5:/ window 50,50 jump 188.3
-370.3 "Aetherflail Left/Aetherflail Right" #sync / 1[56]:[^:]*:Erichthonios:(6DA3|6DA2):/
-370.4 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-381.4 "Aetherflail Right/Aetherflail Left" #sync / 1[56]:[^:]*:Erichthonios:(6DA2|6DA3):/
-381.5 "Powerful Fire/Powerful Light" #sync / 1[56]:[^:]*:Erichthonios:(65EC|65ED):/
-385.9 "--knockback stack--" #sync / 1[56]:[^:]*:Erichthonios:6D15:/
-391.2 "Pitiless Flail" #sync / 1[56]:[^:]*:Erichthonios:65E5:/
-398.3 "True Holy" #sync / 1[56]:[^:]*:Erichthonios:65E7:/
-404.5 "--middle--" #sync / 1[56]:[^:]*:Erichthonios:65F5:/
+360.0 "--middle--" Ability { id: "65F5", source: "Erichthonios" } window 50,50 jump 188.3
+370.3 "Aetherflail Left/Aetherflail Right" #Ability { id: ["6DA3", "6DA2"], source: "Erichthonios" }
+370.4 "Powerful Fire/Powerful Light" #Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+381.4 "Aetherflail Right/Aetherflail Left" #Ability { id: ["6DA2", "6DA3"], source: "Erichthonios" }
+381.5 "Powerful Fire/Powerful Light" #Ability { id: ["65EC", "65ED"], source: "Erichthonios" }
+385.9 "--knockback stack--" #Ability { id: "6D15", source: "Erichthonios" }
+391.2 "Pitiless Flail" #Ability { id: "65E5", source: "Erichthonios" }
+398.3 "True Holy" #Ability { id: "65E7", source: "Erichthonios" }
+404.5 "--middle--" #Ability { id: "65F5", source: "Erichthonios" }

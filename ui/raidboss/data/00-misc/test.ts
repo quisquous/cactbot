@@ -383,6 +383,7 @@ const triggerSet: TriggerSet<Data> = {
         text: {
           en: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           de: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
+          fr: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           ja: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           cn: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
           ko: 'player = ${player}, player.job = ${player.job}, player.bogus = ${player.bogus}',
@@ -393,7 +394,6 @@ const triggerSet: TriggerSet<Data> = {
   timelineReplace: [
     {
       locale: 'de',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
         'You bow courteously to the striking dummy':
@@ -406,6 +406,7 @@ const triggerSet: TriggerSet<Data> = {
         'cactbot test config': 'cactbot test konfig',
         'cactbot test outputStrings': 'cactbot test outputStrings',
         'cactbot test combatant cast': 'cactbot test gegner wirken',
+        'testNetRegexTimeline': 'testNetRegexTimeline',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
         'You psych yourself up alongside the striking dummy':
           'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
@@ -554,11 +555,11 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       locale: 'ko',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
         'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
         'test sync': '테스트 싱크',
+        'testNetRegexTimeline': 'testNetRegexTimeline',
         'You burst out laughing at the striking dummy': '.*나무인형을 보고 폭소를 터뜨립니다',
         'cactbot test config': 'cactbot 설정 테스트',
         'cactbot lang': 'cactbot 언어',

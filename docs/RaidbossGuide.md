@@ -1,12 +1,110 @@
-# Triggers File Format
+# Raidboss Triggers Overview
 
 [**English**] [[简体中文](./zh-CN/RaidbossGuide.md)]
 
+## Trigger Guidelines
+
+As a rule, cactbot defaults to text alarms with a small number of default sounds over custom sounds and tts.
+This is because there is a clearer mental separation between visual text for triggers and audio of voice comms.
+This separation is easier to process than mixing the audio of voice comms and tts together.
+This design choice isn't for everybody, especially those used to tts (which is an option).
+However, text triggers will always be the default.
+Give it a try.
+
+As it's easier to disable triggers than to write triggers,
+cactbot also tends to be slightly noisier than most people prefer.
+
+### Trigger Severity
+
+Here's the general guidelines for how cactbot has triggers.
+You can use these when adding new triggers for raids.
+As always, try to be consistent with the surrounding code.
+
+- alarm (red text)
+  - you will wipe the raid if you mess this up
+  - ideally used on random mechanics (one person gets X)
+  - ideally used only once or twice in a raid
+
+- alert (yellow text)
+  - you will get killed if you mess this up (or kill others)
+  - used for important mechanics
+  - should be about 1/2 of the triggers
+
+- info (green text)
+  - you should probably do something about this, but it might not kill you
+  - good for "move now" sorts of calls
+  - also used for information like nael dragon dives or grand octet markers
+  - should be about 1/2 of the triggers
+
+Another consideration for trigger severity is to make them contextually useful.
+For example, if you may get selected for one of two mechanics,
+it's preferable to have one mechanic be info and the other alert
+(or one alert and the other alarm)
+so that it is obvious from the noise which mechanic you have.
+
+A final consideration is to not overload the player
+with too many of the same types of message.
+If every trigger is an alert,
+it's probably better to change some of them to be info.
+Having different sounds helps create a "rhythm" for the fight.
+This is especially true for simultaneous alerts.
+
+Try not to have more than two triggers on screen at once,
+and try not to have them be the same type (e.g. two alert texts)
+to avoid visual clutter.
+
+### Trigger Text
+
+Here's some general guidelines for the text in triggers.
+The goal for trigger text is to mimic what a human raidcaller would say.
+It should minimize the amount of that the player has to think to do a mechanic.
+
+- Be concise.  Text should be as short as possible, like lalafells
+- Tell the player what to do rather than the mechanic name, i.e. prefer `Get Out` vs `Iron Chariot`
+- Have the text be positive, i.e. prefer `Left` vs `Don't Go Right`
+- Don't prescribe a particular strategy by default if multiple strategies exist, e.g. Hello World
+- If multiple strategies exist, tell the player the mechanic (`Jail on YOU`) or add an [option](#strat-specific-options)
+- Don't write triggers for obvious ground aoes
+- Be careful about telling people what needs to be done vs what to do in the moment (e.g. `Under + Intercards` vs `(Under + Intercards for later)`)
+- Keep the text brief and assume that the player has some familiarity with the mechanic; people are only new once, so it's better to optimize for clarity for experienced players
+- As always, be consistent with other triggers
+
+### Strat-specific options
+
+If a fight does have strat-specific options,
+the way to handle this is to add a `config` section to the trigger set.
+This will create options in the [cactbot config UI](CactbotCustomization.md#using-the-cactbot-ui)
+that will appear at the top of each raidboss file section.
+
+By default, you should not pick a particular strategy if there are multiple.
+
+See: [P12S](../ui/raidboss/data/06-ew/raid/p12s.ts) for an example of many different tower and classical concept options.
+
+TODO: update this guide to explain the structure of the config section better
+
+### Trigger Implementation Guidelines for Developers
+
+This is just a grab bag of miscellaneous thoughts about triggers.
+
+- triggers should be timed so that when the text appears it it safe to do that mechanic, e.g. if there's a stack=>spread don't call spread until the stack has gone off
+- use `delaySeconds` sparingly; it's more reliable to trigger off of ability or damage than a delay from a much earlier cast or ability (the stack=>spread example calling spread would use the stack damage)
+- knockbacks generally use 5s of delay to make sure that when the trigger text appears it is safe to hit the button
+- prefer using a normal trigger over a timeline trigger, as timeline triggers can be inconsistent from unknown hp pushes
+- always use `suppressSeconds` for timeline triggers (TODO: make this automatic or suppress until the next jump)
+- if you are using custom OverlayPlugin lines (e.g. MapEffect, any log type >= 256), make sure your triggers fail silently or return basic information if they are not present (as they sometimes are not up to date immediately after a patch)
+- never return raw strings or concatenated strings; always return `output.something!()`; each parameter should also be `output.somethingElse!()` or an array of outputs (this allows everything to be translated)
+- if you have multiple alerts like `Knockback` and `Spread`, or `Right March` and `Stack` that go off at the same time consider adding some logic to combine them into a single trigger (see: `AAI Statice Pop`)
+- if you have really wordy triggers, consider disabling tts for that trigger via `tts: null`
+- similarly sound can be disabled via `sound: ''` if you don't want to jump scare people who are waiting for a trigger to do something, or if you have a lot of triggers (e.g. counting multhits)
+- sometimes triggers give you information egregiously earlier than you could know otherwise; sometimes it's extremely helpful (e.g. caster uptime) and so don't worry overmuch about making things "fair"; if the information comes so early that you might forget it and there's nothing else going on, feel free to delay it until a more reasonable time
+
 ## File Structure
 
-Each trigger file is a module that exports a single trigger set.
+Each trigger file is a TypeScript module that exports a single trigger set.
 
-```javascript
+See: [trigger.d.ts](../types/trigger.d.ts) for more details.
+
+```typescript
 import ZoneId from '../path/to/resources/zone_id';
 // Other imports here.
 
@@ -16,9 +114,24 @@ export default {
   zoneLabel: {
     en: 'The Weapon\'s Refrain (Ultimate)',
   },
+  loadConfigs: ['TheUnendingCoilOfBahamutUltimate'],
+  config: [
+    {
+      id: 'someOptionId',
+      comment: {
+        en: 'This text will show up in the cactbot config ui to explain this to users.',
+      },
+      name: {
+        en: 'Turn on Fancy Option',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+  ],
+  resetWhenOutOfCombat: true,
   overrideTimelineFile: false,
   timelineFile: 'filename.txt',
-  timeline: `hideall`,
+  timeline: `hideall "Reset"`,
   timelineReplace: [
   {
      locale: 'en',
@@ -30,7 +143,11 @@ export default {
      },
    },
   ],
-  resetWhenOutOfCombat: true,
+  timelineTriggers: [
+    { /* ..trigger 1.. */ },
+    { /* ..trigger 2.. */ },
+    { /* ..trigger 3.. */ }
+  ],
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
@@ -44,7 +161,7 @@ export default {
 **id**
 A unique string to identify this trigger set.
 This value should be unique among all trigger sets.
-For cactbot triggers, this should generally match the `ZoneId` itself for consistency.
+For cactbot triggers, this should exactly match the `ZoneId` itself for consistency.
 If there are multiple zones, then pick a reasonable string,
 e.g. `'EurekaOrthosGeneral'` for the set that applies to all Eureka Orthos floors.
 
@@ -65,11 +182,26 @@ It should return an object that sets values for any fields in `data` that need t
 This function is called any time the fight is reset, mainly on zone change or wipe.
 See [t1.ts](../ui/raidboss/data/02-arr/raid/t1.ts) for an example implementation.
 
-**zoneRegex**
+**zoneRegex** (deprecated)
 A regular expression that matches against the zone name (coming from ACT).
 If the regular expression matches, then the triggers will apply to that zone.
 
 For players in CN/KR, zone names can be Chinese/Korean, though other players always see English. Your Regex should cover them. The current zone name can be found on title or main UI of ACT.
+
+**config**
+An array of `ConfigEntry` objects.
+Each object is an option exposed to the user in the [cactbot config UI](CactbotCustomization.md#using-the-cactbot-ui).
+See: [user_config.ts](../resources/user_config.ts) for more details.
+This is the same format the config ui uses, exposed into a trigger set.
+These are exposed via `data.triggerSet.optionName` where `optionName` is the `id` from the `ConfigEntry`.
+
+**loadConfigs**
+An array of strings, which correspond to trigger set ids.
+
+By default, not all config values from all files are available in `data.triggerSet`.
+The current file is always loaded.
+If you need to load the config options from another file,
+you can specify the `id` from the other trigger set.
 
 **overrideTimelineFile**
 An optional boolean value that specifies that the `timelineFile` and `timeline`
@@ -78,7 +210,7 @@ This is a way to replace timelines in user files and is not used inside cactbot 
 
 **timelineFile**
 An optional timeline file to load for this zone.
-Timeline files in cactbot should be named the same as the `.js` file they come from,
+Timeline files in cactbot should be named the same as the `.ts` file they come from,
 but with a `.txt` extension instead.
 These files live alongside their parent trigger file in the appropriate folder. (As for example `raidboss/data/04-sb/raid/`).
 
@@ -90,9 +222,6 @@ or an array contains different kinds of items above.
 
 There is a complete example that uses the **timeline** property in [test.ts](../ui/raidboss/data/00-misc/test.ts).
 
-**locale**
-Optional locale to restrict the trigger file to, e.g. 'en', 'ko', 'fr'. If not present, applies to all locales.
-
 **replaceText**
 Key:value pairs to search and replace in timeline ability names. The display name for that ability is changed, but all `hideall`, `infotext`, `alerttext`, `alarmtext`, etc all refer to the original name. This enables translation/localization of the timeline files without having to edit those files directly.
 
@@ -100,11 +229,21 @@ Key:value pairs to search and replace in timeline ability names. The display nam
 Key:value pairs to search and replace in timeline file sync expressions. Necessary if localized names differ in the sync regexes.
 
 **resetWhenOutOfCombat**
-Boolean, defaults to true. If true, timelines and triggers will reset automatically when the game is out of combat. Otherwise it's necessary to manually call `data.StopCombat()`.
+Boolean, defaults to true.
+If true, timelines and triggers will reset automatically when the game is out of combat.
+Otherwise it's necessary to manually call `data.StopCombat()`.
+This is used for sections where you want the timeline to keep running if you're not in combat,
+such as in Bozja or in Phantom Train where sometimes combat stops between train cars.
+
+**triggers** / **timelineTriggers**
+
+An array of raidboss triggers. See below for the structure.
+
+Timeline triggers (whose regex matches timeline text) are in their own section.
 
 ## Trigger Structure
 
-```javascript
+```typescript
 {
   id: 'id string',
   type: 'StartsUsing',
@@ -301,7 +440,7 @@ In the string, you can use `${param}` constructions to allow for functions to pa
 
 Here are two example `outputStrings` entries for a tank buster:
 
-```javascript
+```typescript
 outputStrings: {
   noTarget: {
     en: 'Tank Buster',
@@ -326,9 +465,9 @@ outputStrings: {
 
 Here's an example using these `outputStrings`, passing parameters to the `onTarget` version:
 
-```javascript
+```typescript
 alarmText: (data, matches, output) => {
-  return output.onTarget({ name: matches.target });
+  return output.onTarget!({ name: data.party.member(matches.target) });
 },
 ```
 
@@ -336,11 +475,16 @@ Calling `output.onTarget()` finds the string in `outputStrings.onTarget` for the
 For each `param` passed in, it replaces `${param}` in the string with the value.
 Then it returns the replaced string for `alarmText` to use.
 
+Instead of passing a name into any trigger, always use `data.party.member` to pass a player object instead.
+This allows the "use job names instead of player names" option to work.
+You can always pass any array (of strings or of player objects) as a parameter
+and the result will be a list with commas, e.g. `['a', 'b', 'c']` => `'a, b, c'`.
+
 Similarly, this is another trigger example, without any parameters.
 
-```javascript
+```typescript
 infoText: (data, matches, output) => {
-  return output.noTarget();
+  return output.noTarget!();
 },
 ```
 
@@ -354,11 +498,11 @@ and keeps [resources/responses.ts](../resources/responses.ts) more encapsulated.
 
 For example:
 
-```javascript
+```typescript
 response: (data, matches, output) => {
   output.responseOutputStrings = { text: { en: 'Some Text: ${words}' } };
   return {
-    alarmText: output.text({ words: 'words word words' }),
+    alarmText: output.text!({ words: 'words word words' }),
   };
 },
 ```
@@ -370,7 +514,7 @@ You can use it to explain your trigger, leave some descriptive text, or even inc
 
 Example:
 
-```javascript
+```typescript
 comment: {
   en: `Write your annotation text here. <em>Supports HTML tags</em>`,
 },
@@ -449,10 +593,11 @@ the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex sho
 
 A sample trigger that makes use of all these elements:
 
-```javascript
+```typescript
 {
   id: 'TEA Mega Holy Modified',
-  netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+  type: 'StartsUsing',
+  netRegex: { source: 'Alexander Prime', id: '4A83', capture: false },
   condition: Conditions.caresAboutMagical(),
   response: Responses.bigAoe('alert'),
 },
@@ -460,7 +605,7 @@ A sample trigger that makes use of all these elements:
 
 This is far less verbose than:
 
-```javascript
+```typescript
 {
   id: 'TEA Mega Holy Modified',
   netRegex: /^(?:20)\|(?:[^|]*)\|(?:[^|]*)\|(?:Alexander Prime)\|(?:4A83)\|/i,
@@ -497,10 +642,11 @@ When writing triggers, prefer using `Outputs` if possible to avoid duplication.
 
 A simple example using `outputStrings` and `Outputs` as below:
 
-```javascript
+```typescript
 {
   id: 'E9S Zero-Form Devouring Dark',
-  netRegex: NetRegexes.startsUsing({ id: '5623', source: 'Cloud Of Darkness' }),
+  type: 'StartsUsing',
+  netRegex: { id: '5623', source: 'Cloud Of Darkness' },
   durationSeconds: 4,
   alertText: function(data, matches, output) {
     if (data.me === matches.target)
@@ -535,12 +681,13 @@ A simple example using `outputStrings` and `Outputs` as below:
 ## Timeline Info
 
 The trigger subfolders may contain timeline text files in the format defined by ACT Timeline plugin, which described in here:
-<http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin>
+<https://web.archive.org/web/20230426121530/https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin>
 
 Each timeline file Cactbot uses has to be loaded by a relative directory reference from the given [TRIGGER-FILE].js. Typically the filename for the timeline file will match the name of the trigger file, and for specific encounters the filenames should at least loosely match the zone name.
 
-Cactbot implements some extensions to the original format. These extensions can appear in the file
-itself or in the `timeline` field in the triggers:
+Cactbot implements some extensions to the original format.
+These extensions can appear in the file itself or in the `timeline` field in the triggers.
+That said, generally these aren't used and timeline triggers are written instead.
 
 **infotext "event name" before 1**
 Show a info-priority text popup on screen before an event will occur. The `event name` matches a timed event in the file and will be shown before each occurrence of events with that name. By default the name of the event will be shown, but you may specify the text to be shown at the end of the line if it should be different. The `before` parameter must be present, but can be 0 if the text should be shown at the same time the event happens. Negative values can be used to show the text after the event.
@@ -579,8 +726,6 @@ This report includes links to all of the missing translations:
 - [missing_translations_cn.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_cn.html)
 - [missing_translations_ko.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ko.html)
 
-TODO: it'd be nice if we could mark cn/ko fights that haven't been released yet as not needing text/sync translations.
-
 You can run `npm run util` and select find translations using the ui.
 You can also run `npm run util -- findTranslations -f . -l fr`
 (or `-l de` or `-l cn` etc)
@@ -591,7 +736,7 @@ These reports have several different categories of errors:
 
 - other: general miscellaneous errors, usually not related to any line
 - code: a block of TypeScript code is missing a translation
-- sync: a trigger or a timeline `sync /something/` line is missing a translation
+- sync: a trigger or a timeline `Ability { source: "something" }` line is missing a translation
 - text: timeline text (e.g. `2.0 "text"`) is missing a translation
 
 ### Code Translations
@@ -806,6 +951,9 @@ the tests will catch that error because it expects that there are no missing tra
 It is not an `npm run test` error to have `missingTranslations: true` when it is not needed,
 but this error will show up in the find missing translations script and should be cleaned up if possible.
 
+Missing translations are listed on the [coverage page](https://quisquous.github.io/cactbot/util/coverage/coverage.html)
+by language.
+
 #### Escaping
 
 Here's a brief aside on escaping special characters, with some examples.
@@ -842,3 +990,131 @@ This becomes the regex `/724P-Operated Superior Flight Unit \\\(A-Lpha\\\)/`.
 On the positive side, this only comes up when there are special characters
 that need to be escaped in a string or a regex (e.g. backslash, parens, brackets)
 which are all fairly rare in FFXIV.
+
+## Sync Files
+
+There are a couple of cases in FFXIV where the content is literally identical across different zones,
+but with different ability ids.
+These are for criterion dungeons vs their savage equivalent,
+as well as extreme trials and their unreal equivalent.
+
+The best way to handle these is to add an entry into `util/sync_files.ts`
+with file and ability ids mappings.
+This can be run via `npm run sync-files` which will create the new files with those mappings.
+If you don't have ids, you can use `TODO`.
+(Sometimes this may cause typescript errors, so you can use `TODO1` or `TODO2` etc if you need unique ids.)
+
+By using this script, you will make sure that the files stay in sync.
+
+## Trigger Examples
+
+Here's a few examples of common patterns for triggers.
+
+### Collect / Call / Cleanup multi-trigger
+
+For triggers where there are multiple lines you need to look at,
+a common pattern is the collect/call/cleanup pattern.
+One collecting trigger collects all the lines and stores it on `data`.
+Another call trigger uses the same `netRegex` with a `delaySeconds` + `suppressSeconds` to make the call using that `data`.
+One final cleanup trigger uses the same `netRegex` with a larger `delaySeconds` + (optional) `suppressSeconds` to erase the collected information on `data`.
+
+- [P7N Hemitheos Aero II Collect](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Collect%27)
+- [P7N Hemitheos Aero II Call](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Call%27)
+- [P7N Hemitheos Aero II Cleanup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Cleanup%27)
+
+Often the cleanup is combined into the call, or is put onto phase transitions or other triggers.
+
+### Collect / Call / Cleanup single trigger
+
+It's possible to have a single trigger do collect/call/cleanup.
+
+See: [AAI Ketuduke Foamy Fetters Bubble Weave](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Foamy%20Fetters%20Bubble%20Weave%27)
+
+`delaySeconds` does the collecting. As long as the delay is greater than zero this will work,
+but you can optionally set a delay to zero once you have collected everything you need
+so that it goes off as soon as possible.
+
+`alertText` does the call. Rather than using `suppressSeconds` (which would prevent collection),
+it checks if there's anything that's been collected and quits if cleanup has occurred.
+
+Doing the cleanup in `run` means that as soon as the first trigger finishes and cleans up,
+the remaining delayed versions of this trigger will all early out in `alertText`.
+
+### Headmarkers
+
+For writing triggers for [Headmarker lines](LogGuide.md#line-27-0x1b-networktargeticon-head-marker)
+(i.e. graphic indicators on players and enemies),
+see the [Headmarker Guide](Headmarkers.md).
+
+### Get Combatants
+
+One thing to keep in mind while writing triggers is that some log lines
+have information that comes from memory rather than network data.
+For [AddCombatant](LogGuide.md#line-03-0x03-addcombatant),
+this means that when the log line gets emitted may drift in time somewhat.
+For other ffxiv plugin log lines that have position data,
+(such as [StartsUsing](LogGuide.md#line-20-0x14-networkstartscasting) or [AddCombatant](LogGuide.md#line-03-0x03-addcombatant))
+this also means that the position data might be stale.
+The reason for this is that many times ffxiv will spawn in an invisible actor in a default location,
+and then move it right before it starts casting.
+Whether or not the ffxiv plugin picks up the correct location is timing dependent.
+
+Note: [Ability](LogGuide.md#line-21-0x15-networkability) seems to be mostly correct.
+Note: [StartsuUsingExtra](LogGuide.md#line-263-0x107-startsusingextra) is network data, so is always correct.
+
+A way to fix is this is to use `getCombatants`,
+aka `callOverlayHandler({ call: 'getCombatants', etc })`.
+This is an OverlayPlugin function that will inspect the state of memory
+at that moment and then return the current values.
+You can use [CombatantMemory](LogGuide.md#line-261-0x105-combatantmemory) lines
+which emit changing position data for combatants to get an idea of when actors have updated
+and it is safe to call `getCombatants`.
+`CombatantMemory` (as the name implies) does come from memory and so may be slightly delayed.
+
+See: [P10S Dividing Wings Tether](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p10s.ts#:~:text=id%3A%20%27P10S%20Dividing%20Wings%20Tether%27)
+
+Some common suggestions:
+
+- add `combatantData: PluginCombatantState[];` to the `Data` object (as you can then reuse this across all `getCombatants` calls as they so far have never been needed simultaneously)
+- add a `promise` to call `getCombatants` (which will return quickly, but asynchronously)
+- make sure to clear `data.combatantData` first
+- the ids for combatants are decimal ids and not hex ids so you must convert them (see example trigger)
+- the returned combatant list is not in any order
+- verify that the returned combatant list has the correct number of combatants in it before processing
+
+### Two-step Mechanics
+
+A common multi-step example is when there is a stack into a spread or a spread into a stack.
+It's nice to call `Spread => Stack` and then once the spreads go off call `Stack` after that.
+It's both a reminder (for people lost in the sauce) but if the second call triggers on the first damage,
+it can tell people when it it safe to start moving and the initial mechanic has locked in.
+
+See: [AAI Ketuduke Hydro Buff Double](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%27)
+and [AAI Ketuduke Hydro Buff Double Followup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%20Followup%27)
+
+### Three-step Mechanics
+
+There are a few three (or more)-step mechanics in the game that have a sequence of moves to do.
+Quintuplecast, P12S door boss wings, and Another Mount Rokkon Triple Kasumi-giri are all examples.
+
+A common way to call these mechanics that have tells is something like the following,
+where "first", "second", "third" could all be things like "spread" or "left" or "swap".
+
+- [first tell] alert: `First mechanic` (long duration until the first mechanic goes off, so you don't forget while you wait for the tells)
+- [second tell] info: `(then second mechanic)` (short duration)
+- [third tell] info: `first => second => third` (long duration, so you can read what's coming next while the mechanics go off)
+- [first mechanic goes off] alert: `Second` (first tell duration should have ended before this)
+- [second mechanic goes off] alert: `Third`
+
+The benefits of this are:
+
+- allows somebody to raidcall if they want / everybody is prepared for the steps
+- maximum one alert and one info text on screen at once
+- people can turn off parts of this they don't want
+- if final two `Second` and `Third` calls are based on ability ids of the `First` and `Second` abilities going off, then it's safe to do that movement when it goes off
+
+See: [P12S First Wing](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20First%20Wing%27),
+[P12S Wing Collect](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Collect%27),
+[P12S Wing Followup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Followup%27)
+
+See also: [AMR Moko Triple Kasumi-giri triggers](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts)

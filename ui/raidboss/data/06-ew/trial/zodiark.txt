@@ -16,104 +16,104 @@ hideall "Triple Esoteric Ray"
 # Note: Opheos Eidolon sometimes comes from Zodiark/Behemoth and not Python,
 # maybe a race condition in FFXIV ACT Plugin?
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.1 "--sync--" sync / 14:[^:]*:Zodiark:6C27:/ window 10,10
-11.1 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C27:/
-20.2 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
-27.5 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
-31.5 "Ania" sync / 1[56]:[^:]*:Zodiark:67D5:/
-41.6 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
-48.9 "Esoteric Dyad" sync / 1[56]:[^:]*:Arcane Sigil:67CB:/
-58.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
-71.0 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
-76.1 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
-88.3 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
-94.9 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67D0:/ duration 4.6
-103.1 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DB:/ duration 5.5
-115.7 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67C8:/
-122.8 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:6C36:/
-129.1 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-129.4 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+7.1 "--sync--" StartsUsing { id: "6C27", source: "Zodiark" } window 10,10
+11.1 "Kokytos" Ability { id: "6C27", source: "Zodiark" }
+20.2 "Exoterikos" Ability { id: "6C36", source: "Zodiark" }
+27.5 "Esoteric Sect" Ability { id: "67CC", source: "Arcane Sigil" }
+31.5 "Ania" Ability { id: "67D5", source: "Zodiark" }
+41.6 "Exoterikos" Ability { id: "6C36", source: "Zodiark" }
+48.9 "Esoteric Dyad" Ability { id: "67CB", source: "Arcane Sigil" }
+58.3 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
+71.0 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
+76.1 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
+88.3 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
+94.9 "Phlegethon x3" Ability { id: "67D0", source: "Zodiark" } duration 4.6
+103.1 "Styx x5" Ability { id: "67DB", source: "Zodiark" } duration 5.5
+115.7 "Paradeigma" Ability { id: "67C8", source: "Zodiark" }
+122.8 "Exoterikos" Ability { id: "6C36", source: "Zodiark" }
+129.1 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+129.4 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
 
 # Cutscene
-144.6 "--sync--" sync / 14:[^:]*:Zodiark:6734:/ window 150,10
-149.6 "Complete Control" sync / 1[56]:[^:]*:Zodiark:6734:/
+144.6 "--sync--" StartsUsing { id: "6734", source: "Zodiark" } window 150,10
+149.6 "Complete Control" Ability { id: "6734", source: "Zodiark" }
 150.2 "--untargetable--"
-150.3 "--sync--" sync / 1[56]:[^:]*:Zodiark:67DD:/
+150.3 "--sync--" Ability { id: "67DD", source: "Zodiark" }
 174.3 "--targetable--"
 
-179.4 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
-194.5 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:6EC9:/
-205.3 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
-215.0 "Adikia" sync / 1[56]:[^:]*:Zodiark:67D8:/
-226.2 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
-235.3 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
-235.4 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-238.4 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-247.4 "Algedon" sync / 1[56]:[^:]*:Zodiark:67D[12]:/
-253.6 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
-268.7 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:6630:/
+179.4 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
+194.5 "Astral Flow" Ability { id: "6EC9", source: "Zodiark" }
+205.3 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
+215.0 "Adikia" Ability { id: "67D8", source: "Zodiark" }
+226.2 "Phlegethon x3" Ability { id: "67CF", source: "Zodiark" } duration 4.6
+235.3 "Triple Esoteric Ray" Ability { id: "67C4", source: "Zodiark" }
+235.4 "Esoteric Ray 1" Ability { id: "67CA", source: "Arcane Sigil" }
+238.4 "Esoteric Ray 2" Ability { id: "67CA", source: "Arcane Sigil" }
+247.4 "Algedon" Ability { id: "67D[12]", source: "Zodiark" }
+253.6 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
+268.7 "Astral Flow" Ability { id: "6630", source: "Zodiark" }
 # Note: this mob is sometimes Zodiark and sometimes Python.
-274.6 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/ window 10,10
+274.6 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] } window 10,10
 
 # Star tethers
-280.9 "--sync--" sync / 14:[^:]*:Zodiark:67C3:/ window 300,10
-285.9 "Astral Eclipse" sync / 1[56]:[^:]*:Zodiark:67C3:/
+280.9 "--sync--" StartsUsing { id: "67C3", source: "Zodiark" } window 300,10
+285.9 "Astral Eclipse" Ability { id: "67C3", source: "Zodiark" }
 285.9 "--untargetable--"
 298.0 "--targetable--"
-303.0 "Explosion 1" sync / 1[56]:[^:]*:Zodiark:67CD:/
-307.0 "Explosion 2" sync / 1[56]:[^:]*:Zodiark:67CD:/
-311.0 "Explosion 3" sync / 1[56]:[^:]*:Zodiark:67CD:/
+303.0 "Explosion 1" Ability { id: "67CD", source: "Zodiark" }
+307.0 "Explosion 2" Ability { id: "67CD", source: "Zodiark" }
+311.0 "Explosion 3" Ability { id: "67CD", source: "Zodiark" }
 
-318.1 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
-333.2 "Kokytos" sync / 1[56]:[^:]*:Zodiark:6C5F:/
-338.3 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
-353.4 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
-359.8 "Meteoros Eidolon" sync / 1[56]:[^:]*:Behemoth:67C6:/
-368.6 "Styx" sync / 1[56]:[^:]*:Zodiark:67DA:/
-378.7 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
-386.8 "Adikia" sync / 1[56]:[^:]*:Zodiark:67D8:/
-388.0 "Esoteric Dyad" sync / 1[56]:[^:]*:Arcane Sigil:67CB:/
+318.1 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
+333.2 "Kokytos" Ability { id: "6C5F", source: "Zodiark" }
+338.3 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
+353.4 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
+359.8 "Meteoros Eidolon" Ability { id: "67C6", source: "Behemoth" }
+368.6 "Styx" Ability { id: "67DA", source: "Zodiark" }
+378.7 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
+386.8 "Adikia" Ability { id: "67D8", source: "Zodiark" }
+388.0 "Esoteric Dyad" Ability { id: "67CB", source: "Arcane Sigil" }
 
-391.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
-401.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-405.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-409.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-416.2 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
-431.4 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
-437.2 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
-446.5 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
-456.6 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
-465.7 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
-465.8 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-465.9 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
-468.8 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-472.8 "Ania" sync / 1[56]:[^:]*:Zodiark:67D4:/
+391.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
+401.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+405.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+409.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+416.2 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
+431.4 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
+437.2 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
+446.5 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
+456.6 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
+465.7 "Triple Esoteric Ray" Ability { id: "67C4", source: "Zodiark" }
+465.8 "Esoteric Ray 1" Ability { id: "67CA", source: "Arcane Sigil" }
+465.9 "Esoteric Sect" Ability { id: "67CC", source: "Arcane Sigil" }
+468.8 "Esoteric Ray 2" Ability { id: "67CA", source: "Arcane Sigil" }
+472.8 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
-479.0 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/
-489.8 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-493.8 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-497.1 "Phlegethon x3" sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
-497.7 "Esoteric Dyad/Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-505.3 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
-517.5 "Algedon" sync / 1[56]:[^:]*:Zodiark:67D[12]:/
-530.7 "Paradeigma" sync / 1[56]:[^:]*:Zodiark:67BF:/
-545.9 "Astral Flow" sync / 1[56]:[^:]*:Zodiark:(662F|6630):/
-551.7 "Opheos Eidolon" sync / 1[56]:[^:]*:(Python|Behemoth|Zodiark):67C7:/
-561.0 "Styx x5" sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
-571.2 "Exoterikos" sync / 1[56]:[^:]*:Zodiark:67C1:/
-580.3 "Triple Esoteric Ray" sync / 1[56]:[^:]*:Zodiark:67C4:/
-580.4 "Esoteric Ray 1" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-580.4 "Esoteric Sect" sync / 1[56]:[^:]*:Arcane Sigil:67CC:/
-583.4 "Esoteric Ray 2" sync / 1[56]:[^:]*:Arcane Sigil:67CA:/
-587.4 "Ania" sync / 1[56]:[^:]*:Zodiark:67D4:/
+479.0 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" }
+489.8 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+493.8 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+497.1 "Phlegethon x3" Ability { id: "67CF", source: "Zodiark" } duration 4.6
+497.7 "Esoteric Dyad/Esoteric Sect" Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+505.3 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
+517.5 "Algedon" Ability { id: "67D[12]", source: "Zodiark" }
+530.7 "Paradeigma" Ability { id: "67BF", source: "Zodiark" }
+545.9 "Astral Flow" Ability { id: ["662F", "6630"], source: "Zodiark" }
+551.7 "Opheos Eidolon" Ability { id: "67C7", source: ["Python", "Behemoth", "Zodiark"] }
+561.0 "Styx x5" Ability { id: "67DA", source: "Zodiark" } duration 5.5
+571.2 "Exoterikos" Ability { id: "67C1", source: "Zodiark" }
+580.3 "Triple Esoteric Ray" Ability { id: "67C4", source: "Zodiark" }
+580.4 "Esoteric Ray 1" Ability { id: "67CA", source: "Arcane Sigil" }
+580.4 "Esoteric Sect" Ability { id: "67CC", source: "Arcane Sigil" }
+583.4 "Esoteric Ray 2" Ability { id: "67CA", source: "Arcane Sigil" }
+587.4 "Ania" Ability { id: "67D4", source: "Zodiark" }
 
-593.5 "Trimorphos Exoterikos" sync / 14:[^:]*:Zodiark:67C2:/ window 50,50 jump 479
-604.3 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-608.3 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-611.6 "Phlegethon x3" #sync / 1[56]:[^:]*:Zodiark:67CF:/ duration 4.6
-612.2 "Esoteric Dyad/Esoteric Sect" #sync / 1[56]:[^:]*:Arcane Sigil:(67CB|67CC):/
-619.8 "Styx x5" #sync / 1[56]:[^:]*:Zodiark:67DA:/ duration 5.5
-632.0 "Algedon" #sync / 1[56]:[^:]*:Zodiark:67D[12]:/
+593.5 "Trimorphos Exoterikos" StartsUsing { id: "67C2", source: "Zodiark" } window 50,50 jump 479
+604.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+608.3 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+611.6 "Phlegethon x3" #Ability { id: "67CF", source: "Zodiark" } duration 4.6
+612.2 "Esoteric Dyad/Esoteric Sect" #Ability { id: ["67CB", "67CC"], source: "Arcane Sigil" }
+619.8 "Styx x5" #Ability { id: "67DA", source: "Zodiark" } duration 5.5
+632.0 "Algedon" #Ability { id: "67D[12]", source: "Zodiark" }

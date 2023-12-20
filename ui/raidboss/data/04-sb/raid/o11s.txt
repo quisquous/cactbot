@@ -8,108 +8,108 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.0 "--sync--" sync / 14:[^:]*:Omega:326C:/ window 8,8
-12.0 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
-24.0 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
-30.0 "Flamethrower" sync / 1[56]:[^:]*:Omega:325C:/
-32.0 "Afterburner" sync / 1[56]:[^:]*:Omega:325E:/
-39.5 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
-45.0 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+8.0 "--sync--" StartsUsing { id: "326C", source: "Omega" } window 8,8
+12.0 "Atomic Ray" Ability { id: "326C", source: "Omega" }
+24.0 "Mustard Bomb" Ability { id: "326D", source: "Omega" }
+30.0 "Flamethrower" Ability { id: "325C", source: "Omega" }
+32.0 "Afterburner" Ability { id: "325E", source: "Omega" }
+39.5 "Starboard/Larboard Cannon" Ability { id: "326[24]", source: "Omega" }
+45.0 "Starboard/Larboard Cannon" Ability { id: "326[35]", source: "Omega" }
 # Note: this looks like it can push early.
-53.5 "--sync--" sync / 14:[^:]*:Omega:324A:/ window 60,10
-56.5 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
-72.5 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
+53.5 "--sync--" StartsUsing { id: "324A", source: "Omega" } window 60,10
+56.5 "Peripheral Synthesis" Ability { id: "324A", source: "Omega" }
+72.5 "Mustard Bomb" Ability { id: "326D", source: "Omega" }
 
 ### Phase 2: Tower Dance
-87.5 "--sync--" sync / 14:[^:]*:Omega:3251:/ window 90,10
+87.5 "--sync--" StartsUsing { id: "3251", source: "Omega" } window 90,10
 91.5 "--untargetable--"
-91.5 "Program Loop" sync / 1[56]:[^:]*:Omega:3251:/
+91.5 "Program Loop" Ability { id: "3251", source: "Omega" }
 101.6 "--targetable--"
-106.5 "Executable" sync / 1[56]:[^:]*:Level Checker:3626:/
-115.5 "Ferrofluid" sync / 1[56]:[^:]*:Level Checker:3253:/
-116.5 "Magnetism" sync / 1[56]:[^:]*:Level Checker:3254:/
-116.5 "Repel" sync / 1[56]:[^:]*:Level Checker:3255:/
-116.5 "Magnetism" sync / 1[56]:[^:]*:Level Checker:3254:/
-118.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
-128.5 "Executable" sync / 1[56]:[^:]*:Level Checker:3626:/
-139.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
-145.5 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
-147.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
-153.5 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
-155.5 "Dual Storage Violation" sync / 1[56]:[^:]*:Omega:3258:/
-158.4 "Reset" sync / 1[56]:[^:]*:Level Checker:3628:/
-161.4 "Storage Violation" sync / 1[56]:[^:]*:Omega:3256:/
-164.4 "Reformat" sync / 1[56]:[^:]*:Level Checker:3627:/
+106.5 "Executable" Ability { id: "3626", source: "Level Checker" }
+115.5 "Ferrofluid" Ability { id: "3253", source: "Level Checker" }
+116.5 "Magnetism" Ability { id: "3254", source: "Level Checker" }
+116.5 "Repel" Ability { id: "3255", source: "Level Checker" }
+116.5 "Magnetism" Ability { id: "3254", source: "Level Checker" }
+118.5 "Dual Storage Violation" Ability { id: "3258", source: "Omega" }
+128.5 "Executable" Ability { id: "3626", source: "Level Checker" }
+139.5 "Dual Storage Violation" Ability { id: "3258", source: "Omega" }
+145.5 "Storage Violation" Ability { id: "3256", source: "Omega" }
+147.5 "Dual Storage Violation" Ability { id: "3258", source: "Omega" }
+153.5 "Storage Violation" Ability { id: "3256", source: "Omega" }
+155.5 "Dual Storage Violation" Ability { id: "3258", source: "Omega" }
+158.4 "Reset" Ability { id: "3628", source: "Level Checker" }
+161.4 "Storage Violation" Ability { id: "3256", source: "Omega" }
+164.4 "Reformat" Ability { id: "3627", source: "Level Checker" }
 185.9 "Force Quit Enrage"
 
 ### Phase 3
-300.0 "--sync--" sync / 14:[^:]*:Omega:325B:/ window 200,200
-310.0 "Delta Attack" sync / 1[56]:[^:]*:Omega:325B:/
+300.0 "--sync--" StartsUsing { id: "325B", source: "Omega" } window 200,200
+310.0 "Delta Attack" Ability { id: "325B", source: "Omega" }
 321.4 "--targetable--"
-330.1 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:325F:/
-337.2 "Flamethrower" sync / 1[56]:[^:]*:Omega:325C:/
-339.3 "Afterburner" sync / 1[56]:[^:]*:Omega:325E:/
-340.3 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:3260:/
-346.8 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
-352.3 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
-366.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
-368.9 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
-377.0 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+330.1 "Ballistic Missile" Ability { id: "325F", source: "Omega" }
+337.2 "Flamethrower" Ability { id: "325C", source: "Omega" }
+339.3 "Afterburner" Ability { id: "325E", source: "Omega" }
+340.3 "Ballistic Impact" Ability { id: "3260", source: "Omega" }
+346.8 "Starboard/Larboard Cannon" Ability { id: "326[24]", source: "Omega" }
+352.3 "Starboard/Larboard Cannon" Ability { id: "326[35]", source: "Omega" }
+366.8 "Mustard Bomb" Ability { id: "326D", source: "Omega" }
+368.9 "Blaster" Ability { id: "3261", source: "Omega" }
+377.0 "Atomic Ray" Ability { id: "326C", source: "Omega" }
 
-387.0 "--sync--" sync / 14:[^:]*:Omega:324A:/ window 90,10
-390.0 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
-403.0 "Rush" sync / 1[56]:[^:]*:Rocket Punch:3250:/
-410.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:326B:/
-419.0 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
-432.0 "Rush" sync / 1[56]:[^:]*:Rocket Punch:3250:/
-438.0 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[24]:/
-443.5 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:326[35]:/
+387.0 "--sync--" StartsUsing { id: "324A", source: "Omega" } window 90,10
+390.0 "Peripheral Synthesis" Ability { id: "324A", source: "Omega" }
+403.0 "Rush" Ability { id: "3250", source: "Rocket Punch" }
+410.0 "Electric Slide" Ability { id: "326B", source: "Omega" }
+419.0 "Peripheral Synthesis" Ability { id: "324A", source: "Omega" }
+432.0 "Rush" Ability { id: "3250", source: "Rocket Punch" }
+438.0 "Starboard/Larboard Cannon" Ability { id: "326[24]", source: "Omega" }
+443.5 "Starboard/Larboard Cannon" Ability { id: "326[35]", source: "Omega" }
 
 ### Phase 4: Updated Program Light Show
-457.0 "Update Program" sync / 1[56]:[^:]*:Omega:36FC:/
-469.0 "Flamethrower" sync / 1[56]:[^:]*:Omega:36FE:/
-471.0 "Afterburner" sync / 1[56]:[^:]*:Omega:3700:/
-477.5 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
-480.0 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+457.0 "Update Program" Ability { id: "36FC", source: "Omega" }
+469.0 "Flamethrower" Ability { id: "36FE", source: "Omega" }
+471.0 "Afterburner" Ability { id: "3700", source: "Omega" }
+477.5 "Starboard/Larboard Surge" Ability { id: "326[68]", source: "Omega" }
+480.0 "Starboard/Larboard Surge" Ability { id: "326[79]", source: "Omega" }
 
-496.0 "Pantokrator 1" sync / 1[56]:[^:]*:Omega:3702:/
+496.0 "Pantokrator 1" Ability { id: "3702", source: "Omega" }
 500.0 "Ballistic Impact" duration 8
-510.1 "Condensed Wave Cannon Kyrios" sync / 1[56]:[^:]*:Omega:3704:/
-519.1 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:3706:/
-526.2 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:3706:/
-535.2 "Long Needle Kyrios" sync / 1[56]:[^:]*:Omega:370C:/
-544.6 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
-550.7 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
+510.1 "Condensed Wave Cannon Kyrios" Ability { id: "3704", source: "Omega" }
+519.1 "Wave Cannon Kyrios 1" Ability { id: "3706", source: "Omega" }
+526.2 "Wave Cannon Kyrios 2" Ability { id: "3706", source: "Omega" }
+535.2 "Long Needle Kyrios" Ability { id: "370C", source: "Omega" }
+544.6 "Blaster" Ability { id: "3261", source: "Omega" }
+550.7 "Atomic Ray" Ability { id: "326C", source: "Omega" }
 
-561.8 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:324A:/
-565.8 "Unmitigated Explosion" # sync / 1[56]:[^:]*:Omega:36F8:/ # no sync
-586.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
-598.8 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326C:/
-600.8 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:325F:/
-607.8 "Flamethrower" sync / 1[56]:[^:]*:Omega:36FE:/
-609.8 "Afterburner" sync / 1[56]:[^:]*:Omega:3700:/
-610.8 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:3260:/
-616.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
-618.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+561.8 "Peripheral Synthesis" Ability { id: "324A", source: "Omega" }
+565.8 "Unmitigated Explosion" # Ability { id: "36F8", source: "Omega" } # no sync
+586.8 "Mustard Bomb" Ability { id: "326D", source: "Omega" }
+598.8 "Atomic Ray" Ability { id: "326C", source: "Omega" }
+600.8 "Ballistic Missile" Ability { id: "325F", source: "Omega" }
+607.8 "Flamethrower" Ability { id: "36FE", source: "Omega" }
+609.8 "Afterburner" Ability { id: "3700", source: "Omega" }
+610.8 "Ballistic Impact" Ability { id: "3260", source: "Omega" }
+616.3 "Starboard/Larboard Surge" Ability { id: "326[68]", source: "Omega" }
+618.8 "Starboard/Larboard Surge" Ability { id: "326[79]", source: "Omega" }
 
-634.7 "Pantokrator 2" sync / 1[56]:[^:]*:Omega:3702:/
+634.7 "Pantokrator 2" Ability { id: "3702", source: "Omega" }
 639.7 "Ballistic Impact" duration 18 # +5
 642.7 "Flamethrower" duration 5.5 # +3
-646.7 "Guided Missile Kyrios" sync / 1[56]:[^:]*:Omega:3709:/ duration 6.5
-660.7 "Condensed Wave Cannon Kyrios" sync / 1[56]:[^:]*:Omega:3704:/
+646.7 "Guided Missile Kyrios" Ability { id: "3709", source: "Omega" } duration 6.5
+660.7 "Condensed Wave Cannon Kyrios" Ability { id: "3704", source: "Omega" }
 662.7 "Diffuse Wave Cannon Kyrios" duration 16 # +2
-670.7 "Wave Cannon Kyrios 1" sync / 1[56]:[^:]*:Omega:3706:/
-677.7 "Wave Cannon Kyrios 2" sync / 1[56]:[^:]*:Omega:3706:/
-700.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
-703.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
-709.8 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[68]:/
-712.3 "Starboard/Larboard Surge" sync / 1[56]:[^:]*:Omega:326[79]:/
+670.7 "Wave Cannon Kyrios 1" Ability { id: "3706", source: "Omega" }
+677.7 "Wave Cannon Kyrios 2" Ability { id: "3706", source: "Omega" }
+700.8 "Starboard/Larboard Surge" Ability { id: "326[68]", source: "Omega" }
+703.3 "Starboard/Larboard Surge" Ability { id: "326[79]", source: "Omega" }
+709.8 "Starboard/Larboard Surge" Ability { id: "326[68]", source: "Omega" }
+712.3 "Starboard/Larboard Surge" Ability { id: "326[79]", source: "Omega" }
 
-724.8 "Charybdis" sync / 1[56]:[^:]*:Omega:326E:/ window 10,10
-738.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:326D:/
-740.9 "Blaster" sync / 1[56]:[^:]*:Omega:3261:/
-748.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
-754.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
-760.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:326A:/
+724.8 "Charybdis" Ability { id: "326E", source: "Omega" } window 10,10
+738.8 "Mustard Bomb" Ability { id: "326D", source: "Omega" }
+740.9 "Blaster" Ability { id: "3261", source: "Omega" }
+748.9 "Atomic Ray" Ability { id: "326A", source: "Omega" }
+754.9 "Atomic Ray" Ability { id: "326A", source: "Omega" }
+760.9 "Atomic Ray" Ability { id: "326A", source: "Omega" }
 780.9 "Loop Enrage" # guessing at time

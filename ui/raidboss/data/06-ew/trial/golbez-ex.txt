@@ -4,42 +4,42 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.4 "--sync--" sync / 14:[^:]*:Golbez:8464:/ window 15,15
-12.4 "Terrastorm (cast)" sync / 1[56]:[^:]*:Golbez:8464:/
-21.5 "Terrastorm (hit)" sync / 1[56]:[^:]*:Golbez:8466:/
-22.5 "Lingering Spark (snapshot)" sync / 1[56]:[^:]*:Golbez:8468:/
-26.6 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
-31.8 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DB:/
-33.6 "--sync--" sync / 1[56]:[^:]*:Golbez:86DD:/
-35.3 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
-44.6 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+9.4 "--sync--" StartsUsing { id: "8464", source: "Golbez" } window 15,15
+12.4 "Terrastorm (cast)" Ability { id: "8464", source: "Golbez" }
+21.5 "Terrastorm (hit)" Ability { id: "8466", source: "Golbez" }
+22.5 "Lingering Spark (snapshot)" Ability { id: "8468", source: "Golbez" }
+26.6 "Lingering Spark (explode)" Ability { id: "846A", source: "Golbez" }
+31.8 "Phases of the Blade (front)" Ability { id: "86DB", source: "Golbez" }
+33.6 "--sync--" Ability { id: "86DD", source: "Golbez" }
+35.3 "Phases of the Blade (back)" Ability { id: "86F2", source: "Golbez" }
+44.6 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
-52.8 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-57.9 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
-68.6 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
-71.2 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-73.6 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
-74.6 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-77.9 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-81.5 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-86.7 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DB:/
-88.6 "--sync--" sync / 1[56]:[^:]*:Golbez:86DD:/
-90.3 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
-99.7 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+52.8 "--middle--" Ability { id: "84B8", source: "Golbez" }
+57.9 "Gale Sphere" Ability { id: "844D", source: "Golbez" }
+68.6 "--sync--" Ability { id: "844E", source: "Golbez" }
+71.2 "Gale Sphere 1" Ability { id: "845[89AB]", source: "Gale Sphere" }
+73.6 "Arctic Assault" Ability { id: "845F", source: "Golbez" }
+74.6 "Gale Sphere 2" Ability { id: "845[89AB]", source: "Gale Sphere" }
+77.9 "Gale Sphere 3" Ability { id: "845[89AB]", source: "Gale Sphere" }
+81.5 "Gale Sphere 4" Ability { id: "845[89AB]", source: "Gale Sphere" }
+86.7 "Phases of the Blade (front)" Ability { id: "86DB", source: "Golbez" }
+88.6 "--sync--" Ability { id: "86DD", source: "Golbez" }
+90.3 "Phases of the Blade (back)" Ability { id: "86F2", source: "Golbez" }
+99.7 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
-107.8 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
-107.9 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
-111.9 "Void Meteor (big)" sync / 1[56]:[^:]*:Golbez:84B1:/
+107.8 "Void Meteor" Ability { id: "84AD", source: "Golbez" }
+107.9 "Void Comet x4" duration 3 #Ability { id: "84B0", source: "Golbez" }
+111.9 "Void Meteor (big)" Ability { id: "84B1", source: "Golbez" }
 
-119.0 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-126.3 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:86FF:/
-136.4 "--sync--" sync / 1[56]:[^:]*:Shadow Dragon:8472:/
-136.4 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:8471:/
-140.3 "Black Fang (small) x5" sync / 1[56]:[^:]*:Golbez:871A:/
-143.1 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:8474:/
+119.0 "--middle--" Ability { id: "84B8", source: "Golbez" }
+126.3 "Azdaja's Shadow" Ability { id: "86FF", source: "Golbez" }
+136.4 "--sync--" Ability { id: "8472", source: "Shadow Dragon" }
+136.4 "Black Fang (big)" Ability { id: "8471", source: "Golbez" }
+140.3 "Black Fang (small) x5" Ability { id: "871A", source: "Golbez" }
+143.1 "Black Fang (big)" Ability { id: "8474", source: "Golbez" }
 
 # After this point, there's two possible sets of mechanics for each mini-phase
 # 8478 = type 1
@@ -48,9 +48,9 @@ hideall "--sync--"
 #   If buster is next, this leads to in -> spread, after exaflares if this is the 2nd/3rd iteration
 
 
-144.4 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-159.5 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 200.0
-159.5 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 300.0
+144.4 "--sync--" Ability { id: "8475", source: "Golbez" }
+159.5 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" } jump 200.0
+159.5 "--sync--" Ability { id: "8479", source: "Golbez" } jump 300.0
 164.7 "Flames of Eventide 1"
 167.8 "Flames of Eventide 2"
 170.9 "Flames of Eventide 3"
@@ -59,45 +59,45 @@ hideall "--sync--"
 
 # out -> light parties variation
 
-200.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-205.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-208.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-211.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-213.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+200.0 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" }
+205.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+208.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+211.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+213.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
 
-220.7 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-222.5 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-224.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-225.4 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
-228.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/
-228.7 "--north--" sync / 1[56]:[^:]*:Golbez:84B8:/ forcejump 400.0
+220.7 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+222.5 "--sync--" Ability { id: "86E9", source: "Golbez" }
+224.2 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+225.4 "Rising Beacon (out)" Ability { id: "86EC", source: "Golbez" }
+228.1 "Immolating Shade (light parties)" Ability { id: "8496", source: "Golbez" }
+228.7 "--north--" Ability { id: "84B8", source: "Golbez" } forcejump 400.0
 
 # in -> spread variation
 
-300.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-305.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-308.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-311.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-313.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+300.0 "Azdaja's Shadow" Ability { id: "8479", source: "Golbez" }
+305.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+308.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+311.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+313.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
 
-320.7 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-322.5 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-324.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-325.4 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
-328.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/
-328.7 "--north--" sync / 1[56]:[^:]*:Golbez:84B8:/ forcejump 400.0
+320.7 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+322.5 "--sync--" Ability { id: "86E9", source: "Golbez" }
+324.2 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+325.4 "Rising Ring (under)" Ability { id: "86ED", source: "Golbez" }
+328.1 "Burning Shade (spread)" Ability { id: "8494", source: "Golbez" }
+328.7 "--north--" Ability { id: "84B8", source: "Golbez" } forcejump 400.0
 
 
 # knockback phase
 
-400.0 "--north--" sync / 1[56]:[^:]*:Golbez:84B8:/
-410.4 "Dragon's Descent" sync / 1[56]:[^:]*:Shadow Dragon:8498:/
-412.8 "Explosion" sync / 1[56]:[^:]*:Golbez:849D:/
-413.5 "Double Meteor" sync / 1[56]:[^:]*:Golbez:878C:/
-415.1 "Cauterize" sync / 1[56]:[^:]*:Shadow Dragon:84A2:/
-418.7 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-436.8 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 500.0
-436.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 700.0
+400.0 "--north--" Ability { id: "84B8", source: "Golbez" }
+410.4 "Dragon's Descent" Ability { id: "8498", source: "Shadow Dragon" }
+412.8 "Explosion" Ability { id: "849D", source: "Golbez" }
+413.5 "Double Meteor" Ability { id: "878C", source: "Golbez" }
+415.1 "Cauterize" Ability { id: "84A2", source: "Shadow Dragon" }
+418.7 "--sync--" Ability { id: "8475", source: "Golbez" }
+436.8 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" } jump 500.0
+436.8 "--sync--" Ability { id: "8479", source: "Golbez" } jump 700.0
 
 # repeated for timeline rolling
 
@@ -109,86 +109,86 @@ hideall "--sync--"
 
 # Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> out then light parties
 
-500.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-505.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-508.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-511.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-513.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-518.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
-524.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
-530.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-535.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
-540.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
-548.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+500.0 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" }
+505.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+508.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+511.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+513.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
+518.5 "Void Stardust (preview)" Ability { id: "84A4", source: "Golbez" }
+524.6 "Void Stardust" duration 2.3 Ability { id: "84A6", source: "Golbez" }
+530.4 "Abyssal Quasar" Ability { id: "84AB", source: "Golbez" }
+535.4 "Eventide Fall?" Ability { id: "8485", source: "Golbez" }
+540.4 "Eventide Triad?" Ability { id: "8480", source: "Golbez" }
+548.5 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
-556.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
-556.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
-560.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+556.6 "Void Meteor" Ability { id: "84AD", source: "Golbez" }
+556.7 "Void Comet x4" duration 3 #Ability { id: "84B0", source: "Golbez" }
+560.7 "Void Meteor" Ability { id: "84B1", source: "Golbez" }
 
-562.7 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-570.0 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-571.8 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-573.5 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-574.7 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
-576.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-577.2 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ forcejump 1000.0
+562.7 "--middle--" Ability { id: "84B8", source: "Golbez" }
+570.0 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+571.8 "--sync--" Ability { id: "86E9", source: "Golbez" }
+573.5 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+574.7 "Rising Beacon (out)" Ability { id: "86EC", source: "Golbez" }
+576.8 "--sync--" Ability { id: "8475", source: "Golbez" }
+577.2 "Immolating Shade (light parties)" Ability { id: "8496", source: "Golbez" } forcejump 1000.0
 
 
 # Mini-phase 2, exaflares -> pairs -> role stacks or light parties -> in then spread
 
-700.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-705.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-708.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-711.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-713.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-718.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
-724.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
-730.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-735.4 "Eventide Fall?" sync / 1[56]:[^:]*:Golbez:8485:/
-740.4 "Eventide Triad?" sync / 1[56]:[^:]*:Golbez:8480:/
-748.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+700.0 "Azdaja's Shadow" Ability { id: "8479", source: "Golbez" }
+705.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+708.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+711.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+713.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
+718.5 "Void Stardust (preview)" Ability { id: "84A4", source: "Golbez" }
+724.6 "Void Stardust" duration 2.3 Ability { id: "84A6", source: "Golbez" }
+730.4 "Abyssal Quasar" Ability { id: "84AB", source: "Golbez" }
+735.4 "Eventide Fall?" Ability { id: "8485", source: "Golbez" }
+740.4 "Eventide Triad?" Ability { id: "8480", source: "Golbez" }
+748.5 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
-756.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
-756.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
-760.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+756.6 "Void Meteor" Ability { id: "84AD", source: "Golbez" }
+756.7 "Void Comet x4" duration 3 #Ability { id: "84B0", source: "Golbez" }
+760.7 "Void Meteor" Ability { id: "84B1", source: "Golbez" }
 
-762.7 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-770.0 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-771.8 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-773.5 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-774.7 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
-776.8 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-777.2 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ forcejump 1000.0
+762.7 "--middle--" Ability { id: "84B8", source: "Golbez" }
+770.0 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+771.8 "--sync--" Ability { id: "86E9", source: "Golbez" }
+773.5 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+774.7 "Rising Ring (under)" Ability { id: "86ED", source: "Golbez" }
+776.8 "--sync--" Ability { id: "8475", source: "Golbez" }
+777.2 "Burning Shade (spread)" Ability { id: "8494", source: "Golbez" } forcejump 1000.0
 
 # terrastorm + light parties
 
 1000.0 "Burning/Immolating Shade"
-1007.8 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1012.9 "Terrastorm (cast)" sync / 1[56]:[^:]*:Golbez:8464:/
-1019.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
-1022.0 "Void Blizzard III" sync / 1[56]:[^:]*:Golbez:8462:/
-1022.0 "Terrastorm (hit)" sync / 1[56]:[^:]*:Golbez:8466:/
-1029.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+1007.8 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1012.9 "Terrastorm (cast)" Ability { id: "8464", source: "Golbez" }
+1019.0 "Arctic Assault" Ability { id: "845F", source: "Golbez" }
+1022.0 "Void Blizzard III" Ability { id: "8462", source: "Golbez" }
+1022.0 "Terrastorm (hit)" Ability { id: "8466", source: "Golbez" }
+1029.1 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
 # gale sphere + light parties or pairs mechanic
 # tornado = lp, aero = pairs
 
-1035.2 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1040.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
-1051.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
-1053.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
-1053.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1056.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
-1057.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1060.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1063.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1065.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
-1069.1 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DB:/
-1071.0 "--sync--" sync / 1[56]:[^:]*:Golbez:86DD:/
-1072.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
-1082.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
-1098.2 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 1200.0
-1098.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 1400.0
+1035.2 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1040.3 "Gale Sphere" Ability { id: "844D", source: "Golbez" }
+1051.0 "--sync--" Ability { id: "844E", source: "Golbez" }
+1053.3 "Void Tornado/Void Aero III" Ability { id: "845[CD]", source: "Golbez" }
+1053.5 "Gale Sphere 1" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1056.0 "Arctic Assault" Ability { id: "845F", source: "Golbez" }
+1057.0 "Gale Sphere 2" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1060.4 "Gale Sphere 3" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1063.8 "Gale Sphere 4" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1065.0 "Void Aero III/Void Tornado" Ability { id: "845[CD]", source: "Golbez" }
+1069.1 "Phases of the Blade (front)" Ability { id: "86DB", source: "Golbez" }
+1071.0 "--sync--" Ability { id: "86DD", source: "Golbez" }
+1072.7 "Phases of the Blade (back)" Ability { id: "86F2", source: "Golbez" }
+1082.1 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
+1098.2 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" } jump 1200.0
+1098.2 "--sync--" Ability { id: "8479", source: "Golbez" } jump 1400.0
 
 # repeated for timeline rolling
 
@@ -200,131 +200,131 @@ hideall "--sync--"
 
 # Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> out then light parties
 
-1200.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-1205.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-1208.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-1211.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-1213.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1218.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
-1224.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
-1230.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-1231.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
-1235.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
-1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+1200.0 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" }
+1205.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+1208.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+1211.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+1213.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1218.5 "Void Stardust (preview)" Ability { id: "84A4", source: "Golbez" }
+1224.6 "Void Stardust" duration 2.3 Ability { id: "84A6", source: "Golbez" }
+1230.4 "Abyssal Quasar" Ability { id: "84AB", source: "Golbez" }
+1231.3 "Lingering Spark (cast)" Ability { id: "8468", source: "Golbez" }
+1235.4 "Lingering Spark (explode)" Ability { id: "846A", source: "Golbez" }
+1240.4 "Eventide Fall/Eventide Triad" Ability { id: "848[05]", source: "Golbez" }
 
-1251.4 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-1253.2 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-1254.9 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-1256.1 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
-1258.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-1258.6 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ forcejump 1600.0
+1251.4 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+1253.2 "--sync--" Ability { id: "86E9", source: "Golbez" }
+1254.9 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+1256.1 "Rising Beacon (out)" Ability { id: "86EC", source: "Golbez" }
+1258.2 "--sync--" Ability { id: "8475", source: "Golbez" }
+1258.6 "Immolating Shade (light parties)" Ability { id: "8496", source: "Golbez" } forcejump 1600.0
 
 # Mini-phase 3, exaflares -> pairs -> role stacks or light parties -> in then spread
 
-1400.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-1405.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-1408.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-1411.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-1413.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1418.5 "Void Stardust (preview)" sync / 1[56]:[^:]*:Golbez:84A4:/
-1424.6 "Void Stardust" duration 2.3 sync / 1[56]:[^:]*:Golbez:84A6:/
-1430.4 "Abyssal Quasar" sync / 1[56]:[^:]*:Golbez:84AB:/
-1431.3 "Lingering Spark (cast)" sync / 1[56]:[^:]*:Golbez:8468:/
-1435.4 "Lingering Spark (explode)" sync / 1[56]:[^:]*:Golbez:846A:/
-1240.4 "Eventide Fall/Eventide Triad" sync / 1[56]:[^:]*:Golbez:848[05]:/
+1400.0 "Azdaja's Shadow" Ability { id: "8479", source: "Golbez" }
+1405.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+1408.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+1411.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+1413.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1418.5 "Void Stardust (preview)" Ability { id: "84A4", source: "Golbez" }
+1424.6 "Void Stardust" duration 2.3 Ability { id: "84A6", source: "Golbez" }
+1430.4 "Abyssal Quasar" Ability { id: "84AB", source: "Golbez" }
+1431.3 "Lingering Spark (cast)" Ability { id: "8468", source: "Golbez" }
+1435.4 "Lingering Spark (explode)" Ability { id: "846A", source: "Golbez" }
+1240.4 "Eventide Fall/Eventide Triad" Ability { id: "848[05]", source: "Golbez" }
 
-1451.4 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-1453.2 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-1454.9 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-1456.1 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
-1458.2 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-1458.6 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ forcejump 1600.0
+1451.4 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+1453.2 "--sync--" Ability { id: "86E9", source: "Golbez" }
+1454.9 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+1456.1 "Rising Ring (under)" Ability { id: "86ED", source: "Golbez" }
+1458.2 "--sync--" Ability { id: "8475", source: "Golbez" }
+1458.6 "Burning Shade (spread)" Ability { id: "8494", source: "Golbez" } forcejump 1600.0
 
 # knockback phase
 
 1600.0 "Burning/Immolating Shade"
-1600.4 "--north--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1610.8 "Dragon's Descent" sync / 1[56]:[^:]*:Shadow Dragon:8498:/
-1613.2 "Explosion" sync / 1[56]:[^:]*:Golbez:849D:/
-1613.9 "Double Meteor" sync / 1[56]:[^:]*:Golbez:878C:/
-1615.5 "Cauterize" sync / 1[56]:[^:]*:Shadow Dragon:84A2:/
+1600.4 "--north--" Ability { id: "84B8", source: "Golbez" }
+1610.8 "Dragon's Descent" Ability { id: "8498", source: "Shadow Dragon" }
+1613.2 "Explosion" Ability { id: "849D", source: "Golbez" }
+1613.9 "Double Meteor" Ability { id: "878C", source: "Golbez" }
+1615.5 "Cauterize" Ability { id: "84A2", source: "Shadow Dragon" }
 
-1618.9 "--sync--" sync / 1[56]:[^:]*:Golbez:8475:/
-1629.0 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
-1629.1 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
-1633.1 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+1618.9 "--sync--" Ability { id: "8475", source: "Golbez" }
+1629.0 "Void Meteor" Ability { id: "84AD", source: "Golbez" }
+1629.1 "Void Comet x4" duration 3 #Ability { id: "84B0", source: "Golbez" }
+1633.1 "Void Meteor" Ability { id: "84B1", source: "Golbez" }
 
-1640.2 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1645.3 "Gale Sphere" sync / 1[56]:[^:]*:Golbez:844D:/
-1656.0 "--sync--" sync / 1[56]:[^:]*:Golbez:844E:/
-1658.3 "Void Tornado/Void Aero III" sync / 1[56]:[^:]*:Golbez:845[CD]:/
-1658.5 "Gale Sphere 1" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1661.0 "Arctic Assault" sync / 1[56]:[^:]*:Golbez:845F:/
-1662.0 "Gale Sphere 2" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1665.4 "Gale Sphere 3" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1668.8 "Gale Sphere 4" sync / 1[56]:[^:]*:Gale Sphere:845[89AB]:/
-1670.0 "Void Aero III/Void Tornado" sync / 1[56]:[^:]*:Golbez:845[CD]:/
-1674.1 "Phases of the Blade (front)" sync / 1[56]:[^:]*:Golbez:86DB:/
-1676.0 "--sync--" sync / 1[56]:[^:]*:Golbez:86DD:/
-1677.7 "Phases of the Blade (back)" sync / 1[56]:[^:]*:Golbez:86F2:/
-1687.1 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
-1703.6 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/ jump 1800.0
-1703.6 "--sync--" sync / 1[56]:[^:]*:Golbez:8479:/ jump 1900.0
+1640.2 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1645.3 "Gale Sphere" Ability { id: "844D", source: "Golbez" }
+1656.0 "--sync--" Ability { id: "844E", source: "Golbez" }
+1658.3 "Void Tornado/Void Aero III" Ability { id: "845[CD]", source: "Golbez" }
+1658.5 "Gale Sphere 1" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1661.0 "Arctic Assault" Ability { id: "845F", source: "Golbez" }
+1662.0 "Gale Sphere 2" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1665.4 "Gale Sphere 3" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1668.8 "Gale Sphere 4" Ability { id: "845[89AB]", source: "Gale Sphere" }
+1670.0 "Void Aero III/Void Tornado" Ability { id: "845[CD]", source: "Golbez" }
+1674.1 "Phases of the Blade (front)" Ability { id: "86DB", source: "Golbez" }
+1676.0 "--sync--" Ability { id: "86DD", source: "Golbez" }
+1677.7 "Phases of the Blade (back)" Ability { id: "86F2", source: "Golbez" }
+1687.1 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
+1703.6 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" } jump 1800.0
+1703.6 "--sync--" Ability { id: "8479", source: "Golbez" } jump 1900.0
 
 # repeated for timeline rolling
-1708.8 "Flames of Eventide 1" #sync / 1[56]:[^:]*:Golbez:847B:/
-1711.9 "Flames of Eventide 2" #sync / 1[56]:[^:]*:Golbez:847B:/
-1715.0 "Flames of Eventide 3" #sync / 1[56]:[^:]*:Golbez:847B:/
-1717.0 "--middle--" #sync / 1[56]:[^:]*:Golbez:84B8:/
-1724.3 "Phases of the Shadow (front)" #sync / 1[56]:[^:]*:Golbez:86E7:/
-1727.8 "Phases of the Shadow (back)" #sync / 1[56]:[^:]*:Golbez:86EF:/
+1708.8 "Flames of Eventide 1" #Ability { id: "847B", source: "Golbez" }
+1711.9 "Flames of Eventide 2" #Ability { id: "847B", source: "Golbez" }
+1715.0 "Flames of Eventide 3" #Ability { id: "847B", source: "Golbez" }
+1717.0 "--middle--" #Ability { id: "84B8", source: "Golbez" }
+1724.3 "Phases of the Shadow (front)" #Ability { id: "86E7", source: "Golbez" }
+1727.8 "Phases of the Shadow (back)" #Ability { id: "86EF", source: "Golbez" }
 
 # Mini-phase 4, in then spread, or out then light parties
 
 # out -> light parties variation
 
-1800.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8478:/
-1805.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-1808.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-1811.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
-1813.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
+1800.0 "Azdaja's Shadow" Ability { id: "8478", source: "Golbez" }
+1805.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+1808.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+1811.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
+1813.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
 
-1820.7 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-1822.5 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-1824.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-1825.4 "Rising Beacon (out)" sync / 1[56]:[^:]*:Golbez:86EC:/
-1828.1 "Immolating Shade (light parties)" sync / 1[56]:[^:]*:Golbez:8496:/ forcejump 2000.0
+1820.7 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+1822.5 "--sync--" Ability { id: "86E9", source: "Golbez" }
+1824.2 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+1825.4 "Rising Beacon (out)" Ability { id: "86EC", source: "Golbez" }
+1828.1 "Immolating Shade (light parties)" Ability { id: "8496", source: "Golbez" } forcejump 2000.0
 
 # in -> spread variation
 
-1900.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:8479:/
-1905.2 "Flames of Eventide 1" sync / 1[56]:[^:]*:Golbez:847B:/
-1908.3 "Flames of Eventide 2" sync / 1[56]:[^:]*:Golbez:847B:/
-1911.4 "Flames of Eventide 3" sync / 1[56]:[^:]*:Golbez:847B:/
+1900.0 "Azdaja's Shadow" Ability { id: "8479", source: "Golbez" }
+1905.2 "Flames of Eventide 1" Ability { id: "847B", source: "Golbez" }
+1908.3 "Flames of Eventide 2" Ability { id: "847B", source: "Golbez" }
+1911.4 "Flames of Eventide 3" Ability { id: "847B", source: "Golbez" }
 
-1913.4 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-1920.7 "Phases of the Shadow (front)" sync / 1[56]:[^:]*:Golbez:86E7:/
-1922.5 "--sync--" sync / 1[56]:[^:]*:Golbez:86E9:/
-1924.2 "Phases of the Shadow (back)" sync / 1[56]:[^:]*:Golbez:86EF:/
-1925.4 "Rising Ring (under)" sync / 1[56]:[^:]*:Golbez:86ED:/
-1928.1 "Burning Shade (spread)" sync / 1[56]:[^:]*:Golbez:8494:/ forcejump 2000.0
+1913.4 "--middle--" Ability { id: "84B8", source: "Golbez" }
+1920.7 "Phases of the Shadow (front)" Ability { id: "86E7", source: "Golbez" }
+1922.5 "--sync--" Ability { id: "86E9", source: "Golbez" }
+1924.2 "Phases of the Shadow (back)" Ability { id: "86EF", source: "Golbez" }
+1925.4 "Rising Ring (under)" Ability { id: "86ED", source: "Golbez" }
+1928.1 "Burning Shade (spread)" Ability { id: "8494", source: "Golbez" } forcejump 2000.0
 
 # final segment
 2000.0 "Burning/Immolating Shade"
-2009.3 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
-2022.5 "Binding Cold" sync / 1[56]:[^:]*:Golbez:84B3:/
+2009.3 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
+2022.5 "Binding Cold" Ability { id: "84B3", source: "Golbez" }
 
 # last buster
 
-2030.6 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84AD:/
-2030.7 "Void Comet x4" duration 3 #sync / 1[56]:[^:]*:Golbez:84B0:/
-2034.7 "Void Meteor" sync / 1[56]:[^:]*:Golbez:84B1:/
+2030.6 "Void Meteor" Ability { id: "84AD", source: "Golbez" }
+2030.7 "Void Comet x4" duration 3 #Ability { id: "84B0", source: "Golbez" }
+2034.7 "Void Meteor" Ability { id: "84B1", source: "Golbez" }
 
 # enrage
 
-2038.7 "--middle--" sync / 1[56]:[^:]*:Golbez:84B8:/
-2046.0 "Azdaja's Shadow" sync / 1[56]:[^:]*:Golbez:84B9:/
-2055.1 "--sync--" sync / 1[56]:[^:]*:Shadow Dragon:84BB:/
-2055.2 "Black Fang (big)" sync / 1[56]:[^:]*:Golbez:84BA:/
-2059.1 "Black Fang (small) x5" sync / 1[56]:[^:]*:Golbez:871B:/
-2061.9 "Black Fang (Enrage)" sync / 1[56]:[^:]*:Golbez:84BC:/
+2038.7 "--middle--" Ability { id: "84B8", source: "Golbez" }
+2046.0 "Azdaja's Shadow" Ability { id: "84B9", source: "Golbez" }
+2055.1 "--sync--" Ability { id: "84BB", source: "Shadow Dragon" }
+2055.2 "Black Fang (big)" Ability { id: "84BA", source: "Golbez" }
+2059.1 "Black Fang (small) x5" Ability { id: "871B", source: "Golbez" }
+2061.9 "Black Fang (Enrage)" Ability { id: "84BC", source: "Golbez" }

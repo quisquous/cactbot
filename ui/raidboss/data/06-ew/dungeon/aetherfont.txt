@@ -6,7 +6,7 @@ hideall "--sync--"
 # TODO: verify loops with longer logs?
 
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 #~~~~~~~~~~~~~#
 # Lyngbakr :U #
@@ -16,37 +16,37 @@ hideall "--sync--"
 # -p 823A:111.3
 
 # Landfast Floe will be sealed off
-100.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CD:/ window 100000,0
-106.3 "--sync--" sync / 14:[^:]*:Lyngbakr:823A:/ window 10,10
-111.3 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
-121.7 "Tidal Breath" sync / 1[56]:[^:]*:Lyngbakr:8240:/
-131.8 "Body Slam" sync / 1[56]:[^:]*:Lyngbakr:8237:/
-140.5 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
-146.6 "Resonant Frequency (small)" sync / 1[56]:[^:]*:Lyngbakr:823B:/
+100.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CD" } window 100000,0
+106.3 "--sync--" StartsUsing { id: "823A", source: "Lyngbakr" } window 10,10
+111.3 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
+121.7 "Tidal Breath" Ability { id: "8240", source: "Lyngbakr" }
+131.8 "Body Slam" Ability { id: "8237", source: "Lyngbakr" }
+140.5 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
+146.6 "Resonant Frequency (small)" Ability { id: "823B", source: "Lyngbakr" }
 
-154.8 "Body Slam" sync / 1[56]:[^:]*:Lyngbakr:8237:/
-163.5 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
-174.5 "Explosive Frequency (big)" sync / 1[56]:[^:]*:Lyngbakr:823C:/
-174.5 "Floodstide" sync / 1[56]:[^:]*:Lyngbakr:823D:/
-180.5 "Waterspout" sync / 1[56]:[^:]*:Lyngbakr:823E:/
-186.5 "Tidalspout" sync / 1[56]:[^:]*:Lyngbakr:823F:/
-192.6 "Tidal Breath" sync / 1[56]:[^:]*:Lyngbakr:8240:/
-203.2 "Body Slam" sync / 1[56]:[^:]*:Lyngbakr:8237:/
-211.9 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
-218.0 "Resonant Frequency (small)" sync / 1[56]:[^:]*:Lyngbakr:823B:/
-223.0 "Explosive Frequency (big)" sync / 1[56]:[^:]*:Lyngbakr:823C:/
-229.0 "Tidal Breath" sync / 1[56]:[^:]*:Lyngbakr:8240:/
-237.2 "Sonic Bloop" sync / 1[56]:[^:]*:Lyngbakr:8241:/
-245.3 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
-252.4 "Upsweep" sync / 1[56]:[^:]*:Lyngbakr:823A:/
+154.8 "Body Slam" Ability { id: "8237", source: "Lyngbakr" }
+163.5 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
+174.5 "Explosive Frequency (big)" Ability { id: "823C", source: "Lyngbakr" }
+174.5 "Floodstide" Ability { id: "823D", source: "Lyngbakr" }
+180.5 "Waterspout" Ability { id: "823E", source: "Lyngbakr" }
+186.5 "Tidalspout" Ability { id: "823F", source: "Lyngbakr" }
+192.6 "Tidal Breath" Ability { id: "8240", source: "Lyngbakr" }
+203.2 "Body Slam" Ability { id: "8237", source: "Lyngbakr" }
+211.9 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
+218.0 "Resonant Frequency (small)" Ability { id: "823B", source: "Lyngbakr" }
+223.0 "Explosive Frequency (big)" Ability { id: "823C", source: "Lyngbakr" }
+229.0 "Tidal Breath" Ability { id: "8240", source: "Lyngbakr" }
+237.2 "Sonic Bloop" Ability { id: "8241", source: "Lyngbakr" }
+245.3 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
+252.4 "Upsweep" Ability { id: "823A", source: "Lyngbakr" }
 
 # Probably a loop, at least up until 223.0/332.3 Explosive Frequency
-264.5 "Body Slam" sync / 1[56]:[^:]*:Lyngbakr:8237:/ window 30,30 jump 154.8
-273.2 "Upsweep" #sync / 1[56]:[^:]*:Lyngbakr:823A:/
-284.2 "Explosive Frequency (big)" #sync / 1[56]:[^:]*:Lyngbakr:823C:/
-284.2 "Floodstide" #sync / 1[56]:[^:]*:Lyngbakr:823D:/
-290.2 "Waterspout" #sync / 1[56]:[^:]*:Lyngbakr:823E:/
-296.2 "Tidalspout" #sync / 1[56]:[^:]*:Lyngbakr:823F:/
+264.5 "Body Slam" Ability { id: "8237", source: "Lyngbakr" } window 30,30 jump 154.8
+273.2 "Upsweep" #Ability { id: "823A", source: "Lyngbakr" }
+284.2 "Explosive Frequency (big)" #Ability { id: "823C", source: "Lyngbakr" }
+284.2 "Floodstide" #Ability { id: "823D", source: "Lyngbakr" }
+290.2 "Waterspout" #Ability { id: "823E", source: "Lyngbakr" }
+296.2 "Tidalspout" #Ability { id: "823F", source: "Lyngbakr" }
 
 
 #~~~~~~~#
@@ -57,55 +57,55 @@ hideall "--sync--"
 # -p 872D:510
 
 # Cyancap Cavern will be sealed off
-500.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CE:/ window 100000,0
-505.0 "--sync--" sync / 14:[^:]*:Arkas:872D:/ window 10,10
-510.0 "Battle Cry" sync / 1[56]:[^:]*:Arkas:872D:/
-521.3 "Lightning Leap" sync / 1[56]:[^:]*:Arkas:824E:/
-522.3 "--sync--" sync / 1[56]:[^:]*:Arkas:8799:/
-528.4 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
-531.4 "Lightning Leap" sync / 1[56]:[^:]*:Arkas:824F:/
-532.4 "--sync--" sync / 1[56]:[^:]*:Arkas:8250:/
-538.5 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
-548.1 "Ripper Claw" sync / 1[56]:[^:]*:Arkas:8258:/
-558.1 "Spinning Claw" sync / 1[56]:[^:]*:Arkas:8252:/
-563.7 "Spun Lightning" sync / 1[56]:[^:]*:Arkas:8253:/
+500.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CE" } window 100000,0
+505.0 "--sync--" StartsUsing { id: "872D", source: "Arkas" } window 10,10
+510.0 "Battle Cry" Ability { id: "872D", source: "Arkas" }
+521.3 "Lightning Leap" Ability { id: "824E", source: "Arkas" }
+522.3 "--sync--" Ability { id: "8799", source: "Arkas" }
+528.4 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
+531.4 "Lightning Leap" Ability { id: "824F", source: "Arkas" }
+532.4 "--sync--" Ability { id: "8250", source: "Arkas" }
+538.5 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
+548.1 "Ripper Claw" Ability { id: "8258", source: "Arkas" }
+558.1 "Spinning Claw" Ability { id: "8252", source: "Arkas" }
+563.7 "Spun Lightning" Ability { id: "8253", source: "Arkas" }
 
-572.3 "Battle Cry" sync / 1[56]:[^:]*:Arkas:8254:/
-583.4 "Lightning Rampage 1" sync / 1[56]:[^:]*:Arkas:860E:/
-584.4 "--sync--" sync / 1[56]:[^:]*:Arkas:879A:/
-588.4 "Lightning Rampage 2" sync / 1[56]:[^:]*:Arkas:860F:/
-589.4 "--sync--" sync / 1[56]:[^:]*:Arkas:8611:/
-590.4 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
-594.4 "Lightning Rampage 3" sync / 1[56]:[^:]*:Arkas:860F:/
-595.3 "--sync--" sync / 1[56]:[^:]*:Arkas:8611:/
-595.4 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
-600.4 "Lightning Rampage 4" sync / 1[56]:[^:]*:Arkas:8610:/
-601.3 "--sync--" sync / 1[56]:[^:]*:Arkas:8611:/
-601.5 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
-607.5 "Forked Fissures" sync / 1[56]:[^:]*:Arkas:8251:/
+572.3 "Battle Cry" Ability { id: "8254", source: "Arkas" }
+583.4 "Lightning Rampage 1" Ability { id: "860E", source: "Arkas" }
+584.4 "--sync--" Ability { id: "879A", source: "Arkas" }
+588.4 "Lightning Rampage 2" Ability { id: "860F", source: "Arkas" }
+589.4 "--sync--" Ability { id: "8611", source: "Arkas" }
+590.4 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
+594.4 "Lightning Rampage 3" Ability { id: "860F", source: "Arkas" }
+595.3 "--sync--" Ability { id: "8611", source: "Arkas" }
+595.4 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
+600.4 "Lightning Rampage 4" Ability { id: "8610", source: "Arkas" }
+601.3 "--sync--" Ability { id: "8611", source: "Arkas" }
+601.5 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
+607.5 "Forked Fissures" Ability { id: "8251", source: "Arkas" }
 
-613.2 "Lightning Claw" sync / 1[56]:[^:]*:Arkas:8798:/
-621.0 "Electrify" sync / 1[56]:[^:]*:Arkas:8257:/
-629.2 "Ripper Claw" sync / 1[56]:[^:]*:Arkas:8258:/
-641.8 "Electric Eruption" sync / 1[56]:[^:]*:Arkas:834F:/
-646.4 "Shock" sync / 1[56]:[^:]*:Arkas:8255:/
-651.8 "Spinning Claw" sync / 1[56]:[^:]*:Arkas:8252:/
-657.4 "Spun Lightning" sync / 1[56]:[^:]*:Arkas:8253:/
+613.2 "Lightning Claw" Ability { id: "8798", source: "Arkas" }
+621.0 "Electrify" Ability { id: "8257", source: "Arkas" }
+629.2 "Ripper Claw" Ability { id: "8258", source: "Arkas" }
+641.8 "Electric Eruption" Ability { id: "834F", source: "Arkas" }
+646.4 "Shock" Ability { id: "8255", source: "Arkas" }
+651.8 "Spinning Claw" Ability { id: "8252", source: "Arkas" }
+657.4 "Spun Lightning" Ability { id: "8253", source: "Arkas" }
 
 # Probably a loop, at least up until 629.2/722.1 Ripper Claw
-665.0 "Battle Cry" sync / 1[56]:[^:]*:Arkas:8254:/ window 30,30 jump 572.3
-676.1 "Lightning Rampage 1" #sync / 1[56]:[^:]*:Arkas:860E:/
-677.1 "--sync--" #sync / 1[56]:[^:]*:Arkas:879A:/
-681.1 "Lightning Rampage 2" #sync / 1[56]:[^:]*:Arkas:860F:/
-682.1 "--sync--" #sync / 1[56]:[^:]*:Arkas:8611:/
-683.1 "Forked Fissures" #sync / 1[56]:[^:]*:Arkas:8251:/
-687.1 "Lightning Rampage 3" #sync / 1[56]:[^:]*:Arkas:860F:/
-688.0 "--sync--" #sync / 1[56]:[^:]*:Arkas:8611:/
-688.1 "Forked Fissures" #sync / 1[56]:[^:]*:Arkas:8251:/
-693.1 "Lightning Rampage 4" #sync / 1[56]:[^:]*:Arkas:8610:/
-694.0 "--sync--" #sync / 1[56]:[^:]*:Arkas:8611:/
-694.2 "Forked Fissures" #sync / 1[56]:[^:]*:Arkas:8251:/
-700.2 "Forked Fissures" #sync / 1[56]:[^:]*:Arkas:8251:/
+665.0 "Battle Cry" Ability { id: "8254", source: "Arkas" } window 30,30 jump 572.3
+676.1 "Lightning Rampage 1" #Ability { id: "860E", source: "Arkas" }
+677.1 "--sync--" #Ability { id: "879A", source: "Arkas" }
+681.1 "Lightning Rampage 2" #Ability { id: "860F", source: "Arkas" }
+682.1 "--sync--" #Ability { id: "8611", source: "Arkas" }
+683.1 "Forked Fissures" #Ability { id: "8251", source: "Arkas" }
+687.1 "Lightning Rampage 3" #Ability { id: "860F", source: "Arkas" }
+688.0 "--sync--" #Ability { id: "8611", source: "Arkas" }
+688.1 "Forked Fissures" #Ability { id: "8251", source: "Arkas" }
+693.1 "Lightning Rampage 4" #Ability { id: "8610", source: "Arkas" }
+694.0 "--sync--" #Ability { id: "8611", source: "Arkas" }
+694.2 "Forked Fissures" #Ability { id: "8251", source: "Arkas" }
+700.2 "Forked Fissures" #Ability { id: "8251", source: "Arkas" }
 
 
 #~~~~~~~~~~~~~#
@@ -116,41 +116,41 @@ hideall "--sync--"
 # -p 824C:1009.6
 
 # The Deep Below will be sealed off
-1000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:10CF:/ window 100000,0
-1004.6 "--sync--" sync / 14:[^:]*:Octomammoth:824C:/ window 10,10
-1009.6 "Tidal Roar" sync / 1[56]:[^:]*:Octomammoth:824C:/
-1032.7 "Octostroke" sync / 1[56]:[^:]*:Octomammoth:8243:/
-1033.0 "Clearout" sync / 1[56]:[^:]*:Mammoth Tentacle:8244:/
-1045.0 "Vivid Eyes" sync / 1[56]:[^:]*:Octomammoth:824B:/
-1053.1 "Saline Spit" sync / 1[56]:[^:]*:Octomammoth:8248:/
-1071.5 "Tidal Breath" sync / 1[56]:[^:]*:Octomammoth:824A:/
-1078.8 "Tidal Roar" sync / 1[56]:[^:]*:Octomammoth:824C:/
-1091.0 "Telekinesis (tether)" sync / 1[56]:[^:]*:Octomammoth:8245:/
-1101.8 "Telekinesis (explosion)" sync / 1[56]:[^:]*:Octomammoth:8247:/
-1103.9 "--sync--" sync / 1[56]:[^:]*:Octomammoth:8246:/
-1130.8 "Clearout" sync / 1[56]:[^:]*:Mammoth Tentacle:8244:/
-1130.8 "Breathstroke" sync / 1[56]:[^:]*:Octomammoth:86F7:/
-1136.1 "Saline Spit" sync / 1[56]:[^:]*:Octomammoth:8248:/
-1143.2 "Vivid Eyes" sync / 1[56]:[^:]*:Octomammoth:824B:/
-1144.2 "Water Drop" sync / 1[56]:[^:]*:Octomammoth:8684:/
-1156.5 "Telekinesis (tether)" sync / 1[56]:[^:]*:Octomammoth:8245:/
-1167.3 "Telekinesis (explosion)" sync / 1[56]:[^:]*:Octomammoth:8247:/
-1169.4 "--sync--" sync / 1[56]:[^:]*:Octomammoth:8246:/
-1178.4 "Tidal Roar" sync / 1[56]:[^:]*:Octomammoth:824C:/
+1000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "10CF" } window 100000,0
+1004.6 "--sync--" StartsUsing { id: "824C", source: "Octomammoth" } window 10,10
+1009.6 "Tidal Roar" Ability { id: "824C", source: "Octomammoth" }
+1032.7 "Octostroke" Ability { id: "8243", source: "Octomammoth" }
+1033.0 "Clearout" Ability { id: "8244", source: "Mammoth Tentacle" }
+1045.0 "Vivid Eyes" Ability { id: "824B", source: "Octomammoth" }
+1053.1 "Saline Spit" Ability { id: "8248", source: "Octomammoth" }
+1071.5 "Tidal Breath" Ability { id: "824A", source: "Octomammoth" }
+1078.8 "Tidal Roar" Ability { id: "824C", source: "Octomammoth" }
+1091.0 "Telekinesis (tether)" Ability { id: "8245", source: "Octomammoth" }
+1101.8 "Telekinesis (explosion)" Ability { id: "8247", source: "Octomammoth" }
+1103.9 "--sync--" Ability { id: "8246", source: "Octomammoth" }
+1130.8 "Clearout" Ability { id: "8244", source: "Mammoth Tentacle" }
+1130.8 "Breathstroke" Ability { id: "86F7", source: "Octomammoth" }
+1136.1 "Saline Spit" Ability { id: "8248", source: "Octomammoth" }
+1143.2 "Vivid Eyes" Ability { id: "824B", source: "Octomammoth" }
+1144.2 "Water Drop" Ability { id: "8684", source: "Octomammoth" }
+1156.5 "Telekinesis (tether)" Ability { id: "8245", source: "Octomammoth" }
+1167.3 "Telekinesis (explosion)" Ability { id: "8247", source: "Octomammoth" }
+1169.4 "--sync--" Ability { id: "8246", source: "Octomammoth" }
+1178.4 "Tidal Roar" Ability { id: "824C", source: "Octomammoth" }
 
-1208.3 "Clearout" sync / 1[56]:[^:]*:Mammoth Tentacle:8244:/
-1208.3 "Breathstroke" sync / 1[56]:[^:]*:Octomammoth:86F7:/
-1213.6 "Saline Spit" sync / 1[56]:[^:]*:Octomammoth:8248:/
-1220.7 "Vivid Eyes" sync / 1[56]:[^:]*:Octomammoth:824B:/
-1221.7 "Water Drop" sync / 1[56]:[^:]*:Octomammoth:8684:/
-1232.8 "Tidal Roar" sync / 1[56]:[^:]*:Octomammoth:824C:/
+1208.3 "Clearout" Ability { id: "8244", source: "Mammoth Tentacle" }
+1208.3 "Breathstroke" Ability { id: "86F7", source: "Octomammoth" }
+1213.6 "Saline Spit" Ability { id: "8248", source: "Octomammoth" }
+1220.7 "Vivid Eyes" Ability { id: "824B", source: "Octomammoth" }
+1221.7 "Water Drop" Ability { id: "8684", source: "Octomammoth" }
+1232.8 "Tidal Roar" Ability { id: "824C", source: "Octomammoth" }
 
 # It seems unlikely that this is a loop as it's very short.
 # However, the longest log I've seen is ~5m.
 # I've seen up to the Tidal Roar at 1232.8/1291.1.
-1266.6 "Clearout" sync / 1[56]:[^:]*:Mammoth Tentacle:8244:/ window 30,30 jump 1208.3
-1266.6 "Breathstroke" #sync / 1[56]:[^:]*:Octomammoth:86F7:/
-1271.9 "Saline Spit" #sync / 1[56]:[^:]*:Octomammoth:8248:/
-1279.0 "Vivid Eyes" #sync / 1[56]:[^:]*:Octomammoth:824B:/
-1280.0 "Water Drop" #sync / 1[56]:[^:]*:Octomammoth:8684:/
-1291.1 "Tidal Roar" #sync / 1[56]:[^:]*:Octomammoth:824C:/
+1266.6 "Clearout" Ability { id: "8244", source: "Mammoth Tentacle" } window 30,30 jump 1208.3
+1266.6 "Breathstroke" #Ability { id: "86F7", source: "Octomammoth" }
+1271.9 "Saline Spit" #Ability { id: "8248", source: "Octomammoth" }
+1279.0 "Vivid Eyes" #Ability { id: "824B", source: "Octomammoth" }
+1280.0 "Water Drop" #Ability { id: "8684", source: "Octomammoth" }
+1291.1 "Tidal Roar" #Ability { id: "824C", source: "Octomammoth" }

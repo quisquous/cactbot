@@ -6,57 +6,57 @@ hideall "--sync--"
 
 # -ii 5626 5B18 55E1 55E3 5159 532F 55DB 55E5
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.4 "--sync--" sync / 14:[^:]*:Cloud Of Darkness:55ED:/ window 10.4,5
-15.1 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55ED:/
-25.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
-34.8 "Wide-Angle Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5AFF:/
-45.2 "Zero-Form Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55EB:/
-56.7 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:4FC6:/ window 56.7,10
-70.9 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:5132:/
-71.3 "Mire Of Despair" sync / 1[56]:[^:]*:Cloud Of Darkness:5B07:/
-71.3 "Earth-Shattering Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5225:/
-88.0 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55ED:/
-99.2 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.4 "--sync--" StartsUsing { id: "55ED", source: "Cloud Of Darkness" } window 10.4,5
+15.1 "Ground-Razing Particle Beam" Ability { id: "55ED", source: "Cloud Of Darkness" }
+25.3 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
+34.8 "Wide-Angle Particle Beam" Ability { id: "5AFF", source: "Cloud Of Darkness" }
+45.2 "Zero-Form Particle Beam" Ability { id: "55EB", source: "Cloud Of Darkness" }
+56.7 "Empty Plane" Ability { id: "4FC6", source: "Cloud Of Darkness" } window 56.7,10
+70.9 "Flood Of Emptiness" Ability { id: "5132", source: "Cloud Of Darkness" }
+71.3 "Mire Of Despair" Ability { id: "5B07", source: "Cloud Of Darkness" }
+71.3 "Earth-Shattering Particle Beam" Ability { id: "5225", source: "Cloud Of Darkness" }
+88.0 "Ground-Razing Particle Beam" Ability { id: "55ED", source: "Cloud Of Darkness" }
+99.2 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
 
-111.5 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:4FA2:/ window 111.5,10
-124.7 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:58F1:/
-124.9 "Waste Away" sync / 1[56]:[^:]*:Cloud Of Darkness:55DE:/
-127.2 "Evil Seed" sync / 1[56]:[^:]*:Cloud Of Darkness:55E7:/
-145.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
-157.3 "Wide-Angle Phaser" sync / 1[56]:[^:]*:Cloud Of Darkness:55E0:/
-171.1 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:55E2:/
-181.3 "Bad Vibrations" sync / 1[56]:[^:]*:Stygian Arbor:55E6:/ window 30,30
-192.3 "Deluge Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5155:/
-205.7 "Zero-Form Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55EB:/
-211.9 "Particle Concentration" sync / 1[56]:[^:]*:Cloud Of Darkness:55E8:/
-222.9 "Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55E9:/
-226.6 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
+111.5 "Obscure Woods" Ability { id: "4FA2", source: "Cloud Of Darkness" } window 111.5,10
+124.7 "Flood Of Obscurity" Ability { id: "58F1", source: "Cloud Of Darkness" }
+124.9 "Waste Away" Ability { id: "55DE", source: "Cloud Of Darkness" }
+127.2 "Evil Seed" Ability { id: "55E7", source: "Cloud Of Darkness" }
+145.3 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
+157.3 "Wide-Angle Phaser" Ability { id: "55E0", source: "Cloud Of Darkness" }
+171.1 "Rejuvenating Balm" Ability { id: "55E2", source: "Cloud Of Darkness" }
+181.3 "Bad Vibrations" Ability { id: "55E6", source: "Stygian Arbor" } window 30,30
+192.3 "Deluge Of Darkness" Ability { id: "5155", source: "Cloud Of Darkness" }
+205.7 "Zero-Form Particle Beam" Ability { id: "55EB", source: "Cloud Of Darkness" }
+211.9 "Particle Concentration" Ability { id: "55E8", source: "Cloud Of Darkness" }
+222.9 "Particle Beam" Ability { id: "55E9", source: "Cloud Of Darkness" }
+226.6 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
 
-239.2 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:4FC6:/ window 30,30
-253.4 "Flood Of Emptiness" sync / 1[56]:[^:]*:Cloud Of Darkness:5132:/
-253.8 "Mire Of Despair" sync / 1[56]:[^:]*:Cloud Of Darkness:5B07:/
-253.8 "Earth-Shattering Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:5225:/
-259.5 "Hypercharged Condensation" sync / 1[56]:[^:]*:Cloud Of Darkness:532E:/
-281.7 "Summon" sync / 1[56]:[^:]*:Cloud Of Darkness:5330:/ window 30,30
-289.8 "Anti-Air Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55DC:/
-301.0 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
-313.2 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55ED:/
+239.2 "Empty Plane" Ability { id: "4FC6", source: "Cloud Of Darkness" } window 30,30
+253.4 "Flood Of Emptiness" Ability { id: "5132", source: "Cloud Of Darkness" }
+253.8 "Mire Of Despair" Ability { id: "5B07", source: "Cloud Of Darkness" }
+253.8 "Earth-Shattering Particle Beam" Ability { id: "5225", source: "Cloud Of Darkness" }
+259.5 "Hypercharged Condensation" Ability { id: "532E", source: "Cloud Of Darkness" }
+281.7 "Summon" Ability { id: "5330", source: "Cloud Of Darkness" } window 30,30
+289.8 "Anti-Air Particle Beam" Ability { id: "55DC", source: "Cloud Of Darkness" }
+301.0 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
+313.2 "Ground-Razing Particle Beam" Ability { id: "55ED", source: "Cloud Of Darkness" }
 
-327.7 "Obscure Woods" sync / 1[56]:[^:]*:Cloud Of Darkness:4FA2:/ window 30,30
-339.9 "Flood Of Obscurity" sync / 1[56]:[^:]*:Cloud Of Darkness:58F1:/
-340.1 "Waste Away" sync / 1[56]:[^:]*:Cloud Of Darkness:55DE:/
-342.4 "Evil Seed" sync / 1[56]:[^:]*:Cloud Of Darkness:55E7:/
-361.7 "Wide-Angle Phaser" sync / 1[56]:[^:]*:Cloud Of Darkness:55E0:/
-376.8 "Rejuvenating Balm" sync / 1[56]:[^:]*:Cloud Of Darkness:55E2:/
-384.2 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
-386.6 "Bad Vibrations" sync / 1[56]:[^:]*:Stygian Arbor:55E6:/ window 30,30
-399.2 "Deluge Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:5155:/
-414.3 "The Art Of Darkness" sync / 1[56]:[^:]*:Cloud Of Darkness:522[34]:/
-426.5 "Ground-Razing Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55ED:/
-434.9 "Zero-Form Particle Beam" sync / 1[56]:[^:]*:Cloud Of Darkness:55EB:/
+327.7 "Obscure Woods" Ability { id: "4FA2", source: "Cloud Of Darkness" } window 30,30
+339.9 "Flood Of Obscurity" Ability { id: "58F1", source: "Cloud Of Darkness" }
+340.1 "Waste Away" Ability { id: "55DE", source: "Cloud Of Darkness" }
+342.4 "Evil Seed" Ability { id: "55E7", source: "Cloud Of Darkness" }
+361.7 "Wide-Angle Phaser" Ability { id: "55E0", source: "Cloud Of Darkness" }
+376.8 "Rejuvenating Balm" Ability { id: "55E2", source: "Cloud Of Darkness" }
+384.2 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
+386.6 "Bad Vibrations" Ability { id: "55E6", source: "Stygian Arbor" } window 30,30
+399.2 "Deluge Of Darkness" Ability { id: "5155", source: "Cloud Of Darkness" }
+414.3 "The Art Of Darkness" Ability { id: "522[34]", source: "Cloud Of Darkness" }
+426.5 "Ground-Razing Particle Beam" Ability { id: "55ED", source: "Cloud Of Darkness" }
+434.9 "Zero-Form Particle Beam" Ability { id: "55EB", source: "Cloud Of Darkness" }
 
-449.6 "Empty Plane" sync / 1[56]:[^:]*:Cloud Of Darkness:4FC6:/ window 30,30 jump 239.2
+449.6 "Empty Plane" Ability { id: "4FC6", source: "Cloud Of Darkness" } window 30,30 jump 239.2
 463.8 "Flood Of Emptiness"
 464.2 "Mire Of Despair"
 464.2 "Earth-Shattering Particle Beam"

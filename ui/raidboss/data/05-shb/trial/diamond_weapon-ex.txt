@@ -8,116 +8,116 @@ hideall "--sync--"
 # -p 5FA7:21.3
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-16.3 "--sync--" sync / 14:[^:]*:The Diamond Weapon:5FA7:/ window 17,10
-21.3 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/ window 25,10
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+16.3 "--sync--" StartsUsing { id: "5FA7", source: "The Diamond Weapon" } window 17,10
+21.3 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" } window 25,10
 
 # 5FA2 = Spread (Homing Laser, 5FA0)
 # 5F9B = "nothing" (Diamond Rain, 5FA7)
 # 5FA5 = Stack (Diamond Flash, 5FA1)
-36.5 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[2345]:/ window 20,5
-46.7 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-49.9 "Homing Laser/Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[01]:/
-67.1 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
-83.4 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[8AB]:/
-93.6 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-104.8 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
-120.0 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[2345]:/
-130.2 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-133.7 "Homing Laser/Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[01]:/
-151.4 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
+36.5 "Adamant Purge" Ability { id: "5FA[2345]", source: "The Diamond Weapon" } window 20,5
+46.7 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+49.9 "Homing Laser/Diamond Flash" Ability { id: "5FA[01]", source: "The Diamond Weapon" }
+67.1 "Photon Burst" Ability { id: "5FA8", source: "The Diamond Weapon" }
+83.4 "Adamant Purge" Ability { id: "5F9[8AB]", source: "The Diamond Weapon" }
+93.6 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+104.8 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" }
+120.0 "Adamant Purge" Ability { id: "5FA[2345]", source: "The Diamond Weapon" }
+130.2 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+133.7 "Homing Laser/Diamond Flash" Ability { id: "5FA[01]", source: "The Diamond Weapon" }
+151.4 "Photon Burst" Ability { id: "5FA8", source: "The Diamond Weapon" }
 
 # Phase transition
-167.7 "Code Chi-Xi-Stigma" sync / 1[56]:[^:]*:The Diamond Weapon:5FAD:/
+167.7 "Code Chi-Xi-Stigma" Ability { id: "5FAD", source: "The Diamond Weapon" }
 168.0 "--untargetable--"
-183.3 "Auri Cyclone" sync / 1[56]:[^:]*:The Diamond Weapon:5FB9:/
-188.0 "Diamond Shot" sync / 1[56]:[^:]*:Articulated Bit:5FC0:/
+183.3 "Auri Cyclone" Ability { id: "5FB9", source: "The Diamond Weapon" }
+188.0 "Diamond Shot" Ability { id: "5FC0", source: "Articulated Bit" }
 
 ### Phase 2
 197.8 "--targetable--"
-210.0 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-218.2 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-229.6 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:(5FAF|5FF8):/
+210.0 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
+218.2 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
+229.6 "Auri Arts (Z)" Ability { id: ["5FAF", "5FF8"], source: "The Diamond Weapon" }
 229.6 "--untargetable--"
-236.4 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FB2:/
+236.4 "Auri Arts (Jump)" Ability { id: "5FB2", source: "The Diamond Weapon" }
 241.0 "--targetable--"
-250.4 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-257.6 "Auri Doomstead" sync / 1[56]:[^:]*:The Diamond Weapon:5FBD:/
+250.4 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
+257.6 "Auri Doomstead" Ability { id: "5FBD", source: "The Diamond Weapon" }
 265.5 "--untargetable--"
-271.8 "Auri Arts (Cleave)?" sync / 1[56]:[^:]*:The Diamond Weapon:5FB5:/
-272.8 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FCF:/
+271.8 "Auri Arts (Cleave)?" Ability { id: "5FB5", source: "The Diamond Weapon" }
+272.8 "Auri Arts (Jump)" Ability { id: "5FCF", source: "The Diamond Weapon" }
 272.8 "--targetable--"
-278.7 "Vertical Cleave" sync / 1[56]:[^:]*:The Diamond Weapon:5FD0:/
-291.1 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-301.3 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FC1:/
-312.4 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-312.9 "Auri Arts (Z)" sync / 1[56]:[^:]*:The Diamond Weapon:(5FAF|5FF8):/
+278.7 "Vertical Cleave" Ability { id: "5FD0", source: "The Diamond Weapon" }
+291.1 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
+301.3 "Articulated Bits" Ability { id: "5FC1", source: "The Diamond Weapon" }
+312.4 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+312.9 "Auri Arts (Z)" Ability { id: ["5FAF", "5FF8"], source: "The Diamond Weapon" }
 312.9 "--untargetable--"
-319.7 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FB2:/
-320.4 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
+319.7 "Auri Arts (Jump)" Ability { id: "5FB2", source: "The Diamond Weapon" }
+320.4 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
 324.2 "--targetable--"
-333.7 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
-340.9 "Auri Doomstead" sync / 1[56]:[^:]*:The Diamond Weapon:5FBD:/
-353.1 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FC1:/
+333.7 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
+340.9 "Auri Doomstead" Ability { id: "5FBD", source: "The Diamond Weapon" }
+353.1 "Articulated Bits" Ability { id: "5FC1", source: "The Diamond Weapon" }
 355.7 "--untargetable--"
-360.7 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-362.2 "Auri Arts (Cleave)?" sync / 1[56]:[^:]*:The Diamond Weapon:5FB5:/
+360.7 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+362.2 "Auri Arts (Cleave)?" Ability { id: "5FB5", source: "The Diamond Weapon" }
 364.0 "--targetable--"
-364.0 "Auri Arts (Jump)" sync / 1[56]:[^:]*:The Diamond Weapon:5FCF:/
-369.9 "Vertical Cleave" sync / 1[56]:[^:]*:The Diamond Weapon:5FD0:/
-370.7 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-382.4 "Outrage" sync / 1[56]:[^:]*:The Diamond Weapon:5FBC:/
+364.0 "Auri Arts (Jump)" Ability { id: "5FCF", source: "The Diamond Weapon" }
+369.9 "Vertical Cleave" Ability { id: "5FD0", source: "The Diamond Weapon" }
+370.7 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+382.4 "Outrage" Ability { id: "5FBC", source: "The Diamond Weapon" }
 388.0 "--untargetable--"
 
 ### Phase 3
 397.9 "--targetable--"
-422.1 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FA6:/
-422.7 "Flood Ray 1" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-424.2 "Flood Ray 2" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-425.7 "Flood Ray 3" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-427.2 "Flood Ray 4" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-428.7 "Flood Ray 5" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-430.2 "Flood Ray 6" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-431.7 "Flood Ray 7" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-433.2 "Flood Ray 8" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-450.7 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
-470.0 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
-477.1 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[2345]:/
-481.6 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-486.2 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-489.7 "Homing Laser/Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[01]:/
-490.6 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-501.3 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
-516.5 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
-523.6 "Diamond Shrapnel" sync / 1[56]:[^:]*:The Diamond Weapon:5FAC:/
-528.1 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-537.1 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-541.5 "Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FC[56]:/
-546.8 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
-566.1 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
+422.1 "--sync--" Ability { id: "5FA6", source: "The Diamond Weapon" }
+422.7 "Flood Ray 1" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+424.2 "Flood Ray 2" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+425.7 "Flood Ray 3" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+427.2 "Flood Ray 4" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+428.7 "Flood Ray 5" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+430.2 "Flood Ray 6" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+431.7 "Flood Ray 7" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+433.2 "Flood Ray 8" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+450.7 "Photon Burst" Ability { id: "5FA8", source: "The Diamond Weapon" }
+470.0 "Articulated Bits" Ability { id: "5FA9", source: "The Diamond Weapon" }
+477.1 "Adamant Purge" Ability { id: "5FA[2345]", source: "The Diamond Weapon" }
+481.6 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+486.2 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+489.7 "Homing Laser/Diamond Flash" Ability { id: "5FA[01]", source: "The Diamond Weapon" }
+490.6 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+501.3 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" }
+516.5 "Articulated Bits" Ability { id: "5FA9", source: "The Diamond Weapon" }
+523.6 "Diamond Shrapnel" Ability { id: "5FAC", source: "The Diamond Weapon" }
+528.1 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+537.1 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+541.5 "Burst" Ability { id: "5FC[56]", source: "The Diamond Weapon" }
+546.8 "Photon Burst" Ability { id: "5FA8", source: "The Diamond Weapon" }
+566.1 "Articulated Bits" Ability { id: "5FA9", source: "The Diamond Weapon" }
 # This Purge seems to be able to be at least 5FA3, 5FA4, 5FA5, so including every possiblility
-573.2 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5F(9[ABCD]|A[2345]):/
-577.7 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-583.4 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-586.8 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-597.8 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
-621.0 "--sync--" sync / 1[56]:[^:]*:The Diamond Weapon:5FA6:/
-621.1 "Flood Ray 1" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-622.6 "Flood Ray 2" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-624.1 "Flood Ray 3" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-625.6 "Flood Ray 4" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-627.1 "Flood Ray 5" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-628.6 "Flood Ray 6" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-630.1 "Flood Ray 7" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-631.6 "Flood Ray 8" #sync / 1[56]:[^:]*:The Diamond Weapon:5FC7:/
-649.2 "Photon Burst" sync / 1[56]:[^:]*:The Diamond Weapon:5FA8:/
-668.5 "Articulated Bits" sync / 1[56]:[^:]*:The Diamond Weapon:5FA9:/
-675.6 "Adamant Purge" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[2345]:/
-680.1 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-685.8 "Claw Swipe" sync / 1[56]:[^:]*:The Diamond Weapon:5F9[EF]:/
-689.0 "Homing Laser/Diamond Flash" sync / 1[56]:[^:]*:The Diamond Weapon:5FA[01]:/
-689.2 "Aetherial Bullet" sync / 1[56]:[^:]*:Articulated Bit:5FAB:/
-700.2 "Diamond Rain" sync / 1[56]:[^:]*:The Diamond Weapon:5FA7:/
+573.2 "Adamant Purge" Ability { id: "5F(9[ABCD]|A[2345])", source: "The Diamond Weapon" }
+577.7 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+583.4 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+586.8 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+597.8 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" }
+621.0 "--sync--" Ability { id: "5FA6", source: "The Diamond Weapon" }
+621.1 "Flood Ray 1" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+622.6 "Flood Ray 2" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+624.1 "Flood Ray 3" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+625.6 "Flood Ray 4" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+627.1 "Flood Ray 5" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+628.6 "Flood Ray 6" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+630.1 "Flood Ray 7" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+631.6 "Flood Ray 8" #Ability { id: "5FC7", source: "The Diamond Weapon" }
+649.2 "Photon Burst" Ability { id: "5FA8", source: "The Diamond Weapon" }
+668.5 "Articulated Bits" Ability { id: "5FA9", source: "The Diamond Weapon" }
+675.6 "Adamant Purge" Ability { id: "5FA[2345]", source: "The Diamond Weapon" }
+680.1 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+685.8 "Claw Swipe" Ability { id: "5F9[EF]", source: "The Diamond Weapon" }
+689.0 "Homing Laser/Diamond Flash" Ability { id: "5FA[01]", source: "The Diamond Weapon" }
+689.2 "Aetherial Bullet" Ability { id: "5FAB", source: "Articulated Bit" }
+700.2 "Diamond Rain" Ability { id: "5FA7", source: "The Diamond Weapon" }
 
 # Enrage
-718.6 "Flood Ray (Enrage)" sync / 1[56]:[^:]*:The Diamond Weapon:5FEE:/
+718.6 "Flood Ray (Enrage)" Ability { id: "5FEE", source: "The Diamond Weapon" }

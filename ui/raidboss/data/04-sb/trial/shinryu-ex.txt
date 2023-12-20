@@ -12,113 +12,113 @@ hideall "--sync--"
 
 ### PHASE 1: Elemental carousel
 ###
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.3 "--sync--" sync / 14:[^:]*:Shinryu:25FD:/ window 20,20
-21.3 "Earthen Fury" sync / 1[56]:[^:]*:Shinryu:25DE:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+11.3 "--sync--" StartsUsing { id: "25FD", source: "Shinryu" } window 20,20
+21.3 "Earthen Fury" Ability { id: "25DE", source: "Shinryu" }
 36.4 "--Tethers--" # Burning Chains (301) effect
-44.5 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:25F9:/
+44.5 "Tidal Wave" Ability { id: "25F9", source: "Shinryu" }
 49.7 "--Tail Marker (healer)--" # 007E headmarker
-61.7 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
-62.4 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
-67.0 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
-67.9 "Tail Slap" sync / 1[56]:[^:]*:Tail:25E2:/
-79.8 "Hypernova / Levinbolt" sync / 1[56]:[^:]*:Right Wing:(25E8|25EA):/
-90.9 "Dragonfist" sync / 1[56]:[^:]*:Shinryu:2610:/
-97.8 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/ # sometimes 3 seconds earlier?
-108.0 "Akh Morn 1" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
-110.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
-116.3 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
-116.9 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
-121.4 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
-123.3 "Judgment Bolt / Hellfire" sync / 1[56]:[^:]*:Shinryu:(25FA|25DC):/
+61.7 "Summon Icicle" Ability { id: "25EE", source: "Left Wing" }
+62.4 "Icicle Impact" Ability { id: "25EF", source: "Icicle" }
+67.0 "Spikesicle" Ability { id: "25F0", source: "Icicle" }
+67.9 "Tail Slap" Ability { id: "25E2", source: "Tail" }
+79.8 "Hypernova / Levinbolt" Ability { id: ["25E8", "25EA"], source: "Right Wing" }
+90.9 "Dragonfist" Ability { id: "2610", source: "Shinryu" }
+97.8 "Ice Storm" Ability { id: "25F1", source: "Left Wing" } # sometimes 3 seconds earlier?
+108.0 "Akh Morn 1" Ability { id: "25F3", source: "Shinryu" } duration 3.2
+110.1 "Akh Rhai" Ability { id: "25F5", source: "Shinryu" } duration 5.3
+116.3 "Summon Icicle" Ability { id: "25EE", source: "Left Wing" }
+116.9 "Icicle Impact" Ability { id: "25EF", source: "Icicle" }
+121.4 "Spikesicle" Ability { id: "25F0", source: "Icicle" }
+123.3 "Judgment Bolt / Hellfire" Ability { id: ["25FA", "25DC"], source: "Shinryu" }
 
 138.4 "--Tail Marker (dps)--"
-149.5 "Levinbolt" sync / 1[56]:[^:]*:Right Wing:25EA:/
-156.6 "Tail Slap" sync / 1[56]:[^:]*:Tail:25E2:/
-164.5 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+149.5 "Levinbolt" Ability { id: "25EA", source: "Right Wing" }
+156.6 "Tail Slap" Ability { id: "25E2", source: "Tail" }
+164.5 "Ice Storm" Ability { id: "25F1", source: "Left Wing" }
 171.8 "--Tethers (T/H)--"
-180.6 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:25EC:/
-188.0 "Akh Morn 2" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
-190.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
-194.0 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+180.6 "Earth Breath" Ability { id: "25EC", source: "Shinryu" }
+188.0 "Akh Morn 2" Ability { id: "25F3", source: "Shinryu" } duration 3.2
+190.1 "Akh Rhai" Ability { id: "25F5", source: "Shinryu" } duration 5.3
+194.0 "Ice Storm" Ability { id: "25F1", source: "Left Wing" }
 206.6 "--Tethers (healers)--"
-208.2 "Diamond Dust" sync / 1[56]:[^:]*:Shinryu:25FC:/
+208.2 "Diamond Dust" Ability { id: "25FC", source: "Shinryu" }
 224.9 "--Reiryu Adds--"
 
 233.3 "--Tail Marker (tank)--"
-251.5 "Tail Slap" sync / 1[56]:[^:]*:Tail:260D:/
-268.5 "Summon Icicle" sync / 1[56]:[^:]*:Left Wing:25EE:/
-269.1 "Icicle Impact" sync / 1[56]:[^:]*:Icicle:25EF:/
-272.4 "Akh Morn 3" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 3.2
-273.6 "Spikesicle" sync / 1[56]:[^:]*:Icicle:25F0:/
-274.5 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
-285.3 "Super Cyclone 1" #sync / 1[56]:[^:]*:Shinryu:260C:/
-287.4 "Super Cyclone 2" #sync / 1[56]:[^:]*:Shinryu:260C:/
-289.5 "Super Cyclone 3" #sync / 1[56]:[^:]*:Shinryu:260C:/
-291.7 "Aerial Blast" sync / 1[56]:[^:]*:Shinryu:25FE:/
+251.5 "Tail Slap" Ability { id: "260D", source: "Tail" }
+268.5 "Summon Icicle" Ability { id: "25EE", source: "Left Wing" }
+269.1 "Icicle Impact" Ability { id: "25EF", source: "Icicle" }
+272.4 "Akh Morn 3" Ability { id: "25F3", source: "Shinryu" } duration 3.2
+273.6 "Spikesicle" Ability { id: "25F0", source: "Icicle" }
+274.5 "Akh Rhai" Ability { id: "25F5", source: "Shinryu" } duration 5.3
+285.3 "Super Cyclone 1" #Ability { id: "260C", source: "Shinryu" }
+287.4 "Super Cyclone 2" #Ability { id: "260C", source: "Shinryu" }
+289.5 "Super Cyclone 3" #Ability { id: "260C", source: "Shinryu" }
+291.7 "Aerial Blast" Ability { id: "25FE", source: "Shinryu" }
 292.7 "--Tethers (dps)--"
-318.9 "Earth Breath" sync / 1[56]:[^:]*:Shinryu:25EC:/
-321.9 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:25F1:/
+318.9 "Earth Breath" Ability { id: "25EC", source: "Shinryu" }
+321.9 "Ice Storm" Ability { id: "25F1", source: "Left Wing" }
 
 325.3 "--untargetable--"
-334.7 "--sync--" sync / 1[56]:[^:]*:Shinryu:25F7:/
-335.9 "Gyre Charge" sync / 1[56]:[^:]*:Shinryu:2603:/
+334.7 "--sync--" Ability { id: "25F7", source: "Shinryu" }
+335.9 "Gyre Charge" Ability { id: "2603", source: "Shinryu" }
 341.8 "--targetable--"
 
-350.9 "Hypernova" sync / 1[56]:[^:]*:Right Wing:25E8:/
-363.0 "Akh Morn 4" sync / 1[56]:[^:]*:Shinryu:25F3:/ duration 4.3
-365.1 "Akh Rhai" sync / 1[56]:[^:]*:Shinryu:25F5:/ duration 5.3
-378.3 "Hypernova / Levinbolt" sync / 1[56]:[^:]*:Right Wing:(25E8|25EA):/
-384.3 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:25F9:/
+350.9 "Hypernova" Ability { id: "25E8", source: "Right Wing" }
+363.0 "Akh Morn 4" Ability { id: "25F3", source: "Shinryu" } duration 4.3
+365.1 "Akh Rhai" Ability { id: "25F5", source: "Shinryu" } duration 5.3
+378.3 "Hypernova / Levinbolt" Ability { id: ["25E8", "25EA"], source: "Right Wing" }
+384.3 "Tidal Wave" Ability { id: "25F9", source: "Shinryu" }
 387.4 "--untargetable--"
-394.8 "Dark Matter" #sync / 1[56]:[^:]*:Shinryu:25E7:/
+394.8 "Dark Matter" #Ability { id: "25E7", source: "Shinryu" }
 
 
 ### PHASE 2: Adds, explosions, dramatic tail climbing
 ###
-500.0 "--Phase 2--" sync / 14:[^:]*:Shinryu:25E7:/ window 500,500
-503.0 "Dark Matter" sync / 1[56]:[^:]*:Shinryu:25E7:/
+500.0 "--Phase 2--" StartsUsing { id: "25E7", source: "Shinryu" } window 500,500
+503.0 "Dark Matter" Ability { id: "25E7", source: "Shinryu" }
 513.0 "TAP BUTTON OR ELSE" duration 5
-540.7 "Touchdown" sync / 1[56]:[^:]*:Shinryu:2613:/
-545.2 "--sync--" sync / 1[56]:[^:]*:Shinryu:25D9:/
-552.3 "Meteor Impact 1" sync / 1[56]:[^:]*:Cocoon:25E5:/
-553.9 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
-571.1 "Meteor Impact 2" sync / 1[56]:[^:]*:Cocoon:25E5:/
-572.7 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
+540.7 "Touchdown" Ability { id: "2613", source: "Shinryu" }
+545.2 "--sync--" Ability { id: "25D9", source: "Shinryu" }
+552.3 "Meteor Impact 1" Ability { id: "25E5", source: "Cocoon" }
+553.9 "--sync--" Ability { id: "2605", source: "Cocoon" }
+571.1 "Meteor Impact 2" Ability { id: "25E5", source: "Cocoon" }
+572.7 "--sync--" Ability { id: "2605", source: "Cocoon" }
 588.0 "--Cocoon Markers--"
-601.0 "Meteor Impact 3" sync / 1[56]:[^:]*:Cocoon:25E5:/
-602.6 "--sync--" sync / 1[56]:[^:]*:Cocoon:2605:/
+601.0 "Meteor Impact 3" Ability { id: "25E5", source: "Cocoon" }
+602.6 "--sync--" Ability { id: "2605", source: "Cocoon" }
 
 ### PHASE 3: Anticlimax
 ###
-800.0 "--Phase 3--" sync / 14:[^:]*:Shinryu:25E4:/ window 500,500
-806.0 "Protostar" sync / 1[56]:[^:]*:Shinryu:25E4:/
-813.1 "Tail Spit" sync / 1[56]:[^:]*:Shinryu:2615:/
-837.4 "Shatter" sync / 1[56]:[^:]*:Shinryu:2617:/ window 50,50
+800.0 "--Phase 3--" StartsUsing { id: "25E4", source: "Shinryu" } window 500,500
+806.0 "Protostar" Ability { id: "25E4", source: "Shinryu" }
+813.1 "Tail Spit" Ability { id: "2615", source: "Shinryu" }
+837.4 "Shatter" Ability { id: "2617", source: "Shinryu" } window 50,50
 843.4 "--targetable--"
 
 # Loop 1
-855.5 "--sync--" sync / 14:[^:]*:Shinryu:264B:/ window 20,20
-859.5 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
-868.2 "Atomic Ray" sync / 1[56]:[^:]*:Shinryu:264C:/
-885.9 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:2722:/
-889.9 "Levinbolt / Hypernova" sync / 1[56]:[^:]*:Right Wing:(2720|271F):/
-897.9 "Wormwail / Benighting Breath" sync / 1[56]:[^:]*:Shinryu:(2648|2649):/
-907.1 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
+855.5 "--sync--" StartsUsing { id: "264B", source: "Shinryu" } window 20,20
+859.5 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
+868.2 "Atomic Ray" Ability { id: "264C", source: "Shinryu" }
+885.9 "Ice Storm" Ability { id: "2722", source: "Left Wing" }
+889.9 "Levinbolt / Hypernova" Ability { id: ["2720", "271F"], source: "Right Wing" }
+897.9 "Wormwail / Benighting Breath" Ability { id: ["2648", "2649"], source: "Shinryu" }
+907.1 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
 910.8 "--Reiryu Adds--"
 
 # Loop 2
-957.4 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/ window 20,20
-966.1 "Atomic Ray" sync / 1[56]:[^:]*:Shinryu:264C:/
-983.8 "Ice Storm" sync / 1[56]:[^:]*:Left Wing:2722:/
-987.8 "Levinbolt / Hypernova" sync / 1[56]:[^:]*:Right Wing:(2720|271F):/
-995.9 "Wormwail / Benighting Breath" sync / 1[56]:[^:]*:Shinryu:(2648|2649):/
-1005.1 "Tera Slash" sync / 1[56]:[^:]*:Shinryu:264B:/
+957.4 "Tera Slash" Ability { id: "264B", source: "Shinryu" } window 20,20
+966.1 "Atomic Ray" Ability { id: "264C", source: "Shinryu" }
+983.8 "Ice Storm" Ability { id: "2722", source: "Left Wing" }
+987.8 "Levinbolt / Hypernova" Ability { id: ["2720", "271F"], source: "Right Wing" }
+995.9 "Wormwail / Benighting Breath" Ability { id: ["2648", "2649"], source: "Shinryu" }
+1005.1 "Tera Slash" Ability { id: "264B", source: "Shinryu" }
 1009.1 "--Reiryu Adds--"
 
 ### PHASE 4: Race to the finish!
 ###
-1046.0 "--sync--" sync / 14:[^:]*:Shinryu:264E:/ window 300,300
+1046.0 "--sync--" StartsUsing { id: "264E", source: "Shinryu" } window 300,300
 1085.0 "First Wing" # 35 second cast, starts 4 seconds later, 2718/2719
 1090.0 "Second Wing" # 35 second cast, starts 9 seconds later, 2719/2718
-1116.0 "Tidal Wave" sync / 1[56]:[^:]*:Shinryu:264E:/ # 70 second cast
+1116.0 "Tidal Wave" Ability { id: "264E", source: "Shinryu" } # 70 second cast

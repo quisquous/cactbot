@@ -6,98 +6,98 @@ hideall "--sync--"
 # Note: Although there is a 18 sec. delay between the chatlog line and the boss being targetable
 # the player's InCombat status is changed at nearly the same time and can be reliably used to start the timeline.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 18 "--targetable--"
-21 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/ window 21,0
-31 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+21 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" } window 21,0
+31 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
 
-57 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20,20
-62 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
-71 "Flash Gale" sync / 1[56]:[^:]*:Portrayal of Wind:2ABA:/
-73 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-87 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
-92 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-98 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
-100 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-109 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
-121 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-130 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+57 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20,20
+62 "Flash Fire" Ability { id: "280A", source: "Portrayal of Fire" }
+71 "Flash Gale" Ability { id: "2ABA", source: "Portrayal of Wind" }
+73 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+87 "Poltergeist" Ability { id: "2824", source: "Goddess Chadarnook" }
+92 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+98 "Divine Lure" Ability { id: "2822", source: "Goddess Chadarnook" }
+100 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+109 "Demonic Pain" Ability { id: "2AEC", source: "Demon Chadarnook" }
+121 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+130 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-143 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-150 "Easterlies" sync / 03:........:Easterly:/
-153 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
-155 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-164 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-166 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
-171 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-184 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
-195 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
-198 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-200 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
-208 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-211 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
-216 "Demonic Storm" sync / 1[56]:[^:]*:Demon Chadarnook:2840:/
-225 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-238 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+143 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
+150 "Easterlies" AddedCombatant { name: "Easterly" }
+153 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
+155 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+164 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+166 "Featherlance" Ability { id: "283E", source: "Easterly" }
+171 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+184 "Last Kiss" Ability { id: "2826", source: "Demon Chadarnook" }
+195 "The Price" Ability { id: "2827", source: "Demon Chadarnook" }
+198 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+200 "Poltergeist" Ability { id: "2824", source: "Goddess Chadarnook" }
+208 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+211 "Divine Lure" Ability { id: "2822", source: "Goddess Chadarnook" }
+216 "Demonic Storm" Ability { id: "2840", source: "Demon Chadarnook" }
+225 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+238 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-251 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-256 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2810:/
-256 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
-261 "Flash Torrent" sync / 1[56]:[^:]*:Portrayal of Water:2AB9:/
-270 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
-281 "Demonic Pain" sync / 1[56]:[^:]*:Haunt:2AEC:/
-286 "Lullaby" sync / 1[56]:[^:]*:Goddess Chadarnook:2828:/
-294 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-300 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-306 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
+251 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
+256 "Earthquake" Ability { id: "2810", source: "Portrayal of Earth" }
+256 "Flash Fire" Ability { id: "280A", source: "Portrayal of Fire" }
+261 "Flash Torrent" Ability { id: "2AB9", source: "Portrayal of Water" }
+270 "Materialize" Ability { id: "282D", source: "Demon Chadarnook" }
+281 "Demonic Pain" Ability { id: "2AEC", source: "Haunt" }
+286 "Lullaby" Ability { id: "2828", source: "Goddess Chadarnook" }
+294 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+300 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+306 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
 319 "Demonic Stone" duration 5
-329 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
-333 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-340 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
-352 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+329 "Last Kiss" Ability { id: "2826", source: "Demon Chadarnook" }
+333 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+340 "The Price" Ability { id: "2827", source: "Demon Chadarnook" }
+352 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-365 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-373 "Easterlies" sync / 03:........:Easterly:/
-375 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
-376 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
-384 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-388 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
-396 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
-403 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2834:/
-408 "Demonic Storm" sync / 1[56]:[^:]*:Demon Chadarnook:2840:/
-408 "Demonic Spout" sync / 1[56]:[^:]*:Demon Chadarnook:2836:/
-425 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-438 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
-443 "Last Kiss" sync / 1[56]:[^:]*:Demon Chadarnook:2826:/
-447 "Flash Torrent" sync / 1[56]:[^:]*:Demon Chadarnook:280C:/
-449 "Flash Flood" sync / 1[56]:[^:]*:Haunt:2AEA:/
-454 "The Price" sync / 1[56]:[^:]*:Demon Chadarnook:2827:/
-454 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-469 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-482 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+365 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
+373 "Easterlies" AddedCombatant { name: "Easterly" }
+375 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
+376 "Demonic Wave" Ability { id: "2830", source: "Portrayal of Water" }
+384 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+388 "Featherlance" Ability { id: "283E", source: "Easterly" }
+396 "Materialize" Ability { id: "282D", source: "Demon Chadarnook" }
+403 "Demonic Spout" Ability { id: "2834", source: "Demon Chadarnook" }
+408 "Demonic Storm" Ability { id: "2840", source: "Demon Chadarnook" }
+408 "Demonic Spout" Ability { id: "2836", source: "Demon Chadarnook" }
+425 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+438 "Demonic Pain" Ability { id: "2AEC", source: "Demon Chadarnook" }
+443 "Last Kiss" Ability { id: "2826", source: "Demon Chadarnook" }
+447 "Flash Torrent" Ability { id: "280C", source: "Demon Chadarnook" }
+449 "Flash Flood" Ability { id: "2AEA", source: "Haunt" }
+454 "The Price" Ability { id: "2827", source: "Demon Chadarnook" }
+454 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+469 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+482 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-495 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-500 "Earthquake" sync / 1[56]:[^:]*:Portrayal of Earth:2810:/
-500 "Flash Fire" sync / 1[56]:[^:]*:Portrayal of Fire:280A:/
-509 "Flash Gale" sync / 1[56]:[^:]*:Portrayal of Wind:2ABA:/
-511 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-519 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-531 "Materialize" sync / 1[56]:[^:]*:Demon Chadarnook:282D:/
-538 "Poltergeist" sync / 1[56]:[^:]*:Goddess Chadarnook:2824:/
+495 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
+500 "Earthquake" Ability { id: "2810", source: "Portrayal of Earth" }
+500 "Flash Fire" Ability { id: "280A", source: "Portrayal of Fire" }
+509 "Flash Gale" Ability { id: "2ABA", source: "Portrayal of Wind" }
+511 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+519 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+531 "Materialize" Ability { id: "282D", source: "Demon Chadarnook" }
+538 "Poltergeist" Ability { id: "2824", source: "Goddess Chadarnook" }
 546 "Demonic Stone" duration 5
-552 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-554 "Divine Lure" sync / 1[56]:[^:]*:Goddess Chadarnook:2822:/
-560 "Demonic Shear" sync / 1[56]:[^:]*:Demon Chadarnook:2829:/
-573 "Demonic Pain" sync / 1[56]:[^:]*:Demon Chadarnook:2AEC:/
-581 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-590 "Release" sync / 1[56]:[^:]*:Demon Chadarnook:2804:/
+552 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+554 "Divine Lure" Ability { id: "2822", source: "Goddess Chadarnook" }
+560 "Demonic Shear" Ability { id: "2829", source: "Demon Chadarnook" }
+573 "Demonic Pain" Ability { id: "2AEC", source: "Demon Chadarnook" }
+581 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+590 "Release" Ability { id: "2804", source: "Demon Chadarnook" }
 
-603 "Possession" sync / 1[56]:[^:]*:Demon Chadarnook:2803:/ window 20
-611 "Easterlies" sync / 03:........:Easterly:/
-613 "Rock Hard" sync / 1[56]:[^:]*:Portrayal of Earth:2812:/
-614 "Demonic Wave" sync / 1[56]:[^:]*:Portrayal of Water:2830:/
-622 "Demonic Howl" sync / 1[56]:[^:]*:Demon Chadarnook:282B:/
-626 "Featherlance" sync / 1[56]:[^:]*:Easterly:283E:/
+603 "Possession" Ability { id: "2803", source: "Demon Chadarnook" } window 20
+611 "Easterlies" AddedCombatant { name: "Easterly" }
+613 "Rock Hard" Ability { id: "2812", source: "Portrayal of Earth" }
+614 "Demonic Wave" Ability { id: "2830", source: "Portrayal of Water" }
+622 "Demonic Howl" Ability { id: "282B", source: "Demon Chadarnook" }
+626 "Featherlance" Ability { id: "283E", source: "Easterly" }
 
-626 "--sync--" sync / 14:[^:]*:Demon Chadarnook:284D:/
+626 "--sync--" StartsUsing { id: "284D", source: "Demon Chadarnook" }
 641 "Enrage"

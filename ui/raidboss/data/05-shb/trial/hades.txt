@@ -6,29 +6,29 @@ hideall "--sync--"
 hideall "Double"
 
 # Phase 1: Everybody Murdered By Circles
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-1.5 "--sync--" sync / 1[56]:[^:]*:Hades:368:/ window 2,0
-15.5 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:4158:/ window 16,5
-25.9 "Bad Faith" sync / 1[56]:[^:]*:Hades:414[9A]:/
-32.9 "Double" sync / 1[56]:[^:]*:Hades:414F:/
-38.9 "Dark Eruption" sync / 1[56]:[^:]*:Hades:4150:/
-47.9 "Broken Faith" sync / 1[56]:[^:]*:Hades:414D:/ duration 22.5
-72.9 "Double" sync / 1[56]:[^:]*:Hades:414F:/
-78.9 "Shadow Spread" sync / 1[56]:[^:]*:Hades:4154:/
-84.9 "Shadow Spread" sync / 1[56]:[^:]*:Hades:4157:/
-90.9 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:4158:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+1.5 "--sync--" Ability { id: "368", source: "Hades" } window 2,0
+15.5 "Ravenous Assault" Ability { id: "4158", source: "Hades" } window 16,5
+25.9 "Bad Faith" Ability { id: "414[9A]", source: "Hades" }
+32.9 "Double" Ability { id: "414F", source: "Hades" }
+38.9 "Dark Eruption" Ability { id: "4150", source: "Hades" }
+47.9 "Broken Faith" Ability { id: "414D", source: "Hades" } duration 22.5
+72.9 "Double" Ability { id: "414F", source: "Hades" }
+78.9 "Shadow Spread" Ability { id: "4154", source: "Hades" }
+84.9 "Shadow Spread" Ability { id: "4157", source: "Hades" }
+90.9 "Ravenous Assault" Ability { id: "4158", source: "Hades" }
 
-104.4 "Bad Faith" sync / 1[56]:[^:]*:Hades:414[9A]:/
-114.4 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:4158:/
-122.4 "Double" sync / 1[56]:[^:]*:Hades:414F:/
-128.4 "Dark Eruption" sync / 1[56]:[^:]*:Hades:4150:/
-139.4 "Broken Faith" sync / 1[56]:[^:]*:Hades:414D:/ duration 22.5
-156.4 "Double" sync / 1[56]:[^:]*:Hades:414F:/
-162.4 "Shadow Spread" sync / 1[56]:[^:]*:Hades:4154:/
-168.4 "Shadow Spread" sync / 1[56]:[^:]*:Hades:4157:/
-175.4 "Ravenous Assault" sync / 1[56]:[^:]*:Hades:4158:/
+104.4 "Bad Faith" Ability { id: "414[9A]", source: "Hades" }
+114.4 "Ravenous Assault" Ability { id: "4158", source: "Hades" }
+122.4 "Double" Ability { id: "414F", source: "Hades" }
+128.4 "Dark Eruption" Ability { id: "4150", source: "Hades" }
+139.4 "Broken Faith" Ability { id: "414D", source: "Hades" } duration 22.5
+156.4 "Double" Ability { id: "414F", source: "Hades" }
+162.4 "Shadow Spread" Ability { id: "4154", source: "Hades" }
+168.4 "Shadow Spread" Ability { id: "4157", source: "Hades" }
+175.4 "Ravenous Assault" Ability { id: "4158", source: "Hades" }
 
-190.2 "Bad Faith" sync / 1[56]:[^:]*:Hades:414[9A]:/ window 80,80 jump 104.4
+190.2 "Bad Faith" Ability { id: "414[9A]", source: "Hades" } window 80,80 jump 104.4
 200.2 "Ravenous Assault"
 208.2 "Double"
 214.2 "Dark Eruption"
@@ -41,40 +41,40 @@ hideall "Double"
 
 # Phase 2: Push at 10%
 # (untargetable happens 2 seconds before :4599:, so no warning, sorry)
-300.0 "--sync--" sync / 1[56]:[^:]*:Hades:4599:/ window 300,0
+300.0 "--sync--" Ability { id: "4599", source: "Hades" } window 300,0
 # Give voice to your anguish, my brethren!
 304.5 "Adds (E/W)"
 
-400.0 "--sync--" sync / 14:[^:]*:Shadow .f .he Ancients:4593:/ window 500,0
-405.0 "Ancient Darkness" sync / 1[56]:[^:]*:Shadow .f .he Ancients:4593:/
-405.0 "Ancient Water III" sync / 1[56]:[^:]*:Shadow .f .he Ancients:4594:/
+400.0 "--sync--" StartsUsing { id: "4593", source: "Shadow .f .he Ancients" } window 500,0
+405.0 "Ancient Darkness" Ability { id: "4593", source: "Shadow .f .he Ancients" }
+405.0 "Ancient Water III" Ability { id: "4594", source: "Shadow .f .he Ancients" }
 # Give substance to our hopes, our dreams, our prayers...
 408.0 "Adds (NE/SW)"
 
-500.0 "--sync--" sync / 14:[^:]*:Shadow .f .he Ancients:4595:/ window 600,0
-505.0 "Ancient Aero" sync / 1[56]:[^:]*:Shadow .f .he Ancients:4595:/
-508.0 "Ancient Water III" sync / 1[56]:[^:]*:Shadow .f .he Ancients:4594:/
-508.0 "Ancient Darkness" sync / 1[56]:[^:]*:Shadow .f .he Ancients:4593:/
+500.0 "--sync--" StartsUsing { id: "4595", source: "Shadow .f .he Ancients" } window 600,0
+505.0 "Ancient Aero" Ability { id: "4595", source: "Shadow .f .he Ancients" }
+508.0 "Ancient Water III" Ability { id: "4594", source: "Shadow .f .he Ancients" }
+508.0 "Ancient Darkness" Ability { id: "4593", source: "Shadow .f .he Ancients" }
 # And by their undeniable grace, may our perfect world rise anew!
 510.0 "Adds (N/S)"
 
 # Yawn wide, the ever-hungering void!
-600.0 "--sync--" sync / 14:[^:]*:Hades:4597:/ window 600,0
-605.0 "Ancient Dark IV" sync / 1[56]:[^:]*:Hades:4597:/
+600.0 "--sync--" StartsUsing { id: "4597", source: "Hades" } window 600,0
+605.0 "Ancient Dark IV" Ability { id: "4597", source: "Hades" }
 
 
 # Phase 3: neo hades
 666.8 "--targetable--"
-666.8 "--sync--" sync / 1[56]:[^:]*:Hades:417C:/ window 680,0
-680.8 "Titanomachy" sync / 1[56]:[^:]*:Hades:4180:/ window 80,5
-689.8 "Shadow Stream" sync / 1[56]:[^:]*:Hades:415C:/
-696.8 "Dual Strike" sync / 1[56]:[^:]*:Hades:4161:/
-711.8 "Echo Of The Lost" sync / 1[56]:[^:]*:Hades:416[34]:/
-720.8 "Polydegmon's Purgation" sync / 1[56]:[^:]*:Hades:4170:/
-729.8 "Titanomachy" sync / 1[56]:[^:]*:Hades:4180:/
-739.8 "Hellborn Yawp" sync / 1[56]:[^:]*:Hades:416E:/
+666.8 "--sync--" Ability { id: "417C", source: "Hades" } window 680,0
+680.8 "Titanomachy" Ability { id: "4180", source: "Hades" } window 80,5
+689.8 "Shadow Stream" Ability { id: "415C", source: "Hades" }
+696.8 "Dual Strike" Ability { id: "4161", source: "Hades" }
+711.8 "Echo Of The Lost" Ability { id: "416[34]", source: "Hades" }
+720.8 "Polydegmon's Purgation" Ability { id: "4170", source: "Hades" }
+729.8 "Titanomachy" Ability { id: "4180", source: "Hades" }
+739.8 "Hellborn Yawp" Ability { id: "416E", source: "Hades" }
 
-780.1 "Titanomachy" sync / 1[56]:[^:]*:Hades:4180:/ window 40,40 jump 680.8
+780.1 "Titanomachy" Ability { id: "4180", source: "Hades" } window 40,40 jump 680.8
 789.1 "Shadow Stream"
 796.1 "Dual Strike"
 811.1 "Echo Of The Lost"
@@ -86,41 +86,41 @@ hideall "Double"
 # There is technically an echo of the lost before this captivity
 # but impossible to properly sync that given that the previous phase
 # also uses that ability.
-895.0 "--sync--" sync / 14:[^:]*:Hades:4168:/ window 300,0
-900.0 "Captivity" sync / 1[56]:[^:]*:Hades:4168:/
+895.0 "--sync--" StartsUsing { id: "4168", source: "Hades" } window 300,0
+900.0 "Captivity" Ability { id: "4168", source: "Hades" }
 900.8 "--fetters--"
-903.0 "--sync--" sync / 1[56]:[^:]*:Hades:417F:/
+903.0 "--sync--" Ability { id: "417F", source: "Hades" }
 905.0 "Gaol Add"
-906.5 "--sync--" sync / 14:[^:]*:Hades:416C:/
-936.2 "Chorus Of The Lost" sync / 1[56]:[^:]*:Hades:416C:/
+906.5 "--sync--" StartsUsing { id: "416C", source: "Hades" }
+936.2 "Chorus Of The Lost" Ability { id: "416C", source: "Hades" }
 # FIXME: I've never seen this go off, so unclear how far 416D is from 416C.
 # Chorus of the lost does seem likely to be 30 seconds.
-939.0 "--sync--" sync / 1[56]:[^:]*:Hades:416D:/ window 100,0
+939.0 "--sync--" Ability { id: "416D", source: "Hades" } window 100,0
 
-952.0 "Dual Strike" sync / 1[56]:[^:]*:Hades:4161:/ window 50,5
-953.0 "Nether Blast x6" duration 5 #sync / 1[56]:[^:]*:Hades:4173:/
+952.0 "Dual Strike" Ability { id: "4161", source: "Hades" } window 50,5
+953.0 "Nether Blast x6" duration 5 #Ability { id: "4173", source: "Hades" }
 962.3 "Doom"
 
-985.0 "Wail Of The Lost" sync / 1[56]:[^:]*:Hades:416[56]:/
-993.0 "Stream/Purgation?" sync / 1[56]:[^:]*:Hades:(415C|4170):/
-1002.0 "Titanomachy" sync / 1[56]:[^:]*:Hades:4180:/
-1011.0 "Hellborn Yawp" sync / 1[56]:[^:]*:Hades:416E:/
-1021.0 "Echo Of The Lost" sync / 1[56]:[^:]*:Hades:416[34]:/
-1031.0 "Dual Strike" sync / 1[56]:[^:]*:Hades:4161:/
-1039.0 "Titanomachy" sync / 1[56]:[^:]*:Hades:4180:/
-1046.0 "Shadow Spread" sync / 1[56]:[^:]*:Hades:415D:/
-1051.0 "Nether Blast x6" duration 5 #sync / 1[56]:[^:]*:Hades:4173:/
+985.0 "Wail Of The Lost" Ability { id: "416[56]", source: "Hades" }
+993.0 "Stream/Purgation?" Ability { id: ["415C", "4170"], source: "Hades" }
+1002.0 "Titanomachy" Ability { id: "4180", source: "Hades" }
+1011.0 "Hellborn Yawp" Ability { id: "416E", source: "Hades" }
+1021.0 "Echo Of The Lost" Ability { id: "416[34]", source: "Hades" }
+1031.0 "Dual Strike" Ability { id: "4161", source: "Hades" }
+1039.0 "Titanomachy" Ability { id: "4180", source: "Hades" }
+1046.0 "Shadow Spread" Ability { id: "415D", source: "Hades" }
+1051.0 "Nether Blast x6" duration 5 #Ability { id: "4173", source: "Hades" }
 
-1062.0 "Captivity" sync / 1[56]:[^:]*:Hades:4168:/ window 150,10
+1062.0 "Captivity" Ability { id: "4168", source: "Hades" } window 150,10
 1062.8 "--fetters--"
-1065.0 "--sync--" sync / 1[56]:[^:]*:Hades:417F:/
+1065.0 "--sync--" Ability { id: "417F", source: "Hades" }
 1066.0 "Doom"
 1067.0 "Gaol Add"
-1068.5 "--sync--" sync / 14:[^:]*:Hades:416C:/
-1098.2 "Chorus Of The Lost" sync / 1[56]:[^:]*:Hades:416C:/
-1101.0 "--sync--" sync / 1[56]:[^:]*:Hades:416D:/ window 100,0
+1068.5 "--sync--" StartsUsing { id: "416C", source: "Hades" }
+1098.2 "Chorus Of The Lost" Ability { id: "416C", source: "Hades" }
+1101.0 "--sync--" Ability { id: "416D", source: "Hades" } window 100,0
 
-1114.0 "Wail Of The Lost" sync / 1[56]:[^:]*:Hades:416[56]:/ window 50,5 jump 985
+1114.0 "Wail Of The Lost" Ability { id: "416[56]", source: "Hades" } window 50,5 jump 985
 1122.0 "Stream/Purgation?"
 1131.0 "Titanomachy"
 1140.0 "Hellborn Yawp"
@@ -131,21 +131,21 @@ hideall "Double"
 
 
 # Cutscene: Push at 30%?
-1300.0 "--sync--" sync / 14:[^:]*:Hades:4175:/ window 1300,0
+1300.0 "--sync--" StartsUsing { id: "4175", source: "Hades" } window 1300,0
 1304.0 "--untargetable--"
-1304.0 "Life In Captivity" sync / 1[56]:[^:]*:Hades:4175:/
-1307.0 "--sync--" sync / 1[56]:[^:]*:Hades:417F:/
-1307.0 "--sync--" sync / 1[56]:[^:]*:Hades:442C:/
-1310.0 "--sync--" sync / 1[56]:[^:]*:Hades:4176:/
-1342.0 "Black Cauldron" sync / 1[56]:[^:]*:Hades:415A:/
+1304.0 "Life In Captivity" Ability { id: "4175", source: "Hades" }
+1307.0 "--sync--" Ability { id: "417F", source: "Hades" }
+1307.0 "--sync--" Ability { id: "442C", source: "Hades" }
+1310.0 "--sync--" Ability { id: "4176", source: "Hades" }
+1342.0 "Black Cauldron" Ability { id: "415A", source: "Hades" }
 
 # Final dps race
 1354.0 "--targetable--"
-1361.0 "The Dark Devours x5" sync / 1[56]:[^:]*:Hades:4177:/ duration 9
-1376.0 "The Dark Devours x5" sync / 1[56]:[^:]*:Hades:4177:/ duration 9
-1391.0 "The Dark Devours x5" sync / 1[56]:[^:]*:Hades:4177:/ duration 9
-1403.0 "--sync--" sync / 1[56]:[^:]*:Hades:4159:/
+1361.0 "The Dark Devours x5" Ability { id: "4177", source: "Hades" } duration 9
+1376.0 "The Dark Devours x5" Ability { id: "4177", source: "Hades" } duration 9
+1391.0 "The Dark Devours x5" Ability { id: "4177", source: "Hades" } duration 9
+1403.0 "--sync--" Ability { id: "4159", source: "Hades" }
 
 # Gratuitous 45 second enrage.
-1412.7 "--sync--" sync / 14:[^:]*:Hades:417B:/ window 100,100
-1457.7 "Enrage" sync / 1[56]:[^:]*:Hades:417B:/
+1412.7 "--sync--" StartsUsing { id: "417B", source: "Hades" } window 100,100
+1457.7 "Enrage" Ability { id: "417B", source: "Hades" }

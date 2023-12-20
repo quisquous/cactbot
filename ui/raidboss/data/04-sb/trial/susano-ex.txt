@@ -11,25 +11,25 @@ hideall "Yasakani-No-Magatama"
 hideall "--knockback cloud--"
 
 ### Phase 1 ###
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-9.1 "Assail" sync / 1[56]:[^:]*:Susano:202C:/ window 10,10
-12.3 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
-36.4 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-40.7 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-42.5 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
-47.7 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
-50.8 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
-58.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-70.0 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
-77.1 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-81.4 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-81.5 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-88.2 "Assail" sync / 1[56]:[^:]*:Susano:202C:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+9.1 "Assail" Ability { id: "202C", source: "Susano" } window 10,10
+12.3 "Churn" Ability { id: "203E", source: "Susano" }
+36.4 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+40.7 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+42.5 "Brightstorm" Ability { id: "2030", source: "Susano" }
+47.7 "Assail" Ability { id: "202C", source: "Susano" }
+50.8 "Churn" Ability { id: "203E", source: "Susano" }
+58.8 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+70.0 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
+77.1 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+81.4 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+81.5 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+88.2 "Assail" Ability { id: "202C", source: "Susano" }
 93.8 "--untargetable--"
 
 ### Phase 2 (hp push at ???% / time push)
 # sync to touching the Blade's Shadow, this happens twice
-300.0 "--sync--" sync / 1[56]:[^:]*:Susano:21C6:/ window 300,100
+300.0 "--sync--" Ability { id: "21C6", source: "Susano" } window 300,100
 305.6 "--targetable--"
 305.6 "--Dark Levin 1--"
 308.4 "--Dark Levin 2--"
@@ -37,94 +37,94 @@ hideall "--knockback cloud--"
 314.4 "--Dark Levin 4--"
 
 ### Phase 3 ###
-400.0 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:2032:/ window 400,100
-404.1 "Ame-No-Murakumo" sync / 1[56]:[^:]*:Susano:218C:/
+400.0 "Ame-No-Murakumo" Ability { id: "2032", source: "Susano" } window 400,100
+404.1 "Ame-No-Murakumo" Ability { id: "218C", source: "Susano" }
 413.6 "--targetable--"
 
-425.9 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-432.6 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
-438.1 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
-443.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
-449.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
-458.9 "Ukehi x2" sync / 1[56]:[^:]*:Susano:2036:/
-467.2 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+425.9 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+432.6 "Levinbolt 1" Ability { id: "203C", source: "Susano" }
+438.1 "Levinbolt 2" Ability { id: "203C", source: "Susano" }
+443.5 "Levinbolt 3" Ability { id: "203C", source: "Susano" }
+449.0 "Levinbolt 4" Ability { id: "203C", source: "Susano" }
+458.9 "Ukehi x2" Ability { id: "2036", source: "Susano" }
+467.2 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
 474.5 "--knockback cloud--"
-474.5 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-478.8 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-478.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-480.6 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
+474.5 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+478.8 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+478.9 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+480.6 "Brightstorm" Ability { id: "2030", source: "Susano" }
 
-490.8 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-495.9 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
-497.5 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
-503.0 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
-506.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-508.5 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
-514.0 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
-521.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+490.8 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+495.9 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
+497.5 "Levinbolt 1" Ability { id: "203C", source: "Susano" }
+503.0 "Levinbolt 2" Ability { id: "203C", source: "Susano" }
+506.7 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+508.5 "Levinbolt 3" Ability { id: "203C", source: "Susano" }
+514.0 "Levinbolt 4" Ability { id: "203C", source: "Susano" }
+521.1 "Ukehi x3" Ability { id: "2036", source: "Susano" }
 
-531.5 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
-547.2 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-554.5 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-557.1 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
-566.7 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
-573.2 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
-579.7 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
-586.2 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
-592.6 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
-604.0 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
-611.2 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-615.5 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-617.3 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
-622.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
+531.5 "The Hidden Gate" Ability { id: "2034", source: "Susano" }
+547.2 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+554.5 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+557.1 "The Sealed Gate" Ability { id: "2035", source: "Ama-No-Iwato" }
+566.7 "Levinbolt Stun 1" Ability { id: "203C", source: "Susano" }
+573.2 "Levinbolt Stun 2" Ability { id: "203C", source: "Susano" }
+579.7 "Levinbolt Stun 3" Ability { id: "203C", source: "Susano" }
+586.2 "Levinbolt Stun 4" Ability { id: "203C", source: "Susano" }
+592.6 "Ukehi x3" Ability { id: "2036", source: "Susano" }
+604.0 "Churn" Ability { id: "203E", source: "Susano" }
+611.2 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+615.5 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+617.3 "Brightstorm" Ability { id: "2030", source: "Susano" }
+622.4 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
 
-632.7 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-642.9 "Levinbolt Stun 1" sync / 1[56]:[^:]*:Susano:203C:/
-649.3 "Levinbolt Stun 2" sync / 1[56]:[^:]*:Susano:203C:/
-655.9 "Levinbolt Stun 3" sync / 1[56]:[^:]*:Susano:203C:/
-662.4 "Levinbolt Stun 4" sync / 1[56]:[^:]*:Susano:203C:/
-669.8 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
-676.1 "Churn" sync / 1[56]:[^:]*:Susano:203E:/
-684.1 "Rasen Kaikyo 1" sync / 1[56]:[^:]*:Susano:202D:/
-689.3 "Rasen Kaikyo 2" sync / 1[56]:[^:]*:Susano:202D:/
+632.7 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+642.9 "Levinbolt Stun 1" Ability { id: "203C", source: "Susano" }
+649.3 "Levinbolt Stun 2" Ability { id: "203C", source: "Susano" }
+655.9 "Levinbolt Stun 3" Ability { id: "203C", source: "Susano" }
+662.4 "Levinbolt Stun 4" Ability { id: "203C", source: "Susano" }
+669.8 "Ukehi x3" Ability { id: "2036", source: "Susano" }
+676.1 "Churn" Ability { id: "203E", source: "Susano" }
+684.1 "Rasen Kaikyo 1" Ability { id: "202D", source: "Susano" }
+689.3 "Rasen Kaikyo 2" Ability { id: "202D", source: "Susano" }
 
-701.6 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-706.7 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
-708.3 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
-713.8 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
-713.8 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-717.4 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-719.2 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
-723.9 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-724.7 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
-728.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
+701.6 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+706.7 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
+708.3 "Levinbolt 1" Ability { id: "203C", source: "Susano" }
+713.8 "Levinbolt 2" Ability { id: "203C", source: "Susano" }
+713.8 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+717.4 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+719.2 "Levinbolt 3" Ability { id: "203C", source: "Susano" }
+723.9 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+724.7 "Levinbolt 4" Ability { id: "203C", source: "Susano" }
+728.1 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
 735.3 "--knockback cloud--"
-735.3 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-739.6 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-739.7 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-741.4 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
-748.5 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+735.3 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+739.6 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+739.7 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+741.4 "Brightstorm" Ability { id: "2030", source: "Susano" }
+748.5 "Ukehi x3" Ability { id: "2036", source: "Susano" }
 
-760.0 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/
-776.0 "Stormsplitter" sync / 1[56]:[^:]*:Susano:2033:/
-781.1 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
-782.7 "Levinbolt 1" sync / 1[56]:[^:]*:Susano:203C:/
-785.6 "The Sealed Gate" sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
-788.2 "Levinbolt 2" sync / 1[56]:[^:]*:Susano:203C:/
-791.9 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-793.7 "Levinbolt 3" sync / 1[56]:[^:]*:Susano:203C:/
-797.3 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-799.2 "Levinbolt 4" sync / 1[56]:[^:]*:Susano:203C:/
-807.3 "Yasakani-No-Magatama" sync / 1[56]:[^:]*:Susano:2040:/
-812.4 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-814.8 "Yata-No-Kagami" sync / 1[56]:[^:]*:Susano:202F:/
-819.1 "Seasplitter" sync / 1[56]:[^:]*:Susano:25BD:/
-819.2 "The Parting Clouds" sync / 1[56]:[^:]*:Thunderhead:2041:/
-820.9 "Brightstorm" sync / 1[56]:[^:]*:Susano:2030:/
-826.0 "Rasen Kaikyo" sync / 1[56]:[^:]*:Susano:202D:/
-832.1 "Ukehi x3" sync / 1[56]:[^:]*:Susano:2036:/
+760.0 "The Hidden Gate" Ability { id: "2034", source: "Susano" }
+776.0 "Stormsplitter" Ability { id: "2033", source: "Susano" }
+781.1 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
+782.7 "Levinbolt 1" Ability { id: "203C", source: "Susano" }
+785.6 "The Sealed Gate" Ability { id: "2035", source: "Ama-No-Iwato" }
+788.2 "Levinbolt 2" Ability { id: "203C", source: "Susano" }
+791.9 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+793.7 "Levinbolt 3" Ability { id: "203C", source: "Susano" }
+797.3 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+799.2 "Levinbolt 4" Ability { id: "203C", source: "Susano" }
+807.3 "Yasakani-No-Magatama" Ability { id: "2040", source: "Susano" }
+812.4 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+814.8 "Yata-No-Kagami" Ability { id: "202F", source: "Susano" }
+819.1 "Seasplitter" Ability { id: "25BD", source: "Susano" }
+819.2 "The Parting Clouds" Ability { id: "2041", source: "Thunderhead" }
+820.9 "Brightstorm" Ability { id: "2030", source: "Susano" }
+826.0 "Rasen Kaikyo" Ability { id: "202D", source: "Susano" }
+832.1 "Ukehi x3" Ability { id: "2036", source: "Susano" }
 
-843.6 "The Hidden Gate" sync / 1[56]:[^:]*:Susano:2034:/ window 40,40 jump 531.5
-859.3 "Rasen Kaikyo" #sync / 1[56]:[^:]*:Susano:202D:/
-866.6 "Stormsplitter" #sync / 1[56]:[^:]*:Susano:2033:/
-869.2 "The Sealed Gate" #sync / 1[56]:[^:]*:Ama-No-Iwato:2035:/
+843.6 "The Hidden Gate" Ability { id: "2034", source: "Susano" } window 40,40 jump 531.5
+859.3 "Rasen Kaikyo" #Ability { id: "202D", source: "Susano" }
+866.6 "Stormsplitter" #Ability { id: "2033", source: "Susano" }
+869.2 "The Sealed Gate" #Ability { id: "2035", source: "Ama-No-Iwato" }

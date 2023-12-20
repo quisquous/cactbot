@@ -5,141 +5,141 @@
 # Enrage is approximately 13:40. Yes, Normal has an enrage.
 # -ii 1ED9 1EDA 23D7 23D9 2583
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-6.6 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/ window 6.6,2.5
-12.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-19.0 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/ window 19,10
-29.1 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-37.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-38.1 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-52.6 "Breath Wing" sync / 1[56]:[^:]*:Alte Roite:23DE:/ window 30,30
-56.8 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-62.7 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-68.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-75.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-82.7 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-87.2 "Clamp" sync / 1[56]:[^:]*:Alte Roite:23E2:/ window 30,30
-93.4 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-99.5 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-112.7 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:23DA:/ window 30,30
-118.7 "Blaze" sync / 1[56]:[^:]*:Alte Roite:23E1:/
-125.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+6.6 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" } window 6.6,2.5
+12.8 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+19.0 "Flame" Ability { id: "23DD", source: "Alte Roite" } window 19,10
+29.1 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+37.3 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+38.1 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+52.6 "Breath Wing" Ability { id: "23DE", source: "Alte Roite" } window 30,30
+56.8 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+62.7 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+68.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+75.0 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+82.7 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+87.2 "Clamp" Ability { id: "23E2", source: "Alte Roite" } window 30,30
+93.4 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+99.5 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+112.7 "Levinbolt" Ability { id: "23DA", source: "Alte Roite" } window 30,30
+118.7 "Blaze" Ability { id: "23E1", source: "Alte Roite" }
+125.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
 
-140.3 "The Classical Elements" sync / 1[56]:[^:]*:Alte Roite:23E0:/ window 30,30
-143.4 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-145.5 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-155.6 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-162.9 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-166.9 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:23DA:/ window 30,30
-171.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-178.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-185.7 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-191.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-194.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-209.7 "Breath Wing" sync / 1[56]:[^:]*:Alte Roite:23DE:/ window 30,30
-210.4 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-213.8 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-216.8 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-223.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-229.1 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-236.2 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/ window 30,30
-243.3 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-249.4 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-257.1 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-261.6 "Clamp" sync / 1[56]:[^:]*:Alte Roite:23E2:/
-267.7 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
+140.3 "The Classical Elements" Ability { id: "23E0", source: "Alte Roite" } window 30,30
+143.4 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+145.5 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+155.6 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+162.9 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+166.9 "Levinbolt" Ability { id: "23DA", source: "Alte Roite" } window 30,30
+171.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+178.0 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+185.7 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+191.2 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+194.3 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+209.7 "Breath Wing" Ability { id: "23DE", source: "Alte Roite" } window 30,30
+210.4 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+213.8 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+216.8 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+223.0 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+229.1 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+236.2 "Charybdis" Ability { id: "23DB", source: "Alte Roite" } window 30,30
+243.3 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+249.4 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+257.1 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+261.6 "Clamp" Ability { id: "23E2", source: "Alte Roite" }
+267.7 "Roar" Ability { id: "23DC", source: "Alte Roite" }
 
-278.1 "The Classical Elements" sync / 1[56]:[^:]*:Alte Roite:23E0:/ window 30,30
-281.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-284.4 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-289.5 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-299.6 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/ window 30,30
-300.4 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-303.9 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-309.8 "Blaze" sync / 1[56]:[^:]*:Alte Roite:23E1:/
-322.0 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/ window 30,30
-329.1 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-331.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-333.3 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-343.4 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-350.7 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-354.7 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:23DA:/ window 30,30
-361.3 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-366.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-372.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-380.6 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-386.1 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-389.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-404.6 "Breath Wing" sync / 1[56]:[^:]*:Alte Roite:23DE:/ window 30,30
-405.3 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-408.7 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-411.7 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-417.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-424.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-431.1 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/
-438.2 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-444.3 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-452.0 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-456.5 "Clamp" sync / 1[56]:[^:]*:Alte Roite:23E2:/
-462.6 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
+278.1 "The Classical Elements" Ability { id: "23E0", source: "Alte Roite" } window 30,30
+281.3 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+284.4 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+289.5 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+299.6 "Downburst" Ability { id: "1ED8", source: "Alte Roite" } window 30,30
+300.4 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+303.9 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+309.8 "Blaze" Ability { id: "23E1", source: "Alte Roite" }
+322.0 "Charybdis" Ability { id: "23DB", source: "Alte Roite" } window 30,30
+329.1 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+331.2 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+333.3 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+343.4 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+350.7 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+354.7 "Levinbolt" Ability { id: "23DA", source: "Alte Roite" } window 30,30
+361.3 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+366.8 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+372.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+380.6 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+386.1 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+389.2 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+404.6 "Breath Wing" Ability { id: "23DE", source: "Alte Roite" } window 30,30
+405.3 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+408.7 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+411.7 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+417.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+424.0 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+431.1 "Charybdis" Ability { id: "23DB", source: "Alte Roite" }
+438.2 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+444.3 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+452.0 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+456.5 "Clamp" Ability { id: "23E2", source: "Alte Roite" }
+462.6 "Roar" Ability { id: "23DC", source: "Alte Roite" }
 
-473.0 "The Classical Elements" sync / 1[56]:[^:]*:Alte Roite:23E0:/
-476.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-479.3 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-484.4 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-494.5 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-495.3 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-498.8 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-504.7 "Blaze" sync / 1[56]:[^:]*:Alte Roite:23E1:/
-516.8 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/ window 30,30
-523.9 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-526.0 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-528.1 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-538.2 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-545.5 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-549.6 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:23DA:/ window 30,30
-556.2 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-561.7 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-567.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-575.5 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-581.0 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-584.1 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-599.5 "Breath Wing" sync / 1[56]:[^:]*:Alte Roite:23DE:/ window 30,30
-600.2 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-603.6 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-606.6 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-612.8 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-618.9 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-626.0 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/ window 30,30
-633.1 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-639.2 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-646.9 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-651.4 "Clamp" sync / 1[56]:[^:]*:Alte Roite:23E2:/
-657.5 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
+473.0 "The Classical Elements" Ability { id: "23E0", source: "Alte Roite" }
+476.2 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+479.3 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+484.4 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+494.5 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+495.3 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+498.8 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+504.7 "Blaze" Ability { id: "23E1", source: "Alte Roite" }
+516.8 "Charybdis" Ability { id: "23DB", source: "Alte Roite" } window 30,30
+523.9 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+526.0 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+528.1 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+538.2 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+545.5 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+549.6 "Levinbolt" Ability { id: "23DA", source: "Alte Roite" } window 30,30
+556.2 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+561.7 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+567.8 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+575.5 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+581.0 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+584.1 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+599.5 "Breath Wing" Ability { id: "23DE", source: "Alte Roite" } window 30,30
+600.2 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+603.6 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+606.6 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+612.8 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+618.9 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+626.0 "Charybdis" Ability { id: "23DB", source: "Alte Roite" } window 30,30
+633.1 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+639.2 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+646.9 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+651.4 "Clamp" Ability { id: "23E2", source: "Alte Roite" }
+657.5 "Roar" Ability { id: "23DC", source: "Alte Roite" }
 
-667.9 "The Classical Elements" sync / 1[56]:[^:]*:Alte Roite:23E0:/
-671.1 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-674.2 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-679.3 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-689.4 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-690.2 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-693.6 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-699.5 "Blaze" sync / 1[56]:[^:]*:Alte Roite:23E1:/
-711.7 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/ window 30,30
-718.8 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-720.9 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/
-723.0 "Flash Freeze" sync / 1[56]:[^:]*:Alte Roite:23DF:/
-733.1 "Downburst" sync / 1[56]:[^:]*:Alte Roite:1ED8:/
-740.4 "Burn" sync / 1[56]:[^:]*:Ball Of Fire:23D5:/
-744.5 "Levinbolt" sync / 1[56]:[^:]*:Alte Roite:23DA:/ window 30,30
-751.1 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-756.6 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-762.7 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-769.8 "Charybdis" sync / 1[56]:[^:]*:Alte Roite:23DB:/
-776.9 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/ window 30,15
-783.0 "Wyrm Tail" sync / 1[56]:[^:]*:Alte Roite:23D6:/
-790.7 "Twin Bolt x2" # sync / 1[56]:[^:]*:Alte Roite:23D8:/
-795.2 "Clamp" sync / 1[56]:[^:]*:Alte Roite:23E2:/
-801.3 "Roar" sync / 1[56]:[^:]*:Alte Roite:23DC:/
-803.5 "Flame" sync / 1[56]:[^:]*:Alte Roite:23DD:/ window 50,5
-820.7 "Burn Enrage" sync / 1[56]:[^:]*:Ball Of Fire:23E4:/
+667.9 "The Classical Elements" Ability { id: "23E0", source: "Alte Roite" }
+671.1 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+674.2 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+679.3 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+689.4 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+690.2 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+693.6 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+699.5 "Blaze" Ability { id: "23E1", source: "Alte Roite" }
+711.7 "Charybdis" Ability { id: "23DB", source: "Alte Roite" } window 30,30
+718.8 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+720.9 "Flame" Ability { id: "23DD", source: "Alte Roite" }
+723.0 "Flash Freeze" Ability { id: "23DF", source: "Alte Roite" }
+733.1 "Downburst" Ability { id: "1ED8", source: "Alte Roite" }
+740.4 "Burn" Ability { id: "23D5", source: "Ball Of Fire" }
+744.5 "Levinbolt" Ability { id: "23DA", source: "Alte Roite" } window 30,30
+751.1 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+756.6 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+762.7 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+769.8 "Charybdis" Ability { id: "23DB", source: "Alte Roite" }
+776.9 "Roar" Ability { id: "23DC", source: "Alte Roite" } window 30,15
+783.0 "Wyrm Tail" Ability { id: "23D6", source: "Alte Roite" }
+790.7 "Twin Bolt x2" # Ability { id: "23D8", source: "Alte Roite" }
+795.2 "Clamp" Ability { id: "23E2", source: "Alte Roite" }
+801.3 "Roar" Ability { id: "23DC", source: "Alte Roite" }
+803.5 "Flame" Ability { id: "23DD", source: "Alte Roite" } window 50,5
+820.7 "Burn Enrage" Ability { id: "23E4", source: "Ball Of Fire" }

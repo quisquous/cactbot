@@ -9,97 +9,97 @@ hideall "--sync--"
 hideall "Arcane Revelation"
 hideall "Infernal Slaughter"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.0 "--sync--" sync / 14:[^:]*:Rubicante:7CEA:/ window 10,10
-12.0 "Inferno" sync / 1[56]:[^:]*:Rubicante:7CEA:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+7.0 "--sync--" StartsUsing { id: "7CEA", source: "Rubicante" } window 10,10
+12.0 "Inferno" Ability { id: "7CEA", source: "Rubicante" }
 
 # Phase 1 (Purgations & Arch Inferno)
-15.1 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
-17.3 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/
-26.7 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
-47.7 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:7CC4:/ # no spin, straight line
-52.7 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
-68.9 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:7CC4:/ # no spin, jagged line
-73.9 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
-86.9 "Shattering Heat" sync / 1[56]:[^:]*:Rubicante:7CEB:/
-94.1 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+15.1 "--middle--" Ability { id: "7CBC", source: "Rubicante" }
+17.3 "Hope Abandon Ye" Ability { id: "7F26", source: "Rubicante" }
+26.7 "Arcane Revelation" Ability { id: "7CBE", source: "Rubicante" }
+47.7 "Ordeal of Purgation" Ability { id: "7CC4", source: "Rubicante" } # no spin, straight line
+52.7 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
+68.9 "Ordeal of Purgation" Ability { id: "7CC4", source: "Rubicante" } # no spin, jagged line
+73.9 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
+86.9 "Shattering Heat" Ability { id: "7CEB", source: "Rubicante" }
+94.1 "--middle--" Ability { id: "7CBC", source: "Rubicante" }
 
-102.1 "Arch Inferno" sync / 1[56]:[^:]*:Rubicante:7CC7:/ window 30,30
-102.1 "Inferno Devil" sync / 1[56]:[^:]*:Rubicante:7CC9:/
-105.2 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
-112.2 "Conflagration" sync / 1[56]:[^:]*:Rubicante:7CCB:/
-115.3 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
-122.3 "Radial Flagration" sync / 1[56]:[^:]*:Rubicante:7CCC:/
-130.4 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
+102.1 "Arch Inferno" Ability { id: "7CC7", source: "Rubicante" } window 30,30
+102.1 "Inferno Devil" Ability { id: "7CC9", source: "Rubicante" }
+105.2 "Infernal Slaughter" Ability { id: "7CCE", source: "Rubicante" }
+112.2 "Conflagration" Ability { id: "7CCB", source: "Rubicante" }
+115.3 "Infernal Slaughter" Ability { id: "7CCE", source: "Rubicante" }
+122.3 "Radial Flagration" Ability { id: "7CCC", source: "Rubicante" }
+130.4 "--middle--" Ability { id: "7CBC", source: "Rubicante" }
 
-132.8 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/ window 30,30
-142.2 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
-163.1 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/ # middle-disc spin, jagged line (from this point forward)
-171.1 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
-187.5 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
-195.5 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
+132.8 "Hope Abandon Ye" Ability { id: "7F26", source: "Rubicante" } window 30,30
+142.2 "Arcane Revelation" Ability { id: "7CBE", source: "Rubicante" }
+163.1 "Ordeal of Purgation" Ability { id: "80E8", source: "Rubicante" } # middle-disc spin, jagged line (from this point forward)
+171.1 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
+187.5 "Ordeal of Purgation" Ability { id: "80E8", source: "Rubicante" }
+195.5 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
 201.6 "--untargetable--"
 
 # Adds Phase
 # The adds will intermittently cast various AoEs.
 # All are ground-telegraphed except 7CD4 (Ghastly Torch), a small raid-wide.
 # Because variation in adds deaths can affect casts, only display the first few mechanics.
-1000.0 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CD0:/ window 1000,0
-1011.1 "Ghastly Torch" sync / 1[56]:[^:]*:Greater Flamesent:7CD4:/
-1012.1 "Ghastly Flame" sync / 1[56]:[^:]*:Flamesent:7CD7:/
-1016.2 "Ghastly Wind" sync / 1[56]:[^:]*:Flamesent:7CD6:/
-1017.2 "Ghastly Torch" sync / 1[56]:[^:]*:Greater Flamesent:7CD4:/
-1022.2 "Shattering Heat" sync / 1[56]:[^:]*:Flamesent:7CD5:/
+1000.0 "--sync--" Ability { id: "7CD0", source: "Rubicante" } window 1000,0
+1011.1 "Ghastly Torch" Ability { id: "7CD4", source: "Greater Flamesent" }
+1012.1 "Ghastly Flame" Ability { id: "7CD7", source: "Flamesent" }
+1016.2 "Ghastly Wind" Ability { id: "7CD6", source: "Flamesent" }
+1017.2 "Ghastly Torch" Ability { id: "7CD4", source: "Greater Flamesent" }
+1022.2 "Shattering Heat" Ability { id: "7CD5", source: "Flamesent" }
 
 # Phase 2 (Flamerake & Sweeping Immolation)
-1986.4 "--sync--"  sync / 14:[^:]*:Rubicante:7CD2:/ window 1000,0
+1986.4 "--sync--"  StartsUsing { id: "7CD2", source: "Rubicante" } window 1000,0
 1986.4 "--targetable--"
-2000.0 "Blazing Rapture" sync / 1[56]:[^:]*:Rubicante:7CD2:/
+2000.0 "Blazing Rapture" Ability { id: "7CD2", source: "Rubicante" }
 2013.4 "--untargetable--"
 2036.4 "--targetable--"
-2048.5 "Inferno (spread)" sync / 1[56]:[^:]*:Rubicante:7CDA:/
-2062.2 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CDD:/
-2064.6 "Flamerake 1" sync / 1[56]:[^:]*:Rubicante:7CDF:/
-2065.6 "Flamerake 2" sync / 1[56]:[^:]*:Rubicante:7CE0:/
-2066.6 "Flamerake 3" sync / 1[56]:[^:]*:Rubicante:7CE1:/
-2077.0 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CC3:/
-2082.0 "Soulscald" sync / 1[56]:[^:]*:Rubicante:7CE6:/
-2088.1 "Scalding Fleet" #sync / 1[56]:[^:]*:Rubicante Mirage:7CE9:/
-2094.3 "--sync--" sync / 1[56]:[^:]*:Rubicante:8034:/
-2099.3 "Dualfire" sync / 1[56]:[^:]*:Rubicante:7D95:/
-2114.1 "Sweeping Immolation" sync / 1[56]:[^:]*:Rubicante:7CE3:/
-2114.5 "Total Immolation" sync / 1[56]:[^:]*:Rubicante:7CE5:/ window 30,30
+2048.5 "Inferno (spread)" Ability { id: "7CDA", source: "Rubicante" }
+2062.2 "--sync--" Ability { id: "7CDD", source: "Rubicante" }
+2064.6 "Flamerake 1" Ability { id: "7CDF", source: "Rubicante" }
+2065.6 "Flamerake 2" Ability { id: "7CE0", source: "Rubicante" }
+2066.6 "Flamerake 3" Ability { id: "7CE1", source: "Rubicante" }
+2077.0 "--sync--" Ability { id: "7CC3", source: "Rubicante" }
+2082.0 "Soulscald" Ability { id: "7CE6", source: "Rubicante" }
+2088.1 "Scalding Fleet" #Ability { id: "7CE9", source: "Rubicante Mirage" }
+2094.3 "--sync--" Ability { id: "8034", source: "Rubicante" }
+2099.3 "Dualfire" Ability { id: "7D95", source: "Rubicante" }
+2114.1 "Sweeping Immolation" Ability { id: "7CE3", source: "Rubicante" }
+2114.5 "Total Immolation" Ability { id: "7CE5", source: "Rubicante" } window 30,30
 
 # Loop begins
-2127.5 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
-2129.7 "Hope Abandon Ye" sync / 1[56]:[^:]*:Rubicante:7F26:/
-2139.1 "Arcane Revelation" sync / 1[56]:[^:]*:Rubicante:7CBE:/
-2160.0 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
-2168.0 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
-2184.7 "Ordeal of Purgation" sync / 1[56]:[^:]*:Rubicante:80E8:/
-2192.7 "Fiery Expiation" sync / 1[56]:[^:]*:Circle of Purgatory:7CC5:/
-2201.7 "Inferno (aoe)" sync / 1[56]:[^:]*:Rubicante:7CEA:/
-2207.8 "--middle--" sync / 1[56]:[^:]*:Rubicante:7CBC:/
-2215.8 "Arch Inferno" sync / 1[56]:[^:]*:Rubicante:7CC7:/
-2215.8 "Inferno Devil" sync / 1[56]:[^:]*:Rubicante:7CC9:/
-2218.9 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
-2225.9 "Conflagration" sync / 1[56]:[^:]*:Rubicante:7CCB:/
-2229.0 "Infernal Slaughter" sync / 1[56]:[^:]*:Rubicante:7CCE:/
-2236.0 "Radial Flagration" sync / 1[56]:[^:]*:Rubicante:7CCC:/
-2257.3 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CDD:/
-2259.5 "Flamerake 1" sync / 1[56]:[^:]*:Rubicante:7CDF:/
-2260.5 "Flamerake 2" sync / 1[56]:[^:]*:Rubicante:7CE0:/
-2261.5 "Flamerake 3" sync / 1[56]:[^:]*:Rubicante:7CE1:/
-2273.5 "Inferno (spread)" sync / 1[56]:[^:]*:Rubicante:7CDA:/
-2281.8 "--sync--" sync / 1[56]:[^:]*:Rubicante:7CC3:/
-2286.8 "Soulscald" sync / 1[56]:[^:]*:Rubicante:7CE6:/
-2292.9 "Scalding Fleet" #sync / 1[56]:[^:]*:Rubicante Mirage:7CE9:/
-2299.1 "--sync--" sync / 1[56]:[^:]*:Rubicante:8034:/
-2304.1 "Dualfire" sync / 1[56]:[^:]*:Rubicante:7D95:/
-2318.9 "Sweeping Immolation" sync / 1[56]:[^:]*:Rubicante:7CE3:/
-2319.3 "Total Immolation" sync / 1[56]:[^:]*:Rubicante:7CE5:/ window 30,10000 jump 1114.5
+2127.5 "--middle--" Ability { id: "7CBC", source: "Rubicante" }
+2129.7 "Hope Abandon Ye" Ability { id: "7F26", source: "Rubicante" }
+2139.1 "Arcane Revelation" Ability { id: "7CBE", source: "Rubicante" }
+2160.0 "Ordeal of Purgation" Ability { id: "80E8", source: "Rubicante" }
+2168.0 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
+2184.7 "Ordeal of Purgation" Ability { id: "80E8", source: "Rubicante" }
+2192.7 "Fiery Expiation" Ability { id: "7CC5", source: "Circle of Purgatory" }
+2201.7 "Inferno (aoe)" Ability { id: "7CEA", source: "Rubicante" }
+2207.8 "--middle--" Ability { id: "7CBC", source: "Rubicante" }
+2215.8 "Arch Inferno" Ability { id: "7CC7", source: "Rubicante" }
+2215.8 "Inferno Devil" Ability { id: "7CC9", source: "Rubicante" }
+2218.9 "Infernal Slaughter" Ability { id: "7CCE", source: "Rubicante" }
+2225.9 "Conflagration" Ability { id: "7CCB", source: "Rubicante" }
+2229.0 "Infernal Slaughter" Ability { id: "7CCE", source: "Rubicante" }
+2236.0 "Radial Flagration" Ability { id: "7CCC", source: "Rubicante" }
+2257.3 "--sync--" Ability { id: "7CDD", source: "Rubicante" }
+2259.5 "Flamerake 1" Ability { id: "7CDF", source: "Rubicante" }
+2260.5 "Flamerake 2" Ability { id: "7CE0", source: "Rubicante" }
+2261.5 "Flamerake 3" Ability { id: "7CE1", source: "Rubicante" }
+2273.5 "Inferno (spread)" Ability { id: "7CDA", source: "Rubicante" }
+2281.8 "--sync--" Ability { id: "7CC3", source: "Rubicante" }
+2286.8 "Soulscald" Ability { id: "7CE6", source: "Rubicante" }
+2292.9 "Scalding Fleet" #Ability { id: "7CE9", source: "Rubicante Mirage" }
+2299.1 "--sync--" Ability { id: "8034", source: "Rubicante" }
+2304.1 "Dualfire" Ability { id: "7D95", source: "Rubicante" }
+2318.9 "Sweeping Immolation" Ability { id: "7CE3", source: "Rubicante" }
+2319.3 "Total Immolation" Ability { id: "7CE5", source: "Rubicante" } window 30,10000 jump 1114.5
 # pretty sure this is the end of the loop, but didn't go far enough to see it loop around again
 
 # Fake loop

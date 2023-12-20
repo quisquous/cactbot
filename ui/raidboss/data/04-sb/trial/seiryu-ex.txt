@@ -5,115 +5,115 @@ hideall "--Reset--"
 hideall "--sync--"
 
 # Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/ window 13,5
-#18.5 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:37DC:/ # towers later, but nothing here
-20.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-27.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
-30.0 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#33.5 "Onmyo Sigil" sync / 1[56]:[^:]*:Seiryu:37D6:/
-36.5 "Onmyo Sigil" sync / 1[56]:[^:]*:Seiryu:3A01:/
-46.5 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
-62.8 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CE:/
-#64.8 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-69.8 "--sync--" sync / 1[56]:[^:]*:Seiryu:37EF:/
-75.8 "Red Rush" sync / 1[56]:[^:]*:Aka-no-shiki:37F1:/
-75.8 "Blue Bolt" sync / 1[56]:[^:]*:Ao-no-shiki:37F0:/
-80.5 "100-tonze Swing" sync / 1[56]:[^:]*:Iwa-no-shiki:37ED:/
-89.5 "Kanabo" sync / 1[56]:[^:]*:Iwa-no-shiki:37EE:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+12.5 "Fifth Element" Ability { id: "37C3", source: "Seiryu" } window 13,5
+#18.5 "Serpent Ascending" Ability { id: "37DC", source: "Seiryu" } # towers later, but nothing here
+20.5 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+27.0 "Kuji-kiri" Ability { id: "37E1", source: "Seiryu" }
+30.0 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#33.5 "Onmyo Sigil" Ability { id: "37D6", source: "Seiryu" }
+36.5 "Onmyo Sigil" Ability { id: "3A01", source: "Seiryu" }
+46.5 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
+62.8 "Summon Shiki" Ability { id: "37CE", source: "Seiryu" }
+#64.8 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+69.8 "--sync--" Ability { id: "37EF", source: "Seiryu" }
+75.8 "Red Rush" Ability { id: "37F1", source: "Aka-no-shiki" }
+75.8 "Blue Bolt" Ability { id: "37F0", source: "Ao-no-shiki" }
+80.5 "100-tonze Swing" Ability { id: "37ED", source: "Iwa-no-shiki" }
+89.5 "Kanabo" Ability { id: "37EE", source: "Iwa-no-shiki" }
 
 # Phase 2
 160.0 "Enrage"
 
 # Phase 3
-400.0 "Strength of Spirit" sync / 1[56]:[^:]*:Seiryu:37C9:/ window 400,0
-427.0 "Dragon's Wake" sync / 1[56]:[^:]*:Seiryu:37CB:/
-#429.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-437.5 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
-448.0 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
-462.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-466.5 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-470.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-478.0 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
-478.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-486.5 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
-488.5 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
-494.3 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:37C7:/
-496.3 "Forbidden Arts" sync / 1[56]:[^:]*:Seiryu:37C8:/
-504.3 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-511.9 "Blazing Aramitama" sync / 1[56]:[^:]*:Seiryu:37E4:/
-515.9 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#519.4 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
-522.4 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
-#524.9 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
-525.4 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
-531.9 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-538.6 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
-541.6 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#545.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
-548.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
-#550.6 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
-551.1 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
-558.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-572.6 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:3C25:/
-578.6 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:37DE:/
-582.6 "Serpent's Fang" sync / 1[56]:[^:]*:Seiryu:37DF:/
-589.8 "Forbidden Arts 1" sync / 1[56]:[^:]*:Seiryu:3C22:/
-592.0 "Forbidden Arts 2" sync / 1[56]:[^:]*:Seiryu:3C23:/
-599.0 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-611.0 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
-624.1 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
-633.3 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-646.3 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37CD:/
-652.3 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#655.8 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
-658.4 "100-tonze Swing" sync / 1[56]:[^:]*:Iwa-no-shiki:37ED:/
-658.8 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
-#661.3 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
-661.8 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
-667.5 "Kanabo" sync / 1[56]:[^:]*:Iwa-no-shiki:37EE:/
-671.3 "--sync--" sync / 1[56]:[^:]*:Seiryu:37EF:/
-676.3 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:37DC:/
-677.3 "Red Rush" sync / 1[56]:[^:]*:Aka-no-shiki:37F1:/
-677.3 "Blue Bolt" sync / 1[56]:[^:]*:Ao-no-shiki:37F0:/
-678.3 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-685.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
-691.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-697.1 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-700.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-708.0 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-708.6 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
-716.5 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
-719.1 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
-721.6 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#725.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
-728.1 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
-#730.6 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
-731.1 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
-733.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-741.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-749.9 "Handprint" sync / 1[56]:[^:]*:Seiryu:37E8:/
-751.0 "Summon Shiki" sync / 1[56]:[^:]*:Seiryu:37D0:/
-758.4 "Force of Nature" sync / 1[56]:[^:]*:Seiryu:37EB:/
-761.5 "Coursing River" sync / 1[56]:[^:]*:Seiryu:37F6:/
-768.6 "Forbidden Arts 1" sync / 1[56]:[^:]*:Seiryu:3C22:/
-770.6 "Forbidden Arts 2" sync / 1[56]:[^:]*:Seiryu:3C23:/
-777.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-794.6 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
-807.8 "Cursekeeper" sync / 1[56]:[^:]*:Seiryu:37D2:/
-817.0 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-823.0 "--jump--" sync / 1[56]:[^:]*:Seiryu:37D5:/
-#826.5 "In/Out" sync / 1[56]:[^:]*:Seiryu:(37DA|37D8):/
-829.5 "In/Out" sync / 1[56]:[^:]*:Seiryu:(3A05|3A03):/
-#832.0 "Out/In" sync / 1[56]:[^:]*:Seiryu:(37DB|37D9):/
-832.5 "Out/In" sync / 1[56]:[^:]*:Seiryu:(3A06|3A04):/
-839.0 "Serpent Ascending" sync / 1[56]:[^:]*:Seiryu:3C25:/
-842.5 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-845.0 "Serpent Descending" sync / 1[56]:[^:]*:Seiryu:37DE:/
-849.0 "Serpent's Fang" sync / 1[56]:[^:]*:Seiryu:37DF:/
-849.0 "Kuji-kiri" sync / 1[56]:[^:]*:Seiryu:37E1:/
-857.6 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-869.6 "--rotate--" sync / 1[56]:[^:]*:Seiryu:37C4:/
-876.9 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-883.9 "Fifth Element" sync / 1[56]:[^:]*:Seiryu:37C3:/
-906.0 "Enrage" sync / 1[56]:[^:]*:Seiryu:3CA9:/
+400.0 "Strength of Spirit" Ability { id: "37C9", source: "Seiryu" } window 400,0
+427.0 "Dragon's Wake" Ability { id: "37CB", source: "Seiryu" }
+#429.5 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+437.5 "Summon Shiki" Ability { id: "37D0", source: "Seiryu" }
+448.0 "Coursing River" Ability { id: "37F6", source: "Seiryu" }
+462.0 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+466.5 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+470.0 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+478.0 "Summon Shiki" Ability { id: "37D0", source: "Seiryu" }
+478.0 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+486.5 "Force of Nature" Ability { id: "37EB", source: "Seiryu" }
+488.5 "Coursing River" Ability { id: "37F6", source: "Seiryu" }
+494.3 "Forbidden Arts" Ability { id: "37C7", source: "Seiryu" }
+496.3 "Forbidden Arts" Ability { id: "37C8", source: "Seiryu" }
+504.3 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+511.9 "Blazing Aramitama" Ability { id: "37E4", source: "Seiryu" }
+515.9 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#519.4 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+522.4 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#524.9 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+525.4 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
+531.9 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+538.6 "Kuji-kiri" Ability { id: "37E1", source: "Seiryu" }
+541.6 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#545.1 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+548.1 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#550.6 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+551.1 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
+558.6 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+572.6 "Serpent Ascending" Ability { id: "3C25", source: "Seiryu" }
+578.6 "Serpent Descending" Ability { id: "37DE", source: "Seiryu" }
+582.6 "Serpent's Fang" Ability { id: "37DF", source: "Seiryu" }
+589.8 "Forbidden Arts 1" Ability { id: "3C22", source: "Seiryu" }
+592.0 "Forbidden Arts 2" Ability { id: "3C23", source: "Seiryu" }
+599.0 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+611.0 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
+624.1 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
+633.3 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+646.3 "Summon Shiki" Ability { id: "37CD", source: "Seiryu" }
+652.3 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#655.8 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+658.4 "100-tonze Swing" Ability { id: "37ED", source: "Iwa-no-shiki" }
+658.8 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#661.3 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+661.8 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
+667.5 "Kanabo" Ability { id: "37EE", source: "Iwa-no-shiki" }
+671.3 "--sync--" Ability { id: "37EF", source: "Seiryu" }
+676.3 "Serpent Ascending" Ability { id: "37DC", source: "Seiryu" }
+677.3 "Red Rush" Ability { id: "37F1", source: "Aka-no-shiki" }
+677.3 "Blue Bolt" Ability { id: "37F0", source: "Ao-no-shiki" }
+678.3 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+685.0 "Kuji-kiri" Ability { id: "37E1", source: "Seiryu" }
+691.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+697.1 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+700.0 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+708.0 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+708.6 "Summon Shiki" Ability { id: "37D0", source: "Seiryu" }
+716.5 "Force of Nature" Ability { id: "37EB", source: "Seiryu" }
+719.1 "Coursing River" Ability { id: "37F6", source: "Seiryu" }
+721.6 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#725.1 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+728.1 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#730.6 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+731.1 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
+733.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+741.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+749.9 "Handprint" Ability { id: "37E8", source: "Seiryu" }
+751.0 "Summon Shiki" Ability { id: "37D0", source: "Seiryu" }
+758.4 "Force of Nature" Ability { id: "37EB", source: "Seiryu" }
+761.5 "Coursing River" Ability { id: "37F6", source: "Seiryu" }
+768.6 "Forbidden Arts 1" Ability { id: "3C22", source: "Seiryu" }
+770.6 "Forbidden Arts 2" Ability { id: "3C23", source: "Seiryu" }
+777.6 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+794.6 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
+807.8 "Cursekeeper" Ability { id: "37D2", source: "Seiryu" }
+817.0 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+823.0 "--jump--" Ability { id: "37D5", source: "Seiryu" }
+#826.5 "In/Out" Ability { id: ["37DA", "37D8"], source: "Seiryu" }
+829.5 "In/Out" Ability { id: ["3A05", "3A03"], source: "Seiryu" }
+#832.0 "Out/In" Ability { id: ["37DB", "37D9"], source: "Seiryu" }
+832.5 "Out/In" Ability { id: ["3A06", "3A04"], source: "Seiryu" }
+839.0 "Serpent Ascending" Ability { id: "3C25", source: "Seiryu" }
+842.5 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+845.0 "Serpent Descending" Ability { id: "37DE", source: "Seiryu" }
+849.0 "Serpent's Fang" Ability { id: "37DF", source: "Seiryu" }
+849.0 "Kuji-kiri" Ability { id: "37E1", source: "Seiryu" }
+857.6 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+869.6 "--rotate--" Ability { id: "37C4", source: "Seiryu" }
+876.9 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+883.9 "Fifth Element" Ability { id: "37C3", source: "Seiryu" }
+906.0 "Enrage" Ability { id: "3CA9", source: "Seiryu" }

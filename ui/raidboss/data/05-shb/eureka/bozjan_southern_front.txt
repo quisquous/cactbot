@@ -7,9 +7,9 @@ hideall "--sync--"
 # Use zone-unseal and 0x21 Reset lines
 # Trigger set contains 'resetWhenOutOfCombat: false'
 
-0.0 "--Reset--" sync / 21:........:80000014:00:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "80000014", data0: "00" } window 100000 jump 0
 # .*is no longer sealed
-0.0 "--Reset--" sync / 29:[^:]*:7DE:/ window 100000 jump 0
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 100000 jump 0
 
 # TODO: fill in CEs
 # The idea with each of them is that you have at most two minutes of standing
@@ -18,58 +18,58 @@ hideall "--sync--"
 # abilities from there.
 
 ### Kill It with Fire
-1000.0 "--sync--" sync / 21:........:80000014:1D4:/ window 100000,0
+1000.0 "--sync--" ActorControl { command: "80000014", data0: "1D4" } window 100000,0
 
 ### The Baying of the Hound(s)
-2000.0 "--sync--" sync / 21:........:80000014:1CC:/ window 100000,0
+2000.0 "--sync--" ActorControl { command: "80000014", data0: "1CC" } window 100000,0
 
 ### Vigil for the Lost
-3000.0 "--sync--" sync / 21:........:80000014:1D0:/ window 100000,0
+3000.0 "--sync--" ActorControl { command: "80000014", data0: "1D0" } window 100000,0
 
 ### Aces High
-4000.0 "--sync--" sync / 21:........:80000014:1D2:/ window 100000,0
+4000.0 "--sync--" ActorControl { command: "80000014", data0: "1D2" } window 100000,0
 
 ### The Shadow of Death's Hand
-5000.0 "--sync--" sync / 21:........:80000014:1CD:/ window 100000,0
+5000.0 "--sync--" ActorControl { command: "80000014", data0: "1CD" } window 100000,0
 
 ### The Final Furlong
-6000.0 "--sync--" sync / 21:........:80000014:1D5:/ window 100000,0
+6000.0 "--sync--" ActorControl { command: "80000014", data0: "1D5" } window 100000,0
 
 ### The Hunt for Red Choctober
-7000.0 "--sync--" sync / 21:........:80000014:1CA:/ window 100000,0
+7000.0 "--sync--" ActorControl { command: "80000014", data0: "1CA" } window 100000,0
 
 ### Beast of Man
-8000.0 "--sync--" sync / 21:........:80000014:1DB:/ window 100000,0
+8000.0 "--sync--" ActorControl { command: "80000014", data0: "1DB" } window 100000,0
 
 ### Fires of War
-9000.0 "--sync--" sync / 21:........:80000014:1D6:/ window 100000,0
+9000.0 "--sync--" ActorControl { command: "80000014", data0: "1D6" } window 100000,0
 
 ### Patriot Games
-10000.0 "--sync--" sync / 21:........:80000014:1D1:/ window 100000,0
+10000.0 "--sync--" ActorControl { command: "80000014", data0: "1D1" } window 100000,0
 
 ### Trampled under Hoof
-11000.0 "--sync--" sync / 21:........:80000014:1CE:/ window 100000,0
+11000.0 "--sync--" ActorControl { command: "80000014", data0: "1CE" } window 100000,0
 
 ### And the Flames Went Higher
-12000.0 "--sync--" sync / 21:........:80000014:1D3:/ window 100000,0
+12000.0 "--sync--" ActorControl { command: "80000014", data0: "1D3" } window 100000,0
 
 ### Metal Fox Chaos
-13000.0 "--sync--" sync / 21:........:80000014:1CB:/ window 100000,0
+13000.0 "--sync--" ActorControl { command: "80000014", data0: "1CB" } window 100000,0
 
 ### Rise of the Robots
-14000.0 "--sync--" sync / 21:........:80000014:1DF:/ window 100000,0
+14000.0 "--sync--" ActorControl { command: "80000014", data0: "1DF" } window 100000,0
 
 ### Where Strode the Behemoth
-15000.0 "--sync--" sync / 21:........:80000014:1DC:/ window 100000,0
+15000.0 "--sync--" ActorControl { command: "80000014", data0: "1DC" } window 100000,0
 
 ### The Battle of Castrum Lacus Litore
-#16000.0 "--sync--" sync / 21:........:80000014:1D7:/ window 100000,0
+#16000.0 "--sync--" ActorControl { command: "80000014", data0: "1D7" } window 100000,0
 
 ### Brionac / 4th Legion Helldiver
 # The Grand Gates will be sealed off
-20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD9:/ window 100000,0
+20000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DD9" } window 100000,0
 # Eaglesight will be sealed off
-20000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
+20000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DD8" } window 100000,0
 # JavaScript will insert a sync to jump to 4th Legion Helldiver if you are on the bottom.
 # Unfortunately, there is nothing in the log to differentiate otherwise.
 
@@ -80,55 +80,55 @@ hideall "--sync--"
 #
 # 53C5 Lightning Shower is the first obvious "you are on the top" damage
 # Anti-Warchmachina Weaponry summons an add; once dead, the timeline resumes.
-20014.7 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
-20026.8 "False Thunder" sync / 1[56]:[^:]*:Brionac:51C[EF]:/
-20035.0 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
-20135.0 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
-20139.0 "Lightning Shower" sync / 1[56]:[^:]*:Brionac:53C4:/
+20014.7 "Electric Anvil" Ability { id: "51DC", source: "Brionac" }
+20026.8 "False Thunder" Ability { id: "51C[EF]", source: "Brionac" }
+20035.0 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
+20135.0 "--sync--" StartsUsing { id: "53C4", source: "Brionac" } window 100,50
+20139.0 "Lightning Shower" Ability { id: "53C4", source: "Brionac" }
 
-20146.1 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20158.2 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+20146.1 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20158.2 "Lightburst" Ability { id: "51D1", source: "Lightsphere" }
 
-20171.2 "False Thunder" sync / 1[56]:[^:]*:Brionac:51C[EF]:/
+20171.2 "False Thunder" Ability { id: "51C[EF]", source: "Brionac" }
 
-20177.3 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20189.5 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
+20177.3 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20189.5 "Shadow Burst" Ability { id: "51D2", source: "Shadowsphere" }
 
-20203.5 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
-20218.8 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20222.8 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20226.9 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20230.9 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20203.5 "Electric Anvil" Ability { id: "51DC", source: "Brionac" }
+20218.8 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20222.8 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20226.9 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20230.9 "Voltstream" Ability { id: "51DB", source: "Brionac" }
 
-20238.8 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20250.9 "Pole Shift" sync / 1[56]:[^:]*:Brionac:51D3:/
-20254.9 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
-20254.9 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+20238.8 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20250.9 "Pole Shift" Ability { id: "51D3", source: "Brionac" }
+20254.9 "Shadow Burst" Ability { id: "51D2", source: "Shadowsphere" }
+20254.9 "Lightburst" Ability { id: "51D1", source: "Lightsphere" }
 
-20263.2 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
-20363.2 "--sync--" sync / 14:[^:]*:Brionac:53C4:/ window 100,50
-20367.2 "Lightning Shower" sync / 1[56]:[^:]*:Brionac:53C4:/
-20374.3 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20384.4 "Magitek Magnetism" sync / 1[56]:[^:]*:Brionac:51D5:/
-20388.6 "Magnetic Jolt" sync / 1[56]:[^:]*:Brionac:51D7:/
-20389.4 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
-20389.4 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
-20399.6 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20403.6 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20407.7 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20411.7 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
-20418.6 "False Thunder" sync / 1[56]:[^:]*:Brionac:51CF:/
-20427.9 "Anti-Warmachina Weaponry" sync / 1[56]:[^:]*:Brionac:51CD:/
-20527.9 "--sync--" sync / 14:[^:]*:Brionac:51DC:/ window 100,50
-20531.9 "Electric Anvil" sync / 1[56]:[^:]*:Brionac:51DC:/
+20263.2 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
+20363.2 "--sync--" StartsUsing { id: "53C4", source: "Brionac" } window 100,50
+20367.2 "Lightning Shower" Ability { id: "53C4", source: "Brionac" }
+20374.3 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20384.4 "Magitek Magnetism" Ability { id: "51D5", source: "Brionac" }
+20388.6 "Magnetic Jolt" Ability { id: "51D7", source: "Brionac" }
+20389.4 "Lightburst" Ability { id: "51D1", source: "Lightsphere" }
+20389.4 "Shadow Burst" Ability { id: "51D2", source: "Shadowsphere" }
+20399.6 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20403.6 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20407.7 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20411.7 "Voltstream" Ability { id: "51DB", source: "Brionac" }
+20418.6 "False Thunder" Ability { id: "51CF", source: "Brionac" }
+20427.9 "Anti-Warmachina Weaponry" Ability { id: "51CD", source: "Brionac" }
+20527.9 "--sync--" StartsUsing { id: "51DC", source: "Brionac" } window 100,50
+20531.9 "Electric Anvil" Ability { id: "51DC", source: "Brionac" }
 
-20539.0 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20549.1 "Polar Magnetism" sync / 1[56]:[^:]*:Brionac:51D9:/
-20554.2 "Shadow Burst" sync / 1[56]:[^:]*:Shadowsphere:51D2:/
-20554.2 "Lightburst" sync / 1[56]:[^:]*:Lightsphere:51D1:/
+20539.0 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20549.1 "Polar Magnetism" Ability { id: "51D9", source: "Brionac" }
+20554.2 "Shadow Burst" Ability { id: "51D2", source: "Shadowsphere" }
+20554.2 "Lightburst" Ability { id: "51D1", source: "Lightsphere" }
 
-20565.4 "Energy Generation" sync / 1[56]:[^:]*:Brionac:51D0:/
-20565.4 "Voltstream" sync / 1[56]:[^:]*:Brionac:51DB:/
+20565.4 "Energy Generation" Ability { id: "51D0", source: "Brionac" }
+20565.4 "Voltstream" Ability { id: "51DB", source: "Brionac" }
 
 # ???
 
@@ -143,62 +143,62 @@ hideall "--sync--"
 
 # Uncomment this to more easily test this timeline.
 # Eaglesight will be sealed off
-# 30000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD8:/ window 100000,0
+# 30000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DD8" } window 100000,0
 
 # Fake intro, where you don't know if you're on the top or the bottom.
 # Don't sync because sometimes these bosses are +/- 3 seconds @_@
-20022.2 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-20036.9 "Mrv Missile" #sync / 1[56]:[^:]*:4Th Legion Helldiver:51FD:/
+20022.2 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+20036.9 "Mrv Missile" #Ability { id: "51FD", source: "4Th Legion Helldiver" }
 
-30022.2 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30036.9 "Mrv Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FD:/ window 50,50
-30049.1 "Command: Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EA:/
-30057.1 "Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EB:/
-30065.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
-30073.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
-30082.6 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/
-30097.8 "Command: Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EC:/
-30102.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30106.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30110.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30114.4 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30134.1 "Command: Chain Cannon" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FB:/
-30138.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30140.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30142.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30144.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30153.4 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/ window 15,15
-30167.6 "Command: Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EF:/
-30179.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
-30183.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
-30187.6 "Dive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F0:/
-30197.8 "Command: Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EA:/
-30203.9 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
-30205.8 "Lateral Dive" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EB:/
-30209.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30211.9 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
-30232.6 "Magitek Missiles" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FE:/
-30246.8 "Command: Joint Attack" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F2:/
-30255.0 "Command: Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EC:/
-30259.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30263.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30265.3 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F8:/
-30267.7 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30270.4 "Surface Missile" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F8:/
-30271.6 "Infrared Blast" sync / 1[56]:[^:]*:4Th Legion Helldiver:51EE:/
-30278.2 "Command: Chain Cannon" sync / 1[56]:[^:]*:4Th Legion Helldiver:51FB:/
-30282.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30284.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F5:/
-30284.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30286.8 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30288.9 "Chain Cannon" duration 6.5 #sync / 1[56]:[^:]*:4Th Legion Helldiver:51F9:/
-30292.3 "Command: Suppressive Formation" sync / 1[56]:[^:]*:4Th Legion Helldiver:51F6:/
+30022.2 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30036.9 "Mrv Missile" Ability { id: "51FD", source: "4Th Legion Helldiver" } window 50,50
+30049.1 "Command: Lateral Dive" Ability { id: "51EA", source: "4Th Legion Helldiver" }
+30057.1 "Lateral Dive" Ability { id: "51EB", source: "4Th Legion Helldiver" }
+30065.3 "Command: Suppressive Formation" Ability { id: "51F5", source: "4Th Legion Helldiver" }
+30073.3 "Command: Suppressive Formation" Ability { id: "51F6", source: "4Th Legion Helldiver" }
+30082.6 "Magitek Missiles" Ability { id: "51FE", source: "4Th Legion Helldiver" }
+30097.8 "Command: Infrared Blast" Ability { id: "51EC", source: "4Th Legion Helldiver" }
+30102.4 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30106.4 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30110.4 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30114.4 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30134.1 "Command: Chain Cannon" Ability { id: "51FB", source: "4Th Legion Helldiver" }
+30138.9 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30140.8 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30142.9 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30144.9 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30153.4 "Magitek Missiles" Ability { id: "51FE", source: "4Th Legion Helldiver" } window 15,15
+30167.6 "Command: Dive Formation" Ability { id: "51EF", source: "4Th Legion Helldiver" }
+30179.6 "Dive Formation" Ability { id: "51F0", source: "4Th Legion Helldiver" }
+30183.6 "Dive Formation" Ability { id: "51F0", source: "4Th Legion Helldiver" }
+30187.6 "Dive Formation" Ability { id: "51F0", source: "4Th Legion Helldiver" }
+30197.8 "Command: Lateral Dive" Ability { id: "51EA", source: "4Th Legion Helldiver" }
+30203.9 "Command: Suppressive Formation" Ability { id: "51F5", source: "4Th Legion Helldiver" }
+30205.8 "Lateral Dive" Ability { id: "51EB", source: "4Th Legion Helldiver" }
+30209.8 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30211.9 "Command: Suppressive Formation" Ability { id: "51F6", source: "4Th Legion Helldiver" }
+30232.6 "Magitek Missiles" Ability { id: "51FE", source: "4Th Legion Helldiver" }
+30246.8 "Command: Joint Attack" Ability { id: "51F2", source: "4Th Legion Helldiver" }
+30255.0 "Command: Infrared Blast" Ability { id: "51EC", source: "4Th Legion Helldiver" }
+30259.6 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30263.6 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30265.3 "Surface Missile" Ability { id: "51F8", source: "4Th Legion Helldiver" }
+30267.7 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30270.4 "Surface Missile" Ability { id: "51F8", source: "4Th Legion Helldiver" }
+30271.6 "Infrared Blast" Ability { id: "51EE", source: "4Th Legion Helldiver" }
+30278.2 "Command: Chain Cannon" Ability { id: "51FB", source: "4Th Legion Helldiver" }
+30282.8 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30284.3 "Command: Suppressive Formation" Ability { id: "51F5", source: "4Th Legion Helldiver" }
+30284.9 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30286.8 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30288.9 "Chain Cannon" duration 6.5 #Ability { id: "51F9", source: "4Th Legion Helldiver" }
+30292.3 "Command: Suppressive Formation" Ability { id: "51F6", source: "4Th Legion Helldiver" }
 # ???
 
 
 ### Albeleo the Maleficent
 # Bladesmeet will be sealed off
-40000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DD5:/ window 100000,0
+40000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DD5" } window 100000,0
 
 
 ### Adrammelech
@@ -207,67 +207,67 @@ hideall "--sync--"
 # note: accursed becoming IV casts have different ability ids the first time through.
 
 # The airship landing will be sealed off
-50000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDA:/ window 100000,0
-50014.3 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
+50000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DDA" } window 100000,0
+50014.3 "Holy IV" Ability { id: "4F96", source: "Adrammelech" }
 
-50021.8 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50028.9 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50036.1 "Water IV" sync / 1[56]:[^:]*:Adrammelech:53D8:/
+50021.8 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50028.9 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50036.1 "Water IV" Ability { id: "53D8", source: "Adrammelech" }
 
-50044.4 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50051.5 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50058.7 "Fire IV/Blizzard IV" sync / 1[56]:[^:]*:Adrammelech:545[AD]:/
+50044.4 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50051.5 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50058.7 "Fire IV/Blizzard IV" Ability { id: "545[AD]", source: "Adrammelech" }
 
-50067.0 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50074.1 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50081.3 "Stone IV/Aero IV/Thunder IV" sync / 1[56]:[^:]*:Adrammelech:4F(7F|80|81):/
+50067.0 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50074.1 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50081.3 "Stone IV/Aero IV/Thunder IV" Ability { id: "4F(7F|80|81)", source: "Adrammelech" }
 
-50091.4 "Burst II" sync / 1[56]:[^:]*:Adrammelech:4F8A:/
-50102.5 "Warped Light" sync / 1[56]:[^:]*:Adrammelech:4F8C:/
-50105.5 "Shock" sync / 1[56]:[^:]*:Adrammelech:4F8E:/
+50091.4 "Burst II" Ability { id: "4F8A", source: "Adrammelech" }
+50102.5 "Warped Light" Ability { id: "4F8C", source: "Adrammelech" }
+50105.5 "Shock" Ability { id: "4F8E", source: "Adrammelech" }
 
-50116.0 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50123.1 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50130.3 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50132.1 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50116.0 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50123.1 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50130.3 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50132.1 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
-50144.3 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/
-50151.4 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
-50160.5 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
-50168.7 "Meteor" sync / 1[56]:[^:]*:Adrammelech:4F92:/ duration 20.7
+50144.3 "Tornado" Ability { id: "4F8F", source: "Adrammelech" }
+50151.4 "Flare" Ability { id: "4F95", source: "Adrammelech" }
+50160.5 "Holy IV" Ability { id: "4F96", source: "Adrammelech" }
+50168.7 "Meteor" Ability { id: "4F92", source: "Adrammelech" } duration 20.7
 
 # HP push? I have seen Meteor and Tornado->Meteor all skipped.
-50194.3 "--sync--" sync / 14:[^:]*:Adrammelech:4F7A:/ window 70,20
-50197.3 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50204.4 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50211.6 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50213.4 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50213.5 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50220.7 "Orb 3" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50222.5 "Orb 4" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50194.3 "--sync--" StartsUsing { id: "4F7A", source: "Adrammelech" } window 70,20
+50197.3 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50204.4 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50211.6 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50213.4 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50213.5 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50220.7 "Orb 3" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50222.5 "Orb 4" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
-50230.7 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
-50237.8 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/
-50244.9 "Meteor" sync / 1[56]:[^:]*:Adrammelech:4F92:/ duration 20.7
-50262.6 "Burst II" sync / 1[56]:[^:]*:Adrammelech:4F8A:/
-50273.8 "Warped Light" sync / 1[56]:[^:]*:Adrammelech:4F8C:/
-50276.8 "Shock" sync / 1[56]:[^:]*:Adrammelech:4F8E:/
-50288.0 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
-50295.1 "Holy IV" sync / 1[56]:[^:]*:Adrammelech:4F96:/
-50304.2 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
+50230.7 "Flare" Ability { id: "4F95", source: "Adrammelech" }
+50237.8 "Tornado" Ability { id: "4F8F", source: "Adrammelech" }
+50244.9 "Meteor" Ability { id: "4F92", source: "Adrammelech" } duration 20.7
+50262.6 "Burst II" Ability { id: "4F8A", source: "Adrammelech" }
+50273.8 "Warped Light" Ability { id: "4F8C", source: "Adrammelech" }
+50276.8 "Shock" Ability { id: "4F8E", source: "Adrammelech" }
+50288.0 "Holy IV" Ability { id: "4F96", source: "Adrammelech" }
+50295.1 "Holy IV" Ability { id: "4F96", source: "Adrammelech" }
+50304.2 "Flare" Ability { id: "4F95", source: "Adrammelech" }
 
-50316.7 "Curse Of The Fiend" sync / 1[56]:[^:]*:Adrammelech:4F7A:/
-50323.8 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50331.0 "Orb 1" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50332.8 "Orb 2" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50332.9 "Accursed Becoming" sync / 1[56]:[^:]*:Adrammelech:4F7B:/
-50340.1 "Orb 3" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
-50341.9 "Orb 4" #sync / 1[56]:[^:]*:Adrammelech:(504D|504A|4F7D|4F8[5-7]):/
+50316.7 "Curse Of The Fiend" Ability { id: "4F7A", source: "Adrammelech" }
+50323.8 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50331.0 "Orb 1" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50332.8 "Orb 2" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50332.9 "Accursed Becoming" Ability { id: "4F7B", source: "Adrammelech" }
+50340.1 "Orb 3" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
+50341.9 "Orb 4" #Ability { id: ["504D", "504A", "4F7D", "4F8[5-7]"], source: "Adrammelech" }
 
 # Loop
 # TODO: if anybody ever finds the enrage, we can unroll this.
-50350.1 "Flare" sync / 1[56]:[^:]*:Adrammelech:4F95:/
-50357.2 "Tornado" sync / 1[56]:[^:]*:Adrammelech:4F8F:/ window 100,100 jump 50237.8
+50350.1 "Flare" Ability { id: "4F95", source: "Adrammelech" }
+50357.2 "Tornado" Ability { id: "4F8F", source: "Adrammelech" } window 100,100 jump 50237.8
 50364.3 "Meteor"
 50382.0 "Burst II"
 50385.0 "Meteor"
@@ -285,29 +285,29 @@ hideall "--sync--"
 
 # Phase 1
 # Majesty's Auspice will be sealed off
-60000.0 "--sync--" sync / 29:[^:]*:7DC:[^:]*:DDB:/ window 100000,0
-60014.3 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
-60025.9 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
-60033.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
-60042.1 "Fervid Pulse" sync / 1[56]:[^:]*:Dawon:5179:/
-60050.6 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:5175:/
-60058.4 "Frigid Pulse" sync / 1[56]:[^:]*:Dawon:5178:/
-60067.9 "Ready x3" duration 4.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
-60074.9 "Obey" sync / 1[56]:[^:]*:Dawon:517C:/
-60077.0 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-60079.8 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-60082.2 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-60085.0 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-60087.4 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-60090.2 "Frigid Pulse/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-60101.6 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
-60107.6 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
-60119.2 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
-60128.9 "Pentagust" sync / 1[56]:[^:]*:Dawon:5176:/
-60139.6 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
+60000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "DDB" } window 100000,0
+60014.3 "Molting Plumage" Ability { id: "517A", source: "Dawon" }
+60025.9 "Explosion" Ability { id: "5182", source: "Verdant Plume" }
+60033.5 "Scratch" Ability { id: "517B", source: "Dawon" }
+60042.1 "Fervid Pulse" Ability { id: "5179", source: "Dawon" }
+60050.6 "Swooping Frenzy" Ability { id: "5175", source: "Dawon" }
+60058.4 "Frigid Pulse" Ability { id: "5178", source: "Dawon" }
+60067.9 "Ready x3" duration 4.1 #Ability { id: "5191", source: "Lyon The Beast King" }
+60074.9 "Obey" Ability { id: "517C", source: "Dawon" }
+60077.0 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+60079.8 "Frigid Pulse/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+60082.2 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+60085.0 "Frigid Pulse/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+60087.4 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+60090.2 "Frigid Pulse/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+60101.6 "Call Beast" Ability { id: "5192", source: "Lyon The Beast King" }
+60107.6 "Molting Plumage" Ability { id: "517A", source: "Dawon" }
+60119.2 "Explosion" Ability { id: "5182", source: "Verdant Plume" }
+60128.9 "Pentagust" Ability { id: "5176", source: "Dawon" }
+60139.6 "Scratch" Ability { id: "517B", source: "Dawon" }
 
 # This only sometimes happens?? Is there a loop here?
-# 60158.4 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
+# 60158.4 "Call Beast" Ability { id: "5192", source: "Lyon The Beast King" }
 
 # Phase 2
 # Raging Winds starts and ends the phase, even if you win.
@@ -316,47 +316,47 @@ hideall "--sync--"
 # Regardless, everything seems to sync ok after that.
 # TODO: is there some way to isolate the top??
 60153.6 "--Lyon Passage--" # ??? double check this timing
-60166.5 "Raging Winds" sync / 1[56]:[^:]*:Lyon The Beast King:5164:/ window 100,20
-60172.6 "Winds' Peak" sync / 1[56]:[^:]*:Lyon The Beast King:516F:/
-60183.8 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/
-60188.8 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5161:/
-60190.3 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5162:/
-60191.8 "Nature's Pulse" sync / 1[56]:[^:]*:Lyon The Beast King:5163:/
-60198.0 "Taste Of Blood" sync / 1[56]:[^:]*:Lyon The Beast King:5173:/
-60210.2 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/ duration 6.6
-60218.2 "Nature's Blood" sync / 1[56]:[^:]*:Lyon The Beast King:515F:/
-60218.3 "Winds' Peak" sync / 1[56]:[^:]*:Lyon The Beast King:516F:/
-60228.4 "Twin Agonies" sync / 1[56]:[^:]*:Lyon The Beast King:5174:/
-60241.6 "Heart Of Nature" sync / 1[56]:[^:]*:Lyon The Beast King:515E:/ duration 6.6
-60248.7 "The King's Notice" sync / 1[56]:[^:]*:Lyon The Beast King:516E:/
-60249.6 "Nature's Blood" sync / 1[56]:[^:]*:Lyon The Beast King:515F:/
-60256.6 "Taste Of Blood" sync / 1[56]:[^:]*:Lyon The Beast King:5173:/
-60275.7 "Raging Winds Enrage" #sync / 1[56]:[^:]*:Lyon The Beast King:5164:/
+60166.5 "Raging Winds" Ability { id: "5164", source: "Lyon The Beast King" } window 100,20
+60172.6 "Winds' Peak" Ability { id: "516F", source: "Lyon The Beast King" }
+60183.8 "Heart Of Nature" Ability { id: "515E", source: "Lyon The Beast King" }
+60188.8 "Nature's Pulse" Ability { id: "5161", source: "Lyon The Beast King" }
+60190.3 "Nature's Pulse" Ability { id: "5162", source: "Lyon The Beast King" }
+60191.8 "Nature's Pulse" Ability { id: "5163", source: "Lyon The Beast King" }
+60198.0 "Taste Of Blood" Ability { id: "5173", source: "Lyon The Beast King" }
+60210.2 "Heart Of Nature" Ability { id: "515E", source: "Lyon The Beast King" } duration 6.6
+60218.2 "Nature's Blood" Ability { id: "515F", source: "Lyon The Beast King" }
+60218.3 "Winds' Peak" Ability { id: "516F", source: "Lyon The Beast King" }
+60228.4 "Twin Agonies" Ability { id: "5174", source: "Lyon The Beast King" }
+60241.6 "Heart Of Nature" Ability { id: "515E", source: "Lyon The Beast King" } duration 6.6
+60248.7 "The King's Notice" Ability { id: "516E", source: "Lyon The Beast King" }
+60249.6 "Nature's Blood" Ability { id: "515F", source: "Lyon The Beast King" }
+60256.6 "Taste Of Blood" Ability { id: "5173", source: "Lyon The Beast King" }
+60275.7 "Raging Winds Enrage" #Ability { id: "5164", source: "Lyon The Beast King" }
 
 # Phase 3
-61000.0 "--sync--" sync / 14:[^:]*:Dawon:517D:/ window 1000,0
-61002.0 "Ready x4" duration 6.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
-61012.0 "Obey" sync / 1[56]:[^:]*:Dawon:517D:/
-61014.1 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-61016.9 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-61019.3 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-61022.1 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-61024.5 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-61027.3 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
-61029.7 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:517E:/
-61032.5 "Frigid/Fervid Pulse" sync / 1[56]:[^:]*:Dawon:51(7F|80):/
+61000.0 "--sync--" StartsUsing { id: "517D", source: "Dawon" } window 1000,0
+61002.0 "Ready x4" duration 6.1 #Ability { id: "5191", source: "Lyon The Beast King" }
+61012.0 "Obey" Ability { id: "517D", source: "Dawon" }
+61014.1 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+61016.9 "Frigid/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+61019.3 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+61022.1 "Frigid/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+61024.5 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+61027.3 "Frigid/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
+61029.7 "Swooping Frenzy" Ability { id: "517E", source: "Dawon" }
+61032.5 "Frigid/Fervid Pulse" Ability { id: "51(7F|80)", source: "Dawon" }
 
-61042.9 "Call Beast" sync / 1[56]:[^:]*:Lyon The Beast King:5192:/
-61048.9 "Molting Plumage" sync / 1[56]:[^:]*:Dawon:517A:/
-61060.5 "Explosion" sync / 1[56]:[^:]*:Verdant Plume:5182:/
+61042.9 "Call Beast" Ability { id: "5192", source: "Lyon The Beast King" }
+61048.9 "Molting Plumage" Ability { id: "517A", source: "Dawon" }
+61060.5 "Explosion" Ability { id: "5182", source: "Verdant Plume" }
 
-61070.0 "Swooping Frenzy" sync / 1[56]:[^:]*:Dawon:5175:/
-61075.8 "Pentagust" sync / 1[56]:[^:]*:Dawon:5176:/
-61087.5 "Scratch" sync / 1[56]:[^:]*:Dawon:517B:/
+61070.0 "Swooping Frenzy" Ability { id: "5175", source: "Dawon" }
+61075.8 "Pentagust" Ability { id: "5176", source: "Dawon" }
+61087.5 "Scratch" Ability { id: "517B", source: "Dawon" }
 
 # Loop!
-61100.7 "Ready x4" duration 6.1 #sync / 1[56]:[^:]*:Lyon The Beast King:5191:/
-61110.7 "Obey" sync / 1[56]:[^:]*:Dawon:517D:/ window 90,90 jump 61012.0
+61100.7 "Ready x4" duration 6.1 #Ability { id: "5191", source: "Lyon The Beast King" }
+61110.7 "Obey" Ability { id: "517D", source: "Dawon" } window 90,90 jump 61012.0
 61112.8 "Swooping Frenzy"
 61115.6 "Frigid/Fervid Pulse"
 61118.0 "Swooping Frenzy"

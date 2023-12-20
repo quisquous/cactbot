@@ -9,24 +9,24 @@ hideall "--sync--"
 # The meter also increases passively during all phases except the opening block.
 # Any displayed phase lengths are the maximum that could occur with no "extra" Bloodlust.
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-7.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/ window 7.1,10
-11.9 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-16.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-22.2 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 20,20
-29.4 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-32.5 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-37.3 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-42.5 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+7.1 "Blinding Blade" Ability { id: "E9F", source: "Ravana" } window 7.1,10
+11.9 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+16.0 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+22.2 "Tapasya x3" Ability { id: "EA4", source: "Ravana" } window 20,20
+29.4 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+32.5 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+37.3 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+42.5 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
 
-51.7 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-56.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-60.6 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-66.8 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 20,20
-74.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-77.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-81.9 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-87.1 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/ jump 42.5
+51.7 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+56.5 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+60.6 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+66.8 "Tapasya x3" Ability { id: "EA4", source: "Ravana" } window 20,20
+74.0 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+77.1 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+81.9 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+87.1 "Atma-Linga" Ability { id: "EA6", source: "Ravana" } jump 42.5
 
 96.3 "Blinding Blade"
 101.1 "The Seeing"
@@ -37,138 +37,138 @@ hideall "--sync--"
 126.5 "The Seeing"
 
 # Block initiates at 100 bloodlust. Loosely linked to HP%, exact connection unknown.
-150.0 "Scorpion Avatar" sync / 1[56]:[^:]*:Ravana:E81:/ window 150,5
-155.2 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
-175.3 "Prelude To Liberation" sync / 1[56]:[^:]*:Ravana:EBC:/
+150.0 "Scorpion Avatar" Ability { id: "E81", source: "Ravana" } window 150,5
+155.2 "Blades Of Carnage And Liberation" Ability { id: "137A", source: "Ravana" }
+175.3 "Prelude To Liberation" Ability { id: "EBC", source: "Ravana" }
 175.3 "--untargetable--"
-182.4 "Prelude To Liberation (Flames)" sync / 1[56]:[^:]*:Ravana:EBD:/
-183.4 "--sync--" sync / 1[56]:[^:]*:Ravana:13BC:/
-189.6 "Prelude To Liberation (Circles)" sync / 1[56]:[^:]*:Ravana:EBF:/
+182.4 "Prelude To Liberation (Flames)" Ability { id: "EBD", source: "Ravana" }
+183.4 "--sync--" Ability { id: "13BC", source: "Ravana" }
+189.6 "Prelude To Liberation (Circles)" Ability { id: "EBF", source: "Ravana" }
 194.8 "--targetable--"
-195.0 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
-215.6 "Liberation" sync / 1[56]:[^:]*:Ravana:EC0:/
+195.0 "Blades Of Carnage And Liberation" Ability { id: "137A", source: "Ravana" }
+215.6 "Liberation" Ability { id: "EC0", source: "Ravana" }
 215.6 "--untargetable--"
-219.8 "Clone Spawn 1" # sync / 1[56]:[^:]*:Ravana:EC1:/
-220.8 "Clone Spawn 2" # sync / 1[56]:[^:]*:Ravana:EC1:/
-221.8 "Clone Spawn 3" # sync / 1[56]:[^:]*:Ravana:EC1:/
-222.8 "Clone Spawn 4" # sync / 1[56]:[^:]*:Ravana:EC1:/
-226.9 "Clone Dash 1" # sync / 1[56]:[^:]*:Ravana:EC2:/
-228.4 "Clone Dash 2" # sync / 1[56]:[^:]*:Ravana:EC2:/
-229.9 "Clone Dash 3" # sync / 1[56]:[^:]*:Ravana:EC2:/
-231.4 "Clone Dash 4" # sync / 1[56]:[^:]*:Ravana:EC2:/
+219.8 "Clone Spawn 1" # Ability { id: "EC1", source: "Ravana" }
+220.8 "Clone Spawn 2" # Ability { id: "EC1", source: "Ravana" }
+221.8 "Clone Spawn 3" # Ability { id: "EC1", source: "Ravana" }
+222.8 "Clone Spawn 4" # Ability { id: "EC1", source: "Ravana" }
+226.9 "Clone Dash 1" # Ability { id: "EC2", source: "Ravana" }
+228.4 "Clone Dash 2" # Ability { id: "EC2", source: "Ravana" }
+229.9 "Clone Dash 3" # Ability { id: "EC2", source: "Ravana" }
+231.4 "Clone Dash 4" # Ability { id: "EC2", source: "Ravana" }
 235.6 "--targetable--"
 
 # Initiates immediately following Liberation block.
-235.7 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/
-242.8 "Warlord Shell" sync / 1[56]:[^:]*:Ravana:EB1:/
-247.6 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-255.4 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-264.6 "Warlord Flame?" sync / 1[56]:[^:]*:Ravana:EB2:/ # Skipped if Ravana's shield is burned.
-267.8 "--sync--" sync / 1[56]:[^:]*:Ravana:EB0:/
-272.0 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/ window 30,5
-279.1 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-286.8 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-290.9 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-296.2 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-303.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-306.4 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-309.5 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-312.7 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-320.8 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-325.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-330.7 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
+235.7 "Dragonfly Avatar" Ability { id: "E80", source: "Ravana" }
+242.8 "Warlord Shell" Ability { id: "EB1", source: "Ravana" }
+247.6 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+255.4 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+264.6 "Warlord Flame?" Ability { id: "EB2", source: "Ravana" } # Skipped if Ravana's shield is burned.
+267.8 "--sync--" Ability { id: "EB0", source: "Ravana" }
+272.0 "Tapasya x3" Ability { id: "EA4", source: "Ravana" } window 30,5
+279.1 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+286.8 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+290.9 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+296.2 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+303.3 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+306.4 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+309.5 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+312.7 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+320.8 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+325.5 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+330.7 "Atma-Linga x2" # Ability { id: "EA6", source: "Ravana" }
 
 # The intermission can have 0-10 Laughing Moon charges before Ravana uses the Chandrahas ultimate.
 # The number is dependent on how many Gana are able to finish their Falling Laughter casts.
 # More than 1-2 is typically a wipe, as each inflicts a Vulnerability Up stack to the party.
-336.8 "Bloody Fuller" sync / 14:[^:]*:Ravana:EB3:/ duration 4.7 window 336.8,5
+336.8 "Bloody Fuller" StartsUsing { id: "EB3", source: "Ravana" } duration 4.7 window 336.8,5
 341.1 "--untargetable--"
 
-400.0 "Chandrahas" sync / 1[56]:[^:]*:Ravana:EB5:/ window 400,5
-413.9 "Beetle Avatar" sync / 1[56]:[^:]*:Ravana:E82:/ window 15,15
+400.0 "Chandrahas" Ability { id: "EB5", source: "Ravana" } window 400,5
+413.9 "Beetle Avatar" Ability { id: "E82", source: "Ravana" } window 15,15
 414.0 "--targetable--" # Technically slightly before, but invulnerability drops here.
-422.0 "Pillars Of Heaven" sync / 1[56]:[^:]*:Ravana:EB8:/
-429.1 "--sync--" sync / 1[56]:[^:]*:Ravana:EB9:/
+422.0 "Pillars Of Heaven" Ability { id: "EB8", source: "Ravana" }
+429.1 "--sync--" Ability { id: "EB9", source: "Ravana" }
 429.8 "Laughing Rose" # The EB9 skill resolves well before the damage displays
-445.4 "Surpanakha x4" # sync / 1[56]:[^:]*:Ravana:EBA:/
-453.1 "The Rose Of Conviction" sync / 1[56]:[^:]*:Ravana:EB6:/
-460.2 "The Rose Of Hate" sync / 1[56]:[^:]*:Ravana:EBB:/
-465.4 "Surpanakha x7" # sync / 1[56]:[^:]*:Ravana:EBA:/
-466.3 "The Rose Of Conquest" sync / 1[56]:[^:]*:Ravana's Will:EB7:/
-485.8 "Pillars Of Heaven" sync / 1[56]:[^:]*:Ravana:EB8:/
-493.0 "--sync--" sync / 1[56]:[^:]*:Ravana:EB9:/
+445.4 "Surpanakha x4" # Ability { id: "EBA", source: "Ravana" }
+453.1 "The Rose Of Conviction" Ability { id: "EB6", source: "Ravana" }
+460.2 "The Rose Of Hate" Ability { id: "EBB", source: "Ravana" }
+465.4 "Surpanakha x7" # Ability { id: "EBA", source: "Ravana" }
+466.3 "The Rose Of Conquest" Ability { id: "EB7", source: "Ravana's Will" }
+485.8 "Pillars Of Heaven" Ability { id: "EB8", source: "Ravana" }
+493.0 "--sync--" Ability { id: "EB9", source: "Ravana" }
 493.7 "Laughing Rose"
-506.2 "Surpanakha x7?" # sync / 1[56]:[^:]*:Ravana:EBA:/
+506.2 "Surpanakha x7?" # Ability { id: "EBA", source: "Ravana" }
 # This phase ends at 100 Bloodlust.
 
-514.0 "Scorpion Avatar" sync / 1[56]:[^:]*:Ravana:E81:/ window 114,5
-514.1 "--sync--" sync / 1[56]:[^:]*:Ravana:13BF:/
-519.2 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/
-540.4 "Swift Liberation" sync / 1[56]:[^:]*:Ravana:EA7:/
+514.0 "Scorpion Avatar" Ability { id: "E81", source: "Ravana" } window 114,5
+514.1 "--sync--" Ability { id: "13BF", source: "Ravana" }
+519.2 "Blades Of Carnage And Liberation" Ability { id: "137A", source: "Ravana" }
+540.4 "Swift Liberation" Ability { id: "EA7", source: "Ravana" }
 540.4 "--untargetable--"
-540.5 "Swift Liberation Dash 1" # sync / 1[56]:[^:]*:Ravana:EA8:/
-543.5 "Swift Liberation Dash 2" # sync / 1[56]:[^:]*:Ravana:EA8:/
-546.5 "Swift Liberation Dash 3" # sync / 1[56]:[^:]*:Ravana:EA8:/
-549.5 "Swift Liberation Dash 4" # sync / 1[56]:[^:]*:Ravana:EA8:/
-552.7 "Swift Liberation (Flames)" # sync / 1[56]:[^:]*:Ravana:EA9:/
-556.9 "Swift Liberation (Circles)" # sync / 1[56]:[^:]*:Ravana:EAB:/
+540.5 "Swift Liberation Dash 1" # Ability { id: "EA8", source: "Ravana" }
+543.5 "Swift Liberation Dash 2" # Ability { id: "EA8", source: "Ravana" }
+546.5 "Swift Liberation Dash 3" # Ability { id: "EA8", source: "Ravana" }
+549.5 "Swift Liberation Dash 4" # Ability { id: "EA8", source: "Ravana" }
+552.7 "Swift Liberation (Flames)" # Ability { id: "EA9", source: "Ravana" }
+556.9 "Swift Liberation (Circles)" # Ability { id: "EAB", source: "Ravana" }
 562.1 "--targetable--"
-562.3 "Blades Of Carnage And Liberation" sync / 1[56]:[^:]*:Ravana:137A:/ window 20,20
-583.5 "Final Liberation" sync / 1[56]:[^:]*:Ravana:EAC:/
+562.3 "Blades Of Carnage And Liberation" Ability { id: "137A", source: "Ravana" } window 20,20
+583.5 "Final Liberation" Ability { id: "EAC", source: "Ravana" }
 583.5 "--untargetable--"
-583.6 "Final Liberation (1st Double Prey)" sync / 1[56]:[^:]*:Ravana:EAD:/
-591.6 "Final Liberation (2nd Double Prey)" sync / 1[56]:[^:]*:Ravana:EAD:/
-597.7 "--sync--" sync / 1[56]:[^:]*:Ravana:13C4:/
-597.7 "Final Liberation (Outer AoE)" sync / 1[56]:[^:]*:Ravana:EAE:/
+583.6 "Final Liberation (1st Double Prey)" Ability { id: "EAD", source: "Ravana" }
+591.6 "Final Liberation (2nd Double Prey)" Ability { id: "EAD", source: "Ravana" }
+597.7 "--sync--" Ability { id: "13C4", source: "Ravana" }
+597.7 "Final Liberation (Outer AoE)" Ability { id: "EAE", source: "Ravana" }
 598.9 "--targetable--"
-603.9 "Final Liberation (Inner AoE)" sync / 1[56]:[^:]*:Ravana:EAF:/
+603.9 "Final Liberation (Inner AoE)" Ability { id: "EAF", source: "Ravana" }
 603.9 "--untargetable--"
 610.1 "--targetable--"
 
-610.2 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/ window 96,20
-610.3 "--sync--" sync / 1[56]:[^:]*:Ravana:1299:/
-617.3 "Warlord Shell" sync / 1[56]:[^:]*:Ravana:EB1:/
-622.5 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
-626.7 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-631.0 "The Seeing" sync / 1[56]:[^:]*:Ravana:EA[012]:/
+610.2 "Dragonfly Avatar" Ability { id: "E80", source: "Ravana" } window 96,20
+610.3 "--sync--" Ability { id: "1299", source: "Ravana" }
+617.3 "Warlord Shell" Ability { id: "EB1", source: "Ravana" }
+622.5 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
+626.7 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+631.0 "The Seeing" Ability { id: "EA[012]", source: "Ravana" }
 
 # If Blessing of Earth is not damaged off Ravana, he uses Warlord Flame at 640.2.
 # If it is, Flame is skipped and things go directly to Blinding Blade.
 # We assume the skip, and re-sync if it doesn't happen.
-636.4 "--sync--" sync / 1[56]:[^:]*:Ravana:EB2:/ window 15,15
-640.2 "Blinding Blade/Warlord Flame?" sync / 1[56]:[^:]*:Ravana:E9F:/ window 30,2.5
-643.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-646.1 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-652.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-655.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-658.4 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
-663.1 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-669.2 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-672.3 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+636.4 "--sync--" Ability { id: "EB2", source: "Ravana" } window 15,15
+640.2 "Blinding Blade/Warlord Flame?" Ability { id: "E9F", source: "Ravana" } window 30,2.5
+643.3 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+646.1 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+652.2 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+655.3 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+658.4 "Atma-Linga x2" # Ability { id: "EA6", source: "Ravana" }
+663.1 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+669.2 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+672.3 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
 
-679.5 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-682.6 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-685.0 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-691.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-694.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-697.4 "Atma-Linga x2" # sync / 1[56]:[^:]*:Ravana:EA6:/
-701.7 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-708.1 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
-711.2 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-718.3 "Blinding Blade" sync / 1[56]:[^:]*:Ravana:E9F:/
+679.5 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+682.6 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+685.0 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+691.2 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+694.3 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+697.4 "Atma-Linga x2" # Ability { id: "EA6", source: "Ravana" }
+701.7 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+708.1 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
+711.2 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+718.3 "Blinding Blade" Ability { id: "E9F", source: "Ravana" }
 
-721.4 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
-723.9 "Tapasya x3" sync / 1[56]:[^:]*:Ravana:EA4:/
-730.0 "Atma-Linga" sync / 1[56]:[^:]*:Ravana:EA6:/
+721.4 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
+723.9 "Tapasya x3" Ability { id: "EA4", source: "Ravana" }
+730.0 "Atma-Linga" Ability { id: "EA6", source: "Ravana" }
 
-736.5 "Beetle Avatar" sync / 1[56]:[^:]*:Ravana:E82:/ window 130,10 jump 413.9
+736.5 "Beetle Avatar" Ability { id: "E82", source: "Ravana" } window 130,10 jump 413.9
 744.6 "Pillars Of Heaven"
 751.7 "Laughing Rose"
 768.0 "Surpanakha x4"
 
 # Enrage follows this sequence, but unfortunately there's no way to sync to it.
-# 1781.6 "Dragonfly Avatar" sync / 1[56]:[^:]*:Ravana:E80:/
-# 1781.7 "--sync--" sync / 1[56]:[^:]*:Ravana:1299:/
+# 1781.6 "Dragonfly Avatar" Ability { id: "E80", source: "Ravana" }
+# 1781.7 "--sync--" Ability { id: "1299", source: "Ravana" }
 # 1786.7 "--untargetable--"
-# 1791.8 "Bloody Fuller" sync / 1[56]:[^:]*:Ravana:EB3:/
+# 1791.8 "Bloody Fuller" Ability { id: "EB3", source: "Ravana" }
 # Laughing Moon until wipe

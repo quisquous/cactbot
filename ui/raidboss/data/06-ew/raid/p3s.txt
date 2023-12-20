@@ -8,145 +8,145 @@ hideall "--sync--"
 
 # Note: 66BF "middle" happens 6.2s after experimental fireplume
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.7 "--sync--" sync / 14:[^:]*:Phoinix:6706:/ window 10,10
-13.7 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-22.8 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+8.7 "--sync--" StartsUsing { id: "6706", source: "Phoinix" } window 10,10
+13.7 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
+22.8 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
 
-34.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
-40.1 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
-44.6 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
-58.8 "Darkened Fire" sync / 1[56]:[^:]*:Phoinix:66B9:/
-69.0 "Brightened Fire x8" sync / 1[56]:[^:]*:Phoinix:66BC:/ duration 8.7
-96.5 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
-104.7 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-114.9 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:66CE:/
-122.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
-128.2 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
-131.9 "--fire expands--" sync / 1[56]:[^:]*:Phoinix:6D83:/
-132.2 "Searing Breeze" sync / 1[56]:[^:]*:Phoinix:6704:/
-140.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
-149.5 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
-157.6 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:(66BE|66C0):/
-163.7 "--giant fireplume?--" #sync / 1[56]:[^:]*:Phoinix:66BF:/
+34.0 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
+40.1 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
+44.6 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
+58.8 "Darkened Fire" Ability { id: "66B9", source: "Phoinix" }
+69.0 "Brightened Fire x8" Ability { id: "66BC", source: "Phoinix" } duration 8.7
+96.5 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
+104.7 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
+114.9 "Devouring Brand" Ability { id: "66CE", source: "Phoinix" }
+122.0 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
+128.2 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
+131.9 "--fire expands--" Ability { id: "6D83", source: "Phoinix" }
+132.2 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
+140.4 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
+149.5 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
+157.6 "Experimental Fireplume" Ability { id: ["66BE", "66C0"], source: "Phoinix" }
+163.7 "--giant fireplume?--" #Ability { id: "66BF", source: "Phoinix" }
 
 162.2 "--untargetable--"
-172.0 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FB|66FC):/
-173.6 "Flare of Condemnation/Sparks of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FE|66FF):/
+172.0 "Trail of Condemnation" Ability { id: ["66FB", "66FC"], source: "Phoinix" }
+173.6 "Flare of Condemnation/Sparks of Condemnation" Ability { id: ["66FE", "66FF"], source: "Phoinix" }
 
 # Adds Phase 1
 180.8 "--adds targetable--"
-180.9 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-189.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-197.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-205.2 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-208.9 "Great Whirlwind (enrage?)" sync / 1[56]:[^:]*:Sunbird:66D3:/
+180.9 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+189.0 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+197.1 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+205.2 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+208.9 "Great Whirlwind (enrage?)" Ability { id: "66D3", source: "Sunbird" }
 
 # Adds Phase 2
-300.0 "Flames of Undeath 1" sync / 1[56]:[^:]*:Phoinix:66D6:/ window 300,0
-300.3 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+300.0 "Flames of Undeath 1" Ability { id: "66D6", source: "Phoinix" } window 300,0
+300.3 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
 301.1 "--adds targetable--"
-303.3 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
-303.8 "Joint Pyre" #sync / 1[56]:[^:]*:Sunbird:66D8:/
-304.7 "Joint Pyre" sync / 1[56]:[^:]*:Sunbird:66D8:/
-305.1 "Joint Pyre" #sync / 1[56]:[^:]*:Sunbird:66D8:/
-308.3 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-316.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-317.2 "Fireglide Sweep" sync / 1[56]:[^:]*:Sunbird:66E0:/
-317.5 "Fireglide Sweep 1" #sync / 1[56]:[^:]*:Sunbird:66E1:/
-319.8 "Fireglide Sweep 2" #sync / 1[56]:[^:]*:Sunbird:66E1:/
-324.4 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-332.5 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-340.6 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-348.7 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-354.1 "Great Whirlwind (enrage?)" sync / 1[56]:[^:]*:Sunbird:66D5:/
+303.3 "Joint Pyre" Ability { id: "66D8", source: "Sunbird" }
+303.8 "Joint Pyre" #Ability { id: "66D8", source: "Sunbird" }
+304.7 "Joint Pyre" Ability { id: "66D8", source: "Sunbird" }
+305.1 "Joint Pyre" #Ability { id: "66D8", source: "Sunbird" }
+308.3 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+316.4 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+317.2 "Fireglide Sweep" Ability { id: "66E0", source: "Sunbird" }
+317.5 "Fireglide Sweep 1" #Ability { id: "66E1", source: "Sunbird" }
+319.8 "Fireglide Sweep 2" #Ability { id: "66E1", source: "Sunbird" }
+324.4 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+332.5 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+340.6 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+348.7 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+354.1 "Great Whirlwind (enrage?)" Ability { id: "66D5", source: "Sunbird" }
 
 # Adds Phase 3
-500.0 "Flames of Undeath 2" sync / 1[56]:[^:]*:Phoinix:66D6:/ window 199,0
+500.0 "Flames of Undeath 2" Ability { id: "66D6", source: "Phoinix" } window 199,0
 
 502.0 "--targetable--"
-509.1 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
-511.2 "--sync--" sync / 14:[^:]*:Phoinix:66E4:/ window 600,20
-521.2 "Dead Rebirth" sync / 1[56]:[^:]*:Phoinix:66E4:/
+509.1 "--sync--" Ability { id: "66AC", source: "Phoinix" }
+511.2 "--sync--" StartsUsing { id: "66E4", source: "Phoinix" } window 600,20
+521.2 "Dead Rebirth" Ability { id: "66E4", source: "Phoinix" }
 
-536.4 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
-547.6 "Fledgling Flight" sync / 1[56]:[^:]*:Phoinix:66AA:/
-561.9 "Ashen Eye" sync / 1[56]:[^:]*:Sparkfledged:66E6:/
+536.4 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
+547.6 "Fledgling Flight" Ability { id: "66AA", source: "Phoinix" }
+561.9 "Ashen Eye" Ability { id: "66E6", source: "Sparkfledged" }
 
-564.8 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
-574.9 "Experimental Gloryplume" sync / 1[56]:[^:]*:Phoinix:66CA:/
-577.5 "--sync--" sync / 1[56]:[^:]*:Phoinix:(66CC|66C8):/
-588.1 "Gloryplume" sync / 1[56]:[^:]*:Phoinix:(66CD|66C9):/
-606.1 "Fountain of Fire" sync / 1[56]:[^:]*:Phoinix:66E7:/
-614.2 "Sun's Pinion" sync / 1[56]:[^:]*:Phoinix:66EA:/
-614.2 "Sun's Pinion 1" sync / 1[56]:[^:]*:Phoinix:66EB:/
-616.1 "Fountain of Death 1" sync / 1[56]:[^:]*:Fountain of Fire:66E9:/
-619.3 "Sun's Pinion 2" sync / 1[56]:[^:]*:Phoinix:66EB:/
-621.1 "Fountain of Death 2" sync / 1[56]:[^:]*:Fountain of Fire:66E9:/
-624.3 "Sun's Pinion 3" sync / 1[56]:[^:]*:Phoinix:66EB:/
-626.1 "Fountain of Death 3" sync / 1[56]:[^:]*:Fountain of Fire:66E9:/
-631.1 "Fountain of Death 4" sync / 1[56]:[^:]*:Fountain of Fire:66E9:/
-637.4 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-644.5 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-655.6 "Heat of Condemnation" sync / 1[56]:[^:]*:Phoinix:6700:/
+564.8 "--sync--" Ability { id: "66AC", source: "Phoinix" }
+574.9 "Experimental Gloryplume" Ability { id: "66CA", source: "Phoinix" }
+577.5 "--sync--" Ability { id: ["66CC", "66C8"], source: "Phoinix" }
+588.1 "Gloryplume" Ability { id: ["66CD", "66C9"], source: "Phoinix" }
+606.1 "Fountain of Fire" Ability { id: "66E7", source: "Phoinix" }
+614.2 "Sun's Pinion" Ability { id: "66EA", source: "Phoinix" }
+614.2 "Sun's Pinion 1" Ability { id: "66EB", source: "Phoinix" }
+616.1 "Fountain of Death 1" Ability { id: "66E9", source: "Fountain of Fire" }
+619.3 "Sun's Pinion 2" Ability { id: "66EB", source: "Phoinix" }
+621.1 "Fountain of Death 2" Ability { id: "66E9", source: "Fountain of Fire" }
+624.3 "Sun's Pinion 3" Ability { id: "66EB", source: "Phoinix" }
+626.1 "Fountain of Death 3" Ability { id: "66E9", source: "Fountain of Fire" }
+631.1 "Fountain of Death 4" Ability { id: "66E9", source: "Fountain of Fire" }
+637.4 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
+644.5 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
+655.6 "Heat of Condemnation" Ability { id: "6700", source: "Phoinix" }
 
-661.8 "--sync--" sync / 1[56]:[^:]*:Phoinix:6F16:/
-670.3 "Firestorms of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F0:/
+661.8 "--sync--" Ability { id: "6F16", source: "Phoinix" }
+670.3 "Firestorms of Asphodelos" Ability { id: "66F0", source: "Phoinix" }
 
-676.5 "Flames of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F1:/
-681.7 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-683.7 "Experimental Ashplume" sync / 1[56]:[^:]*:Phoinix:(66C2|66C4):/
-684.5 "Flames of Asphodelos 1" sync / 1[56]:[^:]*:Phoinix:66F2:/
-685.5 "Flames of Asphodelos 2" sync / 1[56]:[^:]*:Phoinix:66F3:/
-686.5 "Flames of Asphodelos 3" sync / 1[56]:[^:]*:Phoinix:66F4:/
-687.8 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-689.8 "Ashplume" sync / 1[56]:[^:]*:Phoinix:(66C3|66C5):/
+676.5 "Flames of Asphodelos" Ability { id: "66F1", source: "Phoinix" }
+681.7 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+683.7 "Experimental Ashplume" Ability { id: ["66C2", "66C4"], source: "Phoinix" }
+684.5 "Flames of Asphodelos 1" Ability { id: "66F2", source: "Phoinix" }
+685.5 "Flames of Asphodelos 2" Ability { id: "66F3", source: "Phoinix" }
+686.5 "Flames of Asphodelos 3" Ability { id: "66F4", source: "Phoinix" }
+687.8 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+689.8 "Ashplume" Ability { id: ["66C3", "66C5"], source: "Phoinix" }
 
-694.8 "Flames of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F1:/
-696.9 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-702.7 "Flames of Asphodelos 1" sync / 1[56]:[^:]*:Phoinix:66F2:/
-703.7 "Flames of Asphodelos 2" sync / 1[56]:[^:]*:Phoinix:66F3:/
-704.7 "Flames of Asphodelos 3" sync / 1[56]:[^:]*:Phoinix:66F4:/
-708.9 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+694.8 "Flames of Asphodelos" Ability { id: "66F1", source: "Phoinix" }
+696.9 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+702.7 "Flames of Asphodelos 1" Ability { id: "66F2", source: "Phoinix" }
+703.7 "Flames of Asphodelos 2" Ability { id: "66F3", source: "Phoinix" }
+704.7 "Flames of Asphodelos 3" Ability { id: "66F4", source: "Phoinix" }
+708.9 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
 
-712.9 "Storms of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F5:/
-713.0 "Winds of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F6:/
-713.1 "Beacons of Asphodelos" sync / 1[56]:[^:]*:Phoinix:66F7:/
-719.0 "Darkblaze Twister" sync / 1[56]:[^:]*:Phoinix:66F8:/
-721.0 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-726.1 "Searing Breeze" sync / 1[56]:[^:]*:Phoinix:6704:/
-728.1 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
+712.9 "Storms of Asphodelos" Ability { id: "66F5", source: "Phoinix" }
+713.0 "Winds of Asphodelos" Ability { id: "66F6", source: "Phoinix" }
+713.1 "Beacons of Asphodelos" Ability { id: "66F7", source: "Phoinix" }
+719.0 "Darkblaze Twister" Ability { id: "66F8", source: "Phoinix" }
+721.0 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+726.1 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
+728.1 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
 
-735.2 "Experimental Ashplume" sync / 1[56]:[^:]*:Phoinix:(66C2|66C4):/
-736.2 "Blazing Rain" sync / 1[56]:[^:]*:Phoinix:66D2:/
-738.0 "Dark Twister" sync / 1[56]:[^:]*:Darkblaze Twister:66F9:/
-740.0 "Burning Twister" sync / 1[56]:[^:]*:Darkblaze Twister:66FA:/
-742.3 "Ashplume" sync / 1[56]:[^:]*:Phoinix:(66C3|66C5):/
-749.3 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
+735.2 "Experimental Ashplume" Ability { id: ["66C2", "66C4"], source: "Phoinix" }
+736.2 "Blazing Rain" Ability { id: "66D2", source: "Phoinix" }
+738.0 "Dark Twister" Ability { id: "66F9", source: "Darkblaze Twister" }
+740.0 "Burning Twister" Ability { id: "66FA", source: "Darkblaze Twister" }
+742.3 "Ashplume" Ability { id: ["66C3", "66C5"], source: "Phoinix" }
+749.3 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 
-762.5 "Death's Toll" sync / 1[56]:[^:]*:Phoinix:66ED:/
-768.7 "Fledgling Flight" sync / 1[56]:[^:]*:Phoinix:66AA:/
-783.0 "Ashen Eye x4" duration 3 #sync / 1[56]:[^:]*:Sparkfledged:66E6:/
+762.5 "Death's Toll" Ability { id: "66ED", source: "Phoinix" }
+768.7 "Fledgling Flight" Ability { id: "66AA", source: "Phoinix" }
+783.0 "Ashen Eye x4" duration 3 #Ability { id: "66E6", source: "Sparkfledged" }
 
-794.9 "Life's Agonies" sync / 1[56]:[^:]*:Phoinix:66EE:/
-798.1 "--sync--" sync / 1[56]:[^:]*:Phoinix:66AC:/
+794.9 "Life's Agonies" Ability { id: "66EE", source: "Phoinix" }
+798.1 "--sync--" Ability { id: "66AC", source: "Phoinix" }
 
-807.2 "Experimental Gloryplume" sync / 1[56]:[^:]*:Phoinix:66C6:/
-809.8 "--sync--" sync / 1[56]:[^:]*:Phoinix:(66CC|66C8):/
-814.4 "Gloryplume" sync / 1[56]:[^:]*:Phoinix:(66CD|66C9):/
+807.2 "Experimental Gloryplume" Ability { id: "66C6", source: "Phoinix" }
+809.8 "--sync--" Ability { id: ["66CC", "66C8"], source: "Phoinix" }
+814.4 "Gloryplume" Ability { id: ["66CD", "66C9"], source: "Phoinix" }
 817.3 "--untargetable--"
-827.1 "Trail of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FB|66FC):/
-828.7 "Flare of Condemnation/Sparks of Condemnation" sync / 1[56]:[^:]*:Phoinix:(66FE|66FF):/
+827.1 "Trail of Condemnation" Ability { id: ["66FB", "66FC"], source: "Phoinix" }
+828.7 "Flare of Condemnation/Sparks of Condemnation" Ability { id: ["66FE", "66FF"], source: "Phoinix" }
 831.8 "--targetable--"
-839.9 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:66CE:/
-847.0 "Experimental Fireplume" sync / 1[56]:[^:]*:Phoinix:66BE:/
-856.9 "Devouring Brand" sync / 1[56]:[^:]*:Phoinix:6D83:/
-857.2 "Searing Breeze" sync / 1[56]:[^:]*:Phoinix:6704:/
-865.4 "Left Cinderwing/Right Cinderwing" sync / 1[56]:[^:]*:Phoinix:(6702|6703):/
-876.5 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
-883.6 "Scorched Exaltation" sync / 1[56]:[^:]*:Phoinix:6706:/
+839.9 "Devouring Brand" Ability { id: "66CE", source: "Phoinix" }
+847.0 "Experimental Fireplume" Ability { id: "66BE", source: "Phoinix" }
+856.9 "Devouring Brand" Ability { id: "6D83", source: "Phoinix" }
+857.2 "Searing Breeze" Ability { id: "6704", source: "Phoinix" }
+865.4 "Left Cinderwing/Right Cinderwing" Ability { id: ["6702", "6703"], source: "Phoinix" }
+876.5 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
+883.6 "Scorched Exaltation" Ability { id: "6706", source: "Phoinix" }
 
-885.8 "--sync--" sync / 14:[^:]*:Phoinix:6C2B:/ window 20,20
-895.8 "Final Exaltation (enrage)" sync / 1[56]:[^:]*:Phoinix:6C2B:/
+885.8 "--sync--" StartsUsing { id: "6C2B", source: "Phoinix" } window 20,20
+895.8 "Final Exaltation (enrage)" Ability { id: "6C2B", source: "Phoinix" }

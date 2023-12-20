@@ -10,21 +10,21 @@ hideall "--sync--"
 
 ### Phase 1: 100->85%
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
 
-10.0 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/ window 10,10
-18.7 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/ window 20,5
-22.3 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-27.5 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-37.3 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-41.4 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-48.0 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
-55.7 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
+10.0 "Landslide" Ability { id: "58FA", source: "Titan" } window 10,10
+18.7 "Weight Of The Land" Ability { id: "58FE", source: "Titan" } window 20,5
+22.3 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+27.5 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+37.3 "Landslide" Ability { id: "58FA", source: "Titan" }
+41.4 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+48.0 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
+55.7 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
 
-62.0 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/ window 15,15 jump 10
+62.0 "Landslide" Ability { id: "58FA", source: "Titan" } window 15,15 jump 10
 70.2 "Weight Of The Land"
 74.3 "Mountain Buster"
-79.5 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
+79.5 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
 89.3 "Landslide"
 93.4 "Mountain Buster"
 99.5 "Weight Of The Land"
@@ -32,38 +32,38 @@ hideall "--sync--"
 
 
 # Phase 2: 85%->55%
-200.0 "--sync--" sync / 14:[^:]*:Titan:58FF:/ window 200,0
-203.0 "Geocrush" sync / 1[56]:[^:]*:Titan:58FF:/
+200.0 "--sync--" StartsUsing { id: "58FF", source: "Titan" } window 200,0
+203.0 "Geocrush" Ability { id: "58FF", source: "Titan" }
 
-212.6 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-216.7 "Rock Throw" sync / 1[56]:[^:]*:Titan:5ADD:/ duration 21.5
-220.8 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-229.8 "Upheaval" sync / 1[56]:[^:]*:Titan:58F9:/
-234.8 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-242.0 "Tumult x4" duration 3.5 # sync / 1[56]:[^:]*:Titan:58F8:/
-251.0 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/ window 15,15
-254.6 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-262.0 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-271.7 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
-276.8 "Bury (one side)" sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-278.0 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-287.4 "Burst" sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
+212.6 "Landslide" Ability { id: "58FA", source: "Titan" }
+216.7 "Rock Throw" Ability { id: "5ADD", source: "Titan" } duration 21.5
+220.8 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+229.8 "Upheaval" Ability { id: "58F9", source: "Titan" }
+234.8 "Landslide" Ability { id: "58FA", source: "Titan" }
+242.0 "Tumult x4" duration 3.5 # Ability { id: "58F8", source: "Titan" }
+251.0 "Weight Of The Land" Ability { id: "58FE", source: "Titan" } window 15,15
+254.6 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+262.0 "Landslide" Ability { id: "58FA", source: "Titan" }
+271.7 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
+276.8 "Bury (one side)" Ability { id: "5AFB", source: "Bomb Boulder" }
+278.0 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+287.4 "Burst" Ability { id: "5ADF", source: "Bomb Boulder" }
 
-288.1 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-292.2 "Rock Throw" sync / 1[56]:[^:]*:Titan:5ADD:/ duration 21.5
-296.3 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-305.4 "Upheaval" sync / 1[56]:[^:]*:Titan:58F9:/
-310.4 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-317.5 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-326.5 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/ window 15,15
-330.1 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-337.3 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-347.0 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
-351.7 "Bury (clock)" duration 4.2 #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-353.6 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-360.9 "Burst" duration 4.2 #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
+288.1 "Landslide" Ability { id: "58FA", source: "Titan" }
+292.2 "Rock Throw" Ability { id: "5ADD", source: "Titan" } duration 21.5
+296.3 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+305.4 "Upheaval" Ability { id: "58F9", source: "Titan" }
+310.4 "Landslide" Ability { id: "58FA", source: "Titan" }
+317.5 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+326.5 "Weight Of The Land" Ability { id: "58FE", source: "Titan" } window 15,15
+330.1 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+337.3 "Landslide" Ability { id: "58FA", source: "Titan" }
+347.0 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
+351.7 "Bury (clock)" duration 4.2 #Ability { id: "5AFB", source: "Bomb Boulder" }
+353.6 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+360.9 "Burst" duration 4.2 #Ability { id: "5ADF", source: "Bomb Boulder" }
 
-363.9 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/ window 20,20 jump 212.6
+363.9 "Landslide" Ability { id: "58FA", source: "Titan" } window 20,20 jump 212.6
 368.0 "Rock Throw"
 372.1 "Mountain Buster"
 381.1 "Upheaval"
@@ -78,71 +78,71 @@ hideall "--sync--"
 
 
 ### Phase 3: Heart Phase (at 55%)
-500.0 "--sync--" sync / 14:[^:]*:Titan:58FF:/ window 299,0
-503.0 "Geocrush" sync / 1[56]:[^:]*:Titan:58FF:/
-515.6 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
-521.2 "Rock Throw" sync / 1[56]:[^:]*:Titan:5ADD:/ duration 21.5
-526.0 "Rock Buster" sync / 1[56]:[^:]*:Titan:58F6:/
-533.0 "Upheaval" sync / 1[56]:[^:]*:Titan:58F9:/
-538.0 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-544.0 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-553.1 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/ window 15,15
-561.8 "Rock Buster" sync / 1[56]:[^:]*:Titan:58F6:/
-563.8 "Bury (clock)" duration 3 # sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-570.8 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-572.9 "Burst" duration 3 # sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-574.9 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-583.0 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
+500.0 "--sync--" StartsUsing { id: "58FF", source: "Titan" } window 299,0
+503.0 "Geocrush" Ability { id: "58FF", source: "Titan" }
+515.6 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
+521.2 "Rock Throw" Ability { id: "5ADD", source: "Titan" } duration 21.5
+526.0 "Rock Buster" Ability { id: "58F6", source: "Titan" }
+533.0 "Upheaval" Ability { id: "58F9", source: "Titan" }
+538.0 "Landslide" Ability { id: "58FA", source: "Titan" }
+544.0 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+553.1 "Weight Of The Land" Ability { id: "58FE", source: "Titan" } window 15,15
+561.8 "Rock Buster" Ability { id: "58F6", source: "Titan" }
+563.8 "Bury (clock)" duration 3 # Ability { id: "5AFB", source: "Bomb Boulder" }
+570.8 "Landslide" Ability { id: "58FA", source: "Titan" }
+572.9 "Burst" duration 3 # Ability { id: "5ADF", source: "Bomb Boulder" }
+574.9 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+583.0 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
 593.0 "--untargetable--"
 
 
 ### Phase 4
-700.0 "Earthen Fury" sync / 1[56]:[^:]*:Titan:5900:/ window 700,0
+700.0 "Earthen Fury" Ability { id: "5900", source: "Titan" } window 700,0
 713.1 "Gaoler Adds (E/W)"
-715.8 "Gaoler Tumult" #sync / 1[56]:[^:]*:Granite Gaoler:5903:/
-716.3 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
+715.8 "Gaoler Tumult" #Ability { id: "5903", source: "Granite Gaoler" }
+716.3 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
 
-723.3 "Bury x4" #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-725.8 "Bury x4" #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-730.2 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-732.5 "Burst x4" #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-734.9 "Burst x4" #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-735.4 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-739.8 "Gaoler Landslide?" #sync / 1[56]:[^:]*:Granite Gaoler:5902:/
-744.0 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
+723.3 "Bury x4" #Ability { id: "5AFB", source: "Bomb Boulder" }
+725.8 "Bury x4" #Ability { id: "5AFB", source: "Bomb Boulder" }
+730.2 "Landslide" Ability { id: "58FA", source: "Titan" }
+732.5 "Burst x4" #Ability { id: "5ADF", source: "Bomb Boulder" }
+734.9 "Burst x4" #Ability { id: "5ADF", source: "Bomb Boulder" }
+735.4 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+739.8 "Gaoler Landslide?" #Ability { id: "5902", source: "Granite Gaoler" }
+744.0 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
 
-749.7 "Rock Throw" sync / 1[56]:[^:]*:Titan:5ADD:/ duration 21.5
-753.9 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
-762.9 "Upheaval" sync / 1[56]:[^:]*:Titan:58F9:/
-767.9 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-779.0 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/ window 15,15
-783.2 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-792.2 "Weight Of The Land 1" #sync / 1[56]:[^:]*:Titan:58FE:/
-794.7 "Weight Of The Land 2" #sync / 1[56]:[^:]*:Titan:58FE:/
-799.9 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
+749.7 "Rock Throw" Ability { id: "5ADD", source: "Titan" } duration 21.5
+753.9 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
+762.9 "Upheaval" Ability { id: "58F9", source: "Titan" }
+767.9 "Landslide" Ability { id: "58FA", source: "Titan" }
+779.0 "Mountain Buster" Ability { id: "58F7", source: "Titan" } window 15,15
+783.2 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+792.2 "Weight Of The Land 1" #Ability { id: "58FE", source: "Titan" }
+794.7 "Weight Of The Land 2" #Ability { id: "58FE", source: "Titan" }
+799.9 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
 
-804.1 "Bury (row 1)" #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-805.0 "Bury (row 2)" #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-806.1 "Bury (row 3)" #sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-811.0 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
-813.1 "Burst 1" #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-814.6 "Burst 2" #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-816.1 "Burst 3" #sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-819.2 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/
+804.1 "Bury (row 1)" #Ability { id: "5AFB", source: "Bomb Boulder" }
+805.0 "Bury (row 2)" #Ability { id: "5AFB", source: "Bomb Boulder" }
+806.1 "Bury (row 3)" #Ability { id: "5AFB", source: "Bomb Boulder" }
+811.0 "Landslide" Ability { id: "58FA", source: "Titan" }
+813.1 "Burst 1" #Ability { id: "5ADF", source: "Bomb Boulder" }
+814.6 "Burst 2" #Ability { id: "5ADF", source: "Bomb Boulder" }
+816.1 "Burst 3" #Ability { id: "5ADF", source: "Bomb Boulder" }
+819.2 "Mountain Buster" Ability { id: "58F7", source: "Titan" }
 
-832.7 "Bury (all)" sync / 1[56]:[^:]*:Bomb Boulder:5AFB:/
-837.0 "Tumult x4" duration 3.5 #sync / 1[56]:[^:]*:Titan:58F8:/
-845.9 "Weight Of The Land" sync / 1[56]:[^:]*:Titan:58FE:/
+832.7 "Bury (all)" Ability { id: "5AFB", source: "Bomb Boulder" }
+837.0 "Tumult x4" duration 3.5 #Ability { id: "58F8", source: "Titan" }
+845.9 "Weight Of The Land" Ability { id: "58FE", source: "Titan" }
 852.5 "--untargetable--"
-855.1 "Burst" sync / 1[56]:[^:]*:Bomb Boulder:5ADF:/
-856.7 "Geocrush" sync / 1[56]:[^:]*:Titan:58FF:/
+855.1 "Burst" Ability { id: "5ADF", source: "Bomb Boulder" }
+856.7 "Geocrush" Ability { id: "58FF", source: "Titan" }
 857.1 "--targetable--"
-862.4 "Landslide" sync / 1[56]:[^:]*:Titan:58FA:/
+862.4 "Landslide" Ability { id: "58FA", source: "Titan" }
 
 # loop
 874.0 "Gaoler Adds (E/W)"
-876.7 "Gaoler Tumult" #sync / 1[56]:[^:]*:Granite Gaoler:5903:/
-877.2 "Mountain Buster" sync / 1[56]:[^:]*:Titan:58F7:/ window 40,40 jump 716.3
+876.7 "Gaoler Tumult" #Ability { id: "5903", source: "Granite Gaoler" }
+877.2 "Mountain Buster" Ability { id: "58F7", source: "Titan" } window 40,40 jump 716.3
 
 884.2 "Bury x4"
 886.7 "Bury x4"
@@ -155,8 +155,8 @@ hideall "--sync--"
 
 
 ### Enrage
-1000.0 "--sync--" sync / 14:[^:]*:Titan:5901:/ window 1000,1000
-1010.0 "Upheaval Enrage" #sync / 1[56]:[^:]*:Titan:5901:/
-1022.0 "Upheaval Enrage" #sync / 1[56]:[^:]*:Titan:5901:/
-1034.0 "Upheaval Enrage" #sync / 1[56]:[^:]*:Titan:5901:/
-1046.0 "Upheaval Enrage" #sync / 1[56]:[^:]*:Titan:5901:/
+1000.0 "--sync--" StartsUsing { id: "5901", source: "Titan" } window 1000,1000
+1010.0 "Upheaval Enrage" #Ability { id: "5901", source: "Titan" }
+1022.0 "Upheaval Enrage" #Ability { id: "5901", source: "Titan" }
+1034.0 "Upheaval Enrage" #Ability { id: "5901", source: "Titan" }
+1046.0 "Upheaval Enrage" #Ability { id: "5901", source: "Titan" }

@@ -4,99 +4,99 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ## Common start
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-12.8 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/ window 20,80
-24.9 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/
-27.0 "Ballistic Missile?" sync / 1[56]:[^:]*:Omega:327E:/ window 30,40 jump 227.0
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+12.8 "Atomic Ray" Ability { id: "3286", source: "Omega" } window 20,80
+24.9 "Mustard Bomb" Ability { id: "3287", source: "Omega" }
+27.0 "Ballistic Missile?" Ability { id: "327E", source: "Omega" } window 30,40 jump 227.0
 37.1 "Flamethrower?"
-38.1 "Starboard/Larboard Cannon?" sync / 1[56]:[^:]*:Omega:328[13]:/ window 40,40 jump 138.1
+38.1 "Starboard/Larboard Cannon?" Ability { id: "328[13]", source: "Omega" } window 40,40 jump 138.1
 43.8 "Starboard/Larboard Cannon?"
 
 ## Starboard/Larboard first path
-138.1 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[13]:/
-143.8 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[24]:/
-146.5 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:327E:/
-156.7 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-156.7 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:327F:/
-167.8 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/ # drift 0.044
-178.7 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/ window 50,10 jump 478.7
+138.1 "Starboard/Larboard Cannon" Ability { id: "328[13]", source: "Omega" }
+143.8 "Starboard/Larboard Cannon" Ability { id: "328[24]", source: "Omega" }
+146.5 "Ballistic Missile" Ability { id: "327E", source: "Omega" }
+156.7 "Flamethrower" Ability { id: "327D", source: "Omega" }
+156.7 "Ballistic Impact" Ability { id: "327F", source: "Omega" }
+167.8 "Mustard Bomb" Ability { id: "3287", source: "Omega" } # drift 0.044
+178.7 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" } window 50,10 jump 478.7
 203.5 "Peripheral Synthesis"
 217.6 "Flamethrower"
 227.8 "Atomic Ray"
 
 ## Ballistic Missile first path
-227.0 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:327E:/
-237.1 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-237.1 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:327F:/
-248.2 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/
-261.4 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[13]:/
-267.0 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[24]:/
-278.7 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/ window 50,10 jump 478.7
+227.0 "Ballistic Missile" Ability { id: "327E", source: "Omega" }
+237.1 "Flamethrower" Ability { id: "327D", source: "Omega" }
+237.1 "Ballistic Impact" Ability { id: "327F", source: "Omega" }
+248.2 "Mustard Bomb" Ability { id: "3287", source: "Omega" }
+261.4 "Starboard/Larboard Cannon" Ability { id: "328[13]", source: "Omega" }
+267.0 "Starboard/Larboard Cannon" Ability { id: "328[24]", source: "Omega" }
+278.7 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" } window 50,10 jump 478.7
 303.5 "Peripheral Synthesis"
 317.6 "Flamethrower"
 327.8 "Atomic Ray"
 
 ## Paths converge
-478.7 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/
-503.5 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/
-517.6 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-527.8 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/
+478.7 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" }
+503.5 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" }
+517.6 "Flamethrower" Ability { id: "327D", source: "Omega" }
+527.8 "Atomic Ray" Ability { id: "3286", source: "Omega" }
 
 ## Midphase
-534.5 "Program Loop" sync / 1[56]:[^:]*:Omega:3273:/ window 150,150
+534.5 "Program Loop" Ability { id: "3273", source: "Omega" } window 150,150
 534.5 "--untargetable--"
-549.6 "Executable 1" sync / 1[56]:[^:]*:Level Checker:35A8:/
-570.6 "Executable 2" sync / 1[56]:[^:]*:Level Checker:35A8:/
-574.6 "Reset" sync / 1[56]:[^:]*:Level Checker:35AA:/
-578.6 "Reformat" sync / 1[56]:[^:]*:Level Checker:35A9:/
-587.6 "--sync--" sync / 14:[^:]*:Level Checker:327A:/
-611.6 "Force Quit" sync / 1[56]:[^:]*:Level Checker:327A:/
+549.6 "Executable 1" Ability { id: "35A8", source: "Level Checker" }
+570.6 "Executable 2" Ability { id: "35A8", source: "Level Checker" }
+574.6 "Reset" Ability { id: "35AA", source: "Level Checker" }
+578.6 "Reformat" Ability { id: "35A9", source: "Level Checker" }
+587.6 "--sync--" StartsUsing { id: "327A", source: "Level Checker" }
+611.6 "Force Quit" Ability { id: "327A", source: "Level Checker" }
 
 ## Delta Attack
-1000.0 "--sync--" sync / 00:0044:Omega:Program failure detected/ window 1500,100
-1007.0 "--sync--" sync / 14:[^:]*:Omega:327B:/ window 1500,100
-1037.0 "Delta Attack" sync / 1[56]:[^:]*:Omega:327B:/ window 1500,100
+1000.0 "--sync--" GameLog { code: "0044", name: "Omega", line: "Program failure detected.*?" } window 1500,100
+1007.0 "--sync--" StartsUsing { id: "327B", source: "Omega" } window 1500,100
+1037.0 "Delta Attack" Ability { id: "327B", source: "Omega" } window 1500,100
 1048.4 "--targetable--"
 
 ## Loop
-1060.3 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/ window 10,10
-1070.5 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-1072.9 "Rush" sync / 1[56]:[^:]*:Rocket Punch:359C:/
-1078.7 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/
-1081.8 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:327E:/
-1091.3 "Rush" sync / 1[56]:[^:]*:Rocket Punch:359C:/ # drift -0.041999
-1091.9 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:327F:/
-1101.0 "Electric Slide" sync / 1[56]:[^:]*:Omega:3285:/
-1115.3 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/
-1117.6 "Blaster" sync / 1[56]:[^:]*:Omega:3280:/
-1127.7 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[13]:/
-1133.4 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[24]:/
-1140.1 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/
-1150.3 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/ # drift 0.046
-1163.0 "Rush" sync / 1[56]:[^:]*:Rocket Punch:359C:/
-1175.1 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/
-1185.3 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-1187.6 "Rush" sync / 1[56]:[^:]*:Rocket Punch:359C:/
-1196.4 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/
-1204.5 "Ballistic Missile" sync / 1[56]:[^:]*:Omega:327E:/ # drift 0.042
-1214.6 "Flamethrower" sync / 1[56]:[^:]*:Omega:327D:/
-1214.6 "Ballistic Impact" sync / 1[56]:[^:]*:Omega:327F:/
-1221.7 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[13]:/
-1227.3 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[24]:/
-1237.1 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/
-1249.8 "Rush" sync / 1[56]:[^:]*:Rocket Punch:359C:/
-1255.6 "Electric Slide" sync / 1[56]:[^:]*:Omega:3285:/ # drift -0.049
-1262.7 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[13]:/
-1268.4 "Starboard/Larboard Cannon" sync / 1[56]:[^:]*:Omega:328[24]:/
-1275.0 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/ # drift 0.042999
-1290.3 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/
-1303.5 "Mustard Bomb" sync / 1[56]:[^:]*:Omega:3287:/
-1305.6 "Blaster" sync / 1[56]:[^:]*:Omega:3280:/ # drift 0.046001
-1314.8 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/
-1320.9 "Atomic Ray" sync / 1[56]:[^:]*:Omega:3286:/
+1060.3 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" } window 10,10
+1070.5 "Flamethrower" Ability { id: "327D", source: "Omega" }
+1072.9 "Rush" Ability { id: "359C", source: "Rocket Punch" }
+1078.7 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" }
+1081.8 "Ballistic Missile" Ability { id: "327E", source: "Omega" }
+1091.3 "Rush" Ability { id: "359C", source: "Rocket Punch" } # drift -0.041999
+1091.9 "Ballistic Impact" Ability { id: "327F", source: "Omega" }
+1101.0 "Electric Slide" Ability { id: "3285", source: "Omega" }
+1115.3 "Mustard Bomb" Ability { id: "3287", source: "Omega" }
+1117.6 "Blaster" Ability { id: "3280", source: "Omega" }
+1127.7 "Starboard/Larboard Cannon" Ability { id: "328[13]", source: "Omega" }
+1133.4 "Starboard/Larboard Cannon" Ability { id: "328[24]", source: "Omega" }
+1140.1 "Atomic Ray" Ability { id: "3286", source: "Omega" }
+1150.3 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" } # drift 0.046
+1163.0 "Rush" Ability { id: "359C", source: "Rocket Punch" }
+1175.1 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" }
+1185.3 "Flamethrower" Ability { id: "327D", source: "Omega" }
+1187.6 "Rush" Ability { id: "359C", source: "Rocket Punch" }
+1196.4 "Atomic Ray" Ability { id: "3286", source: "Omega" }
+1204.5 "Ballistic Missile" Ability { id: "327E", source: "Omega" } # drift 0.042
+1214.6 "Flamethrower" Ability { id: "327D", source: "Omega" }
+1214.6 "Ballistic Impact" Ability { id: "327F", source: "Omega" }
+1221.7 "Starboard/Larboard Cannon" Ability { id: "328[13]", source: "Omega" }
+1227.3 "Starboard/Larboard Cannon" Ability { id: "328[24]", source: "Omega" }
+1237.1 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" }
+1249.8 "Rush" Ability { id: "359C", source: "Rocket Punch" }
+1255.6 "Electric Slide" Ability { id: "3285", source: "Omega" } # drift -0.049
+1262.7 "Starboard/Larboard Cannon" Ability { id: "328[13]", source: "Omega" }
+1268.4 "Starboard/Larboard Cannon" Ability { id: "328[24]", source: "Omega" }
+1275.0 "Atomic Ray" Ability { id: "3286", source: "Omega" } # drift 0.042999
+1290.3 "Mustard Bomb" Ability { id: "3287", source: "Omega" }
+1303.5 "Mustard Bomb" Ability { id: "3287", source: "Omega" }
+1305.6 "Blaster" Ability { id: "3280", source: "Omega" } # drift 0.046001
+1314.8 "Atomic Ray" Ability { id: "3286", source: "Omega" }
+1320.9 "Atomic Ray" Ability { id: "3286", source: "Omega" }
 
 # Loop lookahead
-1334.2 "Peripheral Synthesis" sync / 1[56]:[^:]*:Omega:3270:/ window 50,50 jump 1060.3
+1334.2 "Peripheral Synthesis" Ability { id: "3270", source: "Omega" } window 50,50 jump 1060.3
 1344.4 "Flamethrower"
 1346.8 "Rush"
 1352.6 "Peripheral Synthesis"

@@ -6,200 +6,200 @@ hideall "--sync--"
 # Use autos instead of InCombat lines to start timelines for door & final boss
 # as timeline resets out of combat.
 
-4 "--sync--" sync / 1[56]:[^:]*:Kefka:28C2:/ window 5,0
-13 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ window 20,20 # drift 0.476
-19 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:28CE:/ # drift 0.215
-28 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
-36 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
-41 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:2B32:/
-44 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
-50 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+4 "--sync--" Ability { id: "28C2", source: "Kefka" } window 5,0
+13 "Mana Charge" Ability { id: "28D1", source: "Kefka" } window 20,20 # drift 0.476
+19 "Flagrant Fire" #Ability { id: "28CE", source: "Kefka" } # drift 0.215
+28 "Hyperdrive" Ability { id: "28E8", source: "Kefka" }
+36 "Mana Release" Ability { id: "28D2", source: "Kefka" }
+41 "Flagrant Fire" #Ability { id: "2B32", source: "Kefka" }
+44 "Thrumming Thunder" #Ability { id: "28CA", source: "Kefka" }
+50 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
 
 # First Graven
-71 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
-73 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
-75 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
-76 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:28DC:/
-79 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
-81 "Wave Cannon" sync / 1[56]:[^:]*:Graven Image:28DC:/
-83 "Pulse Wave" sync / 1[56]:[^:]*:Graven Image:28DD:/
-83 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
-86 "Indomitable Will" sync / 1[56]:[^:]*:Graven Image:28D9:/
-87 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:28D3:/
-90 "Revolting Ruin" sync / 1[56]:[^:]*:Kefka:28D5:/
-98 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
+71 "Graven Image" Ability { id: "28D7", source: "Kefka" }
+73 "--untargetable--" StartsUsing { id: "2B34", source: "Kefka" }
+75 "Inexorable Will" Ability { id: "28DA", source: "Graven Image" }
+76 "Wave Cannon" Ability { id: "28DC", source: "Graven Image" }
+79 "Inexorable Will" Ability { id: "28DA", source: "Graven Image" }
+81 "Wave Cannon" Ability { id: "28DC", source: "Graven Image" }
+83 "Pulse Wave" Ability { id: "28DD", source: "Graven Image" }
+83 "Inexorable Will" Ability { id: "28DA", source: "Graven Image" }
+86 "Indomitable Will" Ability { id: "28D9", source: "Graven Image" }
+87 "Timely Teleport" Ability { id: "28D3", source: "Kefka" }
+90 "Revolting Ruin" Ability { id: "28D5", source: "Kefka" }
+98 "Light Of Judgment" Ability { id: "28D8", source: "Kefka" }
 
 # Second Graven
-108 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/
-115 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
-122 "Blizzard Blitz" #sync / 1[56]:[^:]*:Kefka:28C7:/
-130 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
-139 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
-140 "Shockwave" sync / 1[56]:[^:]*:Graven Image:28DB:/
-146 "Blizzard+Thunder" #sync / 1[56]:[^:]*:Kefka:2B2(E|F):/
-156 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
-163 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+108 "Mana Charge" Ability { id: "28D1", source: "Kefka" }
+115 "Thrumming Thunder" #Ability { id: "28CA", source: "Kefka" }
+122 "Blizzard Blitz" #Ability { id: "28C7", source: "Kefka" }
+130 "Graven Image" Ability { id: "28D7", source: "Kefka" }
+139 "Mana Release" Ability { id: "28D2", source: "Kefka" }
+140 "Shockwave" Ability { id: "28DB", source: "Graven Image" }
+146 "Blizzard+Thunder" #Ability { id: "2B2(E|F)", source: "Kefka" }
+156 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
+163 "Hyperdrive" Ability { id: "28E8", source: "Kefka" }
 
 # Third Graven
-178 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
-181 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
-183 "Gravitas" sync / 1[56]:[^:]*:Graven Image:28E0:/
-186 "Vitrophyre" sync / 1[56]:[^:]*:Graven Image:28E2:/
-190 "Half Arena" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
-193 "Gravitas" sync / 1[56]:[^:]*:Graven Image:28E0:/
+178 "Graven Image" Ability { id: "28D7", source: "Kefka" }
+181 "--untargetable--" StartsUsing { id: "2B34", source: "Kefka" }
+183 "Gravitas" Ability { id: "28E0", source: "Graven Image" }
+186 "Vitrophyre" Ability { id: "28E2", source: "Graven Image" }
+190 "Half Arena" Ability { id: "28D(E|F)", source: "Graven Image" }
+193 "Gravitas" Ability { id: "28E0", source: "Graven Image" }
 195 "--targetable--"
-196 "Vitrophyre" sync / 1[56]:[^:]*:Graven Image:28E2:/
-200 "Aero Assault" sync / 1[56]:[^:]*:Kefka:28D6:/
-208 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
+196 "Vitrophyre" Ability { id: "28E2", source: "Graven Image" }
+200 "Aero Assault" Ability { id: "28D6", source: "Kefka" }
+208 "Light Of Judgment" Ability { id: "28D8", source: "Kefka" }
 
 # Fourth Graven
-218 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ # drift 0.296
-224 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:28CE:/ # drift 0.304
-232 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
-240 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/ # drift 0.203
-245 "Half Arena" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
-246 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/ # drift 0.302
-251 "Flagrant Fire" #sync / 1[56]:[^:]*:Kefka:2B32:/
-254 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
-261 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
-268 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+218 "Mana Charge" Ability { id: "28D1", source: "Kefka" } # drift 0.296
+224 "Flagrant Fire" #Ability { id: "28CE", source: "Kefka" } # drift 0.304
+232 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
+240 "Graven Image" Ability { id: "28D7", source: "Kefka" } # drift 0.203
+245 "Half Arena" Ability { id: "28D(E|F)", source: "Graven Image" }
+246 "Mana Release" Ability { id: "28D2", source: "Kefka" } # drift 0.302
+251 "Flagrant Fire" #Ability { id: "2B32", source: "Kefka" }
+254 "Thrumming Thunder" #Ability { id: "28CA", source: "Kefka" }
+261 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
+268 "Hyperdrive" Ability { id: "28E8", source: "Kefka" }
 
 # Fifth Graven
-288 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/ # drift 0.259
-290 "--untargetable--" sync / 14:[^:]*:Kefka:2B34:/
-293 "Inexorable Will" sync / 1[56]:[^:]*:Graven Image:28DA:/
-293 "Statue Gaze" #sync / 1[56]:[^:]*:Graven Image:28E(3|4):/
-308 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:28E(3|4):/ # drift -0.387
-310 "Timely Teleport" sync / 1[56]:[^:]*:Kefka:28D3:/
-313 "Revolting Ruin" sync / 1[56]:[^:]*:Kefka:28D5:/ # drift 0.227
-322 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28D8:/
-329 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/ # drift 0.31
+288 "Graven Image" Ability { id: "28D7", source: "Kefka" } # drift 0.259
+290 "--untargetable--" StartsUsing { id: "2B34", source: "Kefka" }
+293 "Inexorable Will" Ability { id: "28DA", source: "Graven Image" }
+293 "Statue Gaze" #Ability { id: "28E(3|4)", source: "Graven Image" }
+308 "Statue Gaze" Ability { id: "28E(3|4)", source: "Graven Image" } # drift -0.387
+310 "Timely Teleport" Ability { id: "28D3", source: "Kefka" }
+313 "Revolting Ruin" Ability { id: "28D5", source: "Kefka" } # drift 0.227
+322 "Light Of Judgment" Ability { id: "28D8", source: "Kefka" }
+329 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" } # drift 0.31
 
 # Sixth Graven
-336 "Mana Charge" sync / 1[56]:[^:]*:Kefka:28D1:/ # drift 0.256
-343 "Thrumming Thunder" #sync / 1[56]:[^:]*:Kefka:28CA:/
-350 "Blizzard Blitz" #sync / 1[56]:[^:]*:Kefka:28C7:/
-358 "Graven Image" sync / 1[56]:[^:]*:Kefka:28D7:/
-363 "Statue Gaze" sync / 1[56]:[^:]*:Graven Image:28E(3|4):/
-364 "Mana Release" sync / 1[56]:[^:]*:Kefka:28D2:/
-371 "Blizzard+Thunder" #sync / 1[56]:[^:]*:Kefka:2B2(E|F):/
-377 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:28E8:/
+336 "Mana Charge" Ability { id: "28D1", source: "Kefka" } # drift 0.256
+343 "Thrumming Thunder" #Ability { id: "28CA", source: "Kefka" }
+350 "Blizzard Blitz" #Ability { id: "28C7", source: "Kefka" }
+358 "Graven Image" Ability { id: "28D7", source: "Kefka" }
+363 "Statue Gaze" Ability { id: "28E(3|4)", source: "Graven Image" }
+364 "Mana Release" Ability { id: "28D2", source: "Kefka" }
+371 "Blizzard+Thunder" #Ability { id: "2B2(E|F)", source: "Kefka" }
+377 "Hyperdrive" Ability { id: "28E8", source: "Kefka" }
 
 # Enrage
-384 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/ # drift 0.285
-392 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
-400 "Ultima Upsurge" sync / 1[56]:[^:]*:Kefka:28E7:/
+384 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" } # drift 0.285
+392 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
+400 "Ultima Upsurge" Ability { id: "28E7", source: "Kefka" }
 404 "--untargetable--"
-408 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:2A51:/
+408 "Light Of Judgment" Ability { id: "2A51", source: "Kefka" }
 
 #############
 # GOD KEFKA #
 #############
 
 1000 "Start"
-1001 "--sync--" sync / 1[56]:[^:]*:Kefka:28EC:/ window 1001,0
-1006 "--sync--" sync / 14:[^:]*:Kefka:28FA:/ window 10,0
-1010 "Heartless Angel" sync / 1[56]:[^:]*:Kefka:28FA:/
-1016 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1023 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
-1032 "Celestriad" sync / 1[56]:[^:]*:Kefka:2907:/
-1034 "Thunder III" sync / 1[56]:[^:]*:Kefka:290A:/
-1035 "(DPS) Fire III" sync / 1[56]:[^:]*:Kefka:290B:/
-1041 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1001 "--sync--" Ability { id: "28EC", source: "Kefka" } window 1001,0
+1006 "--sync--" StartsUsing { id: "28FA", source: "Kefka" } window 10,0
+1010 "Heartless Angel" Ability { id: "28FA", source: "Kefka" }
+1016 "Ultima" Ability { id: "2911", source: "Kefka" }
+1023 "Hyperdrive" Ability { id: "2912", source: "Kefka" }
+1032 "Celestriad" Ability { id: "2907", source: "Kefka" }
+1034 "Thunder III" Ability { id: "290A", source: "Kefka" }
+1035 "(DPS) Fire III" Ability { id: "290B", source: "Kefka" }
+1041 "Ultima" Ability { id: "2911", source: "Kefka" }
 
 # Forsaken 1
-1048 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
-1053 "Forsaken #1" sync / 1[56]:[^:]*:Kefka:28E9:/
-1064 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
-1067 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
-1077 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
-1083 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1093 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
-1096 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
+1048 "--sync--" StartsUsing { id: "28E9", source: "Kefka" } window 120,60
+1053 "Forsaken #1" Ability { id: "28E9", source: "Kefka" }
+1064 "Heartless Archangel" Ability { id: "28FB", source: "Kefka" }
+1067 "Soak" Ability { id: "28EA", source: "Light Of Consecration" }
+1077 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
+1083 "Ultima" Ability { id: "2911", source: "Kefka" }
+1093 "Heartless Archangel" Ability { id: "28FB", source: "Kefka" }
+1096 "Soak" Ability { id: "28EA", source: "Light Of Consecration" }
 
 # Light 1
-1108 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
-1122 "Trine (small)" sync / 1[56]:[^:]*:Kefka:290D:/
-1129 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FE:/
-1140 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
-1157 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1165 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
-1175 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
-1182 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
-1189 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1108 "Light Of Judgment" Ability { id: "28ED", source: "Kefka" }
+1122 "Trine (small)" Ability { id: "290D", source: "Kefka" }
+1129 "1x Wings Of Destruction" Ability { id: "28FE", source: "Kefka" }
+1140 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
+1157 "Ultima" Ability { id: "2911", source: "Kefka" }
+1165 "Past/Future" Ability { id: "28(EF|F1)", source: "Kefka" }
+1175 "Ultimate Embrace" Ability { id: "2910", source: "Kefka" }
+1182 "Hyperdrive" Ability { id: "2912", source: "Kefka" }
+1189 "Ultima" Ability { id: "2911", source: "Kefka" }
 
 # Forsaken 2
-1201 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
-1206 "Forsaken #2" sync / 1[56]:[^:]*:Kefka:28E9:/
-1214 "Starstrafe" sync / 1[56]:[^:]*:Kefka:2902:/
-1221 "Past/Future End" sync / 1[56]:[^:]*:Kefka:28F(5|8):/
-1228 "All Things Ending" sync / 1[56]:[^:]*:Kefka:28F6:/
-1233 "Meteor" sync / 1[56]:[^:]*:Kefka:2905:/
+1201 "--sync--" StartsUsing { id: "28E9", source: "Kefka" } window 120,60
+1206 "Forsaken #2" Ability { id: "28E9", source: "Kefka" }
+1214 "Starstrafe" Ability { id: "2902", source: "Kefka" }
+1221 "Past/Future End" Ability { id: "28F(5|8)", source: "Kefka" }
+1228 "All Things Ending" Ability { id: "28F6", source: "Kefka" }
+1233 "Meteor" Ability { id: "2905", source: "Kefka" }
 
 # Light 2
-1240 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
-1256 "Celestriad" sync / 1[56]:[^:]*:Kefka:2907:/
-1258 "Thunder III" sync / 1[56]:[^:]*:Kefka:290A:/
-1259 "(DPS) Fire III" sync / 1[56]:[^:]*:Kefka:290B:/
-1264 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
-1271 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1287 "Trine (big)" sync / 1[56]:[^:]*:Kefka:290D:/
-1297 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
-1307 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
-1313 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
-1320 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
-1328 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1240 "Light Of Judgment" Ability { id: "28ED", source: "Kefka" }
+1256 "Celestriad" Ability { id: "2907", source: "Kefka" }
+1258 "Thunder III" Ability { id: "290A", source: "Kefka" }
+1259 "(DPS) Fire III" Ability { id: "290B", source: "Kefka" }
+1264 "1x Wings Of Destruction" Ability { id: "28FF", source: "Kefka" }
+1271 "Ultima" Ability { id: "2911", source: "Kefka" }
+1287 "Trine (big)" Ability { id: "290D", source: "Kefka" }
+1297 "Past/Future" Ability { id: "28(EF|F1)", source: "Kefka" }
+1307 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
+1313 "Ultimate Embrace" Ability { id: "2910", source: "Kefka" }
+1320 "Hyperdrive" Ability { id: "2912", source: "Kefka" }
+1328 "Ultima" Ability { id: "2911", source: "Kefka" }
 
 # Forsaken 3
-1340 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
-1345 "Forsaken #3" sync / 1[56]:[^:]*:Kefka:28E9:/
-1358 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1359 "Knockback Tethers" sync / 1[56]:[^:]*:Graven Image:28DD:/
-1362 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
-1364 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
-1371 "Sleep/Confuse Tethers" sync / 1[56]:[^:]*:Graven Image:28E(5|6):/
-1377 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1386 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
-1389 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
-1399 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1340 "--sync--" StartsUsing { id: "28E9", source: "Kefka" } window 120,60
+1345 "Forsaken #3" Ability { id: "28E9", source: "Kefka" }
+1358 "Ultima" Ability { id: "2911", source: "Kefka" }
+1359 "Knockback Tethers" Ability { id: "28DD", source: "Graven Image" }
+1362 "Soak" Ability { id: "28EA", source: "Light Of Consecration" }
+1364 "Ultimate Embrace" Ability { id: "2910", source: "Kefka" }
+1371 "Sleep/Confuse Tethers" Ability { id: "28E(5|6)", source: "Graven Image" }
+1377 "Ultima" Ability { id: "2911", source: "Kefka" }
+1386 "Heartless Archangel" Ability { id: "28FB", source: "Kefka" }
+1389 "Soak" Ability { id: "28EA", source: "Light Of Consecration" }
+1399 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
 1400 "Soak"
-1405 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1412 "Statue Half Cleave" sync / 1[56]:[^:]*:Graven Image:28D(E|F):/
-1413 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+1405 "Ultima" Ability { id: "2911", source: "Kefka" }
+1412 "Statue Half Cleave" Ability { id: "28D(E|F)", source: "Graven Image" }
+1413 "1x Wings Of Destruction" Ability { id: "28FF", source: "Kefka" }
 
 # Light 3
-1421 "Light Of Judgment" sync / 1[56]:[^:]*:Kefka:28ED:/
-1435 "Trine (small)" sync / 1[56]:[^:]*:Kefka:290D:/
-1442 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
-1453 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
-1459 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
-1475 "Trine (big)" sync / 1[56]:[^:]*:Kefka:290D:/
-1485 "Past/Future" sync / 1[56]:[^:]*:Kefka:28(EF|F1):/
-1496 "Hyperdrive" sync / 1[56]:[^:]*:Kefka:2912:/
-1504 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1512 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1421 "Light Of Judgment" Ability { id: "28ED", source: "Kefka" }
+1435 "Trine (small)" Ability { id: "290D", source: "Kefka" }
+1442 "1x Wings Of Destruction" Ability { id: "28FF", source: "Kefka" }
+1453 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
+1459 "Ultimate Embrace" Ability { id: "2910", source: "Kefka" }
+1475 "Trine (big)" Ability { id: "290D", source: "Kefka" }
+1485 "Past/Future" Ability { id: "28(EF|F1)", source: "Kefka" }
+1496 "Hyperdrive" Ability { id: "2912", source: "Kefka" }
+1504 "Ultima" Ability { id: "2911", source: "Kefka" }
+1512 "Ultima" Ability { id: "2911", source: "Kefka" }
 
 # Forsaken 4 (repeats #3)
-1525 "--sync--" sync / 14:[^:]*:Kefka:28E9:/ window 120,60
-1530 "Forsaken #4" sync / 1[56]:[^:]*:Kefka:28E9:/
-1543 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1544 "Knockback Tethers" sync / 1[56]:[^:]*:Graven Image:28DD:/
-1547 "Soak" sync / 1[56]:[^:]*:Light Of Consecration:28EA:/
-1549 "Ultimate Embrace" sync / 1[56]:[^:]*:Kefka:2910:/
-1556 "Sleep/Confuse Tethers" sync / 1[56]:[^:]*:Graven Image:28E(5|6):/
-1562 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
-1571 "Heartless Archangel" sync / 1[56]:[^:]*:Kefka:28FB:/
+1525 "--sync--" StartsUsing { id: "28E9", source: "Kefka" } window 120,60
+1530 "Forsaken #4" Ability { id: "28E9", source: "Kefka" }
+1543 "Ultima" Ability { id: "2911", source: "Kefka" }
+1544 "Knockback Tethers" Ability { id: "28DD", source: "Graven Image" }
+1547 "Soak" Ability { id: "28EA", source: "Light Of Consecration" }
+1549 "Ultimate Embrace" Ability { id: "2910", source: "Kefka" }
+1556 "Sleep/Confuse Tethers" Ability { id: "28E(5|6)", source: "Graven Image" }
+1562 "Ultima" Ability { id: "2911", source: "Kefka" }
+1571 "Heartless Archangel" Ability { id: "28FB", source: "Kefka" }
 1574 "Soak"
-1584 "2x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:2900:/
+1584 "2x Wings Of Destruction" Ability { id: "2900", source: "Kefka" }
 1586 "Soak"
-1590 "Ultima" sync / 1[56]:[^:]*:Kefka:2911:/
+1590 "Ultima" Ability { id: "2911", source: "Kefka" }
 1595 "Statue Half Cleave"
-1596 "1x Wings Of Destruction" sync / 1[56]:[^:]*:Kefka:28FF:/
+1596 "1x Wings Of Destruction" Ability { id: "28FF", source: "Kefka" }
 
 # Enrage
-1602 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
-1610 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
-1618 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
-1626 "Ultima" sync / 1[56]:[^:]*:Kefka:283D:/
-1630 "--sync--" sync / 14:[^:]*:Kefka:2A52:/
-1640 "Enrage" sync / 1[56]:[^:]*:Kefka:2A52:/ jump 0
+1602 "Ultima" Ability { id: "283D", source: "Kefka" }
+1610 "Ultima" Ability { id: "283D", source: "Kefka" }
+1618 "Ultima" Ability { id: "283D", source: "Kefka" }
+1626 "Ultima" Ability { id: "283D", source: "Kefka" }
+1630 "--sync--" StartsUsing { id: "2A52", source: "Kefka" }
+1640 "Enrage" Ability { id: "2A52", source: "Kefka" } jump 0

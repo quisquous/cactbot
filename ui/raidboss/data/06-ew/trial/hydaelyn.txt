@@ -7,202 +7,202 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
 # Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-11.1 "--sync--" sync / 14:[^:]*:Hydaelyn:65D7:/ window 20,20
-16.1 "Heros's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D7:/
-23.3 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-29.9 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-36.2 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
-45.3 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-52.5 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-58.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-65.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
-74.2 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
-78.7 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-85.1 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-91.4 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
-100.6 "Heros's Sundering" sync / 1[56]:[^:]*:Hydaelyn:65D5:/
-107.8 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-114.1 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+11.1 "--sync--" StartsUsing { id: "65D7", source: "Hydaelyn" } window 20,20
+16.1 "Heros's Radiance" Ability { id: "65D7", source: "Hydaelyn" }
+23.3 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
+29.9 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+36.2 "Anthelion" Ability { id: "65C8", source: "Hydaelyn" }
+45.3 "Mousa's Scorn" Ability { id: "65D6", source: "Hydaelyn" }
+52.5 "--middle--" Ability { id: "6E7A", source: "Hydaelyn" }
+58.8 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+65.1 "Highest Holy" Ability { id: "65C7", source: "Hydaelyn" }
+74.2 "Magos's Radiance" Ability { id: "65D8", source: "Hydaelyn" }
+78.7 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
+85.1 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+91.4 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
+100.6 "Heros's Sundering" Ability { id: "65D5", source: "Hydaelyn" }
+107.8 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
+114.1 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
 # -> branch
 
 # Anthelion branch jump
-120.4 "Anthelion?" sync / 1[56]:[^:]*:Hydaelyn:65C8:/ window 30,30 jump 220.4
-129.5 "Mousa's Scorn?" #sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-133.7 "--middle--" #sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-140.0 "Dawn Mantle?" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-146.3 "Equinox?" #sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+120.4 "Anthelion?" Ability { id: "65C8", source: "Hydaelyn" } window 30,30 jump 220.4
+129.5 "Mousa's Scorn?" #Ability { id: "65D6", source: "Hydaelyn" }
+133.7 "--middle--" #Ability { id: "6E7A", source: "Hydaelyn" }
+140.0 "Dawn Mantle?" #Ability { id: "6C0C", source: "Hydaelyn" }
+146.3 "Equinox?" #Ability { id: "65C3", source: "Hydaelyn" }
 154.4 "--untargetable--"
 
 # Highest Holy branch jump
 # FIXME: are Dawn Mantle/Equinox times slightly different here or is that just one log?
-120.4 "Highest Holy?" sync / 1[56]:[^:]*:Hydaelyn:65C7:/ window 30,30 jump 320.4
-129.5 "Magos's Radiance?" #sync / 1[56]:[^:]*:Hydaelyn:65D8:/
+120.4 "Highest Holy?" Ability { id: "65C7", source: "Hydaelyn" } window 30,30 jump 320.4
+129.5 "Magos's Radiance?" #Ability { id: "65D8", source: "Hydaelyn" }
 
 
 # Anthelion/Mousa's Scorn -> add phase
-220.4 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
-229.5 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-233.7 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-240.0 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-246.3 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+220.4 "Anthelion" Ability { id: "65C8", source: "Hydaelyn" }
+229.5 "Mousa's Scorn" Ability { id: "65D6", source: "Hydaelyn" }
+233.7 "--middle--" Ability { id: "6E7A", source: "Hydaelyn" }
+240.0 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+246.3 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 254.4 "--untargetable--"
-258.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 50,50 jump 804.4
+258.8 "--sync--" Ability { id: "65D3", source: "Hydaelyn" } window 50,50 jump 804.4
 
 
 # Highest Holy/Raidwide -> add phase
-320.4 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
-329.5 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
-334.0 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-340.3 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-346.6 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
+320.4 "Highest Holy" Ability { id: "65C7", source: "Hydaelyn" }
+329.5 "Magos's Radiance" Ability { id: "65D8", source: "Hydaelyn" }
+334.0 "--middle--" Ability { id: "65A9", source: "Hydaelyn" }
+340.3 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+346.6 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
 354.7 "--untargetable--"
-359.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 50,50 jump 804.4
+359.1 "--sync--" Ability { id: "65D3", source: "Hydaelyn" } window 50,50 jump 804.4
 
 
 # Add phase: timed push (70% push?)
 800.0 "--untargetable--"
-804.4 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65D3:/ window 1000,1000
+804.4 "--sync--" Ability { id: "65D3", source: "Hydaelyn" } window 1000,1000
 812.4 "--targetable--"
-826.7 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
-828.8 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C51:/
-837.7 "Crystalline Stone III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C59:/
-840.1 "--sync--" sync / 1[56]:[^:]*:Echo of Hydaelyn:659F:/
-853.8 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
-858.9 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6CCD:/
-867.8 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C5A:/
-870.2 "--sync--" sync / 1[56]:[^:]*:Echo of Hydaelyn:659F:/
-880.9 "Hydaelyn's Ray" sync / 1[56]:[^:]*:Echo of Hydaelyn:65CC:/
-886.0 "Crystallize" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C51:/
-894.9 "Crystalline Stone III" sync / 1[56]:[^:]*:Echo of Hydaelyn:6C59:/
+826.7 "Hydaelyn's Ray" Ability { id: "65CC", source: "Echo of Hydaelyn" }
+828.8 "Crystallize" Ability { id: "6C51", source: "Echo of Hydaelyn" }
+837.7 "Crystalline Stone III" Ability { id: "6C59", source: "Echo of Hydaelyn" }
+840.1 "--sync--" Ability { id: "659F", source: "Echo of Hydaelyn" }
+853.8 "Hydaelyn's Ray" Ability { id: "65CC", source: "Echo of Hydaelyn" }
+858.9 "Crystallize" Ability { id: "6CCD", source: "Echo of Hydaelyn" }
+867.8 "Crystalline Blizzard III" Ability { id: "6C5A", source: "Echo of Hydaelyn" }
+870.2 "--sync--" Ability { id: "659F", source: "Echo of Hydaelyn" }
+880.9 "Hydaelyn's Ray" Ability { id: "65CC", source: "Echo of Hydaelyn" }
+886.0 "Crystallize" Ability { id: "6C51", source: "Echo of Hydaelyn" }
+894.9 "Crystalline Stone III" Ability { id: "6C59", source: "Echo of Hydaelyn" }
 
 
 # Final Phase
-1000.0 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65BB:/ window 1000,0
-1014.8 "Exodus" sync / 1[56]:[^:]*:Hydaelyn:65D2:/
+1000.0 "Exodus" Ability { id: "65BB", source: "Hydaelyn" } window 1000,0
+1014.8 "Exodus" Ability { id: "65D2", source: "Hydaelyn" }
 1020.0 "--targetable--"
-1029.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-1034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
-1042.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-1052.0 "Crystalline Blizzard III" #sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
+1029.2 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
+1034.8 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
+1042.8 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+1052.0 "Crystalline Blizzard III" #Ability { id: "6C5A", source: "Hydaelyn" }
 
 # -> jump to Parhelic Circle first
-1049.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/ window 30,30 jump 2049.1
-1066.0 "Parhelic Circle?" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
+1049.1 "Highest Holy" Ability { id: "65C7", source: "Hydaelyn" } window 30,30 jump 2049.1
+1066.0 "Parhelic Circle?" Ability { id: "65AC", source: "Hydaelyn" }
 
 # -> jump to Parhelion first
-1049.1 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/ window 30,30 jump 3049.1
-1064.3 "Mousa's Scorn?" #sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-1075.0 "Parhelion?" #sync / 1[56]:[^:]*:Hydaelyn:65B0:/
+1049.1 "Anthelion" Ability { id: "65C8", source: "Hydaelyn" } window 30,30 jump 3049.1
+1064.3 "Mousa's Scorn?" #Ability { id: "65D6", source: "Hydaelyn" }
+1075.0 "Parhelion?" #Ability { id: "65B0", source: "Hydaelyn" }
 
 
 ### Parhelic Circle first
-2034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
-2042.8 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-2049.1 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
-2052.0 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
-2052.2 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
-2058.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+2034.8 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
+2042.8 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+2049.1 "Highest Holy" Ability { id: "65C7", source: "Hydaelyn" }
+2052.0 "Crystalline Blizzard III" Ability { id: "6C5A", source: "Hydaelyn" }
+2052.2 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
+2058.3 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
 
-2066.0 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
-2066.8 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
-2066.8 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AD:/
-2069.3 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65CD:/
-2077.2 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
-2081.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-2087.5 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
-2095.6 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-2101.9 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
-2105.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
-2105.7 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
-2117.1 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-2121.2 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
+2066.0 "Parhelic Circle" Ability { id: "65AC", source: "Hydaelyn" }
+2066.8 "--sync--" Ability { id: "65AE", source: "Mystic Refulgence" }
+2066.8 "--sync--" Ability { id: "65AD", source: "Mystic Refulgence" }
+2069.3 "Incandescence" Ability { id: "65CD", source: "Mystic Refulgence" }
+2077.2 "Magos's Radiance" Ability { id: "65D8", source: "Hydaelyn" }
+2081.8 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
+2087.5 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
+2095.6 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+2101.9 "Anthelion" Ability { id: "65C8", source: "Hydaelyn" }
+2105.0 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
+2105.7 "Crystalline Blizzard III" Ability { id: "6C5A", source: "Hydaelyn" }
+2117.1 "Mousa's Scorn" Ability { id: "65D6", source: "Hydaelyn" }
+2121.2 "--middle--" Ability { id: "6E7A", source: "Hydaelyn" }
 
-2127.7 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
-2128.0 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-2129.6 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-2131.2 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-2137.6 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
-2141.8 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-2144.0 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CF:/
-2145.6 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CF:/
-2147.2 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+2127.7 "Parhelion" Ability { id: "65B0", source: "Hydaelyn" }
+2128.0 "Beacon 1" #Ability { id: "65CE", source: "Parhelion" }
+2129.6 "Beacon 2" #Ability { id: "65CE", source: "Parhelion" }
+2131.2 "Beacon 3" #Ability { id: "65CE", source: "Parhelion" }
+2137.6 "Subparhelion" Ability { id: "6C56", source: "Hydaelyn" }
+2141.8 "--sync--" Ability { id: "6E7A", source: "Hydaelyn" }
+2144.0 "Beacon 1" #Ability { id: "65CF", source: "Parhelion" }
+2145.6 "Beacon 2" #Ability { id: "65CF", source: "Parhelion" }
+2147.2 "Beacon 3" #Ability { id: "65CF", source: "Parhelion" }
 
 # -> jump back to shared loop below
-2147.3 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659E:/ window 50,50 jump 3147.3
-2155.4 "Dawn Mantle" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-2161.7 "Equinox" #sync / 1[56]:[^:]*:Hydaelyn:65C3:/
-2164.8 "--sync--" #sync / 1[56]:[^:]*:Hydaelyn:659F:/
-2165.5 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+2147.3 "Crystallize" Ability { id: "659E", source: "Hydaelyn" } window 50,50 jump 3147.3
+2155.4 "Dawn Mantle" #Ability { id: "6C0C", source: "Hydaelyn" }
+2161.7 "Equinox" #Ability { id: "65C3", source: "Hydaelyn" }
+2164.8 "--sync--" #Ability { id: "659F", source: "Hydaelyn" }
+2165.5 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 
 
 ### Parhelion first
-3034.8 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
-3042.9 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-3049.1 "Anthelion" sync / 1[56]:[^:]*:Hydaelyn:65C8:/
-3052.3 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A1:/
-3053.0 "Crystalline Blizzard III" sync / 1[56]:[^:]*:Hydaelyn:6C5A:/
-3064.4 "Mousa's Scorn" sync / 1[56]:[^:]*:Hydaelyn:65D6:/
-3068.6 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-3075.1 "Parhelion" sync / 1[56]:[^:]*:Hydaelyn:65B0:/
-3075.3 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-3076.9 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-3078.5 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CE:/
-3084.9 "Subparhelion" sync / 1[56]:[^:]*:Hydaelyn:6C56:/
-3089.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:6E7A:/
-3091.2 "Beacon 1" #sync / 1[56]:[^:]*:Parhelion:65CF:/
-3092.8 "Beacon 2" #sync / 1[56]:[^:]*:Parhelion:65CF:/
-3094.4 "Beacon 3" #sync / 1[56]:[^:]*:Parhelion:65CF:/
+3034.8 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
+3042.9 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+3049.1 "Anthelion" Ability { id: "65C8", source: "Hydaelyn" }
+3052.3 "--sync--" Ability { id: "65A1", source: "Hydaelyn" }
+3053.0 "Crystalline Blizzard III" Ability { id: "6C5A", source: "Hydaelyn" }
+3064.4 "Mousa's Scorn" Ability { id: "65D6", source: "Hydaelyn" }
+3068.6 "--sync--" Ability { id: "6E7A", source: "Hydaelyn" }
+3075.1 "Parhelion" Ability { id: "65B0", source: "Hydaelyn" }
+3075.3 "Beacon 1" #Ability { id: "65CE", source: "Parhelion" }
+3076.9 "Beacon 2" #Ability { id: "65CE", source: "Parhelion" }
+3078.5 "Beacon 3" #Ability { id: "65CE", source: "Parhelion" }
+3084.9 "Subparhelion" Ability { id: "6C56", source: "Hydaelyn" }
+3089.1 "--sync--" Ability { id: "6E7A", source: "Hydaelyn" }
+3091.2 "Beacon 1" #Ability { id: "65CF", source: "Parhelion" }
+3092.8 "Beacon 2" #Ability { id: "65CF", source: "Parhelion" }
+3094.4 "Beacon 3" #Ability { id: "65CF", source: "Parhelion" }
 
-3094.5 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659E:/
-3102.5 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-3108.8 "Highest Holy" sync / 1[56]:[^:]*:Hydaelyn:65C7:/
-3111.9 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A0:/
-3112.7 "Crystalline Stone III" sync / 1[56]:[^:]*:Hydaelyn:6C59:/
-3118.1 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-3125.8 "Parhelic Circle" sync / 1[56]:[^:]*:Hydaelyn:65AC:/
-3126.6 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AE:/
-3126.6 "--sync--" sync / 1[56]:[^:]*:Mystic Refulgence:65AD:/
-3129.1 "Incandescence" sync / 1[56]:[^:]*:Mystic Refulgence:65CD:/
-3136.9 "Magos's Radiance" sync / 1[56]:[^:]*:Hydaelyn:65D8:/
-3141.5 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
+3094.5 "Crystallize" Ability { id: "659E", source: "Hydaelyn" }
+3102.5 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+3108.8 "Highest Holy" Ability { id: "65C7", source: "Hydaelyn" }
+3111.9 "--sync--" Ability { id: "65A0", source: "Hydaelyn" }
+3112.7 "Crystalline Stone III" Ability { id: "6C59", source: "Hydaelyn" }
+3118.1 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
+3125.8 "Parhelic Circle" Ability { id: "65AC", source: "Hydaelyn" }
+3126.6 "--sync--" Ability { id: "65AE", source: "Mystic Refulgence" }
+3126.6 "--sync--" Ability { id: "65AD", source: "Mystic Refulgence" }
+3129.1 "Incandescence" Ability { id: "65CD", source: "Mystic Refulgence" }
+3136.9 "Magos's Radiance" Ability { id: "65D8", source: "Hydaelyn" }
+3141.5 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
 # -> Crystallize below
 
 
 ### Shared branch after Parhelion / Parhelic Circle
-3147.2 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659C:/
-3155.2 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-3161.5 "Equinox" sync / 1[56]:[^:]*:Hydaelyn:65C3:/
-3164.6 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:659F:/
-3165.4 "Crystalline Blizzard III/Crystalline Stone III" sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
-3176.9 "Heros's Sundering" sync / 1[56]:[^:]*:Hydaelyn:65D5:/
-3180.0 "--sync--" sync / 1[56]:[^:]*:Hydaelyn:65A9:/
-3186.5 "Radiant Halo" sync / 1[56]:[^:]*:Hydaelyn:65D0:/
+3147.2 "Crystallize" Ability { id: "659C", source: "Hydaelyn" }
+3155.2 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+3161.5 "Equinox" Ability { id: "65C3", source: "Hydaelyn" }
+3164.6 "--sync--" Ability { id: "659F", source: "Hydaelyn" }
+3165.4 "Crystalline Blizzard III/Crystalline Stone III" Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
+3176.9 "Heros's Sundering" Ability { id: "65D5", source: "Hydaelyn" }
+3180.0 "--sync--" Ability { id: "65A9", source: "Hydaelyn" }
+3186.5 "Radiant Halo" Ability { id: "65D0", source: "Hydaelyn" }
 
 
 # Lightwave loop
-3191.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/
-3195.8 "Lightwave" sync / 1[56]:[^:]*:Hydaelyn:(6693|6694|6695):/
-3203.9 "Echoes" sync / 1[56]:[^:]*:Hydaelyn:(65B5|65B6|65B7):/
-3221.1 "Crystallize" sync / 1[56]:[^:]*:Hydaelyn:659[CE]:/
-3224.3 "--middle--" sync / 1[56]:[^:]*:Hydaelyn:(65A9|6E7A):/
-3230.7 "Dawn Mantle" sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-3237.0 "Highest Holy/Anthelion/Equinox" sync / 1[56]:[^:]*:Hydaelyn:(65C3|65C7|65C8):/
+3191.8 "--sync--" StartsUsing { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3195.8 "Lightwave" Ability { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3203.9 "Echoes" Ability { id: ["65B5", "65B6", "65B7"], source: "Hydaelyn" }
+3221.1 "Crystallize" Ability { id: "659[CE]", source: "Hydaelyn" }
+3224.3 "--middle--" Ability { id: ["65A9", "6E7A"], source: "Hydaelyn" }
+3230.7 "Dawn Mantle" Ability { id: "6C0C", source: "Hydaelyn" }
+3237.0 "Highest Holy/Anthelion/Equinox" Ability { id: ["65C3", "65C7", "65C8"], source: "Hydaelyn" }
 # This timing is +/- 1 second for some reason (even with the same Crystallize),
 # so don't sync because it throws Lightwave off even more.
-3239.9 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+3239.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 
 # Even ignoring the blizzard/stone above, this is still +/- 0.5s, so add a starts using cast.
 # TODO: it's possible the first loop is slightly different??
-3245.8 "--sync--" sync / 14:[^:]*:Hydaelyn:(6693|6694|6695):/ window 30,30 jump 3191.8
-3249.8 "Lightwave" #sync / 1[56]:[^:]*:Hydaelyn:(6693|6694|6695):/
-3257.9 "Echoes" #sync / 1[56]:[^:]*:Hydaelyn:(65B5|65B6|65B7):/
-3275.1 "Crystallize" #sync / 1[56]:[^:]*:Hydaelyn:659[CE]:/
-3278.3 "--middle--" #sync / 1[56]:[^:]*:Hydaelyn:(65A9|6E7A):/
-3284.7 "Dawn Mantle" #sync / 1[56]:[^:]*:Hydaelyn:6C0C:/
-3291.0 "Highest Holy/Anthelion/Equinox" #sync / 1[56]:[^:]*:Hydaelyn:(65C3|65C7|65C8):/
-3293.9 "Crystalline Blizzard III/Crystalline Stone III" #sync / 1[56]:[^:]*:Hydaelyn:(6C5A|6C59):/
+3245.8 "--sync--" StartsUsing { id: ["6693", "6694", "6695"], source: "Hydaelyn" } window 30,30 jump 3191.8
+3249.8 "Lightwave" #Ability { id: ["6693", "6694", "6695"], source: "Hydaelyn" }
+3257.9 "Echoes" #Ability { id: ["65B5", "65B6", "65B7"], source: "Hydaelyn" }
+3275.1 "Crystallize" #Ability { id: "659[CE]", source: "Hydaelyn" }
+3278.3 "--middle--" #Ability { id: ["65A9", "6E7A"], source: "Hydaelyn" }
+3284.7 "Dawn Mantle" #Ability { id: "6C0C", source: "Hydaelyn" }
+3291.0 "Highest Holy/Anthelion/Equinox" #Ability { id: ["65C3", "65C7", "65C8"], source: "Hydaelyn" }
+3293.9 "Crystalline Blizzard III/Crystalline Stone III" #Ability { id: ["6C5A", "6C59"], source: "Hydaelyn" }
 

@@ -10,135 +10,135 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-13.0 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/ window 13,20
-25.2 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
-27.8 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
-40.4 "Words Of Motion" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2B:/
-44.6 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4CF9:/
-51.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-54.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-59.7 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
-62.7 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
-71.3 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-74.3 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-81.9 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-84.9 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-92.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-95.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C64:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+13.0 "Empty Wave" Ability { id: "4C8A", source: "The Idol Of Darkness" } window 13,20
+25.2 "Unshadowed Stake" Ability { id: "4C88", source: "The Idol Of Darkness" }
+27.8 "Silver Stake" Ability { id: "4C89", source: "The Idol Of Darkness" }
+40.4 "Words Of Motion" Ability { id: "4C2B", source: "The Idol Of Darkness" }
+44.6 "Betwixt Worlds" Ability { id: "4CF9", source: "The Idol Of Darkness" }
+51.7 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+54.7 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+59.7 "Light's Course" #Ability { id: "4C62", source: "Unforgiven Idolatry" }
+62.7 "Light's Course" #Ability { id: "4C62", source: "Unforgiven Idolatry" }
+71.3 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+74.3 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+81.9 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+84.9 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+92.5 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+95.5 "Light's Course" #Ability { id: "4C64", source: "Unforgiven Idolatry" }
 
-96.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
-105.4 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4C6B:/
-108.5 "Shockwave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C6C:/
-111.0 "Words Of Spite" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2F:/
-113.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-116.7 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
-122.9 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C26:/
-130.9 "Fate's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C61:/
-131.0 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C27:/
+96.5 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
+105.4 "Betwixt Worlds" Ability { id: "4C6B", source: "The Idol Of Darkness" }
+108.5 "Shockwave" Ability { id: "4C6C", source: "The Idol Of Darkness" }
+111.0 "Words Of Spite" Ability { id: "4C2F", source: "The Idol Of Darkness" }
+113.7 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+116.7 "Away With Thee" Ability { id: "4C39", source: "The Idol Of Darkness" }
+122.9 "Silver Sledge" Ability { id: "4C26", source: "The Idol Of Darkness" }
+130.9 "Fate's Course" Ability { id: "4C61", source: "Unforgiven Idolatry" }
+131.0 "Silver Sledge" Ability { id: "4C27", source: "The Idol Of Darkness" }
 
-132.1 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
-139.9 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/
-147.5 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
-150.1 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
-159.1 "Words Of Motion" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2B:/
-162.3 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-163.3 "False Moonlight" sync / 1[56]:[^:]*:The Idol Of Darkness:4C98:/
-166.5 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-167.4 "Silver Sword" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8E:/
-170.4 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
-170.4 "Silver Scourge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C93:/
-174.5 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
-177.5 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
+132.1 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
+139.9 "Empty Wave" Ability { id: "4C8A", source: "The Idol Of Darkness" }
+147.5 "Unshadowed Stake" Ability { id: "4C88", source: "The Idol Of Darkness" }
+150.1 "Silver Stake" Ability { id: "4C89", source: "The Idol Of Darkness" }
+159.1 "Words Of Motion" Ability { id: "4C2B", source: "The Idol Of Darkness" }
+162.3 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+163.3 "False Moonlight" Ability { id: "4C98", source: "The Idol Of Darkness" }
+166.5 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+167.4 "Silver Sword" Ability { id: "4C8E", source: "The Idol Of Darkness" }
+170.4 "Dark's Course" Ability { id: "4C5A", source: "Unforgiven Idolatry" }
+170.4 "Silver Scourge" Ability { id: "4C93", source: "The Idol Of Darkness" }
+174.5 "Dark's Course" Ability { id: "4C5A", source: "Unforgiven Idolatry" }
+177.5 "Away With Thee" Ability { id: "4C39", source: "The Idol Of Darkness" }
 
-179.5 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-183.7 "False Midnight" sync / 1[56]:[^:]*:The Idol Of Darkness:4C99:/
-183.7 "--sync--" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C37:/
-187.5 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
-191.7 "Silver Sledge" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8D:/
-191.7 "Silver Shot" sync / 1[56]:[^:]*:The Idol Of Darkness:4C92:/
-191.7 "Dark's Course" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5A:/
-191.7 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+179.5 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+183.7 "False Midnight" Ability { id: "4C99", source: "The Idol Of Darkness" }
+183.7 "--sync--" Ability { id: "4C37", source: "Unforgiven Idolatry" }
+187.5 "Dark's Course" Ability { id: "4C5A", source: "Unforgiven Idolatry" }
+191.7 "Silver Sledge" Ability { id: "4C8D", source: "The Idol Of Darkness" }
+191.7 "Silver Shot" Ability { id: "4C92", source: "The Idol Of Darkness" }
+191.7 "Dark's Course" Ability { id: "4C5A", source: "Unforgiven Idolatry" }
+191.7 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
 198.5 "--untargetable--"
-198.6 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D0A:/
+198.6 "--sync--" Ability { id: "4D0A", source: "The Idol Of Darkness" }
 
-202.7 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C32:/ window 210,10
-203.6 "--sync--" sync / 1[56]:[^:]*:Idolatry:4C3A:/
+202.7 "--sync--" Ability { id: "4C32", source: "The Idol Of Darkness" } window 210,10
+203.6 "--sync--" Ability { id: "4C3A", source: "Idolatry" }
 205.6 "--targetable--"
-224.9 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
-231.8 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
-239.5 "Advent Of Light" sync / 14:[^:]*:Idolatry:4C6E:/ # use start of cast for this interrupt
-243.6 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
-253.7 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
-254.5 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
-264.3 "Away With Thee" sync / 1[56]:[^:]*:The Idol Of Darkness:4C39:/
-268.1 "Strength In Numbers" sync / 1[56]:[^:]*:Idolatry:4C70:/
-278.2 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
-290.9 "Overwhelming Force" sync / 1[56]:[^:]*:Blasphemy:4C73:/
-291.8 "Strength In Numbers" sync / 1[56]:[^:]*:Idolatry:4C7[01]:/
-302.0 "Insatiable Light" sync / 1[56]:[^:]*:Idolatry:4C6D:/
+224.9 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
+231.8 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }
+239.5 "Advent Of Light" StartsUsing { id: "4C6E", source: "Idolatry" } # use start of cast for this interrupt
+243.6 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
+253.7 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
+254.5 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }
+264.3 "Away With Thee" Ability { id: "4C39", source: "The Idol Of Darkness" }
+268.1 "Strength In Numbers" Ability { id: "4C70", source: "Idolatry" }
+278.2 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }
+290.9 "Overwhelming Force" Ability { id: "4C73", source: "Blasphemy" }
+291.8 "Strength In Numbers" Ability { id: "4C7[01]", source: "Idolatry" }
+302.0 "Insatiable Light" Ability { id: "4C6D", source: "Idolatry" }
 # TODO: fix this sync up
-323.4 "Unearned Envy" sync / 1[56]:[^:]*:Blasphemy:4C74:/
-325.5 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
-327.6 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
-329.7 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
-331.8 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
-333.9 "Unearned Envy" #sync / 1[56]:[^:]*:Blasphemy:4C74:/
+323.4 "Unearned Envy" Ability { id: "4C74", source: "Blasphemy" }
+325.5 "Unearned Envy" #Ability { id: "4C74", source: "Blasphemy" }
+327.6 "Unearned Envy" #Ability { id: "4C74", source: "Blasphemy" }
+329.7 "Unearned Envy" #Ability { id: "4C74", source: "Blasphemy" }
+331.8 "Unearned Envy" #Ability { id: "4C74", source: "Blasphemy" }
+333.9 "Unearned Envy" #Ability { id: "4C74", source: "Blasphemy" }
 # TODO: explosion?
 
-500.0 "Empty Flood" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8B:/ window 500,10
-503.2 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4D0B:/
-507.3 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C32:/
+500.0 "Empty Flood" Ability { id: "4C8B", source: "The Idol Of Darkness" } window 500,10
+503.2 "--sync--" Ability { id: "4D0B", source: "The Idol Of Darkness" }
+507.3 "--sync--" Ability { id: "4C32", source: "The Idol Of Darkness" }
 
 510.3 "--targetable--"
-514.4 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C3B:/
-519.4 "Words Of Unity" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2D:/
-524.0 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C5E:/
-529.0 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5B:/
-529.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
-534.8 "Words Of Entrapment" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2E:/
-550.5 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5F:/
-550.5 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
-550.5 "White/Black Smoke" sync / 1[56]:[^:]*:The Idol Of Darkness:4C9[46]:/
-555.7 "Words Of Unity" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2D:/
-560.4 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C5E:/
-565.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5B:/
-565.5 "Boundless Light" sync / 1[56]:[^:]*:Unforgiven Idolatry:4C5C:/
-565.9 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
+514.4 "Unjoined Aspect" Ability { id: "4C3B", source: "The Idol Of Darkness" }
+519.4 "Words Of Unity" Ability { id: "4C2D", source: "The Idol Of Darkness" }
+524.0 "--sync--" Ability { id: "4C5E", source: "The Idol Of Darkness" }
+529.0 "Light's Course" #Ability { id: "4C5B", source: "Unforgiven Idolatry" }
+529.5 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
+534.8 "Words Of Entrapment" Ability { id: "4C2E", source: "The Idol Of Darkness" }
+550.5 "Light's Course" #Ability { id: "4C5F", source: "Unforgiven Idolatry" }
+550.5 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
+550.5 "White/Black Smoke" Ability { id: "4C9[46]", source: "The Idol Of Darkness" }
+555.7 "Words Of Unity" Ability { id: "4C2D", source: "The Idol Of Darkness" }
+560.4 "--sync--" Ability { id: "4C5E", source: "The Idol Of Darkness" }
+565.4 "Light's Course" #Ability { id: "4C5B", source: "Unforgiven Idolatry" }
+565.5 "Boundless Light" Ability { id: "4C5C", source: "Unforgiven Idolatry" }
+565.9 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
 
-578.8 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C3B:/
-582.0 "Betwixt Worlds" sync / 1[56]:[^:]*:The Idol Of Darkness:4CF9:/
-587.0 "Words Of Night" sync / 1[56]:[^:]*:The Idol Of Darkness:4C2C:/
-596.6 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C62:/
-605.2 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-610.2 "False Dawn" sync / 1[56]:[^:]*:The Idol Of Darkness:4C9A:/
-614.3 "Stygian Sword" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8F:/
-614.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
-617.3 "Stygian Spear" sync / 1[56]:[^:]*:The Idol Of Darkness:4C91:/
-617.3 "Silver Spear" sync / 1[56]:[^:]*:The Idol Of Darkness:4C90:/
-622.4 "Light's Course" #sync / 1[56]:[^:]*:Unforgiven Idolatry:4C63:/
+578.8 "Unjoined Aspect" Ability { id: "4C3B", source: "The Idol Of Darkness" }
+582.0 "Betwixt Worlds" Ability { id: "4CF9", source: "The Idol Of Darkness" }
+587.0 "Words Of Night" Ability { id: "4C2C", source: "The Idol Of Darkness" }
+596.6 "Light's Course" #Ability { id: "4C62", source: "Unforgiven Idolatry" }
+605.2 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+610.2 "False Dawn" Ability { id: "4C9A", source: "The Idol Of Darkness" }
+614.3 "Stygian Sword" Ability { id: "4C8F", source: "The Idol Of Darkness" }
+614.4 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
+617.3 "Stygian Spear" Ability { id: "4C91", source: "The Idol Of Darkness" }
+617.3 "Silver Spear" Ability { id: "4C90", source: "The Idol Of Darkness" }
+622.4 "Light's Course" #Ability { id: "4C63", source: "Unforgiven Idolatry" }
 
-625.4 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C30:/
-636.2 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4C8A:/
-643.8 "Unshadowed Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C88:/
-646.4 "Silver Stake" sync / 1[56]:[^:]*:The Idol Of Darkness:4C89:/
+625.4 "--sync--" Ability { id: "4C30", source: "The Idol Of Darkness" }
+636.2 "Empty Wave" Ability { id: "4C8A", source: "The Idol Of Darkness" }
+643.8 "Unshadowed Stake" Ability { id: "4C88", source: "The Idol Of Darkness" }
+646.4 "Silver Stake" Ability { id: "4C89", source: "The Idol Of Darkness" }
 658.8 "--untargetable--"
-658.9 "--sync--" sync / 1[56]:[^:]*:The Idol Of Darkness:4C31:/
+658.9 "--sync--" Ability { id: "4C31", source: "The Idol Of Darkness" }
 
-668.5 "Crusade" sync / 1[56]:[^:]*:The Idol Of Darkness:4C58:/ window 700,10
+668.5 "Crusade" Ability { id: "4C58", source: "The Idol Of Darkness" } window 700,10
 673.5 "--targetable--"
-677.6 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7A:/
-683.7 "Words Of Fervor" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7B:/
-716.9 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-722.6 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-728.3 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-736.6 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
-746.2 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
+677.6 "Unjoined Aspect" Ability { id: "4C7A", source: "The Idol Of Darkness" }
+683.7 "Words Of Fervor" Ability { id: "4C7B", source: "The Idol Of Darkness" }
+716.9 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+722.6 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+728.3 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+736.6 "Empty Wave" Ability { id: "4CB0", source: "The Idol Of Darkness" }
+746.2 "Empty Wave" Ability { id: "4CB0", source: "The Idol Of Darkness" }
 
-755.7 "Unjoined Aspect" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7A:/
-761.9 "Words Of Fervor" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7B:/
-795.1 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-800.8 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-806.5 "Threefold Grace" sync / 1[56]:[^:]*:The Idol Of Darkness:4C7E:/
-814.8 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
-824.3 "Empty Wave" sync / 1[56]:[^:]*:The Idol Of Darkness:4CB0:/
+755.7 "Unjoined Aspect" Ability { id: "4C7A", source: "The Idol Of Darkness" }
+761.9 "Words Of Fervor" Ability { id: "4C7B", source: "The Idol Of Darkness" }
+795.1 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+800.8 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+806.5 "Threefold Grace" Ability { id: "4C7E", source: "The Idol Of Darkness" }
+814.8 "Empty Wave" Ability { id: "4CB0", source: "The Idol Of Darkness" }
+824.3 "Empty Wave" Ability { id: "4CB0", source: "The Idol Of Darkness" }

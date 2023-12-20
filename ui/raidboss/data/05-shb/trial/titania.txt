@@ -5,57 +5,57 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ### Phase 1
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-8.5 "--sync--" sync / 14:[^:]*:Titania:3D5C:/ window 13,5
-12.5 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
-26.7 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
-37.9 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
-47.1 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
-67.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
-81.4 "Flame Hammer" sync / 1[56]:[^:]*:Spirit of Flame:4373:/
-91.4 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+8.5 "--sync--" StartsUsing { id: "3D5C", source: "Titania" } window 13,5
+12.5 "Bright Sabbath" Ability { id: "3D5C", source: "Titania" }
+26.7 "Phantom Rune" Ability { id: "3D5[DE]", source: "Titania" }
+37.9 "Divination Rune" Ability { id: "3D5B", source: "Titania" }
+47.1 "Mist Rune" Ability { id: "3D45", source: "Titania" }
+67.3 "Flame Rune" Ability { id: "3D47", source: "Titania" }
+81.4 "Flame Hammer" Ability { id: "4373", source: "Spirit of Flame" }
+91.4 "Phantom Rune" Ability { id: "3D5[DE]", source: "Titania" }
 
-103.7 "Midsummer Night's Dream" sync / 1[56]:[^:]*:Titania:3D30:/ window 150,0
-116.8 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
-144.0 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
-151.1 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
-161.4 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
-170.4 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D4E:/
-176.7 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
-182.8 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5[DE]:/
+103.7 "Midsummer Night's Dream" Ability { id: "3D30", source: "Titania" } window 150,0
+116.8 "Growth Rune" Ability { id: "3D2E", source: "Titania" }
+144.0 "Phantom Rune" Ability { id: "3D5[DE]", source: "Titania" }
+151.1 "Bright Sabbath" Ability { id: "3D5C", source: "Titania" }
+161.4 "Frost Rune" Ability { id: "3D2A", source: "Titania" }
+170.4 "Frost Rune Middle" #Ability { id: "3D4E", source: "Titania" }
+176.7 "Uplift" Ability { id: "421F", source: "Titania" }
+182.8 "Phantom Rune" Ability { id: "3D5[DE]", source: "Titania" }
 
 ### Phase 2a
-193.5 "--untargetable--" sync / 1[56]:[^:]*:Titania:3D31:/ window 200,0
+193.5 "--untargetable--" Ability { id: "3D31", source: "Titania" } window 200,0
 196.0 "--targetable--"
-208.5 "Gentle Breeze" sync / 1[56]:[^:]*:Puck:3F83:/
-208.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
-210.8 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
-210.8 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D52:/
-219.7 "Pummel" sync / 1[56]:[^:]*:Puck:3D54:/
-220.9 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D38:/
-222.1 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D53:/
-238.5 "Gentle Breeze" sync / 1[56]:[^:]*:Puck:3F83:/
-238.6 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D34:/
-238.6 "Pease" sync / 1[56]:[^:]*:Peaseblossom:3D52:/
-249.8 "Pummel" sync / 1[56]:[^:]*:Puck:3D54:/
-250.7 "Hard Swipe" sync / 1[56]:[^:]*:Peaseblossom:3D53:/
+208.5 "Gentle Breeze" Ability { id: "3F83", source: "Puck" }
+208.5 "Leafstorm" Ability { id: "3D38", source: "Mustardseed" }
+210.8 "Peasebomb" Ability { id: "3D34", source: "Peaseblossom" }
+210.8 "Pease" Ability { id: "3D52", source: "Peaseblossom" }
+219.7 "Pummel" Ability { id: "3D54", source: "Puck" }
+220.9 "Leafstorm" Ability { id: "3D38", source: "Mustardseed" }
+222.1 "Hard Swipe" Ability { id: "3D53", source: "Peaseblossom" }
+238.5 "Gentle Breeze" Ability { id: "3F83", source: "Puck" }
+238.6 "Peasebomb" Ability { id: "3D34", source: "Peaseblossom" }
+238.6 "Pease" Ability { id: "3D52", source: "Peaseblossom" }
+249.8 "Pummel" Ability { id: "3D54", source: "Puck" }
+250.7 "Hard Swipe" Ability { id: "3D53", source: "Peaseblossom" }
 
 ### Phase 2b: bigger is better
-500.0 "Love-In-Idleness" sync / 1[56]:[^:]*:Titania:3D3D:/
+500.0 "Love-In-Idleness" Ability { id: "3D3D", source: "Titania" }
 518.1 "--targetable--"
-528.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
-529.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
-529.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3DAD:/
-536.0 "Puck's Breath" sync / 1[56]:[^:]*:Puck:3D57:/
-541.0 "--sync--" sync / 1[56]:[^:]*:Puck:3D42:/
-546.0 "Puck's Rebuke" sync / 1[56]:[^:]*:Puck:3D59:/
+528.5 "Leafstorm" Ability { id: "3D3E", source: "Mustardseed" }
+529.0 "Peasebomb" Ability { id: "3D3F", source: "Peaseblossom" }
+529.0 "War And Pease" Ability { id: "3DAD", source: "Peaseblossom" }
+536.0 "Puck's Breath" Ability { id: "3D57", source: "Puck" }
+541.0 "--sync--" Ability { id: "3D42", source: "Puck" }
+546.0 "Puck's Rebuke" Ability { id: "3D59", source: "Puck" }
 
-551.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/
-560.0 "Peasebomb" sync / 1[56]:[^:]*:Peaseblossom:3D3F:/
-560.0 "War And Pease" sync / 1[56]:[^:]*:Peaseblossom:3DAD:/
-567.0 "Puck's Caprice" sync / 1[56]:[^:]*:Puck:3D56:/
+551.5 "Leafstorm" Ability { id: "3D3E", source: "Mustardseed" }
+560.0 "Peasebomb" Ability { id: "3D3F", source: "Peaseblossom" }
+560.0 "War And Pease" Ability { id: "3DAD", source: "Peaseblossom" }
+567.0 "Puck's Caprice" Ability { id: "3D56", source: "Puck" }
 
-583.5 "Leafstorm" sync / 1[56]:[^:]*:Mustardseed:3D3E:/ window 15,15 jump 528.5
+583.5 "Leafstorm" Ability { id: "3D3E", source: "Mustardseed" } window 15,15 jump 528.5
 584.0 "Peasebomb"
 584.0 "War And Pease"
 591.0 "Puck's Breath"
@@ -63,30 +63,30 @@ hideall "--sync--"
 601.0 "Puck's Rebuke"
 
 ### Phase 3
-800.0 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D32:/ window 800,0
-808.5 "Being Mortal" sync / 1[56]:[^:]*:Titania:3D51:/
+800.0 "Being Mortal" Ability { id: "3D32", source: "Titania" } window 800,0
+808.5 "Being Mortal" Ability { id: "3D51", source: "Titania" }
 814.0 "--targetable--"
-825.0 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
-833.0 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
+825.0 "Mist Rune" Ability { id: "3D45", source: "Titania" }
+833.0 "Uplift" Ability { id: "421F", source: "Titania" }
 
-838.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/
-846.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5E:/
-852.4 "Flame Hammer" sync / 1[56]:[^:]*:Spirit of Flame:4373:/
-856.3 "Growth Rune" sync / 1[56]:[^:]*:Titania:3D2E:/
-864.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5D:/
-878.3 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
-887.3 "Frost Rune" sync / 1[56]:[^:]*:Titania:3D2A:/
-896.3 "Frost Rune Middle" #sync / 1[56]:[^:]*:Titania:3D4E:/
-903.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
-915.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5E:/
-923.3 "Phantom Rune" sync / 1[56]:[^:]*:Titania:3D5D:/
-937.3 "Divination Rune" sync / 1[56]:[^:]*:Titania:3D5B:/
-949.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
-956.3 "Bright Sabbath" sync / 1[56]:[^:]*:Titania:3D5C:/
-970.3 "Mist Rune" sync / 1[56]:[^:]*:Titania:3D45:/
-978.3 "Uplift" sync / 1[56]:[^:]*:Titania:421F:/
+838.3 "Flame Rune" Ability { id: "3D47", source: "Titania" }
+846.3 "Phantom Rune" Ability { id: "3D5E", source: "Titania" }
+852.4 "Flame Hammer" Ability { id: "4373", source: "Spirit of Flame" }
+856.3 "Growth Rune" Ability { id: "3D2E", source: "Titania" }
+864.3 "Phantom Rune" Ability { id: "3D5D", source: "Titania" }
+878.3 "Divination Rune" Ability { id: "3D5B", source: "Titania" }
+887.3 "Frost Rune" Ability { id: "3D2A", source: "Titania" }
+896.3 "Frost Rune Middle" #Ability { id: "3D4E", source: "Titania" }
+903.3 "Bright Sabbath" Ability { id: "3D5C", source: "Titania" }
+915.3 "Phantom Rune" Ability { id: "3D5E", source: "Titania" }
+923.3 "Phantom Rune" Ability { id: "3D5D", source: "Titania" }
+937.3 "Divination Rune" Ability { id: "3D5B", source: "Titania" }
+949.3 "Bright Sabbath" Ability { id: "3D5C", source: "Titania" }
+956.3 "Bright Sabbath" Ability { id: "3D5C", source: "Titania" }
+970.3 "Mist Rune" Ability { id: "3D45", source: "Titania" }
+978.3 "Uplift" Ability { id: "421F", source: "Titania" }
 
-985.3 "Flame Rune" sync / 1[56]:[^:]*:Titania:3D47:/ window 100,100 jump 838.3
+985.3 "Flame Rune" Ability { id: "3D47", source: "Titania" } window 100,100 jump 838.3
 993.3 "Phantom Rune"
 999.4 "Flame Hammer"
 1003.3 "Growth Rune"

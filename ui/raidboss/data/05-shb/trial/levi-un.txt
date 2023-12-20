@@ -37,151 +37,151 @@ hideall "--sync--"
 
 ### Phase 1: Literally Just Autos (100% -> 90%)
 0.0 "Start"
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-25.8 "--untargetable--" sync / 22:........:Leviathan:........:Leviathan:00/ window 30,10
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+25.8 "--untargetable--" NameToggle { name: "Leviathan", toggle: "00" } window 30,10
 
 ### Phase 2: One Set of Orbs (90% -> 50%?)
 33.0 "--targetable--"
-33.1 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 40,10
-38.3 "Veil Of The Whorl" sync / 1[56]:[^:]*:Leviathan:5CE5:/ window 40,10
-43.3 "Mantle Of The Whorl" sync / 1[56]:[^:]*:Leviathan's Tail:5CE4:/
+33.1 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 40,10
+38.3 "Veil Of The Whorl" Ability { id: "5CE5", source: "Leviathan" } window 40,10
+43.3 "Mantle Of The Whorl" Ability { id: "5CE4", source: "Leviathan's Tail" }
 45.6 "--2x Wavespine Sahagin (N)--"
-53.2 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-59.3 "Tail Whip" sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-60.4 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-73.8 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-77.9 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+53.2 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+59.3 "Tail Whip" Ability { id: "5CCE", source: "Leviathan's Tail" }
+60.4 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+73.8 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+77.9 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 85.2 "--untargetable--"
-88.3 "Grand Fall" sync / 1[56]:[^:]*:Leviathan:5CDF:/
-90.8 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-94.3 "Grand Fall" sync / 1[56]:[^:]*:Leviathan:5CDF:/
-95.8 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+88.3 "Grand Fall" Ability { id: "5CDF", source: "Leviathan" }
+90.8 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+94.3 "Grand Fall" Ability { id: "5CDF", source: "Leviathan" }
+95.8 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 101.5 "--targetable--"
 
-101.6 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
-106.0 "Briny Veil" sync / 1[56]:[^:]*:Leviathan:5CE1:/
+101.6 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
+106.0 "Briny Veil" Ability { id: "5CE1", source: "Leviathan" }
 110.7 "--Wavetooth Sahagin (E)--"
-121.0 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-125.1 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-126.0 "Tail Whip" sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-132.3 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-145.7 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-149.8 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+121.0 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+125.1 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+126.0 "Tail Whip" Ability { id: "5CCE", source: "Leviathan's Tail" }
+132.3 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+145.7 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+149.8 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 154.9 "--untargetable--"
-158.0 "Grand Fall x3" #sync / 1[56]:[^:]*:Leviathan:5CDF:/
-160.5 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-165.4 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+158.0 "Grand Fall x3" #Ability { id: "5CDF", source: "Leviathan" }
+160.5 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+165.4 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 171.1 "--targetable--"
 
-171.2 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
+171.2 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
 180.8 "--4x Gyre Spume--"
-192.7 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-196.3 "Tail Whip" #sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-196.8 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-204.0 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-217.3 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-221.4 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+192.7 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+196.3 "Tail Whip" #Ability { id: "5CCE", source: "Leviathan's Tail" }
+196.8 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+204.0 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+217.3 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+221.4 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 228.9 "--untargetable--"
-232.0 "Grand Fall x3" #sync / 1[56]:[^:]*:Leviathan:5CDF:/
-234.5 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-239.4 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+232.0 "Grand Fall x3" #Ability { id: "5CDF", source: "Leviathan" }
+234.5 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+239.4 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 245.1 "--targetable--"
 
-245.2 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
-267.5 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
+245.2 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
+267.5 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
 
 275.2 "--untargetable--"
-278.3 "Grand Fall" sync / 1[56]:[^:]*:Leviathan:5CDF:/
-280.8 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+278.3 "Grand Fall" Ability { id: "5CDF", source: "Leviathan" }
+280.8 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 280.8 "--untargetable--"
-286.5 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:5CDE:/ window 300,100
+286.5 "Tidal Wave" Ability { id: "5CDE", source: "Leviathan" } window 300,100
 
 
 ### Phase 3: Two Sets of Orbs (50% -> 20%?)
 299.2 "--targetable--"
-299.3 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
+299.3 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
 301.3 "--2x Wavespine Sahagin (S)--"
-318.6 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-318.6 "Tail Whip" #sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-322.7 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-329.9 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-338.1 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+318.6 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+318.6 "Tail Whip" #Ability { id: "5CCE", source: "Leviathan's Tail" }
+322.7 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+329.9 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+338.1 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 347.3 "--untargetable--"
-350.4 "Grand Fall" sync / 1[56]:[^:]*:Leviathan:5CDF:/
-352.9 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-357.8 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+350.4 "Grand Fall" Ability { id: "5CDF", source: "Leviathan" }
+352.9 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+357.8 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 
 363.5 "--targetable--"
-363.6 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
+363.6 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
 364.9 "--4x Gyre Spume--"
-382.9 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-385.0 "Tail Whip" #sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-387.1 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-394.3 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
+382.9 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+385.0 "Tail Whip" #Ability { id: "5CCE", source: "Leviathan's Tail" }
+387.1 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+394.3 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
 402.4 "--4x Wave Spume--"
-402.5 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+402.5 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 413.8 "--untargetable--"
-416.9 "Grand Fall x3" #sync / 1[56]:[^:]*:Leviathan:5CDF:/
-419.4 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+416.9 "Grand Fall x3" #Ability { id: "5CDF", source: "Leviathan" }
+419.4 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 
 
 425.1 "--targetable--"
-425.2 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/
-435.3 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-439.6 "Aqua Burst" sync / 1[56]:[^:]*:Wave Spume:888:/
-442.5 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-446.6 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-455.8 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
+425.2 "Body Slam" Ability { id: "5CD2", source: "Leviathan" }
+435.3 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+439.6 "Aqua Burst" Ability { id: "888", source: "Wave Spume" }
+442.5 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+446.6 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+455.8 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
 462.5 "--untargetable--"
-465.6 "Grand Fall x3" #sync / 1[56]:[^:]*:Leviathan:5CDF:/
-468.1 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+465.6 "Grand Fall x3" #Ability { id: "5CDF", source: "Leviathan" }
+468.1 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 468.1 "--untargetable--"
-473.9 "Tidal Wave" sync / 1[56]:[^:]*:Leviathan:5CDE:/ window 150,100
+473.9 "Tidal Wave" Ability { id: "5CDE", source: "Leviathan" } window 150,100
 
 
 ### Phase 4: more adds, enrage
 486.6 "--targetable--"
-486.7 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
+486.7 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
 488.2 "--Wavetooth Sahagin (NW)--"
-500.3 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
-508.5 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-512.6 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-512.6 "Tail Whip" #sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-519.8 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-523.9 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+500.3 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
+508.5 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+512.6 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+512.6 "Tail Whip" #Ability { id: "5CCE", source: "Leviathan's Tail" }
+519.8 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+523.9 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 532.1 "--untargetable--"
-535.2 "Grand Fall x3" #sync / 1[56]:[^:]*:Leviathan:5CDF:/
-537.7 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-542.6 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+535.2 "Grand Fall x3" #Ability { id: "5CDF", source: "Leviathan" }
+537.7 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+542.6 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 
 548.3 "--targetable--"
-548.4 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
-563.6 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-567.7 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
-581.1 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-587.3 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+548.4 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
+563.6 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+567.7 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
+581.1 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+587.3 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 600.9 "--2x Wavespine Sahagin--" # ? not sure where
-601.6 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
-609.8 "Aqua Breath" sync / 1[56]:[^:]*:Leviathan:5CCD:/
-613.9 "Waterspout" sync / 1[56]:[^:]*:Leviathan:5CD0:/
-614.8 "Tail Whip" #sync / 1[56]:[^:]*:Leviathan's Tail:5CCE:/
-621.1 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
-625.2 "Tidal Roar" sync / 1[56]:[^:]*:Leviathan:5CDA:/
+601.6 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
+609.8 "Aqua Breath" Ability { id: "5CCD", source: "Leviathan" }
+613.9 "Waterspout" Ability { id: "5CD0", source: "Leviathan" }
+614.8 "Tail Whip" #Ability { id: "5CCE", source: "Leviathan's Tail" }
+621.1 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
+625.2 "Tidal Roar" Ability { id: "5CDA", source: "Leviathan" }
 
 634.1 "--untargetable--"
-637.2 "Grand Fall x3" sync / 1[56]:[^:]*:Leviathan:5CDF:/
-639.7 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
-644.6 "Spinning Dive" sync / 1[56]:[^:]*:Leviathan:5CDB:/
+637.2 "Grand Fall x3" Ability { id: "5CDF", source: "Leviathan" }
+639.7 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
+644.6 "Spinning Dive" Ability { id: "5CDB", source: "Leviathan" }
 
 650.3 "--targetable--"
-650.4 "Body Slam" sync / 1[56]:[^:]*:Leviathan:5CD2:/ window 30,30
-665.6 "Dread Tide" sync / 1[56]:[^:]*:Leviathan:5CC9:/
+650.4 "Body Slam" Ability { id: "5CD2", source: "Leviathan" } window 30,30
+665.6 "Dread Tide" Ability { id: "5CC9", source: "Leviathan" }
 
 669.6 "--untargetable--"
-676.9 "Tidal Wave Enrage" sync / 1[56]:[^:]*:Leviathan:5CDE:/
+676.9 "Tidal Wave Enrage" Ability { id: "5CDE", source: "Leviathan" }

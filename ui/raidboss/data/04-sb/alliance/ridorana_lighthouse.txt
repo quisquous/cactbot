@@ -8,51 +8,51 @@ hideall "--sync--"
 # Famfrit #
 ###########
 # Echoes from Time's Garden will be sealed off
-0 "Start" sync / 29:[^:]*:7DC:[^:]*:998:/ window 0,1
-13 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/ window 13,1
-26 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-35 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
-47 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C50:/
+0 "Start" SystemLogMessage { id: "7DC", param1: "998" } window 0,1
+13 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" } window 13,1
+26 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+35 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
+47 "Tsunami" Ability { id: "2C50", source: "Famfrit, The Darkening Cloud" }
 54 "Tsunami" duration 3
 66 "Tsunami" duration 3
 78 "Tsunami" duration 3
-86 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-97 "Dark Ewer (cross)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
-110 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
-118 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C41:/
-119 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
-124 "Dark Ewer (orbit)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
-139 "Dark Rain" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C40:/
+86 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+97 "Dark Ewer (cross)" Ability { id: "2C43", source: "Famfrit, The Darkening Cloud" }
+110 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" }
+118 "Briny Cannonade" Ability { id: "2C41", source: "Famfrit, The Darkening Cloud" }
+119 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
+124 "Dark Ewer (orbit)" Ability { id: "2C43", source: "Famfrit, The Darkening Cloud" }
+139 "Dark Rain" Ability { id: "2C40", source: "Famfrit, The Darkening Cloud" }
 
 # Begin loop
-151 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-164 "Darkening Rainfall" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3F:/
-169 "Darkening Deluge" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C56:/
-176 "Dark Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C42:/
-200 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-208 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C50:/
+151 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+164 "Darkening Rainfall" Ability { id: "2C3F", source: "Famfrit, The Darkening Cloud" }
+169 "Darkening Deluge" Ability { id: "2C56", source: "Famfrit, The Darkening Cloud" }
+176 "Dark Cannonade" Ability { id: "2C42", source: "Famfrit, The Darkening Cloud" }
+200 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+208 "Tsunami" Ability { id: "2C50", source: "Famfrit, The Darkening Cloud" }
 215 "Tsunami" duration 3
 227 "Tsunami" duration 3
-228 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
+228 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
 239 "Tsunami" duration 3
-247 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-259 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
-272 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-279 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
-291 "Dark Ewer (cross)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
-302 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-311 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
-318 "Dark Ewer (orbit)" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C43:/
-324 "Tsunami" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C48:/
+247 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+259 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" }
+272 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+279 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" }
+291 "Dark Ewer (cross)" Ability { id: "2C43", source: "Famfrit, The Darkening Cloud" }
+302 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+311 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
+318 "Dark Ewer (orbit)" Ability { id: "2C43", source: "Famfrit, The Darkening Cloud" }
+324 "Tsunami" Ability { id: "2C48", source: "Famfrit, The Darkening Cloud" }
 331 "Tsunami" duration 3
 343 "Tsunami" duration 3
 355 "Tsunami" duration 3
-357 "Briny Cannonade" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C45:/
-364 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-371 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/
-386 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
-397 "Tide Pod" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3E:/
-404 "Water IV" sync / 1[56]:[^:]*:Famfrit, The Darkening Cloud:2C3D:/ jump 151
+357 "Briny Cannonade" Ability { id: "2C45", source: "Famfrit, The Darkening Cloud" }
+364 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+371 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" }
+386 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" }
+397 "Tide Pod" Ability { id: "2C3E", source: "Famfrit, The Darkening Cloud" }
+404 "Water IV" Ability { id: "2C3D", source: "Famfrit, The Darkening Cloud" } jump 151
 # End loop
 
 # Dummy loop future
@@ -65,54 +65,54 @@ hideall "--sync--"
 ##########
 
 # The Spire's Bounds will be sealed off
-1000 "Start" sync / 29:[^:]*:7DC:[^:]*:99A:/ window 1000,0
-1012 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/ window 1012,5
-1024 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
-1033 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
-1038 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
-1041 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
+1000 "Start" SystemLogMessage { id: "7DC", param1: "99A" } window 1000,0
+1012 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" } window 1012,5
+1024 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
+1033 "Time Eruption" Ability { id: "2CDE", source: "Belias, the Gigas" }
+1038 "Fast Hands" Ability { id: "2CDF", source: "Belias, the Gigas" }
+1041 "Slow Hands" Ability { id: "2CE0", source: "Belias, the Gigas" }
 1041 "--untargetable--"
-1048 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
-1051 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1048 "Crimson Cyclone" Ability { id: "2CE2", source: "Belias, the Gigas" }
+1051 "Crimson Cyclone" Ability { id: "2D5F", source: "Belias, the Gigas" }
 1054 "--targetable--"
-1062 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
-1070 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
-1079 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
-1089 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1062 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" }
+1070 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
+1079 "The Hand Of Time" Ability { id: "2CE5", source: "Belias, the Gigas" }
+1089 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
 1095 "Eruption" duration 4
-1100 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
-1110 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1100 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" }
+1110 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
 1118 "Gigas spawns"
 
 # Adds dead
-1300 "Hellfire" sync / 1[56]:[^:]*:Belias, the Gigas:2CE8:/ window 5000,700
+1300 "Hellfire" Ability { id: "2CE8", source: "Belias, the Gigas" } window 5000,700
 1313 "Time Bomb" duration 15
-1322 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
+1322 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" }
 
 # Begin loop
-1342 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
+1342 "The Hand Of Time" Ability { id: "2CE5", source: "Belias, the Gigas" }
 1345 "--untargetable--"
-1352 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
-1355 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1352 "Crimson Cyclone" Ability { id: "2CE2", source: "Belias, the Gigas" }
+1355 "Crimson Cyclone" Ability { id: "2D5F", source: "Belias, the Gigas" }
 1358 "--targetable--"
-1365 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
-1375 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
-1380 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
+1365 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
+1375 "Time Eruption" Ability { id: "2CDE", source: "Belias, the Gigas" }
+1380 "Fast Hands" Ability { id: "2CDF", source: "Belias, the Gigas" }
 1380 "Time Bomb" duration 15
-1383 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
-1396 "Fire" sync / 1[56]:[^:]*:Belias, the Gigas:2CDB:/
-1411 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/
-1421 "Fire IV" sync / 1[56]:[^:]*:Belias, the Gigas:2CDC:/
+1383 "Slow Hands" Ability { id: "2CE0", source: "Belias, the Gigas" }
+1396 "Fire" Ability { id: "2CDB", source: "Belias, the Gigas" }
+1411 "The Hand Of Time" Ability { id: "2CE5", source: "Belias, the Gigas" }
+1421 "Fire IV" Ability { id: "2CDC", source: "Belias, the Gigas" }
 1422 "Eruption" duration 4
 1436 "Time Bomb" duration 15
 1442 "--untargetable--"
-1449 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2CE2:/
-1451 "Crimson Cyclone" sync / 1[56]:[^:]*:Belias, the Gigas:2D5F:/
+1449 "Crimson Cyclone" Ability { id: "2CE2", source: "Belias, the Gigas" }
+1451 "Crimson Cyclone" Ability { id: "2D5F", source: "Belias, the Gigas" }
 1454 "--targetable--"
-1466 "Time Eruption" sync / 1[56]:[^:]*:Belias, the Gigas:2CDE:/
-1471 "Fast Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CDF:/
-1474 "Slow Hands" sync / 1[56]:[^:]*:Belias, the Gigas:2CE0:/
-1486 "The Hand Of Time" sync / 1[56]:[^:]*:Belias, the Gigas:2CE5:/ jump 1342
+1466 "Time Eruption" Ability { id: "2CDE", source: "Belias, the Gigas" }
+1471 "Fast Hands" Ability { id: "2CDF", source: "Belias, the Gigas" }
+1474 "Slow Hands" Ability { id: "2CE0", source: "Belias, the Gigas" }
+1486 "The Hand Of Time" Ability { id: "2CE5", source: "Belias, the Gigas" } jump 1342
 # End loop
 
 # Dummy loop future
@@ -126,60 +126,60 @@ hideall "--sync--"
 # Construct 7 #
 ###############
 # The Cleft of Profaning Wind will be sealed off
-2000 "Start" sync / 29:[^:]*:7DC:[^:]*:99C:/ window 2000,0
-2016 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C5A:/ window 2016,0
-2026 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
-2029 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/
-2043 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
-2048 "Pulverize (far)" sync / 1[56]:[^:]*:Construct 7:2C62:/
-2049 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5C:/
-2057 "--untargetable--" sync / 1[56]:[^:]*:Construct 7:2C66:/
-2072 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
-2074 "Lithobrake" sync / 1[56]:[^:]*:Construct 7:2C68:/
+2000 "Start" SystemLogMessage { id: "7DC", param1: "99C" } window 2000,0
+2016 "Destroy" Ability { id: "2C5A", source: "Construct 7" } window 2016,0
+2026 "Ignite" Ability { id: "2C67", source: "Construct 7" }
+2029 "Accelerate" Ability { id: "2C65", source: "Construct 7" }
+2043 "Pulverize (close)" Ability { id: "2C61", source: "Construct 7" }
+2048 "Pulverize (far)" Ability { id: "2C62", source: "Construct 7" }
+2049 "Compress" Ability { id: "2C5C", source: "Construct 7" }
+2057 "--untargetable--" Ability { id: "2C66", source: "Construct 7" }
+2072 "Ignite" Ability { id: "2C67", source: "Construct 7" }
+2074 "Lithobrake" Ability { id: "2C68", source: "Construct 7" }
 2083 "Dispose" duration 5
-2101 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2C64:/
-2113 "Computation Mode" sync / 1[56]:[^:]*:Construct 7:2C57:/ # drift -0.356
-2120 "Subtract" sync / 1[56]:[^:]*:Construct 7:2C6C:/ # drift 0.204
-2138 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/ # drift 0.246
-2153 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/ # drift 0.355
-2168 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2CC8:/
-2176 "Tartarus Mode" sync / 1[56]:[^:]*:Construct 7:2C58:/
-2178 "--untargetable--" sync / 1[56]:[^:]*:Construct 7:2C63:/
+2101 "Incinerate" Ability { id: "2C64", source: "Construct 7" }
+2113 "Computation Mode" Ability { id: "2C57", source: "Construct 7" } # drift -0.356
+2120 "Subtract" Ability { id: "2C6C", source: "Construct 7" } # drift 0.204
+2138 "Division" Ability { id: "2CC(A|C|D|E)", source: "Construct 7" } # drift 0.246
+2153 "Division" Ability { id: "2CC(A|C|D|E)", source: "Construct 7" } # drift 0.355
+2168 "Incinerate" Ability { id: "2CC8", source: "Construct 7" }
+2176 "Tartarus Mode" Ability { id: "2C58", source: "Construct 7" }
+2178 "--untargetable--" Ability { id: "2C63", source: "Construct 7" }
 
 # Adds. This doesn't currently show because of combat dropping
 2230 "Area Lockdown"
 
 # After adds
-2244 "--sync--" sync / 14:[^:]*:Construct 7:2C59:/ window 5000,766
-2254 "Annihilation Mode" sync / 1[56]:[^:]*:Construct 7:2C59:/ window 5000,756
-2264 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C71:/
-2274 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
-2277 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/ window 150,150
-2291 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
+2244 "--sync--" StartsUsing { id: "2C59", source: "Construct 7" } window 5000,766
+2254 "Annihilation Mode" Ability { id: "2C59", source: "Construct 7" } window 5000,756
+2264 "Destroy" Ability { id: "2C71", source: "Construct 7" }
+2274 "Ignite" Ability { id: "2C67", source: "Construct 7" }
+2277 "Accelerate" Ability { id: "2C65", source: "Construct 7" } window 150,150
+2291 "Pulverize (close)" Ability { id: "2C61", source: "Construct 7" }
 2296 "Pulverize (far)" duration 4
-2297 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5D:/
-2310 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5C:/
-2322 "Computation Mode" sync / 1[56]:[^:]*:Construct 7:2C57:/
-2329 "Subtract" sync / 1[56]:[^:]*:Construct 7:2C6C:/
-2347 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/
-2362 "Division" sync / 1[56]:[^:]*:Construct 7:2CC(A|C|D|E):/
-2377 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5D:/
+2297 "Compress" Ability { id: "2C5D", source: "Construct 7" }
+2310 "Incinerate" Ability { id: "2D5C", source: "Construct 7" }
+2322 "Computation Mode" Ability { id: "2C57", source: "Construct 7" }
+2329 "Subtract" Ability { id: "2C6C", source: "Construct 7" }
+2347 "Division" Ability { id: "2CC(A|C|D|E)", source: "Construct 7" }
+2362 "Division" Ability { id: "2CC(A|C|D|E)", source: "Construct 7" }
+2377 "Incinerate" Ability { id: "2D5D", source: "Construct 7" }
 2383 "--untargetable--"
 
 # Begin loop
-2392 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C66:/
-2401 "Lithobrake" sync / 1[56]:[^:]*:Construct 7:2D1E:/
+2392 "Ignite" Ability { id: "2C66", source: "Construct 7" }
+2401 "Lithobrake" Ability { id: "2D1E", source: "Construct 7" }
 2410 "Dispose" duration 9
-2431 "Incinerate" sync / 1[56]:[^:]*:Construct 7:2D5C:/
-2444 "Ventilate" sync / 1[56]:[^:]*:Construct 7:2C69:/
-2454 "Destroy" sync / 1[56]:[^:]*:Construct 7:2C71:/
-2464 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C67:/
-2467 "Accelerate" sync / 1[56]:[^:]*:Construct 7:2C65:/
-2481 "Pulverize (close)" sync / 1[56]:[^:]*:Construct 7:2C61:/
+2431 "Incinerate" Ability { id: "2D5C", source: "Construct 7" }
+2444 "Ventilate" Ability { id: "2C69", source: "Construct 7" }
+2454 "Destroy" Ability { id: "2C71", source: "Construct 7" }
+2464 "Ignite" Ability { id: "2C67", source: "Construct 7" }
+2467 "Accelerate" Ability { id: "2C65", source: "Construct 7" }
+2481 "Pulverize (close)" Ability { id: "2C61", source: "Construct 7" }
 2486 "Pulverize (far)" duration 4
-2487 "Compress" sync / 1[56]:[^:]*:Construct 7:2C5D:/
+2487 "Compress" Ability { id: "2C5D", source: "Construct 7" }
 2495 "--untargetable--"
-2504 "Ignite" sync / 1[56]:[^:]*:Construct 7:2C66:/ jump 2392
+2504 "Ignite" Ability { id: "2C66", source: "Construct 7" } jump 2392
 # End loop
 
 # Dummy loop future
@@ -189,68 +189,68 @@ hideall "--sync--"
 
 ### Yiazmat
 # The Clockwork Coliseum will be sealed off
-3000 "Start" sync / 29:[^:]*:7DC:[^:]*:99D:/ window 3000,0
-3016 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/ window 3016,0
+3000 "Start" SystemLogMessage { id: "7DC", param1: "99D" } window 3000,0
+3016 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" } window 3016,0
 3026 "Gust Front" duration 4
-3034 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
-3046 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3059 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3074 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
-3082 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3034 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }
+3046 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3059 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3074 "Magnetic Lysis" Ability { id: "2C2A", source: "Yiazmat" }
+3082 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
 3088 "Gust Front" duration 4
-3092 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
-3098 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3101 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
+3092 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }
+3098 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3101 "Magnetic Genesis" Ability { id: "2C2B", source: "Yiazmat" }
 3114 "Rake (combo)" duration 14
-3134 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3149 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+3134 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3149 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" }
 3160 "Gust Front" duration 4
-3162 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
-3175 "Summon" sync / 1[56]:[^:]*:Yiazmat:2C37:/
-3186 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
-3194 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3201 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3208 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C34:/
-3213 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
-3222 "Cyclone" sync / 1[56]:[^:]*:Yiazmat:2C23:/ duration 4
+3162 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }
+3175 "Summon" Ability { id: "2C37", source: "Yiazmat" }
+3186 "Magnetic Lysis" Ability { id: "2C2A", source: "Yiazmat" }
+3194 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3201 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3208 "Death Strike" Ability { id: "2C34", source: "Yiazmat" }
+3213 "Magnetic Genesis" Ability { id: "2C2B", source: "Yiazmat" }
+3222 "Cyclone" Ability { id: "2C23", source: "Yiazmat" } duration 4
 
 # Adds
 3241 "Archaeodemon spawn"
 3248 "Gust Front" duration 4
 3250 "Karma/Unholy Darkness"
-3258 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C33:/
+3258 "Death Strike" Ability { id: "2C33", source: "Yiazmat" }
 3262 "Karma/Unholy Darkness"
 3301 "Enrage"
 
 # Adds complete
-3400 "Solar Storm" sync / 1[56]:[^:]*:Yiazmat:2C2C:/ window 5000,600
+3400 "Solar Storm" Ability { id: "2C2C", source: "Yiazmat" } window 5000,600
 3420 "Rake (combo)" duration 14
 3425 "Gust Front" duration 4
-3439 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3450 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
+3439 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3450 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" }
 
 # Begin loop
-3456 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
+3456 "Magnetic Lysis" Ability { id: "2C2A", source: "Yiazmat" }
 3463 "Rake (combo)" duration 14
-3481 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3483 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
-3493 "Cyclone" sync / 1[56]:[^:]*:Yiazmat:2C23:/ duration 4
-3505 "Death Strike" sync / 1[56]:[^:]*:Yiazmat:2C34:/
+3481 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3483 "Magnetic Genesis" Ability { id: "2C2B", source: "Yiazmat" }
+3493 "Cyclone" Ability { id: "2C23", source: "Yiazmat" } duration 4
+3505 "Death Strike" Ability { id: "2C34", source: "Yiazmat" }
 3510 "Gust Front" duration 4
-3520 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3531 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
-3537 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/
-3544 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3551 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
+3520 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3531 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" }
+3537 "Magnetic Lysis" Ability { id: "2C2A", source: "Yiazmat" }
+3544 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3551 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
 3553 "Gust Front" duration 4
-3561 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3565 "Magnetic Genesis" sync / 1[56]:[^:]*:Yiazmat:2C2B:/
-3577 "Gale Gaol" sync / 1[56]:[^:]*:Yiazmat:2C2D:/
+3561 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3565 "Magnetic Genesis" Ability { id: "2C2B", source: "Yiazmat" }
+3577 "Gale Gaol" Ability { id: "2C2D", source: "Yiazmat" }
 3584 "Gust Front" duration 4
-3587 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
-3595 "Rake (single)" sync / 1[56]:[^:]*:Yiazmat:2C26:/
-3600 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
-3610 "Magnetic Lysis" sync / 1[56]:[^:]*:Yiazmat:2C2A:/ jump 3456
+3587 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }
+3595 "Rake (single)" Ability { id: "2C26", source: "Yiazmat" }
+3600 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
+3610 "Magnetic Lysis" Ability { id: "2C2A", source: "Yiazmat" } jump 3456
 # End loop
 
 # Dummy loop future
@@ -258,13 +258,13 @@ hideall "--sync--"
 3634 "Dust Storm"
 
 # 9.99% push
-3694 "--sync--" sync / 14:[^:]*:Yiazmat:2C32:/ window 5000,306
-3700 "Growing Threat" sync / 1[56]:[^:]*:Yiazmat:2C32:/ window 5000,300
+3694 "--sync--" StartsUsing { id: "2C32", source: "Yiazmat" } window 5000,306
+3700 "Growing Threat" Ability { id: "2C32", source: "Yiazmat" } window 5000,300
 3707 "Rake (combo)" duration 14
-3727 "White Breath" sync / 1[56]:[^:]*:Yiazmat:2C31:/
-3734 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3727 "White Breath" Ability { id: "2C31", source: "Yiazmat" }
+3734 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
 3740 "Rake (combo)" duration 14
 3752 "Gust Front" duration 4
-3761 "Stone Breath" sync / 1[56]:[^:]*:Yiazmat:2C29:/
-3767 "Dust Storm" sync / 1[56]:[^:]*:Yiazmat:2C36:/
+3761 "Stone Breath" Ability { id: "2C29", source: "Yiazmat" }
+3767 "Dust Storm" Ability { id: "2C36", source: "Yiazmat" }
 # more?

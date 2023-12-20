@@ -17,83 +17,83 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / 21:........:4000000F:/ window 100000 jump 0
+0.0 "--Reset--" ActorControl { command: "4000000F" } window 100000 jump 0
 
-0.0 "--sync--" sync / 104:[^:]*:1($|:)/ window 0,1
-10.8 "--sync--" sync / 14:[^:]*:Hesperos:6A50:/ window 20,20
-15.8 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
-24.0 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+0.0 "--sync--" InCombat { inGameCombat: "1" } window 0,1
+10.8 "--sync--" StartsUsing { id: "6A50", source: "Hesperos" } window 20,20
+15.8 "Elegant Evisceration" Ability { id: "6A50", source: "Hesperos" }
+24.0 "--sync--" Ability { id: "69CA", source: "Hesperos" }
 
-31.0 "Setting the Scene 1" sync / 1[56]:[^:]*:Hesperos:69CB:/
-43.2 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
-53.3 "Levinstrike Pinax" sync / 1[56]:[^:]*:Hesperos:6A3F:/
-65.4 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
-69.6 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+31.0 "Setting the Scene 1" Ability { id: "69CB", source: "Hesperos" }
+43.2 "Pinax" Ability { id: "69CF", source: "Hesperos" }
+53.3 "Levinstrike Pinax" Ability { id: "6A3F", source: "Hesperos" }
+65.4 "Decollation" Ability { id: "6A51", source: "Hesperos" }
+69.6 "--sync--" Ability { id: "69CA", source: "Hesperos" }
 
-76.6 "Setting the Scene 2" sync / 1[56]:[^:]*:Hesperos:69CB:/
-88.8 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
-98.9 "Well Pinax" sync / 1[56]:[^:]*:Hesperos:6A3E:/
-112.1 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
-121.3 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
-125.5 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+76.6 "Setting the Scene 2" Ability { id: "69CB", source: "Hesperos" }
+88.8 "Pinax" Ability { id: "69CF", source: "Hesperos" }
+98.9 "Well Pinax" Ability { id: "6A3E", source: "Hesperos" }
+112.1 "Hell Skewer" Ability { id: "6A4F", source: "Hesperos" }
+121.3 "Elegant Evisceration" Ability { id: "6A50", source: "Hesperos" }
+125.5 "--sync--" Ability { id: "69CA", source: "Hesperos" }
 
-132.5 "Setting the Scene 3" sync / 1[56]:[^:]*:Hesperos:69CB:/
-144.7 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
-154.8 "Well Pinax/Levinstrike Pinax" sync / 1[56]:[^:]*:Hesperos:(6A3E|6A3F):/
-162.0 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
-165.7 "Acid Pinax" sync / 1[56]:[^:]*:Hesperos:6A3C:/
-176.7 "Levinstrike Pinax/Well Pinax" sync / 1[56]:[^:]*:Hesperos:(6A3E|6A3F):/
-184.1 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
-199.3 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
-208.4 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
-219.2 "Burst" sync / 1[56]:[^:]*:Hesperos:6A4[456]:/
-223.3 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
-232.5 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+132.5 "Setting the Scene 3" Ability { id: "69CB", source: "Hesperos" }
+144.7 "Pinax" Ability { id: "69CF", source: "Hesperos" }
+154.8 "Well Pinax/Levinstrike Pinax" Ability { id: ["6A3E", "6A3F"], source: "Hesperos" }
+162.0 "Hell Skewer" Ability { id: "6A4F", source: "Hesperos" }
+165.7 "Acid Pinax" Ability { id: "6A3C", source: "Hesperos" }
+176.7 "Levinstrike Pinax/Well Pinax" Ability { id: ["6A3E", "6A3F"], source: "Hesperos" }
+184.1 "Hell Skewer" Ability { id: "6A4F", source: "Hesperos" }
+199.3 "Bloodrake" Ability { id: "6A40", source: "Hesperos" }
+208.4 "Belone Coils" Ability { id: "69DD", source: "Hesperos" }
+219.2 "Burst" Ability { id: "6A4[456]", source: "Hesperos" }
+223.3 "Hell Skewer" Ability { id: "6A4F", source: "Hesperos" }
+232.5 "Decollation" Ability { id: "6A51", source: "Hesperos" }
 
-239.7 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-248.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D):/
-249.9 "Shifting Strike (cleave)" sync / 1[56]:[^:]*:Hesperos:6A4E:/
-257.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-266.2 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6DAE|6DAF|6DB0|6DB1):/
-267.9 "Shifting Strike (knockback)" sync / 1[56]:[^:]*:Hesperos:6DB2:/
-269.4 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-278.4 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
-279.9 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
-285.6 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
+239.7 "--middle--" Ability { id: "69CE", source: "Hesperos" }
+248.4 "Directional Shift" Ability { id: ["6A4A", "6A4B", "6A4C", "6A4D"], source: "Hesperos" }
+249.9 "Shifting Strike (cleave)" Ability { id: "6A4E", source: "Hesperos" }
+257.6 "--middle--" Ability { id: "69CE", source: "Hesperos" }
+266.2 "Directional Shift" Ability { id: ["6DAE", "6DAF", "6DB0", "6DB1"], source: "Hesperos" }
+267.9 "Shifting Strike (knockback)" Ability { id: "6DB2", source: "Hesperos" }
+269.4 "--middle--" Ability { id: "69CE", source: "Hesperos" }
+278.4 "Directional Shift" Ability { id: ["6A4A", "6A4B", "6A4C", "6A4D", "6DAE", "6DAF", "6DB0", "6DB1"], source: "Hesperos" }
+279.9 "Shifting Strike" Ability { id: ["6DB2", "6A4E"], source: "Hesperos" }
+285.6 "--middle--" Ability { id: "69CE", source: "Hesperos" }
 
-292.3 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
-300.5 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
-324.7 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
-328.9 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+292.3 "Bloodrake" Ability { id: "6A40", source: "Hesperos" }
+300.5 "Belone Bursts" Ability { id: "69D9", source: "Hesperos" }
+324.7 "Elegant Evisceration" Ability { id: "6A50", source: "Hesperos" }
+328.9 "--sync--" Ability { id: "69CA", source: "Hesperos" }
 
-335.9 "Setting the Scene" sync / 1[56]:[^:]*:Hesperos:69CB:/
-349.1 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
-358.3 "Pinax" sync / 1[56]:[^:]*:Hesperos:69CF:/
-368.4 "Pinax 1" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-371.5 "Hell Skewer" sync / 1[56]:[^:]*:Hesperos:6A4F:/
-379.4 "Pinax 2" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-380.7 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-386.3 "Belone Coils" sync / 1[56]:[^:]*:Hesperos:69DD:/
-390.4 "Pinax 3" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-397.1 "Burst" sync / 1[56]:[^:]*:Hesperos:6A4[456]:/
-403.4 "Pinax 4" sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-404.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-413.5 "Directional Shift" sync / 1[56]:[^:]*:Hesperos:(6A4A|6A4B|6A4C|6A4D|6DAE|6DAF|6DB0|6DB1):/
-415.0 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:(6DB2|6A4E):/
-428.9 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
+335.9 "Setting the Scene" Ability { id: "69CB", source: "Hesperos" }
+349.1 "Bloodrake" Ability { id: "6A40", source: "Hesperos" }
+358.3 "Pinax" Ability { id: "69CF", source: "Hesperos" }
+368.4 "Pinax 1" Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
+371.5 "Hell Skewer" Ability { id: "6A4F", source: "Hesperos" }
+379.4 "Pinax 2" Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
+380.7 "--sync--" Ability { id: "69CE", source: "Hesperos" }
+386.3 "Belone Coils" Ability { id: "69DD", source: "Hesperos" }
+390.4 "Pinax 3" Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
+397.1 "Burst" Ability { id: "6A4[456]", source: "Hesperos" }
+403.4 "Pinax 4" Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
+404.5 "--middle--" Ability { id: "69CE", source: "Hesperos" }
+413.5 "Directional Shift" Ability { id: ["6A4A", "6A4B", "6A4C", "6A4D", "6DAE", "6DAF", "6DB0", "6DB1"], source: "Hesperos" }
+415.0 "Shifting Strike" Ability { id: ["6DB2", "6A4E"], source: "Hesperos" }
+428.9 "Decollation" Ability { id: "6A51", source: "Hesperos" }
 
-438.1 "Bloodrake" sync / 1[56]:[^:]*:Hesperos:6A40:/
-446.3 "Belone Bursts" sync / 1[56]:[^:]*:Hesperos:69D9:/
-454.5 "--middle--" sync / 1[56]:[^:]*:Hesperos:69CE:/
-463.1 "Westerly Shift" sync / 1[56]:[^:]*:Hesperos:6DB1:/
-464.8 "Shifting Strike" sync / 1[56]:[^:]*:Hesperos:6DB2:/
-478.3 "Decollation" sync / 1[56]:[^:]*:Hesperos:6A51:/
-491.5 "Elegant Evisceration" sync / 1[56]:[^:]*:Hesperos:6A50:/
-495.7 "--sync--" sync / 1[56]:[^:]*:Hesperos:69CA:/
+438.1 "Bloodrake" Ability { id: "6A40", source: "Hesperos" }
+446.3 "Belone Bursts" Ability { id: "69D9", source: "Hesperos" }
+454.5 "--middle--" Ability { id: "69CE", source: "Hesperos" }
+463.1 "Westerly Shift" Ability { id: "6DB1", source: "Hesperos" }
+464.8 "Shifting Strike" Ability { id: "6DB2", source: "Hesperos" }
+478.3 "Decollation" Ability { id: "6A51", source: "Hesperos" }
+491.5 "Elegant Evisceration" Ability { id: "6A50", source: "Hesperos" }
+495.7 "--sync--" Ability { id: "69CA", source: "Hesperos" }
 
-502.7 "Setting the Scene" sync / 1[56]:[^:]*:Hesperos:69CB:/ window 50,50 jump 335.9
-515.9 "Bloodrake" #sync / 1[56]:[^:]*:Hesperos:6A40:/
-525.1 "Pinax" #sync / 1[56]:[^:]*:Hesperos:69CF:/
-535.2 "Pinax 1" #sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
-538.3 "Hell Skewer" #sync / 1[56]:[^:]*:Hesperos:6A4F:/
-546.2 "Pinax 2" #sync / 1[56]:[^:]*:Hesperos:(6A3C|6A3D|6A3E|6A3F):/
+502.7 "Setting the Scene" Ability { id: "69CB", source: "Hesperos" } window 50,50 jump 335.9
+515.9 "Bloodrake" #Ability { id: "6A40", source: "Hesperos" }
+525.1 "Pinax" #Ability { id: "69CF", source: "Hesperos" }
+535.2 "Pinax 1" #Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
+538.3 "Hell Skewer" #Ability { id: "6A4F", source: "Hesperos" }
+546.2 "Pinax 2" #Ability { id: ["6A3C", "6A3D", "6A3E", "6A3F"], source: "Hesperos" }
