@@ -19,7 +19,7 @@
     "build": "webpack --progress --config webpack/webpack.prod.ts",
     "build-gh-pages": " webpack --config webpack/webpack.ghpages.ts",
     "start": "webpack serve --config webpack/webpack.dev.ts",
-    "fetch-deps": "node --import ./loader.js ./util/fetch_deps.ts",
+    "fetch-deps": "node --loader=ts-node/esm ./util/fetch_deps.ts",
     "tsc-no-emit": "tsc --noEmit",
     "lint": "run-s lint:**",
     "lint:dprint": "dprint check",
@@ -31,17 +31,17 @@
     "stylelintfix": "stylelint --fix \"resources/**/*.css\" \"ui/**/*.css\" \"user/**/*.css\" \"test/**/*.css\" \"util/**/*.css\"",
     "markdownlint": "markdownlint . --ignore node_modules --ignore publish --ignore plugin/ThirdParty",
     "test": "mocha",
-    "sync-files": "node --import ./loader.js util/sync_files.ts && git diff --exit-code",
+    "sync-files": "node --loader=ts-node/esm util/sync_files.ts && git diff --exit-code",
     "lint-staged": "lint-staged",
-    "coverage-report": "node --import ./loader.js util/gen_coverage_report.ts",
-    "util": "node --import ./loader.js util/index.ts",
+    "coverage-report": "node --loader=ts-node/esm util/gen_coverage_report.ts",
+    "util": "node --loader=ts-node/esm util/index.ts",
     "find-translations": "npm run util -- findTranslations",
     "translate-timeline": "npm run util -- translateTimeline",
     "generate": "npm run util -- generate",
-    "process-triggers": "node --import ./loader.js util/process_triggers_folder.ts",
-    "generate-log-guide": "node --import ./loader.js util/gen_log_guide.ts",
-    "validate-versions": "node --import ./loader.js util/validate_versions.ts",
-    "version": "node --import ./loader.js util/bump_version.ts"
+    "process-triggers": "node --loader=ts-node/esm util/process_triggers_folder.ts",
+    "generate-log-guide": "node --loader=ts-node/esm util/gen_log_guide.ts",
+    "validate-versions": "node --loader=ts-node/esm util/validate_versions.ts",
+    "version": "node --loader=ts-node/esm util/bump_version.ts"
   },
   "devDependencies": {
     "@actions/exec": "^1.1.1",
@@ -145,7 +145,7 @@
     "*.md": "markdownlint",
     "*.py": "python -m pylint --errors-only",
     "ui/(raidboss|oopsyraidsy)/data/**": [
-      "node --import ./loader.js test/test_data_files.ts"
+      "node --loader=ts-node/esm test/test_data_files.ts"
     ]
   },
   "dependencies": {

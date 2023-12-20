@@ -64,9 +64,9 @@ python util/gen_zone_id_and_info.py
 python util/gen_weather_rate.py
 python util/gen_hunt_data.py
 
-node --import ./loader.js util/gen_effect_id.ts
-node --import ./loader.js util/gen_world_ids.ts
-node --import ./loader.js util/gen_pet_names.ts
+node --loader=ts-node/esm util/gen_effect_id.ts
+node --loader=ts-node/esm util/gen_world_ids.ts
+node --loader=ts-node/esm util/gen_pet_names.ts
 ```
 
 Here's an example: <https://github.com/quisquous/cactbot/pull/5823/files>

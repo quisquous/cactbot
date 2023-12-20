@@ -83,12 +83,9 @@ npm install -g typescript
 ```
 
 Most commands have npm versions of them, e.g. `npm test` or `npm lint`
-If you need to run a typescript file on its own, with Node v20 and later
-you must pass an additional loader parameter.
-Either of the following work for now:
+You must pass a `--loader` parameter to make these scripts run.
 
 ```shell
-node --import ./loader.js util/sync_files.ts
 node --loader=ts-node/esm util/sync_files.ts
 ```
 

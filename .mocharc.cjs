@@ -9,7 +9,6 @@ module.exports = {
     'test/helper/*',
   ],
   loader: [
-    // TODO: figure out how to do something like ./loader.js for mocha.
     'ts-node/esm',
   ],
   extension: [
