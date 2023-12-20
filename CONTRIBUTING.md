@@ -245,6 +245,9 @@ here's a set of features that will almost always be needed:
 * [issues marked "help wanted"](https://github.com/quisquous/cactbot/issues?utf8=%E2%9C%93&q=label%3A%22help+wanted%22)
 * [adding missing timelines](https://github.com/quisquous/cactbot/issues/414)
 * missing translations
+* [trigger future work](docs/RaidbossGuide.md#future-work)
+* [timeline future work](docs/TimelineGuide.md#future-work)
+* [oopsy future work](docs/OopsyraidsyGuide.md#future-oopsy-work)
 
 ## Trigger Guidelines
 
@@ -263,3 +266,9 @@ See: [Oopsy Guide](docs/OopsyraidsyGuide.md#overview)
 * Improvements and additions to documentation are always welcome.
 * Use [semantic line breaks](https://sembr.org/).
 * As always, be consistent!
+
+## How to Release
+
+Run `npm version patch` or `npm version minor` to add a local commit with a version change.
+Upload this PR.
+Merge the PR and a release will happen.
