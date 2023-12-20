@@ -1,6 +1,22 @@
-const bloomingWeltFlare = 'D9B';
-const furiousWeltStack = 'D9C';
-const stingingWeltSpread = 'D9D';
+const effectIds = {
+  bloomingWeltFlare: 'D9B',
+  furiousWeltStack: 'D9C',
+  stingingWeltSpread: 'D9D',
+};
+const mapEffectFlags = {
+  clockwise: '00020001',
+  counter: '00200010',
+  // just for reference
+  clearClockwise: '00080004',
+  clearCounter: '00400004',
+  fiery: '00020001',
+  notFiery: '00080004',
+};
+const mapEffectSlots = {
+  inner: '01',
+  middle: '02',
+  outer: '03',
+};
 // First headmarker is tankbuster on MT
 const firstHeadmarker = parseInt('0156', 16);
 const getHeadmarkerId = (data, matches) => {
@@ -8,14 +24,33 @@ const getHeadmarkerId = (data, matches) => {
     data.decOffset = parseInt(matches.id, 16) - firstHeadmarker;
   return (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase().padStart(4, '0');
 };
+const ordealPromise = async (data) => {
+  data.combatantData = [];
+  if (
+    data.innerCircleId === undefined || data.middleCircleId === undefined ||
+    data.outerCircleId === undefined
+  )
+    return;
+  const hexIds = [data.innerCircleId, data.middleCircleId, data.outerCircleId];
+  const decIds = hexIds.map((x) => parseInt(x, 16));
+  // Sort combatant data by the same order of hexIds, aka [inner, middle, outer]
+  data.combatantData = (await callOverlayHandler({
+    call: 'getCombatants',
+    ids: decIds,
+  })).combatants.sort((a, b) => decIds.indexOf(a?.ID ?? 0) - decIds.indexOf(b?.ID ?? 0));
+};
 Options.Triggers.push({
   id: 'MountOrdealsExtreme',
   zoneId: ZoneId.MountOrdealsExtreme,
   timelineFile: 'rubicante-ex.txt',
   initData: () => {
     return {
+      combatantData: [],
+      ordealCount: 0,
+      flamespireBrandDebuffCollect: [],
       dualfireTargets: [],
       flamespireClawCounter: 0,
+      spinnyCollect: [],
     };
   },
   triggers: [
@@ -33,6 +68,231 @@ Options.Triggers.push({
       type: 'StartsUsing',
       netRegex: { id: '7D2C', source: 'Rubicante', capture: false },
       response: Responses.aoe(),
+    },
+    {
+      id: 'RubicanteEx Circle Id Collect',
+      type: 'GainsEffect',
+      netRegex: { effectId: '808' },
+      run: (data, matches) => {
+        const count = matches.count;
+        // Inner can also be 21F (V shape) and 220 (two lines), but 21E (one line) is first.
+        if (count === '21E')
+          data.innerCircleId = matches.targetId;
+        else if (count === '221')
+          data.middleCircleId = matches.targetId;
+        else if (count === '222')
+          data.outerCircleId = matches.targetId;
+      },
+    },
+    {
+      id: 'RubicanteEx Circle Spinny Collect',
+      type: 'MapEffect',
+      netRegex: {
+        flags: [mapEffectFlags.clockwise, mapEffectFlags.counter],
+        location: ['01', '02', '03'],
+      },
+      run: (data, matches) => data.spinnyCollect.push(matches),
+    },
+    {
+      id: 'RubicanteEx Circle Spinny Clear',
+      type: 'Ability',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      run: (data) => data.spinnyCollect = [],
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation Counter',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      run: (data) => data.ordealCount++,
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 1',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 1,
+      durationSeconds: 8,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        // inner and outer rotating
+        const spinny = data.spinnyCollect.find((x) => x.location === mapEffectSlots.inner);
+        if (data.spinnyCollect.length !== 2 || spinny === undefined)
+          return;
+        // CW = go north
+        // CCW = go south
+        // Note: You can also always go opposite the inner line and slightly in the direction of rotation.
+        const isCW = spinny.flags === mapEffectFlags.clockwise;
+        const dirStr = isCW ? output.north() : output.south();
+        return output.text({ dir: dirStr });
+      },
+      outputStrings: {
+        text: {
+          en: '${dir} (max melee)',
+        },
+        north: Outputs.north,
+        south: Outputs.south,
+      },
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 2',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 2,
+      durationSeconds: 8,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        const [inner, middle, outer] = data.combatantData;
+        if (inner === undefined || middle === undefined || outer === undefined)
+          return;
+        const innerDir8 = Directions.combatantStateHdgTo8Dir(inner);
+        // The "left" leg of the V is north.
+        // The middle of the V is innerDir + 1.
+        // We want to go opposite, aka + 4.
+        const safeDir8 = (innerDir8 + 1 + 4) % 8;
+        return output[Directions.outputFrom8DirNum(safeDir8)]();
+      },
+      // The entire quadrant is safe.
+      outputStrings: Directions.outputStrings8Dir,
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 3',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 3 || data.ordealCount === 7,
+      durationSeconds: 8,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        const [inner, middle, outer] = data.combatantData;
+        if (inner === undefined || middle === undefined || outer === undefined)
+          return;
+        const innerDir = Directions.combatantStateHdgTo8Dir(inner);
+        // The "left" leg of the V is north.
+        // Tell people to go max melee to either inside interintercardinal of the V legs.
+        // TODO: you could use middle's orientation here to say if the intercard between
+        // the V legs is safe too.
+        const safeDir16 = (innerDir * 2 + 1) % 16;
+        const dirStr = {
+          1: output.dirNNE(),
+          3: output.dirENE(),
+          5: output.dirESE(),
+          7: output.dirSSE(),
+          9: output.dirSSW(),
+          11: output.dirWSW(),
+          13: output.dirWNW(),
+          15: output.dirNNW(),
+        }[safeDir16];
+        return output.text({ dir: dirStr });
+      },
+      outputStrings: {
+        text: {
+          en: '${dir} (max melee)',
+        },
+        dirNNE: Outputs.dirNNE,
+        dirENE: Outputs.dirENE,
+        dirESE: Outputs.dirESE,
+        dirSSE: Outputs.dirSSE,
+        dirSSW: Outputs.dirSSW,
+        dirWSW: Outputs.dirWSW,
+        dirWNW: Outputs.dirWNW,
+        dirNNW: Outputs.dirNNW,
+      },
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 4',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 4 || data.ordealCount === 8,
+      durationSeconds: 8,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        const [inner, middle, outer] = data.combatantData;
+        if (inner === undefined || middle === undefined || outer === undefined)
+          return;
+        // only middle rotating
+        const spinny = data.spinnyCollect.find((x) => x.location === mapEffectSlots.middle);
+        if (data.spinnyCollect.length !== 1 || spinny === undefined)
+          return;
+        const isCW = spinny.flags === mapEffectFlags.clockwise;
+        const middleDir8 = Directions.combatantStateHdgTo8Dir(middle);
+        // Ordeal 4 is "use cat ears, follow the arrow".
+        // "north" for middle is upside-down cat ears.
+        // Therefore, if CW we go to WSW and if CCW we go to ESE.
+        const safeDir16 = (middleDir8 * 2 + (isCW ? 11 : 5)) % 16;
+        return {
+          1: output.dirNNE(),
+          3: output.dirENE(),
+          5: output.dirESE(),
+          7: output.dirSSE(),
+          9: output.dirSSW(),
+          11: output.dirWSW(),
+          13: output.dirWNW(),
+          15: output.dirNNW(),
+        }[safeDir16];
+      },
+      // The entire eighth pie slice is safe.
+      outputStrings: {
+        dirNNE: Outputs.dirNNE,
+        dirENE: Outputs.dirENE,
+        dirESE: Outputs.dirESE,
+        dirSSE: Outputs.dirSSE,
+        dirSSW: Outputs.dirSSW,
+        dirWSW: Outputs.dirWSW,
+        dirWNW: Outputs.dirWNW,
+        dirNNW: Outputs.dirNNW,
+      },
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 5',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 5,
+      durationSeconds: 8,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        const [inner, middle, outer] = data.combatantData;
+        if (inner === undefined || middle === undefined || outer === undefined)
+          return;
+        const innerDir8 = Directions.combatantStateHdgTo8Dir(inner);
+        // if the inner line is N, there are a number of safe areas here.
+        // S max melee ccw to ESE max melee, along with ENE max melee.
+        // but SE (aka dir8 of 3) is the most generous safe spot.
+        const safeDir8 = (innerDir8 + 3) % 8;
+        return output[Directions.outputFrom8DirNum(safeDir8)]();
+      },
+      // The entire quadrant is safe.
+      outputStrings: Directions.outputStrings8Dir,
+    },
+    {
+      id: 'RubicanteEx Ordeal of Purgation 6',
+      type: 'StartsUsing',
+      netRegex: { id: '80E9', source: 'Rubicante', capture: false },
+      condition: (data) => data.ordealCount === 6,
+      promise: ordealPromise,
+      alertText: (data, _matches, output) => {
+        const [inner, middle, outer] = data.combatantData;
+        if (inner === undefined || middle === undefined || outer === undefined)
+          return;
+        // Inner should always be facing north (V pointing NE)
+        // or facing south (V pointing SW).
+        const innerDir8 = Directions.combatantStateHdgTo8Dir(inner);
+        if (innerDir8 !== 0 && innerDir8 !== 4)
+          return;
+        // only middle rotating
+        const spinny = data.spinnyCollect.find((x) => x.location === mapEffectSlots.middle);
+        if (data.spinnyCollect.length !== 1 || spinny === undefined)
+          return;
+        const isCW = spinny.flags === mapEffectFlags.clockwise;
+        const isNorth = innerDir8 === 0;
+        // Only a few patterns possible, so just call cardinals for ease.
+        if (isCW)
+          return isNorth ? output.south() : output.east();
+        return isNorth ? output.west() : output.north();
+      },
+      outputStrings: {
+        north: Outputs.north,
+        east: Outputs.east,
+        south: Outputs.south,
+        west: Outputs.west,
+      },
     },
     {
       id: 'RubicanteEx Inferno Spread',
@@ -142,62 +402,46 @@ Options.Triggers.push({
     {
       id: 'RubicanteEx Flamespire Brand Debuff Collect',
       type: 'GainsEffect',
-      netRegex: { effectId: [bloomingWeltFlare, furiousWeltStack] },
+      netRegex: { effectId: [effectIds.bloomingWeltFlare, effectIds.furiousWeltStack] },
       run: (data, matches) => {
-        if (matches.effectId === furiousWeltStack)
+        data.flamespireBrandDebuffCollect.push(matches);
+        if (matches.effectId === effectIds.furiousWeltStack)
           data.flamespireBrandStack = matches.target;
-        if (matches.effectId === bloomingWeltFlare && data.me === matches.target)
+        if (matches.effectId === effectIds.bloomingWeltFlare && data.me === matches.target)
           data.flamespireBrandHasFlare = true;
       },
     },
     {
-      id: 'RubicanteEx Flamespire Brand Debuff Call',
-      type: 'GainsEffect',
-      netRegex: { effectId: [bloomingWeltFlare, furiousWeltStack], capture: false },
-      delaySeconds: 0.3,
-      suppressSeconds: 2,
-      infoText: (data, _matches, output) => {
-        // TODO: this could call "support out / dps in" kinda thing.
-        if (data.flamespireBrandHasFlare)
-          return output.outFlareThenSpread();
-        return output.inStackThenSpread();
-      },
-      outputStrings: {
-        outFlareThenSpread: {
-          en: 'Out+Flare => Spread',
-          de: 'Raus+Flare => Verteilen',
-          fr: 'Extérieur + Brasier -> Dispersion',
-          ja: '外側＋フレア => 散会',
-          cn: '外侧＋核爆 => 分散',
-          ko: '바깥+플레어 => 산개',
-        },
-        inStackThenSpread: {
-          en: 'In+Stack => Spread',
-          de: 'Rein+Sammeln => Verteilen',
-          fr: 'Intérieur + Package -> Dispersion',
-          ja: '内側＋頭割り => 散会',
-          cn: '内侧＋分摊 => 分散',
-          ko: '안+쉐어 => 산개',
-        },
-      },
-    },
-    {
       id: 'RubicanteEx Flamespire Brand Blooming Welt',
-      type: 'GainsEffect',
-      netRegex: { effectId: bloomingWeltFlare },
-      condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
-      alertText: (_data, _matches, output) => output.out(),
+      type: 'Ability',
+      // 7D18 = 0.2s telegraph for the first Flamerake along with 7D1B/7D19 damage
+      netRegex: { id: '7D18', source: 'Rubicante', capture: false },
+      condition: (data) => data.flamespireBrandHasFlare,
+      suppressSeconds: 5,
+      alertText: (data, _matches, output) => {
+        if (data.flamerakeInitialSafe === undefined)
+          return output.out();
+        if (data.flamerakeInitialSafe === 'cardinal')
+          return output.outIntercard();
+        return output.outCardinal();
+      },
       outputStrings: {
         out: Outputs.out,
+        outCardinal: {
+          en: 'Out + Cardinal',
+        },
+        outIntercard: {
+          en: 'Out + Intercard',
+        },
       },
     },
     {
       id: 'RubicanteEx Flamespire Brand Furious Welt',
-      type: 'GainsEffect',
-      netRegex: { effectId: furiousWeltStack },
+      type: 'Ability',
+      // 7D18 = 0.2s telegraph for the first Flamerake along with 7D1B/7D19 damage
+      netRegex: { id: '7D18', source: 'Rubicante', capture: false },
       condition: (data) => !data.flamespireBrandHasFlare,
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      suppressSeconds: 5,
       alertText: (data, _matches, output) => {
         if (data.flamespireBrandStack === data.me)
           return output.stackOnYou();
@@ -210,10 +454,10 @@ Options.Triggers.push({
     },
     {
       id: 'RubicanteEx Flamespire Brand Stinging Welt',
-      type: 'GainsEffect',
-      netRegex: { effectId: stingingWeltSpread },
-      condition: Conditions.targetIsYou(),
-      delaySeconds: (_data, matches) => parseFloat(matches.duration) - 3,
+      type: 'Ability',
+      // 7D1C and 7D1E are damage abilities for the second bounce of the flamerake.
+      netRegex: { id: '7D1C', source: 'Rubicante', capture: false },
+      suppressSeconds: 5,
       response: Responses.spread(),
     },
     {
@@ -421,24 +665,60 @@ Options.Triggers.push({
       },
     },
     {
-      id: 'RubicanteEx Flamespire Brand Cardinals',
+      id: 'RubicanteEx Flamespire Brand Call',
       type: 'MapEffect',
       netRegex: { location: '04', capture: true },
       suppressSeconds: 15,
-      infoText: (_data, matches, output) => {
+      alertText: (data, matches, output) => {
         const intercardFlags = [
           '02000200',
           '00200020',
           '00020002',
           '00800080',
         ];
-        if (intercardFlags.includes(matches.flags))
-          return output.intercards();
-        return output.cardinals();
+        const isIntercardSafeFirst = intercardFlags.includes(matches.flags);
+        data.flamerakeInitialSafe = isIntercardSafeFirst ? 'intercardinal' : 'cardinal';
+        const mech = data.flamespireBrandHasFlare ? output.outFlare() : output.inStack();
+        const safe = isIntercardSafeFirst ? output.intercards() : output.cardinals();
+        return output.text({ safe: safe, mech: mech });
+      },
+      infoText: (data, _matches, output) => {
+        let flareDPSCount = 0;
+        let flareSupportCount = 0;
+        let stackDPSCount = 0;
+        let stackSupportCount = 0;
+        for (const line of data.flamespireBrandDebuffCollect) {
+          const isDPS = data.party.isDPS(line.target);
+          if (line.effectId === effectIds.bloomingWeltFlare) {
+            if (isDPS)
+              flareDPSCount++;
+            else
+              flareSupportCount++;
+          }
+          if (line.effectId === effectIds.furiousWeltStack) {
+            if (isDPS)
+              stackDPSCount++;
+            else
+              stackSupportCount++;
+          }
+        }
+        if (flareDPSCount > 0 && flareSupportCount > 0)
+          return;
+        if (stackDPSCount === 0 && stackSupportCount === 0)
+          return;
+        if (flareDPSCount === 0 && flareSupportCount === 0)
+          return;
+        if (flareDPSCount > 0 && stackSupportCount > 0)
+          return output.supportStack();
+        if (flareSupportCount > 0 && stackDPSCount > 0)
+          return output.dpsStack();
       },
       outputStrings: {
+        text: {
+          en: '${safe} => ${mech}',
+        },
         cardinals: {
-          en: 'Cardinals',
+          en: 'Cardinal',
           de: 'Kardinal',
           fr: 'Cardinaux',
           ja: '十字回避',
@@ -446,12 +726,34 @@ Options.Triggers.push({
           ko: '십자방향',
         },
         intercards: {
-          en: 'Intercards',
+          en: 'Intercard',
           de: 'Interkardinal',
           fr: 'Intercardinaux',
           ja: '斜めへ',
           cn: '斜角',
           ko: '대각선',
+        },
+        outFlare: {
+          en: 'Out + Flare',
+          de: 'Raus+Flare',
+          fr: 'Extérieur + Brasier',
+          ja: '外側＋フレア',
+          cn: '外侧＋核爆',
+          ko: '바깥+플레어',
+        },
+        inStack: {
+          en: 'In + Stack',
+          de: 'Rein+Sammeln',
+          fr: 'Intérieur + Package',
+          ja: '内側＋頭割り',
+          cn: '内侧＋分摊',
+          ko: '안+쉐어',
+        },
+        supportStack: {
+          en: '(supports stack)',
+        },
+        dpsStack: {
+          en: '(dps stack)',
         },
       },
     },
