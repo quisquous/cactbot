@@ -10,7 +10,7 @@ const __filename = url.fileURLToPath(new URL('.', import.meta.url));
 const __dirname = path.basename(__filename);
 const root = path.join(__dirname, '../');
 
-const scriptName = 'ts-node util/sync_files.ts';
+const scriptName = 'npm run sync-files';
 
 export type ReplaceDict = { [key: string]: string };
 

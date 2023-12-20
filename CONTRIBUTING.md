@@ -76,14 +76,18 @@ and on the server-side (GitHub).
 You will need to [install](README.md#npm-and-webpack) `nodejs` and run `npm install`
 in order to install local versions of husky, lint-staged, and eslint.
 
-It is recommended that you also install ts-node and typescript globally, e.g.
+It is recommended that you also install typescript globally, e.g.
 
 ```shell
 npm install -g typescript
-npm install -g ts-node
 ```
 
-This will let you run commands as `ts-node` directly instead of `npx ts-node`.
+Most commands have npm versions of them, e.g. `npm test` or `npm lint`
+You must pass a `--loader` parameter to make these scripts run.
+
+```shell
+node --loader=ts-node/esm util/sync_files.ts
+```
 
 If the pre-commit validations are causing you significant problems,
 feel free to bypass the checks with `--no-verify` flag,
