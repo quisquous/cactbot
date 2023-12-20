@@ -1118,3 +1118,11 @@ See: [P12S First Wing](https://github.com/quisquous/cactbot/blob/main/ui/raidbos
 [P12S Wing Followup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Followup%27)
 
 See also: [AMR Moko Triple Kasumi-giri triggers](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts)
+
+## Future Work
+
+- make it easier to find fights and options in the cactbot config (it's kind of tedious now)
+- add "shared outputstrings" to a trigger set so multiple triggers can use the same set, there's less translation duplication, and users don't have to add overrides everywhere
+- similarly make it possible to share config overrides in criterion vs criterion savage
+- raidemulator: show multiple trigger outputs from the same trigger: <https://github.com/quisquous/cactbot/issues/5490>
+- raidemulator: fix resetting issues: <https://github.com/quisquous/cactbot/issues/5714>
