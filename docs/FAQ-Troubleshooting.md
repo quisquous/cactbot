@@ -133,7 +133,7 @@ It takes time and effort to add support for new content to cactbot.
 If it just came out in the last week or few,
 it's possible that there is not support for it yet.
 
-Check <https://quisquous.github.io/cactbot/util/coverage/coverage.html> for the latest list of supported content.
+Check <https://overlayplugin.github.io/cactbot/util/coverage/coverage.html> for the latest list of supported content.
 It is possible that support for content has been added to cactbot but not released.
 You can check the release notes for more details.
 
@@ -248,10 +248,10 @@ If you get an error in the OverlayPlugin console similar to `System.MissingMetho
 If you get an error that says `Plugin Load Failure` and `The downloaded file did not contain a plugin that could be loaded`,
 there could be several potential issues.
 
-- Make sure you have [installed OverlayPlugin](https://github.com/quisquous/cactbot#install-overlayplugin).
+- Make sure you have [installed OverlayPlugin](https://github.com/OverlayPlugin/cactbot#install-overlayplugin).
 - Check your OverlayPlugin version in **Plugins** -> **Plugin Listing** -> **OverlayPlugin.dll**.
 If this is not the same version as [this release](https://github.com/OverlayPlugin/OverlayPlugin/releases/latest),
-then remove it and re-follow the [installation instructions](https://github.com/quisquous/cactbot#install-overlayplugin).
+then remove it and re-follow the [installation instructions](https://github.com/OverlayPlugin/cactbot#install-overlayplugin).
 - Make sure you are running x64 ACT (`Advanced Combat Tracker.exe`) and not x86 ACT (`ACTx86.exe`).
 - Finally, make sure you have reloaded ACT once you have installed OverlayPlugin.
 
@@ -278,7 +278,7 @@ See: [Fixing Chat Log Problems](#fixing-chat-log-problems).
 ## Places to Get Help
 
 - ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
-- open a [github issue](https://github.com/quisquous/cactbot/issues)
+- open a [github issue](https://github.com/OverlayPlugin/cactbot/issues)
 
 It is highly recommended that you ask in the FFXIV ACT discord first for most troubleshooting issues.
 You should also read the #troubleshooting channel pins first.
@@ -312,7 +312,7 @@ upload the files there,
 and then attach the link.
 
 If you want to split a log to only include a particular fight,
-you can use the [log splitter](https://quisquous.github.io/cactbot/util/logtools/splitter.html)
+you can use the [log splitter](https://overlayplugin.github.io/cactbot/util/logtools/splitter.html)
 by dragging a network log file to the page and selecting the fights you want.
 
 If you are trying to debug something, it is usually better to not split the log.

@@ -31,7 +31,8 @@ const ruleModule = {
       description: 'suggest outputStrings in cactbot',
       category: 'Stylistic Issues',
       recommended: true,
-      url: 'https://github.com/quisquous/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
+      url:
+        'https://github.com/OverlayPlugin/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
     },
     fixable: 'code',
     schema: [],

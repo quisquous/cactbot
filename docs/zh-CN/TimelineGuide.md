@@ -4,7 +4,7 @@
 
 ![导入屏幕截图](../images/timelineguide_timeline.png)
 
-cactbot在[raidboss模块](https://github.com/quisquous/cactbot#raidboss-module)中定义触发器和时间轴。这两者是紧密结合的，因此您既可以基于技能编写触发器，也可以基于时间轴编写触发器。
+cactbot在[raidboss模块](https://github.com/OverlayPlugin/cactbot#raidboss-module)中定义触发器和时间轴。这两者是紧密结合的，因此您既可以基于技能编写触发器，也可以基于时间轴编写触发器。
 
 ## 目录
 
@@ -148,11 +148,11 @@ Cactbot的触发器文件支持添加基于时间轴的触发器。这是由于�
 
 示例:
 
-* [乐欲之所瓯博讷修道院](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.ts)
-* [T9](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.ts)
-* [O12 普通难度](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.ts)
+* [乐欲之所瓯博讷修道院](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.ts)
+* [T9](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.ts)
+* [O12 普通难度](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.ts)
 
-这些触发器和普通的触发器拥有[相同的语法](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/README.txt)。这意味着您依旧可以使用函数，返回任何您想要的东西。您也可以使用[condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10)，使其仅针对特定职业/职能激活。
+这些触发器和普通的触发器拥有[相同的语法](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/README.txt)。这意味着您依旧可以使用函数，返回任何您想要的东西。您也可以使用[condition](https://github.com/OverlayPlugin/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10)，使其仅针对特定职业/职能激活。
 
 但是，他们之间仍然有一些区别：
 
@@ -168,13 +168,13 @@ Cactbot默认并不包含这些配置，这个功能更适合用户自行配置�
 
 触发器文件有一个名为 `timeline` 的参数入口，这是一个数组，其中元素会添加到时间轴中。若元素都是字符串，则会直接添加。若元素是函数，那么cactbot会调用该函数，并添加其返回值至时间轴中。(但是传入函数的 `data` 参数仅包含了玩家的职能和职业，不包含其他参数。)
 
-测试时间轴可以在盛夏农庄通过倒计时或对木人行礼后触发。另行参见：[test.js](https://github.com/quisquous/cactbot/blob/79239abda888dd7a277da0501a7d4ac60d8cf963/ui/raidboss/data/triggers/test.js#L10)。
+测试时间轴可以在盛夏农庄通过倒计时或对木人行礼后触发。另行参见：[test.js](https://github.com/OverlayPlugin/cactbot/blob/79239abda888dd7a277da0501a7d4ac60d8cf963/ui/raidboss/data/triggers/test.js#L10)。
 
 您也可以在 **cactbot/user/raidboss.js** 文件中添加定制化的时间轴和触发器。另行参见：[user/raidboss.js](https://github.com/quisquous/cactbot-user/blob/641488590e3ea499cc3b54cc9f2f2f856dee4ad8/raidboss.js#L28)。
 
 ## 时间轴翻译
 
-为支持多语言，cactbot的触发器文件中提供了 `timelineReplace` 参数。[o12s.js](https://github.com/quisquous/cactbot/blob/ecbb723f097328c7bd0476352e5135bd5f776248/ui/raidboss/data/triggers/o12s.js#L608) 是一个不错的例子。该文件的参数集中包含了许多用于替换同步正则、文字和效果名的正则表达式。这有两个目的：
+为支持多语言，cactbot的触发器文件中提供了 `timelineReplace` 参数。[o12s.js](https://github.com/OverlayPlugin/cactbot/blob/ecbb723f097328c7bd0476352e5135bd5f776248/ui/raidboss/data/triggers/o12s.js#L608) 是一个不错的例子。该文件的参数集中包含了许多用于替换同步正则、文字和效果名的正则表达式。这有两个目的：
 
 其一是为了让工具软件能为触发器自动生成正则表达式翻译。
 
@@ -207,7 +207,7 @@ Cactbot默认并不包含这些配置，这个功能更适合用户自行配置�
 
 * [Python 3](https://www.python.org/downloads/release/python-373/)
 * [Node.js](https://nodejs.org/en/)
-* 一份cactbot的[源代码](https://github.com/quisquous/cactbot/archive/main.zip)拷贝
+* 一份cactbot的[源代码](https://github.com/OverlayPlugin/cactbot/archive/main.zip)拷贝
 
 安装 Python 3 时，推荐为该系统上的所有用户安装，这种安装方式会将 Python 写入 Windows 的 PATH 变量中，使您可以从命令提示符方便地运行 Python。
 

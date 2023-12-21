@@ -45,7 +45,7 @@ and then comparing to the expected first headmarker to calculate the offset.
 
 If the encounter does not have headmarker offsets,
 please use headmarker ids directly in triggers,
-e.g. [p9n](https://github.com/quisquous/cactbot/blob/7b904e35c7d678013d229080c858f19d35510ac1/ui/raidboss/data/06-ew/raid/p9n.ts#L33-L38).
+e.g. [p9n](https://github.com/OverlayPlugin/cactbot/blob/7b904e35c7d678013d229080c858f19d35510ac1/ui/raidboss/data/06-ew/raid/p9n.ts#L33-L38).
 
 ### Same first headmarker
 
@@ -53,7 +53,7 @@ Most of the time,
 if the encounter does have headmarker offsets,
 the first headmarker id will always be the same.
 
-Most trigger sets do something like [p11s](https://github.com/quisquous/cactbot/blob/3ca3589/ui/raidboss/data/06-ew/raid/p11s.ts).
+Most trigger sets do something like [p11s](https://github.com/OverlayPlugin/cactbot/blob/3ca3589/ui/raidboss/data/06-ew/raid/p11s.ts).
 
 There's a helper function to set the headmarker offset if it's not found,
 and return the true headmarker id.
@@ -108,7 +108,7 @@ In rare cases, the first headmarker is not consistent.
 As cactbot resets all trigger info (including recorded headmarker offset) on wipe,
 any trigger file must handle the first headmarker from any door boss and final boss simultaneously.
 
-For example, [P12S](https://github.com/quisquous/cactbot/blob/4700770/ui/raidboss/data/06-ew/raid/p12s.ts#L159-L179)
+For example, [P12S](https://github.com/OverlayPlugin/cactbot/blob/4700770/ui/raidboss/data/06-ew/raid/p12s.ts#L159-L179)
 has a door boss with two different first headmarkers (bottom left / bottom right wing)
 and a final boss with one first headmarker.
 
@@ -124,7 +124,7 @@ or alternatively you can browse the Lockon table online here: <https://github.co
 Headmarkers are 2 byte hex values,
 and the `key` field in the `Lockon` is the decimal representation of that hex value.
 
-Here is some code from: <https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p9s.ts>
+Here is some code from: <https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p9s.ts>
 
 ```typescript
 const headmarkers = {

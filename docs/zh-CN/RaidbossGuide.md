@@ -88,10 +88,10 @@ export default {
   id: 'id string',
   type: 'StartsUsing',
   disabled: false,
-  // 提示：参见 [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts) 中的 `NetFields` 类型。
+  // 提示：参见 [net_fields.d.ts](https://github.com/OverlayPlugin/cactbot/blob/main/types/net_fields.d.ts) 中的 `NetFields` 类型。
   // 提示：写成 `netRegex: NetRegexes({ id: 'some-id', source: 'some-name' })` 也是可以的，这个属性会向后兼容。
   netRegex: { id: 'some-id', source: 'some-name' },
-  // 提示：推荐使用 [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 中的辅助函数。
+  // 提示：推荐使用 [regexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts) 中的辅助函数。
   regex: Regexes.ability({ id: 'some-id', source: 'some-name' }),
   condition: function(data, matches, output) { /* 当需要激活该触发器时返回 true */ },
   preRun: function(data, matches, output) { /* 触发器的预处理 */ },
@@ -139,12 +139,12 @@ export default {
 **netRegex / regex**
 正则表达式，cactbot会将该正则表达式与每一条日志行做比对，并在匹配成功时触发当前触发器。`netRegex` 版本用于匹配网络日志行，而 `regex` 版本用于匹配普通的ACT日志行。
 
-更多时候，相对于直接使用正则表达式字面量，我们更加推荐使用正则替换函数。正则替换函数是指定义在 [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts) 和 [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts) 中的辅助函数，这些函数可以接受特定参数值用于匹配日志，并通过正则捕获组的方式帮助你提取未定义的参数值。换句话说，这些函数用于自动构建能够匹配指定类型的日志行的正则表达式。顾名思义，`netRegex` 使用 `NetRegexes` 辅助函数，而 `regex` 使用 `Regexes` 辅助函数。
+更多时候，相对于直接使用正则表达式字面量，我们更加推荐使用正则替换函数。正则替换函数是指定义在 [regexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts) 和 [netregexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/netregexes.ts) 中的辅助函数，这些函数可以接受特定参数值用于匹配日志，并通过正则捕获组的方式帮助你提取未定义的参数值。换句话说，这些函数用于自动构建能够匹配指定类型的日志行的正则表达式。顾名思义，`netRegex` 使用 `NetRegexes` 辅助函数，而 `regex` 使用 `Regexes` 辅助函数。
 
 `regex` 和 `netRegex` 会使用 `timelineReplace` 中的值自动翻译到对应语言。
 
 **condition: function(data, matches)**
-当函数返回 `true` 时激活该触发器。若返回的不是 `true`，则当前触发器不会有任何响应。不管触发器对象里定义了多少函数，该函数总是第一个执行。([conditions.ts](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts) 中定义了一部分高阶条件函数。一般情况下，如果与情境相符，使用这些函数是最佳解决方案。)
+当函数返回 `true` 时激活该触发器。若返回的不是 `true`，则当前触发器不会有任何响应。不管触发器对象里定义了多少函数，该函数总是第一个执行。([conditions.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/conditions.ts) 中定义了一部分高阶条件函数。一般情况下，如果与情境相符，使用这些函数是最佳解决方案。)
 
 **preRun: function(data, matches)**
 当触发器被激活时，该函数会在条件判定成功后立刻执行。
@@ -168,7 +168,7 @@ export default {
 从0到1的音量数值，触发器激活时播放的音量大小。
 
 **response**
-用于返回 infoText/alertText/alarmText/tts 的快捷方法。 这些函数定义于 `resources/responses.ts`。 Response 的优先级比直接指定的文字或TTS低，因此可以被覆盖。 (如同 `regex` 和 `condition` 一样，[responses.ts](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts) 中定义了一些便于使用的高阶函数。)
+用于返回 infoText/alertText/alarmText/tts 的快捷方法。 这些函数定义于 `resources/responses.ts`。 Response 的优先级比直接指定的文字或TTS低，因此可以被覆盖。 (如同 `regex` 和 `condition` 一样，[responses.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/responses.ts) 中定义了一些便于使用的高阶函数。)
 
 **alarmText**
 当触发器激活时显示**警报**级别的文本。该属性一般用于高危事件，如处理失败必死无疑的机制、会导致团灭的机制，或处理失败会导致通关变得更加困难的机制等。(例如T2的亚拉戈病毒，T7的诅咒之嚎，或是O7S里奥尔特罗斯先生的石肤等)。其值可以是字符串或返回字符串的 `function(data, matches)`。
@@ -322,7 +322,7 @@ comment: {
 
 为统一触发器构造，以及减轻翻译时的手动负担，cactbot的触发器元素广泛运用了高阶函数。诸如此类的工具函数使自动化测试更为简单，并让人们在审查拉取更改时更容易捕获错误及文本差异。
 
-目前我们对于元素的独立预定义结构有4种：[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts)、[Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)、[NetRegex](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts) 以及 [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts)。`Condition` 函数不接受参数，而几乎所有的 `Response` 函数都接受 `severity` 参数，用于定义触发器被激活时输出的警报文本的等级。`Regex` 和 `NetRegex` 函数根据匹配的日志行，接受若干参数 [(例如 `gainsEffect()`)](https://github.com/quisquous/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348)，不管哪种日志行一般都接受 `source` 属性 (技能的咏唱者/释放者的名称)，`id` 属性 (十六进制的技能ID，例如 `2478`)，以及正则表达式匹配时是否启用捕获组 (`capture: false`)。`Regex` 和 `NetRegex` 函数默认开启捕获组，但按惯例应当仅对依赖捕获数据的触发器开启捕获。
+目前我们对于元素的独立预定义结构有4种：[Condition](https://github.com/OverlayPlugin/cactbot/blob/main/resources/conditions.ts)、[Regex](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts)、[NetRegex](https://github.com/OverlayPlugin/cactbot/blob/main/resources/netregexes.ts) 以及 [Response](https://github.com/OverlayPlugin/cactbot/blob/main/resources/responses.ts)。`Condition` 函数不接受参数，而几乎所有的 `Response` 函数都接受 `severity` 参数，用于定义触发器被激活时输出的警报文本的等级。`Regex` 和 `NetRegex` 函数根据匹配的日志行，接受若干参数 [(例如 `gainsEffect()`)](https://github.com/OverlayPlugin/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348)，不管哪种日志行一般都接受 `source` 属性 (技能的咏唱者/释放者的名称)，`id` 属性 (十六进制的技能ID，例如 `2478`)，以及正则表达式匹配时是否启用捕获组 (`capture: false`)。`Regex` 和 `NetRegex` 函数默认开启捕获组，但按惯例应当仅对依赖捕获数据的触发器开启捕获。
 
 以下是使用了这三种元素的示例触发器：
 
@@ -433,15 +433,15 @@ Cactbot在原基础上实现了一部分扩展语法。扩展语法可以在时�
 
 大部分 cactbot 开发者都使用英语游玩 FFXIV，因此我们非常感谢所有能够提交翻译的拉取请求的人们，我们也欢迎针对 github 和 git 的使用的提问。
 
-你可以运行 `npm run coverage-report` 以生成 cactbot 覆盖率报告，在[这里](https://quisquous.github.io/cactbot/util/coverage/coverage.html)还有当前主分支的在线版本。
+你可以运行 `npm run coverage-report` 以生成 cactbot 覆盖率报告，在[这里](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html)还有当前主分支的在线版本。
 
 覆盖率报告也包含了翻译内容的覆盖率，如：
 
-- [德文覆盖率报告](https://quisquous.github.io/cactbot/util/coverage/missing_translations_de.html)
-- [法文覆盖率报告](https://quisquous.github.io/cactbot/util/coverage/missing_translations_fr.html)
-- [日文覆盖率报告](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ja.html)
-- [中文覆盖率报告](https://quisquous.github.io/cactbot/util/coverage/missing_translations_cn.html)
-- [韩文覆盖率报告](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ko.html)
+- [德文覆盖率报告](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_de.html)
+- [法文覆盖率报告](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_fr.html)
+- [日文覆盖率报告](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_ja.html)
+- [中文覆盖率报告](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_cn.html)
+- [韩文覆盖率报告](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_ko.html)
 
 待办事项：对于中国服/韩国服，更好地做法是将未公开的版本显示为无需翻译。
 
@@ -462,7 +462,7 @@ cactbot 中许多代码使用了 `LocaleText` 类型取代需要翻译的字符�
 
 下面是一个缺失了日语翻译的例子，测试报告会指出这个问题：`ui/oopsyraidsy/data/06-ew/raid/p4n.ts:78 [code] text: {`。其中 `text: {` 部分是缺失了日语翻译的代码起始部分。HTML 报告页面也有链接到对应代码的链接。
 
-这个例子取自[这里](https://github.com/quisquous/cactbot/blob/e47d34b/ui/oopsyraidsy/data/06-ew/raid/p4n.ts#L78-L84)：
+这个例子取自[这里](https://github.com/OverlayPlugin/cactbot/blob/e47d34b/ui/oopsyraidsy/data/06-ew/raid/p4n.ts#L78-L84)：
 
 ```typescript
           text: {
@@ -524,7 +524,7 @@ cactbot 中许多代码使用了 `LocaleText` 类型取代需要翻译的字符�
 
 #### 通用翻译替换
 
-为了避免重复翻译相似的字段很多次，[common_replacement.ts](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/common_replacement.ts) 文件定义了 `export const commonReplacement` 变量，包含了 `replaceSync` 和 `replaceText`，这个变量会隐式地包含于所有触发器集合中。
+为了避免重复翻译相似的字段很多次，[common_replacement.ts](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/common_replacement.ts) 文件定义了 `export const commonReplacement` 变量，包含了 `replaceSync` 和 `replaceText`，这个变量会隐式地包含于所有触发器集合中。
 
 因此这些字段不需要翻译（当你尝试翻译这些文本时，`npm run test` 也会报告错误）。
 

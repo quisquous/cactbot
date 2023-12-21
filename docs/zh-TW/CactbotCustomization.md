@@ -92,7 +92,7 @@ cactbot將按照字母順序優先載入user資料夾中的子資料夾裡的檔
 
 我們推薦使用 [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) 以除錯CSS問題。 您可以透過 ACT -> Plugins -> OverlayPlugin.dll -> 您的懸浮窗名字 -> 啟動Debug工具 以開啟DevTools。
 
-**注意**：某些元件的自定義較為困難，甚至無法進行自定義，如時間軸的進度條等。 原因是，這些元件屬於自定義HTML元素，且沒有開放外部配置的介面。 如果您有特別的需求，但是不知道如何修改，您可以提出一個 [github issue](https://github.com/quisquous/cactbot/issues/new/choose)。
+**注意**：某些元件的自定義較為困難，甚至無法進行自定義，如時間軸的進度條等。 原因是，這些元件屬於自定義HTML元素，且沒有開放外部配置的介面。 如果您有特別的需求，但是不知道如何修改，您可以提出一個 [github issue](https://github.com/OverlayPlugin/cactbot/issues/new/choose)。
 
 **警告**：cactbot不保證CSS的向後相容性。 在以後的更改中，cactbot可能會重新組織網頁結構，改變元素名稱和類名稱，甚至完全重構所有樣式。 因此，您需知曉您的自定義CSS有在將來出現問題的風險。
 
@@ -130,7 +130,7 @@ Options.Triggers.push({
 
 若您只是想修改 `資訊文字`，你可以 [透過cactbot配置介面改變觸發器文字](#changing-trigger-text-with-the-cactbot-ui) 實現。
 
-其中一種調整方式是編輯觸發器的輸出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201) 中找到原本的 fireball #1 觸發器。
+其中一種調整方式是編輯觸發器的輸出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201) 中找到原本的 fireball #1 觸發器。
 
 您需要將以下的程式碼貼上至您的使用者自定義js檔案底部。
 
@@ -162,7 +162,7 @@ Options.Triggers.push({
 
 ### 例2：使挑釁提示適用於全職業
 
-目前，只有團隊成員的挑釁會觸發提示，並且不是所有職業都能收到提示。 該例子展示了如何使其適用於所有職業。 該挑釁觸發器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke) 中找到。
+目前，只有團隊成員的挑釁會觸發提示，並且不是所有職業都能收到提示。 該例子展示了如何使其適用於所有職業。 該挑釁觸發器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke) 中找到。
 
 我們需要修改 `condition` 函式(function)。 由於此處的id與內建的 `General Provoke` 觸發器一致，因此會覆蓋同名的內建觸發器。
 

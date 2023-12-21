@@ -22,7 +22,7 @@ The code of conduct for cactbot can be found here:
 
 Please file all issues with cactbot on github,
 via this url:
-<https://github.com/quisquous/cactbot/issues/new/choose>
+<https://github.com/OverlayPlugin/cactbot/issues/new/choose>
 
 ## Pull Requests
 
@@ -138,7 +138,7 @@ In order to use the main cactbot repository as your cactbot's source URL,
 simply enter the cactbot module's full HTML filepath
 instead of the HTML file included in the cactbot download.
 
-For example, <https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html>
+For example, <https://overlayplugin.github.io/cactbot/ui/raidboss/raidboss.html>
 will use the latest changes for the `raidboss` module pushed to GitHub.
 
 When making changes, it may be helpful to reference your personal fork
@@ -229,7 +229,7 @@ the complete list of commands being run in CI are found within
 and can be run locally without needing to commit changes just to test them.
 If it is not obvious *which* command is failing,
 you can click the workflow in the
-[GitHub Actions](https://github.com/quisquous/cactbot/actions)
+[GitHub Actions](https://github.com/OverlayPlugin/cactbot/actions)
 page and click `Workflow file` to see the exact list of commands being run.
 The majority of this file is setting up the workflow runner, and the command
 that is failing is most likely going to be found at the bottom,
@@ -246,8 +246,8 @@ If you are wondering how to contribute to cactbot,
 here's a set of features that will almost always be needed:
 
 * fixing bugs
-* [issues marked "help wanted"](https://github.com/quisquous/cactbot/issues?utf8=%E2%9C%93&q=label%3A%22help+wanted%22)
-* [adding missing timelines](https://github.com/quisquous/cactbot/issues/414)
+* [issues marked "help wanted"](https://github.com/OverlayPlugin/cactbot/issues?utf8=%E2%9C%93&q=label%3A%22help+wanted%22)
+* [adding missing timelines](https://github.com/OverlayPlugin/cactbot/issues/414)
 * missing translations
 * [trigger future work](docs/RaidbossGuide.md#future-work)
 * [timeline future work](docs/TimelineGuide.md#future-work)

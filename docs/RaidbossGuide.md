@@ -248,10 +248,10 @@ Timeline triggers (whose regex matches timeline text) are in their own section.
   id: 'id string',
   type: 'StartsUsing',
   disabled: false,
-  // Note: see `NetFields` from [net_fields.d.ts](https://github.com/quisquous/cactbot/blob/main/types/net_fields.d.ts)
+  // Note: see `NetFields` from [net_fields.d.ts](https://github.com/OverlayPlugin/cactbot/blob/main/types/net_fields.d.ts)
   // Note: `netRegex: NetRegexes({ id: 'some-id', source: 'some-name' })` is still supported for backwards compatibility.
   netRegex: { id: 'some-id', source: 'some-name' },
-  // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
+  // Note: prefer to use the regex helpers from [regexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts)
   regex: Regexes.ability({ id: 'some-id', source: 'some-name' }),
   condition: function(data, matches, output) { return true if it should run },
   preRun: function(data, matches, output) { do stuff.. },
@@ -322,8 +322,8 @@ The `netRegex` version matches against network log lines,
 while the `regex` version matches against parsed ACT log lines.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
-Helper functions defined in [regexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts)
-and in [netregexes.ts](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts)
+Helper functions defined in [regexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts)
+and in [netregexes.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/netregexes.ts)
 take the parameters that would otherwise be extracted via match groups.
 From here, the functions automatically construct the regex that should
 be matched against.
@@ -336,7 +336,7 @@ and for `regex` use the `Regexes` helper.
 Activates the trigger if the function returns `true`.
 If it does not return `true`, nothing is shown/sounded/run.
 If multiple functions are present on the trigger, this has first priority to run.
-(Pre-made "canned" conditions are available within [conditions.ts](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts).
+(Pre-made "canned" conditions are available within [conditions.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/conditions.ts).
 Generally speaking it's best to use one of these if it fits the situation.)
 
 **preRun: function(data, matches, output)**
@@ -376,7 +376,7 @@ A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
 Also used by `resources/responses.ts`.
 Response has less priority than an explicitly specified text or tts,
 and so can be overridden.
-(As with `regex` and `condition`, "canned" responses are available within [responses.ts](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts).)
+(As with `regex` and `condition`, "canned" responses are available within [responses.ts](https://github.com/OverlayPlugin/cactbot/blob/main/resources/responses.ts).)
 
 **alarmText**
 Displays a text popup with Alarm importance when the trigger activates.
@@ -583,10 +583,10 @@ Use of these helpers makes automated testing significantly easier,
 and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined:
-[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.ts), [NetRegex](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.ts), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.ts).
+[Condition](https://github.com/OverlayPlugin/cactbot/blob/main/resources/conditions.ts), [Regex](https://github.com/OverlayPlugin/cactbot/blob/main/resources/regexes.ts), [NetRegex](https://github.com/OverlayPlugin/cactbot/blob/main/resources/netregexes.ts), and [Response](https://github.com/OverlayPlugin/cactbot/blob/main/resources/responses.ts).
 `Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
 used to determine what level of popup text to display to the user when the trigger activates.
-`Regex`(`NetRegex`) functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348) depending on which log line is being matched against,
+`Regex`(`NetRegex`) functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/OverlayPlugin/cactbot/blob/0bd9095682ec15b35f880d2241be365f4bdf6a87/resources/regexes.ts#L348) depending on which log line is being matched against,
 but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
 the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
 `Regex`(`NetRegex`) functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.
@@ -716,15 +716,15 @@ and so any PRs to translate anything missing is much appreciated.
 If you need help using github or git, please ask.
 
 Running `npm run coverage-report` will generate the cactbot coverage report,
-which can be found online [here](https://quisquous.github.io/cactbot/util/coverage/coverage.html).
+which can be found online [here](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html).
 
 This report includes links to all of the missing translations:
 
-- [missing_translations_de.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_de.html)
-- [missing_translations_fr.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_fr.html)
-- [missing_translations_ja.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ja.html)
-- [missing_translations_cn.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_cn.html)
-- [missing_translations_ko.html](https://quisquous.github.io/cactbot/util/coverage/missing_translations_ko.html)
+- [missing_translations_de.html](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_de.html)
+- [missing_translations_fr.html](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_fr.html)
+- [missing_translations_ja.html](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_ja.html)
+- [missing_translations_cn.html](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_cn.html)
+- [missing_translations_ko.html](https://overlayplugin.github.io/cactbot/util/coverage/missing_translations_ko.html)
 
 You can run `npm run util` and select find translations using the ui.
 You can also run `npm run util -- findTranslations -f . -l fr`
@@ -756,7 +756,7 @@ where the missing translation report for Japanese says this: `ui/oopsyraidsy/dat
 The `text: {` part of the line is the beginning of the code that is missing the translation.
 The html report links above have links to the code directly.
 
-This example corresponds to [code](https://github.com/quisquous/cactbot/blob/e47d34b/ui/oopsyraidsy/data/06-ew/raid/p4n.ts#L78-L84) like this:
+This example corresponds to [code](https://github.com/OverlayPlugin/cactbot/blob/e47d34b/ui/oopsyraidsy/data/06-ew/raid/p4n.ts#L78-L84) like this:
 
 ```typescript
           text: {
@@ -827,7 +827,7 @@ so that timelines and triggers will work in French:
 #### Common Replacements
 
 To avoid having to repeat common translations,
-the [common_replacement.ts](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/common_replacement.ts)
+the [common_replacement.ts](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/common_replacement.ts)
 file has a `export const commonReplacement` variable with common `replaceSync` and `replaceText` entries
 that are implicitly added to all raidboss trigger sets.
 
@@ -951,7 +951,7 @@ the tests will catch that error because it expects that there are no missing tra
 It is not an `npm run test` error to have `missingTranslations: true` when it is not needed,
 but this error will show up in the find missing translations script and should be cleaned up if possible.
 
-Missing translations are listed on the [coverage page](https://quisquous.github.io/cactbot/util/coverage/coverage.html)
+Missing translations are listed on the [coverage page](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html)
 by language.
 
 #### Escaping
@@ -1018,9 +1018,9 @@ One collecting trigger collects all the lines and stores it on `data`.
 Another call trigger uses the same `netRegex` with a `delaySeconds` + `suppressSeconds` to make the call using that `data`.
 One final cleanup trigger uses the same `netRegex` with a larger `delaySeconds` + (optional) `suppressSeconds` to erase the collected information on `data`.
 
-- [P7N Hemitheos Aero II Collect](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Collect%27)
-- [P7N Hemitheos Aero II Call](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Call%27)
-- [P7N Hemitheos Aero II Cleanup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Cleanup%27)
+- [P7N Hemitheos Aero II Collect](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Collect%27)
+- [P7N Hemitheos Aero II Call](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Call%27)
+- [P7N Hemitheos Aero II Cleanup](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p7n.ts#:~:text=id%3A%20%27P7N%20Hemitheos%20Aero%20II%20Cleanup%27)
 
 Often the cleanup is combined into the call, or is put onto phase transitions or other triggers.
 
@@ -1028,7 +1028,7 @@ Often the cleanup is combined into the call, or is put onto phase transitions or
 
 It's possible to have a single trigger do collect/call/cleanup.
 
-See: [AAI Ketuduke Foamy Fetters Bubble Weave](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Foamy%20Fetters%20Bubble%20Weave%27)
+See: [AAI Ketuduke Foamy Fetters Bubble Weave](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Foamy%20Fetters%20Bubble%20Weave%27)
 
 `delaySeconds` does the collecting. As long as the delay is greater than zero this will work,
 but you can optionally set a delay to zero once you have collected everything you need
@@ -1071,7 +1071,7 @@ which emit changing position data for combatants to get an idea of when actors h
 and it is safe to call `getCombatants`.
 `CombatantMemory` (as the name implies) does come from memory and so may be slightly delayed.
 
-See: [P10S Dividing Wings Tether](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p10s.ts#:~:text=id%3A%20%27P10S%20Dividing%20Wings%20Tether%27)
+See: [P10S Dividing Wings Tether](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p10s.ts#:~:text=id%3A%20%27P10S%20Dividing%20Wings%20Tether%27)
 
 Some common suggestions:
 
@@ -1089,8 +1089,8 @@ It's nice to call `Spread => Stack` and then once the spreads go off call `Stack
 It's both a reminder (for people lost in the sauce) but if the second call triggers on the first damage,
 it can tell people when it it safe to start moving and the initial mechanic has locked in.
 
-See: [AAI Ketuduke Hydro Buff Double](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%27)
-and [AAI Ketuduke Hydro Buff Double Followup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%20Followup%27)
+See: [AAI Ketuduke Hydro Buff Double](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%27)
+and [AAI Ketuduke Hydro Buff Double Followup](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_aloalo_island.ts#:~:text=id%3A%20%27AAI%20Ketuduke%20Hydro%20Buff%20Double%20Followup%27)
 
 ### Three-step Mechanics
 
@@ -1113,11 +1113,11 @@ The benefits of this are:
 - people can turn off parts of this they don't want
 - if final two `Second` and `Third` calls are based on ability ids of the `First` and `Second` abilities going off, then it's safe to do that movement when it goes off
 
-See: [P12S First Wing](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20First%20Wing%27),
-[P12S Wing Collect](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Collect%27),
-[P12S Wing Followup](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Followup%27)
+See: [P12S First Wing](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20First%20Wing%27),
+[P12S Wing Collect](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Collect%27),
+[P12S Wing Followup](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/raid/p12s.ts#:~:text=id%3A%20%27P12S%20Wing%20Followup%27)
 
-See also: [AMR Moko Triple Kasumi-giri triggers](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts)
+See also: [AMR Moko Triple Kasumi-giri triggers](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/06-ew/dungeon/another_mount_rokkon.ts)
 
 ## Future Work
 

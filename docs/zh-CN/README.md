@@ -2,7 +2,7 @@
 
 <img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png" />
 
-[![GitHub 工作流程状态（分支）](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain) [![GitHub 发行版（最新的 SemVer）](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen\&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
+[![GitHub 工作流程状态（分支）](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/OverlayPlugin/cactbot/actions?query=workflow%3ATest+branch%3Amain) [![GitHub 发行版（最新的 SemVer）](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen\&sort=semver)](https://github.com/OverlayPlugin/cactbot/releases/latest)
 
 🌎 [[English](../../README.md)] [**简体中文**] [[한국어](../ko-KR/README.md)]
 
@@ -220,7 +220,7 @@ ThirdParty
 
 此模块提供预知战斗事件的时间轴，以及文本和音频提示，以帮助提高团队对 raid 的意识。这些文字和声音警报一般基于战斗时间轴，或是来自游戏中发生的日志消息。简单地说，这是一个类似于 ACT 的 “自定义触发器” 的功能。该模块被设计为类似于《魔兽世界》的 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 插件的外观和感觉。
 
-[此页面](https://quisquous.github.io/cactbot/util/coverage/coverage.html) 列出了当前 cactbot 中支持的副本。我们会持续添加更多支持 (随时欢迎贡献代码！) 尽管许多旧副本仍未支持。
+[此页面](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html) 列出了当前 cactbot 中支持的副本。我们会持续添加更多支持 (随时欢迎贡献代码！) 尽管许多旧副本仍未支持。
 
 战斗时间轴原本是设计为用于 [ACT 时间轴](https://github.com/grindingcoil/act_timeline)插件的文件，不过增加了一些[扩展语法](./TimelineGuide.md)。这里是原插件的 [文档](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)。
 
@@ -248,10 +248,10 @@ ThirdParty
 并在Chrome中访问 `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
 
 如果您正在开发用户自定义触发器，
-您可以在Chrome中访问 `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+您可以在Chrome中访问 `https://overlayplugin.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
 
 如果您正在尝试复现一个问题，
-您可以在Chrome中访问 `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html`
+您可以在Chrome中访问 `https://overlayplugin.github.io/cactbot/ui/raidboss/raidemulator.html`
 在这种情况下，您不需要运行WS服务器。
 
 成功加载网页后，继续按照以下说明使用模拟器。

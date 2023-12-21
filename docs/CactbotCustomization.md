@@ -184,7 +184,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> your overlay -> Open DevTools.
 This is because they use custom elements,
 and they don't expose a lot of knobs to tune.
 If you have particular things you want to change about the timeline bars that you can't,
-please feel free to submit a [github issue](https://github.com/quisquous/cactbot/issues/new/choose).
+please feel free to submit a [github issue](https://github.com/OverlayPlugin/cactbot/issues/new/choose).
 
 **Warning**: cactbot makes no guarantees about preserving CSS backwards compatability.
 Future changes to cactbot may rearrange elements,
@@ -203,7 +203,7 @@ and how long they stay on screen,
 and anything else.
 
 You can see readable JavaScript versions of all of the cactbot triggers
-in this branch: <https://github.com/quisquous/cactbot/tree/triggers>
+in this branch: <https://github.com/OverlayPlugin/cactbot/tree/triggers>
 This is the preferred reference to use for viewing, copying, and pasting.
 Triggers in the main branch
 or shipped in a cactbot release are often in unreadable bundles
@@ -243,7 +243,7 @@ Modify the `zoneId` line to have the zone id for the zone you care about,
 usually from the top of the cactbot trigger file.
 [This file](../resources/zone_id.ts) has a list of all the zone ids.
 If you specify one incorrectly, you will get a warning in the OverlayPlugin log window.
-Then, [copy the trigger text](https://github.com/quisquous/cactbot/tree/triggers) into this block.
+Then, [copy the trigger text](https://github.com/OverlayPlugin/cactbot/tree/triggers) into this block.
 Edit as needed.
 Repeat for all the triggers you want to modify.
 Reload your raidboss overlay to apply your changes.
@@ -266,7 +266,7 @@ you could do this via [Changing Trigger Text with the cactbot UI](#changing-trig
 
 One way to adjust this is to edit the trigger output for this trigger.
 You can find the original fireball #1 trigger in
-[ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201).
+[ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201).
 
 This chunk of code is what you would paste into the bottom of your user-defined js file.
 
@@ -301,7 +301,7 @@ This edit also removed languages other than English.
 Currently, provoke only works for players in your alliance and not for all jobs.
 This example shows how to make it work for all players.
 The provoke trigger can be found in
-[ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke).
+[ui/raidboss/data/00-misc/general.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke).
 
 Here is a modified version with a different `condition` function.
 Because this shares the same `General Provoke` id with the built-in cactbot trigger,

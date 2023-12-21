@@ -2,8 +2,8 @@
 
 <img align="right" src="../../screenshots/cactbot-logo-320x320.png">
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/OverlayPlugin/cactbot/actions?query=workflow%3ATest+branch%3Amain)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/OverlayPlugin/cactbot/releases/latest)
 
 🌎 [[English](../../README.md)] [[简体中文](../zh-CN/README.md)] [**한국어**]
 
@@ -260,7 +260,7 @@ Webpack에 대해 더 자세히 알고 싶다면
 텍스트와 사운드 알람은 ACT의 "커스텀 트리거" 기능과 비슷한 방식으로, 전투 타임라인이나 게임에서 찍히는 로그 메시지를 기반으로 제공됩니다.
 이 모듈은 월드 오브 워크래프트의 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) 애드온과 비슷하게 보이고 느껴지도록 디자인 되었습니다.
 
-[이 페이지](https://quisquous.github.io/cactbot/util/coverage/coverage.html?lang=ko)에는
+[이 페이지](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html?lang=ko)에는
 현재 cactbot이 지원하는 컨텐츠 목록이 나열되어 있습니다.
 지원하는 컨텐츠는 계속해서 늘리고 있습니다.
 하지만 많은 수의 오래된 컨텐츠들이 아직 지원되지 않습니다.

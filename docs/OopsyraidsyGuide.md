@@ -15,8 +15,8 @@ A basic oopsy file should cover:
 
 Any triggers past that are usually a bonus.
 
-See [e12s](https://github.com/quisquous/cactbot/blob/main/ui/oopsyraidsy/data/05-shb/raid/e12s.ts)
-or [TOP](https://github.com/quisquous/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/ultimate/the_omega_protocol.ts)
+See [e12s](https://github.com/OverlayPlugin/cactbot/blob/main/ui/oopsyraidsy/data/05-shb/raid/e12s.ts)
+or [TOP](https://github.com/OverlayPlugin/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/ultimate/the_omega_protocol.ts)
 for examples of more complicated triggers.
 
 These complicated triggers are things like:
@@ -30,7 +30,7 @@ These complicated triggers are things like:
 ## Oopsy Mistake Severity
 
 The TypeScript type `OopsyMistakeType` has all the different types of mistakes that can be made.
-See: [oopsy.d.ts](https://github.com/quisquous/cactbot/blob/main/types/oopsy.d.ts#L9).
+See: [oopsy.d.ts](https://github.com/OverlayPlugin/cactbot/blob/main/types/oopsy.d.ts#L9).
 These each correspond with their own icon.
 It is very subjective what you assign to each, so don't worry about it too much.
 
@@ -56,9 +56,9 @@ If this is filled out, then it becomes very easy to look through all the ability
 and move the relevant ones into the oopsy file.
 
 As an example, here is the Zeromus Extreme timeline
-[ability table](https://github.com/quisquous/cactbot/blob/f15fab608d1700c7a5db6dca243dcc5b97107fab/ui/raidboss/data/06-ew/trial/zeromus-ex.txt#L142-L227)
+[ability table](https://github.com/OverlayPlugin/cactbot/blob/f15fab608d1700c7a5db6dca243dcc5b97107fab/ui/raidboss/data/06-ew/trial/zeromus-ex.txt#L142-L227)
 and here is the
-[oopsy file](https://github.com/quisquous/cactbot/blob/f15fab608d1700c7a5db6dca243dcc5b97107fab/ui/oopsyraidsy/data/06-ew/trial/zeromus-ex.ts)
+[oopsy file](https://github.com/OverlayPlugin/cactbot/blob/f15fab608d1700c7a5db6dca243dcc5b97107fab/ui/oopsyraidsy/data/06-ew/trial/zeromus-ex.ts)
 made from that table.
 
 ## File Structure
@@ -286,7 +286,7 @@ The full order of evaluation of functions in a trigger is:
 
 Oopsy has a playback viewer if you want to test it without running content.
 
-It is hosted at <https://quisquous.github.io/cactbot/ui/oopsyraidsy/oopsy_viewer.html>.
+It is hosted at <https://overlayplugin.github.io/cactbot/ui/oopsyraidsy/oopsy_viewer.html>.
 If you are [running locally with the webpack dev server](../CONTRIBUTING.md#validating-changes-via-webpack),
 you can also use it via <https://localhost:8080/ui/oopsyraidsy/oopsy_viewer.html>.
 
@@ -303,7 +303,7 @@ There's plenty of work that could be done to make it better if you want to contr
 Easier tasks:
 
 - Make the [Oopsy Viewer](#testing-oopsy) support `delaySeconds` properly
-- create an oopsy `Util` library to collect helper functions like [these](https://github.com/quisquous/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/dungeon/aloalo_island.ts) or [these](https://github.com/quisquous/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/raid/p8s.ts) so that it isn't repeated
+- create an oopsy `Util` library to collect helper functions like [these](https://github.com/OverlayPlugin/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/dungeon/aloalo_island.ts) or [these](https://github.com/OverlayPlugin/cactbot/blob/main/ui/oopsyraidsy/data/06-ew/raid/p8s.ts) so that it isn't repeated
   - bonus: add support for a helper for "you took two of these", for cases where somebody is hit by two stacks
   - bonus: add support for "this person missed the stack"
 - make it possible to do `netRegex: { id: '1234', source: 'Mob' }` instead of `netRegex: NetRegexes.ability({ etc })`

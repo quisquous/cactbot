@@ -105,7 +105,7 @@ cactbot将按照字母顺序优先加载user文件夹中的子文件夹里的文
 
 我们推荐使用 [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) 以调试CSS。您可以通过 ACT -> Plugins -> OverlayPlugin.dll -> 您的悬浮窗名字 -> 启动Debug工具 按钮以开启DevTools。
 
-**注意**：某些组件的自定义较为困难，甚至无法进行自定义，如时间轴的进度条等。原因是，这些组件属于自定义HTML元素，且没有开放外部配置的接口。如果您有特别的需求，但是不知道如何修改，您可以提出一个 [github issue](https://github.com/quisquous/cactbot/issues/new/choose)。
+**注意**：某些组件的自定义较为困难，甚至无法进行自定义，如时间轴的进度条等。原因是，这些组件属于自定义HTML元素，且没有开放外部配置的接口。如果您有特别的需求，但是不知道如何修改，您可以提出一个 [github issue](https://github.com/OverlayPlugin/cactbot/issues/new/choose)。
 
 **警告**：cactbot不保证CSS的向后兼容性。在以后的更改中，cactbot可能会重新组织网页结构，改变元素名称和类名称，甚至重构所有样式。因此，您需知晓您的自定义CSS有在将来出现问题的风险。
 
@@ -113,7 +113,7 @@ cactbot将按照字母顺序优先加载user文件夹中的子文件夹里的文
 
 您可以通过用户自定义js文件(例如 `user/raidboss.js` 或 `user/raidboss/` 目录下的任意 `.js` 文件)自定义触发器行为。您可以修改输出文本、适用职业、文本显示的时间等等。
 
-您可以在[这个分支](https://github.com/quisquous/cactbot/tree/triggers)查看所有触发器的 JavaScript 版本。我们推荐您查看、拷贝并粘贴这个分支中的代码实现您自己的触发器。主分支（main）中的触发器代码基于 TypeScript 写成，无法直接在ACT或浏览器中运行；而发行版本中的代码经过了编译与混淆，对于人类来说难以阅读，因此不作推荐。
+您可以在[这个分支](https://github.com/OverlayPlugin/cactbot/tree/triggers)查看所有触发器的 JavaScript 版本。我们推荐您查看、拷贝并粘贴这个分支中的代码实现您自己的触发器。主分支（main）中的触发器代码基于 TypeScript 写成，无法直接在ACT或浏览器中运行；而发行版本中的代码经过了编译与混淆，对于人类来说难以阅读，因此不作推荐。
 
 在您的raidboss模块用户自定义js文件中，`Options.Triggers` 是一个存放了触发器集合的列表。您可以通过此变量添加新触发器，或修改已有的触发器。若用户文件中存在与现有触发器 (cactbot官方提供的) 相同id的触发器，则会将后者完全覆盖。
 
@@ -135,7 +135,7 @@ Options.Triggers.push({
 });
 ```
 
-最简单的定制触发器的方式是直接复制上面那一大块代码粘贴到此文件再进行修改。您可以修改 `zoneId` 一行为您想要触发器响应的区域id，通常位于cactbot触发器文件的顶部。[该文件](../../resources/zone_id.ts)中列出了所有可用的区域id。若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。然后[复制触发器文本](https://github.com/quisquous/cactbot/tree/triggers)并粘贴至此，按您的喜好进行修改。当你修改完成后，重载raidboss悬浮窗以应用更改。
+最简单的定制触发器的方式是直接复制上面那一大块代码粘贴到此文件再进行修改。您可以修改 `zoneId` 一行为您想要触发器响应的区域id，通常位于cactbot触发器文件的顶部。[该文件](../../resources/zone_id.ts)中列出了所有可用的区域id。若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。然后[复制触发器文本](https://github.com/OverlayPlugin/cactbot/tree/triggers)并粘贴至此，按您的喜好进行修改。当你修改完成后，重载raidboss悬浮窗以应用更改。
 
 **注意**：此方式会将原触发器完全移除，因此请在修改时不要删除任何逻辑代码。触发器均采用JavaScript编写，因此必须采用标准JavaScript语法。若您不是字面意义上的程序员，您需要格外注意这点。
 
@@ -145,7 +145,7 @@ Options.Triggers.push({
 
 若您只是想修改 `信息文本`，你可以 [通过cactbot配置界面改变触发器文本](#通过cactbot配置界面改变触发器文本) 实现。
 
-其中一种调整方式是编辑触发器的输出。您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201) 中找到原本的 fireball #1 触发器。
+其中一种调整方式是编辑触发器的输出。您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/04-sb/ultimate/unending_coil_ultimate.js#:~:text=UCU%20Nael%20Fireball%201) 中找到原本的 fireball #1 触发器。
 
 您需要将以下的代码粘贴至您的用户自定义js文件底部。
 
@@ -179,7 +179,7 @@ Options.Triggers.push({
 
 ### 例2：使挑衅提示适用于全职业
 
-目前，只有团队成员的挑衅会触发提示，并且不是所有职业都能收到提示。该例子展示了如何使其适用于所有职业。挑衅触发器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke) 中找到。
+目前，只有团队成员的挑衅会触发提示，并且不是所有职业都能收到提示。该例子展示了如何使其适用于所有职业。挑衅触发器可以在 [ui/raidboss/data/00-misc/general.js](https://github.com/OverlayPlugin/cactbot/blob/triggers/00-misc/general.js#:~:text=General%20Provoke) 中找到。
 
 我们需要修改 `condition` 函数(function)。此处的id应当与内置的 `General Provoke` 触发器一致，才能正确覆盖同名的内置触发器。
 

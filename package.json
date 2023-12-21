@@ -6,7 +6,7 @@
   "types": "./types",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quisquous/cactbot"
+    "url": "https://github.com/OverlayPlugin/cactbot"
   },
   "files": [
     "./ui",

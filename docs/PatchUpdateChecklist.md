@@ -161,7 +161,7 @@ but this always needs to be reformatted and this change should not be committed 
 ### Update Content List
 
 `resources/content_list.ts` is a manually curated list of all content.
-This is what appears on the [coverage page](https://quisquous.github.io/cactbot/util/coverage/coverage.html).
+This is what appears on the [coverage page](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html).
 It is also the ordering in the cactbot config ui,
 although that also sorts by expansion as well.
 
@@ -187,7 +187,7 @@ This could theoretically be done earlier on game data too with Ghidra etc.
 cactbot has a number of memory signatures that it uses.
 (Maybe some day cactbot plugin will merge with OverlayPlugin?)
 
-There are four signatures, which all live in [FFXIVProcessIntl.cs](https://github.com/quisquous/cactbot/blob/main/plugin/CactbotEventSource/FFXIVProcessIntl.cs).
+There are four signatures, which all live in [FFXIVProcessIntl.cs](https://github.com/OverlayPlugin/cactbot/blob/main/plugin/CactbotEventSource/FFXIVProcessIntl.cs).
 
 - Charmap (information about your character)
 - Job Data (gauge info for your job)
@@ -226,7 +226,7 @@ OverlayPlugin will also print out lines like:
 Even if all the signatures are found,
 the offsets might be incorrect.
 
-If you add the [cactbot test overlay](https://github.com/quisquous/cactbot#test-module)
+If you add the [cactbot test overlay](https://github.com/OverlayPlugin/cactbot#test-module)
 as an Overlay, it will give you a bunch of information from memory.
 
 The most important values are: zone, name, and job id.
@@ -236,7 +236,7 @@ Here is a screenshot after the 6.5 patch where the job is broken.
 ![test overlay](images/newpatch_testoverlay.png)
 
 If the signatures are correct, but the offsets are wrong they need to be updated in
-[FFXIVProcessIntl.cs](https://github.com/quisquous/cactbot/blob/main/plugin/CactbotEventSource/FFXIVProcessIntl.cs).
+[FFXIVProcessIntl.cs](https://github.com/OverlayPlugin/cactbot/blob/main/plugin/CactbotEventSource/FFXIVProcessIntl.cs).
 See <https://github.com/quisquous/cactbot/pull/5826/files> as an example.
 
 #### Verify basic info

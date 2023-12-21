@@ -360,7 +360,7 @@ Thus, our final signature is: `488B0D????????4885C974B8488B05`
 
 The address that contains the pointer we care about is the four bytes in the question mark.
 
-You can see this [in cactbot itself](https://github.com/quisquous/cactbot/blob/df176c4feff81bab356a8e5e6e6b453e94626320/CactbotOverlay/FFXIVProcess.cs#L189).
+You can see this [in cactbot itself](https://github.com/OverlayPlugin/cactbot/blob/df176c4feff81bab356a8e5e6e6b453e94626320/CactbotOverlay/FFXIVProcess.cs#L189).
 
 It's important to do a [scan for existing memory signatures](#scan-for-existing-memory-signatures) to make sure that this signature is unique.
 

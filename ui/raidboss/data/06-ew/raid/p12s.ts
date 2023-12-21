@@ -511,16 +511,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'classicalConcepts2ActualNoFlip',
       comment: {
-        en:
-          'Only calls final position immediately in chosen pair order with no flip. For example, for BPOG, the blue X (crosses) will be far west. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
-        de:
-          'Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.“ Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+        en: `Only calls final position immediately in chosen pair order with no flip.
+             For example, for BPOG, the blue X (crosses) will be far west.
+             <a href="https://overlayplugin.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>`,
+        de: `Nennt die endgültige Position nur sofort in der gewählten Paarreihenfolge ohne Flip.
+             Bei BPOG beispielsweise befindet sich das blaue X (Kreuze) weit westlich.
+             <a href="https://overlayplugin.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>`,
         fr:
-          'Afficher la position finale uniquement dans l\'ordre des paires choisies, sans inversion. Par exemple, pour le BPOG, le X bleu (croix) sera loin à l\'ouest. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
-        cn:
-          '只报自己图案的最终位置，没有位置变换。例如，对于 BPOG 打法，蓝 X 是第一列（西面最远）。 <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
-        ko:
-          '선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다. <a href="https://quisquous.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>',
+          `Afficher la position finale uniquement dans l\'ordre des paires choisies, sans inversion.
+            Par exemple, pour le BPOG, le X bleu (croix) sera loin à l\'ouest.
+            <a href="https://overlayplugin.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>`,
+        cn: `只报自己图案的最终位置，没有位置变换。例如，对于 BPOG 打法，蓝 X 是第一列（西面最远）。
+            <a href="https://overlayplugin.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>`,
+        ko: `선택한 도형 순서에 따른 최종 위치만 알립니다. 예시에서 파보빨초를 기준으로 파랑 X는 1열이 됩니다.
+            <a href="https://overlayplugin.github.io/cactbot/resources/images/06ew_raid_p12s_classic2_noflip.webp" target="_blank">Visual</a>`,
       },
       name: {
         en: 'Classical Concepts 2: Actual only & no inversion',

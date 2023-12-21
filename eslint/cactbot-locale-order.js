@@ -26,7 +26,8 @@ const ruleModule = {
       description: 'suggest the locale object key order',
       category: 'Stylistic Issues',
       recommended: true,
-      url: 'https://github.com/quisquous/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
+      url:
+        'https://github.com/OverlayPlugin/cactbot/blob/main/docs/RaidbossGuide.md#trigger-elements',
     },
     fixable: 'code',
     schema: [

@@ -70,7 +70,7 @@ Going to <https://a31a5403.ngrok.io/>
 If this is set up properly,
 you can select an overlay preset like `Cactbot Test`
 and it will give you a url to open in a browser, e.g.
-<https://quisquous.github.io/cactbot/ui/test/test.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
+<https://overlayplugin.github.io/cactbot/ui/test/test.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
 
 That file is a web page being served by github,
 but the query string tells the overlay web page to connect to your ACT instance.
@@ -87,16 +87,16 @@ Unfortunately, all of the overlay html pages needs to be hosted remotely.
 Rather than loading local urls from your filesystem like
 `C:\Users\tinipoutini\cactbot\ui\raidboss\raidboss.html`
 you need to use github urls like
-`https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html`.
+`https://overlayplugin.github.io/cactbot/ui/raidboss/raidboss.html`.
 
 In general, you can use the URL Generator at the bottom of the OverlayPlugin tab
 to generate urls for any presets.
 
 For example:
 
-- cactbot raidboss overlay: <https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
-- rdmty DPS overlay: <https://quisquous.github.io/cactbot/ui/dps/rdmty/dps.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
-- cactbot oopsy: <https://quisquous.github.io/cactbot/ui/oopsyraidsy/oopsyraidsy.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
+- cactbot raidboss overlay: <https://overlayplugin.github.io/cactbot/ui/raidboss/raidboss.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
+- rdmty DPS overlay: <https://overlayplugin.github.io/cactbot/ui/dps/rdmty/dps.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
+- cactbot oopsy: <https://overlayplugin.github.io/cactbot/ui/oopsyraidsy/oopsyraidsy.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws>
 
 ### Configure Raidboss
 
@@ -138,7 +138,7 @@ so please only file a cactbot github issue if your raidboss party override doesn
 ### Troubleshooting Hints
 
 If you are looking at url in the browser like
-<https://quisquous.github.io/cactbot/ui/test/test.html?OVERLAY_WS=wss://127.0.0.1:10501/ws>
+<https://overlayplugin.github.io/cactbot/ui/test/test.html?OVERLAY_WS=wss://127.0.0.1:10501/ws>
 and you don't see any data, even though you are in game,
 ACT is running,
 and the ACT WSServer is running, then you should look at devtools.

@@ -5,7 +5,7 @@ primarily for cactbot.
 
 ![import screenshot](images/timelineguide_timeline.png)
 
-cactbot uses the [raidboss module](https://github.com/quisquous/cactbot#raidboss-module)
+cactbot uses the [raidboss module](https://github.com/OverlayPlugin/cactbot#raidboss-module)
 for triggers and timelines.
 These are combined together so that you can make triggers that are based on actions
 or triggers that are based on timelines themselves.
@@ -448,13 +448,13 @@ This is done by adding a `timelineTriggers` section to the triggers file.
 
 Examples:
 
-* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.ts)
-* [T9](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.ts)
-* [O12 normal](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.ts)
+* [Orbonne Monastery](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.ts)
+* [T9](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.ts)
+* [O12 normal](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.ts)
 
-These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/README.txt) as normal triggers.
+These triggers have the [same syntax](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/data/README.txt) as normal triggers.
 They still allow you to use functions if you want to return something.
-You can use a [condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10) to have it only trigger for a particular job or role.
+You can use a [condition](https://github.com/OverlayPlugin/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10) to have it only trigger for a particular job or role.
 
 However there are a few differences:
 
@@ -486,7 +486,7 @@ See: [user/raidboss.js](https://github.com/quisquous/cactbot-user/blob/641488590
 ## Timeline Translation
 
 To support multiple languages, cactbot trigger files support a `timelineReplace` section.
-You can see an example in [o12s.js](https://github.com/quisquous/cactbot/blob/ecbb723f097328c7bd0476352e5135bd5f776248/ui/raidboss/data/triggers/o12s.js#L608).
+You can see an example in [o12s.js](https://github.com/OverlayPlugin/cactbot/blob/ecbb723f097328c7bd0476352e5135bd5f776248/ui/raidboss/data/triggers/o12s.js#L608).
 This section contains a bunch of regular expressions to replace in syncs, texts, and effects.
 This has two purposes.
 
@@ -529,7 +529,7 @@ If you don't want to stream publicly, unlisted youtube videos are a good option.
 ### Software prerequisites
 
 * [Node.js](https://nodejs.org/en/)
-* A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/main.zip)
+* A copy of cactbot's [source code](https://github.com/OverlayPlugin/cactbot/archive/main.zip)
 * See: [CONTRIBUTING.md](../CONTRIBUTING.md#development-workflow)
 
 ### Timeline Skeleton
@@ -604,7 +604,7 @@ $ node --loader=ts-node/esm util/logtools/make_timeline.ts -f docs/logs/TheAbyss
 ```
 
 `-lf` lists all of the fights and their zones.
-This log file has been run through the [log splitter](https://quisquous.github.io/cactbot/util/logtools/splitter.html)
+This log file has been run through the [log splitter](https://overlayplugin.github.io/cactbot/util/logtools/splitter.html)
 and anonymized, and so there are only three fights.
 
 You can make a timeline for a particular fight by using `-lf` with the index, e.g. `-lf 1`.

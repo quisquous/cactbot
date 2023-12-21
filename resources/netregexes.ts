@@ -24,7 +24,7 @@ const matchDefault = '[^|]*';
 const magicTranslationString = `^^`;
 const magicStringRegex = /^\^\^/;
 
-// can't simply export this, see https://github.com/quisquous/cactbot/pull/4957#discussion_r1002590589
+// can't simply export this, see https://github.com/OverlayPlugin/cactbot/pull/4957#discussion_r1002590589
 const keysThatRequireTranslationAsConst = [
   'ability',
   'name',
@@ -357,15 +357,15 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-20-0x14-networkstartscasting
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-20-0x14-networkstartscasting
    */
   static startsUsing(params?: NetParams['StartsUsing']): CactbotBaseRegExp<'StartsUsing'> {
     return buildRegex('StartsUsing', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    */
   static ability(params?: NetParams['Ability']): CactbotBaseRegExp<'Ability'> {
     return parseHelper(params, 'Ability', {
@@ -376,8 +376,8 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-21-0x15-networkability
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-22-0x16-networkaoeability
    *
    * @deprecated Use `ability` instead
    */
@@ -386,14 +386,14 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-27-0x1b-networktargeticon-head-marker
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-27-0x1b-networktargeticon-head-marker
    */
   static headMarker(params?: NetParams['HeadMarker']): CactbotBaseRegExp<'HeadMarker'> {
     return buildRegex('HeadMarker', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
    */
   static addedCombatant(params?: NetParams['AddedCombatant']): CactbotBaseRegExp<'AddedCombatant'> {
     return parseHelper(
@@ -404,7 +404,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-03-0x03-addcombatant
    * @deprecated Use `addedCombatant` instead
    */
   static addedCombatantFull(
@@ -414,7 +414,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-04-0x04-removecombatant
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-04-0x04-removecombatant
    */
   static removingCombatant(
     params?: NetParams['RemovedCombatant'],
@@ -423,7 +423,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-26-0x1a-networkbuff
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-26-0x1a-networkbuff
    */
   static gainsEffect(params?: NetParams['GainsEffect']): CactbotBaseRegExp<'GainsEffect'> {
     return buildRegex('GainsEffect', params);
@@ -431,7 +431,7 @@ export default class NetRegexes {
 
   /**
    * Prefer gainsEffect over this function unless you really need extra data.
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-38-0x26-networkstatuseffects
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-38-0x26-networkstatuseffects
    */
   static statusEffectExplicit(
     params?: NetParams['StatusEffect'],
@@ -440,14 +440,14 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-30-0x1e-networkbuffremove
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-30-0x1e-networkbuffremove
    */
   static losesEffect(params?: NetParams['LosesEffect']): CactbotBaseRegExp<'LosesEffect'> {
     return buildRegex('LosesEffect', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-35-0x23-networktether
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-35-0x23-networktether
    */
   static tether(params?: NetParams['Tether']): CactbotBaseRegExp<'Tether'> {
     return buildRegex('Tether', params);
@@ -455,21 +455,21 @@ export default class NetRegexes {
 
   /**
    * 'target' was defeated by 'source'
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-25-0x19-networkdeath
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-25-0x19-networkdeath
    */
   static wasDefeated(params?: NetParams['WasDefeated']): CactbotBaseRegExp<'WasDefeated'> {
     return buildRegex('WasDefeated', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-24-0x18-networkdot
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-24-0x18-networkdot
    */
   static networkDoT(params?: NetParams['NetworkDoT']): CactbotBaseRegExp<'NetworkDoT'> {
     return buildRegex('NetworkDoT', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static echo(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -484,7 +484,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static dialog(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -499,7 +499,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static message(params?: Omit<NetParams['GameLog'], 'code'>): CactbotBaseRegExp<'GameLog'> {
     if (typeof params === 'undefined')
@@ -515,14 +515,14 @@ export default class NetRegexes {
 
   /**
    * fields: code, name, line, capture
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     return buildRegex('GameLog', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-00-0x00-logline
    */
   static gameNameLog(params?: NetParams['GameLog']): CactbotBaseRegExp<'GameLog'> {
     // Backwards compatability.
@@ -530,42 +530,42 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-12-0x0c-playerstats
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-12-0x0c-playerstats
    */
   static statChange(params?: NetParams['PlayerStats']): CactbotBaseRegExp<'PlayerStats'> {
     return buildRegex('PlayerStats', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-01-0x01-changezone
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-01-0x01-changezone
    */
   static changeZone(params?: NetParams['ChangeZone']): CactbotBaseRegExp<'ChangeZone'> {
     return buildRegex('ChangeZone', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-33-0x21-network6d-actor-control
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-33-0x21-network6d-actor-control
    */
   static network6d(params?: NetParams['ActorControl']): CactbotBaseRegExp<'ActorControl'> {
     return buildRegex('ActorControl', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-34-0x22-networknametoggle
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-34-0x22-networknametoggle
    */
   static nameToggle(params?: NetParams['NameToggle']): CactbotBaseRegExp<'NameToggle'> {
     return buildRegex('NameToggle', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-40-0x28-map
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-40-0x28-map
    */
   static map(params?: NetParams['Map']): CactbotBaseRegExp<'Map'> {
     return buildRegex('Map', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-41-0x29-systemlogmessage
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-41-0x29-systemlogmessage
    */
   static systemLogMessage(
     params?: NetParams['SystemLogMessage'],
@@ -574,28 +574,28 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-257-0x101-mapeffect
    */
   static mapEffect(params?: NetParams['MapEffect']): CactbotBaseRegExp<'MapEffect'> {
     return buildRegex('MapEffect', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-258-0x102-fatedirector
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-258-0x102-fatedirector
    */
   static fateDirector(params?: NetParams['FateDirector']): CactbotBaseRegExp<'FateDirector'> {
     return buildRegex('FateDirector', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-259-0x103-cedirector
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-259-0x103-cedirector
    */
   static ceDirector(params?: NetParams['CEDirector']): CactbotBaseRegExp<'CEDirector'> {
     return buildRegex('CEDirector', params);
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-261-0x105-combatantmemory
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-261-0x105-combatantmemory
    */
   static combatantMemory(
     params?: NetParams['CombatantMemory'],
@@ -604,7 +604,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-263-0x107-startsusingextra
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-263-0x107-startsusingextra
    */
   static startsUsingExtra(
     params?: NetParams['StartsUsingExtra'],
@@ -613,7 +613,7 @@ export default class NetRegexes {
   }
 
   /**
-   * matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#line-264-0x108-abilityextra
+   * matches: https://github.com/OverlayPlugin/cactbot/blob/main/docs/LogGuide.md#line-264-0x108-abilityextra
    */
   static abilityExtra(
     params?: NetParams['AbilityExtra'],

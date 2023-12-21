@@ -2,8 +2,8 @@
 
 <img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png">
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/quisquous/cactbot/test.yml?branch=main)](https://github.com/OverlayPlugin/cactbot/actions?query=workflow%3ATest+branch%3Amain)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/OverlayPlugin/cactbot/releases/latest)
 
 🌎 [**English**] [[简体中文](docs/zh-CN/README.md)] [[한국어](docs/ko-KR/README.md)]
 
@@ -263,7 +263,7 @@ timeline, or come from log messages that occur in the game, similar to ACT's "Cu
 The overlay is designed to look and feel similar to the
 [BigWigs Bossmods](https://www.curseforge.com/wow/addons/big-wigs) addon for World of Warcraft.
 
-[This page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) lists
+[This page](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html) lists
 the currently supported set of content in cactbot.
 Support is continually added over time (patches welcome!)
 but a lot of old content may not be supported yet.
@@ -302,10 +302,10 @@ you can start a local development server via `npm run start`
 and load the overlay in Chrome via `http://127.0.0.1:8080/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
 
 If you're developing user triggers,
-you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
+you can load the overlay in Chrome via `https://overlayplugin.github.io/cactbot/ui/raidboss/raidemulator.html?OVERLAY_WS=ws://127.0.0.1:10501/ws`
 
 If you're trying to reproduce an issue,
-you can load the overlay in Chrome via `https://quisquous.github.io/cactbot/ui/raidboss/raidemulator.html`.
+you can load the overlay in Chrome via `https://overlayplugin.github.io/cactbot/ui/raidboss/raidemulator.html`.
 You don't need the WS Server running in this case.
 
 Once you've got the overlay loaded, you can follow these instructions to use the emulator.
@@ -518,7 +518,7 @@ international (English, German, French, Japanese) version,
 the current Chinese version,
 and the current Korean version.
 Some translations are still a work in progress.
-See the [cactbot coverage page](https://quisquous.github.io/cactbot/util/coverage/coverage.html) for more details.
+See the [cactbot coverage page](https://overlayplugin.github.io/cactbot/util/coverage/coverage.html) for more details.
 
 ## Licensing, Trademarks, Copyright
 
