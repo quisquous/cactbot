@@ -42,7 +42,6 @@ const missingOutputFileNames = {
 };
 
 const basePath = () => path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const baseUrl = 'https://github.com/quisquous/cactbot/blob/main';
 
 const emptyCoverage = (): CoverageEntry => {
   return {
@@ -418,7 +417,7 @@ const processMissingTranslations = async (): Promise<MissingTranslationsDict> =>
   return missing;
 };
 
-const writeMissingTranslations = (missing: MissingTranslations[], outputFileName: string) => {
+const writeMissingTranslations = (outputFileName: string) => {
   const flags = 'w';
   const writer = fs.createWriteStream(outputFileName, { flags: flags });
   writer.on('error', (err) => {
@@ -426,13 +425,8 @@ const writeMissingTranslations = (missing: MissingTranslations[], outputFileName
     process.exit(-1);
   });
 
-  for (const trans of missing) {
-    const lineHash = trans.line === undefined ? '' : `#L${trans.line}`;
-    const lineText = trans.line === undefined ? '' : `:${trans.line}`;
-    const url = `${baseUrl}/${trans.file}${lineHash}`;
-    const link = `<a href="${url}">${trans.file}${lineText}</a>`;
-    writer.write(`<div>${link} [${trans.type}] ${trans.message}</div>\n`);
-  }
+  const url = `https://overlayplugin.github.io/cactbot/util/${outputFileName}`;
+  writer.write(`<meta http-equiv="refresh" content="0; url=${url}" />`);
 };
 
 (async () => {
@@ -442,10 +436,7 @@ const writeMissingTranslations = (missing: MissingTranslations[], outputFileName
   for (const lang of languages) {
     if (lang === 'en')
       continue;
-    const missing = missingTranslations[lang];
-    if (missing === undefined)
-      continue;
-    writeMissingTranslations(missing, missingOutputFileNames[lang]);
+    writeMissingTranslations(missingOutputFileNames[lang]);
   }
 
   const currentPathAndFile = process.argv?.[1] ?? '';
