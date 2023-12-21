@@ -146,7 +146,7 @@ namespace Cactbot {
         repo = kRepo,
         downloadUrl = kDownloadUrl,
         strippedDirs = 2,
-        actPluginId = 78,
+        actPluginId = 97,
       };
 
       await Updater.RunAutoUpdater(options);
