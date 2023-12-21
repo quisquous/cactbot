@@ -1,7 +1,5 @@
-# Permanently Moved
+# Permanently Moved to OverlayPlugin/cactbot
 
-quisquous/cactbot has permanently moved to OverlayPlugin/cactbot.
+See: [ui/raidboss/emulator/Readme.md](https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/emulator/Readme.md)
 
-See: <https://github.com/OverlayPlugin/cactbot/>
-
-Please file any issues or pull requests there.
+<meta http-equiv="refresh" content="0; url=https://github.com/OverlayPlugin/cactbot/blob/main/ui/raidboss/emulator/Readme.md" />
