@@ -1,0 +1,8 @@
+<head><script defer="defer" src="../../ui/common/raidboss_data.bundle.js"></script><script defer="defer" src="../../ui/raidboss/raidboss.bundle.js"></script><link href="../../ui/raidboss/raidboss.css" rel="stylesheet"></head><script>let redirUrl = 'https://overlayplugin.github.io/cactbot/ui/raidboss/raidboss.html?timeline=0&alerts=1';
+  if (typeof window !== 'undefined') {
+    const wsUrl = /[\?&](OVERLAY_WS=[^&]+)/.exec(window.location.href);
+    if (wsUrl) {
+      redirUrl += '&' + wsUrl[1];
+    }
+  }
+  window.location.href = redirUrl;</script>
