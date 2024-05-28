@@ -1,0 +1,29 @@
+These sounds from freesound.org and licensed via Creative Commons licenses.
+The details of each license along with source for each sound is listed below.
+All sounds have been converted from .wav to .webm for space.
+
+alarm.webm
+  https://freesound.org/people/ZyryTSounds/sounds/219244/
+  http://creativecommons.org/publicdomain/zero/1.0/
+  modifications: shortened to first second
+
+amy/
+  http://www.freesound.org/people/Timbre/sounds/83033/
+  https://creativecommons.org/licenses/by-nc/3.0/
+  modifications: sound cut into separate files
+
+percussion_hit.webm
+  https://freesound.org/people/Stumber/sounds/207863/
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+power_up.webm
+  https://freesound.org/people/GameAudio/sounds/220173/
+  https://creativecommons.org/publicdomain/zero/1.0/
+
+sonar.webm
+  https://freesound.org/people/NoiseCollector/sounds/6164/
+  https://creativecommons.org/licenses/by/3.0/
+
+water_drop.webm
+  https://freesound.org/people/paespedro/sounds/174718/
+  https://creativecommons.org/publicdomain/zero/1.0/
